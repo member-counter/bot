@@ -59,3 +59,10 @@ typings/
 
 # next.js build output
 .next
+
+# ignore log
+log/
+
+# ignore bot-config.json
+
+bot-config.json
