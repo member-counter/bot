@@ -1,0 +1,29 @@
+{
+  "name": "member-counter-bot",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardozgz/random-shit-bot.git"
+  },
+  "author": "eduardozgz#5695",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eduardozgz/random-shit-bot/issues"
+  },
+  "homepage": "https://github.com/eduardozgz/random-shit-bot#readme",
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "discord.js": "^11.4.2",
+    "mongoose": "^5.4.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
