@@ -19,6 +19,7 @@
   "homepage": "https://github.com/eduardozgz/random-shit-bot#readme",
   "dependencies": {
     "archiver": "^3.0.0",
+    "bufferutil": "^4.0.1",
     "discord.js": "^11.4.2",
     "mongoose": "^5.4.0",
     "request": "^2.88.0"

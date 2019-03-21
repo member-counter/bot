@@ -12,9 +12,9 @@ const command = {
         if (message.member.hasPermission('ADMINISTRATOR')) {
             GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {guild_id:message.guild.id, channel_id: '0'}, {upsert: true})
             .then((old_doc)=>{
-                message.channel.send(language.command.disable.success).catch(error);
+                message.channel.send(language.command.disable.success);
                 if (old_doc !== null && old_doc.channel_id !== '0') {
-                    console.log('todo: remove topic')
+                    client.channels.get(old_doc.channel_id).setTopic('')
                 }
             })
             .catch((e)=>{

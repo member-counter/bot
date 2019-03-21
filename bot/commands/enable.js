@@ -1,7 +1,7 @@
 const prefix = process.env.prefix || require('../../bot-config.json').prefix;
 const { log, error } = require('../utils/customConsole');
-const GuildModel = require('../../mongooseModels/GuildModel')
-const updateCounter = require('../utils/updateCounter')
+const GuildModel = require('../../mongooseModels/GuildModel');
+const updateCounter = require('../utils/updateCounter');
 
 const command = {
     name: "enable",
