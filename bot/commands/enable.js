@@ -10,7 +10,7 @@ const command = {
     enabled: true,
     run: (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR')) {
-            GuildModel.replaceOne({guild_id:message.guild.id}, {guild_id:message.guild.id, channel_id: message.channel.id}, {upsert: true})
+            GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {guild_id:message.guild.id, channel_id: message.channel.id}, {upsert: true})
             .then(()=>{
                 message.channel.send(language.command.enable.success).catch(error);
                 updateCounter(client, message.guild.id)

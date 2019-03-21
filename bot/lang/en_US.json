@@ -47,6 +47,12 @@
             "success":"The counter has been enabled in this channel.",
             "error_unknown":"Something went wrong, try again later.",
             "error_no_admin":"Only members with administrator permissions in this server can use this command."
+        },
+        "disable":{
+            "help_description":"Disables the counter.",
+            "success":"The counter has been disabled.",
+            "error_unknown":"Something went wrong, try again later.",
+            "error_no_admin":"Only members with administrator permissions in this server can use this command."
         }
     }
 }
