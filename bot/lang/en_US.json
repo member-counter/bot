@@ -7,7 +7,7 @@
             "embed_reply": {
                 "title": "Help me to improve this bot!",
                 "url": "https://github.com/eduardozgz/member-counter-bot",
-                "color": 15912192,
+                "color": 16777215,
                 "description": "[https://github.com/eduardozgz/member-counter-bot](https://github.com/eduardozgz/member-counter-bot)"
             }
         },
@@ -15,8 +15,8 @@
             "help_description":"It's really necessary to explain the purpose of this command?",
             "embed_reply":{
                 "title": "Command list",
-                "description": "```css\nAvailable commands:\nmc!help [command]\nmc!invite\nmc!lang [lang code]\nmc!github /*Improve this bot!*/```",
-                "color": 15912192,
+                "description": "",
+                "color": 16777215,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
                     "text": "by eduardozgz#5695"
@@ -32,15 +32,21 @@
             "embed_reply":{
                 "title": "Add this bot to your server now!",
                 "url": "https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=388176&scope=bot",
-                "color": 15912192,
+                "color": 16777215,
                 "description": "[https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=388176&scope=bot](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=388176&scope=bot)"
                 }
         },
         "lang":{
             "help_description":"Changes the bot language for this guild, you must have administrator permissions to run this command.",
-            "success":"Language changed successfully",
+            "success":"Language changed successfully.",
             "error_not_found":"I didn't find that language, try one of the following:",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command"
+            "error_no_admin":"Only members with administrator permissions in this server can use this command."
+        },
+        "enable":{
+            "help_description":"Enables and set the channel that will be used for the counter.",
+            "success":"The counter has been enabled in this channel.",
+            "error_unknown":"Something went wrong, try again later.",
+            "error_no_admin":"Only members with administrator permissions in this server can use this command."
         }
     }
 }
