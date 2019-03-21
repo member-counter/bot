@@ -19,7 +19,6 @@ const log = (data) => {
     if (save_logs) botLog.write(timestamp() + " " + data + '\n');
 }
 const error = (data) => {
-    data = JSON.stringify(data);
     console.error(`\x1b[37m\x1b[41m${timestamp()} ${data}\x1b[0m`);
     if (save_logs) errorLog.write(timestamp()  + " " + data + '\n');
 }
