@@ -15,7 +15,7 @@
             "help_description":"It's really necessary to explain the purpose of this command?",
             "embed_reply":{
                 "title": "Command list",
-                "description": "",
+                "description": "```css\nAvailable commands:\nmc!help\nmc!enable\nmc!disable\nmc!setTopic\nmc!setDigit\nmc!invite\nmc!lang\nmc!github /*Improve this bot!*/```",
                 "color": 16777215,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",

@@ -9,9 +9,9 @@ const command = {
     enabled: true,
     run: (client, message, language) => {
         const embed = {
-            "color": 16711680,
+            "color": 16777215,
             "title": "GitHub",
-            "url":"https://github.com/eduardozgz/random-shit-bot",
+            "url":"https://github.com/eduardozgz/member-counter-bot",
             "fields": [
               {
                 "name": "**Bot version:**",
