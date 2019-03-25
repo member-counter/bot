@@ -17,10 +17,10 @@ const command = {
                 const embed = {
                     "title": language.command.help.misc.command + " " + args[1].toLowerCase(),
                     "description": selectedCommand.help_description,
-                    "color": 0xf2cd00,
+                    "color": 14503424,
                     "author": {
-                        "name": "Random Shit",
-                        "icon_url": "https://cdn.discordapp.com/avatars/447859277688733707/b201c2693dfa7ea88a988a050037d211.png?size=1024"
+                        "name": "Member Counter",
+                        "icon_url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png?size=128"
                     }
                 }
                 message.channel.send({ embed }).catch(error);

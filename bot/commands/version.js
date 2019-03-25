@@ -9,7 +9,7 @@ const command = {
     enabled: true,
     run: (client, message, language) => {
         const embed = {
-            "color": 16777215,
+            "color": 14503424,
             "title": "GitHub",
             "url":"https://github.com/eduardozgz/member-counter-bot",
             "fields": [
