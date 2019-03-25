@@ -16,7 +16,7 @@ let command = {
     enabled: true,
     run: async (client, message, language) => {
         const embed = {
-            "color": 16711680,
+            "color": 14503424,
             "fields": [
               {
                 "name": "**Discord client uptime:**",

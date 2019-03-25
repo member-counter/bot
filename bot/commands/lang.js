@@ -6,7 +6,7 @@ const command = {
     name: "lang",
     commands: [prefix+"lang"],
     indexZero: true,
-    enabled: true,
+    enabled: false,
     run: async (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR')) {
             const args = message.content.split(' ');
