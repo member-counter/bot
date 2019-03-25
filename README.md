@@ -22,7 +22,7 @@
 
 `status`
 
-`status_type`'
+`status_type`
 
 `activity`
 
