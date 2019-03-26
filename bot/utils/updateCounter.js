@@ -15,7 +15,7 @@ module.exports = (client, guild_id) => {
             client.channels.get(guild_config.channel_id).setTopic(guild_config.topic.replace('{COUNT}', memberCountCustomized))
             .catch((e)=>{
                 error(e);
-                if(e.code && (e.code === 50013)) client.channels.get(guild_config.channel_id).send('Looks like I don\'t have permissions to set the topic of this channel, please, give me the proper permissions.').catch(error);
+                if(e.code && (e.code === 50013)) client.channels.get(guild_config.channel_id).send('Looks like I don\'t have permissions to set the topic of this channel. Please, give me the proper permissions.').catch(error);
             });
         }
     })
