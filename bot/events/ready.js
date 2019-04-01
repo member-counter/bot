@@ -6,6 +6,8 @@ module.exports = (client) => {
     client.on('ready', () => {
         log(`Discord client ready`);
         log(`Serving in ${client.guilds.size} servers, for ${client.users.size} users as ${client.user.tag}`);
-        client.user.setPresence({ game: { name: activity, type: status_type}});
+        setInterval(()=>{
+            client.user.setPresence({ game: { name: activity, type: status_type}});
+        }, 15*1000)
     });
 }
