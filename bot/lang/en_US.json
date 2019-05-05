@@ -55,14 +55,14 @@
             "error_no_admin":"Only members with administrator permissions in this server can use this command."
         },
         "setDigit":{
-            "help_description":"Customizes a digit.\n\n Usage: ```mc!setDigit <plain digit> <custom digit>```\n Tip: You can use an emoji as a custom digit.",
+            "help_description":"Customizes numbers that will be displayed.\n\n Usage: ```mc!setDigit <plain number> <custom number>```\n Tip: You can use an emoji as a custom number.",
             "success":"Digit customized.",
             "error_unknown":"Something went wrong, try again later.",
             "error_no_admin":"Only members with administrator permissions in this server can use this command.",
             "error_missing_params": "Error: Missing parameters, more info: mc!help setDigit."
         },
         "setTopic":{
-            "help_description":"You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed.\n\n Example: ```mc!setTopic Current members: {COUNT} | Invite your friends using this link! -> https://discord.gg/fakeurl```",
+            "help_description":"You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed.\n\n Example: ```mc!setTopic Current members: {COUNT}```",
             "success":"Topic customized.",
             "error_unknown":"Something went wrong, try again later.",
             "error_no_admin":"Only members with administrator permissions in this server can use this command.",
