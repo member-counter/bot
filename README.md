@@ -14,25 +14,18 @@
 	"save_logs": true
 }
 ```
-## Or set environment variables
+### Or set environment variables
 
-`token`
+`token`, `prefix`, `status`, `status_type`, `activity`, `default_lang`, `db`, `save_logs`
 
-`prefix`
-
-`status`
-
-`status_type`
-
-`activity`
-
-`default_lang`
-
-`db`
-
-`save_logs`
+## Install dependencies
 
 ```sh
-npm i
+npm install
+```
+
+## And start it
+
+```sh
 npm start
 ```
