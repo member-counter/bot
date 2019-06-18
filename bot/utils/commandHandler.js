@@ -38,8 +38,8 @@ module.exports = async (client, message) => {
                     const AvailableLanguages = await getAvailableLanguages();
                     
                     for (let L = 0; L < AvailableLanguages.length; L++) {
-                        if (AvailableLanguages[L] == GuildLanguage.lang) {
-                            ResultLang = GuildLanguage.lang;
+                        if (AvailableLanguages[L] == GuildLanguage) {
+                            ResultLang = GuildLanguage;
                             break;
                         }
                     }

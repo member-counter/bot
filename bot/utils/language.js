@@ -7,7 +7,7 @@ const getGuildLanguage = (id) => {
     return new Promise((resolve, reject)=>{
         GuildModel.findOne({guild_id:id})
         .then(result=>{
-            (result) ? resolve(result) : resolve(default_lang);
+            (result) ? resolve(result.lang) : resolve(default_lang);
         })
         .catch(e=>{
             reject(e)
@@ -40,7 +40,7 @@ const getAvailableLanguages = () => {
     });
 }
 module.exports = {
-    setGuildLanguage: setGuildLanguage,
-    getGuildLanguage: getGuildLanguage,
-    getAvailableLanguages: getAvailableLanguages
+    setGuildLanguage,
+    getGuildLanguage,
+    getAvailableLanguages
 }
