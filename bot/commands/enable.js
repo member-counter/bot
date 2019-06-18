@@ -10,10 +10,17 @@ const command = {
     enabled: true,
     run: (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR')) {
-            GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {guild_id:message.guild.id, channel_id: message.channel.id}, {upsert: true})
-            .then(()=>{
-                message.channel.send(language.command.enable.success).catch(error);
-                updateCounter(client, message.guild.id)
+            GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, { guild_id:message.guild.id }, {upsert: true, new: true})
+            .then((result)=>{
+                if (!result.channel_id.includes(message.channel.id)) {
+                    result.channel_id = [ ...result.channel_id, message.channel.id ];
+                    result.save().then(()=>{
+                        message.channel.send(language.command.enable.success).catch(error);
+                        updateCounter(client, message.guild.id);
+                    }).catch(error);
+                } else {
+                    message.channel.send(language.command.enable.error_already_enabled).catch(error);
+                }
             })
             .catch((e)=>{
                 error(e);

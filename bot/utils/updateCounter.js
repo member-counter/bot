@@ -1,10 +1,11 @@
 const GuildModel = require('../../mongooseModels/GuildModel');
 const { log, error } = require('../utils/customConsole');
-
+const default_lang = process.env.default_lang  || require('../../bot-config.json').default_lang ;
+const { getAvailableLanguages } = require('../utils/language');
 module.exports = (client, guild_id) => {
     GuildModel.findOne({guild_id})
     .then((guild_config)=>{
-        if (guild_config.channel_id !== '0') {
+        if (guild_config.channel_id.length !== 0) {
             const memberCount = client.guilds.get(guild_id).memberCount.toString().split('');
             let memberCountCustomized = new String();
 
@@ -12,10 +13,13 @@ module.exports = (client, guild_id) => {
                 memberCountCustomized += guild_config.custom_numbers[digit]
             });
 
-            client.channels.get(guild_config.channel_id).setTopic(guild_config.topic.replace('{COUNT}', memberCountCustomized))
-            .catch((e)=>{
-                error(e);
-                if(e.code && (e.code === 50013)) client.channels.get(guild_config.channel_id).send('Looks like I don\'t have permissions to set the topic of this channel. Please, give me the proper permissions.').catch(error);
+            guild_config.channel_id.forEach(channel => {
+                client.channels.get(channel).setTopic(guild_config.topic.replace('{COUNT}', memberCountCustomized))
+                .catch( async (e)=>{
+                    error(e);
+                    const { error_no_perms } = require(`../lang/${((await getAvailableLanguages()).includes(guild_config.lang)) ? guild_config.lang : default_lang }.json`).functions.updateCounter;
+                    if(e.code && (e.code === 50013)) client.channels.get(channel).send(error_no_perms).catch(error);
+                });
             });
         }
     })

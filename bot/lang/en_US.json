@@ -46,11 +46,12 @@
             "help_description":"Enables and sets the channel that will be used for the counter.",
             "success":"The counter has been enabled on this channel.",
             "error_unknown":"Something went wrong, try again later.",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command."
+            "error_no_admin":"Only members with administrator permissions in this server can use this command.",
+            "error_already_enabled":"This channel already has a counter."
         },
         "disable":{
             "help_description":"Disables the counter.",
-            "success":"The counter has been disabled.",
+            "success":"The counter has been disabled on this channel.",
             "error_unknown":"Something went wrong, try again later.",
             "error_no_admin":"Only members with administrator permissions in this server can use this command."
         },
@@ -67,6 +68,11 @@
             "error_unknown":"Something went wrong, try again later.",
             "error_no_admin":"Only members with administrator permissions in this server can use this command.",
             "error_missing_params": "Error: Missing parameters, more info: mc!help setTopic."
+        }
+    },
+    "functions": {
+        "updateCounter":{
+            "error_no_perms":"Looks like I don't have permissions to set the topic of this channel. Please, give me the proper permissions or disable me using ``mc!disable``."
         }
     }
 }
