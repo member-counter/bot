@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eduardozgz/random-shit-bot.git"
+    "url": "git+https://github.com/eduardozgz/member-counter-bot.git"
   },
   "author": "eduardozgz#5695",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eduardozgz/random-shit-bot/issues"
+    "url": "https://github.com/eduardozgz/member-counter-bot/issues"
   },
-  "homepage": "https://github.com/eduardozgz/random-shit-bot#readme",
+  "homepage": "https://github.com/eduardozgz/member-counter-bot#readme",
   "dependencies": {
     "archiver": "^3.0.0",
     "bufferutil": "^4.0.1",
