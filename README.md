@@ -11,12 +11,13 @@
 	"activity":"type mc!help",
 	"default_lang": "en_US",
 	"db":"mongodb://username:password@host/database",
-	"save_logs": true
+	"save_logs": true,
+	"dblToken" : ""
 }
 ```
 ### Or set environment variables
 
-`token`, `prefix`, `status`, `status_type`, `activity`, `default_lang`, `db`, `save_logs`
+`token`, `prefix`, `status`, `status_type`, `activity`, `default_lang`, `db`, `save_logs`, `dblToken`
 
 ## Install dependencies
 

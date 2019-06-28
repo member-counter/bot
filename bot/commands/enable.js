@@ -12,10 +12,11 @@ const command = {
         if (message.member.hasPermission('ADMINISTRATOR')) {
             GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, { guild_id:message.guild.id }, {upsert: true, new: true})
             .then((result)=>{
-                if (!result.channel_id.includes(message.channel.id)) {
-                    result.channel_id = [ ...result.channel_id, message.channel.id ];
+                const newChannel = (message.mentions.channels.size > 0 ) ? message.mentions.channels.first() : message.channel;
+                if (!result.channel_id.includes(newChannel.id)) {
+                    result.channel_id = [ ...result.channel_id, newChannel.id ];
                     result.save().then(()=>{
-                        message.channel.send(language.command.enable.success).catch(error);
+                        message.channel.send(language.command.enable.success.replace("{CHANNEL}", newChannel.toString())).catch(error);
                         updateCounter(client, message.guild.id);
                     }).catch(error);
                 } else {

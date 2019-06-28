@@ -3,27 +3,29 @@ const { log, error } = require('../utils/customConsole');
 const GuildModel = require('../../mongooseModels/GuildModel');
 
 const command = {
-    name: "disable",
-    commands: [prefix+"disable"],
+    name: "disableAll",
+    commands: [prefix+"disableAll"],
     indexZero: true, 
     enabled: true,
     run: (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR')) {
             GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {guild_id:message.guild.id}, {upsert: true})
             .then((result)=>{
-                const channelToRemove = (message.mentions.channels.size > 0 ) ? message.mentions.channels.first() : message.channel;
-                result.channel_id = result.channel_id.filter(element => element !== channelToRemove.id);
+                const channelsToReset = result.channel_id;
+                result.channel_id = [];
                 result.save().then(()=>{
-                    channelToRemove.setTopic('').catch(error);
-                    message.channel.send(language.command.disable.success.replace("{CHANNEL}", channelToRemove.toString())).catch(error)
+                    message.channel.send(language.command.disableAll.success).catch(error);
+                    channelsToReset.forEach(channel_id => {
+                        client.channels.get(channel_id).setTopic('').catch(error)
+                    });
                 });
             })
             .catch((e)=>{
                 error(e);
-                message.channel.send(language.command.disable.error_unknown).catch(error)
+                message.channel.send(language.command.disableAll.error_unknown).catch(error)
             });
         } else {
-            message.channel.send(language.command.disable.error_no_admin).catch(error)
+            message.channel.send(language.command.disableAll.error_no_admin).catch(error)
         }
     }
 }
