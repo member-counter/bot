@@ -1,7 +1,9 @@
 const prefix = process.env.prefix || require('../../bot-config.json').prefix;
+const owners = process.env.owners ? process.env.owners.split(/,\s?/) : require('../../bot-config.json').owners;
 const { log, error } = require('../utils/customConsole');
 const GuildModel = require('../../mongooseModels/GuildModel');
 const updateCounter = require('../utils/updateCounter');
+
 
 const command = {
     name: "enable",
@@ -9,7 +11,7 @@ const command = {
     indexZero: true, 
     enabled: true,
     run: (client, message, language) => {
-        if (message.member.hasPermission('ADMINISTRATOR')) {
+        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, { guild_id:message.guild.id }, {upsert: true, new: true})
             .then((result)=>{
                 const newChannel = (message.mentions.channels.size > 0 ) ? message.mentions.channels.first() : message.channel;

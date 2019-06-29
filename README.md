@@ -12,12 +12,13 @@
 	"default_lang": "en_US",
 	"db":"mongodb://username:password@host/database",
 	"save_logs": true,
-	"dblToken" : ""
+	"dblToken" : "",
+	"owners" : []
 }
 ```
 ### Or set environment variables
 
-`token`, `prefix`, `status`, `status_type`, `activity`, `default_lang`, `db`, `save_logs`, `dblToken`
+`token`, `prefix`, `status`, `status_type`, `activity`, `default_lang`, `db`, `save_logs`, `dblToken`, `owners`
 
 ## Install dependencies
 

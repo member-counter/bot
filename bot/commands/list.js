@@ -1,4 +1,5 @@
 const prefix = process.env.prefix || require('../../bot-config.json').prefix;
+const owners = process.env.owners ? process.env.owners.split(/,\s?/) : require('../../bot-config.json').owners;
 const { log, error } = require('../utils/customConsole');
 const GuildModel = require('../../mongooseModels/GuildModel');
 
@@ -8,7 +9,7 @@ const command = {
     indexZero: true, 
     enabled: true,
     run: (client, message, language) => {
-        if (message.member.hasPermission('ADMINISTRATOR')) {
+        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOne({ guild_id:message.guild.id })
             .then((result) => {
                 if (result) {
