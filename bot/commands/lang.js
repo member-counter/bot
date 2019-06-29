@@ -1,4 +1,5 @@
 const prefix = process.env.prefix || require('../../bot-config.json').prefix;
+const owners = process.env.owners ? process.env.owners.split(/,\s?/) : require('../../bot-config.json').owners;
 const { setGuildLanguage, getAvailableLanguages } = require('../utils/language');
 const { error } = require('../utils/customConsole');
 
@@ -8,7 +9,7 @@ const command = {
     indexZero: true,
     enabled: false,
     run: async (client, message, language) => {
-        if (message.member.hasPermission('ADMINISTRATOR')) {
+        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             const args = message.content.split(' ');
             const availableLanguages = await getAvailableLanguages();
             let langNotFound = true;

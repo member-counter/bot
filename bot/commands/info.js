@@ -1,6 +1,7 @@
 const prefix = process.env.prefix || require('../../bot-config.json').prefix;
 const os = require('os');
 const { error } = require('../utils/customConsole');
+const version = require('../../package.json').version;
 
 const parseUptime = (inputDate) => {
     //inputDate must be in seconds
@@ -10,14 +11,21 @@ const parseUptime = (inputDate) => {
 }
 
 let command = {
-    name: "uptime",
-    commands: [prefix+'uptime', "..uptime"],
+    name: "info",
+    commands: [prefix+'info', "..info"],
     indexZero: true,
     enabled: true,
     run: async (client, message, language) => {
         const embed = {
             "color": 14503424,
+            "title": "GitHub",
+            "url":"https://github.com/eduardozgz/member-counter-bot",
             "fields": [
+              {
+                "name": "**Bot version:**",
+                "value": version,
+                "inline": true
+              },
               {
                 "name": "**Discord client uptime:**",
                 "value": parseUptime(client.uptime / 1000),
