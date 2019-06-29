@@ -1,5 +1,5 @@
-const prefix = process.env.prefix || require('../../bot-config.json').prefix;
-const owners = process.env.owners ? process.env.owners.split(/,\s?/) : require('../../bot-config.json').owners;
+const prefix = process.env.PREFIX;
+const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const { log, error } = require('../utils/customConsole');
 const GuildModel = require('../../mongooseModels/GuildModel');
 const updateCounter = require('../utils/updateCounter');

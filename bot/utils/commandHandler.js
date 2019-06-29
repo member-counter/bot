@@ -3,7 +3,7 @@ const path = require('path');
 const {log, error} = require('./customConsole.js');
 const sendStats = require('./stats.js');
 const { getAvailableLanguages, getGuildLanguage } = require('../utils/language.js');
-const default_lang = process.env.default_lang || require('../../bot-config.json').default_lang;
+const default_lang = process.env.DEFAULT_LANG;
 
 const loadCommands = () => {
     return new Promise((resolve, reject)=>{

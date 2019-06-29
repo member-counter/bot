@@ -1,6 +1,6 @@
 const { log } = require('../utils/customConsole.js');
-const activity = process.env.activity || require('../../bot-config.json').activity;
-const status_type = process.env.status_type || require('../../bot-config.json').status_type;
+const activity = process.env.ACTIVITY;
+const status_type = process.env.STATUS_TYPE;
 
 module.exports = (client) => {
     client.on('ready', () => {
