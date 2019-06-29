@@ -1,6 +1,6 @@
 const GuildModel = require('../../mongooseModels/GuildModel');
 const { log, error } = require('../utils/customConsole');
-const default_lang = process.env.default_lang  || require('../../bot-config.json').default_lang ;
+const default_lang = process.env.DEFAULT_LANG;
 const { getAvailableLanguages } = require('../utils/language');
 module.exports = (client, guild_id) => {
     GuildModel.findOne({guild_id})

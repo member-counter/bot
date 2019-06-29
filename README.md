@@ -1,24 +1,25 @@
 # member-counter-bot
 
 # Setup
-## Create your own bot-config.json and place it in the root folder
-```json
-{
-	"token":"",
-	"prefix":"mc!",
-	"status":"Online",
-	"status_type":"WATCHING",
-	"activity":"type mc!help",
-	"default_lang": "en_US",
-	"db":"mongodb://username:password@host/database",
-	"save_logs": true,
-	"dblToken" : "",
-	"owners" : []
-}
-```
-### Or set environment variables
 
-`token`, `prefix`, `status`, `status_type`, `activity`, `default_lang`, `db`, `save_logs`, `dblToken`, `owners`
+### Set environment variables or create a .env file
+
+`TOKEN`, `PREFIX`, `STATUS`, `STATUS_TYPE`, `ACTIVITY`, `DEFAULT_LANG`, `DB_URI`, `SAVE_LOGS`, `BOT_OWNERS`, `DBL_TOKEN`
+
+.env file example:
+
+```
+TOKEN=your.bot.token
+PREFIX=mc!
+STATUS=Online
+STATUS_TYPE=PLAYING
+ACTIVITY=type mc!help
+DEFAULT_LANG=en_US
+DB_URI=mongodb+srv://username:password@host/database
+SAVE_LOGS=true
+BOT_OWNERS=481580198416875530
+DBL_TOKEN=discordbots.org.token
+```
 
 ## Install dependencies
 

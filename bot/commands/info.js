@@ -1,4 +1,4 @@
-const prefix = process.env.prefix || require('../../bot-config.json').prefix;
+const prefix = process.env.PREFIX;
 const os = require('os');
 const { error } = require('../utils/customConsole');
 const version = require('../../package.json').version;

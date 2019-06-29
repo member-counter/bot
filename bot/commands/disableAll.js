@@ -1,7 +1,7 @@
-const prefix = process.env.prefix || require('../../bot-config.json').prefix;
+const prefix = process.env.PREFIX;
 const { log, error } = require('../utils/customConsole');
 const GuildModel = require('../../mongooseModels/GuildModel');
-const owners = process.env.owners ? process.env.owners.split(/,\s?/) : require('../../bot-config.json').owners;
+const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
 const command = {
     name: "disableAll",
