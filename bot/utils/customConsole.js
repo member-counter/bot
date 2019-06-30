@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const save_logs = JSON.parse(process.env.save_logs);
+const save_logs = JSON.parse(process.env.SAVE_LOGS);
 const botLog = (save_logs) ? fs.createWriteStream(path.join(__dirname,'..', '..', 'log', 'bot.log'), { 'flags': 'a'}) : undefined;
 const errorLog = (save_logs) ? fs.createWriteStream(path.join(__dirname,'..', '..', 'log', 'error.log'), { 'flags': 'a'}) : undefined;
 
