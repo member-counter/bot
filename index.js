@@ -13,6 +13,8 @@ const mongodbUrl = process.env.DB_URI;
 const token = process.env.TOKEN;
 
 mongoose.connect(mongodbUrl, {useNewUrlParser: true}).then(()=>{log("Mongoose ready")}).catch((e)=>{error(e); process.exit(1)});
+mongoose.set('useFindAndModify', false);
+
 client.login(token);
 eventHandler(client);
 
