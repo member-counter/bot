@@ -15,7 +15,7 @@
             "help_description":"It's really necessary to explain the purpose of this command?",
             "embed_reply":{
                 "title": "Command list",
-                "description": "```css\nAvailable commands:\nmc!help\nmc!enable (#channel)\nmc!disable (#channel)\nmc!disableAll\nmc!list\nmc!reset\nmc!setTopic\nmc!setDigit\nmc!invite\nmc!github\nmc!donate /*Improve this bot!*/```",
+                "description": "```css\nAvailable commands:\nmc!help\nmc!enable (#channel)\nmc!disable (#channel)\nmc!disableAll\nmc!list\nmc!reset\nmc!setTopic\nmc!setDigit\nmc!invite\nmc!donate\nmc!github /*Improve this bot!*/```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
