@@ -7,7 +7,7 @@ module.exports = (client, guild_id) => {
     .then((guild_config)=>{
         if (guild_config && (guild_config.channel_id.length !== 0)) {
             const memberCount = client.guilds.get(guild_id).memberCount.toString().split('');
-            let memberCountCustomized = new String();
+            let memberCountCustomized = "";
 
             memberCount.forEach(digit => {
                 memberCountCustomized += guild_config.custom_numbers[digit]
