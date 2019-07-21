@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
 
-const countHistory = mongoose.Schema({
-    timestamp: { type: Date },
-    count: { type: Number }
-}, { _id : false })
-
 const CustomNumbers = mongoose.Schema({
     1: { type: String, default: '<a:1G:469275169190445056>' },
     2: { type: String, default: '<a:2G:469275085451034635>' },
@@ -24,8 +19,7 @@ const GuildSchema = mongoose.Schema({
     lang: { type: String, default:"en_US" },
     channel_id: [{ type: String, default: [] }],
     topic: { type: String, default: 'Members: {COUNT}' },
-    custom_numbers: { type: CustomNumbers, default: CustomNumbers },
-    count_history: { type: countHistory }
+    custom_numbers: { type: CustomNumbers, default: CustomNumbers }
 });
 
 module.exports = mongoose.model('guilds', GuildSchema);

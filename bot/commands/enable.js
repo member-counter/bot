@@ -12,7 +12,7 @@ const command = {
     enabled: true,
     run: (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
-            GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, { guild_id:message.guild.id }, {upsert: true, new: true})
+            GuildModel.findOne({ guild_id:message.guild.id }, { }, {upsert: true, new: true})
             .then((result)=>{
                 const newChannel = (message.mentions.channels.size > 0 ) ? message.mentions.channels.first() : message.channel;
                 if (!result.channel_id.includes(newChannel.id)) {

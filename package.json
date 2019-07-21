@@ -1,11 +1,11 @@
 {
   "name": "member-counter-bot",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "nodemon ."
+    "startDev": "nodemon ."
   },
   "repository": {
     "type": "git",
