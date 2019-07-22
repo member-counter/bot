@@ -1,5 +1,4 @@
 const prefix = process.env.PREFIX;
-const { error } = require('../utils/customConsole');
 
 const command = {
     name: "invite",
@@ -8,7 +7,7 @@ const command = {
     enabled: true,
     run: (client, message, language) => {
 		const embed = language.command.invite.embed_reply;
-		message.channel.send(language.command.invite.reply, {embed}).catch(error);
+		message.channel.send(language.command.invite.reply, {embed}).catch(console.error);
     }
 }
 

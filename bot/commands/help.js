@@ -1,5 +1,4 @@
 const prefix = process.env.PREFIX;
-const { error } = require('../utils/customConsole');
 
 const command = {
     name: "help",
@@ -10,7 +9,7 @@ const command = {
         const args = message.content.split(' ');
         if (args.length < 2) {
             const embed = language.command.help.embed_reply;
-            message.channel.send({ embed }).catch(error);
+            message.channel.send({ embed }).catch(console.error);
         } else {
             const selectedCommand = language.command[args[1]]
             if (selectedCommand) {
@@ -23,7 +22,7 @@ const command = {
                         "icon_url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png?size=128"
                     }
                 }
-                message.channel.send({ embed }).catch(error);
+                message.channel.send({ embed }).catch(console.error);
             }
         }
     }

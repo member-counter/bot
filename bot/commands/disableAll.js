@@ -1,5 +1,4 @@
 const prefix = process.env.PREFIX;
-const { log, error } = require('../utils/customConsole');
 const GuildModel = require('../../mongooseModels/GuildModel');
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
@@ -13,17 +12,17 @@ const command = {
             GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {channel_id: []}, {upsert: true})
             .then((result)=>{
                 const channelsToReset = result.channel_id;
-                message.channel.send(language.command.disableAll.success).catch(error);
+                message.channel.send(language.command.disableAll.success).catch(console.error);
                 channelsToReset.forEach(channel_id => {
-                    client.channels.get(channel_id).setTopic('').catch(error)
+                    client.channels.get(channel_id).setTopic('').catch(console.error)
                 });
             })
             .catch((e)=>{
-                error(e);
-                message.channel.send(language.command.disableAll.error_unknown).catch(error)
+                console.error(e);
+                message.channel.send(language.command.disableAll.error_unknown).catch(console.error)
             });
         } else {
-            message.channel.send(language.command.disableAll.error_no_admin).catch(error)
+            message.channel.send(language.command.disableAll.error_no_admin).catch(console.error)
         }
     }
 }

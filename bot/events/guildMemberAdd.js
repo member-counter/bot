@@ -1,6 +1,5 @@
 const updateCounter = require('../utils/updateCounter');
 const TrackModel = require('../../mongooseModels/TrackModel');
-const { error } = require('../utils/customConsole');
 
 module.exports = (client) => {
     client.on('guildMemberAdd', (member) => {
@@ -14,6 +13,6 @@ module.exports = (client) => {
                     count: client.guilds.get(member.guild.id).memberCount
                 }
             }
-        }, {upsert: true}).exec().catch(error);
+        }, {upsert: true}).exec().catch(console.error);
     });
 }
