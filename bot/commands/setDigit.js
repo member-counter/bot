@@ -1,6 +1,5 @@
 const prefix = process.env.PREFIX;
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
-const { log, error } = require('../utils/customConsole');
 const GuildModel = require('../../mongooseModels/GuildModel');
 const updateCounter = require('../utils/updateCounter');
 
@@ -20,17 +19,17 @@ const command = {
                 newData.custom_numbers[digitToUpdate] = newDigitValue;
                 GuildModel.findOneAndUpdate({guild_id:message.guild.id}, newData)
                 .then(()=>{
-                    message.channel.send(language.command.setDigit.success).catch(error)
+                    message.channel.send(language.command.setDigit.success).catch(console.error)
                     updateCounter(client, message.guild.id);
                 })
                 .catch(()=>{
-                    message.channel.send(language.command.setDigit.error_unknown).catch(error)
+                    message.channel.send(language.command.setDigit.error_unknown).catch(console.error)
                 })
             } else {
-                message.channel.send(language.command.setDigit.error_missing_params).catch(error)
+                message.channel.send(language.command.setDigit.error_missing_params).catch(console.error)
             }
         } else {
-            message.channel.send(language.command.setDigit.error_no_admin).catch(error)
+            message.channel.send(language.command.setDigit.error_no_admin).catch(console.error)
         }
     }
 }

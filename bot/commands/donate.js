@@ -1,5 +1,4 @@
 const prefix = process.env.PREFIX;
-const { log, error } = require('../utils/customConsole');
 
 const command = {
     name: "donate",
@@ -35,7 +34,7 @@ const command = {
               }
             ]
           } 
-        message.channel.send({ embed }).catch(error);
+        message.channel.send({ embed }).catch(console.error);
     }
 }
 

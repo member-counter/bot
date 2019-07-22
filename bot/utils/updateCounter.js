@@ -1,5 +1,4 @@
 const GuildModel = require('../../mongooseModels/GuildModel');
-const { log, error } = require('../utils/customConsole');
 const default_lang = process.env.DEFAULT_LANG;
 const { getAvailableLanguages } = require('../utils/language');
 module.exports = (client, guild_id) => {
@@ -17,13 +16,13 @@ module.exports = (client, guild_id) => {
                 if (client.channels.get(channel)) {
                     client.channels.get(channel).setTopic(guild_config.topic.replace('{COUNT}', memberCountCustomized))
                     .catch( async (e)=>{
-                        error(e);
+                        console.error(e);
                         const { error_no_perms } = require(`../lang/${((await getAvailableLanguages()).includes(guild_config.lang)) ? guild_config.lang : default_lang }.json`).functions.updateCounter;
-                        if(e.code && (e.code === 50013)) client.channels.get(channel).send(error_no_perms).catch(error);
+                        if(e.code && (e.code === 50013)) client.channels.get(channel).send(error_no_perms).catch(console.error);
                     });
                 }
             });
         }
     })
-    .catch(error)
+    .catch(console.error)
 }

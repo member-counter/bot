@@ -1,6 +1,5 @@
 const prefix = process.env.PREFIX;
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
-const { log, error } = require('../utils/customConsole');
 const GuildModel = require('../../mongooseModels/GuildModel');
 
 const command = {
@@ -15,16 +14,16 @@ const command = {
                 const channelToRemove = (message.mentions.channels.size > 0 ) ? message.mentions.channels.first() : message.channel;
                 result.channel_id = result.channel_id.filter(element => element !== channelToRemove.id);
                 result.save().then(()=>{
-                    channelToRemove.setTopic('').catch(error);
+                    channelToRemove.setTopic('').catch(console.error);
                     message.channel.send(language.command.disable.success.replace("{CHANNEL}", channelToRemove.toString())).catch(error)
-                }).catch(error);
+                }).catch(console.error);
             })
             .catch((e)=>{
-                error(e);
-                message.channel.send(language.command.disable.error_unknown).catch(error)
+                console.error(e);
+                message.channel.send(language.command.disable.error_unknown).catch(console.error)
             });
         } else {
-            message.channel.send(language.command.disable.error_no_admin).catch(error)
+            message.channel.send(language.command.disable.error_no_admin).catch(console.error)
         }
     }
 }

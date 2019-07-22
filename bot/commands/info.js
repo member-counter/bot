@@ -1,6 +1,5 @@
 const prefix = process.env.PREFIX;
 const os = require('os');
-const { error } = require('../utils/customConsole');
 const version = require('../../package.json').version;
 
 const parseUptime = (inputDate) => {
@@ -38,7 +37,7 @@ let command = {
               }
             ]
           };
-          message.channel.send({ embed }).catch(error);
+          message.channel.send({ embed }).catch(console.error);
     }
 }
 module.exports = command;

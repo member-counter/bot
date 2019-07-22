@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const {log, error} = require('./customConsole.js');
 const sendStats = require('./stats.js');
 const { getAvailableLanguages, getGuildLanguage } = require('../utils/language.js');
 const default_lang = process.env.DEFAULT_LANG;
@@ -45,7 +44,7 @@ module.exports = async (client, message) => {
                     }
                 }
 
-                log(`${message.author.tag} (${message.author.id}) [${(message.guild) ? `Server: ${message.guild.name} (${message.guild.id}), ` : ""}${message.channel.type} Channel: ${message.channel.name} (${message.channel.id})]: ${message.content}`)
+                console.log(`${message.author.tag} (${message.author.id}) [${(message.guild) ? `Server: ${message.guild.name} (${message.guild.id}), ` : ""}${message.channel.type} Channel: ${message.channel.name} (${message.channel.id})]: ${message.content}`)
                 
                 //Run the command
                 command.run(client, message, require(`../lang/${ResultLang}.json`));

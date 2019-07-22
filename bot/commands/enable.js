@@ -1,6 +1,5 @@
 const prefix = process.env.PREFIX;
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
-const { log, error } = require('../utils/customConsole');
 const GuildModel = require('../../mongooseModels/GuildModel');
 const updateCounter = require('../utils/updateCounter');
 
@@ -18,19 +17,19 @@ const command = {
                 if (!result.channel_id.includes(newChannel.id)) {
                     result.channel_id = [ ...result.channel_id, newChannel.id ];
                     result.save().then(()=>{
-                        message.channel.send(language.command.enable.success.replace("{CHANNEL}", newChannel.toString())).catch(error);
+                        message.channel.send(language.command.enable.success.replace("{CHANNEL}", newChannel.toString())).catch(console.error);
                         updateCounter(client, message.guild.id);
-                    }).catch(error);
+                    }).catch(console.error);
                 } else {
-                    message.channel.send(language.command.enable.error_already_enabled).catch(error);
+                    message.channel.send(language.command.enable.error_already_enabled).catch(console.error);
                 }
             })
             .catch((e)=>{
-                error(e);
-                message.channel.send(language.command.enable.error_unknown).catch(error)
+                console.error(e);
+                message.channel.send(language.command.enable.error_unknown).catch(console.error)
             });
         } else {
-            message.channel.send(language.command.enable.error_no_admin).catch(error)
+            message.channel.send(language.command.enable.error_no_admin).catch(console.error)
         }
     }
 }
