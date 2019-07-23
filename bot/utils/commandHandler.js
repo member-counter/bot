@@ -44,7 +44,7 @@ module.exports = async (client, message) => {
                     }
                 }
 
-                console.log(`${message.author.tag} (${message.author.id}) [${(message.guild) ? `Server: ${message.guild.name} (${message.guild.id}), ` : ""}${message.channel.type} Channel: ${message.channel.name} (${message.channel.id})]: ${message.content}`)
+                console.log(`[Bot shard #${client.shard.id}] ${message.author.tag} (${message.author.id}) [${(message.guild) ? `Server: ${message.guild.name} (${message.guild.id}), ` : ""}${message.channel.type} Channel: ${message.channel.name} (${message.channel.id})]: ${message.content}`)
                 
                 //Run the command
                 command.run(client, message, require(`../lang/${ResultLang}.json`));
