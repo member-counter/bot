@@ -9,6 +9,7 @@
 .env file example:
 
 ```
+NODE_ENV=development
 TOKEN=your.bot.token
 PREFIX=mc!
 STATUS=Online
@@ -16,6 +17,12 @@ STATUS_TYPE=PLAYING
 ACTIVITY=type mc!help
 DEFAULT_LANG=en_US
 DB_URI=mongodb+srv://username:password@host/database
+PATH_PRIVATE_KEY=./path/tp/cert.key
+PATH_PUBLIC_KEY=./path/to/cert.pem
+PORT=443
+STATIC_DIR=./dev/static/
+HOME_WEBSITE=https://localhost/
+OAUTH2_URL_REDIRECT=https://localhost/api/oauth2
 BOT_OWNERS=481580198416875530
 DBL_TOKEN=discordbots.org.token
 ```

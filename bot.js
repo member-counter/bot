@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const dbl = require("dblapi.js");
 const eventHandler = require('./bot/utils/eventHandler.js');
 
-const client = new Discord.Client();
+const client = new Discord.Client({ disabledEvents: ['TYPING_START', 'PRESENCE_UPDATE'] });
 
 client.login(process.env.TOKEN);
 eventHandler(client);
