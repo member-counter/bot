@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
-const FormData = require('form-data');
 
 router.get('/oauth2', async (req, res)=> {
   const accessCode = req.query.code;
