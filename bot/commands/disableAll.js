@@ -1,4 +1,4 @@
-const prefix = process.env.PREFIX;
+const prefix = process.env.DISCORD_PREFIX;
 const GuildModel = require('../../mongooseModels/GuildModel');
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 

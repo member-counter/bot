@@ -1,4 +1,4 @@
-const prefix = process.env.PREFIX;
+const prefix = process.env.DISCORD_PREFIX;
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const GuildModel = require('../../mongooseModels/GuildModel');
 
@@ -15,7 +15,7 @@ const command = {
                 result.channel_id = result.channel_id.filter(element => element !== channelToRemove.id);
                 result.save().then(()=>{
                     channelToRemove.setTopic('').catch(console.error);
-                    message.channel.send(language.command.disable.success.replace("{CHANNEL}", channelToRemove.toString())).catch(error)
+                    message.channel.send(language.command.disable.success.replace("{CHANNEL}", channelToRemove.toString())).catch(console.error)
                 }).catch(console.error);
             })
             .catch((e)=>{

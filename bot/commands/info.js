@@ -1,4 +1,4 @@
-const prefix = process.env.PREFIX;
+const prefix = process.env.DISCORD_PREFIX;
 const os = require('os');
 const version = require('../../package.json').version;
 
