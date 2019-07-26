@@ -15,15 +15,15 @@ const command = {
                 result.channel_id = result.channel_id.filter(element => element !== channelToRemove.id);
                 result.save().then(()=>{
                     channelToRemove.setTopic('').catch(console.error);
-                    message.channel.send(language.command.disable.success.replace("{CHANNEL}", channelToRemove.toString())).catch(console.error)
+                    message.channel.send(language.commands.disable.success.replace("{CHANNEL}", channelToRemove.toString())).catch(console.error)
                 }).catch(console.error);
             })
             .catch((e)=>{
                 console.error(e);
-                message.channel.send(language.command.disable.error_unknown).catch(console.error)
+                message.channel.send(language.commands.disable.error_unknown).catch(console.error)
             });
         } else {
-            message.channel.send(language.command.disable.error_no_admin).catch(console.error)
+            message.channel.send(language.commands.disable.error_no_admin).catch(console.error)
         }
     }
 }

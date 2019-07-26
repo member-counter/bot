@@ -16,12 +16,12 @@ const command = {
                         client.channels.get(channel_id).setTopic('').catch(console.error)
                     });
                 }
-                message.channel.send(language.command.reset.done).catch(console.error);
+                message.channel.send(language.commands.reset.done).catch(console.error);
             }).catch(e => {
-                message.channel.send(language.command.reset.error_unknown).catch(console.error)
+                message.channel.send(language.commands.reset.error_unknown).catch(console.error)
             })
         } else {
-            message.channel.send(language.command.reset.error_no_admin).catch(console.error)
+            message.channel.send(language.commands.reset.error_no_admin).catch(console.error)
         }
     }
 }

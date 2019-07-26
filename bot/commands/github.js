@@ -6,7 +6,7 @@ const command = {
     indexZero: true,
     enabled: true,
     run: (client, message, language) => {
-      const embed = language.command.github.embed_reply;
+      const embed = language.commands.github.embed_reply;
       message.channel.send({embed}).catch(console.error);
     }
 }

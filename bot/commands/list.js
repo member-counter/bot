@@ -13,20 +13,20 @@ const command = {
             .then((result) => {
                 if (result) {
                     if (result.channel_id.length === 0) { 
-                        message.channel.send(language.command.list.no_channels).catch(console.error);
+                        message.channel.send(language.commands.list.no_channels).catch(console.error);
                     } else {
-                        let msg = language.command.list.list;
+                        let msg = language.commands.list.list;
                         result.channel_id.forEach((channel, i) => {
                             msg += ` <#${channel}>${(i === result.channel_id.length-1) ? '.' : ','}`; 
                         });
                         message.channel.send(msg).catch(console.error);   
                     }
                 } else {
-                    message.channel.send(language.command.list.no_channels).catch(console.error);
+                    message.channel.send(language.commands.list.no_channels).catch(console.error);
                 }
             })
         } else {
-            message.channel.send(language.command.list.error_no_admin).catch(console.error)
+            message.channel.send(language.commands.list.error_no_admin).catch(console.error)
         }
     }
 }

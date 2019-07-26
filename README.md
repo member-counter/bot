@@ -20,7 +20,7 @@ DBL_TOKEN=
 
 DB_URI=
 
-HOME_WEBSITE=https://localhost/
+WEBSITE=https://localhost/
 STATIC_DIR=./dev/static/
 PATH_PRIVATE_KEY=./dev/cert.key
 PATH_PUBLIC_KEY=./dev/cert.pem
