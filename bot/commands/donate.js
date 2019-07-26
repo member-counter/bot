@@ -1,40 +1,45 @@
 const prefix = process.env.DISCORD_PREFIX;
+const donationUrl = process.env.WEBSITE + 'donate'
+const DonationModel = require('../../mongooseModels/DonationModel');
+const fetch = require('node-fetch');
 
 const command = {
     name: "donate",
-    commands: [prefix+"donate"],
+    commands: [prefix+"donate", prefix+"donators"],
     indexZero: true,
     enabled: true,
-    run: (client, message, language) => {
-        //Yes, I need to code a dynamic list
-        const embed = {
-            "title": "Enjoying my bot? Donate me! Any amount will be welcome, and your name will also be listed here: https://www.paypal.me/eduardozgz",
-            "description": "You can specify in the note if you want to be listed here, and also show or not your discord tag and amount.",
-            "url": "https://www.paypal.me/eduardozgz",
-            "color": 14503424,
-            "footer": {
-              "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
-              "text": "by eduardozgz#5695"
-            },
-            "thumbnail": {
-              "url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png?size=128"
-            },
-            "fields": [
-              {
-                "name": "1. Neiara#0001 - $25 USD",
-                "value": "Thanks for creating the bot, Enjoy!"
-              },
-              {
-                "name": "2. Nothing yet, you could be here!",
-                "value": "Here goes your note"
-              },
-              {
-                "name": "3. Nothing yet, you could be here!",
-                "value": "Here goes your note"
-              }
-            ]
-          } 
-        message.channel.send({ embed }).catch(console.error);
+    run: async (client, message, language) => {
+        fetch(`https://api.exchangeratesapi.io/latest`)
+        .then(res => res.json())
+        .then((ex) => {
+            DonationModel.find()
+            .then(donators => {
+                let embed = language.commands.donate.embed_reply;
+                embed.url = embed.url.replace('{DONATION_URL}', donationUrl);
+                embed.title = embed.title.replace('{DONATION_URL}', donationUrl);
+                embed.fields = []
+
+                donators.map(donator => {
+                    if (donator.currency === "EUR") donator.amount_eur = donator.amount;
+                    else if (ex.rates[donator.currency]) donator.amount_eur = donator.amount / ex.rates[donator.currency];
+                    return donator;
+                })
+                .filter(donator => donator.amount_eur)
+                .sort((a, b) => b.amount_eur - a.amount_eur)
+                .slice(0, 19)
+                .forEach((donator, i) => {
+                    if (donator.public_note && (donator.note && (donator.note.length > 1024))) donator.note = donator.note.slice(0, 1020) + "..."; 
+                    let field = {}
+                    field.name = `**${i+1}.** ${(donator.public_user) ? donator.user : language.commands.donate.misc.hidden_user} - ${(donator.public_amount) ? `${donator.amount} ${donator.currency}` : language.commands.donate.misc.hidden_amount}`;
+                    field.value = ( donator.note ) ? ((donator.public_note) ? donator.note : language.commands.donate.misc.hidden_note) : language.commands.donate.misc.empty_note;
+                    embed.fields = [ ...embed.fields, field ]
+                })
+
+                message.channel.send({embed}).catch(console.error);
+            })
+            .catch(e => message.channel.send(language.commands.donate.misc.error_db).catch(console.error))
+        })
+        .catch(e => message.channel.send(language.commands.donate.misc.error_exchange_fetch).catch(console.error))
     }
 }
 

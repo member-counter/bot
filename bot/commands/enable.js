@@ -17,19 +17,19 @@ const command = {
                 if (!result.channel_id.includes(newChannel.id)) {
                     result.channel_id = [ ...result.channel_id, newChannel.id ];
                     result.save().then(()=>{
-                        message.channel.send(language.command.enable.success.replace("{CHANNEL}", newChannel.toString())).catch(console.error);
+                        message.channel.send(language.commands.enable.success.replace("{CHANNEL}", newChannel.toString())).catch(console.error);
                         updateCounter(client, message.guild.id);
                     }).catch(console.error);
                 } else {
-                    message.channel.send(language.command.enable.error_already_enabled).catch(console.error);
+                    message.channel.send(language.commands.enable.error_already_enabled).catch(console.error);
                 }
             })
             .catch((e)=>{
                 console.error(e);
-                message.channel.send(language.command.enable.error_unknown).catch(console.error)
+                message.channel.send(language.commands.enable.error_unknown).catch(console.error)
             });
         } else {
-            message.channel.send(language.command.enable.error_no_admin).catch(console.error)
+            message.channel.send(language.commands.enable.error_no_admin).catch(console.error)
         }
     }
 }

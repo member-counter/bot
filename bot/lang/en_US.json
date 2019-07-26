@@ -1,9 +1,9 @@
 {
-    "lang_code":"en_US",
-    "lang_name":"English (US)",
-    "command":{
-        "github":{
-            "help_description":"https://github.com/eduardozgz/member-counter-bot",
+    "lang_code": "en_US",
+    "lang_name": "English (US)",
+    "commands": {
+        "github": {
+            "help_description": "https://github.com/eduardozgz/member-counter-bot",
             "embed_reply": {
                 "title": "Help me to improve this bot!",
                 "url": "https://github.com/eduardozgz/member-counter-bot",
@@ -11,9 +11,9 @@
                 "description": "[https://github.com/eduardozgz/member-counter-bot](https://github.com/eduardozgz/member-counter-bot)"
             }
         },
-        "help":{
-            "help_description":"It's really necessary to explain the purpose of this command?",
-            "embed_reply":{
+        "help": {
+            "help_description": "It's really necessary to explain the purpose of this command?",
+            "embed_reply": {
                 "title": "Command list",
                 "description": "```css\nAvailable commands:\nmc!help\nmc!enable (#channel)\nmc!disable (#channel)\nmc!disableAll\nmc!list\nmc!reset\nmc!setTopic\nmc!setDigit\nmc!invite\nmc!donate\nmc!github /*Improve this bot!*/```",
                 "color": 14503424,
@@ -22,75 +22,98 @@
                     "text": "by eduardozgz#5695"
                 }
             },
-            "misc":{
-                "command":"Command:"
+            "misc": {
+                "command": "Command:"
             }
         },
         "invite": {
-            "help_description":"Sends you a link for add this bot to your server!",
-            "reply":"<a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880>",
-            "embed_reply":{
+            "help_description": "Sends you a link for add this bot to your server!",
+            "reply": "<a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880>",
+            "embed_reply": {
                 "title": "Add this bot to your server now!",
                 "url": "https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot",
                 "color": 14503424,
                 "description": "[https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)"
-                }
+            }
         },
-        "lang":{
-            "help_description":"Changes the bot language for this guild, you must have administrator permissions to run this command.",
-            "success":"Language changed successfully.",
-            "error_not_found":"I didn't find that language, try one of the following:",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command."
+        "lang": {
+            "help_description": "Changes the bot language for this guild, you must have administrator permissions to run this command.",
+            "success": "Language changed successfully.",
+            "error_not_found": "I didn't find that language, try one of the following:",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
-        "enable":{
-            "help_description":"Enables and sets the channel that will be used for the counter.",
-            "success":"The counter has been enabled on {CHANNEL}.",
-            "error_unknown":"Something went wrong, try again later.",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command.",
-            "error_already_enabled":"This channel already has a counter."
+        "enable": {
+            "help_description": "Enables and sets the channel that will be used for the counter.",
+            "success": "The counter has been enabled on {CHANNEL}.",
+            "error_unknown": "Something went wrong, try again later.",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command.",
+            "error_already_enabled": "This channel already has a counter."
         },
-        "disable":{
-            "help_description":"Disables the counter.",
-            "success":"The counter has been disabled on {CHANNEL}.",
-            "error_unknown":"Something went wrong, try again later.",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command."
+        "disable": {
+            "help_description": "Disables the counter.",
+            "success": "The counter has been disabled on {CHANNEL}.",
+            "error_unknown": "Something went wrong, try again later.",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
-        "disableAll":{
-            "help_description":"Disables the counter on all channels.",
-            "success":"The counter has been disabled on all channels.",
-            "error_unknown":"Something went wrong, try again later.",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command."
+        "disableAll": {
+            "help_description": "Disables the counter on all channels.",
+            "success": "The counter has been disabled on all channels.",
+            "error_unknown": "Something went wrong, try again later.",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
-        "list":{
-            "help_description":"Lists all the channels that has a counter enabled.",
-            "list":"The counter is enabled on the following channels:",
+        "list": {
+            "help_description": "Lists all the channels that has a counter enabled.",
+            "list": "The counter is enabled on the following channels:",
             "no_channels": "There are no channels with a counter enabled",
-            "error_unknown":"Something went wrong, try again later.",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command."
+            "error_unknown": "Something went wrong, try again later.",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
         "reset": {
-            "done":"Restored to default settings",
-            "error_unknown":"Something went wrong, try again later.",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command."
+            "done": "Restored to default settings",
+            "error_unknown": "Something went wrong, try again later.",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
-        "setDigit":{
-            "help_description":"Customizes numbers that will be displayed.\n\n Usage: ```mc!setDigit <plain number> <custom number>```\n Tip: You can use an emoji as a custom number.",
-            "success":"Digit customized.",
-            "error_unknown":"Something went wrong, try again later.",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command.",
+        "setDigit": {
+            "help_description": "Customizes numbers that will be displayed.\n\n Usage: ```mc!setDigit <plain number> <custom number>```\n Tip: You can use an emoji as a custom number.",
+            "success": "Digit customized.",
+            "error_unknown": "Something went wrong, try again later.",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command.",
             "error_missing_params": "Error: Missing parameters, more info: mc!help setDigit."
         },
-        "setTopic":{
-            "help_description":"You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed.\n\n Example: ```mc!setTopic Current members: {COUNT}```",
-            "success":"Topic customized.",
-            "error_unknown":"Something went wrong, try again later.",
-            "error_no_admin":"Only members with administrator permissions in this server can use this command.",
+        "setTopic": {
+            "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed.\n\n Example: ```mc!setTopic Current members: {COUNT}```",
+            "success": "Topic customized.",
+            "error_unknown": "Something went wrong, try again later.",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command.",
             "error_missing_params": "Error: Missing parameters, more info: mc!help setTopic."
+        },
+        "donate": {
+            "embed_reply": {
+                "title": "Enjoying my bot? Donate me! Any amount will be welcome, and your name will also be listed here: {DONATION_URL}",
+                "url": "{DONATION_URL}",
+                "color": 14503424,
+                "footer": {
+                    "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
+                    "text": "by eduardozgz#5695"
+                },
+                "thumbnail": {
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png?size=128"
+                },
+                "fields": []
+            },
+            "misc": {
+                "hidden_user": "Anonymous donator",
+                "hidden_amount": "Hidden amount",
+                "hidden_note": "Hidden note",
+                "empty_note" : "Empty note"
+            },
+            "error_db": "Database error, try again later",
+            "error_exchange_fetch": "Error while trying to fetch exchange rates"
         }
     },
     "functions": {
-        "updateCounter":{
-            "error_no_perms":"Looks like I don't have permissions to set the topic of this channel. Please, give me the proper permissions or disable me using ``mc!disable``."
+        "updateCounter": {
+            "error_no_perms": "Looks like I don't have permissions to set the topic of this channel. Please, give me the proper permissions or disable me using ``mc!disable``."
         }
     }
 }

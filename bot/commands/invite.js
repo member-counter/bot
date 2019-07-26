@@ -6,8 +6,8 @@ const command = {
     indexZero: true,
     enabled: true,
     run: (client, message, language) => {
-		const embed = language.command.invite.embed_reply;
-		message.channel.send(language.command.invite.reply, {embed}).catch(console.error);
+		const embed = language.commands.invite.embed_reply;
+		message.channel.send(language.commands.invite.reply, {embed}).catch(console.error);
     }
 }
 

@@ -12,17 +12,17 @@ const command = {
             GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {channel_id: []}, {upsert: true})
             .then((result)=>{
                 const channelsToReset = result.channel_id;
-                message.channel.send(language.command.disableAll.success).catch(console.error);
+                message.channel.send(language.commands.disableAll.success).catch(console.error);
                 channelsToReset.forEach(channel_id => {
                     client.channels.get(channel_id).setTopic('').catch(console.error)
                 });
             })
             .catch((e)=>{
                 console.error(e);
-                message.channel.send(language.command.disableAll.error_unknown).catch(console.error)
+                message.channel.send(language.commands.disableAll.error_unknown).catch(console.error)
             });
         } else {
-            message.channel.send(language.command.disableAll.error_no_admin).catch(console.error)
+            message.channel.send(language.commands.disableAll.error_no_admin).catch(console.error)
         }
     }
 }

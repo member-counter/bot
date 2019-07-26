@@ -16,7 +16,7 @@ const command = {
                 if (availableLanguages[i] == args[1]) {
                     langNotFound = false;
                     await setGuildLanguage(message.guild.id, availableLanguages[i]);
-                    message.channel.send(require(`../lang/${args[1]}.json`).command.lang.success).catch(console.error);
+                    message.channel.send(require(`../lang/${args[1]}.json`).commands.lang.success).catch(console.error);
                     break;
                 }
             }
@@ -26,10 +26,10 @@ const command = {
                     let langName = require(`../lang/${availableLanguages[i]}.json`).lang_name;
                     LangList += `${availableLanguages[i]} ${langName}\n`;
                 }
-                message.channel.send(language.command.lang.error_not_found + '```' + LangList + '```' ).catch(console.error);
+                message.channel.send(language.commands.lang.error_not_found + '```' + LangList + '```' ).catch(console.error);
             }
         } else {
-            message.channel.send(lang.command.lang.error_no_admin).catch(console.error);
+            message.channel.send(lang.commands.lang.error_no_admin).catch(console.error);
         }
     }
 }

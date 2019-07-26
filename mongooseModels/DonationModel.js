@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const DonationSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    user_id: { type: String, require: true },
+    user: { type: String, require: true },
+    user_avatar: { type: String },
     note: { type: String },
     public_user: { type: Boolean, default: true },
     public_note: { type: Boolean, default: true },

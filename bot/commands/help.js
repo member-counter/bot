@@ -8,13 +8,13 @@ const command = {
     run: (client, message, language) => {
         const args = message.content.split(' ');
         if (args.length < 2) {
-            const embed = language.command.help.embed_reply;
+            const embed = language.commands.help.embed_reply;
             message.channel.send({ embed }).catch(console.error);
         } else {
             const selectedCommand = language.command[args[1]]
             if (selectedCommand) {
                 const embed = {
-                    "title": language.command.help.misc.command + " " + args[1].toLowerCase(),
+                    "title": language.commands.help.misc.command + " " + args[1].toLowerCase(),
                     "description": selectedCommand.help_description,
                     "color": 14503424,
                     "author": {
