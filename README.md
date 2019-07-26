@@ -4,27 +4,30 @@
 
 ### Set environment variables or create a .env file
 
-`TOKEN`, `PREFIX`, `STATUS`, `STATUS_TYPE`, `ACTIVITY`, `DEFAULT_LANG`, `DB_URI`, `BOT_OWNERS`, `DBL_TOKEN`
-
 .env file example:
 
 ```
 NODE_ENV=development
-TOKEN=your.bot.token
-PREFIX=mc!
-STATUS=Online
-STATUS_TYPE=PLAYING
-ACTIVITY=type mc!help
-DEFAULT_LANG=en_US
-DB_URI=mongodb+srv://username:password@host/database
-PATH_PRIVATE_KEY=./path/tp/cert.key
-PATH_PUBLIC_KEY=./path/to/cert.pem
-PORT=443
-STATIC_DIR=./dev/static/
+
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
+DISCORD_TOKEN=
+DISCORD_PREFIX=mc!
+DISCORD_DEFAULT_LANG=en_US
+DISCORD_OAUTH2_URL_REDIRECT=https://localhost/api/oauth2
+BOT_OWNERS=343884247263608832
+DBL_TOKEN=
+
+DB_URI=
+
 HOME_WEBSITE=https://localhost/
-OAUTH2_URL_REDIRECT=https://localhost/api/oauth2
-BOT_OWNERS=481580198416875530
-DBL_TOKEN=discordbots.org.token
+STATIC_DIR=./dev/static/
+PATH_PRIVATE_KEY=./dev/cert.key
+PATH_PUBLIC_KEY=./dev/cert.pem
+PORT=443
+
+PAYPAL_CLIENT_ID=
+PAYPAL_CLIENT_SECRET=
 ```
 
 ## Install dependencies

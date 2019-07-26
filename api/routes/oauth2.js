@@ -7,7 +7,7 @@ router.get('/oauth2', async (req, res)=> {
   fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${accessCode}&redirect_uri=${encodeURIComponent(process.env.OAUTH2_URL_REDIRECT)}`, {
     method: 'POST',
     headers: { 
-      'Authorization': 'Basic ' + Buffer.from(process.env.CLIENT_ID + ":" + process.env.CLIENT_SECRET).toString('base64'),
+      'Authorization': 'Basic ' + Buffer.from(process.env.DISCORD_CLIENT_ID + ":" + process.env.DISCORD_CLIENT_SECRET).toString('base64'),
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   })

@@ -1,4 +1,4 @@
-const prefix = process.env.PREFIX;
+const prefix = process.env.DISCORD_PREFIX;
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const { setGuildLanguage, getAvailableLanguages } = require('../utils/language');
 
