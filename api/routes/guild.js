@@ -6,7 +6,7 @@ const TrackModel = require('../../mongooseModels/TrackModel');
 const Discord = require('discord.js');
 const fetch = require('node-fetch');
 
-router.get('/guilds/', auth, (req, res)  => {
+router.get('/guilds', auth, (req, res)  => {
     fetch(`https://discordapp.com/api/v6/users/@me/guilds`, { headers: { 'Authorization' : req.headers.authorization } })
     .then(r => r.json())
     .then(r => {
