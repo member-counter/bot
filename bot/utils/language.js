@@ -4,37 +4,35 @@ const path = require('path');
 const default_lang = process.env.DEFAULT_LANG;
 
 const getGuildLanguage = (id) => {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         GuildModel.findOne({guild_id:id})
-        .then(result=>{
+        .then(result => {
             (result) ? resolve(result.lang) : resolve(default_lang);
         })
-        .catch(e=>{
+        .catch(e => {
             reject(e)
         });
     });
 }
 const setGuildLanguage = (id, langCode) => {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         GuildModel.replaceOne({guild_id:id}, {guild_id:id, lang:langCode}, {upsert: true})
-        .then(result=>{
+        .then(result => {
             resolve()
         })
-        .catch(e=>{
+        .catch(e => {
             reject(e)
         });
     });
 }
 const getAvailableLanguages = () => {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         fs.readdir(path.join(__dirname, '..', 'lang/'), (err, files) => {
             if (err) reject(err);
             else {
-                let langs = []
-                files.forEach((element)=>{
-                    langs.push(element.split('.')[0]);
-                });
-                resolve(langs);
+                resolve(
+                    files.map((file) => file = file.split('.')[0])
+                )
             }
         });
     });

@@ -14,32 +14,34 @@ router.get('/guilds', auth, (req, res)  => {
         res.json(r);
     })
     .catch(() => {
-        res.json({code:500, message:"Backend error"})
+        res.json({code:500, message:"DB error"})
     });
 });
 
 router.get('/guilds/:id', auth, isAdmin, (req, res)  => {
     GuildModel.findOne({ guild_id: req.params.id }, { _id: 0, __v: 0 })
     .then(guild => res.json(guild))
-    .catch(e => res.json({code:500, message:"Backend error"}))
+    .catch(e => res.json({code:500, message:"DB error"}))
 });
 
 router.patch('/guilds/:id', auth, isAdmin, (req, res)  => {
     delete req.body.__v;
     delete req.body._id;
     GuildModel.findOneAndUpdate({ guild_id: req.params.id }, { ...req.body }, {upsert: true})
-    .then((result)=>{
-        res.json({code: 0, message: "Updated sucessfully"})
+    .then((result) => {
+        res.json({code: 0, message: "Updated sucessfully"});
+        req.DiscordShardManager.broadcastEval(`this.updateCounter(this, "${req.params.id}")`)
     })
-    .catch(e => res.json({code:500, message:"Backend error"}))
+    .catch(e => res.json({code:500, message:"DB error"}))
 });
 
+//I should use streams
 router.get('/guilds/:id/chart', auth, isAdmin, (req, res)  => {
     TrackModel.findOneAndUpdate({ guild_id: req.params.id }, { }, {upsert: true})
-    .then((result)=>{
+    .then((result) => {
         res.json({code: 0, chart: result.count_history});
     })
-    .catch(e => res.json({code:500, message:"Backend error"}))
+    .catch(e => res.json({code:500, message:"DB error"}))
 });
 
 module.exports = router;
