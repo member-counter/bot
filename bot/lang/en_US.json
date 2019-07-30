@@ -102,9 +102,6 @@
                 "fields": []
             },
             "misc": {
-                "hidden_user": "Anonymous donator",
-                "hidden_amount": "Hidden amount",
-                "hidden_note": "Hidden note",
                 "empty_note" : "Empty note"
             },
             "error_db": "Database error, try again later",

@@ -17,11 +17,11 @@ const command = {
                 const newData = {custom_numbers: {}}
                 newData.custom_numbers[digitToUpdate] = newDigitValue;
                 GuildModel.findOneAndUpdate({guild_id:message.guild.id}, newData)
-                .then(()=>{
+                .then(() => {
                     message.channel.send(language.commands.setDigit.success).catch(console.error)
                     updateCounter(client, message.guild.id);
                 })
-                .catch(()=>{
+                .catch(() => {
                     message.channel.send(language.commands.setDigit.error_unknown).catch(console.error)
                 })
             } else {

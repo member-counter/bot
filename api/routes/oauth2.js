@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const fetch = require('node-fetch');
+const aa = require('node-fetch');
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const auth = require('../middlewares/auth');
 
@@ -19,7 +19,8 @@ router.get('/oauth2', async (req, res)=> {
     }
   })
   .then(fetchRes => fetchRes.json())
-  .then(parsedFetchRes => res.json(parsedFetchRes));
+  .then(parsedFetchRes => res.json(parsedFetchRes))
+  .catch(e => res.json({ code: 500, message: "An error has occurred in the authorization process", error: e }))
 });
 
 router.get('/admin-check', auth, (req, res)=> {

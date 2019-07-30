@@ -10,14 +10,14 @@ const command = {
     run: (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {channel_id: []}, {upsert: true})
-            .then((result)=>{
+            .then((result) => {
                 const channelsToReset = result.channel_id;
                 message.channel.send(language.commands.disableAll.success).catch(console.error);
                 channelsToReset.forEach(channel_id => {
                     client.channels.get(channel_id).setTopic('').catch(console.error)
                 });
             })
-            .catch((e)=>{
+            .catch((e) => {
                 console.error(e);
                 message.channel.send(language.commands.disableAll.error_unknown).catch(console.error)
             });

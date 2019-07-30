@@ -14,11 +14,11 @@ const command = {
             if (args.length > 1) {
                 const newTopic = message.content.slice((prefix+"setTopic ").length);
                 GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {topic: newTopic})
-                .then(()=>{
+                .then(() => {
                     message.channel.send(language.commands.setTopic.success).catch(console.error)
                     updateCounter(client, message.guild.id);
                 })
-                .catch(()=>{
+                .catch(() => {
                     message.channel.send(language.commands.setTopic.error_unknown).catch(console.error)
                 })
             } else {

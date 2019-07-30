@@ -5,12 +5,12 @@ const { getAvailableLanguages, getGuildLanguage } = require('../utils/language.j
 const default_lang = process.env.DEFAULT_LANG;
 
 const loadCommands = () => {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         fs.readdir(path.join(__dirname, '..', 'commands/'), (err, files) => {
             let commands = []; 
             if (err) reject(err);
             else {
-                files.forEach((element)=>{
+                files.forEach((element) => {
                     commands.push(require("../commands/"+element));
                 })
                 resolve(commands);

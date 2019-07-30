@@ -6,9 +6,18 @@ const eventHandler = require('./bot/utils/eventHandler.js');
 const client = new Discord.Client({ disabledEvents: ['TYPING_START', 'PRESENCE_UPDATE'] });
 
 client.login(process.env.DISCORD_TOKEN);
+client.updateCounter = require('./bot/utils/updateCounter');
 eventHandler(client);
 
-mongoose.connect(process.env.DB_URI, {useNewUrlParser: true}).then(()=>{console.log(`[Bot shard #${client.shard.id}] Mongoose ready`)}).catch((e)=>{console.error(`[Bot Shard #${client.shard.id}] ${e}`); process.exit(1)});
+mongoose.connect(process.env.DB_URI, {useNewUrlParser: true})
+    .then(() => {
+        console.log(`[Bot shard #${client.shard.id}] Mongoose ready`)
+    })
+    .catch(error =>
+        {console.error(`[Bot Shard #${client.shard.id}] ${error}`);
+        process.exit(1)
+    });
+
 mongoose.set('useFindAndModify', false);
 
 //DiscordBots.org
