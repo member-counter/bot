@@ -19,9 +19,15 @@ router.get('/guilds', auth, (req, res)  => {
 });
 
 router.get('/guilds/:id', auth, isAdmin, (req, res)  => {
-    GuildModel.findOne({ guild_id: req.params.id }, { _id: 0, __v: 0 })
-    .then(guild => res.json(guild))
-    .catch(e => res.json({code:500, message:"DB error"}))
+    GuildModel.findOneAndUpdate({ guild_id: req.params.id }, {}, {upsert: true, new: true, projection: { _id: 0, __v: 0 }})
+    .then(async guild_settings => {
+        let guild_channels = (await req.DiscordShardManager.broadcastEval(`(this.guilds.get('${req.params.id}')) ? this.guilds.get('${req.params.id}').channels.keyArray() : []`)).flat();
+        res.json({guild_channels, guild_settings})
+    })
+    .catch(e => {
+        console.log(e)
+        res.json({code:500, message:"DB error"})
+    })
 });
 
 router.patch('/guilds/:id', auth, isAdmin, (req, res)  => {
