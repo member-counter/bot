@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const aa = require('node-fetch');
+const fetch = require('node-fetch');
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const auth = require('../middlewares/auth');
 
