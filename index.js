@@ -32,6 +32,3 @@ if (process.env.NODE_ENV === "development") app.use(cors());
 
 //routes
 app.use(`/api`, require('./api/index'));
-
-//static folder
-app.use(express.static(path.join(process.env.STATIC_DIR)));
