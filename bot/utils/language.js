@@ -1,7 +1,7 @@
 const GuildModel = require('../../mongooseModels/GuildModel');
 const fs = require('fs');
 const path = require('path');
-const default_lang = process.env.DEFAULT_LANG;
+const default_lang = process.env.DISCORD_DEFAULT_LANG;
 
 const getGuildLanguage = (id) => {
     return new Promise((resolve, reject) => {
