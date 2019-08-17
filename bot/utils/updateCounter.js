@@ -1,5 +1,5 @@
 const GuildModel = require('../../mongooseModels/GuildModel');
-const default_lang = process.env.DEFAULT_LANG;
+const default_lang = process.env.DISCORD_DEFAULT_LANG;
 const { getAvailableLanguages } = require('../utils/language');
 module.exports = (client, guild_id) => {
     if (client.guilds.get(guild_id)) {
