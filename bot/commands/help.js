@@ -11,7 +11,7 @@ const command = {
             const embed = language.commands.help.embed_reply;
             message.channel.send({ embed }).catch(console.error);
         } else {
-            const selectedCommand = language.commands[args[1].toLowerCase()]
+            const selectedCommand = language.commands[args[1]]
             if (selectedCommand) {
                 const embed = {
                     "title": language.commands.help.misc.command + " " + args[1],

@@ -14,12 +14,14 @@ const command = {
             if (args.length === 3) {
                 const digitToUpdate = args[1].slice(0, 1);
                 const newDigitValue = args[2];
-                const newData = {custom_numbers: {}}
-                newData.custom_numbers[digitToUpdate] = newDigitValue;
-                GuildModel.findOneAndUpdate({guild_id:message.guild.id}, newData)
-                .then(() => {
-                    message.channel.send(language.commands.setDigit.success).catch(console.error)
-                    updateCounter(client, message.guild.id);
+                GuildModel.findOne({guild_id:message.guild.id})
+                .then((guild_settings) => {
+                    guild_settings.custom_numbers[digitToUpdate] = newDigitValue
+                    guild_settings.save()
+                    .then(() => {
+                        message.channel.send(language.commands.setDigit.success).catch(console.error);
+                        updateCounter(client, message.guild.id);
+                    })
                 })
                 .catch(() => {
                     message.channel.send(language.commands.setDigit.error_unknown).catch(console.error)
