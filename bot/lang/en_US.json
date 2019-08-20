@@ -15,7 +15,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list",
-                "description": "```css\nAvailable commands:\nmc!help\nmc!enable (#channel)\nmc!disable (#channel)\nmc!disableAll\nmc!list\nmc!reset\nmc!setTopic\nmc!setDigit\nmc!invite\nmc!donate\nmc!github /*Improve this bot!*/```",
+                "description": "```css\nAvailable commands:\nmc!help (command name)\nmc!enable (#channel)\nmc!disable (#channel)\nmc!disableAll\nmc!list\nmc!update\nmc!reset\nmc!setTopic\nmc!setDigit\nmc!invite\nmc!donate\nmc!github /*Improve this bot!*/```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -106,6 +106,11 @@
             },
             "error_db": "Database error, try again later",
             "error_exchange_fetch": "Error while trying to fetch exchange rates"
+        },
+        "update": {
+            "help_description": "If you think the counter is stuck use this command to force its update",
+            "success": "Counter updated.",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command."
         }
     },
     "functions": {
