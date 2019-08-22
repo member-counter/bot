@@ -69,6 +69,7 @@
             "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
         "reset": {
+            "help_description": "Restores the custom settings to the default ones",
             "done": "Restored to default settings",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command."
