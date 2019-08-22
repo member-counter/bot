@@ -19,7 +19,7 @@ const command = {
                                 type: "PLAYING"
                             }
                         })
-                        .then(() => console.log("[Bot shard #${client.shard.id}] Presence updated sucessfully"))
+                        .then(() => console.log("[Bot shard #${client.shard.id}] Presence updated successfully"))
                         .catch(console.error)
                 `);
         }
