@@ -1,6 +1,6 @@
 const prefix = process.env.DISCORD_PREFIX;
 
-const command = {
+const github = {
     name: "github",
     commands: [prefix+"github"],
     allowedTypes: ["text", "dm"],
@@ -12,4 +12,4 @@ const command = {
     }
 }
 
-module.exports = command;
+module.exports = [ github ];

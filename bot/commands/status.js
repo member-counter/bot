@@ -10,7 +10,7 @@ const parseUptime = (inputDate) => {
     return `${Math.floor(inputDate/60/60/24)} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`
 }
 
-let command = {
+let status = {
     name: "status",
     commands: [prefix+'status', "..status"],
     allowedTypes: ["text", "dm"],
@@ -40,4 +40,4 @@ let command = {
           message.channel.send({ embed }).catch(console.error);
     }
 }
-module.exports = command;
+module.exports = [ status ];

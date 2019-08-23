@@ -13,12 +13,12 @@ module.exports = async (client, message) => {
                 if (err) reject(err);
                 else {
                     files.forEach(command => {
-                        commands.push(require("../commands/" + command));
+                        commands.push(...require("../commands/" + command));
                     });
                     resolve(commands);
                 }
             });
-        }) 
+        });
         
         //get language object
         const guild_lang = await new Promise(async (resolve) => {

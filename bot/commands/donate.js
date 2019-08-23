@@ -3,7 +3,7 @@ const donationUrl = process.env.WEBSITE + 'donate'
 const DonationModel = require('../../mongooseModels/DonationModel');
 const getExchange = require('../../bot/utils/getExchange');
 
-const command = {
+const donate = {
     name: "donate",
     commands: [prefix+"donate", prefix+"donators"],
     allowedTypes: ["text", "dm"],
@@ -45,4 +45,4 @@ const command = {
     }
 }
 
-module.exports = command;
+module.exports = [ donate ];
