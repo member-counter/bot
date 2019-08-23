@@ -5,6 +5,7 @@ const GuildModel = require('../../mongooseModels/GuildModel');
 const command = {
     name: "list",
     commands: [prefix+"list"],
+    allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
     run: (client, message, language) => {

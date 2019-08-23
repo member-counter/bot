@@ -6,6 +6,7 @@ const getExchange = require('../../bot/utils/getExchange');
 const command = {
     name: "donate",
     commands: [prefix+"donate", prefix+"donators"],
+    allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
     run: async (client, message, language) => {

@@ -5,6 +5,7 @@ const GuildModel = require('../../mongooseModels/GuildModel');
 const command = {
     name: "reset",
     commands: [prefix+"reset"],
+    allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
     run: (client, message, language) => {

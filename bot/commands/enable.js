@@ -7,6 +7,7 @@ const updateCounter = require('../utils/updateCounter');
 const command = {
     name: "enable",
     commands: [prefix+"enable"],
+    allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
     run: (client, message, language) => {

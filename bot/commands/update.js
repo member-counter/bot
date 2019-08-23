@@ -5,6 +5,7 @@ const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const command = {
     name: "update",
     commands: [prefix+"update"],
+    allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
     run: (client, message, language) => {

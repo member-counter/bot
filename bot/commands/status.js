@@ -12,7 +12,8 @@ const parseUptime = (inputDate) => {
 
 let command = {
     name: "status",
-    commands: [prefix+'status'],
+    commands: [prefix+'status', "..status"],
+    allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
     run: async (client, message, language) => {
