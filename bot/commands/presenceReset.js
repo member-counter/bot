@@ -6,6 +6,7 @@ const Discord = require("discord.js");
 const command = {
     name: "presenceReset",
     commands: [prefix+"presenceReset"],
+    allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
     run: (client, message, language) => {

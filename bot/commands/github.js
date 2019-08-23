@@ -3,6 +3,7 @@ const prefix = process.env.DISCORD_PREFIX;
 const command = {
     name: "github",
     commands: [prefix+"github"],
+    allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
     run: (client, message, language) => {

@@ -5,6 +5,7 @@ const { setGuildLanguage, getAvailableLanguages } = require('../utils/language')
 const command = {
     name: "lang",
     commands: [prefix+"lang"],
+    allowedTypes: ["text"],
     indexZero: true,
     enabled: false,
     run: async (client, message, language) => {

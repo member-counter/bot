@@ -117,6 +117,9 @@
     "functions": {
         "updateCounter": {
             "error_no_perms": "Looks like I don't have permissions to set the topic of this channel. Please, give me the proper permissions or disable me using ``mc!disable``."
+        },
+        "commandHandler": {
+            "invalid_channel": "You can't run this command on a {TYPE} channel"
         }
     }
 }

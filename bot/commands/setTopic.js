@@ -6,6 +6,7 @@ const updateCounter = require('../utils/updateCounter');
 const command = {
     name: "setTopic",
     commands: [prefix+"setTopic"],
+    allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
     run: (client, message, language) => {
