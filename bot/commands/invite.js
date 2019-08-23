@@ -1,6 +1,6 @@
 const prefix = process.env.DISCORD_PREFIX;
 
-const command = {
+const invite = {
     name: "invite",
     commands: [prefix+"invite"],
     allowedTypes: ["text", "dm"],
@@ -12,4 +12,4 @@ const command = {
     }
 }
 
-module.exports = command;
+module.exports = [ invite ];

@@ -1,6 +1,6 @@
 const prefix = process.env.DISCORD_PREFIX;
 
-const command = {
+const help = {
     name: "help",
     commands: [prefix+"help"],
     allowedTypes: ["text", "dm"],
@@ -37,4 +37,4 @@ const command = {
         }
     }
 }
-module.exports = command;
+module.exports = [ help ];

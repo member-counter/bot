@@ -2,7 +2,7 @@ const prefix = process.env.DISCORD_PREFIX;
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const { setGuildLanguage, getAvailableLanguages } = require('../utils/language');
 
-const command = {
+const lang = {
     name: "lang",
     commands: [prefix+"lang"],
     allowedTypes: ["text"],
@@ -34,4 +34,4 @@ const command = {
         }
     }
 }
-module.exports = command;
+module.exports = [ lang ];
