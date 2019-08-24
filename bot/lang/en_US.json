@@ -15,7 +15,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list",
-                "description": "```css\nAvailable commands:\nmc!help (command name)\nmc!enable (#channel)\nmc!disable (#channel)\nmc!list\nmc!update\nmc!reset\nmc!setTopic\nmc!setDigit\nmc!invite\nmc!donate\nmc!github /*Improve this bot!*/```",
+                "description": "```css\nAvailable commands:\nmc!help (command name)\nmc!enable (#channel)\nmc!disable (#channel, all)\nmc!list\nmc!update\nmc!reset\nmc!setTopic\nmc!setDigit\nmc!invite\nmc!donate\nmc!github /*Improve this bot!*/```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -27,13 +27,11 @@
             }
         },
         "invite": {
-            "help_description": "Sends you a link for add this bot to your server!",
+            "help_description": "Join our server or add this bot to your server",
             "reply": "<a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880>",
             "embed_reply": {
-                "title": "Add this bot to your server now!",
-                "url": "https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot",
                 "color": 14503424,
-                "description": "[https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)"
+                "description": "[Add this bot](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)\n[Join the server](https://discord.gg/EjAzh9)"
             }
         },
         "lang": {
