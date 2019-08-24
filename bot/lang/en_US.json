@@ -43,14 +43,14 @@
             "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
         "enable": {
-            "help_description": "Enables and sets the channel that will be used for the counter.",
-            "success": "The counter has been enabled on {CHANNEL}.",
+            "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n`mc!enable`\n`mc!enable #general`\n`mc!enable #general #other-channel`\n`mc!enable all` ",
+            "success": "The counter has been enabled on {CHANNELS}.",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command.",
             "error_already_enabled": "This channel already has a counter."
         },
         "disable": {
-            "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n`mc!disable`\n`mc!disable #general`\n`mc!disable all` ",
+            "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n`mc!disable`\n`mc!disable #general`\n`mc!disable #general #other-channel`\n`mc!disable all` ",
             "success": "Done, counter disabled on {CHANNELS}",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command."
