@@ -17,7 +17,7 @@ const GuildSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     guild_id: { type: String, require: true },
     lang: { type: String, default:"en_US" },
-    channel_id: [{ type: String, default: [] }],
+    enabled_channels: [{ type: String, default: [] }],
     topic: { type: String, default: 'Members: {COUNT}' },
     custom_numbers: { type: CustomNumbers, default: CustomNumbers }
 });

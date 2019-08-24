@@ -12,22 +12,24 @@ const enable = {
     run: (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {  }, {upsert: true, new: true})
-            .then((result) => {
-                const newChannel = (message.mentions.channels.size > 0 ) ? message.mentions.channels.first() : message.channel;
-                if (!result.channel_id.includes(newChannel.id)) {
-                    result.channel_id = [ ...result.channel_id, newChannel.id ];
-                    result.save().then(() => {
-                        message.channel.send(language.commands.enable.success.replace("{CHANNEL}", newChannel.toString())).catch(console.error);
-                        updateCounter(client, message.guild.id);
-                    }).catch(console.error);
-                } else {
-                    message.channel.send(language.commands.enable.error_already_enabled).catch(console.error);
-                }
-            })
-            .catch((e) => {
-                console.error(e);
-                message.channel.send(language.commands.enable.error_unknown).catch(console.error)
-            });
+                .then((result) => {
+                    const newChannel = (message.mentions.channels.size > 0 ) ? message.mentions.channels.first() : message.channel;
+                    if (!result.enabled_channels.includes(newChannel.id)) {
+                        result.enabled_channels = [ ...result.enabled_channels, newChannel.id ];
+                        result.save()
+                            .then(() => {
+                                message.channel.send(language.commands.enable.success.replace("{CHANNEL}", newChannel.toString())).catch(console.error);
+                                updateCounter(client, message.guild.id);
+                            })
+                            .catch(console.error);
+                    } else {
+                        message.channel.send(language.commands.enable.error_already_enabled).catch(console.error);
+                    }
+                })
+                .catch((e) => {
+                    console.error(e);
+                    message.channel.send(language.commands.enable.error_unknown).catch(console.error)
+                });
         } else {
             message.channel.send(language.commands.enable.error_no_admin).catch(console.error)
         }
@@ -44,14 +46,32 @@ const disable = {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {}, {upsert: true})
                 .then((result) => {
-                    const channelToRemove = (message.mentions.channels.size > 0 ) ? message.mentions.channels.first() : message.channel;
-                    result.channel_id = result.channel_id.filter(element => element !== channelToRemove.id);
+                    const args = message.content.split(" ");
+                    let channelsToDisable = [];
+                    if (message.mentions.channels.size > 0) {
+                        channelsToDisable = message.mentions.channels.keyArray();
+                    } else if (args[args.length - 1] === "all") {
+                        channelsToDisable = result.enabled_channels;
+                    } else {
+                        channelsToDisable = [message.channel.id]
+                    }                    
+                    console.log(result.enabled_channels);
+                    result.enabled_channels = result.enabled_channels.filter(x => channelsToDisable.indexOf(x) === -1);
                     result.save()
                         .then(() => {
-                            channelToRemove.setTopic('').catch(console.error);
-                            message.channel.send(language.commands.disable.success.replace("{CHANNEL}", channelToRemove.toString())).catch(console.error)
+                            channelsToDisable.forEach(channel_id => {
+                                client.channels.get(channel_id).setTopic('').catch(console.error);
+                            })
+                            let channelsMentioned = "";
+                            channelsToDisable.forEach((channel, i) => {
+                                channelsMentioned += ` <#${channel}>${(i === channelsToDisable.length-1) ? '.' : ','}`; 
+                            });
+                            message.channel.send(language.commands.disable.success.replace("{CHANNELS}", channelsMentioned)).catch(console.error)
                         })
-                        .catch(console.error);
+                        .catch(() => {
+                            console.error(e);
+                            message.channel.send(language.commands.disable.error_unknown).catch(console.error)
+                        })
                 })
                 .catch((e) => {
                     console.error(e);
@@ -72,21 +92,25 @@ const list = {
     run: (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOne({ guild_id:message.guild.id })
-            .then((result) => {
-                if (result) {
-                    if (result.channel_id.length === 0) { 
-                        message.channel.send(language.commands.list.no_channels).catch(console.error);
+                .then((result) => {
+                    if (result) {
+                        if (result.enabled_channels.length === 0) { 
+                            message.channel.send(language.commands.list.no_channels).catch(console.error);
+                        } else {
+                            let msg = language.commands.list.list;
+                            result.enabled_channels.forEach((channel, i) => {
+                                msg += ` <#${channel}>${(i === result.enabled_channels.length-1) ? '.' : ','}`; 
+                            });
+                            message.channel.send(msg).catch(console.error);   
+                        }
                     } else {
-                        let msg = language.commands.list.list;
-                        result.channel_id.forEach((channel, i) => {
-                            msg += ` <#${channel}>${(i === result.channel_id.length-1) ? '.' : ','}`; 
-                        });
-                        message.channel.send(msg).catch(console.error);   
+                        message.channel.send(language.commands.list.no_channels).catch(console.error);
                     }
-                } else {
-                    message.channel.send(language.commands.list.no_channels).catch(console.error);
-                }
-            })
+                })
+                .catch((e) => {
+                    console.error(e);
+                    message.channel.send(language.commands.list.error_unknown).catch(console.error)
+                });
         } else {
             message.channel.send(language.commands.list.error_no_admin).catch(console.error)
         }
@@ -102,16 +126,17 @@ const reset = {
     run: (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOneAndRemove({ guild_id:message.guild.id })
-            .then((result) => {
-                if (result) {
-                    result.channel_id.forEach(channel_id => {
-                        client.channels.get(channel_id).setTopic('').catch(console.error)
-                    });
-                }
-                message.channel.send(language.commands.reset.done).catch(console.error);
-            }).catch(e => {
-                message.channel.send(language.commands.reset.error_unknown).catch(console.error)
-            })
+                .then((result) => {
+                    if (result) {
+                        result.enabled_channels.forEach(channel_id => {
+                            client.channels.get(channel_id).setTopic('').catch(console.error)
+                        });
+                    }
+                    message.channel.send(language.commands.reset.done).catch(console.error);
+                })
+                .catch(e => {
+                    message.channel.send(language.commands.reset.error_unknown).catch(console.error)
+                })
         } else {
             message.channel.send(language.commands.reset.error_no_admin).catch(console.error)
         }
@@ -131,17 +156,18 @@ const setDigit = {
                 const digitToUpdate = args[1].slice(0, 1);
                 const newDigitValue = args[2];
                 GuildModel.findOne({guild_id:message.guild.id})
-                .then((guild_settings) => {
-                    guild_settings.custom_numbers[digitToUpdate] = newDigitValue
-                    guild_settings.save()
-                    .then(() => {
-                        message.channel.send(language.commands.setDigit.success).catch(console.error);
-                        updateCounter(client, message.guild.id);
+                    .then((guild_settings) => {
+                        guild_settings.custom_numbers[digitToUpdate] = newDigitValue
+                        guild_settings.save()
+                            .then(() => {
+                                message.channel.send(language.commands.setDigit.success).catch(console.error);
+                                updateCounter(client, message.guild.id);
+                            })
+                            .catch(console.error);
                     })
-                })
-                .catch(() => {
-                    message.channel.send(language.commands.setDigit.error_unknown).catch(console.error)
-                })
+                    .catch(() => {
+                        message.channel.send(language.commands.setDigit.error_unknown).catch(console.error)
+                    });
             } else {
                 message.channel.send(language.commands.setDigit.error_missing_params).catch(console.error)
             }
@@ -163,13 +189,13 @@ const setTopic = {
             if (args.length > 1) {
                 const newTopic = message.content.slice((prefix+"setTopic ").length);
                 GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {topic: newTopic})
-                .then(() => {
-                    message.channel.send(language.commands.setTopic.success).catch(console.error)
-                    updateCounter(client, message.guild.id);
-                })
-                .catch(() => {
-                    message.channel.send(language.commands.setTopic.error_unknown).catch(console.error)
-                })
+                    .then(() => {
+                        message.channel.send(language.commands.setTopic.success).catch(console.error)
+                        updateCounter(client, message.guild.id);
+                    })
+                    .catch(() => {
+                        message.channel.send(language.commands.setTopic.error_unknown).catch(console.error)
+                    })
             } else {
                 message.channel.send(language.commands.setTopic.error_missing_params).catch(console.error)
             }

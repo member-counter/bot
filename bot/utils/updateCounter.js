@@ -5,7 +5,7 @@ module.exports = (client, guild_id) => {
     if (client.guilds.get(guild_id)) {
         GuildModel.findOne({guild_id})
             .then((guild_config) => {
-                if (guild_config && (guild_config.channel_id.length !== 0)) {
+                if (guild_config && (guild_config.enabled_channels.length !== 0)) {
                     const memberCount = client.guilds.get(guild_id).memberCount.toString().split('');
                     let memberCountCustomized = "";
 
@@ -13,7 +13,7 @@ module.exports = (client, guild_id) => {
                         memberCountCustomized += guild_config.custom_numbers[digit]
                     });
 
-                    guild_config.channel_id.forEach(channel => {
+                    guild_config.enabled_channels.forEach(channel => {
                         if (client.channels.get(channel)) {
                             client.channels.get(channel).setTopic(guild_config.topic.replace('{COUNT}', memberCountCustomized))
                             .catch( async (e) => {

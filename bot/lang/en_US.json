@@ -50,15 +50,8 @@
             "error_already_enabled": "This channel already has a counter."
         },
         "disable": {
-            "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" at the end, the counter will be disabled on all channels.\n\nExamples:\n`mc!disable`\n`mc!disable #general`\n`mc!disable all` ",
-            "success": "The counter has been disabled on {CHANNEL}.",
-            "success_all": "The counter has been disabled on all channels.",
-            "error_unknown": "Something went wrong, try again later.",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command."
-        },
-        "disableAll": {
-            "help_description": "Disables the counter on all channels.",
-            "success": "The counter has been disabled on all channels.",
+            "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n`mc!disable`\n`mc!disable #general`\n`mc!disable all` ",
+            "success": "Done, counter disabled on {CHANNELS}",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
