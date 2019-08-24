@@ -10,6 +10,8 @@ const help = {
         const args = message.content.split(' ');
         if (args.length < 2) {
             const embed = language.commands.help.embed_reply;
+            embed.title = embed.title.replace(/\{PREFIX\}/gi, prefix);
+            embed.description = embed.description.replace(/\{PREFIX\}/gi, prefix);
             message.channel.send({ embed }).catch(console.error);
         } else {
             Object.entries(language.commands)
@@ -25,7 +27,7 @@ const help = {
             if (selectedCommand) {
                 const embed = {
                     "title": language.commands.help.misc.command + " " + args[1],
-                    "description": selectedCommand.help_description,
+                    "description": selectedCommand.help_description.replace(/\{PREFIX\}/gi, prefix),
                     "color": 14503424,
                     "author": {
                         "name": "Member Counter",

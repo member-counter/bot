@@ -27,6 +27,7 @@ const enable = {
                     })
                     result.save()
                         .then(() => {
+                            updateCounter(client, message.guild.id);
                             let channelsToMention = "";
                             channelsToEnable.forEach((channel, i) => {
                                 channelsToMention += ` <#${channel}>${(i === channelsToEnable.length-1) ? '.' : ','}`; 
@@ -198,7 +199,7 @@ const setTopic = {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             const args = message.content.split(" ");
             if (args.length > 1) {
-                const newTopic = message.content.slice((prefix+"setTopic ").length);
+                const newTopic = args.slice(1).join(" ");
                 GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {topic: newTopic})
                     .then(() => {
                         message.channel.send(language.commands.setTopic.success).catch(console.error)
@@ -212,6 +213,21 @@ const setTopic = {
             }
         } else {
             message.channel.send(language.commands.setTopic.error_no_admin).catch(console.error)
+        }
+    }
+}
+
+const removeTopic = {
+    name: "removeTopic",
+    commands: [prefix+"removeTopic"],
+    allowedTypes: ["text"],
+    indexZero: true,
+    enabled: false,
+    run: (client, message, language) => {
+        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
+
+        } else {
+            message.channel.send(language.commands.removeTopic.error_no_admin).catch(console.error)
         }
     }
 }
@@ -232,4 +248,4 @@ const update = {
     }
 }
 
-module.exports = [ enable, disable, list, reset, setDigit, setTopic, update ];
+module.exports = [ enable, disable, list, reset, setDigit, setTopic, removeTopic, update ];

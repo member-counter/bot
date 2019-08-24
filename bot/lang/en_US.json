@@ -14,8 +14,8 @@
         "help": {
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
-                "title": "Command list",
-                "description": "```css\nAvailable commands:\nmc!help (command name)\nmc!enable (#channel)\nmc!disable (#channel, all)\nmc!list\nmc!update\nmc!reset\nmc!setTopic\nmc!setDigit\nmc!invite\nmc!donate\nmc!github /*Improve this bot!*/```",
+                "title": "Command list | prefix: {PREFIX}",
+                "description": "```css\nAvailable commands:\n{PREFIX}help (command name)\n{PREFIX}enable (#channel, all)\n{PREFIX}disable (#channel, all)\n{PREFIX}list\n{PREFIX}update\n{PREFIX}reset\n{PREFIX}setTopic\n{PREFIX}setDigit\n{PREFIX}invite\n{PREFIX}donate\n{PREFIX}github /*Improve this bot!*/```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -44,14 +44,14 @@
             "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
         "enable": {
-            "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n`mc!enable`\n`mc!enable #general`\n`mc!enable #general #other-channel`\n`mc!enable all` ",
+            "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n`{PREFIX}enable`\n`{PREFIX}enable #general`\n`{PREFIX}enable #general #other-channel`\n`{PREFIX}enable all` ",
             "success": "The counter has been enabled on {CHANNELS}",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command.",
             "error_already_enabled": "This channel already has a counter."
         },
         "disable": {
-            "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n`mc!disable`\n`mc!disable #general`\n`mc!disable #general #other-channel`\n`mc!disable all` ",
+            "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n`{PREFIX}disable`\n`{PREFIX}disable #general`\n`{PREFIX}disable #general #other-channel`\n`{PREFIX}disable all` ",
             "success": "Done, counter disabled on {CHANNELS}",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command."
@@ -70,18 +70,25 @@
             "error_no_admin": "Only members with administrator permissions in this server can use this command."
         },
         "setDigit": {
-            "help_description": "Customizes numbers that will be displayed.\n\n Usage: ```mc!setDigit <plain number> <custom number>```\n Tip: You can use an emoji as a custom number.",
+            "help_description": "Customizes numbers that will be displayed.\n\n Usage: ```{PREFIX}setDigit <plain number> <custom number>```\n Tip: You can use an emoji as a custom number.",
             "success": "Digit customized.",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command.",
-            "error_missing_params": "Error: Missing parameters, `more info: mc!help setDigit`."
+            "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed.\n\n Example: ```mc!setTopic Current members: {COUNT}```",
+            "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed.\n\n Example: ```{PREFIX}setTopic Current members: {COUNT}```",
             "success": "Topic customized.",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command.",
-            "error_missing_params": "Error: Missing parameters, more info: `mc!help setTopic`."
+            "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help setTopic`."
+        },
+        "removeTopic": {
+            "help_description": "",
+            "success": "",
+            "error_unknown": "Something went wrong, try again later.",
+            "error_no_admin": "Only members with administrator permissions in this server can use this command.",
+            "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help setTopic`."
         },
         "donate": {
             "embed_reply": {
@@ -111,7 +118,7 @@
     },
     "functions": {
         "updateCounter": {
-            "error_no_perms": "Looks like I don't have permissions to set the topic of this channel. Please, give me the proper permissions or disable me using ``mc!disable``."
+            "error_no_perms": "Looks like I don't have permissions to set the topic of this channel. Please, give me the proper permissions or disable me using ``{PREFIX}disable``."
         },
         "commandHandler": {
             "invalid_channel": "You can't run this command on a {TYPE} channel"
