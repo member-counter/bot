@@ -11,20 +11,32 @@ const enable = {
     enabled: true,
     run: (client, message, language) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
-            GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {  }, {upsert: true, new: true})
+            GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {}, {upsert: true, new: true})
                 .then((result) => {
-                    const newChannel = (message.mentions.channels.size > 0 ) ? message.mentions.channels.first() : message.channel;
-                    if (!result.enabled_channels.includes(newChannel.id)) {
-                        result.enabled_channels = [ ...result.enabled_channels, newChannel.id ];
-                        result.save()
-                            .then(() => {
-                                message.channel.send(language.commands.enable.success.replace("{CHANNEL}", newChannel.toString())).catch(console.error);
-                                updateCounter(client, message.guild.id);
-                            })
-                            .catch(console.error);
+                    const args = message.content.split(" ");
+                    let channelsToEnable = [];
+                    if (message.mentions.channels.size > 0) {
+                        channelsToEnable = message.mentions.channels.keyArray();
+                    } else if (args[args.length - 1] === "all") {
+                        channelsToEnable = message.guild.channels.filter(channel => channel.type === "text").keyArray();
                     } else {
-                        message.channel.send(language.commands.enable.error_already_enabled).catch(console.error);
+                        channelsToEnable = [message.channel.id]
                     }
+                    channelsToEnable.forEach(channel_id => {
+                        if (!result.enabled_channels.includes(channel_id)) result.enabled_channels.push(channel_id);
+                    })
+                    result.save()
+                        .then(() => {
+                            let channelsToMention = "";
+                            channelsToEnable.forEach((channel, i) => {
+                                channelsToMention += ` <#${channel}>${(i === channelsToEnable.length-1) ? '.' : ','}`; 
+                            });
+                            message.channel.send(language.commands.enable.success.replace("{CHANNELS}", channelsToMention)).catch(console.error)
+                        })
+                        .catch(() => {
+                            console.error(e);
+                            message.channel.send(language.commands.enable.error_unknown).catch(console.error)
+                        })
                 })
                 .catch((e) => {
                     console.error(e);
@@ -54,8 +66,7 @@ const disable = {
                         channelsToDisable = result.enabled_channels;
                     } else {
                         channelsToDisable = [message.channel.id]
-                    }                    
-                    console.log(result.enabled_channels);
+                    }
                     result.enabled_channels = result.enabled_channels.filter(x => channelsToDisable.indexOf(x) === -1);
                     result.save()
                         .then(() => {

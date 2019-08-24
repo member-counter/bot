@@ -30,8 +30,11 @@
             "help_description": "Join our server or add this bot to your server",
             "reply": "<a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880>",
             "embed_reply": {
+                "thumbnail": {
+                  "url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png"
+                },
                 "color": 14503424,
-                "description": "[Add this bot](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)\n[Join the server](https://discord.gg/EjAzh9)"
+                "description": "[Add this bot to your server](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)\n[Join the server](https://discord.gg/EjAzh9)"
             }
         },
         "lang": {
@@ -42,7 +45,7 @@
         },
         "enable": {
             "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n`mc!enable`\n`mc!enable #general`\n`mc!enable #general #other-channel`\n`mc!enable all` ",
-            "success": "The counter has been enabled on {CHANNELS}.",
+            "success": "The counter has been enabled on {CHANNELS}",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command.",
             "error_already_enabled": "This channel already has a counter."
@@ -71,18 +74,18 @@
             "success": "Digit customized.",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command.",
-            "error_missing_params": "Error: Missing parameters, more info: mc!help setDigit."
+            "error_missing_params": "Error: Missing parameters, `more info: mc!help setDigit`."
         },
         "setTopic": {
             "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed.\n\n Example: ```mc!setTopic Current members: {COUNT}```",
             "success": "Topic customized.",
             "error_unknown": "Something went wrong, try again later.",
             "error_no_admin": "Only members with administrator permissions in this server can use this command.",
-            "error_missing_params": "Error: Missing parameters, more info: mc!help setTopic."
+            "error_missing_params": "Error: Missing parameters, more info: `mc!help setTopic`."
         },
         "donate": {
             "embed_reply": {
-                "title": "Enjoying my bot? Donate me! Any amount will be welcome, and your name will also be listed here: {DONATION_URL}",
+                "title": "Enjoying my bot? Donate me! Any amount will be welcome: {DONATION_URL}",
                 "url": "{DONATION_URL}",
                 "color": 14503424,
                 "footer": {
