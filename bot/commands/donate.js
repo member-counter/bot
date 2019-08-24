@@ -1,5 +1,5 @@
 const prefix = process.env.DISCORD_PREFIX;
-const donationUrl = process.env.WEBSITE + 'donate'
+const donationUrl = "https://paypal.me/eduardozgz";
 const DonationModel = require('../../mongooseModels/DonationModel');
 const getExchange = require('../../bot/utils/getExchange');
 
