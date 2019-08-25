@@ -20,7 +20,7 @@ router.post("/dbl", (req, res) => {
                         }
         `);
     } else if (authorization === dblSecret && webhook.type === "test" && webhook.bot === process.env.DISCORD_CLIENT_ID) {
-        console.log(`[MAIN] [API] DBL webhook test received: ${webhook}`);
+        console.log(`[MAIN] [API] DBL webhook test received: ${JSON.stringify(webhook)}`);
     }
 });
 
