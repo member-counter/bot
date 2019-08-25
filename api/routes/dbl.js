@@ -10,7 +10,7 @@ router.post("/dbl", (req, res) => {
     if (authorization === dblSecret && webhook.type === "upvote" && webhook.bot === process.env.DISCORD_CLIENT_ID) {
         console.log(`[MAIN] [API] User ${webhook.user} upvoted the bot!`);
         req.DiscordShardManager.broadcastEval(`
-            if (this.guilds.get("${officialServer})") {
+            if (this.guilds.get("${officialServer}") && this.guilds.get("${officialServer}").members.get("${webhook.user}")) {
                 this.guilds.get("${officialServer}")
                     .members.get("${webhook.user}")
                         .addRole("${rewardRoleId}")
@@ -26,18 +26,18 @@ router.post("/dbl", (req, res) => {
         console.log(`[MAIN] [API] DBL webhook test received: ${JSON.stringify(webhook)}`);
         if (owners.includes(webhook.user)) {
             req.DiscordShardManager.broadcastEval(`
-            if (this.guilds.get("${officialServer})") {
-                this.guilds.get("${officialServer}")
-                    .members.get("${webhook.user}")
-                        .addRole("${rewardRoleId}")
-                            .then(() => {
-                                console.log("[MAIN] [API] Role given successfully to ${webhook.user}");
-                            })
-                            .catch((e) => {
-                                console.error("[MAIN] [API] Error while trying to give the role to ${webhook.user}");
-                            });
-            }
-        `);
+                if (this.guilds.get("${officialServer}") && this.guilds.get("${officialServer}").members.get("${webhook.user}")) {
+                    this.guilds.get("${officialServer}")
+                        .members.get("${webhook.user}")
+                            .addRole("${rewardRoleId}")
+                                .then(() => {
+                                    console.log("[MAIN] [API] Role given successfully to ${webhook.user}");
+                                })
+                                .catch((e) => {
+                                    console.error("[MAIN] [API] Error while trying to give the role to ${webhook.user}");
+                                });
+                }
+            `);
         }
     }
 });
