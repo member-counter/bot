@@ -13,11 +13,11 @@ router.post("/dbl", (req, res) => {
                 .members.get(${webhook.user})
                     .addRole(${rewardRoleId})
                         .then(() => {
-                            console.log("[MAIN] [API] Role given successfully to ${webhook.user}")
+                            console.log("[MAIN] [API] Role given successfully to ${webhook.user}");
                         })
                         .catch((e) => {
-                            console.error("[MAIN] [API] Error while trying to give the role to ${webhook.user}")
-                        }
+                            console.error("[MAIN] [API] Error while trying to give the role to ${webhook.user}");
+                        });
         `);
     } else if (authorization === dblSecret && webhook.type === "test" && webhook.bot === process.env.DISCORD_CLIENT_ID) {
         console.log(`[MAIN] [API] DBL webhook test received: ${JSON.stringify(webhook)}`);
