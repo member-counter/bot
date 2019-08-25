@@ -7,7 +7,20 @@ router.get("/dbl", (req, res) => {
     const { authorization } = req.headers;
     const webhook = req.body;
     if (authorization === dblSecret && webhook.type === "upvote" && webhook.bot === process.env.DISCORD_CLIENT_ID) {
-        req.DiscordShardManager.broadcastEval(`this.guilds.get(${officalServer}).members.get(${webhook.user}).addRole(${rewardRoleId})`);
+        console.log(`[MAIN] [API] User ${webhook.user} upvoted the bot!`);
+        req.DiscordShardManager.broadcastEval(`
+            this.guilds.get(${officalServer})
+                .members.get(${webhook.user})
+                    .addRole(${rewardRoleId})
+                        .then(() => {
+                            console.log("[MAIN] [API] Role given successfully to ${webhook.user}")
+                        })
+                        .catch((e) => {
+                            console.error("[MAIN] [API] Error while trying to give the role to ${webhook.user}")
+                        }
+        `);
+    } else if (authorization === dblSecret && webhook.type === "test" && webhook.bot === process.env.DISCORD_CLIENT_ID) {
+        console.log(`[MAIN] [API] DBL webhook test received: ${webhook}`);
     }
 });
 
