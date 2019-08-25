@@ -18,7 +18,6 @@ router.get('/guilds', auth, (req, res)  => {
     });
 });
 
-/* 
 router.get('/guilds/:id', auth, isAdmin, (req, res)  => {
     GuildModel.findOneAndUpdate({ guild_id: req.params.id }, {}, {upsert: true, new: true, projection: { _id: 0, __v: 0 }})
     .then(async guild_settings => {
@@ -50,6 +49,5 @@ router.get('/guilds/:id/chart', auth, isAdmin, (req, res)  => {
     })
     .catch(e => res.json({code:500, message:"DB error"}))
 });
-*/
 
 module.exports = router;
