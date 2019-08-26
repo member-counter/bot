@@ -16,7 +16,7 @@ let status = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: async (client, message, language) => {
+    run: async (client, message, translation) => {
         const embed = {
             "color": 14503424,
             "title":"Status for shard #" + client.shard.id + " | Bot version: " + version,

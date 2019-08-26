@@ -6,8 +6,8 @@ const github = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: (client, message, language) => {
-      const embed = language.commands.github.embed_reply;
+    run: (client, message, translation) => {
+      const embed = translation.commands.github.embed_reply;
       message.channel.send({embed}).catch(console.error);
     }
 }
