@@ -32,19 +32,19 @@ const enable = {
                             channelsToEnable.forEach((channel, i) => {
                                 channelsToMention += ` <#${channel}>${(i === channelsToEnable.length-1) ? '.' : ','}`; 
                             });
-                            message.channel.send(language.commands.enable.success.replace("{CHANNELS}", channelsToMention)).catch(console.error)
+                            message.channel.send(translation.commands.enable.success.replace("{CHANNELS}", channelsToMention)).catch(console.error)
                         })
                         .catch(() => {
                             console.error(e);
-                            message.channel.send(language.commands.enable.error_unknown).catch(console.error)
+                            message.channel.send(translation.commands.enable.error_unknown).catch(console.error)
                         })
                 })
                 .catch((e) => {
                     console.error(e);
-                    message.channel.send(language.commands.enable.error_unknown).catch(console.error)
+                    message.channel.send(translation.commands.enable.error_unknown).catch(console.error)
                 });
         } else {
-            message.channel.send(language.commands.enable.error_no_admin).catch(console.error)
+            message.channel.send(translation.commands.enable.error_no_admin).catch(console.error)
         }
     }
 }
@@ -78,19 +78,19 @@ const disable = {
                             channelsToDisable.forEach((channel, i) => {
                                 channelsMentioned += ` <#${channel}>${(i === channelsToDisable.length-1) ? '.' : ','}`; 
                             });
-                            message.channel.send(language.commands.disable.success.replace("{CHANNELS}", channelsMentioned)).catch(console.error)
+                            message.channel.send(translation.commands.disable.success.replace("{CHANNELS}", channelsMentioned)).catch(console.error)
                         })
                         .catch(() => {
                             console.error(e);
-                            message.channel.send(language.commands.disable.error_unknown).catch(console.error)
+                            message.channel.send(translation.commands.disable.error_unknown).catch(console.error)
                         })
                 })
                 .catch((e) => {
                     console.error(e);
-                    message.channel.send(language.commands.disable.error_unknown).catch(console.error)
+                    message.channel.send(translation.commands.disable.error_unknown).catch(console.error)
                 });
         } else {
-            message.channel.send(language.commands.disable.error_no_admin).catch(console.error)
+            message.channel.send(translation.commands.disable.error_no_admin).catch(console.error)
         }
     }
 }
@@ -107,24 +107,24 @@ const list = {
                 .then((result) => {
                     if (result) {
                         if (result.enabled_channels.length === 0) { 
-                            message.channel.send(language.commands.list.no_channels).catch(console.error);
+                            message.channel.send(translation.commands.list.no_channels).catch(console.error);
                         } else {
-                            let msg = language.commands.list.list;
+                            let msg = translation.commands.list.list;
                             result.enabled_channels.forEach((channel, i) => {
                                 msg += ` <#${channel}>${(i === result.enabled_channels.length-1) ? '.' : ','}`; 
                             });
                             message.channel.send(msg).catch(console.error);   
                         }
                     } else {
-                        message.channel.send(language.commands.list.no_channels).catch(console.error);
+                        message.channel.send(translation.commands.list.no_channels).catch(console.error);
                     }
                 })
                 .catch((e) => {
                     console.error(e);
-                    message.channel.send(language.commands.list.error_unknown).catch(console.error)
+                    message.channel.send(translation.commands.list.error_unknown).catch(console.error)
                 });
         } else {
-            message.channel.send(language.commands.list.error_no_admin).catch(console.error)
+            message.channel.send(translation.commands.list.error_no_admin).catch(console.error)
         }
     }
 }
@@ -144,13 +144,13 @@ const reset = {
                             client.channels.get(channel_id).setTopic('').catch(console.error)
                         });
                     }
-                    message.channel.send(language.commands.reset.done).catch(console.error);
+                    message.channel.send(translation.commands.reset.done).catch(console.error);
                 })
                 .catch(e => {
-                    message.channel.send(language.commands.reset.error_unknown).catch(console.error)
+                    message.channel.send(translation.commands.reset.error_unknown).catch(console.error)
                 })
         } else {
-            message.channel.send(language.commands.reset.error_no_admin).catch(console.error)
+            message.channel.send(translation.commands.reset.error_no_admin).catch(console.error)
         }
     }
 }
@@ -172,19 +172,19 @@ const setDigit = {
                         guild_settings.custom_numbers[digitToUpdate] = newDigitValue
                         guild_settings.save()
                             .then(() => {
-                                message.channel.send(language.commands.setDigit.success).catch(console.error);
+                                message.channel.send(translation.commands.setDigit.success).catch(console.error);
                                 updateCounter(client, message.guild.id);
                             })
                             .catch(console.error);
                     })
                     .catch(() => {
-                        message.channel.send(language.commands.setDigit.error_unknown).catch(console.error)
+                        message.channel.send(translation.commands.setDigit.error_unknown).catch(console.error)
                     });
             } else {
-                message.channel.send(language.commands.setDigit.error_missing_params).catch(console.error)
+                message.channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", prefix)).catch(console.error)
             }
         } else {
-            message.channel.send(language.commands.setDigit.error_no_admin).catch(console.error)
+            message.channel.send(translation.commands.setDigit.error_no_admin).catch(console.error)
         }
     }
 }
@@ -202,17 +202,17 @@ const setTopic = {
                 const newTopic = args.slice(1).join(" ");
                 GuildModel.findOneAndUpdate({guild_id:message.guild.id}, {topic: newTopic})
                     .then(() => {
-                        message.channel.send(language.commands.setTopic.success).catch(console.error)
+                        message.channel.send(translation.commands.setTopic.success).catch(console.error)
                         updateCounter(client, message.guild.id);
                     })
                     .catch(() => {
-                        message.channel.send(language.commands.setTopic.error_unknown).catch(console.error)
+                        message.channel.send(translation.commands.setTopic.error_unknown).catch(console.error)
                     })
             } else {
-                message.channel.send(language.commands.setTopic.error_missing_params).catch(console.error)
+                message.channel.send(translation.commands.setTopic.error_missing_params.replace("{PREFIX}", prefix)).catch(console.error)
             }
         } else {
-            message.channel.send(language.commands.setTopic.error_no_admin).catch(console.error)
+            message.channel.send(translation.commands.setTopic.error_no_admin).catch(console.error)
         }
     }
 }
@@ -227,7 +227,7 @@ const removeTopic = {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
 
         } else {
-            message.channel.send(language.commands.removeTopic.error_no_admin).catch(console.error)
+            message.channel.send(translation.commands.removeTopic.error_no_admin).catch(console.error)
         }
     }
 }
@@ -238,12 +238,12 @@ const update = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
-    run: (client, message, language) => {
+    run: (client, message, translation) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             updateCounter(client, message.guild.id);
-            message.channel.send(language.commands.update.success).catch(console.error);
+            message.channel.send(translation.commands.update.success).catch(console.error);
         } else {
-            message.channel.send(language.commands.update.error_no_admin).catch(console.error);
+            message.channel.send(translation.commands.update.error_no_admin).catch(console.error);
         }
     }
 }

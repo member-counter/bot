@@ -9,12 +9,12 @@ const donate = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: async (client, message, language) => {
+    run: async (client, message, translation) => {
         getExchange()
             .then((ex) => {
                 DonationModel.find()
                 .then(donators => {
-                    let embed = language.commands.donate.embed_reply;
+                    let embed = translation.commands.donate.embed_reply;
                     embed.url = embed.url.replace('{DONATION_URL}', donationUrl);
                     embed.title = embed.title.replace('{DONATION_URL}', donationUrl);
                     embed.fields = []
@@ -33,15 +33,15 @@ const donate = {
                             if ((donator.note && (donator.note.length > 1024))) donator.note = donator.note.slice(0, 1020) + "..."; 
                             let field = {}
                             field.name = `**${i+1}.** ${donator.user} - ${donator.amount} ${donator.currency}`;
-                            field.value = ( donator.note ) ?  donator.note : language.commands.donate.misc.empty_note;
+                            field.value = ( donator.note ) ?  donator.note : translation.commands.donate.misc.empty_note;
                             embed.fields = [ ...embed.fields, field ]
                         })
 
                     message.channel.send({embed}).catch(console.error);
                 })
-                .catch(e => message.channel.send(language.commands.donate.misc.error_db).catch(console.error))
+                .catch(e => message.channel.send(translation.commands.donate.misc.error_db).catch(console.error))
             })
-            .catch(e => message.channel.send(language.commands.donate.misc.error_exchange_fetch).catch(console.error))
+            .catch(e => message.channel.send(translation.commands.donate.misc.error_exchange_fetch).catch(console.error))
     }
 }
 
