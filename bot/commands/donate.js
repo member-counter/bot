@@ -39,7 +39,7 @@ const donate = {
 
                     message.channel.send({embed}).catch(console.error);
                 })
-                .catch(e => message.channel.send(translation.commands.donate.misc.error_db).catch(console.error))
+                .catch(e => message.channel.send(translation.commands.donate.common.error_db).catch(console.error))
             })
             .catch(e => message.channel.send(translation.commands.donate.misc.error_exchange_fetch).catch(console.error))
     }
