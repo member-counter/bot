@@ -30,7 +30,7 @@ const lang = {
                 message.channel.send(translation.commands.lang.error_not_found + '```' + LangList + '```' ).catch(console.error);
             }
         } else {
-            message.channel.send(translation.commands.lang.error_no_admin).catch(console.error);
+            message.channel.send(translation.commands.common.error_no_admin).catch(console.error);
         }
     }
 }

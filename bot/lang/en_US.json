@@ -31,7 +31,7 @@
             "reply": "<a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880>",
             "embed_reply": {
                 "thumbnail": {
-                  "url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png"
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png"
                 },
                 "color": 14503424,
                 "description": "[Add this bot to your server](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)\n[Join the server](https://discord.gg/g4MfV6N)"
@@ -40,53 +40,38 @@
         "lang": {
             "help_description": "Changes the bot language for this guild, you must have administrator permissions to run this command.",
             "success": "Language changed successfully.",
-            "error_not_found": "I didn't find that language, try one of the following:",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command."
+            "error_not_found": "I didn't find that language, try one of the following:"
         },
         "enable": {
             "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enable\n{PREFIX}enable #general\n{PREFIX}enable #general #other-channel\n{PREFIX}enable all```",
             "success": "The counter has been enabled on {CHANNELS}",
-            "error_unknown": "Something went wrong, try again later.",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command.",
             "error_already_enabled": "This channel already has a counter."
         },
         "disable": {
             "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n```{PREFIX}disable\n{PREFIX}disable #general\n{PREFIX}disable #general #other-channel\n{PREFIX}disable all``` ",
-            "success": "Done, counter disabled on {CHANNELS}",
-            "error_unknown": "Something went wrong, try again later.",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command."
+            "success": "Done, counter disabled on {CHANNELS}"
         },
         "list": {
             "help_description": "Lists all the channels that has a counter enabled.",
             "list": "The counter is enabled on the following channels:",
-            "no_channels": "There are no channels with a counter enabled",
-            "error_unknown": "Something went wrong, try again later.",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command."
+            "no_channels": "There are no channels with a counter enabled"
         },
         "reset": {
             "help_description": "Restores the custom settings of this server to the default ones",
-            "done": "Restored to default settings",
-            "error_unknown": "Something went wrong, try again later.",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command."
+            "done": "Restored to default settings"
         },
         "setDigit": {
             "help_description": "Customizes numbers that will be displayed.\n\n Usage: ```{PREFIX}setDigit <plain number> <custom number>```\n Tip: You can use an emoji as a custom number.",
             "success": "Digit customized.",
-            "error_unknown": "Something went wrong, try again later.",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command.",
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed.\n\nIf the first argument is `channel=#channelMention`, the topic given will be used only in the mentioned channel.\n\n Example: ```{PREFIX}setTopic Current members: {COUNT}```",
-            "success": "Topic customized.",
-            "error_unknown": "Something went wrong, try again later.",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command."
+            "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed. You can also set a unique topic for diferrent channel\n\nIf the first argument is `channel=#channelMention`, the topic given will be used only in the mentioned channel.\n\n Example: ```{PREFIX}setTopic Current members: {COUNT}```",
+            "success": "Topic customized."
         },
         "removeTopic": {
             "help_description": "Removes ",
             "success": "",
-            "error_unknown": "Something went wrong, try again later.",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command.",
             "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help setTopic`."
         },
         "donate": {
@@ -104,15 +89,13 @@
                 "fields": []
             },
             "misc": {
-                "empty_note" : "Empty note"
+                "empty_note": "Empty note"
             },
-            "error_db": "Database error, try again later",
             "error_exchange_fetch": "Error while trying to fetch exchange rates"
         },
         "update": {
             "help_description": "If you think the counter is stuck use this command to force its update",
-            "success": "Counter updated.",
-            "error_no_admin": "Only members with administrator permissions in this server can use this command."
+            "success": "Counter updated."
         }
     },
     "functions": {
@@ -122,5 +105,10 @@
         "commandHandler": {
             "invalid_channel": "You can't run this command on a {TYPE} channel"
         }
+    },
+    "common": {
+        "error_db": "Database error, try again later",
+        "error_unknown": "Something went wrong, try again later.",
+        "error_no_admin": "Only members with administrator permissions in this server can use this command."
     }
 }
