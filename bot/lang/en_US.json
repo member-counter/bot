@@ -15,7 +15,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\nAvailable commands:\n{PREFIX}help (command name)\n{PREFIX}enable (#channel, all)\n{PREFIX}disable (#channel, all)\n{PREFIX}list\n{PREFIX}update\n{PREFIX}reset\n{PREFIX}setTopic\n{PREFIX}setDigit\n{PREFIX}invite\n{PREFIX}donate\n{PREFIX}github /*Improve this bot!*/```",
+                "description": "```css\nAvailable commands:\n{PREFIX}help (command name)\n{PREFIX}enable (#channel, all)\n{PREFIX}disable (#channel, all)\n{PREFIX}list\n{PREFIX}update\n{PREFIX}reset\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}topicList\n{PREFIX}setDigit\n{PREFIX}invite\n{PREFIX}donate\n{PREFIX}github /*Improve this bot!*/```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -66,13 +66,14 @@
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed. You can also set a unique topic for diferrent channel\n\nIf the first argument is `channel=#channelMention`, the topic given will be used only in the mentioned channel.\n\n Example: ```{PREFIX}setTopic Current members: {COUNT}```",
-            "success": "Topic customized."
+            "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions , the topic given will be only used in the mentioned channels.\n\n Example: ```{PREFIX}setTopic Current members: {COUNT} <- all enabled channels will use this by default\n{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
+            "success": "Topic customized.",
+            "success_unique": "Topic customized for the following channels: {CHANNELS}"
         },
         "removeTopic": {
-            "help_description": "Removes ",
+            "help_description": "This command removes topics that has been customized, here is a list of examples:\n\nRemove customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topic for mentioned channels```{PREFIX}removeTopic #general #other-channel```",
             "success": "",
-            "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help setTopic`."
+            "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
         },
         "donate": {
             "embed_reply": {
@@ -95,7 +96,7 @@
         },
         "update": {
             "help_description": "If you think the counter is stuck use this command to force its update",
-            "success": "Counter updated."
+            "success": "Updating the counter for enabled channels, this may take a while."
         }
     },
     "functions": {
