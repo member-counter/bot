@@ -6,7 +6,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}update\n{PREFIX}resetServerSettings\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}invite\n{PREFIX}donate\n{PREFIX}github /*Improve this bot!*/```",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -16,22 +16,6 @@
             "misc": {
                 "command": "Command:"
             }
-        },
-        "invite": {
-            "help_description": "Join our server or add this bot to your server",
-            "reply": "<a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880><a:parrot:525997601150074880>",
-            "embed_reply": {
-                "thumbnail": {
-                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png"
-                },
-                "color": 14503424,
-                "description": "[Add this bot to your server](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)\n[Join the server](https://discord.gg/g4MfV6N)"
-            }
-        },
-        "lang": {
-            "help_description": "Changes the bot language for this guild, you must have administrator permissions to run this command.",
-            "success": "Language changed successfully.",
-            "error_not_found": "I didn't find that language, try one of the following:"
         },
         "enableTopicCounter": {
             "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enableTopicCounter\n{PREFIX}enableTopicCounter #general\n{PREFIX}enableTopicCounter #general #other-channel\n{PREFIX}enableTopicCounter all```",
@@ -47,13 +31,13 @@
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions , the topic given will be only used in the mentioned channels.\n\n Example: ```{PREFIX}setTopic Current members: {COUNT} <- all enabled channels will use this by default\n{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
+            "help_description": "You can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions , the topic given will be only used in the mentioned channels.\n\n Examples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
             "success": "Topic customized.",
             "success_unique": "Topic customized for the following channels: {CHANNELS}",
             "no_topic": "No topic were provided, more info: `{PREFIX}help setTopic`."
         },
         "removeTopic": {
-            "help_description": "This command removes channel topics that has been customized, here is a list of examples:\n\nRemove customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topics that has been established by mentioning channels```{PREFIX}removeTopic #general #other-channel```",
+            "help_description": "This command removes channel topics that has been customized, here is a list of examples:\n\nRemoves the customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topics that has been established by mentioning channels```{PREFIX}removeTopic #general #other-channel```",
             "success": "Main topic restored.",
             "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
             "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
@@ -69,7 +53,23 @@
             "help_description": "If you think the counter is stuck use this command to force its update",
             "success": "Updating the counter for enabled channels, this may take a while."
         },
+        "info": {
+            "help_description": "List of useful links",
+            "embed_reply": {
+                "thumbnail": {
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png"
+                },
+                "color": 14503424,
+                "description": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)\n[Support server](https://discord.gg/g4MfV6N)\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations](https://paypal.me/eduardozgz)"
+            }
+        },
+        "lang": {
+            "help_description": "Changes the bot language for this guild, you must have administrator permissions to run this command.",
+            "success": "Language changed successfully.",
+            "error_not_found": "I didn't find that language, try one of the following:"
+        },
         "donate": {
+            "help_description": "Shows the top donations.",
             "embed_reply": {
                 "title": "Enjoying my bot? Donate me! Any amount will be welcome: {DONATION_URL}",
                 "url": "{DONATION_URL}",
@@ -87,15 +87,6 @@
                 "empty_note": "Empty note"
             },
             "error_exchange_fetch": "Error while trying to fetch exchange rates"
-        },
-        "github": {
-            "help_description": "https://github.com/eduardozgz/member-counter-bot",
-            "embed_reply": {
-                "title": "Help me to improve this bot!",
-                "url": "https://github.com/eduardozgz/member-counter-bot",
-                "color": 14503424,
-                "description": "[https://github.com/eduardozgz/member-counter-bot](https://github.com/eduardozgz/member-counter-bot)"
-            }
         }
     },
     "functions": {

@@ -106,7 +106,7 @@ const createChannelNameCounter = {
     indexZero: true, 
     enabled: true,
     run: (client, message, translation) => {
-    
+        //todo
     }
 }
 
@@ -313,8 +313,6 @@ const resetSettings = {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOneAndRemove({ guild_id:message.guild.id })
                 .then((guild_settings) => {
-                    
-                    //fix this
                     //leave empty all channel topics 
                     if (guild_settings) {
                         guild_settings.enabled_channels.forEach(channel_id => {
