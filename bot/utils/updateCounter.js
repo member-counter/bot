@@ -14,12 +14,13 @@ module.exports = (client, guild_id) => {
                         memberCountCustomized += guild_config.custom_numbers[digit]
                     });
 
-                    guild_config.enabled_channels.forEach(channel => {
-                        if (client.channels.get(channel)) {
-                            client.channels.get(channel).setTopic(guild_config.topic.replace(/\{COUNT\}/gi, memberCountCustomized))
+                    guild_config.enabled_channels.forEach(channel_id => {
+                        if (client.channels.get(channel_id)) {
+                            const topic = guild_config.unique_topics.has(channel_id) ? guild_config.unique_topics.get(channel_id) : guild_config.topic;
+                            client.channels.get(channel_id).setTopic(topic.replace(/\{COUNT\}/gi, memberCountCustomized))
                                 .catch( async (e) => {
                                     const { error_no_perms } = require(`../lang/${((await getAvailableLanguages()).includes(guild_config.lang)) ? guild_config.lang : default_lang }.json`).functions.updateCounter;
-                                    if (e.code && (e.code === 50013)) client.channels.get(channel).send(error_no_perms).catch(console.error);
+                                    if (e.code && (e.code === 50013)) client.channels.get(channel_id).send(error_no_perms).catch(console.error);
                                 });
                         }
                     });
