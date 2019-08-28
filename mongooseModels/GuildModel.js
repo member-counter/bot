@@ -20,6 +20,7 @@ const GuildSchema = mongoose.Schema({
     enabled_channels: [{ type: String, default: [] }],
     topic: { type: String, default: 'Members: {COUNT}' }, //used on all channels
     unique_topics: { type: Map, of: String, default: new Map() }, //specific topic per channel
+    channelNameCounter: { type: Map, of: String, default: new Map()},
     custom_numbers: { type: CustomNumbers, default: CustomNumbers }
 });
 

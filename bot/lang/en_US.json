@@ -2,20 +2,11 @@
     "lang_code": "en_US",
     "lang_name": "English (US)",
     "commands": {
-        "github": {
-            "help_description": "https://github.com/eduardozgz/member-counter-bot",
-            "embed_reply": {
-                "title": "Help me to improve this bot!",
-                "url": "https://github.com/eduardozgz/member-counter-bot",
-                "color": 14503424,
-                "description": "[https://github.com/eduardozgz/member-counter-bot](https://github.com/eduardozgz/member-counter-bot)"
-            }
-        },
         "help": {
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\nAvailable commands:\n{PREFIX}help (command name)\n{PREFIX}enable (#channel, all)\n{PREFIX}disable (#channel, all)\n{PREFIX}list\n{PREFIX}update\n{PREFIX}reset\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}topicList\n{PREFIX}setDigit\n{PREFIX}invite\n{PREFIX}donate\n{PREFIX}github /*Improve this bot!*/```",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}update\n{PREFIX}resetServerSettings\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}invite\n{PREFIX}donate\n{PREFIX}github /*Improve this bot!*/```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -42,23 +33,13 @@
             "success": "Language changed successfully.",
             "error_not_found": "I didn't find that language, try one of the following:"
         },
-        "enable": {
-            "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enable\n{PREFIX}enable #general\n{PREFIX}enable #general #other-channel\n{PREFIX}enable all```",
-            "success": "The counter has been enabled on {CHANNELS}",
-            "error_already_enabled": "This channel already has a counter."
+        "enableTopicCounter": {
+            "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enableTopicCounter\n{PREFIX}enableTopicCounter #general\n{PREFIX}enableTopicCounter #general #other-channel\n{PREFIX}enableTopicCounter all```",
+            "success": "The counter has been enabled on {CHANNELS}"
         },
-        "disable": {
-            "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n```{PREFIX}disable\n{PREFIX}disable #general\n{PREFIX}disable #general #other-channel\n{PREFIX}disable all``` ",
+        "disableTopicCounter": {
+            "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n```{PREFIX}disableTopicCounter\n{PREFIX}disableTopicCounter #general\n{PREFIX}disableTopicCounter #general #other-channel\n{PREFIX}disableTopicCounter all``` ",
             "success": "Done, counter disabled on {CHANNELS}"
-        },
-        "list": {
-            "help_description": "Lists all the channels that has a counter enabled.",
-            "list": "The counter is enabled on the following channels:",
-            "no_channels": "There are no channels with a counter enabled"
-        },
-        "reset": {
-            "help_description": "Restores the custom settings of this server to the default ones",
-            "done": "Restored to default settings"
         },
         "setDigit": {
             "help_description": "Customizes numbers that will be displayed.\n\n Usage: ```{PREFIX}setDigit <plain number> <custom number>```\n Tip: You can use an emoji as a custom number.",
@@ -68,12 +49,25 @@
         "setTopic": {
             "help_description": "You can customize the topic with this command, remember to use `{COUNT}` or the count will never be displayed. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions , the topic given will be only used in the mentioned channels.\n\n Example: ```{PREFIX}setTopic Current members: {COUNT} <- all enabled channels will use this by default\n{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
             "success": "Topic customized.",
-            "success_unique": "Topic customized for the following channels: {CHANNELS}"
+            "success_unique": "Topic customized for the following channels: {CHANNELS}",
+            "no_topic": "No topic were provided, more info: `{PREFIX}help setTopic`."
         },
         "removeTopic": {
-            "help_description": "This command removes topics that has been customized, here is a list of examples:\n\nRemove customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topic for mentioned channels```{PREFIX}removeTopic #general #other-channel```",
-            "success": "",
+            "help_description": "This command removes channel topics that has been customized, here is a list of examples:\n\nRemove customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topics that has been established by mentioning channels```{PREFIX}removeTopic #general #other-channel```",
+            "success": "Main topic restored.",
+            "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
             "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
+        },
+        "seeSettings": {
+            "help_description": "Shows all bot settings for this server."
+        },
+        "resetSettings": {
+            "help_description": "Restores the custom settings of this server to the default ones",
+            "done": "Restored to default settings"
+        },
+        "update": {
+            "help_description": "If you think the counter is stuck use this command to force its update",
+            "success": "Updating the counter for enabled channels, this may take a while."
         },
         "donate": {
             "embed_reply": {
@@ -94,14 +88,19 @@
             },
             "error_exchange_fetch": "Error while trying to fetch exchange rates"
         },
-        "update": {
-            "help_description": "If you think the counter is stuck use this command to force its update",
-            "success": "Updating the counter for enabled channels, this may take a while."
+        "github": {
+            "help_description": "https://github.com/eduardozgz/member-counter-bot",
+            "embed_reply": {
+                "title": "Help me to improve this bot!",
+                "url": "https://github.com/eduardozgz/member-counter-bot",
+                "color": 14503424,
+                "description": "[https://github.com/eduardozgz/member-counter-bot](https://github.com/eduardozgz/member-counter-bot)"
+            }
         }
     },
     "functions": {
         "updateCounter": {
-            "error_no_perms": "Looks like I don't have permissions to set the topic of this channel. Please, give me the proper permissions or disable me using ``{PREFIX}disable``."
+            "error_no_perms": "Looks like I don't have permissions to set the topic of this channel. Please, give me the proper permissions or disable me using ``{PREFIX}disableTopicCounter``."
         },
         "commandHandler": {
             "invalid_channel": "You can't run this command on a {TYPE} channel"
