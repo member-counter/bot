@@ -6,7 +6,7 @@ module.exports = (client, guild_id) => {
         console.log(`[Bot shard #${client.shard.id}] Updating ${client.guilds.get(guild_id).name} (${guild_id}) counter, ${client.guilds.get(guild_id).memberCount} members.`)
         GuildModel.findOne({guild_id})
             .then((guild_config) => {
-                if (guild_config && (guild_config.enabled_channels.length !== 0)) {
+                if (guild_config && client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
                     const memberCount = client.guilds.get(guild_id).memberCount.toString().split('');
                     let memberCountCustomized = "";
 
