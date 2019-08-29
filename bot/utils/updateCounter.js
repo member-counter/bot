@@ -2,11 +2,11 @@ const GuildModel = require('../../mongooseModels/GuildModel');
 const default_lang = process.env.DISCORD_DEFAULT_LANG;
 const { getAvailableLanguages } = require('../utils/language');
 module.exports = (client, guild_id) => {
-    if (client.guilds.get(guild_id)) {
+    if (client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
         console.log(`[Bot shard #${client.shard.id}] Updating ${client.guilds.get(guild_id).name} (${guild_id}) counter, ${client.guilds.get(guild_id).memberCount} members.`)
         GuildModel.findOne({guild_id})
             .then((guild_config) => {
-                if (guild_config && client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
+                if (guild_config) {
                     const memberCount = client.guilds.get(guild_id).memberCount.toString().split('');
                     let memberCountCustomized = "";
 
