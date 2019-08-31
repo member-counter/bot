@@ -296,7 +296,7 @@ const seeSettings = {
             .then((guild_settings) => {
                 let messageToSend = "";
                 
-                message.channel.send(message).catch(console.error);
+                message.channel.send(messageToSend).catch(console.error);
             })
             .catch((e) => {
                 console.error(e);
