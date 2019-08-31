@@ -33,7 +33,7 @@ const createChannelNameCounter = {
                                 guild_settings.channelNameCounter.set(voiceChannel.id, name);
                                 guild_settings.save()
                                     .then(() => {
-                                        message.channel.send("created" /** todo */).catch(console.error);
+                                        message.channel.send(translation.commands.createChannelNameCounter.success).catch(console.error);
                                         updateCounter(client, message.guild.id);
                                     })
                                     .catch((e) => {
@@ -43,7 +43,7 @@ const createChannelNameCounter = {
                             })
                             .catch((e) => {
                                 console.error(e);
-                                if (e.code === 50013) message.channel.send("missing permissions" /** todo */).catch(console.error);
+                                if (e.code === 50013) message.channel.send(translation.commands.createChannelNameCounter.no_perms).catch(console.error);
                                 else message.channel.send(translation.common.error_unknown).catch(console.error);
                             })
                     })

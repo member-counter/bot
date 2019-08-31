@@ -6,7 +6,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}createChannelNameCounter (custom channel name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -16,6 +16,11 @@
             "misc": {
                 "command": "Command:"
             }
+        },
+        "createChannelNameCounter": {
+            "help_description" : "Creates a channel name counter.\nIf you want a custom channel name, remember to write `{COUNT}` wherever you want to place the counter\n\nChannel name counter with the default name:```{PREFIX}createChannelNameCounter```\n With a custom name:```{PREFIX}createChannelNameCounter Members: {COUNT}```",
+            "success" : "Created successfully",
+            "no_perms": "I need `Manage Channels` permission to create the channel."
         },
         "enableTopicCounter": {
             "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enableTopicCounter\n{PREFIX}enableTopicCounter #general\n{PREFIX}enableTopicCounter #general #other-channel\n{PREFIX}enableTopicCounter all```",
