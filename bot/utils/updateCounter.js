@@ -5,10 +5,12 @@ module.exports = (client, guild_id) => {
         GuildModel.findOne({guild_id})
             .then((guild_config) => {
                 if (guild_config) {
-                    const memberCount = client.guilds.get(guild_id).memberCount.toString().split('');
+                    const { memberCount } = client.guilds.get(guild_id);
+
+                    //channel topic member count
                     let memberCountCustomized = "";
 
-                    memberCount.forEach(digit => {
+                    memberCount.toString().split('').forEach(digit => {
                         memberCountCustomized += guild_config.custom_numbers[digit]
                     });
 
@@ -24,6 +26,17 @@ module.exports = (client, guild_id) => {
                                     if (e.code !== 50013 || e.code !== 50001) console.error(e);
                                 });
                             }
+                        }
+                    });
+
+                    //channel name member count
+                    guild_config.channelNameCounter.forEach((channel_name, channel_id) => {
+                        //exists the channel?   
+                        if (client.channels.has(channel_id)) {
+                            client.channels.get(channel_id).setName(channel_name.replace(/\{COUNT\}/gi, memberCount)).catch(e => {
+                                //ignore errors caused by permissions 
+                                if (e.code !== 50013 || e.code !== 50001) console.error(e);
+                            });
                         }
                     });
                 }
