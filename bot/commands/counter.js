@@ -159,7 +159,7 @@ const setTopic = {
             GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {}, { upsert:true, new: true })
                 .then(guild_settings => {
                     if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
-                        const args = message.content.split(" "); //
+                        const args = message.content.split(" ");
                         let channelsToCustomize = [];
                         let newTopic = "";
 
