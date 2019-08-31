@@ -3,6 +3,96 @@ const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const GuildModel = require("../../mongooseModels/GuildModel");
 const updateCounter = require("../utils/updateCounter");
 
+const createChannelNameCounter = {
+    name: "createChannelNameCounter",
+    commands: [prefix+"createChannelNameCounter"],
+    allowedTypes: ["text"],
+    indexZero: true, 
+    enabled: true,
+    run: (client, message, translation) => {
+        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
+            GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {}, {upsert: true, new: true})
+                .then((guild_settings) => {
+                    //extract topic, if you know a better way to do this, please, do a PR
+                    let name = [];
+                    message.content.split(" ").forEach((part, i) => {
+                        if (i !== 0 && part !== "" ) name.push(part);
+                    });
+
+                    name = (name.length === 0) ? "Members: {COUNT}" : name.join(" ");
+                    
+                    message.guild
+                        .createChannel(name, {
+                                type: "voice",
+                                permissionOverwrites: [{
+                                    id: message.guild.id,
+                                    deny: ["CONNECT"]
+                                }]
+                            })
+                            .then((voiceChannel) => {
+                                guild_settings.channelNameCounter.set(voiceChannel.id, name);
+                                guild_settings.save()
+                                    .then(() => {
+                                        message.channel.send("created" /** todo */).catch(console.error);
+                                        updateCounter(client, message.guild.id);
+                                    })
+                                    .catch((e) => {
+                                        console.error(e)
+                                        message.channel.send(translation.common.error_unknown).catch(console.error)
+                                    })
+                            })
+                            .catch((e) => {
+                                console.error(e);
+                                if (e.code === 50013) message.channel.send("missing permissions" /** todo */).catch(console.error);
+                                else message.channel.send(translation.common.error_unknown).catch(console.error);
+                            })
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        message.channel.send(translation.common.error_db).catch(console.error);
+                    });
+            }
+        }
+    }
+
+const setDigit = {
+    name: "setDigit",
+    commands: [prefix+"setDigit"],
+    allowedTypes: ["text"],
+    indexZero: true,
+    enabled: true,
+    run: (client, message, translation) => {
+        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
+            const args = message.content.split(/\s+/);
+            if (args.length === 3) {    
+                const digitToUpdate = args[1].slice(0, 1);
+                const newDigitValue = args[2];
+                GuildModel.findOne({guild_id:message.guild.id})
+                    .then((guild_settings) => {
+                        guild_settings.custom_numbers[digitToUpdate] = newDigitValue
+                        guild_settings.save()
+                            .then(() => {
+                                message.channel.send(translation.commands.setDigit.success).catch(console.error);
+                                updateCounter(client, message.guild.id);
+                            })
+                            .catch((e) => {
+                                console.error(e);
+                                message.channel.send(translation.common.error_db).catch(console.error);
+                            });
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        message.channel.send(translation.common.error_db).catch(console.error);
+                    });
+            } else {
+                message.channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", prefix)).catch(console.error)
+            }
+        } else {
+            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
+        }
+    }
+}
+
 const enableTopicCounter = {
     name: "enableTopicCounter",
     commands: [prefix+"enableTopicCounter", prefix+"enable"],
@@ -99,86 +189,6 @@ const disableTopicCounter = {
     }
 }
 
-const createChannelNameCounter = {
-    name: "createChannelNameCounter",
-    commands: [prefix+"createChannelNameCounter"],
-    allowedTypes: ["text"],
-    indexZero: true, 
-    enabled: true,
-    run: (client, message, translation) => {
-        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
-            GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {}, {upsert: true, new: true})
-                .then((guild_settings) => {
-                    //extract topic, if you know a better way to do this, please, do a PR
-                    let name = [];
-                    message.content.split(" ").forEach((part, i) => {
-                        if (i !== 0 && part !== "" ) name.push(part);
-                    });
-                    name = name.join(" ");
-                    
-                    message.guild.createChannel({
-                        type: "voice",
-                        name,
-                        position: 1
-                    })
-                        .then((a) => {
-                            console.log("aa", a)
-                        })
-                        .catch((e) => {
-
-                        })
-
-                    
-                    
-                    message.channel.send("done");
-                    updateCounter(client, message.guild.id);
-                })
-                .catch((e) => {
-                    console.error(e);
-                    message.channel.send(translation.common.error_db).catch(console.error);
-                });
-        }
-    }
-}
-
-const setDigit = {
-    name: "setDigit",
-    commands: [prefix+"setDigit"],
-    allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
-    run: (client, message, translation) => {
-        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
-            const args = message.content.split(/\s+/);
-            if (args.length === 3) {
-                const digitToUpdate = args[1].slice(0, 1);
-                const newDigitValue = args[2];
-                GuildModel.findOne({guild_id:message.guild.id})
-                    .then((guild_settings) => {
-                        guild_settings.custom_numbers[digitToUpdate] = newDigitValue
-                        guild_settings.save()
-                            .then(() => {
-                                message.channel.send(translation.commands.setDigit.success).catch(console.error);
-                                updateCounter(client, message.guild.id);
-                            })
-                            .catch((e) => {
-                                console.error(e);
-                                message.channel.send(translation.common.error_db).catch(console.error);
-                            });
-                    })
-                    .catch((e) => {
-                        console.error(e);
-                        message.channel.send(translation.common.error_db).catch(console.error);
-                    });
-            } else {
-                message.channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", prefix)).catch(console.error)
-            }
-        } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
-        }
-    }
-}
-
 const setTopic = {
     name: "setTopic",
     commands: [prefix+"setTopic"],
@@ -255,7 +265,7 @@ const setTopic = {
                     }
                 })
                 .catch((e) => {
-                    console.log(e);
+                    console.error(e);
                     message.channel.send(translation.common.error_db).catch(console.error);
                 });
         } else {
@@ -306,7 +316,7 @@ const removeTopic = {
                     }
                 })
                 .catch(e => {
-                    console.log(e);
+                    console.error(e);
                     message.channel.send(translation.common.error_db).catch(console.error);
                 })
         
@@ -380,4 +390,4 @@ const update = {
     }
 }
 
-module.exports = [ enableTopicCounter, disableTopicCounter, createChannelNameCounter, setDigit, setTopic, removeTopic, update, seeSettings, resetSettings ];
+module.exports = [ createChannelNameCounter, enableTopicCounter, disableTopicCounter, setDigit, setTopic, removeTopic, update, seeSettings, resetSettings ];

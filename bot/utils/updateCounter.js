@@ -12,7 +12,6 @@ module.exports = (client, guild_id) => {
                         memberCountCustomized += guild_config.custom_numbers[digit]
                     });
 
-                    console.log(client.guilds.get(guild_id).members.get(client.user.id).permissions)
                     guild_config.enabled_channels.forEach(channel_id => {
                         //exists the channel?
                         if (client.channels.has(channel_id)) {
