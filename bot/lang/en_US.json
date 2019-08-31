@@ -6,7 +6,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}createChannelNameCounter (custom channel name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}createChannelNameCounter (custom channel name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",

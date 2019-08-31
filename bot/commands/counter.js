@@ -20,9 +20,9 @@ const createChannelNameCounter = {
                     });
 
                     name = (name.length === 0) ? "Members: {COUNT}" : name.join(" ");
-                    
+
                     message.guild
-                        .createChannel(name, {
+                        .createChannel(name.replace(/\{COUNT\}/gi, message.guild.memberCount), {
                                 type: "voice",
                                 permissionOverwrites: [{
                                     id: message.guild.id,
@@ -34,7 +34,6 @@ const createChannelNameCounter = {
                                 guild_settings.save()
                                     .then(() => {
                                         message.channel.send(translation.commands.createChannelNameCounter.success).catch(console.error);
-                                        updateCounter(client, message.guild.id);
                                     })
                                     .catch((e) => {
                                         console.error(e)
@@ -64,7 +63,7 @@ const setDigit = {
     run: (client, message, translation) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             const args = message.content.split(/\s+/);
-            if (args.length === 3) {    
+            if (args.length >= 3) {    
                 const digitToUpdate = args[1].slice(0, 1);
                 const newDigitValue = args[2];
                 GuildModel.findOne({guild_id:message.guild.id})
@@ -331,7 +330,7 @@ const seeSettings = {
     commands: [prefix+"seeSettings"],
     allowedTypes: ["text"],
     indexZero: true, 
-    enabled: true,
+    enabled: false,
     run: (client, message, translation) => {
         GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {}, {upsert: true, new: true})   
             .then((guild_settings) => {
@@ -355,13 +354,29 @@ const resetSettings = {
     run: (client, message, translation) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOneAndRemove({ guild_id:message.guild.id })
-                .then((guild_settings) => {
-                    //leave empty all channel topics 
+                .then((guild_settings) => { 
                     if (guild_settings) {
+                        //leave empty all channel topics
                         guild_settings.enabled_channels.forEach(channel_id => {
-                            if (client.channels.has(channel_id)) client.channels.get(channel_id).setTopic('').catch(console.error)
+                            if (client.channels.has(channel_id)) {
+                                client.channels.get(channel_id).setTopic('').catch(e => {
+                                    //ignore errors caused by permissions 
+                                    if (e.code !== 50013 || e.code !== 50001) console.error(e);
+                                });
+                            }
+                        });
+                        
+                        //delete all channel name counters
+                        guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
+                            if (client.channels.has(channel_id)) {
+                                client.channels.get(channel_id).delete().catch(e => {
+                                    //ignore errors caused by permissions 
+                                    if (e.code !== 50013 || e.code !== 50001) console.error(e);
+                                });
+                            }
                         });
                     }
+
                     message.channel.send(translation.commands.resetSettings.done).catch(console.error);
                 })
                 .catch(e => {
