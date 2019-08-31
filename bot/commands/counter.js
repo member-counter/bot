@@ -118,7 +118,7 @@ const setDigit = {
     enabled: true,
     run: (client, message, translation) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
-            const args = message.content.split(" ");
+            const args = message.content.split(/\s+/);
             if (args.length === 3) {
                 const digitToUpdate = args[1].slice(0, 1);
                 const newDigitValue = args[2];
