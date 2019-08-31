@@ -295,7 +295,7 @@ const seeSettings = {
         GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {}, {upsert: true, new: true})   
             .then((guild_settings) => {
                 let messageToSend = "";
-                
+                //todo
                 message.channel.send(messageToSend).catch(console.error);
             })
             .catch((e) => {
