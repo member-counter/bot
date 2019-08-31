@@ -106,7 +106,38 @@ const createChannelNameCounter = {
     indexZero: true, 
     enabled: true,
     run: (client, message, translation) => {
-        //todo
+        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
+            GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {}, {upsert: true, new: true})
+                .then((guild_settings) => {
+                    //extract topic, if you know a better way to do this, please, do a PR
+                    let name = [];
+                    message.content.split(" ").forEach((part, i) => {
+                        if (i !== 0 && part !== "" ) name.push(part);
+                    });
+                    name = name.join(" ");
+                    
+                    message.guild.createChannel({
+                        type: "voice",
+                        name,
+                        position: 1
+                    })
+                        .then((a) => {
+                            console.log("aa", a)
+                        })
+                        .catch((e) => {
+
+                        })
+
+                    
+                    
+                    message.channel.send("done");
+                    updateCounter(client, message.guild.id);
+                })
+                .catch((e) => {
+                    console.error(e);
+                    message.channel.send(translation.common.error_db).catch(console.error);
+                });
+        }
     }
 }
 
