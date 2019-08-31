@@ -1,9 +1,7 @@
 const GuildModel = require('../../mongooseModels/GuildModel');
-const default_lang = process.env.DISCORD_DEFAULT_LANG;
-const { getAvailableLanguages } = require('../utils/language');
+
 module.exports = (client, guild_id) => {
     if (client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
-        console.log(`[Bot shard #${client.shard.id}] Updating ${client.guilds.get(guild_id).name} (${guild_id}) counter, ${client.guilds.get(guild_id).memberCount} members.`)
         GuildModel.findOne({guild_id})
             .then((guild_config) => {
                 if (guild_config) {
@@ -14,14 +12,19 @@ module.exports = (client, guild_id) => {
                         memberCountCustomized += guild_config.custom_numbers[digit]
                     });
 
+                    console.log(client.guilds.get(guild_id).members.get(client.user.id).permissions)
                     guild_config.enabled_channels.forEach(channel_id => {
-                        if (client.channels.get(channel_id)) {
-                            const topic = guild_config.unique_topics.has(channel_id) ? guild_config.unique_topics.get(channel_id) : guild_config.topic;
-                            client.channels.get(channel_id).setTopic(topic.replace(/\{COUNT\}/gi, memberCountCustomized))
-                                .catch( async (e) => {
-                                    const { error_no_perms } = require(`../lang/${((await getAvailableLanguages()).includes(guild_config.lang)) ? guild_config.lang : default_lang }.json`).functions.updateCounter;
-                                    if (e.code && (e.code === 50013)) client.channels.get(channel_id).send(error_no_perms).catch(console.error);
+                        //exists the channel?
+                        if (client.channels.has(channel_id)) {
+                            //is text type or news type?
+                            if (client.channels.get(channel_id).type === "text" || client.channels.get(channel_id).type === "news") {
+                                let topic = guild_config.unique_topics.has(channel_id) ? guild_config.unique_topics.get(channel_id) : guild_config.topic;
+                                    topic = topic.replace(/\{COUNT\}/gi, memberCountCustomized);
+                                client.channels.get(channel_id).setTopic(topic).catch(e => {
+                                    //ignore errors caused by permissions 
+                                    if (e.code !== 50013 || e.code !== 50001) console.error(e);
                                 });
+                            }
                         }
                     });
                 }
