@@ -20,7 +20,7 @@ module.exports = (client, guild_id) => {
                             //is text type or news type?
                             if (client.channels.get(channel_id).type === "text" || client.channels.get(channel_id).type === "news") {
                                 let topic = guild_config.unique_topics.has(channel_id) ? guild_config.unique_topics.get(channel_id) : guild_config.topic;
-                                    topic = topic.replace(/\{COUNT\}/gi, memberCountCustomized);
+                                    topic = topic.replace(/\{COUNT\}/gi, memberCountCustomized).slice(0, 1024);
                                 client.channels.get(channel_id).setTopic(topic).catch(e => {
                                     //ignore errors caused by permissions 
                                     if (e.code !== 50013 || e.code !== 50001) console.error(e);
