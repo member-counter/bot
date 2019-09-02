@@ -23,7 +23,7 @@ module.exports = (client, guild_id) => {
                                     topic = topic.replace(/\{COUNT\}/gi, memberCountCustomized).slice(0, 1024);
                                 client.channels.get(channel_id).setTopic(topic).catch(e => {
                                     //ignore errors caused by permissions 
-                                    if (e.code !== 50013 || e.code !== 50001) console.error(e);
+                                    if (!(e.code === 50013 || e.code === 50001)) console.error(e);
                                 });
                             }
                         }
@@ -35,7 +35,7 @@ module.exports = (client, guild_id) => {
                         if (client.channels.has(channel_id)) {
                             client.channels.get(channel_id).setName(channel_name.replace(/\{COUNT\}/gi, memberCount)).catch(e => {
                                 //ignore errors caused by permissions 
-                                if (e.code !== 50013 || e.code !== 50001) console.error(e);
+                                if (!(e.code === 50013 || e.code === 50001)) console.error(e);
                             });
                         }
                     });

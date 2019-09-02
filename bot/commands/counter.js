@@ -27,6 +27,10 @@ const createChannelNameCounter = {
                                 permissionOverwrites: [{
                                     id: message.guild.id,
                                     deny: ["CONNECT"]
+                                },
+                                {
+                                    id: client.user.id,
+                                    allow: ["CONNECT"]
                                 }]
                             })
                             .then((voiceChannel) => {
@@ -424,7 +428,7 @@ const resetSettings = {
                             if (client.channels.has(channel_id)) {
                                 client.channels.get(channel_id).setTopic('').catch(e => {
                                     //ignore errors caused by permissions 
-                                    if (e.code !== 50013 || e.code !== 50001) console.error(e);
+                                    if (!(e.code === 50013 || e.code === 50001)) console.error(e);
                                 });
                             }
                         });
@@ -434,7 +438,7 @@ const resetSettings = {
                             if (client.channels.has(channel_id)) {
                                 client.channels.get(channel_id).delete().catch(e => {
                                     //ignore errors caused by permissions 
-                                    if (e.code !== 50013 || e.code !== 50001) console.error(e);
+                                    if (!(e.code === 50013 || e.code === 50001)) console.error(e);
                                 });
                             }
                         });
