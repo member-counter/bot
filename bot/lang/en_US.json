@@ -31,7 +31,7 @@
             "success": "Done, counter disabled on {CHANNELS}"
         },
         "setDigit": {
-            "help_description": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown\n\n Usage: ```{PREFIX}setDigit <number> <your custom number>```",
+            "help_description": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown\n\nUsage: ```{PREFIX}setDigit (number) (your custom number)```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
             "success": "Digit customized.",
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
