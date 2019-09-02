@@ -19,7 +19,7 @@ let status = {
     run: async (client, message, translation) => {
         const embed = {
             "color": 14503424,
-            "title":"Status for shard #" + client.shard.id + " | Bot version: " + version,
+            "title": `Status for shard #${client.shard.id} | Bot version: ${version}`,
             "footer": {
               "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
               "text": "by eduardozgz#5695"
@@ -34,7 +34,7 @@ let status = {
                 "name": "**System uptime:**",
                 "value": parseUptime(os.uptime()),
                 "inline": true
-              }      
+              }
             ]
           };
           message.channel.send({ embed }).catch(console.error);

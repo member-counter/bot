@@ -6,7 +6,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}createChannelNameCounter (custom channel name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}createChannelNameCounter (custom channel name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -18,8 +18,8 @@
             }
         },
         "createChannelNameCounter": {
-            "help_description" : "Creates a channel name counter.\nIf you want a custom channel name, remember to write `{COUNT}` wherever you want to place the counter\n\nChannel name counter with the default name:```{PREFIX}createChannelNameCounter```\n With a custom name:```{PREFIX}createChannelNameCounter Members: {COUNT}```",
-            "success" : "Created successfully",
+            "help_description": "Creates a channel name counter.\nIf you want a custom channel name, remember to write `{COUNT}` wherever you want to place the counter\n\nChannel name counter with the default name:```{PREFIX}createChannelNameCounter```\n With a custom name:```{PREFIX}createChannelNameCounter Members: {COUNT}```",
+            "success": "Created successfully",
             "no_perms": "I need `Manage Channels` permission to create the channel."
         },
         "enableTopicCounter": {
@@ -31,7 +31,7 @@
             "success": "Done, counter disabled on {CHANNELS}"
         },
         "setDigit": {
-            "help_description": "Customizes numbers that will be displayed.\n\n Usage: ```{PREFIX}setDigit <plain number> <custom number>```\n Tip: You can use an emoji as a custom number.",
+            "help_description": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown\n\n Usage: ```{PREFIX}setDigit <number> <your custom number>```",
             "success": "Digit customized.",
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
@@ -48,7 +48,14 @@
             "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
         },
         "seeSettings": {
-            "help_description": "Shows all bot settings for this server."
+            "help_description": "Shows all bot settings for this server.",
+            "settings_message": {
+                "header_text": "Settings for guild:",
+                "enabled_channel_name_counters_text": "Channel Name Counters:",
+                "enabled_channel_topic_counters_text": "Channel Topic Counters:",
+                "main_topic_text": "Main topic:",
+                "custom_topics_by_channel_text": "Custom topics by channel:"
+            }
         },
         "resetSettings": {
             "help_description": "Restores the custom settings of this server to the default ones",

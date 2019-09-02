@@ -52,44 +52,6 @@ const createChannelNameCounter = {
                     });
             }
         }
-    }
-
-const setDigit = {
-    name: "setDigit",
-    commands: [prefix+"setDigit"],
-    allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
-    run: (client, message, translation) => {
-        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
-            const args = message.content.split(/\s+/);
-            if (args.length >= 3) {    
-                const digitToUpdate = args[1].slice(0, 1);
-                const newDigitValue = args[2];
-                GuildModel.findOne({guild_id:message.guild.id})
-                    .then((guild_settings) => {
-                        guild_settings.custom_numbers[digitToUpdate] = newDigitValue
-                        guild_settings.save()
-                            .then(() => {
-                                message.channel.send(translation.commands.setDigit.success).catch(console.error);
-                                updateCounter(client, message.guild.id);
-                            })
-                            .catch((e) => {
-                                console.error(e);
-                                message.channel.send(translation.common.error_db).catch(console.error);
-                            });
-                    })
-                    .catch((e) => {
-                        console.error(e);
-                        message.channel.send(translation.common.error_db).catch(console.error);
-                    });
-            } else {
-                message.channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", prefix)).catch(console.error)
-            }
-        } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
-        }
-    }
 }
 
 const enableTopicCounter = {
@@ -325,18 +287,119 @@ const removeTopic = {
     }
 }
 
+const setDigit = {
+    name: "setDigit",
+    commands: [prefix+"setDigit"],
+    allowedTypes: ["text"],
+    indexZero: true,
+    enabled: true,
+    run: (client, message, translation) => {
+        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
+            const args = message.content.split(/\s+/);
+            if (args.length >= 3) {    
+                const digitToUpdate = args[1].slice(0, 1);
+                const newDigitValue = args[2];
+                GuildModel.findOne({guild_id:message.guild.id})
+                    .then((guild_settings) => {
+                        guild_settings.custom_numbers[digitToUpdate] = newDigitValue
+                        guild_settings.save()
+                            .then(() => {
+                                message.channel.send(translation.commands.setDigit.success).catch(console.error);
+                                updateCounter(client, message.guild.id);
+                            })
+                            .catch((e) => {
+                                console.error(e);
+                                message.channel.send(translation.common.error_db).catch(console.error);
+                            });
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        message.channel.send(translation.common.error_db).catch(console.error);
+                    });
+            } else {
+                message.channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", prefix)).catch(console.error)
+            }
+        } else {
+            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
+        }
+    }
+}
+
+const update = {
+    name: "update",
+    commands: [prefix+"update"],
+    allowedTypes: ["text"],
+    indexZero: true,
+    enabled: true,
+    run: (client, message, translation) => {
+        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
+            updateCounter(client, message.guild.id);
+            message.channel.send(translation.commands.update.success).catch(console.error);
+        } else {
+            message.channel.send(translation.commands.common.error_no_admin).catch(console.error);
+        }
+    }
+}
+
 const seeSettings = {
     name: "seeSettings",
     commands: [prefix+"seeSettings"],
     allowedTypes: ["text"],
     indexZero: true, 
-    enabled: false,
+    enabled: true,
     run: (client, message, translation) => {
         GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {}, {upsert: true, new: true})   
             .then((guild_settings) => {
+                const {
+                    header_text,
+                    enabled_channel_name_counters_text,
+                    enabled_channel_topic_counters_text,
+                    main_topic_text,
+                    custom_topics_by_channel_text
+                } = translation.commands.seeSettings.settings_message;
+
                 let messageToSend = "";
-                //todo
-                message.channel.send(messageToSend).catch(console.error);
+                
+                messageToSend += `${header_text} ${message.guild.name} \u0060(${message.guild.id})\u0060\n\n`;
+
+                //Enabled channel name counters:
+                if (guild_settings.channelNameCounter.size > 0) {
+                    messageToSend += `${enabled_channel_name_counters_text}\n`;
+
+                    guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
+                        messageToSend += `\\• <#${channel_id}> \u0060(${channel_id})\u0060 \\➡ ${channel_name}\n`;    
+                    });
+                    
+                    messageToSend += "\n";
+                }
+
+                //Enabled channel topic counters:
+                if (guild_settings.enabled_channels.length > 0) {
+                    messageToSend += `${enabled_channel_topic_counters_text}\n`;
+
+                    guild_settings.enabled_channels.forEach((channel_id) => {
+                        messageToSend +=`\\• <#${channel_id}> \u0060(${channel_id})\u0060\n`;    
+                    });
+
+                    messageToSend += "\n";
+                }
+
+                //Main topic for topic counters
+                messageToSend += `${main_topic_text} \u0060\u0060\u0060${guild_settings.topic}\u0060\u0060\u0060\n`;
+
+                if (guild_settings.unique_topics.size > 0) {
+                    //Custom topics by channel
+                    messageToSend += `${custom_topics_by_channel_text}\n`;
+
+                    guild_settings.unique_topics.forEach((channel_topic, channel_id) => {
+                        messageToSend +=`\\• <#${channel_id}> \u0060(${channel_id})\u0060 \\➡ ${channel_topic}\n`;    
+                    });
+                }
+
+                //send in various messages
+                messageToSend.splitSlice(2000).forEach(part => {
+                    message.channel.send(part).catch(console.error);
+                })
             })
             .catch((e) => {
                 console.error(e);
@@ -389,20 +452,13 @@ const resetSettings = {
     }
 }
 
-const update = {
-    name: "update",
-    commands: [prefix+"update"],
-    allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
-    run: (client, message, translation) => {
-        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
-            updateCounter(client, message.guild.id);
-            message.channel.send(translation.commands.update.success).catch(console.error);
-        } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error);
-        }
-    }
-}
+module.exports = [ createChannelNameCounter, enableTopicCounter, disableTopicCounter, setTopic, removeTopic, setDigit, update, seeSettings, resetSettings ];
 
-module.exports = [ createChannelNameCounter, enableTopicCounter, disableTopicCounter, setDigit, setTopic, removeTopic, update, seeSettings, resetSettings ];
+//I took this from https://jsperf.com/string-split-by-length/9
+String.prototype.splitSlice = function (len) {
+    let ret = [];
+    for (let offset = 0, strLen = this.length; offset < strLen; offset += len) {
+      ret.push(this.slice(offset, len + offset));
+    }
+    return ret;
+}
