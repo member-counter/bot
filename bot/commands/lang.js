@@ -2,12 +2,13 @@ const prefix = process.env.DISCORD_PREFIX;
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const { setGuildLanguage, getAvailableLanguages } = require('../utils/language');
 
-const command = {
+const lang = {
     name: "lang",
     commands: [prefix+"lang"],
+    allowedTypes: ["text"],
     indexZero: true,
     enabled: false,
-    run: async (client, message, language) => {
+    run: async (client, message, translation) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             const args = message.content.split(' ');
             const availableLanguages = await getAvailableLanguages();
@@ -26,11 +27,11 @@ const command = {
                     let langName = require(`../lang/${availableLanguages[i]}.json`).lang_name;
                     LangList += `${availableLanguages[i]} ${langName}\n`;
                 }
-                message.channel.send(language.commands.lang.error_not_found + '```' + LangList + '```' ).catch(console.error);
+                message.channel.send(translation.commands.lang.error_not_found + '```' + LangList + '```' ).catch(console.error);
             }
         } else {
-            message.channel.send(lang.commands.lang.error_no_admin).catch(console.error);
+            message.channel.send(translation.commands.common.error_no_admin).catch(console.error);
         }
     }
 }
-module.exports = command;
+module.exports = [ lang ];

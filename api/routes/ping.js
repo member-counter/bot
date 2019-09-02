@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.all('/ping', (req, res) => {
-    res.send('pong');
+    res.json({ pong: new Date() })
 });
 
 module.exports = router;
