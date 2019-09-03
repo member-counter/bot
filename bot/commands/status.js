@@ -10,11 +10,11 @@ const parseUptime = (inputDate) => {
 
 let status = {
     name: "status",
-    commands: ["{PREFIX}status", "..status"],
+    variants: ["{PREFIX}status", "..status"],
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: async (client, message, guild_settings, translation) => {
+    run: async ({ client, message, guild_settings, translation }) => {
         const embed = {
             "color": 14503424,
             "title": `Status for shard #${client.shard.id} | Bot version: ${version}`,

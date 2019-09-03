@@ -1,10 +1,10 @@
 const seeSettings = {
     name: "seeSettings",
-    commands: ["{PREFIX}seeSettings"],
+    variants: ["{PREFIX}seeSettings"],
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
-    run: (client, message, guild_settings, translation) => {
+    run: ({ client, message, guild_settings, translation }) => {
         GuildModel.findOneAndUpdate({ guild_id:message.guild.id }, {}, {upsert: true, new: true})   
             .then((guild_settings) => {
                 const {
@@ -67,11 +67,11 @@ const seeSettings = {
 
 const resetSettings = {
     name: "resetSettings",
-    commands: ["{PREFIX}resetSettings"],
+    variants: ["{PREFIX}resetSettings"],
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
-    run: (client, message, translation) => {
+    run: ({ client, message, guild_settings, translation }) => {
         if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
             GuildModel.findOneAndRemove({ guild_id:message.guild.id })
                 .then((guild_settings) => { 
