@@ -4,11 +4,11 @@ const getExchange = require('../../bot/utils/getExchange');
 
 const donate = {
     name: "donate",
-    commands: ["{PREFIX}donate", "{PREFIX}donators"],
+    variants: ["{PREFIX}donate", "{PREFIX}donators"],
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: async (client, message, guild_settings, translation) => {
+    run: ({ client, message, guild_settings, translation }) => {
         getExchange()
             .then((ex) => {
                 DonationModel.find()
