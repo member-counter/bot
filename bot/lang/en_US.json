@@ -23,11 +23,11 @@
             "no_perms": "I need `Manage Channels` permission to create the channel."
         },
         "enableTopicCounter": {
-            "help_description": "Enables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enableTopicCounter\n{PREFIX}enableTopicCounter #general\n{PREFIX}enableTopicCounter #general #other-channel\n{PREFIX}enableTopicCounter all```",
+            "help_description": "Enables the counter in the current channel or the spcified channel (remember to mention the channel with ``#``), if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enableTopicCounter\n{PREFIX}enableTopicCounter #general\n{PREFIX}enableTopicCounter #general #other-channel\n{PREFIX}enableTopicCounter all```",
             "success": "The counter has been enabled on {CHANNELS}"
         },
         "disableTopicCounter": {
-            "help_description": "Disables the counter in the current channel or the spcified channel, if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n```{PREFIX}disableTopicCounter\n{PREFIX}disableTopicCounter #general\n{PREFIX}disableTopicCounter #general #other-channel\n{PREFIX}disableTopicCounter all``` ",
+            "help_description": "Disables the counter in the current channel or the spcified channel (remember to mention the channel with ``#``), if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n```{PREFIX}disableTopicCounter\n{PREFIX}disableTopicCounter #general\n{PREFIX}disableTopicCounter #general #other-channel\n{PREFIX}disableTopicCounter all``` ",
             "success": "Done, counter disabled on {CHANNELS}"
         },
         "setDigit": {
@@ -36,7 +36,7 @@
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "You can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions , the topic given will be only used in the mentioned channels.\n\n Examples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
+            "help_description": "You can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n Examples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
             "success": "Topic customized.",
             "success_unique": "Topic customized for the following channels: {CHANNELS}",
             "no_topic": "No topic were provided, more info: `{PREFIX}help setTopic`."
