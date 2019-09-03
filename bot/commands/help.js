@@ -2,11 +2,11 @@ const prefix = process.env.DISCORD_PREFIX;
 
 const help = {
     name: "help",
-    commands: [prefix+"help"],
+    commands: ["{PREFIX}help"],
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: (client, message, translation) => {        
+    run: (client, message, guild_settings, translation) => {        
         const args = message.content.split(' ');
         if (args.length < 2) {
             const embed = translation.commands.help.embed_reply;
