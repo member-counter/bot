@@ -1,7 +1,5 @@
-const prefix = process.env.DISCORD_PREFIX;
 const os = require('os');
 const { version } = require('../../package.json');
-const mongoose = require('mongoose');
 
 const parseUptime = (inputDate) => {
     //inputDate must be in seconds
@@ -12,11 +10,11 @@ const parseUptime = (inputDate) => {
 
 let status = {
     name: "status",
-    commands: [prefix+'status', "..status"],
+    commands: ["{PREFIX}status", "..status"],
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: async (client, message, translation) => {
+    run: async (client, message, guild_settings, translation) => {
         const embed = {
             "color": 14503424,
             "title": `Status for shard #${client.shard.id} | Bot version: ${version}`,

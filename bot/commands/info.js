@@ -1,18 +1,16 @@
-const prefix = process.env.DISCORD_PREFIX;
-
 const info = {
     name: "info",
     commands: [
-        prefix + "invite",
-        prefix + "info",
-        prefix + "github",
-        prefix + "support",
-        prefix + "bug"
+        "{PREFIX}info",
+        "{PREFIX}invite",
+        "{PREFIX}github",
+        "{PREFIX}support",
+        "{PREFIX}bug"
     ],
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: (client, message, translation) => {
+    run: (client, message, guild_settings, translation) => {
         const embed = translation.commands.info.embed_reply;
         message.channel.send({ embed }).catch(console.error);
     }

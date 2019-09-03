@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { DISCORD_PREFIX } = process.env;
 
 const CustomNumbers = mongoose.Schema({
     1: { type: String, default: '<a:1G:469275169190445056>' },
@@ -16,6 +17,7 @@ const CustomNumbers = mongoose.Schema({
 const GuildSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     guild_id: { type: String, require: true },
+    prefix: { type: String, default: DISCORD_PREFIX },
     lang: { type: String, default:"en_US" },
     enabled_channels: [{ type: String, default: [] }],
     topic: { type: String, default: 'Members: {COUNT}' }, //used in all channels if the channel does not appear in this.unique_topics
