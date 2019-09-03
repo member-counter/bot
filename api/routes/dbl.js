@@ -15,7 +15,7 @@ router.post("/dbl", (req, res) => {
                     .members.get("${webhook.user}")
                         .addRole("${rewardRoleId}")
                             .then(() => {
-                                console.log("[MAIN] [API] Role given successfully to ${webhook.user}");
+                                console.log("[MAIN] [API] Upvoter Role given successfully to ${webhook.user}");
                             })
                             .catch((e) => {
                                 console.error("[MAIN] [API] Error while trying to give the role to ${webhook.user}");
@@ -31,7 +31,7 @@ router.post("/dbl", (req, res) => {
                         .members.get("${webhook.user}")
                             .addRole("${rewardRoleId}")
                                 .then(() => {
-                                    console.log("[MAIN] [API] Role given successfully to ${webhook.user}");
+                                    console.log("[MAIN] [API] Upvoter Role given successfully to ${webhook.user}");
                                 })
                                 .catch((e) => {
                                     console.error("[MAIN] [API] Error while trying to give the role to ${webhook.user}");

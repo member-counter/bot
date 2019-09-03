@@ -5,12 +5,29 @@ const { getAvailableLanguages, getGuildLanguage } = require('../utils/language.j
 const default_lang = process.env.DISCORD_DEFAULT_LANG;
 
 module.exports = async (client, message) => {
-    if (client.user.id !== message.author.id) {
+    const { author, channel, guild, content } = message;
+
+    if (client.user.id !== author.id) {
+        //get translation object
+        const translation = await new Promise(async resolve => {
+            if (guild) {
+                const GuildLanguage = await getGuildLanguage(guild.id);
+                const AvailableLanguages = await getAvailableLanguages();
+                (AvailableLanguages.includes(GuildLanguage)) ? resolve(require(`../lang/${GuildLanguage}.json`)) : resolve(require(`../lang/${default_lang}.json`));  
+            } else {
+                resolve(require(`../lang/${default_lang}.json`));    
+            }
+        });
+
         //load commands
-        const commands = await new Promise((resolve, reject) => {
+        const commands = await new Promise(resolve => {
             fs.readdir(path.join(__dirname, "..", "commands/"), (err, files) => {
                 let commands = [];
-                if (err) reject(err);
+                if (err) {
+                    console.error(err);
+                    channel.send(translation.common.error_unknown).catch(console.error);
+                    resolve(commands);
+                }
                 else {
                     files.forEach(command => {
                         commands.push(...require("../commands/" + command));
@@ -19,19 +36,8 @@ module.exports = async (client, message) => {
                 }
             });
         });
-        
-        //get language object
-        const guild_lang = await new Promise(async (resolve) => {
-            if (message.guild) {
-                const GuildLanguage = await getGuildLanguage(message.guild.id);
-                const AvailableLanguages = await getAvailableLanguages();
-                (AvailableLanguages.includes(GuildLanguage)) ? resolve(require(`../lang/${GuildLanguage}.json`)) : resolve(require(`../lang/${default_lang}.json`));  
-            } else {
-                resolve(require(`../lang/${default_lang}.json`));    
-            }
-        });
 
-        const commandRequested = message.content.toLowerCase();
+        const commandRequested = content.toLowerCase();
 
         //commands loop
         for (let i = 0; i < commands.length; i++) {
@@ -44,11 +50,11 @@ module.exports = async (client, message) => {
                     sendStats(commandToCheck.name);
                     //check if the command is enabled and supported for the channel type and then run it
                     if (commandToCheck.enabled) {
-                        if (commandToCheck.allowedTypes.includes(message.channel.type)) {
-                            commandToCheck.run(client, message, guild_lang);
-                            console.log(`[Bot shard #${client.shard.id}] ${message.author.tag} (${message.author.id}) [${(message.guild) ? `Server: ${message.guild.name} (${message.guild.id}), ` : ""}${message.channel.type} (${message.channel.id})]: ${message.content}`)
+                        if (commandToCheck.allowedTypes.includes(channel.type)) {
+                            commandToCheck.run(client, message, translation);
+                            console.log(`[Bot shard #${client.shard.id}] ${author.tag} (${author.id}) [${(guild) ? `Server: ${guild.name} (${guild.id}), ` : ``}${(channel.name) ? `Channel: ${channel.name}, ` : ``}Channel type: ${channel.type} (${channel.id})]: ${content}`)
                         } else {
-                            message.channel.send(guild_lang.functions.commandHandler.invalid_channel.replace("{TYPE}", message.channel.type));
+                            channel.send(translation.functions.commandHandler.invalid_channel.replace("{TYPE}", channel.type));
                         }
                     }
                 }
