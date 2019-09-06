@@ -16,22 +16,22 @@ module.exports = async (client, message) => {
         let translation = require(`../lang/${DISCORD_DEFAULT_LANG}.json`);
 
         let guild_settings = {
-            prefix: DISCORD_PREFIX
+            prefix: DISCORD_PREFIX,
         };
 
         //fetch guild settings
         if (guild) {
             guild_settings = await new Promise(resolve => {
                 GuildModel.findOneAndUpdate({ guild_id: guild.id }, {}, { new: true, upsert: true })
-                    .then(guild_settings => {
-                        //TODO
-                        translation = 
+                    .then(async guild_settings => {
+                        if (await isTranslationAvailable(guild_settings.lang)) {
+                            translation = require(`../lang/${guild_settings.lang}.json`);
+                        }
                         resolve(guild_settings);
                     })
                     .catch(err => {
                         console.error(err);
                         command_runnable = false;
-                        channel.send(translation.common.error_db).catch(console.error);
                         resolve();
                     });
             });
@@ -44,7 +44,6 @@ module.exports = async (client, message) => {
                     if (err) {
                         console.error(err);
                         command_runnable = false;
-                        channel.send(translation.common.error_unknown).catch(console.error);
                         resolve();
                     }
                     else {
@@ -59,8 +58,8 @@ module.exports = async (client, message) => {
         const commandRequested = content.toLowerCase();
 
         //commands loop
-        commands_loop:
-        if (command_runnable) 
+        if (command_runnable) {
+            commands_loop:
             for (let i = 0; i < commands.length; i++) {
                 const commandToCheck = commands[i];
                 //command variants loop
@@ -76,12 +75,13 @@ module.exports = async (client, message) => {
                                 console.log(`[Bot shard #${client.shard.id}] ${author.tag} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channel.type} (${channel.id})]: ${content}`);
                                 break commands_loop;
                             } else {
-                                channel.send(translation.functions.commandHandler.invalid_channel.replace("{TYPE}",channel.type)).catch(console.error);
+                                channel.send(translation.functions.commandHandler.invalid_channel.replace("{TYPE}", channel.type)).catch(console.error);
                             }
                         }
                     }
                 }
             }
+        }
     }
 };
 
@@ -91,4 +91,16 @@ String.prototype.startsWith = function(str) {
 
 String.prototype.contains = function(str) {
     return this.indexOf(str) > -1;
+};
+
+const isTranslationAvailable = lang_code => {
+    return new Promise(resolve => {
+        fs.readdir(path.join(__dirname, '..', 'lang/'), (err, files) => {
+            if (err) resolve(false);
+            else {
+                const availableLangs = files.map((file) => file = file.split('.')[0]);
+                resolve(availableLangs.includes(lang_code));
+            }
+        });
+    });
 };
