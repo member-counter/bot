@@ -1,3 +1,3 @@
-module.exports = (client) => {
-    client.on('error', console.error);
-}
+module.exports = client => {
+    client.on("error", console.error);
+};
