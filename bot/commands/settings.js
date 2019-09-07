@@ -93,11 +93,13 @@ const resetSettings = {
     }
 }
 
+//TODO
 const lang = {}
 
+//TODO
 const prefix = {}
 
-module.exports = [ seeSettings, resetSettings ];
+module.exports = { seeSettings, resetSettings };
 
 //I took this from https://jsperf.com/string-split-by-length/9
 String.prototype.splitSlice = function (len) {

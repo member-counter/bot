@@ -37,4 +37,4 @@ const help = {
         }
     }
 }
-module.exports = [ help ];
+module.exports = { help };

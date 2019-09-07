@@ -326,4 +326,4 @@ const update = {
     }
 }
 
-module.exports = [ createChannelNameCounter, enableTopicCounter, disableTopicCounter, setTopic, removeTopic, setDigit, update ];
+module.exports = { createChannelNameCounter, enableTopicCounter, disableTopicCounter, setTopic, removeTopic, setDigit, update };

@@ -16,4 +16,4 @@ const info = {
     }
 };
 
-module.exports = [info];
+module.exports = { info };

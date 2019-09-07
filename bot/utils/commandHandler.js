@@ -47,8 +47,11 @@ module.exports = async (client, message) => {
                         resolve();
                     }
                     else {
-                        files.forEach(command => {
-                            commands.push(...require("../commands/" + command));
+                        files.forEach(file => {
+                            let commandSet = require("../commands/" + file);
+                            //convert to an array
+                            commandSet = Object.entries(commandSet).map(i => i = i[1]);
+                            commands.push(...commandSet);
                         });
                         resolve();
                     }
