@@ -38,4 +38,4 @@ let status = {
           message.channel.send({ embed }).catch(console.error);
     }
 }
-module.exports = [ status ];
+module.exports = { status };
