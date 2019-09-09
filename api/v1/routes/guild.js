@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const auth = require('../middlewares/auth');
 const isAdmin = require('../middlewares/isAdmin');
-const GuildModel = require('../../mongooseModels/GuildModel');
-const TrackModel = require('../../mongooseModels/TrackModel');
+const GuildModel = require('../../../mongooseModels/GuildModel');
+const TrackModel = require('../../../mongooseModels/TrackModel');
 const Discord = require('discord.js');
 const fetch = require('node-fetch');
 

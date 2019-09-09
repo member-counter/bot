@@ -24,6 +24,11 @@ let status = {
             },
             "fields": [
               {
+                "name": "**Shard process uptime:**",
+                "value": parseUptime(((new Date).getTime() - global.spawnedAt.getTime()) / 1000),
+                "inline": true
+              },
+              {
                 "name": "**Discord client uptime:**",
                 "value": parseUptime(client.uptime / 1000),
                 "inline": true
