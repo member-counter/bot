@@ -103,9 +103,9 @@ module.exports = { seeSettings, resetSettings };
 
 //I took this from https://jsperf.com/string-split-by-length/9
 String.prototype.splitSlice = function (len) {
-    let ret = [];
+    let result = [];
     for (let offset = 0, strLen = this.length; offset < strLen; offset += len) {
-      ret.push(this.slice(offset, len + offset));
+        result.push(this.slice(offset, len + offset));
     }
-    return ret;
+    return result;
 }

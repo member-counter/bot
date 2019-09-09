@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
-const DonationModel = require('../../mongooseModels/DonationModel');
+const DonationModel = require('../../../mongooseModels/DonationModel');
 const mongoose = require('mongoose');
 const auth = require('../middlewares/auth');
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
-const getExchange = require('../../bot/utils/getExchange');
+const getExchange = require('../../../bot/utils/getExchange');
 const pp_baseUrl = (process.env.NODE_ENV === 'production') ? 'https://api.paypal.com' : 'https://api.sandbox.paypal.com';
 
 router.post('/process-donation/:transactionid', (req, res) => {
