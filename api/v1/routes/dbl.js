@@ -1,19 +1,26 @@
 const router = require("express").Router();
-const dblSecret = process.env.DBL_WH_SECRET;
-const officialServer = process.env.DISCORD_OFFICIAL_SERVER_ID;
-const rewardRoleId = process.env.DBL_REWARD_ROLE_ID;
+const {
+    DISCORD_CLIENT_ID,
+    DISCORD_OFFICIAL_SERVER_ID,
+    DBL_WH_SECRET,
+    DBL_REWARD_ROLE_ID
+} = process.env;
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
 router.post("/dbl", (req, res) => {
     const { authorization } = req.headers;
     const webhook = req.body;
-    if (authorization === dblSecret && webhook.type === "upvote" && webhook.bot === process.env.DISCORD_CLIENT_ID) {
+    if (
+        authorization === DBL_WH_SECRET &&
+        webhook.type === "upvote" &&
+        webhook.bot === DISCORD_CLIENT_ID
+    ) {
         console.log(`[MAIN] [API] User ${webhook.user} upvoted the bot!`);
         req.DiscordShardManager.broadcastEval(`
-            if (this.guilds.get("${officialServer}") && this.guilds.get("${officialServer}").members.get("${webhook.user}")) {
-                this.guilds.get("${officialServer}")
+            if (this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}") && this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}").members.get("${webhook.user}")) {
+                this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}")
                     .members.get("${webhook.user}")
-                        .addRole("${rewardRoleId}")
+                        .addRole("${DBL_REWARD_ROLE_ID}")
                             .then(() => {
                                 console.log("[MAIN] [API] Upvoter Role given successfully to ${webhook.user}");
                             })
@@ -22,14 +29,20 @@ router.post("/dbl", (req, res) => {
                             });
             }
         `);
-    } else if (authorization === dblSecret && webhook.type === "test" && webhook.bot === process.env.DISCORD_CLIENT_ID) {
-        console.log(`[MAIN] [API] DBL webhook test received: ${JSON.stringify(webhook)}`);
+    } else if (
+        authorization === DBL_WH_SECRET &&
+        webhook.type === "test" &&
+        webhook.bot === DISCORD_CLIENT_ID
+    ) {
+        console.log(
+            `[MAIN] [API] DBL webhook test received: ${JSON.stringify(webhook)}`
+        );
         if (owners.includes(webhook.user)) {
             req.DiscordShardManager.broadcastEval(`
-                if (this.guilds.get("${officialServer}") && this.guilds.get("${officialServer}").members.get("${webhook.user}")) {
-                    this.guilds.get("${officialServer}")
+                if (this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}") && this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}").members.get("${webhook.user}")) {
+                    this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}")
                         .members.get("${webhook.user}")
-                            .addRole("${rewardRoleId}")
+                            .addRole("${DBL_REWARD_ROLE_ID}")
                                 .then(() => {
                                     console.log("[MAIN] [API] Upvoter Role given successfully to ${webhook.user}");
                                 })
