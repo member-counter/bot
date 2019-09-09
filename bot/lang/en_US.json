@@ -23,11 +23,11 @@
             "no_perms": "I need `Manage Channels` permission to create the channel."
         },
         "enableTopicCounter": {
-            "help_description": "Enables the counter in the current channel or the spcified channel (remember to mention the channel with ``#``), if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enableTopicCounter\n{PREFIX}enableTopicCounter #general\n{PREFIX}enableTopicCounter #general #other-channel\n{PREFIX}enableTopicCounter all```",
+            "help_description": "Enables the counter in the current channel or the specified channel (remember to mention the channel with ``#``), if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enableTopicCounter\n{PREFIX}enableTopicCounter #general\n{PREFIX}enableTopicCounter #general #other-channel\n{PREFIX}enableTopicCounter all```",
             "success": "The counter has been enabled on {CHANNELS}"
         },
         "disableTopicCounter": {
-            "help_description": "Disables the counter in the current channel or the spcified channel (remember to mention the channel with ``#``), if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n```{PREFIX}disableTopicCounter\n{PREFIX}disableTopicCounter #general\n{PREFIX}disableTopicCounter #general #other-channel\n{PREFIX}disableTopicCounter all``` ",
+            "help_description": "Disables the counter in the current channel or the specified channel (remember to mention the channel with ``#``), if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n```{PREFIX}disableTopicCounter\n{PREFIX}disableTopicCounter #general\n{PREFIX}disableTopicCounter #general #other-channel\n{PREFIX}disableTopicCounter all``` ",
             "success": "Done, counter disabled on {CHANNELS}"
         },
         "setDigit": {
