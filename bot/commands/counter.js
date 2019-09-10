@@ -113,7 +113,7 @@ const enableTopicCounter = {
                     message.channel.send(translation.common.error_db).catch(console.error);
                 })
         } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
+            message.channel.send(translation.common.error_no_admin).catch(console.error)
         }
     }
 }
@@ -154,7 +154,7 @@ const disableTopicCounter = {
                     message.channel.send(translation.common.error_db).catch(console.error);
                 })
         } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
+            message.channel.send(translation.common.error_no_admin).catch(console.error)
         }
     }
 }
@@ -229,7 +229,7 @@ const setTopic = {
                     })
             }
         } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
+            message.channel.send(translation.common.error_no_admin).catch(console.error)
         }
     }
 }
@@ -273,7 +273,7 @@ const removeTopic = {
                     })
             }
         } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
+            message.channel.send(translation.common.error_no_admin).catch(console.error)
         }
     }
 }
@@ -305,7 +305,7 @@ const setDigit = {
                 message.channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error)
             }
         } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
+            message.channel.send(translation.common.error_no_admin).catch(console.error)
         }
     }
 }
@@ -321,7 +321,7 @@ const update = {
             updateCounter(client, message.guild.id);
             message.channel.send(translation.commands.update.success).catch(console.error);
         } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error);
+            message.channel.send(translation.common.error_no_admin).catch(console.error);
         }
     }
 }

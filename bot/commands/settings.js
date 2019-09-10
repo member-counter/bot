@@ -88,7 +88,7 @@ const resetSettings = {
 
             message.channel.send(translation.commands.resetSettings.done).catch(console.error);
         } else {
-            message.channel.send(translation.commands.common.error_no_admin).catch(console.error)
+            message.channel.send(translation.common.error_no_admin).catch(console.error)
         }
     }
 }
