@@ -1,7 +1,7 @@
-const commandHandler = require('../utils/commandHandler');
+const commandHandler = require("../utils/commandHandler");
 
-module.exports = (client) => {
-    client.on('messageUpdate', (oldMessage, newMessage) => {
-        commandHandler(client, newMessage);
+module.exports = client => {
+    client.on("messageUpdate", (oldMessage, newMessage) => {
+        commandHandler(newMessage);
     });
-}
+};
