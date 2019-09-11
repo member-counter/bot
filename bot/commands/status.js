@@ -14,7 +14,8 @@ let status = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: async ({ client, message, guild_settings, translation }) => {
+    run: async ({ message, guild_settings, translation }) => {
+        const { client, channel } = message;
         const embed = {
             "color": 14503424,
             "title": `Status for shard #${client.shard.id} | Bot version: ${version}`,
@@ -40,7 +41,7 @@ let status = {
               }
             ]
           };
-          message.channel.send({ embed }).catch(console.error);
+          channel.send({ embed }).catch(console.error);
     }
 }
 module.exports = { status };
