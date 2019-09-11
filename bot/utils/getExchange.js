@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
-const exchangeDiscardCacheTime = 12 * 60 * 60 * 1000; //12h 12 * 60 * 60 * 1000
+const exchangeDiscardCacheTime = 12 * 60 * 60 * 1000; //12 hours
 let nextExchangeFetch = new Date();
     nextExchangeFetch.setMilliseconds(exchangeDiscardCacheTime);
 let exchangeCache = null;
@@ -20,5 +20,5 @@ module.exports = () => {
         } else {
             resolve(exchangeCache);
         }
-    })
-}
+    });
+};

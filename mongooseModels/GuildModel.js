@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { DISCORD_PREFIX } = process.env;
 
 const CustomNumbers = mongoose.Schema({
     1: { type: String, default: '<a:1G:469275169190445056>' },
@@ -16,11 +17,12 @@ const CustomNumbers = mongoose.Schema({
 const GuildSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     guild_id: { type: String, require: true },
-    lang: { type: String, default:"en_US" },
+    prefix: { type: String, default: DISCORD_PREFIX },
+    lang: { type: String, default: "en_US" },
     enabled_channels: [{ type: String, default: [] }],
-    topic: { type: String, default: 'Members: {COUNT}' }, //used in all channels if the channel does not appear in this.unique_topics
+    topic: { type: String, default: "Members: {COUNT}" }, //used in all channels if the channel does not appear in this.unique_topics
     unique_topics: { type: Map, of: String, default: new Map() }, //specific topic by channel
-    channelNameCounter: { type: Map, of: String, default: new Map()},
+    channelNameCounter: { type: Map, of: String, default: new Map() },
     custom_numbers: { type: CustomNumbers, default: CustomNumbers }
 });
 

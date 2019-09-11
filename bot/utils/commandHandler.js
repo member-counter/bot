@@ -1,58 +1,109 @@
+"use strict";
 const fs = require('fs');
 const path = require('path');
 const sendStats = require('./stats.js');
-const { getAvailableLanguages, getGuildLanguage } = require('../utils/language.js');
-const default_lang = process.env.DISCORD_DEFAULT_LANG;
+const GuildModel = require("../../mongooseModels/GuildModel");
+const { DISCORD_DEFAULT_LANG, DISCORD_PREFIX } = process.env;
 
-module.exports = async (client, message) => {
-    if (client.user.id !== message.author.id) {
-        //load commands
-        const commands = await new Promise((resolve, reject) => {
-            fs.readdir(path.join(__dirname, "..", "commands/"), (err, files) => {
-                let commands = [];
-                if (err) reject(err);
-                else {
-                    files.forEach(command => {
-                        commands.push(...require("../commands/" + command));
+const commands = []
+
+module.exports = async message => {
+    const { client, guild, channel, author, content } = message;
+    let command_runnable = true;
+    //avoid self respond
+    if (client.user.id !== author.id) {
+        //translation is an object that has all the strings that are sent by the bot to text channels
+        let translation = require(`../lang/${DISCORD_DEFAULT_LANG}.json`);
+
+        let guild_settings = {
+            prefix: DISCORD_PREFIX,
+        };
+
+        //fetch guild settings
+        if (guild) {
+            guild_settings = await new Promise(resolve => {
+                GuildModel.findOneAndUpdate({ guild_id: guild.id }, {}, { new: true, upsert: true })
+                    .then(async guild_settings => {
+                        if (await isTranslationAvailable(guild_settings.lang)) {
+                            translation = require(`../lang/${guild_settings.lang}.json`);
+                        }
+                        resolve(guild_settings);
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        command_runnable = false;
+                        resolve();
                     });
-                    resolve(commands);
-                }
             });
-        });
-        
-        //get language object
-        const guild_lang = await new Promise(async (resolve) => {
-            if (message.guild) {
-                const GuildLanguage = await getGuildLanguage(message.guild.id);
-                const AvailableLanguages = await getAvailableLanguages();
-                (AvailableLanguages.includes(GuildLanguage)) ? resolve(require(`../lang/${GuildLanguage}.json`)) : resolve(require(`../lang/${default_lang}.json`));  
-            } else {
-                resolve(require(`../lang/${default_lang}.json`));    
-            }
-        });
+        }
 
-        const commandRequested = message.content.toLowerCase();
+        //load commands if they are not loaded
+        if (commands.length === 0) 
+            await new Promise(resolve => {
+                fs.readdir(path.join(__dirname, "..", "commands/"), (err, files) => {
+                    if (err) {
+                        console.error(err);
+                        command_runnable = false;
+                        resolve();
+                    }
+                    else {
+                        files.forEach(file => {
+                            let commandSet = require("../commands/" + file);
+                            //convert to an array
+                            commandSet = Object.entries(commandSet).map(i => i = i[1]);
+                            commands.push(...commandSet);
+                        });
+                        resolve();
+                    }
+                });
+            });
+
+        const commandRequested = content.toLowerCase();
 
         //commands loop
-        for (let i = 0; i < commands.length; i++) {
-            const commandToCheck = commands[i];
-            //variants loop
-            for (let ii = 0; ii < commandToCheck.commands.length; ii++) {
-                const commandVariant = commandToCheck.commands[ii].toLowerCase();
-                //check if the message contains the command
-                if ((commandToCheck.indexZero) ? commandRequested.indexOf(commandVariant) === 0 : commandRequested.indexOf(commandVariant) > -1 ) {
-                    sendStats(commandToCheck.name);
-                    //check if the command is enabled and supported for the channel type and then run it
-                    if (commandToCheck.enabled) {
-                        if (commandToCheck.allowedTypes.includes(message.channel.type)) {
-                            commandToCheck.run(client, message, guild_lang);
-                            console.log(`[Bot shard #${client.shard.id}] ${message.author.tag} (${message.author.id}) [${(message.guild) ? `Server: ${message.guild.name} (${message.guild.id}), ` : ""}${message.channel.type} (${message.channel.id})]: ${message.content}`)
-                        } else {
-                            message.channel.send(guild_lang.functions.commandHandler.invalid_channel.replace("{TYPE}", message.channel.type));
+        if (command_runnable) {
+            commands_loop:
+            for (let i = 0; i < commands.length; i++) {
+                const commandToCheck = commands[i];
+                //command variants loop
+                for (let ii = 0; ii < commandToCheck.variants.length; ii++) {
+                    const commandVariant = commandToCheck.variants[ii].replace(/\{PREFIX\}/i, guild_settings.prefix).toLowerCase();
+                    //check if the command must be at the start of the message or it can be anywhere
+                    if (commandToCheck.indexZero ? commandRequested.startsWith(commandVariant) : commandRequested.contains(commandVariant)) {
+                        sendStats(commandToCheck.name);
+                        //check if the command is enabled and supported for the channel type and then run it
+                        if (commandToCheck.enabled) {
+                            if (commandToCheck.allowedTypes.includes(channel.type)) {
+                                commandToCheck.run({ message, guild_settings, translation });
+                                console.log(`[Bot shard #${client.shard.id}] ${author.tag} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channel.type} (${channel.id})]: ${content}`);
+                                break commands_loop;
+                            } else {
+                                channel.send(translation.functions.commandHandler.invalid_channel.replace("{TYPE}", channel.type)).catch(console.error);
+                            }
                         }
                     }
                 }
             }
         }
     }
+};
+
+String.prototype.startsWith = function(str) {
+    return this.indexOf(str) === 0;
+};
+
+String.prototype.contains = function(str) {
+    return this.indexOf(str) > -1;
+};
+
+const isTranslationAvailable = lang_code => {
+    return new Promise(resolve => {
+        fs.readdir(path.join(__dirname, '..', 'lang/'), (err, files) => {
+            if (err) resolve(false);
+            else {
+                const availableLangs = files.map((file) => file = file.split('.')[0]);
+                resolve(availableLangs.includes(lang_code));
+            }
+        });
+    });
 };

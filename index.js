@@ -7,25 +7,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-mongoose
-    .connect(process.env.DB_URI, { useNewUrlParser: true })
-    .then(() => {
-        console.log("[Main] Mongoose ready");
-    })
-    .catch(e => {
-        console.error("[Main] " + e);
-        process.exit(1);
-    });
-mongoose.set("useFindAndModify", false);
-
+//BOT
 const manager = new Discord.ShardingManager("./bot.js", {
     token: process.env.DISCORD_TOKEN
 });
 
 manager.spawn();
-manager.on("launch", shard =>
-    console.log(`[Main] [Shard Manager] Launched shard #${shard.id}`)
-);
+manager.on("launch", shard => {
+    console.log(`[Main] [Shard Manager] Launched shard #${shard.id}`);
+});
 
 //API
 const app = express();
@@ -43,5 +33,17 @@ app.use(bodyParser.json());
 //just to avoid problems while I'm developing this
 if (process.env.NODE_ENV === "development") app.use(cors());
 
-//routes
-app.use(`/api`, require("./api/index"));
+//api
+app.use(`/api/v1`, require("./api/v1/index"));
+
+//mongoose connection
+mongoose
+    .connect(process.env.DB_URI, { useNewUrlParser: true })
+    .then(() => {
+        console.log("[Main] Mongoose ready");
+    })
+    .catch(e => {
+        console.error("[Main] " + e);
+        process.exit(1);
+    });
+mongoose.set("useFindAndModify", false);

@@ -1,7 +1,5 @@
-const prefix = process.env.DISCORD_PREFIX;
 const os = require('os');
 const { version } = require('../../package.json');
-const mongoose = require('mongoose');
 
 const parseUptime = (inputDate) => {
     //inputDate must be in seconds
@@ -12,11 +10,12 @@ const parseUptime = (inputDate) => {
 
 let status = {
     name: "status",
-    commands: [prefix+'status', "..status"],
+    variants: ["{PREFIX}status", "..status"],
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: async (client, message, translation) => {
+    run: async ({ message, guild_settings, translation }) => {
+        const { client, channel } = message;
         const embed = {
             "color": 14503424,
             "title": `Status for shard #${client.shard.id} | Bot version: ${version}`,
@@ -25,6 +24,11 @@ let status = {
               "text": "by eduardozgz#5695"
             },
             "fields": [
+              {
+                "name": "**Shard process uptime:**",
+                "value": parseUptime(((new Date).getTime() - global.spawnedAt.getTime()) / 1000),
+                "inline": true
+              },
               {
                 "name": "**Discord client uptime:**",
                 "value": parseUptime(client.uptime / 1000),
@@ -37,7 +41,7 @@ let status = {
               }
             ]
           };
-          message.channel.send({ embed }).catch(console.error);
+          channel.send({ embed }).catch(console.error);
     }
 }
-module.exports = [ status ];
+module.exports = { status };
