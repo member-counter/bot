@@ -8,7 +8,8 @@ const donate = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: ({ client, message, guild_settings, translation }) => {
+    run: ({ message, guild_settings, translation }) => {
+        const { channel } = message;
         getExchange()
             .then((ex) => {
                 DonationModel.find()
@@ -36,11 +37,11 @@ const donate = {
                                 embed.fields = [ ...embed.fields, field ]
                             })
 
-                        message.channel.send({embed}).catch(console.error);
+                        channel.send({embed}).catch(console.error);
                     })
-                    .catch(e => message.channel.send(translation.commands.donate.common.error_db).catch(console.error))
+                    .catch(e => channel.send(translation.commands.donate.common.error_db).catch(console.error))
             })
-            .catch(e => message.channel.send(translation.commands.donate.misc.error_exchange_fetch).catch(console.error))
+            .catch(e => channel.send(translation.commands.donate.misc.error_exchange_fetch).catch(console.error))
     }
 }
 

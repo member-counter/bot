@@ -4,13 +4,14 @@ const help = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: ({ client, message, guild_settings, translation }) => {        
-        const args = message.content.split(' ');
+    run: ({ message, guild_settings, translation }) => {
+        const { channel, content } = message;
+        const args = content.split(' ');
         if (args.length < 2) {
             const embed = translation.commands.help.embed_reply;
             embed.title = embed.title.replace(/\{PREFIX\}/gi, guild_settings.prefix);
             embed.description = embed.description.replace(/\{PREFIX\}/gi, guild_settings.prefix);
-            message.channel.send({ embed }).catch(console.error);
+            channel.send({ embed }).catch(console.error);
         } else {
             Object.entries(translation.commands)
                 .map(x => {
@@ -32,7 +33,7 @@ const help = {
                         "icon_url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png?size=128"
                     }
                 }
-                message.channel.send({ embed }).catch(console.error);
+                channel.send({ embed }).catch(console.error);
             }
         }
     }

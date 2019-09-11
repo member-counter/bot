@@ -22,14 +22,14 @@ router.get("/guilds", auth, (req, res) => {
 });
 
 //I should use streams
-router.get('/guilds/:id/chart', auth, isAdmin, (req, res)  => {
-    TrackModel.findOneAndUpdate({ guild_id: req.params.id }, { }, { upsert: true })
+router.get("/guilds/:id/chart", auth, isAdmin, (req, res) => {
+    TrackModel.findOneAndUpdate({ guild_id: req.params.id }, {}, { upsert: true })
         .then(result => {
             res.json({ code: 0, chart: result.count_history });
         })
         .catch(error => {
             console.error(error);
-            res.json({ code:500, message:"DB error" });
+            res.json({ code: 500, message: "DB error" });
         });
 });
 

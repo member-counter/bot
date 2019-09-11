@@ -6,7 +6,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}createChannelNameCounter (custom channel name)\n{PREFIX}enableTopicCounter (#channel, all)\n{PREFIX}disableTopicCounter (#channel, all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}newChannelNameCounter (custom channel name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -17,18 +17,16 @@
                 "command": "Command:"
             }
         },
-        "createChannelNameCounter": {
-            "help_description": "Creates a channel name counter.\nIf you want a custom channel name, remember to write `{COUNT}` wherever you want to place the counter\n\nChannel name counter with the default name:```{PREFIX}createChannelNameCounter```\n With a custom name:```{PREFIX}createChannelNameCounter Members: {COUNT}```",
+        "newChannelNameCounter": {
+            "help_description": "Creates a channel name counter.\nIf you want a custom channel name, remember to write `{COUNT}` wherever you want to place the counter\n\nChannel name counter with the default name:```{PREFIX}newChannelNameCounter```\n With a custom name:```{PREFIX}newChannelNameCounter Members: {COUNT}```",
             "success": "Created successfully",
             "no_perms": "I need `Manage Channels` permission to create the channel."
         },
-        "enableTopicCounter": {
-            "help_description": "Enables the counter in the current channel or the specified channel (remember to mention the channel with ``#``), if you add \"all\" as an argument, the counter will be enabled on all channels.\n\nExamples:\n```{PREFIX}enableTopicCounter\n{PREFIX}enableTopicCounter #general\n{PREFIX}enableTopicCounter #general #other-channel\n{PREFIX}enableTopicCounter all```",
-            "success": "The counter has been enabled on {CHANNELS}"
-        },
-        "disableTopicCounter": {
-            "help_description": "Disables the counter in the current channel or the specified channel (remember to mention the channel with ``#``), if you add \"all\" as an argument, the counter will be disabled on all channels.\n\nExamples:\n```{PREFIX}disableTopicCounter\n{PREFIX}disableTopicCounter #general\n{PREFIX}disableTopicCounter #general #other-channel\n{PREFIX}disableTopicCounter all``` ",
-            "success": "Done, counter disabled on {CHANNELS}"
+        "topicCounter": {
+            "help_description": "Usage:```css\n{PREFIX}topicCounter [enable/disable] (#channels/all)```\nThis command displays a real time member counter in a channel topic\n\nExamples:\n```css\n{PREFIX}topicCounter enable\n{PREFIX}topicCounter enable #general\n{PREFIX}topicCounter enable #general #other-channel\n{PREFIX}topicCounter disable all```\n**!**  If you don't mention any channel like in the first example, the counter will be enabled/disabled in the current channel\n **!**  When you mention a channel it must match exactly its name, and you must use `#`",
+            "success_enable": "The counter has been enabled on {CHANNELS}",
+            "success_disable": "The counter has been disabled on {CHANNELS}",
+            "error_invalid_params": "Invalid parameters, see `{PREFIX}!help topicCounter`."
         },
         "setDigit": {
             "help_description": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown\n\nUsage: ```{PREFIX}setDigit (number) (your custom number)```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",

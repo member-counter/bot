@@ -1,10 +1,13 @@
+const GuildModel = require("../../mongooseModels/GuildModel");
+
 const seeSettings = {
     name: "seeSettings",
     variants: ["{PREFIX}seeSettings"],
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
-    run: ({ client, message, guild_settings, translation }) => {
+    run: ({ message, guild_settings, translation }) => {
+        const { guild, channel } = message;
         const {
             header_text,
             enabled_channel_name_counters_text,
@@ -15,7 +18,7 @@ const seeSettings = {
 
         let messageToSend = "";
         
-        messageToSend += `${header_text} ${message.guild.name} \u0060(${message.guild.id})\u0060\n\n`;
+        messageToSend += `${header_text} ${guild.name} \u0060(${guild.id})\u0060\n\n`;
 
         //Enabled channel name counters:
         if (guild_settings.channelNameCounter.size > 0) {
@@ -53,7 +56,7 @@ const seeSettings = {
 
         //send in various messages
         messageToSend.splitSlice(2000).forEach(part => {
-            message.channel.send(part).catch(console.error);
+            channel.send(part).catch(console.error);
         })
     }
 }
@@ -64,31 +67,39 @@ const resetSettings = {
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
-    run: ({ client, message, guild_settings, translation }) => {
-        if (message.member.hasPermission('ADMINISTRATOR') || owners.includes(message.member.id)) {
-            //leave empty all channel topics
-            guild_settings.enabled_channels.forEach(channel_id => {
-                if (client.channels.has(channel_id)) {
-                    client.channels.get(channel_id).setTopic('').catch(e => {
-                        //ignore errors caused by permissions 
-                        if (!(e.code === 50013 || e.code === 50001)) console.error(e);
-                    });
-                }
-            });
-            
-            //delete all channel name counters
-            guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
-                if (client.channels.has(channel_id)) {
-                    client.channels.get(channel_id).delete().catch(e => {
-                        //ignore errors caused by permissions 
-                        if (!(e.code === 50013 || e.code === 50001)) console.error(e);
-                    });
-                }
-            });
+    run: ({ message, guild_settings, translation }) => {
+        const { client, channel, member  } = message;
+        if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
+            GuildModel.findOneAndRemove({ guild_id:message.guild.id })
+                .then(() => { 
+                //leave empty all channel topics
+                guild_settings.enabled_channels.forEach(channel_id => {
+                    if (client.channels.has(channel_id)) {
+                        client.channels.get(channel_id).setTopic('').catch(e => {
+                            //ignore errors caused by permissions 
+                            if (!(e.code === 50013 || e.code === 50001)) console.error(e);
+                        });
+                    }
+                });
+                
+                //delete all channel name counters
+                guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
+                    if (client.channels.has(channel_id)) {
+                        client.channels.get(channel_id).delete().catch(e => {
+                            //ignore errors caused by permissions 
+                            if (!(e.code === 50013 || e.code === 50001)) console.error(e);
+                        });
+                    }
+                });
 
-            message.channel.send(translation.commands.resetSettings.done).catch(console.error);
+                channel.send(translation.commands.resetSettings.done).catch(console.error);
+            })
+            .catch(error => {
+                console.error(error);
+                message.channel.send(translation.common.error_db).catch(console.error);
+            })
         } else {
-            message.channel.send(translation.common.error_no_admin).catch(console.error)
+            channel.send(translation.common.error_no_admin).catch(console.error)
         }
     }
 }
