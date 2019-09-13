@@ -10,48 +10,68 @@ const newChannelNameCounter = {
     run: ({ message, guild_settings, translation }) => {
         const { client, guild, channel, content, member  } = message;
         if (member.hasPermission("ADMINISTRATOR") || owners.includes(member.id)) {
-            //extract topic, if you know a better way to do this, please, do a PR
-            let channelName = [];
-            content.split(" ").forEach((part, i) => {
-                if (i !== 0 && part !== "") channelName.push(part);
-            });
+            const args = content.split(/\s+/);
+            const type = args[1];
 
-            channelName = channelName.length === 0 ? "Members: {COUNT}" : channelName.join(" ");
+            //used to set a channel name if there is not specified a one
 
-            guild
-                .createChannel(
-                    channelName.replace(/\{COUNT\}/gi, guild.memberCount),
-                    {
-                        type: "voice",
-                        permissionOverwrites: [
-                            {
-                                id: guild.id,
-                                deny: ["CONNECT"]
-                            },
-                            {
-                                id: client.user.id,
-                                allow: ["CONNECT"]
-                            }
-                        ]
-                    }
-                )
-                .then(voiceChannel => {
-                    guild_settings.channelNameCounter.set(voiceChannel.id, channelName);
-                    guild_settings.save()
-                        .then(() => {
-                            channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
-                        })
-                        .catch(error => {
-                            console.error(error);
-                            channel.send(translation.common.error_unknown).catch(console.error);
-                        });
-                })
-                .catch(e => {
-                    console.error(e);
-                    if (e.code === 50013)
-                        channel.send(translation.commands.newChannelNameCounter.no_perms).catch(console.error);
-                    else channel.send(translation.common.error_unknown).catch(console.error);
+            const availableCounterTypesString = ["Members", "Users", "Bots", "Roles", "Channels", "Online users", "Connected users", "Offline users"];
+            //used for comparation
+            const availableCounterTypes = availableCounterTypesString.map(str => str.replace(/\s+/g, "").toLowerCase());
+
+            if (type && availableCounterTypes.includes(type.toLowerCase())) {
+                let channelName;
+
+                //extract custom channel name, if you know a better way to do this, please, do a PR
+                channelName = [];
+                content.split(" ").forEach((part, i) => {
+                    if (i !== 0 && part !== "" ) channelName.push(part);
                 });
+
+                //remove the type argument
+                channelName = channelName.slice(1);
+
+                let indexOfTypeInTheList = availableCounterTypes.findIndex(item => item === type.toLowerCase());
+                channelName = channelName.length === 0 ? `${availableCounterTypesString[indexOfTypeInTheList]}: {COUNT}` : channelName.join(" ");
+    
+                guild
+                    .createChannel(
+                        channelName.replace(/\{COUNT\}/gi, guild.memberCount),
+                        {
+                            type: "voice",
+                            permissionOverwrites: [
+                                {
+                                    id: guild.id,
+                                    deny: ["CONNECT"]
+                                },
+                                {
+                                    id: client.user.id,
+                                    allow: ["CONNECT"]
+                                }
+                            ]
+                        }
+                    )
+                    .then(voiceChannel => {
+                        guild_settings.channelNameCounter.set(voiceChannel.id, channelName);
+                        guild_settings.channelNameCounter_types.set(voiceChannel.id, type.toLowerCase());
+                        guild_settings.save()
+                            .then(() => {
+                                channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                                channel.send(translation.common.error_unknown).catch(console.error);
+                            });
+                    })
+                    .catch(e => {
+                        console.error(e);
+                        if (e.code === 50013)
+                            channel.send(translation.commands.newChannelNameCounter.no_perms).catch(console.error);
+                        else channel.send(translation.common.error_unknown).catch(console.error);
+                    });
+            } else {
+                //channel.send invalid args
+            }
         }
     }
 };
@@ -143,7 +163,7 @@ const setTopic = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member, mentions  } = message;
+        const { client, guild, channel, content, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(" ");
             let channelsToCustomize = [];
@@ -264,7 +284,7 @@ const setDigit = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member, mentions  } = message;
+        const { client, guild, channel, content, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(/\s+/);
             if (args.length >= 3) {    
@@ -297,7 +317,7 @@ const update = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member, mentions  } = message;
+        const { client, guild, channel, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             updateCounter(client, guild.id);
             channel.send(translation.commands.update.success).catch(console.error);
