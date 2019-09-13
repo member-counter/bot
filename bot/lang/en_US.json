@@ -1,12 +1,13 @@
 {
     "lang_code": "en_US",
     "lang_name": "English (US)",
+    "authors": ["343884247263608832"],
     "commands": {
         "help": {
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}newChannelNameCounter (custom channel name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}newChannelNameCounter [type] (custom channel name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -18,7 +19,7 @@
             }
         },
         "newChannelNameCounter": {
-            "help_description": "Creates a channel name counter.\nIf you want a custom channel name, remember to write `{COUNT}` wherever you want to place the counter\n\nChannel name counter with the default name:```{PREFIX}newChannelNameCounter```\n With a custom name:```{PREFIX}newChannelNameCounter Members: {COUNT}```",
+            "help_description": "Creates a channel name counter.\nTODO\n\nChannel name counter with the default name:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```",
             "success": "Created successfully",
             "no_perms": "I need `Manage Channels` permission to create the channel."
         },
