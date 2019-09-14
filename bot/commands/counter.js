@@ -12,13 +12,12 @@ const newChannelNameCounter = {
         if (member.hasPermission("ADMINISTRATOR") || owners.includes(member.id)) {
             const args = content.split(/\s+/);
             const type = args[1];
-
             //used to set a channel name if there is not specified a one
-
             const availableCounterTypesString = ["Members", "Users", "Bots", "Roles", "Channels", "Online users", "Connected users", "Offline users"];
-            //used for comparation
+            //used for comparation and configuration
             const availableCounterTypes = availableCounterTypesString.map(str => str.replace(/\s+/g, "").toLowerCase());
 
+            //check if the user added the first arg and check if it's valid
             if (type && availableCounterTypes.includes(type.toLowerCase())) {
                 let channelName;
 
@@ -28,7 +27,7 @@ const newChannelNameCounter = {
                     if (i !== 0 && part !== "" ) channelName.push(part);
                 });
 
-                //remove the type argument
+                //remove the type argument from the custom channel name
                 channelName = channelName.slice(1);
 
                 let indexOfTypeInTheList = availableCounterTypes.findIndex(item => item === type.toLowerCase());
