@@ -1,7 +1,9 @@
 const GuildModel = require("../../mongooseModels/GuildModel");
+const updateCounter = require("../utils/updateCounter");
 
 module.exports = client => {
     client.on("channelDelete", channel => {
+        if (channel.type !== "dm" || channel.type !== "group") updateCounter(client, channel.guild.id, ["channels"]);
         if (channel.type === "text" || channel.type === "news" || channel.type === "voice") {
             GuildModel.findOne({ guild_id: channel.guild.id })
                 .then(guild_settings => {
@@ -11,6 +13,7 @@ module.exports = client => {
                             guild_settings.save().catch(console.error);
                         } else if (channel.type === "voice") {
                             guild_settings.channelNameCounter.delete(channel.id);
+                            guild_settings.channelNameCounter_types.delete(channel.id);
                             guild_settings.save().catch(console.error);
                         }
                     }

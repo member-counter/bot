@@ -3,8 +3,7 @@ const TrackModel = require("../../mongooseModels/TrackModel");
 
 module.exports = client => {
     client.on("guildMemberAdd", member => {
-        updateCounter(client, member.guild.id);
-        
+        updateCounter(client, member.guild.id, ["users", "bots", "members", "onlineusers", "offlineusers", "connectedusers"]);
         TrackModel.findOneAndUpdate(
             {
                 guild_id: member.guild.id

@@ -21,7 +21,8 @@
         "newChannelNameCounter": {
             "help_description": "Creates a channel name counter.\nTODO\n\nChannel name counter with the default name:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```",
             "success": "Created successfully",
-            "no_perms": "I need `Manage Channels` permission to create the channel."
+            "no_perms": "I need `Manage Channels` permission to create the channel.",
+            "error_invalid_params": "Error: Invalid parameters, `more info: {PREFIX}help newChannelNameCounter`."
         },
         "topicCounter": {
             "help_description": "Usage:```css\n{PREFIX}topicCounter [enable/disable] (#channels/all)```\nThis command displays a real time member counter in a channel topic\n\nExamples:\n```css\n{PREFIX}topicCounter enable\n{PREFIX}topicCounter enable #general\n{PREFIX}topicCounter enable #general #other-channel\n{PREFIX}topicCounter disable all```\n**!**  If you don't mention any channel like in the first example, the counter will be enabled/disabled in the current channel\n **!**  When you mention a channel it must match exactly its name, and you must use `#`",
