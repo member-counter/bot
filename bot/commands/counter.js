@@ -35,7 +35,7 @@ const newChannelNameCounter = {
     
                 guild
                     .createChannel(
-                        channelName.replace(/\{COUNT\}/gi, guild.memberCount),
+                        channelName.replace(/\{COUNT\}/gi, ""),
                         {
                             type: "voice",
                             permissionOverwrites: [
@@ -55,6 +55,7 @@ const newChannelNameCounter = {
                         guild_settings.channelNameCounter_types.set(voiceChannel.id, type.toLowerCase());
                         guild_settings.save()
                             .then(() => {
+                                updateCounter(client, guild_settings, [type, "channels"]);
                                 channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
                             })
                             .catch(error => {
@@ -69,7 +70,7 @@ const newChannelNameCounter = {
                         else channel.send(translation.common.error_unknown).catch(console.error);
                     });
             } else {
-                //channel.send invalid args
+                channel.send(translation.commands.newChannelNameCounter.error_invalid_params.replace("{PREFIX}", guild_settings.prefix));
             }
         }
     }
