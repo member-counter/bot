@@ -10,48 +10,68 @@ const newChannelNameCounter = {
     run: ({ message, guild_settings, translation }) => {
         const { client, guild, channel, content, member  } = message;
         if (member.hasPermission("ADMINISTRATOR") || owners.includes(member.id)) {
-            //extract topic, if you know a better way to do this, please, do a PR
-            let channelName = [];
-            content.split(" ").forEach((part, i) => {
-                if (i !== 0 && part !== "") channelName.push(part);
-            });
+            const args = content.split(/\s+/);
+            const type = args[1];
+            //used to set a channel name if there is not specified a one
+            const availableCounterTypesString = ["Members", "Users", "Bots", "Roles", "Channels", "Online users", "Connected users", "Offline users"];
+            //used for comparation and configuration
+            const availableCounterTypes = availableCounterTypesString.map(str => str.replace(/\s+/g, "").toLowerCase());
 
-            channelName = channelName.length === 0 ? "Members: {COUNT}" : channelName.join(" ");
+            //check if the user added the first arg and check if it's valid
+            if (type && availableCounterTypes.includes(type.toLowerCase())) {
+                let channelName;
 
-            guild
-                .createChannel(
-                    channelName.replace(/\{COUNT\}/gi, guild.memberCount),
-                    {
-                        type: "voice",
-                        permissionOverwrites: [
-                            {
-                                id: guild.id,
-                                deny: ["CONNECT"]
-                            },
-                            {
-                                id: client.user.id,
-                                allow: ["CONNECT"]
-                            }
-                        ]
-                    }
-                )
-                .then(voiceChannel => {
-                    guild_settings.channelNameCounter.set(voiceChannel.id, channelName);
-                    guild_settings.save()
-                        .then(() => {
-                            channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
-                        })
-                        .catch(error => {
-                            console.error(error);
-                            channel.send(translation.common.error_unknown).catch(console.error);
-                        });
-                })
-                .catch(e => {
-                    console.error(e);
-                    if (e.code === 50013)
-                        channel.send(translation.commands.newChannelNameCounter.no_perms).catch(console.error);
-                    else channel.send(translation.common.error_unknown).catch(console.error);
+                //extract custom channel name, if you know a better way to do this, please, do a PR
+                channelName = [];
+                content.split(" ").forEach((part, i) => {
+                    if (i !== 0 && part !== "" ) channelName.push(part);
                 });
+
+                //remove the type argument from the custom channel name
+                channelName = channelName.slice(1);
+
+                let indexOfTypeInTheList = availableCounterTypes.findIndex(item => item === type.toLowerCase());
+                channelName = channelName.length === 0 ? `${availableCounterTypesString[indexOfTypeInTheList]}: {COUNT}` : channelName.join(" ");
+    
+                guild
+                    .createChannel(
+                        channelName.replace(/\{COUNT\}/gi, ""),
+                        {
+                            type: "voice",
+                            permissionOverwrites: [
+                                {
+                                    id: guild.id,
+                                    deny: ["CONNECT"]
+                                },
+                                {
+                                    id: client.user.id,
+                                    allow: ["CONNECT"]
+                                }
+                            ]
+                        }
+                    )
+                    .then(voiceChannel => {
+                        guild_settings.channelNameCounter.set(voiceChannel.id, channelName);
+                        guild_settings.channelNameCounter_types.set(voiceChannel.id, type.toLowerCase());
+                        guild_settings.save()
+                            .then(() => {
+                                updateCounter(client, guild_settings, [type, "channels"]);
+                                channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                                channel.send(translation.common.error_unknown).catch(console.error);
+                            });
+                    })
+                    .catch(e => {
+                        console.error(e);
+                        if (e.code === 50013)
+                            channel.send(translation.commands.newChannelNameCounter.no_perms).catch(console.error);
+                        else channel.send(translation.common.error_unknown).catch(console.error);
+                    });
+            } else {
+                channel.send(translation.commands.newChannelNameCounter.error_invalid_params.replace("{PREFIX}", guild_settings.prefix));
+            }
         }
     }
 };
@@ -87,7 +107,7 @@ const topicCounter = {
 
                     guild_settings.save()
                         .then(() => {
-                            updateCounter(client, guild.id);
+                            updateCounter(client, guild_settings);
 
                             //prepare success message
                             let channelsToMention = "";
@@ -143,7 +163,7 @@ const setTopic = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member, mentions  } = message;
+        const { client, guild, channel, content, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(" ");
             let channelsToCustomize = [];
@@ -180,7 +200,7 @@ const setTopic = {
                 channelsToCustomize.forEach(channel_id => guild_settings.unique_topics.set(channel_id, newTopic));
                 guild_settings.save()
                     .then(() => {
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                         let msgChannels = "";
                         channelsToCustomize.forEach((channel, i) => {
                             msgChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToCustomize.length-1) ? '.' : ','}`; 
@@ -198,7 +218,7 @@ const setTopic = {
                 guild_settings.topic = newTopic;
                 guild_settings.save()
                     .then(() => {
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                         channel.send(translation.commands.setTopic.success).catch(console.error);
                     })
                     .catch((e) => {
@@ -228,7 +248,7 @@ const removeTopic = {
                 });
                 guild_settings.save()
                     .then(() => {
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                         let stringMentionedChannels = "";
                         mentionedChannels.forEach((channel, i) => {
                             stringMentionedChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === mentionedChannels.length-1) ? '.' : ','}`;
@@ -243,7 +263,7 @@ const removeTopic = {
                 guild_settings.topic = "Members: {COUNT}";
                 guild_settings.save()
                     .then(() => {
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                         channel.send(translation.commands.removeTopic.success).catch(console.error);
                     })
                     .catch((e) => {
@@ -264,7 +284,7 @@ const setDigit = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member, mentions  } = message;
+        const { client, guild, channel, content, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(/\s+/);
             if (args.length >= 3) {    
@@ -275,7 +295,7 @@ const setDigit = {
                 guild_settings.save()
                     .then(() => {
                         channel.send(translation.commands.setDigit.success).catch(console.error);
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                     })
                     .catch((e) => {
                         console.error(e);
@@ -297,9 +317,9 @@ const update = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member, mentions  } = message;
+        const { client, guild, channel, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            updateCounter(client, guild.id);
+            updateCounter(client, guild_settings, ["all"]);
             channel.send(translation.commands.update.success).catch(console.error);
         } else {
             channel.send(translation.common.error_no_admin).catch(console.error);
