@@ -1,4 +1,3 @@
-"use strict";
 const GuildModel = require("../../mongooseModels/GuildModel");
 const updateMembersCounter = require("./updateCounter/members");
 const updateUsersCounter = require("./updateCounter/users");
