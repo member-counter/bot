@@ -6,7 +6,10 @@ module.exports = (client, guildSettings) => {
     } = guildSettings;
     
     if (client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
-        const count = 0; //TODO
+        let count = 0; 
+        client.guilds.get(guild_id).channels.forEach(channel => {
+            if (channel.type === "voice") count += channel.members.size;
+        });
         channelNameCounter.forEach((channel_name, channel_id) => {
             if (channelNameCounter_types.has(channel_id) && (channelNameCounter_types.get(channel_id) === "connectedusers"))
                 if (client.channels.has(channel_id)) {

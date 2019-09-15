@@ -19,8 +19,10 @@ const seeSettings = {
         let messageToSend = "";
         
         messageToSend += `${header_text} ${guild.name} \u0060(${guild.id})\u0060\n\n`;
-
-        //Enabled channel name counters:
+        
+        //TODO
+        //FIX
+        //channel name counters:
         if (guild_settings.channelNameCounter.size > 0) {
             messageToSend += `${enabled_channel_name_counters_text}\n`;
 
