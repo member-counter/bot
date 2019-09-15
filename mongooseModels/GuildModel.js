@@ -23,6 +23,7 @@ const GuildSchema = mongoose.Schema({
     topic: { type: String, default: "Members: {COUNT}" }, //used in all channels if the channel does not appear in this.unique_topics
     unique_topics: { type: Map, of: String, default: new Map() }, //specific topic by channel
     channelNameCounter: { type: Map, of: String, default: new Map() },
+    channelNameCounter_types: { type: Map, of: String, default: new Map() },
     custom_numbers: { type: CustomNumbers, default: CustomNumbers }
 });
 

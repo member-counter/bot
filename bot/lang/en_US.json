@@ -1,12 +1,13 @@
 {
     "lang_code": "en_US",
     "lang_name": "English (US)",
+    "authors": ["343884247263608832"],
     "commands": {
         "help": {
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}newChannelNameCounter (custom channel name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}newChannelNameCounter [type] (custom channel name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -18,9 +19,10 @@
             }
         },
         "newChannelNameCounter": {
-            "help_description": "Creates a channel name counter.\nIf you want a custom channel name, remember to write `{COUNT}` wherever you want to place the counter\n\nChannel name counter with the default name:```{PREFIX}newChannelNameCounter```\n With a custom name:```{PREFIX}newChannelNameCounter Members: {COUNT}```",
+            "help_description": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below, the second one is optional, and it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nAvailable types:\n-`members`\n-`users`\n-`bots`\n-`channels`\n-`roles`\n-`onlineusers`\n-`offlineusers`\n-`connectedusers` This one counts how many users are connected to a voice channel\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```",
             "success": "Created successfully",
-            "no_perms": "I need `Manage Channels` permission to create the channel."
+            "no_perms": "I need `Manage Channels` permission to create the channel.",
+            "error_invalid_params": "Error: Invalid parameters, `more info: {PREFIX}help newChannelNameCounter`."
         },
         "topicCounter": {
             "help_description": "Usage:```css\n{PREFIX}topicCounter [enable/disable] (#channels/all)```\nThis command displays a real time member counter in a channel topic\n\nExamples:\n```css\n{PREFIX}topicCounter enable\n{PREFIX}topicCounter enable #general\n{PREFIX}topicCounter enable #general #other-channel\n{PREFIX}topicCounter disable all```\n**!**  If you don't mention any channel like in the first example, the counter will be enabled/disabled in the current channel\n **!**  When you mention a channel it must match exactly its name, and you must use `#`",
@@ -29,13 +31,13 @@
             "error_invalid_params": "Invalid parameters, see `{PREFIX}!help topicCounter`."
         },
         "setDigit": {
-            "help_description": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown\n\nUsage: ```{PREFIX}setDigit (number) (your custom number)```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
+            "help_description": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown\n\nUsage: ```{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
             "success": "Digit customized.",
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
         "setTopic": {
             "help_description": "You can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n Examples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
-            "success": "Topic customized.",
+            "success": "Topic customized for all channels without a custom one.",
             "success_unique": "Topic customized for the following channels: {CHANNELS}",
             "no_topic": "No topic were provided, more info: `{PREFIX}help setTopic`."
         },
@@ -51,7 +53,7 @@
                 "header_text": "Settings for guild:",
                 "enabled_channel_name_counters_text": "Channel Name Counters:",
                 "enabled_channel_topic_counters_text": "Channel Topic Counters:",
-                "main_topic_text": "Main topic:",
+                "main_topic_text": "Main topic for channels with a topic counter (used of those wihtout a custom one):",
                 "custom_topics_by_channel_text": "Custom topics by channel:"
             }
         },

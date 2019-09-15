@@ -15,27 +15,34 @@ const seeSettings = {
             main_topic_text,
             custom_topics_by_channel_text
         } = translation.commands.seeSettings.settings_message;
+        const {
+            channelNameCounter,
+            channelNameCounter_types,
+            enabled_channels,
+            unique_topics,
+            topic
+        } = guild_settings;
 
         let messageToSend = "";
         
         messageToSend += `${header_text} ${guild.name} \u0060(${guild.id})\u0060\n\n`;
-
-        //Enabled channel name counters:
-        if (guild_settings.channelNameCounter.size > 0) {
+        
+        //channel name counters:
+        if (channelNameCounter.size > 0) {
             messageToSend += `${enabled_channel_name_counters_text}\n`;
 
-            guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
-                messageToSend += `\\• <#${channel_id}> \u0060(${channel_id})\u0060 \\➡ ${channel_name}\n`;    
+            channelNameCounter.forEach((channel_name, channel_id) => {
+                messageToSend += `\\• <#${channel_id}> \u0060(${channel_id})\u0060 \\➡ Type: \u0060${channelNameCounter_types.has(channel_id) ? channelNameCounter_types.get(channel_id) : "members"}\u0060 \n`;    
             });
             
             messageToSend += "\n";
         }
 
         //Enabled channel topic counters:
-        if (guild_settings.enabled_channels.length > 0) {
+        if (enabled_channels.length > 0) {
             messageToSend += `${enabled_channel_topic_counters_text}\n`;
 
-            guild_settings.enabled_channels.forEach((channel_id) => {
+            enabled_channels.forEach((channel_id) => {
                 messageToSend +=`\\• <#${channel_id}> \u0060(${channel_id})\u0060\n`;    
             });
 
@@ -43,13 +50,13 @@ const seeSettings = {
         }
 
         //Main topic for topic counters
-        messageToSend += `${main_topic_text} \u0060\u0060\u0060${guild_settings.topic}\u0060\u0060\u0060\n`;
+        messageToSend += `${main_topic_text} \u0060\u0060\u0060${topic}\u0060\u0060\u0060\n`;
 
-        if (guild_settings.unique_topics.size > 0) {
+        if (unique_topics.size > 0) {
             //Custom topics by channel
             messageToSend += `${custom_topics_by_channel_text}\n`;
 
-            guild_settings.unique_topics.forEach((channel_topic, channel_id) => {
+            unique_topics.forEach((channel_topic, channel_id) => {
                 messageToSend +=`\\• <#${channel_id}> \u0060(${channel_id})\u0060 \\➡ ${channel_topic}\n`;    
             });
         }
