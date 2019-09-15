@@ -106,7 +106,7 @@ const topicCounter = {
 
                     guild_settings.save()
                         .then(() => {
-                            updateCounter(client, guild.id);
+                            updateCounter(client, guild_settings);
 
                             //prepare success message
                             let channelsToMention = "";
@@ -199,7 +199,7 @@ const setTopic = {
                 channelsToCustomize.forEach(channel_id => guild_settings.unique_topics.set(channel_id, newTopic));
                 guild_settings.save()
                     .then(() => {
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                         let msgChannels = "";
                         channelsToCustomize.forEach((channel, i) => {
                             msgChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToCustomize.length-1) ? '.' : ','}`; 
@@ -217,7 +217,7 @@ const setTopic = {
                 guild_settings.topic = newTopic;
                 guild_settings.save()
                     .then(() => {
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                         channel.send(translation.commands.setTopic.success).catch(console.error);
                     })
                     .catch((e) => {
@@ -247,7 +247,7 @@ const removeTopic = {
                 });
                 guild_settings.save()
                     .then(() => {
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                         let stringMentionedChannels = "";
                         mentionedChannels.forEach((channel, i) => {
                             stringMentionedChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === mentionedChannels.length-1) ? '.' : ','}`;
@@ -262,7 +262,7 @@ const removeTopic = {
                 guild_settings.topic = "Members: {COUNT}";
                 guild_settings.save()
                     .then(() => {
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                         channel.send(translation.commands.removeTopic.success).catch(console.error);
                     })
                     .catch((e) => {
@@ -294,7 +294,7 @@ const setDigit = {
                 guild_settings.save()
                     .then(() => {
                         channel.send(translation.commands.setDigit.success).catch(console.error);
-                        updateCounter(client, guild.id);
+                        updateCounter(client, guild_settings);
                     })
                     .catch((e) => {
                         console.error(e);
@@ -318,7 +318,7 @@ const update = {
     run: ({ message, guild_settings, translation }) => {
         const { client, guild, channel, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            updateCounter(client, guild.id);
+            updateCounter(client, guild_settings, ["all"]);
             channel.send(translation.commands.update.success).catch(console.error);
         } else {
             channel.send(translation.common.error_no_admin).catch(console.error);

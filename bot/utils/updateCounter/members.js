@@ -1,2 +1,1 @@
-module.exports = (client, guild_id) => {
-}
+module.exports = (client, guildSettings) => {};
