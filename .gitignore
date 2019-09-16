@@ -68,3 +68,6 @@ dev/
 
 #macos stuff
 .DS_Store
+
+#webstorm stuff
+.idea
