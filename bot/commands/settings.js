@@ -9,13 +9,17 @@ const seeSettings = {
     run: ({ message, guild_settings, translation }) => {
         const { guild, channel } = message;
         const {
+            prefix_text,
             header_text,
             enabled_channel_name_counters_text,
+            misc_type,
             enabled_channel_topic_counters_text,
             main_topic_text,
             custom_topics_by_channel_text
         } = translation.commands.seeSettings.settings_message;
         const {
+            prefix,
+            lang,
             channelNameCounter,
             channelNameCounter_types,
             enabled_channels,
@@ -27,12 +31,16 @@ const seeSettings = {
         
         messageToSend += `${header_text} ${guild.name} \u0060(${guild.id})\u0060\n\n`;
         
+        //prefix and language
+
+        messageToSend += `${prefix_text} ${prefix}\n`;
+
         //channel name counters:
         if (channelNameCounter.size > 0) {
             messageToSend += `${enabled_channel_name_counters_text}\n`;
 
             channelNameCounter.forEach((channel_name, channel_id) => {
-                messageToSend += `\\• <#${channel_id}> \u0060(${channel_id})\u0060 \\➡ Type: \u0060${channelNameCounter_types.has(channel_id) ? channelNameCounter_types.get(channel_id) : "members"}\u0060 \n`;    
+                messageToSend += `\\• <#${channel_id}> \u0060(${channel_id})\u0060 \\➡ ${misc_type} \u0060${channelNameCounter_types.has(channel_id) ? channelNameCounter_types.get(channel_id) : "members"}\u0060 \n`;    
             });
             
             messageToSend += "\n";
@@ -75,9 +83,9 @@ const resetSettings = {
     indexZero: true, 
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, channel, member  } = message;
+        const { client, guild, channel, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            GuildModel.findOneAndRemove({ guild_id:message.guild.id })
+            GuildModel.findOneAndRemove({ guild_id: guild.id })
                 .then(() => { 
                 //leave empty all channel topics
                 guild_settings.enabled_channels.forEach(channel_id => {
@@ -103,7 +111,7 @@ const resetSettings = {
             })
             .catch(error => {
                 console.error(error);
-                message.channel.send(translation.common.error_db).catch(console.error);
+                channel.send(translation.common.error_db).catch(console.error);
             })
         } else {
             channel.send(translation.common.error_no_admin).catch(console.error)
@@ -114,10 +122,29 @@ const resetSettings = {
 //TODO
 const lang = {}
 
-//TODO
-const prefix = {}
+const prefix = {
+    name: "prefix",
+    variants: ["{PREFIX}prefix"],
+    allowedTypes: ["text"],
+    indexZero: true,
+    enabled: true,
+    run: ({ message, guild_settings, translation }) => {
+        const { channel, content } = message;
+        const args = content.split(/\s+/g);
+        guild_settings.prefix = args[1];
+        guild_settings
+            .save()
+            .then(() => {
+                channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", args[1])).catch(console.error);
+            })
+            .catch(error => {
+                console.error(error);
+                channel.send(translation.common.error_db).catch(console.error);
+            });
+    }
+};
 
-module.exports = { seeSettings, resetSettings };
+module.exports = { seeSettings, resetSettings, prefix };
 
 //I took this from https://jsperf.com/string-split-by-length/9
 String.prototype.splitSlice = function (len) {

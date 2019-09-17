@@ -47,11 +47,18 @@
             "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
             "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
         },
+        "prefix": {
+            "help_description": "Changes the bot prefix.\n\nUsage```{PREFIX}prefix [new prefix]```",
+            "success": "Prefix changed to: `{NEW_PREFIX}`"
+        },
         "seeSettings": {
             "help_description": "Shows all bot settings for this server.",
             "settings_message": {
+                "prefix_text": "Prefix:",
+                "lang_text": "Language: ",
                 "header_text": "Settings for guild:",
                 "enabled_channel_name_counters_text": "Channel Name Counters:",
+                "misc_type": "Type:",
                 "enabled_channel_topic_counters_text": "Channel Topic Counters:",
                 "main_topic_text": "Main topic for channels with a topic counter (used of those wihtout a custom one):",
                 "custom_topics_by_channel_text": "Custom topics by channel:"
