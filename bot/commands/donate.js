@@ -14,7 +14,7 @@ const donate = {
             .then((ex) => {
                 DonationModel.find()
                     .then(donators => {
-                        let embed = translation.commands.donate.embed_reply;
+                        let embed = Object.create(translation.commands.donate.embed_reply);
                         embed.url = embed.url.replace('{DONATION_URL}', donationUrl);
                         embed.title = embed.title.replace('{DONATION_URL}', donationUrl);
                         embed.fields = []
