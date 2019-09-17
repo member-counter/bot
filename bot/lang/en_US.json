@@ -7,7 +7,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}newChannelNameCounter [type] (custom channel name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}newChannelNameCounter [type] (custom channel name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}prefix\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -19,7 +19,7 @@
             }
         },
         "newChannelNameCounter": {
-            "help_description": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below, the second one is optional, and it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nAvailable types:\n-`members`\n-`users`\n-`bots`\n-`channels`\n-`roles`\n-`onlineusers`\n-`offlineusers`\n-`connectedusers` This one counts how many users are connected to a voice channel\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```",
+            "help_description": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below, the second one is optional, and it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nAvailable types:\n-`members`\n-`users` (this excludes bots)\n-`bots`\n-`channels`\n-`roles`\n-`onlineusers` (includes bots)\n-`offlineusers` (includes bots)\n-`connectedusers` This one counts how many users are connected in all the voice channels in this server\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```",
             "success": "Created successfully",
             "no_perms": "I need `Manage Channels` permission to create the channel.",
             "error_invalid_params": "Error: Invalid parameters, `more info: {PREFIX}help newChannelNameCounter`."
@@ -47,11 +47,18 @@
             "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
             "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
         },
+        "prefix": {
+            "help_description": "Changes the bot prefix.\n\nUsage```{PREFIX}prefix [new prefix]```",
+            "success": "Prefix changed to: `{NEW_PREFIX}`"
+        },
         "seeSettings": {
             "help_description": "Shows all bot settings for this server.",
             "settings_message": {
+                "prefix_text": "Prefix:",
+                "lang_text": "Language: ",
                 "header_text": "Settings for guild:",
                 "enabled_channel_name_counters_text": "Channel Name Counters:",
+                "misc_type": "Type:",
                 "enabled_channel_topic_counters_text": "Channel Topic Counters:",
                 "main_topic_text": "Main topic for channels with a topic counter (used of those wihtout a custom one):",
                 "custom_topics_by_channel_text": "Custom topics by channel:"
