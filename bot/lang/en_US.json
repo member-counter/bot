@@ -48,7 +48,7 @@
             "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
         },
         "prefix": {
-            "help_description": "Changes the bot prefix.\n\nUsage```{PREFIX}prefix [new prefix]```",
+            "help_description": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
             "success": "Prefix changed to: `{NEW_PREFIX}`"
         },
         "seeSettings": {
