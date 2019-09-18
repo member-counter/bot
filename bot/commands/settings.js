@@ -1,4 +1,5 @@
 const GuildModel = require("../../mongooseModels/GuildModel");
+const getLanguages = require("../utils/getLanguages");
 
 const seeSettings = {
     name: "seeSettings",
@@ -9,6 +10,7 @@ const seeSettings = {
     run: ({ message, guild_settings, translation }) => {
         const { guild, channel } = message;
         const {
+            lang_text,
             prefix_text,
             header_text,
             enabled_channel_name_counters_text,
@@ -34,6 +36,7 @@ const seeSettings = {
         //prefix and language
 
         messageToSend += `${prefix_text} ${prefix}\n`;
+        messageToSend += `${lang_text} \u0060${lang}\u0060 \\➡ ${translation.lang_name}\n`;
 
         //channel name counters:
         if (channelNameCounter.size > 0) {
@@ -120,7 +123,38 @@ const resetSettings = {
 }
 
 //TODO
-const lang = {}
+const lang = {
+    variants: ["{PREFIX}lang"],
+    allowedTypes: ["text"],
+    indexZero: true,
+    enabled: true,
+    run: async ({ message, guild_settings, translation }) => {
+        const { content, channel } = message;
+        const args = content.split(/\s+/);
+        const lang_code = args[1];
+        const languages = await getLanguages();
+        if (languages.has(lang_code)) {
+            guild_settings.lang = lang_code;
+            guild_settings
+                .save()
+                .then(() => {
+                    channel.send(languages.get(lang_code).commands.lang.success).catch(console.error);
+                })
+                .catch(error => {
+                    console.error(error);
+                    channel.send(translation.common.error_db).catch(console.error);
+                });
+        } else {
+            let messageToSend = translation.commands.lang.error_not_found + "\n";
+            messageToSend += "```fix\n"
+            languages.forEach((value, lang_code) => {
+                messageToSend += lang_code + " ➡ " + value.lang_name + "\n";
+            });
+            messageToSend += "```"
+            channel.send(messageToSend).catch(console.error);
+        }
+    }
+};
 
 const prefix = {
     name: "prefix",
@@ -144,7 +178,7 @@ const prefix = {
     }
 };
 
-module.exports = { seeSettings, resetSettings, prefix };
+module.exports = { seeSettings, resetSettings, prefix, lang };
 
 //I took this from https://jsperf.com/string-split-by-length/9
 String.prototype.splitSlice = function (len) {
