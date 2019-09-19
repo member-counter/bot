@@ -124,6 +124,7 @@ const resetSettings = {
 
 //TODO
 const lang = {
+    name: "lang",
     variants: ["{PREFIX}lang"],
     allowedTypes: ["text"],
     indexZero: true,
