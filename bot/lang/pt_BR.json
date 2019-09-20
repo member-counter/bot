@@ -34,14 +34,14 @@
             "help_description": "Personaliza os números que serão exibidos, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal com marcação.\n\nUso: ```{PREFIX}setDigit [número] [seu número personalizado]```\nExemplo: ```{PREFIX}setDigit 3 **3**```\nCom o exemplo anterior, cada 3 será mostrado em negrito **3**",
             "success": "Dígito personalizado.",
             "error_missing_params": "Erro: Parâmetros ausentes, `mais informações: {PREFIX}help setDigit`.",
-            "error_no_dbl_vote": "You have to vote here if you want to use custom emojis or custom animated emojis -> https://discordbots.org/bot/478567255198662656"
+            "error_no_dbl_vote": "Você precisa votar aqui se quiser usar emojis personalizados ou emojis animados personalizados. -> https://discordbots.org/bot/478567255198662656"
         },
         "setTopic": {
             "help_description": "Você pode personalizar o tópico com este comando, lembre-se de escrever `{COUNT}` onde quiser colocar o contador. Você também pode definir um tópico exclusivo para diferentes canais\n\nSe o primeiro argumento for mencionado no canal, o tópico fornecido será usado apenas nos canais mencionados, (lembre-se de mencionar os canais com ``#``).\n\n Exemplos:\n\nIsso definirá o tópico para esses canais sem um tópico específico definido```{PREFIX}setTopic Membros atuais: {COUNT}```\nIsso exibirá o tópico especificado apenas nos primeiros canais mencionados```{PREFIX}setTopic #general Membros atuais: {COUNT}\n{PREFIX}setTopic #general #other-channel Membros atuais: {COUNT}```",
             "success": "Tópico personalizado para todos os canais sem um personalizado.",
             "success_unique": "Tópico personalizado para os seguintes canais: {CHANNELS}",
             "no_topic": "Nenhum tópico foi fornecido, mais informações: `{PREFIX}help setTopic`.",
-            "error_no_dbl_vote": "You have to vote here if you want to use custom emojis or custom animated emojis -> https://discordbots.org/bot/478567255198662656"
+            "error_no_dbl_vote": "Você precisa votar aqui se quiser usar emojis personalizados ou emojis animados personalizados. -> https://discordbots.org/bot/478567255198662656"
         },
         "removeTopic": {
             "help_description": "Este comando remove os tópicos do canal que foram personalizados, aqui está uma lista de exemplos:\n\nRemove o tópico personalizado para canais sem tópico específico:```{PREFIX} removeTopic```\nRemova tópicos específicos que foi estabelecido mencionando os canais```{PREFIX}removeTopic #general #other-channel```",
@@ -64,7 +64,7 @@
                 "enabled_channel_topic_counters_text": "Contadores de tópicos do canal:",
                 "main_topic_text": "Tópico principal para canais com um contador de tópicos (uso daqueles sem um personalizado):",
                 "custom_topics_by_channel_text": "Tópicos personalizados por canal:",
-                "custom_numbers": "Custom numbers"
+                "custom_numbers": "Números personalizados:"
             }
         },
         "resetSettings": {
