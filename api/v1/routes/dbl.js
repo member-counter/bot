@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const UserModel = require("../../../mongooseModels/UserModel");
 const {
     DISCORD_CLIENT_ID,
     DISCORD_OFFICIAL_SERVER_ID,
@@ -16,6 +17,7 @@ router.post("/dbl", (req, res) => {
         webhook.bot === DISCORD_CLIENT_ID
     ) {
         console.log(`[MAIN] [API] User ${webhook.user} upvoted the bot!`);
+        UserModel.findOneAndUpdate({ user_id: webhook.user }, { voted_dbl: true }, { upsert: true }).exec().catch(console.error);
         req.DiscordShardManager.broadcastEval(`
             if (this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}") && this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}").members.get("${webhook.user}")) {
                 this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}")
