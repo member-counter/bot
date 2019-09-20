@@ -164,7 +164,7 @@ const setTopic = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member  } = message;
+        const { client, guild, channel, content, member, author  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             //remove
             UserModel.findOneAndUpdate({ user_id: author.id }, {}, { new: true, upsert: true })
