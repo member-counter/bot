@@ -63,7 +63,8 @@
                 "misc_type": "Type:",
                 "enabled_channel_topic_counters_text": "Channel Topic Counters:",
                 "main_topic_text": "Main topic for channels with a topic counter (used of those wihtout a custom one):",
-                "custom_topics_by_channel_text": "Custom topics by channel:"
+                "custom_topics_by_channel_text": "Custom topics by channel:",
+                "custom_numbers": "Custom numbers:"
             }
         },
         "resetSettings": {
