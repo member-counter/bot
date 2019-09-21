@@ -36,12 +36,14 @@ module.exports = (client, guildSettings) => {
                         .get(channel_id)
                         .setTopic(topicToSet)
                         .catch(e => {
-                            console.error(e);
                             //errors caused by permissions
-                            if (!(e.code === 50013 || e.code === 50001))
+                            if (e.code === 50013 || e.code === 50001)
                                 console.log(
-                                    `[Bot shard #${client.shard.id}] Tried to update ${guild.id}/${guild.name}'s counter, but I don't have the proper permissions.`
+                                    `[Bot shard #${client.shard.id}] I tried to update ${guild.id}/${guild.name}'s counter, but I don't have the proper permissions. Error code: ${e.code}`
                                 );
+                            else {
+                                console.error(e);
+                            }
                         });
                 }
             }

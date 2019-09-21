@@ -17,7 +17,7 @@ module.exports = (client, guildSettings) => {
                         .setName(nameToSet)
                         .catch(e => {
                             //errors caused by permissions
-                            if (!(e.code === 50013 || e.code === 50001))
+                            if (e.code === 50013 || e.code === 50001)
                                 console.log(
                                     `[Bot shard #${client.shard.id}] I tried to update ${guild.id}/${guild.name}'s counter, but I don't have the proper permissions. Error code: ${e.code}`
                                 );
