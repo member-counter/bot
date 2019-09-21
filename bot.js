@@ -14,10 +14,6 @@ client.login(process.env.DISCORD_TOKEN);
 client.updateCounter = updateCounter;
 eventHandler(client);
 
-client.guilds.forEach(guild => {
-    updateCounter(client, guild.id, ["all"]);
-});
-
 mongoose
     .connect(process.env.DB_URI, { useNewUrlParser: true })
     .then(() => {

@@ -1,8 +1,8 @@
 const updateCounter = require("../utils/updateCounter");
+const wait = require("../utils/wait");
 
 const TIME_BETWEEN_EVERY_UPDATE = 20 * 1000;
 const GuildsToUpdate = new Map();
-const wait = ms => new Promise((resolve)=>setTimeout(resolve, ms));
 
 module.exports = client => {
     client.on("presenceUpdate", (oldMember, newMember) => {
