@@ -2,15 +2,16 @@ const mongoose = require("mongoose");
 const Discord = require("discord.js");
 const dbl = require("dblapi.js");
 const eventHandler = require("./bot/utils/eventHandler.js");
+const updateCounter = require("./bot/utils/updateCounter");
 
 global.spawnedAt = new Date();
 
 const client = new Discord.Client({
-    disabledEvents: ["TYPING_START", "PRESENCE_UPDATE"]
+    disabledEvents: ["TYPING_START"]
 });
 
 client.login(process.env.DISCORD_TOKEN);
-client.updateCounter = require("./bot/utils/updateCounter");
+client.updateCounter = updateCounter;
 eventHandler(client);
 
 mongoose
