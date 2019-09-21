@@ -6,7 +6,7 @@ const eventHandler = require("./bot/utils/eventHandler.js");
 global.spawnedAt = new Date();
 
 const client = new Discord.Client({
-    disabledEvents: ["TYPING_START", "PRESENCE_UPDATE"]
+    disabledEvents: ["TYPING_START"]
 });
 
 client.login(process.env.DISCORD_TOKEN);
