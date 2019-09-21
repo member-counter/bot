@@ -7,7 +7,7 @@
             "help_description": "É realmente necessário explicar o propósito desse comando?",
             "embed_reply": {
                 "title": "Lista de Comandos | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (nome do comando)\n{PREFIX}newChannelNameCounter [tipo do contador] (nome do canal personalizado)\n{PREFIX}topicCounter [enable/disable] (#canais/all)\n{PREFIX}setTopic (#canais) [topic]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [seu número personalizado]\n{PREFIX}lang [código do idioma]\n{PREFIX}prefix\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}donate```\n **Informações:** `()` significa um parâmetro opcional, enquanto `[]` significa um parâmetro necessário.",
+                "description": "```css\n{PREFIX}help (nome do comando)\n{PREFIX}newChannelNameCounter [tipo do contador] (nome do canal personalizado)\n{PREFIX}topicCounter [enable/disable] (#canais/all)\n{PREFIX}setTopic (#canais) [topic]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [seu número personalizado]\n{PREFIX}lang [código do idioma]\n{PREFIX}prefix\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Informações:** `()` significa um parâmetro opcional, enquanto `[]` significa um parâmetro necessário.",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
