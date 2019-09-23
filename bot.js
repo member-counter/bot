@@ -7,7 +7,7 @@ const updateCounter = require("./bot/utils/updateCounter");
 global.spawnedAt = new Date();
 
 const client = new Discord.Client({
-    disabledEvents: ["TYPING_START"]
+    disabledEvents: ["TYPING_START", "PRESENCE_UPDATE"]
 });
 
 client.login(process.env.DISCORD_TOKEN);
