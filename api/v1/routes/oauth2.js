@@ -19,8 +19,8 @@ router.get("/oauth2", async (req, res) => {
             "Content-Type": "application/x-www-form-urlencoded"
         }
     })
-        .then(response => response.json())
-        .then(parsedResponse => res.json(parsedResponse))
+        .then(discordResponse => discordResponse.json())
+        .then(discordResponse => res.json(discordResponse))
         .catch(error => {
           console.error(error);
           res.json({ code: 500, message: "An error has occurred in the authorization process", error: error })
