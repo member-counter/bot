@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
             .then(response => {
                 const { status } = response;
                 if (status === 200) {
-                    return r.json();
+                    return response.json();
                 } else if (status === 401) {
                     res.json({ code: 401, message: "Bad token" });
                 } else {
