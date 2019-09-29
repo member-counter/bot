@@ -8,7 +8,7 @@ const donate = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, translation }) => {
         const { channel } = message;
         getExchange()
             .then((ex) => {
