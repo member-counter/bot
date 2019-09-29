@@ -10,7 +10,7 @@ const info = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, translation }) => {
         const embed = translation.commands.info.embed_reply;
         message.channel.send({ embed }).catch(console.error);
     }
