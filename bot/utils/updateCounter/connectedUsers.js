@@ -13,7 +13,8 @@ module.exports = (client, guildSettings) => {
             if (channel.type === "voice") count += channel.members.size;
         });
         channelNameCounter.forEach((channel_name, channel_id) => {
-            setChannelName({ client, guildSettings, channelId: channel_id, channelName: channel_name, count });
+            if (channelNameCounter_types.has(channel_id) && (channelNameCounter_types.get(channel_id) === "connectedusers"))
+                setChannelName({ client, guildSettings, channelId: channel_id, channelName: channel_name, count });
         });
     }
 };
