@@ -1,4 +1,4 @@
-const removeChannelFromDb = require("../removeChannelFromDb");
+const setChannelName = require("./functions/setChannelName");
 
 module.exports = (client, guildSettings) => {
     const {
@@ -39,7 +39,7 @@ module.exports = (client, guildSettings) => {
                         .get(channel_id)
                         .setTopic(topicToSet)
                         .catch(error => {
-                            removeChannelFromDb({ client, guildSettings, error, channel: channel_id, type: "topicCounter" });
+                            removeChannelFromDb({ client, guildSettings, error, channelId: channel_id, type: "topicCounter" });
                             console.error(error);
                         });
                 }
@@ -48,23 +48,11 @@ module.exports = (client, guildSettings) => {
 
         //channel name member count
         channelNameCounter.forEach((channel_name, channel_id) => {
-            const updateCounter = () => {
-                if (client.channels.has(channel_id)) {
-                    const nameToSet = channel_name.replace(/\{COUNT\}/gi, memberCount);
-                    client.channels
-                        .get(channel_id)
-                        .setName(nameToSet)
-                        .catch(error => {
-                            removeChannelFromDb({ client, guildSettings, error, channel: channel_id, type: "channelNameCounter" });
-                            console.error(error);
-                        });
-                }
-            }
             //some channels are supossed to be a member counter but they could not be inside channelNameCounter_types
             if (!channelNameCounter_types.has(channel_id)) {
-                updateCounter();
+                setChannelName({ client, guildSettings, channelId: channel_id, channelName: channel_name, count });
             } else if (channelNameCounter_types.get(channel_id) === "members") {
-                updateCounter();
+                setChannelName({ client, guildSettings, channelId: channel_id, channelName: channel_name, count });
             }
         });
     }
