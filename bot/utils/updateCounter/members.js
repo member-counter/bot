@@ -1,3 +1,5 @@
+const removeChannelFromDb = require("../removeChannelFromDb");
+
 module.exports = (client, guildSettings) => {
     const {
         guild_id,
@@ -8,6 +10,7 @@ module.exports = (client, guildSettings) => {
         channelNameCounter,
         channelNameCounter_types
     } = guildSettings;
+
     if (client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
         const guild = client.guilds.get(guild_id);
         const { memberCount } = guild;
@@ -35,15 +38,9 @@ module.exports = (client, guildSettings) => {
                     client.channels
                         .get(channel_id)
                         .setTopic(topicToSet)
-                        .catch(e => {
-                            //errors caused by permissions
-                            if (e.code === 50013 || e.code === 50001)
-                                console.log(
-                                    `[Bot shard #${client.shard.id}] I tried to update ${guild_id}'s counter, but I don't have the proper permissions. Error code: ${e.code}`
-                                );
-                            else {
-                                console.error(e);
-                            }
+                        .catch(error => {
+                            removeChannelFromDb({ client, guildSettings, error, channel: channel_id, type: "topicCounter" });
+                            console.error(error);
                         });
                 }
             }
@@ -57,15 +54,9 @@ module.exports = (client, guildSettings) => {
                     client.channels
                         .get(channel_id)
                         .setName(nameToSet)
-                        .catch(e => {
-                            //errors caused by permissions
-                            if (e.code === 50013 || e.code === 50001)
-                                console.log(
-                                    `[Bot shard #${client.shard.id}] I tried to update ${guild_id}'s counter, but I don't have the proper permissions. Error code: ${e.code}`
-                                );
-                            else {
-                                console.error(e);
-                            }
+                        .catch(error => {
+                            removeChannelFromDb({ client, guildSettings, error, channel: channel_id, type: "channelNameCounter" });
+                            console.error(error);
                         });
                 }
             }
