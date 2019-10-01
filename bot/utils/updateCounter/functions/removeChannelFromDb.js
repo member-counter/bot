@@ -5,7 +5,7 @@ module.exports = ({ client, channelId, type, guildSettings, error }) => {
         );
         switch (type) {
             case "topicCounter":
-                guildSettings.enabled_channels.filter(channel_id => channel_id !== channelId);
+                guildSettings.enabled_channels = guildSettings.enabled_channels.filter(channel_id => channel_id !== channelId);
                 break;
             case "channelNameCounter":
                 guildSettings.channelNameCounter.delete(channelId);
