@@ -9,7 +9,7 @@ module.exports = member => {
             $push: {
                 count_history: {
                     timestamp: new Date(),
-                    count: client.guilds.get(member.guild.id).memberCount
+                    count: member.guild.memberCount
                 }
             }
         },
