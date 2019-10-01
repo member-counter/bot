@@ -79,7 +79,7 @@
             "help_description": "List of useful links",
             "embed_reply": {
                 "thumbnail": {
-                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png"
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/2047fe79c33411a08937d39413ca77e7.png?size=128"
                 },
                 "color": 14503424,
                 "description": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)\n[Support server](https://discord.gg/g4MfV6N)\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations](https://paypal.me/eduardozgz)"
@@ -101,7 +101,7 @@
                     "text": "by eduardozgz#5695"
                 },
                 "thumbnail": {
-                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png?size=128"
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/2047fe79c33411a08937d39413ca77e7.png?size=512"
                 },
                 "fields": []
             },
