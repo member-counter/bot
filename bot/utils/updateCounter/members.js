@@ -1,4 +1,5 @@
 const setChannelName = require("./functions/setChannelName");
+const removeChannelFromDb = require("./functions/removeChannelFromDb");
 
 module.exports = (client, guildSettings) => {
     const {
