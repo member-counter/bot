@@ -50,11 +50,8 @@ module.exports = (client, guildSettings) => {
         //channel name member count
         channelNameCounter.forEach((channel_name, channel_id) => {
             //some channels are supossed to be a member counter but they could not be inside channelNameCounter_types
-            if (!channelNameCounter_types.has(channel_id)) {
-                setChannelName({ client, guildSettings, channelId: channel_id, channelName: channel_name, count });
-            } else if (channelNameCounter_types.get(channel_id) === "members") {
-                setChannelName({ client, guildSettings, channelId: channel_id, channelName: channel_name, count });
-            }
+            if (!channelNameCounter_types.has(channel_id) || channelNameCounter_types.get(channel_id) === "members")
+                setChannelName({ client, guildSettings, channelId: channel_id, channelName: channel_name, count: memberCount });
         });
     }
 };
