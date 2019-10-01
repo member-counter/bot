@@ -8,7 +8,7 @@ const donate = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, translation }) => {
         const { channel } = message;
         getExchange()
             .then((ex) => {
@@ -17,7 +17,7 @@ const donate = {
                         let embed = Object.create(translation.commands.donate.embed_reply);
                         embed.url = embed.url.replace('{DONATION_URL}', donationUrl);
                         embed.title = embed.title.replace('{DONATION_URL}', donationUrl);
-                        embed.fields = []
+                        embed.fields = [];
 
                         donators
                             .filter(donator => !donator.anonymous)
@@ -35,14 +35,20 @@ const donate = {
                                 field.name = `**${i+1}.** ${donator.user} - ${donator.amount} ${donator.currency}`;
                                 field.value = ( donator.note ) ?  donator.note : translation.commands.donate.misc.empty_note;
                                 embed.fields = [ ...embed.fields, field ]
-                            })
+                            });
 
                         channel.send({embed}).catch(console.error);
                     })
-                    .catch(e => channel.send(translation.commands.donate.common.error_db).catch(console.error))
+                    .catch(error => {
+                        console.log(error);
+                        channel.send(translation.commands.donate.common.error_db).catch(console.error)
+                    });
             })
-            .catch(e => channel.send(translation.commands.donate.misc.error_exchange_fetch).catch(console.error))
+            .catch(error => {
+                console.log(error);
+                channel.send(translation.commands.donate.misc.error_exchange_fetch).catch(console.error)
+            });
     }
-}
+};
 
 module.exports = { donate };

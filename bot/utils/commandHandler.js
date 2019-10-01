@@ -69,7 +69,7 @@ module.exports = async message => {
                 for (let ii = 0; ii < commandToCheck.variants.length; ii++) {
                     const commandVariant = commandToCheck.variants[ii].replace(/\{PREFIX\}/i, guild_settings.prefix).toLowerCase();
                     //check if the command must be at the start of the message or it can be anywhere
-                    if (commandToCheck.indexZero ? commandRequested.startsWith(commandVariant) : commandRequested.contains(commandVariant)) {
+                    if (commandToCheck.indexZero ? commandRequested.startsWith(commandVariant) : commandRequested.includes(commandVariant)) {
                         sendStats(commandToCheck.name);
                         //check if the command is enabled and supported for the channel type and then run it
                         if (commandToCheck.enabled) {
@@ -86,14 +86,6 @@ module.exports = async message => {
             }
         }
     }
-};
-
-String.prototype.startsWith = function(str) {
-    return this.indexOf(str) === 0;
-};
-
-String.prototype.contains = function(str) {
-    return this.indexOf(str) > -1;
 };
 
 const isTranslationAvailable = lang_code => {

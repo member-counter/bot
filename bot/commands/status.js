@@ -3,7 +3,7 @@ const { version } = require('../../package.json');
 
 const parseUptime = (inputDate) => {
     //inputDate must be in seconds
-    uptime = new Date(1970, 0, 1);
+    let uptime = new Date(1970, 0, 1);
     uptime.setSeconds(Math.floor(inputDate));
     return `${Math.floor(inputDate/60/60/24)} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`
 }
@@ -14,7 +14,7 @@ let status = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
-    run: async ({ message, guild_settings, translation }) => {
+    run: async ({ message }) => {
         const { client, channel } = message;
         const embed = {
             "color": 14503424,
