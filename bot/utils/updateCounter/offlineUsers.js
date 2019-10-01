@@ -11,7 +11,7 @@ module.exports = (client, guildSettings) => {
         const count = client.guilds.get(guild_id).members.filter(member => member.presence.status === "offline").size;
         channelNameCounter.forEach((channel_name, channel_id) => {
             if (channelNameCounter_types.has(channel_id) && (channelNameCounter_types.get(channel_id) === "offlineusers"))
-                setChannelName({ client, guildSettings, channelId: channel_id, channelName: channel_name, count });
+                setChannelName({ client, channelId: channel_id, channelName: channel_name, count });
         });
     }
 };

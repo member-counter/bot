@@ -1,5 +1,4 @@
 const setChannelName = require("./functions/setChannelName");
-const removeChannelFromDb = require("./functions/removeChannelFromDb");
 
 module.exports = (client, guildSettings) => {
     const {
@@ -39,10 +38,7 @@ module.exports = (client, guildSettings) => {
                     client.channels
                         .get(channel_id)
                         .setTopic(topicToSet)
-                        .catch(error => {
-                            removeChannelFromDb({ client, guildSettings, error, channelId: channel_id, type: "topicCounter" });
-                            console.error(error);
-                        });
+                        .catch(console.error);
                 }
             }
         });
@@ -51,7 +47,7 @@ module.exports = (client, guildSettings) => {
         channelNameCounter.forEach((channel_name, channel_id) => {
             //some channels are supossed to be a member counter but they could not be inside channelNameCounter_types
             if (!channelNameCounter_types.has(channel_id) || channelNameCounter_types.get(channel_id) === "members")
-                setChannelName({ client, guildSettings, channelId: channel_id, channelName: channel_name, count: memberCount });
+                setChannelName({ client, channelId: channel_id, channelName: channel_name, count: memberCount });
         });
     }
 };
