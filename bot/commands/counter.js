@@ -91,7 +91,7 @@ const topicCounter = {
             
             //analyze in which channels the user wants to enable or disable the topic counter
             let channelsToPerformAction = [];
-            if (content.toLowerCase().contains("all")) {
+            if (content.toLowerCase().includes("all")) {
                 channelsToPerformAction = guild.channels.filter(channel => channel.type === "text" || channel.type === "news").keyArray();
             } else if (mentions.channels.size > 0) {
                 channelsToPerformAction = mentions.channels.keyArray();
@@ -164,7 +164,7 @@ const setTopic = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member, author  } = message;
+        const { client, channel, content, member, author  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             //remove
             UserModel.findOneAndUpdate({ user_id: author.id }, {}, { new: true, upsert: true })
@@ -255,7 +255,7 @@ const removeTopic = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, member, mentions  } = message;
+        const { client, channel, member, mentions  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const mentionedChannels = mentions.channels.keyArray();
             if (mentionedChannels.length > 0) {
@@ -300,7 +300,7 @@ const setDigit = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member, author  } = message;
+        const { client, channel, content, member, author  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
         //remove
         UserModel.findOneAndUpdate({ user_id: author.id }, {}, { new: true, upsert: true })
@@ -349,7 +349,7 @@ const update = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, member  } = message;
+        const { client, channel, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             updateCounter(client, guild_settings, ["all"]);
             channel.send(translation.commands.update.success).catch(console.error);
@@ -360,7 +360,3 @@ const update = {
 }
 
 module.exports = { newChannelNameCounter, topicCounter, setTopic, removeTopic, setDigit, update };
-
-String.prototype.contains = function(str) {
-    return this.indexOf(str) > -1;
-};

@@ -1,6 +1,6 @@
 const updateCounter = require("../utils/updateCounter");
 
-const TIME_BETWEEN_EVERY_UPDATE = 1 * 1000;
+const TIME_BETWEEN_EVERY_UPDATE = 5 * 1000;
 const GuildsToUpdate = new Map();
 
 module.exports = client => {

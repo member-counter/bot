@@ -8,34 +8,10 @@ module.exports = client => {
             `[Bot shard #${client.shard.id}] Serving on ${client.guilds.size} servers, for ${client.users.size} users as ${client.user.tag}`
         );
 
-        client.user
-            .setPresence({
-                game: {
-                    name: `type ${process.env.DISCORD_PREFIX}help`,
-                    type: "PLAYING"
-                }
-            })
-            .then(() =>
-                console.log(
-                    `[Bot shard #${client.shard.id}] Presence updated successfully`
-                )
-            )
-            .catch(console.error);
-
+        setPresence(client);
+        
         setInterval(() => {
-            client.user
-                .setPresence({
-                    game: {
-                        name: `type ${process.env.DISCORD_PREFIX}help`,
-                        type: "PLAYING"
-                    }
-                })
-                .then(() =>
-                    console.log(
-                        `[Bot shard #${client.shard.id}] Presence updated successfully`
-                    )
-                )
-                .catch(console.error);
+            setPresence(client);
         }, 15 * 60 * 1000);
     });
 
@@ -47,4 +23,20 @@ module.exports = client => {
         });
     };
     updateCounters();
+};
+
+const setPresence = client => {
+    client.user
+        .setPresence({
+            game: {
+                name: `type ${process.env.DISCORD_PREFIX}help`,
+                type: "PLAYING"
+            }
+        })
+        .then(() =>
+            console.log(
+                `[Bot shard #${client.shard.id}] Presence updated successfully`
+            )
+        )
+        .catch(console.error);
 };

@@ -19,17 +19,7 @@ router.post("/process-donation/:transactionid", (req, res) => {
             if (transaction.status === "APPROVED") {
                 req.body.currency = transaction.purchase_units[0].amount.currency_code;
                 req.body.amount = transaction.purchase_units[0].amount.value;
-                new DonationModel({ _id: new mongoose.Types.ObjectId(), ...req.body })
-                    .save()
-                    .then(doc => {
-                        delete doc._id;
-                        delete doc.__v;
-                        res.json(doc);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        res.json({ code: 500, message: "DB error" });
-                    });
+                saveDonation(req, res);
             }
         })
         .catch(error => {
@@ -40,17 +30,7 @@ router.post("/process-donation/:transactionid", (req, res) => {
 
 router.post("/gen-donation", auth, (req, res) => {
     if (owners.includes(req.user.id)) {
-        new DonationModel({ _id: new mongoose.Types.ObjectId(), ...req.body })
-            .save()
-            .then(doc => {
-                delete doc._id;
-                delete doc.__v;
-                res.json(doc);
-            })
-            .catch(error => {
-                console.error(error);
-                res.json({ code: 500, message: "DB error" });
-            });
+        saveDonation(req, res);
     } else {
         res.json({ code: 401, message: "Not authorized" });
     }
@@ -85,3 +65,17 @@ router.get("/donators", (req, res) => {
 });
 
 module.exports = router;
+
+const saveDonation = (req, res) => {
+    new DonationModel({ _id: new mongoose.Types.ObjectId(), ...req.body })
+        .save()
+        .then(doc => {
+            delete doc._id;
+            delete doc.__v;
+            res.json(doc);
+        })
+        .catch(error => {
+            console.error(error);
+            res.json({ code: 500, message: "DB error" });
+        });
+};

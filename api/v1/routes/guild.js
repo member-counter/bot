@@ -3,7 +3,6 @@ const Discord = require("discord.js");
 const fetch = require("node-fetch");
 const auth = require("../middlewares/auth");
 const isAdmin = require("../middlewares/isAdmin");
-const GuildModel = require("../../../mongooseModels/GuildModel");
 const TrackModel = require("../../../mongooseModels/TrackModel");
 
 router.get("/guilds", auth, (req, res) => {

@@ -6,6 +6,8 @@ const command = {
     enabled: false,
     run: ({ message, guild_settings, translation }) => {
         message.channel.send("Hi!").catch(console.error);
+        console.log(guild_settings);
+        console.log(translation);
     }
 };
 
