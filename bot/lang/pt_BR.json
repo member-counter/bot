@@ -62,7 +62,7 @@
                 "enabled_channel_name_counters_text": "Contadores de nomes de canais:",
                 "misc_type": "Tipo:",
                 "enabled_channel_topic_counters_text": "Contadores de tópicos do canal:",
-                "main_topic_text": "Tópico principal para canais com um contador de tópicos (usado para aqueles sem um personalizado):",
+                "main_topic_text": "Tópico principal para canais com um contador de tópicos (usado para aqueles não personalizados):",
                 "custom_topics_by_channel_text": "Tópicos personalizados por canal:",
                 "custom_numbers": "Números personalizados:"
             }
