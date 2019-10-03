@@ -7,7 +7,7 @@ const regionRelation = {
 module.exports = client => {
     client.on("guildCreate", guild => {
         console.log(
-            `[Bot shard #${client.shard.id}] Joined guild ${guild.name} (${guild.id}), shard guilds-users: ${client.guilds.size}-${client.users.size}`
+            `[Bot shard #${client.shard.id}] Joined guild ${guild.name} (${guild.id})`
         );
 
         //set language for the guild based on its voice region
