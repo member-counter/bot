@@ -122,7 +122,6 @@ const resetSettings = {
     }
 }
 
-//TODO
 const lang = {
     name: "lang",
     variants: ["{PREFIX}lang"],
@@ -130,29 +129,31 @@ const lang = {
     indexZero: true,
     enabled: true,
     run: async ({ message, guild_settings, translation }) => {
-        const { content, channel } = message;
-        const args = content.split(/\s+/);
-        const lang_code = args[1];
-        const languages = await getLanguages();
-        if (languages.has(lang_code)) {
-            guild_settings.lang = lang_code;
-            guild_settings
-                .save()
-                .then(() => {
-                    channel.send(languages.get(lang_code).commands.lang.success).catch(console.error);
-                })
-                .catch(error => {
-                    console.error(error);
-                    channel.send(translation.common.error_db).catch(console.error);
+        if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
+            const { content, channel } = message;
+            const args = content.split(/\s+/);
+            const lang_code = args[1];
+            const languages = await getLanguages();
+            if (languages.has(lang_code)) {
+                guild_settings.lang = lang_code;
+                guild_settings
+                    .save()
+                    .then(() => {
+                        channel.send(languages.get(lang_code).commands.lang.success).catch(console.error);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        channel.send(translation.common.error_db).catch(console.error);
+                    });
+            } else {
+                let messageToSend = translation.commands.lang.error_not_found + "\n";
+                messageToSend += "```fix\n"
+                languages.forEach((value, lang_code) => {
+                    messageToSend += lang_code + " ➡ " + value.lang_name + "\n";
                 });
-        } else {
-            let messageToSend = translation.commands.lang.error_not_found + "\n";
-            messageToSend += "```fix\n"
-            languages.forEach((value, lang_code) => {
-                messageToSend += lang_code + " ➡ " + value.lang_name + "\n";
-            });
-            messageToSend += "```"
-            channel.send(messageToSend).catch(console.error);
+                messageToSend += "```"
+                channel.send(messageToSend).catch(console.error);
+            }
         }
     }
 };
@@ -164,18 +165,20 @@ const prefix = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { channel, content } = message;
-        const args = content.split(/\s+/g);
-        guild_settings.prefix = args[1] ? args[1] : guild_settings.prefix;
-        guild_settings
-            .save()
-            .then(() => {
-                channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", guild_settings.prefix)).catch(console.error);
-            })
-            .catch(error => {
-                console.error(error);
-                channel.send(translation.common.error_db).catch(console.error);
-            });
+        if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
+            const { channel, content } = message;
+            const args = content.split(/\s+/g);
+            guild_settings.prefix = args[1] ? args[1] : guild_settings.prefix;
+            guild_settings
+                .save()
+                .then(() => {
+                    channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", guild_settings.prefix)).catch(console.error);
+                })
+                .catch(error => {
+                    console.error(error);
+                    channel.send(translation.common.error_db).catch(console.error);
+                });
+        }
     }
 };
 
