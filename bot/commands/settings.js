@@ -166,11 +166,11 @@ const prefix = {
     run: ({ message, guild_settings, translation }) => {
         const { channel, content } = message;
         const args = content.split(/\s+/g);
-        guild_settings.prefix = args[1];
+        guild_settings.prefix = args[1] ? args[1] : guild_settings.prefix;
         guild_settings
             .save()
             .then(() => {
-                channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", args[1])).catch(console.error);
+                channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", guild_settings.prefix)).catch(console.error);
             })
             .catch(error => {
                 console.error(error);
