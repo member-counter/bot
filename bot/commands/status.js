@@ -58,7 +58,7 @@ let status = {
               },
               {
                 "name": "**Discord API latency:**",
-                "value": client.ping + "ms",
+                "value": Math.round(client.ping) + "ms",
                 "inline": true
               },
               {
