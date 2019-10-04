@@ -19,7 +19,7 @@ router.post("/dbl", (req, res) => {
         res.status(200);
         console.log(`[MAIN] [API] User ${webhook.user} upvoted the bot!`);
         UserModel.findOneAndUpdate({ user_id: webhook.user }, { voted_dbl: true }, { upsert: true }).exec().catch(console.error);
-        giveUpvoterRole(webhook.user);
+        giveUpvoterRole(webhook.user, req.DiscordShardManager);
     } else if (
         authorization === DBL_WH_SECRET &&
         webhook.type === "test" &&
@@ -30,15 +30,15 @@ router.post("/dbl", (req, res) => {
             `[MAIN] [API] DBL webhook test received: ${JSON.stringify(webhook)}`
         );
         if (owners.includes(webhook.user)) {
-            giveUpvoterRole(webhook.user);
+            giveUpvoterRole(webhook.user, req.DiscordShardManager);
         }
     } else res.status(401);
 });
 
 module.exports = router;
 
-const giveUpvoterRole = user => {
-    req.DiscordShardManager.broadcastEval(`
+const giveUpvoterRole = (user, DiscordShardManager) => {
+    DiscordShardManager.broadcastEval(`
         if (this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}") && this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}").members.get("${user}")) {
             this.guilds.get("${DISCORD_OFFICIAL_SERVER_ID}")
                 .members.get("${user}")
