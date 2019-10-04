@@ -14,15 +14,6 @@ module.exports = client => {
             setPresence(client);
         }, 15 * 60 * 1000);
     });
-
-    //update all the counters at startup
-    const updateCounters = async () => {
-        while (client.guilds.size === 0) await wait(5000);
-        client.guilds.forEach(guild => {
-            updateCounter(client, guild.id, ["all"]);
-        });
-    };
-    updateCounters();
 };
 
 const setPresence = client => {
