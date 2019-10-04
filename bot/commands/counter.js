@@ -56,7 +56,7 @@ const newChannelNameCounter = {
                         guild_settings.channelNameCounter_types.set(voiceChannel.id, type.toLowerCase());
                         guild_settings.save()
                             .then(() => {
-                                updateCounter(client, guild_settings);
+                                updateCounter(client, guild_settings, [type]);
                                 channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
                             })
                             .catch(error => {
