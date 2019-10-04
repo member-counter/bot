@@ -10,7 +10,7 @@ module.exports = client => {
         if (oldMember.presence.status !== newMember.presence.status) {
             if (!GuildsToUpdate.has(newMember.guild.id)) 
                 GuildsToUpdate.set(newMember.guild.id, setTimeout(() => {
-                    updateCounter(client, newMember.guild.id, ["onlineusers", "offlineusers"]);
+                    updateCounter(client, newMember.guild.id, ["members"]);
                     GuildsToUpdate.delete(newMember.guild.id);
                 }, TIME_BETWEEN_EVERY_UPDATE));
         }
