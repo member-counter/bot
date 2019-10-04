@@ -117,7 +117,8 @@
         },
         "commandHandler": {
             "invalid_channel": "Você não pode executar este comando em um {TYPE} canal"
-        }
+        },
+        "counter_types" : ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots"]
     },
     "common": {
         "error_db": "Erro no banco de dados, tente novamente mais tarde.",
