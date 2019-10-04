@@ -1,5 +1,3 @@
-const updateCounter = require("../utils/updateCounter");
-
 module.exports = client => {
     client.on("ready", () => {
         console.log(`[Bot shard #${client.shard.id}] Discord client ready`);
