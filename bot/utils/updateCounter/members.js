@@ -1,8 +1,8 @@
 const setChannelName = require("./functions/setChannelName");
-
+const removeChannelFromDB = require("./functions/removeChannelFromDB");
 const previousCounts = new Map();
 
-module.exports = (client, guildSettings) => {
+module.exports = (client, guildSettings, types = []) => {
     const {
         guild_id,
         enabled_channels,
@@ -12,6 +12,8 @@ module.exports = (client, guildSettings) => {
         channelNameCounter,
         channelNameCounter_types
     } = guildSettings;
+
+    if (types.includes("force")) previousCounts.delete(guild_id);
 
     if (client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
         const guild = client.guilds.get(guild_id);
@@ -47,41 +49,41 @@ module.exports = (client, guildSettings) => {
         channelNameCounter.forEach((channelName, channelId) => {
             switch (channelNameCounter_types.get(channelId)) {
                 case "users":
-                    if (previousCount.users !== users) setChannelName({ client, channelId, channelName, count: users });
+                    if (previousCount.users !== users) setChannelName({ client, channelId, channelName, count: users, guildSettings });
                     break;
 
                 case "bots":
-                    if (previousCount.bots !== bots) setChannelName({ client, channelId, channelName, count: bots });
+                    if (previousCount.bots !== bots) setChannelName({ client, channelId, channelName, count: bots, guildSettings });
                     break;
 
                 case "onlinemembers":
-                    if (previousCount.onlineMembers !== onlineMembers) setChannelName({ client, channelId, channelName, count: onlineMembers });
+                    if (previousCount.onlineMembers !== onlineMembers) setChannelName({ client, channelId, channelName, count: onlineMembers, guildSettings });
                     break;
 
                 case "onlineusers":
-                    if (previousCount.onlineUsers !== onlineUsers) setChannelName({ client, channelId, channelName, count: onlineUsers });
+                    if (previousCount.onlineUsers !== onlineUsers) setChannelName({ client, channelId, channelName, count: onlineUsers, guildSettings });
                     break;
 
                 case "onlinebots":
-                    if (previousCount.onlineBots !== onlineBots) setChannelName({ client, channelId, channelName, count: onlineBots });
+                    if (previousCount.onlineBots !== onlineBots) setChannelName({ client, channelId, channelName, count: onlineBots, guildSettings });
                     break;
 
                 case "offlinemembers":
-                    if (previousCount.offlineMembers !== offlineMembers) setChannelName({ client, channelId, channelName, count: offlineMembers });
+                    if (previousCount.offlineMembers !== offlineMembers) setChannelName({ client, channelId, channelName, count: offlineMembers, guildSettings });
                     break;
 
                 case "offlineusers":
-                    if (previousCount.offlineUsers !== offlineUsers) setChannelName({ client, channelId, channelName, count: offlineUsers });
+                    if (previousCount.offlineUsers !== offlineUsers) setChannelName({ client, channelId, channelName, count: offlineUsers, guildSettings });
                     break;
                 
                 case "offlinebots":
-                    if (previousCount.offlineBots !== offlineBots) setChannelName({ client, channelId, channelName, count: offlineBots });
+                    if (previousCount.offlineBots !== offlineBots) setChannelName({ client, channelId, channelName, count: offlineBots, guildSettings });
                     break;
 
                 case "members":
                 case undefined:
                     //some channels are supossed to be a member counter but they may not be inside channelNameCounter_types
-                    if (previousCount.members !== members) setChannelName({ client, channelId, channelName, count: members });
+                    if (previousCount.members !== members) setChannelName({ client, channelId, channelName, count: members, guildSettings });
                     break;
             }
         });
@@ -114,7 +116,10 @@ module.exports = (client, guildSettings) => {
                         client.channels
                             .get(channelId)
                             .setTopic(topicToSet)
-                            .catch(console.error);
+                            .catch(error => {
+                                removeChannelFromDB({ client, guildSettings, error, channelId, type: "topicCounter" });
+                                console.error(error);
+                            });
                     }
                 }
             });
