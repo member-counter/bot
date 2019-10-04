@@ -129,8 +129,8 @@ const lang = {
     indexZero: true,
     enabled: true,
     run: async ({ message, guild_settings, translation }) => {
+        const { content, channel, member } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            const { content, channel } = message;
             const args = content.split(/\s+/);
             const lang_code = args[1];
             const languages = await getLanguages();
@@ -165,8 +165,8 @@ const prefix = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
+        const { channel, content, member } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            const { channel, content } = message;
             const args = content.split(/\s+/g);
             guild_settings.prefix = args[1] ? args[1] : guild_settings.prefix;
             guild_settings
