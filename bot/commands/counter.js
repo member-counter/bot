@@ -14,7 +14,7 @@ const newChannelNameCounter = {
             const args = content.split(/\s+/);
             const type = args[1];
             //used to set a channel name if there is not specified a one
-            const availableCounterTypesString = ["Members", "Users", "Bots", "Roles", "Channels", "Online users", "Connected users", "Offline users"];
+            const availableCounterTypesString = translation.functions.counter_types;
             //used for comparation and configuration
             const availableCounterTypes = availableCounterTypesString.map(str => str.replace(/\s+/g, "").toLowerCase());
 
@@ -32,7 +32,7 @@ const newChannelNameCounter = {
                 channelName = channelName.slice(1);
 
                 let indexOfTypeInTheList = availableCounterTypes.findIndex(item => item === type.toLowerCase());
-                channelName = channelName.length === 0 ? `${availableCounterTypesString[indexOfTypeInTheList]}: {COUNT}` : channelName.join(" ");
+                channelName = channelName.length === 0 ? `{COUNT} ${availableCounterTypesString[indexOfTypeInTheList]}` : channelName.join(" ");
     
                 guild
                     .createChannel(
@@ -56,7 +56,7 @@ const newChannelNameCounter = {
                         guild_settings.channelNameCounter_types.set(voiceChannel.id, type.toLowerCase());
                         guild_settings.save()
                             .then(() => {
-                                updateCounter(client, guild_settings, [type, "channels"]);
+                                updateCounter(client, guild_settings);
                                 channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
                             })
                             .catch(error => {

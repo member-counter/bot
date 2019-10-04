@@ -1,21 +1,13 @@
 const GuildModel = require("../../mongooseModels/GuildModel");
 const updateMembersCounter = require("./updateCounter/members");
-const updateUsersCounter = require("./updateCounter/users");
-const updateBotsCounter = require("./updateCounter/bots");
 const updateRolesCounter = require("./updateCounter/roles");
 const updateChannelsCounter = require("./updateCounter/channels");
-const updateOnlineUsersCounter = require("./updateCounter/onlineUsers");
-const updateOfflineUsers = require("./updateCounter/offlineUsers");
 const updateConnectedUsers = require("./updateCounter/connectedUsers");
 
 const counters = {
     members: updateMembersCounter,
-    users: updateUsersCounter,
-    bots: updateBotsCounter,
     roles: updateRolesCounter,
     channels: updateChannelsCounter,
-    onlineusers: updateOnlineUsersCounter,
-    offlineusers: updateOfflineUsers,
     connectedusers: updateConnectedUsers
 };
 

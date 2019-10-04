@@ -1,6 +1,6 @@
 {
-    "lang_code": "en_US",
-    "lang_name": "English (US)",
+    "lang_code": "es_ES",
+    "lang_name": "Español (ES) //TODO",
     "authors": ["343884247263608832"],
     "commands": {
         "help": {
