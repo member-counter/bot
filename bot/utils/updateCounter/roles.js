@@ -12,7 +12,7 @@ module.exports = (client, guildSettings) => {
         
         channelNameCounter.forEach((channel_name, channel_id) => {
             if (channelNameCounter_types.has(channel_id) && (channelNameCounter_types.get(channel_id) === "roles"))
-                setChannelName({ client, channelId: channel_id, channelName: channel_name, count });
+                setChannelName({ client, channelId: channel_id, channelName: channel_name, count, guildSettings });
         });
     }
 };

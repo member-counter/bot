@@ -23,11 +23,11 @@ module.exports = async (client, guild, types = ["members"]) => {
     if (typeof guild === "object") {
         if (types === "all" || types.includes("all")) {
             Object.entries(counters).forEach(counter => {
-                counter[1](client, guild);
+                counter[1](client, guild, types);
             });
         } else {
             types.forEach(type => {
-                if (counters[type]) counters[type](client, guild);
+                if (counters[type]) counters[type](client, guild, types);
             });
         }
     }
