@@ -1,0 +1,125 @@
+{
+    "lang_code": "es_ES",
+    "lang_name": "Español (ES)",
+    "authors": ["343884247263608832"],
+    "commands": {
+        "help": {
+            "help_description": "¿Es realmente necesario explicar el propósito de este comando?",
+            "embed_reply": {
+                "title": "Lista de comandos | prefijo: {PREFIX}",
+                "description": "```css\n{PREFIX}help (nombre del comando)\n{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)\n{PREFIX}topicCounter [enable/disable] (#canales/all)\n{PREFIX}setTopic (#canales) [tema]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio.",
+                "color": 14503424,
+                "footer": {
+                    "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
+                    "text": "by eduardozgz#5695"
+                }
+            },
+            "misc": {
+                "command": "Comando:"
+            }
+        },
+        "newChannelNameCounter": {
+            "help_description": "Crea un canal que tiene un contador en su nombre.\nUso: ```{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)```\nEl primer parámetro debe ser uno de la lista de abajo.\n\nTipos disponibles:\n-`members`\n-`users`\n-`bots`\n-`onlinemembers`\n-`onlineusers`\n-`onlinebots`\n-`offlinemembers`\n-`offlineusers`\n-`offlinebots`\n-`channels`\n-`roles`\n-`connectedusers` (Este ultimo cuenta cuantos usuarios hay en total conectados a un canal de voz en este servidor)\n\n El segundo paremetro es opcional, sirve para poner un nombre personalizado en el canal, recuerda escribir `{COUNT}` donde quieras colocar el contador.\n\nContador que cuenta miembros:```{PREFIX}newChannelNameCounter members```\n El mismo pero con un nombre personalizado:```{PREFIX}newChannelNameCounter members Miembros: {COUNT}```",
+            "success": "Creado correctamente.",
+            "no_perms": "Necesito el permiso `Gestionar canales` para crear el canal.",
+            "error_invalid_params": "Error: Parámetros no validos, `más info: {PREFIX}help newChannelNameCounter`."
+        },
+        "topicCounter": {
+            "help_description": "Uso:```css\n{PREFIX}topicCounter [enable/disable] (#canales/all)```\nEste comando muestra en tiempo real dentro de un tema de canal cuantos miembros tiene el servidor.\n\nEjemplos:\n```css\n{PREFIX}topicCounter enable\n{PREFIX}topicCounter enable #general\n{PREFIX}topicCounter enable #general #otro-canal\n{PREFIX}topicCounter disable all```\n**!**  Si no mencionas ningún canal como en el primer ejemplo, el contador se habilitara en el canal donde se haya enviado el comando.\n **!**  Cuando mencionas el canal el nombre debe ser exactamente el mismo, y debe empezar con `#`, te recomiendo que te ayudes del auto completar de discord",
+            "success_enable": "El contador ha sido habilitado en {CHANNELS}",
+            "success_disable": "El contador ha sido deshabilitado en {CHANNELS}",
+            "error_invalid_params": "Parámetros incorrectos, más info: `{PREFIX}!help topicCounter`."
+        },
+        "setDigit": {
+            "help_description": "Personaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\n\nUso: ```{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
+            "success": "Número personalizado correctamente.",
+            "error_missing_params": "Error: Faltan parámetros, `más info: {PREFIX}help setDigit`.",
+            "error_no_dbl_vote": "Tienes que votar aquí si quieres usar emojis personalizados -> https://discordbots.org/bot/478567255198662656"
+        },
+        "setTopic": {
+            "help_description": "Puedes cambiar el tema de canal con este comando, recuerda escribir `{COUNT}` donde quieras colocar el contador. También puedes poner un tema especifico por canal\n\nSi el primer parámetro son menciones de canal, el tema que especifiques después solo sera usado en los canales que hayas mencionado, (recuerda mencionar canales con ``#``).\n\n Ejemplos:\n\nEste especificara el tema para todos los canales sin uno especifico```{PREFIX}setTopic Miembros actuales: {COUNT}```\nEste establecerá el tema concretado en solo en los primeros canales que hayas especificado```{PREFIX}setTopic #general Miembros actuales: {COUNT}\n{PREFIX}setTopic #general #otro-canal Miembros actuales: {COUNT}```",
+            "success": "Tema establecido para todos los canales sin uno personalizado.",
+            "success_unique": "Tema establecido para los siguientes canales: {CHANNELS}",
+            "no_topic": "Ningún tema fue proporcionado, más info: `{PREFIX}help setTopic`.",
+            "error_no_dbl_vote": "Tienes que votar aquí si quieres usar emojis personalizados -> https://discordbots.org/bot/478567255198662656"
+        },
+        "removeTopic": {
+            "help_description": "Este comando borra y restablece los temas de los canales especificados, aquí hay una lista de ejemplos:\n\nRestablece el tema personalizado para aquellos sin uno especifico por canal:```{PREFIX}removeTopic```\nBorra los temas personalizados por canal y se usara el tema principal```{PREFIX}removeTopic #general #otro-canal```",
+            "success": "Tema principal restablecido.",
+            "success_unique": "Temas personalizado por canal restablecido en los canales: {CHANNELS}",
+            "error_missing_params": "Error: Faltan parámetros, más info: `{PREFIX}help removeTopic`."
+        },
+        "prefix": {
+            "help_description": "Cambia el prefijo del bot.\n\nUso:```{PREFIX}prefix [nuevo prefijo]```",
+            "success": "Prefijo cambiado a: `{NEW_PREFIX}`"
+        },
+        "seeSettings": {
+            "help_description": "Muestra todos los ajustes del bot para este servidor.",
+            "settings_message": {
+                "prefix_text": "Prefijo:",
+                "lang_text": "Idioma: ",
+                "header_text": "Ajustes para el servidor:",
+                "enabled_channel_name_counters_text": "Contadores en nombre de canal:",
+                "misc_type": "Tipo:",
+                "enabled_channel_topic_counters_text": "Contadores en tema de canal:",
+                "main_topic_text": "Tema principal para canales con un contador habilitado (para aquellos que no tienen uno personalizado):",
+                "custom_topics_by_channel_text": "Temas personalizados por canal:",
+                "custom_numbers": "Números personalizados:"
+            }
+        },
+        "resetSettings": {
+            "help_description": "Restablece los ajustes del bot para este servidor a los de por defecto.",
+            "done": "Restablecido a los ajustes por defecto"
+        },
+        "update": {
+            "help_description": "Si crees que algún contador esta atascado, usa este comando para forzar su actualización.",
+            "success": "Actualizando el contador en todos los canales habilitados, esto podría tomar un tiempo."
+        },
+        "info": {
+            "help_description": "Lista de enlaces útiles",
+            "embed_reply": {
+                "thumbnail": {
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/2047fe79c33411a08937d39413ca77e7.png?size=128"
+                },
+                "color": 14503424,
+                "description": "[Añademe a tu servidor](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)\n[Servidor de ayuda](https://discord.gg/g4MfV6N)\n[Repositorio de GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Donaciones](https://paypal.me/eduardozgz)"
+            }
+        },
+        "lang": {
+            "help_description": "Cambia el idioma de este servidor, debes ser administrador para ejecutar este comando.",
+            "success": "El idioma se cambio correctamente.",
+            "error_not_found": "No encontré ese idioma, prueba uno de los siguientes:"
+        },
+        "donate": {
+            "help_description": "Muestra las mayores donaciones.",
+            "embed_reply": {
+                "title": "Disfrutando de mi bot? Doname! Cualquier cantidad sera bien recibida: {DONATION_URL}",
+                "url": "{DONATION_URL}",
+                "color": 14503424,
+                "footer": {
+                    "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
+                    "text": "by eduardozgz#5695"
+                },
+                "thumbnail": {
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/2047fe79c33411a08937d39413ca77e7.png?size=512"
+                },
+                "fields": []
+            },
+            "misc": {
+                "empty_note": "Nota vaciá"
+            },
+            "error_exchange_fetch": "Error mientras intentaba obtener los cambios de divisa."
+        }
+    },
+    "functions": {
+        "commandHandler": {
+            "invalid_channel": "No puedes ejecutar este comando en un canal {TYPE}"
+        },
+        "counter_types" : ["Miembros", "Usuarios", "Bots", "Roles", "Canales", "Usuarios conectados", "Miembros online", "Usuarios online", "Bots online", "Miembros offline", "Usuarios offline", "Bots offline"]
+    },
+    "common": {
+        "error_db": "Error en la base de datos, prueba de nuevo mas tarde.",
+        "error_unknown": "Algo fue mal, prueba de nuevo mas tarde.",
+        "error_no_admin": "Solo miembros con permisos de administrador en este canal pueden usar este comando."
+    }
+}
