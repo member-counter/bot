@@ -31,8 +31,9 @@
             "error_invalid_params": "Parámetros incorrectos, más info: `{PREFIX}!help topicCounter`."
         },
         "setDigit": {
-            "help_description": "Personaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\n\nUso: ```{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
+            "help_description": "Personaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
             "success": "Número personalizado correctamente.",
+            "reset_success": "Todos los numeros han sido reestablecidos",
             "error_missing_params": "Error: Faltan parámetros, `más info: {PREFIX}help setDigit`.",
             "error_no_dbl_vote": "Tienes que votar aquí si quieres usar emojis personalizados -> https://discordbots.org/bot/478567255198662656"
         },
@@ -64,7 +65,7 @@
                 "enabled_channel_topic_counters_text": "Contadores en tema de canal:",
                 "main_topic_text": "Tema principal para canales con un contador habilitado (para aquellos que no tienen uno personalizado):",
                 "custom_topics_by_channel_text": "Temas personalizados por canal:",
-                "custom_numbers": "Números personalizados:"
+                "custom_numbers_text": "Números personalizados:"
             }
         },
         "resetSettings": {
