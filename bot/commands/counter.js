@@ -309,22 +309,35 @@ const setDigit = {
 
         //remove end
                     const args = content.split(/\s+/);
-                    if (args.length >= 3) {    
-                        const digitToUpdate = args[1].slice(0, 1);
-                        const newDigitValue = args[2];
-    
-                        guild_settings.custom_numbers[digitToUpdate] = newDigitValue
+                    if (args[1] === "reset") {
+                        guild_settings.custom_numbers = {};
                         guild_settings.save()
-                            .then(() => {
-                                channel.send(translation.commands.setDigit.success).catch(console.error);
-                                updateCounter(client, guild_settings, ["members", "force"]);
-                            })
-                            .catch((e) => {
-                                console.error(e);
-                                channel.send(translation.common.error_db).catch(console.error);
-                            });
+                                .then(() => {
+                                    channel.send(translation.commands.setDigit.reset_success).catch(console.error);
+                                    updateCounter(client, guild_settings, ["members", "force"]);
+                                })
+                                .catch((e) => {
+                                    console.error(e);
+                                    channel.send(translation.common.error_db).catch(console.error);
+                                });
                     } else {
-                        channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error)
+                        if (args.length >= 3) {    
+                            const digitToUpdate = args[1].slice(0, 1);
+                            const newDigitValue = args[2];
+        
+                            guild_settings.custom_numbers[digitToUpdate] = newDigitValue
+                            guild_settings.save()
+                                .then(() => {
+                                    channel.send(translation.commands.setDigit.success).catch(console.error);
+                                    updateCounter(client, guild_settings, ["members", "force"]);
+                                })
+                                .catch((e) => {
+                                    console.error(e);
+                                    channel.send(translation.common.error_db).catch(console.error);
+                                });
+                        } else {
+                            channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error)
+                        }
                     }
             //remove
                 } else {
