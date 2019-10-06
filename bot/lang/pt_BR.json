@@ -31,9 +31,9 @@
             "error_invalid_params": "Parâmetros inválidos, veja `{PREFIX}!help topicCounter`."
         },
         "setDigit": {
-            "help_description": "Personaliza os números que serão exibidos, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal com marcação.\nIf the first argument is the word \"reset\", the numbers will be resotered to the default ones.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número personalizado]```\nExemplo: ```{PREFIX}setDigit 3 **3**```\nCom o exemplo anterior, cada 3 será mostrado em negrito **3**",
+            "help_description": "Personaliza os números que serão exibidos, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal com marcação.\nSe o primeiro argumento é a palavra \"reset\", os números serão redefinidos para os números padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número personalizado]```\nExemplo: ```{PREFIX}setDigit 3 **3**```\nCom o exemplo anterior, cada 3 será mostrado em negrito **3**",
             "success": "Dígito personalizado.",
-            "reset_success": "Numbers restored to the default ones.",
+            "reset_success": "Números restaurados para o padrão.",
             "error_missing_params": "Erro: Parâmetros ausentes, `mais informações: {PREFIX}help setDigit`.",
             "error_no_dbl_vote": "Você precisa votar aqui se quiser usar emojis personalizados ou emojis animados personalizados. -> https://discordbots.org/bot/478567255198662656"
         },
@@ -116,7 +116,7 @@
         "commandHandler": {
             "invalid_channel": "Você não pode executar este comando em um {TYPE} canal"
         },
-        "counter_types" : ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots"]
+        "counter_types" : ["Membros", "Usuários", "Bots", "Funções", "Canais", "Usuários conectados", "Membros online", "Usuário online", "Bots online", "Membros offline", "Usuários offline", "Bots offline"]
     },
     "common": {
         "error_db": "Erro no banco de dados, tente novamente mais tarde.",
