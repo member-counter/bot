@@ -2,12 +2,17 @@ const os = require('os');
 const { version } = require('../../package.json');
 const getTotalGuildsAndMembers = require("../utils/getTotalGuildsAndMembers");
 
+const toGB = (bytes) => {
+  //TODO
+  return (bytes/1024/1024/1024).toPrecision(2) + "GB"
+};
+
 const parseUptime = (inputDate) => {
     //inputDate must be in seconds
     let uptime = new Date(1970, 0, 1);
     uptime.setSeconds(Math.floor(inputDate));
     return `${Math.floor(inputDate/60/60/24)} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`
-}
+};
 
 let status = {
     name: "status",
@@ -41,19 +46,35 @@ let status = {
                 "name": "**System uptime:**",
                 "value": parseUptime(os.uptime()),
                 "inline": true
-              },              {
-                "name": "**Load avg (1m/5m/15m): **",
-                "value": `${(loadavg1 * 100).toPrecision(2)}% - ${(loadavg5 * 100).toPrecision(2)}% - ${(loadavg15 * 100).toPrecision(2)}%`,
+              },
+              {
+                "name": "**Shards:**",
+                "value": client.shard.count,
                 "inline": true
               },
               {
-                "name": "**Total users:**",
+                "name": "**Users:**",
                 "value": totalMembers,
                 "inline": true
               },
               {
-                "name": "**Total guilds:**",
+                "name": "**Guilds:**",
                 "value": totalGuilds,
+                "inline": true
+              },
+              {
+                "name": "**Cores:**",
+                "value": `${os.cpus().length}`,
+                "inline": true
+              },
+              {
+                "name": "**Load avg (1m/5m/15m): **",
+                "value": `${~~(100 * loadavg1)}% - ${~~(100 * loadavg5)}% - ${~~(100 * loadavg15)}%`,
+                "inline": true
+              },
+              {
+                "name": "**Memory usage:**",
+                "value": `${toGB(os.totalmem() - os.freemem())} of ${toGB(os.totalmem())} (${((os.totalmem() - os.freemem()) * 100 / os.totalmem()).toPrecision(2)}%)`,
                 "inline": true
               },
               {
@@ -64,18 +85,13 @@ let status = {
               {
                 "name": "**Bot latency:**",
                 "value": "Wait...",
-                "inline": true
-              },
-              {
-                "name": "**Total shards:**",
-                "value": client.shard.count,
-                "inline": true
+                "inline": false
               }
             ]
           };
           channel.send({ embed }).then(message => {
             //Bot latency field
-            embed.fields[7].value = `${Date.now() - message.createdAt}ms`;
+            embed.fields[10].value = `${Date.now() - message.createdAt}ms`;
             message.edit({ embed }).catch(console.error)
           }).catch(console.error);
     }
