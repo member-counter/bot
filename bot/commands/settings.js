@@ -75,7 +75,7 @@ const seeSettings = {
         }
 
         //numbers
-        messageToSend += `\n${custom_numbers_text} <a:0G:469275067969306634> \n`;
+        messageToSend += `\n${custom_numbers_text}\n`;
 
         Object.entries(custom_numbers.toObject()).forEach((number, i) => {
             messageToSend +=`${i} \\➡ ${number[1]}\n`;
