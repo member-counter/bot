@@ -14,7 +14,6 @@ module.exports = ({ client, channelId, type, guildSettings, error }) => {
                 guildSettings.channelNameCounter_types.delete(channelId);
                 break;
         }
-        console.log(type)
         guildSettings
             .save()
             .then(() =>
