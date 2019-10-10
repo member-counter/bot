@@ -12,7 +12,7 @@ const manager = new Discord.ShardingManager("./bot.js", {
     token: process.env.DISCORD_TOKEN
 });
 
-manager.spawn();
+manager.spawn().catch(console.error);
 manager.on("launch", shard => {
     console.log(`[Main] [Shard Manager] Launched shard #${shard.id}`);
 });
