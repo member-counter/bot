@@ -22,7 +22,7 @@ let status = {
     enabled: true,
     run: async ({ message }) => {
         const { client, channel } = message;
-        const { totalMembers, totalGuilds } = await getTotalGuildsAndMembers(client);
+        const { totalGuilds, totalCachedUsers } = await getTotalGuildsAndMembers(client);
         const [ loadavg1, loadavg5, loadavg15 ] = os.loadavg();
         const embed = {
             "color": 14503424,
@@ -53,17 +53,27 @@ let status = {
                 "inline": true
               },
               {
-                "name": "**Users:**",
-                "value": totalMembers,
-                "inline": true
-              },
-              {
                 "name": "**Guilds:**",
                 "value": totalGuilds,
                 "inline": true
               },
               {
-                "name": "**Cores:**",
+                "name": "**Shard guilds:**",
+                "value": client.guilds.size,
+                "inline": true
+              },
+              {
+                "name": "**Users:**",
+                "value": totalCachedUsers,
+                "inline": true
+              },
+              {
+                "name": "**Shard users:**",
+                "value": client.users.size,
+                "inline": true
+              },
+              {
+                "name": "**Server cores:**",
                 "value": `${os.cpus().length}`,
                 "inline": true
               },
@@ -91,7 +101,7 @@ let status = {
           };
           channel.send({ embed }).then(message => {
             //Bot latency field
-            embed.fields[10].value = `${Date.now() - message.createdAt}ms`;
+            embed.fields[12].value = `${Date.now() - message.createdAt}ms`;
             message.edit({ embed }).catch(console.error)
           }).catch(console.error);
     }
