@@ -17,7 +17,8 @@ const seeSettings = {
             misc_type,
             enabled_channel_topic_counters_text,
             main_topic_text,
-            custom_topics_by_channel_text
+            custom_topics_by_channel_text,
+            custom_numbers_text
         } = translation.commands.seeSettings.settings_message;
         const {
             prefix,
@@ -26,24 +27,25 @@ const seeSettings = {
             channelNameCounter_types,
             enabled_channels,
             unique_topics,
-            topic
+            topic,
+            custom_numbers
         } = guild_settings;
 
         let messageToSend = "";
         
-        messageToSend += `${header_text} ${guild.name} \u0060(${guild.id})\u0060\n\n`;
+        messageToSend += `${header_text} ${guild.name} \`(${guild.id})\`\n\n`;
         
         //prefix and language
 
         messageToSend += `${prefix_text} ${prefix}\n`;
-        messageToSend += `${lang_text} \u0060${lang}\u0060 \\➡ ${translation.lang_name}\n`;
+        messageToSend += `${lang_text} \`${lang}\` \\➡ ${translation.lang_name}\n`;
 
         //channel name counters:
         if (channelNameCounter.size > 0) {
             messageToSend += `${enabled_channel_name_counters_text}\n`;
 
             channelNameCounter.forEach((channel_name, channel_id) => {
-                messageToSend += `\\• <#${channel_id}> \u0060(${channel_id})\u0060 \\➡ ${misc_type} \u0060${channelNameCounter_types.has(channel_id) ? channelNameCounter_types.get(channel_id) : "members"}\u0060 \n`;    
+                messageToSend += `\\• <#${channel_id}> \`(${channel_id})\` \\➡ ${misc_type} \`${channelNameCounter_types.has(channel_id) ? channelNameCounter_types.get(channel_id) : "members"}\` \n`;    
             });
             
             messageToSend += "\n";
@@ -54,23 +56,30 @@ const seeSettings = {
             messageToSend += `${enabled_channel_topic_counters_text}\n`;
 
             enabled_channels.forEach((channel_id) => {
-                messageToSend +=`\\• <#${channel_id}> \u0060(${channel_id})\u0060\n`;    
+                messageToSend +=`\\• <#${channel_id}> \`(${channel_id})\`\n`;    
             });
 
             messageToSend += "\n";
         }
 
         //Main topic for topic counters
-        messageToSend += `${main_topic_text} \u0060\u0060\u0060${topic}\u0060\u0060\u0060\n`;
+        messageToSend += `${main_topic_text} \`\`\`${topic}\`\`\``;
 
         if (unique_topics.size > 0) {
             //Custom topics by channel
             messageToSend += `${custom_topics_by_channel_text}\n`;
 
             unique_topics.forEach((channel_topic, channel_id) => {
-                messageToSend +=`\\• <#${channel_id}> \u0060(${channel_id})\u0060 \\➡ ${channel_topic}\n`;    
+                messageToSend +=`\\• <#${channel_id}> \`(${channel_id})\` \\➡ ${channel_topic}\n`;    
             });
         }
+
+        //numbers
+        messageToSend += `\n${custom_numbers_text}\n`;
+
+        Object.entries(custom_numbers.toObject()).forEach((number, i) => {
+            messageToSend +=`${i} \\➡ ${number[1]}\n`;
+        });
 
         //send in various messages
         messageToSend.splitSlice(2000).forEach(part => {
