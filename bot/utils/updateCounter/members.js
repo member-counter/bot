@@ -34,16 +34,24 @@ module.exports = (client, guildSettings, types = []) => {
         members = guild.memberCount;
         bots = guild.members.filter(member => member.user.bot).size;
         users = members - bots;
+        
+        offlineMembers = 0;
+        offlineUsers = 0;
+        offlineBots = 0;
+        onlineMembers = 0;
+        onlineBots = 0;      
+        onlineUsers = 0;
 
-        offlineMembers = guild.members.filter(
-            member => member.presence.status === "offline"
-        ).size;
-        offlineUsers = (offlineMembers > 0) ? bots - offlineMembers : 0;
-        offlineBots = (offlineMembers > 0) ? users - offlineMembers : 0;
+        guild.members.forEach(member => {
+            if (member.presence.status === "offline") offlineMembers++;
+            else onlineMembers++;
 
-        onlineMembers = members - offlineMembers;
-        onlineUsers = onlineMembers - bots;
-        onlineBots = onlineMembers - users;        
+            if (member.presence.status === "offline" && member.user.bot) offlineBots++;
+            else if (member.presence.status === "offline") offlineUsers++;
+
+            if (member.presence.status !== "offline" && member.user.bot) onlineBots++;
+            else if (member.presence.status !== "offline") onlineUsers++;
+        });
 
         //set counts in channel names
         channelNameCounter.forEach((channelName, channelId) => {
