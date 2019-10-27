@@ -20,7 +20,6 @@ module.exports = ({ client, guildSettings, channelId, channelName, count }) => {
         removeChannelFromDB({
             client,
             guildSettings,
-            error,
             channelId,
             type: "channelNameCounter",
             forceRemove: true

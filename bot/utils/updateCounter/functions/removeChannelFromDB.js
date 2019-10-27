@@ -1,8 +1,8 @@
 module.exports = ({ client, channelId, type, guildSettings, error, forceRemove }) => {
     console.log(
-        `[Bot shard #${client.shard.id}] I tried to update ${guildSettings.guild_id}'s counter (channel: ${channelId}), but I don't have the proper permissions or it does not exists. Error code: ${error.code}`
+        `[Bot shard #${client.shard.id}] I tried to update ${guildSettings.guild_id}'s counter (channel: ${channelId}), but I don't have the proper permissions or it does not exists.${(error) ? "Error code:" + error.code : "" }`
     );
-    if (error.code === 50013 || error.code === 50001 || error.code === 10003 || error.code === 40001 || forceRemove) {
+    if (forceRemove || error && (error.code === 50013 || error.code === 50001 || error.code === 10003 || error.code === 40001)) {
         switch (type) {
             case "topicCounter":
                 guildSettings.enabled_channels.filter(
