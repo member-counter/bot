@@ -133,7 +133,6 @@ module.exports = (client, guildSettings, types = []) => {
                     removeChannelFromDB({
                         client,
                         guildSettings,
-                        error,
                         channelId,
                         type: "topicCounter", 
                         forceRemove: true
