@@ -129,6 +129,15 @@ module.exports = (client, guildSettings, types = []) => {
                                 console.error(error);
                             });
                     }
+                } else {
+                    removeChannelFromDB({
+                        client,
+                        guildSettings,
+                        error,
+                        channelId,
+                        type: "topicCounter", 
+                        forceRemove: true
+                    });
                 }
             });
         }
