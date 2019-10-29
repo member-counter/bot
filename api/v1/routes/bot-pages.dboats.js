@@ -2,7 +2,8 @@ const router = require("express").Router();
 const giveUpvoterRole = require("../../../bot/utils/giveUpvoterRole");
 const { DBOATS_WH_SECRET } = process.env;
 
-router.post("/dboats", (req, res) => {
+//https://discord.boats
+router.post("/bot-pages/dboats", (req, res) => {
     const { authorization } = req.headers;
     const webhook = req.body;
     if (authorization === DBOATS_WH_SECRET) {
