@@ -1,6 +1,6 @@
 const INTERVAL_STATS_TIME = 15 * 60 * 60;
 const { DISCORD_CLIENT_ID, DBL_TOKEN, DBGG_TOKEN, DBOATS_TOKEN } = process.env;
-//const fetch = require("node-fetch");
+const fetch = require("node-fetch");
 const getTotalGuildsAndMembers = require("./getTotalGuildsAndMembers");
 
 module.exports = client => {
