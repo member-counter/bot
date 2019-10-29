@@ -29,7 +29,3 @@ If you need help or examples of commands usage, join the server and ask in [#sup
 
 # Donations
 If you really like my bot or you just want to appear in the `mc!donate` command, just send `mc!donate` and click the title, remember to leave your discord tag and a note
-
-<style>
-    
-</style>
