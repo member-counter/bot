@@ -3,7 +3,6 @@ const Discord = require("discord.js");
 const dbl = require("dblapi.js");
 const eventHandler = require("./bot/utils/eventHandler.js");
 const updateCounter = require("./bot/utils/updateCounter");
-const botStatsSender = require("./bot/utils/botStatsSender");
 
 global.spawnedAt = new Date();
 
@@ -27,6 +26,3 @@ mongoose
     });
 
 mongoose.set("useFindAndModify", false);
-
-//stats
-botStatsSender(client);
