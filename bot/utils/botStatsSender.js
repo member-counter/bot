@@ -1,4 +1,4 @@
-const { DISCORD_CLIENT_ID, DBL_TOKEN, DBGG_TOKEN, DBOATS_TOKEN } = process.env;
+const { DISCORD_CLIENT_ID, DBL_TOKEN, DBGG_TOKEN, DBOATS_TOKEN, DBWORLD_TOKEN, BOND_TOKEN } = process.env;
 const fetch = require("node-fetch");
 const getTotalGuildsAndMembers = require("./getTotalGuildsAndMembers");
 
@@ -43,6 +43,32 @@ module.exports = async (client) => {
         })
             .then(response => response.json())
             .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [discord.boats] Stats sent, response: ${JSON.stringify(response)}`))
+            .catch(console.error);
+
+        //https://discordbot.world
+        fetch(` https://discordbot.world/api/bot/${DISCORD_CLIENT_ID}/stats`, {
+            method: "post",
+            headers: {
+                Authorization: DBWORLD_TOKEN,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ guild_count: guildCount })
+        })
+            .then(response => response.json())
+            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [discordbot.world] Stats sent, response: ${JSON.stringify(response)}`))
+            .catch(console.error);
+
+        //https://bots.ondiscord.xyz/
+        fetch(`https://bots.ondiscord.xyz/bot-api/bots/${DISCORD_CLIENT_ID}/guilds`, {
+            method: "post",
+            headers: {
+                Authorization: BOND_TOKEN,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ guildCount })
+        })
+            .then(response => response.json())
+            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [discordbot.world] Stats sent, response: ${JSON.stringify(response)}`))
             .catch(console.error);
     }
 };
