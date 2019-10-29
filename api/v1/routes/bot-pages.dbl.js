@@ -3,7 +3,8 @@ const giveUpvoterRole = require("../../../bot/utils/giveUpvoterRole");
 const { DBL_WH_SECRET } = process.env;
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
-router.post("/dbl", (req, res) => {
+//http://top.gg
+router.post("/bot-pages/dbl", (req, res) => {
     const { authorization } = req.headers;
     const webhook = req.body;
     if (authorization === DBL_WH_SECRET && webhook.type === "upvote") {
