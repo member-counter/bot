@@ -166,82 +166,67 @@ const setTopic = {
     run: ({ message, guild_settings, translation }) => {
         const { client, channel, content, member, author  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            //remove
-            UserModel.findOneAndUpdate({ user_id: author.id }, {}, { new: true, upsert: true })
-            .then(UserData => {
-                if (!(!UserData.voted_dbl && /<a?:.+:[0-9]+>/g.test(content))) {
-            //remove end
-                    const args = content.split(" ");
-                    let channelsToCustomize = [];
-                    let newTopic = "";
+            const args = content.split(" ");
+            let channelsToCustomize = [];
+            let newTopic = "";
 
-                    //check if the topic must be setted for specific channels. No, I can't use mentions.channels because that could also include mentioned channels inside newTopic
-                    for (let i = 0; i < args.length; i++) {
-                        const arg = args[i];
-                        if (i !== 0) {
-                            if (arg !== "") {
-                                if (arg.slice(0, 2) === "<#" && arg.slice(-1) === ">") {
-                                    let channel_id = arg.slice(2, -1);
-                                    if (!channelsToCustomize.includes(channel_id)) channelsToCustomize.push(channel_id);
-                                } else break;
-                            }
-                        }
+            //check if the topic must be setted for specific channels. No, I can't use mentions.channels because that could also include mentioned channels inside newTopic
+            for (let i = 0; i < args.length; i++) {
+                const arg = args[i];
+                if (i !== 0) {
+                    if (arg !== "") {
+                        if (arg.slice(0, 2) === "<#" && arg.slice(-1) === ">") {
+                            let channel_id = arg.slice(2, -1);
+                            if (!channelsToCustomize.includes(channel_id)) channelsToCustomize.push(channel_id);
+                        } else break;
                     }
-
-                    //extract topic
-                    let sliceFrom;
-                    for (let i = 0; i < args.length; i++) {
-                        const arg = args[i];
-                        if (i !== 0) {
-                            if (!(arg === "" || /<#[0-9]+>/.test(arg))) {
-                                sliceFrom = i;
-                                break;
-                            }
-                        }
-                    }
-                    newTopic = args.slice(sliceFrom).join(" ");
-
-                    //save changes
-                    if (channelsToCustomize.length > 0 && sliceFrom !== undefined) {
-                        channelsToCustomize.forEach(channel_id => guild_settings.unique_topics.set(channel_id, newTopic));
-                        guild_settings.save()
-                            .then(() => {
-                                updateCounter(client, guild_settings, ["members", "force"]);
-                                let msgChannels = "";
-                                channelsToCustomize.forEach((channel, i) => {
-                                    msgChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToCustomize.length-1) ? '.' : ','}`; 
-                                });
-                                channel.send(translation.commands.setTopic.success_unique.replace("{CHANNELS}", msgChannels)).catch(console.error);
-                            })
-                            .catch((e) => {
-                                console.error(e);
-                                channel.send(translation.common.error_db).catch(console.error);
-                            })
-                    } else if (sliceFrom === undefined) {
-                        //this happens when you run the command with mentioned channels but without a topic, like "prefix!setTopic #general"
-                        channel.send(translation.commands.setTopic.no_topic.replace("{PREFIX}", guild_settings.prefix)).catch(console.error);
-                    } else {
-                        guild_settings.topic = newTopic;
-                        guild_settings.save()
-                            .then(() => {
-                                updateCounter(client, guild_settings, ["members", "force"]);
-                                channel.send(translation.commands.setTopic.success).catch(console.error);
-                            })
-                            .catch((e) => {
-                                console.error(e);
-                                channel.send(translation.common.error_db).catch(console.error);
-                            })
-                    }
-            //remove
-                } else {
-                    channel.send(translation.commands.setTopic.error_no_dbl_vote).catch(console.error);
                 }
-            })
-            .catch((e) => {
-                console.error(e);
-                channel.send(translation.common.error_db).catch(console.error);
-            });
-            //remove end
+            }
+
+            //extract topic
+            let sliceFrom;
+            for (let i = 0; i < args.length; i++) {
+                const arg = args[i];
+                if (i !== 0) {
+                    if (!(arg === "" || /<#[0-9]+>/.test(arg))) {
+                        sliceFrom = i;
+                        break;
+                    }
+                }
+            }
+            newTopic = args.slice(sliceFrom).join(" ");
+
+            //save changes
+            if (channelsToCustomize.length > 0 && sliceFrom !== undefined) {
+                channelsToCustomize.forEach(channel_id => guild_settings.unique_topics.set(channel_id, newTopic));
+                guild_settings.save()
+                    .then(() => {
+                        updateCounter(client, guild_settings, ["members", "force"]);
+                        let msgChannels = "";
+                        channelsToCustomize.forEach((channel, i) => {
+                            msgChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToCustomize.length-1) ? '.' : ','}`; 
+                        });
+                        channel.send(translation.commands.setTopic.success_unique.replace("{CHANNELS}", msgChannels)).catch(console.error);
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        channel.send(translation.common.error_db).catch(console.error);
+                    })
+            } else if (sliceFrom === undefined) {
+                //this happens when you run the command with mentioned channels but without a topic, like "prefix!setTopic #general"
+                channel.send(translation.commands.setTopic.no_topic.replace("{PREFIX}", guild_settings.prefix)).catch(console.error);
+            } else {
+                guild_settings.topic = newTopic;
+                guild_settings.save()
+                    .then(() => {
+                        updateCounter(client, guild_settings, ["members", "force"]);
+                        channel.send(translation.commands.setTopic.success).catch(console.error);
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        channel.send(translation.common.error_db).catch(console.error);
+                    })
+            }
         } else {
             channel.send(translation.common.error_no_admin).catch(console.error)
         }
@@ -302,53 +287,37 @@ const setDigit = {
     run: ({ message, guild_settings, translation }) => {
         const { client, channel, content, member, author  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-        //remove
-        UserModel.findOneAndUpdate({ user_id: author.id }, {}, { new: true, upsert: true })
-            .then(UserData => {
-                if (!(!UserData.voted_dbl && /<a?:.+:[0-9]+>/g.test(content))) {
+            const args = content.split(/\s+/);
+            if (args[1] === "reset") {
+                guild_settings.custom_numbers = {};
+                guild_settings.save()
+                        .then(() => {
+                            channel.send(translation.commands.setDigit.reset_success).catch(console.error);
+                            updateCounter(client, guild_settings, ["members", "force"]);
+                        })
+                        .catch((e) => {
+                            console.error(e);
+                            channel.send(translation.common.error_db).catch(console.error);
+                        });
+            } else {
+                if (args.length >= 3) {    
+                    const digitToUpdate = args[1].slice(0, 1);
+                    const newDigitValue = args[2];
 
-        //remove end
-                    const args = content.split(/\s+/);
-                    if (args[1] === "reset") {
-                        guild_settings.custom_numbers = {};
-                        guild_settings.save()
-                                .then(() => {
-                                    channel.send(translation.commands.setDigit.reset_success).catch(console.error);
-                                    updateCounter(client, guild_settings, ["members", "force"]);
-                                })
-                                .catch((e) => {
-                                    console.error(e);
-                                    channel.send(translation.common.error_db).catch(console.error);
-                                });
-                    } else {
-                        if (args.length >= 3) {    
-                            const digitToUpdate = args[1].slice(0, 1);
-                            const newDigitValue = args[2];
-        
-                            guild_settings.custom_numbers[digitToUpdate] = newDigitValue
-                            guild_settings.save()
-                                .then(() => {
-                                    channel.send(translation.commands.setDigit.success).catch(console.error);
-                                    updateCounter(client, guild_settings, ["members", "force"]);
-                                })
-                                .catch((e) => {
-                                    console.error(e);
-                                    channel.send(translation.common.error_db).catch(console.error);
-                                });
-                        } else {
-                            channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error)
-                        }
-                    }
-            //remove
+                    guild_settings.custom_numbers[digitToUpdate] = newDigitValue
+                    guild_settings.save()
+                        .then(() => {
+                            channel.send(translation.commands.setDigit.success).catch(console.error);
+                            updateCounter(client, guild_settings, ["members", "force"]);
+                        })
+                        .catch((e) => {
+                            console.error(e);
+                            channel.send(translation.common.error_db).catch(console.error);
+                        });
                 } else {
-                    channel.send(translation.commands.setDigit.error_no_dbl_vote).catch(console.error);
+                    channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error)
                 }
-            })
-            .catch((e) => {
-                console.error(e);
-                channel.send(translation.common.error_db).catch(console.error);
-            });
-            //remove end
+            }
         } else {
             channel.send(translation.common.error_no_admin).catch(console.error)
         }

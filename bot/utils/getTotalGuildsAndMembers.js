@@ -1,6 +1,6 @@
 /**
  * @param {client}
- * @returns {Promise.<{ totalGuilds: number, totalMembers: number }>}
+ * @returns {Promise.<{ totalGuilds: number, totalCachedUsers: number }>}
  */
 module.exports = client => {
     return new Promise(resove => {

@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const dbl = require("dblapi.js");
 const eventHandler = require("./bot/utils/eventHandler.js");
 const updateCounter = require("./bot/utils/updateCounter");
+const botStatsSender = require("./bot/utils/botStatsSender");
 
 global.spawnedAt = new Date();
 
@@ -27,13 +28,5 @@ mongoose
 
 mongoose.set("useFindAndModify", false);
 
-//DiscordBots.org
-const dblClient = new dbl(process.env.DBL_TOKEN, client);
-
-dblClient.on("posted", () => {
-    console.log(`[Bot shard #${client.shard.id}] [discordbots.org client] Server count posted!`);
-});
-
-dblClient.on("error", e => {
-    console.error(`[Bot shard #${client.shard.id}] [discordbots.org client] ${e}`);
-});
+//stats
+botStatsSender(client);
