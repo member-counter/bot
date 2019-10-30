@@ -1,6 +1,5 @@
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const updateCounter = require("../utils/updateCounter");
-const UserModel = require("../../mongooseModels/UserModel");
 
 const newChannelNameCounter = {
     name: "newChannelNameCounter",
@@ -164,7 +163,7 @@ const setTopic = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, channel, content, member, author  } = message;
+        const { client, channel, content, member } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(" ");
             let channelsToCustomize = [];
@@ -285,7 +284,7 @@ const setDigit = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, channel, content, member, author  } = message;
+        const { client, channel, content, member } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(/\s+/);
             if (args[1] === "reset") {
