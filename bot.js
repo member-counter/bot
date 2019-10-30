@@ -16,7 +16,7 @@ client.updateCounter = updateCounter;
 eventHandler(client);
 
 mongoose
-    .connect(process.env.DB_URI, { useNewUrlParser: true })
+    .connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log(`[Bot shard #${client.shard.id}] Mongoose ready`);
     })
