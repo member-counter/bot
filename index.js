@@ -38,7 +38,7 @@ app.use(`/api/v1`, require("./api/v1/index"));
 
 //mongoose connection
 mongoose
-    .connect(process.env.DB_URI, { useNewUrlParser: true })
+    .connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("[Main] Mongoose ready");
     })
