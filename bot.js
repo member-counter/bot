@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Discord = require("discord.js");
-const dbl = require("dblapi.js");
 const eventHandler = require("./bot/utils/eventHandler.js");
 const updateCounter = require("./bot/utils/updateCounter");
 
