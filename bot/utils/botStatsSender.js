@@ -1,9 +1,9 @@
-const { DISCORD_CLIENT_ID, DBL_TOKEN, DBGG_TOKEN, DBOATS_TOKEN, DBWORLD_TOKEN, BOND_TOKEN, BFD_TOKEN } = process.env;
+const { DISCORD_CLIENT_ID, DBL_TOKEN, DBGG_TOKEN, DBOATS_TOKEN, DBWORLD_TOKEN, BOND_TOKEN, BFD_TOKEN, SEND_BOT_STATS } = process.env;
 const fetch = require("node-fetch");
 const getTotalGuildsAndMembers = require("./getTotalGuildsAndMembers");
 
 module.exports = async (client) => {
-    if (client.shard.id === 0) {
+    if (client.shard.id === 0 && JSON.parse(SEND_BOT_STATS)) {
         const guildCount = (await getTotalGuildsAndMembers(client)).totalGuilds;
 
         //https://discord.bots.gg
