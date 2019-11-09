@@ -41,12 +41,11 @@ if (JSON.parse(SERVE_API)) {
 
 //mongoose connection
 mongoose
-    .connect(DB_URI, { useNewUrlParser: true })
-    .then(() => {
-        console.log("[Main] Mongoose ready");
-    })
-    .catch(e => {
-        console.error("[Main] " + e);
-        process.exit(1);
-    });
-mongoose.set("useFindAndModify", false);
+    .connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+        .then(() => {
+            console.log("[Main] [Mongoose] Connection ready");
+        })
+        .catch(e => {
+            console.error("[Main] [Mongoose] " + e);
+            process.exit(1);
+        });
