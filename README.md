@@ -5,7 +5,9 @@
 
 # Setup
 
-### Set environment variables or create a .env file (see .env.example)
+### This bot needs a [mongoDB](https://www.mongodb.com/) database and [node.js](https://nodejs.org/en/)
+
+### Set environment variables in your system or create a ``.env`` file, without file name, only the extension, (see ``.env.fullexample`` or ``.env.minexample``)
 
 ## Install dependencies
 
