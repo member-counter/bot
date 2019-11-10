@@ -119,6 +119,8 @@ Response example:
 
 ###  `GET` /guilds/:id/member-count-history
 > :warning: The behavior of this endpoint could change in a future
+
+
 Requires Authorization and admin permissions in the specified guild.
 
 `:id` must be replaced by a valid guild id
