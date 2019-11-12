@@ -43,7 +43,7 @@ You can downlaod and install the [mongoDB community server](https://www.mongodb.
     If you are going to add features to the bot copy the content of `.env.fullexample` to a `.env` file and fill the empty variables. There might be some confusing variables, so I recommend you to check out the code.
 
 
-## 3. Installing dependencies
+## 3. Install dependencies
 ```sh
 npm install
 ```
