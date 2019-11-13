@@ -10,8 +10,8 @@ const commands = []
 module.exports = async message => {
     const { client, guild, channel, author, content } = message;
     let command_runnable = true;
-    //avoid self respond
-    if (client.user.id !== author.id) {
+    
+    if ((client.user.id !== author.id) && !author.bot) {
         //translation is an object that has all the strings that are sent by the bot to text channels
         let translation = require(`../lang/${DISCORD_DEFAULT_LANG}.json`);
 
