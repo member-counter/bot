@@ -17,6 +17,7 @@ const CustomNumbers = mongoose.Schema({
 const GuildSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     guild_id: { type: String, require: true },
+    premium_status: { type: Number, default: 0 }, //0 === no, 1 === low, 2 === high
     prefix: { type: String, default: DISCORD_PREFIX },
     lang: { type: String, default: "en_US" },
     enabled_channels: [{ type: String, default: [] }],
