@@ -1,3 +1,4 @@
+const GuildModel = require("../../mongooseModels/GuildModel");
 const updateCounter = require("../utils/updateCounter");
 
 const TIME_BETWEEN_EVERY_UPDATE = parseInt(process.env.TIME_BETWEEN_USER_STATUS_UPDATE) * 1000;
@@ -5,14 +6,28 @@ const GuildsToUpdate = new Map();
 
 module.exports = client => {
     client.on("presenceUpdate", (oldMember, newMember) => {
-        if (oldMember.presence.status !== "offline") oldMember.presence.status = "online";
-        if (newMember.presence.status !== "offline") newMember.presence.status = "online";
-        if (oldMember.presence.status !== newMember.presence.status) {
-            if (!GuildsToUpdate.has(newMember.guild.id)) 
-                GuildsToUpdate.set(newMember.guild.id, setTimeout(() => {
-                    updateCounter(client, newMember.guild.id, ["members"]);
-                    GuildsToUpdate.delete(newMember.guild.id);
-                }, TIME_BETWEEN_EVERY_UPDATE));
+        const { guild } = newMember;
+        const newStatus = newMember.presence.status;
+        const oldStatus = oldMember.presence.status;
+
+        //convert dnd/idle to online
+        if (oldStatus !== "offline") oldStatus = "online";
+        if (newStatus !== "offline") newStatus = "online";
+
+        if (oldStatus !== newStatus) {
+            GuildModel.findOne({ guild_id: guild.id })
+                .then(guildSettings => {
+                    let guildTimeBetweenEveryUpdate = TIME_BETWEEN_EVERY_UPDATE;
+                    if (guildSettings.premium_status === 1) guildTimeBetweenEveryUpdate = 5;
+                    if (guildSettings.premium_status === 2) guildTimeBetweenEveryUpdate = 1;
+                    
+                    if (!GuildsToUpdate.has(guild.id)) 
+                        GuildsToUpdate.set(guild.id, setTimeout(() => {
+                            updateCounter(client, guild.id, ["members"]);
+                            GuildsToUpdate.delete(guild.id);
+                        }, guildTimeBetweenEveryUpdate));
+                })
+                .catch(console.error)
         }
     });
 };

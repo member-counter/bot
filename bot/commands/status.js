@@ -3,7 +3,6 @@ const { version } = require('../../package.json');
 const getTotalGuildsAndMembers = require("../utils/getTotalGuildsAndMembers");
 
 const toGB = (bytes) => {
-  //TODO
   return (bytes/1024/1024/1024).toPrecision(2) + "GB"
 };
 

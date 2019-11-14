@@ -15,9 +15,8 @@ const CustomNumbers = mongoose.Schema({
 }, { _id : false });
 
 const GuildSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     guild_id: { type: String, require: true },
-    premium_status: { type: Number, default: 0 }, //0 === no, 1 === low, 2 === high
+    premium_status: { type: Number, default: 0 }, //0 === no, 1 === low tier, 2 === high tier
     prefix: { type: String, default: DISCORD_PREFIX },
     lang: { type: String, default: "en_US" },
     enabled_channels: [{ type: String, default: [] }],
@@ -26,6 +25,6 @@ const GuildSchema = mongoose.Schema({
     channelNameCounter: { type: Map, of: String, default: new Map() },
     channelNameCounter_types: { type: Map, of: String, default: new Map() },
     custom_numbers: { type: CustomNumbers, default: CustomNumbers }
-});
+}, { _id : false });
 
 module.exports = mongoose.model('guilds', GuildSchema);

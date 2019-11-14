@@ -1,4 +1,5 @@
 const GuildModel = require("../../mongooseModels/GuildModel");
+const UserModel = require("../../mongooseModels/UserModel");
 const getLanguages = require("../utils/getLanguages");
 
 const seeSettings = {
@@ -35,6 +36,9 @@ const seeSettings = {
         
         messageToSend += `${header_text} ${guild.name} \`(${guild.id})\`\n\n`;
         
+        //Premium
+        //TODO
+
         //prefix and language
 
         messageToSend += `${prefix_text} ${prefix}\n`;
@@ -191,7 +195,21 @@ const prefix = {
     }
 };
 
-module.exports = { seeSettings, resetSettings, prefix, lang };
+const upgradeServer = {
+    name: "upgradeServer",
+    variants: ["{PREFIX}upgradeServer"],
+    allowedTypes: ["text"],
+    indexZero: true,
+    enabled: true,
+    run: ({ message, guild_settings, translation }) => {
+        const { channel, content, member } = message;
+        if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
+            //TODO
+        }
+    }
+};
+
+module.exports = { seeSettings, resetSettings, prefix, lang, upgradeServer };
 
 //I took this from https://jsperf.com/string-split-by-length/9
 String.prototype.splitSlice = function (len) {
