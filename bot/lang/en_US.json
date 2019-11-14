@@ -56,7 +56,11 @@
             "help_description": "Shows all bot settings for this server.",
             "settings_message": {
                 "prefix_text": "Prefix:",
-                "lang_text": "Language: ",
+                "lang_text": "Language:",
+                "premium_text": "Premium:",
+                "premium_no_tier_text": "No",
+                "premium_low_tier_text": "Low Tier",
+                "premium_high_tier_text": "High Tier",
                 "header_text": "Settings for guild:",
                 "enabled_channel_name_counters_text": "Channel Name Counters:",
                 "misc_type": "Type:",

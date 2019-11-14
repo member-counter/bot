@@ -8,11 +8,15 @@ const seeSettings = {
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, translation }) => {
         const { guild, channel } = message;
         const {
             lang_text,
             prefix_text,
+            premium_text,
+            premium_no_tier_text,
+            premium_low_tier_text,
+            premium_high_tier_text,
             header_text,
             enabled_channel_name_counters_text,
             misc_type,
@@ -23,6 +27,7 @@ const seeSettings = {
         } = translation.commands.seeSettings.settings_message;
         const {
             prefix,
+            premium_status,
             lang,
             channelNameCounter,
             channelNameCounter_types,
@@ -30,14 +35,18 @@ const seeSettings = {
             unique_topics,
             topic,
             custom_numbers
-        } = guild_settings;
+        } = guildSettings;
 
         let messageToSend = "";
         
         messageToSend += `${header_text} ${guild.name} \`(${guild.id})\`\n\n`;
         
         //Premium
-        //TODO
+        let guildPremiumTier = premium_no_tier_text;
+        if (premium_status === 1) guildPremiumTier = premium_low_tier_text;
+        if (premium_status === 2) guildPremiumTier = premium_high_tier_text;
+
+        messageToSend += `${premium_text} ${guildPremiumTier}\n`;
 
         //prefix and language
 
@@ -98,13 +107,13 @@ const resetSettings = {
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, translation }) => {
         const { client, guild, channel, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             GuildModel.findOneAndRemove({ guild_id: guild.id })
                 .then(() => { 
                 //leave empty all channel topics
-                guild_settings.enabled_channels.forEach(channel_id => {
+                guildSettings.enabled_channels.forEach(channel_id => {
                     if (client.channels.has(channel_id)) {
                         client.channels.get(channel_id).setTopic('').catch(e => {
                             //ignore errors caused by permissions 
@@ -114,7 +123,7 @@ const resetSettings = {
                 });
                 
                 //delete all channel name counters
-                guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
+                guildSettings.channelNameCounter.forEach((channel_name, channel_id) => {
                     if (client.channels.has(channel_id)) {
                         client.channels.get(channel_id).delete().catch(e => {
                             //ignore errors caused by permissions 
@@ -141,15 +150,15 @@ const lang = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
-    run: async ({ message, guild_settings, translation }) => {
+    run: async ({ message, guildSettings, translation }) => {
         const { content, channel, member } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(/\s+/);
             const lang_code = args[1];
             const languages = await getLanguages();
             if (languages.has(lang_code)) {
-                guild_settings.lang = lang_code;
-                guild_settings
+                guildSettings.lang = lang_code;
+                guildSettings
                     .save()
                     .then(() => {
                         channel.send(languages.get(lang_code).commands.lang.success).catch(console.error);
@@ -177,15 +186,15 @@ const prefix = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, translation }) => {
         const { channel, content, member } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(/\s+/g);
-            guild_settings.prefix = args[1] ? args[1] : guild_settings.prefix;
-            guild_settings
+            guildSettings.prefix = args[1] ? args[1] : guildSettings.prefix;
+            guildSettings
                 .save()
                 .then(() => {
-                    channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", guild_settings.prefix)).catch(console.error);
+                    channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", guildSettings.prefix)).catch(console.error);
                 })
                 .catch(error => {
                     console.error(error);
@@ -201,7 +210,7 @@ const upgradeServer = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, translation }) => {
         const { channel, content, member } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             //TODO
