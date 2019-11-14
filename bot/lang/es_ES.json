@@ -57,6 +57,10 @@
             "settings_message": {
                 "prefix_text": "Prefijo:",
                 "lang_text": "Idioma: ",
+                "premium_text": "Premium:",
+                "premium_no_tier_text": "No",
+                "premium_low_tier_text": "Nivel bajo",
+                "premium_high_tier_text": "Nivel alto",
                 "header_text": "Ajustes para el servidor:",
                 "enabled_channel_name_counters_text": "Contadores en nombre de canal:",
                 "misc_type": "Tipo:",
