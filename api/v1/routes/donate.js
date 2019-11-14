@@ -2,6 +2,7 @@ const router = require("express").Router();
 const fetch = require("node-fetch");
 const mongoose = require("mongoose");
 const DonationModel = require("../../../mongooseModels/DonationModel");
+const UserModel = require("../../../mongooseModels/UserModel");
 const auth = require("../middlewares/auth");
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const getExchange = require("../../../bot/utils/getExchange");
@@ -20,6 +21,7 @@ router.post("/process-donation/:transactionid", (req, res) => {
                 req.body.currency = transaction.purchase_units[0].amount.currency_code;
                 req.body.amount = transaction.purchase_units[0].amount.value;
                 saveDonation(req, res);
+                grantPremium(req.body.user);
             }
         })
         .catch(error => {
@@ -31,6 +33,7 @@ router.post("/process-donation/:transactionid", (req, res) => {
 router.post("/gen-donation", auth, (req, res) => {
     if (owners.includes(req.user.id)) {
         saveDonation(req, res);
+        grantPremium(req.body.user);
     } else {
         res.json({ code: 401, message: "Not authorized" });
     }
@@ -79,3 +82,7 @@ const saveDonation = (req, res) => {
             res.json({ code: 500, message: "DB error" });
         });
 };
+
+const grantPremium = (user_id) => {
+    UserModel.findOneAndRemove({ user_id }, { premium: true }).catch(console.error)
+}
