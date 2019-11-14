@@ -57,6 +57,10 @@
             "settings_message": {
                 "prefix_text": "Prefixo:",
                 "lang_text": "Idioma: ",
+                "premium_text": "Premium:",
+                "premium_no_tier_text": "Não",
+                "premium_low_tier_text": "Nível baixo",
+                "premium_high_tier_text": "Nível superior",
                 "header_text": "Configurações para guild:",
                 "enabled_channel_name_counters_text": "Contadores de nomes de canais:",
                 "misc_type": "Tipo:",
