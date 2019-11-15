@@ -212,8 +212,8 @@ const upgradeServer = {
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        const { member, author, channel } = message;
-        let { high_tier_success, low_tier_success, points_left, error_no_points_left, error_cannot_upgrade } = translation.commands.upgradeServer;total_given_upvotestotal_given_upvotes
+        const { author, channel } = message;
+        let { high_tier_success, low_tier_success, points_left, error_no_points_left, error_cannot_upgrade } = translation.commands.upgradeServer;
         UserModel.findOneAndUpdate({ user_id: author.id }, { }, { new: true, upsert: true})
             .then(userDoc => {
                 if (userDoc.premium) {
