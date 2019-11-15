@@ -19,6 +19,7 @@ const GuildSchema = mongoose.Schema({
     premium_status: { type: Number, default: 0 }, //0 === no, 1 === low tier, 2 === high tier
     prefix: { type: String, default: DISCORD_PREFIX },
     lang: { type: String, default: "en_US" },
+    allowedRoles: [{ type: String, default: [] }], //Allowed roles for administrative commands
     enabled_channels: [{ type: String, default: [] }],
     topic: { type: String, default: "Members: {COUNT}" }, //used in all channels if the channel does not appear in this.unique_topics
     unique_topics: { type: Map, of: String, default: new Map() }, //specific topic by channel
