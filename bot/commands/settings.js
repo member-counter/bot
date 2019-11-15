@@ -206,64 +206,62 @@ const prefix = {
 
 const upgradeServer = {
     name: "upgradeServer",
-    variants: ["{PREFIX}upgradeServer"],
+    variants: ["{PREFIX}upgradeServer", "{PREFIX}serverupgrade"],
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
     run: ({ message, guild_settings, translation }) => {
         const { member, author, channel } = message;
-        let { high_tier_success, low_tier_success, points_left, error_no_points_left, error_cannot_upgrade } = translation.commands.upgradeServer;
-        if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            UserModel.findOneAndUpdate({ user_id: author.id }, { }, { new: true, upsert: true})
-                .then(userDoc => {
-                    if (userDoc.premium) {
-                        if (guild_settings.premium_status < 2) {
-                            guild_settings.premium_status = 2;
-                            guild_settings.save()
-                                .then(() => {
-                                    channel.send(high_tier_success).catch(console.error);
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                    channel.send(translation.common.error_db).catch(console.error);
-                                });
-                        } else {
-                            channel.send(error_cannot_upgrade).catch(console.error);
-                        }
-                    } else if (userDoc.available_points > 0) {
-                        if (guild_settings.premium_status < 1) {
-                            guild_settings.premium_status = 1;
-                            guild_settings.save()
+        let { high_tier_success, low_tier_success, points_left, error_no_points_left, error_cannot_upgrade } = translation.commands.upgradeServer;total_given_upvotestotal_given_upvotes
+        UserModel.findOneAndUpdate({ user_id: author.id }, { }, { new: true, upsert: true})
+            .then(userDoc => {
+                if (userDoc.premium) {
+                    if (guild_settings.premium_status < 2) {
+                        guild_settings.premium_status = 2;
+                        guild_settings.save()
                             .then(() => {
-                                channel.send(low_tier_success).catch(console.error);
-
-                                UserModel.findOneAndUpdate(
-                                    { user_id: author.id },
-                                    { $inc: { available_points: -1 } }, 
-                                    { new: true, upsert: true }
-                                )
-                                    .then(userDoc => {
-                                        channel.send(points_left.replace("{POINTS}", userDoc.available_points)).catch(console.error);
-                                    })
-                                    .catch(console.error);
+                                channel.send(high_tier_success).catch(console.error);
                             })
                             .catch(error => {
                                 console.error(error);
                                 channel.send(translation.common.error_db).catch(console.error);
                             });
-
-                        } else {
-                            channel.send(error_cannot_upgrade).catch(console.error);
-                        }
                     } else {
-                        channel.send(error_no_points_left).catch(console.error);
+                        channel.send(error_cannot_upgrade).catch(console.error);
                     }
-                })
-                .catch(error => {
-                    console.error(error);
-                    channel.send(translation.common.error_db).catch(console.error);
-                });
-        }
+                } else if (userDoc.available_points > 0) {
+                    if (guild_settings.premium_status < 1) {
+                        guild_settings.premium_status = 1;
+                        guild_settings.save()
+                        .then(() => {
+                            channel.send(low_tier_success).catch(console.error);
+
+                            UserModel.findOneAndUpdate(
+                                { user_id: author.id },
+                                { $inc: { available_points: -1 } }, 
+                                { new: true, upsert: true }
+                            )
+                                .then(userDoc => {
+                                    channel.send(points_left.replace("{POINTS}", userDoc.available_points)).catch(console.error);
+                                })
+                                .catch(console.error);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                            channel.send(translation.common.error_db).catch(console.error);
+                        });
+
+                    } else {
+                        channel.send(error_cannot_upgrade).catch(console.error);
+                    }
+                } else {
+                    channel.send(error_no_points_left).catch(console.error);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                channel.send(translation.common.error_db).catch(console.error);
+            });
     }
 };
 
