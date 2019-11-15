@@ -79,7 +79,7 @@
             "success": "Actualizando el contador en todos los canales habilitados, esto podría tomar un tiempo."
         },
         "upgradeServer": {
-            "help_description": "Este comando mejora el estado premium de tu servidor.\n\n\nAqui tienes una lista de los niveles disponibles, como conseguirlos y sus ventajas:\n- **Nivel alto**:\nComo conseguirlo:\nEste nivel require de que tengas una cuenta premium, puedes conseguirla donando cualquier cantidad (`mc!donate`)\nVentajas:\nEl tiempo de actualizacion de algunos contadores es reducido a 1 segundo.\n\n- **Nivel bajo**:\nComo conseguirlo:\nNecesitas 1 punto disponible (puedes comprobar cuantos tienes en `mc!profile`), para conseguir uno, debes votar el bot en uno de las siguientes paginas: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nVentajas:\nEl tiempo de actualizacion de algunos contadores es reducido a 5 segundo.",
+            "help_description": "Este comando mejora el estado premium de tu servidor.\n\nAqui tienes una lista de los niveles disponibles, como conseguirlos y sus ventajas:\n- **Nivel alto**:\nComo conseguirlo: Este nivel require de que tengas una cuenta premium, puedes conseguirla donando cualquier cantidad (`mc!donate`)\nVentajas: El tiempo de actualizacion de algunos contadores es reducido a 1 segundo.\n\n- **Nivel bajo**:\nComo conseguirlo: Necesitas 1 punto disponible (puedes comprobar cuantos tienes en `mc!profile`), para conseguir uno, debes votar el bot en uno de las siguientes paginas: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nVentajas: El tiempo de actualizacion de algunos contadores es reducido a 5 segundo.",
             "high_tier_success": "Se ha otorgado un nivel premium alto a este servidor.",
             "low_tier_success": "Se ha otorgado un nivel premium bajo a este servidor.",
             "points_left": "Te quedan {POINTS} puntos.",
@@ -120,6 +120,12 @@
                 "empty_note": "Nota vaciá"
             },
             "error_exchange_fetch": "Error mientras intentaba obtener los cambios de divisa."
+        },
+        "profile": {
+            "help_description": "Muestra información relacionada entre tu y el bot",
+            "premium_text": "Premium:",
+            "total_given_upvotes_text": "Votos totales dados al bot:",
+            "available_points_text": "Puntos disponibles: "
         }
     },
     "functions": {
