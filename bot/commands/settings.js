@@ -1,6 +1,7 @@
 const GuildModel = require("../../mongooseModels/GuildModel");
 const UserModel = require("../../mongooseModels/UserModel");
 const getLanguages = require("../utils/getLanguages");
+const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
 const seeSettings = {
     name: "seeSettings",
