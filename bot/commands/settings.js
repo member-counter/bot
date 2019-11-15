@@ -8,7 +8,7 @@ const seeSettings = {
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
-    run: ({ message, guildSettings, translation }) => {
+    run: ({ message, guild_settings, translation }) => {
         const { guild, channel } = message;
         const {
             lang_text,
@@ -35,7 +35,7 @@ const seeSettings = {
             unique_topics,
             topic,
             custom_numbers
-        } = guildSettings;
+        } = guild_settings;
 
         let messageToSend = "";
         
@@ -107,13 +107,13 @@ const resetSettings = {
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
-    run: ({ message, guildSettings, translation }) => {
+    run: ({ message, guild_settings, translation }) => {
         const { client, guild, channel, member  } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             GuildModel.findOneAndRemove({ guild_id: guild.id })
                 .then(() => { 
                 //leave empty all channel topics
-                guildSettings.enabled_channels.forEach(channel_id => {
+                guild_settings.enabled_channels.forEach(channel_id => {
                     if (client.channels.has(channel_id)) {
                         client.channels.get(channel_id).setTopic('').catch(e => {
                             //ignore errors caused by permissions 
@@ -123,7 +123,7 @@ const resetSettings = {
                 });
                 
                 //delete all channel name counters
-                guildSettings.channelNameCounter.forEach((channel_name, channel_id) => {
+                guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
                     if (client.channels.has(channel_id)) {
                         client.channels.get(channel_id).delete().catch(e => {
                             //ignore errors caused by permissions 
@@ -150,15 +150,15 @@ const lang = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
-    run: async ({ message, guildSettings, translation }) => {
+    run: async ({ message, guild_settings, translation }) => {
         const { content, channel, member } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(/\s+/);
             const lang_code = args[1];
             const languages = await getLanguages();
             if (languages.has(lang_code)) {
-                guildSettings.lang = lang_code;
-                guildSettings
+                guild_settings.lang = lang_code;
+                guild_settings
                     .save()
                     .then(() => {
                         channel.send(languages.get(lang_code).commands.lang.success).catch(console.error);
@@ -186,15 +186,15 @@ const prefix = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
-    run: ({ message, guildSettings, translation }) => {
+    run: ({ message, guild_settings, translation }) => {
         const { channel, content, member } = message;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
             const args = content.split(/\s+/g);
-            guildSettings.prefix = args[1] ? args[1] : guildSettings.prefix;
-            guildSettings
+            guild_settings.prefix = args[1] ? args[1] : guild_settings.prefix;
+            guild_settings
                 .save()
                 .then(() => {
-                    channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", guildSettings.prefix)).catch(console.error);
+                    channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", guild_settings.prefix)).catch(console.error);
                 })
                 .catch(error => {
                     console.error(error);
@@ -210,31 +210,48 @@ const upgradeServer = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
-    run: ({ message, guildSettings, translation }) => {
+    run: ({ message, guild_settings, translation }) => {
         const { member, author, channel } = message;
         let { high_tier_success, low_tier_success, points_left, error_no_points_left, error_cannot_upgrade } = translation.commands.upgradeServer;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            UserModel.findOne({ user_id: author.id })
+            UserModel.findOneAndUpdate({ user_id: author.id }, { }, { new: true, upsert: true})
                 .then(userDoc => {
                     if (userDoc.premium) {
-                        if (guildSettings.premium_status < 2) {
-                            guildSettings.premium_status = 2;
-                            channel.send(high_tier_success).catch(console.error);
+                        if (guild_settings.premium_status < 2) {
+                            guild_settings.premium_status = 2;
+                            guild_settings.save()
+                                .then(() => {
+                                    channel.send(high_tier_success).catch(console.error);
+                                })
+                                .catch(error => {
+                                    console.error(error);
+                                    channel.send(translation.common.error_db).catch(console.error);
+                                });
                         } else {
                             channel.send(error_cannot_upgrade).catch(console.error);
                         }
                     } else if (userDoc.available_points > 0) {
-                        if (guildSettings.premium_status < 1) {
-                            channel.send(low_tier_success).catch(console.error);
-                            UserModel.findOneAndUpdate(
-                                { user_id: author.id },
-                                { $inc: { available_points: -1 } }, 
-                                { new: true }
-                            )
-                                .then(userDoc => {
-                                    channel.send(points_left.replace("{POINTS}", userDoc.available_points)).catch(console.error);
-                                })
-                                .catch(console.error);
+                        if (guild_settings.premium_status < 1) {
+                            guild_settings.premium_status = 1;
+                            guild_settings.save()
+                            .then(() => {
+                                channel.send(low_tier_success).catch(console.error);
+
+                                UserModel.findOneAndUpdate(
+                                    { user_id: author.id },
+                                    { $inc: { available_points: -1 } }, 
+                                    { new: true, upsert: true }
+                                )
+                                    .then(userDoc => {
+                                        channel.send(points_left.replace("{POINTS}", userDoc.available_points)).catch(console.error);
+                                    })
+                                    .catch(console.error);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                                channel.send(translation.common.error_db).catch(console.error);
+                            });
+
                         } else {
                             channel.send(error_cannot_upgrade).catch(console.error);
                         }

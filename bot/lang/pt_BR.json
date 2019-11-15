@@ -79,7 +79,7 @@
             "success": "Atualizando o contador para os canais ativos, isso pode demorar um pouco."
         },
         "upgradeServer": {
-            "help_description": "This command upgrades the premium status for this server.\n\n\nHere is a list of available tiers, how to get them and their perks:\n- **High tier**:\nHow to get it:\nHigh tier requires a premium account, to get it, you must donate any amount (`mc!donate`)\nPerks:\nTime between each update of some counters is recuced to 1 second.\n\n- **Low tier**:\nHow to get it:\nYou need 1 point (check how many you have in `mc!profile`), to get one, you must upvote the bot in one of this websites: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nPerks: Time between each update of some counters is recuced to 5 seconds.",
+            "help_description": "This command upgrades the premium status for this server.\n\nHere is a list of available tiers, how to get them and their perks:\n- **High tier**:\nHow to get it: High tier requires a premium account, to get it, you must donate any amount (`mc!donate`)\nPerks: Time between each update of some counters is reduced to 1 second.\n\n- **Low tier**:\nHow to get it: You need 1 point (check how many you have in `mc!profile`), to get one, you must upvote the bot in one of this websites: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nPerks: Time between each update of some counters is reduced to 5 seconds.",
             "high_tier_success": "Success! Granted high tier premium to this server.",
             "low_tier_success": "Success! Granted low tier premium to this server.",
             "points_left": "You have {POINTS} points left.",
@@ -120,6 +120,12 @@
                 "empty_note": "Nota vazia"
             },
             "error_exchange_fetch": "Erro ao tentar obter taxas de câmbio."
+        },
+        "profile": {
+            "help_description": "Shows related information between you and this bot",
+            "premium_text": "Premium:",
+            "total_given_upvotes_text": "Total given upvotes:",
+            "available_points_text": "Available points:"
         }
     },
     "functions": {

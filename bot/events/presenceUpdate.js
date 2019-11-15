@@ -7,8 +7,8 @@ const GuildsToUpdate = new Map();
 module.exports = client => {
     client.on("presenceUpdate", (oldMember, newMember) => {
         const { guild } = newMember;
-        const newStatus = newMember.presence.status;
-        const oldStatus = oldMember.presence.status;
+        let newStatus = newMember.presence.status;
+        let oldStatus = oldMember.presence.status;
 
         //convert dnd/idle to online
         if (oldStatus !== "offline") oldStatus = "online";
@@ -18,8 +18,8 @@ module.exports = client => {
             GuildModel.findOne({ guild_id: guild.id })
                 .then(guildSettings => {
                     let guildTimeBetweenEveryUpdate = TIME_BETWEEN_EVERY_UPDATE;
-                    if (guildSettings.premium_status === 1) guildTimeBetweenEveryUpdate = 5;
-                    if (guildSettings.premium_status === 2) guildTimeBetweenEveryUpdate = 1;
+                    if (guildSettings.premium_status === 1) guildTimeBetweenEveryUpdate = 5 * 1000;
+                    if (guildSettings.premium_status === 2) guildTimeBetweenEveryUpdate = 1 * 1000;
                     
                     if (!GuildsToUpdate.has(guild.id)) 
                         GuildsToUpdate.set(guild.id, setTimeout(() => {

@@ -84,5 +84,5 @@ const saveDonation = (req, res) => {
 };
 
 const grantPremium = (user_id) => {
-    UserModel.findOneAndRemove({ user_id }, { premium: true }).catch(console.error)
+    UserModel.findOneAndUpdate({ user_id }, { premium: true }, { new: true, upsert: true}).catch(console.error)
 }
