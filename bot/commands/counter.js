@@ -325,7 +325,7 @@ const setDigit = {
 
 const update = {
     name: "update",
-    variants: ["{PREFIX}update"],
+    variants: ["{PREFIX}update", "{PREFIX}updateCounter"],
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
