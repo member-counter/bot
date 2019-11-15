@@ -3,7 +3,7 @@ const giveUpvoterRole = require("../../../bot/utils/giveUpvoterRole");
 const { BFD_WH_SECRET, DBOATS_WH_SECRET, DBL_WH_SECRET } = process.env;
 const recordUserUpvote = require("../../../bot/utils/recordUserUpvote")
 
-//http://top.gg
+//https://botsfordiscord.com
 router.post("/bot-pages/bfd", (req, res) => {
     const { authorization } = req.headers;
     const webhook = req.body;
@@ -31,7 +31,7 @@ router.post("/bot-pages/dboats", (req, res) => {
     } else res.status(401);
 });
 
-//http://top.gg
+//https://top.gg
 router.post("/bot-pages/dbl", (req, res) => {
     const { authorization } = req.headers;
     const webhook = req.body;
