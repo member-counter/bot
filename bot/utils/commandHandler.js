@@ -74,8 +74,8 @@ module.exports = async message => {
                         //check if the command is enabled and supported for the channel type and then run it
                         if (commandToCheck.enabled) {
                             if (commandToCheck.allowedTypes.includes(channel.type)) {
-                                commandToCheck.run({ message, guild_settings, translation });
                                 console.log(`[Bot shard #${client.shard.id}] ${author.tag} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channel.type} (${channel.id})]: ${content}`);
+                                commandToCheck.run({ message, guild_settings, translation });
                                 break commands_loop;
                             } else {
                                 channel.send(translation.functions.commandHandler.invalid_channel.replace("{TYPE}", channel.type)).catch(console.error);

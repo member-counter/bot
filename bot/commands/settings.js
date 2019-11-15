@@ -54,6 +54,9 @@ const seeSettings = {
         messageToSend += `${prefix_text} ${prefix}\n`;
         messageToSend += `${lang_text} \`${lang}\` \\➡ ${translation.lang_name}\n`;
 
+        //Allowed roles for administrative commands
+        //TODO
+
         //channel name counters:
         if (channelNameCounter.size > 0) {
             messageToSend += `${enabled_channel_name_counters_text}\n`;
@@ -205,6 +208,65 @@ const prefix = {
     }
 };
 
+
+const role = {
+    name: "role",
+    variants: ["{PREFIX}role"],
+    allowedTypes: ["text"],
+    indexZero: true,
+    enabled: true,
+    run: ({ message, guild_settings, translation }) => {
+        const { channel, content, guild } = message;
+        const args = content.split(/\s+/);
+        const rolesToPerformAction = message.mentions.roles.keyArray();
+
+        const saveConfig = () => {
+            if (rolesToPerformAction.length > 0 || /all(\s|$)/g.test(content)) {
+                guild_settings.save()
+                    .then(() => {
+                        //TODO
+                        channel.send("Done.").catch(console.error);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        channel.send(translation.common.error_db).catch(console.error);
+                    });
+            } else {
+                console.log(2)
+                //TODO
+                channel.send("you must mention at least 1 role").catch(console.error);
+            }
+        }
+
+        switch (args[1]) {
+            case "allow":
+                if (/all(\s|$)/g.test(content)) {
+                    guild_settings.allowedRoles = guild.roles.keyArray();
+                } else {
+                    rolesToPerformAction.forEach(role => {
+                        if (!guild_settings.allowedRoles.includes(role)) guild_settings.allowedRoles.push(role);
+                    });
+                }
+                saveConfig();
+                break;
+        
+            case "deny":
+                if (/all(\s|$)/g.test(content)) {
+                    guild_settings.allowedRoles = [];
+                } else {
+                    guild_settings.allowedRoles = guild_settings.allowedRoles.filter(role => !rolesToPerformAction.includes(role));
+                }
+                saveConfig();
+                break;
+
+            default:
+                //TODO
+                channel.send("Invalid param, see info: asdaiskdapdk").catch(console.error);
+                break;
+        }
+    }
+};
+
 const upgradeServer = {
     name: "upgradeServer",
     variants: ["{PREFIX}upgradeServer", "{PREFIX}serverupgrade"],
@@ -266,7 +328,7 @@ const upgradeServer = {
     }
 };
 
-module.exports = { seeSettings, resetSettings, prefix, lang, upgradeServer };
+module.exports = { seeSettings, resetSettings, prefix, lang, role, upgradeServer };
 
 //I took this from https://jsperf.com/string-split-by-length/9
 String.prototype.splitSlice = function (len) {
