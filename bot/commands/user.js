@@ -1,19 +1,18 @@
 const UserModel = require("../../mongooseModels/UserModel");
 
 const user = {
-    name: "example",
+    name: "profile",
     variants: ["{PREFIX}me", "{PREFIX}profile"],
     allowedTypes: ["text", "dm"], 
     indexZero: true,
-    enabled: false,
+    enabled: true,
     run: ({ message, guild_settings, translation }) => {
-        //TODO
         const embed = {
-
+                //TODO
         };
         
         channel.send({ embed }).catch(console.error)
     }
 };
 
-module.exports = { user };
+module.exports = { profile };

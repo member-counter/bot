@@ -1,3 +1,6 @@
+const { DONATION_URL, DISCORD_OFFICIAL_SERVER_URL } = process.env;
+const BOT_INVITE_URL = require("../utils/generateBotInvitationLink")();
+
 const info = {
     name: "info",
     variants: [
@@ -11,7 +14,10 @@ const info = {
     indexZero: true,
     enabled: true,
     run: ({ message, translation }) => {
-        const embed = translation.commands.info.embed_reply;
+        const embed = translation.commands.info.embed_reply
+            .replace("{DONATION_URL}", DONATION_URL)
+            .replace("{BOT_SERVER_URL}", DISCORD_OFFICIAL_SERVER_URL)
+            .replace("{BOT_INVITE_URL}", BOT_INVITE_URL);
         message.channel.send({ embed }).catch(console.error);
     }
 };
