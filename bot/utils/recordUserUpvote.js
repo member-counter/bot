@@ -6,6 +6,6 @@ const UserModel = require("../../mongooseModels/UserModel");
 module.exports = user_id => {
     UserModel.findOneAndUpdate(
         { user_id },
-        { $inc: { total_given_upvotes: 1, available_upvotes_to_spend: 1 } }
+        { $inc: { total_given_upvotes: 1, available_points: 1 } }
     ).catch(console.error)
 };

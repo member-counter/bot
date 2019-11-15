@@ -211,9 +211,41 @@ const upgradeServer = {
     indexZero: true,
     enabled: true,
     run: ({ message, guildSettings, translation }) => {
-        const { channel, content, member } = message;
+        const { member, author, channel } = message;
+        let { high_tier_success, low_tier_success, points_left, error_no_points_left, error_cannot_upgrade } = translation.commands.upgradeServer;
         if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            //TODO
+            UserModel.findOne({ user_id: author.id })
+                .then(userDoc => {
+                    if (userDoc.premium) {
+                        if (guildSettings.premium_status < 2) {
+                            guildSettings.premium_status = 2;
+                            channel.send(high_tier_success).catch(console.error);
+                        } else {
+                            channel.send(error_cannot_upgrade).catch(console.error);
+                        }
+                    } else if (userDoc.available_points > 0) {
+                        if (guildSettings.premium_status < 1) {
+                            channel.send(low_tier_success).catch(console.error);
+                            UserModel.findOneAndUpdate(
+                                { user_id: author.id },
+                                { $inc: { available_points: -1 } }, 
+                                { new: true }
+                            )
+                                .then(userDoc => {
+                                    channel.send(points_left.replace("{POINTS}", userDoc.available_points)).catch(console.error);
+                                })
+                                .catch(console.error);
+                        } else {
+                            channel.send(error_cannot_upgrade).catch(console.error);
+                        }
+                    } else {
+                        channel.send(error_no_points_left).catch(console.error);
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    channel.send(translation.common.error_db).catch(console.error);
+                });
         }
     }
 };

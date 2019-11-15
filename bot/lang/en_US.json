@@ -7,7 +7,7 @@
             "help_description": "It's really necessary to explain the purpose of this command?",
             "embed_reply": {
                 "title": "Command list | prefix: {PREFIX}",
-                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}newChannelNameCounter [type] (custom channel name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one",
+                "description": "```css\n{PREFIX}help (command name)\n{PREFIX}newChannelNameCounter [type] (custom channel name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\nmc!profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -78,6 +78,14 @@
             "help_description": "If you think the counter is stuck use this command to force its update",
             "success": "Updating the counter for enabled channels, this may take a while."
         },
+        "upgradeServer": {
+            "help_description": "This command upgrades the premium status for this server.\n\n\nHere is a list of available tiers, how to get them and their perks:\n- **High tier**:\nHow to get it:\nHigh tier requires a premium account, to get it, you must donate any amount (`mc!donate`)\nPerks:\nTime between each update of some counters is recuced to 1 second.\n\n- **Low tier**:\nHow to get it:\nYou need 1 point (check how many you have in `mc!profile`), to get one, you must upvote the bot in one of this websites: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nPerks: Time between each update of some counters is recuced to 5 seconds.",
+            "high_tier_success": "Success! Granted high tier premium to this server.",
+            "low_tier_success": "Success! Granted low tier premium to this server.",
+            "points_left": "You have {POINTS} points left.",
+            "error_no_points_left": "You have no more points to spend, how to get more: `mc!help upgradeServer`",
+            "error_cannot_upgrade": "You can't upgrade the premium level because the server already has the same or a higher tier."
+        },
         "info": {
             "help_description": "List of useful links",
             "embed_reply": {
@@ -85,7 +93,7 @@
                     "url": "https://cdn.discordapp.com/avatars/478567255198662656/2047fe79c33411a08937d39413ca77e7.png?size=128"
                 },
                 "color": 14503424,
-                "description": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=52304&scope=bot)\n[Support server](https://discord.gg/g4MfV6N)\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations](https://paypal.me/eduardozgz)"
+                "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
             }
         },
         "lang": {
