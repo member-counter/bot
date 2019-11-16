@@ -67,6 +67,7 @@
                 "premium_no_tier_text": "Não",
                 "premium_low_tier_text": "Nível baixo",
                 "premium_high_tier_text": "Nível superior",
+                "allowed_roles_text": "Allowed roles to use administrative commands:",
                 "header_text": "Configurações para guild:",
                 "enabled_channel_name_counters_text": "Contadores de nomes de canais:",
                 "misc_type": "Tipo:",

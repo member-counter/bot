@@ -6,9 +6,10 @@ const profile = {
     allowedTypes: ["text", "dm"], 
     indexZero: true,
     enabled: true,
+    requiresAdmin: false,
     run: ({ message, guild_settings, translation }) => {
         const { author, channel } = message;
-        const { user_text, premium_text, total_given_upvotes_text, available_points_text } = translation.commands.profile;
+        const { premium_text, total_given_upvotes_text, available_points_text } = translation.commands.profile;
         
         UserModel.findOneAndUpdate(
             { user_id: author.id },

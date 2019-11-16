@@ -19,6 +19,7 @@ let status = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
+    requiresAdmin: false,
     run: async ({ message }) => {
         const { client, channel } = message;
         const { totalGuilds, totalCachedUsers } = await getTotalGuildsAndMembers(client);

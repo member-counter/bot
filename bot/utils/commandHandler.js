@@ -3,12 +3,14 @@ const fs = require('fs');
 const path = require('path');
 const sendStats = require('./stats.js');
 const GuildModel = require("../../mongooseModels/GuildModel");
+const memberHasPermission = require("../utils/memberHasPermissions");
+
 const { DISCORD_DEFAULT_LANG, DISCORD_PREFIX } = process.env;
 
 const commands = []
 
 module.exports = async message => {
-    const { client, guild, channel, author, content } = message;
+    const { client, guild, channel, author, content, member } = message;
     let command_runnable = true;
     
     if ((client.user.id !== author.id) && !author.bot) {
@@ -74,9 +76,15 @@ module.exports = async message => {
                         //check if the command is enabled and supported for the channel type and then run it
                         if (commandToCheck.enabled) {
                             if (commandToCheck.allowedTypes.includes(channel.type)) {
-                                console.log(`[Bot shard #${client.shard.id}] ${author.tag} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channel.type} (${channel.id})]: ${content}`);
-                                commandToCheck.run({ message, guild_settings, translation });
-                                break commands_loop;
+                                //if the channel type is text, user has permissions to run the command?
+                                if (memberHasPermission(member, guild_settings)) {
+                                    console.log(`[Bot shard #${client.shard.id}] ${author.tag} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channel.type} (${channel.id})]: ${content}`);
+                                    commandToCheck.run({ message, guild_settings, translation });
+                                   
+                                } else {
+                                    channel.send(translation.common.error_no_admin).catch(console.error);
+                                }
+                                break commands_loop; 
                             } else {
                                 channel.send(translation.functions.commandHandler.invalid_channel.replace("{TYPE}", channel.type)).catch(console.error);
                             }

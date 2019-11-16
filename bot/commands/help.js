@@ -4,6 +4,7 @@ const help = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
+    requiresAdmin: false,
     run: ({ message, guild_settings, translation }) => {
         const { prefix } = guild_settings;
         const { channel, content } = message;
