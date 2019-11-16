@@ -8,6 +8,7 @@ const donate = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
+    requiresAdmin: false,
     run: ({ message, translation }) => {
         const { channel } = message;
         getExchange()
