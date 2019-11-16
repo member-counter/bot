@@ -7,7 +7,7 @@
             "help_description": "¿Es realmente necesario explicar el propósito de este comando?",
             "embed_reply": {
                 "title": "Lista de comandos | prefijo: {PREFIX}",
-                "description": "```css\n{PREFIX}help (nombre del comando)\n{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)\n{PREFIX}topicCounter [enable/disable] (#canales/all)\n{PREFIX}setTopic (#canales) [tema]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\nmc!profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio.",
+                "description": "```css\n{PREFIX}help (nombre del comando)\n{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)\n{PREFIX}topicCounter [enable/disable] (#canales/all)\n{PREFIX}setTopic (#canales) [tema]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\nmc!role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\nmc!profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio.",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
@@ -51,6 +51,12 @@
         "prefix": {
             "help_description": "Cambia el prefijo del bot.\n\nUso:```{PREFIX}prefix [nuevo prefijo]```",
             "success": "Prefijo cambiado a: `{NEW_PREFIX}`"
+        },
+        "role": {
+            "help_description": "Puedes permitir o denegar el uso de comandos administrativos a roles que concretes\nTambien puedes referirte a todos con la palabra ``all``\nPara ver los roles permitidos usa ``mc!seeSettings``\n```mc!role allow @Mod\n mc!role allow @Mod @OtherRole\n mc!role deny all```",
+            "roles_updated": "Roles actualizados.",
+            "error_no_roles_to_update": "Debes mencionar al menos un rol.",
+            "invalid_params": "Parámetros invalidos, más info: `mc!help role`"
         },
         "seeSettings": {
             "help_description": "Muestra todos los ajustes del bot para este servidor.",

@@ -83,6 +83,7 @@ let status = {
               },
               {
                 "name": "**Memory usage:**",
+                //FIX
                 "value": `${toGB(os.totalmem() - os.freemem())} of ${toGB(os.totalmem())} (${((os.totalmem() - os.freemem()) * 100 / os.totalmem()).toPrecision(2)}%)`,
                 "inline": true
               },
