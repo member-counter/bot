@@ -10,7 +10,7 @@
                 "description": "```css\n{PREFIX}help (nombre del comando)\n{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)\n{PREFIX}topicCounter [enable/disable] (#canales/all)\n{PREFIX}setTopic (#canales) [tema]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\nmc!role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\nmc!profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio.",
                 "color": 14503424,
                 "footer": {
-                    "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
+                    "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
                     "text": "by eduardozgz#5695"
                 }
             },
@@ -115,7 +115,7 @@
                 "url": "{DONATION_URL}",
                 "color": 14503424,
                 "footer": {
-                    "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
+                    "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
                     "text": "by eduardozgz#5695"
                 },
                 "thumbnail": {
