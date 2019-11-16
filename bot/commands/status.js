@@ -1,17 +1,7 @@
 const os = require('os');
+const { spawn } = require('child_process');
 const { version } = require('../../package.json');
 const getTotalGuildsAndMembers = require("../utils/getTotalGuildsAndMembers");
-
-const toGB = (bytes) => {
-  return (bytes/1024/1024/1024).toPrecision(2) + "GB"
-};
-
-const parseUptime = (inputDate) => {
-    //inputDate must be in seconds
-    let uptime = new Date(1970, 0, 1);
-    uptime.setSeconds(Math.floor(inputDate));
-    return `${Math.floor(inputDate/60/60/24)} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`
-};
 
 let status = {
     name: "status",
@@ -28,7 +18,7 @@ let status = {
             "color": 14503424,
             "title": `Status for shard #${client.shard.id} | Bot version: ${version}`,
             "footer": {
-              "icon_url": "https://cdn.discordapp.com/attachments/441295855153315840/464917386563289118/enlarge.png",
+              "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
               "text": "by eduardozgz#5695"
             },
             "fields": [
@@ -84,8 +74,7 @@ let status = {
               },
               {
                 "name": "**Memory usage:**",
-                //FIX
-                "value": `${toGB(os.totalmem() - os.freemem())} of ${toGB(os.totalmem())} (${((os.totalmem() - os.freemem()) * 100 / os.totalmem()).toPrecision(2)}%)`,
+                "value": `${toGB(os.totalmem() - await getRealFreeMemory())} of ${toGB(os.totalmem())} (${((os.totalmem() - os.freemem()) * 100 / os.totalmem()).toPrecision(2)}%)`,
                 "inline": true
               },
               {
@@ -107,4 +96,43 @@ let status = {
           }).catch(console.error);
     }
 }
+
 module.exports = { status };
+
+const toGB = (bytes) => {
+  return (bytes/1024/1024/1024).toPrecision(2) + "GB"
+};
+
+const getRealFreeMemory = () => {
+  return new Promise(resolve => {
+    if (process.platform === "linux") {
+      const process = spawn('cat', ["/proc/meminfo"]);
+      let realFreeMemory = 0;
+      process.stdout.setEncoding('utf8');
+      process.stdout.on('data', (data) => {
+        data = data.toString()
+        let memInfo = {};
+
+        data.split("\n").forEach(line => {
+          memInfo[line.split(/:\s+/)[0]] = parseInt(line.split(/:\s+/)[1], 10) * 1024;
+        });
+        
+        realFreeMemory = memInfo.MemFree + memInfo.Buffers + memInfo.Cached;
+      });
+    
+      process.on('close', () => {
+          resolve(realFreeMemory);
+      });
+    } else {
+      resolve(os.freemem());
+    }
+  });
+}
+
+const parseUptime = (inputDate) => {
+  //inputDate must be in seconds
+  let uptime = new Date(1970, 0, 1);
+  uptime.setSeconds(Math.floor(inputDate));
+  return `${Math.floor(inputDate/60/60/24)} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`
+};
+
