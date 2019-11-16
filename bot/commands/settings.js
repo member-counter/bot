@@ -211,7 +211,7 @@ const prefix = {
 
 const role = {
     name: "role",
-    variants: ["{PREFIX}role"],
+    variants: ["{PREFIX}role", "{PREFIX}roles"],
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
@@ -224,17 +224,14 @@ const role = {
             if (rolesToPerformAction.length > 0 || /all(\s|$)/g.test(content)) {
                 guild_settings.save()
                     .then(() => {
-                        //TODO
-                        channel.send("Done.").catch(console.error);
+                        channel.send(translation.commands.role.roles_updated).catch(console.error);
                     })
                     .catch(error => {
                         console.error(error);
                         channel.send(translation.common.error_db).catch(console.error);
                     });
             } else {
-                console.log(2)
-                //TODO
-                channel.send("you must mention at least 1 role").catch(console.error);
+                channel.send(translation.commands.role.error_no_roles_to_update).catch(console.error);
             }
         }
 
@@ -260,8 +257,7 @@ const role = {
                 break;
 
             default:
-                //TODO
-                channel.send("Invalid param, see info: asdaiskdapdk").catch(console.error);
+                channel.send(translation.commands.role.invalid_params).catch(console.error);
                 break;
         }
     }
