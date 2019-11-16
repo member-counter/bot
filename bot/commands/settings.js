@@ -1,7 +1,6 @@
 const GuildModel = require("../../mongooseModels/GuildModel");
 const UserModel = require("../../mongooseModels/UserModel");
 const getLanguages = require("../utils/getLanguages");
-const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
 const seeSettings = {
     name: "seeSettings",
@@ -9,6 +8,7 @@ const seeSettings = {
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
+    requiresAdmin: false,
     run: ({ message, guild_settings, translation }) => {
         const { guild, channel } = message;
         const {
@@ -18,6 +18,7 @@ const seeSettings = {
             premium_no_tier_text,
             premium_low_tier_text,
             premium_high_tier_text,
+            allowed_roles_text,
             header_text,
             enabled_channel_name_counters_text,
             misc_type,
@@ -55,7 +56,12 @@ const seeSettings = {
         messageToSend += `${lang_text} \`${lang}\` \\➡ ${translation.lang_name}\n`;
 
         //Allowed roles for administrative commands
-        //TODO
+        let allowed_roles = "";
+        guild_settings.allowedRoles.forEach((role_id) => {
+            if (guild.roles.has(role_id)) allowed_roles += " @"+guild.roles.get(role_id).name;
+        });
+
+        messageToSend += `${allowed_roles_text} ${allowed_roles}\n`
 
         //channel name counters:
         if (channelNameCounter.size > 0) {
@@ -111,40 +117,37 @@ const resetSettings = {
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
+    requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, member  } = message;
-        if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            GuildModel.findOneAndRemove({ guild_id: guild.id })
-                .then(() => { 
-                //leave empty all channel topics
-                guild_settings.enabled_channels.forEach(channel_id => {
-                    if (client.channels.has(channel_id)) {
-                        client.channels.get(channel_id).setTopic('').catch(e => {
-                            //ignore errors caused by permissions 
-                            if (!(e.code === 50013 || e.code === 50001)) console.error(e);
-                        });
-                    }
-                });
-                
-                //delete all channel name counters
-                guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
-                    if (client.channels.has(channel_id)) {
-                        client.channels.get(channel_id).delete().catch(e => {
-                            //ignore errors caused by permissions 
-                            if (!(e.code === 50013 || e.code === 50001)) console.error(e);
-                        });
-                    }
-                });
+        const { client, guild, channel } = message;
+        GuildModel.findOneAndRemove({ guild_id: guild.id })
+            .then(() => { 
+            //leave empty all channel topics
+            guild_settings.enabled_channels.forEach(channel_id => {
+                if (client.channels.has(channel_id)) {
+                    client.channels.get(channel_id).setTopic('').catch(e => {
+                        //ignore errors caused by permissions 
+                        if (!(e.code === 50013 || e.code === 50001)) console.error(e);
+                    });
+                }
+            });
+            
+            //delete all channel name counters
+            guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
+                if (client.channels.has(channel_id)) {
+                    client.channels.get(channel_id).delete().catch(e => {
+                        //ignore errors caused by permissions 
+                        if (!(e.code === 50013 || e.code === 50001)) console.error(e);
+                    });
+                }
+            });
 
-                channel.send(translation.commands.resetSettings.done).catch(console.error);
-            })
-            .catch(error => {
-                console.error(error);
-                channel.send(translation.common.error_db).catch(console.error);
-            })
-        } else {
-            channel.send(translation.common.error_no_admin).catch(console.error)
-        }
+            channel.send(translation.commands.resetSettings.done).catch(console.error);
+        })
+        .catch(error => {
+            console.error(error);
+            channel.send(translation.common.error_db).catch(console.error);
+        })
     }
 }
 
@@ -154,32 +157,31 @@ const lang = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
+    requiresAdmin: true,
     run: async ({ message, guild_settings, translation }) => {
-        const { content, channel, member } = message;
-        if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            const args = content.split(/\s+/);
-            const lang_code = args[1];
-            const languages = await getLanguages();
-            if (languages.has(lang_code)) {
-                guild_settings.lang = lang_code;
-                guild_settings
-                    .save()
-                    .then(() => {
-                        channel.send(languages.get(lang_code).commands.lang.success).catch(console.error);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        channel.send(translation.common.error_db).catch(console.error);
-                    });
-            } else {
-                let messageToSend = translation.commands.lang.error_not_found + "\n";
-                messageToSend += "```fix\n"
-                languages.forEach((value, lang_code) => {
-                    messageToSend += lang_code + " ➡ " + value.lang_name + "\n";
+        const { content, channel } = message;
+        const args = content.split(/\s+/);
+        const lang_code = args[1];
+        const languages = await getLanguages();
+        if (languages.has(lang_code)) {
+            guild_settings.lang = lang_code;
+            guild_settings
+                .save()
+                .then(() => {
+                    channel.send(languages.get(lang_code).commands.lang.success).catch(console.error);
+                })
+                .catch(error => {
+                    console.error(error);
+                    channel.send(translation.common.error_db).catch(console.error);
                 });
-                messageToSend += "```"
-                channel.send(messageToSend).catch(console.error);
-            }
+        } else {
+            let messageToSend = translation.commands.lang.error_not_found + "\n";
+            messageToSend += "```fix\n"
+            languages.forEach((value, lang_code) => {
+                messageToSend += lang_code + " ➡ " + value.lang_name + "\n";
+            });
+            messageToSend += "```"
+            channel.send(messageToSend).catch(console.error);
         }
     }
 };
@@ -190,21 +192,20 @@ const prefix = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
+    requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
-        const { channel, content, member } = message;
-        if (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id)) {
-            const args = content.split(/\s+/g);
-            guild_settings.prefix = args[1] ? args[1] : guild_settings.prefix;
-            guild_settings
-                .save()
-                .then(() => {
-                    channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", guild_settings.prefix)).catch(console.error);
-                })
-                .catch(error => {
-                    console.error(error);
-                    channel.send(translation.common.error_db).catch(console.error);
-                });
-        }
+        const { channel, content } = message;
+        const args = content.split(/\s+/g);
+        guild_settings.prefix = args[1] ? args[1] : guild_settings.prefix;
+        guild_settings
+            .save()
+            .then(() => {
+                channel.send(translation.commands.prefix.success.replace("{NEW_PREFIX}", guild_settings.prefix)).catch(console.error);
+            })
+            .catch(error => {
+                console.error(error);
+                channel.send(translation.common.error_db).catch(console.error);
+            });
     }
 };
 
@@ -215,6 +216,7 @@ const role = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
+    requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
         const { channel, content, guild } = message;
         const args = content.split(/\s+/);
@@ -238,7 +240,8 @@ const role = {
         switch (args[1]) {
             case "allow":
                 if (/all(\s|$)/g.test(content)) {
-                    guild_settings.allowedRoles = guild.roles.keyArray();
+                    //that filter is to remove @everyone
+                    guild_settings.allowedRoles = guild.roles.keyArray().filter(role => role !== guild.id);
                 } else {
                     rolesToPerformAction.forEach(role => {
                         if (!guild_settings.allowedRoles.includes(role)) guild_settings.allowedRoles.push(role);
@@ -269,6 +272,7 @@ const upgradeServer = {
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
+    requiresAdmin: false,
     run: ({ message, guild_settings, translation }) => {
         const { author, channel } = message;
         let { high_tier_success, low_tier_success, points_left, error_no_points_left, error_cannot_upgrade } = translation.commands.upgradeServer;

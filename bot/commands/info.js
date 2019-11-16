@@ -13,6 +13,7 @@ const info = {
     allowedTypes: ["text", "dm"],
     indexZero: true,
     enabled: true,
+    requiresAdmin: false,
     run: ({ message, translation }) => {
         const embed = Object.create(translation.commands.info.embed_reply);
         embed.description = embed.description
