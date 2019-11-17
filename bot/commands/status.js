@@ -74,7 +74,7 @@ let status = {
               },
               {
                 "name": "**Memory usage:**",
-                "value": `${toGB(os.totalmem() - await getRealFreeMemory())} of ${toGB(os.totalmem())} (${((os.totalmem() - os.freemem()) * 100 / os.totalmem()).toPrecision(2)}%)`,
+                "value": `${toGB(os.totalmem() - await getRealFreeMemory())} of ${toGB(os.totalmem())} (${((os.totalmem() - await getRealFreeMemory()) * 100 / os.totalmem()).toPrecision(2)}%)`,
                 "inline": true
               },
               {
