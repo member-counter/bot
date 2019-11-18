@@ -1,6 +1,7 @@
 const GuildModel = require("../../mongooseModels/GuildModel");
 const updateCounter = require("../utils/updateCounter");
 
+//TODO
 module.exports = client => {
     client.on("channelDelete", channel => {
         if (channel.guild) updateCounter(client, channel.guild.id, ["channels", "connectedusers"]);

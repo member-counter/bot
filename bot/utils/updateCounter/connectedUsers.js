@@ -8,13 +8,17 @@ module.exports = (client, guildSettings) => {
     } = guildSettings;
     
     if (client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
-        let count = 0; 
+        let count = new Map(); 
         client.guilds.get(guild_id).channels.forEach(channel => {
-            if (channel.type === "voice") count += channel.members.size;
+            if (channel.type === "voice") {
+                channel.members.forEach(member => {
+                    count.set(member.id);
+                });
+            }
         });
         channelNameCounter.forEach((channel_name, channel_id) => {
             if (channelNameCounter_types.has(channel_id) && (channelNameCounter_types.get(channel_id) === "connectedusers"))
-                setChannelName({ client, channelId: channel_id, channelName: channel_name, count, guildSettings });
+                setChannelName({ client, channelId: channel_id, channelName: channel_name, count: count.size, guildSettings });
         });
     }
 };

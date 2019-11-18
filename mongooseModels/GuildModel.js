@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { DISCORD_PREFIX } = process.env;
 
-const CustomNumbers = mongoose.Schema({
+const TopicCounterCustomNumbers = mongoose.Schema({
     1: { type: String, default: '<a:1G:469275169190445056>' },
     2: { type: String, default: '<a:2G:469275085451034635>' },
     3: { type: String, default: '<a:3G:469275208684011550>' },
@@ -14,18 +14,27 @@ const CustomNumbers = mongoose.Schema({
     0: { type: String, default: '<a:0G:469275067969306634>' }
 }, { _id : false });
 
+const channelNameCounter = mongoose.Schema({
+    channelName: { type: String, require: true },
+    type: { type: String, default: "members" },
+    otherConfig: { type: Object }
+}, { _id : false });
+
+const topicCounterChannel = mongoose.Schema({
+    topic: { type: String },
+    otherConfig: { type: Object }
+}, { _id : false });
+
 const GuildSchema = mongoose.Schema({
     guild_id: { type: String, require: true },
     premium_status: { type: Number, default: 0 }, //0 === no, 1 === low tier, 2 === high tier
     prefix: { type: String, default: DISCORD_PREFIX },
     lang: { type: String, default: "en_US" },
     allowedRoles: [{ type: String, default: [] }], //Allowed roles for administrative commands
-    enabled_channels: [{ type: String, default: [] }],
-    topic: { type: String, default: "Members: {COUNT}" }, //used in all channels if the channel does not appear in this.unique_topics
-    unique_topics: { type: Map, of: String, default: new Map() }, //specific topic by channel
-    channelNameCounter: { type: Map, of: String, default: new Map() },
-    channelNameCounter_types: { type: Map, of: String, default: new Map() },
-    custom_numbers: { type: CustomNumbers, default: CustomNumbers }
+    topicCounterChannels: { type: Map, of: topicCounterChannel, default: new Map() },
+    mainTopicCounter: { type: String, default: "Members: {COUNT}" }, //used in all channels that topicCounterChannel.topic is undefined
+    topicCounterCustomNumbers: { type: TopicCounterCustomNumbers, default: TopicCounterCustomNumbers },
+    channelNameCounters: { type: Map, of: channelNameCounter, default: new Map() },
 }, { _id : false });
 
 module.exports = mongoose.model('guilds', GuildSchema);
