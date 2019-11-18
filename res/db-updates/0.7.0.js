@@ -25,30 +25,34 @@ client.connect(async err => {
     allGuildsDocs.forEach(guild => {
         try {
             //enabled_channels and unique_topics to topicCounterChannels
-            guild.enabled_channels.forEach(channel_id => {
-                guild.topicCounterChannels[channel_id] = {}
-            })
 
-            Object.entries(guild.unique_topics).forEach(it => {
-                let channel_id = it[0];
-                let topic = it[1];
-                guild.topicCounterChannels[channel_id].topic = topic;
-            })
+            if (guild.enabled_channels) 
+                guild.enabled_channels.forEach(channel_id => {
+                    guild.topicCounterChannels[channel_id] = {}
+                });
+
+            if (guild.unique_topics)
+                Object.entries(guild.unique_topics).forEach(it => {
+                    let channel_id = it[0];
+                    let topic = it[1];
+                    guild.topicCounterChannels[channel_id].topic = topic;
+                });
 
 
             //channelNameCounter and channelNameCounter_types to channelNameCounters
-            Object.entries(guild.channelNameCounter).forEach(it => {
-                let channel_id = it[0];
-                let channelName = it[1];
-                guild.channelNameCounters[channel_id] = { channelName, type: "members" }
-            })
+            if (guild.channelNameCounter)
+                Object.entries(guild.channelNameCounter).forEach(it => {
+                    let channel_id = it[0];
+                    let channelName = it[1];
+                    guild.channelNameCounters[channel_id] = { channelName, type: "members" }
+                });
 
-            Object.entries(guild.channelNameCounter_types).forEach(it => {
-                let channel_id = it[0];
-                let data = it[1];
-                guild.channelNameCounters[channel_id].type = data;
-            })
-
+            if (guild.channelNameCounter_types)
+                Object.entries(guild.channelNameCounter_types).forEach(it => {
+                    let channel_id = it[0];
+                    let data = it[1];
+                    guild.channelNameCounters[channel_id].type = data;
+                });
 
             GuildsCollection.findOneAndUpdate({ guild_id: guild.guild_id }, {
                 $set: {
