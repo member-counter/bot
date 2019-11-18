@@ -1,4 +1,5 @@
 const setChannelName = require("./functions/setChannelName");
+const addTrack = require("../addTrack");
 
 module.exports = (client, guildSettings) => {
     const {
@@ -19,5 +20,6 @@ module.exports = (client, guildSettings) => {
             if (channelNameCounter.type === "connectedusers")
                 setChannelName({ client, channelId, channelName: channelNameCounter.channelName, count: count.size, guildSettings });
         });
+        addTrack(guild_id, "vc_connected_members_count_history", count.size);
     }
 };
