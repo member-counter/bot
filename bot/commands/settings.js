@@ -24,19 +24,17 @@ const seeSettings = {
             misc_type,
             enabled_channel_topic_counters_text,
             main_topic_text,
-            custom_topics_by_channel_text,
             custom_numbers_text
         } = translation.commands.seeSettings.settings_message;
         const {
             prefix,
             premium_status,
             lang,
-            channelNameCounter,
-            channelNameCounter_types,
-            enabled_channels,
-            unique_topics,
-            topic,
-            custom_numbers
+            allowedRoles,
+            channelNameCounters,
+            topicCounterChannels,
+            mainTopicCounter,
+            topicCounterCustomNumbers,
         } = guild_settings;
 
         let messageToSend = "";
@@ -56,51 +54,45 @@ const seeSettings = {
         messageToSend += `${lang_text} \`${lang}\` \\➡ ${translation.lang_name}\n`;
 
         //Allowed roles for administrative commands
-        let allowed_roles = "";
-        guild_settings.allowedRoles.forEach((role_id) => {
-            if (guild.roles.has(role_id)) allowed_roles += " @"+guild.roles.get(role_id).name;
-        });
+        if (allowedRoles.size > 0) {
+            let allowed_roles = "";
+            allowedRoles.forEach((role_id) => {
+                if (guild.roles.has(role_id)) allowed_roles += " @"+guild.roles.get(role_id).name;
+            });
 
-        messageToSend += `${allowed_roles_text} ${allowed_roles}\n`
+            messageToSend += `${allowed_roles_text} ${allowed_roles}\n`
+        }
 
         //channel name counters:
-        if (channelNameCounter.size > 0) {
+        if (channelNameCounters.size > 0) {
             messageToSend += `${enabled_channel_name_counters_text}\n`;
 
-            channelNameCounter.forEach((channel_name, channel_id) => {
-                messageToSend += `\\• <#${channel_id}> \`(${channel_id})\` \\➡ ${misc_type} \`${channelNameCounter_types.has(channel_id) ? channelNameCounter_types.get(channel_id) : "members"}\` \n`;    
+            channelNameCounters.forEach((channelNameCounter, channelId) => {
+                messageToSend += `\\• <#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\` \n`;    
             });
             
             messageToSend += "\n";
         }
 
-        //Enabled channel topic counters:
-        if (enabled_channels.length > 0) {
+        //channel topic counters:
+        //TODO fix this
+        if (topicCounterChannels.size > 0) {
             messageToSend += `${enabled_channel_topic_counters_text}\n`;
 
-            enabled_channels.forEach((channel_id) => {
-                messageToSend +=`\\• <#${channel_id}> \`(${channel_id})\`\n`;    
+            topicCounterChannels.forEach((topicCounterChannel, channelId) => {
+                messageToSend +=`\\• <#${channelId}> \`(${channelId})\` ${(topicCounterChannel.topic) ? `\\➡ ${topicCounterChannel.topic}` : ""}\n`;    
             });
 
             messageToSend += "\n";
         }
 
         //Main topic for topic counters
-        messageToSend += `${main_topic_text} \`\`\`${topic}\`\`\``;
-
-        if (unique_topics.size > 0) {
-            //Custom topics by channel
-            messageToSend += `${custom_topics_by_channel_text}\n`;
-
-            unique_topics.forEach((channel_topic, channel_id) => {
-                messageToSend +=`\\• <#${channel_id}> \`(${channel_id})\` \\➡ ${channel_topic}\n`;    
-            });
-        }
+        messageToSend += `${main_topic_text} \`\`\`${mainTopicCounter}\`\`\``;
 
         //numbers
         messageToSend += `\n${custom_numbers_text}\n`;
 
-        Object.entries(custom_numbers.toObject()).forEach((number, i) => {
+        Object.entries(topicCounterCustomNumbers.toObject()).forEach((number, i) => {
             messageToSend +=`${i} \\➡ ${number[1]}\n`;
         });
 
@@ -123,22 +115,16 @@ const resetSettings = {
         GuildModel.findOneAndRemove({ guild_id: guild.id })
             .then(() => { 
             //leave empty all channel topics
-            guild_settings.enabled_channels.forEach(channel_id => {
-                if (client.channels.has(channel_id)) {
-                    client.channels.get(channel_id).setTopic('').catch(e => {
-                        //ignore errors caused by permissions 
-                        if (!(e.code === 50013 || e.code === 50001)) console.error(e);
-                    });
+            guild_settings.topicCounterChannels.forEach((_, channelId) => {
+                if (client.channels.has(channelId)) {
+                    client.channels.get(channelId).setTopic('').catch(console.error);
                 }
             });
             
             //delete all channel name counters
-            guild_settings.channelNameCounter.forEach((channel_name, channel_id) => {
-                if (client.channels.has(channel_id)) {
-                    client.channels.get(channel_id).delete().catch(e => {
-                        //ignore errors caused by permissions 
-                        if (!(e.code === 50013 || e.code === 50001)) console.error(e);
-                    });
+            guild_settings.channelNameCounters.forEach((_, channelId) => {
+                if (client.channels.has(channelId)) {
+                    client.channels.get(channelId).delete().catch(console.error);
                 }
             });
 

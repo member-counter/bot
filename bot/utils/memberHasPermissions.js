@@ -12,6 +12,6 @@ module.exports = (member, guildSettings) => {
     guildSettings.allowedRoles.forEach(roleId => {
         if (member.roles.has(roleId)) hasAnyAllowedRole = true;
     });
-
+    
     return (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id) || hasAnyAllowedRole);
 }

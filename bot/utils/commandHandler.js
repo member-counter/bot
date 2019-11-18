@@ -77,14 +77,14 @@ module.exports = async message => {
                         if (commandToCheck.enabled) {
                             if (commandToCheck.allowedTypes.includes(channel.type)) {
                                 //if the channel type is text, user has permissions to run the command?
-                                if (memberHasPermission(member, guild_settings)) {
+                                if (commandToCheck.requiresAdmin && channel.type === "text" && !memberHasPermission(member, guild_settings)) {
+                                    channel.send(translation.common.error_no_admin).catch(console.error);
+                                    break commands_loop; 
+                                } else {
                                     console.log(`[Bot shard #${client.shard.id}] ${author.tag} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channel.type} (${channel.id})]: ${content}`);
                                     commandToCheck.run({ message, guild_settings, translation });
-                                   
-                                } else {
-                                    channel.send(translation.common.error_no_admin).catch(console.error);
+                                    break commands_loop; 
                                 }
-                                break commands_loop; 
                             } else {
                                 channel.send(translation.functions.commandHandler.invalid_channel.replace("{TYPE}", channel.type)).catch(console.error);
                             }
