@@ -10,7 +10,7 @@ module.exports = async ({ client, channelId, type, guildSettings, error, forceRe
         switch (type) {
             case "topicCounter":
                 GuildModel.findOneAndUpdate({ guild_id: guildId }, {
-                    $pull: { enabled_channels: channelId }
+                    $unset: { [`topicCounterChannels.${channelId}`]: "" }
                 })
                     .then(() =>
                         console.log(
@@ -21,21 +21,11 @@ module.exports = async ({ client, channelId, type, guildSettings, error, forceRe
                 break;
             case "channelNameCounter":
                 GuildModel.findOneAndUpdate({ guild_id: guildId }, {
-                    $unset: { [`channelNameCounter.${channelId}`]: "" }
+                    $unset: { [`channelNameCounters.${channelId}`]: "" }
                 })
                     .then(() =>
                         console.log(
                             `[Bot shard #${client.shard.id}] [DB] Channel ${channelId} from the guild ${guildId} removed from channelNameCounter.`
-                        )
-                    )
-                    .catch(console.error);
-
-                GuildModel.findOneAndUpdate({ guild_id: guildId }, {
-                    $unset: { [`channelNameCounter_types.${channelId}`]: "" }
-                })
-                    .then(() =>
-                        console.log(
-                            `[Bot shard #${client.shard.id}] [DB] Channel ${channelId} from the guild ${guildId} removed from channelNameCounter_types.`
                         )
                     )
                     .catch(console.error);

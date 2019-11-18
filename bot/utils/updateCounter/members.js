@@ -1,16 +1,16 @@
 const setChannelName = require("./functions/setChannelName");
 const removeChannelFromDB = require("./functions/removeChannelFromDB");
+
+//idk anymore what does this
 const previousCounts = new Map();
 
 module.exports = (client, guildSettings, types = []) => {
     const {
         guild_id,
-        enabled_channels,
-        custom_numbers,
-        unique_topics,
-        topic,
-        channelNameCounter,
-        channelNameCounter_types
+        channelNameCounters,
+        topicCounterCustomNumbers,
+        topicCounterChannels,
+        mainTopicCounter
     } = guildSettings;
 
     if (types.includes("force")) previousCounts.delete(guild_id);
@@ -54,8 +54,9 @@ module.exports = (client, guildSettings, types = []) => {
         });
 
         //set counts in channel names
-        channelNameCounter.forEach((channelName, channelId) => {
-            switch (channelNameCounter_types.get(channelId)) {
+        channelNameCounters.forEach((channelNameCounter, channelId) => {
+            let { channelName, type } = channelNameCounter; 
+            switch (type) {
                 case "users":
                     if (previousCount.users !== users) setChannelName({ client, channelId, channelName, count: users, guildSettings });
                     break;
@@ -90,7 +91,6 @@ module.exports = (client, guildSettings, types = []) => {
 
                 case "members":
                 case undefined:
-                    //some channels are supossed to be a member counter but they may not be inside channelNameCounter_types
                     if (previousCount.members !== members) setChannelName({ client, channelId, channelName, count: members, guildSettings });
                     break;
             }
@@ -102,10 +102,10 @@ module.exports = (client, guildSettings, types = []) => {
         members
             .toString()
             .split("")
-            .forEach(digit => (memberCountCustomized += custom_numbers[digit]));
+            .forEach(digit => (memberCountCustomized += topicCounterCustomNumbers[digit]));
 
         if (previousCount.members !== members) {
-            enabled_channels.forEach(channelId => {
+            topicCounterChannels.forEach((topicCounterChannel, channelId) => {
                 //exists the channel?
                 if (client.channels.has(channelId)) {
                     //is text type or news type?
@@ -113,9 +113,9 @@ module.exports = (client, guildSettings, types = []) => {
                     if (channelType === "text" || channelType === "news") {
     
                         //the topic must be the main one or a specific one?
-                        let topicToSet = unique_topics.has(channelId)
-                            ? unique_topics.get(channelId)
-                            : topic;
+                        let topicToSet = (topicCounterChannel.topic)
+                            ? topicCounterChannel.topic
+                            : mainTopicCounter;
     
                         topicToSet = topicToSet
                             .replace(/\{COUNT\}/gi, memberCountCustomized)
