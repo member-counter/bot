@@ -33,12 +33,11 @@ client.connect(async err => {
                     guild.topicCounterChannels[channel_id] = {}
                 });
 
-            if (guild.unique_topics)
+            if (guild.enabled_channels && guild.unique_topics)
                 Object.entries(guild.unique_topics).forEach(it => {
                     let channel_id = it[0];
                     let topic = it[1];
-
-                    if (guild.topicCounterChannels[channel_id]) guild.topicCounterChannels[channel_id].topic = topic;
+                    guild.topicCounterChannels[channel_id] = { topic }
                 });
 
 
@@ -53,11 +52,11 @@ client.connect(async err => {
                     guild.channelNameCounters[channel_id] = { channelName, type: "members" }
                 });
 
-            if (guild.channelNameCounter_types)
+            if (guild.channelNameCounter && guild.channelNameCounter_types)
                 Object.entries(guild.channelNameCounter_types).forEach(it => {
                     let channel_id = it[0];
                     let data = it[1];
-                    if (guild.channelNameCounters[channel_id]) guild.channelNameCounters[channel_id].type = data;
+                    guild.channelNameCounters[channel_id].type = data;
                 });
 
             GuildsCollection.findOneAndUpdate({ guild_id: guild.guild_id }, {
