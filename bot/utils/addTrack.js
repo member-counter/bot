@@ -1,15 +1,24 @@
 const TrackModel = require("../../mongooseModels/TrackModel");
 
-module.exports = member => {
+/**
+ * @typedef {"member_count_history" | "user_count_history" | "online_member_count_history" | "vc_connected_members_count_history" | "channel_count_history" | "role_count_history"} Targets
+ */
+
+/**
+ * @param {string} guild_id Guild ID
+ * @param {Targets} target
+ * @param {Number} count
+ */
+module.exports = (guild_id, target, count) => {
     TrackModel.findOneAndUpdate(
         {
-            guild_id: member.guild.id
+            guild_id
         },
         {
             $push: {
-                count_history: {
+                [target]: {
                     timestamp: new Date(),
-                    count: member.guild.memberCount
+                    count
                 }
             }
         },
@@ -19,4 +28,4 @@ module.exports = member => {
         .catch(console.error);
 };
 
-//I dedicate this code refactoring to Alex, thank you for all ♥
+//I dedicate this.code to Alex, thank you for all ♥

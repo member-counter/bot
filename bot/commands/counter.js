@@ -8,7 +8,7 @@ const newChannelNameCounter = {
     enabled: true,
     requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member  } = message;
+        const { client, guild, channel, content } = message;
         const args = content.split(/\s+/);
         const type = args[1];
         //used to set a channel name if there is not specified a one
@@ -50,8 +50,7 @@ const newChannelNameCounter = {
                     }
                 )
                 .then(voiceChannel => {
-                    guild_settings.channelNameCounter.set(voiceChannel.id, channelName);
-                    guild_settings.channelNameCounter_types.set(voiceChannel.id, type.toLowerCase());
+                    guild_settings.channelNameCounters.set(voiceChannel.id, { channelName, type: type.toLowerCase()});
                     guild_settings.save()
                         .then(() => {
                             updateCounter(client, guild_settings, ["all", "force"]);
@@ -82,7 +81,7 @@ const topicCounter = {
     enabled: true,
     requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, guild, channel, content, member, mentions  } = message;
+        const { client, guild, channel, content, mentions  } = message;
         const args = content.split(/\s+/);
         const action = args[1] ? args[1].toLowerCase() : "";
         
@@ -100,7 +99,10 @@ const topicCounter = {
         switch (action) {
             case "enable":
                 channelsToPerformAction.forEach(channel_id => {
-                    if (!guild_settings.enabled_channels.includes(channel_id)) guild_settings.enabled_channels.push(channel_id);
+                    //TODO Fix this
+                    if (!guild_settings.topicCounterChannels.has(channel_id)) {
+                        guild_settings.topicCounterChannels.set(channel_id);
+                    }
                 });
 
                 guild_settings.save()
@@ -122,7 +124,10 @@ const topicCounter = {
                 break;
         
             case "disable":
-                guild_settings.enabled_channels = guild_settings.enabled_channels.filter(x => channelsToPerformAction.indexOf(x) === -1);
+                channelsToPerformAction.forEach(channel_id => {
+                    guild_settings.topicCounterChannels.delete(channel_id);
+                });
+
                 guild_settings.save()
                     .then(() => {
                         //leave the topic empty
@@ -159,12 +164,12 @@ const setTopic = {
     enabled: true,
     requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, channel, content, member } = message;
+        const { client, channel, content } = message;
         const args = content.split(" ");
         let channelsToCustomize = [];
         let newTopic = "";
 
-        //check if the topic must be setted for specific channels. No, I can't use mentions.channels because that could also include mentioned channels inside newTopic
+        //check if the topic must be setted for specific channels. No, I can't use mentions.channels because that could also include mentioned channels that the user pretends to include as decoration
         for (let i = 0; i < args.length; i++) {
             const arg = args[i];
             if (i !== 0) {
@@ -192,7 +197,16 @@ const setTopic = {
 
         //save changes
         if (channelsToCustomize.length > 0 && sliceFrom !== undefined) {
-            channelsToCustomize.forEach(channel_id => guild_settings.unique_topics.set(channel_id, newTopic));
+            channelsToCustomize.forEach(channel_id => {
+                if (guild_settings.topicCounterChannels.has(channel_id)) {
+                    guild_settings.topicCounterChannels.set(channel_id, {
+                        //TODO fix this, convert to a normal map object
+                        ...guild_settings.topicCounterChannels.get(channel_id),
+                        topic: newTopic
+                    })
+                }
+            });
+
             guild_settings.save()
                 .then(() => {
                     updateCounter(client, guild_settings, ["members", "force"]);
@@ -210,7 +224,7 @@ const setTopic = {
             //this happens when you run the command with mentioned channels but without a topic, like "prefix!setTopic #general"
             channel.send(translation.commands.setTopic.no_topic.replace("{PREFIX}", guild_settings.prefix)).catch(console.error);
         } else {
-            guild_settings.topic = newTopic;
+            guild_settings.mainTopicCounter = newTopic;
             guild_settings.save()
                 .then(() => {
                     updateCounter(client, guild_settings, ["members", "force"]);
@@ -232,11 +246,17 @@ const removeTopic = {
     enabled: true,
     requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, channel, member, mentions  } = message;
+        const { client, channel, mentions  } = message;
         const mentionedChannels = mentions.channels.keyArray();
         if (mentionedChannels.length > 0) {
             mentionedChannels.forEach(channel_id => {
-                guild_settings.unique_topics.delete(channel_id);
+                if (guild_settings.topicCounterChannels.has(channel_id)) {
+                    guild_settings.topicCounterChannels.set(channel_id, {
+                        //TODO fix this, convert to a normal map object
+                        ...guild_settings.topicCounterChannels.get(channel_id),
+                        topic: undefined
+                    })
+                }
             });
             guild_settings.save()
                 .then(() => {
@@ -252,7 +272,7 @@ const removeTopic = {
                     channel.send(translation.common.error_db).catch(console.error);
                 })
         } else {
-            guild_settings.topic = "Members: {COUNT}";
+            guild_settings.mainTopicCounter = "Members: {COUNT}";
             guild_settings.save()
                 .then(() => {
                     updateCounter(client, guild_settings, ["members", "force"]);
@@ -277,7 +297,7 @@ const setDigit = {
         const { client, channel, content } = message;
         const args = content.split(/\s+/);
         if (args[1] === "reset") {
-            guild_settings.custom_numbers = {};
+            guild_settings.topicCounterCustomNumbers = {};
             guild_settings.save()
                     .then(() => {
                         channel.send(translation.commands.setDigit.reset_success).catch(console.error);
@@ -292,7 +312,7 @@ const setDigit = {
                 const digitToUpdate = args[1].slice(0, 1);
                 const newDigitValue = args[2];
 
-                guild_settings.custom_numbers[digitToUpdate] = newDigitValue
+                guild_settings.topicCounterCustomNumbers[digitToUpdate] = newDigitValue
                 guild_settings.save()
                     .then(() => {
                         channel.send(translation.commands.setDigit.success).catch(console.error);
@@ -317,7 +337,7 @@ const update = {
     enabled: true,
     requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
-        const { client, channel, member  } = message;
+        const { client, channel  } = message;
         updateCounter(client, guild_settings, ["all", "force"]);
         channel.send(translation.commands.update.success).catch(console.error);
     }
