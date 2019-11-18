@@ -1,4 +1,5 @@
 const setChannelName = require("./functions/setChannelName");
+const addTrack = require("../addTrack");
 
 module.exports = (client, guildSettings) => {
     const {
@@ -13,5 +14,6 @@ module.exports = (client, guildSettings) => {
             if (channelNameCounter.type === "roles")
                 setChannelName({ client, channelId, channelName: channelNameCounter.channelName, count, guildSettings });
         });
+        addTrack(guild_id, "role_count_history", count);
     }
 };
