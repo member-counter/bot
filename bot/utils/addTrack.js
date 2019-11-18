@@ -1,7 +1,7 @@
 const TrackModel = require("../../mongooseModels/TrackModel");
 
 /**
- * @typedef {"member_count_history" | "user_count_history" | "online_member_count_history" | "vc_connected_members_count_history" | "channel_count_history" | "role_count_history"} Targets
+ * @typedef {"member_count_history" | "online_member_count_history" | "vc_connected_members_count_history" | "channel_count_history" | "role_count_history"} Targets
  */
 
 /**
