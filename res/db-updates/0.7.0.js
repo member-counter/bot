@@ -37,7 +37,8 @@ client.connect(async err => {
                 Object.entries(guild.unique_topics).forEach(it => {
                     let channel_id = it[0];
                     let topic = it[1];
-                    guild.topicCounterChannels[channel_id].topic = topic;
+
+                    if (guild.topicCounterChannels[channel_id]) guild.topicCounterChannels[channel_id].topic = topic;
                 });
 
 
@@ -56,7 +57,7 @@ client.connect(async err => {
                 Object.entries(guild.channelNameCounter_types).forEach(it => {
                     let channel_id = it[0];
                     let data = it[1];
-                    guild.channelNameCounters[channel_id].type = data;
+                    if (guild.channelNameCounters[channel_id]) guild.channelNameCounters[channel_id].type = data;
                 });
 
             GuildsCollection.findOneAndUpdate({ guild_id: guild.guild_id }, {
