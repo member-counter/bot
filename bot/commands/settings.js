@@ -51,7 +51,7 @@ const seeSettings = {
         //prefix and language
 
         messageToSend += `${prefix_text} ${prefix}\n`;
-        messageToSend += `${lang_text} \`${lang}\` \\➡ ${translation.lang_name}\n`;
+        messageToSend += `${lang_text} \`${lang}\` \\➡ ${translation.lang_name}\n\n`;
 
         //Allowed roles for administrative commands
         if (allowedRoles.size > 0) {
@@ -75,7 +75,6 @@ const seeSettings = {
         }
 
         //channel topic counters:
-        //TODO fix this
         if (topicCounterChannels.size > 0) {
             messageToSend += `${enabled_channel_topic_counters_text}\n`;
 
