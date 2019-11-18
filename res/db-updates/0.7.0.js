@@ -26,6 +26,8 @@ client.connect(async err => {
         try {
             //enabled_channels and unique_topics to topicCounterChannels
 
+            guild.topicCounterChannels = {}
+            
             if (guild.enabled_channels) 
                 guild.enabled_channels.forEach(channel_id => {
                     guild.topicCounterChannels[channel_id] = {}
@@ -40,6 +42,9 @@ client.connect(async err => {
 
 
             //channelNameCounter and channelNameCounter_types to channelNameCounters
+
+            guild.channelNameCounters = {}
+
             if (guild.channelNameCounter)
                 Object.entries(guild.channelNameCounter).forEach(it => {
                     let channel_id = it[0];
