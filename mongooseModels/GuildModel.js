@@ -14,15 +14,15 @@ const TopicCounterCustomNumbers = mongoose.Schema({
     0: { type: String, default: '<a:0G:469275067969306634>' }
 }, { _id : false });
 
-const channelNameCounter = mongoose.Schema({
+const channelNameCounter = mongoose.Schema({ //I preserve this for reference
     channelName: { type: String, require: true },
     type: { type: String, default: "members" },
     otherConfig: { type: Object }
 }, { _id : false });
 
-const topicCounterChannel = mongoose.Schema({
+const TopicCounterChannel = mongoose.Schema({ //I preserve this for reference
     topic: { type: String },
-    otherConfig: { type: Object }
+    otherConfig: { type: Object },
 }, { _id : false });
 
 const GuildSchema = mongoose.Schema({
@@ -31,10 +31,10 @@ const GuildSchema = mongoose.Schema({
     prefix: { type: String, default: DISCORD_PREFIX },
     lang: { type: String, default: "en_US" },
     allowedRoles: [{ type: String, default: [] }], //Allowed roles for administrative commands
-    topicCounterChannels: { type: Map, of: topicCounterChannel, default: new Map() },
+    topicCounterChannels: { type: Map, default: new Map() },
     mainTopicCounter: { type: String, default: "Members: {COUNT}" }, //used in all channels that topicCounterChannel.topic is undefined
     topicCounterCustomNumbers: { type: TopicCounterCustomNumbers, default: TopicCounterCustomNumbers },
-    channelNameCounters: { type: Map, of: channelNameCounter, default: new Map() },
+    channelNameCounters: { type: Map, default: new Map() },
 }, { _id : false });
 
 module.exports = mongoose.model('guilds', GuildSchema);

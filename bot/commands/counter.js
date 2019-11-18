@@ -57,6 +57,7 @@ const newChannelNameCounter = {
                             channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
                         })
                         .catch(error => {
+                            voiceChannel.delete().catch(console.error)
                             console.error(error);
                             channel.send(translation.common.error_unknown).catch(console.error);
                         });
@@ -99,9 +100,8 @@ const topicCounter = {
         switch (action) {
             case "enable":
                 channelsToPerformAction.forEach(channel_id => {
-                    //TODO Fix this
                     if (!guild_settings.topicCounterChannels.has(channel_id)) {
-                        guild_settings.topicCounterChannels.set(channel_id);
+                        guild_settings.topicCounterChannels.set(channel_id, {});
                     }
                 });
 
@@ -200,7 +200,6 @@ const setTopic = {
             channelsToCustomize.forEach(channel_id => {
                 if (guild_settings.topicCounterChannels.has(channel_id)) {
                     guild_settings.topicCounterChannels.set(channel_id, {
-                        //TODO fix this, convert to a normal map object
                         ...guild_settings.topicCounterChannels.get(channel_id),
                         topic: newTopic
                     })
@@ -252,7 +251,6 @@ const removeTopic = {
             mentionedChannels.forEach(channel_id => {
                 if (guild_settings.topicCounterChannels.has(channel_id)) {
                     guild_settings.topicCounterChannels.set(channel_id, {
-                        //TODO fix this, convert to a normal map object
                         ...guild_settings.topicCounterChannels.get(channel_id),
                         topic: undefined
                     })

@@ -91,7 +91,7 @@ let status = {
           };
           channel.send({ embed }).then(message => {
             //Bot latency field
-            embed.fields[12].value = `${Date.now() - message.createdAt}ms`;
+            embed.fields[12].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
             message.edit({ embed }).catch(console.error)
           }).catch(console.error);
     }

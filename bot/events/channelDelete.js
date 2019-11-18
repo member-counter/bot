@@ -1,7 +1,6 @@
 const GuildModel = require("../../mongooseModels/GuildModel");
 const updateCounter = require("../utils/updateCounter");
 
-//TODO
 module.exports = client => {
     client.on("channelDelete", channel => {
         if (channel.guild) updateCounter(client, channel.guild.id, ["channels", "connectedusers"]);
@@ -13,8 +12,7 @@ module.exports = client => {
                             guild_settings.enabled_channels = guild_settings.enabled_channels.filter(channel_id => channel_id !== channel.id);
                             guild_settings.save().catch(console.error);
                         } else if (channel.type === "voice") {
-                            guild_settings.channelNameCounter.delete(channel.id);
-                            guild_settings.channelNameCounter_types.delete(channel.id);
+                            guild_settings.channelNameCounters.delete(channel.id);
                             guild_settings.save().catch(console.error);
                         }
                     }
