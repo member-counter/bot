@@ -14,6 +14,6 @@ module.exports = (client, guildSettings) => {
             if (channelNameCounter.type === "roles")
                 setChannelName({ client, channelId, channelName: channelNameCounter.channelName, count, guildSettings });
         });
-        addTrack(guild_id, "role_count_history", count);
+        //addTrack(guild_id, "role_count_history", count);
     }
 };

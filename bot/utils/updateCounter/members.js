@@ -155,8 +155,8 @@ module.exports = (client, guildSettings, types = []) => {
             offlineBots
         });
         
-        addTrack(guild_id, "member_count_history", members);
-        addTrack(guild_id, "online_member_count_history", onlineMembers);
+        //addTrack(guild_id, "member_count_history", members);
+        //addTrack(guild_id, "online_member_count_history", onlineMembers);
     }
 };
 //Dedicated to Alex, I'm gonna release this without even know if this works
