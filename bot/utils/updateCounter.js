@@ -3,12 +3,14 @@ const updateMembersCounter = require("./updateCounter/members");
 const updateRolesCounter = require("./updateCounter/roles");
 const updateChannelsCounter = require("./updateCounter/channels");
 const updateConnectedUsers = require("./updateCounter/connectedUsers");
+const updateMembersWithRole = require("./updateCounter/memberswithrole")
 
 const counters = {
     members: updateMembersCounter,
     roles: updateRolesCounter,
     channels: updateChannelsCounter,
-    connectedusers: updateConnectedUsers
+    connectedusers: updateConnectedUsers,
+    memberswithrole: updateMembersWithRole
 };
 
 /**
