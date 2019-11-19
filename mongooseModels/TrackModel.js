@@ -12,7 +12,8 @@ const TrackSchema = mongoose.Schema({
     online_member_count_history: [{ type: CountSchema }],
     vc_connected_members_count_history: [{ type: CountSchema }],
     channel_count_history: [{ type: CountSchema }],
-    role_count_history: [{ type: CountSchema }]
+    role_count_history: [{ type: CountSchema }],
+    memberswithrole_count_history: { type: Object }
 }, { _id : false });
 
 module.exports = mongoose.model('tracks', TrackSchema);

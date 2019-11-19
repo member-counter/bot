@@ -1,8 +1,7 @@
 const TrackModel = require("../../mongooseModels/TrackModel");
-const GuildMode = require("../../mongooseModels/GuildModel");
 
 /**
- * @typedef {"member_count_history" | "online_member_count_history" | "vc_connected_members_count_history" | "channel_count_history" | "role_count_history"} Targets
+ * @typedef {"member_count_history" | "online_member_count_history" | "vc_connected_members_count_history" | "channel_count_history" | "role_count_history" | "memberswithrole_count_history"} Targets
  */
 
 /**
@@ -10,7 +9,8 @@ const GuildMode = require("../../mongooseModels/GuildModel");
  * @param {Targets} target
  * @param {Number} count
  */
-module.exports = (guild_id, target, count) => {
+module.exports = (guild_id, target, count, other) => {
+    if (target === "memberswithrole_count_history") target += "." + other.channelId;
     TrackModel.findOneAndUpdate(
         {
             guild_id
