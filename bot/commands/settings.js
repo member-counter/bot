@@ -63,6 +63,7 @@ const seeSettings = {
             messageToSend += `${allowed_roles_text} ${allowed_roles}\n`
         }
 
+        //TODO memberswithrole
         //channel name counters:
         if (channelNameCounters.size > 0) {
             messageToSend += `${enabled_channel_name_counters_text}\n`;
@@ -173,7 +174,7 @@ const lang = {
 
 const prefix = {
     name: "prefix",
-    variants: ["{PREFIX}prefix"],
+    variants: ["{PREFIX}prefix", process.env.DISCORD_PREFIX+"prefix"],
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
