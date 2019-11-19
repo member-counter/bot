@@ -14,11 +14,12 @@ const newChannelNameCounter = {
         //used to set a channel name if there is not specified a one
         const availableCounterTypesString = translation.functions.counter_types;
         //used for comparation and configuration
-        const availableCounterTypes = availableCounterTypesString.map(str => str.replace(/\s+/g, "").toLowerCase());
+        const availableCounterTypes = ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots", "memberswithrole"].map(str => str.replace(/\s+/g, "").toLowerCase());
 
         //check if the user added the first arg and check if it's valid
         if (type && availableCounterTypes.includes(type.toLowerCase())) {
             let channelName;
+            let otherConfig = {};
 
             //extract custom channel name, if you know a better way to do this, please, do a PR
             channelName = [];
@@ -27,10 +28,26 @@ const newChannelNameCounter = {
             });
 
             //remove the type argument from the custom channel name
-            channelName = channelName.slice(1);
+            channelName = channelName.slice(1 + message.mentions.roles.size);
 
-            let indexOfTypeInTheList = availableCounterTypes.findIndex(item => item === type.toLowerCase());
-            channelName = channelName.length === 0 ? `{COUNT} ${availableCounterTypesString[indexOfTypeInTheList]}` : channelName.join(" ");
+
+            if (type.toLowerCase() === "memberswithrole") {
+                otherConfig.roles = message.mentions.roles.keyArray();
+                if (channelName.length === 0) {
+                    channelName = "{count} ";
+                    message.mentions.roles.map(role => {
+                        channelName += role.name + ", "
+                    })
+                    //remove last comma
+                    channelName = channelName.slice(0, -2);
+                } else {
+                    channelName = channelName.join(" ");
+                }
+            } else {
+                let indexOfTypeInTheList = availableCounterTypes.findIndex(item => item === type.toLowerCase());
+                channelName = channelName.length === 0 ? `{COUNT} ${availableCounterTypesString[indexOfTypeInTheList]}` : channelName.join(" ");
+            }
+
 
             guild
                 .createChannel(
@@ -50,7 +67,7 @@ const newChannelNameCounter = {
                     }
                 )
                 .then(voiceChannel => {
-                    guild_settings.channelNameCounters.set(voiceChannel.id, { channelName, type: type.toLowerCase()});
+                    guild_settings.channelNameCounters.set(voiceChannel.id, { channelName, type: type.toLowerCase(), otherConfig});
                     guild_settings.save()
                         .then(() => {
                             updateCounter(client, guild_settings, ["all", "force"]);

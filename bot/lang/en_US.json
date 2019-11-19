@@ -19,7 +19,7 @@
             }
         },
         "newChannelNameCounter": {
-            "help_description": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below\n\nAvailable types:\n-`members`\n-`users`\n-`bots`\n-`onlinemembers`\n-`onlineusers`\n-`onlinebots`\n-`offlinemembers`\n-`offlineusers`\n-`offlinebots`\n-`channels`\n-`roles`\n-`connectedusers` (This one counts how many users are connected in all the voice channels in this server)\n\n The second argument is optional, it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```",
+            "help_description": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below\n\nAvailable types:\n-`members`\n-`users`\n-`bots`\n-`onlinemembers`\n-`onlineusers`\n-`onlinebots`\n-`offlinemembers`\n-`offlineusers`\n-`offlinebots`\n-`channels`\n-`roles`\n`memberswithrole`\n-`connectedusers` (This one counts how many users are connected in all the voice channels in this server)\n\n The second argument is optional, it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```\nCount how many users has a role or roles:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
             "success": "Created successfully",
             "no_perms": "I need `Manage Channels` permission to create the channel.",
             "error_invalid_params": "Error: Invalid parameters, `more info: {PREFIX}help newChannelNameCounter`."
@@ -139,7 +139,7 @@
         "commandHandler": {
             "invalid_channel": "You can't run this command on a {TYPE} channel"
         },
-        "counter_types" : ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots"]
+        "counter_types" : ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots", "memberswith"]
     },
     "common": {
         "error_db": "Database error, try again later",
