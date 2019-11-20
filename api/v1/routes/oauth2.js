@@ -20,7 +20,9 @@ router.get("/oauth2", async (req, res) => {
         }
     })
         .then(discordResponse => discordResponse.json())
-        .then(discordResponse => res.json(discordResponse))
+        .then(discordResponse => {
+            //TODO gen a jwt
+        })
         .catch(error => {
           console.error(error);
           res.json({ code: 500, message: "An error has occurred in the authorization process", error: error })
