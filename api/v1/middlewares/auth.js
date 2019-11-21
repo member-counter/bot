@@ -1,9 +1,12 @@
-const fetch = require("node-fetch");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
 
 module.exports = (req, res, next) => {
-    if (req.headers.authorization) {
-        //TODO check if the token has a valid signature
-    } else {
-        res.json({ code: 401, message: "Bad token" });
-    }
+    jwt.verify(req.headers.authorization, JWT_SECRET, (err, decoded) => {
+        if (err) res.json({ code: 401, message: "Bad token" });
+        else {
+            req.user = decoded;
+            next();
+        }
+    });
 };
