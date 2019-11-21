@@ -8,10 +8,10 @@ const GuildModel = require("../../../mongooseModels/GuildModel");
 const UserModel = require("../../../mongooseModels/UserModel");
 
 //TODO get available guilds (check if the user has admin perms and if the bot is in the guild)
-router.get("/guilds", (req, res) => {
+router.get("/guilds", auth, (req, res) => {
     req.DiscordShardManager.broadcastEval(`(()=>{
-        console.log(this)
-    }())`);
+        //TODO this.guilds
+    })()`);
 });
 
 //TODO patch guild settings

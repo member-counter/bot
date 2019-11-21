@@ -26,7 +26,5 @@ module.exports = (client, guildSettings) => {
                 setChannelName({ client, channelId, channelName: channelNameCounter.channelName, count: count.size, guildSettings });
             }
         });
-        //TODO
-        //addTrack(guild_id, "role_count_history", count);
     }
 };

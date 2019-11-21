@@ -63,13 +63,19 @@ const seeSettings = {
             messageToSend += `${allowed_roles_text} ${allowed_roles}\n`
         }
 
-        //TODO memberswithrole
         //channel name counters:
         if (channelNameCounters.size > 0) {
             messageToSend += `${enabled_channel_name_counters_text}\n`;
 
             channelNameCounters.forEach((channelNameCounter, channelId) => {
-                messageToSend += `\\• <#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\` \n`;    
+                messageToSend += `\\• <#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\``;    
+                if (channelNameCounter.type === "memberswithrole") {
+                    messageToSend += " \\➡ ";
+                    channelNameCounter.otherConfig.roles.forEach(roleId => {
+                        messageToSend += "@" + guild.roles.get(roleId).name + " ";
+                    });
+                }
+                messageToSend += "\n";
             });
             
             messageToSend += "\n";
@@ -80,7 +86,7 @@ const seeSettings = {
             messageToSend += `${enabled_channel_topic_counters_text}\n`;
 
             topicCounterChannels.forEach((topicCounterChannel, channelId) => {
-                messageToSend +=`\\• <#${channelId}> \`(${channelId})\` ${(topicCounterChannel.topic) ? `\\➡ ${topicCounterChannel.topic}` : ""}\n`;    
+                messageToSend +=`\\• <#${channelId}> \`(${channelId})\` ${(topicCounterChannel.topic) ? `\\➡ ${topicCounterChannel.topic}` : ""}\n`;
             });
 
             messageToSend += "\n";
