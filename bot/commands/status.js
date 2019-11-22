@@ -1,4 +1,5 @@
 const os = require('os');
+const osUtils = require('os-utils');
 const { spawn } = require('child_process');
 const { version } = require('../../package.json');
 const getTotalGuildsAndMembers = require("../utils/getTotalGuildsAndMembers");
@@ -68,8 +69,8 @@ let status = {
                 "inline": true
               },
               {
-                "name": "**Load avg (1m/5m/15m): **",
-                "value": `${~~(100 * loadavg1)}% - ${~~(100 * loadavg5)}% - ${~~(100 * loadavg15)}%`,
+                "name": "**CPU usage:**",
+                "value": `${await getCpuUsage()}%`,
                 "inline": true
               },
               {
@@ -136,3 +137,8 @@ const parseUptime = (inputDate) => {
   return `${Math.floor(inputDate/60/60/24)} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`
 };
 
+const getCpuUsage = () => {
+  return new Promise(resolve => {
+    osUtils.cpuUsage(resolve);
+  })
+}
