@@ -20,23 +20,22 @@ router.get("/oauth2", async (req, res) => {
     })
         .then(discordResponse => discordResponse.json())
         .then(discordResponse => {
-            console.log(discordResponse)
-            fetch("https://discordapp.com/api/users/@me", {
-                headers: {
-                    "Authorization": discordResponse.access_token
-                }
-            })
-                .then(unparsedUser => unparsedUser.json())
-                .then(user => {
-                    jwt.sign({ id: user.id }, JWT_SECRET, (err, token) => {
-                        if (err) throw err;
-                        console.log({ code: 0, token, discord_token: discordResponse.access_token })
-                        res.json({ code: 0, token, discord_token: discordResponse.access_token });
-                    })
+            if (discordResponse.access_token)
+                fetch("https://discordapp.com/api/users/@me", {
+                    headers: {
+                        "Authorization": discordResponse.access_token
+                    }
                 })
+                    .then(unparsedUser => unparsedUser.json())
+                    .then(user => {
+                        jwt.sign({ id: user.id }, JWT_SECRET, (err, token) => {
+                            if (err) throw err;
+                            res.json({ code: 0, token, discord_token: discordResponse.access_token });
+                        })
+                    });
+            else throw new Error("Discord did not grant an access token")
         })
         .catch(error => {
-          console.error(error);
           res.json({ code: 500, message: "An error has occurred in the authorization process", error })
         });
 });

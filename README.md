@@ -97,7 +97,7 @@ https://eduardozgz.com/member-counter/api/v1
 ```
 
 ## Information
-- All requests uses, in any direction uses JSON, so set `Content-Type `header to `application/json` when you send requests with a body.
+- All requests, in any direction uses JSON, so set `Content-Type` header to `application/json` when you send requests with a body.
 
 ## Authentication
 - Some requests requires authentication, you must include the `Authorization` header with a valid bearer token obtaiend from the [Discord OAuth2](https://discordapp.com/developers/docs/topics/oauth2), with the `guilds` and `identify` scopes, you can get the token easily with the [implicit grant](https://discordapp.com/developers/docs/topics/oauth2#implicit-grant).
@@ -106,50 +106,3 @@ https://eduardozgz.com/member-counter/api/v1
   ```
   Authorization: j132jkn143huk34hu12hjo1239u0
   ```
-
-### `GET` /ping
-You can use it to check if the api is available, it returns a JSON object with a `pong` property and the server date in ISO format.
-
-Response example:
-```json
-{
-    "pong":"2019-11-10T01:12:19.365Z"
-}
-```
-
-###  `GET` /guilds/:id/member-count-history
-> :warning: The behavior of this endpoint could change in a future
-
-
-Requires Authorization and admin permissions in the specified guild.
-
-`:id` must be replaced by a valid guild id
-
-Response example:
-```json
-{
-    "code": 0,
-    "count_history": [
-        {
-            "count": 3818,
-            "timestamp":"2019-11-10T01:12:12.165Z"
-        },
-        {
-            "count": 3819,
-            "timestamp":"2019-11-10T01:12:59.345Z"
-        },
-        {
-            "count": 3820,
-            "timestamp":"2019-11-10T01:17:13.362Z"
-        },
-        {
-            "count": 3821,
-            "timestamp":"2019-11-10T01:32:19.165Z"
-        },
-        {
-            "count": 3820,
-            "timestamp":"2019-11-10T01:82:69.465Z"
-        }
-    ]
-}
-```

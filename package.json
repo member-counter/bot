@@ -1,6 +1,6 @@
 {
   "name": "member-counter-bot",
-  "version": "0.7.0-dev-4",
+  "version": "0.7.0-dev-5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,8 @@
     "form-data": "^2.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.7",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "os-utils": "0.0.14"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

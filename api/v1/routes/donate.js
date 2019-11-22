@@ -9,7 +9,7 @@ const getExchange = require("../../../bot/utils/getExchange");
 const payPalbaseUrl = (process.env.NODE_ENV === "production") ? "https://api.paypal.com" : "https://api.sandbox.paypal.com";
 const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env;
 
-router.post("/process-donation/:transactionid", (req, res) => {
+router.post("/process-donation/:transactionid", auth, (req, res) => {
     fetch(`${payPalbaseUrl}/v2/checkout/orders/${req.params.transactionid}`, {
         headers: {
             Authorization: "Basic " + Buffer.from(PAYPAL_CLIENT_ID + ":" + PAYPAL_CLIENT_SECRET).toString("base64")
@@ -18,6 +18,7 @@ router.post("/process-donation/:transactionid", (req, res) => {
         .then(response => response.json())
         .then(transaction => {
             if (transaction.status === "APPROVED") {
+                req.body.user = req.user.id;
                 req.body.currency = transaction.purchase_units[0].amount.currency_code;
                 req.body.amount = transaction.purchase_units[0].amount.value;
                 saveDonation(req, res);
