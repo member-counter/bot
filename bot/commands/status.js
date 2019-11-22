@@ -1,5 +1,6 @@
 const os = require('os');
-const osUtils = require('os-utils');
+const osu = require('node-os-utils');
+
 const { spawn } = require('child_process');
 const { version } = require('../../package.json');
 const getTotalGuildsAndMembers = require("../utils/getTotalGuildsAndMembers");
@@ -14,7 +15,6 @@ let status = {
     run: async ({ message }) => {
         const { client, channel } = message;
         const { totalGuilds, totalCachedUsers } = await getTotalGuildsAndMembers(client);
-        const [ loadavg1, loadavg5, loadavg15 ] = os.loadavg();
         const embed = {
             "color": 14503424,
             "title": `Status for shard #${client.shard.id} | Bot version: ${version}`,
@@ -70,7 +70,7 @@ let status = {
               },
               {
                 "name": "**CPU usage:**",
-                "value": `${await getCpuUsage()}%`,
+                "value": `${await osu.cpu.usage()}%`,
                 "inline": true
               },
               {

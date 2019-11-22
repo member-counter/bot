@@ -29,7 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.7",
     "node-fetch": "^2.6.0",
-    "os-utils": "0.0.14"
+    "node-os-utils": "^1.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
