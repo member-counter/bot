@@ -14,7 +14,7 @@ const newChannelNameCounter = {
         //used to set a channel name if there is not specified a one
         const availableCounterTypesString = translation.functions.counter_types;
         //used for comparation and configuration
-        const availableCounterTypes = ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots", "memberswithrole"].map(str => str.replace(/\s+/g, "").toLowerCase());
+        const availableCounterTypes = ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots", "Banned members", "memberswithrole"].map(str => str.replace(/\s+/g, "").toLowerCase());
 
         //check if the user added the first arg and check if it's valid
         if (type && availableCounterTypes.includes(type.toLowerCase())) {

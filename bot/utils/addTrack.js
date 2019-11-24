@@ -4,7 +4,7 @@ const GuildModel = require("../../mongooseModels/GuildModel");
 const TIME_BETWEEN_EVERY_ADD_TRACK = parseInt(process.env.TIME_BETWEEN_EVERY_ADD_TRACK) * 1000;
 const addTrackQueue = new Map();
 /**
- * @typedef {"member_count_history" | "online_member_count_history" | "vc_connected_members_count_history" | "channel_count_history" | "role_count_history" | "memberswithrole_count_history"} Targets
+ * @typedef {"member_count_history" | "online_member_count_history" | "vc_connected_members_count_history" | "channel_count_history" | "role_count_history" | "memberswithrole_count_history" | "banned_member_count_history"} Targets
  */
 
 /**
