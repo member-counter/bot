@@ -111,7 +111,7 @@ const seeSettings = {
 
 const resetSettings = {
     name: "resetSettings",
-    variants: ["{PREFIX}resetSettings"],
+    variants: ["{PREFIX}resetSettings", "{PREFIX}restoreSettings"],
     allowedTypes: ["text"],
     indexZero: true, 
     enabled: true,
