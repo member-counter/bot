@@ -32,7 +32,7 @@
             "error_invalid_params": "Invalid parameters, see `{PREFIX}!help topicCounter`."
         },
         "setDigit": {
-            "help_description": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be resotered to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
+            "help_description": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
             "success": "Digit customized.",
             "reset_success": "Numbers restored to the default ones.",
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
@@ -54,7 +54,7 @@
             "success": "Prefix changed to: `{NEW_PREFIX}`"
         },
         "role": {
-            "help_description": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `mc!seeSettings``\n``mc!role allow @Mod\n mc!role allow @Mod @OtherRole\n mc!role deny all```",
+            "help_description": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `mc!seeSettings``\n```mc!role allow @Mod\nmc!role allow @Mod @OtherRole\nmc!role deny all```",
             "roles_updated": "Roles updated.",
             "error_no_roles_to_update": "You must mention at least 1 role",
             "invalid_params": "Invalid parameters, see `mc!help role`"

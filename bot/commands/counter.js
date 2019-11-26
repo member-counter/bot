@@ -279,7 +279,7 @@ const removeTopic = {
             });
             guild_settings.save()
                 .then(() => {
-                    updateCounter(client, guild_settings);
+                    updateCounter(client, guild_settings, ["members", "force"]);
                     let stringMentionedChannels = "";
                     mentionedChannels.forEach((channel, i) => {
                         stringMentionedChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === mentionedChannels.length-1) ? '.' : ','}`;

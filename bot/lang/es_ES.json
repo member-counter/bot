@@ -54,7 +54,7 @@
             "success": "Prefijo cambiado a: `{NEW_PREFIX}`"
         },
         "role": {
-            "help_description": "Puedes permitir o denegar el uso de comandos administrativos a roles que concretes\nTambien puedes referirte a todos con la palabra ``all``\nPara ver los roles permitidos usa ``mc!seeSettings``\n```mc!role allow @Mod\n mc!role allow @Mod @OtherRole\n mc!role deny all```",
+            "help_description": "Puedes permitir o denegar el uso de comandos administrativos a roles que concretes\nTambien puedes referirte a todos con la palabra ``all``\nPara ver los roles permitidos usa ``mc!seeSettings``\n```mc!role allow @Mod\nmc!role allow @Mod @OtherRole\nmc!role deny all```",
             "roles_updated": "Roles actualizados.",
             "error_no_roles_to_update": "Debes mencionar al menos un rol.",
             "invalid_params": "Parámetros invalidos, más info: `mc!help role`"
