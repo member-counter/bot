@@ -1,5 +1,6 @@
 const TrackModel = require("../../mongooseModels/TrackModel");
 const GuildModel = require("../../mongooseModels/GuildModel");
+const mongoose = require("mongoose");
 
 const TIME_BETWEEN_EVERY_ADD_TRACK = parseInt(process.env.TIME_BETWEEN_EVERY_ADD_TRACK) * 1000;
 const addTrackQueue = new Map();
@@ -24,22 +25,16 @@ module.exports = async (guild_id, target, count, other) => {
         addTrackQueue.set(guild_id+target, setTimeout(() => {
     
             if (target === "memberswithrole_count_history") target += "." + other.channelId;
-            TrackModel.findOneAndUpdate(
-                {
-                    guild_id
-                },
-                {
-                    $push: {
-                        [target]: {
-                            timestamp: new Date(),
-                            count
-                        }
-                    }
-                },
-                { upsert: true, projection: { _id: 1 } }
-            )   
-                .exec()
-                .catch(console.error);
+            
+            const track = new TrackModel({ 
+                _id: new mongoose.Types.ObjectId(),
+                guild_id,
+                type: target,
+                timestamp: new Date(),
+                count
+            })
+
+            track.save().catch(console.error)
 
             addTrackQueue.delete(guild_id+target);
         }, guildTimeBetweenEveryAddTrack));
