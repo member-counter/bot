@@ -142,6 +142,10 @@ module.exports = (client, guildSettings, types = []) => {
             });
         }
 
+        
+        if (previousCount.members !== members) addTrack(guild_id, "member_count_history", members);
+        if (previousCount.onlineMembers !== onlineMembers) addTrack(guild_id, "online_member_count_history", onlineMembers);
+
         //cache counts to avoid bad stuff
         previousCounts.set(guild_id, {
             members,
@@ -154,9 +158,6 @@ module.exports = (client, guildSettings, types = []) => {
             offlineUsers,
             offlineBots
         });
-        
-        addTrack(guild_id, "member_count_history", members);
-        addTrack(guild_id, "online_member_count_history", onlineMembers);
     }
 };
 //Dedicated to Alex, I'm gonna release this without even know if this works
