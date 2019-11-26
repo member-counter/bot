@@ -9,7 +9,7 @@ const UserModel = require("../../../mongooseModels/UserModel");
 
 //TODO get available guilds (check if the user has admin perms and if the bot is in the guild)
 router.get("/guilds", auth, (req, res) => {
-    req.DiscordShardManager.broadcastEval(`(()=>{
+    req.DiscordShardManager.broadcastEval(`(() => {
         //TODO this.guilds
     })()`);
 });
