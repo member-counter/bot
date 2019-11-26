@@ -48,6 +48,9 @@ const newChannelNameCounter = {
                 channelName = channelName.length === 0 ? `{COUNT} ${availableCounterTypesString[indexOfTypeInTheList]}` : channelName.join(" ");
             }
 
+            if (type.toLowerCase() === "bannedmembers" && !client) {
+                return;
+            }
 
             guild
                 .createChannel(
