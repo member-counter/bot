@@ -22,6 +22,7 @@
             "help_description": "Cria um canal de voz que conta algo específico do servidor.\nUso: ```{PREFIX}newChannelNameCounter [tipo do contador] (nome do canal personalizado: {COUNT})```\nPrimeiro argumento: deve ser um dos seguintes listados abaixo.\n\nTipos:\n-`members`\n-`users`\n-`bots`\n-`onlinemembers`\n-`onlineusers`\n-`onlinebots`\n-`offlinemembers`\n-`offlineusers`\n-`offlinebots`\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`\n-`connectedusers` (Conta quantos usuários estão conectados em todos os canais de voz no servidor)\n\nSegundo argumento(OPCIONAL): é usado para definir um nome de canal personalizado. Quando você usa o segundo argumento, lembre-se de escrever `{COUNT}` onde quiser colocar o contador.\n\nContador que conta os membros:```{PREFIX}newChannelNameCounter members```\n Com um nome personalizado:```{PREFIX}newChannelNameCounter members Membros: {COUNT}```\nCount how many users has a role or roles:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
             "success": "Criado com sucesso.",
             "no_perms": "Eu preciso a permissão de `Config. do Servidor > Cargos > Gerenciar Canais` para criar o canal.",
+            "no_perms_ban": "Eu preciso a permissão de `Config. do Servidor > Cargos > Banir membros` para criar o canal.",
             "error_invalid_params": "Erro: Parâmetros inválidos, `mais informações: {PREFIX}help newChannelNameCounter`."
         },
         "topicCounter": {

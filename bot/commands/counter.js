@@ -48,7 +48,8 @@ const newChannelNameCounter = {
                 channelName = channelName.length === 0 ? `{COUNT} ${availableCounterTypesString[indexOfTypeInTheList]}` : channelName.join(" ");
             }
 
-            if (type.toLowerCase() === "bannedmembers" && !client) {
+            if (type.toLowerCase() === "bannedmembers" && !guild.members.get(client.user.id).hasPermission("BAN_MEMBERS")) {
+                channel.send(translation.commands.newChannelNameCounter.no_perms_ban).catch(console.error);
                 return;
             }
 
