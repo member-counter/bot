@@ -14,4 +14,4 @@ module.exports = (member, guildSettings) => {
     });
     
     return (member.hasPermission('ADMINISTRATOR') || owners.includes(member.id) || hasAnyAllowedRole);
-}
+};

@@ -114,9 +114,7 @@ module.exports = (client, guildSettings, types = []) => {
                     if (channelType === "text" || channelType === "news") {
     
                         //the topic must be the main one or a specific one?
-                        let topicToSet = (topicCounterChannel.topic)
-                            ? topicCounterChannel.topic
-                            : mainTopicCounter;
+                        let topicToSet = (topicCounterChannel.topic) ? topicCounterChannel.topic : mainTopicCounter;
     
                         topicToSet = topicToSet
                             .replace(/\{COUNT\}/gi, memberCountCustomized)

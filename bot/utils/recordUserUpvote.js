@@ -8,5 +8,5 @@ module.exports = user_id => {
         { user_id },
         { $inc: { total_given_upvotes: 1, available_points: 1 } },
         { upsert: true }
-    ).catch(console.error)
+    ).catch(console.error);
 };
