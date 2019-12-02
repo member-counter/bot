@@ -7,7 +7,7 @@ module.exports = () => {
             let langMap = new Map();
             if (err) resolve(langMap);
             files.forEach(file => {
-                let lang_code = file.split(".")[0]
+                let lang_code = file.split(".")[0];
                 langMap.set(lang_code, require(`../lang/${lang_code}.json`));
             });
             resolve(langMap);

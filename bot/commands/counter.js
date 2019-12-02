@@ -35,9 +35,7 @@ const newChannelNameCounter = {
                 otherConfig.roles = message.mentions.roles.keyArray();
                 if (channelName.length === 0) {
                     channelName = "{count} ";
-                    message.mentions.roles.map(role => {
-                        channelName += role.name + ", "
-                    })
+                    message.mentions.roles.forEach(role => channelName += role.name + ", ");
                     //remove last comma
                     channelName = channelName.slice(0, -2);
                 } else {
@@ -78,7 +76,7 @@ const newChannelNameCounter = {
                             channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
                         })
                         .catch(error => {
-                            voiceChannel.delete().catch(console.error)
+                            voiceChannel.delete().catch(console.error);
                             console.error(error);
                             channel.send(translation.common.error_unknown).catch(console.error);
                         });
@@ -114,7 +112,7 @@ const topicCounter = {
         } else if (mentions.channels.size > 0) {
             channelsToPerformAction = mentions.channels.keyArray();
         } else {
-            channelsToPerformAction = [channel.id]
+            channelsToPerformAction = [channel.id];
         }
 
 
@@ -171,11 +169,11 @@ const topicCounter = {
                 break;
 
             default:
-                channel.send(translation.commands.topicCounter.error_invalid_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error)
+                channel.send(translation.commands.topicCounter.error_invalid_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error);
                 break;
         }
     }
-}
+};
 
 const setTopic = {
     name: "setTopic",
@@ -223,7 +221,7 @@ const setTopic = {
                     guild_settings.topicCounterChannels.set(channel_id, {
                         ...guild_settings.topicCounterChannels.get(channel_id),
                         topic: newTopic
-                    })
+                    });
                 }
             });
 
@@ -239,7 +237,7 @@ const setTopic = {
                 .catch((e) => {
                     console.error(e);
                     channel.send(translation.common.error_db).catch(console.error);
-                })
+                });
         } else if (sliceFrom === undefined) {
             //this happens when you run the command with mentioned channels but without a topic, like "prefix!setTopic #general"
             channel.send(translation.commands.setTopic.no_topic.replace("{PREFIX}", guild_settings.prefix)).catch(console.error);
@@ -253,10 +251,10 @@ const setTopic = {
                 .catch((e) => {
                     console.error(e);
                     channel.send(translation.common.error_db).catch(console.error);
-                })
+                });
         }
     }
-}
+};
 
 const removeTopic = {
     name: "removeTopic",
@@ -274,7 +272,7 @@ const removeTopic = {
                     guild_settings.topicCounterChannels.set(channel_id, {
                         ...guild_settings.topicCounterChannels.get(channel_id),
                         topic: undefined
-                    })
+                    });
                 }
             });
             guild_settings.save()
@@ -289,7 +287,7 @@ const removeTopic = {
                 .catch((e) => {
                     console.error(e);
                     channel.send(translation.common.error_db).catch(console.error);
-                })
+                });
         } else {
             guild_settings.mainTopicCounter = "Members: {COUNT}";
             guild_settings.save()
@@ -300,10 +298,10 @@ const removeTopic = {
                 .catch((e) => {
                     console.error(e);
                     channel.send(translation.common.error_db).catch(console.error);
-                })
+                });
         }
     }
-}
+};
 
 const setDigit = {
     name: "setDigit",
@@ -331,7 +329,7 @@ const setDigit = {
                 const digitToUpdate = args[1].slice(0, 1);
                 const newDigitValue = args[2];
 
-                guild_settings.topicCounterCustomNumbers[digitToUpdate] = newDigitValue
+                guild_settings.topicCounterCustomNumbers[digitToUpdate] = newDigitValue;
                 guild_settings.save()
                     .then(() => {
                         channel.send(translation.commands.setDigit.success).catch(console.error);
@@ -342,11 +340,11 @@ const setDigit = {
                         channel.send(translation.common.error_db).catch(console.error);
                     });
             } else {
-                channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error)
+                channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error);
             }
         }
     }
-}
+};
 
 const update = {
     name: "update",
@@ -360,6 +358,6 @@ const update = {
         updateCounter(client, guild_settings, ["all", "force"]);
         channel.send(translation.commands.update.success).catch(console.error);
     }
-}
+};
 
 module.exports = { newChannelNameCounter, topicCounter, setTopic, removeTopic, setDigit, update };

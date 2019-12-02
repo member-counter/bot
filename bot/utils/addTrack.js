@@ -16,7 +16,7 @@ const addTrackQueue = new Map();
 module.exports = async (guild_id, target, count, other) => {
     if (!addTrackQueue.has(guild_id+target)) {
 
-        const guildSettings = await GuildModel.findOneAndUpdate({ guild_id }, { }, { upsert: true, projection: { premium_status: 1 } })
+        const guildSettings = await GuildModel.findOneAndUpdate({ guild_id }, { }, { upsert: true, projection: { premium_status: 1 } });
 
         let guildTimeBetweenEveryAddTrack = TIME_BETWEEN_EVERY_ADD_TRACK;
         if (guildSettings.premium_status === 1) guildTimeBetweenEveryAddTrack = 5 * 1000;
@@ -32,9 +32,9 @@ module.exports = async (guild_id, target, count, other) => {
                 type: target,
                 timestamp: new Date(),
                 count
-            })
+            });
 
-            track.save().catch(console.error)
+            track.save().catch(console.error);
 
             addTrackQueue.delete(guild_id+target);
         }, guildTimeBetweenEveryAddTrack));
