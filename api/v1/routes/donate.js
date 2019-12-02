@@ -44,7 +44,7 @@ router.get("/donators", (req, res) => {
     getExchange()
         .then(exchange => {
             DonationModel.find({}, { _id: 0, __v: 0 })
-                .then(donators => {
+                .then(async donators => {
                     donators = donators
                         .filter(donator => !donator.anonymous)
                         .map(donator => {
@@ -55,6 +55,25 @@ router.get("/donators", (req, res) => {
                         })
                         .filter(donator => donator.amount_eur)
                         .sort((a, b) => b.amount_eur - a.amount_eur);
+
+                        //get user tags
+                        await Promise.all(
+                            donators.map(async donator => {
+                                console.log(await req.DiscordShardManager.broadcastEval(`
+                                    (async () => {
+                                        let channel = this.channels.get('${"645966677359722496"}');
+                                        let msg;
+                                        if (channel) {
+                                            msg = await channel.fetchMessage('${"650451049219620884"}').then(m => m.id);
+                                        }
+                                        console.log(msg)
+                                        return msg;
+                                    })();   
+                                `));
+                                return donator;
+                            })
+                        );
+
                     res.json(donators);
                 })
                 .catch(error => {
@@ -85,5 +104,5 @@ const saveDonation = (req, res) => {
 };
 
 const grantPremium = (user_id) => {
-    UserModel.findOneAndUpdate({ user_id }, { premium: true }, { new: true, upsert: true}).catch(console.error)
-}
+    UserModel.findOneAndUpdate({ user_id }, { premium: true }, { new: true, upsert: true}).catch(console.error);
+};

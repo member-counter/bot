@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
                 `)
                     .then(results => {
                         if (results.includes(true)) next();
-                    })
+                    });
             })
             .catch(error => {
                 res.send({ code: 500, error: "Internal server error" });

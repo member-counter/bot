@@ -26,7 +26,7 @@ const profile = {
                     "description": `${premium_text} ${(userDoc.premium) ? ":white_check_mark: :heart:" : ":x:"}\n${total_given_upvotes_text} ${userDoc.total_given_upvotes}\n${available_points_text} ${userDoc.available_points}`
                 };
                 
-                channel.send({ embed }).catch(console.error)
+                channel.send({ embed }).catch(console.error);
             })
             .catch(console.error);
     }

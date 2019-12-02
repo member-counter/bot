@@ -18,13 +18,13 @@ const help = {
             Object.entries(translation.commands)
                 .map(x => {
                     x[0] = x[0].toLowerCase();
-                    return x
+                    return x;
                 })
                 .forEach(x => {
-                    translation.commands[x[0]] = x[1]
-                })
+                    translation.commands[x[0]] = x[1];
+                });
 
-            const selectedCommand = translation.commands[args[1].toLowerCase()]
+            const selectedCommand = translation.commands[args[1].toLowerCase()];
             if (selectedCommand) {
                 const embed = {
                     "title": translation.commands.help.misc.command + " " + args[1],
@@ -34,10 +34,12 @@ const help = {
                         "name": "Member Counter",
                         "icon_url": "https://cdn.discordapp.com/avatars/478567255198662656/e28bfde9b086e9821c31408c2b21304d.png?size=128"
                     }
-                }
+                };
+
                 channel.send({ embed }).catch(console.error);
             }
         }
     }
-}
+};
+
 module.exports = { help };

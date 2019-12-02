@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const giveUpvoterRole = require("../../../bot/utils/giveUpvoterRole");
 const { BFD_WH_SECRET, DBOATS_WH_SECRET, DBL_WH_SECRET } = process.env;
-const recordUserUpvote = require("../../../bot/utils/recordUserUpvote")
+const recordUserUpvote = require("../../../bot/utils/recordUserUpvote");
 
 //https://botsfordiscord.com
 router.post("/bot-pages/bfd", (req, res) => {
