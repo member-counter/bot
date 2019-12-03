@@ -88,7 +88,7 @@ const newChannelNameCounter = {
                     else channel.send(translation.common.error_unknown).catch(console.error);
                 });
         } else {
-            channel.send(translation.commands.newChannelNameCounter.error_invalid_params.replace("{PREFIX}", guild_settings.prefix));
+            channel.send(translation.commands.newChannelNameCounter.error_invalid_params.replace(/\{PREFIX\}/gi, guild_settings.prefix));
         }
     }
 };
@@ -169,7 +169,7 @@ const topicCounter = {
                 break;
 
             default:
-                channel.send(translation.commands.topicCounter.error_invalid_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error);
+                channel.send(translation.commands.topicCounter.error_invalid_params.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
                 break;
         }
     }
@@ -184,74 +184,78 @@ const setTopic = {
     requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
         const { client, channel, content } = message;
-        const args = content.split(" ");
-        let channelsToCustomize = [];
-        let newTopic = "";
-
-        //check if the topic must be setted for specific channels. No, I can't use mentions.channels because that could also include mentioned channels that the user pretends to include as decoration
-        for (let i = 0; i < args.length; i++) {
-            const arg = args[i];
-            if (i !== 0) {
-                if (arg !== "") {
-                    if (arg.slice(0, 2) === "<#" && arg.slice(-1) === ">") {
-                        let channel_id = arg.slice(2, -1);
-                        if (!channelsToCustomize.includes(channel_id)) channelsToCustomize.push(channel_id);
-                    } else break;
+        if (guild_settings.topicCounterChannels.size > 0) {
+            const args = content.split(" ");
+            let channelsToCustomize = [];
+            let newTopic = "";
+    
+            //check if the topic must be setted for specific channels. No, I can't use mentions.channels because that could also include mentioned channels that the user pretends to include as decoration
+            for (let i = 0; i < args.length; i++) {
+                const arg = args[i];
+                if (i !== 0) {
+                    if (arg !== "") {
+                        if (arg.slice(0, 2) === "<#" && arg.slice(-1) === ">") {
+                            let channel_id = arg.slice(2, -1);
+                            if (!channelsToCustomize.includes(channel_id)) channelsToCustomize.push(channel_id);
+                        } else break;
+                    }
                 }
             }
-        }
-
-        //extract topic
-        let sliceFrom;
-        for (let i = 0; i < args.length; i++) {
-            const arg = args[i];
-            if (i !== 0) {
-                if (!(arg === "" || /<#[0-9]+>/.test(arg))) {
-                    sliceFrom = i;
-                    break;
+    
+            //extract topic
+            let sliceFrom;
+            for (let i = 0; i < args.length; i++) {
+                const arg = args[i];
+                if (i !== 0) {
+                    if (!(arg === "" || /<#[0-9]+>/.test(arg))) {
+                        sliceFrom = i;
+                        break;
+                    }
                 }
             }
-        }
-        newTopic = args.slice(sliceFrom).join(" ");
-
-        //save changes
-        if (channelsToCustomize.length > 0 && sliceFrom !== undefined) {
-            channelsToCustomize.forEach(channel_id => {
-                if (guild_settings.topicCounterChannels.has(channel_id)) {
-                    guild_settings.topicCounterChannels.set(channel_id, {
-                        ...guild_settings.topicCounterChannels.get(channel_id),
-                        topic: newTopic
-                    });
-                }
-            });
-
-            guild_settings.save()
-                .then(() => {
-                    updateCounter(client, guild_settings, ["members", "force"]);
-                    let msgChannels = "";
-                    channelsToCustomize.forEach((channel, i) => {
-                        msgChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToCustomize.length-1) ? '.' : ','}`; 
-                    });
-                    channel.send(translation.commands.setTopic.success_unique.replace("{CHANNELS}", msgChannels)).catch(console.error);
-                })
-                .catch((e) => {
-                    console.error(e);
-                    channel.send(translation.common.error_db).catch(console.error);
+            newTopic = args.slice(sliceFrom).join(" ");
+    
+            //save changes
+            if (channelsToCustomize.length > 0 && sliceFrom !== undefined) {
+                channelsToCustomize.forEach(channel_id => {
+                    if (guild_settings.topicCounterChannels.has(channel_id)) {
+                        guild_settings.topicCounterChannels.set(channel_id, {
+                            ...guild_settings.topicCounterChannels.get(channel_id),
+                            topic: newTopic
+                        });
+                    }
                 });
-        } else if (sliceFrom === undefined) {
-            //this happens when you run the command with mentioned channels but without a topic, like "prefix!setTopic #general"
-            channel.send(translation.commands.setTopic.no_topic.replace("{PREFIX}", guild_settings.prefix)).catch(console.error);
+    
+                guild_settings.save()
+                    .then(() => {
+                        updateCounter(client, guild_settings, ["members", "force"]);
+                        let msgChannels = "";
+                        channelsToCustomize.forEach((channel, i) => {
+                            msgChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToCustomize.length-1) ? '.' : ','}`; 
+                        });
+                        channel.send(translation.commands.setTopic.success_unique.replace("{CHANNELS}", msgChannels)).catch(console.error);
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        channel.send(translation.common.error_db).catch(console.error);
+                    });
+            } else if (sliceFrom === undefined) {
+                //this happens when you run the command with mentioned channels but without a topic, like "prefix!setTopic #general"
+                channel.send(translation.commands.setTopic.no_topic.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
+            } else {
+                guild_settings.mainTopicCounter = newTopic;
+                guild_settings.save()
+                    .then(() => {
+                        updateCounter(client, guild_settings, ["members", "force"]);
+                        channel.send(translation.commands.setTopic.success).catch(console.error);
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        channel.send(translation.common.error_db).catch(console.error);
+                    });
+            }
         } else {
-            guild_settings.mainTopicCounter = newTopic;
-            guild_settings.save()
-                .then(() => {
-                    updateCounter(client, guild_settings, ["members", "force"]);
-                    channel.send(translation.commands.setTopic.success).catch(console.error);
-                })
-                .catch((e) => {
-                    console.error(e);
-                    channel.send(translation.common.error_db).catch(console.error);
-                });
+            channel.send(translation.common.no_topic_counter_enabled.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
         }
     }
 };
@@ -265,40 +269,44 @@ const removeTopic = {
     requiresAdmin: true,
     run: ({ message, guild_settings, translation }) => {
         const { client, channel, mentions  } = message;
-        const mentionedChannels = mentions.channels.keyArray();
-        if (mentionedChannels.length > 0) {
-            mentionedChannels.forEach(channel_id => {
-                if (guild_settings.topicCounterChannels.has(channel_id)) {
-                    guild_settings.topicCounterChannels.set(channel_id, {
-                        ...guild_settings.topicCounterChannels.get(channel_id),
-                        topic: undefined
-                    });
-                }
-            });
-            guild_settings.save()
-                .then(() => {
-                    updateCounter(client, guild_settings, ["members", "force"]);
-                    let stringMentionedChannels = "";
-                    mentionedChannels.forEach((channel, i) => {
-                        stringMentionedChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === mentionedChannels.length-1) ? '.' : ','}`;
-                    });
-                    channel.send(translation.commands.removeTopic.success_unique.replace("{CHANNELS}", stringMentionedChannels)).catch(console.error);
-                })
-                .catch((e) => {
-                    console.error(e);
-                    channel.send(translation.common.error_db).catch(console.error);
+        if (guild_settings.topicCounterChannels.size > 0) {
+            const mentionedChannels = mentions.channels.keyArray();
+            if (mentionedChannels.length > 0) {
+                mentionedChannels.forEach(channel_id => {
+                    if (guild_settings.topicCounterChannels.has(channel_id)) {
+                        guild_settings.topicCounterChannels.set(channel_id, {
+                            ...guild_settings.topicCounterChannels.get(channel_id),
+                            topic: undefined
+                        });
+                    }
                 });
+                guild_settings.save()
+                    .then(() => {
+                        updateCounter(client, guild_settings, ["members", "force"]);
+                        let stringMentionedChannels = "";
+                        mentionedChannels.forEach((channel, i) => {
+                            stringMentionedChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === mentionedChannels.length-1) ? '.' : ','}`;
+                        });
+                        channel.send(translation.commands.removeTopic.success_unique.replace("{CHANNELS}", stringMentionedChannels)).catch(console.error);
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        channel.send(translation.common.error_db).catch(console.error);
+                    });
+            } else {
+                guild_settings.mainTopicCounter = "Members: {COUNT}";
+                guild_settings.save()
+                    .then(() => {
+                        updateCounter(client, guild_settings, ["members", "force"]);
+                        channel.send(translation.commands.removeTopic.success).catch(console.error);
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        channel.send(translation.common.error_db).catch(console.error);
+                    });
+            }
         } else {
-            guild_settings.mainTopicCounter = "Members: {COUNT}";
-            guild_settings.save()
-                .then(() => {
-                    updateCounter(client, guild_settings, ["members", "force"]);
-                    channel.send(translation.commands.removeTopic.success).catch(console.error);
-                })
-                .catch((e) => {
-                    console.error(e);
-                    channel.send(translation.common.error_db).catch(console.error);
-                });
+            channel.send(translation.common.no_topic_counter_enabled.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
         }
     }
 };
@@ -340,7 +348,7 @@ const setDigit = {
                         channel.send(translation.common.error_db).catch(console.error);
                     });
             } else {
-                channel.send(translation.commands.setDigit.error_missing_params.replace("{PREFIX}", guild_settings.prefix)).catch(console.error);
+                channel.send(translation.commands.setDigit.error_missing_params.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
             }
         }
     }
