@@ -25,7 +25,7 @@ let status = {
             "fields": [
               {
                 "name": "**Shard process uptime:**",
-                "value": parseUptime(((new Date).getTime() - global.spawnedAt.getTime()) / 1000),
+                "value": parseUptime(((new Date()).getTime() - global.spawnedAt.getTime()) / 1000),
                 "inline": true
               },
               {
@@ -93,15 +93,15 @@ let status = {
           channel.send({ embed }).then(message => {
             //Bot latency field
             embed.fields[12].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
-            message.edit({ embed }).catch(console.error)
+            message.edit({ embed }).catch(console.error);
           }).catch(console.error);
     }
-}
+};
 
 module.exports = { status };
 
 const toGB = (bytes) => {
-  return (bytes/1024/1024/1024).toPrecision(3) + "GB"
+  return (bytes/1024/1024/1024).toPrecision(3) + "GB";
 };
 
 const getRealFreeMemory = () => {
@@ -111,7 +111,7 @@ const getRealFreeMemory = () => {
       let realFreeMemory = 0;
       process.stdout.setEncoding('utf8');
       process.stdout.on('data', (data) => {
-        data = data.toString()
+        data = data.toString();
         let memInfo = {};
 
         data.split("\n").forEach(line => {
@@ -128,17 +128,17 @@ const getRealFreeMemory = () => {
       resolve(os.freemem());
     }
   });
-}
+};
 
 const parseUptime = (inputDate) => {
   //inputDate must be in seconds
   let uptime = new Date(1970, 0, 1);
   uptime.setSeconds(Math.floor(inputDate));
-  return `${Math.floor(inputDate/60/60/24)} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`
+  return `${Math.floor(inputDate/60/60/24)} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`;
 };
 
 const getCpuUsage = () => {
   return new Promise(resolve => {
     osUtils.cpuUsage(resolve);
-  })
-}
+  });
+};

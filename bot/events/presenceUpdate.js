@@ -27,7 +27,7 @@ module.exports = client => {
                             GuildsToUpdate.delete(guild.id);
                         }, guildTimeBetweenEveryUpdate));
                 })
-                .catch(console.error)
+                .catch(console.error);
         }
     });
 };

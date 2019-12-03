@@ -14,16 +14,19 @@ const TopicCounterCustomNumbers = mongoose.Schema({
     0: { type: String, default: '<a:0G:469275067969306634>' }
 }, { _id : false });
 
-const channelNameCounter = mongoose.Schema({ //I preserve this for reference
-    channelName: { type: String, require: true },
-    type: { type: String, default: "members" },
-    otherConfig: { type: Object }
-}, { _id : false });
+ //I preserve this for reference
+/*
+    const channelNameCounter = mongoose.Schema({
+        channelName: { type: String, require: true },
+        type: { type: String, default: "members" },
+        otherConfig: { type: Object }
+    }, { _id : false });
 
-const TopicCounterChannel = mongoose.Schema({ //I preserve this for reference
-    topic: { type: String },
-    otherConfig: { type: Object },
-}, { _id : false });
+    const TopicCounterChannel = mongoose.Schema({
+        topic: { type: String },
+        otherConfig: { type: Object },
+    }, { _id : false });
+*/
 
 const GuildSchema = mongoose.Schema({
     guild_id: { type: String, require: true },
