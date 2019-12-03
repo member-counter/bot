@@ -44,7 +44,7 @@ router.get("/donators", (req, res) => {
     getExchange()
         .then(exchange => {
             DonationModel.find({}, { _id: 0, __v: 0 })
-                .then(donators => {
+                .then(async donators => {
                     donators = donators
                         .filter(donator => !donator.anonymous)
                         .map(donator => {
@@ -55,6 +55,27 @@ router.get("/donators", (req, res) => {
                         })
                         .filter(donator => donator.amount_eur)
                         .sort((a, b) => b.amount_eur - a.amount_eur);
+
+                        //TODO fix manually somehow or wait to discord.js v12
+                        //get user tags
+                        await Promise.all(
+                            donators.map(async donator => {
+                                console.log(await req.DiscordShardManager.broadcastEval(`
+                                    (async () => {
+                                        let user;
+                                        try {
+                                            user = await channel.fetchUser('${donator}').then(user => user.tag);
+                                        } catch (e) {
+                                            console.error(e);
+                                            user = "Unknown user";
+                                        }
+                                        return user;
+                                    })();   
+                                `));
+                                return donator;
+                            })
+                        );
+
                     res.json(donators);
                 })
                 .catch(error => {
@@ -85,5 +106,5 @@ const saveDonation = (req, res) => {
 };
 
 const grantPremium = (user_id) => {
-    UserModel.findOneAndUpdate({ user_id }, { premium: true }, { new: true, upsert: true}).catch(console.error)
-}
+    UserModel.findOneAndUpdate({ user_id }, { premium: true }, { new: true, upsert: true}).catch(console.error);
+};

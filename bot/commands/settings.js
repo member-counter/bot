@@ -60,7 +60,7 @@ const seeSettings = {
                 if (guild.roles.has(role_id)) allowed_roles += " @"+guild.roles.get(role_id).name;
             });
 
-            messageToSend += `${allowed_roles_text} ${allowed_roles}\n`
+            messageToSend += `${allowed_roles_text} ${allowed_roles}\n`;
         }
 
         //channel name counters:
@@ -105,9 +105,9 @@ const seeSettings = {
         //send in various messages
         messageToSend.splitSlice(2000).forEach(part => {
             channel.send(part).catch(console.error);
-        })
+        });
     }
-}
+};
 
 const resetSettings = {
     name: "resetSettings",
@@ -139,9 +139,9 @@ const resetSettings = {
         .catch(error => {
             console.error(error);
             channel.send(translation.common.error_db).catch(console.error);
-        })
+        });
     }
-}
+};
 
 const lang = {
     name: "lang",
@@ -168,11 +168,11 @@ const lang = {
                 });
         } else {
             let messageToSend = translation.commands.lang.error_not_found + "\n";
-            messageToSend += "```fix\n"
+            messageToSend += "```fix\n";
             languages.forEach((value, lang_code) => {
                 messageToSend += lang_code + " ➡ " + value.lang_name + "\n";
             });
-            messageToSend += "```"
+            messageToSend += "```";
             channel.send(messageToSend).catch(console.error);
         }
     }
@@ -227,7 +227,7 @@ const role = {
             } else {
                 channel.send(translation.commands.role.error_no_roles_to_update).catch(console.error);
             }
-        }
+        };
 
         switch (args[1]) {
             case "allow":
@@ -252,7 +252,7 @@ const role = {
                 break;
 
             default:
-                channel.send(translation.commands.role.invalid_params).catch(console.error);
+                channel.send(translation.commands.role.invalid_params.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
                 break;
         }
     }
@@ -310,7 +310,7 @@ const upgradeServer = {
                         channel.send(error_cannot_upgrade).catch(console.error);
                     }
                 } else {
-                    channel.send(error_no_points_left).catch(console.error);
+                    channel.send(error_no_points_left.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
                 }
             })
             .catch(error => {
@@ -329,4 +329,4 @@ String.prototype.splitSlice = function (len) {
         result.push(this.slice(offset, len + offset));
     }
     return result;
-}
+};
