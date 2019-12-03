@@ -1,4 +1,3 @@
-"use strict";
 const fs = require('fs');
 const path = require('path');
 const sendStats = require('./stats.js');
@@ -7,7 +6,7 @@ const memberHasPermission = require("../utils/memberHasPermissions");
 
 const { DISCORD_DEFAULT_LANG, DISCORD_PREFIX } = process.env;
 
-const commands = []
+const commands = [];
 
 module.exports = async message => {
     const { client, guild, channel, author, content, member } = message;
