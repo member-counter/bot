@@ -32,19 +32,19 @@
             "error_invalid_params": "Parâmetros inválidos, veja `{PREFIX}!help topicCounter`."
         },
         "setDigit": {
-            "help_description": "Personaliza os números que serão exibidos, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal com marcação.\nSe o primeiro argumento é a palavra \"reset\", os números serão redefinidos para o padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número personalizado]```\nExemplo: ```{PREFIX}setDigit 3 **3**```\nCom o exemplo anterior, cada 3 será mostrado em negrito **3**",
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nPersonaliza os números que serão exibidos, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal com marcação.\nSe o primeiro argumento é a palavra \"reset\", os números serão redefinidos para o padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número personalizado]```\nExemplo: ```{PREFIX}setDigit 3 **3**```\nCom o exemplo anterior, cada 3 será mostrado em negrito **3**",
             "success": "Dígito personalizado.",
             "reset_success": "Números restaurados para o padrão.",
             "error_missing_params": "Erro: Parâmetros ausentes, `mais informações: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "Você pode personalizar o tópico com este comando, lembre-se de escrever `{COUNT}` onde quiser colocar o contador. Você também pode definir um tópico exclusivo para diferentes canais\n\nSe o primeiro argumento for mencionado no canal, o tópico fornecido será usado apenas nos canais mencionados, (lembre-se de mencionar os canais com ``#``).\n\n Exemplos:\n\nIsso definirá o tópico para esses canais sem um tópico específico definido```{PREFIX}setTopic Membros atuais: {COUNT}```\nIsso exibirá o tópico especificado apenas nos primeiros canais mencionados```{PREFIX}setTopic #general Membros atuais: {COUNT}\n{PREFIX}setTopic #general #other-channel Membros atuais: {COUNT}```",
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nVocê pode personalizar o tópico com este comando, lembre-se de escrever `{COUNT}` onde quiser colocar o contador. Você também pode definir um tópico exclusivo para diferentes canais\n\nSe o primeiro argumento for mencionado no canal, o tópico fornecido será usado apenas nos canais mencionados, (lembre-se de mencionar os canais com ``#``).\n\n Exemplos:\n\nIsso definirá o tópico para esses canais sem um tópico específico definido```{PREFIX}setTopic Membros atuais: {COUNT}```\nIsso exibirá o tópico especificado apenas nos primeiros canais mencionados```{PREFIX}setTopic #general Membros atuais: {COUNT}\n{PREFIX}setTopic #general #other-channel Membros atuais: {COUNT}```",
             "success": "Tópico personalizado para todos os canais sem um personalizado.",
             "success_unique": "Tópico personalizado para os seguintes canais: {CHANNELS}",
             "no_topic": "Nenhum tópico foi fornecido, mais informações: `{PREFIX}help setTopic`."
         },
         "removeTopic": {
-            "help_description": "Este comando remove os tópicos do canal que foram personalizados, aqui está uma lista de exemplos:\n\nRemove o tópico personalizado para canais sem tópico específico:```{PREFIX} removeTopic```\nRemova tópicos específicos que foi estabelecido mencionando os canais```{PREFIX}removeTopic #general #other-channel```",
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nEste comando remove os tópicos do canal que foram personalizados, aqui está uma lista de exemplos:\n\nRemove o tópico personalizado para canais sem tópico específico:```{PREFIX} removeTopic```\nRemova tópicos específicos que foi estabelecido mencionando os canais```{PREFIX}removeTopic #general #other-channel```",
             "success": "Tópico principal restaurado.",
             "success_unique": "Tópico exclusivo removido para os seguintes canais: {CHANNELS}",
             "error_missing_params": "Erro: parâmetros ausentes, mais informações:`{PREFIX}help removeTopic`."
@@ -145,6 +145,7 @@
     "common": {
         "error_db": "Erro no banco de dados, tente novamente mais tarde.",
         "error_unknown": "Ocorreu um erro. Tente novamente mais tarde.",
-        "error_no_admin": "Somente membros com permissões de administrador neste servidor podem usar este comando."
+        "error_no_admin": "Somente membros com permissões de administrador neste servidor podem usar este comando.",
+        "no_topic_counter_enabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
     }
 }

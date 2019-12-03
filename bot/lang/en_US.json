@@ -32,19 +32,19 @@
             "error_invalid_params": "Invalid parameters, see `{PREFIX}!help topicCounter`."
         },
         "setDigit": {
-            "help_description": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
             "success": "Digit customized.",
             "reset_success": "Numbers restored to the default ones.",
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "You can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n Examples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nYou can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n Examples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
             "success": "Topic customized for all channels without a custom one.",
             "success_unique": "Topic customized for the following channels: {CHANNELS}",
             "no_topic": "No topic were provided, more info: `{PREFIX}help setTopic`."
         },
         "removeTopic": {
-            "help_description": "This command removes channel topics that has been customized, here is a list of examples:\n\nRemoves the customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topics that has been established by mentioning channels```{PREFIX}removeTopic #general #other-channel```",
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nThis command removes channel topics that has been customized, here is a list of examples:\n\nRemoves the customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topics that has been established by mentioning channels```{PREFIX}removeTopic #general #other-channel```",
             "success": "Main topic restored.",
             "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
             "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
@@ -145,6 +145,7 @@
     "common": {
         "error_db": "Database error, try again later",
         "error_unknown": "Something went wrong, try again later.",
-        "error_no_admin": "Only members with administrator permissions in this server can use this command."
+        "error_no_admin": "Only members with administrator permissions in this server can use this command.",
+        "no_topic_counter_enabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
     }
 }
