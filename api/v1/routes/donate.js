@@ -56,18 +56,20 @@ router.get("/donators", (req, res) => {
                         .filter(donator => donator.amount_eur)
                         .sort((a, b) => b.amount_eur - a.amount_eur);
 
+                        //TODO fix manually somehow or wait to discord.js v12
                         //get user tags
                         await Promise.all(
                             donators.map(async donator => {
                                 console.log(await req.DiscordShardManager.broadcastEval(`
                                     (async () => {
-                                        let channel = this.channels.get('${"645966677359722496"}');
-                                        let msg;
-                                        if (channel) {
-                                            msg = await channel.fetchMessage('${"650451049219620884"}').then(m => m.id);
+                                        let user;
+                                        try {
+                                            user = await channel.fetchUser('${donator}').then(user => user.tag);
+                                        } catch (e) {
+                                            console.error(e);
+                                            user = "Unknown user";
                                         }
-                                        console.log(msg)
-                                        return msg;
+                                        return user;
                                     })();   
                                 `));
                                 return donator;

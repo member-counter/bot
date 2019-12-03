@@ -32,19 +32,19 @@
             "error_invalid_params": "Parámetros incorrectos, más info: `{PREFIX}!help topicCounter`."
         },
         "setDigit": {
-            "help_description": "Personaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
+            "help_description": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nPersonaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
             "success": "Número personalizado correctamente.",
             "reset_success": "Todos los numeros han sido reestablecidos",
             "error_missing_params": "Error: Faltan parámetros, `más info: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "Puedes cambiar el tema de canal con este comando, recuerda escribir `{COUNT}` donde quieras colocar el contador. También puedes poner un tema especifico por canal\n\nSi el primer parámetro son menciones de canal, el tema que especifiques después solo sera usado en los canales que hayas mencionado, (recuerda mencionar canales con ``#``).\n\n Ejemplos:\n\nEste especificara el tema para todos los canales sin uno especifico```{PREFIX}setTopic Miembros actuales: {COUNT}```\nEste establecerá el tema concretado en solo en los primeros canales que hayas especificado```{PREFIX}setTopic #general Miembros actuales: {COUNT}\n{PREFIX}setTopic #general #otro-canal Miembros actuales: {COUNT}```",
+            "help_description": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nPuedes cambiar el tema de canal con este comando, recuerda escribir `{COUNT}` donde quieras colocar el contador. También puedes poner un tema especifico por canal\n\nSi el primer parámetro son menciones de canal, el tema que especifiques después solo sera usado en los canales que hayas mencionado, (recuerda mencionar canales con ``#``).\n\n Ejemplos:\n\nEste especificara el tema para todos los canales sin uno especifico```{PREFIX}setTopic Miembros actuales: {COUNT}```\nEste establecerá el tema concretado en solo en los primeros canales que hayas especificado```{PREFIX}setTopic #general Miembros actuales: {COUNT}\n{PREFIX}setTopic #general #otro-canal Miembros actuales: {COUNT}```",
             "success": "Tema establecido para todos los canales sin uno personalizado.",
             "success_unique": "Tema establecido para los siguientes canales: {CHANNELS}",
             "no_topic": "Ningún tema fue proporcionado, más info: `{PREFIX}help setTopic`."
         },
         "removeTopic": {
-            "help_description": "Este comando borra y restablece los temas de los canales especificados, aquí hay una lista de ejemplos:\n\nRestablece el tema personalizado para aquellos sin uno especifico por canal:```{PREFIX}removeTopic```\nBorra los temas personalizados por canal y se usara el tema principal```{PREFIX}removeTopic #general #otro-canal```",
+            "help_description": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nEste comando borra y restablece los temas de los canales especificados, aquí hay una lista de ejemplos:\n\nRestablece el tema personalizado para aquellos sin uno especifico por canal:```{PREFIX}removeTopic```\nBorra los temas personalizados por canal y se usara el tema principal```{PREFIX}removeTopic #general #otro-canal```",
             "success": "Tema principal restablecido.",
             "success_unique": "Temas personalizado por canal restablecido en los canales: {CHANNELS}",
             "error_missing_params": "Error: Faltan parámetros, más info: `{PREFIX}help removeTopic`."
@@ -145,6 +145,7 @@
     "common": {
         "error_db": "Error en la base de datos, prueba de nuevo mas tarde.",
         "error_unknown": "Algo fue mal, prueba de nuevo mas tarde.",
-        "error_no_admin": "Solo miembros con permisos de administrador en este canal pueden usar este comando."
+        "error_no_admin": "Solo miembros con permisos de administrador en este canal pueden usar este comando.",
+        "no_topic_counter_enabled": "Parece ser que aun no has habilitado ningún contador en un tema de canal, mira `{PREFIX}help topicCounter`"
     }
 }
