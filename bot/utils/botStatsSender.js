@@ -15,7 +15,7 @@ module.exports = async (client) => {
             },
             body: JSON.stringify({ guildCount })
         })
-            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [bots.ondiscord.xyz] Stats sent, response: ${response.status}`))
+            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [discord.bots.gg] Stats sent, response: ${response.status}`))
             .catch(console.error);
 
         //https://top.gg/
@@ -27,7 +27,7 @@ module.exports = async (client) => {
             },
             body: JSON.stringify({ server_count: guildCount })
         })
-            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [bots.ondiscord.xyz] Stats sent, response: ${response.status}`))
+            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [top.gg] Stats sent, response: ${response.status}`))
             .catch(console.error);
 
         //https://discord.boats/
@@ -39,7 +39,7 @@ module.exports = async (client) => {
             },
             body: JSON.stringify({ server_count: guildCount })
         })
-            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [bots.ondiscord.xyz] Stats sent, response: ${response.status}`))
+            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [discord.boats] Stats sent, response: ${response.status}`))
             .catch(console.error);
 
         //https://discordbot.world
@@ -51,7 +51,7 @@ module.exports = async (client) => {
             },
             body: JSON.stringify({ guild_count: guildCount })
         })
-            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [bots.ondiscord.xyz] Stats sent, response: ${response.status}`))
+            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [discordbot.world] Stats sent, response: ${response.status}`))
             .catch(console.error);
 
         //https://bots.ondiscord.xyz/
@@ -75,7 +75,7 @@ module.exports = async (client) => {
             },
             body: JSON.stringify({ server_count: guildCount })
         })
-            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [bots.ondiscord.xyz] Stats sent, response: ${response.status}`))
+            .then(response => console.log(`[Bot shard #${client.shard.id}] [STATS SENDER] [botsfordiscord.com] Stats sent, response: ${response.status}`))
             .catch(console.error);
     }
 };
