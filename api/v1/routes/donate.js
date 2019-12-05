@@ -18,7 +18,7 @@ router.post("/process-donation/:transactionid", auth, (req, res) => {
         .then(response => response.json())
         .then(transaction => {
             if (transaction.status === "APPROVED") {
-                req.body.user = req.user.id;
+                req.body.user = req.token.id;
                 req.body.currency = transaction.purchase_units[0].amount.currency_code;
                 req.body.amount = transaction.purchase_units[0].amount.value;
                 saveDonation(req, res);
@@ -32,7 +32,7 @@ router.post("/process-donation/:transactionid", auth, (req, res) => {
 });
 
 router.post("/gen-donation", auth, (req, res) => {
-    if (owners.includes(req.user.id)) {
+    if (owners.includes(req.token.id)) {
         saveDonation(req, res);
         grantPremium(req.body.user);
     } else {

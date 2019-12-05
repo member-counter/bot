@@ -12,7 +12,7 @@ router.get("/guilds", auth, async (req, res) => {
     let guilds = await req.DiscordShardManager.broadcastEval(`
         Array.from(
             this.guilds
-                .filter(guild => guild.members.has("${req.user.id}"))
+                .filter(guild => guild.members.has("${req.token.id}"))
                 .map(guild => {
                     return {
                         name: guild.name,
@@ -29,13 +29,18 @@ router.get("/guilds", auth, async (req, res) => {
             allowedRoles = await GuildModel.findOneAndUpdate(
                 { guild_id: guild.id },
                 {},
-                { upsert: true, projection: { allowedRoles: 1 } }
-            ).then(result => result.allowedRoles);
+                { new: true, upsert: true, projection: { allowedRoles: 1 } }
+            )
+                .then(result => result.allowedRoles)
+                .catch(error => {
+                    console.error(error);
+                    res.status(500).json({ message: "DB Error" });
+                });
     
             const condition = `
                 (() => {
                     const guildId = "${guild.id}",
-                        userId = "${req.user.id}",
+                        userId = "${req.token.id}",
                         allowedRoles = ${JSON.stringify(allowedRoles)};
                     if (this.guilds.has(guildId) && this.guilds.get(guildId).members.has(userId)) {
                         const member = this.guilds.get(guildId).members.get(userId);
@@ -53,6 +58,10 @@ router.get("/guilds", auth, async (req, res) => {
             await req.DiscordShardManager.broadcastEval(condition)
                 .then(results => {
                     if (results.includes(true)) userHasPermissions = true;
+                })
+                .catch(error => {
+                    console.error(error);
+                    res.status(500).json({ message: "I couldn't fetch the discord servers" });
                 });
             return userHasPermissions;
         })
@@ -61,14 +70,108 @@ router.get("/guilds", auth, async (req, res) => {
     res.json(guilds);
 });
 
-//TODO get guild settings
-router.get("/guilds/:guildId/settings", auth, isAdmin, (req, res) => {});
+router.get("/guilds/:guildId", auth, isAdmin, async (req, res) => {
+    const guildSettings = await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, {}, { new: true, upsert: true, projection: { _id: 0, __v: 0 } })
+        .then(doc => doc.toObject())        
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ message: "DB Error" });
+        });
 
-//TODO patch guild settings
-router.patch("/guilds/:guildId/settings", auth, isAdmin, (req, res) => {});
+    res.json(guildSettings);
+});
+
+//patch guild settings
+router.patch("/guilds/:guildId", auth, isAdmin, async (req, res) => {
+    let settingsToSet = req.body;
+    delete settingsToSet.premium_status;
+    delete settingsToSet._id;
+    delete settingsToSet.__v;
+    delete settingsToSet.guild_id;
+
+    await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, { $set: settingsToSet }, { new: true, upsert: true })
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ message: "DB Error" });
+        });
+
+    res.json({ message: "Changes done." });
+});
+
+
+router.get("/guilds/:guildId/discord-roles", auth, isAdmin, async (req, res) => {
+    const roles = await req.DiscordShardManager.broadcastEval(`
+        (() => {
+            const guildId = "${req.params.guildId}";
+            if (this.guilds.has(guildId)) {
+                return this.guilds.get(guildId).roles.array();
+            }
+        })();
+    `)
+        .then(results => {
+            let roles = results
+                .flat()
+                .filter(role => typeof role === "object")
+                .map(role => ({
+                    id: role.id,
+                    name: role.name,
+                    color: role.color,
+                    position: role.position
+                }));
+
+            return roles;
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ message: "I couldn't fetch the roles" });
+        });
+
+    res.json(roles);
+});
 
 //TODO patch upgrade server tier
-router.patch("/guilds/:guildId/upgrade-server", auth, isAdmin, (req, res) => {});
+router.patch("/guilds/:guildId/upgrade-server", auth, isAdmin, async (req, res) => {
+    let guildSettings = await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, {}, { new: true, upsert: true, projection: { premium_status: 1 } })
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ message: "DB Error" });
+        });
+
+    let userDoc = await UserModel.findOneAndUpdate({ user_id: req.token.id }, { }, { new: true, upsert: true});
+
+    if (userDoc.premium) {
+        if (guildSettings.premium_status < 2) {
+            guildSettings.premium_status = 2;
+            guildSettings.save()
+                .then(() => {
+                    //res done
+                })
+                .catch(error => {
+                    console.error(error);
+                    //res db error
+                });
+        } else {
+            //res You can't upgrade the premium level because the server already has the same or a higher tier.
+        }
+    } else if (userDoc.available_points > 0) {
+        if (guildSettings.premium_status < 1) {
+            guildSettings.premium_status = 1;
+            guildSettings.save()
+                .then(() => {
+                    //res done, points left: x
+                })
+                .catch(error => {
+                    console.error(error);
+                    //db error
+                });
+
+        } else {
+            //res You can't upgrade the premium level because the server already has the same or a higher tier.
+        }
+    } else {
+        //res You have no more points to spend
+    }
+});
 
 //TODO return available counts
 router.get("/guilds/:guildId/count-history", auth, isAdmin, (req, res) => {});
