@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
     jwt.verify(req.headers.authorization, JWT_SECRET, (err, decoded) => {
         if (err) res.json({ code: 401, message: "Bad token" });
         else {
-            req.user = decoded;
+            req.token = decoded;
             next();
         }
     });
