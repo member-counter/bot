@@ -36,7 +36,7 @@ if (JSON.parse(SERVE_API)) {
     if (NODE_ENV === "development") app.use(cors());
     
     //api v1
-    app.use(`/api/v1`, require("./api/v1/index"));
+    app.use(`/v1`, require("./api/v1/index"));
 }
 
 //mongoose connection
