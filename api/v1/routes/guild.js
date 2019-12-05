@@ -129,7 +129,7 @@ router.get("/guilds/:guildId/discord-roles", auth, isAdmin, async (req, res) => 
     res.json(roles);
 });
 
-//TODO patch upgrade server tier
+//patch upgrade server tier
 router.patch("/guilds/:guildId/upgrade-server", auth, isAdmin, async (req, res) => {
     let guildSettings = await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, {}, { new: true, upsert: true, projection: { premium_status: 1 } })
         .catch(error => {
@@ -144,32 +144,36 @@ router.patch("/guilds/:guildId/upgrade-server", auth, isAdmin, async (req, res) 
             guildSettings.premium_status = 2;
             guildSettings.save()
                 .then(() => {
-                    //res done
+                    res.json({ message: "Done, server upgraded to high tier"});
                 })
                 .catch(error => {
                     console.error(error);
-                    //res db error
+                    res.status(500).json({ message: "DB Error" });
                 });
         } else {
-            //res You can't upgrade the premium level because the server already has the same or a higher tier.
+            res.status(409).json({ message: "You can't upgrade the premium level because the server already has the same or a higher tier." });
         }
     } else if (userDoc.available_points > 0) {
         if (guildSettings.premium_status < 1) {
             guildSettings.premium_status = 1;
             guildSettings.save()
                 .then(() => {
-                    //res done, points left: x
+                    userDoc.available_points--;
+                    return userDoc.save();
+                })
+                .then(() => {
+                    res.json({ message: "Done, server upgraded to low tier", points_left: userDoc.available_points});
                 })
                 .catch(error => {
                     console.error(error);
-                    //db error
+                    res.status(500).json({ message: "DB Error" });
                 });
 
         } else {
-            //res You can't upgrade the premium level because the server already has the same or a higher tier.
+            res.status(409).json({ message: "You can't upgrade the premium level because the server already has the same or a higher tier." });
         }
     } else {
-        //res You have no more points to spend
+        res.status(409).json({ message: "You have no more points to spend" });
     }
 });
 
