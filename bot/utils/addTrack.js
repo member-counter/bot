@@ -24,7 +24,7 @@ module.exports = async (guild_id, target, count, other) => {
 
         addTrackQueue.set(guild_id+target, setTimeout(() => {
     
-            if (target === "memberswithrole_count_history") target += "." + other.channelId;
+            if (target === "memberswithrole_count_history") target += "-" + other.channelId;
             
             const track = new TrackModel({ 
                 _id: new mongoose.Types.ObjectId(),

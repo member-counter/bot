@@ -177,8 +177,10 @@ router.patch("/guilds/:guildId/upgrade-server", auth, isAdmin, async (req, res) 
     }
 });
 
-//TODO return available counts
-router.get("/guilds/:guildId/count-history", auth, isAdmin, (req, res) => {});
+//return available counts
+router.get("/guilds/:guildId/count-history", auth, isAdmin, async (req, res) => {
+    res.json(await TrackModel.distinct("type", { guild_id: req.params.guildId}));
+});
 
 //TODO use json streams
 router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => {});
