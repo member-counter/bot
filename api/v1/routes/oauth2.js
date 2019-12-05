@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const fetch = require("node-fetch");
 const jwt = require("jsonwebtoken");
-const { DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, DISCORD_OAUTH2_URI_REDIRECT, JWT_SECRET } = process.env;
+const { DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, DISCORD_OAUTH2_URI_REDIRECT, JWT_SECRET, NODE_ENV } = process.env;
 
 router.get("/oauth2", async (req, res) => {
     const accessCode = req.query.code;
@@ -39,5 +39,14 @@ router.get("/oauth2", async (req, res) => {
           res.json({ code: 500, message: "An error has occurred in the authorization process", error });
         });
 });
+
+if (NODE_ENV === "development") {
+    router.get("/debug-token/:userid", async (req, res) => {
+        jwt.sign({ id: req.params.userid }, JWT_SECRET, (err, token) => {
+            if (err) throw err;
+            res.json({ code: 0, token });
+        });
+    });
+}
 
 module.exports = router;
