@@ -201,11 +201,16 @@ router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => 
 
     const limit = req.query.limit ? parseInt(req.query.limit) : 400,
           before = req.query.before ? new Date(parseInt(req.query.before)) : Date.now();
+          after = req.query.after ? new Date(parseInt(req.query.after)) : Date.now() - 604800000;
+          skip = req.query.skip ? parseInt(req.query.skip) : 0;
 
     let query = TrackModel
-        .find({ guild_id: req.params.guildId, type: req.params.type, timestamp: { $lte: before }}, { _id: 0, __v: 0, type: 0, guild_id: 0 })
+        .find({ guild_id: req.params.guildId, type: req.params.type, timestamp: { $lte: before, $gte: after }}, { _id: 0, __v: 0, type: 0, guild_id: 0 })
         .sort("-date")
-        .limit(limit);
+        .limit(limit)
+        .skip(skip);
+
+
     let queryStream = query.cursor({ transform: JSON.stringify });
 
     let firstChunkProcessed = false;
