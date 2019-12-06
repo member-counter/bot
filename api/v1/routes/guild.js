@@ -204,10 +204,12 @@ router.get("/guilds/:guildId/count-history", auth, isAdmin, async (req, res) => 
 router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => {
     res.type("json");
 
-    const limit = req.query.limit ? parseInt(req.query.limit) : 400,
-          before = req.query.before ? new Date(parseInt(req.query.before)) : Date.now();
-          after = req.query.after ? new Date(parseInt(req.query.after)) : Date.now() - 604800000;
-          every = req.query.every ? parseInt(req.query.every) : 0;
+    const before = req.query.before ? new Date(parseInt(req.query.before)) : Date.now(),
+          after = req.query.after ? new Date(parseInt(req.query.after)) : Date.now() - 604800000,
+          every = req.query.every ? parseInt(req.query.every) : 0,
+          limit = req.query.limit ? parseInt(req.query.limit) * (every + 1) : 500    * (every + 1);
+
+    
 
     let query = TrackModel
         .find({ guild_id: req.params.guildId, type: req.params.type, timestamp: { $lte: before, $gte: after }}, { _id: 0, __v: 0, type: 0, guild_id: 0 })
