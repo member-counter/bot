@@ -5,27 +5,26 @@ const isAdmin = require("../middlewares/isAdmin");
 const TrackModel = require("../../../mongooseModels/TrackModel");
 const GuildModel = require("../../../mongooseModels/GuildModel");
 const UserModel = require("../../../mongooseModels/UserModel");
+const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
 //get available guilds (and check if the user has admin perms)
 router.get("/guilds", auth, async (req, res) => {
-    let guilds = await req.DiscordShardManager.broadcastEval(`
-        Array.from(
-            this.guilds
-                .filter(guild => guild.members.has("${req.token.id}"))
-                .map(guild => {
-                    return {
-                        name: guild.name,
-                        id: guild.id,
-                        icon: guild.icon
-                    }
-                })
-        );
-    `);
+    let mutualGuilds = (await req.DiscordShardManager.broadcastEval(`
+        this.guilds
+            .filter(guild => guild.members.has("${req.token.id}"))
+            .map(guild => {
+                return {
+                    name: guild.name,
+                    id: guild.id,
+                    icon: guild.icon
+                }
+            })
+    `)).flat();
 
-    guilds = await Promise.all(
-        guilds.flat().filter(async guild => {
-            let userHasPermissions = false;
-            allowedRoles = await GuildModel.findOneAndUpdate(
+    //get if the user has permissions in each one
+    mutualGuilds = await Promise.all(
+        mutualGuilds.map(async guild => {
+            let allowedRoles = await GuildModel.findOneAndUpdate(
                 { guild_id: guild.id },
                 {},
                 { new: true, upsert: true, projection: { allowedRoles: 1 } }
@@ -35,15 +34,19 @@ router.get("/guilds", auth, async (req, res) => {
                     console.error(error);
                     res.status(500).json({ message: "DB Error" });
                 });
-    
-            const condition = `
+            
+            const checkPerms = `
                 (() => {
                     const guildId = "${guild.id}",
                         userId = "${req.token.id}",
-                        allowedRoles = ${JSON.stringify(allowedRoles)};
+                        allowedRoles = ${JSON.stringify(allowedRoles)},
+                        owners = ${JSON.stringify(owners)};
+
                     if (this.guilds.has(guildId) && this.guilds.get(guildId).members.has(userId)) {
                         const member = this.guilds.get(guildId).members.get(userId);
                         return (
+                            owners.includes(member.id)
+                            ||
                             member.permissions.has("ADMINISTRATOR")
                             ||
                             member.roles.some(role => allowedRoles.includes(role.id))
@@ -53,20 +56,30 @@ router.get("/guilds", auth, async (req, res) => {
                     }
                 })();
             `;
-            
-            await req.DiscordShardManager.broadcastEval(condition)
+
+            await req.DiscordShardManager.broadcastEval(checkPerms)
                 .then(results => {
-                    if (results.includes(true)) userHasPermissions = true;
+                    if (results.includes(true)) guild.userHasPermissions = true;
+                    else guild.userHasPermissions = false;
                 })
                 .catch(error => {
                     console.error(error);
                     res.status(500).json({ message: "I couldn't fetch the discord servers" });
                 });
-            return userHasPermissions;
+            
+            return guild;
         })
     );
-    
-    res.json(guilds);
+
+    mutualGuilds = mutualGuilds
+        .filter(guild => guild.userHasPermissions)
+        .map(guild => {
+            delete guild.userHasPermissions;
+            return guild;
+        });
+
+
+    res.json(mutualGuilds);
 });
 
 router.get("/guilds/:guildId", auth, isAdmin, async (req, res) => {
