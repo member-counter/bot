@@ -9,7 +9,8 @@ const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
 const patchGuildSettingsRateLimit = rateLimit({
     windowMs: 1 * 1000,
-    max: 1
+    max: 1,
+    message: { message: "Too many requests, please try again later." }
 });
 
 //get available guilds (and check if the user has admin perms)
