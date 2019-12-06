@@ -83,8 +83,7 @@ router.get("/guilds", auth, async (req, res) => {
 });
 
 router.get("/guilds/:guildId", auth, isAdmin, async (req, res) => {
-    const guildSettings = await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, {}, { new: true, upsert: true, projection: { _id: 0, __v: 0 } })
-        .then(doc => doc.toObject())        
+    const guildSettings = await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, {}, { passRawResult: true, new: true, upsert: true, projection: { _id: 0, __v: 0 } })
         .catch(error => {
             console.error(error);
             res.status(500).json({ message: "DB Error" });
