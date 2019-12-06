@@ -12,14 +12,11 @@ module.exports = (req, res, next) => {
                     (() => {
                         const guildId = "${req.params.guildId}",
                             userId = "${req.token.id}",
-                            allowedRoles = ${JSON.stringify(guildSettings.allowedRoles)},
-                            owners = ${JSON.stringify(owners)};
+                            allowedRoles = ${JSON.stringify(guildSettings.allowedRoles)};
                             
                         if (this.guilds.has(guildId) && this.guilds.get(guildId).members.has(userId)) {
                             const member = this.guilds.get(guildId).members.get(userId);
                             return (
-                                owners.includes(member.id)
-                                ||
                                 member.permissions.has("ADMINISTRATOR")
                                 ||
                                 member.roles.some(role => allowedRoles.includes(role.id))
