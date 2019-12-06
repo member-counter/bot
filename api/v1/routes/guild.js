@@ -221,16 +221,17 @@ router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => 
         if (!firstChunkProcessed) {
             trackChunk += "[";
             firstChunkProcessed = true;
-        } else if (previousChunkHadData) {
-            trackChunk += ",";
         }
 
         if (currentEvery === 0) {
+            if (previousChunkHadData) {
+                trackChunk += ",";
+            }
+
             trackChunk += data;
             currentEvery = every;
             previousChunkHadData = true;
         } else {
-            previousChunkHadData = false;
             --currentEvery;
         }
 
@@ -238,9 +239,11 @@ router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => 
     });
 
     queryStream.on("end", () => {
-        if (firstChunkProcessed) 
+        if (firstChunkProcessed) {
             res.write("]");
-        res.end();
+            res.end();
+        }
+        res.status(404).json({ message: "No records in the DB" });
     });
 });
 
