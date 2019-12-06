@@ -44,6 +44,7 @@ router.get("/guilds", auth, async (req, res) => {
 
                     if (this.guilds.has(guildId) && this.guilds.get(guildId).members.has(userId)) {
                         const member = this.guilds.get(guildId).members.get(userId);
+
                         return (
                             owners.includes(member.id)
                             ||
@@ -78,7 +79,6 @@ router.get("/guilds", auth, async (req, res) => {
             return guild;
         });
 
-
     res.json(mutualGuilds);
 });
 
@@ -106,6 +106,8 @@ router.patch("/guilds/:guildId", auth, isAdmin, async (req, res) => {
             console.error(error);
             res.status(500).json({ message: "DB Error" });
         });
+
+    req.DiscordShardManager.broadcastEval(`this.updateCounter(this, "${req.params.guildId}", ["all", "force"])`);
 
     res.json({ message: "Changes done." });
 });
