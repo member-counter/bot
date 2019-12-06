@@ -1,11 +1,16 @@
-const stream = require('stream');
 const router = require("express").Router();
+const rateLimit = require("express-rate-limit");
 const auth = require("../middlewares/auth");
 const isAdmin = require("../middlewares/isAdmin");
 const TrackModel = require("../../../mongooseModels/TrackModel");
 const GuildModel = require("../../../mongooseModels/GuildModel");
 const UserModel = require("../../../mongooseModels/UserModel");
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
+
+const patchGuildSettingsRateLimit = rateLimit({
+    windowMs: 1 * 1000,
+    max: 1
+});
 
 //get available guilds (and check if the user has admin perms)
 router.get("/guilds", auth, async (req, res) => {
@@ -93,7 +98,7 @@ router.get("/guilds/:guildId", auth, isAdmin, async (req, res) => {
 });
 
 //patch guild settings
-router.patch("/guilds/:guildId", auth, isAdmin, async (req, res) => {
+router.patch("/guilds/:guildId", patchGuildSettingsRateLimit, auth, isAdmin, async (req, res) => {
     let settingsToSet = req.body;
     delete settingsToSet.premium_status;
     delete settingsToSet._id;
