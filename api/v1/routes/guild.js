@@ -207,7 +207,7 @@ router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => 
     const before = req.query.before ? new Date(parseInt(req.query.before)) : Date.now(),
           after = req.query.after ? new Date(parseInt(req.query.after)) : Date.now() - 604800000,
           every = req.query.every ? parseInt(req.query.every) : 0,
-          limit = req.query.limit ? parseInt(req.query.limit) * (every + 1) : 500    * (every + 1);
+          limit = req.query.limit ? parseInt(req.query.limit) * (every + 1) : 500 * (every + 1);
 
     
 
