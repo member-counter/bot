@@ -219,10 +219,10 @@ router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => 
         let trackChunk = "";
         if (!firstChunkProcessed) {
             trackChunk += "[";
-            firstChunkProcessed = true;
         } else if (firstChunkProcessed && currentEvery === 0) {
             trackChunk += ",";
         }
+        firstChunkProcessed = true;
 
         if (currentEvery === 0) {
             trackChunk += data;
