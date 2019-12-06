@@ -213,21 +213,26 @@ router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => 
     let queryStream = query.cursor({ transform: JSON.stringify });
 
     let firstChunkProcessed = false;
-    let currentEvery = every;
+    let currentEvery = 0;
+    let previousChunkHadData = false;
 
     queryStream.on("data", data => {
         let trackChunk = "";
         if (!firstChunkProcessed) {
             trackChunk += "[";
-        } else if (firstChunkProcessed && currentEvery === 0) {
+            firstChunkProcessed = true;
+        } else if (previousChunkHadData) {
             trackChunk += ",";
         }
-        firstChunkProcessed = true;
 
         if (currentEvery === 0) {
             trackChunk += data;
             currentEvery = every;
-        } else --currentEvery;
+            previousChunkHadData = true;
+        } else {
+            previousChunkHadData = false;
+            --currentEvery;
+        }
 
         res.write(trackChunk);
     });
