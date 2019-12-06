@@ -242,8 +242,9 @@ router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => 
         if (firstChunkProcessed) {
             res.write("]");
             res.end();
+        } else {
+            res.status(404).send('{ "message": "No records in the DB" }');
         }
-        res.status(404).json({ message: "No records in the DB" });
     });
 });
 
