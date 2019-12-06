@@ -187,9 +187,6 @@ router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => 
     const limit = req.query.limit ? parseInt(req.query.limit) : 400,
           before = req.query.before ? new Date(parseInt(req.query.before)) : Date.now();
 
-    //TODO remove this
-    console.log(req.query);
-
     let query = TrackModel
         .find({ guild_id: req.params.guildId, type: req.params.type, timestamp: { $lte: before }}, { _id: 0, __v: 0, type: 0, guild_id: 0 })
         .sort("-date")
