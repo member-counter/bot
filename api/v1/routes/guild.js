@@ -202,28 +202,33 @@ router.get("/guilds/:guildId/count-history/:type", auth, isAdmin, (req, res) => 
     const limit = req.query.limit ? parseInt(req.query.limit) : 400,
           before = req.query.before ? new Date(parseInt(req.query.before)) : Date.now();
           after = req.query.after ? new Date(parseInt(req.query.after)) : Date.now() - 604800000;
-          skip = req.query.skip ? parseInt(req.query.skip) : 0;
+          every = req.query.every ? parseInt(req.query.every) : 0;
 
     let query = TrackModel
         .find({ guild_id: req.params.guildId, type: req.params.type, timestamp: { $lte: before, $gte: after }}, { _id: 0, __v: 0, type: 0, guild_id: 0 })
         .sort("-date")
-        .limit(limit)
-        .skip(skip);
+        .limit(limit);
 
 
     let queryStream = query.cursor({ transform: JSON.stringify });
 
     let firstChunkProcessed = false;
+    let currentEvery = every;
 
     queryStream.on("data", data => {
         let trackChunk = "";
         if (!firstChunkProcessed) {
             trackChunk += "[";
             firstChunkProcessed = true;
-        } else {
+        } else if (currentEvery === 0) {
             trackChunk += ",";
         }
-        trackChunk += data;
+
+        if (currentEvery === 0) {
+            trackChunk += data;
+            currentEvery = every;
+        } else --currentEvery;
+        
         res.write(trackChunk);
     });
 
