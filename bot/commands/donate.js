@@ -9,13 +9,13 @@ const donate = {
     indexZero: true,
     enabled: true,
     requiresAdmin: false,
-    run: ({ message, translation }) => {
+    run: ({ message, languagePack }) => {
         const { channel, client } = message;
         getExchange()
             .then((ex) => {
                 DonationModel.find()
                     .then(async donators => {
-                        let embed = Object.create(translation.commands.donate.embed_reply);
+                        let embed = Object.create(languagePack.commands.donate.embed_reply);
                         embed.url = embed.url.replace('{DONATION_URL}', donationUrl);
                         embed.title = embed.title.replace('{DONATION_URL}', donationUrl);
                         embed.fields = [];
@@ -52,7 +52,7 @@ const donate = {
                                 if ((donator.note && (donator.note.length > 1024))) donator.note = donator.note.slice(0, 1020) + "..."; 
                                 let field = {};
                                 field.name = `**${i+1}.** ${donator.user} - ${donator.amount} ${donator.currency}`;
-                                field.value = ( donator.note ) ?  donator.note : translation.commands.donate.misc.empty_note;
+                                field.value = ( donator.note ) ?  donator.note : languagePack.commands.donate.misc.empty_note;
                                 embed.fields = [ ...embed.fields, field ];
                             });
 
@@ -60,12 +60,12 @@ const donate = {
                     })
                     .catch(error => {
                         console.log(error);
-                        channel.send(translation.commands.donate.common.error_db).catch(console.error);
+                        channel.send(languagePack.commands.donate.common.error_db).catch(console.error);
                     });
             })
             .catch(error => {
                 console.log(error);
-                channel.send(translation.commands.donate.misc.error_exchange_fetch).catch(console.error);
+                channel.send(languagePack.commands.donate.misc.error_exchange_fetch).catch(console.error);
             });
     }
 };

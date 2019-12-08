@@ -5,10 +5,10 @@ const command = {
     indexZero: true, //When it's true, the command handler will only run the command if any of the command variants are at the start of the message
     enabled: false,
     requiresAdmin: false, //If true, allowedTypes must equal to ["text"] or there might be errors
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, languagePack }) => {
         message.channel.send("Hi!").catch(console.error);
-        console.log(guild_settings);
-        console.log(translation);
+        console.log(guildSettings);
+        console.log(languagePack);
     }
 };
 

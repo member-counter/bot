@@ -16,7 +16,7 @@ const api = {
     indexZero: true,
     enabled: true,
     requiresAdmin: false,
-    run: async ({ message, guild_settings, translation }) => {
+    run: async ({ message, guildSettings, languagePack }) => {
         const { channel, author } = message;
         const embed = {
             "color": 14503424,
