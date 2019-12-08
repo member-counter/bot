@@ -15,7 +15,7 @@ module.exports = client => {
             GuildModel.findOneAndUpdate(
                 { guild_id: guild.id },
                 { lang: regionRelation[guild.region] },
-                { new: true, upsert: true }
+                { upsert: true }
             )
                 .exec()
                 .catch(console.error);
