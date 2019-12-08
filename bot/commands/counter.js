@@ -7,12 +7,12 @@ const newChannelNameCounter = {
     indexZero: true,
     enabled: true,
     requiresAdmin: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, languagePack }) => {
         const { client, guild, channel, content } = message;
         const args = content.split(/\s+/);
         const type = args[1];
         //used to set a channel name if there is not specified a one
-        const availableCounterTypesString = translation.functions.counter_types;
+        const availableCounterTypesString = languagePack.functions.counter_types;
         //used for comparation and configuration
         const availableCounterTypes = ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots", "Banned members", "memberswithrole"].map(str => str.replace(/\s+/g, "").toLowerCase());
 
@@ -47,7 +47,7 @@ const newChannelNameCounter = {
             }
 
             if (type.toLowerCase() === "bannedmembers" && !guild.members.get(client.user.id).hasPermission("BAN_MEMBERS")) {
-                channel.send(translation.commands.newChannelNameCounter.no_perms_ban).catch(console.error);
+                channel.send(languagePack.commands.newChannelNameCounter.no_perms_ban).catch(console.error);
                 return;
             }
 
@@ -69,26 +69,26 @@ const newChannelNameCounter = {
                     }
                 )
                 .then(voiceChannel => {
-                    guild_settings.channelNameCounters.set(voiceChannel.id, { channelName, type: type.toLowerCase(), otherConfig});
-                    guild_settings.save()
+                    guildSettings.channelNameCounters.set(voiceChannel.id, { channelName, type: type.toLowerCase(), otherConfig});
+                    guildSettings.save()
                         .then(() => {
-                            updateCounter(client, guild_settings, ["all", "force"]);
-                            channel.send(translation.commands.newChannelNameCounter.success).catch(console.error);
+                            updateCounter(client, guildSettings, ["all", "force"]);
+                            channel.send(languagePack.commands.newChannelNameCounter.success).catch(console.error);
                         })
                         .catch(error => {
                             voiceChannel.delete().catch(console.error);
                             console.error(error);
-                            channel.send(translation.common.error_unknown).catch(console.error);
+                            channel.send(languagePack.common.error_unknown).catch(console.error);
                         });
                 })
                 .catch(e => {
                     console.error(e);
                     if (e.code === 50013)
-                        channel.send(translation.commands.newChannelNameCounter.no_perms).catch(console.error);
-                    else channel.send(translation.common.error_unknown).catch(console.error);
+                        channel.send(languagePack.commands.newChannelNameCounter.no_perms).catch(console.error);
+                    else channel.send(languagePack.common.error_unknown).catch(console.error);
                 });
         } else {
-            channel.send(translation.commands.newChannelNameCounter.error_invalid_params.replace(/\{PREFIX\}/gi, guild_settings.prefix));
+            channel.send(languagePack.commands.newChannelNameCounter.error_invalid_params.replace(/\{PREFIX\}/gi, guildSettings.prefix));
         }
     }
 };
@@ -100,7 +100,7 @@ const topicCounter = {
     indexZero: true, 
     enabled: true,
     requiresAdmin: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, languagePack }) => {
         const { client, guild, channel, content, mentions  } = message;
         const args = content.split(/\s+/);
         const action = args[1] ? args[1].toLowerCase() : "";
@@ -119,35 +119,35 @@ const topicCounter = {
         switch (action) {
             case "enable":
                 channelsToPerformAction.forEach(channel_id => {
-                    if (!guild_settings.topicCounterChannels.has(channel_id)) {
-                        guild_settings.topicCounterChannels.set(channel_id, {});
+                    if (!guildSettings.topicCounterChannels.has(channel_id)) {
+                        guildSettings.topicCounterChannels.set(channel_id, {});
                     }
                 });
 
-                guild_settings.save()
+                guildSettings.save()
                     .then(() => {
-                        updateCounter(client, guild_settings, ["members", "force"]);
+                        updateCounter(client, guildSettings, ["members", "force"]);
 
                         //prepare success message
                         let channelsToMention = "";
                         channelsToPerformAction.forEach((channel, i) => {
                             channelsToMention += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToPerformAction.length-1) ? '.' : ','}`; 
                         });
-                        const { success_enable } = translation.commands.topicCounter;
+                        const { success_enable } = languagePack.commands.topicCounter;
                         channel.send(success_enable.replace("{CHANNELS}", channelsToMention)).catch(console.error);
                     })
                     .catch(error => {
                         console.error(error);
-                        channel.send(translation.common.error_db).catch(console.error);
+                        channel.send(languagePack.common.error_db).catch(console.error);
                     });
                 break;
         
             case "disable":
                 channelsToPerformAction.forEach(channel_id => {
-                    guild_settings.topicCounterChannels.delete(channel_id);
+                    guildSettings.topicCounterChannels.delete(channel_id);
                 });
 
-                guild_settings.save()
+                guildSettings.save()
                     .then(() => {
                         //leave the topic empty
                         channelsToPerformAction.forEach(channel_id => {
@@ -159,17 +159,17 @@ const topicCounter = {
                         channelsToPerformAction.forEach((channel, i) => {
                             channelsToMention += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToPerformAction.length-1) ? '.' : ','}`; 
                         });
-                        const { success_disable } = translation.commands.topicCounter;
+                        const { success_disable } = languagePack.commands.topicCounter;
                         channel.send(success_disable.replace("{CHANNELS}", channelsToMention)).catch(console.error);
                     })
                     .catch(error => {
                         console.error(error);
-                        channel.send(translation.common.error_db).catch(console.error);
+                        channel.send(languagePack.common.error_db).catch(console.error);
                     });
                 break;
 
             default:
-                channel.send(translation.commands.topicCounter.error_invalid_params.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
+                channel.send(languagePack.commands.topicCounter.error_invalid_params.replace(/\{PREFIX\}/gi, guildSettings.prefix)).catch(console.error);
                 break;
         }
     }
@@ -182,9 +182,9 @@ const setTopic = {
     indexZero: true,
     enabled: true,
     requiresAdmin: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, languagePack }) => {
         const { client, channel, content } = message;
-        if (guild_settings.topicCounterChannels.size > 0) {
+        if (guildSettings.topicCounterChannels.size > 0) {
             const args = content.split(" ");
             let channelsToCustomize = [];
             let newTopic = "";
@@ -218,44 +218,44 @@ const setTopic = {
             //save changes
             if (channelsToCustomize.length > 0 && sliceFrom !== undefined) {
                 channelsToCustomize.forEach(channel_id => {
-                    if (guild_settings.topicCounterChannels.has(channel_id)) {
-                        guild_settings.topicCounterChannels.set(channel_id, {
-                            ...guild_settings.topicCounterChannels.get(channel_id),
+                    if (guildSettings.topicCounterChannels.has(channel_id)) {
+                        guildSettings.topicCounterChannels.set(channel_id, {
+                            ...guildSettings.topicCounterChannels.get(channel_id),
                             topic: newTopic
                         });
                     }
                 });
     
-                guild_settings.save()
+                guildSettings.save()
                     .then(() => {
-                        updateCounter(client, guild_settings, ["members", "force"]);
+                        updateCounter(client, guildSettings, ["members", "force"]);
                         let msgChannels = "";
                         channelsToCustomize.forEach((channel, i) => {
                             msgChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToCustomize.length-1) ? '.' : ','}`; 
                         });
-                        channel.send(translation.commands.setTopic.success_unique.replace("{CHANNELS}", msgChannels)).catch(console.error);
+                        channel.send(languagePack.commands.setTopic.success_unique.replace("{CHANNELS}", msgChannels)).catch(console.error);
                     })
                     .catch((e) => {
                         console.error(e);
-                        channel.send(translation.common.error_db).catch(console.error);
+                        channel.send(languagePack.common.error_db).catch(console.error);
                     });
             } else if (sliceFrom === undefined) {
                 //this happens when you run the command with mentioned channels but without a topic, like "prefix!setTopic #general"
-                channel.send(translation.commands.setTopic.no_topic.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
+                channel.send(languagePack.commands.setTopic.no_topic.replace(/\{PREFIX\}/gi, guildSettings.prefix)).catch(console.error);
             } else {
-                guild_settings.mainTopicCounter = newTopic;
-                guild_settings.save()
+                guildSettings.mainTopicCounter = newTopic;
+                guildSettings.save()
                     .then(() => {
-                        updateCounter(client, guild_settings, ["members", "force"]);
-                        channel.send(translation.commands.setTopic.success).catch(console.error);
+                        updateCounter(client, guildSettings, ["members", "force"]);
+                        channel.send(languagePack.commands.setTopic.success).catch(console.error);
                     })
                     .catch((e) => {
                         console.error(e);
-                        channel.send(translation.common.error_db).catch(console.error);
+                        channel.send(languagePack.common.error_db).catch(console.error);
                     });
             }
         } else {
-            channel.send(translation.common.no_topic_counter_enabled.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
+            channel.send(languagePack.common.no_topic_counter_enabled.replace(/\{PREFIX\}/gi, guildSettings.prefix)).catch(console.error);
         }
     }
 };
@@ -267,46 +267,46 @@ const removeTopic = {
     indexZero: true,
     enabled: true,
     requiresAdmin: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, languagePack }) => {
         const { client, channel, mentions  } = message;
-        if (guild_settings.topicCounterChannels.size > 0) {
+        if (guildSettings.topicCounterChannels.size > 0) {
             const mentionedChannels = mentions.channels.keyArray();
             if (mentionedChannels.length > 0) {
                 mentionedChannels.forEach(channel_id => {
-                    if (guild_settings.topicCounterChannels.has(channel_id)) {
-                        guild_settings.topicCounterChannels.set(channel_id, {
-                            ...guild_settings.topicCounterChannels.get(channel_id),
+                    if (guildSettings.topicCounterChannels.has(channel_id)) {
+                        guildSettings.topicCounterChannels.set(channel_id, {
+                            ...guildSettings.topicCounterChannels.get(channel_id),
                             topic: undefined
                         });
                     }
                 });
-                guild_settings.save()
+                guildSettings.save()
                     .then(() => {
-                        updateCounter(client, guild_settings, ["members", "force"]);
+                        updateCounter(client, guildSettings, ["members", "force"]);
                         let stringMentionedChannels = "";
                         mentionedChannels.forEach((channel, i) => {
                             stringMentionedChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === mentionedChannels.length-1) ? '.' : ','}`;
                         });
-                        channel.send(translation.commands.removeTopic.success_unique.replace("{CHANNELS}", stringMentionedChannels)).catch(console.error);
+                        channel.send(languagePack.commands.removeTopic.success_unique.replace("{CHANNELS}", stringMentionedChannels)).catch(console.error);
                     })
                     .catch((e) => {
                         console.error(e);
-                        channel.send(translation.common.error_db).catch(console.error);
+                        channel.send(languagePack.common.error_db).catch(console.error);
                     });
             } else {
-                guild_settings.mainTopicCounter = "Members: {COUNT}";
-                guild_settings.save()
+                guildSettings.mainTopicCounter = "Members: {COUNT}";
+                guildSettings.save()
                     .then(() => {
-                        updateCounter(client, guild_settings, ["members", "force"]);
-                        channel.send(translation.commands.removeTopic.success).catch(console.error);
+                        updateCounter(client, guildSettings, ["members", "force"]);
+                        channel.send(languagePack.commands.removeTopic.success).catch(console.error);
                     })
                     .catch((e) => {
                         console.error(e);
-                        channel.send(translation.common.error_db).catch(console.error);
+                        channel.send(languagePack.common.error_db).catch(console.error);
                     });
             }
         } else {
-            channel.send(translation.common.no_topic_counter_enabled.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
+            channel.send(languagePack.common.no_topic_counter_enabled.replace(/\{PREFIX\}/gi, guildSettings.prefix)).catch(console.error);
         }
     }
 };
@@ -318,37 +318,37 @@ const setDigit = {
     indexZero: true,
     enabled: true,
     requiresAdmin: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, languagePack }) => {
         const { client, channel, content } = message;
         const args = content.split(/\s+/);
         if (args[1] === "reset") {
-            guild_settings.topicCounterCustomNumbers = {};
-            guild_settings.save()
+            guildSettings.topicCounterCustomNumbers = {};
+            guildSettings.save()
                     .then(() => {
-                        channel.send(translation.commands.setDigit.reset_success).catch(console.error);
-                        updateCounter(client, guild_settings, ["members", "force"]);
+                        channel.send(languagePack.commands.setDigit.reset_success).catch(console.error);
+                        updateCounter(client, guildSettings, ["members", "force"]);
                     })
                     .catch((e) => {
                         console.error(e);
-                        channel.send(translation.common.error_db).catch(console.error);
+                        channel.send(languagePack.common.error_db).catch(console.error);
                     });
         } else {
             if (args.length >= 3) {    
                 const digitToUpdate = args[1].slice(0, 1);
                 const newDigitValue = args[2];
 
-                guild_settings.topicCounterCustomNumbers[digitToUpdate] = newDigitValue;
-                guild_settings.save()
+                guildSettings.topicCounterCustomNumbers[digitToUpdate] = newDigitValue;
+                guildSettings.save()
                     .then(() => {
-                        channel.send(translation.commands.setDigit.success).catch(console.error);
-                        updateCounter(client, guild_settings, ["members", "force"]);
+                        channel.send(languagePack.commands.setDigit.success).catch(console.error);
+                        updateCounter(client, guildSettings, ["members", "force"]);
                     })
                     .catch((e) => {
                         console.error(e);
-                        channel.send(translation.common.error_db).catch(console.error);
+                        channel.send(languagePack.common.error_db).catch(console.error);
                     });
             } else {
-                channel.send(translation.commands.setDigit.error_missing_params.replace(/\{PREFIX\}/gi, guild_settings.prefix)).catch(console.error);
+                channel.send(languagePack.commands.setDigit.error_missing_params.replace(/\{PREFIX\}/gi, guildSettings.prefix)).catch(console.error);
             }
         }
     }
@@ -361,10 +361,10 @@ const update = {
     indexZero: true,
     enabled: true,
     requiresAdmin: true,
-    run: ({ message, guild_settings, translation }) => {
+    run: ({ message, guildSettings, languagePack }) => {
         const { client, channel  } = message;
-        updateCounter(client, guild_settings, ["all", "force"]);
-        channel.send(translation.commands.update.success).catch(console.error);
+        updateCounter(client, guildSettings, ["all", "force"]);
+        channel.send(languagePack.commands.update.success).catch(console.error);
     }
 };
 

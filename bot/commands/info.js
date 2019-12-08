@@ -14,8 +14,8 @@ const info = {
     indexZero: true,
     enabled: true,
     requiresAdmin: false,
-    run: ({ message, translation }) => {
-        const embed = Object.create(translation.commands.info.embed_reply);
+    run: ({ message, languagePack }) => {
+        const embed = Object.create(languagePack.commands.info.embed_reply);
         embed.description = embed.description
             .replace("{DONATION_URL}", DONATION_URL)
             .replace("{BOT_SERVER_URL}", DISCORD_OFFICIAL_SERVER_URL)
