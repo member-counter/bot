@@ -1,4 +1,4 @@
-const GuildModel = require("../../mongooseModels/GuildModel");
+const fetchGuildSettings = require("../utils/fetchGuildSettings");
 const updateMembersCounter = require("./updateCounter/members");
 const updateRolesCounter = require("./updateCounter/roles");
 const updateChannelsCounter = require("./updateCounter/channels");
@@ -23,7 +23,7 @@ const counters = {
 
 module.exports = async (client, guild, types = ["members"]) => {
     if (typeof guild === "string")
-        guild = await fetchGuildSettings(guild);
+        guild = await fetchGuildSettings(guild).catch(console.error);
     if (typeof guild === "object") {
         if (types === "all" || types.includes("all")) {
             Object.entries(counters).forEach(counter => {
@@ -35,19 +35,4 @@ module.exports = async (client, guild, types = ["members"]) => {
             });
         }
     }
-};
-
-const fetchGuildSettings = guild_id => {
-    return new Promise(resolve => {
-        GuildModel.findOneAndUpdate(
-            { guild_id },
-            {},
-            { new: true, upsert: true }
-        )
-            .then(resolve)
-            .catch(error => {
-                console.error(error);
-                resolve("error");
-            });
-    });
 };

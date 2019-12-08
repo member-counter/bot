@@ -1,5 +1,5 @@
 const { loadCommands, loadLanguagePack } = require("./commandHandler/utils");
-const GuildModel = require("../../mongooseModels/GuildModel");
+const fetchGuildSettings = require("../utils/fetchGuildSettings");
 const memberHasPermission = require("./memberHasPermissions");
 const sendStats = require('./stats.js');
 
@@ -23,7 +23,7 @@ module.exports = async message => {
 
         //if the command is sent from a guild, get its custom configurations
         if (guild) {
-            guildSettings = await GuildModel.findOneAndUpdate({ guild_id: guild.id }, {}, { new: true, upsert: true }).catch(console.error);
+            guildSettings = await fetchGuildSettings(guild.id).catch(console.error);
             prefix = guildSettings.prefix;
             languagePack = await loadLanguagePack(guildSettings.lang);
         }

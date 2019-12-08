@@ -5,6 +5,7 @@ const isAdmin = require("../middlewares/isAdmin");
 const TrackModel = require("../../../mongooseModels/TrackModel");
 const GuildModel = require("../../../mongooseModels/GuildModel");
 const UserModel = require("../../../mongooseModels/UserModel");
+const fetchGuildSettings = require("../../../bot/utils/fetchGuildSettings");
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
 const patchGuildSettingsRateLimit = rateLimit({
@@ -30,11 +31,7 @@ router.get("/guilds", auth, async (req, res) => {
     //get if the user has permissions in each one
     mutualGuilds = await Promise.all(
         mutualGuilds.map(async guild => {
-            let allowedRoles = await GuildModel.findOneAndUpdate(
-                { guild_id: guild.id },
-                {},
-                { new: true, upsert: true, projection: { allowedRoles: 1 } }
-            )
+            let allowedRoles = await fetchGuildSettings(guild.id)
                 .then(result => result.allowedRoles)
                 .catch(error => {
                     console.error(error);
@@ -89,7 +86,7 @@ router.get("/guilds", auth, async (req, res) => {
 });
 
 router.get("/guilds/:guildId", auth, isAdmin, async (req, res) => {
-    const guildSettings = await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, {}, { passRawResult: true, new: true, upsert: true, projection: { _id: 0, __v: 0 } })
+    const guildSettings = await fetchGuildSettings(req.params.guildId, { passRawResult: false, projection: { _id: 0, __v: 0 } })
         .catch(error => {
             console.error(error);
             res.status(500).json({ message: "DB Error" });
@@ -150,7 +147,7 @@ router.get("/guilds/:guildId/discord-roles", auth, isAdmin, async (req, res) => 
 
 //patch upgrade server tier
 router.patch("/guilds/:guildId/upgrade-server", auth, isAdmin, async (req, res) => {
-    let guildSettings = await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, {}, { new: true, upsert: true, projection: { premium_status: 1 } })
+    let guildSettings = await fetchGuildSettings(req.params.guildId, {projection: { premium_status: 1 }})
         .catch(error => {
             console.error(error);
             res.status(500).json({ message: "DB Error" });

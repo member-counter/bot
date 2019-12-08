@@ -1,5 +1,5 @@
 const TrackModel = require("../../mongooseModels/TrackModel");
-const GuildModel = require("../../mongooseModels/GuildModel");
+const fetchGuildSettings = require("./fetchGuildSettings");
 const mongoose = require("mongoose");
 
 const TIME_BETWEEN_EVERY_ADD_TRACK = parseInt(process.env.TIME_BETWEEN_EVERY_ADD_TRACK) * 1000;
@@ -16,7 +16,7 @@ const addTrackQueue = new Map();
 module.exports = async (guild_id, target, count, other) => {
     if (!addTrackQueue.has(guild_id+target)) {
 
-        const guildSettings = await GuildModel.findOneAndUpdate({ guild_id }, { }, { upsert: true, projection: { premium_status: 1 } });
+        const guildSettings = await fetchGuildSettings(guild_id, {projection: { premium_status: 1 }}).catch(console.error);
 
         let guildTimeBetweenEveryAddTrack = TIME_BETWEEN_EVERY_ADD_TRACK;
         if (guildSettings.premium_status === 1) guildTimeBetweenEveryAddTrack = 5 * 1000;

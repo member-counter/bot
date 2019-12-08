@@ -1,4 +1,4 @@
-const GuildModel = require("../../mongooseModels/GuildModel");
+const fetchGuildSettings = require("../utils/fetchGuildSettings");
 const updateCounter = require("../utils/updateCounter");
 
 const TIME_BETWEEN_EVERY_UPDATE = parseInt(process.env.TIME_BETWEEN_USER_STATUS_UPDATE) * 1000;
@@ -15,7 +15,7 @@ module.exports = client => {
         if (newStatus !== "offline") newStatus = "online";
 
         if (oldStatus !== newStatus) {
-            GuildModel.findOne({ guild_id: guild.id })
+            fetchGuildSettings(guild.id, {projection: { premium_status: 1 }})
                 .then(guildSettings => {
                     let guildTimeBetweenEveryUpdate = TIME_BETWEEN_EVERY_UPDATE;
                     if (guildSettings.premium_status === 1) guildTimeBetweenEveryUpdate = 5 * 1000;
