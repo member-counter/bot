@@ -1,12 +1,12 @@
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
-const GuildModel = require("../../../mongooseModels/GuildModel");
+const fetchGuildSettings = require("../../../bot/utils/fetchGuildSettings");
 
 //check if the user is admin or has permission in the guild that is trying to access req.params.guildId
 module.exports = (req, res, next) => {
     if (owners.includes(req.token.id)) {
         next();
     } else {
-        GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, {}, { new: true, upsert: true, projection: { allowedRoles: 1 } })
+        fetchGuildSettings(req.params.guildId)
             .then(guildSettings => {
                 const condition = `
                     (() => {
