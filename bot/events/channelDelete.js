@@ -5,7 +5,7 @@ module.exports = client => {
     client.on("channelDelete", channel => {
         if (channel.guild) updateCounter(client, channel.guild.id, ["channels", "connectedusers"]);
         if (channel.type === "text" || channel.type === "news" || channel.type === "voice") {
-            fetchGuildSettings(guild.id)
+            fetchGuildSettings(channel.guild.id)
                 .then(guildSettings => {
                     if (guildSettings) {
                         if (channel.type === "text" || channel.type === "news") {
