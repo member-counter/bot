@@ -125,7 +125,7 @@ router.post("/guilds/:guildId/newchannelnamecounter", patchGuildSettingsRateLimi
         (async () => {
             let guildId = base64.decode("${base64.encode(req.params.guildId)}");
             let channelName = base64.decode("${base64.encode(newChannelConfig.channelName)}");
-            let guild = this.guilds.has(guildId);
+            let guild = this.guilds.get(guildId);
             let channelIdResult = undefined;
             if (guild) {
                 await guild.createChannel(
