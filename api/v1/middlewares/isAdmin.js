@@ -10,8 +10,8 @@ module.exports = (req, res, next) => {
             .then(guildSettings => {
                 const condition = `
                     (() => {
-                        const guildId = "${req.params.guildId}",
-                            userId = "${req.token.id}",
+                        const guildId = base64.decode("${base64.encode(req.params.guildId)}"),
+                            userId = base64.decode("${base64.encode(req.token.id)}"),
                             allowedRoles = ${JSON.stringify(guildSettings.allowedRoles)};
                             
                         if (this.guilds.has(guildId) && this.guilds.get(guildId).members.has(userId)) {

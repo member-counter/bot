@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const eventHandler = require("./bot/utils/eventHandler.js");
 const updateCounter = require("./bot/utils/updateCounter");
 const { DISCORD_TOKEN, DB_URI } = process.env;
-
+global.base64 = require("./bot/utils/base64");
 global.spawnedAt = new Date();
 
 const client = new Discord.Client({
