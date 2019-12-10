@@ -7,6 +7,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { SERVE_API, DISCORD_TOKEN, PORT, NODE_ENV, DB_URI } = process.env;
+global.base64 = require("./bot/utils/base64");
 
 //BOT
 const manager = new Discord.ShardingManager("./bot.js", {

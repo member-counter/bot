@@ -63,7 +63,7 @@ router.get("/donators", (req, res) => {
                                     (async () => {
                                         let user;
                                         try {
-                                            user = await this.fetchUser('${donator.user}').then(user => ({avatar: user.displayAvatarURL, tag: user.tag}));
+                                            user = await this.fetchUser(base64.decode("${base64.encode(donator.user)}")).then(user => ({avatar: user.displayAvatarURL, tag: user.tag}));
                                         } catch (e) {
                                             console.error(e);
                                             user = {avatar: "https://cdn.discordapp.com/embed/avatars/4.png", tag: "Unknown user"};
