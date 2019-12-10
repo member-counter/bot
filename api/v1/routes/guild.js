@@ -18,7 +18,7 @@ const patchGuildSettingsRateLimit = rateLimit({
 router.get("/guilds", auth, async (req, res) => {
     let mutualGuilds = (await req.DiscordShardManager.broadcastEval(`
         this.guilds
-            .filter(guild => guild.members.has("${req.token.id}"))
+            .filter(guild => guild.members.has(base64.decode("${base64.encode(req.token.id)}"))
             .map(guild => {
                 return {
                     name: guild.name,
@@ -40,8 +40,8 @@ router.get("/guilds", auth, async (req, res) => {
             
             const checkPerms = `
                 (() => {
-                    const guildId = "${guild.id}",
-                        userId = "${req.token.id}",
+                    const guildId = base64.decode("${base64.encode(guild.id)}"),
+                        userId = base64.decode("${base64.encode(req.token.id)}"),
                         allowedRoles = ${JSON.stringify(allowedRoles)},
                         owners = ${JSON.stringify(owners)};
 
@@ -98,27 +98,94 @@ router.get("/guilds/:guildId", auth, isAdmin, async (req, res) => {
 //patch guild settings
 router.patch("/guilds/:guildId", patchGuildSettingsRateLimit, auth, isAdmin, async (req, res) => {
     let settingsToSet = req.body;
-    delete settingsToSet.premium_status;
-    delete settingsToSet._id;
-    delete settingsToSet.__v;
-    delete settingsToSet.guild_id;
 
-    await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, { $set: settingsToSet }, { new: true, upsert: true })
-        .catch(error => {
-            console.error(error);
-            res.status(500).json({ message: "DB Error" });
-        });
+    await GuildModel.findOneAndUpdate(
+        { guild_id: req.params.guildId },
+        { $set: settingsToSet },
+        {
+            new: true,
+            upsert: true,
+            projection: { premium_status: 0, guild_id: 0, __v: 0, _id: 0 }
+        }
+    ).catch(error => {
+        console.error(error);
+        res.status(500).json({ message: "DB Error" });
+    });
 
-    req.DiscordShardManager.broadcastEval(`this.updateCounter(this, "${req.params.guildId}", ["all", "force"])`);
+    req.DiscordShardManager.broadcastEval(`this.updateCounter(this, base64.decode("${base64.encode(req.params.guildId)}"), ["all", "force"])`);
 
     res.json({ message: "Changes done." });
+});
+
+//post a new chanelnamecounter
+router.post("/guilds/:guildId/newchannelnamecounter", patchGuildSettingsRateLimit, auth, isAdmin, async (req, res) => {
+    let newChannelConfig = req.body;
+
+    let channelId = await req.DiscordShardManager.broadcastEval(`
+        (async () => {
+            let guildId = base64.decode("${base64.encode(req.params.guildId)}");
+            let channelName = base64.decode("${base64.encode(newChannelConfig.channelName)}");
+            let guild = this.guilds.has(guildId);
+            let channelIdResult = undefined;
+            if (guild) {
+                await guild.createChannel(
+                    channelName.replace(/\{COUNT\}/gi, ""),
+                    {
+                        type: "voice",
+                        permissionOverwrites: [
+                            {
+                                id: guild.id,
+                                deny: ["CONNECT"]
+                            },
+                            {
+                                id: this.user.id,
+                                allow: ["CONNECT"]
+                            }
+                        ]
+                    }
+                )
+                    .then(voiceChannel => channelIdResult = voiceChannel.id)
+                    .catch(console.error);
+            }
+            return channelIdResult;
+        })();
+    `)
+        .then(results => {
+            let channelId;
+            results.forEach(thischannelId => {
+                if (!channelId && typeof thischannelId === "string")
+                    channelId = thischannelId; 
+            });
+            return channelId;
+        })
+        .catch(console.error);
+
+
+    if (!channelId) return res.status(500).json({ message: "The channel could not be created, checkout the bot permissions."});
+
+    await GuildModel.findOneAndUpdate(
+        { guild_id: req.params.guildId },
+        { $set: { [`channelNameCounters.${channelId}`]: newChannelConfig } },
+        {
+            new: true,
+            upsert: true,
+            projection: { premium_status: 0, guild_id: 0, __v: 0, _id: 0 }
+        }
+    ).catch(error => {
+        console.error(error);
+        res.status(500).json({ message: "DB Error" });
+    });
+
+    req.DiscordShardManager.broadcastEval(`this.updateCounter(this, base64.decode("${base64.encode(req.params.guildId)}"), ["all", "force"])`);
+
+    res.status(201).json({ message: "Channel created" });
 });
 
 
 router.get("/guilds/:guildId/discord-roles", auth, isAdmin, async (req, res) => {
     const roles = await req.DiscordShardManager.broadcastEval(`
         (() => {
-            const guildId = "${req.params.guildId}";
+            const guildId = base64.decode("${base64.encode(req.params.guildId)}");
             if (this.guilds.has(guildId)) {
                 return this.guilds.get(guildId).roles.array();
             }
