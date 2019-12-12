@@ -23,7 +23,7 @@ router.get("/oauth2", async (req, res) => {
             if (discordResponse.access_token)
                 fetch("https://discordapp.com/api/users/@me", {
                     headers: {
-                        "Authorization": discordResponse.access_token
+                        "Authorization": "Bearer " + discordResponse.access_token
                     }
                 })
                     .then(unparsedUser => unparsedUser.json())

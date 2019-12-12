@@ -18,7 +18,7 @@ const patchGuildSettingsRateLimit = rateLimit({
 router.get("/guilds", auth, async (req, res) => {
     let mutualGuilds = (await req.DiscordShardManager.broadcastEval(`
         this.guilds
-            .filter(guild => guild.members.has(base64.decode("${base64.encode(req.token.id)}"))
+            .filter(guild => guild.members.has(base64.decode("${base64.encode(req.token.id)}")))
             .map(guild => {
                 return {
                     name: guild.name,
@@ -27,7 +27,7 @@ router.get("/guilds", auth, async (req, res) => {
                 }
             })
     `)).flat();
-
+    
     //get if the user has permissions in each one
     mutualGuilds = await Promise.all(
         mutualGuilds.map(async guild => {
@@ -210,6 +210,24 @@ router.get("/guilds/:guildId/discord-roles", auth, isAdmin, async (req, res) => 
         });
 
     res.json(roles);
+});
+
+router.get("/guilds/:guildId/discord-channels", auth, isAdmin, async (req, res) => {
+    const channels = await req.DiscordShardManager.broadcastEval(`
+        (() => {
+            const guildId = base64.decode("${base64.encode(req.params.guildId)}");
+            if (this.guilds.has(guildId)) {
+                return this.guilds.get(guildId).channels.array();
+            }
+        })();
+    `)
+        .then(results => results.flat())
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ message: "I couldn't fetch the roles" });
+        });
+
+    res.json(channels);
 });
 
 //patch upgrade server tier
