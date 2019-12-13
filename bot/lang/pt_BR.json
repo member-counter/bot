@@ -45,7 +45,7 @@
         },
         "removeTopic": {
             "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nEste comando remove os tópicos do canal que foram personalizados, aqui está uma lista de exemplos:\n\nRemove o tópico personalizado para canais sem tópico específico:```{PREFIX} removeTopic```\nRemova tópicos específicos que foi estabelecido mencionando os canais```{PREFIX}removeTopic #general #other-channel```",
-            "success": "Tópico principal restaurado.",
+            "success": "Global topic restored.",
             "success_unique": "Tópico exclusivo removido para os seguintes canais: {CHANNELS}",
             "error_missing_params": "Erro: parâmetros ausentes, mais informações:`{PREFIX}help removeTopic`."
         },
@@ -73,7 +73,7 @@
                 "enabled_channel_name_counters_text": "Contadores de nomes de canais:",
                 "misc_type": "Tipo:",
                 "enabled_channel_topic_counters_text": "Contadores de tópicos do canal:",
-                "main_topic_text": "Tópico principal para canais com um contador de tópicos (usado para aqueles não personalizados):",
+                "main_topic_text": "Global topic (used for those without a custom one):",
                 "custom_topics_by_channel_text": "Tópicos personalizados por canal:",
                 "custom_numbers_text": "Números personalizados:"
             }

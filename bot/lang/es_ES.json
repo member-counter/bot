@@ -45,7 +45,7 @@
         },
         "removeTopic": {
             "help_description": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nEste comando borra y restablece los temas de los canales especificados, aquí hay una lista de ejemplos:\n\nRestablece el tema personalizado para aquellos sin uno especifico por canal:```{PREFIX}removeTopic```\nBorra los temas personalizados por canal y se usara el tema principal```{PREFIX}removeTopic #general #otro-canal```",
-            "success": "Tema principal restablecido.",
+            "success": "Tema global restablecido.",
             "success_unique": "Temas personalizado por canal restablecido en los canales: {CHANNELS}",
             "error_missing_params": "Error: Faltan parámetros, más info: `{PREFIX}help removeTopic`."
         },
@@ -73,7 +73,7 @@
                 "enabled_channel_name_counters_text": "Contadores en nombre de canal:",
                 "misc_type": "Tipo:",
                 "enabled_channel_topic_counters_text": "Contadores en tema de canal:",
-                "main_topic_text": "Tema principal para canales con un contador habilitado (para aquellos que no tienen uno personalizado):",
+                "main_topic_text": "Tema global (para aquellos que no tienen uno personalizado):",
                 "custom_topics_by_channel_text": "Temas personalizados por canal:",
                 "custom_numbers_text": "Números personalizados:"
             }
