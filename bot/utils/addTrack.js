@@ -14,16 +14,9 @@ const addTrackQueue = new Map();
  * @param {Number} count
  */
 module.exports = async (guild_id, target, count, other) => {
-    if (!addTrackQueue.has(guild_id+target)) {
-
-        const guildSettings = await fetchGuildSettings(guild_id, {projection: { premium_status: 1 }}).catch(console.error);
-
-        let guildTimeBetweenEveryAddTrack = TIME_BETWEEN_EVERY_ADD_TRACK;
-        if (guildSettings.premium_status === 1) guildTimeBetweenEveryAddTrack = 5 * 1000;
-        if (guildSettings.premium_status === 2) guildTimeBetweenEveryAddTrack = 1 * 1000;   
-
+    if (!addTrackQueue.has(guild_id+target)) { 
         addTrackQueue.set(guild_id+target, setTimeout(() => {
-    
+            
             if (target === "memberswithrole_count_history") target += "-" + other.channelId;
             
             const track = new TrackModel({ 
@@ -37,7 +30,7 @@ module.exports = async (guild_id, target, count, other) => {
             track.save().catch(console.error);
 
             addTrackQueue.delete(guild_id+target);
-        }, guildTimeBetweenEveryAddTrack));
+        }, TIME_BETWEEN_EVERY_ADD_TRACK));
     }
 
 };

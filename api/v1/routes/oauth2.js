@@ -23,7 +23,7 @@ router.get("/oauth2", async (req, res) => {
             if (discordResponse.access_token)
                 fetch("https://discordapp.com/api/users/@me", {
                     headers: {
-                        "Authorization": discordResponse.access_token
+                        "Authorization": "Bearer " + discordResponse.access_token
                     }
                 })
                     .then(unparsedUser => unparsedUser.json())
@@ -36,7 +36,8 @@ router.get("/oauth2", async (req, res) => {
             else throw new Error("Discord did not grant an access token");
         })
         .catch(error => {
-          res.json({ code: 500, message: "An error has occurred in the authorization process", error });
+            console.error(error);
+            res.json({ code: 500, message: "An error has occurred in the authorization process", error: error.message });
         });
 });
 

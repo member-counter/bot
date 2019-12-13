@@ -59,6 +59,7 @@ router.get("/donators", (req, res) => {
                         //get user tags
                         await Promise.all(
                             donators.map(async donator => {
+                                if (!donator.user) donator.user = "";
                                 donator.user = await req.DiscordShardManager.shards.get(0).eval(`
                                     (async () => {
                                         let user;
