@@ -21,7 +21,7 @@ const donate = {
                         embed.fields = [];
 
                         //filter and sort donations
-                        donators
+                        donators = donators
                             .filter(donator => !donator.anonymous)
                             .map(donator => {
                                 donator = donator.toObject();
@@ -31,17 +31,15 @@ const donate = {
                             })
                             .filter(donator => donator.amount_eur)
                             .sort((a, b) => b.amount_eur - a.amount_eur)
-                            .slice(0, 19);
+                            .slice(0, 10);
 
                         //donator.user (id) to user tag
-                        await Promise.all(
+                        donators =await Promise.all(
                             donators.map(async donator => {
-                                try {
-                                    donator.user = (await client.fetchUser(donator.user)).tag;
-                                } catch (e) {
-                                    console.error(e);
-                                    donator.user = "Unknown user";
-                                }
+                                if (donator.user === undefined) donator.user = "0";
+                                donator.user = await client.fetchUser(donator.user)
+                                    .then(user => user.tag)
+                                    .catch(() => "Unknown user");
                                 return donator;
                             })
                         );
@@ -60,7 +58,7 @@ const donate = {
                     })
                     .catch(error => {
                         console.log(error);
-                        channel.send(languagePack.commands.donate.common.error_db).catch(console.error);
+                        channel.send(languagePack.common.error_db).catch(console.error);
                     });
             })
             .catch(error => {
