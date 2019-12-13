@@ -27,7 +27,7 @@ router.post("/process-donation/:transactionid", auth, (req, res) => {
         })
         .catch(error => {
             console.error(error);
-            res.json({ code: 500, message: "DB error" });
+            res.status(500).json({ message: "DB error" });
         });
 });
 
@@ -36,7 +36,7 @@ router.post("/gen-donation", auth, (req, res) => {
         saveDonation(req, res);
         grantPremium(req.body.user);
     } else {
-        res.json({ code: 401, message: "Not authorized" });
+        res.status(401).json({ message: "Not authorized" });
     }
 });
 
@@ -80,12 +80,12 @@ router.get("/donators", (req, res) => {
                 })
                 .catch(error => {
                     console.error(error);
-                    res.json({ code: 500, message: "DB error" });
+                    res.status(500).json({ message: "DB error" });
                 });
         })
         .catch(error => {
             console.error(error);
-            res.json({ code: 500, message: "Error while trying to fetch exchange rates" });
+            res.status(500).json({ message: "Error while trying to fetch exchange rates" });
         });
 });
 
@@ -101,7 +101,7 @@ const saveDonation = (req, res) => {
         })
         .catch(error => {
             console.error(error);
-            res.json({ code: 500, message: "DB error" });
+            res.status(500).json({ message: "DB error" });
         });
 };
 
