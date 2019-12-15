@@ -7,7 +7,6 @@ const { DISCORD_PREFIX, DISCORD_DEFAULT_LANG } = process.env;
 
 let commands = [];
 
-//TODO guildSettings to guildSettings
 
 module.exports = async message => {
     const { client, guild, channel, author, content, member } = message;
