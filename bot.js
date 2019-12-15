@@ -7,8 +7,7 @@ global.base64 = require("./bot/utils/base64");
 global.spawnedAt = new Date();
 
 const client = new Discord.Client({
-    disabledEvents: ["TYPING_START"],
-    fetchAllMembers: true
+    disabledEvents: ["TYPING_START"]
 });
 
 client.login(DISCORD_TOKEN).catch(console.error);
