@@ -12,7 +12,7 @@ const help = {
         if (args.length < 2) {
             let embed = Object.create(languagePack.commands.help.embed_reply);
             embed.title = embed.title.replace(/\{PREFIX\}/gi, prefix);
-            embed.description = embed.description.replace(/\{PREFIX\}/gi, prefix);
+            embed.description = embed.description.replace(/\{PREFIX\}/gi, prefix).replace(/\{WEBSITE\}/gi, process.env.WEBSITE);
             channel.send({ embed }).catch(console.error);
         } else {
             Object.entries(languagePack.commands)
