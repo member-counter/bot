@@ -5,4 +5,5 @@
 
 You are welcome to improve anything.
 
-Help and API usage: https://eduardozgz.com/member-counter/docs
+Website: https://member-counter.eduardozgz.com/
+Help and API usage: https://eduardozgz.gitbook.io/member-counter/
