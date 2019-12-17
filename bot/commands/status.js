@@ -1,7 +1,7 @@
 const os = require('os');
 const osu = require('node-os-utils');
 
-const { spawn } = require('child_process');
+const fs = require('fs').promises;
 const { version } = require('../../package.json');
 const getTotalGuildsAndMembers = require("../utils/getTotalGuildsAndMembers");
 
@@ -70,7 +70,7 @@ let status = {
               },
               {
                 "name": "**CPU usage:**",
-                "value": `${await osu.cpu.usage()}%`,
+                "value": "Wait...",
                 "inline": true
               },
               {
@@ -90,7 +90,10 @@ let status = {
               }
             ]
           };
-          channel.send({ embed }).then(message => {
+          channel.send({ embed }).then(async message => {
+            //cpu usage field
+            embed.fields[9].value = `${await osu.cpu.usage()}%`;
+
             //Bot latency field
             embed.fields[12].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
             message.edit({ embed }).catch(console.error);
@@ -105,25 +108,24 @@ const toGB = (bytes) => {
 };
 
 const getRealFreeMemory = () => {
-  return new Promise(resolve => {
+  return new Promise(async resolve => {
     if (process.platform === "linux") {
-      const process = spawn('cat', ["/proc/meminfo"]);
-      let realFreeMemory = 0;
-      process.stdout.setEncoding('utf8');
-      process.stdout.on('data', (data) => {
-        data = data.toString();
-        let memInfo = {};
-
-        data.split("\n").forEach(line => {
-          memInfo[line.split(/:\s+/)[0]] = parseInt(line.split(/:\s+/)[1], 10) * 1024;
+      const memInfoResult = await fs.readFile("/proc/meminfo", "utf-8")
+        .catch((e) => {
+            console.error(e);
+            resolve(os.freemem());
         });
-        
-        realFreeMemory = memInfo.MemFree + memInfo.Buffers + memInfo.Cached;
+      
+      let memInfo = {};
+      let realFreeMemory = 0;
+
+      memInfoResult.split("\n").forEach(line => {
+        memInfo[line.split(/:\s+/)[0]] = parseInt(line.split(/:\s+/)[1], 10) * 1024;
       });
-    
-      process.on('close', () => {
-          resolve(realFreeMemory);
-      });
+      
+      realFreeMemory = memInfo.MemFree + memInfo.Buffers + memInfo.Cached;
+  
+      resolve(realFreeMemory);
     } else {
       resolve(os.freemem());
     }
