@@ -6,6 +6,7 @@ const UserModel = require("../../../mongooseModels/UserModel");
 const auth = require("../middlewares/auth");
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 const getExchange = require("../../../bot/utils/getExchange");
+const giveDonatorRole = require("../../../bot/utils/giveDonatorRole");
 const payPalbaseUrl = (process.env.NODE_ENV === "production") ? "https://api.paypal.com" : "https://api.sandbox.paypal.com";
 const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env;
 
@@ -23,6 +24,7 @@ router.post("/process-donation/:transactionid", auth, (req, res) => {
                 req.body.amount = transaction.purchase_units[0].amount.value;
                 saveDonation(req, res);
                 grantPremium(req.body.user);
+                giveDonatorRole(req.token.id, req.DiscordShardManager);
             }
         })
         .catch(error => {
@@ -35,6 +37,7 @@ router.post("/gen-donation", auth, (req, res) => {
     if (owners.includes(req.token.id)) {
         saveDonation(req, res);
         grantPremium(req.body.user);
+        giveDonatorRole(req.token.id, req.DiscordShardManager);
     } else {
         res.status(401).json({ message: "Not authorized" });
     }
