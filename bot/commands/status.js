@@ -91,11 +91,12 @@ let status = {
             ]
           };
           channel.send({ embed }).then(async message => {
+            //Bot latency field
+            embed.fields[12].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
+            
             //cpu usage field
             embed.fields[9].value = `${await osu.cpu.usage()}%`;
 
-            //Bot latency field
-            embed.fields[12].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
             message.edit({ embed }).catch(console.error);
           }).catch(console.error);
     }
