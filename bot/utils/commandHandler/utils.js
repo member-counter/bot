@@ -22,7 +22,6 @@ const loadCommands = async () => {
  */
 let isLanguagePackAvailableCache = [];
 const isLanguagePackAvailable = langCode => {
-    console.log(isLanguagePackAvailableCache)
     return new Promise(async resolve => {
         if (isLanguagePackAvailableCache.length === 0) {
             await fs.readdir(path.join(__dirname, "..", "..", "lang/"))
