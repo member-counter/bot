@@ -2,6 +2,7 @@ const fetchGuildSettings = require("../utils/fetchGuildSettings");
 const addTrack = require("./addTrack");
 const buildTopicCounter = require("./updateCounter/functions/buildTopicCounter");
 const setChannelName = require("./updateCounter/functions/setChannelName");
+const removeChannelFromDB = require("./updateCounter/functions/removeChannelFromDB");
 
 /**
  * @param {Object} client Discord client
@@ -92,9 +93,25 @@ module.exports = async (client, guildSettings, types = ["members"]) => {
         }
         if (AllOrForce ||  types.includes("bannedmembers")) {
             currentCount.bannedMembers = 0;
-            guild.fetchBans()
+            await guild.fetchBans()
                 .then(bans => currentCount.bannedMembers = bans.size)
-                .catch(console.error);
+                .catch(error => {        
+                    channelNameCounters.forEach((channelNameCounter, channelId) => {
+                        if (channelNameCounter.type === "bannedmembers") {
+                            client.channels.get(channelId)
+                                .delete()
+                                    .catch(console.error);
+
+                            removeChannelFromDB({
+                                client,
+                                guildSettings,
+                                channelId,
+                                type: "channelNameCounter",
+                                error
+                            });
+                        }
+                    });
+                });
         }
         if (AllOrForce || types.includes("channels")) {
             currentCount.channel = 0;

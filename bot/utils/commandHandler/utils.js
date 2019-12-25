@@ -20,16 +20,21 @@ const loadCommands = async () => {
  * @param {string} langCode
  * @returns {object} - Returns a language pack
  */
+let isLanguagePackAvailableCache = [];
 const isLanguagePackAvailable = langCode => {
-    return fs.readdir(path.join(__dirname, "..", "..", "lang/"))
-        .then(files => {
-            const availableLangs = files.map((file) => file = file.split('.')[0]);
-            return availableLangs.includes(langCode);
-        })
-        .catch(error  => {
-            console.error(error);
-            return false;
-        });
+    console.log(isLanguagePackAvailableCache)
+    return new Promise(async resolve => {
+        if (isLanguagePackAvailableCache.length === 0) {
+            await fs.readdir(path.join(__dirname, "..", "..", "lang/"))
+                .then(files => isLanguagePackAvailableCache = files)
+                .catch(error  => {
+                    console.error(error);
+                    resolve(false);
+                });
+        }
+        const availableLangs = isLanguagePackAvailableCache.map((file) => file = file.split('.')[0]);
+        resolve(availableLangs.includes(langCode));
+    });    
 };
 
 /**
