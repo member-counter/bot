@@ -144,15 +144,17 @@ const topicCounter = {
         
             case "disable":
                 channelsToPerformAction.forEach(channel_id => {
-                    guildSettings.topicCounterChannels.delete(channel_id);
-                });
-
-                guildSettings.save()
-                    .then(() => {
+                    if (guildSettings.topicCounterChannels.has(channel_id)) {
+                        guildSettings.topicCounterChannels.delete(channel_id);
                         //leave the topic empty
                         channelsToPerformAction.forEach(channel_id => {
                             if (client.channels.has(channel_id)) client.channels.get(channel_id).setTopic('').catch(console.error);
                         });
+                    }
+                });
+
+                guildSettings.save()
+                    .then(() => {
                         
                         //prepare success message
                         let channelsToMention = "";
