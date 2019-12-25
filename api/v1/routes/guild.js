@@ -98,8 +98,14 @@ router.get("/guilds/:guildId", auth, isAdmin, async (req, res) => {
 //patch guild settings
 router.patch("/guilds/:guildId", patchGuildSettingsRateLimit, auth, isAdmin, async (req, res) => {
     let settingsToSet = req.body;
+    let oldGuildSettings = await GuildModel.findOne({ guild_id: req.params.guildId })
+        .then(guildSettings => guildSettings.toObject())
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ message: "DB Error" });
+        });
 
-    await GuildModel.findOneAndUpdate(
+    newGuildSettings = await GuildModel.findOneAndUpdate(
         { guild_id: req.params.guildId },
         { $set: settingsToSet },
         {
@@ -107,14 +113,21 @@ router.patch("/guilds/:guildId", patchGuildSettingsRateLimit, auth, isAdmin, asy
             upsert: true,
             projection: { premium_status: 0, guild_id: 0, __v: 0, _id: 0 }
         }
-    ).catch(error => {
-        console.error(error);
-        res.status(500).json({ message: "DB Error" });
-    });
+    )
+        .then(guildSettings => guildSettings.toObject())
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ message: "DB Error" });
+        });
 
     req.DiscordShardManager.broadcastEval(`this.updateCounter(this, base64.decode("${base64.encode(req.params.guildId)}"), ["all", "force"])`);
 
     res.json({ message: "Changes done." });
+
+    //delete voice channels and empty topics
+    let channelsToDelete = [];
+    let channelsToEmptyTopic = []; 
+    //TODO
 });
 
 //post a new chanelnamecounter
