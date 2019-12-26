@@ -7,10 +7,10 @@ module.exports = client => {
 
         if (oldUserChannel === undefined && newUserChannel !== undefined) {
             //join
-            updateCounter(client, newUserChannel.guild.id, ["connectedusers"]);
+            updateCounter(client, newUserChannel.guild.id);
         } else if (newUserChannel === undefined && oldUserChannel) {
             //leave
-            updateCounter(client, oldUserChannel.guild.id, ["connectedusers"]);
+            updateCounter(client, oldUserChannel.guild.id);
         }
     });
 };

@@ -120,7 +120,7 @@ router.patch("/guilds/:guildId", patchGuildSettingsRateLimit, auth, isAdmin, asy
             res.status(500).json({ message: "DB Error" });
         });
 
-    req.DiscordShardManager.broadcastEval(`this.updateCounter(this, base64.decode("${base64.encode(req.params.guildId)}"), ["all", "force"])`);
+    req.DiscordShardManager.broadcastEval(`this.updateCounter(this, base64.decode("${base64.encode(req.params.guildId)}"), true)`);
 
     res.json({ message: "Changes done." });
 
@@ -189,7 +189,7 @@ router.post("/guilds/:guildId/newchannelnamecounter", patchGuildSettingsRateLimi
         res.status(500).json({ message: "DB Error" });
     });
 
-    req.DiscordShardManager.broadcastEval(`this.updateCounter(this, base64.decode("${base64.encode(req.params.guildId)}"), ["all", "force"])`);
+    req.DiscordShardManager.broadcastEval(`this.updateCounter(this, base64.decode("${base64.encode(req.params.guildId)}"), true)`);
 
     res.status(201).json({ message: "Channel created" });
 });
