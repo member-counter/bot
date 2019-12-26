@@ -125,7 +125,7 @@
                 "fields": []
             },
             "misc": {
-                "empty_note": "Nota vaciá"
+                "empty_note": "Nota vacia"
             },
             "error_exchange_fetch": "Error mientras intentaba obtener los cambios de divisa."
         },
