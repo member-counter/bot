@@ -14,25 +14,17 @@ const addTrackQueue = new Map();
  * @param {Number} count
  */
 module.exports = async (guild_id, target, count, other) => {
-    if (!addTrackQueue.has(guild_id+target)) { 
-        addTrackQueue.set(guild_id+target, setTimeout(() => {
-            
-            if (target === "memberswithrole_count_history") target += "-" + other.channelId;
-            
-            const track = new TrackModel({ 
-                _id: new mongoose.Types.ObjectId(),
-                guild_id,
-                type: target,
-                timestamp: new Date(),
-                count
-            });
+    if (target === "memberswithrole_count_history") target += "-" + other.channelId;
+    
+    const track = new TrackModel({ 
+        _id: new mongoose.Types.ObjectId(),
+        guild_id,
+        type: target,
+        timestamp: new Date(),
+        count
+    });
 
-            track.save().catch(console.error);
-
-            addTrackQueue.delete(guild_id+target);
-        }, TIME_BETWEEN_EVERY_ADD_TRACK));
-    }
-
+    track.save().catch(console.error);
 };
 
 //I dedicate this.code to Alex, thank you for all ♥
