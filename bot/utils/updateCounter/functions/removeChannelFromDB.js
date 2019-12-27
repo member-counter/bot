@@ -14,7 +14,7 @@ module.exports = async ({ client, channelId, type, guildSettings, error, forceRe
                 })
                     .then(() =>
                         console.log(
-                            `[Bot shard #${client.shard.id}] [DB] Channel ${channelId} from the guild ${guildId} removed from enabled_channels.`
+                            `[Bot shard #${client.shard.id}] [DB] Channel ${channelId} from the guild ${guildId} removed from topicCounterChannels.`
                         )
                     )
                     .catch(console.error);
@@ -25,7 +25,7 @@ module.exports = async ({ client, channelId, type, guildSettings, error, forceRe
                 })
                     .then(() =>
                         console.log(
-                            `[Bot shard #${client.shard.id}] [DB] Channel ${channelId} from the guild ${guildId} removed from channelNameCounter.`
+                            `[Bot shard #${client.shard.id}] [DB] Channel ${channelId} from the guild ${guildId} removed from channelNameCounters.`
                         )
                     )
                     .catch(console.error);
