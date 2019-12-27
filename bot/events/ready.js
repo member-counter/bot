@@ -25,10 +25,5 @@ const setPresence = client => {
                 type: "PLAYING"
             }
         })
-        .then(() =>
-            console.log(
-                `[Bot shard #${client.shard.id}] Presence updated successfully`
-            )
-        )
         .catch(console.error);
 };
