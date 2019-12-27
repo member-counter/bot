@@ -1,8 +1,4 @@
-const fetchGuildSettings = require("../utils/fetchGuildSettings");
 const updateCounter = require("../utils/updateCounter");
-
-const TIME_BETWEEN_EVERY_UPDATE = parseInt(process.env.TIME_BETWEEN_USER_STATUS_UPDATE) * 1000;
-const GuildsToUpdate = new Map();
 
 module.exports = client => {
     client.on("presenceUpdate", (oldMember, newMember) => {

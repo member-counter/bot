@@ -224,21 +224,25 @@ module.exports = async (client, guildSettings, force = false) => {
                     break;
             }
         });
+
         //topicCounters:
-        let globalTopicCounterFormatted = mainTopicCounter
-            .replace(/\{COUNT\}/gi, buildTopicCounter(guildSettings, currentCount.members))
-            .replace(/\{members\}/gi, buildTopicCounter(guildSettings, currentCount.members))
-            .replace(/\{onlineMembers\}/gi, buildTopicCounter(guildSettings, currentCount.onlineMembers))
-            .replace(/\{offlineMembers\}/gi, buildTopicCounter(guildSettings, currentCount.offlineMembers))
-            .replace(/\{onlineUsers\}/gi, buildTopicCounter(guildSettings, currentCount.onlineUsers))
-            .replace(/\{offlineUsers\}/gi, buildTopicCounter(guildSettings, currentCount.offlineUsers))
-            .replace(/\{onlineBots\}/gi, buildTopicCounter(guildSettings, currentCount.onlineBots))
-            .replace(/\{offlineBots\}/gi, buildTopicCounter(guildSettings, currentCount.offlineBots))
-            .replace(/\{bannedMembers\}/gi, buildTopicCounter(guildSettings, currentCount.bannedMembers))
-            .replace(/\{channels\}/gi, buildTopicCounter(guildSettings, currentCount.channels))
-            .replace(/\{roles\}/gi, buildTopicCounter(guildSettings, currentCount.roles))
-            .replace(/\{connectedUsers\}/gi, buildTopicCounter(guildSettings, currentCount.connectedUsers))
-            .slice(0, 1024);
+        const formatTopic = (topic) => {
+            return topic
+                .replace(/\{COUNT\}/gi, buildTopicCounter(guildSettings, currentCount.members))
+                .replace(/\{members\}/gi, buildTopicCounter(guildSettings, currentCount.members))
+                .replace(/\{onlineMembers\}/gi, buildTopicCounter(guildSettings, currentCount.onlineMembers))
+                .replace(/\{offlineMembers\}/gi, buildTopicCounter(guildSettings, currentCount.offlineMembers))
+                .replace(/\{onlineUsers\}/gi, buildTopicCounter(guildSettings, currentCount.onlineUsers))
+                .replace(/\{offlineUsers\}/gi, buildTopicCounter(guildSettings, currentCount.offlineUsers))
+                .replace(/\{onlineBots\}/gi, buildTopicCounter(guildSettings, currentCount.onlineBots))
+                .replace(/\{offlineBots\}/gi, buildTopicCounter(guildSettings, currentCount.offlineBots))
+                .replace(/\{bannedMembers\}/gi, buildTopicCounter(guildSettings, currentCount.bannedMembers))
+                .replace(/\{channels\}/gi, buildTopicCounter(guildSettings, currentCount.channels))
+                .replace(/\{roles\}/gi, buildTopicCounter(guildSettings, currentCount.roles))
+                .replace(/\{connectedUsers\}/gi, buildTopicCounter(guildSettings, currentCount.connectedUsers))
+                .slice(0, 1024);
+        }
+        let globalTopicCounterFormatted = formatTopic(mainTopicCounter);
 
             topicCounterChannels.forEach((topicCounterChannel, channelId) => {
                 //exists the channel?
@@ -250,20 +254,7 @@ module.exports = async (client, guildSettings, force = false) => {
                         //the topic must be the main one or a specific one?
                         let topicToSet = (topicCounterChannel.topic) ? topicCounterChannel.topic : globalTopicCounterFormatted;
     
-                        topicToSet = topicToSet
-                            .replace(/\{COUNT\}/gi, buildTopicCounter(guildSettings, currentCount.members))
-                            .replace(/\{members\}/gi, buildTopicCounter(guildSettings, currentCount.members))
-                            .replace(/\{onlineMembers\}/gi, buildTopicCounter(guildSettings, currentCount.onlineMembers))
-                            .replace(/\{offlineMembers\}/gi, buildTopicCounter(guildSettings, currentCount.offlineMembers))
-                            .replace(/\{onlineUsers\}/gi, buildTopicCounter(guildSettings, currentCount.onlineUsers))
-                            .replace(/\{offlineUsers\}/gi, buildTopicCounter(guildSettings, currentCount.offlineUsers))
-                            .replace(/\{onlineBots\}/gi, buildTopicCounter(guildSettings, currentCount.onlineBots))
-                            .replace(/\{offlineBots\}/gi, buildTopicCounter(guildSettings, currentCount.offlineBots))
-                            .replace(/\{bannedMembers\}/gi, buildTopicCounter(guildSettings, currentCount.bannedMembers))
-                            .replace(/\{channels\}/gi, buildTopicCounter(guildSettings, currentCount.channels))
-                            .replace(/\{roles\}/gi, buildTopicCounter(guildSettings, currentCount.roles))
-                            .replace(/\{connectedUsers\}/gi, buildTopicCounter(guildSettings, currentCount.connectedUsers))
-                            .slice(0, 1024);
+                        topicToSet = formatTopic(topicToSet);
     
                         client.channels
                             .get(channelId)
