@@ -18,6 +18,9 @@ module.exports = async (client, guildSettings, force = false) => {
         mainTopicCounter
     } = guildSettings;
 
+    //check if there is any counter enabled to continue or just break
+    if (channelNameCounters.size === 0 && topicCounterChannels.size === 0) return;
+
     if (client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
         const guild = client.guilds.get(guild_id);
 
@@ -124,6 +127,17 @@ module.exports = async (client, guildSettings, force = false) => {
         });
         currentCount.connectedUsers = count.size;
     
+        //used to check if tracks are already added or not to avoid duplicates
+        let isTrackAlreadyAdded = {
+            onlineMembers: false,
+            members: false,
+            bannedMembers: false,
+            roles: false,
+            channels: false,
+            connectedUsers: false
+
+        };
+
         //set counts
         //channelName counters:
         channelNameCounters.forEach((channelNameCounter, channelId) => {
@@ -141,8 +155,11 @@ module.exports = async (client, guildSettings, force = false) => {
 
                 case "onlinemembers":
                     if (previousCount.onlineMembers !== currentCount.onlineMembers) {
-                        addTrack(guild_id, "online_member_count_history", currentCount.onlineMembers);
                         setChannelName({ client, channelId, channelName, count: currentCount.onlineMembers, guildSettings });
+                        if (!isTrackAlreadyAdded.onlineMembers) {
+                            addTrack(guild_id, "online_member_count_history", currentCount.onlineMembers);
+                            isTrackAlreadyAdded.onlineMembers = true;
+                        }
                     }
                     break;
 
@@ -174,34 +191,50 @@ module.exports = async (client, guildSettings, force = false) => {
                 case "members":
                 case undefined:
                     if (previousCount.members !== currentCount.members) {
-                        addTrack(guild_id, "member_count_history", currentCount.members);
+                        if (!isTrackAlreadyAdded.members) {
+                            addTrack(guild_id, "member_count_history", currentCount.members);
+                            isTrackAlreadyAdded.members = true;
+                        }
                         setChannelName({ client, channelId, channelName, count: currentCount.members, guildSettings });
                     }
                     break;
 
                 case "bannedmembers":
                     if (previousCount.bannedMembers !== currentCount.bannedMembers) {
-                        addTrack(guild_id, "banned_member_count_history", currentCount.bannedMembers);
+                        if (!isTrackAlreadyAdded.bannedMembers) {
+                            addTrack(guild_id, "banned_member_count_history", currentCount.bannedMembers);
+                            isTrackAlreadyAdded.bannedMembers = true;
+                        }
                         setChannelName({ client, channelId, channelName, count: currentCount.bannedMembers, guildSettings });
                     }
                     break;
 
                 case "connectedusers":
                     if (previousCount.connectedUsers !== currentCount.connectedUsers) {
-                        addTrack(guild_id, "vc_connected_members_count_history", currentCount.connectedUsers);
+                        if (!isTrackAlreadyAdded.connectedUsers) {
+                            addTrack(guild_id, "vc_connected_members_count_history", currentCount.connectedUsers);
+                            isTrackAlreadyAdded.connectedUsers = true;
+                        }
                         setChannelName({ client, channelId, channelName, count: currentCount.connectedUsers, guildSettings });
                     }
                     break;
 
                 case "channels":
                     if (previousCount.channels !== currentCount.channels) {
-                        addTrack(guild_id, "channel_count_history", currentCount.channels);
+                        if (!isTrackAlreadyAdded.channels) {
+                            addTrack(guild_id, "channel_count_history", currentCount.channels);
+                            isTrackAlreadyAdded.channels = true;
+                        }
                         setChannelName({ client, channelId, channelName, count: currentCount.channels, guildSettings });
                     }
                     break;
+
                 case "roles":
                     if (previousCount.roles !== currentCount.roles) {
-                        addTrack(guild_id, "role_count_history", currentCount.roles);
+                        if (!isTrackAlreadyAdded.roles) {
+                            addTrack(guild_id, "role_count_history", currentCount.roles);
+                            isTrackAlreadyAdded.roles = true;
+                        }
                         setChannelName({ client, channelId, channelName, count: currentCount.roles, guildSettings });
                     }
                     break;
