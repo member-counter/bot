@@ -10,18 +10,15 @@ const mongoose = require("mongoose");
  * @param {Targets} target
  * @param {Number} count
  */
-module.exports = async (guild_id, target, count, other) => {
-    if (target === "memberswithrole_count_history") target += "-" + other.channelId;
+module.exports = async (guild_id, type, count, other) => {
+    if (type === "memberswithrole_count_history") type += "-" + other.channelId;
     
-    const track = new TrackModel({ 
-        _id: new mongoose.Types.ObjectId(),
+    TrackModel.insertMany([{ 
         guild_id,
-        type: target,
+        type,
         timestamp: new Date(),
         count
-    });
-
-    track.save().catch(console.error);
+    }]).catch(console.error);
 };
 
 //I dedicate this.code to Alex, thank you for all ♥
