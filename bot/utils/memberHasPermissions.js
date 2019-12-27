@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-const GuildModel = require("../../mongooseModels/GuildModel");
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
 
 /**
