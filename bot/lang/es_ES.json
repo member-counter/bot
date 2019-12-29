@@ -101,7 +101,7 @@
             "help_description": "Lista de enlaces útiles",
             "embed_reply": {
                 "thumbnail": {
-                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/2047fe79c33411a08937d39413ca77e7.png?size=128"
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/97f5120bb63e1015d9ff5593f1fa9cae.png?size=512"
                 },
                 "color": 14503424,
                 "description": "[Añademe a tu servidor]({BOT_INVITE_URL})\n[Servidor de ayuda]({BOT_SERVER_URL})\n[Repositorio de GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Donaciones]({DONATION_URL})"
@@ -123,7 +123,7 @@
                     "text": "by eduardozgz#5695"
                 },
                 "thumbnail": {
-                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/2047fe79c33411a08937d39413ca77e7.png?size=512"
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/97f5120bb63e1015d9ff5593f1fa9cae.png?size=512"
                 },
                 "fields": []
             },
