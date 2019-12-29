@@ -19,7 +19,7 @@ But with some imagination and good taste it can look like this: (see `mc!help se
 ![Image example](https://cdn.discordapp.com/attachments/615204695484661762/622923461333090336/unknown.png "Maybe? server")
 
 # Commands
-[Visit the docs](https://eduardozgz.com/member-counter/docs) or explore the commands with `mc!help`, e.g. if you want to know more about `mc!topicCounter`, send `mc!help topicCounter`.
+[Visit the docs](https://member-counter.eduardozgz.com/docs) or explore the commands with `mc!help`, e.g. if you want to know more about `mc!topicCounter`, send `mc!help topicCounter`.
 
 # Github
 This bot is open source, don't be shy and contribute to it by suggesting or improving features [https://github.com/eduardozgz/member-counter-bot](https://github.com/eduardozgz/member-counter-bot)
