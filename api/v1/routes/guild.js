@@ -7,6 +7,7 @@ const GuildModel = require("../../../mongooseModels/GuildModel");
 const UserModel = require("../../../mongooseModels/UserModel");
 const fetchGuildSettings = require("../../../bot/utils/fetchGuildSettings");
 const owners = process.env.BOT_OWNERS.split(/,\s?/);
+const arrayDiff = (arr1, arr2) => arr1.filter(x => arr2.includes(x));
 
 const patchGuildSettingsRateLimit = rateLimit({
     windowMs: 1 * 1000,
@@ -98,14 +99,14 @@ router.get("/guilds/:guildId", auth, isAdmin, async (req, res) => {
 //patch guild settings
 router.patch("/guilds/:guildId", patchGuildSettingsRateLimit, auth, isAdmin, async (req, res) => {
     let settingsToSet = req.body;
-    let oldGuildSettings = await GuildModel.findOne({ guild_id: req.params.guildId })
+    let oldGuildSettings = await GuildModel.findOneAndUpdate({ guild_id: req.params.guildId }, {}, { new: true, upsert: true })
         .then(guildSettings => guildSettings.toObject())
         .catch(error => {
             console.error(error);
             res.status(500).json({ message: "DB Error" });
         });
 
-    newGuildSettings = await GuildModel.findOneAndUpdate(
+    let newGuildSettings = await GuildModel.findOneAndUpdate(
         { guild_id: req.params.guildId },
         { $set: settingsToSet },
         {
@@ -114,20 +115,32 @@ router.patch("/guilds/:guildId", patchGuildSettingsRateLimit, auth, isAdmin, asy
             projection: { premium_status: 0, guild_id: 0, __v: 0, _id: 0 }
         }
     )
-        .then(guildSettings => guildSettings.toObject())
+        .then(guildSettings => {
+            req.DiscordShardManager.broadcastEval(`this.updateCounter(this, base64.decode("${base64.encode(req.params.guildId)}"), true)`);
+            return guildSettings.toObject();
+        })
         .catch(error => {
             console.error(error);
             res.status(500).json({ message: "DB Error" });
         });
 
-    req.DiscordShardManager.broadcastEval(`this.updateCounter(this, base64.decode("${base64.encode(req.params.guildId)}"), true)`);
-
     res.json({ message: "Changes done." });
 
-    //delete voice channels and empty topics
-    let channelsToDelete = [];
-    let channelsToEmptyTopic = []; 
-    //TODO
+    //empty topics
+    let channelsToEmptyTopic = JSON.stringify(arrayDiff([...oldGuildSettings.topicCounterChannels.keys()], [...newGuildSettings.topicCounterChannels.keys()]));
+    
+    req.DiscordShardManager.broadcastEval(`
+        const guildId = base64.decode("${base64.encode(req.params.guildId)}"); 
+        if (this.guilds.has(guildId)) {
+            const channelsToEmptyTopic = JSON.parse("${channelsToEmptyTopic}");
+            const guild = this.guilds.get(guildId);
+
+            channelsToEmptyTopic.forEach(channelId => {
+                if (guild.channels.has(channelId)) guild.channels.get(channelId).setTopic("");
+            });
+        }
+    `);
+    
 });
 
 //post a new chanelnamecounter
