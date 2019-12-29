@@ -73,7 +73,7 @@
                 "premium_high_tier_text": "Nivel alto",
                 "allowed_roles_text": "Roles que estan autorizados a usar comandos administrativos:",
                 "header_text": "Ajustes para el servidor:",
-                "enabled_channel_name_counters_text": "Contadores en nombre de canal:",
+                "enabled_channel_name_counters_text": "Contadores en nombre de canal/Contadores en nombre de categoria:",
                 "misc_type": "Tipo:",
                 "enabled_channel_topic_counters_text": "Contadores en tema de canal:",
                 "main_topic_text": "Tema global (para aquellos que no tienen uno personalizado):",

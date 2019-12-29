@@ -73,7 +73,7 @@
                 "premium_high_tier_text": "Nível alto",
                 "allowed_roles_text": "Cargos com permissão para utilizar comandos administrativos:",
                 "header_text": "Configurações para guild:",
-                "enabled_channel_name_counters_text": "Contadores de nomes de canais:",
+                "enabled_channel_name_counters_text": "Contadores de nomes de canais/Category name counters:",
                 "misc_type": "Tipo:",
                 "enabled_channel_topic_counters_text": "Contadores de tópicos do canal:",
                 "main_topic_text": "Tópico padrão para canais com um contador de tópicos (usado para aqueles não personalizados):",

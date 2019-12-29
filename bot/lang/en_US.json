@@ -73,7 +73,7 @@
                 "premium_high_tier_text": "High Tier",
                 "allowed_roles_text": "Allowed roles to use administrative commands:",
                 "header_text": "Settings for guild:",
-                "enabled_channel_name_counters_text": "Channel Name Counters:",
+                "enabled_channel_name_counters_text": "Channel Name Counters/Category name counters:",
                 "misc_type": "Type:",
                 "enabled_channel_topic_counters_text": "Channel Topic Counters:",
                 "main_topic_text": "Global topic (used for those without a custom one):",
