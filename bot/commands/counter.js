@@ -2,7 +2,7 @@ const updateCounter = require("../utils/updateCounter");
 
 const newChannelNameCounter = {
     name: "newChannelNameCounter",
-    variants: ["{PREFIX}newChannelNameCounter", "{PREFIX}createChannelNameCounter"],
+    variants: ["{PREFIX}newChannelNameCounter", "{PREFIX}createChannelNameCounter", "{PREFIX}newCategoryNameCounter", "{PREFIX}createCategoryNameCounter"],
     allowedTypes: ["text"],
     indexZero: true,
     enabled: true,
@@ -11,6 +11,8 @@ const newChannelNameCounter = {
         const { client, guild, channel, content } = message;
         const args = content.split(/\s+/);
         const type = args[1];
+        const channelType = (args[0].toLowerCase() === "{prefix}newcategorynamecounter".replace("{prefix}", guildSettings.prefix) || args[0].toLowerCase() === "{prefix}createcategorynamecounter".replace("{prefix}", guildSettings.prefix)) ? "category" : "voice";
+
         //used to set a channel name if there is not specified a one
         const availableCounterTypesString = languagePack.functions.counter_types;
         //used for comparation and configuration
@@ -55,7 +57,7 @@ const newChannelNameCounter = {
                 .createChannel(
                     channelName.replace(/\{COUNT\}/gi, ""),
                     {
-                        type: "voice",
+                        type: channelType,
                         permissionOverwrites: [
                             {
                                 id: guild.id,
