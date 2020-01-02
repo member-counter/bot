@@ -2,10 +2,8 @@ const updateCounter = require("../utils/updateCounter");
 
 const newChannelNameCounter = {
     name: "newChannelNameCounter",
-    variants: ["{PREFIX}newChannelNameCounter", "{PREFIX}createChannelNameCounter", "{PREFIX}newCategoryNameCounter", "{PREFIX}createCategoryNameCounter"],
+    variants: ["newChannelNameCounter", "createChannelNameCounter", "newCategoryNameCounter", "createCategoryNameCounter"],
     allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: true,
     run: ({ message, guildSettings, languagePack }) => {
         const { client, guild, channel, content } = message;
@@ -97,10 +95,8 @@ const newChannelNameCounter = {
 
 const topicCounter = {
     name: "topicCounter",
-    variants: ["{PREFIX}topicCounter"],
+    variants: ["topicCounter"],
     allowedTypes: ["text"],
-    indexZero: true, 
-    enabled: true,
     requiresAdmin: true,
     run: ({ message, guildSettings, languagePack }) => {
         const { client, guild, channel, content, mentions  } = message;
@@ -181,10 +177,8 @@ const topicCounter = {
 
 const setTopic = {
     name: "setTopic",
-    variants: ["{PREFIX}setTopic"],
+    variants: ["setTopic"],
     allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: true,
     run: ({ message, guildSettings, languagePack }) => {
         const { client, channel, content } = message;
@@ -266,10 +260,8 @@ const setTopic = {
 
 const removeTopic = {
     name: "removeTopic",
-    variants: ["{PREFIX}removeTopic"],
+    variants: ["removeTopic"],
     allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: true,
     run: ({ message, guildSettings, languagePack }) => {
         const { client, channel, mentions  } = message;
@@ -317,10 +309,8 @@ const removeTopic = {
 
 const setDigit = {
     name: "setDigit",
-    variants: ["{PREFIX}setDigit"],
+    variants: ["setDigit"],
     allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: true,
     run: ({ message, guildSettings, languagePack }) => {
         const { client, channel, content } = message;
@@ -360,10 +350,8 @@ const setDigit = {
 
 const update = {
     name: "update",
-    variants: ["{PREFIX}update", "{PREFIX}updateCounter"],
+    variants: ["update", "updateCounter"],
     allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: true,
     run: ({ message, guildSettings, languagePack }) => {
         const { client, channel  } = message;

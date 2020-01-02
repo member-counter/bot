@@ -1,9 +1,7 @@
 const help = {
     name: "help",
-    variants: ["{PREFIX}help"],
+    variants: ["help"],
     allowedTypes: ["text", "dm"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: false,
     run: ({ message, guildSettings, languagePack }) => {
         const { prefix } = guildSettings;

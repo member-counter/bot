@@ -4,10 +4,8 @@ const getExchange = require('../../bot/utils/getExchange');
 
 const donate = {
     name: "donate",
-    variants: ["{PREFIX}donate", "{PREFIX}donators"],
+    variants: ["donate", "donators"],
     allowedTypes: ["text", "dm"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: false,
     run: ({ message, languagePack }) => {
         const { channel, client } = message;

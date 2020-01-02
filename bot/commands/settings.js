@@ -4,10 +4,8 @@ const getLanguages = require("../utils/getLanguages");
 
 const seeSettings = {
     name: "seeSettings",
-    variants: ["{PREFIX}seeSettings"],
+    variants: ["seeSettings"],
     allowedTypes: ["text"],
-    indexZero: true, 
-    enabled: true,
     requiresAdmin: false,
     run: ({ message, guildSettings, languagePack }) => {
         const { guild, channel } = message;
@@ -111,10 +109,8 @@ const seeSettings = {
 
 const resetSettings = {
     name: "resetSettings",
-    variants: ["{PREFIX}resetSettings", "{PREFIX}restoreSettings"],
+    variants: ["resetSettings", "restoreSettings"],
     allowedTypes: ["text"],
-    indexZero: true, 
-    enabled: true,
     requiresAdmin: true,
     run: ({ message, guildSettings, languagePack }) => {
         const { client, guild, channel } = message;
@@ -145,10 +141,8 @@ const resetSettings = {
 
 const lang = {
     name: "lang",
-    variants: ["{PREFIX}lang"],
+    variants: ["lang"],
     allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: true,
     run: async ({ message, guildSettings, languagePack }) => {
         const { content, channel } = message;
@@ -180,10 +174,8 @@ const lang = {
 
 const prefix = {
     name: "prefix",
-    variants: ["{PREFIX}prefix", process.env.DISCORD_PREFIX+"prefix"],
+    variants: ["prefix"],
     allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: true,
     run: ({ message, guildSettings, languagePack }) => {
         const { channel, content } = message;
@@ -204,10 +196,8 @@ const prefix = {
 
 const role = {
     name: "role",
-    variants: ["{PREFIX}role", "{PREFIX}roles"],
+    variants: ["role", "roles"],
     allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: true,
     run: ({ message, guildSettings, languagePack }) => {
         const { channel, content, guild } = message;
@@ -260,10 +250,8 @@ const role = {
 
 const upgradeServer = {
     name: "upgradeServer",
-    variants: ["{PREFIX}upgradeServer", "{PREFIX}serverupgrade"],
+    variants: ["upgradeServer", "serverupgrade"],
     allowedTypes: ["text"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: false,
     run: ({ message, guildSettings, languagePack }) => {
         const { author, channel } = message;
