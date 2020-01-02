@@ -261,8 +261,7 @@ module.exports = async (client, guildSettings, force = false) => {
         //topicCounters:
         const formatTopic = (topic) => {
             return topic
-                .replace(/\{COUNT\}/gi, buildTopicCounter(guildSettings, currentCount.members))
-                .replace(/\{members\}/gi, buildTopicCounter(guildSettings, currentCount.members))
+                .replace(/\{members\}|\{count\}/gi, buildTopicCounter(guildSettings, currentCount.members))
                 .replace(/\{onlineMembers\}/gi, buildTopicCounter(guildSettings, currentCount.onlineMembers))
                 .replace(/\{offlineMembers\}/gi, buildTopicCounter(guildSettings, currentCount.offlineMembers))
                 .replace(/\{onlineUsers\}/gi, buildTopicCounter(guildSettings, currentCount.onlineUsers))

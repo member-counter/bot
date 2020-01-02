@@ -4,15 +4,13 @@ const BOT_INVITE_URL = require("../utils/generateBotInvitationLink")();
 const info = {
     name: "info",
     variants: [
-        "{PREFIX}info",
-        "{PREFIX}invite",
-        "{PREFIX}github",
-        "{PREFIX}support",
-        "{PREFIX}bug"
+        "info",
+        "invite",
+        "github",
+        "support",
+        "bug"
     ],
     allowedTypes: ["text", "dm"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: false,
     run: ({ message, languagePack }) => {
         const embed = Object.create(languagePack.commands.info.embed_reply);

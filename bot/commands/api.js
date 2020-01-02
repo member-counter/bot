@@ -11,10 +11,8 @@ const generateToken = (id) => {
 
 const api = {
     name: "api",
-    variants: ["{PREFIX}api"],
-    allowedTypes: ["text", "dm"], 
-    indexZero: true,
-    enabled: true,
+    variants: ["api"],
+    allowedTypes: ["text", "dm"],
     requiresAdmin: false,
     run: async ({ message, guildSettings, languagePack }) => {
         const { channel, author } = message;

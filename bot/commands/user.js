@@ -2,10 +2,8 @@ const UserModel = require("../../mongooseModels/UserModel");
 
 const profile = {
     name: "profile",
-    variants: ["{PREFIX}me", "{PREFIX}profile"],
-    allowedTypes: ["text", "dm"], 
-    indexZero: true,
-    enabled: true,
+    variants: ["me", "profile"],
+    allowedTypes: ["text", "dm"],
     requiresAdmin: false,
     run: ({ message, languagePack }) => {
         const { author, channel } = message;

@@ -7,10 +7,8 @@ const getTotalGuildsAndMembers = require("../utils/getTotalGuildsAndMembers");
 
 let status = {
     name: "status",
-    variants: ["{PREFIX}status", "..status"],
+    variants: ["status"],
     allowedTypes: ["text", "dm"],
-    indexZero: true,
-    enabled: true,
     requiresAdmin: false,
     run: async ({ message }) => {
         const { client, channel } = message;
