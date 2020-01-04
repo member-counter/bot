@@ -2,12 +2,10 @@ const updateCounter = require("../utils/updateCounter");
 
 module.exports = client => {
     client.on("guildMemberRemove", member => {
-        console.log("guildMemberRemove", member.user.tag)
-        let isBot = member.user.bot;
-        
         let increment = {};
+
         increment.members = -1;
-        if (isBot) {
+        if (member.user.bot) {
             increment.bots = -1;
             if (member.presence.status === "online") {
                 increment.offlineMembers = -1;

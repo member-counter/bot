@@ -2,7 +2,7 @@ const addTrack = require("../addTrack");
 const buildTopicCounter = require("./functions/buildTopicCounter");
 const setChannelName = require("./functions/setChannelName");
 const removeChannelFromDB = require("./functions/removeChannelFromDB");
-const { generateBaseCounts, getMembersRelatedCounts, getChannels, getRoles, getConnectedUsers } = require("./functions/counts.js");
+const { generateBaseCounts, getConnectedUsers } = require("./functions/counts.js");
 
 const previousCounts = new Map();
 /**
@@ -41,6 +41,7 @@ module.exports = async ({client, guildSettings, force = false, incrementCounters
         //update counts
         for (let [key, value] of Object.entries(incrementCounters)) {
             currentCount[key] += value;
+            if (currentCount[key] < 0) currentCount[key] = 0;
         }
         
         //banned members
