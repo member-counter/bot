@@ -21,19 +21,20 @@ module.exports = async ({client, guildSettings, force = false, incrementCounters
     if (premium_status === 1) guildTimeBetweenEveryUpdate = 5 * 1000;
     if (premium_status === 2) guildTimeBetweenEveryUpdate = 1 * 1000;
 
-    //TODO test if incrementValuesReference works
-    if (incrementValues.has(guild_id)) {
+    if (!incrementValues.has(guild_id)) incrementValues.set(guild_id, incrementCounters);
+    else {
         let incrementValue = incrementValues.get(guild_id);
         for (let [key, value] of Object.entries(incrementCounters)) {
+            if (incrementValue[key] === undefined) incrementValue[key] = 0;
             incrementValue[key] += value;
         }
-    } else incrementValues.set(guild_id, incrementCounters);
+    }
+
 
     if (force) {
         updateCounterQueue.delete(guild_id);
         incrementValues.delete(guild_id);
         updateCounter({client, guildSettings, force: true});
-        
     } else if (!updateCounterQueue.has(guild_id)) {
         updateCounterQueue.set(guild_id, setTimeout(() => {
             updateCounterQueue.delete(guild_id);
