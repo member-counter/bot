@@ -2,16 +2,15 @@ const addTrack = require("../addTrack");
 const buildTopicCounter = require("./functions/buildTopicCounter");
 const setChannelName = require("./functions/setChannelName");
 const removeChannelFromDB = require("./functions/removeChannelFromDB");
-const { generateBaseCounts, getConnectedUsers } = require("./functions/counts.js");
+const { getConnectedUsers } = require("../guildCounts/fetchCounts");
+const guildCounts = require("../guildCounts");
 
 const previousCounts = new Map();
 /**
- * @param {Object} client Discord client
- * @param {(Object|string)} guild Mongoose GuildModel or Discord guild id
+ * @param {(Object|string)} guildSettings Mongoose GuildModel or Discord guild id
  * @param {Boolean} force Skips queue and updates all counters 
- * @param {Object} increment
  */
-module.exports = async ({client, guildSettings, force = false, incrementCounters = {}}) => {
+module.exports = async ({client, guildSettings, force = false}) => {
     const {
         guild_id,
         channelNameCounters,
@@ -24,26 +23,21 @@ module.exports = async ({client, guildSettings, force = false, incrementCounters
 
     if (client.guilds.has(guild_id) && client.guilds.get(guild_id).available) {
         const guild = client.guilds.get(guild_id);
-
-        if (force) previousCounts.delete(guild_id);
+        const guildCount = guildCounts.get(guild_id);
     
         let currentCount, previousCount;
 
-        if (previousCounts.has(guild_id)) { 
-            currentCount = Object.create(previousCounts.get(guild_id));
-            previousCount = Object.create(previousCounts.get(guild_id));
+        if (!force && previousCounts.has(guild_id)) { 
+            currentCount = guildCount.counts;
+            previousCount = previousCounts.get(guild_id);
         } else {
-            currentCount = generateBaseCounts(guild);
+            previousCounts.delete(guild_id);
+            currentCount = guildCount.counts;
             previousCount = {};
             force = true;
         }
-        
-        //update counts
-        for (let [key, value] of Object.entries(incrementCounters)) {
-            currentCount[key] += value;
-            if (currentCount[key] < 0) currentCount[key] = 0;
-        }
-        
+
+        console.log(previousCount.roles, currentCount.roles)
         //banned members
         currentCount.bannedMembers = 0;
         await guild.fetchBans()
@@ -66,7 +60,7 @@ module.exports = async ({client, guildSettings, force = false, incrementCounters
                 })
             });
 
-        currentCount.connectedUsers = getConnectedUsers(guild);
+        currentCount.connectedUsers = getConnectedUsers(guild_id);
     
         //used to check if tracks are already added or not to avoid duplicates
         let isTrackAlreadyAdded = {
@@ -249,6 +243,7 @@ module.exports = async ({client, guildSettings, force = false, incrementCounters
             });
 
         //cache counts to check in a future if its necessary to update the channel name and the topic
-        previousCounts.set(guild_id, currentCount);
+        previousCounts.set(guild_id, {...currentCount});
+        console.log(previousCounts);
     }
 };

@@ -1,6 +1,8 @@
-const getMembersRelatedCounts = (guild) => {
+const getMembersRelatedCounts = (guildId) => {
+    const { client } = require("../../../bot");
+    const guild = client.guilds.get(guildId);
     let counts = {};
-    //members related counts
+    
     counts.members = guild.memberCount;
     counts.bots = 0;
     counts.users = 0;
@@ -34,10 +36,15 @@ const getMembersRelatedCounts = (guild) => {
     return counts;
 }
 
-const getChannels = (guild) => guild.channels.filter(channel => channel.type !== "category").size;
-
+const getChannels = (guildId) => {
+    const { client } = require("../../../bot");
+    const guild = client.guilds.get(guildId);
+    return guild.channels.filter(channel => channel.type !== "category").size;
+}
 //*counts members and users
-const getConnectedUsers = (guild) => {
+const getConnectedUsers = (guildId) => {
+    const { client } = require("../../../bot");
+    const guild = client.guilds.get(guildId);
     let count = new Map(); 
     guild.channels.forEach(channel => {
         if (channel.type === "voice")
@@ -46,13 +53,18 @@ const getConnectedUsers = (guild) => {
     return count.size;
 }
 
-const getRoles = (guild) => guild.roles.size;
+const getRoles = (guildId) => {
+    const { client } = require("../../../bot");
+    const guild = client.guilds.get(guildId);
+    return guild.roles.size;
+}
 
-const generateBaseCounts = (guild) => {
+const generateBaseCounts = (guildId) => {
     return {
-        ...getMembersRelatedCounts(guild),
-        channels: getChannels(guild),
-        roles: getRoles(guild)
+        ...getMembersRelatedCounts(guildId),
+        connectedUsers: getConnectedUsers(guildId),
+        channels: getChannels(guildId),
+        roles: getRoles(guildId)
     };
 }
 
