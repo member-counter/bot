@@ -60,12 +60,15 @@ const getRoles = (guildId) => {
 }
 
 const generateBaseCounts = (guildId) => {
-    return {
-        ...getMembersRelatedCounts(guildId),
-        connectedUsers: getConnectedUsers(guildId),
-        channels: getChannels(guildId),
-        roles: getRoles(guildId)
-    };
+    const { client } = require("../../../bot");
+    if (client.guilds.has(guildId)) {
+        return {
+            ...getMembersRelatedCounts(guildId),
+            connectedUsers: getConnectedUsers(guildId),
+            channels: getChannels(guildId),
+            roles: getRoles(guildId)
+        }
+    } else return {};
 }
 
 module.exports = {
