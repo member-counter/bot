@@ -1,29 +1,25 @@
 const updateCounter = require("../utils/updateCounter");
+const guildCounts = require("../utils/guildCounts");
 
 module.exports = client => {
     client.on("guildMemberRemove", member => {
-        let increment = {};
+        const guildCount = guildCounts.get(member.guild.id);
 
-        increment.members = -1;
-        if (member.user.bot) {
-            increment.bots = -1;
-            if (member.presence.status === "online") {
-                increment.offlineMembers = -1;
-                increment.offlineBots = -1;
-            } else {
-                increment.onlineBots = -1;
-            }
+        guildCount.increment("members", -1);
+
+        if (member.user.bot) guildCount.increment("bots", -1);
+        else guildCount.increment("users", -1);
+
+        if (member.presence.status === "online") {
+            guildCount.increment("onlineMembers", -1);
+            if (member.user.bot) guildCount.increment("onlineBots", -1);
+            else guildCount.increment("onlineUsers", -1);
+        } else {
+            guildCount.increment("offlineMembers", -1);
+            if (member.user.bot) guildCount.increment("offlineBots", -1);
+            else guildCount.increment("offlineUsers", -1);
         }
-        else {
-            increment.user = -1;
-            if (member.presence.status === "online") {
-                increment.offlineMembers = -1;
-                increment.offlineUsers = -1;
-            } else {
-                increment.onlineMembers = -1;
-                increment.onlineUsers = -1;
-            }
-        }
-        updateCounter({client, guildSettings: member.guild.id, incrementCounters: increment});
+        
+        updateCounter({client, guildSettings: member.guild.id});
     });
 };

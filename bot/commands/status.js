@@ -23,7 +23,7 @@ let status = {
             "fields": [
               {
                 "name": "**Shard process uptime:**",
-                "value": parseUptime(((new Date()).getTime() - global.spawnedAt.getTime()) / 1000),
+                "value": parseUptime(((new Date()).getTime() - process.spawnedAt.getTime()) / 1000),
                 "inline": true
               },
               {
@@ -72,6 +72,11 @@ let status = {
                 "inline": true
               },
               {
+                "name": "**Load avg**",
+                "value": `${os.loadavg()[0]} - ${os.loadavg()[1]} - ${os.loadavg()[2]}`,
+                "inline": true
+              },
+              {
                 "name": "**Memory usage:**",
                 "value": `${toGB(os.totalmem() - await getRealFreeMemory())} of ${toGB(os.totalmem())} (${((os.totalmem() - await getRealFreeMemory()) * 100 / os.totalmem()).toPrecision(2)}%)`,
                 "inline": true
@@ -90,7 +95,7 @@ let status = {
           };
           channel.send({ embed }).then(async message => {
             //Bot latency field
-            embed.fields[12].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
+            embed.fields[13].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
             
             //cpu usage field
             embed.fields[9].value = `${await osu.cpu.usage()}%`;

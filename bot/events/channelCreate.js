@@ -1,8 +1,9 @@
 const updateCounter = require("../utils/updateCounter");
+const guildCounts = require("../utils/guildCounts");
 
 module.exports = client => {
     client.on("channelCreate", channel => {
-        let increment = (channel.type !== "category") ? { channels: 1 } : {};
-        if (channel.guild) updateCounter({client, guildSettings: channel.guild.id, incrementCounters: increment});
+        if (channel.type !== "category") guildCounts.get(channel.guild.id).increment("channels", 1);
+        if (channel.guild) updateCounter({client, guildSettings: channel.guild.id});
     });
 };

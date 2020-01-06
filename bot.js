@@ -4,7 +4,7 @@ const eventHandler = require("./bot/utils/eventHandler.js");
 const updateCounter = require("./bot/utils/updateCounter");
 const { DISCORD_TOKEN, DB_URI } = process.env;
 global.base64 = require("./bot/utils/base64");
-global.spawnedAt = new Date();
+process.spawnedAt = new Date();
 
 const client = new Discord.Client({
     disabledEvents: ["TYPING_START"],
@@ -26,3 +26,5 @@ mongoose
         });
 
 mongoose.set("useFindAndModify", false);
+
+module.exports = { client };
