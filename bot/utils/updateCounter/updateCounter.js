@@ -36,8 +36,7 @@ module.exports = async ({client, guildSettings, force = false}) => {
             previousCount = {};
             force = true;
         }
-
-        console.log(previousCount.roles, currentCount.roles)
+        
         //banned members
         currentCount.bannedMembers = 0;
         await guild.fetchBans()
@@ -244,6 +243,5 @@ module.exports = async ({client, guildSettings, force = false}) => {
 
         //cache counts to check in a future if its necessary to update the channel name and the topic
         previousCounts.set(guild_id, {...currentCount});
-        console.log(previousCounts);
     }
 };
