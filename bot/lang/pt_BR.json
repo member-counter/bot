@@ -7,10 +7,10 @@
             "help_description": "É realmente necessário explicar o propósito desse comando?",
             "embed_reply": {
                 "title": "Lista de Comandos | prefix: {PREFIX}",
-                "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentação:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nome do comando)\n{PREFIX}newChannelNameCounter [tipo do contador] (nome do canal personalizado)\n{PREFIX}newCategoryNameCounter [tipo do contador] (nome do canal personalizado)\n{PREFIX}topicCounter [enable/disable] (#canais/all)\n{PREFIX}setTopic (#canais) [topic]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [seu número personalizado]\n{PREFIX}lang [código do idioma]\n{PREFIX}prefix [novo prefixo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}doação\n{PREFIX}api```\n **Informações:** `()` significa um parâmetro opcional, enquanto `[]` significa um parâmetro necessário.",
+                "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentação:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nome do comando)\n{PREFIX}newChannelNameCounter [tipo do contador] (nome do canal personalizado)\n{PREFIX}newCategoryNameCounter [tipo do contador] (nome do Categoria personalizado)\n{PREFIX}topicCounter [enable/disable] (#canais/all)\n{PREFIX}setTopic (#canais) [topic]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [seu número personalizado]\n{PREFIX}lang [código do idioma]\n{PREFIX}prefix [novo prefixo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}doação\n{PREFIX}api```\n **Informações:** `()` significa um parâmetro opcional, enquanto `[]` significa um parâmetro necessário.",
                 "color": 14503424,
                 "footer": {
-                    "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
+                    "icon_url": "https://cdn.discordapp.com/avatars/478567255198662656/97f5120bb63e1015d9ff5593f1fa9cae.png?size=64",
                     "text": "by eduardozgz#5695"
                 }
             },

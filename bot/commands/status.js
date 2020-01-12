@@ -1,6 +1,7 @@
 const os = require('os');
 const osu = require('node-os-utils');
 
+const { spawn } = require('child_process');
 const fs = require('fs').promises;
 const { version } = require('../../package.json');
 const getTotalGuildsAndMembers = require("../utils/getTotalGuildsAndMembers");
@@ -15,7 +16,8 @@ let status = {
         const { totalGuilds, totalCachedUsers } = await getTotalGuildsAndMembers(client);
         const embed = {
             "color": 14503424,
-            "title": `Status for shard #${client.shard.id} | Bot version: ${version}`,
+            "title": `Status for shard #${client.shard.id}`,
+            "description": `Bot version: ${version}`,
             "footer": {
               "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
               "text": "by eduardozgz#5695"
@@ -73,7 +75,7 @@ let status = {
               },
               {
                 "name": "**Load avg**",
-                "value": `${os.loadavg()[0]} - ${os.loadavg()[1]} - ${os.loadavg()[2]}`,
+                "value": `${os.loadavg()[0].toPrecision(2)} - ${os.loadavg()[1].toPrecision(2)} - ${os.loadavg()[2].toPrecision(2)}`,
                 "inline": true
               },
               {
@@ -94,6 +96,22 @@ let status = {
             ]
           };
           channel.send({ embed }).then(async message => {
+            //Git commit
+            let commitHash = await new Promise(resolve => {
+              let git = spawn("git", ["rev-parse", "HEAD"]);
+
+              let data = "";
+
+              git.stdout.on('data', dataToAdd => data += dataToAdd);
+
+              git.on('close', () => {
+                resolve(data);
+              });
+            });
+
+            let commitHashShort = commitHash.slice(0, 6);       
+            embed.description += ` ([${commitHashShort}](https://github.com/eduardozgz/member-counter-bot/tree/${commitHash}))`
+            
             //Bot latency field
             embed.fields[13].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
             
