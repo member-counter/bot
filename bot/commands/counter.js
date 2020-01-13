@@ -53,7 +53,7 @@ const newChannelNameCounter = {
 
             guild
                 .createChannel(
-                    channelName.replace(/\{COUNT\}/gi, ""),
+                    channelName.replace(/\{COUNT\}/gi, "..."),
                     {
                         type: channelType,
                         permissionOverwrites: [
