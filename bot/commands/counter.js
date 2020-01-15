@@ -1,4 +1,63 @@
 const updateCounter = require("../utils/updateCounter");
+const guildCounts = require("../utils/guildCounts");
+
+const counts = {
+    name: "counts",
+    variants: ["counts", "counter", "count"],
+    allowedTypes: ["text", "news"],
+    requiresAdmin: false,
+    run: ({ message, guildSettings, languagePack}) => {
+        const { guild, channel } = message;
+        const { counts } = guildCounts.get(guild.id);
+        
+        const embed = {
+            "color": 14503424,
+            "footer": {
+              "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
+              "text": languagePack.commands.counts.authorText
+            },
+            "fields": [
+              {
+                "name": languagePack.commands.counts.members,
+                "value": counts.members,
+                "inline": true
+              },
+              {
+                "name": languagePack.commands.counts.onlineMembers,
+                "value": counts.onlineMembers,
+                "inline": true
+              },
+              {
+                "name": languagePack.commands.counts.offlineMembers,
+                "value": counts.offlineMembers,
+                "inline": true
+              },
+              {
+                "name": languagePack.commands.counts.bots,
+                "value": counts.bots,
+                "inline": true
+              },
+              {
+                "name": languagePack.commands.counts.connectedUsers,
+                "value": counts.connectedUsers,
+                "inline": true
+              },
+              {
+                "name": languagePack.commands.counts.channels,
+                "value": counts.channels,
+                "inline": true
+              },
+              {
+                "name": languagePack.commands.counts.roles,
+                "value": counts.roles,
+                "inline": true
+              }
+            ]
+        };
+
+        channel.send({ embed }).catch(console.error);
+    }
+}
 
 const newChannelNameCounter = {
     name: "newChannelNameCounter",
@@ -360,4 +419,4 @@ const update = {
     }
 };
 
-module.exports = { newChannelNameCounter, topicCounter, setTopic, removeTopic, setDigit, update };
+module.exports = { newChannelNameCounter, topicCounter, setTopic, removeTopic, setDigit, update, counts };
