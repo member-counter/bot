@@ -16,7 +16,7 @@ const profile = {
         )
             .then(userDoc => {
                 const embed = {
-                    "title": author.tag,
+                    "title": author.username + "#" + author.discriminator,
                     "thumbnail": {
                         "url": author.avatarURL
                     },
