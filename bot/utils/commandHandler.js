@@ -44,7 +44,7 @@ module.exports = async message => {
                                 channel.send(languagePack.common.error_no_admin).catch(console.error);
                                 break commandsToCheckLoop;
                             } else {
-                                console.log(`[Bot shard #${client.shard.id}] ${author.tag} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channel.type} (${channel.id})]: ${content}`);
+                                console.log(`[Bot shard #${client.shard.id}] ${author.username}#${author.discriminator} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channel.type} (${channel.id})]: ${content}`);
                                 commandToCheck.run({ message, guildSettings, languagePack });
                                 break commandsToCheckLoop; 
                             }
