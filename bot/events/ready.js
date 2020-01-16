@@ -4,7 +4,7 @@ module.exports = client => {
     client.on("ready", () => {
         console.log(`[Bot shard #${client.shard.id}] Discord client ready`);
         console.log(
-            `[Bot shard #${client.shard.id}] Serving on ${client.guilds.size} servers, for ${client.users.size} users as ${client.user.tag}`
+            `[Bot shard #${client.shard.id}] Serving on ${client.guilds.size} servers, for ${client.users.size} users as ${client.user.username}#${client.user.discriminator}`
         );
         
         botStatsSender(client);

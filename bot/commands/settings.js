@@ -52,12 +52,11 @@ const seeSettings = {
         messageToSend += `${lang_text} \`${lang}\` \\➡ ${languagePack.lang_name}\n\n`;
 
         //Allowed roles for administrative commands
-        if (allowedRoles.size > 0) {
+        if (allowedRoles.length > 0) {
             let allowed_roles = "";
             allowedRoles.forEach((role_id) => {
-                if (guild.roles.has(role_id)) allowed_roles += " @"+guild.roles.get(role_id).name;
+                if (guild.roles.has(role_id)) allowed_roles += " <@&" + role_id + ">";
             });
-
             messageToSend += `${allowed_roles_text} ${allowed_roles}\n`;
         }
 
@@ -70,7 +69,7 @@ const seeSettings = {
                 if (channelNameCounter.type === "memberswithrole") {
                     messageToSend += " \\➡ ";
                     channelNameCounter.otherConfig.roles.forEach(roleId => {
-                        messageToSend += "@" + guild.roles.get(roleId).name + " ";
+                        messageToSend += " <@&" + roleId + ">"
                     });
                 }
                 messageToSend += "\n";
