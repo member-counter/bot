@@ -1,3 +1,2 @@
-module.exports = (message) => {
-    console.log(message);
+module.exports = (client, message) => {
 }
