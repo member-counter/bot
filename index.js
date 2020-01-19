@@ -1,9 +1,11 @@
 require("dotenv").config();
 const ErisSharder = require('eris-sharder').Master;
 const { DISCORD_TOKEN } = process.env;
+const postBotStats = require("./src/bot/others/postBotStats");
 
 const botSharder = new ErisSharder(DISCORD_TOKEN, "/src/bot.js", {
   name: "Member Counter",
+  stats: true,
   clientOptions: {
     getAllUsers: true,
     disableEvents: ['TYPING_START'],
@@ -14,10 +16,10 @@ const botSharder = new ErisSharder(DISCORD_TOKEN, "/src/bot.js", {
 });
 
 
+botSharder.on("stats", postBotStats);
 
 
-
-process.botSharder = botSharder;
+// TOOD
 global.botSharder = botSharder;
 
 
