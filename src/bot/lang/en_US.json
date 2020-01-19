@@ -1,0 +1,165 @@
+{
+    "lang_code": "en_US",
+    "lang_name": "English (US)",
+    "authors": ["343884247263608832"],
+    "commands": {
+        "help": {
+            "help_description": "It's really necessary to explain the purpose of this command?",
+            "embed_reply": {
+                "title": "Command list | prefix: {PREFIX}",
+                "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}counts\n{PREFIX}newChannelNameCounter [type] (custom channel name)\n{PREFIX}newCategoryNameCounter [type] (custom category name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate\n{PREFIX}api```\n **Info:** `()` means an optional parameter while `[]` means a required one",
+                "color": 14503424,
+                "footer": {
+                    "icon_url": "https://cdn.discordapp.com/avatars/478567255198662656/97f5120bb63e1015d9ff5593f1fa9cae.png?size=64",
+                    "text": "by eduardozgz#5695"
+                }
+            },
+            "misc": {
+                "command": "Command:"
+            }
+        },
+        "newChannelNameCounter": {
+            "help_description": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below\n\nAvailable types:\n-`members`\n-`users`\n-`bots`\n-`onlinemembers`\n-`onlineusers`\n-`onlinebots`\n-`offlinemembers`\n-`offlineusers`\n-`offlinebots`\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`\n-`connectedusers` (This one counts how many users are connected in all the voice channels in this server)\n\n The second argument is optional, it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nYou can also create a category name counter, the options are the same, just replace the command to `{PREFIX}newCategoryNameCounter`\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```\nCount how many users has a role or roles:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
+            "success": "Created successfully",
+            "no_perms": "I need `Manage Channels` permission to create the channel.",
+            "no_perms_ban": "I need `Ban members` permission to create the channel.",
+            "error_invalid_params": "Error: Invalid parameters, `more info: {PREFIX}help newChannelNameCounter`."
+        },
+        "newCategoryNameCounter": {
+            "help_description": "Please, check `{PREFIX}help newChannelNameCounter`"
+        },
+        "topicCounter": {
+            "help_description": "Usage:```css\n{PREFIX}topicCounter [enable/disable] (#channels/all)```\nThis command displays a real time member counter in a channel topic\n\nExamples:\n```css\n{PREFIX}topicCounter enable\n{PREFIX}topicCounter enable #general\n{PREFIX}topicCounter enable #general #other-channel\n{PREFIX}topicCounter disable all```\n**!**  If you don't mention any channel like in the first example, the counter will be enabled/disabled in the current channel\n **!**  When you mention a channel it must match exactly its name, and you must use `#`",
+            "success_enable": "The counter has been enabled on {CHANNELS}",
+            "success_disable": "The counter has been disabled on {CHANNELS}",
+            "error_invalid_params": "Invalid parameters, see `{PREFIX}!help topicCounter`."
+        },
+        "setDigit": {
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
+            "success": "Digit customized.",
+            "reset_success": "Numbers restored to the default ones.",
+            "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
+        },
+        "setTopic": {
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nYou can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n`{COUNT}` will show how many members your server has, you can use any of these counters instead:\n-`{members}`\n-`{users}`\n-`{bots}`\n-`{onlinemembers}`\n-`{onlineusers}`\n-`{onlinebots}`\n-`{offlinemembers}`\n-`{offlineusers}`\n-`{offlinebots}`\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`\n\nExamples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
+            "success": "Topic customized for all channels without a custom one.",
+            "success_unique": "Topic customized for the following channels: {CHANNELS}",
+            "no_topic": "No topic were provided, more info: `{PREFIX}help setTopic`."
+        },
+        "removeTopic": {
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nThis command removes channel topics that has been customized, here is a list of examples:\n\nRemoves the customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topics that has been established by mentioning channels```{PREFIX}removeTopic #general #other-channel```",
+            "success": "Global topic restored.",
+            "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
+            "error_missing_params": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
+        },
+        "prefix": {
+            "help_description": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
+            "success": "Prefix changed to: `{NEW_PREFIX}`"
+        },
+        "role": {
+            "help_description": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+            "roles_updated": "Roles updated.",
+            "error_no_roles_to_update": "You must mention at least 1 role",
+            "invalid_params": "Invalid parameters, see `{PREFIX}help role`"
+        },
+        "seeSettings": {
+            "help_description": "Shows all bot settings for this server.",
+            "settings_message": {
+                "prefix_text": "Prefix:",
+                "lang_text": "Language:",
+                "premium_text": "Premium:",
+                "premium_no_tier_text": "No",
+                "premium_low_tier_text": "Low Tier",
+                "premium_high_tier_text": "High Tier",
+                "allowed_roles_text": "Allowed roles to use administrative commands:",
+                "header_text": "Settings for guild:",
+                "enabled_channel_name_counters_text": "Channel Name Counters/Category name counters:",
+                "misc_type": "Type:",
+                "enabled_channel_topic_counters_text": "Channel Topic Counters:",
+                "main_topic_text": "Global topic (used for those without a custom one):",
+                "custom_topics_by_channel_text": "Custom topics by channel:",
+                "custom_numbers_text": "Custom numbers:"
+            }
+        },
+        "resetSettings": {
+            "help_description": "Restores the custom settings of this server to the default ones",
+            "done": "Restored to default settings"
+        },
+        "update": {
+            "help_description": "If you think the counter is stuck use this command to force its update",
+            "success": "Updating the counter for enabled channels, this may take a while."
+        },
+        "upgradeServer": {
+            "help_description": "This command upgrades the premium status for this server.\n\nHere is a list of available tiers, how to get them and their perks:\n- **High tier**:\nHow to get it: High tier requires a premium account, to get it, you must donate any amount (`{PREFIX}donate`)\nPerks: Time between each update of all counters is reduced to 1 second.\n\n- **Low tier**:\nHow to get it: You need 1 point (check how many you have in `{PREFIX}profile`), to get one, you must upvote the bot in one of this websites: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nPerks: Time between each update of all counters is reduced to 5 seconds.",
+            "high_tier_success": "Success! Granted high tier premium to this server.",
+            "low_tier_success": "Success! Granted low tier premium to this server.",
+            "points_left": "You have {POINTS} points left.",
+            "error_no_points_left": "You have no more points to spend, how to get more: `{PREFIX}help upgradeServer`",
+            "error_cannot_upgrade": "You can't upgrade the premium level because the server already has the same or a higher tier."
+        },
+        "info": {
+            "help_description": "List of useful links",
+            "embed_reply": {
+                "thumbnail": {
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/97f5120bb63e1015d9ff5593f1fa9cae.png?size=128"
+                },
+                "color": 14503424,
+                "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+            }
+        },
+        "lang": {
+            "help_description": "Changes the bot language for this server, you must have administrator permissions to run this command.",
+            "success": "Language changed successfully.",
+            "error_not_found": "I didn't find that language, try one of the following:"
+        },
+        "donate": {
+            "help_description": "Shows the top donations.",
+            "embed_reply": {
+                "title": "Enjoying my bot? Donate me! Any amount will be welcome: {DONATION_URL}",
+                "url": "{DONATION_URL}",
+                "color": 14503424,
+                "footer": {
+                    "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
+                    "text": "by eduardozgz#5695"
+                },
+                "thumbnail": {
+                    "url": "https://cdn.discordapp.com/avatars/478567255198662656/97f5120bb63e1015d9ff5593f1fa9cae.png?size=512"
+                },
+                "fields": []
+            },
+            "misc": {
+                "empty_note": "Empty note"
+            },
+            "error_exchange_fetch": "Error while trying to fetch exchange rates"
+        },
+        "profile": {
+            "help_description": "Shows related information between you and this bot",
+            "premium_text": "Premium:",
+            "total_given_upvotes_text": "Total given upvotes:",
+            "available_points_text": "Available points:"
+        },
+        "counts": {
+            "help_description": "Shows some counts",
+            "members": "Members:",
+            "onlineMembers": "Online members:",
+            "offlineMembers": "Offline members",
+            "bots": "Bots:",
+            "connectedUsers": "Connected users:",
+            "channels": "Channels:",
+            "roles": "Roles:",
+            "authorText": "by eduardozgz#5695"
+        }
+    },
+    "functions": {
+        "commandHandler": {
+            "invalid_channel": "You can't run this command on a {TYPE} channel"
+        },
+        "counter_types" : ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots", "Banned members", "memberswithrole"]
+    },
+    "common": {
+        "error_db": "Database error, try again later",
+        "error_unknown": "Something went wrong, try again later.",
+        "error_no_admin": "Only members with administrator permissions in this server can use this command.",
+        "no_topic_counter_enabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+    }
+}
