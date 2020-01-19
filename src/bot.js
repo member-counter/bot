@@ -12,7 +12,6 @@ class Bot extends Base{
         const { client } = this;
         eventHandler(client);
         setStatus(client);
-
     }
 }
  
