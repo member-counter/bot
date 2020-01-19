@@ -1,2 +1,3 @@
-module.exports = (client, message) => {
-}
+const commandHandler = require("../commandHandler");
+
+module.exports = commandHandler;
