@@ -13,7 +13,7 @@ const cluster = require("cluster");
 const botSharder = new ErisSharder(DISCORD_TOKEN, "/src/bot.js", {
   name: "Member Counter",
   stats: true,
-  statsInterval: 5 * 60 * 1000,
+  statsInterval: 1 * 1000,
   clientOptions: {
     getAllUsers: true,
     disableEvents: ['TYPING_START'],

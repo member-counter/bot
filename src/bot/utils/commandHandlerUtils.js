@@ -6,7 +6,7 @@ const loadCommands = async () => {
         .then(files => {
             let commands = [];
             files.forEach(file => {
-                let commandSet = require("..", "commands/" + file);
+                let commandSet = require("../commands/" + file);
                 commandSet = Object.entries(commandSet).map(i => i = i[1]);
                 commands.push(...commandSet);
             });
