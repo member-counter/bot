@@ -19,6 +19,7 @@
   "homepage": "https://member-counter.eduardozgz.com",
   "dependencies": {
     "@discordjs/uws": "^11.149.1",
+    "body-parser": "^1.19.0",
     "bufferutil": "^4.0.1",
     "dotenv": "^8.2.0",
     "eris": "^0.11.2",
@@ -28,6 +29,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.9",
+    "node-fetch": "^2.6.0",
     "zlib-sync": "^0.1.6"
   },
   "devDependencies": {
