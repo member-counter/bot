@@ -5,21 +5,23 @@ const areAllShardsReady = (data) => {
     const { clusters } = data;
     let shards = 0;
     let shardsReady = 0;
+    let shardStatsInClusters = 0;
 
     clusters.forEach(cluster => {
-        if (cluster.shardsStats.length !== cluster.shards) return false;
+        shards += cluster.shards;
+        shardStatsInClusters += cluster.shardsStats.length;
 
         cluster.shardsStats.forEach(shardStats => {
-            shards += shardStats.shards;
             if (shardStats.status === "ready") ++shardsReady;
         })
     });
-
-    return (shards === shardsReady);
+    
+    
+    return (shards === shardStatsInClusters && shards === shardsReady);
 }
 
 module.exports = (data) => {
-    if (JSON.parse(SEND_BOT_STATS) && areAllShardsReady(data)) {
+    if (JSON.parse(SEND_BOT_STATS) && areAllShardsReady(data) && data.guilds > 0) {
         const guildCount = data.guilds;
 
         //https://discord.bots.gg

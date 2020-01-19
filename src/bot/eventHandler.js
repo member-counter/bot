@@ -9,6 +9,6 @@ module.exports = (client) => {
     })
 
     eventsToListen.forEach(([eventName, callback]) => {
-        client.on(eventName, (...args) => callback(client, ...args));
+        client.on(eventName, (...data) => callback(client, ...data));
     });
 };

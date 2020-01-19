@@ -13,7 +13,7 @@ module.exports = async (client, message) => {
 
     //load commands if they are not
     if (commands.length === 0) commands = await loadCommands();
-    
+
     //avoid responding to itself and other bots
     if ((client.user.id !== author.id) && !author.bot) {
         let prefix = DISCORD_PREFIX;
