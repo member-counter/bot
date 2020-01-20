@@ -7,7 +7,8 @@ const { DISCORD_PREFIX, DISCORD_DEFAULT_LANG } = process.env;
 
 let commands = [];
 
-module.exports = async (client, message) => {
+module.exports = async (bot, message) => {
+    const { client } = bot;
     const { channel, author, content, member } = message;
     const { guild } = channel;
 
@@ -46,7 +47,7 @@ module.exports = async (client, message) => {
                                 break commandsToCheckLoop;
                             } else {
                                 console.log(`${author.username}#${author.discriminator} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channelTypeToString(channel.type)} (${channel.id})]: ${content}`);
-                                commandToCheck.run({client, message, guildSettings, languagePack });
+                                commandToCheck.run({bot, message, guildSettings, languagePack });
                                 break commandsToCheckLoop; 
                             }
                         } else {

@@ -15,7 +15,8 @@ const api = {
     variants: ["api"],
     allowedTypes: [0, 1],
     requiresAdmin: false,
-    run: async ({ client, message, guildSettings, languagePack }) => {
+    run: async ({ bot, message, guildSettings, languagePack }) => {
+        const { client } = bot;
         const { channel, author } = message;
         const embed = {
             "color": 14503424,
