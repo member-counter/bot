@@ -16,7 +16,7 @@ class ErisWorer extends Base{
     }
 
     launch() {
-        this.GuildsCounts = new GuildsCounts();
+        this.guildsCounts = new GuildsCounts(this);
         
         eventHandler(this);
         setClientStatus(this.client);

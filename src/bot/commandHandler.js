@@ -52,6 +52,7 @@ module.exports = async (bot, message) => {
                             }
                         } else {
                             client.createMessage(channel.id, languagePack.functions.commandHandler.invalid_channel.replace("{TYPE}", channelTypeToString(channel.type))).catch(console.error);
+                            break commandsToCheckLoop; 
                         }
                     }
                 }
