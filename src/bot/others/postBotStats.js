@@ -1,24 +1,7 @@
 const { DISCORD_CLIENT_ID, DBL_TOKEN, DBGG_TOKEN, DBOATS_TOKEN, DBWORLD_TOKEN, BOND_TOKEN, BFD_TOKEN, SEND_BOT_STATS } = process.env;
 const fetch = require("node-fetch");
 
-const areAllShardsReady = (data) => {
-    const { clusters } = data;
-    let shards = 0;
-    let shardsReady = 0;
-    let shardStatsInClusters = 0;
-
-    clusters.forEach(cluster => {
-        shards += cluster.shards;
-        shardStatsInClusters += cluster.shardsStats.length;
-
-        cluster.shardsStats.forEach(shardStats => {
-            if (shardStats.status === "ready") ++shardsReady;
-        })
-    });
-    
-    
-    return (shards === shardStatsInClusters && shards === shardsReady);
-}
+const areAllShardsReady = require("../others/areAllShardsReady");
 
 module.exports = (data) => {
     if (JSON.parse(SEND_BOT_STATS) && areAllShardsReady(data) && data.guilds > 0) {

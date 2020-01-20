@@ -2,13 +2,15 @@ const fs = require("fs");
 const path = require("path");
 const eventsPath = path.join(__dirname, ".", "events", "/");
 
-module.exports = (client) => {
+module.exports = (bot) => {
+    const { client } = bot;
+
     const eventsToListen = fs.readdirSync(eventsPath).map(file => {   
         let eventName = file.split(".")[0];
         return [eventName, require(eventsPath + file)];
     })
 
     eventsToListen.forEach(([eventName, callback]) => {
-        client.on(eventName, (...data) => callback(client, ...data));
+        client.on(eventName, (...data) => callback(bot, ...data));
     });
 };

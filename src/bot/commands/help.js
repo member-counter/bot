@@ -3,7 +3,8 @@ const help = {
     variants: ["help"],
     allowedTypes: [0, 1],
     requiresAdmin: false,
-    run: ({ client, message, guildSettings, languagePack }) => {
+    run: ({ bot, message, guildSettings, languagePack }) => {
+        const { client } = bot;
         const { prefix } = guildSettings;
         const { channel, content } = message;
 
@@ -12,7 +13,10 @@ const help = {
             //Main help
 
             //Create a new object because when {PREFIX} is replaced, it's replaced in the cached XX_xx.json, so it's only replaced once
-            let embed = Object.create(languagePack.commands.help.embed_reply);
+            let embed = { ...languagePack.commands.help.embed_reply };
+
+            //When this line is uncommented, it the color works.
+            //  embed.color = embed.color;
 
             //replace {PREFIX} keywords in the language pack so its matches the guild settings
             embed.title = embed.title.replace(/\{PREFIX\}/gi, prefix);
