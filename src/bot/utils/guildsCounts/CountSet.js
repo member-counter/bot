@@ -1,10 +1,11 @@
 const { generateBaseCounts } = require("./fetchCounts");
 
 class CountSet {
-    constructor(guildId) {
+    constructor(bot, guildId) {
+        this.bot = bot;
         this.guildId = guildId;
         this._counts = {
-           ...generateBaseCounts(guildId)
+           ...generateBaseCounts(bot, guildId)
         }
     }
 
