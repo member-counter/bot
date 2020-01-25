@@ -1,8 +1,8 @@
 const os = require('os');
 const osu = require('node-os-utils');
-
 const { spawn } = require('child_process');
 const fs = require('fs').promises;
+
 const { version } = require('../../../package.json');
 
 let status = {
@@ -10,23 +10,11 @@ let status = {
     variants: ["status", "uptime"],
     allowedTypes: [0, 1],
     requiresAdmin: false,
-    run: async ({ bot, message }) => {
-        const { client, clusterHub } = bot;
+    run: async ({ client, message }) => {
 		const { channel } = message;
-
-        let botStats = await new Promise((resolve) => {
-			clusterHub.requestMaster("erisSharderStats", null, (error, result) => {
-				resolve(result);
-			});
-		});
-
-		botStats.totalShards = 0;
-
-		botStats.clusters.forEach(cluster => botStats.totalShards += cluster.shards);
 
         const embed = {
             "color": 14503424,
-            "title": `Status for cluster #${bot.clusterID} (${botStats.clusters.length} clusters) ${(botStats.partialData) ? "[PARTIAL DATA]" : "" }`,
             "description": `Bot version: ${version}`,
             "footer": {
               "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
@@ -36,11 +24,6 @@ let status = {
 				{
 					"name": "**Discord client uptime:**",
 					"value": parseUptime(client.uptime / 1000),
-					"inline": true
-				},
-				{
-					"name": "**Cluster uptime:**",
-					"value": parseUptime((Date.now() - bot.uptime) / 1000),
 					"inline": true
 				},
 				{
@@ -74,53 +57,18 @@ let status = {
 					"inline": true
 				},
 				{
-					"name": "\u200B",
-					"value": "\u200B",
-					"inline": true
-				},
-				{
-					"name": "**Total shards:**",
-					"value": `${botStats.totalShards}`,
-					"inline": true
-				},
-				{
-					"name": "**Shards in this cluster:**",
+					"name": "**Shards:**",
 					"value": `${client.shards.size}`,
 					"inline": true
 				},
 				{
-					"name": "\u200B",
-					"value": "\u200B",
-					"inline": true
-				},
-				{
 					"name": "**Guilds:**",
-					"value": `${botStats.guilds}`,
-					"inline": true
-				},
-				{
-					"name": "**Guilds in this cluster:**",
 					"value": `${client.guilds.size}`,
 					"inline": true
 				},
 				{
-					"name": "\u200B",
-					"value": "\u200B",
-					"inline": true
-				},
-				{
 					"name": "**Users:**",
-					"value": `${botStats.users}`,
-					"inline": true
-				},
-				{
-					"name": "**Users in this cluster:**",
 					"value": `${client.users.size}`,
-					"inline": true
-				},
-				{
-					"name": "\u200B",
-					"value": "\u200B",
 					"inline": true
 				}
             ]
@@ -145,10 +93,10 @@ let status = {
             embed.description += ` ([${commitHashShort}](https://github.com/eduardozgz/member-counter-bot/tree/${commitHash}))`
 
             //Bot latency field
-            embed.fields[7].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
+            embed.fields[6].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
 
             //cpu usage field
-            embed.fields[5].value = `${await osu.cpu.usage()}%`;
+            embed.fields[4].value = `${await osu.cpu.usage()}%`;
 
             message.edit({ embed }).catch(console.error);
           }).catch(console.error);

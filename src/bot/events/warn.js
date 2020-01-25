@@ -1,1 +1,1 @@
-module.exports = (bot, warn) => console.log(warn);
+module.exports = (client, warn) => console.log(warn);

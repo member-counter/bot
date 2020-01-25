@@ -1,5 +1,5 @@
 const updateCounter = require("../utils/updateCounter");
 
-module.exports = (bot, guild) => {
-    updateCounter({bot, guildSettings: guild.id});
+module.exports = (client, guild) => {
+    updateCounter({client, guildSettings: guild.id});
 };

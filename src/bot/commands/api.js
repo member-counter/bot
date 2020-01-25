@@ -15,8 +15,7 @@ const api = {
     variants: ["api"],
     allowedTypes: [0, 1],
     requiresAdmin: false,
-    run: async ({ bot, message, guildSettings, languagePack }) => {
-        const { client } = bot;
+    run: async ({ client, message, guildSettings, languagePack }) => {
         const { channel, author } = message;
         
         const embed = {

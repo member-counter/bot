@@ -8,7 +8,7 @@ const updateCounterQueue = new Map();
  * @param {(Object|string)} guild Mongoose GuildModel or Discord guild id
  * @param {Boolean} force Skips queue and updates all counters
  */
-module.exports = async ({ bot, guildSettings, force = false }) => {
+module.exports = async ({ client, guildSettings, force = false }) => {
     if (typeof guildSettings === "string")
         guildSettings = await fetchGuildSettings(guildSettings).catch(console.error);
 
@@ -20,17 +20,17 @@ module.exports = async ({ bot, guildSettings, force = false }) => {
 
     if (force) {
         updateCounterQueue.delete(guild_id);
-        bot.guildsCounts.delete(guild_id);
-        updateCounter({ bot, guildSettings, force });
+        client.guildsCounts.delete(guild_id);
+        updateCounter({ client, guildSettings, force });
     } else if (!updateCounterQueue.has(guild_id)) {
         updateCounterQueue.set(
             guild_id,
             setTimeout(() => {
                 updateCounterQueue.delete(guild_id);
 
-                bot.guildsCounts.delete(guild_id);
+                client.guildsCounts.delete(guild_id);
 
-                updateCounter({ bot, guildSettings, force });
+                updateCounter({ client, guildSettings, force });
             }, guildTimeBetweenEveryUpdate)
         );
     }

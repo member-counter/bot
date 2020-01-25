@@ -5,8 +5,7 @@ const profile = {
     variants: ["me", "profile"],
     allowedTypes: [0, 1],
     requiresAdmin: false,
-    run: ({ bot, message, languagePack }) => {
-        const { client } = bot;
+    run: ({ client, message, languagePack }) => {
         const { author, channel } = message;
         const { premium_text, total_given_upvotes_text, available_points_text } = languagePack.commands.profile;
         

@@ -1,11 +1,9 @@
 const { DISCORD_CLIENT_ID, DBL_TOKEN, DBGG_TOKEN, DBOATS_TOKEN, DBWORLD_TOKEN, BOND_TOKEN, BFD_TOKEN, SEND_BOT_STATS } = process.env;
 const fetch = require("node-fetch");
 
-const areAllShardsReady = require("../others/areAllShardsReady");
-
-module.exports = (data) => {
-    if (JSON.parse(SEND_BOT_STATS) && areAllShardsReady(data) && data.guilds > 0) {
-        const guildCount = data.guilds;
+module.exports = (client) => {
+    if (JSON.parse(SEND_BOT_STATS)) {
+        const guildCount = client.guilds.size;
 
         //https://discord.bots.gg
         fetch(`https://discord.bots.gg/api/v1/bots/${DISCORD_CLIENT_ID}/stats`, {

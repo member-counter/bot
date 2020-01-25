@@ -3,8 +3,7 @@ const help = {
     variants: ["help"],
     allowedTypes: [0, 1],
     requiresAdmin: false,
-    run: ({ bot, message, guildSettings, languagePack }) => {
-        const { client } = bot;
+    run: ({ client, message, guildSettings, languagePack }) => {
         const { prefix } = guildSettings;
         const { channel, content } = message;
 

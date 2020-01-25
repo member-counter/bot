@@ -7,8 +7,7 @@ const seeSettings = {
     variants: ["seeSettings"],
     allowedTypes: [0],
     requiresAdmin: false,
-    run: ({ bot, message, guildSettings, languagePack }) => {
-        const { client } = bot;
+    run: ({ client, message, guildSettings, languagePack }) => {
         const { channel } = message;
         const { guild } = channel;
         const {
@@ -115,8 +114,7 @@ const resetSettings = {
     variants: ["resetSettings", "restoreSettings"],
     allowedTypes: [0],
     requiresAdmin: true,
-    run: ({ bot, message, guildSettings, languagePack }) => {
-        const { client } = bot;
+    run: ({ client, message, guildSettings, languagePack }) => {
         const { channel } = message;
         const { guild } = channel;
 
@@ -150,8 +148,7 @@ const lang = {
     variants: ["lang"],
     allowedTypes: [0],
     requiresAdmin: true,
-    run: async ({ bot, message, guildSettings, languagePack }) => {
-        const { client } = bot;
+    run: async ({ client, message, guildSettings, languagePack }) => {
         const { content, channel } = message;
 
         const args = content.split(/\s+/);
@@ -185,8 +182,7 @@ const prefix = {
     variants: ["prefix"],
     allowedTypes: [0],
     requiresAdmin: true,
-    run: ({ bot, message, guildSettings, languagePack }) => {
-        const { client } = bot;
+    run: ({ client, message, guildSettings, languagePack }) => {
         const { channel, content } = message;
 
         const args = content.split(/\s+/g);
@@ -209,8 +205,7 @@ const role = {
     variants: ["role", "roles"],
     allowedTypes: [0],
     requiresAdmin: true,
-    run: ({ bot, message, guildSettings, languagePack }) => {
-        const { client } = bot;
+    run: ({ client, message, guildSettings, languagePack }) => {
         const { channel, content } = message;
         const { guild } = channel;
         const args = content.split(/\s+/);
@@ -265,8 +260,7 @@ const upgradeServer = {
     variants: ["upgradeServer", "serverupgrade"],
     allowedTypes: [0],
     requiresAdmin: false,
-    run: ({ bot, message, guildSettings, languagePack }) => {
-        const { client } = bot;
+    run: ({ client, message, guildSettings, languagePack }) => {
         const { author, channel } = message;
         
         let { high_tier_success, low_tier_success, points_left, error_no_points_left, error_cannot_upgrade } = languagePack.commands.upgradeServer;

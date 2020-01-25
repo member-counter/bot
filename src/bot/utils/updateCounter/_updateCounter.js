@@ -10,11 +10,8 @@ const previousCounts = new Map();
  * @param {(Object|string)} guildSettings Mongoose GuildModel or Discord guild id
  * @param {Boolean} force Skips queue and updates all counters 
  */
-module.exports = async ({ bot, guildSettings, force = false }) => {
-
-    const durationCheck = Date.now();
-
-    const { client, guildsCounts } = bot;
+module.exports = async ({ client, guildSettings, force = false }) => {
+    const { guildsCounts } = client;
     const {
         guild_id,
         channelNameCounters,
@@ -63,7 +60,7 @@ module.exports = async ({ bot, guildSettings, force = false }) => {
                 })
             });
 
-        currentCount.connectedUsers = getConnectedUsers(bot, guild_id);
+        currentCount.connectedUsers = getConnectedUsers(client, guild_id);
     
         //used to check if tracks are already added or not to avoid duplicates
         let isTrackAlreadyAdded = {
@@ -249,7 +246,5 @@ module.exports = async ({ bot, guildSettings, force = false }) => {
 
         //cache counts to check in a future if its necessary to update the channel name and the topic
         previousCounts.set(guild_id, {...currentCount});
-
-        console.log(`updateCounter guild: ${guild_id}, time: ${Date.now() - durationCheck}ms`);
     }
 };
