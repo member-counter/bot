@@ -59,7 +59,7 @@ const seeSettings = {
         if (allowedRoles.length > 0) {
             let allowed_roles = "";
             allowedRoles.forEach((role_id) => {
-                if (guild.roles.has(role_id)) allowed_roles += " <@&    " + role_id + ">";
+                if (guild.roles.has(role_id)) allowed_roles += " <@&" + role_id + ">";
             });
             messageToSend += `${allowed_roles_text} ${allowed_roles}\n`;
         }
