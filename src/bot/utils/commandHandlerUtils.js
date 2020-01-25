@@ -1,20 +1,6 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const loadCommands = async () => {
-    return fs.readdir(path.join(__dirname, "..", "commands/"))
-        .then(files => {
-            let commands = [];
-            files.forEach(file => {
-                let commandSet = require("../commands/" + file);
-                commandSet = Object.entries(commandSet).map(i => i = i[1]);
-                commands.push(...commandSet);
-            });
-            return commands;
-        })
-        .catch(console.error);
-};
-
 /**
  * Checks if the language pack exists or not
  * @param {string} langCode
@@ -48,4 +34,4 @@ const loadLanguagePack = async langCode => {
         return require(`../lang/${process.env.DISCORD_DEFAULT_LANG}.json`);
 };
 
-module.exports = { loadCommands, loadLanguagePack };
+module.exports = { loadLanguagePack };

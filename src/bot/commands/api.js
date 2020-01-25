@@ -18,6 +18,7 @@ const api = {
     run: async ({ bot, message, guildSettings, languagePack }) => {
         const { client } = bot;
         const { channel, author } = message;
+        
         const embed = {
             "color": 14503424,
             "footer": {
@@ -40,4 +41,4 @@ const api = {
     }
 };
 
-module.exports = { api };
+module.exports = [ api ];
