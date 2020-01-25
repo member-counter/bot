@@ -1,6 +1,9 @@
 const updateCounter = require("../utils/updateCounter");
 
 module.exports = (client, member, oldMember) => {
+
+    if (!oldMember) return;
+
     const { guild, user } = member;
     let newStatus = member.status;
     let oldStatus = oldMember.status;
