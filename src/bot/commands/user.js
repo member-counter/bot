@@ -31,4 +31,4 @@ const profile = {
     }
 };
 
-module.exports = { profile };
+module.exports = [ profile ];

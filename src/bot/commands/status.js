@@ -155,7 +155,7 @@ let status = {
     }
 };
 
-module.exports = { status };
+module.exports = [ status ];
 
 const toGB = (bytes) => {
   return (bytes/1024/1024/1024).toPrecision(3) + "GB";

@@ -24,7 +24,7 @@ const erisSharder = new ErisSharder(DISCORD_TOKEN, "/src/ErisWorker.js", {
     messageLimit: 0,
     defaultImageFormat: "jpg",
     compress: true,
-    restMode: true
+    restMode: true,
   }
 });
 
