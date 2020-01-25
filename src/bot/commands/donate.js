@@ -73,4 +73,4 @@ const donate = {
     }
 };
 
-module.exports = { donate };
+module.exports = [ donate ];

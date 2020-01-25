@@ -15,8 +15,8 @@ const info = {
     run: ({ bot, message, languagePack }) => {
         const { client } = bot;
         const { channel } = message;
-
         const embed = { ...languagePack.commands.info.embed_reply };
+        
         embed.description = embed.description
             .replace("{DONATION_URL}", DONATION_URL)
             .replace("{BOT_SERVER_URL}", DISCORD_OFFICIAL_SERVER_URL)
@@ -26,4 +26,4 @@ const info = {
     }
 };
 
-module.exports = { info };
+module.exports = [ info ];

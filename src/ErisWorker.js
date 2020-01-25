@@ -10,14 +10,11 @@ class ErisWorer extends Base{
     constructor(bot) {
         super(bot);
         this.client = this.bot;
-
-        this.guildsCounts = undefined;
         this.clusterHub = new ClusterHub();
     }
 
     launch() {
         this.guildsCounts = new GuildsCounts(this);
-        
         eventHandler(this);
         setClientStatus(this.client);
         apiHelper(this);

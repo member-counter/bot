@@ -1,21 +1,27 @@
-const { loadCommands, loadLanguagePack } = require("./utils/commandHandlerUtils");
+const { loadLanguagePack } = require("./utils/commandHandlerUtils");
 const fetchGuildSettings = require("./utils/fetchGuildSettings");
 const memberHasPermission = require("./utils/memberHasPermissions");
 const channelTypeToString = require("./utils/channelTypeToString");
 
+// Commands
+const apiCommands = require('./commands/api');
+const countCommands = require('./commands/counts');
+const helpCommands = require('./commands/help');
+const infoCommands = require('./commands/info');
+const settingsCommands = require('./commands/settings');
+const statusCommands = require('./commands/status');
+const userCommands = require('./commands/user');
+
 const { DISCORD_PREFIX, DISCORD_DEFAULT_LANG } = process.env;
 
-let commands = [];
+const commands = [ ...apiCommands, ...countCommands, ...helpCommands, ...infoCommands, ...settingsCommands, ...statusCommands, ...userCommands ];
 
 module.exports = async (bot, message) => {
     const { client } = bot;
     const { channel, author, content, member } = message;
     const { guild } = channel;
 
-    //load commands if they are not
-    if (commands.length === 0) commands = await loadCommands();
-
-    //avoid responding to itself and other bots
+    //avoid responding to itself and to other bots
     if ((client.user.id !== author.id) && !author.bot) {
         let prefix = DISCORD_PREFIX;
         let languagePack = await loadLanguagePack(DISCORD_DEFAULT_LANG);
@@ -32,7 +38,7 @@ module.exports = async (bot, message) => {
 
         if (commandRequested.startsWith(prefix.toLowerCase())) {
             commandsToCheckLoop:
-            for (let i = 0, cachedLengthI = commands.length; i < cachedLengthI; i++) {
+            for (let i = 0; i < commands.length; i++) {
                 const commandToCheck = commands[i];
 
                 //loop over the command variants

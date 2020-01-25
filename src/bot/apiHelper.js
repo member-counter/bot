@@ -1,3 +1,3 @@
-module.exports = (clusteredEris) => {
+module.exports = (bot) => {
     // TODO
 }
