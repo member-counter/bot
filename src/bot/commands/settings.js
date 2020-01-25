@@ -323,7 +323,7 @@ const upgradeServer = {
     }
 };
 
-module.exports = { seeSettings, resetSettings, prefix, lang, role, upgradeServer };
+module.exports = [ seeSettings, resetSettings, prefix, lang, role, upgradeServer ];
 
 //I took this from https://jsperf.com/string-split-by-length/9
 String.prototype.splitSlice = function (len) {

@@ -1,5 +1,5 @@
-const getMembersRelatedCounts = (guildId) => {
-    const guild = client.guilds.get(guildId);
+const getMembersRelatedCounts = (bot, guildId) => {
+    const guild = bot.client.guilds.get(guildId);
     let counts = {};
     
     counts.members = guild.memberCount;
@@ -15,8 +15,8 @@ const getMembersRelatedCounts = (guildId) => {
     for (let i of guild.members.keys()) {
         const member = guild.members.get(i);
         
-        const memberIsOffline = member.presence.status === "offline";
-        const memberIsBot = member.user.bot;
+        const memberIsOffline = member.status === "offline";
+        const memberIsBot = member.bot;
 
         if (memberIsBot) counts.bots++;
 
@@ -35,36 +35,42 @@ const getMembersRelatedCounts = (guildId) => {
     return counts;
 }
 
-const getChannels = (guildId) => {
-    const guild = client.guilds.get(guildId);
-    return guild.channels.filter(channel => channel.type !== "category").size;
+const getChannels = (bot, guildId) => {
+    const guild = bot.client.guilds.get(guildId);
+    
+    return guild.channels.filter(channel => channel.type !== 4).length;
 }
+
 //*counts members and users
-const getConnectedUsers = (guildId) => {
-    const guild = client.guilds.get(guildId);
+const getConnectedUsers = (bot, guildId) => {
+    const guild = bot.client.guilds.get(guildId);
     let count = new Map(); 
-    guild.channels.forEach(channel => {
-        if (channel.type === "voice")
-            channel.members.forEach(member => count.set(member.id));
-    });
+
+    guild.channels
+        .filter(channel => channel.type == 2)
+            .forEach(channel => {
+                channel.voiceMembers
+                    .forEach(member => count.set(member.id))
+            });
     return count.size;
 }
 
-const getRoles = (guildId) => {
-    const guild = client.guilds.get(guildId);
+const getRoles = (bot, guildId) => {
+    const guild = bot.client.guilds.get(guildId);
     return guild.roles.size;
 }
 
-const generateBaseCounts = (guildId) => {
-    if (client.guilds.has(guildId)) {
+const generateBaseCounts = (bot, guildId) => {
+    if (bot.client.guilds.has(guildId)) {
         return {
-            ...getMembersRelatedCounts(guildId),
-            connectedUsers: getConnectedUsers(guildId),
-            channels: getChannels(guildId),
-            roles: getRoles(guildId)
+            ...getMembersRelatedCounts(bot, guildId),
+            connectedUsers: getConnectedUsers(bot, guildId),
+            channels: getChannels(bot, guildId),
+            roles: getRoles(bot, guildId)
         }
     } else return {};
 }
+
 
 module.exports = {
     generateBaseCounts,
