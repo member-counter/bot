@@ -7,8 +7,7 @@ const donate = {
     variants: ["donate", "donators"],
     allowedTypes: [0, 1],
     requiresAdmin: false,
-    run: ({ bot, message, languagePack }) => {
-        const { client } = bot;
+    run: ({ client, message, languagePack }) => {
         const { channel } = message;
         
         getExchange()

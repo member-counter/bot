@@ -1,7 +1,7 @@
 const updateCounter = require("../utils/updateCounter");
 
-module.exports = (bot, guild, member) => {
-    const guildCounts = bot.guildsCounts.get(guild.id);
+module.exports = (client, guild, member) => {
+    const guildCounts = client.guildsCounts.get(guild.id);
 
     guildCounts.increment("members", -1);
 
@@ -18,5 +18,5 @@ module.exports = (bot, guild, member) => {
         else guildCounts.increment("offlineUsers", -1);
     }
     
-    updateCounter({bot, guildSettings: guild.id});
+    updateCounter({client, guildSettings: guild.id});
 };

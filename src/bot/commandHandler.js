@@ -16,8 +16,7 @@ const { DISCORD_PREFIX, DISCORD_DEFAULT_LANG } = process.env;
 
 const commands = [ ...apiCommands, ...countCommands, ...helpCommands, ...infoCommands, ...settingsCommands, ...statusCommands, ...userCommands ];
 
-module.exports = async (bot, message) => {
-    const { client } = bot;
+module.exports = async (client, message) => {
     const { channel, author, content, member } = message;
     const { guild } = channel;
 
@@ -53,7 +52,7 @@ module.exports = async (bot, message) => {
                                 break commandsToCheckLoop;
                             } else {
                                 console.log(`${author.username}#${author.discriminator} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}${channel.name? `Channel: ${channel.name}, ` : ``}Channel type: ${channelTypeToString(channel.type)} (${channel.id})]: ${content}`);
-                                commandToCheck.run({bot, message, guildSettings, languagePack });
+                                commandToCheck.run({client, message, guildSettings, languagePack });
                                 break commandsToCheckLoop; 
                             }
                         } else {

@@ -1,8 +1,8 @@
 const CountSet = require("./CountSet");
 
 class GuildCounts {
-    constructor(bot) {
-        this.bot = bot;
+    constructor(client) {
+        this.client = client;
         this._guildCounts = new Map();
     }
 
@@ -12,7 +12,7 @@ class GuildCounts {
      */
     get(guildId) {
         if (!this._guildCounts.has(guildId))
-            this._guildCounts.set(guildId, new CountSet(this.bot, guildId));
+            this._guildCounts.set(guildId, new CountSet(this.client, guildId));
         return this._guildCounts.get(guildId);
     }
 

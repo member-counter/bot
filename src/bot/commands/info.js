@@ -12,8 +12,7 @@ const info = {
     ],
     allowedTypes: [0, 1],
     requiresAdmin: false,
-    run: ({ bot, message, languagePack }) => {
-        const { client } = bot;
+    run: ({ client, message, languagePack }) => {
         const { channel } = message;
         const embed = { ...languagePack.commands.info.embed_reply };
         

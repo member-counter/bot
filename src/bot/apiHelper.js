@@ -1,3 +1,3 @@
-module.exports = (bot) => {
+module.exports = (client) => {
     // TODO
 }
