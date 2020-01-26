@@ -47,7 +47,6 @@ module.exports = async (client, message) => {
 
                     if (commandRequested.startsWith(commandToCheckVariant)) {
                         if (commandToCheck.allowedTypes.includes(channel.type)) {
-                            console.log("check")
                             //if the channel type is text||news, and the command needs admin perms, user has permissions to run the command? and if the last one is no, throw an error message and dont run the command
                             if ((channel.type === 0 || channel.type === 5) && commandToCheck.requiresAdmin && !memberHasPermission(member, guildSettings)) {
                                 client.createMessage(channel.id, languagePack.common.error_no_admin).catch(console.error);
