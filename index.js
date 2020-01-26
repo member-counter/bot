@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 require("dotenv").config();
-const { DISCORD_TOKEN, DB_URI } = process.env;
+const { DISCORD_TOKEN, DB_URI, SERVE_API, PORT } = process.env;
 const mongoose = require("mongoose");
 const Eris = require("eris");
+const http = require("http");
+const express = require("express");
 
 const eventHandler = require("./src/bot/eventHandler");
 const GuildsCounts = require("./src/bot/utils/guildsCounts/GuildsCounts");
@@ -31,3 +33,20 @@ mongoose
     .catch(error => {
         console.error("[Mongoose] " + error);
     });
+
+
+if (JSON.parse(SERVE_API)) {
+  const app = express();
+  http.createServer(app).listen(PORT, () =>
+      console.log("[API] HTTP server ready. Port: " + PORT)
+  );
+  
+  app.use((req, _res, next) => {
+    req.discordClient = client;
+    next();
+  })
+
+  app.use(express.json());
+
+  app.use(`/v1`, require("./src/api/v1/index"));
+}
