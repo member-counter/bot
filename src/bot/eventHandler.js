@@ -12,4 +12,9 @@ module.exports = (client) => {
     eventsToListen.forEach(([eventName, callback]) => {
         client.on(eventName, (...data) => callback(client, ...data));
     });
+
+    const debug = process.env.DEBUG ? JSON.parse(process.env.DEBUG) : false;
+    if (debug) {
+        client.on("debug", console.log)
+    }
 };

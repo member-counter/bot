@@ -38,9 +38,15 @@ module.exports = async ({ client, guildSettings, force = false }) => {
             force = true;
         }
         
-        //banned members
+        //get banned members
         currentCount.bannedMembers = 0;
-        await guild.getBans()
+
+        if (
+            Array.from(channelNameCounters).some((channel) => channel[1].type === "bannedmembers")
+            || Array.from(topicCounterChannels).some((channel) => /\{bannedMembers\}/i.test(channel[1].topic))
+            || /\{bannedMembers\}/i.test(mainTopicCounter)
+        ) {
+            await guild.getBans()
             .then(bans => currentCount.bannedMembers = bans.length)
             .catch(error => {        
                 channelNameCounters.forEach((channelNameCounter, channelId) => {
@@ -59,6 +65,7 @@ module.exports = async ({ client, guildSettings, force = false }) => {
                     }
                 })
             });
+        }
 
         currentCount.connectedUsers = getConnectedUsers(client, guild_id);
     

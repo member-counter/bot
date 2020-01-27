@@ -9,6 +9,8 @@ const express = require("express");
 const eventHandler = require("./src/bot/eventHandler");
 const GuildsCounts = require("./src/bot/utils/guildsCounts/GuildsCounts");
 
+process.spawnedAt = Date.now();
+
 const client = new Eris(DISCORD_TOKEN, {
   getAllUsers: true,
   guildCreateTimeout: 15000,
