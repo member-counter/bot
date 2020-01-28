@@ -15,8 +15,8 @@ module.exports = async ({ client, guildSettings, force = false }) => {
     const { guild_id, premium_status } = guildSettings;
 
     let guildTimeBetweenEveryUpdate = TIME_BETWEEN_EVERY_UPDATECOUNTER * 1000;
-    if (premium_status === 1) guildTimeBetweenEveryUpdate = 5 * 1000;
-    if (premium_status === 2) guildTimeBetweenEveryUpdate = 1 * 1000;
+    if (premium_status === 1) guildTimeBetweenEveryUpdate = 15 * 1000;
+    if (premium_status === 2) guildTimeBetweenEveryUpdate = 5 * 1000;
 
     if (force) {
         updateCounterQueue.delete(guild_id);
