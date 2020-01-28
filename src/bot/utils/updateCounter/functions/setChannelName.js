@@ -6,8 +6,10 @@ module.exports = ({ client, guildSettings, channelId, channelName, count }) => {
     if (client.guilds.get(guild_id).channels.has(channelId)) {
         const channel = client.guilds.get(guild_id).channels.get(channelId);
 
-        const nameToSet = channelName.replace(/\{COUNT\}/gi, count);
-       
+        let nameToSet = channelName.replace(/\{COUNT\}/gi, count).slice(0, 99);
+
+        if (nameToSet.length < 2) nameToSet = "Invalid length!";
+
         channel
             .edit({
                 name: nameToSet
