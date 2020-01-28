@@ -27,6 +27,11 @@ let status = {
 					"inline": true
 				},
 				{
+					"name": "**Process uptime**",
+					"value": parseUptime((Date.now() - process.spawnedAt) / 1000),
+					"inline": true
+				},
+				{
 					"name": "**System uptime:**",
 					"value": parseUptime(os.uptime()),
 					"inline": true
@@ -93,10 +98,10 @@ let status = {
             embed.description += ` ([${commitHashShort}](https://github.com/eduardozgz/member-counter-bot/tree/${commitHash}))`
 
             //Bot latency field
-            embed.fields[6].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
+            embed.fields[7].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
 
             //cpu usage field
-            embed.fields[4].value = `${await osu.cpu.usage()}%`;
+            embed.fields[5].value = `${await osu.cpu.usage()}%`;
 
             message.edit({ embed }).catch(console.error);
           }).catch(console.error);
