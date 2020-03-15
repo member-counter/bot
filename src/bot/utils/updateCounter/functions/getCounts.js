@@ -1,33 +1,34 @@
+const PREMIUM_BOT = JSON.parse(process.env.PREMIUM_BOT);
+
 const getMembersRelatedCounts = (client, guildId) => {
     const guild = client.guilds.get(guildId);
-    let counts = {};
+    let counts = {
+        members: guild.memberCount,
+        bots: 0,
+        users: 0,
+        onlineMembers: 0,
+        offlineMembers: 0,
+        onlineUsers: 0,
+        offlineUsers: 0,
+        onlineBots: 0,
+        offlineBots: 0,
+    };
+
+    if (PREMIUM_BOT) {
+        for (const member of guild.members) {
+            const memberIsOffline = member.status === "offline";
     
-    counts.members = guild.memberCount;
-    counts.bots = 0;
-    counts.users = 0;
-    counts.onlineMembers = 0;
-    counts.offlineMembers = 0;
-    counts.onlineUsers = 0;
-    counts.offlineUsers = 0;
-    counts.onlineBots = 0;
-    counts.offlineBots = 0;
-
-    for (let i of guild.members.keys()) {
-        const member = guild.members.get(i);
-        
-        const memberIsOffline = member.status === "offline";
-        const memberIsBot = member.bot;
-
-        if (memberIsBot) counts.bots++;
-
-        if (memberIsOffline) counts.offlineMembers++;
-        else counts.onlineMembers++;
-
-        if (memberIsOffline && memberIsBot) counts.offlineBots++;
-        else if (memberIsOffline) counts.offlineUsers++;
-
-        if (!memberIsOffline && memberIsBot) counts.onlineBots++;
-        else if (!memberIsOffline) counts.onlineUsers++;
+            if (member.bot) counts.bots++;
+    
+            if (memberIsOffline) counts.offlineMembers++;
+            else counts.onlineMembers++;
+    
+            if (memberIsOffline && member.bot) counts.offlineBots++;
+            else if (memberIsOffline) counts.offlineUsers++;
+    
+            if (!memberIsOffline && member.bot) counts.onlineBots++;
+            else if (!memberIsOffline) counts.onlineUsers++;
+        }
     }
         
     counts.users = counts.members - counts.bots;
@@ -60,7 +61,7 @@ const getRoles = (client, guildId) => {
     return guild.roles.size;
 }
 
-const generateBaseCounts = (client, guildId) => {
+module.exports = (client, guildId) => {
     if (client.guilds.has(guildId)) {
         return {
             ...getMembersRelatedCounts(client, guildId),
@@ -69,13 +70,4 @@ const generateBaseCounts = (client, guildId) => {
             roles: getRoles(client, guildId)
         }
     } else return {};
-}
-
-
-module.exports = {
-    generateBaseCounts,
-    getMembersRelatedCounts,
-    getChannels,
-    getRoles,
-    getConnectedUsers
 }

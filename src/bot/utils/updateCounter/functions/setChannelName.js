@@ -1,6 +1,6 @@
 const removeChannelFromDB = require("./removeChannelFromDB");
 
-module.exports = ({ client, guildSettings, channelId, channelName, count }) => {
+module.exports = async ({ client, guildSettings, channelId, channelName, count }) => {
     const { guild_id } = guildSettings;
 
     if (client.guilds.get(guild_id).channels.has(channelId)) {
@@ -10,7 +10,7 @@ module.exports = ({ client, guildSettings, channelId, channelName, count }) => {
 
         if (nameToSet.length < 2) nameToSet = "Invalid length!";
 
-        channel
+        await channel
             .edit({
                 name: nameToSet
             })

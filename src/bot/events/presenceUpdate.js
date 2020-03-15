@@ -4,7 +4,7 @@ module.exports = (client, member, oldMember) => {
 
     if (!(oldMember && member)) return;
 
-    const { guild, user } = member;
+    const { guild } = member;
     let newStatus = member.status;
     let oldStatus = oldMember.status;
 
@@ -12,18 +12,5 @@ module.exports = (client, member, oldMember) => {
     if (oldStatus !== "offline") oldStatus = "online";
     if (newStatus !== "offline") newStatus = "online";
 
-    if (oldStatus !== newStatus) {
-        const guildCounts = client.guildsCounts.get(guild.id);
-
-        if (newStatus === "online") {
-            guildCounts.increment("onlineMembers", 1);
-            if (user.bot) guildCounts.increment("onlineBots", 1);
-            else guildCounts.increment("onlineUsers", 1);
-        } else {
-            guildCounts.increment("offlineMembers", -1);
-            if (user.bot) guildCounts.increment("offlineBots", -1);
-            else guildCounts.increment("offlineUsers", -1);
-        }
-        updateCounter({client, guildSettings: guild.id});
-    }
+    if (oldStatus !== newStatus) updateCounter({client, guildSettings: guild.id});
 }
