@@ -12,26 +12,13 @@ module.exports = async ({ client, guildSettings, force = false }) => {
     if (typeof guildSettings === "string")
         guildSettings = await fetchGuildSettings(guildSettings).catch(console.error);
 
-    const { guild_id, premium_status } = guildSettings;
+    const { guild_id } = guildSettings;
 
-    let guildTimeBetweenEveryUpdate = TIME_BETWEEN_EVERY_UPDATECOUNTER * 1000;
-    if (premium_status === 1) guildTimeBetweenEveryUpdate = 15 * 1000;
-    if (premium_status === 2) guildTimeBetweenEveryUpdate = 5 * 1000;
+    const areGuildCountersBeingUpdated = updateCounterQueue.get(guild_id);
 
-    if (force) {
-        updateCounterQueue.delete(guild_id);
-        client.guildsCounts.delete(guild_id);
-        updateCounter({ client, guildSettings, force });
-    } else if (!updateCounterQueue.has(guild_id)) {
-        updateCounterQueue.set(
-            guild_id,
-            setTimeout(() => {
-                updateCounterQueue.delete(guild_id);
-
-                client.guildsCounts.delete(guild_id);
-
-                updateCounter({ client, guildSettings, force });
-            }, guildTimeBetweenEveryUpdate)
-        );
+    if (!areGuildCountersBeingUpdated) {
+        updateCounterQueue.set(guild_id, true);
+        await updateCounter({ client, guildSettings, force });
+        updateCounterQueue.set(guild_id, false);
     }
 };

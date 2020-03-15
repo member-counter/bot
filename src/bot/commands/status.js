@@ -28,7 +28,7 @@ let status = {
 				},
 				{
 					"name": "**Process uptime**",
-					"value": parseUptime((Date.now() - process.spawnedAt) / 1000),
+					"value": parseUptime(process.uptime() / 1000),
 					"inline": true
 				},
 				{
@@ -72,8 +72,8 @@ let status = {
 					"inline": true
 				},
 				{
-					"name": "**Users:**",
-					"value": `${client.users.size}`,
+					"name": "**Users in memory / In guilds:**",
+					"value": `${client.users.size} / ${client.guilds.reduce(((acc, curr) => acc + curr.memberCount), 0)}`,
 					"inline": true
 				}
             ]
