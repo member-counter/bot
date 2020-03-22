@@ -7,7 +7,7 @@ const profile = {
     requiresAdmin: false,
     run: ({ client, message, languagePack }) => {
         const { author, channel } = message;
-        const { premium_text, total_given_upvotes_text, available_points_text } = languagePack.commands.profile;
+        const { premium_text } = languagePack.commands.profile;
         
         UserModel.findOneAndUpdate(
             { user_id: author.id },
@@ -21,7 +21,7 @@ const profile = {
                         "url": author.avatarURL
                     },
                     "color": 14503424,
-                    "description": `${premium_text} ${(userDoc.premium) ? ":white_check_mark: :heart:" : ":x:"}\n${total_given_upvotes_text} ${userDoc.total_given_upvotes}\n${available_points_text} ${userDoc.available_points}`
+                    "description": `${premium_text} ${(userDoc.premium) ? ":white_check_mark: :heart:" : ":x:"}`
                 };
                 
                 client.createMessage(channel.id, { embed }).catch(console.error);

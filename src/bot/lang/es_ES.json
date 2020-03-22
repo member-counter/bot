@@ -87,7 +87,9 @@
         },
         "update": {
             "help_description": "Si crees que algún contador esta atascado, usa este comando para forzar su actualización.",
-            "success": "Actualizando el contador en todos los canales habilitados, esto podría tomar un tiempo."
+            "inProgress": "Actualizando los contadores, esto podría tomar un tiempo.",
+            "success": "Hecho.",
+            "wait": "Espera! Aún lo estoy actualizando!"
         },
         "upgradeServer": {
             "help_description": "Este comando mejora el estado premium de tu servidor.\n\nAqui tienes una lista de los niveles disponibles, como conseguirlos y sus ventajas:\n- **Nivel alto**:\nComo conseguirlo: Este nivel require de que tengas una cuenta premium, puedes conseguirla donando cualquier cantidad (`{PREFIX}donate`)\nVentajas: El tiempo de actualizacion de todos los contadores es reducido a 5 segundo.\n\n- **Nivel bajo**:\nComo conseguirlo: Necesitas 1 punto disponible (puedes comprobar cuantos tienes en `{PREFIX}profile`), para conseguir uno, debes votar el bot en uno de las siguientes paginas: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nVentajas: El tiempo de actualizacion de todos los contadores es reducido a 15 segundos.",
@@ -134,9 +136,7 @@
         },
         "profile": {
             "help_description": "Muestra información relacionada entre tu y el bot",
-            "premium_text": "Premium:",
-            "total_given_upvotes_text": "Votos totales dados al bot:",
-            "available_points_text": "Puntos disponibles: "
+            "premium_text": "Premium:"
         },
         "counts": {
             "help_description": "Muestra algunos contadores",

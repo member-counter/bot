@@ -4,7 +4,6 @@ const memberHasPermission = require("./utils/memberHasPermissions");
 const channelTypeToString = require("./utils/channelTypeToString");
 
 // Commands
-const apiCommands = require('./commands/api');
 const countCommands = require('./commands/counts');
 const helpCommands = require('./commands/help');
 const infoCommands = require('./commands/info');
@@ -15,7 +14,7 @@ const donateCommands = require('./commands/donate');
 
 const { DISCORD_PREFIX, DISCORD_DEFAULT_LANG } = process.env;
 
-const commands = [ ...donateCommands, ...apiCommands, ...countCommands, ...helpCommands, ...infoCommands, ...settingsCommands, ...statusCommands, ...userCommands ];
+const commands = [ ...donateCommands, ...countCommands, ...helpCommands, ...infoCommands, ...settingsCommands, ...statusCommands, ...userCommands ];
 
 module.exports = async (client, message) => {
     const { channel, author, content, member } = message;

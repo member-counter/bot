@@ -8,29 +8,16 @@ module.exports = async ({ client, guildSettings, channelId, channelName, count }
 
         let nameToSet = channelName.replace(/\{COUNT\}/gi, count).slice(0, 99);
 
-        if (nameToSet.length < 2) nameToSet = "Invalid length!";
-
-        await channel
-            .edit({
-                name: nameToSet
-            })
-            .catch((error) => {
-                removeChannelFromDB({
-                    client,
-                    guildSettings,
-                    error,
-                    channelId,
-                    type: "channelNameCounter"
+        // check if it's necessary to edit the channel
+        if (channel.name !== nameToSet) {
+            if (nameToSet.length < 2) nameToSet = "Invalid length!";
+    
+            await channel
+                .edit({ name: nameToSet })
+                .catch((error) => {
+                    console.error(error);
+                    removeChannelFromDB({ client, guildSettings, error, channelId, type: "channelNameCounter" });
                 });
-                console.error(error);
-            });
-    } else {
-        removeChannelFromDB({
-            client,
-            guildSettings,
-            channelId,
-            type: "channelNameCounter",
-            forceRemove: true
-        });
+        }
     }
 };
