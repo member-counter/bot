@@ -86,8 +86,10 @@
             "done": "Restored to default settings"
         },
         "update": {
-            "help_description": "If you think the counter is stuck use this command to force its update",
-            "success": "Updating the counter for enabled channels, this may take a while."
+            "help_description": "If you think the counters are stuck use this command to update them again.",
+            "inProgress": "Updating the counters, this may take a while.",
+            "success": "Done.",
+            "wait": "Wait! I'm already updating it!"
         },
         "upgradeServer": {
             "help_description": "This command upgrades the premium status for this server.\n\nHere is a list of available tiers, how to get them and their perks:\n- **High tier**:\nHow to get it: High tier requires a premium account, to get it, you must donate any amount (`{PREFIX}donate`)\nPerks: Time between each update of all counters is reduced to 5 second.\n\n- **Low tier**:\nHow to get it: You need 1 point (check how many you have in `{PREFIX}profile`), to get one, you must upvote the bot in one of this websites: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nPerks: Time between each update of all counters is reduced to 15 seconds.",
@@ -134,9 +136,7 @@
         },
         "profile": {
             "help_description": "Shows related information between you and this bot",
-            "premium_text": "Premium:",
-            "total_given_upvotes_text": "Total given upvotes:",
-            "available_points_text": "Available points:"
+            "premium_text": "Premium:"
         },
         "counts": {
             "help_description": "Shows some counts",

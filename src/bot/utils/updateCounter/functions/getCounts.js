@@ -1,8 +1,36 @@
 const PREMIUM_BOT = JSON.parse(process.env.PREMIUM_BOT);
+const { DISCORD_CLIENT_ID } = process.env;
 
-const getMembersRelatedCounts = (client, guildId) => {
-    const guild = client.guilds.get(guildId);
-    let counts = {
+const getBannedMembers = async (guild, guildSettings) => {
+    const { channelNameCounters, topicCounterChannels, mainTopicCounter } = guildSettings;
+    const botMember = guild.members.get(DISCORD_CLIENT_ID);
+
+    // Check if there is some counter of banned members and if the bot has perms to see banned members to avoid unncessary requests
+    if (
+        (
+            (botMember.permission.allow & 0x8 ) === 0x8
+            || (botMember.permission.allow & 0x4 ) === 0x4
+        )
+        &&
+        (
+            Array.from(channelNameCounters).some((channel) => channel[1].type === "bannedmembers")
+            || Array.from(topicCounterChannels).some((channel) => /\{bannedMembers\}/i.test(channel[1].topic))
+            || /\{bannedMembers\}/i.test(mainTopicCounter)
+        )
+    ) {
+        return await guild.getBans()
+            .then(bans => bans.length)
+            .catch(error => {
+                console.error(error);
+                return 'Error';
+            });
+    } 
+
+    return 'Error';
+}
+
+const getMembersRelatedCounts = (guild) => {
+    const counts = {
         members: guild.memberCount,
         bots: 0,
         users: 0,
@@ -17,57 +45,53 @@ const getMembersRelatedCounts = (client, guildId) => {
     if (PREMIUM_BOT) {
         for (const member of guild.members) {
             const memberIsOffline = member.status === "offline";
-    
+
             if (member.bot) counts.bots++;
-    
+
             if (memberIsOffline) counts.offlineMembers++;
             else counts.onlineMembers++;
-    
+
             if (memberIsOffline && member.bot) counts.offlineBots++;
             else if (memberIsOffline) counts.offlineUsers++;
-    
+
             if (!memberIsOffline && member.bot) counts.onlineBots++;
             else if (!memberIsOffline) counts.onlineUsers++;
         }
+
+        counts.users = counts.members - counts.bots;
+    } else {
+        // If the bot is in non-premium mode, replace all member related counts
+        // except members to 'Only Premium'
+        for (const key in counts) {
+            if (key !== 'members') counts[key] = 'Only Premium';
+        }
     }
-        
-    counts.users = counts.members - counts.bots;
 
     return counts;
 }
 
-const getChannels = (client, guildId) => {
-    const guild = client.guilds.get(guildId);
-    
-    return guild.channels.filter(channel => channel.type !== 4).length;
-}
-
-//*counts members and users
-const getConnectedUsers = (client, guildId) => {
-    const guild = client.guilds.get(guildId);
-    let count = new Map(); 
-
+const getConnectedUsers = (guild) => {
+    let count = new Map();
     guild.channels
         .filter(channel => channel.type == 2)
-            .forEach(channel => {
-                channel.voiceMembers
-                    .forEach(member => count.set(member.id))
-            });
+        .forEach(channel => {
+            channel.voiceMembers
+                .forEach(member => count.set(member.id))
+        });
     return count.size;
 }
 
-const getRoles = (client, guildId) => {
-    const guild = client.guilds.get(guildId);
-    return guild.roles.size;
-}
+// Exclude categories
+const getChannels = (guild) => guild.channels.filter(channel => channel.type !== 4).length;
 
-module.exports = (client, guildId) => {
-    if (client.guilds.has(guildId)) {
-        return {
-            ...getMembersRelatedCounts(client, guildId),
-            connectedUsers: getConnectedUsers(client, guildId),
-            channels: getChannels(client, guildId),
-            roles: getRoles(client, guildId)
-        }
-    } else return {};
+module.exports = async (client, guildSettings) => {
+    const guild = client.guilds.get(guildSettings.guild_id);
+
+    return {
+        ...getMembersRelatedCounts(guild),
+        bannedMembers: await getBannedMembers(guild, guildSettings),
+        connectedUsers: getConnectedUsers(guild),
+        channels: getChannels(guild),
+        roles: guild.roles.size
+    }
 }
