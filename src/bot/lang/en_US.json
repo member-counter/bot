@@ -69,8 +69,7 @@
                 "lang_text": "Language:",
                 "premium_text": "Premium:",
                 "premium_no_tier_text": "No",
-                "premium_low_tier_text": "Low Tier",
-                "premium_high_tier_text": "High Tier",
+                "premium_confirmed_text": "Yes",
                 "allowed_roles_text": "Allowed roles to use administrative commands:",
                 "header_text": "Settings for guild:",
                 "enabled_channel_name_counters_text": "Channel Name Counters/Category name counters:",
@@ -92,7 +91,7 @@
             "wait": "Wait! I'm already updating it!"
         },
         "upgradeServer": {
-            "help_description": "This command upgrades the premium status for this server.\n\nHere is a list of available tiers, how to get them and their perks:\n- **High tier**:\nHow to get it: High tier requires a premium account, to get it, you must donate any amount (`{PREFIX}donate`)\nPerks: Time between each update of all counters is reduced to 5 second.\n\n- **Low tier**:\nHow to get it: You need 1 point (check how many you have in `{PREFIX}profile`), to get one, you must upvote the bot in one of this websites: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nPerks: Time between each update of all counters is reduced to 15 seconds.",
+            "help_description": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating any amount: `mc!donate`.",
             "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
             "no_premium_account": "You must have a premium account.",
             "error_cannot_upgrade": "You can't upgrade the server because it already has premium."

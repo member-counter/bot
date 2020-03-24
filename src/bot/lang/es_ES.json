@@ -69,8 +69,7 @@
                 "lang_text": "Idioma: ",
                 "premium_text": "Premium:",
                 "premium_no_tier_text": "No",
-                "premium_low_tier_text": "Nivel bajo",
-                "premium_high_tier_text": "Nivel alto",
+                "premium_confirmed_text": "Sí",
                 "allowed_roles_text": "Roles que estan autorizados a usar comandos administrativos:",
                 "header_text": "Ajustes para el servidor:",
                 "enabled_channel_name_counters_text": "Contadores en nombre de canal/Contadores en nombre de categoria:",
@@ -92,7 +91,7 @@
             "wait": "Espera! Aún lo estoy actualizando!"
         },
         "upgradeServer": {
-            "help_description": "Este comando mejora el estado premium de tu servidor.\n\nAqui tienes una lista de los niveles disponibles, como conseguirlos y sus ventajas:\n- **Nivel alto**:\nComo conseguirlo: Este nivel require de que tengas una cuenta premium, puedes conseguirla donando cualquier cantidad (`{PREFIX}donate`)\nVentajas: El tiempo de actualizacion de todos los contadores es reducido a 5 segundo.\n\n- **Nivel bajo**:\nComo conseguirlo: Necesitas 1 punto disponible (puedes comprobar cuantos tienes en `{PREFIX}profile`), para conseguir uno, debes votar el bot en uno de las siguientes paginas: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nVentajas: El tiempo de actualizacion de todos los contadores es reducido a 15 segundos.",
+            "help_description": "Este comando te permite invitar a Member Counter Premium, para usarlo debes tener una cuenta premium, la cual puedes obtener donando cualquier cantidad: `mc!donate`.",
             "success": "Hecho! El siguiente paso es invitar al bot premium:\n{BOT_LINK}",
             "no_premium_account": "Debes tener una cuenta premium.",
             "error_cannot_upgrade": "No puedes mejorar el servidor porque ya tiene premium."
