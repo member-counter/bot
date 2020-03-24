@@ -11,5 +11,9 @@ module.exports = (client) => {
         console.log(`Serving to ${client.users.size} users in ${client.guilds.size} guilds`);
         setStatus(client);
         postBotStats(client);
-    }, 5 * 60 * 1000)
+    }, 5 * 60 * 1000);
+
+    setInterval(() => {
+        // TODO check guilds (the premium shit)
+    }, 1 * 60 * 1000);
 };

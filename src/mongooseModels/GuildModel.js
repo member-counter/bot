@@ -14,7 +14,7 @@ const TopicCounterCustomNumbers = mongoose.Schema({
     0: { type: String, default: '<a:0G:469275067969306634>' }
 }, { _id : false });
 
- //I preserve this for reference
+// I preserve this for reference
 /*
     const channelNameCounter = mongoose.Schema({
         channelName: { type: String, require: true },
@@ -30,7 +30,7 @@ const TopicCounterCustomNumbers = mongoose.Schema({
 
 const GuildSchema = mongoose.Schema({
     guild_id: { type: String, require: true },
-    premium_status: { type: Number, default: 0 }, //0 === no, 1 === low tier, 2 === high tier
+    premium: { type: Boolean, default: false },
     prefix: { type: String, default: DISCORD_PREFIX },
     lang: { type: String, default: "en_US" },
     allowedRoles: [{ type: String, default: [] }], //Allowed roles for administrative commands
