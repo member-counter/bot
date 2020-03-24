@@ -20,8 +20,8 @@ module.exports = async (client, message) => {
     const { channel, author, content, member } = message;
     const { guild } = channel;
 
-    //avoid responding to itself and to other bots
-    if ((client.user.id !== author.id) && !author.bot) {
+    //avoid responding to other bots
+    if (author && !author.bot) {
         let prefix = DISCORD_PREFIX;
         let languagePack = await loadLanguagePack(DISCORD_DEFAULT_LANG);
         let guildSettings = { prefix };

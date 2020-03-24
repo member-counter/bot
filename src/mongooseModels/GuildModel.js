@@ -38,6 +38,6 @@ const GuildSchema = mongoose.Schema({
     mainTopicCounter: { type: String, default: "Members: {COUNT}" }, //used in all channels that topicCounterChannel.topic is undefined
     topicCounterCustomNumbers: { type: TopicCounterCustomNumbers, default: TopicCounterCustomNumbers },
     channelNameCounters: { type: Map, default: new Map() },
-}, { _id : false });
+});
 
 module.exports = mongoose.model('guilds', GuildSchema);

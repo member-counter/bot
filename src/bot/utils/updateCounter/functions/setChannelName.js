@@ -1,10 +1,13 @@
 const removeChannelFromDB = require("./removeChannelFromDB");
+const botHasPermsToEditChannel = require("./botHasPermsToEditChannel");
 
 module.exports = async ({ client, guildSettings, channelId, channelName, count }) => {
     const { guild_id } = guildSettings;
 
     if (client.guilds.get(guild_id).channels.has(channelId)) {
         const channel = client.guilds.get(guild_id).channels.get(channelId);
+
+        if(!botHasPermsToEditChannel(client, channel)) return;
 
         let nameToSet = channelName.replace(/\{COUNT\}/gi, count).slice(0, 99);
 

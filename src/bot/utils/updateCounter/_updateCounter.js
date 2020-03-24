@@ -1,6 +1,7 @@
 const replaceWithCustomDigits = require("./functions/replaceWithCustomDigits");
 const setChannelName = require("./functions/setChannelName");
 const removeChannelFromDB = require("./functions/removeChannelFromDB");
+const botHasPermsToEditChannel = require("./functions/botHasPermsToEditChannel");
 const getCounts = require("./functions/getCounts");
 const getMembersWithRolesCount = require("./functions/getMembersWithRolesCount");
 
@@ -83,10 +84,14 @@ module.exports = async ({ client, guildSettings }) => {
     const globalTopicCounterFormatted = formatTopic(mainTopicCounter);
 
     for (const [channelId, topicCounterChannel] of Array.from(topicCounterChannels)) {
+
         const channel = guild.channels.get(channelId);
 
         // is text type or news type?
         if (channel && (channel.type === 0 || channel.type === 5)) {
+            // check if the bot can edit the channel
+            if (botHasPermsToEditChannel(client, channel)) return;
+
             // the topic must be the main one or a specific one?
             let topicToSet = (topicCounterChannel.topic) ? formatTopic(topicCounterChannel.topic) : globalTopicCounterFormatted;
 

@@ -1,16 +1,15 @@
 const PREMIUM_BOT = JSON.parse(process.env.PREMIUM_BOT);
 const { DISCORD_CLIENT_ID } = process.env;
+const { loadLanguagePack } = require('../../commandHandlerUtils')
 
 const getBannedMembers = async (guild, guildSettings) => {
-    const { channelNameCounters, topicCounterChannels, mainTopicCounter } = guildSettings;
+    const { channelNameCounters, topicCounterChannels, mainTopicCounter, lang } = guildSettings;
+    const languagePack = await loadLanguagePack(lang);
     const botMember = guild.members.get(DISCORD_CLIENT_ID);
 
     // Check if there is some counter of banned members and if the bot has perms to see banned members to avoid unncessary requests
     if (
-        (
-            (botMember.permission.allow & 0x8 ) === 0x8
-            || (botMember.permission.allow & 0x4 ) === 0x4
-        )
+        botMember.permission.has('banMembers')
         &&
         (
             Array.from(channelNameCounters).some((channel) => channel[1].type === "bannedmembers")
@@ -22,14 +21,17 @@ const getBannedMembers = async (guild, guildSettings) => {
             .then(bans => bans.length)
             .catch(error => {
                 console.error(error);
-                return 'Error';
+                return languagePack.common.error;
             });
     } 
 
-    return 'Error';
+    return languagePack.functions.getCounts.no_ban_perms;
 }
 
-const getMembersRelatedCounts = (guild, guildSettings) => {
+const getMembersRelatedCounts = async (guild, guildSettings) => {
+    const { lang } = guildSettings;
+    const languagePack = await loadLanguagePack(lang);
+
     const counts = {
         members: guild.memberCount,
         bots: 0,
@@ -63,7 +65,7 @@ const getMembersRelatedCounts = (guild, guildSettings) => {
         // If the bot is in non-premium mode, replace all member related counts
         // except members to 'Only Premium'
         for (const key in counts) {
-            if (key !== 'members') counts[key] = 'Only Premium'; // TODO add translation
+            if (key !== 'members') counts[key] = languagePack.functions.getCounts.only_premium;
         }
     }
 
@@ -88,7 +90,7 @@ module.exports = async (client, guildSettings) => {
     const guild = client.guilds.get(guildSettings.guild_id);
 
     return {
-        ...getMembersRelatedCounts(guild, guildSettings),
+        ...await getMembersRelatedCounts(guild, guildSettings),
         bannedMembers: await getBannedMembers(guild, guildSettings),
         connectedUsers: getConnectedUsers(guild),
         channels: getChannels(guild),

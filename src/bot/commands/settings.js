@@ -1,6 +1,7 @@
 const GuildModel = require("../../mongooseModels/GuildModel");
 const UserModel = require("../../mongooseModels/UserModel");
 const getLanguages = require("../utils/getLanguages");
+const botHasPermsToEditChannel = require("../utils/updateCounter/functions/botHasPermsToEditChannel");
 
 const seeSettings = {
     name: "seeSettings",
@@ -15,25 +16,25 @@ const seeSettings = {
             prefix_text,
             premium_text,
             premium_no_tier_text,
-            premium_low_tier_text,
-            premium_high_tier_text,
+            premium_confirmed_text,
             allowed_roles_text,
             header_text,
             enabled_channel_name_counters_text,
             misc_type,
             enabled_channel_topic_counters_text,
             main_topic_text,
-            custom_numbers_text
+            custom_numbers_text,
+            warning_no_perms_text
         } = languagePack.commands.seeSettings.settings_message;
         const {
             prefix,
-            premium_status,
+            premium,
             lang,
             allowedRoles,
             channelNameCounters,
             topicCounterChannels,
             mainTopicCounter,
-            topicCounterCustomNumbers,
+            topicCounterCustomNumbers
         } = guildSettings;
 
 
@@ -41,13 +42,8 @@ const seeSettings = {
         let messageToSend = "";
         
         messageToSend += `${header_text} ${guild.name} \`(${guild.id})\`\n\n`;
-        
-        //Premium
-        let guildPremiumTier = premium_no_tier_text;
-        if (premium_status === 1) guildPremiumTier = premium_low_tier_text;
-        if (premium_status === 2) guildPremiumTier = premium_high_tier_text;
 
-        messageToSend += `${premium_text} ${guildPremiumTier}\n`;
+        messageToSend += `${premium_text} ${(premium) ? premium_confirmed_text : premium_no_tier_text}\n`;
 
         //prefix and language
 
@@ -68,7 +64,9 @@ const seeSettings = {
             messageToSend += `${enabled_channel_name_counters_text}\n`;
 
             channelNameCounters.forEach((channelNameCounter, channelId) => {
-                messageToSend += `\\• <#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\``;    
+                const warningCheck = !botHasPermsToEditChannel(client, guild.channels.get(channelId)) ? '\\⚠️ ' : '';
+
+                messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\``;    
                 if (channelNameCounter.type === "memberswithrole") {
                     messageToSend += " \\➡ ";
                     channelNameCounter.otherConfig.roles.forEach(roleId => {
@@ -86,7 +84,9 @@ const seeSettings = {
             messageToSend += `${enabled_channel_topic_counters_text}\n`;
 
             topicCounterChannels.forEach((topicCounterChannel, channelId) => {
-                messageToSend +=`\\• <#${channelId}> \`(${channelId})\` ${(topicCounterChannel.topic) ? `\\➡ ${topicCounterChannel.topic}` : ""}\n`;
+                const warningCheck = !botHasPermsToEditChannel(client, guild.channels.get(channelId)) ? '\\⚠️ ' : '';
+
+                messageToSend +=`\\• ${warningCheck}<#${channelId}> \`(${channelId})\` ${(topicCounterChannel.topic) ? `\\➡ ${topicCounterChannel.topic}` : ""}\n`;
             });
 
             messageToSend += "\n";
@@ -102,6 +102,8 @@ const seeSettings = {
             messageToSend +=`${i} \\➡ ${number[1]}\n`;
         });
 
+        messageToSend += `\n${warning_no_perms_text}`;
+
         //send in various messages
         messageToSend.splitSlice(2000).forEach(part => {
             client.createMessage(channel.id, part).catch(console.error);
@@ -114,27 +116,29 @@ const resetSettings = {
     variants: ["resetSettings", "restoreSettings"],
     allowedTypes: [0],
     requiresAdmin: true,
-    run: ({ client, message, guildSettings, languagePack }) => {
+    run: ({ client, message, guildSettings: oldGuildSettings, languagePack }) => {
         const { channel } = message;
         const { guild } = channel;
 
         GuildModel.findOneAndRemove({ guild_id: guild.id })
-            .then(() => { 
-            //leave empty all channel topics
-            guildSettings.topicCounterChannels.forEach((_, channelId) => {
-                if (guild.channels.has(channelId)) {
-                    guild.channels.get(channelId).edit({ topic: "" }).catch(console.error);
-                }
-            });
-            
-            //delete all channel name counters
-            guildSettings.channelNameCounters.forEach((_, channelId) => {
-                if (guild.channels.has(channelId)) {
-                    guild.channels.get(channelId).delete().catch(console.error);
-                }
-            });
+            .then(() => {
+                GuildModel.create({ guild_id: guild.id, premium: oldGuildSettings.premium }).catch(console.error);
 
-            client.createMessage(channel.id, languagePack.commands.resetSettings.done).catch(console.error);
+                //leave empty all channel topics
+                oldGuildSettings.topicCounterChannels.forEach((_, channelId) => {
+                    if (guild.channels.has(channelId)) {
+                        guild.channels.get(channelId).edit({ topic: "" }).catch(console.error);
+                    }
+                });
+                
+                //delete all channel name counters
+                oldGuildSettings.channelNameCounters.forEach((_, channelId) => {
+                    if (guild.channels.has(channelId)) {
+                        guild.channels.get(channelId).delete().catch(console.error);
+                    }
+                });
+
+                client.createMessage(channel.id, languagePack.commands.resetSettings.done).catch(console.error);
         })
         .catch(error => {
             console.error(error);
@@ -272,7 +276,7 @@ const upgradeServer = {
                         guildSettings.premium = true;
                         guildSettings.save()
                             .then(() => {
-                                client.createMessage(channel.id, success).catch(console.error);
+                                client.createMessage(channel.id, success.replace('{BOT_LINK}', process.env.PREMIUM_BOT_INVITE)).catch(console.error);
                             })
                             .catch(error => {
                                 console.error(error);
