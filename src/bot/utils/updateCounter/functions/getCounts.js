@@ -29,7 +29,7 @@ const getBannedMembers = async (guild, guildSettings) => {
     return 'Error';
 }
 
-const getMembersRelatedCounts = (guild) => {
+const getMembersRelatedCounts = (guild, guildSettings) => {
     const counts = {
         members: guild.memberCount,
         bots: 0,
@@ -43,7 +43,7 @@ const getMembersRelatedCounts = (guild) => {
     };
 
     if (PREMIUM_BOT) {
-        for (const member of guild.members) {
+        for (const member in guild.members) {
             const memberIsOffline = member.status === "offline";
 
             if (member.bot) counts.bots++;
@@ -63,7 +63,7 @@ const getMembersRelatedCounts = (guild) => {
         // If the bot is in non-premium mode, replace all member related counts
         // except members to 'Only Premium'
         for (const key in counts) {
-            if (key !== 'members') counts[key] = 'Only Premium';
+            if (key !== 'members') counts[key] = 'Only Premium'; // TODO add translation
         }
     }
 
@@ -88,7 +88,7 @@ module.exports = async (client, guildSettings) => {
     const guild = client.guilds.get(guildSettings.guild_id);
 
     return {
-        ...getMembersRelatedCounts(guild),
+        ...getMembersRelatedCounts(guild, guildSettings),
         bannedMembers: await getBannedMembers(guild, guildSettings),
         connectedUsers: getConnectedUsers(guild),
         channels: getChannels(guild),

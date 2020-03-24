@@ -1,15 +1,14 @@
 const updateCounter = require("../utils/updateCounter");
+const getCounts = require("../utils/updateCounter/functions/getCounts");
 
 const counts = {
     name: "counts",
     variants: ["counter", "count", "counts"],
     allowedTypes: [0],
     requiresAdmin: false,
-    run: ({ client, message, languagePack}) => {
+    run: async ({ client, message, languagePack, guildSettings }) => {
         const { channel } = message;
-        const { guild } = channel;
-        const { guildsCounts } = client;
-        const { counts } = guildsCounts.get(guild.id);
+        const counts = await getCounts(client, guildSettings);
 
         const embed = {
             "color": 14503424,
