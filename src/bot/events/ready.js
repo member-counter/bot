@@ -1,5 +1,6 @@
 const setStatus = require("../others/setStatus");
 const postBotStats = require("../others/postBotStats");
+const checkPremiumGuilds = require('../utils/checkPremiumGuilds');
 
 module.exports = (client) => {
     console.log(`Eris ready! Serving to ${client.users.size} users in ${client.guilds.size} guilds`);
@@ -14,6 +15,6 @@ module.exports = (client) => {
     }, 5 * 60 * 1000);
 
     setInterval(() => {
-        // TODO check guilds (the premium shit)
+        checkPremiumGuilds(client);
     }, 1 * 60 * 1000);
 };
