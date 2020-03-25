@@ -3,8 +3,9 @@ const botHasPermsToEditChannel = require("./botHasPermsToEditChannel");
 
 module.exports = async ({ client, guildSettings, channelId, channelName, count }) => {
     const { guild_id } = guildSettings;
+    const guild = client.guilds.get(guild_id);
 
-    if (client.guilds.get(guild_id).channels.has(channelId)) {
+    if (guild && guild.channels.has(channelId)) {
         const channel = client.guilds.get(guild_id).channels.get(channelId);
 
         if(!botHasPermsToEditChannel(client, channel)) return;

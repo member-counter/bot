@@ -72,7 +72,7 @@ let status = {
 					"inline": true
 				},
 				{
-					"name": "**Users in memory / In guilds:**",
+					"name": "**Cached users / In guilds:**",
 					"value": `${client.users.size} / ${client.guilds.reduce(((acc, curr) => acc + curr.memberCount), 0)}`,
 					"inline": true
 				}
