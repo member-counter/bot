@@ -10,7 +10,7 @@ const eventHandler = require("./src/bot/eventHandler");
 const client = new Eris(DISCORD_TOKEN, {
   getAllUsers: PREMIUM_BOT,
   guildCreateTimeout: 15000,
-  guildSubscriptions: !PREMIUM_BOT,
+  guildSubscriptions: PREMIUM_BOT,
   disableEvents: {
     TYPING_START: true,
     PRESENCE_UPDATE: !PREMIUM_BOT
