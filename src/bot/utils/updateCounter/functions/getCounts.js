@@ -46,10 +46,11 @@ const getMembersRelatedCounts = async (guild, guildSettings) => {
     };
 
     if (PREMIUM_BOT || FOSS_MODE) {
-        for (const member in guild.members) {
+        for (const [memberId, member] of guild.members) {
             const memberIsOffline = member.status === "offline";
 
             if (member.bot) counts.bots++;
+            else counts.users++;
 
             if (memberIsOffline) counts.offlineMembers++;
             else counts.onlineMembers++;
@@ -60,8 +61,6 @@ const getMembersRelatedCounts = async (guild, guildSettings) => {
             if (!memberIsOffline && member.bot) counts.onlineBots++;
             else if (!memberIsOffline) counts.onlineUsers++;
         }
-
-        counts.users = counts.members - counts.bots;
     } else {
         // If the bot is in non-premium mode, replace all member related counts
         // except members to 'Only Premium'
