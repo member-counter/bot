@@ -134,7 +134,7 @@ const newChannelNameCounter = {
                             },
                             {
                                 id: client.user.id,
-                                allow: 0x00100000 & 0x00000400,
+                                allow: 0x00100000 | 0x00000400,
                                 type: "member"
                             }
                         ]

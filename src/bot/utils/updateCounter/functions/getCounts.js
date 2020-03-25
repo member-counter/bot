@@ -1,4 +1,5 @@
 const PREMIUM_BOT = JSON.parse(process.env.PREMIUM_BOT);
+const FOSS_MODE = JSON.parse(process.env.FOSS_MODE);
 const { DISCORD_CLIENT_ID } = process.env;
 const { loadLanguagePack } = require('../../commandHandlerUtils')
 
@@ -44,7 +45,7 @@ const getMembersRelatedCounts = async (guild, guildSettings) => {
         offlineBots: 0,
     };
 
-    if (PREMIUM_BOT) {
+    if (PREMIUM_BOT || FOSS_MODE) {
         for (const member in guild.members) {
             const memberIsOffline = member.status === "offline";
 
