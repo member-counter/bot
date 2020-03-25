@@ -13,11 +13,14 @@ module.exports = (client, guild) => {
     if (!PREMIUM_BOT) {
         fetchGuildSettings(guild.id)
             .then(guildSettings => {
-                client.getRESTGuildMember(guild.id, PREMIUM_BOT_ID)
-                    .then(premiumBotMember => {
-                        if (guildSettings.premium && premiumBotMember) guild.leave().catch(console.error);
-                    })
-                    .catch(console.error);
+                if (guildSettings.premium) {
+                    client.getRESTGuildMember(guild.id, PREMIUM_BOT_ID)
+                        .then(() => {
+                            guild.leave().catch(console.error);
+                        })
+                        .catch(() => {});
+                }
+                
             })
             .catch(console.error)
     }
