@@ -1,20 +1,19 @@
 #!/usr/bin/env node
 require("dotenv").config();
-const { DISCORD_TOKEN, DB_URI, SERVE_API, PORT } = process.env;
+const { DISCORD_TOKEN, DB_URI} = process.env;
+const PREMIUM_BOT = JSON.parse(process.env.PREMIUM_BOT);
 const mongoose = require("mongoose");
 const Eris = require("eris");
-const http = require("http");
-const express = require("express");
 
 const eventHandler = require("./src/bot/eventHandler");
-const GuildsCounts = require("./src/bot/utils/guildsCounts/GuildsCounts");
-
-process.spawnedAt = Date.now();
 
 const client = new Eris(DISCORD_TOKEN, {
-  getAllUsers: true,
+  getAllUsers: PREMIUM_BOT,
   guildCreateTimeout: 15000,
-  disableEvents: ['TYPING_START'],
+  disableEvents: {
+    TYPING_START: true,
+    PRESENCE_UPDATE: !PREMIUM_BOT
+  },
   messageLimit: 0,
   defaultImageFormat: "jpg",
   compress: true,
@@ -23,7 +22,6 @@ const client = new Eris(DISCORD_TOKEN, {
 
 client.connect();
 
-client.guildsCounts = new GuildsCounts(client);
 eventHandler(client);
 
 // Mongoose connection
@@ -35,20 +33,3 @@ mongoose
     .catch(error => {
         console.error("[Mongoose] " + error);
     });
-
-
-if (JSON.parse(SERVE_API)) {
-  const app = express();
-  http.createServer(app).listen(PORT, () =>
-      console.log("[API] HTTP server ready. Port: " + PORT)
-  );
-  
-  app.use((req, _res, next) => {
-    req.discordClient = client;
-    next();
-  })
-
-  app.use(express.json());
-
-  app.use(`/v1`, require("./src/api/v1/index"));
-}
