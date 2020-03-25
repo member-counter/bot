@@ -19,7 +19,7 @@
             }
         },
         "newChannelNameCounter": {
-            "help_description": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below\n\nAvailable types:\n-`members`\n-`users`\n-`bots`\n-`onlinemembers`\n-`onlineusers`\n-`onlinebots`\n-`offlinemembers`\n-`offlineusers`\n-`offlinebots`\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`\n-`connectedusers` (This one counts how many users are connected in all the voice channels in this server)\n\n The second argument is optional, it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nYou can also create a category name counter, the options are the same, just replace the command to `{PREFIX}newCategoryNameCounter`\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```\nCount how many users has a role or roles:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
+            "help_description": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below\n\nAvailable types:\n-`members`\n-`users`*\n-`bots`*\n-`onlinemembers`*\n-`onlineusers`*\n-`onlinebots`*\n-`offlinemembers`*\n-`offlineusers`*\n-`offlinebots`*\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`*\n-`connectedusers`\n* = Only available in the premium bot, see `{PREFIX}help upgradeServer`\n\n The second argument is optional, it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nYou can also create a category name counter, the options are the same, just replace the command to `{PREFIX}newCategoryNameCounter`\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```\nCount how many users has a role or roles:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
             "success": "Created successfully",
             "no_perms": "I need `Manage Channels` permission to create the channel.",
             "no_perms_ban": "I need `Ban members` permission to create the channel.",
@@ -41,7 +41,7 @@
             "error_missing_params": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nYou can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n`{COUNT}` will show how many members your server has, you can use any of these counters instead:\n-`{members}`\n-`{users}`\n-`{bots}`\n-`{onlinemembers}`\n-`{onlineusers}`\n-`{onlinebots}`\n-`{offlinemembers}`\n-`{offlineusers}`\n-`{offlinebots}`\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`\n\nExamples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
+            "help_description": "You should see `{PREFIX}help topicCounter` before using this command.\nYou can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n`{COUNT}` will show how many members your server has, you can use any of these counters instead:\n-`{members}`\n-`{users}`*\n-`{bots}`*\n-`{onlinemembers}*`\n-`{onlineusers}*`\n-`{onlinebots}*`\n-`{offlinemembers}`*\n-`{offlineusers}`*\n-`{offlinebots}`*\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`\n* = Only available in the premium bot, see `{PREFIX}help upgradeServer`\n\nExamples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
             "success": "Topic customized for all channels without a custom one.",
             "success_unique": "Topic customized for the following channels: {CHANNELS}",
             "no_topic": "No topic were provided, more info: `{PREFIX}help setTopic`."
@@ -69,8 +69,7 @@
                 "lang_text": "Language:",
                 "premium_text": "Premium:",
                 "premium_no_tier_text": "No",
-                "premium_low_tier_text": "Low Tier",
-                "premium_high_tier_text": "High Tier",
+                "premium_confirmed_text": "Yes",
                 "allowed_roles_text": "Allowed roles to use administrative commands:",
                 "header_text": "Settings for guild:",
                 "enabled_channel_name_counters_text": "Channel Name Counters/Category name counters:",
@@ -78,7 +77,8 @@
                 "enabled_channel_topic_counters_text": "Channel Topic Counters:",
                 "main_topic_text": "Global topic (used for those without a custom one):",
                 "custom_topics_by_channel_text": "Custom topics by channel:",
-                "custom_numbers_text": "Custom numbers:"
+                "custom_numbers_text": "Custom numbers:",
+                "warning_no_perms_text": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
             }
         },
         "resetSettings": {
@@ -86,16 +86,16 @@
             "done": "Restored to default settings"
         },
         "update": {
-            "help_description": "If you think the counter is stuck use this command to force its update",
-            "success": "Updating the counter for enabled channels, this may take a while."
+            "help_description": "If you think the counters are stuck use this command to update them again.",
+            "inProgress": "Updating the counters, this may take a while.",
+            "success": "Done.",
+            "wait": "Wait! I'm already updating it!"
         },
         "upgradeServer": {
-            "help_description": "This command upgrades the premium status for this server.\n\nHere is a list of available tiers, how to get them and their perks:\n- **High tier**:\nHow to get it: High tier requires a premium account, to get it, you must donate any amount (`{PREFIX}donate`)\nPerks: Time between each update of all counters is reduced to 5 second.\n\n- **Low tier**:\nHow to get it: You need 1 point (check how many you have in `{PREFIX}profile`), to get one, you must upvote the bot in one of this websites: [top.gg](https://top.gg/bot/478567255198662656), [discord.boats](https://discord.boats/bot/478567255198662656), [botsfordiscord.com](https://botsfordiscord.com/bot/478567255198662656)\nPerks: Time between each update of all counters is reduced to 15 seconds.",
-            "high_tier_success": "Success! Granted high tier premium to this server.",
-            "low_tier_success": "Success! Granted low tier premium to this server.",
-            "points_left": "You have {POINTS} points left.",
-            "error_no_points_left": "You have no more points to spend, how to get more: `{PREFIX}help upgradeServer`",
-            "error_cannot_upgrade": "You can't upgrade the premium level because the server already has the same or a higher tier."
+            "help_description": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating any amount: `{PREFIX}donate`.",
+            "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
+            "no_premium_account": "You must have a premium account.",
+            "error_cannot_upgrade": "You can't upgrade the server because it already has premium."
         },
         "info": {
             "help_description": "List of useful links",
@@ -134,9 +134,7 @@
         },
         "profile": {
             "help_description": "Shows related information between you and this bot",
-            "premium_text": "Premium:",
-            "total_given_upvotes_text": "Total given upvotes:",
-            "available_points_text": "Available points:"
+            "premium_text": "Premium:"
         },
         "counts": {
             "help_description": "Shows some counts",
@@ -154,9 +152,15 @@
         "commandHandler": {
             "invalid_channel": "You can't run this command on a {TYPE} channel"
         },
-        "counter_types" : ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots", "Banned members", "memberswithrole"]
+        "counter_types" : ["Members", "Users", "Bots", "Roles", "Channels", "Connected users", "Online members", "Online users", "Online bots", "Offline members", "Offline users", "Offline bots", "Banned members", "memberswithrole"],
+        "getCounts": {
+            "only_premium": "Only Premium",
+            "no_ban_perms": "I need ban permissions to show this"
+        }
     },
     "common": {
+        "only_premium": "Only Premium",
+        "error": "Error",
         "error_db": "Database error, try again later",
         "error_unknown": "Something went wrong, try again later.",
         "error_no_admin": "Only members with administrator permissions in this server can use this command.",

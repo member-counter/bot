@@ -14,7 +14,5 @@ module.exports = (client) => {
     });
 
     const debug = process.env.DEBUG ? JSON.parse(process.env.DEBUG) : false;
-    if (debug) {
-        client.on("debug", console.log)
-    }
+    if (debug) client.on("debug", console.log);
 };

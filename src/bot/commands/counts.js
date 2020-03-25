@@ -1,15 +1,14 @@
 const updateCounter = require("../utils/updateCounter");
+const getCounts = require("../utils/updateCounter/functions/getCounts");
 
 const counts = {
     name: "counts",
     variants: ["counter", "count", "counts"],
     allowedTypes: [0],
     requiresAdmin: false,
-    run: ({ client, message, languagePack}) => {
+    run: async ({ client, message, languagePack, guildSettings }) => {
         const { channel } = message;
-        const { guild } = channel;
-        const { guildsCounts } = client;
-        const { counts } = guildsCounts.get(guild.id);
+        const counts = await getCounts(client, guildSettings);
 
         const embed = {
             "color": 14503424,
@@ -135,7 +134,7 @@ const newChannelNameCounter = {
                             },
                             {
                                 id: client.user.id,
-                                allow: 0x00100000,
+                                allow: 0x00100000 | 0x00000400,
                                 type: "member"
                             }
                         ]
@@ -145,7 +144,7 @@ const newChannelNameCounter = {
                     guildSettings.channelNameCounters.set(voiceChannel.id, { channelName, type: type.toLowerCase(), otherConfig});
                     guildSettings.save()
                         .then(() => {
-                            updateCounter({client, guildSettings, force: true});
+                            updateCounter({ client, guildSettings });
                             client.createMessage(channel.id, languagePack.commands.newChannelNameCounter.success).catch(console.error);
                         })
                         .catch(error => {
@@ -199,7 +198,7 @@ const topicCounter = {
 
                 guildSettings.save()
                     .then(() => {
-                        updateCounter({client, guildSettings, force: true});
+                        updateCounter({ client, guildSettings });
 
                         //prepare success message
                         let channelsToMention = "";
@@ -304,7 +303,7 @@ const setTopic = {
     
                 guildSettings.save()
                     .then(() => {
-                        updateCounter({client, guildSettings, force: true});
+                        updateCounter({ client, guildSettings });
                         let msgChannels = "";
                         channelsToCustomize.forEach((channel, i) => {
                             msgChannels += `${(i === 0) ? "" : " "}<#${channel}>${(i === channelsToCustomize.length-1) ? '.' : ','}`; 
@@ -322,7 +321,7 @@ const setTopic = {
                 guildSettings.mainTopicCounter = newTopic;
                 guildSettings.save()
                     .then(() => {
-                        updateCounter({client, guildSettings, force: true});
+                        updateCounter({ client, guildSettings });
                         client.createMessage(channel.id, languagePack.commands.setTopic.success).catch(console.error);
                     })
                     .catch((e) => {
@@ -358,7 +357,7 @@ const removeTopic = {
                 });
                 guildSettings.save()
                     .then(() => {
-                        updateCounter({client, guildSettings, force: true});
+                        updateCounter({ client, guildSettings });
 
                         let stringMentionedChannels = "";
                         mentionedChannels.forEach((channel, i) => {
@@ -376,7 +375,7 @@ const removeTopic = {
 
                 guildSettings.save()
                     .then(() => {
-                        updateCounter({client, guildSettings, force: true});
+                        updateCounter({ client, guildSettings });
                         client.createMessage(channel.id, languagePack.commands.removeTopic.success).catch(console.error);
                     })
                     .catch((e) => {
@@ -405,7 +404,7 @@ const setDigit = {
             guildSettings.save()
                     .then(() => {
                         client.createMessage(channel.id, languagePack.commands.setDigit.reset_success).catch(console.error);
-                        updateCounter({client, guildSettings, force: true});
+                        updateCounter({ client, guildSettings });
                     })
                     .catch((e) => {
                         console.error(e);
@@ -420,7 +419,7 @@ const setDigit = {
                 guildSettings.save()
                     .then(() => {
                         client.createMessage(channel.id, languagePack.commands.setDigit.success).catch(console.error);
-                        updateCounter({client, guildSettings, force: true});
+                        updateCounter({ client, guildSettings });
                     })
                     .catch((e) => {
                         console.error(e);
@@ -438,10 +437,15 @@ const update = {
     variants: ["update", "updateCounter"],
     allowedTypes: [0],
     requiresAdmin: true,
-    run: ({ client, message, guildSettings, languagePack }) => {
+    run: async ({ client, message, guildSettings, languagePack }) => {
         const { channel } = message;
-        updateCounter({client, guildSettings, force: true});
-        client.createMessage(channel.id, languagePack.commands.update.success).catch(console.error);
+        client.createMessage(channel.id, languagePack.commands.update.inProgress).catch(console.error);
+        const updateCounterStatus = await updateCounter({ client, guildSettings });
+        if (!updateCounterStatus) {
+            client.createMessage(channel.id, languagePack.commands.update.success).catch(console.error);
+        } else {
+            client.createMessage(channel.id, languagePack.commands.update.wait).catch(console.error);
+        }
     }
 };
 
