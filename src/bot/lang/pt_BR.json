@@ -7,7 +7,8 @@
             "help_description": "É realmente necessário explicar o propósito desse comando?",
             "embed_reply": {
                 "title": "Lista de Comandos | prefix: {PREFIX}",
-                "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentação:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nome do comando)\n{PREFIX}counts\n{PREFIX}newChannelNameCounter [tipo do contador] (nome do canal personalizado)\n{PREFIX}newCategoryNameCounter [tipo do contador] (nome do Categoria personalizado)\n{PREFIX}topicCounter [enable/disable] (#canais/all)\n{PREFIX}setTopic (#canais) [topic]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [seu número personalizado]\n{PREFIX}lang [código do idioma]\n{PREFIX}prefix [novo prefixo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}doação\n{PREFIX}api```\n **Informações:** `()` significa um parâmetro opcional, enquanto `[]` significa um parâmetro necessário.",
+                "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentação:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nome do comando)\n{PREFIX}counts\n{PREFIX}
+             [tipo do contador] (nome do canal personalizado)\n{PREFIX}newCategoryNameCounter [tipo do contador] (nome do Categoria personalizado)\n{PREFIX}topicCounter [enable/disable] (#canais/all)\n{PREFIX}setTopic (#canais) [topic]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [seu número personalizado]\n{PREFIX}lang [código do idioma]\n{PREFIX}prefix [novo prefixo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}doação\n{PREFIX}api```\n **Informações:** `()` significa um parâmetro opcional, enquanto `[]` significa um parâmetro necessário.",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
@@ -19,7 +20,7 @@
             }
         },
         "newChannelNameCounter": {
-            "help_description": "Cria um canal de voz que conta algo específico do servidor.\nUso: ```{PREFIX}newChannelNameCounter [tipo do contador] (nome do canal personalizado: {COUNT})```\nPrimeiro argumento: deve ser um dos seguintes listados abaixo.\n\nTipos:\n-`members`\n-`users`*\n-`bots`*\n-`onlinemembers`*\n-`onlineusers`*\n-`onlinebots`*\n-`offlinemembers`*\n-`offlineusers`*\n-`offlinebots`*\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`*\n-`connectedusers`\n* = Only available in the premium bot, see `{PREFIX}help upgradeServer`\n\nSegundo argumento(OPCIONAL): é usado para definir um nome de canal personalizado. Quando você usa o segundo argumento, lembre-se de escrever `{COUNT}` onde quiser colocar o contador.\n\nVocê também pode criar um Contador de Nome da Categoria, as opções são as mesmas, basta substituir o comando para `{PREFIX}newCategoryNameCounter`\n\nContador que conta os membros:```{PREFIX}newChannelNameCounter members```\n Com um nome personalizado:```{PREFIX}newChannelNameCounter members Membros: {COUNT}```\nContador que conta os membros que tem um cargo ou cargos:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins e mods```",
+            "help_description": "Cria um canal de voz que conta algo específico do servidor.\nUso: ```{PREFIX}newChannelNameCounter [tipo do contador] (nome do canal personalizado: {COUNT})```\nPrimeiro argumento: deve ser um dos seguintes listados abaixo.\n\nTipos:\n-`members`\n-`users`*\n-`bots`*\n-`onlinemembers`*\n-`onlineusers`*\n-`onlinebots`*\n-`offlinemembers`*\n-`offlineusers`*\n-`offlinebots`*\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`*\n-`connectedusers`\n* = Somente disponível no bot premium, veja `{PREFIX}help upgradeServer`\n\nSegundo argumento(OPCIONAL): é usado para definir um nome de canal personalizado. Quando você usa o segundo argumento, lembre-se de escrever `{COUNT}` onde quiser colocar o contador.\n\nVocê também pode criar um Contador de Nome da Categoria, as opções são as mesmas, basta substituir o comando para `{PREFIX}newCategoryNameCounter`\n\nContador que conta os membros:```{PREFIX}newChannelNameCounter members```\n Com um nome personalizado:```{PREFIX}newChannelNameCounter members Membros: {COUNT}```\nContador que conta os membros que tem um cargo ou cargos:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins e mods```",
             "success": "Criado com sucesso.",
             "no_perms": "Eu preciso a permissão de `Config. do Servidor > Cargos > Gerenciar Canais` para criar o canal.",
             "no_perms_ban": "Eu preciso a permissão de `Config. do Servidor > Cargos > Banir membros` para criar o canal.",
@@ -41,7 +42,7 @@
             "error_missing_params": "Erro: Parâmetros ausentes, `mais informações: {PREFIX}help setDigit`."
         },
         "setTopic": {
-            "help_description": "Você deveria ver `{PREFIX}help topicCounter` antes de usar esse comando.\nVocê pode personalizar o tópico com este comando, lembre-se de escrever `{COUNT}` onde quiser colocar o contador. Você também pode definir um tópico exclusivo para diferentes canais\n\nSe o primeiro argumento for mencionado no canal, o tópico fornecido será usado apenas nos canais mencionados, (lembre-se de mencionar os canais com ``#``).\n\n`{COUNT}` vai mostrar quantos membros seu servidor tem, em vez disso você poderá usar qualquer um desses contadores:\n-`{members}`\n-`{users}`*\n-`{bots}`*\n-`{onlinemembers}`*\n-`{onlineusers}`*\n-`{onlinebots}`*\n-`{offlinemembers}`*\n-`{offlineusers}`*\n-`{offlinebots}`*\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`\n* = Only available in the premium bot, see `{PREFIX}help upgradeServer`\n\n Exemplos:\n\nIsso definirá o tópico para esses canais sem um tópico específico definido```{PREFIX}setTopic Membros atuais: {COUNT}```\nIsso exibirá o tópico especificado apenas nos primeiros canais mencionados```{PREFIX}setTopic #general Membros atuais: {COUNT}\n{PREFIX}setTopic #general #other-channel Membros atuais: {COUNT}```",
+            "help_description": "Você deveria ver `{PREFIX}help topicCounter` antes de usar esse comando.\nVocê pode personalizar o tópico com este comando, lembre-se de escrever `{COUNT}` onde quiser colocar o contador. Você também pode definir um tópico exclusivo para diferentes canais\n\nSe o primeiro argumento for mencionado no canal, o tópico fornecido será usado apenas nos canais mencionados, (lembre-se de mencionar os canais com ``#``).\n\n`{COUNT}` vai mostrar quantos membros seu servidor tem, em vez disso você poderá usar qualquer um desses contadores:\n-`{members}`\n-`{users}`*\n-`{bots}`*\n-`{onlinemembers}`*\n-`{onlineusers}`*\n-`{onlinebots}`*\n-`{offlinemembers}`*\n-`{offlineusers}`*\n-`{offlinebots}`*\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`\n* = Somente disponível no bot premium, veja `{PREFIX}help upgradeServer`\n\n Exemplos:\n\nIsso definirá o tópico para esses canais sem um tópico específico definido```{PREFIX}setTopic Membros atuais: {COUNT}```\nIsso exibirá o tópico especificado apenas nos primeiros canais mencionados```{PREFIX}setTopic #general Membros atuais: {COUNT}\n{PREFIX}setTopic #general #other-channel Membros atuais: {COUNT}```",
             "success": "Tópico personalizado para todos os canais sem um personalizado.",
             "success_unique": "Tópico personalizado para os seguintes canais: {CHANNELS}",
             "no_topic": "Nenhum tópico foi fornecido, mais informações: `{PREFIX}help setTopic`."
@@ -69,7 +70,7 @@
                 "lang_text": "Idioma: ",
                 "premium_text": "Premium:",
                 "premium_no_tier_text": "Não",
-                "premium_confirmed_text": "Yes",
+                "premium_confirmed_text": "Sim",
                 "allowed_roles_text": "Cargos com permissão para utilizar comandos administrativos:",
                 "header_text": "Configurações para guild:",
                 "enabled_channel_name_counters_text": "Contadores de Nomes de Canais/Contadores de Nomes de Categoria:",
@@ -78,7 +79,7 @@
                 "main_topic_text": "Tópico padrão para canais com um contador de tópicos (usado para aqueles não personalizados):",
                 "custom_topics_by_channel_text": "Tópicos personalizados por canal:",
                 "custom_numbers_text": "Números personalizados:",
-                "warning_no_perms_text": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
+                "warning_no_perms_text": "\\⚠️ = O bot não pode continuar a atualizar este canal porque não possui as permissões necessárias"
             }
         },
         "resetSettings": {
@@ -92,10 +93,10 @@
             "wait": "Wait! I'm already updating it!"
         },
         "upgradeServer": {
-            "help_description": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating any amount: `{PREFIX}donate`.",
-            "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-            "no_premium_account": "You must have a premium account.",
-            "error_cannot_upgrade": "You can't upgrade the server because it already has premium."
+            "help_description": "Esse comando permite que você convide o Member Counter Premium, para usar esse comando você deve ter uma conta premium, que você pode conseguir doando qualquer quantia: `{PREFIX}donate`.",
+            "success": "Feito! O próximo passo é convidar o bot premium:\n{BOT_LINK}",
+            "no_premium_account": "Você deve ter uma conta premium.",
+            "error_cannot_upgrade": "Você não pode dar upgrade no server porque ele já possui premium.."
         },
         "info": {
             "help_description": "Lista de links úteis",
@@ -137,7 +138,7 @@
             "premium_text": "Premium:"
         },
         "counts": {
-            "help_description": "Shows some counts",
+            "help_description": "Exibe alguns contadores",
             "members": "Membros",
             "onlineMembers": "Membros online:",
             "offlineMembers": "Membros offline:",
@@ -154,12 +155,12 @@
         },
         "counter_types" : ["Membros", "Usuários", "Bots", "Funções", "Canais", "Usuários conectados", "Membros online", "Usuário online", "Bots online", "Membros offline", "Usuários offline", "Bots offline", "Membros banidos", "Membros com o cargo"],
         "getCounts": {
-            "only_premium": "Only Premium",
-            "no_ban_perms": "I need ban permissions to show this"
+            "only_premium": "Somente Premium",
+            "no_ban_perms": "Eu preciso ter permissão de bans para mostrar isso"
         }
     },
     "common": {
-        "error": "Error",
+        "error": "Erro",
         "error_db": "Erro no banco de dados, tente novamente mais tarde.",
         "error_unknown": "Ocorreu um erro. Tente novamente mais tarde.",
         "error_no_admin": "Somente membros com permissões de administrador neste servidor podem usar este comando.",
