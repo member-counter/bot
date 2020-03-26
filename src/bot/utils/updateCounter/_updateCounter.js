@@ -94,6 +94,7 @@ module.exports = async ({ client, guildSettings }) => {
 
             // the topic must be the main one or a specific one?
             let topicToSet = (topicCounterChannel.topic) ? formatTopic(topicCounterChannel.topic) : globalTopicCounterFormatted;
+            console.log(topicToSet, '\n', channel.topic)
 
             // check if it's necessary to edit the channel
             if (channel.topic !== topicToSet) {

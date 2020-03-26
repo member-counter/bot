@@ -28,7 +28,7 @@ let status = {
 				},
 				{
 					"name": "**Process uptime**",
-					"value": parseUptime(process.uptime() / 1000),
+					"value": parseUptime(process.uptime()),
 					"inline": true
 				},
 				{
