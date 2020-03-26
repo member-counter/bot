@@ -83,27 +83,25 @@ module.exports = async ({ client, guildSettings }) => {
 
     const globalTopicCounterFormatted = formatTopic(mainTopicCounter);
 
-    for (const [channelId, topicCounterChannel] of Array.from(topicCounterChannels)) {
-
+    for (const [channelId, topicCounterChannel] of topicCounterChannels) {
         const channel = guild.channels.get(channelId);
 
         // is text type or news type?
         if (channel && (channel.type === 0 || channel.type === 5)) {
             // check if the bot can edit the channel
-            if (botHasPermsToEditChannel(client, channel)) return;
+            if (botHasPermsToEditChannel(client, channel)) {
+                // the topic must be the main one or a specific one?
+                let topicToSet = (topicCounterChannel.topic) ? formatTopic(topicCounterChannel.topic) : globalTopicCounterFormatted;
 
-            // the topic must be the main one or a specific one?
-            let topicToSet = (topicCounterChannel.topic) ? formatTopic(topicCounterChannel.topic) : globalTopicCounterFormatted;
-            console.log(topicToSet, '\n', channel.topic)
-
-            // check if it's necessary to edit the channel
-            if (channel.topic !== topicToSet) {
-                await channel
-                    .edit({ topic: topicToSet })
-                    .catch(error => {
-                        console.error(error);
-                        removeChannelFromDB({ client, guildSettings, error, channelId, type: "topicCounter" });
-                    });
+                // check if it's necessary to edit the channel
+                if (channel.topic !== topicToSet) {
+                    await channel
+                        .edit({ topic: topicToSet })
+                        .catch(error => {
+                            console.error(error);
+                            removeChannelFromDB({ client, guildSettings, error, channelId, type: "topicCounter" });
+                        });
+                }
             }
         } else {
             removeChannelFromDB({ client, guildSettings, channelId, type: "topicCounter", forceRemove: true });
