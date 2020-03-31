@@ -4,7 +4,7 @@ const eventsPath = path.join(__dirname, ".", "events", "/");
 
 module.exports = (client) => {
 
-    const eventsToListen = fs.readdirSync(eventsPath).map(file => {   
+    const eventsToListen = fs.readdirSync(eventsPath).map(file => {
         let eventName = file.split(".")[0];
         return [eventName, require(eventsPath + file)];
     })
@@ -14,5 +14,8 @@ module.exports = (client) => {
     });
 
     const debug = process.env.DEBUG ? JSON.parse(process.env.DEBUG) : false;
-    if (debug) client.on("debug", console.log);
+    if (debug) {
+        client.on("debug", console.log)
+        client.on("rawWS", console.log)
+    };
 };
