@@ -7,13 +7,21 @@ const Eris = require("eris");
 
 const eventHandler = require("./src/bot/eventHandler");
 
+const intents = [
+  'guilds',
+  'guildMembers',
+  'guildBans',
+  'guildVoiceStates',
+  'guildMessages',
+  'directMessages'
+]
+
+if (PREMIUM_BOT) intents.push('guildPresences');
+
 const client = new Eris(DISCORD_TOKEN, {
   getAllUsers: PREMIUM_BOT,
   guildCreateTimeout: 15000,
-  disableEvents: {
-    TYPING_START: true,
-    PRESENCE_UPDATE: !PREMIUM_BOT
-  },
+  intents,
   maxShards: "auto",
   messageLimit: 0,
   defaultImageFormat: "jpg",

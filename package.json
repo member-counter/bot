@@ -20,7 +20,7 @@
   "dependencies": {
     "bufferutil": "^4.0.1",
     "dotenv": "^8.2.0",
-    "eris": "^0.11.2",
+    "eris": "github:eduardozgz/eris#dev",
     "erlpack": "^0.1.3",
     "eventemitter3": "^4.0.0",
     "express": "^4.17.1",
