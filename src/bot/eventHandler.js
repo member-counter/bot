@@ -17,5 +17,5 @@ module.exports = (client) => {
     if (debug) {
         client.on("debug", console.log)
         client.on("rawWS", console.log)
-    };
+    }
 };
