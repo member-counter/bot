@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 require("dotenv").config();
-const { DISCORD_TOKEN, DB_URI} = process.env;
+const { DISCORD_TOKEN, DB_URI } = process.env;
 const PREMIUM_BOT = JSON.parse(process.env.PREMIUM_BOT);
 const mongoose = require("mongoose");
 const Eris = require("eris");
@@ -10,7 +10,6 @@ const eventHandler = require("./src/bot/eventHandler");
 const client = new Eris(DISCORD_TOKEN, {
   getAllUsers: PREMIUM_BOT,
   guildCreateTimeout: 15000,
-  guildSubscriptions: PREMIUM_BOT,
   disableEvents: {
     TYPING_START: true,
     PRESENCE_UPDATE: !PREMIUM_BOT
@@ -29,9 +28,9 @@ eventHandler(client);
 // Mongoose connection
 mongoose
   .connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-    .then(() => {
-        console.log("[Mongoose] Connection ready");
-    })
-    .catch(error => {
-        console.error("[Mongoose] " + error);
-    });
+  .then(() => {
+    console.log("[Mongoose] Connection ready");
+  })
+  .catch(error => {
+    console.error("[Mongoose] " + error);
+  });
