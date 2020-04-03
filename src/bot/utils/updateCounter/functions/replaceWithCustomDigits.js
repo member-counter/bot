@@ -4,6 +4,7 @@
  * @param {Number} count 
  */
 const replaceWithCustomDigits = (customDigits, count) => {
+    if (typeof count === "string") return count;
     return count
         .toString()
         .split("")
