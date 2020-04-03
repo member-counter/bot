@@ -12,7 +12,8 @@ const statusCommands = require('./commands/status');
 const userCommands = require('./commands/user');
 const donateCommands = require('./commands/donate');
 
-const { DISCORD_PREFIX, DISCORD_DEFAULT_LANG, PREMIUM_BOT, DISCORD_OFFICIAL_SERVER_ID } = process.env;
+const { DISCORD_PREFIX, DISCORD_DEFAULT_LANG, DISCORD_OFFICIAL_SERVER_ID } = process.env;
+const PREMIUM_BOT = JSON.parse(process.env.PREMIUM_BOT);
 
 const commands = [...donateCommands, ...countCommands, ...helpCommands, ...infoCommands, ...settingsCommands, ...statusCommands, ...userCommands];
 
@@ -20,7 +21,7 @@ module.exports = async (client, message) => {
     const { channel, author, content, member } = message;
     const { guild } = channel;
 
-    // Avoid processing commands in the official server since this server already has the premium bot
+    // Ignore requested commands in the official server since this server already has the premium bot
     if (!PREMIUM_BOT && (guild && guild.id === DISCORD_OFFICIAL_SERVER_ID)) return;
 
     // avoid responding to other bots
