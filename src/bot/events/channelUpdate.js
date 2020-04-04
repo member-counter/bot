@@ -3,7 +3,7 @@ const fetchGuildSettings = require("../utils/fetchGuildSettings");
 
 module.exports = (client, channel) => {
     const { guild, name, topic } = channel;
-    console.log(name)
+
     if (guild) {
         fetchGuildSettings(guild.id)
             .then(guildSettings => {
