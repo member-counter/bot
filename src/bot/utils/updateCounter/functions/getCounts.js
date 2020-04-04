@@ -24,7 +24,7 @@ const getBannedMembers = async (guild, guildSettings) => {
                 console.error(error);
                 return languagePack.common.error;
             });
-    } 
+    }
 
     return languagePack.functions.getCounts.no_ban_perms;
 }
@@ -73,14 +73,9 @@ const getMembersRelatedCounts = async (guild, guildSettings) => {
 }
 
 const getConnectedUsers = (guild) => {
-    let count = new Map();
-    guild.channels
-        .filter(channel => channel.type == 2)
-        .forEach(channel => {
-            channel.voiceMembers
-                .forEach(member => count.set(member.id))
-        });
-    return count.size;
+    return guild.channels
+        .filter(channel => channel.type === 2)
+        .reduce((prev, current) => prev + current.voiceMembers.size, 0);
 }
 
 // Exclude categories
