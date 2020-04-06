@@ -25,7 +25,7 @@ const client = new Eris(DISCORD_TOKEN, {
   maxShards: "auto",
   messageLimit: 0,
   defaultImageFormat: "jpg",
-  compress: false,
+  compress: true,
   restMode: true,
 });
 
