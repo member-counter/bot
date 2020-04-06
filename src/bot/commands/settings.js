@@ -40,7 +40,7 @@ const seeSettings = {
 
         // ==Build the message==
         let messageToSend = "";
-        
+
         messageToSend += `${header_text} ${guild.name} \`(${guild.id})\`\n\n`;
 
         messageToSend += `${premium_text} ${(premium) ? premium_confirmed_text : premium_no_tier_text}\n`;
@@ -66,7 +66,7 @@ const seeSettings = {
             channelNameCounters.forEach((channelNameCounter, channelId) => {
                 const warningCheck = !botHasPermsToEditChannel(client, guild.channels.get(channelId)) ? '\\⚠️ ' : '';
 
-                messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\``;    
+                messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\``;
                 if (channelNameCounter.type === "memberswithrole") {
                     messageToSend += " \\➡ ";
                     channelNameCounter.otherConfig.roles.forEach(roleId => {
@@ -75,7 +75,7 @@ const seeSettings = {
                 }
                 messageToSend += "\n";
             });
-            
+
             messageToSend += "\n";
         }
 
@@ -86,7 +86,7 @@ const seeSettings = {
             topicCounterChannels.forEach((topicCounterChannel, channelId) => {
                 const warningCheck = !botHasPermsToEditChannel(client, guild.channels.get(channelId)) ? '\\⚠️ ' : '';
 
-                messageToSend +=`\\• ${warningCheck}<#${channelId}> \`(${channelId})\` ${(topicCounterChannel.topic) ? `\\➡ ${topicCounterChannel.topic}` : ""}\n`;
+                messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` ${(topicCounterChannel.topic) ? `\\➡ ${topicCounterChannel.topic}` : ""}\n`;
             });
 
             messageToSend += "\n";
@@ -99,7 +99,7 @@ const seeSettings = {
         messageToSend += `\n${custom_numbers_text}\n`;
 
         Object.entries(topicCounterCustomNumbers.toObject()).forEach((number, i) => {
-            messageToSend +=`${i} \\➡ ${number[1]}\n`;
+            messageToSend += `${i} \\➡ ${number[1]}\n`;
         });
 
         messageToSend += `\n${warning_no_perms_text}`;
@@ -130,7 +130,7 @@ const resetSettings = {
                         guild.channels.get(channelId).edit({ topic: "" }).catch(console.error);
                     }
                 });
-                
+
                 //delete all channel name counters
                 oldGuildSettings.channelNameCounters.forEach((_, channelId) => {
                     if (guild.channels.has(channelId)) {
@@ -139,11 +139,11 @@ const resetSettings = {
                 });
 
                 client.createMessage(channel.id, languagePack.commands.resetSettings.done).catch(console.error);
-        })
-        .catch(error => {
-            console.error(error);
-            client.createMessage(channel.id, languagePack.common.error_db).catch(console.error);
-        });
+            })
+            .catch(error => {
+                console.error(error);
+                client.createMessage(channel.id, languagePack.common.error_db).catch(console.error);
+            });
     }
 };
 
@@ -242,7 +242,7 @@ const role = {
                 }
                 saveConfig();
                 break;
-        
+
             case "deny":
                 if (/all(\s|$)/g.test(content)) {
                     guildSettings.allowedRoles = [];
@@ -269,14 +269,17 @@ const upgradeServer = {
 
         let { success, no_premium_account, error_cannot_upgrade } = languagePack.commands.upgradeServer;
 
-        UserModel.findOneAndUpdate({ user_id: author.id }, { }, { new: true, upsert: true})
+        UserModel.findOneAndUpdate({ user_id: author.id }, {}, { new: true, upsert: true })
             .then(userDoc => {
-                if (userDoc.premium) {
+                if (userDoc.premium && userDoc.availableServerUpgrades > 0) {
                     if (!guildSettings.premium) {
                         guildSettings.premium = true;
                         guildSettings.save()
                             .then(() => {
                                 client.createMessage(channel.id, success.replace('{BOT_LINK}', process.env.PREMIUM_BOT_INVITE)).catch(console.error);
+
+                                userDoc.availableServerUpgrades -= 1;
+                                userDoc.save().catch(console.error);
                             })
                             .catch(error => {
                                 console.error(error);
@@ -296,7 +299,7 @@ const upgradeServer = {
     }
 };
 
-module.exports = [ seeSettings, resetSettings, prefix, lang, role, upgradeServer ];
+module.exports = [seeSettings, resetSettings, prefix, lang, role, upgradeServer];
 
 // I took this from https://jsperf.com/string-split-by-length/9
 String.prototype.splitSlice = function (len) {
