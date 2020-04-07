@@ -7,11 +7,11 @@ const profile = {
     requiresAdmin: false,
     run: ({ client, message, languagePack }) => {
         const { author, channel } = message;
-        const { premium_text } = languagePack.commands.profile;
-        
+        const { premium_text, serverUpgradesAvailable } = languagePack.commands.profile;
+
         UserModel.findOneAndUpdate(
             { user_id: author.id },
-            { }, 
+            {},
             { new: true, upsert: true }
         )
             .then(userDoc => {
@@ -21,13 +21,13 @@ const profile = {
                         "url": author.avatarURL
                     },
                     "color": 14503424,
-                    "description": `${premium_text} ${(userDoc.premium) ? ":white_check_mark: :heart:" : ":x:"}`
+                    "description": `${premium_text} ${(userDoc.premium) ? ":white_check_mark: :heart:" : ":x:"}\n${serverUpgradesAvailable.replace("{COUNT}", userDoc.availableServerUpgrades)}`
                 };
-                
+
                 client.createMessage(channel.id, { embed }).catch(console.error);
             })
             .catch(console.error);
     }
 };
 
-module.exports = [ profile ];
+module.exports = [profile];
