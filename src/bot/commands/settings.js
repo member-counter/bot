@@ -267,11 +267,11 @@ const upgradeServer = {
     run: ({ client, message, guildSettings, languagePack }) => {
         const { author, channel } = message;
 
-        let { success, no_premium_account, error_cannot_upgrade } = languagePack.commands.upgradeServer;
+        let { success, no_server_upgrades_available, error_cannot_upgrade } = languagePack.commands.upgradeServer;
 
         UserModel.findOneAndUpdate({ user_id: author.id }, {}, { new: true, upsert: true })
             .then(userDoc => {
-                if (userDoc.premium && userDoc.availableServerUpgrades > 0) {
+                if (userDoc.availableServerUpgrades > 0) {
                     if (!guildSettings.premium) {
                         guildSettings.premium = true;
                         guildSettings.save()
@@ -289,7 +289,7 @@ const upgradeServer = {
                         client.createMessage(channel.id, error_cannot_upgrade).catch(console.error);
                     }
                 } else {
-                    client.createMessage(channel.id, no_premium_account.replace(/\{PREFIX\}/gi, guildSettings.prefix)).catch(console.error);
+                    client.createMessage(channel.id, no_server_upgrades_available.replace(/\{PREFIX\}/gi, guildSettings.prefix)).catch(console.error);
                 }
             })
             .catch(error => {

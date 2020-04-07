@@ -1,13 +1,15 @@
 {
     "lang_code": "es_ES",
     "lang_name": "Español (ES)",
-    "authors": ["343884247263608832"],
+    "authors": [
+        "343884247263608832"
+    ],
     "commands": {
         "help": {
             "help_description": "¿Es realmente necesario explicar el propósito de este comando?",
             "embed_reply": {
                 "title": "Lista de comandos | prefijo: {PREFIX}",
-                "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentación:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nombre del comando)\n{PREFIX}counts\n{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)\n{PREFIX}newCategoryNameCounter [type] (nombre personalizado)\n{PREFIX}topicCounter [enable/disable] (#canales/all)\n{PREFIX}setTopic (#canales) [tema]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate\n{PREFIX}api```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio.",
+                "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentación:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nombre del comando)\n{PREFIX}counts\n{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)\n{PREFIX}newCategoryNameCounter [type] (nombre personalizado)\n{PREFIX}topicCounter [enable/disable] (#canales/all)\n{PREFIX}setTopic (#canales) [tema]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio.",
                 "color": 14503424,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64",
@@ -95,7 +97,8 @@
             "help_description": "Este comando te permite invitar a Member Counter Premium, para usarlo debes tener una cuenta premium, la cual puedes obtener donando cualquier cantidad: `{PREFIX}donate`.",
             "success": "Hecho! El siguiente paso es invitar al bot premium:\n{BOT_LINK}",
             "no_premium_account": "Debes tener una cuenta premium.",
-            "error_cannot_upgrade": "No puedes mejorar el servidor porque ya tiene premium."
+            "error_cannot_upgrade": "No puedes mejorar el servidor porque ya tiene premium.",
+            "no_server_upgrades_available": "No puedes mejorar este servidor porque no te quedan mejoras disponibles, puedes comprobar cuantas te quedan con `{PREFIX}profile` o conseguir más con `{PREFIX}donate`"
         },
         "info": {
             "help_description": "Lista de enlaces útiles",
@@ -134,7 +137,8 @@
         },
         "profile": {
             "help_description": "Muestra información relacionada entre tu y el bot",
-            "premium_text": "Premium:"
+            "premium_text": "Premium:",
+            "serverUpgradesAvailable": "Server upgrades left: {COUNT}"
         },
         "counts": {
             "help_description": "Muestra algunos contadores",
@@ -152,7 +156,22 @@
         "commandHandler": {
             "invalid_channel": "No puedes ejecutar este comando en un canal {TYPE}"
         },
-        "counter_types" : ["Miembros", "Usuarios", "Bots", "Roles", "Canales", "Usuarios conectados", "Miembros online", "Usuarios online", "Bots online", "Miembros offline", "Usuarios offline", "Bots offline", "Banned members", "memberswithrole"],
+        "counter_types": [
+            "Miembros",
+            "Usuarios",
+            "Bots",
+            "Roles",
+            "Canales",
+            "Usuarios conectados",
+            "Miembros online",
+            "Usuarios online",
+            "Bots online",
+            "Miembros offline",
+            "Usuarios offline",
+            "Bots offline",
+            "Banned members",
+            "memberswithrole"
+        ],
         "getCounts": {
             "only_premium": "Solo Premium",
             "no_ban_perms": "Necesito permisos de ban para mostrar esto"
