@@ -72,10 +72,17 @@ const getMembersRelatedCounts = async (guild, guildSettings) => {
     return counts;
 }
 
-const getConnectedUsers = (guild) => {
-    return guild.channels
-        .filter(channel => channel.type === 2)
-        .reduce((prev, current) => prev + current.voiceMembers.size, 0);
+const getConnectedUsers = async (guild, guildSettings) => {
+    const { lang } = guildSettings;
+    const languagePack = await loadLanguagePack(lang);
+
+    if (PREMIUM_BOT || FOSS_MODE) {
+        return guild.channels
+            .filter(channel => channel.type === 2)
+            .reduce((prev, current) => prev + current.voiceMembers.size, 0);
+    } else {
+        return languagePack.functions.getCounts.only_premium;
+    }
 }
 
 // Exclude categories
@@ -87,7 +94,7 @@ module.exports = async (client, guildSettings) => {
     return {
         ...await getMembersRelatedCounts(guild, guildSettings),
         bannedMembers: await getBannedMembers(guild, guildSettings),
-        connectedUsers: getConnectedUsers(guild),
+        connectedUsers: await getConnectedUsers(guild, guildSettings),
         channels: getChannels(guild),
         roles: guild.roles.size
     }
