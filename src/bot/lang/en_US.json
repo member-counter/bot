@@ -118,7 +118,7 @@
         "donate": {
             "help_description": "Shows the top donations.",
             "embed_reply": {
-                "title": "Enjoying my bot? Donate me! Any amount will be welcome: {DONATION_URL}",
+                "title": "Enjoying my bot? Donate me! {DONATION_URL}",
                 "url": "{DONATION_URL}",
                 "color": 14503424,
                 "footer": {
