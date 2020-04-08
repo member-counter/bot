@@ -5,7 +5,7 @@ const updateCounterStatus = new Map();
 
 /**
  * @param {(Object|string)} guild Mongoose GuildModel or Discord guild id
- * @returns {Boolean} Returns a bool indication if it's already being updated.
+ * @returns {Boolean} Returns a bool indicating if it's already being updated.
  */
 module.exports = async ({ client, guildSettings }) => {
     if (typeof guildSettings === "string") {
