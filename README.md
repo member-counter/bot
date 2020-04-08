@@ -7,4 +7,4 @@ You are welcome to improve anything.
 
 Website: https://member-counter.eduardozgz.com/
 
-Help and API usage: https://eduardozgz.gitbook.io/member-counter/
+Documentation: https://eduardozgz.gitbook.io/member-counter/
