@@ -11,12 +11,11 @@ const intents = [
   'guilds',
   'guildMembers',
   'guildBans',
-  'guildVoiceStates',
   'guildMessages',
   'directMessages'
 ]
 
-if (PREMIUM_BOT) intents.push('guildPresences');
+if (PREMIUM_BOT) intents.push('guildPresences', 'guildVoiceStates');
 
 const client = new Eris(DISCORD_TOKEN, {
   getAllUsers: PREMIUM_BOT,
