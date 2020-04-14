@@ -1,11 +1,12 @@
 {
   "name": "member-counter-bot",
-  "version": "0.10.0-dev",
+  "version": "0.11.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "startDev": "nodemon --inspect index.js"
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "nodemon -e ts --exec \"(npm run build || exit 1) && npm run start --inspect\""
   },
   "repository": {
     "type": "git",
@@ -20,19 +21,22 @@
   "dependencies": {
     "bufferutil": "^4.0.1",
     "dotenv": "^8.2.0",
-    "eris": "github:eduardozgz/eris#dev",
+    "dotenv-parse-variables": "^0.2.3",
+    "eris": "^0.12.0",
     "erlpack": "^0.1.3",
-    "eventemitter3": "^4.0.0",
     "express": "^4.17.1",
+    "lodash.clonedeep": "^4.5.0",
     "mongoose": "^5.8.9",
     "node-fetch": "^2.6.0",
     "node-os-utils": "^1.2.2",
     "zlib-sync": "^0.1.6"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
-  },
-  "engines": {
-    "node": "12.13.1"
+    "@types/mongoose": "^5.7.10",
+    "@types/node": "^13.11.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "nodemon": "^1.19.4",
+    "typescript": "^3.8.3"
   }
 }
