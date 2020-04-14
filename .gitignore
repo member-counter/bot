@@ -71,3 +71,6 @@ dev/
 
 #webstorm stuff
 .idea
+
+#build
+dist/
