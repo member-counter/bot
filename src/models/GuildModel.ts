@@ -5,14 +5,14 @@ const { DISCORD_PREFIX } = getEnv();
 
 const Counter = new mongoose.Schema(
   {
-    name: { type: string },
-    topic: { type: string },
-    config: { type: object },
+    name: { type: String },
+    topic: { type: String },
+    config: { type: Object },
   },
   { _id: false },
 );
 
-const ChannelTopicCounterCustomNumbers = new mongoose.Schema(
+const CustomNumbers = new mongoose.Schema(
   {
     1: { type: String, default: '<a:1G:469275169190445056>' },
     2: { type: String, default: '<a:2G:469275085451034635>' },
@@ -36,6 +36,7 @@ const GuildSchema = new mongoose.Schema({
   allowedRoles: [{ type: String, default: [] }],
   counters: { type: Map, of: Counter, default: new Map() },
   globalChannelTopic: { type: String, default: 'Members: {members}' },
+  customCounterDigits: { type: CustomNumbers, default: CustomNumbers },
 });
 
 export default mongoose.model('guilds', GuildSchema);

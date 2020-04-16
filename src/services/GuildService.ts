@@ -1,9 +1,6 @@
 import GuildModel from '../models/GuildModel';
-import AvailableLanguagesStrings from '../typings/Languages';
-import {
-  ChannelTopicCounter,
-  ChannelNameCounter,
-} from '../typings/ChannelCounters';
+import AvailableLanguages from '../typings/AvailableLanguages';
+import { AnyChannelCounter } from '../typings/ChannelCounters';
 
 class GuildService {
   private doc: any;
@@ -26,12 +23,12 @@ class GuildService {
     throw new Error('You must call .init() first');
   }
 
-  public get language(): string {
+  public get language(): AvailableLanguages {
     if (!this.isInitialized) this.errorNotInit();
     return this.doc.language;
   }
 
-  public async setLanguage(value: AvailableLanguagesStrings): Promise<void> {
+  public async setLanguage(value: AvailableLanguages): Promise<void> {
     if (!this.isInitialized) this.errorNotInit();
     this.doc.language = value;
     await this.doc.save();
@@ -61,16 +58,66 @@ class GuildService {
     return this.doc.allowedRoles;
   }
 
-  public async grantPremium(grantorId: string): Promise<number> {
+  public async upgradeServer(
+    grantorId: string,
+  ): Promise<'success' | 'noUpgradesAvailable' | 'alreadyUpgraded'> {
+    if (!this.isInitialized) this.errorNotInit();
     // TODO
-    return 0;
+    return 'success';
   }
 
-  public async deleteChannel(channelId: string): Promise<void> {
+  public get customCounterDigits(): Map<number, string> {
     if (!this.isInitialized) this.errorNotInit();
-    await this.doc.counters.delete(channelId);
-    await this.doc.counters.delete(channelId);
+    return this.doc.customCounterDigits;
+  }
+
+  public async setCustomCounterDigit(
+    number: number,
+    value: string,
+  ): Promise<void> {
+    if (!this.isInitialized) this.errorNotInit();
+    this.doc.customCounterDigits.set(number, value);
     await this.doc.save();
+  }
+
+  public get globalChannelTopic(): string {
+    if (!this.isInitialized) this.errorNotInit();
+    return this.doc.globalChannelTopic;
+  }
+
+  public async setGlobalChannelTopic(value: string): Promise<void> {
+    if (!this.isInitialized) this.errorNotInit();
+    this.doc.globalChannelTopic = value;
+    await this.doc.save();
+  }
+
+  public get globalChannelTopic(): string {
+    if (!this.isInitialized) this.errorNotInit();
+    return this.doc.globalChannelTopic;
+  }
+
+  public get getCounters(): Map<string, AnyChannelCounter> {
+    if (!this.isInitialized) this.errorNotInit();
+    return this.doc.counters;
+  }
+
+  public async setCounter(
+    channelId: string,
+    data: AnyChannelCounter,
+  ): Promise<void> {
+    if (!this.isInitialized) this.errorNotInit();
+    // TODO
+  }
+
+  public async deleteCounter(channelId: string): Promise<void> {
+    if (!this.isInitialized) this.errorNotInit();
+    this.doc.counters.delete(channelId);
+    await this.doc.save();
+  }
+
+  public async resetSettings(): Promise<void> {
+    if (!this.isInitialized) this.errorNotInit();
+    // TODO
   }
 }
 
