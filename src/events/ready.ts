@@ -1,20 +1,33 @@
-// const setStatus = require("../others/setStatus");
-// const postBotStats = require("../others/postBotStats");
-// const checkPremiumGuilds = require('../utils/checkPremiumGuilds');
+import getEnv from '../utils/getEnv';
+import postBotStats from '../others/postBotStats';
+import checkPremiumGuilds from '../others/checkPremiumGuilds';
+import Eris from 'eris';
 
-// module.exports = (client) => {
-//     console.log(`Eris ready! Serving to ${client.users.size} users in ${client.guilds.size} guilds`);
+const { DISCORD_PREFIX } = getEnv();
 
-//     setStatus(client);
-//     postBotStats(client);
+const setStatus = (client: Eris.Client) => {
+  client.editStatus('online', {
+    name: `${DISCORD_PREFIX}help`,
+    type: 3,
+  });
+};
 
-//     setInterval(() => {
-//         console.log(`Serving to ${client.users.size} users in ${client.guilds.size} guilds`);
-//         setStatus(client);
-//         postBotStats(client);
-//     }, 5 * 60 * 1000);
+const ready = (client: Eris.Client) => {
+  const { users, guilds } = client;
 
-//     setInterval(() => {
-//         checkPremiumGuilds(client);
-//     }, 1 * 60 * 1000);
-// };
+  console.log(`Eris ready!`);
+
+  setStatus(client);
+  checkPremiumGuilds(guilds);
+
+  setInterval(() => {
+    console.log(
+      `Serving to ${users.size} users in ${client.guilds.size} guilds`,
+    );
+    setStatus(client);
+    postBotStats(guilds.size);
+    checkPremiumGuilds(guilds);
+  }, 5 * 60 * 1000);
+};
+
+export default ready;

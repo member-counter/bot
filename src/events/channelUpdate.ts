@@ -1,25 +1,35 @@
-import Eris from 'eris';
+import {
+  TextChannel,
+  VoiceChannel,
+  CategoryChannel,
+  NewsChannel,
+  AnyChannel,
+} from 'eris';
+import GuildService from '../services/GuildService';
 
-const channelUpdate = (channel: Eris.AnyChannel) => {
-  // TODO
-  // const { guild, name, topic } = channel;
-  // if (guild) {
-  //     fetchGuildSettings(guild.id)
-  //         .then(guildSettings => {
-  //             const { channelNameCounters } = guildSettings;
-  //             const channelNameCounterToUpdate = channelNameCounters.get(channel.id);
-  //             if (channelNameCounterToUpdate && /\{count\}/gi.test(name)) {
-  //                 channelNameCounters.set(channel.id, {
-  //                     ...channelNameCounterToUpdate,
-  //                     channelName: name
-  //                 })
-  //             }
-  //             guildSettings.save()
-  //                 .then(() => updateCounter({ client, guildSettings }))
-  //                 .catch(console.error)
-  //         })
-  //         .catch(console.error);
-  // }
+const channelUpdate = async (channel: AnyChannel) => {
+  if (
+    channel instanceof TextChannel ||
+    channel instanceof VoiceChannel ||
+    channel instanceof CategoryChannel ||
+    channel instanceof NewsChannel
+  ) {
+    let counterTextToUpdate = '';
+    const guildSettings = new GuildService(channel.guild.id);
+    await guildSettings.init();
+
+    if (channel instanceof TextChannel || channel instanceof NewsChannel) {
+      let counterTextToUpdate = channel.topic;
+    }
+
+    if (channel instanceof CategoryChannel || channel instanceof VoiceChannel) {
+      let counterTextToUpdate = channel.name;
+    }
+
+    if (guildSettings.counters.has(channel.id)) {
+      await guildSettings.setCounter(channel.id, counterTextToUpdate);
+    }
+  }
 };
 
 export default channelUpdate;
