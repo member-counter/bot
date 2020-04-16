@@ -3,15 +3,6 @@ import getEnv from '../utils/getEnv';
 
 const { DISCORD_PREFIX } = getEnv();
 
-const Counter = new mongoose.Schema(
-  {
-    name: { type: String },
-    topic: { type: String },
-    config: { type: Object },
-  },
-  { _id: false },
-);
-
 const CustomNumbers = new mongoose.Schema(
   {
     1: { type: String, default: '<a:1G:469275169190445056>' },
@@ -34,7 +25,7 @@ const GuildSchema = new mongoose.Schema({
   prefix: { type: String, default: DISCORD_PREFIX },
   language: { type: String, default: 'en_US' },
   allowedRoles: [{ type: String, default: [] }],
-  counters: { type: Map, of: Counter, default: new Map() },
+  counters: { type: Map, of: String, default: new Map() },
   globalChannelTopic: { type: String, default: 'Members: {members}' },
   customCounterDigits: { type: CustomNumbers, default: CustomNumbers },
 });

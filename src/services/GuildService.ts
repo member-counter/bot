@@ -1,6 +1,5 @@
 import GuildModel from '../models/GuildModel';
 import AvailableLanguages from '../typings/AvailableLanguages';
-import { AnyChannelCounter } from '../typings/ChannelCounters';
 
 class GuildService {
   private doc: any;
@@ -91,7 +90,7 @@ class GuildService {
     await this.doc.save();
   }
 
-  public get getCounters(): Map<string, AnyChannelCounter> {
+  public get counters(): Map<string, string> {
     if (!this.isInitialized) this.errorNotInit();
     return this.doc.counters;
   }
