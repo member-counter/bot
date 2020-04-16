@@ -1,6 +1,6 @@
 {
   "name": "member-counter-bot",
-  "version": "0.11.0",
+  "version": "0.11.0-dev",
   "description": "",
   "main": "index.js",
   "scripts": {
