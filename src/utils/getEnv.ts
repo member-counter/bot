@@ -5,7 +5,6 @@ import { MemberCounterEnv } from '../typings/MemberCounterEnv';
 const parsedEnv = dotenvParseVariables(dotenv.config().parsed);
 
 function getEnv(): MemberCounterEnv {
-  console.log(parsedEnv);
   return parsedEnv;
 }
 
