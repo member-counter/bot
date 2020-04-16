@@ -2,9 +2,11 @@
 import * as Eris from 'eris';
 import mongoose from 'mongoose';
 import getEnv from './utils/getEnv';
+import injectEventHandlers from './injectEventHandlers';
 
 const { PREMIUM_BOT, DISCORD_CLIENT_TOKEN, DB_URI } = getEnv();
 
+// Discord client
 const intents: Eris.IntentStrings[] = [
   'guilds',
   'guildMembers',
@@ -26,6 +28,8 @@ const client = new Eris.Client(DISCORD_CLIENT_TOKEN, {
   restMode: true,
 });
 
+injectEventHandlers(client);
+
 client.connect();
 
 // Mongoose connection
@@ -38,6 +42,4 @@ mongoose
   .then(() => {
     console.log('[Mongoose] Connection ready');
   })
-  .catch((error) => {
-    console.error('[Mongoose] ' + error);
-  });
+  .catch(console.error);

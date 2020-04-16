@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   user: { type: String, require: true },
   premium: { type: Boolean, default: false },
   availableServerUpgrades: { type: Number, default: 0 },

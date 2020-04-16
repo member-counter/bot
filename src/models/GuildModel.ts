@@ -3,7 +3,16 @@ import getEnv from '../utils/getEnv';
 
 const { DISCORD_PREFIX } = getEnv();
 
-const ChannelTopicCounterCustomNumbers = mongoose.Schema(
+const Counter = new mongoose.Schema(
+  {
+    name: { type: string },
+    topic: { type: string },
+    config: { type: object },
+  },
+  { _id: false },
+);
+
+const ChannelTopicCounterCustomNumbers = new mongoose.Schema(
   {
     1: { type: String, default: '<a:1G:469275169190445056>' },
     2: { type: String, default: '<a:2G:469275085451034635>' },
@@ -19,19 +28,14 @@ const ChannelTopicCounterCustomNumbers = mongoose.Schema(
   { _id: false },
 );
 
-const GuildSchema = mongoose.Schema({
+const GuildSchema = new mongoose.Schema({
   guild: { type: String, require: true },
   premium: { type: Boolean, default: false },
   prefix: { type: String, default: DISCORD_PREFIX },
-  lang: { type: String, default: 'en_US' },
+  language: { type: String, default: 'en_US' },
   allowedRoles: [{ type: String, default: [] }],
-  channelTopicCounters: { type: Map, default: new Map() },
-  channelTopicCounterGlobalTopic: { type: String, default: 'Members: {COUNT}' },
-  channelTopicCounterCustomNumbers: {
-    type: ChannelTopicCounterCustomNumbers,
-    default: ChannelTopicCounterCustomNumbers,
-  },
-  channelNameCounters: { type: Map, default: new Map() },
+  counters: { type: Map, of: Counter, default: new Map() },
+  globalChannelTopic: { type: String, default: 'Members: {members}' },
 });
 
 export default mongoose.model('guilds', GuildSchema);
