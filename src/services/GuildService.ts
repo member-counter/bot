@@ -57,6 +57,11 @@ class GuildService {
     return this.doc.allowedRoles;
   }
 
+  public get premium(): boolean {
+    if (!this.isInitialized) this.errorNotInit();
+    return this.doc.premium;
+  }
+
   public async upgradeServer(
     grantorId: string,
   ): Promise<'success' | 'noUpgradesAvailable' | 'alreadyUpgraded'> {
