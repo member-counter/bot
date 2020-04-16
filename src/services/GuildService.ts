@@ -95,10 +95,7 @@ class GuildService {
     return this.doc.counters;
   }
 
-  public async setCounter(
-    channelId: string,
-    data: AnyChannelCounter,
-  ): Promise<void> {
+  public async setCounter(channelId: string, data: string): Promise<void> {
     if (!this.isInitialized) this.errorNotInit();
     // TODO
   }
