@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const DonationSchema = mongoose.Schema({
+const DonationSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   user: { type: String, require: true },
   note: { type: String },

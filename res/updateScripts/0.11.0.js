@@ -1,10 +1,11 @@
 // TODO
 // GuildModel:
 // guild_id => guild
+// lang => language
 // topicCounterChannels =>       channelTopicCounters
 // mongoose.Schema(
 //   {
-//     channelName: { type: String, require: true },
+//     channelName: { type: String, require: true }, => name
 //     type: { type: String, default: 'members' },
 //     otherConfig: { type: Object },
 //   },
