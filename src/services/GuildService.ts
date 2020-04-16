@@ -91,11 +91,6 @@ class GuildService {
     await this.doc.save();
   }
 
-  public get globalChannelTopic(): string {
-    if (!this.isInitialized) this.errorNotInit();
-    return this.doc.globalChannelTopic;
-  }
-
   public get getCounters(): Map<string, AnyChannelCounter> {
     if (!this.isInitialized) this.errorNotInit();
     return this.doc.counters;
