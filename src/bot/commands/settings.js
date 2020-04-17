@@ -1,311 +1,414 @@
-const GuildModel = require("../../mongooseModels/GuildModel");
-const UserModel = require("../../mongooseModels/UserModel");
-const getLanguages = require("../utils/getLanguages");
-const botHasPermsToEditChannel = require("../utils/updateCounter/functions/botHasPermsToEditChannel");
+const GuildModel = require('../../mongooseModels/GuildModel');
+const UserModel = require('../../mongooseModels/UserModel');
+const getLanguages = require('../utils/getLanguages');
+const botHasPermsToEditChannel = require('../utils/updateCounter/functions/botHasPermsToEditChannel');
 
 const seeSettings = {
-    name: "seeSettings",
-    variants: ["seeSettings"],
-    allowedTypes: [0],
-    requiresAdmin: false,
-    run: ({ client, message, guildSettings, languagePack }) => {
-        const { channel } = message;
-        const { guild } = channel;
-        const {
-            lang_text,
-            prefix_text,
-            premium_text,
-            premium_no_tier_text,
-            premium_confirmed_text,
-            allowed_roles_text,
-            header_text,
-            enabled_channel_name_counters_text,
-            misc_type,
-            enabled_channel_topic_counters_text,
-            main_topic_text,
-            custom_numbers_text,
-            warning_no_perms_text
-        } = languagePack.commands.seeSettings.settings_message;
-        const {
-            prefix,
-            premium,
-            lang,
-            allowedRoles,
-            channelNameCounters,
-            topicCounterChannels,
-            mainTopicCounter,
-            topicCounterCustomNumbers
-        } = guildSettings;
+  name: 'seeSettings',
+  variants: ['seeSettings'],
+  allowedTypes: [0],
+  requiresAdmin: false,
+  run: ({ client, message, guildSettings, languagePack }) => {
+    const { channel } = message;
+    const { guild } = channel;
+    const {
+      lang_text,
+      prefix_text,
+      premium_text,
+      premium_no_tier_text,
+      premium_confirmed_text,
+      allowed_roles_text,
+      header_text,
+      enabled_channel_name_counters_text,
+      misc_type,
+      enabled_channel_topic_counters_text,
+      main_topic_text,
+      custom_numbers_text,
+      warning_no_perms_text,
+    } = languagePack.commands.seeSettings.settings_message;
+    const {
+      prefix,
+      premium,
+      lang,
+      allowedRoles,
+      channelNameCounters,
+      topicCounterChannels,
+      mainTopicCounter,
+      topicCounterCustomNumbers,
+    } = guildSettings;
 
+    // ==Build the message==
+    let messageToSend = '';
 
-        // ==Build the message==
-        let messageToSend = "";
+    messageToSend += `${header_text} ${guild.name} \`(${guild.id})\`\n\n`;
 
-        messageToSend += `${header_text} ${guild.name} \`(${guild.id})\`\n\n`;
+    messageToSend += `${premium_text} ${
+      premium ? premium_confirmed_text : premium_no_tier_text
+    }\n`;
 
-        messageToSend += `${premium_text} ${(premium) ? premium_confirmed_text : premium_no_tier_text}\n`;
+    //prefix and language
 
-        //prefix and language
+    messageToSend += `${prefix_text} ${prefix}\n`;
+    messageToSend += `${lang_text} \`${lang}\` \\➡ ${languagePack.lang_name}\n\n`;
 
-        messageToSend += `${prefix_text} ${prefix}\n`;
-        messageToSend += `${lang_text} \`${lang}\` \\➡ ${languagePack.lang_name}\n\n`;
-
-        //Allowed roles for administrative commands
-        if (allowedRoles.length > 0) {
-            let allowed_roles = "";
-            allowedRoles.forEach((role_id) => {
-                if (guild.roles.has(role_id)) allowed_roles += " <@&" + role_id + ">";
-            });
-            messageToSend += `${allowed_roles_text} ${allowed_roles}\n`;
-        }
-
-        //channel name counters:
-        if (channelNameCounters.size > 0) {
-            messageToSend += `${enabled_channel_name_counters_text}\n`;
-
-            channelNameCounters.forEach((channelNameCounter, channelId) => {
-                const warningCheck = !botHasPermsToEditChannel(client, guild.channels.get(channelId)) ? '\\⚠️ ' : '';
-
-                messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\``;
-                if (channelNameCounter.type === "memberswithrole") {
-                    messageToSend += " \\➡ ";
-                    channelNameCounter.otherConfig.roles.forEach(roleId => {
-                        messageToSend += " <@&" + roleId + ">"
-                    });
-                }
-                messageToSend += "\n";
-            });
-
-            messageToSend += "\n";
-        }
-
-        //channel topic counters:
-        if (topicCounterChannels.size > 0) {
-            messageToSend += `${enabled_channel_topic_counters_text}\n`;
-
-            topicCounterChannels.forEach((topicCounterChannel, channelId) => {
-                const warningCheck = !botHasPermsToEditChannel(client, guild.channels.get(channelId)) ? '\\⚠️ ' : '';
-
-                messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` ${(topicCounterChannel.topic) ? `\\➡ ${topicCounterChannel.topic}` : ""}\n`;
-            });
-
-            messageToSend += "\n";
-        }
-
-        //Main topic for topic counters
-        messageToSend += `${main_topic_text} \`\`\`${mainTopicCounter}\`\`\``;
-
-        //numbers
-        messageToSend += `\n${custom_numbers_text}\n`;
-
-        Object.entries(topicCounterCustomNumbers.toObject()).forEach((number, i) => {
-            messageToSend += `${i} \\➡ ${number[1]}\n`;
-        });
-
-        messageToSend += `\n${warning_no_perms_text}`;
-
-        //send in various messages
-        messageToSend.splitSlice(2000).forEach(part => {
-            client.createMessage(channel.id, part).catch(console.error);
-        });
+    //Allowed roles for administrative commands
+    if (allowedRoles.length > 0) {
+      let allowed_roles = '';
+      allowedRoles.forEach((role_id) => {
+        if (guild.roles.has(role_id)) allowed_roles += ' <@&' + role_id + '>';
+      });
+      messageToSend += `${allowed_roles_text} ${allowed_roles}\n`;
     }
+
+    //channel name counters:
+    if (channelNameCounters.size > 0) {
+      messageToSend += `${enabled_channel_name_counters_text}\n`;
+
+      channelNameCounters.forEach((channelNameCounter, channelId) => {
+        const warningCheck =
+          guild.channels.has(channelId) &&
+          !botHasPermsToEditChannel(client, guild.channels.get(channelId))
+            ? '\\⚠️ '
+            : '';
+
+        messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\``;
+        if (channelNameCounter.type === 'memberswithrole') {
+          messageToSend += ' \\➡ ';
+          channelNameCounter.otherConfig.roles.forEach((roleId) => {
+            messageToSend += ' <@&' + roleId + '>';
+          });
+        }
+        messageToSend += '\n';
+      });
+
+      messageToSend += '\n';
+    }
+
+    //channel topic counters:
+    if (topicCounterChannels.size > 0) {
+      messageToSend += `${enabled_channel_topic_counters_text}\n`;
+
+      topicCounterChannels.forEach((topicCounterChannel, channelId) => {
+        const warningCheck =
+          guild.channels.has(channelId) &&
+          !botHasPermsToEditChannel(client, guild.channels.get(channelId))
+            ? '\\⚠️ '
+            : '';
+
+        messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` ${
+          topicCounterChannel.topic ? `\\➡ ${topicCounterChannel.topic}` : ''
+        }\n`;
+      });
+
+      messageToSend += '\n';
+    }
+
+    //Main topic for topic counters
+    messageToSend += `${main_topic_text} \`\`\`${mainTopicCounter}\`\`\``;
+
+    //numbers
+    messageToSend += `\n${custom_numbers_text}\n`;
+
+    Object.entries(topicCounterCustomNumbers.toObject()).forEach(
+      (number, i) => {
+        messageToSend += `${i} \\➡ ${number[1]}\n`;
+      },
+    );
+
+    messageToSend += `\n${warning_no_perms_text}`;
+
+    //send in various messages
+    messageToSend.splitSlice(2000).forEach((part) => {
+      client.createMessage(channel.id, part).catch(console.error);
+    });
+  },
 };
 
 const resetSettings = {
-    name: "resetSettings",
-    variants: ["resetSettings", "restoreSettings"],
-    allowedTypes: [0],
-    requiresAdmin: true,
-    run: ({ client, message, guildSettings: oldGuildSettings, languagePack }) => {
-        const { channel } = message;
-        const { guild } = channel;
+  name: 'resetSettings',
+  variants: ['resetSettings', 'restoreSettings'],
+  allowedTypes: [0],
+  requiresAdmin: true,
+  run: ({ client, message, guildSettings: oldGuildSettings, languagePack }) => {
+    const { channel } = message;
+    const { guild } = channel;
 
-        GuildModel.findOneAndRemove({ guild_id: guild.id })
-            .then(() => {
-                GuildModel.create({ guild_id: guild.id, premium: oldGuildSettings.premium }).catch(console.error);
+    GuildModel.findOneAndRemove({ guild_id: guild.id })
+      .then(() => {
+        GuildModel.create({
+          guild_id: guild.id,
+          premium: oldGuildSettings.premium,
+        }).catch(console.error);
 
-                //leave empty all channel topics
-                oldGuildSettings.topicCounterChannels.forEach((_, channelId) => {
-                    if (guild.channels.has(channelId)) {
-                        guild.channels.get(channelId).edit({ topic: "" }).catch(console.error);
-                    }
-                });
+        //leave empty all channel topics
+        oldGuildSettings.topicCounterChannels.forEach((_, channelId) => {
+          if (guild.channels.has(channelId)) {
+            guild.channels
+              .get(channelId)
+              .edit({ topic: '' })
+              .catch(console.error);
+          }
+        });
 
-                //delete all channel name counters
-                oldGuildSettings.channelNameCounters.forEach((_, channelId) => {
-                    if (guild.channels.has(channelId)) {
-                        guild.channels.get(channelId).delete().catch(console.error);
-                    }
-                });
+        //delete all channel name counters
+        oldGuildSettings.channelNameCounters.forEach((_, channelId) => {
+          if (guild.channels.has(channelId)) {
+            guild.channels.get(channelId).delete().catch(console.error);
+          }
+        });
 
-                client.createMessage(channel.id, languagePack.commands.resetSettings.done).catch(console.error);
-            })
-            .catch(error => {
-                console.error(error);
-                client.createMessage(channel.id, languagePack.common.error_db).catch(console.error);
-            });
-    }
+        client
+          .createMessage(channel.id, languagePack.commands.resetSettings.done)
+          .catch(console.error);
+      })
+      .catch((error) => {
+        console.error(error);
+        client
+          .createMessage(channel.id, languagePack.common.error_db)
+          .catch(console.error);
+      });
+  },
 };
 
 const lang = {
-    name: "lang",
-    variants: ["lang"],
-    allowedTypes: [0],
-    requiresAdmin: true,
-    run: async ({ client, message, guildSettings, languagePack }) => {
-        const { content, channel } = message;
+  name: 'lang',
+  variants: ['lang'],
+  allowedTypes: [0],
+  requiresAdmin: true,
+  run: async ({ client, message, guildSettings, languagePack }) => {
+    const { content, channel } = message;
 
-        const args = content.split(/\s+/);
-        const lang_code = args[1];
-        const languages = await getLanguages();
-        if (languages.has(lang_code)) {
-            guildSettings.lang = lang_code;
-            guildSettings
-                .save()
-                .then(() => {
-                    client.createMessage(channel.id, languages.get(lang_code).commands.lang.success).catch(console.error);
-                })
-                .catch(error => {
-                    console.error(error);
-                    client.createMessage(channel.id, languagePack.common.error_db).catch(console.error);
-                });
-        } else {
-            let messageToSend = languagePack.commands.lang.error_not_found + "\n";
-            messageToSend += "```fix\n";
-            languages.forEach((value, lang_code) => {
-                messageToSend += lang_code + " ➡ " + value.lang_name + "\n";
-            });
-            messageToSend += "```";
-            client.createMessage(channel.id, messageToSend).catch(console.error);
-        }
+    const args = content.split(/\s+/);
+    const lang_code = args[1];
+    const languages = await getLanguages();
+    if (languages.has(lang_code)) {
+      guildSettings.lang = lang_code;
+      guildSettings
+        .save()
+        .then(() => {
+          client
+            .createMessage(
+              channel.id,
+              languages.get(lang_code).commands.lang.success,
+            )
+            .catch(console.error);
+        })
+        .catch((error) => {
+          console.error(error);
+          client
+            .createMessage(channel.id, languagePack.common.error_db)
+            .catch(console.error);
+        });
+    } else {
+      let messageToSend = languagePack.commands.lang.error_not_found + '\n';
+      messageToSend += '```fix\n';
+      languages.forEach((value, lang_code) => {
+        messageToSend += lang_code + ' ➡ ' + value.lang_name + '\n';
+      });
+      messageToSend += '```';
+      client.createMessage(channel.id, messageToSend).catch(console.error);
     }
+  },
 };
 
 const prefix = {
-    name: "prefix",
-    variants: ["prefix"],
-    allowedTypes: [0],
-    requiresAdmin: true,
-    run: ({ client, message, guildSettings, languagePack }) => {
-        const { channel, content } = message;
+  name: 'prefix',
+  variants: ['prefix'],
+  allowedTypes: [0],
+  requiresAdmin: true,
+  run: ({ client, message, guildSettings, languagePack }) => {
+    const { channel, content } = message;
 
-        const args = content.split(/\s+/g);
-        guildSettings.prefix = args[1] ? args[1] : guildSettings.prefix;
-        guildSettings
-            .save()
-            .then(() => {
-                client.createMessage(channel.id, languagePack.commands.prefix.success.replace("{NEW_PREFIX}", guildSettings.prefix)).catch(console.error);
-            })
-            .catch(error => {
-                console.error(error);
-                client.createMessage(channel.id, languagePack.common.error_db).catch(console.error);
-            });
-    }
+    const args = content.split(/\s+/g);
+    guildSettings.prefix = args[1] ? args[1] : guildSettings.prefix;
+    guildSettings
+      .save()
+      .then(() => {
+        client
+          .createMessage(
+            channel.id,
+            languagePack.commands.prefix.success.replace(
+              '{NEW_PREFIX}',
+              guildSettings.prefix,
+            ),
+          )
+          .catch(console.error);
+      })
+      .catch((error) => {
+        console.error(error);
+        client
+          .createMessage(channel.id, languagePack.common.error_db)
+          .catch(console.error);
+      });
+  },
 };
 
-
 const role = {
-    name: "role",
-    variants: ["role", "roles"],
-    allowedTypes: [0],
-    requiresAdmin: true,
-    run: ({ client, message, guildSettings, languagePack }) => {
-        const { channel, content } = message;
-        const { guild } = channel;
-        const args = content.split(/\s+/);
-        const rolesToPerformAction = message.roleMentions;
+  name: 'role',
+  variants: ['role', 'roles'],
+  allowedTypes: [0],
+  requiresAdmin: true,
+  run: ({ client, message, guildSettings, languagePack }) => {
+    const { channel, content } = message;
+    const { guild } = channel;
+    const args = content.split(/\s+/);
+    const rolesToPerformAction = message.roleMentions;
 
-        const saveConfig = () => {
-            if (rolesToPerformAction.length > 0 || /all(\s|$)/g.test(content)) {
-                guildSettings.save()
-                    .then(() => {
-                        client.createMessage(channel.id, languagePack.commands.role.roles_updated).catch(console.error);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        client.createMessage(channel.id, languagePack.common.error_db).catch(console.error);
-                    });
-            } else {
-                client.createMessage(channel.id, languagePack.commands.role.error_no_roles_to_update).catch(console.error);
-            }
-        };
+    const saveConfig = () => {
+      if (rolesToPerformAction.length > 0 || /all(\s|$)/g.test(content)) {
+        guildSettings
+          .save()
+          .then(() => {
+            client
+              .createMessage(
+                channel.id,
+                languagePack.commands.role.roles_updated,
+              )
+              .catch(console.error);
+          })
+          .catch((error) => {
+            console.error(error);
+            client
+              .createMessage(channel.id, languagePack.common.error_db)
+              .catch(console.error);
+          });
+      } else {
+        client
+          .createMessage(
+            channel.id,
+            languagePack.commands.role.error_no_roles_to_update,
+          )
+          .catch(console.error);
+      }
+    };
 
-        switch (args[1]) {
-            case "allow":
-                if (/all(\s|$)/g.test(content)) {
-                    //that filter is to remove @everyone
-                    guildSettings.allowedRoles = guild.roles.keyArray().filter(role => role !== guild.id);
-                } else {
-                    rolesToPerformAction.forEach(role => {
-                        if (!guildSettings.allowedRoles.includes(role)) guildSettings.allowedRoles.push(role);
-                    });
-                }
-                saveConfig();
-                break;
-
-            case "deny":
-                if (/all(\s|$)/g.test(content)) {
-                    guildSettings.allowedRoles = [];
-                } else {
-                    guildSettings.allowedRoles = guildSettings.allowedRoles.filter(role => !rolesToPerformAction.includes(role));
-                }
-                saveConfig();
-                break;
-
-            default:
-                client.createMessage(channel.id, languagePack.commands.role.invalid_params.replace(/\{PREFIX\}/gi, guildSettings.prefix)).catch(console.error);
-                break;
+    switch (args[1]) {
+      case 'allow':
+        if (/all(\s|$)/g.test(content)) {
+          //that filter is to remove @everyone
+          guildSettings.allowedRoles = guild.roles
+            .keyArray()
+            .filter((role) => role !== guild.id);
+        } else {
+          rolesToPerformAction.forEach((role) => {
+            if (!guildSettings.allowedRoles.includes(role))
+              guildSettings.allowedRoles.push(role);
+          });
         }
+        saveConfig();
+        break;
+
+      case 'deny':
+        if (/all(\s|$)/g.test(content)) {
+          guildSettings.allowedRoles = [];
+        } else {
+          guildSettings.allowedRoles = guildSettings.allowedRoles.filter(
+            (role) => !rolesToPerformAction.includes(role),
+          );
+        }
+        saveConfig();
+        break;
+
+      default:
+        client
+          .createMessage(
+            channel.id,
+            languagePack.commands.role.invalid_params.replace(
+              /\{PREFIX\}/gi,
+              guildSettings.prefix,
+            ),
+          )
+          .catch(console.error);
+        break;
     }
+  },
 };
 
 const upgradeServer = {
-    name: "upgradeServer",
-    variants: ["upgradeServer", "serverupgrade"],
-    allowedTypes: [0],
-    requiresAdmin: false,
-    run: ({ client, message, guildSettings, languagePack }) => {
-        const { author, channel } = message;
+  name: 'upgradeServer',
+  variants: ['upgradeServer', 'serverupgrade'],
+  allowedTypes: [0],
+  requiresAdmin: false,
+  run: ({ client, message, guildSettings, languagePack }) => {
+    const { author, channel } = message;
 
-        let { success, no_server_upgrades_available, error_cannot_upgrade } = languagePack.commands.upgradeServer;
+    let {
+      success,
+      no_server_upgrades_available,
+      error_cannot_upgrade,
+    } = languagePack.commands.upgradeServer;
 
-        UserModel.findOneAndUpdate({ user_id: author.id }, {}, { new: true, upsert: true })
-            .then(userDoc => {
-                if (userDoc.availableServerUpgrades > 0) {
-                    if (!guildSettings.premium) {
-                        guildSettings.premium = true;
-                        guildSettings.save()
-                            .then(() => {
-                                client.createMessage(channel.id, success.replace('{BOT_LINK}', process.env.PREMIUM_BOT_INVITE)).catch(console.error);
+    UserModel.findOneAndUpdate(
+      { user_id: author.id },
+      {},
+      { new: true, upsert: true },
+    )
+      .then((userDoc) => {
+        if (userDoc.availableServerUpgrades > 0) {
+          if (!guildSettings.premium) {
+            guildSettings.premium = true;
+            guildSettings
+              .save()
+              .then(() => {
+                client
+                  .createMessage(
+                    channel.id,
+                    success.replace(
+                      '{BOT_LINK}',
+                      process.env.PREMIUM_BOT_INVITE,
+                    ),
+                  )
+                  .catch(console.error);
 
-                                userDoc.availableServerUpgrades -= 1;
-                                userDoc.save().catch(console.error);
-                            })
-                            .catch(error => {
-                                console.error(error);
-                                client.createMessage(channel.id, languagePack.common.error_db).catch(console.error);
-                            });
-                    } else {
-                        client.createMessage(channel.id, error_cannot_upgrade).catch(console.error);
-                    }
-                } else {
-                    client.createMessage(channel.id, no_server_upgrades_available.replace(/\{PREFIX\}/gi, guildSettings.prefix)).catch(console.error);
-                }
-            })
-            .catch(error => {
+                userDoc.availableServerUpgrades -= 1;
+                userDoc.save().catch(console.error);
+              })
+              .catch((error) => {
                 console.error(error);
-                client.createMessage(channel.id, languagePack.common.error_db).catch(console.error);
-            });
-    }
+                client
+                  .createMessage(channel.id, languagePack.common.error_db)
+                  .catch(console.error);
+              });
+          } else {
+            client
+              .createMessage(channel.id, error_cannot_upgrade)
+              .catch(console.error);
+          }
+        } else {
+          client
+            .createMessage(
+              channel.id,
+              no_server_upgrades_available.replace(
+                /\{PREFIX\}/gi,
+                guildSettings.prefix,
+              ),
+            )
+            .catch(console.error);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        client
+          .createMessage(channel.id, languagePack.common.error_db)
+          .catch(console.error);
+      });
+  },
 };
 
-module.exports = [seeSettings, resetSettings, prefix, lang, role, upgradeServer];
+module.exports = [
+  seeSettings,
+  resetSettings,
+  prefix,
+  lang,
+  role,
+  upgradeServer,
+];
 
 // I took this from https://jsperf.com/string-split-by-length/9
 String.prototype.splitSlice = function (len) {
-    let result = [];
-    for (let offset = 0, strLen = this.length; offset < strLen; offset += len) {
-        result.push(this.slice(offset, len + offset));
-    }
-    return result;
+  let result = [];
+  for (let offset = 0, strLen = this.length; offset < strLen; offset += len) {
+    result.push(this.slice(offset, len + offset));
+  }
+  return result;
 };
