@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node dist/src/index.js",
     "build": "tsc",
     "dev": "nodemon -e ts --exec \"(npm run build || exit 1) && npm run start --inspect\""
   },
@@ -28,7 +28,6 @@
     "lodash.clonedeep": "^4.5.0",
     "mongoose": "^5.8.9",
     "node-fetch": "^2.6.0",
-    "node-os-utils": "^1.2.2",
     "typescript-tslint-plugin": "^0.5.5",
     "zlib-sync": "^0.1.6"
   },
@@ -38,6 +37,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.2",
     "nodemon": "^1.19.4",
+    "ts-node": "^8.8.2",
     "tslint": "^6.1.1",
     "typescript": "^3.8.3"
   }

@@ -1,3 +1,5 @@
-// const commandHandler = require('../commandHandler');
+import commandHandler from '../utils/commandHandler';
 
-// module.exports = commandHandler;
+const messageUpdate = commandHandler;
+
+export default messageUpdate;
