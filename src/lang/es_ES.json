@@ -134,7 +134,7 @@
   },
   "functions": {
     "commandHandler": {
-      "invalidChannel": "No puedes ejecutar este comando en un canal {TYPE}"
+      "noDm": "No puedes ejecutar este comando por MD"
     },
     "counterTypes": [
       "Miembros",

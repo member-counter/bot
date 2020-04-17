@@ -134,7 +134,7 @@
   },
   "functions": {
     "commandHandler": {
-      "invalidChannel": "You can't run this command on a {TYPE} channel"
+      "noDm": "You can't run this command on a DM channel"
     },
     "counterTypes": [
       "Members",

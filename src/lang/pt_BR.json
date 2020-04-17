@@ -134,7 +134,7 @@
   },
   "functions": {
     "commandHandler": {
-      "invalidChannel": "Você não pode executar este comando em um {TYPE} canal"
+      "noDm": "Você não pode executar este comando em um MP canal"
     },
     "counterTypes": [
       "Membros",
@@ -150,7 +150,7 @@
       "Usuários offline",
       "Bots offline",
       "Membros banidos",
-      "Membros com o cargo"
+      "memberswithrole"
     ],
     "getCounts": {
       "onlyPremium": "Somente Premium",

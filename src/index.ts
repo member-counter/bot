@@ -2,7 +2,7 @@
 import * as Eris from 'eris';
 import mongoose from 'mongoose';
 import getEnv from './utils/getEnv';
-import injectEventHandlers from './injectEventHandlers';
+import injectEventHandlers from './utils/injectEventHandlers';
 
 const { PREMIUM_BOT, DISCORD_CLIENT_TOKEN, DB_URI } = getEnv();
 

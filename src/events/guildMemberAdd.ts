@@ -1,42 +1,38 @@
-// const updateCounter = require("../utils/updateCounter");
-// const fetchGuildSettings = require('../utils/fetchGuildSettings');
+import getEnv from '../utils/getEnv';
+import Eris from 'eris';
+import GuildService from '../services/GuildService';
 
-// const PREMIUM_BOT = JSON.parse(process.env.PREMIUM_BOT);
-// const { PREMIUM_BOT_ID } = process.env;
+const { PREMIUM_BOT_ID, PREMIUM_BOT } = getEnv();
 
-// module.exports = (client, guild, member) => {
+export default async (
+  client: Eris.Client,
+  guild: Eris.Guild,
+  member: Eris.Member,
+) => {
+  // Apply new permissions for the premium bot when it joins
+  if (!PREMIUM_BOT && member.id === PREMIUM_BOT_ID) {
+    const guildSettings = new GuildService(guild.id);
+    await guildSettings.init();
 
-//     // Apply new permissions for the premium bot when it joins
-//     if (!PREMIUM_BOT && member.id === PREMIUM_BOT_ID) {
-//         fetchGuildSettings(guild.id)
-//             .then(async (guildSettings) => {
-//                 if (guildSettings.premium) {
-//                     console.log(`Premium Bot joined in a premium guild, ${guild.name} (${guild.id}), applyign permissions for the enabled channels`);
-//                     const { channelNameCounters } = guildSettings;
+    if (guildSettings.premium) {
+      console.log(
+        `Premium Bot joined in a premium guild, ${guild.name} (${guild.id}), applyign permissions for the enabled channels`,
+      );
+      for (const [channelId] of guildSettings.counters) {
+        if (guild.channels.has(channelId)) {
+          const channel = guild.channels.get(channelId);
 
-//                     let successEdits = 0;
-
-//                     for (const [channelId] of channelNameCounters) {
-//                         const channel = guild.channels.get(channelId);
-
-//                         await channel
-//                             .editPermission(
-//                                 PREMIUM_BOT_ID,
-//                                 0x00100000 | 0x00000400,
-//                                 0,
-//                                 "member"
-//                             )
-//                             .then(() => successEdits++)
-//                             .catch(console.error);
-//                     }
-
-//                     console.log(`Edited ${successEdits} of ${channelNameCounters.size} channels successfully in the guild ${guild.name} (${guild.id})`);
-
-//                     guild.leave().catch(console.error);
-//                 }
-//             })
-//             .catch(console.error);
-//     }
-
-//     updateCounter({client, guildSettings: guild.id});
-// };
+          await channel
+            .editPermission(
+              PREMIUM_BOT_ID,
+              0x00100000 | 0x00000400,
+              0,
+              'member',
+            )
+            .catch(console.error);
+        }
+      }
+      guild.leave().catch(console.error);
+    }
+  }
+};
