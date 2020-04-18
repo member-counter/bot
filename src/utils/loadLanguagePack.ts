@@ -10,7 +10,7 @@ const languagePacks: object = {
   pt_BR,
 };
 
-export default (langCode: string) => {
+export default (langCode: string): any => {
   if (languagePacks[langCode]) {
     return clonedeep(languagePacks[langCode]);
   }

@@ -49,7 +49,8 @@
     },
     "prefix": {
       "helpDescription": "Muda o prefixo do bot.\n\nUso:```{PREFIX}prefix [novo prefixo]```",
-      "success": "Prefixo alterado para: `{NEW_PREFIX}`"
+      "success": "Prefixo alterado para: `{NEW_PREFIX}`",
+      "noPrefixProvided": "You must provide a prefix"
     },
     "role": {
       "helpDescription": "Você pode permitir ou bloquear cargos de usar os comandos administrativos do bot.\nVocê pode usar a palavra ``all`` para permitir ou bloquear todos os cargos.\nPara visualizar quais cargos possuem permissão atualmente use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
@@ -117,8 +118,8 @@
     },
     "profile": {
       "helpDescription": "Mostra informações relacionadas entre você e esse bot",
-      "premiumText": "Premium:",
-      "serverUpgradesAvailable": "Server upgrades left: {COUNT}"
+      "badges": "Badges",
+      "serverUpgradesAvailable": "Server upgrades left"
     },
     "counts": {
       "helpDescription": "Exibe alguns contadores",

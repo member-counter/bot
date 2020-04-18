@@ -17,8 +17,8 @@ export interface MemberCounterEnv {
   readonly PREMIUM_BOT_ID: string;
   readonly PREMIUM_BOT_INVITE: string;
   readonly DB_URI: string;
-  readonly WEBSITE_URI: string;
-  readonly DONATION_URI: string;
+  readonly WEBSITE_URL: string;
+  readonly DONATION_URL: string;
 
   // Bot stats
   readonly SEND_BOT_STATS: boolean;

@@ -1,5 +1,6 @@
 import GuildModel from '../models/GuildModel';
 import AvailableLanguages from '../typings/AvailableLanguages';
+import UserModel from '../models/UserModel';
 
 class GuildService {
   private doc: any;
@@ -66,7 +67,22 @@ class GuildService {
     grantorId: string,
   ): Promise<'success' | 'noUpgradesAvailable' | 'alreadyUpgraded'> {
     if (!this.isInitialized) this.errorNotInit();
-    // TODO
+    if (this.premium) return 'alreadyUpgraded';
+
+    const userDoc: any = await UserModel.findOneAndUpdate(
+      { user: grantorId },
+      {},
+      { new: true, upsert: true },
+    );
+
+    if (userDoc.availableServerUpgrades <= 0) return 'noUpgradesAvailable';
+
+    userDoc.availableServerUpgrades -= 1;
+    this.doc.premium = true;
+
+    await this.doc.save();
+    await userDoc.save();
+
     return 'success';
   }
 
@@ -100,9 +116,14 @@ class GuildService {
     return this.doc.counters;
   }
 
-  public async setCounter(channelId: string, data: string): Promise<void> {
+  public async setCounter(
+    channelId: string,
+    content: string,
+  ): Promise<Map<string, string>> {
     if (!this.isInitialized) this.errorNotInit();
-    // TODO
+    this.doc.counters.set(channelId, content);
+    await this.doc.save();
+    return this.counters;
   }
 
   public async deleteCounter(channelId: string): Promise<void> {
@@ -113,7 +134,12 @@ class GuildService {
 
   public async resetSettings(): Promise<void> {
     if (!this.isInitialized) this.errorNotInit();
-    // TODO
+    const premiumStatus = this.premium;
+    await GuildModel.findOneAndRemove({ guild: this.id });
+    this.doc = await GuildModel.create({
+      guild: this.id,
+      premium: premiumStatus,
+    });
   }
 }
 

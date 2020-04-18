@@ -30,4 +30,6 @@ const GuildSchema = new mongoose.Schema({
   customCounterDigits: { type: CustomNumbers, default: CustomNumbers },
 });
 
-export default mongoose.model('guilds', GuildSchema);
+const GuildModel = mongoose.model('guilds', GuildSchema);
+
+export default GuildModel;

@@ -52,8 +52,9 @@ const status: MemberCounterCommand = {
   aliases: ['uptime', 'status'],
   denyDm: false,
   onlyAdmin: false,
-  run: async ({ client, message }) => {
+  run: async ({ message }) => {
     const { channel } = message;
+    const { client } = channel;
     const { version } = packageJSON;
 
     const embed = embedBase({
@@ -140,8 +141,8 @@ const status: MemberCounterCommand = {
       ],
     });
 
-    client
-      .createMessage(channel.id, { embed })
+    channel
+      .createMessage({ embed })
       .then(async (message) => {
         // Git commit
         let commitHash: string = await new Promise((resolve) => {
@@ -168,4 +169,6 @@ const status: MemberCounterCommand = {
   },
 };
 
-export default [status];
+const statusCommands = [status];
+
+export default statusCommands;

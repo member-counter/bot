@@ -49,7 +49,8 @@
     },
     "prefix": {
       "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
-      "success": "Prefix changed to: `{NEW_PREFIX}`"
+      "success": "Prefix changed to: `{NEW_PREFIX}`",
+      "noPrefixProvided": "You must provide a prefix"
     },
     "role": {
       "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
@@ -117,8 +118,8 @@
     },
     "profile": {
       "helpDescription": "Shows related information between you and this bot",
-      "premiumText": "Premium:",
-      "serverUpgradesAvailable": "Server upgrades left: {COUNT}"
+      "badges": "Badges",
+      "serverUpgradesAvailable": "Server upgrades left"
     },
     "counts": {
       "helpDescription": "Shows some counts",
