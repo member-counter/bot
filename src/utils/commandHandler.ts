@@ -4,6 +4,7 @@ import Eris from 'eris';
 import GuildService from '../services/GuildService';
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import memberHasAdminPermission from './memberHasAdminPermission';
+import UserError from './UserError';
 
 const {
   PREMIUM_BOT,
@@ -14,9 +15,22 @@ const {
 
 // Commands
 import statusCommands from '../commands/status';
-import UserError from './UserError';
+import patpatCommands from '../commands/patpat';
+import userCommands from '../commands/user';
+import infoCommands from '../commands/info';
+import helpCommands from '../commands/help';
+import donateCommands from '../commands/donate';
+import settingsCommands from '../commands/settings';
 
-const commands: Array<MemberCounterCommand> = [...statusCommands];
+const commands: Array<MemberCounterCommand> = [
+  ...userCommands,
+  ...statusCommands,
+  ...patpatCommands,
+  ...infoCommands,
+  ...helpCommands,
+  ...donateCommands,
+  ...settingsCommands,
+];
 
 export default async (client: Eris.Client, message: Eris.Message) => {
   const { channel, author, content } = message;
@@ -76,7 +90,6 @@ export default async (client: Eris.Client, message: Eris.Message) => {
 
             try {
               command.run({
-                client,
                 message,
                 languagePack,
               });

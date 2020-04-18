@@ -1,1 +1,0 @@
-module.exports = (number) => ["text", "dm", "voice", "group dm", "category", "news", "store"][number];

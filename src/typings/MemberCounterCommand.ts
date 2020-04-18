@@ -1,13 +1,12 @@
-import { Client, Message } from 'eris';
+import { Message } from 'eris';
 
 interface runArgs {
-  client: Client;
   message: Message;
-  languagePack: object;
+  languagePack: any;
 }
 
 interface runFunction {
-  ({ client, message, languagePack }: runArgs): void;
+  ({ message, languagePack }: runArgs): void;
 }
 
 interface MemberCounterCommand {

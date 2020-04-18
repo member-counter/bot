@@ -49,7 +49,8 @@
     },
     "prefix": {
       "helpDescription": "Cambia el prefijo del bot.\n\nUso:```{PREFIX}prefix [nuevo prefijo]```",
-      "success": "Prefijo cambiado a: `{NEW_PREFIX}`"
+      "success": "Prefijo cambiado a: `{NEW_PREFIX}`",
+      "noPrefixProvided": "Debes proporcionar un prefijo"
     },
     "role": {
       "helpDescription": "Puedes permitir o denegar el uso de comandos administrativos a roles que concretes\nTambien puedes referirte a todos con la palabra ``all``\nPara ver los roles permitidos usa ``{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
@@ -117,8 +118,8 @@
     },
     "profile": {
       "helpDescription": "Muestra información relacionada entre tu y el bot",
-      "premiumText": "Premium:",
-      "serverUpgradesAvailable": "Server upgrades left: {COUNT}"
+      "badges": "Insignias",
+      "serverUpgradesAvailable": "Server upgrades left"
     },
     "counts": {
       "helpDescription": "Muestra algunos contadores",

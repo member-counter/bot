@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
   user: { type: String, require: true },
-  premium: { type: Boolean, default: false },
+  badges: { type: Number, default: 0 },
   availableServerUpgrades: { type: Number, default: 0 },
 });
 
