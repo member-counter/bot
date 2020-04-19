@@ -1,9 +1,6 @@
 {
   "langCode": "en_US",
   "langName": "English (US)",
-  "authors": [
-    "343884247263608832"
-  ],
   "commands": {
     "help": {
       "helpDescription": "It's really necessary to explain the purpose of this command?",
@@ -139,22 +136,6 @@
     "commandHandler": {
       "noDm": "You can't run this command on a DM channel"
     },
-    "counterTypes": [
-      "Members",
-      "Users",
-      "Bots",
-      "Roles",
-      "Channels",
-      "Connected users",
-      "Online members",
-      "Online users",
-      "Online bots",
-      "Offline members",
-      "Offline users",
-      "Offline bots",
-      "Banned members",
-      "memberswithrole"
-    ],
     "getCounts": {
       "onlyPremium": "Only Premium",
       "noBanPerms": "I need ban permissions to show this"
