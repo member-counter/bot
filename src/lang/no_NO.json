@@ -1,0 +1,151 @@
+{
+  "langCode": "en_US",
+  "langName": "English (US)",
+  "commands": {
+    "help": {
+      "helpDescription": "It's really necessary to explain the purpose of this command?",
+      "embedReply": {
+        "title": "Command list | prefix: {PREFIX}",
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}counts\n{PREFIX}newChannelNameCounter [type] (custom channel name)\n{PREFIX}newCategoryNameCounter [type] (custom category name)\n{PREFIX}topicCounter [enable/disable] (#channels/all)\n{PREFIX}setTopic (#channels) [topic]\n{PREFIX}removeTopic (#channel)\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
+      },
+      "misc": {
+        "command": "Command:"
+      }
+    },
+    "newChannelNameCounter": {
+      "helpDescription": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below\n\nAvailable types:\n-`members`\n-`users`*\n-`bots`*\n-`onlinemembers`*\n-`onlineusers`*\n-`onlinebots`*\n-`offlinemembers`*\n-`offlineusers`*\n-`offlinebots`*\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`*\n-`connectedusers`*\n* = Only available in the premium bot, see `{PREFIX}help upgradeServer`\n\n The second argument is optional, it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nYou can also create a category name counter, the options are the same, just replace the command to `{PREFIX}newCategoryNameCounter`\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```\nCount how many users has a role or roles:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
+      "success": "Created successfully",
+      "noPerms": "I need `Manage Channels` permission to create the channel.",
+      "noPermsBan": "I need `Ban members` permission to create the channel.",
+      "errorInvalidParams": "Error: Invalid parameters, `more info: {PREFIX}help newChannelNameCounter`."
+    },
+    "newCategoryNameCounter": {
+      "helpDescription": "Please, check `{PREFIX}help newChannelNameCounter`"
+    },
+    "topicCounter": {
+      "helpDescription": "Usage:```css\n{PREFIX}topicCounter [enable/disable] (#channels/all)```\nThis command displays a real time member counter in a channel topic\n\nExamples:\n```css\n{PREFIX}topicCounter enable\n{PREFIX}topicCounter enable #general\n{PREFIX}topicCounter enable #general #other-channel\n{PREFIX}topicCounter disable all```\n**!**  If you don't mention any channel like in the first example, the counter will be enabled/disabled in the current channel\n **!**  When you mention a channel it must match exactly its name, and you must use `#`",
+      "successEnable": "The counter has been enabled on {CHANNELS}",
+      "successDisable": "The counter has been disabled on {CHANNELS}",
+      "errorInvalidParams": "Invalid parameters, see `{PREFIX}!help topicCounter`."
+    },
+    "setDigit": {
+      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
+      "success": "Digit customized.",
+      "resetSuccess": "Numbers restored to the default ones.",
+      "errorMissingParams": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
+    },
+    "setTopic": {
+      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nYou can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n`{COUNT}` will show how many members your server has, you can use any of these counters instead:\n-`{members}`\n-`{users}`*\n-`{bots}`*\n-`{onlinemembers}`*\n-`{onlineusers}`*\n-`{onlinebots}`*\n-`{offlinemembers}`*\n-`{offlineusers}`*\n-`{offlinebots}`*\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`*\n* = Only available in the premium bot, see `{PREFIX}help upgradeServer`\n\nExamples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
+      "success": "Topic customized for all channels without a custom one.",
+      "successUnique": "Topic customized for the following channels: {CHANNELS}",
+      "noTopic": "No topic were provided, more info: `{PREFIX}help setTopic`."
+    },
+    "removeTopic": {
+      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nThis command removes channel topics that has been customized, here is a list of examples:\n\nRemoves the customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topics that has been established by mentioning channels```{PREFIX}removeTopic #general #other-channel```",
+      "success": "Global topic restored.",
+      "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
+      "errorMissingParams": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
+    },
+    "prefix": {
+      "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
+      "success": "Prefix changed to: `{NEW_PREFIX}`",
+      "noPrefixProvided": "You must provide a prefix"
+    },
+    "role": {
+      "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "rolesUpdated": "Roles updated.",
+      "errorNoRolesToUpdate": "You must mention at least 1 role",
+      "invalidParams": "Invalid parameters, see `{PREFIX}help role`"
+    },
+    "seeSettings": {
+      "helpDescription": "Shows all bot settings for this server.",
+      "settingsMessage": {
+        "prefixText": "Prefix:",
+        "langText": "Language:",
+        "premiumText": "Premium:",
+        "premiumNoTierText": "No",
+        "premiumConfirmedText": "Yes",
+        "allowedRolesText": "Allowed roles to use administrative commands:",
+        "headerText": "Settings for guild:",
+        "enabledChannelNameCountersText": "Channel Name Counters/Category name counters:",
+        "miscType": "Type:",
+        "enabledChannelTopicCountersText": "Channel Topic Counters:",
+        "mainTopicText": "Global topic (used for those without a custom one):",
+        "customTopicsByChannelText": "Custom topics by channel:",
+        "customNumbersText": "Custom numbers:",
+        "warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
+      }
+    },
+    "resetSettings": {
+      "helpDescription": "Restores the custom settings of this server to the default ones",
+      "done": "Restored to default settings"
+    },
+    "update": {
+      "helpDescription": "If you think the counters are stuck use this command to update them again.",
+      "inProgress": "Updating the counters, this may take a while.",
+      "success": "Done.",
+      "wait": "Wait! I'm already updating it!"
+    },
+    "upgradeServer": {
+      "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating any amount: `{PREFIX}donate`.",
+      "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
+      "noPremiumAccount": "You must have a premium account.",
+      "errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
+      "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+    },
+    "info": {
+      "helpDescription": "List of useful links",
+      "embedReply": {
+        "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+      }
+    },
+    "lang": {
+      "helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
+      "success": "Language changed successfully.",
+      "errorNotFound": "I didn't find that language, try one of the following:"
+    },
+    "donate": {
+      "helpDescription": "Shows the top donations.",
+      "embedReply": {
+        "title": "Enjoying my bot? Donate me! (Click here)",
+        "fields": []
+      },
+      "misc": {
+        "emptyNote": "Empty note"
+      },
+      "errorExchangeFetch": "Error while trying to fetch exchange rates"
+    },
+    "profile": {
+      "helpDescription": "Shows related information between you and this bot",
+      "badges": "Badges",
+      "serverUpgradesAvailable": "Server upgrades left"
+    },
+    "counts": {
+      "helpDescription": "Shows some counts",
+      "members": "Members:",
+      "onlineMembers": "Online members:",
+      "offlineMembers": "Offline members",
+      "bots": "Bots:",
+      "connectedUsers": "Connected users:",
+      "channels": "Channels:",
+      "roles": "Roles:",
+      "authorText": "by eduardozgz#5695"
+    }
+  },
+  "functions": {
+    "commandHandler": {
+      "noDm": "You can't run this command on a DM channel"
+    },
+    "getCounts": {
+      "onlyPremium": "Only Premium",
+      "noBanPerms": "I need ban permissions to show this"
+    }
+  },
+  "common": {
+    "error": "Error",
+    "errorDb": "Database error, try again later",
+    "errorUnknown": "Something went wrong, try again later.",
+    "errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
+    "noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+  }
+}
