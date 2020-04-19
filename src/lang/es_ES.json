@@ -1,7 +1,6 @@
 {
   "langCode": "es_ES",
   "langName": "Español (ES)",
-  "authors": ["343884247263608832"],
   "commands": {
     "help": {
       "helpDescription": "¿Es realmente necesario explicar el propósito de este comando?",
@@ -44,7 +43,7 @@
     "removeTopic": {
       "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nEste comando borra y restablece los temas de los canales especificados, aquí hay una lista de ejemplos:\n\nRestablece el tema personalizado para aquellos sin uno especifico por canal:```{PREFIX}removeTopic```\nBorra los temas personalizados por canal y se usara el tema principal```{PREFIX}removeTopic #general #otro-canal```",
       "success": "Tema global restablecido.",
-      "successUnique": "Temas personalizado por canal restablecido en los canales: {CHANNELS}",
+      "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
       "errorMissingParams": "Error: Faltan parámetros, más info: `{PREFIX}help removeTopic`."
     },
     "prefix": {
@@ -137,22 +136,6 @@
     "commandHandler": {
       "noDm": "No puedes ejecutar este comando por MD"
     },
-    "counterTypes": [
-      "Miembros",
-      "Usuarios",
-      "Bots",
-      "Roles",
-      "Canales",
-      "Usuarios conectados",
-      "Miembros online",
-      "Usuarios online",
-      "Bots online",
-      "Miembros offline",
-      "Usuarios offline",
-      "Bots offline",
-      "Banned members",
-      "memberswithrole"
-    ],
     "getCounts": {
       "onlyPremium": "Solo Premium",
       "noBanPerms": "Necesito permisos de ban para mostrar esto"

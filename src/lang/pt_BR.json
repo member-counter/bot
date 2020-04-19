@@ -1,7 +1,6 @@
 {
   "langCode": "pt_BR",
   "langName": "Português (BR)",
-  "authors": ["174504559396257793"],
   "commands": {
     "help": {
       "helpDescription": "É realmente necessário explicar o propósito desse comando?",
@@ -44,7 +43,7 @@
     "removeTopic": {
       "helpDescription": "Você deveria ver `{PREFIX}help topicCounter` antes de usar esse comando.\nEste comando remove os tópicos do canal que foram personalizados, aqui está uma lista de exemplos:\n\nRemove o tópico personalizado para canais sem tópico específico:```{PREFIX} removeTopic```\nRemova tópicos específicos que foi estabelecido mencionando os canais```{PREFIX}removeTopic #general #other-channel```",
       "success": "Tópico removido com sucesso.",
-      "successUnique": "Tópico exclusivo removido para os seguintes canais: {CHANNELS}",
+      "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
       "errorMissingParams": "Erro: parâmetros ausentes, mais informações:`{PREFIX}help removeTopic`."
     },
     "prefix": {
@@ -137,22 +136,6 @@
     "commandHandler": {
       "noDm": "Você não pode executar este comando em um MP canal"
     },
-    "counterTypes": [
-      "Membros",
-      "Usuários",
-      "Bots",
-      "Funções",
-      "Canais",
-      "Usuários conectados",
-      "Membros online",
-      "Usuário online",
-      "Bots online",
-      "Membros offline",
-      "Usuários offline",
-      "Bots offline",
-      "Membros banidos",
-      "memberswithrole"
-    ],
     "getCounts": {
       "onlyPremium": "Somente Premium",
       "noBanPerms": "Eu preciso ter permissão de bans para mostrar isso"
