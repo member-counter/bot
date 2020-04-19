@@ -1,9 +1,6 @@
 {
   "langCode": "es_ES",
   "langName": "Español (ES)",
-  "authors": [
-    "343884247263608832"
-  ],
   "commands": {
     "help": {
       "helpDescription": "¿Es realmente necesario explicar el propósito de este comando?",
@@ -139,22 +136,6 @@
     "commandHandler": {
       "noDm": "No puedes ejecutar este comando por MD"
     },
-    "counterTypes": [
-      "Miembros",
-      "Usuarios",
-      "Bots",
-      "Roles",
-      "Canales",
-      "Usuarios conectados",
-      "Miembros online",
-      "Usuarios online",
-      "Bots online",
-      "Miembros offline",
-      "Usuarios offline",
-      "Bots offline",
-      "Banned members",
-      "memberswithrole"
-    ],
     "getCounts": {
       "onlyPremium": "Solo Premium",
       "noBanPerms": "Necesito permisos de ban para mostrar esto"
