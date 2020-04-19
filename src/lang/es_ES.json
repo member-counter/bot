@@ -6,7 +6,7 @@
       "helpDescription": "¿Es realmente necesario explicar el propósito de este comando?",
       "embedReply": {
         "title": "Lista de comandos | prefijo: {PREFIX}",
-        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentación:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nombre del comando)\n{PREFIX}counts\n{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)\n{PREFIX}newCategoryNameCounter [type] (nombre personalizado)\n{PREFIX}topicCounter [enable/disable] (#canales/all)\n{PREFIX}setTopic (#canales) [tema]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio."
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentación:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nombre del comando)\n{PREFIX}counts\n{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)\n{PREFIX}newCategoryNameCounter [tipo] (nombre personalizado)\n{PREFIX}topicCounter [enable/disable] (#canales/all)\n{PREFIX}setTopic (#canales) [tema]\n{PREFIX}removeTopic (#canal)\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio"
       },
       "misc": {
         "command": "Comando:"
@@ -14,7 +14,7 @@
     },
     "newChannelNameCounter": {
       "helpDescription": "Crea un canal que tiene un contador en su nombre.\nUso: ```{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)```\nEl primer parámetro debe ser uno de la lista de abajo.\n\nTipos disponibles:\n-`members`\n-`users`*\n-`bots`*\n-`onlinemembers`*\n-`onlineusers`*\n-`onlinebots`*\n-`offlinemembers`*\n-`offlineusers`*\n-`offlinebots`*\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`*\n-`connectedusers`*\n* = Solo disponible en el bot premium, mira `{PREFIX}help upgradeServer`\n\nEl segundo paremetro es opcional, sirve para poner un nombre personalizado en el canal, recuerda escribir `{COUNT}` donde quieras colocar el contador.\n\nTambien puedes crear un contador en el nombre de una categoria, tiene las mismas opciones, simplemente usa en su lugar el comando `{PREFIX}newCategoryNameCounter`\n\nContador que cuenta miembros:```{PREFIX}newChannelNameCounter members```\n El mismo pero con un nombre personalizado:```{PREFIX}newChannelNameCounter members Miembros: {COUNT}```\nContar cuantos usuarios tienen un rol:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
-      "success": "Creado correctamente.",
+      "success": "Creado correctamente",
       "noPerms": "Necesito el permiso `Gestionar canales` para crear el canal.",
       "noPermsBan": "Necesito el permiso `Banear miembros` para crear el canal.",
       "errorInvalidParams": "Error: Parámetros no validos, `más info: {PREFIX}help newChannelNameCounter`."
@@ -31,11 +31,11 @@
     "setDigit": {
       "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nPersonaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
       "success": "Número personalizado correctamente.",
-      "resetSuccess": "Todos los numeros han sido reestablecidos",
+      "resetSuccess": "Todos los numeros han sido reestablecidos.",
       "errorMissingParams": "Error: Faltan parámetros, `más info: {PREFIX}help setDigit`."
     },
     "setTopic": {
-      "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nPuedes cambiar el tema de canal con este comando, recuerda escribir `{COUNT}` donde quieras colocar el contador. También puedes poner un tema especifico por canal\n\nSi el primer parámetro son menciones de canal, el tema que especifiques después solo sera usado en los canales que hayas mencionado, (recuerda mencionar canales con ``#``).\n\n`{COUNT}` mostrará cuantos miembros hay en tu servidor, puedes usar cualquiera de estos contadores en su lugar:\n-`{members}`\n-`{users}`*\n-`{bots}`*\n-`{onlinemembers}`*\n-`{onlineusers}`*\n-`{onlinebots}`*\n-`{offlinemembers}`*\n-`{offlineusers}`*\n-`{offlinebots}`*\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`*\n* = Solo disponible en el bot premium, mira `{PREFIX}help upgradeServer`\n\nEjemplos:\n\nEste especificara el tema para todos los canales sin uno especifico```{PREFIX}setTopic Miembros actuales: {COUNT}```\nEste establecerá el tema concretado en solo en los primeros canales que hayas especificado```{PREFIX}setTopic #general Miembros actuales: {COUNT}\n{PREFIX}setTopic #general #otro-canal Miembros actuales: {COUNT}```",
+      "helpDescription": "Deberíasmirar `{PREFIX}help topicCounter` antes de usar este comando.\nPuedes cambiar el tema de canal con este comando, recuerda escribir `{COUNT}` donde quieras colocar el contador. También puedes poner un tema especifico por canal\n\nSi el primer parámetro son menciones de canal, el tema que especifiques después solo sera usado en los canales que hayas mencionado, (recuerda mencionar canales con ``#``).\n\n`{COUNT}` mostrará cuantos miembros hay en tu servidor, puedes usar cualquiera de estos contadores en su lugar:\n-`{members}`\n-`{users}`*\n-`{bots}`*\n-`{onlinemembers}`*\n-`{onlineusers}`*\n-`{onlinebots}`*\n-`{offlinemembers}`*\n-`{offlineusers}`*\n-`{offlinebots}`*\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`*\n* = Solo disponible en el bot premium, mira `{PREFIX}help upgradeServer`\n\nEjemplos:\n\nEste especificara el tema para todos los canales sin uno especifico```{PREFIX}setTopic Miembros actuales: {COUNT}```\nEste establecerá el tema concretado en solo en los primeros canales que hayas especificado```{PREFIX}setTopic #general Miembros actuales: {COUNT}\n{PREFIX}setTopic #general #otro-canal Miembros actuales: {COUNT}```",
       "success": "Tema establecido para todos los canales sin uno personalizado.",
       "successUnique": "Tema establecido para los siguientes canales: {CHANNELS}",
       "noTopic": "Ningún tema fue proporcionado, más info: `{PREFIX}help setTopic`."
@@ -43,7 +43,7 @@
     "removeTopic": {
       "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nEste comando borra y restablece los temas de los canales especificados, aquí hay una lista de ejemplos:\n\nRestablece el tema personalizado para aquellos sin uno especifico por canal:```{PREFIX}removeTopic```\nBorra los temas personalizados por canal y se usara el tema principal```{PREFIX}removeTopic #general #otro-canal```",
       "success": "Tema global restablecido.",
-      "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
+      "success_unique": "Tema personalizado eliminado en los siguientes canales: {CHANNELS}",
       "errorMissingParams": "Error: Faltan parámetros, más info: `{PREFIX}help removeTopic`."
     },
     "prefix": {
@@ -52,22 +52,22 @@
       "noPrefixProvided": "Debes proporcionar un prefijo"
     },
     "role": {
-      "helpDescription": "Puedes permitir o denegar el uso de comandos administrativos a roles que concretes\nTambien puedes referirte a todos con la palabra ``all``\nPara ver los roles permitidos usa ``{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "helpDescription": "Puedes permitir o denegar el uso de comandos administrativos a roles que concretes\nTambién puedes referirte a todos con la palabra ``all``\nPara ver los roles permitidos usa ``{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
       "rolesUpdated": "Roles actualizados.",
-      "errorNoRolesToUpdate": "Debes mencionar al menos un rol.",
-      "invalidParams": "Parámetros invalidos, más info: `{PREFIX}help role`"
+      "errorNoRolesToUpdate": "Debes mencionar al menos un rol",
+      "invalidParams": "Parámetros inválidos, más info: `{PREFIX}help role`"
     },
     "seeSettings": {
       "helpDescription": "Muestra todos los ajustes del bot para este servidor.",
       "settingsMessage": {
         "prefixText": "Prefijo:",
-        "langText": "Idioma: ",
+        "langText": "Idioma:",
         "premiumText": "Premium:",
         "premiumNoTierText": "No",
         "premiumConfirmedText": "Sí",
-        "allowedRolesText": "Roles que estan autorizados a usar comandos administrativos:",
+        "allowedRolesText": "Roles que están autorizados a usar comandos administrativos:",
         "headerText": "Ajustes para el servidor:",
-        "enabledChannelNameCountersText": "Contadores en nombre de canal/Contadores en nombre de categoria:",
+        "enabledChannelNameCountersText": "Contadores en nombre de canal/Contadores en nombre de categoría:",
         "miscType": "Tipo:",
         "enabledChannelTopicCountersText": "Contadores en tema de canal:",
         "mainTopicText": "Tema global (para aquellos que no tienen uno personalizado):",
@@ -77,7 +77,7 @@
       }
     },
     "resetSettings": {
-      "helpDescription": "Restablece los ajustes del bot para este servidor a los de por defecto.",
+      "helpDescription": "Restablece los ajustes del bot para este servidor a los de por defecto",
       "done": "Restablecido a los ajustes por defecto"
     },
     "update": {
@@ -96,7 +96,7 @@
     "info": {
       "helpDescription": "Lista de enlaces útiles",
       "embedReply": {
-        "description": "[Añademe a tu servidor]({BOT_INVITE_URL})\n[Servidor de ayuda]({BOT_SERVER_URL})\n[Repositorio de GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Donaciones]({DONATION_URL})"
+        "description": "[Añádeme a tu servidor]({BOT_INVITE_URL})\n[Servidor de ayuda]({BOT_SERVER_URL})\n[Repositorio de GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Donaciones]({DONATION_URL})"
       }
     },
     "lang": {
@@ -111,14 +111,14 @@
         "fields": []
       },
       "misc": {
-        "emptyNote": "Nota vacia"
+        "emptyNote": "Nota vacía"
       },
-      "errorExchangeFetch": "Error mientras intentaba obtener los cambios de divisa."
+      "errorExchangeFetch": "Error mientras intentaba obtener los cambios de divisa"
     },
     "profile": {
       "helpDescription": "Muestra información relacionada entre tu y el bot",
       "badges": "Insignias",
-      "serverUpgradesAvailable": "Server upgrades left"
+      "serverUpgradesAvailable": "Mejoras de servidor restantes"
     },
     "counts": {
       "helpDescription": "Muestra algunos contadores",
@@ -128,8 +128,7 @@
       "bots": "Bots:",
       "connectedUsers": "Usuarios conectados:",
       "channels": "Canales:",
-      "roles": "Roles:",
-      "authorText": "por eduardozgz#5695"
+      "roles": "Roles:"
     }
   },
   "functions": {
@@ -143,7 +142,7 @@
   },
   "common": {
     "error": "Error",
-    "errorDb": "Error en la base de datos, prueba de nuevo mas tarde.",
+    "errorDb": "Error en la base de datos, prueba de nuevo mas tarde",
     "errorUnknown": "Algo fue mal, prueba de nuevo mas tarde.",
     "errorNoAdmin": "Solo miembros con permisos de administrador en este canal pueden usar este comando.",
     "noTopicCounterEnabled": "Parece ser que aun no has habilitado ningún contador en un tema de canal, mira `{PREFIX}help topicCounter`"
