@@ -58,9 +58,9 @@ const user: MemberCounterCommand = {
         const { badges, availableServerUpgrades } = userSettings;
 
         const embed = embedBase({
-          title: `${targetUser.username}#${targetUser.discriminator}`,
-          thumbnail: {
-            url: targetUser.dynamicAvatarURL(),
+          author: {
+            icon_url: targetUser.dynamicAvatarURL(),
+            name: `${targetUser.username}#${targetUser.discriminator}`,
           },
           fields: [
             {
