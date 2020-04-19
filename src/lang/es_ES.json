@@ -43,7 +43,7 @@
     "removeTopic": {
       "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nEste comando borra y restablece los temas de los canales especificados, aquí hay una lista de ejemplos:\n\nRestablece el tema personalizado para aquellos sin uno especifico por canal:```{PREFIX}removeTopic```\nBorra los temas personalizados por canal y se usara el tema principal```{PREFIX}removeTopic #general #otro-canal```",
       "success": "Tema global restablecido.",
-      "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
+      "success_unique": "Tema personalizado eliminado en los siguientes canales: {CHANNELS}",
       "errorMissingParams": "Error: Faltan parámetros, más info: `{PREFIX}help removeTopic`."
     },
     "prefix": {
