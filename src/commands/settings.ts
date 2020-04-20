@@ -66,6 +66,13 @@ const seeSettings: MemberCounterCommand = {
       );
       appendContent(`${prefixText} \`${prefix}\`\n`);
       appendContent(`${langText} \`${language}\`\n`);
+
+      appendContent(
+        `${allowedRolesText} ${allowedRoles
+          .map((role) => `<@&${role}>`)
+          .join(' ')}`,
+      );
+
       appendContent(`\n${countersText}\n`);
       for (const [counter, content] of counters) {
         const discordChannel = guild.channels.get(counter);
