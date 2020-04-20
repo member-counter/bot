@@ -13,15 +13,15 @@
       }
     },
     "setDigit": {
-      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
-      "success": "Digit customized.",
-      "resetSuccess": "Numbers restored to the default ones.",
-      "errorMissingParams": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
+      "helpDescription": "Вы должны просмотреть `{PREFIX}help topicCounter` перед тем, как использовать эту команду.\nКастомизирует цифры, которые будут выведены. Number аргумент должен быть нормальным числом, второй же аргумент может быть чем угодно, например эмоджи или нормальным числом с использованием языка разметки 'маркдаун'.\nЕсли же первым аргументом вы зададите значение \"reset\", все числа будут возвращены в состояние по умолчанию.\n\nИспользование: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nПример: ```{PREFIX}setDigit 3 **3**```\nС прошлым примером все 3 будут показываться как жирные **3**",
+      "success": "Цифра кастомизирована успешно.",
+      "resetSuccess": "Числа восстановлены к значению по умолчанию.",
+      "errorMissingParams": "Ошибка: недостаточно параметров, `больше информации: {PREFIX}help setDigit`."
     },
     "prefix": {
-      "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
-      "success": "Prefix changed to: `{NEW_PREFIX}`",
-      "noPrefixProvided": "You must provide a prefix"
+      "helpDescription": "Меняет префикс бота.\n\nИспользование: ```{PREFIX}prefix [new prefix]```",
+      "success": "Префикс изменён на: `{NEW_PREFIX}`",
+      "noPrefixProvided": "Вы должны указать префикс"
     },
     "role": {
       "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
