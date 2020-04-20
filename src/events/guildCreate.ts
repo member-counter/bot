@@ -6,6 +6,7 @@ const { PREMIUM_BOT_ID, PREMIUM_BOT, FOSS_MODE } = getEnv();
 
 const regionRelation = {
   brazil: 'pt_BR',
+  russia: 'ru_RU',
 };
 
 const guildCreate = async (guild: Eris.Guild) => {

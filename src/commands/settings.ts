@@ -20,122 +20,66 @@ const seeSettings: MemberCounterCommand = {
   run: async ({ message, languagePack }) => {
     const { channel } = message;
 
-    channel.createMessage('Not ready yet - WIP');
-    return;
+    if (channel instanceof GuildChannel) {
+      const { guild } = channel;
+      const {
+        headerText,
+        prefixText,
+        langText,
+        premiumText,
+        premiumNoTierText,
+        premiumConfirmedText,
+        allowedRolesText,
+        countersText,
+        customNumbersText,
+        warningNoPermsText,
+      } = languagePack.commands.seeSettings.settingsMessage;
 
-    //   const { guild } = channel;
-    //   const {
-    //     langText,
-    //     prefixText,
-    //     premiumText,
-    //     premiumNoTierText,
-    //     premiumConfirmedText,
-    //     allowedRolesText,
-    //     headerText,
-    //     enabledChannelNameCountersText,
-    //     miscType,
-    //     enabledChannelTopicCountersText,
-    //     mainTopicText,
-    //     customNumbersText,
-    //     warningNoPermsText,
-    //   } = languagePack.commands.seeSettings.settingsMessage;
-    //   const {
-    //     prefix,
-    //     premium,
-    //     lang,
-    //     allowedRoles,
-    //     channelNameCounters,
-    //     topicCounterChannels,
-    //     mainTopicCounter,
-    //     topicCounterCustomNumbers,
-    //   } = guildSettings;
+      const guildSettings = new GuildService(guild.id);
+      await guildSettings.init();
 
-    //   // ==Build the message==
-    //   let messageToSend = '';
+      const {
+        prefix,
+        premium,
+        language,
+        allowedRoles,
+        counters,
+        digits,
+      } = guildSettings;
+      let guildHasWarning: boolean = false;
+      const messagesToSend: string[] = [''];
+      const appendContent = (content: string) => {
+        const lastMessagePart = messagesToSend[messagesToSend.length - 1];
+        if ((lastMessagePart + content).length > 2048) {
+          messagesToSend.push(content);
+        } else {
+          messagesToSend[messagesToSend.length - 1] += content;
+        }
+      };
 
-    //   messageToSend += `${header_text} ${guild.name} \`(${guild.id})\`\n\n`;
+      // Build Message
+      appendContent(`**${headerText}** ${guild.name} \`${guild.id}\`\n`);
+      appendContent(
+        `${premiumText} ${
+          premium ? premiumConfirmedText : premiumNoTierText
+        }\n`,
+      );
+      appendContent(`${prefixText} \`${prefix}\`\n`);
+      appendContent(`${langText} \`${language}\`\n`);
+      appendContent(`\n${countersText}\n`);
+      for (const [counter, content] of counters) {
+        const discordChannel = guild.channels.get(counter);
+        const { name, type } = discordChannel;
+        const icon = ['\\#️⃣', ' ', '\\🔊', ' ', '\\📚', '\\📢', ' '];
+        appendContent(` - ${icon[type]} ${name} \`${counter}\`: ${content}\n`);
+      }
+      appendContent(`\n${customNumbersText}`);
+      appendContent(` ${digits.join(' ')}`);
 
-    //   messageToSend += `${premium_text} ${
-    //     premium ? premium_confirmed_text : premium_no_tier_text
-    //   }\n`;
-
-    //   //prefix and language
-
-    //   messageToSend += `${prefix_text} ${prefix}\n`;
-    //   messageToSend += `${lang_text} \`${lang}\` \\➡ ${languagePack.lang_name}\n\n`;
-
-    //   //Allowed roles for administrative commands
-    //   if (allowedRoles.length > 0) {
-    //     let allowed_roles = '';
-    //     allowedRoles.forEach((role_id) => {
-    //       if (guild.roles.has(role_id)) allowed_roles += ' <@&' + role_id + '>';
-    //     });
-    //     messageToSend += `${allowed_roles_text} ${allowed_roles}\n`;
-    //   }
-
-    //   //channel name counters:
-    //   if (channelNameCounters.size > 0) {
-    //     messageToSend += `${enabled_channel_name_counters_text}\n`;
-
-    //     channelNameCounters.forEach((channelNameCounter, channelId) => {
-    //       const warningCheck = !botHasPermsToEditChannel(
-    //         client,
-    //         guild.channels.get(channelId),
-    //       )
-    //         ? '\\⚠️ '
-    //         : '';
-
-    //       messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` \\➡ ${misc_type} \`${channelNameCounter.type}\``;
-    //       if (channelNameCounter.type === 'memberswithrole') {
-    //         messageToSend += ' \\➡ ';
-    //         channelNameCounter.otherConfig.roles.forEach((roleId) => {
-    //           messageToSend += ' <@&' + roleId + '>';
-    //         });
-    //       }
-    //       messageToSend += '\n';
-    //     });
-
-    //     messageToSend += '\n';
-    //   }
-
-    //   //channel topic counters:
-    //   if (topicCounterChannels.size > 0) {
-    //     messageToSend += `${enabled_channel_topic_counters_text}\n`;
-
-    //     topicCounterChannels.forEach((topicCounterChannel, channelId) => {
-    //       const warningCheck = !botHasPermsToEditChannel(
-    //         client,
-    //         guild.channels.get(channelId),
-    //       )
-    //         ? '\\⚠️ '
-    //         : '';
-
-    //       messageToSend += `\\• ${warningCheck}<#${channelId}> \`(${channelId})\` ${
-    //         topicCounterChannel.topic ? `\\➡ ${topicCounterChannel.topic}` : ''
-    //       }\n`;
-    //     });
-
-    //     messageToSend += '\n';
-    //   }
-
-    //   //Main topic for topic counters
-    //   messageToSend += `${main_topic_text} \`\`\`${mainTopicCounter}\`\`\``;
-
-    //   //numbers
-    //   messageToSend += `\n${custom_numbers_text}\n`;
-
-    //   Object.entries(topicCounterCustomNumbers.toObject()).forEach(
-    //     (number, i) => {
-    //       messageToSend += `${i} \\➡ ${number[1]}\n`;
-    //     },
-    //   );
-
-    //   messageToSend += `\n${warning_no_perms_text}`;
-
-    //   //send in various messages
-    //   messageToSend.splitSlice(2000).forEach((part) => {
-    //     client.createMessage(channel.id, part).catch(console.error);
-    //   });
+      for (const message of messagesToSend) {
+        await channel.createMessage(message);
+      }
+    }
   },
 };
 
@@ -189,7 +133,7 @@ const lang: MemberCounterCommand = {
     if (message.channel instanceof GuildChannel) {
       const { content, channel } = message;
       const { guild } = channel;
-      const availableLanguages = ['es_ES', 'pt_BR', 'en_US'];
+      const availableLanguages = ['es_ES', 'pt_BR', 'en_US', 'ru_RU'];
       const [command, languageRequested]: any[] = content.split(/\s+/);
       let { errorNotFound, success } = languagePack.commands.lang;
 
@@ -235,9 +179,7 @@ const prefix: MemberCounterCommand = {
           )
           .catch(console.error);
       } else {
-        channel
-          .createMessage(languagePack.commands.prefix.noPrefixProvided)
-          .catch(console.error);
+        channel.createMessage(languagePack.commands.prefix.noPrefixProvided);
       }
     }
   },
@@ -250,74 +192,64 @@ const role: MemberCounterCommand = {
   run: async ({ message, languagePack }) => {
     const { channel, content, roleMentions } = message;
 
-    channel.createMessage('Not ready yet - WIP');
-    return;
+    if (channel instanceof GuildChannel) {
+      const { guild } = channel;
+      const [command, action] = content.toLowerCase().split(/\s+/);
+      const guildSettings = new GuildService(guild.id);
+      await guildSettings.init();
 
-    // if (channel instanceof GuildChannel) {
-    //   const { guild } = channel;
-    //   const [command, action] = content.toLowerCase().split(/\s+/);
-    //   const rolesToPerformAction = roleMentions;
+      let rolesMentioned: string[] = roleMentions;
+      let newAllowedRoles: string[] = guildSettings.allowedRoles;
 
-    //   const saveConfig = () => {
-    //     if (rolesToPerformAction.length > 0 || /all(\s|$)/g.test(content)) {
-    //       guildSettings.save().then(() => {
-    //         client
-    //           .createMessage(
-    //             channel.id,
-    //             languagePack.commands.role.rolesUpdated,
-    //           )
-    //           .catch(console.error);
-    //       });
-    //     } else {
-    //       client
-    //         .createMessage(
-    //           channel.id,
-    //           languagePack.commands.role.error_no_roles_to_update,
-    //         )
-    //         .catch(console.error);
-    //     }
-    //   };
+      switch (action) {
+        case 'allow':
+          if (/all(\s|$)/g.test(content)) {
+            // that filter is to remove @everyone
+            newAllowedRoles = Array.from(guild.roles, (role) =>
+              role[0].toString(),
+            );
+            newAllowedRoles = newAllowedRoles.filter(
+              (role) => role !== guild.id,
+            );
+          } else {
+            roleMentions.forEach((role) => {
+              if (!newAllowedRoles.includes(role)) newAllowedRoles.push(role);
+            });
+          }
+          break;
 
-    //   switch (action) {
-    //     case 'allow':
-    //       if (/all(\s|$)/g.test(content)) {
-    //         // that filter is to remove @everyone
-    //         guildSettings.allowedRoles = guild.roles
-    //           .keyArray()
-    //           .filter((role) => role !== guild.id);
-    //       } else {
-    //         rolesToPerformAction.forEach((role) => {
-    //           if (!guildSettings.allowedRoles.includes(role))
-    //             guildSettings.allowedRoles.push(role);
-    //         });
-    //       }
-    //       saveConfig();
-    //       break;
+        case 'deny':
+          if (/all(\s|$)/g.test(content)) {
+            newAllowedRoles = [];
+          } else {
+            roleMentions.forEach((role) => {
+              newAllowedRoles = newAllowedRoles.filter(
+                (allowedRole) => role !== allowedRole,
+              );
+            });
+          }
+          break;
 
-    //     case 'deny':
-    //       if (/all(\s|$)/g.test(content)) {
-    //         guildSettings.allowedRoles = [];
-    //       } else {
-    //         guildSettings.allowedRoles = guildSettings.allowedRoles.filter(
-    //           (role) => !rolesToPerformAction.includes(role),
-    //         );
-    //       }
-    //       saveConfig();
-    //       break;
+        default:
+          await channel.createMessage(
+            languagePack.commands.role.invalidParams.replace(
+              /\{PREFIX\}/gi,
+              guildSettings.prefix,
+            ),
+          );
+          return;
+      }
 
-    //     default:
-    //       client
-    //         .createMessage(
-    //           channel.id,
-    //           languagePack.commands.role.invalid_params.replace(
-    //             /\{PREFIX\}/gi,
-    //             guildSettings.prefix,
-    //           ),
-    //         )
-    //         .catch(console.error);
-    //       break;
-    //   }
-    // }
+      // save config
+      if (newAllowedRoles.length > 0 || /all(\s|$)/g.test(content)) {
+        await guildSettings.setAllowedRoles(newAllowedRoles);
+        await channel.createMessage(languagePack.commands.role.rolesUpdated);
+      } else {
+        await channel.createMessage(
+          languagePack.commands.role.errorNoRolesToUpdate,
+        );
+      }
+    }
   },
 };
 
@@ -373,7 +305,7 @@ const upgradeServer: MemberCounterCommand = {
 };
 
 const settingsCommands = [
-  // seeSettings,
+  seeSettings,
   resetSettings,
   prefix,
   lang,

@@ -62,18 +62,21 @@ const user: MemberCounterCommand = {
             icon_url: targetUser.dynamicAvatarURL(),
             name: `${targetUser.username}#${targetUser.discriminator}`,
           },
-          fields: [
-            {
-              name: languagePack.commands.profile.badges,
-              value: generateBadgeList(badges),
-              inline: true,
-            },
-            {
-              name: languagePack.commands.profile.serverUpgradesAvailable,
-              value: availableServerUpgrades.toString(10),
-              inline: true,
-            },
-          ],
+          fields: [],
+        });
+
+        if (badges > 0) {
+          embed.fields.push({
+            name: languagePack.commands.profile.badges,
+            value: generateBadgeList(badges),
+            inline: true,
+          });
+        }
+
+        embed.fields.push({
+          name: languagePack.commands.profile.serverUpgradesAvailable,
+          value: availableServerUpgrades.toString(10),
+          inline: true,
         });
 
         channel.createMessage({ embed });
