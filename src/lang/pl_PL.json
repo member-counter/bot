@@ -12,39 +12,11 @@
         "command": "Command:"
       }
     },
-    "newChannelNameCounter": {
-      "helpDescription": "Creates a channel name counter.\nUsage: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nThe first argument must be one of the following listed below\n\nAvailable types:\n-`members`\n-`users`*\n-`bots`*\n-`onlinemembers`*\n-`onlineusers`*\n-`onlinebots`*\n-`offlinemembers`*\n-`offlineusers`*\n-`offlinebots`*\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`*\n-`connectedusers`*\n* = Only available in the premium bot, see `{PREFIX}help upgradeServer`\n\n The second argument is optional, it is used to set a custom channel name, when you use the second argument, remember to write `{COUNT}` wherever you want to place the counter.\n\nYou can also create a category name counter, the options are the same, just replace the command to `{PREFIX}newCategoryNameCounter`\n\nCounter that counts members:```{PREFIX}newChannelNameCounter members```\n With a custom name:```{PREFIX}newChannelNameCounter members Members: {COUNT}```\nCount how many users has a role or roles:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
-      "success": "Created successfully",
-      "noPerms": "I need `Manage Channels` permission to create the channel.",
-      "noPermsBan": "I need `Ban members` permission to create the channel.",
-      "errorInvalidParams": "Error: Invalid parameters, `more info: {PREFIX}help newChannelNameCounter`."
-    },
-    "newCategoryNameCounter": {
-      "helpDescription": "Please, check `{PREFIX}help newChannelNameCounter`"
-    },
-    "topicCounter": {
-      "helpDescription": "Usage:```css\n{PREFIX}topicCounter [enable/disable] (#channels/all)```\nThis command displays a real time member counter in a channel topic\n\nExamples:\n```css\n{PREFIX}topicCounter enable\n{PREFIX}topicCounter enable #general\n{PREFIX}topicCounter enable #general #other-channel\n{PREFIX}topicCounter disable all```\n**!**  If you don't mention any channel like in the first example, the counter will be enabled/disabled in the current channel\n **!**  When you mention a channel it must match exactly its name, and you must use `#`",
-      "successEnable": "The counter has been enabled on {CHANNELS}",
-      "successDisable": "The counter has been disabled on {CHANNELS}",
-      "errorInvalidParams": "Invalid parameters, see `{PREFIX}!help topicCounter`."
-    },
     "setDigit": {
       "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
       "success": "Digit customized.",
       "resetSuccess": "Numbers restored to the default ones.",
       "errorMissingParams": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
-    },
-    "setTopic": {
-      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nYou can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n`{COUNT}` will show how many members your server has, you can use any of these counters instead:\n-`{members}`\n-`{users}`*\n-`{bots}`*\n-`{onlinemembers}`*\n-`{onlineusers}`*\n-`{onlinebots}`*\n-`{offlinemembers}`*\n-`{offlineusers}`*\n-`{offlinebots}`*\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`*\n* = Only available in the premium bot, see `{PREFIX}help upgradeServer`\n\nExamples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
-      "success": "Topic customized for all channels without a custom one.",
-      "successUnique": "Topic customized for the following channels: {CHANNELS}",
-      "noTopic": "No topic were provided, more info: `{PREFIX}help setTopic`."
-    },
-    "removeTopic": {
-      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nThis command removes channel topics that has been customized, here is a list of examples:\n\nRemoves the customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topics that has been established by mentioning channels```{PREFIX}removeTopic #general #other-channel```",
-      "success": "Global topic restored.",
-      "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
-      "errorMissingParams": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
     },
     "prefix": {
       "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
@@ -60,18 +32,14 @@
     "seeSettings": {
       "helpDescription": "Shows all bot settings for this server.",
       "settingsMessage": {
+        "headerText": "Settings for guild:",
         "prefixText": "Prefix:",
         "langText": "Language:",
         "premiumText": "Premium:",
         "premiumNoTierText": "No",
         "premiumConfirmedText": "Yes",
         "allowedRolesText": "Allowed roles to use administrative commands:",
-        "headerText": "Settings for guild:",
-        "enabledChannelNameCountersText": "Channel Name Counters/Category name counters:",
-        "miscType": "Type:",
-        "enabledChannelTopicCountersText": "Channel Topic Counters:",
-        "mainTopicText": "Global topic (used for those without a custom one):",
-        "customTopicsByChannelText": "Custom topics by channel:",
+        "countersText": "Counters:",
         "customNumbersText": "Custom numbers:",
         "warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
       }
