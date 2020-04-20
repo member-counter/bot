@@ -21,7 +21,7 @@
     "prefix": {
       "helpDescription": "Muda o prefixo do bot.\n\nUso:```{PREFIX}prefix [novo prefixo]```",
       "success": "Prefixo alterado para: `{NEW_PREFIX}`",
-      "noPrefixProvided": "You must provide a prefix"
+      "noPrefixProvided": "Você deve informar um prefixo"
     },
     "role": {
       "helpDescription": "Você pode permitir ou bloquear cargos de usar os comandos administrativos do bot.\nVocê pode usar a palavra ``all`` para permitir ou bloquear todos os cargos.\nPara visualizar quais cargos possuem permissão atualmente use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
@@ -39,7 +39,7 @@
         "premiumNoTierText": "Não",
         "premiumConfirmedText": "Sim",
         "allowedRolesText": "Cargos com permissão para utilizar comandos administrativos:",
-        "countersText": "Counters:",
+        "countersText": "Contadores:",
         "customNumbersText": "Números personalizados:",
         "warningNoPermsText": "\\⚠️ = O bot não pode continuar a atualizar este canal porque não possui as permissões necessárias"
       }
@@ -50,16 +50,16 @@
     },
     "update": {
       "helpDescription": "Se você acha que o contador está bloqueado, use este comando para forçar sua atualização",
-      "inProgress": "Updating the counters, this may take a while.",
-      "success": "Done.",
-      "wait": "Wait! I'm already updating it!"
+      "inProgress": "Atualizando os contadores, esse processo pode demorar um pouco.",
+      "success": "Feito.",
+      "wait": "Espere! Eu já estou atualizando isto!"
     },
     "upgradeServer": {
       "helpDescription": "Esse comando permite que você convide o Member Counter Premium, para usar esse comando você deve ter uma conta premium, que você pode conseguir doando qualquer quantia: `{PREFIX}donate`.",
       "success": "Feito! O próximo passo é convidar o bot premium:\n{BOT_LINK}",
       "noPremiumAccount": "Você deve ter uma conta premium.",
       "errorCannotUpgrade": "Você não pode dar upgrade no server porque ele já possui premium.",
-      "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+      "noServerUpgradesAvailable": "Você não pode dar upgrades em mais servidores porque você não possui upgrades disponíveis, você pode checar quantos upgrades restantes você possui com `{PREFIX}profile` ou para ter mais com `{PREFIX}donate`"
     },
     "info": {
       "helpDescription": "Lista de links úteis",
@@ -86,7 +86,7 @@
     "profile": {
       "helpDescription": "Mostra informações relacionadas entre você e esse bot",
       "badges": "Badges",
-      "serverUpgradesAvailable": "Server upgrades left"
+      "serverUpgradesAvailable": "Server upgrades restantes"
     },
     "counts": {
       "helpDescription": "Exibe alguns contadores",
