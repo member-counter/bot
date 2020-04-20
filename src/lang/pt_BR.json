@@ -59,7 +59,7 @@
       "success": "Feito! O próximo passo é convidar o bot premium:\n{BOT_LINK}",
       "noPremiumAccount": "Você deve ter uma conta premium.",
       "errorCannotUpgrade": "Você não pode dar upgrade no server porque ele já possui premium.",
-      "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+      "noServerUpgradesAvailable": "Você não pode dar upgrades em mais servidores porque você não possui upgrades disponíveis, você pode checar quantos upgrades restantes você possui com `{PREFIX}profile` ou para ter mais com `{PREFIX}donate`"
     },
     "info": {
       "helpDescription": "Lista de links úteis",
