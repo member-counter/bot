@@ -12,39 +12,11 @@
         "command": "Команда:"
       }
     },
-    "newChannelNameCounter": {
-      "helpDescription": "Создаёт канал с необходимым счётчиком.\nИспользование: ```{PREFIX}newChannelNameCounter [type] (custom name)```\nПервый аргумент команды должен быть из приведённого листа ниже.\n\nДоступные вариации:\n-`members`\n-`users`*\n-`bots`*\n-`onlinemembers`*\n-`onlineusers`*\n-`onlinebots`*\n-`offlinemembers`*\n-`offlineusers`*\n-`offlinebots`*\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`*\n-`connectedusers`*\n* = Доступно только в премиум версии бота, подробнее: `{PREFIX}help upgradeServer`\n\nВторой аргумент опционален, он используется для того, чтобы назначить имя создаваемого канала. Когда вы используете второй аргумент, не забудьте вписать `{COUNT}` туда, где вы хотите видеть счётчик. \n\nВы также можете создать счётчик в названии категории, аргументы остаются теми же. Нужно просто заменить команду на эту: `{PREFIX}newCategoryNameCounter`\n\nПримеры:\nСчётчик для пользователей всего сервера: ```{PREFIX}newChannelNameCounter members```\nС заданным именем канала:```{PREFIX}newChannelNameCounter members Members: {COUNT}```\nСчетчик для определенной роли/ролей:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
-      "success": "Успешно создано",
-      "noPerms": "Мне нужно разрешение 'Управление каналами/Manage Channels' чтобы создать канал.",
-      "noPermsBan": "Мне нужно разрешение 'Бан участников/Ban members' чтобы создать канал.",
-      "errorInvalidParams": "Ошибка: недействительные параметры, `больше информации: {PREFIX}help newChannelNameCounter`."
-    },
-    "newCategoryNameCounter": {
-      "helpDescription": "Пожалуйста, проверьте `{PREFIX}help newChannelNameCounter`"
-    },
-    "topicCounter": {
-      "helpDescription": "Использование:```css\n{PREFIX}topicCounter [enable/disable] (#channels/all)```\nДанная команда отображает счётчик кол-ва участников в заголовке канала в реальном времени.\n\nПримеры:\n```css\n{PREFIX}topicCounter enable\n{PREFIX}topicCounter enable #general\n{PREFIX}topicCounter enable #general #other-channel\n{PREFIX}topicCounter disable all```\n**!**  Если вы никак не упоминаете название какого-либо канала как в первом примере, счётчик будет включен/выключен во всех каналах.\n **!**  Когда вы хотите упомянуть канал, вы должны использовать точное имя этого канала и перед тем, как написать его имя, использовать `#`",
-      "successEnable": "Счётчик был включен в {CHANNELS}",
-      "successDisable": "Счётчик был выключен в {CHANNELS}",
-      "errorInvalidParams": "Недействительные параметры, для помощи просмотрите `{PREFIX}!help topicCounter`."
-    },
     "setDigit": {
       "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
       "success": "Digit customized.",
       "resetSuccess": "Numbers restored to the default ones.",
       "errorMissingParams": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
-    },
-    "setTopic": {
-      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nYou can customize the topic with this command, remember to write `{COUNT}` wherever you want to place the counter. You can also set a unique topic for different channels\n\nIf the first argument are channel mentions, the topic given will be only used in the mentioned channels, (remember to mention the channels with ``#``).\n\n`{COUNT}` will show how many members your server has, you can use any of these counters instead:\n-`{members}`\n-`{users}`*\n-`{bots}`*\n-`{onlinemembers}`*\n-`{onlineusers}`*\n-`{onlinebots}`*\n-`{offlinemembers}`*\n-`{offlineusers}`*\n-`{offlinebots}`*\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`*\n* = Only available in the premium bot, see `{PREFIX}help upgradeServer`\n\nExamples:\n\nThis will set the topic for those channels without a specific topic defined```{PREFIX}setTopic Current members: {COUNT}```\nThis will display the given topic only in the first mentioned channels```{PREFIX}setTopic #general Current members: {COUNT}\n{PREFIX}setTopic #general #other-channel Current members: {COUNT}```",
-      "success": "Topic customized for all channels without a custom one.",
-      "successUnique": "Topic customized for the following channels: {CHANNELS}",
-      "noTopic": "No topic were provided, more info: `{PREFIX}help setTopic`."
-    },
-    "removeTopic": {
-      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nThis command removes channel topics that has been customized, here is a list of examples:\n\nRemoves the customized topic for channels without specific topic:```{PREFIX}removeTopic```\nRemove specific topics that has been established by mentioning channels```{PREFIX}removeTopic #general #other-channel```",
-      "success": "Global topic restored.",
-      "success_unique": "Unique topic removed for the following channels: {CHANNELS}",
-      "errorMissingParams": "Error: Missing parameters, more info: `{PREFIX}help removeTopic`."
     },
     "prefix": {
       "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
@@ -60,18 +32,14 @@
     "seeSettings": {
       "helpDescription": "Shows all bot settings for this server.",
       "settingsMessage": {
+        "headerText": "Settings for guild:",
         "prefixText": "Prefix:",
         "langText": "Language:",
         "premiumText": "Premium:",
         "premiumNoTierText": "No",
         "premiumConfirmedText": "Yes",
         "allowedRolesText": "Allowed roles to use administrative commands:",
-        "headerText": "Settings for guild:",
-        "enabledChannelNameCountersText": "Channel Name Counters/Category name counters:",
-        "miscType": "Type:",
-        "enabledChannelTopicCountersText": "Channel Topic Counters:",
-        "mainTopicText": "Global topic (used for those without a custom one):",
-        "customTopicsByChannelText": "Custom topics by channel:",
+        "countersText": "Counters:",
         "customNumbersText": "Custom numbers:",
         "warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
       }
