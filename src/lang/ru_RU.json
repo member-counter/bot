@@ -6,7 +6,7 @@
       "helpDescription": "Тебе действительно так важно узнать предназначение этой команды?",
       "embedReply": {
         "title": "Лист команд | Префикс: {PREFIX}",
-        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}counts\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
       },
       "misc": {
         "command": "Команда:"
@@ -45,37 +45,37 @@
       }
     },
     "resetSettings": {
-      "helpDescription": "Restores the custom settings of this server to the default ones",
-      "done": "Restored to default settings"
+      "helpDescription": "Восстанавливает кастомные настройки этого сервера к значению по умолчанию",
+      "done": "Восстановлено к значению по умолчанию"
     },
     "update": {
-      "helpDescription": "If you think the counters are stuck use this command to update them again.",
-      "inProgress": "Updating the counters, this may take a while.",
-      "success": "Done.",
-      "wait": "Wait! I'm already updating it!"
+      "helpDescription": "Если вы думаете, что счётчик сломался/застрял - используйте эту команду чтобы обновить их вручную.",
+      "inProgress": "Обновление счётчиков, может занять какое-то время.",
+      "success": "Готово.",
+      "wait": "Погоди! Я уже обновляю это!"
     },
     "upgradeServer": {
-      "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating any amount: `{PREFIX}donate`.",
-      "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-      "noPremiumAccount": "You must have a premium account.",
-      "errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
-      "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+      "helpDescription": "Эта команда позволяет пригласить премиум версию счётчика, чтобы использовать эту команду у вас должен быть премиум аккаунт. Вы можете получить его, задонатив от 5-и долларов и выше: `{PREFIX}donate`.",
+      "success": "Готово! Следующий шаг - приглашение премиум версии бота:\n{BOT_LINK}",
+      "noPremiumAccount": "Вы должны иметь премиум аккаунт.",
+      "errorCannotUpgrade": "Вы не можете улучшить этот сервер, потому что он уже улучшен до премиум версии.",
+      "noServerUpgradesAvailable": "Вы не можете сделать больше улучшений сервера, так как у вас не осталось такой возможности. Вы можете узнать, сколько у вас осталось улучшений с помощью команды `{PREFIX}profile` или получить больше с помощью `{PREFIX}donate`"
     },
     "info": {
-      "helpDescription": "List of useful links",
+      "helpDescription": "Список полезных ссылок",
       "embedReply": {
-        "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+        "description": "[Добавь меня на свой сервер]({BOT_INVITE_URL})\n[Поддержать сервер]({BOT_SERVER_URL})\n[Репозиторий GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Пожертвования]({DONATION_URL})"
       }
     },
     "lang": {
-      "helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-      "success": "Language changed successfully.",
-      "errorNotFound": "I didn't find that language, try one of the following:"
+      "helpDescription": "Меняет язык бота для этого сервера, у вас должны быть права администратора, чтобы использовать эту команду.",
+      "success": "Язык успешно изменён.",
+      "errorNotFound": "Я не нашёл данный язык, попробуйте из списка ниже приведённых:"
     },
     "donate": {
-      "helpDescription": "Shows the top donations.",
+      "helpDescription": "Показывает топ пожертвований.",
       "embedReply": {
-        "title": "Enjoying my bot? Donate me! (Click here)",
+        "title": "Понравился мой бот? Задонать мне! (Кликни сюда)",
         "fields": []
       },
       "misc": {
