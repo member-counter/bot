@@ -6,7 +6,7 @@
       "helpDescription": "Тебе действительно так важно узнать предназначение этой команды?",
       "embedReply": {
         "title": "Лист команд | Префикс: {PREFIX}",
-        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
+        "description": "Сайт:\n[{WEBSITE}]({WEBSITE})\nДокументация:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (команда)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [нынешнее число] [произвольное число]\n{PREFIX}lang [код языка]\n{PREFIX}prefix [новый префикс]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Инфо:** `()` подразумевает за собой необязательный/произвольный параметр, когда `[]` подразумевает за собой то, что данный параметр необходим"
       },
       "misc": {
         "command": "Команда:"
@@ -79,40 +79,40 @@
         "fields": []
       },
       "misc": {
-        "emptyNote": "Empty note"
+        "emptyNote": "Пустая заметка"
       },
-      "errorExchangeFetch": "Error while trying to fetch exchange rates"
+      "errorExchangeFetch": "Ошибка при попытке получить курсы валют"
     },
     "profile": {
-      "helpDescription": "Shows related information between you and this bot",
-      "badges": "Badges",
-      "serverUpgradesAvailable": "Server upgrades left"
+      "helpDescription": "Показывает связанную информацию между вами и этим ботом",
+      "badges": "Значки",
+      "serverUpgradesAvailable": "Осталось улучшений сервера"
     },
     "counts": {
-      "helpDescription": "Shows some counts",
-      "members": "Members:",
-      "onlineMembers": "Online members:",
-      "offlineMembers": "Offline members",
-      "bots": "Bots:",
-      "connectedUsers": "Connected users:",
-      "channels": "Channels:",
-      "roles": "Roles:"
+      "helpDescription": "Показывает некоторые счётчики",
+      "members": "Участники:",
+      "onlineMembers": "Онлайн участники:",
+      "offlineMembers": "Оффлайн участники:",
+      "bots": "Боты:",
+      "connectedUsers": "Подключённые пользователи:",
+      "channels": "Каналы:",
+      "roles": "Роли:"
     }
   },
   "functions": {
     "commandHandler": {
-      "noDm": "You can't run this command on a DM channel"
+      "noDm": "Вы не можете использовать эту команду, находясь в личных сообщениях"
     },
     "getCounts": {
-      "onlyPremium": "Only Premium",
-      "noBanPerms": "I need ban permissions to show this"
+      "onlyPremium": "Только Премиум",
+      "noBanPerms": "Мне нужно право банить, чтобы показать это"
     }
   },
   "common": {
-    "error": "Error",
-    "errorDb": "Database error, try again later",
-    "errorUnknown": "Something went wrong, try again later.",
-    "errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
-    "noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+    "error": "Ошибка",
+    "errorDb": "Ошибка базы данных, попробуйте позже",
+    "errorUnknown": "Что-то пошло не так, попробуйте снова позже.",
+    "errorNoAdmin": "Только участники с правом администратора в этом сервере могут использовать эту команду.",
+    "noTopicCounterEnabled": "Кажется, вы до сих пор не включили счётчик в заголовке, пожалуйста, просмотрите `{PREFIX}help topicCounter`"
   }
 }
