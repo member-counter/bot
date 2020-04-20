@@ -12,39 +12,11 @@
         "command": "Comando:"
       }
     },
-    "newChannelNameCounter": {
-      "helpDescription": "Crea un canal que tiene un contador en su nombre.\nUso: ```{PREFIX}newChannelNameCounter [tipo] (nombre personalizado)```\nEl primer parámetro debe ser uno de la lista de abajo.\n\nTipos disponibles:\n-`members`\n-`users`*\n-`bots`*\n-`onlinemembers`*\n-`onlineusers`*\n-`onlinebots`*\n-`offlinemembers`*\n-`offlineusers`*\n-`offlinebots`*\n-`bannedmembers`\n-`channels`\n-`roles`\n-`memberswithrole`*\n-`connectedusers`*\n* = Solo disponible en el bot premium, mira `{PREFIX}help upgradeServer`\n\nEl segundo paremetro es opcional, sirve para poner un nombre personalizado en el canal, recuerda escribir `{COUNT}` donde quieras colocar el contador.\n\nTambien puedes crear un contador en el nombre de una categoria, tiene las mismas opciones, simplemente usa en su lugar el comando `{PREFIX}newCategoryNameCounter`\n\nContador que cuenta miembros:```{PREFIX}newChannelNameCounter members```\n El mismo pero con un nombre personalizado:```{PREFIX}newChannelNameCounter members Miembros: {COUNT}```\nContar cuantos usuarios tienen un rol:```{PREFIX}newChannelNameCounter memberswithrole @Admin @Mod {COUNT} Admins and mods```",
-      "success": "Creado correctamente",
-      "noPerms": "Necesito el permiso `Gestionar canales` para crear el canal.",
-      "noPermsBan": "Necesito el permiso `Banear miembros` para crear el canal.",
-      "errorInvalidParams": "Error: Parámetros no validos, `más info: {PREFIX}help newChannelNameCounter`."
-    },
-    "newCategoryNameCounter": {
-      "helpDescription": "Consulta `{PREFIX}help newChannelNameCounter`"
-    },
-    "topicCounter": {
-      "helpDescription": "Uso:```css\n{PREFIX}topicCounter [enable/disable] (#canales/all)```\nEste comando muestra en tiempo real dentro de un tema de canal cuantos miembros tiene el servidor.\n\nEjemplos:\n```css\n{PREFIX}topicCounter enable\n{PREFIX}topicCounter enable #general\n{PREFIX}topicCounter enable #general #otro-canal\n{PREFIX}topicCounter disable all```\n**!**  Si no mencionas ningún canal como en el primer ejemplo, el contador se habilitara en el canal donde se haya enviado el comando.\n **!**  Cuando mencionas el canal el nombre debe ser exactamente el mismo, y debe empezar con `#`, te recomiendo que te ayudes del auto completar de discord",
-      "successEnable": "El contador ha sido habilitado en {CHANNELS}",
-      "successDisable": "El contador ha sido deshabilitado en {CHANNELS}",
-      "errorInvalidParams": "Parámetros incorrectos, más info: `{PREFIX}!help topicCounter`."
-    },
     "setDigit": {
       "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nPersonaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
       "success": "Número personalizado correctamente.",
       "resetSuccess": "Todos los numeros han sido reestablecidos.",
       "errorMissingParams": "Error: Faltan parámetros, `más info: {PREFIX}help setDigit`."
-    },
-    "setTopic": {
-      "helpDescription": "Deberíasmirar `{PREFIX}help topicCounter` antes de usar este comando.\nPuedes cambiar el tema de canal con este comando, recuerda escribir `{COUNT}` donde quieras colocar el contador. También puedes poner un tema especifico por canal\n\nSi el primer parámetro son menciones de canal, el tema que especifiques después solo sera usado en los canales que hayas mencionado, (recuerda mencionar canales con ``#``).\n\n`{COUNT}` mostrará cuantos miembros hay en tu servidor, puedes usar cualquiera de estos contadores en su lugar:\n-`{members}`\n-`{users}`*\n-`{bots}`*\n-`{onlinemembers}`*\n-`{onlineusers}`*\n-`{onlinebots}`*\n-`{offlinemembers}`*\n-`{offlineusers}`*\n-`{offlinebots}`*\n-`{bannedmembers}`\n-`{channels}`\n-`{roles}`\n-`{connectedusers}`*\n* = Solo disponible en el bot premium, mira `{PREFIX}help upgradeServer`\n\nEjemplos:\n\nEste especificara el tema para todos los canales sin uno especifico```{PREFIX}setTopic Miembros actuales: {COUNT}```\nEste establecerá el tema concretado en solo en los primeros canales que hayas especificado```{PREFIX}setTopic #general Miembros actuales: {COUNT}\n{PREFIX}setTopic #general #otro-canal Miembros actuales: {COUNT}```",
-      "success": "Tema establecido para todos los canales sin uno personalizado.",
-      "successUnique": "Tema establecido para los siguientes canales: {CHANNELS}",
-      "noTopic": "Ningún tema fue proporcionado, más info: `{PREFIX}help setTopic`."
-    },
-    "removeTopic": {
-      "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nEste comando borra y restablece los temas de los canales especificados, aquí hay una lista de ejemplos:\n\nRestablece el tema personalizado para aquellos sin uno especifico por canal:```{PREFIX}removeTopic```\nBorra los temas personalizados por canal y se usara el tema principal```{PREFIX}removeTopic #general #otro-canal```",
-      "success": "Tema global restablecido.",
-      "success_unique": "Tema personalizado eliminado en los siguientes canales: {CHANNELS}",
-      "errorMissingParams": "Error: Faltan parámetros, más info: `{PREFIX}help removeTopic`."
     },
     "prefix": {
       "helpDescription": "Cambia el prefijo del bot.\n\nUso:```{PREFIX}prefix [nuevo prefijo]```",
@@ -60,18 +32,14 @@
     "seeSettings": {
       "helpDescription": "Muestra todos los ajustes del bot para este servidor.",
       "settingsMessage": {
+        "headerText": "Ajustes para el servidor:",
         "prefixText": "Prefijo:",
         "langText": "Idioma:",
         "premiumText": "Premium:",
         "premiumNoTierText": "No",
         "premiumConfirmedText": "Sí",
         "allowedRolesText": "Roles que están autorizados a usar comandos administrativos:",
-        "headerText": "Ajustes para el servidor:",
-        "enabledChannelNameCountersText": "Contadores en nombre de canal/Contadores en nombre de categoría:",
-        "miscType": "Tipo:",
-        "enabledChannelTopicCountersText": "Contadores en tema de canal:",
-        "mainTopicText": "Tema global (para aquellos que no tienen uno personalizado):",
-        "customTopicsByChannelText": "Temas personalizados por canal:",
+        "countersText": "Counters:",
         "customNumbersText": "Números personalizados:",
         "warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos"
       }
