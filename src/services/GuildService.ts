@@ -86,17 +86,14 @@ class GuildService {
     return 'success';
   }
 
-  public get customCounterDigits(): Map<number, string> {
+  public get digits(): string[] {
     if (!this.isInitialized) this.errorNotInit();
-    return this.doc.customCounterDigits;
+    return this.doc.digits;
   }
 
-  public async setCustomCounterDigit(
-    number: number,
-    value: string,
-  ): Promise<void> {
+  public async setDigit(number: number, value: string): Promise<void> {
     if (!this.isInitialized) this.errorNotInit();
-    this.doc.customCounterDigits.set(number, value);
+    this.doc.digits[number] = value;
     await this.doc.save();
   }
 

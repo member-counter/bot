@@ -2,8 +2,9 @@ import * as Eris from 'eris';
 import getEnv from './getEnv';
 
 import ready from '../events/ready';
-import channelDelete from '../events/channelDelete';
+import channelCreate from '../events/channelCreate';
 import channelUpdate from '../events/channelUpdate';
+import channelDelete from '../events/channelDelete';
 import guildCreate from '../events/guildCreate';
 import guildMemberAdd from '../events/guildMemberAdd';
 import messageCreate from '../events/messageCreate';
@@ -19,8 +20,9 @@ export default (client: Eris.Client) => {
     .on('ready', () => ready(client))
     .on('error', console.error)
     .on('warn', console.warn)
-    .on('channelDelete', channelDelete)
+    .on('channelCreate', channelCreate)
     .on('channelUpdate', channelUpdate)
+    .on('channelDelete', channelDelete)
     .on('guildCreate', guildCreate)
     .on('guildMemberAdd', guildMemberAdd)
     .on('messageCreate', (message) => messageCreate(client, message))

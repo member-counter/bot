@@ -20,6 +20,10 @@ const info: MemberCounterCommand = {
       .replace('{BOT_SERVER_URL}', DISCORD_OFFICIAL_SERVER_URL)
       .replace('{BOT_INVITE_URL}', DISCORD_BOT_INVITE);
 
+    embed.thumbnail = {
+      url: message.channel.client.user.dynamicAvatarURL(),
+    };
+
     channel.createMessage({ embed }).catch(console.error);
   },
 };
