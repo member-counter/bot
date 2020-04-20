@@ -39,7 +39,7 @@
         "premiumNoTierText": "No",
         "premiumConfirmedText": "Sí",
         "allowedRolesText": "Roles que están autorizados a usar comandos administrativos:",
-        "countersText": "Counters:",
+        "countersText": "Contadores:",
         "customNumbersText": "Números personalizados:",
         "warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos"
       }
