@@ -8,4 +8,6 @@ You are welcome to improve anything.
 
 Website: https://member-counter.eduardozgz.com/
 
+Translation Project: https://crowdin.com/project/member-counter-bot
+
 Documentation: https://eduardozgz.gitbook.io/member-counter/
