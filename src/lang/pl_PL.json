@@ -6,14 +6,14 @@
       "helpDescription": "Czy naprawdę konieczne jest wyjaśnienie celu tej komendy?",
       "embedReply": {
         "title": "Lista komend | prefix {PREFIX}",
-        "description": "Stronie internetowej:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/wszyscy]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonaln natomiast `[]` oznacza parametr wymagany"
+        "description": "Stronie internetowej:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonalny natomiast `[]` oznacza parametr wymagany"
       },
       "misc": {
         "command": "Komenda:"
       }
     },
     "setDigit": {
-      "helpDescription": "Powinieneś zobaczyć  `{PREFIX}help topicCounter` przed użyciem tej komendy.\nDostosowanie liczb które będą wyświetlane, argument liczby musi być liczbą normalną, drugi argument może być dowolny, jak emotka lub zwykła liczba z  markdown. \nJeśli pierwszym argumentem jest słowo „reset”, liczby zostaną przywrócone do domyślnych.\n\nUżywanie: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [numer] [twoj niestandardowy numer]```\nPrzykład: ```{PREFIX}setDigit 3 **3**```\nW poprzednim przykładzie wszystkie 3 będą wyświetlane jako pogrubione ** 3 **",
+      "helpDescription": "Powinieneś zobaczyć  `{PREFIX}help topicCounter` przed użyciem tej komendy.\nDostosowanie liczb które będą wyświetlane, argument liczby musi być liczbą normalną, drugi argument może być dowolny, jak emotka lub zwykła liczba z  markdown. \nJeśli pierwszym argumentem jest słowo „reset”, liczby zostaną przywrócone do domyślnych.\n\nStosowanie: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [numer] [twoj niestandardowy numer]```\nPrzykład: ```{PREFIX}setDigit 3 **3**```\nW poprzednim przykładzie wszystkie 3 będą wyświetlane jako pogrubione ** 3 **",
       "success": "Cyfra dostosowana.",
       "resetSuccess": "Liczby przywrócono do domyślnych.",
       "errorMissingParams": "Błąd: Brakujący parametr, `więcej informacji: {PREFIX}help setDigit`."
