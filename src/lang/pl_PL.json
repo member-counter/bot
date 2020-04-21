@@ -13,15 +13,15 @@
       }
     },
     "setDigit": {
-      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
-      "success": "Digit customized.",
-      "resetSuccess": "Numbers restored to the default ones.",
-      "errorMissingParams": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
+      "helpDescription": "Powinieneś zobaczyć  `{PREFIX}help topicCounter` przed użyciem tej komendy.\nDostosowanie liczb które będą wyświetlane, argument liczby musi być liczbą normalną, drugi argument może być dowolny, jak emotka lub zwykła liczba z  markdown. \nJeśli pierwszym argumentem jest słowo „reset”, liczby zostaną przywrócone do domyślnych.\n\nUżywanie: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [numer] [twoj niestandardowy numer]```\nPrzykład: ```{PREFIX}setDigit 3 **3**```\nW poprzednim przykładzie wszystkie 3 będą wyświetlane jako pogrubione ** 3 **",
+      "success": "Cyfra dostosowana.",
+      "resetSuccess": "Liczby przywrócono do domyślnych.",
+      "errorMissingParams": "Błąd: Brakujący parametr, `więcej informacji: {PREFIX}help setDigit`."
     },
     "prefix": {
-      "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
-      "success": "Prefix changed to: `{NEW_PREFIX}`",
-      "noPrefixProvided": "You must provide a prefix"
+      "helpDescription": "Zmień prefix bota.\n\nStosowanie:```{PREFIX}prefix [nowy prefix]```",
+      "success": "Prefix zmieniony na: `{NEW_PREFIX}`",
+      "noPrefixProvided": "Musisz podać prefix"
     },
     "role": {
       "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
