@@ -1,15 +1,15 @@
 {
-  "langCode": "en_US",
-  "langName": "English (US)",
+  "langCode": "pl_PL",
+  "langName": "Polish (PL)",
   "commands": {
     "help": {
-      "helpDescription": "It's really necessary to explain the purpose of this command?",
+      "helpDescription": "Czy naprawdę konieczne jest wyjaśnienie celu tej komendy?",
       "embedReply": {
-        "title": "Command list | prefix: {PREFIX}",
-        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
+        "title": "Lista komend | prefix {PREFIX}",
+        "description": "Stronie internetowej:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/wszyscy]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonaln natomiast `[]` oznacza parametr wymagany"
       },
       "misc": {
-        "command": "Command:"
+        "command": "Komenda:"
       }
     },
     "setDigit": {
