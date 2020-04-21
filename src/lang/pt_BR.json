@@ -55,7 +55,7 @@
       "wait": "Espere! Eu já estou atualizando isto!"
     },
     "upgradeServer": {
-      "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
+      "helpDescription": "Esse comando permite que você convide o Member Counter Premium, para usar esse comando você deve ter uma conta premium, que você pode conseguir doando pelo menos $5 dólares: `{PREFIX}donate`.",
       "success": "Feito! O próximo passo é convidar o bot premium:\n{BOT_LINK}",
       "noPremiumAccount": "Você deve ter uma conta premium.",
       "errorCannotUpgrade": "Você não pode dar upgrade no server porque ele já possui premium.",
