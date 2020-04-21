@@ -77,10 +77,11 @@ export default async (client: Eris.Client, message: Eris.Message) => {
                 .catch(console.error);
               break commandsLoop;
             }
+
             if (
               channel instanceof Eris.GuildChannel &&
               command.onlyAdmin &&
-              (await !memberHasAdminPermission(message.member))
+              !(await memberHasAdminPermission(message.member))
             ) {
               channel
                 .createMessage(languagePack.common.errorNoAdmin)
