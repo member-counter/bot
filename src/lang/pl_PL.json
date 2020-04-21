@@ -32,7 +32,7 @@
     "seeSettings": {
       "helpDescription": "Wyświetla wszystkie ustawienia bota dla tego serwera.",
       "settingsMessage": {
-        "headerText": "Ustawienia dla servera:",
+        "headerText": "Ustawienia dla serwera:",
         "prefixText": "Prefix:",
         "langText": "Język:",
         "premiumText": "Premium:",
@@ -64,55 +64,55 @@
     "info": {
       "helpDescription": "Lista przydatnych linków",
       "embedReply": {
-        "description": "[Dodaj mnie na swój serwer]({BOT_INVITE_URL})\n[Support serwer]({BOT_SERVER_URL})\n[Magazyn GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+        "description": "[Dodaj mnie na swój serwer]({BOT_INVITE_URL})\n[Support serwer]({BOT_SERVER_URL})\n[Magazyn GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Darowizny]({DONATION_URL})"
       }
     },
     "lang": {
-      "helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-      "success": "Language changed successfully.",
-      "errorNotFound": "I didn't find that language, try one of the following:"
+      "helpDescription": "Aby użyć komendy zmiany języka bota dla tego serwera, musisz mieć uprawnienia administratora.",
+      "success": "Pomyślna zmiana języka.",
+      "errorNotFound": "Nie znalazłem tego języka, spróbuj jednego z poniższych:"
     },
     "donate": {
-      "helpDescription": "Shows the top donations.",
+      "helpDescription": "Pokazuje najwyższe darowizny.",
       "embedReply": {
-        "title": "Enjoying my bot? Donate me! (Click here)",
+        "title": "Podoba ci się mój bot? Wesprzyj mnie! (Kliknij tutaj)",
         "fields": []
       },
       "misc": {
-        "emptyNote": "Empty note"
+        "emptyNote": "Pusta notatka"
       },
-      "errorExchangeFetch": "Error while trying to fetch exchange rates"
+      "errorExchangeFetch": "Błąd podczas próby pobrania kursów wymiany"
     },
     "profile": {
-      "helpDescription": "Shows related information between you and this bot",
-      "badges": "Badges",
-      "serverUpgradesAvailable": "Server upgrades left"
+      "helpDescription": "Pokazuje powiązane informacje między tobą a tym botem",
+      "badges": "Odznaki",
+      "serverUpgradesAvailable": "Zostały aktualizacje serwera"
     },
     "counts": {
-      "helpDescription": "Shows some counts",
-      "members": "Members:",
-      "onlineMembers": "Online members:",
-      "offlineMembers": "Offline members",
-      "bots": "Bots:",
-      "connectedUsers": "Connected users:",
-      "channels": "Channels:",
-      "roles": "Roles:"
+      "helpDescription": "Pokazuje niektóre liczby",
+      "members": "Członkowie:",
+      "onlineMembers": "Członkowie online:",
+      "offlineMembers": "Członkowie offline",
+      "bots": "Boty:",
+      "connectedUsers": "Połączeni użytkownicy:",
+      "channels": "Kanały:",
+      "roles": "Role:"
     }
   },
   "functions": {
     "commandHandler": {
-      "noDm": "You can't run this command on a DM channel"
+      "noDm": "Nie możesz uruchomić tego polecenia na kanale DM"
     },
     "getCounts": {
-      "onlyPremium": "Only Premium",
-      "noBanPerms": "I need ban permissions to show this"
+      "onlyPremium": "Tylko Premium",
+      "noBanPerms": "Potrzebuję uprawnień banowania, aby to pokazać"
     }
   },
   "common": {
-    "error": "Error",
-    "errorDb": "Database error, try again later",
-    "errorUnknown": "Something went wrong, try again later.",
-    "errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
-    "noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+    "error": "Błąd",
+    "errorDb": "Błąd bazy danych, spróbuj ponownie później",
+    "errorUnknown": "Coś poszło nie tak, spróbuj ponownie później.",
+    "errorNoAdmin": "Tylko członkowie z uprawnieniami administratora na tym serwerze mogą używać tej komendy.",
+    "noTopicCounterEnabled": "Wygląda na to, że nie włączyłeś jeszcze licznika tematów. Zobacz `{PREFIX}help topicCounter`"
   }
 }
