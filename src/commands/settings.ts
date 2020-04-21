@@ -61,7 +61,7 @@ const seeSettings: MemberCounterCommand = {
       appendContent(`**${headerText}** ${guild.name} \`${guild.id}\`\n`);
       appendContent(
         `${premiumText} ${
-          premium ? premiumConfirmedText : premiumNoTierText
+        premium ? premiumConfirmedText : premiumNoTierText
         }\n`,
       );
       appendContent(`${prefixText} \`${prefix}\`\n`);
@@ -140,7 +140,7 @@ const lang: MemberCounterCommand = {
     if (message.channel instanceof GuildChannel) {
       const { content, channel } = message;
       const { guild } = channel;
-      const availableLanguages = ['es_ES', 'pt_BR', 'en_US', 'ru_RU'];
+      const availableLanguages = ['es_ES', 'pt_BR', 'en_US', 'ru_RU', 'pl_PL'];
       const [command, languageRequested]: any[] = content.split(/\s+/);
       let { errorNotFound, success } = languagePack.commands.lang;
 
