@@ -24,35 +24,35 @@
       "noPrefixProvided": "Musisz podać prefix"
     },
     "role": {
-      "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
-      "rolesUpdated": "Roles updated.",
-      "errorNoRolesToUpdate": "You must mention at least 1 role",
-      "invalidParams": "Invalid parameters, see `{PREFIX}help role`"
+      "helpDescription": "Możesz zezwolić lub odrzucić role żeby używać komend administratorskich.\nMożesz użyć słowo ``all`` żeby zezwolić lub odrzucić wszystkie role.\nAby zobaczyć które role aktualnie mogą uzyć  `{PREFIX}seeSetings``\n\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "rolesUpdated": "Role zaktualizowane.",
+      "errorNoRolesToUpdate": "Musisz wspomnieć chociaż 1 role",
+      "invalidParams": "Nieprawidłowe parametry, zobacz `{PREFIX}help role`"
     },
     "seeSettings": {
-      "helpDescription": "Shows all bot settings for this server.",
+      "helpDescription": "Wyświetla wszystkie ustawienia bota dla tego serwera.",
       "settingsMessage": {
-        "headerText": "Settings for guild:",
+        "headerText": "Ustawienia dla servera:",
         "prefixText": "Prefix:",
-        "langText": "Language:",
+        "langText": "Język:",
         "premiumText": "Premium:",
-        "premiumNoTierText": "No",
-        "premiumConfirmedText": "Yes",
-        "allowedRolesText": "Allowed roles to use administrative commands:",
-        "countersText": "Counters:",
-        "customNumbersText": "Custom numbers:",
-        "warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
+        "premiumNoTierText": "Nie",
+        "premiumConfirmedText": "Tak",
+        "allowedRolesText": "Role które mają dostęp do korzystania z poleceń administracyjnych:",
+        "countersText": "Liczniki:",
+        "customNumbersText": "Niestandardowe numery:",
+        "warningNoPermsText": "\\⚠️ = Bot nie może kontynuować aktualizacji tego kanału z powodu braku uprawnień"
       }
     },
     "resetSettings": {
-      "helpDescription": "Restores the custom settings of this server to the default ones",
-      "done": "Restored to default settings"
+      "helpDescription": "Przywraca ustawienia niestandardowe tego serwera do domyślnych",
+      "done": "Przywrócono ustawienia domyślne"
     },
     "update": {
-      "helpDescription": "If you think the counters are stuck use this command to update them again.",
-      "inProgress": "Updating the counters, this may take a while.",
-      "success": "Done.",
-      "wait": "Wait! I'm already updating it!"
+      "helpDescription": "Jeśli uważasz, że liczniki stanął, użyj tej komendy, aby zaktualizować je ponownie.",
+      "inProgress": "Aktualizacja liczników, może to chwilę potrwać.",
+      "success": "Gotowe.",
+      "wait": "Czekaj! Już to aktualizuję!"
     },
     "upgradeServer": {
       "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
