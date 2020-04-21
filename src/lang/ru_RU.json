@@ -55,7 +55,7 @@
       "wait": "Погоди! Я уже обновляю это!"
     },
     "upgradeServer": {
-      "helpDescription": "Эта команда позволяет пригласить премиум версию счётчика, чтобы использовать эту команду у вас должен быть премиум аккаунт. Вы можете получить его, задонатив от 5-и долларов и выше: `{PREFIX}donate`.",
+      "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
       "success": "Готово! Следующий шаг - приглашение премиум версии бота:\n{BOT_LINK}",
       "noPremiumAccount": "Вы должны иметь премиум аккаунт.",
       "errorCannotUpgrade": "Вы не можете улучшить этот сервер, потому что он уже улучшен до премиум версии.",
