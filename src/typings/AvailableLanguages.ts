@@ -1,3 +1,3 @@
-type AvailableLanguages = 'es_ES' | 'pt_BR' | 'en_US' | 'ru_RU';
+type AvailableLanguages = 'es_ES' | 'pt_BR' | 'en_US' | 'ru_RU' | 'pl_PL';
 
 export default AvailableLanguages;
