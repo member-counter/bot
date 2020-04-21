@@ -6,113 +6,113 @@
       "helpDescription": "Czy naprawdę konieczne jest wyjaśnienie celu tej komendy?",
       "embedReply": {
         "title": "Lista komend | prefix {PREFIX}",
-        "description": "Stronie internetowej:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/wszyscy]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonaln natomiast `[]` oznacza parametr wymagany"
+        "description": "Stronie internetowej:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonalny natomiast `[]` oznacza parametr wymagany"
       },
       "misc": {
         "command": "Komenda:"
       }
     },
     "setDigit": {
-      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number with markdown.\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 **3**```\nWith the previous example every 3 will be shown as a bold **3**",
-      "success": "Digit customized.",
-      "resetSuccess": "Numbers restored to the default ones.",
-      "errorMissingParams": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
+      "helpDescription": "Powinieneś zobaczyć  `{PREFIX}help topicCounter` przed użyciem tej komendy.\nDostosowanie liczb które będą wyświetlane, argument liczby musi być liczbą normalną, drugi argument może być dowolny, jak emotka lub zwykła liczba z  markdown. \nJeśli pierwszym argumentem jest słowo „reset”, liczby zostaną przywrócone do domyślnych.\n\nStosowanie: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [numer] [twoj niestandardowy numer]```\nPrzykład: ```{PREFIX}setDigit 3 **3**```\nW poprzednim przykładzie wszystkie 3 będą wyświetlane jako pogrubione ** 3 **",
+      "success": "Cyfra dostosowana.",
+      "resetSuccess": "Liczby przywrócono do domyślnych.",
+      "errorMissingParams": "Błąd: Brakujący parametr, `więcej informacji: {PREFIX}help setDigit`."
     },
     "prefix": {
-      "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
-      "success": "Prefix changed to: `{NEW_PREFIX}`",
-      "noPrefixProvided": "You must provide a prefix"
+      "helpDescription": "Zmień prefix bota.\n\nStosowanie:```{PREFIX}prefix [nowy prefix]```",
+      "success": "Prefix zmieniony na: `{NEW_PREFIX}`",
+      "noPrefixProvided": "Musisz podać prefix"
     },
     "role": {
-      "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
-      "rolesUpdated": "Roles updated.",
-      "errorNoRolesToUpdate": "You must mention at least 1 role",
-      "invalidParams": "Invalid parameters, see `{PREFIX}help role`"
+      "helpDescription": "Możesz zezwolić lub odrzucić role żeby używać komend administratorskich.\nMożesz użyć słowo ``all`` żeby zezwolić lub odrzucić wszystkie role.\nAby zobaczyć które role aktualnie mogą uzyć  `{PREFIX}seeSetings``\n\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "rolesUpdated": "Role zaktualizowane.",
+      "errorNoRolesToUpdate": "Musisz wspomnieć chociaż 1 role",
+      "invalidParams": "Nieprawidłowe parametry, zobacz `{PREFIX}help role`"
     },
     "seeSettings": {
-      "helpDescription": "Shows all bot settings for this server.",
+      "helpDescription": "Wyświetla wszystkie ustawienia bota dla tego serwera.",
       "settingsMessage": {
-        "headerText": "Settings for guild:",
+        "headerText": "Ustawienia dla serwera:",
         "prefixText": "Prefix:",
-        "langText": "Language:",
+        "langText": "Język:",
         "premiumText": "Premium:",
-        "premiumNoTierText": "No",
-        "premiumConfirmedText": "Yes",
-        "allowedRolesText": "Allowed roles to use administrative commands:",
-        "countersText": "Counters:",
-        "customNumbersText": "Custom numbers:",
-        "warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
+        "premiumNoTierText": "Nie",
+        "premiumConfirmedText": "Tak",
+        "allowedRolesText": "Role które mają dostęp do korzystania z poleceń administracyjnych:",
+        "countersText": "Liczniki:",
+        "customNumbersText": "Niestandardowe numery:",
+        "warningNoPermsText": "\\⚠️ = Bot nie może kontynuować aktualizacji tego kanału z powodu braku uprawnień"
       }
     },
     "resetSettings": {
-      "helpDescription": "Restores the custom settings of this server to the default ones",
-      "done": "Restored to default settings"
+      "helpDescription": "Przywraca ustawienia niestandardowe tego serwera do domyślnych",
+      "done": "Przywrócono ustawienia domyślne"
     },
     "update": {
-      "helpDescription": "If you think the counters are stuck use this command to update them again.",
-      "inProgress": "Updating the counters, this may take a while.",
-      "success": "Done.",
-      "wait": "Wait! I'm already updating it!"
+      "helpDescription": "Jeśli uważasz, że liczniki stanął, użyj tej komendy, aby zaktualizować je ponownie.",
+      "inProgress": "Aktualizacja liczników, może to chwilę potrwać.",
+      "success": "Gotowe.",
+      "wait": "Czekaj! Już to aktualizuję!"
     },
     "upgradeServer": {
-      "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
-      "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-      "noPremiumAccount": "You must have a premium account.",
-      "errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
-      "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+      "helpDescription": "Ta komenda pozwala zaprosić Member Counter Premium, aby użyć tej komendy, musisz mieć konto premium, które możesz uzyskać, przekazując darowiznę w wysokości co najmniej 5 USD: `{PREFIX}donate`.",
+      "success": "Gotowe! Następnym krokiem jest zaproszenie bota premium:\n{BOT_LINK}",
+      "noPremiumAccount": "Musisz mieć konto premium.",
+      "errorCannotUpgrade": "Nie możesz zaktualizować serwera, ponieważ ma już premium.",
+      "noServerUpgradesAvailable": "Nie możesz zrobić więcej aktualizacji serwera, ponieważ nie masz więcej dostępnych aktualizacji serwera, możesz sprawdzić ile pozostało używając `{PREFIX}profile`  lub uzysk więcej dzięki `{PREFIX}donate`"
     },
     "info": {
-      "helpDescription": "List of useful links",
+      "helpDescription": "Lista przydatnych linków",
       "embedReply": {
-        "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+        "description": "[Dodaj mnie na swój serwer]({BOT_INVITE_URL})\n[Support serwer]({BOT_SERVER_URL})\n[Magazyn GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Darowizny]({DONATION_URL})"
       }
     },
     "lang": {
-      "helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-      "success": "Language changed successfully.",
-      "errorNotFound": "I didn't find that language, try one of the following:"
+      "helpDescription": "Aby użyć komendy zmiany języka bota dla tego serwera, musisz mieć uprawnienia administratora.",
+      "success": "Pomyślna zmiana języka.",
+      "errorNotFound": "Nie znalazłem tego języka, spróbuj jednego z poniższych:"
     },
     "donate": {
-      "helpDescription": "Shows the top donations.",
+      "helpDescription": "Pokazuje najwyższe darowizny.",
       "embedReply": {
-        "title": "Enjoying my bot? Donate me! (Click here)",
+        "title": "Podoba ci się mój bot? Wesprzyj mnie! (Kliknij tutaj)",
         "fields": []
       },
       "misc": {
-        "emptyNote": "Empty note"
+        "emptyNote": "Pusta notatka"
       },
-      "errorExchangeFetch": "Error while trying to fetch exchange rates"
+      "errorExchangeFetch": "Błąd podczas próby pobrania kursów wymiany"
     },
     "profile": {
-      "helpDescription": "Shows related information between you and this bot",
-      "badges": "Badges",
-      "serverUpgradesAvailable": "Server upgrades left"
+      "helpDescription": "Pokazuje powiązane informacje między tobą a tym botem",
+      "badges": "Odznaki",
+      "serverUpgradesAvailable": "Zostały aktualizacje serwera"
     },
     "counts": {
-      "helpDescription": "Shows some counts",
-      "members": "Members:",
-      "onlineMembers": "Online members:",
-      "offlineMembers": "Offline members",
-      "bots": "Bots:",
-      "connectedUsers": "Connected users:",
-      "channels": "Channels:",
-      "roles": "Roles:"
+      "helpDescription": "Pokazuje niektóre liczby",
+      "members": "Członkowie:",
+      "onlineMembers": "Członkowie online:",
+      "offlineMembers": "Członkowie offline",
+      "bots": "Boty:",
+      "connectedUsers": "Połączeni użytkownicy:",
+      "channels": "Kanały:",
+      "roles": "Role:"
     }
   },
   "functions": {
     "commandHandler": {
-      "noDm": "You can't run this command on a DM channel"
+      "noDm": "Nie możesz uruchomić tego polecenia na kanale DM"
     },
     "getCounts": {
-      "onlyPremium": "Only Premium",
-      "noBanPerms": "I need ban permissions to show this"
+      "onlyPremium": "Tylko Premium",
+      "noBanPerms": "Potrzebuję uprawnień banowania, aby to pokazać"
     }
   },
   "common": {
-    "error": "Error",
-    "errorDb": "Database error, try again later",
-    "errorUnknown": "Something went wrong, try again later.",
-    "errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
-    "noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+    "error": "Błąd",
+    "errorDb": "Błąd bazy danych, spróbuj ponownie później",
+    "errorUnknown": "Coś poszło nie tak, spróbuj ponownie później.",
+    "errorNoAdmin": "Tylko członkowie z uprawnieniami administratora na tym serwerze mogą używać tej komendy.",
+    "noTopicCounterEnabled": "Wygląda na to, że nie włączyłeś jeszcze licznika tematów. Zobacz `{PREFIX}help topicCounter`"
   }
 }
