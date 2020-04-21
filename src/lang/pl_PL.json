@@ -55,16 +55,16 @@
       "wait": "Czekaj! Już to aktualizuję!"
     },
     "upgradeServer": {
-      "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
-      "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-      "noPremiumAccount": "You must have a premium account.",
-      "errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
-      "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+      "helpDescription": "Ta komenda pozwala zaprosić Member Counter Premium, aby użyć tej komendy, musisz mieć konto premium, które możesz uzyskać, przekazując darowiznę w wysokości co najmniej 5 USD: `{PREFIX}donate`.",
+      "success": "Gotowe! Następnym krokiem jest zaproszenie bota premium:\n{BOT_LINK}",
+      "noPremiumAccount": "Musisz mieć konto premium.",
+      "errorCannotUpgrade": "Nie możesz zaktualizować serwera, ponieważ ma już premium.",
+      "noServerUpgradesAvailable": "Nie możesz zrobić więcej aktualizacji serwera, ponieważ nie masz więcej dostępnych aktualizacji serwera, możesz sprawdzić ile pozostało używając `{PREFIX}profile`  lub uzysk więcej dzięki `{PREFIX}donate`"
     },
     "info": {
-      "helpDescription": "List of useful links",
+      "helpDescription": "Lista przydatnych linków",
       "embedReply": {
-        "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+        "description": "[Dodaj mnie na swój serwer]({BOT_INVITE_URL})\n[Support serwer]({BOT_SERVER_URL})\n[Magazyn GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
       }
     },
     "lang": {
