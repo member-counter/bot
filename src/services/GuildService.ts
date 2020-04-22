@@ -4,6 +4,7 @@ import UserModel from '../models/UserModel';
 
 class GuildService {
   private doc: any;
+  private isInitialized: boolean = false;
 
   public constructor(public id: string) {}
 
@@ -13,10 +14,7 @@ class GuildService {
       {},
       { new: true, upsert: true },
     );
-  }
-
-  private get isInitialized(): boolean {
-    return !!this.doc;
+    this.isInitialized = true;
   }
 
   private errorNotInit(): never {
@@ -94,17 +92,6 @@ class GuildService {
   public async setDigit(number: number, value: string): Promise<void> {
     if (!this.isInitialized) this.errorNotInit();
     this.doc.digits[number] = value;
-    await this.doc.save();
-  }
-
-  public get globalChannelTopic(): string {
-    if (!this.isInitialized) this.errorNotInit();
-    return this.doc.globalChannelTopic;
-  }
-
-  public async setGlobalChannelTopic(value: string): Promise<void> {
-    if (!this.isInitialized) this.errorNotInit();
-    this.doc.globalChannelTopic = value;
     await this.doc.save();
   }
 

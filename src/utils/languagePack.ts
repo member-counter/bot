@@ -14,9 +14,13 @@ const languagePacks: object = {
   pl_PL,
 };
 
-export default (langCode: string): any => {
+const availableLanguagePacks = Object.keys(languagePacks);
+
+const loadLanguagePack = (langCode: string): any => {
   if (languagePacks[langCode]) {
     return clonedeep(languagePacks[langCode]);
   }
   return clonedeep(en_US);
 };
+
+export { loadLanguagePack, availableLanguagePacks };
