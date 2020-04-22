@@ -1,7 +1,7 @@
-import loadLanguagePack from '../utils/loadLanguagePack';
 import getEnv from './getEnv';
 import Eris from 'eris';
 import GuildService from '../services/GuildService';
+import { loadLanguagePack } from './languagePack';
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import memberHasAdminPermission from './memberHasAdminPermission';
 import UserError from './UserError';

@@ -10,7 +10,10 @@ import Eris, {
 } from 'eris';
 import GuildService from '../services/GuildService';
 import AvailableLanguages from '../typings/AvailableLanguages';
-import loadLanguagePack from '../utils/loadLanguagePack';
+import {
+  loadLanguagePack,
+  availableLanguagePacks,
+} from '../utils/languagePack';
 
 // TODO
 const seeSettings: MemberCounterCommand = {
@@ -61,7 +64,7 @@ const seeSettings: MemberCounterCommand = {
       appendContent(`**${headerText}** ${guild.name} \`${guild.id}\`\n`);
       appendContent(
         `${premiumText} ${
-        premium ? premiumConfirmedText : premiumNoTierText
+          premium ? premiumConfirmedText : premiumNoTierText
         }\n`,
       );
       appendContent(`${prefixText} \`${prefix}\`\n`);
@@ -140,14 +143,17 @@ const lang: MemberCounterCommand = {
     if (message.channel instanceof GuildChannel) {
       const { content, channel } = message;
       const { guild } = channel;
-      const availableLanguages = ['es_ES', 'pt_BR', 'en_US', 'ru_RU', 'pl_PL'];
+      const availableLanguages = availableLanguagePacks;
       const [command, languageRequested]: any[] = content.split(/\s+/);
-      let { errorNotFound, success } = languagePack.commands.lang;
+      let { errorNotFound } = languagePack.commands.lang;
 
       if (availableLanguages.includes(languageRequested)) {
         const guildSettings = new GuildService(guild.id);
         await guildSettings.init();
         await guildSettings.setLanguage(languageRequested);
+
+        languagePack = loadLanguagePack(languageRequested);
+        let { success } = languagePack.commands.lang;
         channel.createMessage(success).catch(console.error);
       } else {
         errorNotFound += '\n```fix\n';

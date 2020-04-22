@@ -2,6 +2,7 @@ import UserModel from '../models/UserModel';
 
 class UserService {
   private doc: any;
+  private isInitialized: boolean = false;
 
   public constructor(public id: string) {}
 
@@ -11,10 +12,7 @@ class UserService {
       {},
       { new: true, upsert: true },
     );
-  }
-
-  private get isInitialized(): boolean {
-    return !!this.doc;
+    this.isInitialized = true;
   }
 
   private errorNotInit(): never {
