@@ -14,22 +14,20 @@ const updateCounterContent = async (channel: GuildChannel) => {
     channel instanceof VoiceChannel ||
     channel instanceof CategoryChannel
   ) {
-    let content = null;
     const guildSettings = new GuildService(channel.guild.id);
     await guildSettings.init();
 
     if (channel instanceof TextChannel || channel instanceof NewsChannel) {
-      if (/\{.+\}/.test(channel.topic)) content = channel.topic;
+      const { topic, id } = channel;
+      if (/\{.+\}/.test(topic)) await guildSettings.setCounter(id, topic);
+      else if (topic.length === 0)
+        await guildSettings.deleteCounter(channel.id);
     }
 
     if (channel instanceof CategoryChannel || channel instanceof VoiceChannel) {
-      if (/\{.+\}/.test(channel.name)) content = channel.name;
-    }
-
-    if (content) {
-      await guildSettings.setCounter(channel.id, content);
-    } else {
-      await guildSettings.deleteCounter(channel.id);
+      const { name, id } = channel;
+      if (/\{.+\}/.test(channel.name))
+        await guildSettings.setCounter(channel.id, channel.name);
     }
   }
 };
