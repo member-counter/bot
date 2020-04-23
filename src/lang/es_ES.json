@@ -105,6 +105,7 @@
     },
     "getCounts": {
       "onlyPremium": "Solo Premium",
+      "unknownCounter": "Unknown counter",
       "noBanPerms": "Necesito permisos de ban para mostrar esto"
     }
   },
