@@ -10,6 +10,7 @@ import GuildService from './GuildService';
 import { loadLanguagePack } from '../utils/languagePack';
 import getEnv from '../utils/getEnv';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
+import fetchExternalCount from '../utils/externalCounts';
 
 const { FOSS_MODE, PREMIUM_BOT } = getEnv();
 
@@ -146,20 +147,21 @@ class CountService {
   /** Return: -1 = Premium, -2 = Error, -3 = Unknown counter */
   private async fetchCount(type: string): Promise<void> {
     if (!this.isInitialized) this.errorNotInit();
-    if (type === '{members}') {
+
+    const typeL = type.toLowerCase();
+
+    if (typeL === '{members}') {
       this.countCache[type] = this.guild.memberCount;
     } else if (
-      type === '{users}' ||
-      type === '{bots}' ||
-      type === '{onlinemembers}' ||
-      type === '{onlineusers}' ||
-      type === '{onlinebots}' ||
-      type === '{offlinemembers}' ||
-      type === '{offlineusers}' ||
-      type === '{offlinebots}'
+      typeL === '{users}' ||
+      typeL === '{bots}' ||
+      typeL === '{onlinemembers}' ||
+      typeL === '{onlineusers}' ||
+      typeL === '{onlinebots}' ||
+      typeL === '{offlinemembers}' ||
+      typeL === '{offlineusers}' ||
+      typeL === '{offlinebots}'
     ) {
-      const NS_PER_SEC = 1e9;
-      const time = process.hrtime();
       const counts = {
         ['{bots}']: 0,
         ['{users}']: 0,
@@ -176,6 +178,7 @@ class CountService {
         }
         this.countCache = { ...this.countCache, counts };
       }
+
       for (const [memberId, member] of this.guild.members) {
         const memberIsOffline = member.status === 'offline';
 
@@ -191,21 +194,15 @@ class CountService {
         if (!memberIsOffline && member.bot) counts['onlinebots']++;
         else if (!memberIsOffline) counts['{onlineusers}']++;
       }
-      this.countCache = { ...this.countCache, ...counts };
 
-      const diff = process.hrtime(time);
-      console.log(
-        `Member related counts (${this.guild.members.size} members) took ${
-          diff[0] * NS_PER_SEC + diff[1]
-        } nanoseconds (${diff[0] * NS_PER_SEC + diff[1] / 1e6} ms)`,
-      );
-    } else if (type === '{channels}') {
+      this.countCache = { ...this.countCache, ...counts };
+    } else if (typeL === '{channels}') {
       this.countCache[type] = this.guild.channels.filter(
         (channel) => channel.type !== 4,
       ).length;
-    } else if (type === '{roles}') {
+    } else if (typeL === '{roles}') {
       this.countCache[type] = this.guild.roles.size;
-    } else if (type === '{connectedmembers}') {
+    } else if (typeL === '{connectedmembers}') {
       if (!PREMIUM_BOT || !FOSS_MODE) {
         this.countCache[type] = -1;
       }
@@ -216,7 +213,7 @@ class CountService {
           (prev, current: VoiceChannel) => prev + current.voiceMembers.size,
           0,
         );
-    } else if (type === '{bannedmembers}') {
+    } else if (typeL === '{bannedmembers}') {
       this.countCache[type] = await this.guild
         .getBans()
         .then((bans) => bans.length)
@@ -224,7 +221,7 @@ class CountService {
           console.error(error);
           this.countCache[type] = -2;
         });
-    } else if (/\{memberswithrole:.+\}/.test(type)) {
+    } else if (/\{memberswithrole:.+\}/.test(typeL)) {
       if (!PREMIUM_BOT || !FOSS_MODE) {
         this.countCache[type] = -1;
       }
@@ -241,7 +238,11 @@ class CountService {
       });
       this.countCache[type] = count.size;
     } else {
-      this.countCache[type] = -3;
+      try {
+        this.countCache[type] = await fetchExternalCount(type);
+      } catch (error) {
+        this.countCache[type] = -2;
+      }
     }
   }
 }

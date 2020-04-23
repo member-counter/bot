@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import * as Eris from 'eris';
 import mongoose from 'mongoose';
-import blocked from 'blocked-at';
 import getEnv from './utils/getEnv';
 import injectEventHandlers from './utils/injectEventHandlers';
 
@@ -44,7 +43,3 @@ mongoose
     console.log('[Mongoose] Connection ready');
   })
   .catch(console.error);
-
-blocked((time, stack) => {
-  console.log(`Blocked for ${time}ms, operation started here:`, stack);
-});
