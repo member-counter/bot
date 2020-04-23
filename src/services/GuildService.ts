@@ -92,6 +92,13 @@ class GuildService {
   public async setDigit(number: number, value: string): Promise<void> {
     if (!this.isInitialized) this.errorNotInit();
     this.doc.digits[number] = value;
+    this.doc.markModified('digits');
+    await this.doc.save();
+  }
+
+  public async resetDigits(): Promise<void> {
+    if (!this.isInitialized) this.errorNotInit();
+    this.doc.digits = undefined;
     await this.doc.save();
   }
 
