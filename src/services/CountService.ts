@@ -1,18 +1,31 @@
-import { Guild, VoiceChannel } from 'eris';
+import Eris, {
+  Guild,
+  VoiceChannel,
+  Client,
+  TextChannel,
+  NewsChannel,
+  CategoryChannel,
+} from 'eris';
 import GuildService from './GuildService';
 import { loadLanguagePack } from '../utils/languagePack';
 import getEnv from '../utils/getEnv';
+import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 
 const { FOSS_MODE, PREMIUM_BOT } = getEnv();
 
 class CountService {
+  private client: Client;
   private guildSettings: GuildService;
   private languagePack: any;
   private countCache: any;
   private isInitialized: boolean = false;
+  public guild: Guild;
 
-  constructor(public guild: Guild) {
+  constructor(guild: Guild) {
     this.countCache = {};
+    this.guild = guild;
+    //@ts-ignore
+    this.client = this.guild._client;
   }
 
   public async init(): Promise<void> {
@@ -27,7 +40,71 @@ class CountService {
   }
 
   public async updateCounters(): Promise<void> {
+    if (!this.isInitialized) this.errorNotInit();
     const { channels } = this.guild;
+
+    for (const [id, rawContent] of this.guildSettings.counters) {
+      const discordChannel = channels.get(id);
+      let processedContent = await this.processContent(
+        rawContent,
+        discordChannel instanceof TextChannel ||
+          discordChannel instanceof NewsChannel,
+      );
+
+      // TODO remove channel from DB if it doesnt exists anymore
+      if (
+        discordChannel instanceof TextChannel ||
+        discordChannel instanceof NewsChannel
+      ) {
+        if (
+          botHasPermsToEdit(discordChannel) &&
+          discordChannel.topic !== processedContent
+        )
+          await discordChannel.edit({ topic: processedContent });
+      } else if (
+        discordChannel instanceof VoiceChannel ||
+        discordChannel instanceof CategoryChannel
+      ) {
+        if (processedContent.length < 2) return;
+        if (
+          botHasPermsToEdit(discordChannel) &&
+          discordChannel.name !== processedContent
+        )
+          await discordChannel.edit({ name: processedContent });
+      }
+    }
+  }
+
+  private async processContent(content, customDigits): Promise<string> {
+    content = content.split('');
+
+    let isCounterBeingDetected = false;
+    let counterDetected = '';
+    let counterDetectedAt = 0;
+    for (let index = 0; index < content.length; index++) {
+      const char = content[index];
+
+      if (!isCounterBeingDetected && char === '{') {
+        isCounterBeingDetected = true;
+        counterDetectedAt = index;
+      } else if (isCounterBeingDetected && !(char === '{' || char === '}')) {
+        counterDetected += char;
+      } else if (isCounterBeingDetected && char === '}') {
+        content.splice(
+          counterDetectedAt,
+          counterDetected.length + 2,
+          await this.getCount(`{${counterDetected}}`, customDigits),
+        );
+
+        index = 0;
+        isCounterBeingDetected = false;
+        counterDetected = '';
+        counterDetectedAt = 0;
+      }
+    }
+
+    content = content.join('');
+    return content;
   }
 
   public async getCount(
@@ -39,6 +116,13 @@ class CountService {
       await this.fetchCount(type);
     }
 
+    // TODO add translations
+    if (this.countCache[type] === -1)
+      return this.languagePack.functions.getCounts.onlyPremium;
+    if (this.countCache[type] === -2) return this.languagePack.common.error;
+    if (this.countCache[type] === -3)
+      return this.languagePack.functions.getCounts.unknownCounter;
+
     if (customDigits) {
       if (!this.countCache[`${type}CustomDigit`]) {
         let rawCount: number = this.countCache[type];
@@ -46,7 +130,7 @@ class CountService {
 
         processedCount = processedCount
           .split('')
-          .map((digit, i) => this.guildSettings.digits[i])
+          .map((digit) => this.guildSettings.digits[digit])
           .join('');
 
         this.countCache[`${type}CustomDigit`] = processedCount;
@@ -54,11 +138,13 @@ class CountService {
 
       return this.countCache[`${type}CustomDigit`].toString();
     } else {
-      this.countCache[type].toString();
+      return this.countCache[type].toString();
     }
   }
 
-  private async fetchCount(type): Promise<void> {
+  /** Return: -1 = Premium, -2 = Error, -3 = Unknown counter */
+  private async fetchCount(type: string): Promise<void> {
+    if (!this.isInitialized) this.errorNotInit();
     if (type === '{members}') {
       this.countCache[type] = this.guild.memberCount;
     } else if (
@@ -72,18 +158,16 @@ class CountService {
       type === '{offlinebots}'
     ) {
       const counts = {
-        bots: 0,
-        users: 0,
-        onlineMembers: 0,
-        offlineMembers: 0,
-        onlineUsers: 0,
-        offlineUsers: 0,
-        onlineBots: 0,
-        offlineBots: 0,
+        ['{bots}']: 0,
+        ['{users}']: 0,
+        ['{onlinemembers}']: 0,
+        ['{offlinemembers}']: 0,
+        ['{onlineusers}']: 0,
+        ['{offlineusers}']: 0,
+        ['onlinebots']: 0,
+        ['{offlinebots}']: 0,
       };
       if (!PREMIUM_BOT || !FOSS_MODE) {
-        // If the bot is in non-premium mode, replace all member related counts
-        // except members to 'Only Premium'
         for (const key in counts) {
           counts[key] = -1;
         }
@@ -92,19 +176,19 @@ class CountService {
       for (const [memberId, member] of this.guild.members) {
         const memberIsOffline = member.status === 'offline';
 
-        if (member.bot) counts.bots++;
-        else counts.users++;
+        if (member.bot) counts['{bots}']++;
+        else counts['{users}']++;
 
-        if (memberIsOffline) counts.offlineMembers++;
-        else counts.onlineMembers++;
+        if (memberIsOffline) counts['{offlinemembers}']++;
+        else counts['{onlinemembers}']++;
 
-        if (memberIsOffline && member.bot) counts.offlineBots++;
-        else if (memberIsOffline) counts.offlineUsers++;
+        if (memberIsOffline && member.bot) counts['{offlinebots}']++;
+        else if (memberIsOffline) counts['{offlineusers}']++;
 
-        if (!memberIsOffline && member.bot) counts.onlineBots++;
-        else if (!memberIsOffline) counts.onlineUsers++;
+        if (!memberIsOffline && member.bot) counts['onlinebots']++;
+        else if (!memberIsOffline) counts['{onlineusers}']++;
       }
-      this.countCache = { ...this.countCache, counts };
+      this.countCache = { ...this.countCache, ...counts };
     } else if (type === '{channels}') {
       this.countCache[type] = this.guild.channels.filter(
         (channel) => channel.type !== 4,
@@ -112,7 +196,7 @@ class CountService {
     } else if (type === '{roles}') {
       this.countCache[type] = this.guild.roles.size;
     } else if (type === '{connectedmembers}') {
-      if (PREMIUM_BOT || FOSS_MODE) {
+      if (!PREMIUM_BOT || !FOSS_MODE) {
         this.countCache[type] = -1;
       }
 
@@ -130,9 +214,26 @@ class CountService {
           console.error(error);
           this.countCache[type] = -2;
         });
-    } else if (/\{memberswithrole:\}/.test(type)) {
+    } else if (/\{memberswithrole:.+\}/.test(type)) {
+      if (!PREMIUM_BOT || !FOSS_MODE) {
+        this.countCache[type] = -1;
+      }
+      const targetRoles: string[] = type
+        .slice('{memberswithrole:'.length, -1)
+        .split(',');
+
+      const count = new Set();
+
+      this.guild.members.forEach((member) => {
+        targetRoles.forEach((targetRole) => {
+          if (member.roles.includes(targetRole)) count.add(member.id);
+        });
+      });
+      this.countCache[type] = count.size;
+    } else {
+      this.countCache[type] = -3;
     }
   }
 }
 
-export default CountsService;
+export default CountService;

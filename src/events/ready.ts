@@ -2,8 +2,9 @@ import getEnv from '../utils/getEnv';
 import postBotStats from '../others/postBotStats';
 import checkPremiumGuilds from '../others/checkPremiumGuilds';
 import Eris from 'eris';
+import updateCounters from '../updateCounters';
 
-const { DISCORD_PREFIX } = getEnv();
+const { DISCORD_PREFIX, UPDATE_COUNTER_INTERVAL } = getEnv();
 
 const setStatus = (client: Eris.Client) => {
   client.editStatus('online', {
@@ -28,6 +29,10 @@ const ready = (client: Eris.Client) => {
     postBotStats(guilds.size);
     checkPremiumGuilds(guilds);
   }, 5 * 60 * 1000);
+
+  setInterval(() => {
+    updateCounters(client.guilds);
+  }, UPDATE_COUNTER_INTERVAL * 1000);
 };
 
 export default ready;
