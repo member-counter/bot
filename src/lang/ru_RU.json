@@ -105,7 +105,7 @@
     },
     "getCounts": {
       "onlyPremium": "Только Премиум",
-      "unknownCounter": "Unknown counter",
+      "unknownCounter": "Неизвестный счётчик",
       "noBanPerms": "Мне нужно право банить, чтобы показать это"
     }
   },
