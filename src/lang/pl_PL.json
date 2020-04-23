@@ -6,7 +6,7 @@
       "helpDescription": "Czy naprawdę konieczne jest wyjaśnienie celu tej komendy?",
       "embedReply": {
         "title": "Lista komend | prefix {PREFIX}",
-        "description": "Stronie internetowej:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonalny natomiast `[]` oznacza parametr wymagany"
+        "description": "Strona internetowa:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonalny natomiast `[]` oznacza parametr wymagany"
       },
       "misc": {
         "command": "Komenda:"
@@ -105,6 +105,7 @@
     },
     "getCounts": {
       "onlyPremium": "Tylko Premium",
+      "unknownCounter": "Unknown counter",
       "noBanPerms": "Potrzebuję uprawnień banowania, aby to pokazać"
     }
   },
