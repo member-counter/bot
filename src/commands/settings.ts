@@ -317,6 +317,43 @@ const upgradeServer: MemberCounterCommand = {
   },
 };
 
+const setDigit: MemberCounterCommand = {
+  aliases: ['setDigit'],
+  denyDm: true,
+  onlyAdmin: true,
+  run: async ({ message, languagePack }) => {
+    const { channel, content } = message;
+    const args = content.split(/\s+/);
+
+    if (channel instanceof GuildChannel) {
+      const { guild } = channel;
+      const guildSettings = new GuildService(guild.id);
+      await guildSettings.init();
+
+      if (args[1] === 'reset') {
+        await guildSettings.resetDigits();
+        channel.createMessage(languagePack.commands.setDigit.resetSuccess);
+      } else {
+        if (args.length >= 3) {
+          const digitToUpdate = parseInt(args[1].slice(0, 1), 10);
+          const newDigitValue = args[2];
+
+          await guildSettings.setDigit(digitToUpdate, newDigitValue);
+
+          channel.createMessage(languagePack.commands.setDigit.success);
+        } else {
+          channel.createMessage(
+            languagePack.commands.setDigit.errorMissingParams.replace(
+              /\{PREFIX\}/gi,
+              guildSettings.prefix,
+            ),
+          );
+        }
+      }
+    }
+  },
+};
+
 const settingsCommands = [
   seeSettings,
   resetSettings,
@@ -324,6 +361,7 @@ const settingsCommands = [
   lang,
   role,
   upgradeServer,
+  setDigit,
 ];
 
 export default settingsCommands;

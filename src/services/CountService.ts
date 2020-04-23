@@ -104,6 +104,7 @@ class CountService {
     }
 
     content = content.join('');
+
     return content;
   }
 
@@ -157,6 +158,8 @@ class CountService {
       type === '{offlineusers}' ||
       type === '{offlinebots}'
     ) {
+      const NS_PER_SEC = 1e9;
+      const time = process.hrtime();
       const counts = {
         ['{bots}']: 0,
         ['{users}']: 0,
@@ -189,6 +192,13 @@ class CountService {
         else if (!memberIsOffline) counts['{onlineusers}']++;
       }
       this.countCache = { ...this.countCache, ...counts };
+
+      const diff = process.hrtime(time);
+      console.log(
+        `Member related counts (${this.guild.members.size} members) took ${
+          diff[0] * NS_PER_SEC + diff[1]
+        } nanoseconds (${diff[0] * NS_PER_SEC + diff[1] / 1e6} ms)`,
+      );
     } else if (type === '{channels}') {
       this.countCache[type] = this.guild.channels.filter(
         (channel) => channel.type !== 4,
