@@ -6,11 +6,18 @@
       "helpDescription": "Czy naprawdę konieczne jest wyjaśnienie celu tej komendy?",
       "embedReply": {
         "title": "Lista komend | prefix {PREFIX}",
-        "description": "Strona internetowa:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonalny natomiast `[]` oznacza parametr wymagany"
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
       },
       "misc": {
         "command": "Komenda:"
       }
+    },
+    "lockChannel": {
+      "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
+      "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
+      "errorInvalidChannel": "You can only lock voice channels!",
+      "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
+      "errorNotFound": "Channel not found"
     },
     "setDigit": {
       "helpDescription": "Powinieneś zobaczyć  `{PREFIX}help topicCounter` przed użyciem tej komendy.\nDostosowanie liczb które będą wyświetlane, argument liczby musi być liczbą normalną, drugi argument może być dowolny, jak emotka lub zwykła liczba z  markdown. \nJeśli pierwszym argumentem jest słowo „reset”, liczby zostaną przywrócone do domyślnych.\n\nStosowanie: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [numer] [twoj niestandardowy numer]```\nPrzykład: ```{PREFIX}setDigit 3 **3**```\nW poprzednim przykładzie wszystkie 3 będą wyświetlane jako pogrubione ** 3 **",
