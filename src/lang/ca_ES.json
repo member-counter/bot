@@ -103,7 +103,7 @@
       "helpDescription": "Shows some counts",
       "members": "Members:",
       "onlineMembers": "Online members:",
-      "offlineMembers": "Offline members",
+      "offlineMembers": "Offline members:",
       "bots": "Bots:",
       "connectedUsers": "Connected users:",
       "channels": "Channels:",
