@@ -14,6 +14,7 @@ import {
   loadLanguagePack,
   availableLanguagePacks,
 } from '../utils/languagePack';
+import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 
 // TODO
 const seeSettings: MemberCounterCommand = {
@@ -71,20 +72,34 @@ const seeSettings: MemberCounterCommand = {
       appendContent(`${langText} \`${language}\`\n`);
 
       appendContent(
-        `${allowedRolesText} ${allowedRoles
+        `\n${allowedRolesText} ${allowedRoles
           .map((role) => `<@&${role}>`)
           .join(' ')}`,
       );
 
-      appendContent(`\n${countersText}\n`);
+      appendContent(`\n\n${countersText}\n`);
       for (const [counter, content] of counters) {
         const discordChannel = guild.channels.get(counter);
         const { name, type } = discordChannel;
         const icon = ['\\#️⃣', ' ', '\\🔊', ' ', '\\📚', '\\📢', ' '];
-        appendContent(` - ${icon[type]} ${name} \`${counter}\`: ${content}\n`);
+        appendContent(
+          `${botHasPermsToEdit(discordChannel) ? '     ' : ' \\⚠️ '}- ${
+            icon[type]
+          } ${name} \`${counter}\`: \`\`\`${content}\`\`\`\n`,
+        );
       }
       appendContent(`\n${customNumbersText}`);
-      appendContent(` ${digits.join(' ')}`);
+      appendContent(` ${digits.join(' ')}\n`);
+
+      // If there is some counter with lack of perms, show the legend
+      if (
+        Array.from(counters).filter(([channelId]) => {
+          const discordChannel = guild.channels.get(channelId);
+          return !botHasPermsToEdit(discordChannel);
+        }).length > 0
+      ) {
+        appendContent(`\n${warningNoPermsText}`);
+      }
 
       for (const message of messagesToSend) {
         await channel.createMessage(message);
