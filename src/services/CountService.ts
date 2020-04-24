@@ -16,32 +16,25 @@ const { FOSS_MODE, PREMIUM_BOT } = getEnv();
 
 class CountService {
   private client: Client;
-  private guildSettings: GuildService;
   private languagePack: any;
   private countCache: any;
-  private isInitialized: boolean = false;
-  public guild: Guild;
 
-  constructor(guild: Guild) {
-    this.countCache = {};
-    this.guild = guild;
+  private constructor(
+    public guild: Guild,
+    private guildSettings: GuildService,
+  ) {
     //@ts-ignore
     this.client = this.guild._client;
-  }
-
-  public async init(): Promise<void> {
-    this.guildSettings = new GuildService(this.guild.id);
-    await this.guildSettings.init();
     this.languagePack = loadLanguagePack(this.guildSettings.language);
-    this.isInitialized = true;
+    this.countCache = {};
   }
 
-  private errorNotInit(): never {
-    throw new Error('You must call .init() first');
+  public static async init(guild: Guild): Promise<CountService> {
+    const guildSettings = await GuildService.init(guild.id);
+    return new CountService(guild, guildSettings);
   }
 
   public async updateCounters(): Promise<void> {
-    if (!this.isInitialized) this.errorNotInit();
     const { channels } = this.guild;
 
     for (const [id, rawContent] of this.guildSettings.counters) {
@@ -113,7 +106,6 @@ class CountService {
     type: string,
     customDigits: boolean = false,
   ): Promise<string> {
-    if (!this.isInitialized) this.errorNotInit();
     if (!this.countCache[type]) {
       await this.fetchCount(type);
     }
@@ -146,8 +138,6 @@ class CountService {
 
   /** Return: -1 = Premium, -2 = Error, -3 = Unknown counter */
   private async fetchCount(type: string): Promise<void> {
-    if (!this.isInitialized) this.errorNotInit();
-
     const typeL = type.toLowerCase();
 
     if (typeL === '{members}') {

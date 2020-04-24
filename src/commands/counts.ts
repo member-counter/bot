@@ -11,8 +11,7 @@ const counts: MemberCounterCommand = {
     const { channel } = message;
     if (channel instanceof Eris.GuildChannel) {
       const { guild } = channel;
-      const counts = new CountService(guild);
-      await counts.init();
+      const counts = await CountService.init(guild);
 
       const embed = embedBase({
         fields: [

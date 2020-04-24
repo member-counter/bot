@@ -11,8 +11,7 @@ export default async (
 ) => {
   // Apply new permissions for the premium bot when it joins
   if (!PREMIUM_BOT && member.id === PREMIUM_BOT_ID) {
-    const guildSettings = new GuildService(guild.id);
-    await guildSettings.init();
+    const guildSettings = await GuildService.init(guild.id);
 
     if (guildSettings.premium) {
       console.log(

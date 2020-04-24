@@ -55,8 +55,7 @@ export default async (client: Eris.Client, message: Eris.Message) => {
     let languagePack;
 
     if (channel instanceof Eris.GuildChannel) {
-      const guildSettings = new GuildService(channel.guild.id);
-      await guildSettings.init();
+      const guildSettings = await GuildService.init(channel.guild.id);
 
       languagePack = loadLanguagePack(guildSettings.language);
       prefix = guildSettings.prefix;

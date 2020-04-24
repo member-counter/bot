@@ -1,45 +1,34 @@
 import UserModel from '../models/UserModel';
 
 class UserService {
-  private doc: any;
-  private isInitialized: boolean = false;
+  private constructor(public id: string, private doc: any) {}
 
-  public constructor(public id: string) {}
-
-  public async init(): Promise<void> {
-    this.doc = await UserModel.findOneAndUpdate(
-      { user: this.id },
+  public static async init(id: string): Promise<UserService> {
+    const doc = await UserModel.findOneAndUpdate(
+      { user: id },
       {},
       { new: true, upsert: true },
     );
-    this.isInitialized = true;
-  }
-
-  private errorNotInit(): never {
-    throw new Error('You must call .init() first');
+    return new UserService(id, doc);
   }
 
   public get badges(): number {
-    if (!this.isInitialized) this.errorNotInit();
     return this.doc.badges;
   }
 
   public async grantBadge(badge: number): Promise<number> {
-    if (!this.isInitialized) this.errorNotInit();
     this.doc.badges |= badge;
     this.doc.save();
     return this.doc.badges;
   }
 
   public get availableServerUpgrades(): number {
-    if (!this.isInitialized) this.errorNotInit();
     return this.doc.availableServerUpgrades;
   }
 
   public async grantAvailableServerUpgrades(
     amount: number = 1,
   ): Promise<number> {
-    if (!this.isInitialized) this.errorNotInit();
     this.doc.availableServerUpgrades += amount;
     this.doc.save();
     return this.doc.availableServerUpgrades;
