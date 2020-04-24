@@ -1,5 +1,3 @@
-import AvailableLanguages from './AvailableLanguages';
-
 export interface MemberCounterEnv {
   readonly NODE_ENV: 'development' | 'production';
   readonly DEBUG: boolean;
@@ -7,7 +5,7 @@ export interface MemberCounterEnv {
   readonly DISCORD_CLIENT_ID: string;
   readonly DISCORD_CLIENT_TOKEN: string;
   readonly DISCORD_PREFIX: string;
-  readonly DISCORD_DEFAULT_LANG: AvailableLanguages;
+  readonly DISCORD_DEFAULT_LANG: string;
   readonly DISCORD_BOT_INVITE: string;
   readonly DISCORD_OFFICIAL_SERVER_ID: string;
   readonly DISCORD_OFFICIAL_SERVER_URL: string;
