@@ -112,6 +112,7 @@
   "common": {
     "error": "Błąd",
     "errorDb": "Błąd bazy danych, spróbuj ponownie później",
+    "errorDiscordAPI": "Discord API",
     "errorUnknown": "Coś poszło nie tak, spróbuj ponownie później.",
     "errorNoAdmin": "Tylko członkowie z uprawnieniami administratora na tym serwerze mogą używać tej komendy.",
     "noTopicCounterEnabled": "Wygląda na to, że nie włączyłeś jeszcze licznika tematów. Zobacz `{PREFIX}help topicCounter`"
