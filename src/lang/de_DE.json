@@ -13,7 +13,7 @@
       }
     },
     "setup": {
-      "helpDescription": "Shows you a guide of how to use the bot",
+      "helpDescription": "Zeigt dir eine Anleitung zur Verwendung des Bots",
       "explication": ""
     },
     "lockChannel": {
@@ -35,7 +35,7 @@
       "noPrefixProvided": "Du musst ein Präfix angeben"
     },
     "role": {
-      "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "helpDescription": "Du kannst Rollen erlauben oder verweigern Verwaltungsbefehle auszuführen.\nDu kannst `all` als Angabe verwenden um alle Rollen zuzulassen oder abzulehnen\nUm zu sehen welche Rollen aktuell erlaubt sind benutzte `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
       "rolesUpdated": "Rollen Aktualisiert.",
       "errorNoRolesToUpdate": "Du musst mindesten eine Rolle erwähnen",
       "invalidParams": "Ungütige Angaben, siehe`{PREFIX}help role`"
@@ -95,7 +95,7 @@
       "errorExchangeFetch": "Fehler beim Abrufen der Wechselkurse"
     },
     "profile": {
-      "helpDescription": "Shows related information between you and this bot",
+      "helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
       "badges": "Abzeichen",
       "serverUpgradesAvailable": "Verbleibende Server Verbesserungen"
     },
@@ -103,7 +103,7 @@
       "helpDescription": "Zeigt einige Zählungen an",
       "members": "Mitglieder:",
       "onlineMembers": "Mitglieder Online:",
-      "offlineMembers": "Mitglieder Offline",
+      "offlineMembers": "Offline members:",
       "bots": "Bots:",
       "connectedUsers": "Verbundene User:",
       "channels": "Kanäle:",
@@ -112,20 +112,20 @@
   },
   "functions": {
     "commandHandler": {
-      "noDm": "You can't run this command on a DM channel"
+      "noDm": "Du kannst diesen Befehl nicht in Direktnachrichten verwenden"
     },
     "getCounts": {
-      "onlyPremium": "Only Premium",
-      "unknownCounter": "Unknown counter",
-      "noBanPerms": "I need ban permissions to show this"
+      "onlyPremium": "Nur für Premium",
+      "unknownCounter": "Unbekannter Zähler",
+      "noBanPerms": "Ich brauche Ban Berechtigungen um das anzeigen zu können"
     }
   },
   "common": {
-    "error": "Error",
-    "errorDb": "Database error, try again later",
+    "error": "Fehler",
+    "errorDb": "Datenbank fehler, versuch es später erneut",
     "errorDiscordAPI": "Discord API",
-    "errorUnknown": "Something went wrong, try again later.",
-    "errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
-    "noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+    "errorUnknown": "Etwas ist schief gelaufen, versuche es später erneut.",
+    "errorNoAdmin": "Nur Mitglieder mit Administrator Berechtigung können diesen Command benutzen.",
+    "noTopicCounterEnabled": "Scheint als wäre kein Kanal Zähler in Kanalbeschreibungen festgelegt, siehe `{PREFIX}help topicCounter`"
   }
 }
