@@ -6,18 +6,18 @@
       "helpDescription": "¿Es realmente necesario explicar el propósito de este comando?",
       "embedReply": {
         "title": "Lista de comandos | prefijo: {PREFIX}",
-        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentación:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nombre del comando)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio\""
       },
       "misc": {
         "command": "Comando:"
       }
     },
     "lockChannel": {
-      "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
-      "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
-      "errorInvalidChannel": "You can only lock voice channels!",
-      "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-      "errorNotFound": "Channel not found"
+      "helpDescription": "Puedes usar esta comando para mostrar un candado (🔒) en ved de un altavoz (🔊) en canales de voz\n\n**Usage**```{PREFIX}lockChannel [id del canal]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
+      "success": "Hecho! Ahora, **para usuarios no administradores**, el canal sera mostrado con un 🔒",
+      "errorInvalidChannel": "Solo puedes bloquear canales de voz!",
+      "errorNoPerms": "No puedo editar el canal `{CHANNEL}` debido a falta de permisos",
+      "errorNotFound": "Canal no encontrado"
     },
     "setDigit": {
       "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nPersonaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
@@ -112,7 +112,7 @@
     },
     "getCounts": {
       "onlyPremium": "Solo Premium",
-      "unknownCounter": "Unknown counter",
+      "unknownCounter": "Error desconocido",
       "noBanPerms": "Necesito permisos de ban para mostrar esto"
     }
   },
