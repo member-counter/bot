@@ -211,22 +211,47 @@ class CountService {
           console.error(error);
           this.countCache[type] = -2;
         });
-    } else if (/\{memberswithrole:.+\}/.test(typeL)) {
-      if (!PREMIUM_BOT || !FOSS_MODE) {
-        this.countCache[type] = -1;
-      }
+    } else if (
+      /\{memberswithrole:.+\}/.test(typeL) ||
+      /\{onlinememberswithrole:.+\}/.test(typeL) ||
+      /\{offlinememberswithrole:.+\}/.test(typeL)
+    ) {
       const targetRoles: string[] = type
-        .slice('{memberswithrole:'.length, -1)
+        .slice(type.indexOf(':') + 1, -1)
         .split(',');
 
-      const count = new Set();
+      if (!PREMIUM_BOT || !FOSS_MODE) {
+        this.countCache[`{memberswithrole:${targetRoles.join(',')}}`] = -1;
+        this.countCache[
+          `{onlinememberswithrole:${targetRoles.join(',')}}`
+        ] = -1;
+        this.countCache[
+          `{offlinememberswithrole:${targetRoles.join(',')}}`
+        ] = -1;
+        return;
+      }
+
+      const membersWithRole = new Set();
+      const onlineMembersWithRole = new Set();
+      const offlineMembersWithRole = new Set();
 
       this.guild.members.forEach((member) => {
         targetRoles.forEach((targetRole) => {
-          if (member.roles.includes(targetRole)) count.add(member.id);
+          if (member.roles.includes(targetRole)) {
+            membersWithRole.add(member.id);
+            if (member.status === 'offline')
+              offlineMembersWithRole.add(member.id);
+            else onlineMembersWithRole.add(member.id);
+          }
         });
       });
-      this.countCache[type] = count.size;
+
+      this.countCache[`{memberswithrole:${targetRoles.join(',')}}`] =
+        membersWithRole.size;
+      this.countCache[`{onlinememberswithrole:${targetRoles.join(',')}}`] =
+        onlineMembersWithRole.size;
+      this.countCache[`{offlinememberswithrole:${targetRoles.join(',')}}`] =
+        offlineMembersWithRole.size;
     } else {
       try {
         this.countCache[type] = await fetchExternalCount(type);
