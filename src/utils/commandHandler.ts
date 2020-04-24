@@ -22,6 +22,7 @@ import helpCommands from '../commands/help';
 import donateCommands from '../commands/donate';
 import settingsCommands from '../commands/settings';
 import countCommands from '../commands/counts';
+import utilCommand from '../commands/utils';
 
 const commands: Array<MemberCounterCommand> = [
   ...userCommands,
@@ -32,6 +33,7 @@ const commands: Array<MemberCounterCommand> = [
   ...donateCommands,
   ...settingsCommands,
   ...countCommands,
+  ...utilCommand,
 ];
 
 export default async (client: Eris.Client, message: Eris.Message) => {
@@ -92,7 +94,7 @@ export default async (client: Eris.Client, message: Eris.Message) => {
             }
 
             try {
-              command.run({
+              await command.run({
                 message,
                 languagePack,
               });
