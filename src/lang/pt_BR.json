@@ -12,6 +12,10 @@
         "command": "Comando:"
       }
     },
+    "setup": {
+      "helpDescription": "Shows you a guide of how to use the bot",
+      "explication": ""
+    },
     "lockChannel": {
       "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
       "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
@@ -31,7 +35,7 @@
       "noPrefixProvided": "Você deve informar um prefixo"
     },
     "role": {
-      "helpDescription": "Você pode permitir ou bloquear cargos de usar os comandos administrativos do bot.\nVocê pode usar a palavra ``all`` para permitir ou bloquear todos os cargos.\nPara visualizar quais cargos possuem permissão atualmente use `{PREFIX}seeSettings``\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
       "rolesUpdated": "Cargos Atualizados.",
       "errorNoRolesToUpdate": "Vocë deve mencionar pelo menos 1 cargo",
       "invalidParams": "Parâmetros inválidos, veja `{PREFIX}help role`"
