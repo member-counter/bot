@@ -112,6 +112,7 @@
   "common": {
     "error": "Erro",
     "errorDb": "Erro no banco de dados, tente novamente mais tarde.",
+    "errorDiscordAPI": "Discord API",
     "errorUnknown": "Ocorreu um erro. Tente novamente mais tarde.",
     "errorNoAdmin": "Somente membros com permissões de administrador neste servidor podem usar este comando.",
     "noTopicCounterEnabled": "Parece que você ainda não habilitou um contador de tópico, por favor, veja `{PREFIX}help topicCounter`"
