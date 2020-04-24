@@ -8,8 +8,7 @@ const updateCounters = (guilds: Collection<Guild>) => {
     if (countersBeingUpdated.has(guild.id)) return;
     try {
       countersBeingUpdated.add(guild.id);
-      const guildCounts = new CountService(guild);
-      await guildCounts.init();
+      const guildCounts = await CountService.init(guild);
       await guildCounts.updateCounters();
     } catch (error) {
       console.error(error);

@@ -5,8 +5,7 @@ import GuildService from '../services/GuildService';
 const { BOT_OWNERS } = getEnv();
 
 export default async (member: Eris.Member): Promise<boolean> => {
-  const guildSettings = new GuildService(member.guild.id);
-  await guildSettings.init();
+  const guildSettings = await GuildService.init(member.guild.id);
 
   let hasAnyAllowedRole: boolean = false;
   for (const allowedRoleId of guildSettings.allowedRoles) {

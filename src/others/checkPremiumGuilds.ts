@@ -7,8 +7,7 @@ const { PREMIUM_BOT, FOSS_MODE } = getEnv();
 export default (guilds: Eris.Collection<Eris.Guild>) => {
   if (PREMIUM_BOT && !FOSS_MODE) {
     guilds.forEach(async (guild) => {
-      const guildSettings = new GuildService(guild.id);
-      await guildSettings.init();
+      const guildSettings = await GuildService.init(guild.id);
       if (!guildSettings.premium) guild.leave().catch(console.error);
     });
   }

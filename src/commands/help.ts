@@ -15,8 +15,7 @@ const help: MemberCounterCommand = {
 
     const prefix = await (async () => {
       if (channel instanceof GuildChannel) {
-        const guildSettings = new GuildService(channel.guild.id);
-        await guildSettings.init();
+        const guildSettings = await GuildService.init(channel.guild.id);
         return guildSettings.prefix;
       } else return DISCORD_PREFIX;
     })();

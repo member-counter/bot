@@ -12,8 +12,8 @@ const regionRelation = {
 const guildCreate = async (guild: Eris.Guild) => {
   // Self kick when premium bot is present and the guild is premium
   if (!PREMIUM_BOT && !FOSS_MODE) {
-    const guildSettings = new GuildService(guild.id);
-    await guildSettings.init();
+    const guildSettings = await GuildService.init(guild.id);
+
     const premiumBotMember = await guild
       .getRESTMember(PREMIUM_BOT_ID)
       .catch(() => {});
@@ -25,8 +25,7 @@ const guildCreate = async (guild: Eris.Guild) => {
 
   // set language for the guild based on its voice region
   if (regionRelation[guild.region]) {
-    const guildSettings = new GuildService(guild.id);
-    await guildSettings.init();
+    const guildSettings = await GuildService.init(guild.id);
     await guildSettings.setLanguage(regionRelation[guild.region]);
   }
 };

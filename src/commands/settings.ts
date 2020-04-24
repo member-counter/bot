@@ -39,8 +39,7 @@ const seeSettings: MemberCounterCommand = {
         warningNoPermsText,
       } = languagePack.commands.seeSettings.settingsMessage;
 
-      const guildSettings = new GuildService(guild.id);
-      await guildSettings.init();
+      const guildSettings = await GuildService.init(guild.id);
 
       const {
         prefix,
@@ -117,8 +116,7 @@ const resetSettings: MemberCounterCommand = {
       const { channel, author } = message;
       const { guild } = channel;
 
-      const guildSettings = new GuildService(guild.id);
-      await guildSettings.init();
+      const guildSettings = await GuildService.init(guild.id);
 
       guildSettings.counters.forEach((content, channelId) => {
         if (guild.channels.has(channelId)) {
@@ -163,8 +161,8 @@ const lang: MemberCounterCommand = {
       let { errorNotFound } = languagePack.commands.lang;
 
       if (availableLanguages.includes(languageRequested)) {
-        const guildSettings = new GuildService(guild.id);
-        await guildSettings.init();
+        const guildSettings = await GuildService.init(guild.id);
+
         await guildSettings.setLanguage(languageRequested);
 
         languagePack = loadLanguagePack(languageRequested);
@@ -193,8 +191,7 @@ const prefix: MemberCounterCommand = {
     const [command, newPrefix] = content.split(/\s+/g);
 
     if (channel instanceof GuildChannel) {
-      const guildSettings = new GuildService(channel.guild.id);
-      await guildSettings.init();
+      const guildSettings = await GuildService.init(channel.guild.id);
 
       if (newPrefix) {
         await guildSettings.setPrefix(newPrefix);
@@ -223,8 +220,7 @@ const role: MemberCounterCommand = {
     if (channel instanceof GuildChannel) {
       const { guild } = channel;
       const [command, action] = content.toLowerCase().split(/\s+/);
-      const guildSettings = new GuildService(guild.id);
-      await guildSettings.init();
+      const guildSettings = await GuildService.init(guild.id);
 
       let rolesMentioned: string[] = roleMentions;
       let newAllowedRoles: string[] = guildSettings.allowedRoles;
@@ -295,8 +291,7 @@ const upgradeServer: MemberCounterCommand = {
 
     if (channel instanceof GuildChannel) {
       const { guild } = channel;
-      const guildSettings = new GuildService(guild.id);
-      await guildSettings.init();
+      const guildSettings = await GuildService.init(guild.id);
 
       const upgradeServer = await guildSettings.upgradeServer(author.id);
 
@@ -342,8 +337,7 @@ const setDigit: MemberCounterCommand = {
 
     if (channel instanceof GuildChannel) {
       const { guild } = channel;
-      const guildSettings = new GuildService(guild.id);
-      await guildSettings.init();
+      const guildSettings = await GuildService.init(guild.id);
 
       if (args[1] === 'reset') {
         await guildSettings.resetDigits();

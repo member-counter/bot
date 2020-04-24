@@ -46,8 +46,7 @@ const user: MemberCounterCommand = {
       targetUser = author;
     }
 
-    const userSettings = new UserService(targetUser.id);
-    await userSettings.init();
+    const userSettings = await UserService.init(targetUser.id);
 
     switch (action) {
       case 'grantserverupgrade': {

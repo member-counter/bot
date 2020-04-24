@@ -14,8 +14,7 @@ const updateCounterContent = async (channel: GuildChannel) => {
     channel instanceof VoiceChannel ||
     channel instanceof CategoryChannel
   ) {
-    const guildSettings = new GuildService(channel.guild.id);
-    await guildSettings.init();
+    const guildSettings = await GuildService.init(channel.guild.id);
 
     if (channel instanceof TextChannel || channel instanceof NewsChannel) {
       const { topic, id } = channel;
