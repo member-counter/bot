@@ -112,6 +112,7 @@
   "common": {
     "error": "Error",
     "errorDb": "Database error, try again later",
+    "errorDiscordAPI": "Discord API",
     "errorUnknown": "Something went wrong, try again later.",
     "errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
     "noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
