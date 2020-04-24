@@ -103,7 +103,7 @@
       "helpDescription": "Exibe alguns contadores",
       "members": "Membros",
       "onlineMembers": "Membros online:",
-      "offlineMembers": "Membros offline:",
+      "offlineMembers": "Offline members:",
       "bots": "Bots:",
       "connectedUsers": "Usuários conectados:",
       "channels": "Canais:",
