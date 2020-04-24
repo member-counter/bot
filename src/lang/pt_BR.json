@@ -6,11 +6,18 @@
       "helpDescription": "É realmente necessário explicar o propósito desse comando?",
       "embedReply": {
         "title": "Lista de Comandos | prefix: {PREFIX}",
-        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentação:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nome do comando)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}setDigit [número] [seu número personalizado]\n{PREFIX}lang [código do idioma]\n{PREFIX}prefix [novo prefixo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}doação```\n **Informações:** `()` significa um parâmetro opcional, enquanto `[]` significa um parâmetro necessário"
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
       },
       "misc": {
         "command": "Comando:"
       }
+    },
+    "lockChannel": {
+      "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
+      "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
+      "errorInvalidChannel": "You can only lock voice channels!",
+      "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
+      "errorNotFound": "Channel not found"
     },
     "setDigit": {
       "helpDescription": "Você deveria ver `{PREFIX}help topicCounter` antes de usar esse comando.\nPersonaliza os números que serão exibidos, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal com marcação.\nSe o primeiro argumento é a palavra \"reset\", os números serão redefinidos para o padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número personalizado]```\nExemplo: ```{PREFIX}setDigit 3 **3**```\nCom o exemplo anterior, cada 3 será mostrado em negrito **3**",
