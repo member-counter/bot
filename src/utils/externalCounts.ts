@@ -35,49 +35,6 @@ const fetchExternalCount = async (type: string): Promise<number> => {
     } else if (/\{minecraft:.+\}/.test(type)) {
       // TODO
       return -3;
-    } else if (/\{gtasa-mfa:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{gtasa-mp:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{gta5-rp:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{tf2:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{gmod:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{cs:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{css:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{csgo:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{overwatch:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{rainbow6:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{insurgency-sandstorm:.+\}/.test(type)) {
-      // TODO
-      return -3;
-      return -3;
-    } else if (/\{rust:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{arma3:.+\}/.test(type)) {
-      // TODO
-      return -3;
-    } else if (/\{dayZ:.+\}/.test(type)) {
-      // TODO
-      return -3;
     } else {
       // -3 = Unknown Count
       return -3;

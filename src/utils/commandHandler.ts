@@ -4,7 +4,7 @@ import GuildService from '../services/GuildService';
 import { loadLanguagePack } from './languagePack';
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import memberHasAdminPermission from './memberHasAdminPermission';
-import UserError from './UserError';
+import commandErrorHandler from './commandErrorHandler';
 
 const {
   PREMIUM_BOT,
@@ -97,9 +97,7 @@ export default async (client: Eris.Client, message: Eris.Message) => {
                 languagePack,
               });
             } catch (error) {
-              if (error instanceof UserError)
-                channel.createMessage(error.message).catch(console.error);
-              else console.error(error);
+              commandErrorHandler(channel, languagePack, error);
             }
             break commandsLoop;
           }
