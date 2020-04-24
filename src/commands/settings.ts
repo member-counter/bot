@@ -9,7 +9,6 @@ import Eris, {
   Guild,
 } from 'eris';
 import GuildService from '../services/GuildService';
-import AvailableLanguages from '../typings/AvailableLanguages';
 import {
   loadLanguagePack,
   availableLanguagePacks,

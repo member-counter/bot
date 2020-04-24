@@ -1,5 +1,4 @@
 import GuildModel from '../models/GuildModel';
-import AvailableLanguages from '../typings/AvailableLanguages';
 import UserModel from '../models/UserModel';
 
 class GuildService {
@@ -14,11 +13,11 @@ class GuildService {
     return new GuildService(id, doc);
   }
 
-  public get language(): AvailableLanguages {
+  public get language(): string {
     return this.doc.language;
   }
 
-  public async setLanguage(value: AvailableLanguages): Promise<void> {
+  public async setLanguage(value: string): Promise<void> {
     this.doc.language = value;
     await this.doc.save();
   }
