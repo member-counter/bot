@@ -1,11 +1,4 @@
 import Eris, { TextChannel } from 'eris';
-import UserError from './UserError';
-import {
-  Mongoose,
-  Error as MongooseError,
-  NativeError as MongooseNativeError,
-} from 'mongoose';
-
 // TODO
 const commandErrorHandler = async (
   channel: Eris.AnyChannel,
@@ -15,21 +8,31 @@ const commandErrorHandler = async (
   const { errorDb, errorDiscordAPI, errorUnknown } = languagePack.common;
   const errorText = languagePack.common.error;
   try {
-    switch (error.constructor) {
-      case UserError:
+    switch (error.constructor.name) {
+      case 'UserError':
         if (channel instanceof TextChannel)
           await channel.createMessage(`**${errorText}:** ${error.message}`);
         break;
 
-      case MongooseError:
-      case MongooseNativeError:
+      case 'MongooseError':
+      case 'MongooseNativeError':
         if (channel instanceof TextChannel)
           await channel.createMessage(`**${errorText}:** ${errorDb}`);
+        throw error;
+        break;
+
+      case 'DiscordRESTError':
+      case 'DiscordHTTPError':
+        if (channel instanceof TextChannel)
+          await channel.createMessage(
+            `**${errorText}:** ${errorDiscordAPI}: ${error.message} `,
+          );
+        throw error;
+        break;
 
       default:
         if (channel instanceof TextChannel)
           await channel.createMessage(`**${errorText}:** ${errorUnknown}`);
-        // AGGHHHH JUST THROW IT AGAIN! (╯°□°）╯︵ ┻━┻
         throw error;
         break;
     }
