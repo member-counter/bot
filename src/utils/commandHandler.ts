@@ -22,7 +22,7 @@ import helpCommands from '../commands/help';
 import donateCommands from '../commands/donate';
 import settingsCommands from '../commands/settings';
 import countCommands from '../commands/counts';
-import utilCommand from '../commands/utils';
+import utilCommands from '../commands/utils';
 
 const commands: Array<MemberCounterCommand> = [
   ...userCommands,
@@ -33,7 +33,7 @@ const commands: Array<MemberCounterCommand> = [
   ...donateCommands,
   ...settingsCommands,
   ...countCommands,
-  ...utilCommand,
+  ...utilCommands,
 ];
 
 export default async (client: Eris.Client, message: Eris.Message) => {
