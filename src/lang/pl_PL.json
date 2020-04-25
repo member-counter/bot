@@ -81,7 +81,7 @@
     "lang": {
       "helpDescription": "Aby użyć komendy zmiany języka bota dla tego serwera, musisz mieć uprawnienia administratora.",
       "success": "Pomyślna zmiana języka.",
-      "errorNotFound": "Nie znalazłem tego języka, spróbuj jednego z poniższych:"
+      "errorNotFound": "List of available languages:"
     },
     "donate": {
       "helpDescription": "Pokazuje najwyższe darowizny.",
