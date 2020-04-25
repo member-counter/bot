@@ -81,7 +81,7 @@
     "lang": {
       "helpDescription": "Altera o idioma do bot para este servidor, você deve ter permissões de administrador para executar este comando.",
       "success": "Idioma alterado com sucesso.",
-      "errorNotFound": "Não encontrei esse idioma, tente um dos seguintes:"
+      "errorNotFound": "List of available languages:"
     },
     "donate": {
       "helpDescription": "Mostra as principais doações.",
