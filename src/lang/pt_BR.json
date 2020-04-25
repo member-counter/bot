@@ -6,7 +6,7 @@
       "helpDescription": "É realmente necessário explicar o propósito desse comando?",
       "embedReply": {
         "title": "Lista de Comandos | prefix: {PREFIX}",
-        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
       },
       "misc": {
         "command": "Comando:"
@@ -21,6 +21,10 @@
       "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
       "errorInvalidChannel": "You can only lock voice channels!",
       "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
+      "errorNotFound": "Channel not found"
+    },
+    "editChannel": {
+      "success": "Done! You may have wait a few seconds to see the new changes",
       "errorNotFound": "Channel not found"
     },
     "setDigit": {
