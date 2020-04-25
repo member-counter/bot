@@ -81,7 +81,7 @@
     "lang": {
       "helpDescription": "Cambia el idioma de este servidor, debes ser administrador para ejecutar este comando.",
       "success": "El idioma se cambio correctamente.",
-      "errorNotFound": "No encontré ese idioma, prueba uno de los siguientes:"
+      "errorNotFound": "List of available languages:"
     },
     "donate": {
       "helpDescription": "Muestra las mayores donaciones.",
