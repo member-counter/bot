@@ -25,11 +25,12 @@ const updateCounterContent = async (channel: GuildChannel) => {
 
     if (channel instanceof CategoryChannel || channel instanceof VoiceChannel) {
       const { name, id } = channel;
-      if (/\{disable\}/gi.test(channel.name))
+      if (/\{disable\}/gi.test(channel.name)) {
         await guildSettings.deleteCounter(channel.id);
-      await channel.edit({ name: '✔' });
-    } else if (/\{.+\}/.test(channel.name)) {
-      await guildSettings.setCounter(channel.id, channel.name);
+        await channel.edit({ name: '✔' });
+      } else if (/\{.+\}/.test(channel.name)) {
+        await guildSettings.setCounter(channel.id, channel.name);
+      }
     }
   }
 };
