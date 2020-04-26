@@ -14,7 +14,8 @@
     },
     "setup": {
       "helpDescription": "Zeigt dir eine Anleitung zur Verwendung des Bots",
-      "explication": ""
+      "explication": "",
+      "counters": ""
     },
     "lockChannel": {
       "helpDescription": "Mit diesem Befehl kannst du bei Sprachkanälen ein Schloss (🔒) an stelle eines Lautsprechers (🔊) anzeigen lassen.\n\n**Verwendung**```{PREFIX}lockChannel [channel id]```\n **Beispiel**```{PREFIX}lockChannel 700336568099143710```",
@@ -24,7 +25,8 @@
       "errorNotFound": "Kanal nicht gefunden"
     },
     "editChannel": {
-      "success": "Done! You may have wait a few seconds to see the new changes",
+      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
+      "success": "Done! You may have to wait a few seconds to see the new changes",
       "errorNotFound": "Channel not found"
     },
     "setDigit": {
@@ -121,7 +123,8 @@
     "getCounts": {
       "onlyPremium": "Nur für Premium",
       "unknownCounter": "Unbekannter Zähler",
-      "noBanPerms": "Ich brauche Ban Berechtigungen um das anzeigen zu können"
+      "noBanPerms": "Ich brauche Ban Berechtigungen um das anzeigen zu können",
+      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
     }
   },
   "common": {
