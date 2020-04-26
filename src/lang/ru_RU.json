@@ -14,7 +14,7 @@
     },
     "setup": {
       "helpDescription": "Показывает вам гайд по использованию бота",
-      "explication": "",
+      "explanation": "",
       "counters": ""
     },
     "lockChannel": {
