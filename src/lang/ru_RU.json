@@ -6,7 +6,7 @@
       "helpDescription": "Тебе действительно так важно узнать предназначение этой команды?",
       "embedReply": {
         "title": "Лист команд | Префикс: {PREFIX}",
-        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` means an optional parameter while `[]` means a required one"
+        "description": "Сайт:\n[{WEBSITE}]({WEBSITE})\nДокументация:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (команда)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit [нынешнее число] [произвольное число]\n{PREFIX}lang [код языка]\n{PREFIX}prefix [новый префикс]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Инфо:** `()` подразумевает за собой необязательный/произвольный параметр, когда `[]` подразумевает за собой то, что данный параметр необходим"
       },
       "misc": {
         "command": "Команда:"
@@ -14,7 +14,8 @@
     },
     "setup": {
       "helpDescription": "Показывает вам гайд по использованию бота",
-      "explication": ""
+      "explication": "",
+      "counters": ""
     },
     "lockChannel": {
       "helpDescription": "Вы можете использовать эти команды, чтобы показывалась иконка замка (🔒) вместо иконки звука (🔊) в голосовых каналах\n\n**Использование:**```{PREFIX}lockChannel [channel id]```\n **Пример:**```{PREFIX}lockChannel 700336568099143710```",
@@ -24,8 +25,9 @@
       "errorNotFound": "Канал не найден"
     },
     "editChannel": {
-      "success": "Done! You may have wait a few seconds to see the new changes",
-      "errorNotFound": "Channel not found"
+      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
+      "success": "Done! You may have to wait a few seconds to see the new changes",
+      "errorNotFound": "Канал не найден"
     },
     "setDigit": {
       "helpDescription": "Вы должны просмотреть `{PREFIX}help topicCounter` перед тем, как использовать эту команду.\nКастомизирует цифры, которые будут выведены. Number аргумент должен быть нормальным числом, второй же аргумент может быть чем угодно, например эмоджи или нормальным числом с использованием языка разметки 'маркдаун'.\nЕсли же первым аргументом вы зададите значение \"reset\", все числа будут возвращены в состояние по умолчанию.\n\nИспользование: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nПример: ```{PREFIX}setDigit 3 **3**```\nС прошлым примером все 3 будут показываться как жирные **3**",
@@ -121,7 +123,8 @@
     "getCounts": {
       "onlyPremium": "Только Премиум",
       "unknownCounter": "Неизвестный счётчик",
-      "noBanPerms": "Мне нужно право банить, чтобы показать это"
+      "noBanPerms": "Мне нужно право банить, чтобы показать это",
+      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
     }
   },
   "common": {
