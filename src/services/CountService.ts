@@ -10,7 +10,7 @@ import GuildService from './GuildService';
 import { loadLanguagePack } from '../utils/languagePack';
 import getEnv from '../utils/getEnv';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
-import fetchExternalCount from '../utils/externalCounts';
+import ExternalCounts from '../utils/externalCounts';
 
 const { FOSS_MODE, PREMIUM_BOT } = getEnv();
 
@@ -112,20 +112,22 @@ class CountService {
     type: string,
     customDigits: boolean = false,
   ): Promise<string> {
-    if (!this.countCache[type]) {
+    const typeL = type.toLowerCase();
+
+    if (!this.countCache[typeL]) {
       await this.fetchCount(type);
     }
 
     // TODO add translations
-    if (this.countCache[type] === -1)
+    if (this.countCache[typeL] === -1)
       return this.languagePack.functions.getCounts.onlyPremium;
-    if (this.countCache[type] === -2) return this.languagePack.common.error;
-    if (this.countCache[type] === -3)
+    if (this.countCache[typeL] === -2) return this.languagePack.common.error;
+    if (this.countCache[typeL] === -3)
       return this.languagePack.functions.getCounts.unknownCounter;
 
     if (customDigits) {
-      if (!this.countCache[`${type}CustomDigit`]) {
-        let rawCount: number = this.countCache[type];
+      if (!this.countCache[`${typeL}CustomDigit`]) {
+        let rawCount: number = this.countCache[typeL];
         let processedCount: string = rawCount.toString();
 
         processedCount = processedCount
@@ -133,12 +135,12 @@ class CountService {
           .map((digit) => this.guildSettings.digits[digit])
           .join('');
 
-        this.countCache[`${type}CustomDigit`] = processedCount;
+        this.countCache[`${typeL}CustomDigit`] = processedCount;
       }
 
-      return this.countCache[`${type}CustomDigit`].toString();
+      return this.countCache[`${typeL}CustomDigit`].toString();
     } else {
-      return this.countCache[type].toString();
+      return this.countCache[typeL].toString();
     }
   }
 
@@ -147,7 +149,7 @@ class CountService {
     const typeL = type.toLowerCase();
 
     if (typeL === '{members}') {
-      this.countCache[type] = this.guild.memberCount;
+      this.countCache[typeL] = this.guild.memberCount;
     } else if (
       typeL === '{users}' ||
       typeL === '{bots}' ||
@@ -193,37 +195,37 @@ class CountService {
 
       this.countCache = { ...this.countCache, ...counts };
     } else if (typeL === '{channels}') {
-      this.countCache[type] = this.guild.channels.filter(
+      this.countCache[typeL] = this.guild.channels.filter(
         (channel) => channel.type !== 4,
       ).length;
     } else if (typeL === '{roles}') {
-      this.countCache[type] = this.guild.roles.size;
+      this.countCache[typeL] = this.guild.roles.size;
     } else if (typeL === '{connectedmembers}') {
       if (!PREMIUM_BOT || !FOSS_MODE) {
-        this.countCache[type] = -1;
+        this.countCache[typeL] = -1;
       }
 
-      this.countCache[type] = this.guild.channels
+      this.countCache[typeL] = this.guild.channels
         .filter((channel) => channel.type === 2)
         .reduce(
           (prev, current: VoiceChannel) => prev + current.voiceMembers.size,
           0,
         );
     } else if (typeL === '{bannedmembers}') {
-      this.countCache[type] = await this.guild
+      this.countCache[typeL] = await this.guild
         .getBans()
         .then((bans) => bans.length)
         .catch((error) => {
           console.error(error);
-          this.countCache[type] = -2;
+          this.countCache[typeL] = -2;
         });
     } else if (
       /\{memberswithrole:.+\}/.test(typeL) ||
       /\{onlinememberswithrole:.+\}/.test(typeL) ||
       /\{offlinememberswithrole:.+\}/.test(typeL)
     ) {
-      const targetRoles: string[] = type
-        .slice(type.indexOf(':') + 1, -1)
+      const targetRoles: string[] = typeL
+        .slice(typeL.indexOf(':') + 1, -1)
         .split(',');
 
       if (!PREMIUM_BOT || !FOSS_MODE) {
@@ -260,9 +262,10 @@ class CountService {
         offlineMembersWithRole.size;
     } else {
       try {
-        this.countCache[type] = await fetchExternalCount(type);
+        this.countCache[typeL] = await ExternalCounts.get(typeL);
       } catch (error) {
-        this.countCache[type] = -2;
+        console.error(error);
+        this.countCache[typeL] = -2;
       }
     }
   }

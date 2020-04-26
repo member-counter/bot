@@ -29,6 +29,7 @@
     "lodash.clonedeep": "^4.5.0",
     "mongoose": "^5.8.9",
     "node-fetch": "^2.6.0",
+    "twitch": "^4.0.9",
     "typescript-tslint-plugin": "^0.5.5",
     "zlib-sync": "^0.1.6"
   },
