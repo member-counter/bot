@@ -14,7 +14,7 @@
     },
     "setup": {
       "helpDescription": "Te muestra una guía sobre como usar el bot",
-      "explication": "",
+      "explanation": "",
       "counters": ""
     },
     "lockChannel": {
