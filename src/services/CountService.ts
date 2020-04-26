@@ -30,6 +30,7 @@ class CountService {
   }
 
   public static async init(guild: Guild): Promise<CountService> {
+    if (guild.unavailable) throw new Error(`Guild ${guild.id} is unavailable`);
     const guildSettings = await GuildService.init(guild.id);
     return new CountService(guild, guildSettings);
   }
@@ -54,7 +55,7 @@ class CountService {
           botHasPermsToEdit(discordChannel) &&
           discordChannel.topic !== processedContent
         )
-          await discordChannel.edit({ topic: processedContent });
+          await discordChannel.edit({ topic: processedContent.slice(0, 1023) });
       } else if (
         discordChannel instanceof VoiceChannel ||
         discordChannel instanceof CategoryChannel
@@ -63,8 +64,13 @@ class CountService {
         if (
           botHasPermsToEdit(discordChannel) &&
           discordChannel.name !== processedContent
-        )
-          await discordChannel.edit({ name: processedContent });
+        ) {
+          const nameToSet =
+            processedContent.length > 2
+              ? processedContent.slice(0, 99)
+              : this.languagePack.functions.getCount.invalidChannelLength;
+          await discordChannel.edit({ name: nameToSet });
+        }
       }
     }
   }

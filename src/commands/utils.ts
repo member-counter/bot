@@ -2,6 +2,7 @@ import MemberCounterCommand from '../typings/MemberCounterCommand';
 import { GuildChannel, VoiceChannel } from 'eris';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
+import GuildService from '../services/GuildService';
 
 const lockChannel: MemberCounterCommand = {
   aliases: ['lockChannel'],
@@ -47,6 +48,27 @@ const lockChannel: MemberCounterCommand = {
   },
 };
 
-const utilCommand = [lockChannel];
+const editChannel: MemberCounterCommand = {
+  aliases: ['editChannel'],
+  denyDm: true,
+  onlyAdmin: true,
+  run: async ({ message, languagePack }) => {
+    const { channel, content } = message;
 
-export default utilCommand;
+    if (channel instanceof GuildChannel) {
+      const { guild, client } = channel;
+      const guildSettings = await GuildService.init(guild.id);
+      let [command, channelId, ...newContent] = content.split(/\s+/);
+
+      if (!guild.channels.has(channelId))
+        throw new UserError(languagePack.commands.editChannel.errorNotFound);
+
+      await guildSettings.setCounter(channelId, newContent.join(' '));
+      await channel.createMessage(languagePack.commands.editChannel.success);
+    }
+  },
+};
+
+const utilCommands = [lockChannel, editChannel];
+
+export default utilCommands;
