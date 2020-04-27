@@ -25,8 +25,8 @@
       "errorNotFound": "Канал не найден"
     },
     "editChannel": {
-      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
-      "success": "Done! You may have to wait a few seconds to see the new changes",
+      "helpDescription": "Если вы пытаетесь настроить счётчик но Discord вам говорит, что вы достигли лимита символов в названии канала/заголовка, вы можете использовать эту команду, чтобы \"игнорировать\" этот лимит.\n**Использование:**```{PREFIX}editChannel [channelId] [content]\n**Пример:**```{PREFIX}editChannel 701396983843127366 {onlinemembers} из {members} онлайн",
+      "success": "Сделано! Необходимо немного подождать прежде, чем увидеть новые изменения",
       "errorNotFound": "Канал не найден"
     },
     "setDigit": {
@@ -124,7 +124,7 @@
       "onlyPremium": "Только Премиум",
       "unknownCounter": "Неизвестный счётчик",
       "noBanPerms": "Мне нужно право банить, чтобы показать это",
-      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
+      "invalidChannelLength": "Достигнут лимит символов в названии канала, пожалуйста, настройте счётчик заново"
     }
   },
   "common": {
