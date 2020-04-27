@@ -155,6 +155,8 @@ const status: MemberCounterCommand = {
           git.on('close', () => {
             resolve(data);
           });
+
+          git.on('error', console.error);
         });
 
         let commitHashShort = commitHash.slice(0, 6);
