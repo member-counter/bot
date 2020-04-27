@@ -1,0 +1,131 @@
+{
+  "langCode": "de_DE",
+  "langName": "German (DE)",
+  "commands": {
+    "help": {
+      "helpDescription": "Ist es wirklich notwendig die Funktion dieses Befehls zu erklären?",
+      "embedReply": {
+        "title": "Liste der Befehle | prefix: {PREFIX}",
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentation:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (command name)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}setDigit [number] [custom number]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [new prefix]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` steht für eine optionale Angabe während `[]` erforderlich ist"
+      },
+      "misc": {
+        "command": "Befehl:"
+      }
+    },
+    "setup": {
+      "helpDescription": "Zeigt dir eine Anleitung zur Verwendung des Bots",
+      "explication": ""
+    },
+    "lockChannel": {
+      "helpDescription": "Mit diesem Befehl kannst du bei Sprachkanälen ein Schloss (🔒) an stelle eines Lautsprechers (🔊) anzeigen lassen.\n\n**Verwendung**```{PREFIX}lockChannel [channel id]```\n **Beispiel**```{PREFIX}lockChannel 700336568099143710```",
+      "success": "Erledigt! Der Kanal wird jetzt, **für Mitglieder ohne Admin**, ein 🔒 anzeigen",
+      "errorInvalidChannel": "Du kannst nur Sprachkanäle sperren!",
+      "errorNoPerms": "Ich kann diesen Kanal `{CHANNEL}` nicht bearbeiten, da mir die Berechtigungen dazu fehlen",
+      "errorNotFound": "Kanal nicht gefunden"
+    },
+    "setDigit": {
+      "helpDescription": "Du solltest dir zuerst {PREFIX}help topicCounter` ansehen bevor du diesen Command benutzt.\nPasst die angezeigten Zahlen an, die erste Angabe muss eine normale Zahl sein, die zweite Angabe kann alles mögliche sein, etwa ein Emoji oder eine Zahl mit Markdown.\nWenn die erste angabe \"reset\" ist wird die angezeigte Zahl zum Standart zurückgesetzt.\n\nVerwendung: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [deine Benutzerdefinierte Zahl]```\nBeispiel:```{PREFIX}setDigit 3 **3**```\nMit diesem Beispiel wird jede 3 als fett geschriebene **3** angezeigt",
+      "success": "Ziffer angepasst.",
+      "resetSuccess": "Zahlen wurden auf den Standart zurückgesetzt.",
+      "errorMissingParams": "Fehler: Fehlende Angabe, `mehr Infos: {PREFIX}help setDigit`."
+    },
+    "prefix": {
+      "helpDescription": "Ändere das Präfix des Bots.\n\nVerwendung:```{PREFIX}prefix [neues präfix]```",
+      "success": "Präfix zu `{NEW_PREFIX}` geändert",
+      "noPrefixProvided": "Du musst ein Präfix angeben"
+    },
+    "role": {
+      "helpDescription": "Du kannst Rollen erlauben oder verweigern Verwaltungsbefehle auszuführen.\nDu kannst `all` als Angabe verwenden um alle Rollen zuzulassen oder abzulehnen\nUm zu sehen welche Rollen aktuell erlaubt sind benutzte `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "rolesUpdated": "Rollen Aktualisiert.",
+      "errorNoRolesToUpdate": "Du musst mindesten eine Rolle erwähnen",
+      "invalidParams": "Ungütige Angaben, siehe`{PREFIX}help role`"
+    },
+    "seeSettings": {
+      "helpDescription": "Zeigt alle Bot Einstellungen für diesen Server.",
+      "settingsMessage": {
+        "headerText": "Einstellungen für den Server:",
+        "prefixText": "Präfix:",
+        "langText": "Sprache:",
+        "premiumText": "Premium:",
+        "premiumNoTierText": "Nein",
+        "premiumConfirmedText": "Ja",
+        "allowedRolesText": "Zulässige Rollen um Verwaltungsbefehle auszuführen:",
+        "countersText": "Zähler:",
+        "customNumbersText": "Benutzerdefinierte Zahlen:",
+        "warningNoPermsText": "\\⚠️ = Der Bot kann diesen Kanal aufgrund fehlender Berechtigungen nicht weiter aktualisieren"
+      }
+    },
+    "resetSettings": {
+      "helpDescription": "Setzt die benutzerdefinierten Einstellungen dieses Servers auf die Standardeinstellungen zurück",
+      "done": "Auf die Standardeinstellungen zurückgesetzt"
+    },
+    "update": {
+      "helpDescription": "Wenn du der Meinung bist, dass die Zähler nicht mehr funktionieren, verwende diesen Befehl, um sie erneut zu aktualisieren.",
+      "inProgress": "Das Aktualisieren der Zähler kann eine Weile dauern.",
+      "success": "Erledigt.",
+      "wait": "Warte! Ich bin dabei es zu aktualisieren!"
+    },
+    "upgradeServer": {
+      "helpDescription": "Dieser Command erlaubt es dir Member Counter Premium einzuladen, um diesen Command zu benutzen brauchst du einen Premium Account den du erhälst indem du mindestens 5 USD spendest: `{PREFIX}donate}`.",
+      "success": "Erledigt! Als nächstes kannst du den Premium Bot einladen:\n{BOT_LINK}",
+      "noPremiumAccount": "Du brauchst einen Premium Account.",
+      "errorCannotUpgrade": "Du kannst diesen Server nicht Verbessern da er bereits Premium besitzt.",
+      "noServerUpgradesAvailable": "Du kannst keine weiteren Server verbessern da du keine Verbesserungen mehr zur verfügung hast, mit `{PREFIX}profile` kannst du die übrigen Verbesserungen einsehen und mit `{PREFIX}donate` weitere erhalten"
+    },
+    "info": {
+      "helpDescription": "Liste aller hilfreichen Links",
+      "embedReply": {
+        "description": "[Füge mich zu deinem Server hinzu]({BOT_INVITE_URL})\n[Support Server]({BOT_SERVER_URL})\n[GitHub Quelle](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+      }
+    },
+    "lang": {
+      "helpDescription": "Ändere die Sprache des Bots für diesen Server, du brauchst Administrator Berechtigungen um diesem Befehl auszuführen.",
+      "success": "Sprache erfolgreich aktualisiert.",
+      "errorNotFound": "Ich konnte diese Sprache nicht finden, versuche eine der folgenden:"
+    },
+    "donate": {
+      "helpDescription": "Zeigt die Top-Spenden an.",
+      "embedReply": {
+        "title": "Gefällt dir mein Bot? Unterstütze mich! (Klicke hier)",
+        "fields": []
+      },
+      "misc": {
+        "emptyNote": "Leere Notiz"
+      },
+      "errorExchangeFetch": "Fehler beim Abrufen der Wechselkurse"
+    },
+    "profile": {
+      "helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
+      "badges": "Abzeichen",
+      "serverUpgradesAvailable": "Verbleibende Server Verbesserungen"
+    },
+    "counts": {
+      "helpDescription": "Zeigt einige Zählungen an",
+      "members": "Mitglieder:",
+      "onlineMembers": "Mitglieder Online:",
+      "offlineMembers": "Mitglieder Offline:",
+      "bots": "Bots:",
+      "connectedUsers": "Verbundene User:",
+      "channels": "Kanäle:",
+      "roles": "Rollen:"
+    }
+  },
+  "functions": {
+    "commandHandler": {
+      "noDm": "Du kannst diesen Befehl nicht in Direktnachrichten verwenden"
+    },
+    "getCounts": {
+      "onlyPremium": "Nur für Premium",
+      "unknownCounter": "Unbekannter Zähler",
+      "noBanPerms": "Ich brauche Ban Berechtigungen um das anzeigen zu können"
+    }
+  },
+  "common": {
+    "error": "Fehler",
+    "errorDb": "Datenbank fehler, versuch es später erneut",
+    "errorDiscordAPI": "Discord API",
+    "errorUnknown": "Etwas ist schief gelaufen, versuche es später erneut.",
+    "errorNoAdmin": "Nur Mitglieder mit Administrator Berechtigung können diesen Command benutzen.",
+    "noTopicCounterEnabled": "Scheint als wäre kein Kanal Zähler in Kanalbeschreibungen festgelegt, siehe `{PREFIX}help topicCounter`"
+  }
+}
