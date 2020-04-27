@@ -1,0 +1,131 @@
+{
+  "langCode": "es_ES",
+  "langName": "Español (ES)",
+  "commands": {
+    "help": {
+      "helpDescription": "¿Es realmente necesario explicar el propósito de este comando?",
+      "embedReply": {
+        "title": "Lista de comandos | prefijo: {PREFIX}",
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentación:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nombre del comando)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio\""
+      },
+      "misc": {
+        "command": "Comando:"
+      }
+    },
+    "setup": {
+      "helpDescription": "Te muestra una guía sobre como usar el bot",
+      "explication": ""
+    },
+    "lockChannel": {
+      "helpDescription": "Puedes usar esta comando para mostrar un candado (🔒) en ved de un altavoz (🔊) en canales de voz\n\n**Usage**```{PREFIX}lockChannel [id del canal]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
+      "success": "Hecho! Ahora, **para usuarios no administradores**, el canal sera mostrado con un 🔒",
+      "errorInvalidChannel": "Solo puedes bloquear canales de voz!",
+      "errorNoPerms": "No puedo editar el canal `{CHANNEL}` debido a falta de permisos",
+      "errorNotFound": "Canal no encontrado"
+    },
+    "setDigit": {
+      "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nPersonaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
+      "success": "Número personalizado correctamente.",
+      "resetSuccess": "Todos los numeros han sido reestablecidos.",
+      "errorMissingParams": "Error: Faltan parámetros, `más info: {PREFIX}help setDigit`."
+    },
+    "prefix": {
+      "helpDescription": "Cambia el prefijo del bot.\n\nUso:```{PREFIX}prefix [nuevo prefijo]```",
+      "success": "Prefijo cambiado a: `{NEW_PREFIX}`",
+      "noPrefixProvided": "Debes proporcionar un prefijo"
+    },
+    "role": {
+      "helpDescription": "Puedes permitir o denegar el uso de comandos administrativos a roles que concretes\nTambién puedes referirte a todos con la palabra ``all``\nPara ver los roles permitidos usa ``{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "rolesUpdated": "Roles actualizados.",
+      "errorNoRolesToUpdate": "Debes mencionar al menos un rol",
+      "invalidParams": "Parámetros inválidos, más info: `{PREFIX}help role`"
+    },
+    "seeSettings": {
+      "helpDescription": "Muestra todos los ajustes del bot para este servidor.",
+      "settingsMessage": {
+        "headerText": "Ajustes para el servidor:",
+        "prefixText": "Prefijo:",
+        "langText": "Idioma:",
+        "premiumText": "Premium:",
+        "premiumNoTierText": "No",
+        "premiumConfirmedText": "Sí",
+        "allowedRolesText": "Roles que están autorizados a usar comandos administrativos:",
+        "countersText": "Contadores:",
+        "customNumbersText": "Números personalizados:",
+        "warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos"
+      }
+    },
+    "resetSettings": {
+      "helpDescription": "Restablece los ajustes del bot para este servidor a los de por defecto",
+      "done": "Restablecido a los ajustes por defecto"
+    },
+    "update": {
+      "helpDescription": "Si crees que algún contador esta atascado, usa este comando para forzar su actualización.",
+      "inProgress": "Actualizando los contadores, esto podría tomar un tiempo.",
+      "success": "Hecho.",
+      "wait": "Espera! Aún lo estoy actualizando!"
+    },
+    "upgradeServer": {
+      "helpDescription": "Este comando te permite invitar a Member Counter Premium, para usarlo debes tener una cuenta premium, la cual puedes obtener donando al menos 5 USD: `{PREFIX}donate`.",
+      "success": "Hecho! El siguiente paso es invitar al bot premium:\n{BOT_LINK}",
+      "noPremiumAccount": "Debes tener una cuenta premium.",
+      "errorCannotUpgrade": "No puedes mejorar el servidor porque ya tiene premium.",
+      "noServerUpgradesAvailable": "No puedes mejorar este servidor porque no te quedan mejoras disponibles, puedes comprobar cuantas te quedan con `{PREFIX}profile` o conseguir más con `{PREFIX}donate`"
+    },
+    "info": {
+      "helpDescription": "Lista de enlaces útiles",
+      "embedReply": {
+        "description": "[Añádeme a tu servidor]({BOT_INVITE_URL})\n[Servidor de ayuda]({BOT_SERVER_URL})\n[Repositorio de GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Donaciones]({DONATION_URL})"
+      }
+    },
+    "lang": {
+      "helpDescription": "Cambia el idioma de este servidor, debes ser administrador para ejecutar este comando.",
+      "success": "El idioma se cambio correctamente.",
+      "errorNotFound": "No encontré ese idioma, prueba uno de los siguientes:"
+    },
+    "donate": {
+      "helpDescription": "Muestra las mayores donaciones.",
+      "embedReply": {
+        "title": "Disfrutando de mi bot? Doname! (Haz click aquí)",
+        "fields": []
+      },
+      "misc": {
+        "emptyNote": "Nota vacía"
+      },
+      "errorExchangeFetch": "Error mientras intentaba obtener los cambios de divisa"
+    },
+    "profile": {
+      "helpDescription": "Muestra información relacionada entre tu y el bot",
+      "badges": "Insignias",
+      "serverUpgradesAvailable": "Mejoras de servidor restantes"
+    },
+    "counts": {
+      "helpDescription": "Muestra algunos contadores",
+      "members": "Miembros:",
+      "onlineMembers": "Miembros en línea:",
+      "offlineMembers": "Miembros fuera de línea:",
+      "bots": "Bots:",
+      "connectedUsers": "Usuarios conectados:",
+      "channels": "Canales:",
+      "roles": "Roles:"
+    }
+  },
+  "functions": {
+    "commandHandler": {
+      "noDm": "No puedes ejecutar este comando por MD"
+    },
+    "getCounts": {
+      "onlyPremium": "Solo Premium",
+      "unknownCounter": "Error desconocido",
+      "noBanPerms": "Necesito permisos de ban para mostrar esto"
+    }
+  },
+  "common": {
+    "error": "Error",
+    "errorDb": "Error en la base de datos, prueba de nuevo mas tarde",
+    "errorDiscordAPI": "Discord API",
+    "errorUnknown": "Algo fue mal, prueba de nuevo mas tarde.",
+    "errorNoAdmin": "Solo miembros con permisos de administrador en este canal pueden usar este comando.",
+    "noTopicCounterEnabled": "Parece ser que aun no has habilitado ningún contador en un tema de canal, mira `{PREFIX}help topicCounter`"
+  }
+}
