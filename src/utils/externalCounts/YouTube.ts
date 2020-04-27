@@ -29,9 +29,8 @@ namespace YouTube {
       `https://www.googleapis.com/youtube/v3/channels?part=statistics&key=${YOUTUBE_API_KEY}&${searchChannelBy}=${channel}`,
     ).then((response) => response.json());
 
-    const subscribers = response?.items?.[0].statistics?.subscriberCount;
-    const views = response?.items?.[0].statistics?.viewCount;
-
+    const subscribers = response?.items?.[0]?.statistics?.subscriberCount;
+    const views = response?.items?.[0]?.statistics?.viewCount;
     return { subscribers, views };
   };
 }

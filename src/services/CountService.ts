@@ -262,7 +262,7 @@ class CountService {
         offlineMembersWithRole.size;
     } else {
       try {
-        this.countCache[typeL] = await ExternalCounts.get(typeL);
+        this.countCache[typeL] = await ExternalCounts.get(type);
       } catch (error) {
         console.error(error);
         this.countCache[typeL] = -2;
