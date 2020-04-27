@@ -23,6 +23,7 @@ import donateCommands from '../commands/donate';
 import settingsCommands from '../commands/settings';
 import countCommands from '../commands/counts';
 import utilCommands from '../commands/utils';
+import guideCommand from '../commands/guide';
 
 const commands: Array<MemberCounterCommand> = [
   ...userCommands,
@@ -34,10 +35,12 @@ const commands: Array<MemberCounterCommand> = [
   ...settingsCommands,
   ...countCommands,
   ...utilCommands,
+  ...guideCommand,
 ];
 
-export default async (client: Eris.Client, message: Eris.Message) => {
+export default async (message: Eris.Message) => {
   const { channel, author, content } = message;
+  const { client } = channel;
 
   // Ignore requested commands in the official server since this server already has the premium bot
   if (

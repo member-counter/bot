@@ -13,6 +13,8 @@ const intents: Eris.IntentStrings[] = [
   'guildBans',
   'guildMessages',
   'directMessages',
+  'guildMessageReactions',
+  'directMessageReactions',
 ];
 
 if (PREMIUM_BOT) intents.push('guildPresences', 'guildVoiceStates');
