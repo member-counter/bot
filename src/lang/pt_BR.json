@@ -13,21 +13,21 @@
       }
     },
     "setup": {
-      "helpDescription": "Shows you a guide of how to use the bot",
+      "helpDescription": "Te mostra um guia de como usar o bot",
       "explanation": "",
       "counters": ""
     },
     "lockChannel": {
       "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
-      "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
-      "errorInvalidChannel": "You can only lock voice channels!",
+      "success": "Feito! Agora, **para usuários que não são administradores**, o canal será mostrado com um 🔒",
+      "errorInvalidChannel": "Você só pode travar canais de voz!",
       "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-      "errorNotFound": "Channel not found"
+      "errorNotFound": "Canal não encontrado"
     },
     "editChannel": {
       "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
-      "success": "Done! You may have to wait a few seconds to see the new changes",
-      "errorNotFound": "Channel not found"
+      "success": "Feito! Você talvez tenha que esperar alguns segundos para ver as novas mudanças",
+      "errorNotFound": "Canal não encontrado"
     },
     "setDigit": {
       "helpDescription": "Você deveria ver `{PREFIX}help topicCounter` antes de usar esse comando.\nPersonaliza os números que serão exibidos, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal com marcação.\nSe o primeiro argumento é a palavra \"reset\", os números serão redefinidos para o padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número personalizado]```\nExemplo: ```{PREFIX}setDigit 3 **3**```\nCom o exemplo anterior, cada 3 será mostrado em negrito **3**",
@@ -87,7 +87,7 @@
     "lang": {
       "helpDescription": "Altera o idioma do bot para este servidor, você deve ter permissões de administrador para executar este comando.",
       "success": "Idioma alterado com sucesso.",
-      "errorNotFound": "List of available languages:"
+      "errorNotFound": "Lista de linguagens disponíveis:"
     },
     "donate": {
       "helpDescription": "Mostra as principais doações.",
@@ -122,9 +122,9 @@
     },
     "getCounts": {
       "onlyPremium": "Somente Premium",
-      "unknownCounter": "Unknown counter",
+      "unknownCounter": "Contador desconhecido",
       "noBanPerms": "Eu preciso ter permissão de bans para mostrar isso",
-      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
+      "invalidChannelLength": "Tamanho do nome do canal inválido, por favor configure o contador novamente"
     }
   },
   "common": {
