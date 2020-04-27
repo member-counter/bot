@@ -9,6 +9,8 @@ import guildCreate from '../events/guildCreate';
 import guildMemberAdd from '../events/guildMemberAdd';
 import messageCreate from '../events/messageCreate';
 import messageUpdate from '../events/messageUpdate';
+import messageReactionAdd from '../events/messageReactionAdd';
+import messageReactionRemove from '../events/messageReactionRemove';
 
 const { DEBUG } = getEnv();
 
@@ -25,6 +27,8 @@ export default (client: Eris.Client) => {
     .on('channelDelete', channelDelete)
     .on('guildCreate', guildCreate)
     .on('guildMemberAdd', guildMemberAdd)
-    .on('messageCreate', (message) => messageCreate(client, message))
-    .on('messageUpdate', (message) => messageUpdate(client, message));
+    .on('messageCreate', messageCreate)
+    .on('messageUpdate', messageCreate)
+    .on('messageReactionAdd', messageReactionAdd)
+    .on('messageReactionRemove', messageReactionRemove);
 };

@@ -6,22 +6,27 @@ import updateCounters from '../updateCounters';
 
 const { DISCORD_PREFIX, UPDATE_COUNTER_INTERVAL } = getEnv();
 
-const setStatus = (client: Eris.Client) => {};
-
 const ready = (client: Eris.Client) => {
   const { users, guilds } = client;
+
+  const setStatus = () => {
+    client.editStatus('online', {
+      name: `${DISCORD_PREFIX}help`,
+      type: 3,
+    });
+  };
 
   console.log(`Eris ready!`);
 
   console.log(`Serving to ${users.size} users in ${client.guilds.size} guilds`);
-  setStatus(client);
+  setStatus();
   checkPremiumGuilds(guilds);
 
   setInterval(() => {
     console.log(
       `Serving to ${users.size} users in ${client.guilds.size} guilds`,
     );
-    setStatus(client);
+    setStatus();
     postBotStats(guilds.size);
     checkPremiumGuilds(guilds);
   }, 1 * 60 * 60 * 1000);
