@@ -140,9 +140,7 @@ const resetSettings: MemberCounterCommand = {
       });
 
       await guildSettings.resetSettings();
-      channel
-        .createMessage(languagePack.commands.resetSettings.done)
-        .catch(console.error);
+      await channel.createMessage(languagePack.commands.resetSettings.done);
     }
   },
 };
@@ -166,7 +164,7 @@ const lang: MemberCounterCommand = {
 
         languagePack = loadLanguagePack(languageRequested);
         let { success } = languagePack.commands.lang;
-        channel.createMessage(success).catch(console.error);
+        await channel.createMessage(success);
       } else {
         errorNotFound += '\n```fix\n';
         availableLanguages.forEach((availableLanguageCode) => {
@@ -175,7 +173,7 @@ const lang: MemberCounterCommand = {
             availableLanguageCode + ' ➡ ' + languagePack.langName + '\n';
         });
         errorNotFound += '```';
-        channel.createMessage(errorNotFound).catch(console.error);
+        await channel.createMessage(errorNotFound);
       }
     }
   },
@@ -194,16 +192,16 @@ const prefix: MemberCounterCommand = {
 
       if (newPrefix) {
         await guildSettings.setPrefix(newPrefix);
-        channel
-          .createMessage(
-            languagePack.commands.prefix.success.replace(
-              '{NEW_PREFIX}',
-              guildSettings.prefix,
-            ),
-          )
-          .catch(console.error);
+        await channel.createMessage(
+          languagePack.commands.prefix.success.replace(
+            '{NEW_PREFIX}',
+            guildSettings.prefix,
+          ),
+        );
       } else {
-        channel.createMessage(languagePack.commands.prefix.noPrefixProvided);
+        await channel.createMessage(
+          languagePack.commands.prefix.noPrefixProvided,
+        );
       }
     }
   },
@@ -296,27 +294,23 @@ const upgradeServer: MemberCounterCommand = {
 
       switch (upgradeServer) {
         case 'success': {
-          channel
-            .createMessage(
-              success.replace('{BOT_LINK}', process.env.PREMIUM_BOT_INVITE),
-            )
-            .catch(console.error);
+          await channel.createMessage(
+            success.replace('{BOT_LINK}', process.env.PREMIUM_BOT_INVITE),
+          );
           break;
         }
 
         case 'alreadyUpgraded': {
-          channel.createMessage(errorCannotUpgrade).catch(console.error);
+          await channel.createMessage(errorCannotUpgrade);
           break;
         }
         case 'noUpgradesAvailable': {
-          channel
-            .createMessage(
-              noServerUpgradesAvailable.replace(
-                /\{PREFIX\}/gi,
-                guildSettings.prefix,
-              ),
-            )
-            .catch(console.error);
+          await channel.createMessage(
+            noServerUpgradesAvailable.replace(
+              /\{PREFIX\}/gi,
+              guildSettings.prefix,
+            ),
+          );
           break;
         }
         default:
@@ -340,7 +334,9 @@ const setDigit: MemberCounterCommand = {
 
       if (args[1] === 'reset') {
         await guildSettings.resetDigits();
-        channel.createMessage(languagePack.commands.setDigit.resetSuccess);
+        await channel.createMessage(
+          languagePack.commands.setDigit.resetSuccess,
+        );
       } else {
         if (args.length >= 3) {
           const digitToUpdate = parseInt(args[1].slice(0, 1), 10);
@@ -348,9 +344,9 @@ const setDigit: MemberCounterCommand = {
 
           await guildSettings.setDigit(digitToUpdate, newDigitValue);
 
-          channel.createMessage(languagePack.commands.setDigit.success);
+          await channel.createMessage(languagePack.commands.setDigit.success);
         } else {
-          channel.createMessage(
+          await channel.createMessage(
             languagePack.commands.setDigit.errorMissingParams.replace(
               /\{PREFIX\}/gi,
               guildSettings.prefix,

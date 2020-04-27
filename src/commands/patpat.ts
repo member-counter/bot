@@ -10,7 +10,7 @@ const patpat: MemberCounterCommand = {
     const userSettings = await UserService.init(message.author.id);
     await userSettings.grantBadge(0b1000);
 
-    message.channel.createMessage('https://i.imgflip.com/2yya22.png');
+    await message.channel.createMessage('https://i.imgflip.com/2yya22.png');
     // i never thought i will ever been coding with a very cute guy -alex
   },
 };

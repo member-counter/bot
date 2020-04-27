@@ -31,7 +31,7 @@ const help: MemberCounterCommand = {
         .replace(/\{PREFIX\}/gi, prefix)
         .replace(/\{WEBSITE\}/gi, WEBSITE_URL);
 
-      channel.createMessage({ embed }).catch(console.error);
+      await channel.createMessage({ embed });
     } else {
       // Help for the specified command
       const { commands } = languagePack;
@@ -46,7 +46,7 @@ const help: MemberCounterCommand = {
             ),
           });
 
-          channel.createMessage({ embed }).catch(console.error);
+          await channel.createMessage({ embed });
         }
       }
     }

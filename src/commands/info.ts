@@ -12,7 +12,7 @@ const info: MemberCounterCommand = {
   aliases: ['info', 'invite', 'github', 'support', 'bug'],
   denyDm: false,
   onlyAdmin: false,
-  run: ({ message, languagePack }) => {
+  run: async ({ message, languagePack }) => {
     const { channel } = message;
     const embed = embedBase(languagePack.commands.info.embedReply);
     embed.description = embed.description
@@ -24,7 +24,7 @@ const info: MemberCounterCommand = {
       url: message.channel.client.user.dynamicAvatarURL(),
     };
 
-    channel.createMessage({ embed }).catch(console.error);
+    await channel.createMessage({ embed });
   },
 };
 
