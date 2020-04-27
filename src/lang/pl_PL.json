@@ -6,7 +6,7 @@
       "helpDescription": "Czy naprawdę konieczne jest wyjaśnienie celu tej komendy?",
       "embedReply": {
         "title": "Lista komend | prefix {PREFIX}",
-        "description": "Strona internetowa:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonalny natomiast `[]` oznacza parametr wymagany"
+        "description": "Strona internetowa:\n[{WEBSITE}]({WEBSITE})\nDokumentacja:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nazwa komendy)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit [numer] [numer niestandardowy]\n{PREFIX}lang [lang code]\n{PREFIX}prefix [nowy prefix]\n{PREFIX}role [zezwól/odrzuć] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` oznacza parametr opcjonalny natomiast `[]` oznacza parametr wymagany"
       },
       "misc": {
         "command": "Komenda:"
@@ -14,13 +14,19 @@
     },
     "setup": {
       "helpDescription": "Shows you a guide of how to use the bot",
-      "explication": ""
+      "explanation": "",
+      "counters": ""
     },
     "lockChannel": {
       "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
       "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
       "errorInvalidChannel": "You can only lock voice channels!",
       "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
+      "errorNotFound": "Channel not found"
+    },
+    "editChannel": {
+      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
+      "success": "Done! You may have to wait a few seconds to see the new changes",
       "errorNotFound": "Channel not found"
     },
     "setDigit": {
@@ -81,7 +87,7 @@
     "lang": {
       "helpDescription": "Aby użyć komendy zmiany języka bota dla tego serwera, musisz mieć uprawnienia administratora.",
       "success": "Pomyślna zmiana języka.",
-      "errorNotFound": "Nie znalazłem tego języka, spróbuj jednego z poniższych:"
+      "errorNotFound": "List of available languages:"
     },
     "donate": {
       "helpDescription": "Pokazuje najwyższe darowizny.",
@@ -117,7 +123,8 @@
     "getCounts": {
       "onlyPremium": "Tylko Premium",
       "unknownCounter": "Unknown counter",
-      "noBanPerms": "Potrzebuję uprawnień banowania, aby to pokazać"
+      "noBanPerms": "Potrzebuję uprawnień banowania, aby to pokazać",
+      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
     }
   },
   "common": {

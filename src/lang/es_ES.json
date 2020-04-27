@@ -6,7 +6,7 @@
       "helpDescription": "¿Es realmente necesario explicar el propósito de este comando?",
       "embedReply": {
         "title": "Lista de comandos | prefijo: {PREFIX}",
-        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentación:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nombre del comando)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio\""
+        "description": "Website:\n[{WEBSITE}]({WEBSITE})\nDocumentación:\n[https://eduardozgz.gitbook.io/member-counter](https://eduardozgz.gitbook.io/member-counter)```css\n{PREFIX}help (nombre del comando)\n{PREFIX}setup\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit [número] [número personalizado]\n{PREFIX}lang [código de idioma]\n{PREFIX}prefix [nuevo prefijo]\n{PREFIX}role [allow/deny] [@roles/all]\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer\n{PREFIX}profile\n{PREFIX}info\n{PREFIX}support\n{PREFIX}donate```\n **Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio"
       },
       "misc": {
         "command": "Comando:"
@@ -14,7 +14,8 @@
     },
     "setup": {
       "helpDescription": "Te muestra una guía sobre como usar el bot",
-      "explication": ""
+      "explanation": "",
+      "counters": ""
     },
     "lockChannel": {
       "helpDescription": "Puedes usar esta comando para mostrar un candado (🔒) en ved de un altavoz (🔊) en canales de voz\n\n**Usage**```{PREFIX}lockChannel [id del canal]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
@@ -22,6 +23,11 @@
       "errorInvalidChannel": "Solo puedes bloquear canales de voz!",
       "errorNoPerms": "No puedo editar el canal `{CHANNEL}` debido a falta de permisos",
       "errorNotFound": "Canal no encontrado"
+    },
+    "editChannel": {
+      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
+      "success": "Done! You may have to wait a few seconds to see the new changes",
+      "errorNotFound": "Channel not found"
     },
     "setDigit": {
       "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nPersonaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
@@ -81,7 +87,7 @@
     "lang": {
       "helpDescription": "Cambia el idioma de este servidor, debes ser administrador para ejecutar este comando.",
       "success": "El idioma se cambio correctamente.",
-      "errorNotFound": "No encontré ese idioma, prueba uno de los siguientes:"
+      "errorNotFound": "List of available languages:"
     },
     "donate": {
       "helpDescription": "Muestra las mayores donaciones.",
@@ -117,7 +123,8 @@
     "getCounts": {
       "onlyPremium": "Solo Premium",
       "unknownCounter": "Error desconocido",
-      "noBanPerms": "Necesito permisos de ban para mostrar esto"
+      "noBanPerms": "Necesito permisos de ban para mostrar esto",
+      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
     }
   },
   "common": {
