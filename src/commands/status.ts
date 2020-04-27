@@ -141,33 +141,31 @@ const status: MemberCounterCommand = {
       ],
     });
 
-    channel
-      .createMessage({ embed })
-      .then(async (message) => {
-        // Git commit
-        let commitHash: string = await new Promise((resolve) => {
-          let git = spawn('git', ['rev-parse', 'HEAD']);
+    await channel.createMessage({ embed }).then(async (message) => {
+      // Git commit
+      let commitHash: string = await new Promise((resolve, reject) => {
+        let git = spawn('git', ['rev-parse', 'HEAD']);
 
-          let data = '';
+        let data = '';
 
-          git.stdout.on('data', (dataToAdd) => (data += dataToAdd));
+        git.stdout.on('data', (dataToAdd) => (data += dataToAdd));
+        git.stdout.on('error', reject);
 
-          git.on('close', () => {
-            resolve(data);
-          });
-
-          git.on('error', console.error);
+        git.on('close', () => {
+          resolve(data);
         });
 
-        let commitHashShort = commitHash.slice(0, 6);
-        embed.description += ` ([${commitHashShort}](https://github.com/eduardozgz/member-counter-bot/tree/${commitHash}))`;
+        git.on('error', reject);
+      });
 
-        // Bot latency field
-        embed.fields[6].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
+      let commitHashShort = commitHash.slice(0, 6);
+      embed.description += ` ([${commitHashShort}](https://github.com/eduardozgz/member-counter-bot/tree/${commitHash}))`;
 
-        message.edit({ embed }).catch(console.error);
-      })
-      .catch(console.error);
+      // Bot latency field
+      embed.fields[6].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
+
+      await message.edit({ embed });
+    });
   },
 };
 

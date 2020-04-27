@@ -78,7 +78,7 @@ const user: MemberCounterCommand = {
           inline: true,
         });
 
-        channel.createMessage({ embed });
+        await channel.createMessage({ embed });
       }
     }
   },

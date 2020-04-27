@@ -41,7 +41,7 @@ const donate: MemberCounterCommand = {
       embed.fields.push(field);
     });
 
-    channel.createMessage({ embed }).catch(console.error);
+    await channel.createMessage({ embed });
   },
 };
 
