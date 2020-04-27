@@ -25,9 +25,9 @@
       "errorNotFound": "Canal no encontrado"
     },
     "editChannel": {
-      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
-      "success": "Done! You may have to wait a few seconds to see the new changes",
-      "errorNotFound": "Channel not found"
+      "helpDescription": "Si estas intentando establecer un contador pero Discord te dice que has alcanzado el limite de caracteres en el nombre/tema, puedes \"ignorar\" este limite usando este comando\n**Uso**```{PREFIX}editChannel [id del canal] [contenido]\n**Ejemplo**```{PREFIX}editChannel 701396983843127366 {onlinemembers} de {members} Online",
+      "success": "Listo! Quizas tengas que esperar unos segundos para ver los nuevos cambios",
+      "errorNotFound": "Canal no encontrado"
     },
     "setDigit": {
       "helpDescription": "Deberias mirar `{PREFIX}help topicCounter` antes de usar este comando.\nPersonaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un número, emoji, o un número con markdown\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 **3**```\nCon este ejemplo todos los 3 se mostraran como un **3** en negrita.",
@@ -87,7 +87,7 @@
     "lang": {
       "helpDescription": "Cambia el idioma de este servidor, debes ser administrador para ejecutar este comando.",
       "success": "El idioma se cambio correctamente.",
-      "errorNotFound": "List of available languages:"
+      "errorNotFound": "Lista de idiomas disponibles:"
     },
     "donate": {
       "helpDescription": "Muestra las mayores donaciones.",
@@ -124,7 +124,7 @@
       "onlyPremium": "Solo Premium",
       "unknownCounter": "Error desconocido",
       "noBanPerms": "Necesito permisos de ban para mostrar esto",
-      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
+      "invalidChannelLength": "Nombre de canal invalido, por favor, vuelve a establecerlo"
     }
   },
   "common": {
