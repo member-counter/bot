@@ -14,6 +14,8 @@ import {
   availableLanguagePacks,
 } from '../utils/languagePack';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
+import UserError from '../utils/UserError';
+import messageReactionAdd from '../events/messageReactionAdd';
 
 // TODO
 const seeSettings: MemberCounterCommand = {
@@ -358,6 +360,42 @@ const setDigit: MemberCounterCommand = {
   },
 };
 
+const shortNumber: MemberCounterCommand = {
+  aliases: ['shortNumber', 'shortNumbers'],
+  denyDm: true,
+  onlyAdmin: true,
+  run: async ({ message, languagePack }) => {
+    const { channel, content } = message;
+    const [command, action] = content.split(/\s+/);
+
+    if (channel instanceof GuildChannel) {
+      const { guild } = channel;
+      const guildSettings = await GuildService.init(guild.id);
+
+      switch (action) {
+        case 'enable':
+          await guildSettings.setShortNumber(true);
+          break;
+
+        case 'disable':
+          await guildSettings.setShortNumber(false);
+          break;
+
+        default:
+          throw new UserError(
+            languagePack.commands.shortNumber.errorInvalidAction.replace(
+              '{PREFIX}',
+              guildSettings.prefix,
+            ),
+          );
+          break;
+      }
+
+      await channel.createMessage(languagePack.commands.shortNumber.success);
+    }
+  },
+};
+
 const settingsCommands = [
   seeSettings,
   resetSettings,
@@ -366,6 +404,7 @@ const settingsCommands = [
   role,
   upgradeServer,
   setDigit,
+  shortNumber,
 ];
 
 export default settingsCommands;

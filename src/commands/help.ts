@@ -46,6 +46,10 @@ const help: MemberCounterCommand = {
             ),
           });
 
+          if (commandContent.helpImage) {
+            embed.image = { url: commandContent.helpImage };
+          }
+
           await channel.createMessage({ embed });
         }
       }

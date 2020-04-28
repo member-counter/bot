@@ -11,6 +11,7 @@ import { loadLanguagePack } from '../utils/languagePack';
 import getEnv from '../utils/getEnv';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import ExternalCounts from '../utils/externalCounts';
+import shortNumber from '../utils/shortNumbers';
 
 const { FOSS_MODE, PREMIUM_BOT } = getEnv();
 
@@ -40,29 +41,38 @@ class CountService {
 
     for (const [id, rawContent] of this.guildSettings.counters) {
       const discordChannel = channels.get(id);
-      let processedContent = await this.processContent(
-        rawContent,
-        discordChannel instanceof TextChannel ||
-          discordChannel instanceof NewsChannel,
-      );
 
-      // TODO remove channel from DB if it doesnt exists anymore
-      if (
+      if (!discordChannel) {
+        await this.guildSettings.deleteCounter(id);
+        return;
+      }
+
+      const counterIsNameType =
+        discordChannel instanceof VoiceChannel ||
+        discordChannel instanceof CategoryChannel;
+
+      const counterIsTopicType =
         discordChannel instanceof TextChannel ||
-        discordChannel instanceof NewsChannel
-      ) {
+        discordChannel instanceof NewsChannel;
+
+      let processedContent = await this.processContent({
+        rawContent,
+        customDigits: counterIsTopicType,
+        shortNumbers: counterIsNameType && this.guildSettings.shortNumber,
+      });
+
+      if (counterIsTopicType) {
         if (
           botHasPermsToEdit(discordChannel) &&
+          //@ts-ignore
           discordChannel.topic !== processedContent
         )
           await discordChannel.edit({ topic: processedContent.slice(0, 1023) });
-      } else if (
-        discordChannel instanceof VoiceChannel ||
-        discordChannel instanceof CategoryChannel
-      ) {
+      } else if (counterIsNameType) {
         if (processedContent.length < 2) return;
         if (
           botHasPermsToEdit(discordChannel) &&
+          //@ts-ignore
           discordChannel.name !== processedContent
         ) {
           const nameToSet =
@@ -75,9 +85,17 @@ class CountService {
     }
   }
 
-  private async processContent(content, customDigits): Promise<string> {
-    content = content.split('');
-
+  private async processContent({
+    rawContent,
+    customDigits,
+    shortNumbers,
+  }: {
+    rawContent: string;
+    customDigits: boolean;
+    shortNumbers: boolean;
+  }): Promise<string> {
+    let content: string[] = rawContent.split('');
+    customDigits;
     let isCounterBeingDetected = false;
     let counterDetected = '';
     let counterDetectedAt = 0;
@@ -90,11 +108,10 @@ class CountService {
       } else if (isCounterBeingDetected && !(char === '{' || char === '}')) {
         counterDetected += char;
       } else if (isCounterBeingDetected && char === '}') {
-        content.splice(
-          counterDetectedAt,
-          counterDetected.length + 2,
-          await this.getCount(`{${counterDetected}}`, customDigits),
-        );
+        let count = await this.getCount(`{${counterDetected}}`, customDigits);
+        if (shortNumbers) count = shortNumber(parseInt(count, 10));
+
+        content.splice(counterDetectedAt, counterDetected.length + 2, count);
 
         index = 0;
         isCounterBeingDetected = false;
@@ -103,9 +120,7 @@ class CountService {
       }
     }
 
-    content = content.join('');
-
-    return content;
+    return content.join('');
   }
 
   public async getCount(
