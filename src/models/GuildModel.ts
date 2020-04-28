@@ -10,6 +10,7 @@ const GuildSchema = new mongoose.Schema({
   language: { type: String, default: 'en_US' },
   allowedRoles: [{ type: String, default: [] }],
   counters: { type: Map, of: String, default: new Map() },
+  shortNumber: { type: Boolean, default: false },
   digits: {
     type: Array,
     default: [

@@ -18,3 +18,5 @@ function shortNumber(n: number): string {
   }
   return result;
 }
+
+export default shortNumber;

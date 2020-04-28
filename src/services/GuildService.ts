@@ -42,6 +42,16 @@ class GuildService {
     return this.doc.allowedRoles;
   }
 
+  public async setShortNumber(state: boolean): Promise<boolean> {
+    this.doc.shortNumber = state;
+    await this.doc.save();
+    return this.doc.shortNumber;
+  }
+
+  public get shortNumber(): boolean {
+    return this.doc.shortNumber;
+  }
+
   public get premium(): boolean {
     return this.doc.premium;
   }
