@@ -28,13 +28,13 @@ const guide: MemberCounterCommand = {
     const guideMessage = await channel.createMessage({ embed });
 
     await Promise.all([
-      await guideMessage.addReaction('◀'),
-      await guideMessage.addReaction('▶'),
+      await guideMessage.addReaction('◀️'),
+      await guideMessage.addReaction('▶️'),
     ]);
 
     ReactionManager.addReactionListener({
       message: guideMessage,
-      emoji: '◀',
+      emoji: '◀️',
       autoDestroy: 30 * 60 * 1000,
       callback: (userId) => {
         if (userId !== author.id) return;
@@ -49,7 +49,7 @@ const guide: MemberCounterCommand = {
 
     ReactionManager.addReactionListener({
       message: guideMessage,
-      emoji: '▶',
+      emoji: '▶️',
       autoDestroy: 30 * 60 * 1000,
       callback: (userId) => {
         if (userId !== author.id) return;
