@@ -35,6 +35,12 @@
       "resetSuccess": "Числа восстановлены к значению по умолчанию.",
       "errorMissingParams": "Ошибка: недостаточно параметров, `больше информации: {PREFIX}help setDigit`."
     },
+    "shortNumber": {
+      "helpDescription": "This command allows you to show a count in a short form in counters placed in the name of a voice/category channel\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpImage": "https://i.imgur.com/Rzv4W0C.png",
+      "errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
+      "success": "Сделано! Необходимо немного подождать прежде, чем увидеть новые изменения"
+    },
     "prefix": {
       "helpDescription": "Меняет префикс бота.\n\nИспользование: ```{PREFIX}prefix [new prefix]```",
       "success": "Префикс изменён на: `{NEW_PREFIX}`",
