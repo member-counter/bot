@@ -1,10 +1,29 @@
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import ReactionManager from '../utils/ReactionManager';
 import embedBase from '../utils/embedBase';
+import GuildService from '../services/GuildService';
+import getEnv from '../utils/getEnv';
+import { GuildChannel } from 'eris';
 
-const splitContent = (string: string): string[] => {
-  // TODO
-  return [''];
+const { DISCORD_PREFIX } = getEnv();
+
+const splitContent = (content: string): string[] => {
+  const splitedStrings = content.split('\n');
+  let result: string[] = [];
+
+  splitedStrings.forEach((portion) => {
+    const workingIndex = result.length - 1;
+    if (
+      result.length > 0 &&
+      portion.length + result[workingIndex].length < 2000 - '\n'.length
+    ) {
+      result[workingIndex] = `${result[workingIndex]}\n${portion}`;
+    } else {
+      result.push(`${portion}\n`);
+    }
+  });
+
+  return result;
 };
 
 const guide: MemberCounterCommand = {
@@ -13,16 +32,26 @@ const guide: MemberCounterCommand = {
   onlyAdmin: false,
   run: async ({ message, languagePack }) => {
     const { channel, author } = message;
+    const prefix = await (async () => {
+      if (channel instanceof GuildChannel) {
+        const guildSettings = await GuildService.init(channel.guild.id);
+        return guildSettings.prefix;
+      } else return DISCORD_PREFIX;
+    })();
+    const { explanation, counters, pagesText } = languagePack.commands.setup;
     const pages = [
-      'first page```ts\n```first page',
-      'second page```ts\n```second page',
-      'third page```ts\n```third page',
-    ];
+      ...splitContent(explanation),
+      ...splitContent(counters),
+    ].map((page) => page.replace(/\{PREFIX\}/g, prefix));
     let currentPage = 0;
 
     const embed = embedBase({
       description: pages[currentPage],
-      footer: { text: `Page ${currentPage + 1}/${pages.length}` },
+      footer: {
+        text: pagesText
+          .replace('{CURRENT_PAGE}', currentPage + 1)
+          .replace('{TOTAL_PAGES}', pages.length),
+      },
     });
 
     const guideMessage = await channel.createMessage({ embed });
