@@ -35,6 +35,12 @@
       "resetSuccess": "Numbers restored to the default ones.",
       "errorMissingParams": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
     },
+    "shortNumber": {
+      "helpDescription": "This command allows you to show a count in a short form in counters placed in the name of a voice/category channel\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpImage": "https://i.imgur.com/Rzv4W0C.png",
+      "errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
+      "success": "Done! You may have to wait a few seconds to see the new changes"
+    },
     "prefix": {
       "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
       "success": "Prefix changed to: `{NEW_PREFIX}`",
