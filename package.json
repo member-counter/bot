@@ -2,7 +2,7 @@
   "name": "member-counter-bot",
   "version": "0.11.0-dev",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "start": "node dist/src/index.js",
     "build": "tsc",
