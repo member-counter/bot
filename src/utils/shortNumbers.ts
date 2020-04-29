@@ -15,6 +15,8 @@ function shortNumber(n: number): string {
     n = n / 1000;
     n = short(n);
     result = `${n}K`;
+  } else {
+    result = n.toString();
   }
   return result;
 }
