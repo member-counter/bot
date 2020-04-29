@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "lodash.clonedeep": "^4.5.0",
     "mongoose": "^5.8.9",
+    "mta-query": "^0.1.0",
     "node-fetch": "^2.6.0",
     "twitch": "^4.0.9",
     "typescript-tslint-plugin": "^0.5.5",
