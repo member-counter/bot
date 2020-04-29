@@ -186,7 +186,9 @@ class CountService {
         };
         if (!PREMIUM_BOT || !FOSS_MODE) {
           for (const key in counts) {
-            counts[key] = -1;
+            if (counts.hasOwnProperty(key)) {
+              counts[key] = -1;
+            }
           }
           this.countCache = { ...this.countCache, counts };
         }

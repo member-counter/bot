@@ -1,24 +1,24 @@
-import getEnv from '../getEnv';
 import twitch from 'twitch';
+import getEnv from '../getEnv';
 
 const { TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET } = getEnv();
 
-namespace Twitch {
-  const client = twitch.withClientCredentials(
-    TWITCH_CLIENT_ID,
-    TWITCH_CLIENT_SECRET,
-  );
-
-  interface stats {
-    followers: number;
-    views: number;
-  }
-
-  export const getChannelStats = async (userName: string): Promise<stats> => {
-    const user = await client.kraken.users.getUserByName(userName);
-    const { followers, views } = await client.kraken.channels.getChannel(user);
-    return { followers, views };
-  };
+interface stats {
+  followers: number;
+  views: number;
 }
+
+const client = twitch.withClientCredentials(
+  TWITCH_CLIENT_ID,
+  TWITCH_CLIENT_SECRET,
+);
+
+const getChannelStats = async (userName: string): Promise<stats> => {
+  const user = await client.kraken.users.getUserByName(userName);
+  const { followers, views } = await client.kraken.channels.getChannel(user);
+  return { followers, views };
+};
+
+const Twitch = { getChannelStats };
 
 export default Twitch;
