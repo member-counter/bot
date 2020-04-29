@@ -3,11 +3,12 @@ import YouTube from './externalCounts/YouTube';
 import Twitch from './externalCounts/Twitch';
 import minecraft from './externalCounts/minecraft';
 import gta5fiveM from './externalCounts/gta5-fivem';
+import gtasaMta from './externalCounts/gtasa-mta';
 import getEnv from './getEnv';
 
 const { PREMIUM_BOT, FOSS_MODE } = getEnv();
 
-const fetch = { http, YouTube, Twitch, minecraft, gta5fiveM };
+const fetch = { http, YouTube, Twitch, minecraft, gta5fiveM, gtasaMta };
 
 interface countCache {
   count: number;
@@ -83,6 +84,10 @@ const get = async (counter: string): Promise<number> => {
       case 'gta5-fivem':
         count = await fetch.gta5fiveM(resource);
         expiresAt = Date.now() + 60 * 1000;
+        break;
+
+      case 'gtasa-mta':
+        count = await fetch.gtasaMta(resource);
         break;
 
       default:
