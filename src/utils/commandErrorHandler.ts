@@ -27,7 +27,6 @@ const commandErrorHandler = async (
           await channel.createMessage(
             `**${errorText}:** ${errorDiscordAPI}: ${error.message} `,
           );
-        throw error;
         break;
 
       default:

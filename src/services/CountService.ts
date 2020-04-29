@@ -55,11 +55,10 @@ class CountService {
         discordChannel instanceof TextChannel ||
         discordChannel instanceof NewsChannel;
 
-      let processedContent = await this.processContent({
+      let processedContent = await this.processContent(
         rawContent,
-        customDigits: counterIsTopicType,
-        shortNumbers: counterIsNameType && this.guildSettings.shortNumber,
-      });
+        counterIsTopicType,
+      );
 
       if (counterIsTopicType) {
         if (
@@ -85,15 +84,10 @@ class CountService {
     }
   }
 
-  private async processContent({
-    rawContent,
-    customDigits,
-    shortNumbers,
-  }: {
-    rawContent: string;
-    customDigits: boolean;
-    shortNumbers: boolean;
-  }): Promise<string> {
+  private async processContent(
+    rawContent: string,
+    customDigits: boolean = false,
+  ): Promise<string> {
     let content: string[] = rawContent.split('');
     customDigits;
     let isCounterBeingDetected = false;
@@ -109,7 +103,11 @@ class CountService {
         counterDetected += char;
       } else if (isCounterBeingDetected && char === '}') {
         let count = await this.getCount(`{${counterDetected}}`, customDigits);
-        if (shortNumbers) count = shortNumber(parseInt(count, 10));
+
+        const intCount = parseInt(count, 10);
+        if (!customDigits && intCount && this.guildSettings.shortNumber) {
+          count = shortNumber(intCount);
+        }
 
         content.splice(counterDetectedAt, counterDetected.length + 2, count);
 
@@ -163,124 +161,142 @@ class CountService {
   private async fetchCount(type: string): Promise<void> {
     const typeL = type.toLowerCase();
 
-    if (typeL === '{members}') {
-      this.countCache[typeL] = this.guild.memberCount;
-    } else if (
-      typeL === '{users}' ||
-      typeL === '{bots}' ||
-      typeL === '{onlinemembers}' ||
-      typeL === '{onlineusers}' ||
-      typeL === '{onlinebots}' ||
-      typeL === '{offlinemembers}' ||
-      typeL === '{offlineusers}' ||
-      typeL === '{offlinebots}'
-    ) {
-      const counts = {
-        ['{bots}']: 0,
-        ['{users}']: 0,
-        ['{onlinemembers}']: 0,
-        ['{offlinemembers}']: 0,
-        ['{onlineusers}']: 0,
-        ['{offlineusers}']: 0,
-        ['onlinebots']: 0,
-        ['{offlinebots}']: 0,
-      };
-      if (!PREMIUM_BOT || !FOSS_MODE) {
-        for (const key in counts) {
-          counts[key] = -1;
-        }
-        this.countCache = { ...this.countCache, counts };
-      }
+    switch (typeL) {
+      case '{members}':
+        this.countCache[typeL] = this.guild.memberCount;
+        break;
 
-      for (const [memberId, member] of this.guild.members) {
-        const memberIsOffline = member.status === 'offline';
-
-        if (member.bot) counts['{bots}']++;
-        else counts['{users}']++;
-
-        if (memberIsOffline) counts['{offlinemembers}']++;
-        else counts['{onlinemembers}']++;
-
-        if (memberIsOffline && member.bot) counts['{offlinebots}']++;
-        else if (memberIsOffline) counts['{offlineusers}']++;
-
-        if (!memberIsOffline && member.bot) counts['onlinebots']++;
-        else if (!memberIsOffline) counts['{onlineusers}']++;
-      }
-
-      this.countCache = { ...this.countCache, ...counts };
-    } else if (typeL === '{channels}') {
-      this.countCache[typeL] = this.guild.channels.filter(
-        (channel) => channel.type !== 4,
-      ).length;
-    } else if (typeL === '{roles}') {
-      this.countCache[typeL] = this.guild.roles.size;
-    } else if (typeL === '{connectedmembers}') {
-      if (!PREMIUM_BOT || !FOSS_MODE) {
-        this.countCache[typeL] = -1;
-      }
-
-      this.countCache[typeL] = this.guild.channels
-        .filter((channel) => channel.type === 2)
-        .reduce(
-          (prev, current: VoiceChannel) => prev + current.voiceMembers.size,
-          0,
-        );
-    } else if (typeL === '{bannedmembers}') {
-      this.countCache[typeL] = await this.guild
-        .getBans()
-        .then((bans) => bans.length)
-        .catch((error) => {
-          console.error(error);
-          this.countCache[typeL] = -2;
-        });
-    } else if (
-      /\{memberswithrole:.+\}/.test(typeL) ||
-      /\{onlinememberswithrole:.+\}/.test(typeL) ||
-      /\{offlinememberswithrole:.+\}/.test(typeL)
-    ) {
-      const targetRoles: string[] = typeL
-        .slice(typeL.indexOf(':') + 1, -1)
-        .split(',');
-
-      if (!PREMIUM_BOT || !FOSS_MODE) {
-        this.countCache[`{memberswithrole:${targetRoles.join(',')}}`] = -1;
-        this.countCache[
-          `{onlinememberswithrole:${targetRoles.join(',')}}`
-        ] = -1;
-        this.countCache[
-          `{offlinememberswithrole:${targetRoles.join(',')}}`
-        ] = -1;
-        return;
-      }
-
-      const membersWithRole = new Set();
-      const onlineMembersWithRole = new Set();
-      const offlineMembersWithRole = new Set();
-
-      this.guild.members.forEach((member) => {
-        targetRoles.forEach((targetRole) => {
-          if (member.roles.includes(targetRole)) {
-            membersWithRole.add(member.id);
-            if (member.status === 'offline')
-              offlineMembersWithRole.add(member.id);
-            else onlineMembersWithRole.add(member.id);
+      case '{bots}':
+      case '{users}':
+      case '{onlinemembers}':
+      case '{offlinemembers}':
+      case '{onlineusers}':
+      case '{offlineusers}':
+      case '{onlinebots}':
+      case '{offlinebots}': {
+        const counts = {
+          ['{bots}']: 0,
+          ['{users}']: 0,
+          ['{onlinemembers}']: 0,
+          ['{offlinemembers}']: 0,
+          ['{onlineusers}']: 0,
+          ['{offlineusers}']: 0,
+          ['{onlinebots}']: 0,
+          ['{offlinebots}']: 0,
+        };
+        if (!PREMIUM_BOT || !FOSS_MODE) {
+          for (const key in counts) {
+            counts[key] = -1;
           }
-        });
-      });
+          this.countCache = { ...this.countCache, counts };
+        }
 
-      this.countCache[`{memberswithrole:${targetRoles.join(',')}}`] =
-        membersWithRole.size;
-      this.countCache[`{onlinememberswithrole:${targetRoles.join(',')}}`] =
-        onlineMembersWithRole.size;
-      this.countCache[`{offlinememberswithrole:${targetRoles.join(',')}}`] =
-        offlineMembersWithRole.size;
-    } else {
-      try {
-        this.countCache[typeL] = await ExternalCounts.get(type);
-      } catch (error) {
-        console.error(error);
-        this.countCache[typeL] = -2;
+        for (const [memberId, member] of this.guild.members) {
+          const memberIsOffline = member.status === 'offline';
+
+          if (member.bot) counts['{bots}']++;
+          else counts['{users}']++;
+
+          if (memberIsOffline) counts['{offlinemembers}']++;
+          else counts['{onlinemembers}']++;
+
+          if (memberIsOffline && member.bot) counts['{offlinebots}']++;
+          else if (memberIsOffline) counts['{offlineusers}']++;
+
+          if (!memberIsOffline && member.bot) counts['onlinebots']++;
+          else if (!memberIsOffline) counts['{onlineusers}']++;
+        }
+
+        this.countCache = { ...this.countCache, ...counts };
+        break;
+      }
+
+      case '{channels}':
+        this.countCache[typeL] = this.guild.channels.filter(
+          (channel) => channel.type !== 4,
+        ).length;
+        break;
+
+      case '{roles}':
+        this.countCache[typeL] = this.guild.roles.size;
+        break;
+
+      case '{connectedmembers}': {
+        if (!PREMIUM_BOT || !FOSS_MODE) {
+          this.countCache[typeL] = -1;
+        }
+
+        this.countCache[typeL] = this.guild.channels
+          .filter((channel) => channel.type === 2)
+          .reduce(
+            (prev, current: VoiceChannel) => prev + current.voiceMembers.size,
+            0,
+          );
+        break;
+      }
+
+      case '{bannedmembers}': {
+        this.countCache[typeL] = await this.guild
+          .getBans()
+          .then((bans) => bans.length)
+          .catch((error) => {
+            console.error(error);
+            this.countCache[typeL] = -2;
+          });
+        break;
+      }
+
+      default: {
+        if (
+          /\{memberswithrole:.+\}/.test(typeL) ||
+          /\{onlinememberswithrole:.+\}/.test(typeL) ||
+          /\{offlinememberswithrole:.+\}/.test(typeL)
+        ) {
+          const targetRoles: string[] = typeL
+            .slice(typeL.indexOf(':') + 1, -1)
+            .split(',');
+          const targetRolesString = targetRoles.join(',');
+
+          if (!PREMIUM_BOT || !FOSS_MODE) {
+            this.countCache[`{memberswithrole:${targetRolesString}}`] = -1;
+            this.countCache[
+              `{onlinememberswithrole:${targetRolesString}}`
+            ] = -1;
+            this.countCache[
+              `{offlinememberswithrole:${targetRolesString}}`
+            ] = -1;
+            return;
+          }
+
+          const membersWithRole = new Set();
+          const onlineMembersWithRole = new Set();
+          const offlineMembersWithRole = new Set();
+
+          this.guild.members.forEach((member) => {
+            targetRoles.forEach((targetRole) => {
+              if (member.roles.includes(targetRole)) {
+                membersWithRole.add(member.id);
+                if (member.status === 'offline')
+                  offlineMembersWithRole.add(member.id);
+                else onlineMembersWithRole.add(member.id);
+              }
+            });
+          });
+
+          this.countCache[`{memberswithrole:${targetRolesString}}`] =
+            membersWithRole.size;
+          this.countCache[`{onlinememberswithrole:${targetRolesString}}`] =
+            onlineMembersWithRole.size;
+          this.countCache[`{offlinememberswithrole:${targetRolesString}`] =
+            offlineMembersWithRole.size;
+        } else {
+          try {
+            this.countCache[typeL] = await ExternalCounts.get(type);
+          } catch (error) {
+            this.countCache[typeL] = -2;
+          }
+        }
+        break;
       }
     }
   }

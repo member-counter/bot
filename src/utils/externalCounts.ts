@@ -1,12 +1,14 @@
 import http from './externalCounts/http';
 import YouTube from './externalCounts/YouTube';
 import Twitch from './externalCounts/Twitch';
+import minecraft from './externalCounts/minecraft';
+import gta5fiveM from './externalCounts/gta5-fivem';
 import getEnv from './getEnv';
 
 const { PREMIUM_BOT, FOSS_MODE } = getEnv();
 
 namespace ExternalCounts {
-  const fetch = { http, YouTube, Twitch };
+  const fetch = { http, YouTube, Twitch, minecraft, gta5fiveM };
 
   interface countCache {
     count: number;
@@ -72,6 +74,16 @@ namespace ExternalCounts {
         case 'http':
           count = await fetch.http(resource);
           expiresAt = Date.now() + 1 * 60 * 1000;
+          break;
+
+        case 'minecraft':
+          count = await fetch.minecraft(resource);
+          expiresAt = Date.now() + 600 * 1000;
+          break;
+
+        case 'gta5-fivem':
+          count = await fetch.gta5fiveM(resource);
+          expiresAt = Date.now() + 60 * 1000;
           break;
 
         default:
