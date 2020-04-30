@@ -110,6 +110,7 @@ const get = async (counter: string): Promise<number> => {
       case 'css':
       case 'csgo':
       case 'gmod':
+      case 'ark':
         count = await fetch.sourceGame(resource);
         break;
 
