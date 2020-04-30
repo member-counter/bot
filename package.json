@@ -31,6 +31,7 @@
     "mta-query": "^0.1.0",
     "node-fetch": "^2.6.0",
     "samp-query": "^0.1.5",
+    "source-server-query": "0.0.1",
     "twitch": "^4.0.9",
     "typescript-tslint-plugin": "^0.5.5",
     "zlib-sync": "^0.1.6"

@@ -5,6 +5,7 @@ import minecraft from './externalCounts/minecraft';
 import gta5fiveM from './externalCounts/gta5-fivem';
 import gtasaMTA from './externalCounts/gtasa-mta';
 import gtasaMP from './externalCounts/gtasa-mp';
+import sourceGame from './externalCounts/source-game';
 import getEnv from './getEnv';
 
 const { PREMIUM_BOT, FOSS_MODE } = getEnv();
@@ -17,6 +18,7 @@ const fetch = {
   gta5fiveM,
   gtasaMTA,
   gtasaMP,
+  sourceGame,
 };
 
 interface countCache {
@@ -101,6 +103,14 @@ const get = async (counter: string): Promise<number> => {
 
       case 'gtasa-mp':
         count = await fetch.gtasaMP(resource);
+        break;
+
+      case 'tf2':
+      case 'cs':
+      case 'css':
+      case 'csgo':
+      case 'gmod':
+        count = await fetch.sourceGame(resource);
         break;
 
       default:
