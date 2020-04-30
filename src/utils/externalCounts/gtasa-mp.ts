@@ -1,4 +1,4 @@
-import query from 'mta-query';
+import query from 'samp-query';
 
 export default (resource: string): Promise<number> => {
   let [host, port] = resource.split(':');
