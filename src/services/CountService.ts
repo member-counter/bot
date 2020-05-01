@@ -18,7 +18,7 @@ const { FOSS_MODE, PREMIUM_BOT } = getEnv();
 class CountService {
   private client: Client;
   private languagePack: any;
-  private countCache: any;
+  private countCache: Map<string, string | number>;
 
   private constructor(
     public guild: Guild,
@@ -27,7 +27,7 @@ class CountService {
     //@ts-ignore
     this.client = this.guild._client;
     this.languagePack = loadLanguagePack(this.guildSettings.language);
-    this.countCache = {};
+    this.countCache = new Map();
   }
 
   public static async init(guild: Guild): Promise<CountService> {
@@ -127,20 +127,21 @@ class CountService {
   ): Promise<string> {
     const typeL = type.toLowerCase();
 
-    if (!this.countCache[typeL]) {
+    if (!this.countCache.has(typeL)) {
       await this.fetchCount(type);
     }
 
     // TODO add translations
-    if (this.countCache[typeL] === -1)
+    if (this.countCache.get(typeL) === -1)
       return this.languagePack.functions.getCounts.onlyPremium;
-    if (this.countCache[typeL] === -2) return this.languagePack.common.error;
-    if (this.countCache[typeL] === -3)
+    if (this.countCache.get(typeL) === -2)
+      return this.languagePack.common.error;
+    if (this.countCache.get(typeL) === -3)
       return this.languagePack.functions.getCounts.unknownCounter;
 
     if (customDigits) {
-      if (!this.countCache[`${typeL}CustomDigit`]) {
-        let rawCount: number = this.countCache[typeL];
+      if (!this.countCache.has(`${typeL}CustomDigit`)) {
+        let rawCount = this.countCache.get(typeL);
         let processedCount: string = rawCount.toString();
 
         processedCount = processedCount
@@ -148,12 +149,12 @@ class CountService {
           .map((digit) => this.guildSettings.digits[digit])
           .join('');
 
-        this.countCache[`${typeL}CustomDigit`] = processedCount;
+        this.countCache.set(`${typeL}CustomDigit`, processedCount);
       }
 
-      return this.countCache[`${typeL}CustomDigit`].toString();
+      return this.countCache.get(`${typeL}CustomDigit`).toString();
     } else {
-      return this.countCache[typeL].toString();
+      return this.countCache.get(typeL).toString();
     }
   }
 
@@ -163,7 +164,7 @@ class CountService {
 
     switch (typeL) {
       case '{members}':
-        this.countCache[typeL] = this.guild.memberCount;
+        this.countCache.set(typeL, this.guild.memberCount);
         break;
 
       case '{bots}':
@@ -187,10 +188,10 @@ class CountService {
         if (!PREMIUM_BOT || !FOSS_MODE) {
           for (const key in counts) {
             if (counts.hasOwnProperty(key)) {
-              counts[key] = -1;
+              this.countCache.set(key, -1);
             }
           }
-          this.countCache = { ...this.countCache, counts };
+          return;
         }
 
         for (const [memberId, member] of this.guild.members) {
@@ -209,42 +210,49 @@ class CountService {
           else if (!memberIsOffline) counts['{onlineusers}']++;
         }
 
-        this.countCache = { ...this.countCache, ...counts };
+        for (const [key, value] of Object.entries(counts)) {
+          this.countCache.set(key, value);
+        }
+
         break;
       }
 
       case '{channels}':
-        this.countCache[typeL] = this.guild.channels.filter(
-          (channel) => channel.type !== 4,
-        ).length;
+        this.countCache.set(
+          typeL,
+          this.guild.channels.filter((channel) => channel.type !== 4).length,
+        );
         break;
 
       case '{roles}':
-        this.countCache[typeL] = this.guild.roles.size;
+        this.countCache.set(typeL, this.guild.roles.size);
         break;
 
       case '{connectedmembers}': {
         if (!PREMIUM_BOT || !FOSS_MODE) {
-          this.countCache[typeL] = -1;
+          this.countCache.set(typeL, -1);
         }
 
-        this.countCache[typeL] = this.guild.channels
-          .filter((channel) => channel.type === 2)
-          .reduce(
-            (prev, current: VoiceChannel) => prev + current.voiceMembers.size,
-            0,
-          );
+        this.countCache.set(
+          typeL,
+          this.guild.channels
+            .filter((channel) => channel.type === 2)
+            .reduce(
+              (prev, current: VoiceChannel) => prev + current.voiceMembers.size,
+              0,
+            ),
+        );
         break;
       }
 
       case '{bannedmembers}': {
-        this.countCache[typeL] = await this.guild
-          .getBans()
-          .then((bans) => bans.length)
-          .catch((error) => {
-            console.error(error);
-            this.countCache[typeL] = -2;
-          });
+        this.countCache.set(
+          typeL,
+          await this.guild
+            .getBans()
+            .then((bans) => bans.length)
+            .catch(() => -2),
+        );
         break;
       }
 
@@ -259,43 +267,48 @@ class CountService {
             .split(',');
           const targetRolesString = targetRoles.join(',');
 
-          if (!PREMIUM_BOT || !FOSS_MODE) {
-            this.countCache[`{memberswithrole:${targetRolesString}}`] = -1;
-            this.countCache[
-              `{onlinememberswithrole:${targetRolesString}}`
-            ] = -1;
-            this.countCache[
-              `{offlinememberswithrole:${targetRolesString}}`
-            ] = -1;
-            return;
+          let membersWithRole: any = new Set();
+          let onlineMembersWithRole: any = new Set();
+          let offlineMembersWithRole: any = new Set();
+
+          if (PREMIUM_BOT || FOSS_MODE) {
+            this.guild.members.forEach((member) => {
+              targetRoles.forEach((targetRole) => {
+                if (member.roles.includes(targetRole)) {
+                  membersWithRole.add(member.id);
+                  if (member.status === 'offline')
+                    offlineMembersWithRole.add(member.id);
+                  else onlineMembersWithRole.add(member.id);
+                }
+              });
+            });
+
+            membersWithRole = membersWithRole.size;
+            onlineMembersWithRole = onlineMembersWithRole.size;
+            offlineMembersWithRole = offlineMembersWithRole.size;
+          } else {
+            membersWithRole = -1;
+            onlineMembersWithRole = -1;
+            offlineMembersWithRole = -1;
           }
 
-          const membersWithRole = new Set();
-          const onlineMembersWithRole = new Set();
-          const offlineMembersWithRole = new Set();
-
-          this.guild.members.forEach((member) => {
-            targetRoles.forEach((targetRole) => {
-              if (member.roles.includes(targetRole)) {
-                membersWithRole.add(member.id);
-                if (member.status === 'offline')
-                  offlineMembersWithRole.add(member.id);
-                else onlineMembersWithRole.add(member.id);
-              }
-            });
-          });
-
-          this.countCache[`{memberswithrole:${targetRolesString}}`] =
-            membersWithRole.size;
-          this.countCache[`{onlinememberswithrole:${targetRolesString}}`] =
-            onlineMembersWithRole.size;
-          this.countCache[`{offlinememberswithrole:${targetRolesString}`] =
-            offlineMembersWithRole.size;
+          this.countCache.set(
+            `{memberswithrole:${targetRolesString}}`,
+            membersWithRole,
+          );
+          this.countCache.set(
+            `{onlinememberswithrole:${targetRolesString}}`,
+            onlineMembersWithRole,
+          );
+          this.countCache.set(
+            `{offlinememberswithrole:${targetRolesString}`,
+            offlineMembersWithRole,
+          );
         } else {
           try {
-            this.countCache[typeL] = await ExternalCounts.get(type);
+            this.countCache.set(typeL, await ExternalCounts.get(type));
           } catch (error) {
-            this.countCache[typeL] = -2;
+            this.countCache.set(typeL, -2);
           }
         }
         break;
