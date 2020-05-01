@@ -105,12 +105,17 @@ const get = async (counter: string): Promise<number> => {
         count = await fetch.gtasaMP(resource);
         break;
 
+      case 'source':
       case 'tf2':
       case 'cs':
       case 'css':
       case 'csgo':
       case 'gmod':
       case 'ark':
+      case 'rust':
+      case 'arma3':
+      case 'dayz':
+      case 'insurgency-sandstorm':
         count = await fetch.sourceGame(resource);
         break;
 
