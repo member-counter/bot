@@ -4,7 +4,7 @@ import getEnv from '../utils/getEnv';
 import { GuildChannel } from 'eris';
 import embedBase from '../utils/embedBase';
 
-const { WEBSITE_URL, DISCORD_PREFIX } = getEnv();
+const { WEBSITE_URL, DISCORD_PREFIX, DISCORD_BOT_INVITE } = getEnv();
 
 const help: MemberCounterCommand = {
   aliases: ['help'],
@@ -26,10 +26,16 @@ const help: MemberCounterCommand = {
       // Main help page
       let embed = embedBase(languagePack.commands.help.embedReply);
 
-      embed.title = embed.title.replace(/\{PREFIX\}/gi, prefix);
+      embed.title = embed.title.replace(/\{PREFIX\}/g, prefix);
       embed.description = embed.description
-        .replace(/\{PREFIX\}/gi, prefix)
-        .replace(/\{WEBSITE\}/gi, WEBSITE_URL);
+        .replace(/\{DISCORD_BOT_INVITE\}/g, DISCORD_BOT_INVITE)
+        .replace(/\{PREFIX\}/g, prefix)
+        .replace(/\{WEBSITE\}/g, WEBSITE_URL);
+
+      embed.fields.map((field) => {
+        field.value = field.value.replace(/\{PREFIX\}/g, prefix);
+        return field;
+      });
 
       await channel.createMessage({ embed });
     } else {

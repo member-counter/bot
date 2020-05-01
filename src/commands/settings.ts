@@ -54,7 +54,7 @@ const seeSettings: MemberCounterCommand = {
       const messagesToSend: string[] = [''];
       const appendContent = (content: string) => {
         const lastMessagePart = messagesToSend[messagesToSend.length - 1];
-        if ((lastMessagePart + content).length > 2048) {
+        if ((lastMessagePart + content).length > 2000) {
           messagesToSend.push(content);
         } else {
           messagesToSend[messagesToSend.length - 1] += content;
