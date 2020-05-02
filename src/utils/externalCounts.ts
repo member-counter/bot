@@ -115,6 +115,12 @@ const get = async (counter: string): Promise<number> => {
         count = -3;
         break;
     }
+
+    // Use the chached count if something went wrong
+    if (count === -2 && cache.has(`${type}:${resource}`)) {
+      count = cache.get(`${type}:${resource}`).count;
+    }
+
     cache.set(`${type}:${resource}`, { count, expiresAt });
     return count;
   }
