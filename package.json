@@ -19,31 +19,28 @@
   },
   "homepage": "https://member-counter.eduardozgz.com",
   "dependencies": {
-    "abort-controller": "^3.0.0",
-    "bufferutil": "^4.0.1",
     "dotenv": "^8.2.0",
     "dotenv-parse-variables": "^0.2.3",
+    "lodash.clonedeep": "^4.5.0",
+    "mongoose": "^5.9.11",
     "eris": "^0.12.0",
     "erlpack": "^0.1.3",
-    "express": "^4.17.1",
-    "lodash.clonedeep": "^4.5.0",
-    "mongoose": "^5.8.9",
-    "mta-query": "^0.1.0",
+    "bufferutil": "^4.0.1",
+    "zlib-sync": "^0.1.6",
     "node-fetch": "^2.6.0",
-    "samp-query": "^0.1.5",
-    "source-server-query": "0.0.1",
+    "abort-controller": "^3.0.0",
     "twitch": "^4.0.9",
-    "typescript-tslint-plugin": "^0.5.5",
-    "zlib-sync": "^0.1.6"
+    "source-server-query": "0.0.1",
+    "mta-query": "^0.1.0",
+    "samp-query": "^0.1.5"
   },
   "devDependencies": {
+    "nodemon": "^1.19.4",
+    "typescript": "^3.8.3",
     "@types/mongoose": "^5.7.10",
     "@types/node": "^13.11.1",
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.2",
-    "nodemon": "^1.19.4",
-    "ts-node": "^8.8.2",
     "tslint": "^6.1.1",
-    "typescript": "^3.8.3"
+    "typescript-tslint-plugin": "^0.5.5",
+    "ts-node": "^8.8.2"
   }
 }
