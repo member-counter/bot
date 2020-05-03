@@ -45,7 +45,8 @@
     "editChannel": {
       "helpDescription": "Se você está tentando setar um contador mas o Discord te diz que você atingiu o limite de caracteres do nome/tópico do canal, você pode usar esse comando para \"ignorar\" esse limite\n**Uso**```{PREFIX}editChannel [channelId] [content]\n**Exemplo**```{PREFIX}editChannel 701396983843127366 {onlinemembers} de {members} Online",
       "success": "Feito! Você talvez tenha que esperar alguns segundos para ver as novas mudanças",
-      "errorNotFound": "Canal não encontrado"
+      "errorNotFound": "Canal não encontrado",
+      "errorNoContent": "You must provide some content"
     },
     "setDigit": {
       "helpDescription": "Você deveria ver `{PREFIX}help topicCounter` antes de usar esse comando.\nPersonaliza os números que serão exibidos, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal com marcação.\nSe o primeiro argumento é a palavra \"reset\", os números serão redefinidos para o padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número personalizado]```\nExemplo: ```{PREFIX}setDigit 3 **3**```\nCom o exemplo anterior, cada 3 será mostrado em negrito **3**",

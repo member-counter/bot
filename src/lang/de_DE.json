@@ -45,7 +45,8 @@
     "editChannel": {
       "helpDescription": "Wenn du versuchst eine Zähler einzustellen aber das Zeichen Limit erreicht wurde, kannst du diesen Befehl benutzen um das limit zu \"ignorieren\" \n**Verwendung**```{PREFIX}editChannel [channelId] [content]\n**Beispiel**```{PREFIX}editChannel 701396983843127366 {onlinemembers} von {members} Online",
       "success": "Erledigt! Möglicherweiße musst du einen Moment waren bis die Änderungen in Kraft treten",
-      "errorNotFound": "Kanal nicht gefunden"
+      "errorNotFound": "Kanal nicht gefunden",
+      "errorNoContent": "Du musst einen Inhalt angeben"
     },
     "setDigit": {
       "helpDescription": "Du solltest dir zuerst {PREFIX}help topicCounter` ansehen bevor du diesen Command benutzt.\nPasst die angezeigten Zahlen an, die erste Angabe muss eine normale Zahl sein, die zweite Angabe kann alles mögliche sein, etwa ein Emoji oder eine Zahl mit Markdown.\nWenn die erste angabe \"reset\" ist wird die angezeigte Zahl zum Standart zurückgesetzt.\n\nVerwendung: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [deine Benutzerdefinierte Zahl]```\nBeispiel:```{PREFIX}setDigit 3 **3**```\nMit diesem Beispiel wird jede 3 als fett geschriebene **3** angezeigt",
