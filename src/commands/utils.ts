@@ -1,5 +1,5 @@
 import MemberCounterCommand from '../typings/MemberCounterCommand';
-import { GuildChannel, VoiceChannel } from 'eris';
+import { GuildChannel, VoiceChannel, User } from 'eris';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
 import GuildService from '../services/GuildService';
@@ -58,12 +58,16 @@ const editChannel: MemberCounterCommand = {
     if (channel instanceof GuildChannel) {
       const { guild, client } = channel;
       const guildSettings = await GuildService.init(guild.id);
-      let [command, channelId, ...newContent] = content.split(/\s+/);
+      let [command, channelId, ...newContent]: any = content.split(/\s+/);
+      newContent = newContent.join(' ');
+
+      if (!newContent)
+        throw new UserError(languagePack.commands.editChannel.errorNoContent);
 
       if (!guild.channels.has(channelId))
         throw new UserError(languagePack.commands.editChannel.errorNotFound);
 
-      await guildSettings.setCounter(channelId, newContent.join(' '));
+      await guildSettings.setCounter(channelId, newContent);
       await channel.createMessage(languagePack.commands.editChannel.success);
     }
   },
