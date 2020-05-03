@@ -111,7 +111,7 @@ class CountService {
 
         content.splice(counterDetectedAt, counterDetected.length + 2, count);
 
-        index = 0;
+        index = counterDetectedAt;
         isCounterBeingDetected = false;
         counterDetected = '';
         counterDetectedAt = 0;
