@@ -19,8 +19,7 @@ const updateCounterContent = async (channel: GuildChannel) => {
     if (channel instanceof TextChannel || channel instanceof NewsChannel) {
       const { topic, id } = channel;
       if (/\{.+\}/.test(topic)) await guildSettings.setCounter(id, topic);
-      else if (topic.length === 0)
-        await guildSettings.deleteCounter(channel.id);
+      else if (!!topic) await guildSettings.deleteCounter(channel.id);
     }
 
     if (channel instanceof CategoryChannel || channel instanceof VoiceChannel) {
