@@ -45,7 +45,8 @@
     "editChannel": {
       "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
       "success": "Done! You may have to wait a few seconds to see the new changes",
-      "errorNotFound": "Channel not found"
+      "errorNotFound": "Channel not found",
+      "errorNoContent": "You must provide some content"
     },
     "setDigit": {
       "helpDescription": "Powinieneś zobaczyć  `{PREFIX}help topicCounter` przed użyciem tej komendy.\nDostosowanie liczb które będą wyświetlane, argument liczby musi być liczbą normalną, drugi argument może być dowolny, jak emotka lub zwykła liczba z  markdown. \nJeśli pierwszym argumentem jest słowo „reset”, liczby zostaną przywrócone do domyślnych.\n\nStosowanie: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [numer] [twoj niestandardowy numer]```\nPrzykład: ```{PREFIX}setDigit 3 **3**```\nW poprzednim przykładzie wszystkie 3 będą wyświetlane jako pogrubione ** 3 **",
