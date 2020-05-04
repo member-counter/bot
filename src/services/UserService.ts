@@ -22,6 +22,12 @@ class UserService {
     return this.doc.badges;
   }
 
+  public async revokeBadge(badge: number): Promise<number> {
+    this.doc.badges &= ~badge;
+    this.doc.save();
+    return this.doc.badges;
+  }
+
   public get availableServerUpgrades(): number {
     return this.doc.availableServerUpgrades;
   }

@@ -31,11 +31,16 @@ const user: MemberCounterCommand = {
   run: async ({ message, languagePack }) => {
     const { author, channel, mentions, cleanContent } = message;
     const action = (() => {
+      if (!BOT_OWNERS.includes(author.id)) return;
       if (
-        /grantserverupgrade|grantavailableserverupgrade/gi.test(cleanContent) &&
-        BOT_OWNERS.includes(author.id)
-      )
+        /grantserverupgrade|grantavailableserverupgrade/gi.test(cleanContent)
+      ) {
         return 'grantserverupgrade';
+      } else if (/grantbadge/gi.test(cleanContent)) {
+        return 'grantbadge';
+      } else if (/revokebadge/gi.test(cleanContent)) {
+        return 'revokebadge';
+      }
     })();
 
     let targetUser: Eris.User;
@@ -51,6 +56,18 @@ const user: MemberCounterCommand = {
     switch (action) {
       case 'grantserverupgrade': {
         await userSettings.grantAvailableServerUpgrades(1);
+        break;
+      }
+      case 'grantbadge': {
+        const splitedContent = cleanContent.split(' ');
+        const badge = splitedContent[splitedContent.length - 1];
+        await userSettings.grantBadge(parseInt(badge, 2));
+        break;
+      }
+      case 'revokebadge': {
+        const splitedContent = cleanContent.split(' ');
+        const badge = splitedContent[splitedContent.length - 1];
+        await userSettings.revokeBadge(parseInt(badge, 2));
         break;
       }
       default: {
