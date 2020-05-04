@@ -43,7 +43,7 @@
       "errorNotFound": "Salon non trouvé"
     },
     "editChannel": {
-      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
+      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
       "success": "Done! You may have to wait a few seconds to see the new changes",
       "errorNotFound": "Salon non trouvé",
       "errorNoContent": "You must provide some content"
