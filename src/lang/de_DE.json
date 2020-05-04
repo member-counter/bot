@@ -43,7 +43,7 @@
       "errorNotFound": "Kanal nicht gefunden"
     },
     "editChannel": {
-      "helpDescription": "Wenn du versuchst eine Zähler einzustellen aber das Zeichen Limit erreicht wurde, kannst du diesen Befehl benutzen um das limit zu \"ignorieren\" \n**Verwendung**```{PREFIX}editChannel [channelId] [content]\n**Beispiel**```{PREFIX}editChannel 701396983843127366 {onlinemembers} von {members} Online",
+      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
       "success": "Erledigt! Möglicherweiße musst du einen Moment waren bis die Änderungen in Kraft treten",
       "errorNotFound": "Kanal nicht gefunden",
       "errorNoContent": "Du musst einen Inhalt angeben"
