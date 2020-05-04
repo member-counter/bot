@@ -228,23 +228,6 @@ class CountService {
         this.countCache.set(typeL, this.guild.roles.size);
         break;
 
-      case '{connectedmembers}': {
-        if (!PREMIUM_BOT || !FOSS_MODE) {
-          this.countCache.set(typeL, -1);
-        }
-
-        this.countCache.set(
-          typeL,
-          this.guild.channels
-            .filter((channel) => channel.type === 2)
-            .reduce(
-              (prev, current: VoiceChannel) => prev + current.voiceMembers.size,
-              0,
-            ),
-        );
-        break;
-      }
-
       case '{bannedmembers}': {
         this.countCache.set(
           typeL,
@@ -257,7 +240,38 @@ class CountService {
       }
 
       default: {
-        if (
+        if (/\{connectedmembers(:.+)?\}/.test(typeL)) {
+          const targetChannels: string[] = /\{connectedmembers:.+\}/.test(typeL)
+            ? typeL.slice(typeL.indexOf(':') + 1, -1).split(',')
+            : [];
+
+          const targetChannelsString =
+            targetChannels.length > 0 ? ':' + targetChannels.join(',') : '';
+
+          if (!PREMIUM_BOT || !FOSS_MODE) {
+            this.countCache.set(
+              `{connectedmembers${targetChannelsString}}`,
+              -1,
+            );
+            return;
+          }
+
+          this.countCache.set(
+            `{connectedmembers${targetChannelsString}}`,
+            this.guild.channels
+              .filter((channel) => channel.type === 2)
+              .reduce((prev, current: VoiceChannel) => {
+                if (
+                  targetChannels.length > 0 &&
+                  !targetChannels.includes(current.id)
+                ) {
+                  return prev;
+                } else {
+                  return prev + current.voiceMembers.size;
+                }
+              }, 0),
+          );
+        } else if (
           /\{memberswithrole:.+\}/.test(typeL) ||
           /\{onlinememberswithrole:.+\}/.test(typeL) ||
           /\{offlinememberswithrole:.+\}/.test(typeL)
