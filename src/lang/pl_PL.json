@@ -43,7 +43,7 @@
       "errorNotFound": "Nie znaleziono kanału"
     },
     "editChannel": {
-      "helpDescription": "Jeśli próbujesz ustawić licznik, ale Discord informuje, że osiągnąłeś limit długości nazwy / tematu, możesz użyć tej komendy, aby „zignorować” ten limit\n**Użycie**```{PREFIX}editChannel [channelId] [content]\n**Przykład**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online",
+      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
       "success": "Gotowe! Być może będziesz musiał poczekać kilka sekund, aby zobaczyć nowe zmiany",
       "errorNotFound": "Nie znaleziono kanału",
       "errorNoContent": "Musisz podać trochę treści"
