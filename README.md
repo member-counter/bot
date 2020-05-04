@@ -25,7 +25,7 @@ Features:
 
 - Fully customizable
 - Multilingual: Spanish, Portuguese/Brazilian, Russian, German, French... and growing!
-- [Open Source](https://github.com/eduardozgz/member-counter-bot](https://github.com/eduardozgz/member-counter-bot) 😉
+- [Open Source](https://github.com/eduardozgz/member-counter-bot) 😉
 
 # Support
 
