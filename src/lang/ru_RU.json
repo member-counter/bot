@@ -43,7 +43,7 @@
       "errorNotFound": "Канал не найден"
     },
     "editChannel": {
-      "helpDescription": "Если вы пытаетесь настроить счётчик но Discord вам говорит, что вы достигли лимита символов в названии канала/заголовка, вы можете использовать эту команду, чтобы \"игнорировать\" этот лимит.\n**Использование:**```{PREFIX}editChannel [channelId] [content]\n**Пример:**```{PREFIX}editChannel 701396983843127366 {onlinemembers} из {members} онлайн",
+      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
       "success": "Сделано! Необходимо немного подождать прежде, чем увидеть новые изменения",
       "errorNotFound": "Канал не найден",
       "errorNoContent": "Вы должны указать необходимые значения"
