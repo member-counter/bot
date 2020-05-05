@@ -6,6 +6,7 @@ import * as pt_BR from '../lang/pt_BR.json';
 import * as ru_RU from '../lang/ru_RU.json';
 import * as pl_PL from '../lang/pl_PL.json';
 import * as de_DE from '../lang/de_DE.json';
+import * as fr_FR from '../lang/fr_FR.json';
 
 const languagePacks: object = {
   en_US,
@@ -14,6 +15,7 @@ const languagePacks: object = {
   ru_RU,
   pl_PL,
   de_DE,
+  fr_FR,
 };
 
 const availableLanguagePacks = Object.keys(languagePacks);
