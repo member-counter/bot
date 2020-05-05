@@ -1,11 +1,11 @@
 # Member Counter
 
 [![TOP.GG Badge](https://discordbots.org/api/widget/servers/478567255198662656.svg)](https://discordbots.org/bot/478567255198662656)
-[![TOP.GG Badge](https://discordapp.com/api/guilds/614777317733957632/widget.png?style=shield)](https://discord.gg/g4MfV6N)
+[![TOP.GG Badge](https://discord.com/api/guilds/614777317733957632/widget.png?style=shield)](https://discord.gg/g4MfV6N)
 [![CodeFactor Badge](https://www.codefactor.io/repository/github/eduardozgz/member-counter-bot/badge)](https://www.codefactor.io/repository/github/eduardozgz/member-counter-bot)
 [![Crowdin Translation Project Badge](https://badges.crowdin.net/member-counter-bot/localized.svg)](https://crowdin.com/project/member-counter-bot)
 
-[Add this bot](https://discordapp.com/api/oauth2/authorize?client_id=478567255198662656&permissions=269798487&scope=bot) **|** [Website](https://member-counter.eduardozgz.com/) **|** [Translation Project](https://crowdin.com/project/member-counter-bot) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter/)
+[Add this bot](https://discord.com/api/oauth2/authorize?client_id=478567255198662656&permissions=269798487&scope=bot) **|** [Website](https://member-counter.eduardozgz.com/) **|** [Translation Project](https://crowdin.com/project/member-counter-bot) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter/)
 
 Member Counter is a bot that puts a counter into a channel name or topic
 
@@ -29,7 +29,7 @@ Features:
 
 # Support
 
-Join the server and ask your questions in [#support](https://discordapp.com/channels/614777317733957632/614777465683968038) -> [https://discordapp.com/invite/g4MfV6N](https://discordapp.com/invite/g4MfV6N)
+Join the server and ask your questions in [#support](https://discord.com/channels/614777317733957632/614777465683968038) -> [https://discord.com/invite/g4MfV6N](https://discord.com/invite/g4MfV6N)
 
 # Donations
 
