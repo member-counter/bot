@@ -24,7 +24,7 @@ Counters:
 Features:
 
 - Fully customizable
-- Multilingual: Spanish, Portuguese/Brazilian, Russian, German, French... and growing!
+- Multilingual: Spanish, Portuguese/Brazilian, Russian, German, French... and growing! (`mcb!lang`)
 - [Open Source](https://github.com/eduardozgz/member-counter-bot) 😉
 
 # Support
