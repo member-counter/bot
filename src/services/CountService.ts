@@ -93,7 +93,7 @@ class CountService {
       content,
       /\{(.+?)\}/gi,
       async (counterDetected) =>
-        await this.getCount(counterDetected, customDigits),
+        this.getCount(counterDetected, customDigits),
     );
   }
 
