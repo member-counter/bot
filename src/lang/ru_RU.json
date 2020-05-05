@@ -49,7 +49,7 @@
       "errorNoContent": "Вы должны указать необходимые значения"
     },
     "setDigit": {
-      "helpDescription": "Вы должны просмотреть `{PREFIX}help topicCounter` перед тем, как использовать эту команду.\nКастомизирует цифры, которые будут выведены. Number аргумент должен быть нормальным числом, второй же аргумент может быть чем угодно, например эмоджи или нормальным числом с использованием языка разметки 'маркдаун'.\nЕсли же первым аргументом вы зададите значение \"reset\", все числа будут возвращены в состояние по умолчанию.\n\nИспользование: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nПример: ```{PREFIX}setDigit 3 **3**```\nС прошлым примером все 3 будут показываться как жирные **3**",
+      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 3```\nWith the previous example every 3 will be shown as a normal 3",
       "success": "Цифра кастомизирована успешно.",
       "resetSuccess": "Числа восстановлены к значению по умолчанию.",
       "errorMissingParams": "Ошибка: недостаточно параметров, `больше информации: {PREFIX}help setDigit`."
