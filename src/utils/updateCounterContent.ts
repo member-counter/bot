@@ -18,10 +18,10 @@ const updateCounterContent = async (channel: GuildChannel) => {
 
     if (channel instanceof TextChannel || channel instanceof NewsChannel) {
       const { topic, id } = channel;
-      if (/\{disable\}/gi.test(channel.name)) {
+      if (/\{disable\}/gi.test(channel.topic)) {
         await guildSettings.deleteCounter(channel.id);
         await channel.edit({ topic: '✔' });
-      } else if (/\{.+\}/.test(channel.name)) {
+      } else if (/\{.+\}/.test(channel.topic)) {
         await guildSettings.setCounter(channel.id, channel.topic);
       }
     }
