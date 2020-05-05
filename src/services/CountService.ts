@@ -12,6 +12,7 @@ import getEnv from '../utils/getEnv';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import ExternalCounts from '../utils/externalCounts';
 import shortNumber from '../utils/shortNumbers';
+import stringReplaceAsync from '../utils/stringReplaceAsync';
 
 const { FOSS_MODE, PREMIUM_BOT } = getEnv();
 
@@ -85,40 +86,15 @@ class CountService {
   }
 
   private async processContent(
-    rawContent: string,
+    content: string,
     customDigits: boolean = false,
   ): Promise<string> {
-    let content: string[] = rawContent.split('');
-    customDigits;
-    let isCounterBeingDetected = false;
-    let counterDetected = '';
-    let counterDetectedAt = 0;
-    for (let index = 0; index < content.length; index++) {
-      const char = content[index];
-
-      if (!isCounterBeingDetected && char === '{') {
-        isCounterBeingDetected = true;
-        counterDetectedAt = index;
-      } else if (isCounterBeingDetected && !(char === '{' || char === '}')) {
-        counterDetected += char;
-      } else if (isCounterBeingDetected && char === '}') {
-        let count = await this.getCount(`{${counterDetected}}`, customDigits);
-
-        const intCount = parseInt(count, 10);
-        if (!customDigits && intCount && this.guildSettings.shortNumber) {
-          count = shortNumber(intCount);
-        }
-
-        content.splice(counterDetectedAt, counterDetected.length + 2, count);
-
-        index = counterDetectedAt;
-        isCounterBeingDetected = false;
-        counterDetected = '';
-        counterDetectedAt = 0;
-      }
-    }
-
-    return content.join('');
+    return stringReplaceAsync(
+      content,
+      /\{(.+?)\}/gi,
+      async (counterDetected) =>
+        await this.getCount(counterDetected, customDigits),
+    );
   }
 
   public async getCount(
