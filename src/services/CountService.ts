@@ -92,8 +92,16 @@ class CountService {
     return stringReplaceAsync(
       content,
       /\{(.+?)\}/gi,
-      async (counterDetected) =>
-        this.getCount(counterDetected, customDigits),
+      async (counterDetected) => {
+        let count = await this.getCount(counterDetected, customDigits);
+        const intCount = parseInt(count, 10);
+
+        if (!customDigits && intCount && this.guildSettings.shortNumber) {
+          count = shortNumber(intCount);
+        }
+
+        return count;
+      },
     );
   }
 
