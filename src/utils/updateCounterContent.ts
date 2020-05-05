@@ -20,7 +20,7 @@ const updateCounterContent = async (channel: GuildChannel) => {
       const { topic, id } = channel;
       if (/\{disable\}/gi.test(channel.topic)) {
         await guildSettings.deleteCounter(channel.id);
-        await channel.edit({ topic: '✔' });
+        await channel.edit({ topic: ':white_check_mark:' });
       } else if (/\{.+\}/.test(channel.topic)) {
         await guildSettings.setCounter(channel.id, channel.topic);
       }
