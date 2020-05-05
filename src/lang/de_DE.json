@@ -49,7 +49,7 @@
       "errorNoContent": "Du musst einen Inhalt angeben"
     },
     "setDigit": {
-      "helpDescription": "Du solltest dir zuerst {PREFIX}help topicCounter` ansehen bevor du diesen Command benutzt.\nPasst die angezeigten Zahlen an, die erste Angabe muss eine normale Zahl sein, die zweite Angabe kann alles mögliche sein, etwa ein Emoji oder eine Zahl mit Markdown.\nWenn die erste angabe \"reset\" ist wird die angezeigte Zahl zum Standart zurückgesetzt.\n\nVerwendung: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [deine Benutzerdefinierte Zahl]```\nBeispiel:```{PREFIX}setDigit 3 **3**```\nMit diesem Beispiel wird jede 3 als fett geschriebene **3** angezeigt",
+      "helpDescription": "You should see `{PREFIX}help topicCounter` before using this command.\nCustomizes numbers that will be displayed, the number argument must be a normal number, the second argument could be anything, like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 3```\nWith the previous example every 3 will be shown as a normal 3",
       "success": "Ziffer angepasst.",
       "resetSuccess": "Zahlen wurden auf den Standart zurückgesetzt.",
       "errorMissingParams": "Fehler: Fehlende Angabe, `mehr Infos: {PREFIX}help setDigit`."
