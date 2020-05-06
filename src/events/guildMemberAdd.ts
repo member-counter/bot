@@ -4,11 +4,7 @@ import GuildService from '../services/GuildService';
 
 const { PREMIUM_BOT_ID, PREMIUM_BOT } = getEnv();
 
-export default async (
-  client: Eris.Client,
-  guild: Eris.Guild,
-  member: Eris.Member,
-) => {
+export default async (guild: Eris.Guild, member: Eris.Member) => {
   // Apply new permissions for the premium bot when it joins
   if (!PREMIUM_BOT && member.id === PREMIUM_BOT_ID) {
     const guildSettings = await GuildService.init(guild.id);
