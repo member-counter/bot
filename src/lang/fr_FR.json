@@ -6,7 +6,7 @@
       "helpDescription": "C'est vraiment nécessaire d'expliquer le but de cette commande?",
       "embedReply": {
         "title": "Liste des commandes | prefix: {PREFIX}",
-        "description": "[Ajouter ce bot à ton serveur]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter)\n\nPour avoir plus d'informations à propos de cette commande, envoyer `{PREFIX}help` et le nom de la commande: ```\n{PREFIX}help shortNumber```\n**Info:** `()` signifie qu'un paramètre est optionnel `[]` signifie qu'il est obligatoire",
+        "description": "[Ajoutez ce bot à votre serveur]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter)\n\nPour avoir plus d'informations à propos de cette commande, envoyez `{PREFIX}help` et le nom de la commande: ```\n{PREFIX}help shortNumber```\n**Info:** `()` signifie qu'un paramètre est optionnel `[]` signifie qu'il est obligatoire",
         "fields": [
           {
             "name": "**Compteurs**",
@@ -31,14 +31,14 @@
     },
     "setup": {
       "helpDescription": "Vous montre un guide d'utilisation du bot",
-      "explanation": "**Merci d'avoir ajouté le bot Member Counter à ton serveur!**\n__**Créer/modifier un compteur**__\nPour cet exemple on va utiliser `{members}`, qui compte le nombre de membres dans ton serveur, mais tu pourras aussi trouver plus de compteurs dans les pages suivantes\nVous pouvez placer ce compteur à ces endroits précis:\n\n- Dans le **nom** d'un salon **vocal**\n- Dans le **nom** d'une **catégorie**\n- Dans la **description** d'un salon **textuel**\n- Dans la **description** d'un salon **d'annonces**\n\nMaintenant créez un nouveau salon, modifiez-le, et écrivez `{members}` dans le nom ou la description, et cliquez sur **Sauvegarder les changements**\n\nVous pouvez aussi ajouter plusieurs compteurs dans un(e) nom/description, et les combiner avec votre propre contenu, par exemple:\n```\nIl y a {onlineMembers}/{members} membres en ligne! Et {youtubeSubscribers:https://www.youtube.com/user/enyay} abonnés!\n{onlineMembersWithRole:614777997291028519,614816383053856769} administrateurs et modérateurs sont en ligne!\n```\n\n> Si vous atteignez la limite de caractères quand vous modifiez un nom ou une description, s'il vous plait écrivez dans un salon `{PREFIX}help editChannel`\n> Vous pouvez voir les configurations de compteurs actuelles avec `{PREFIX}seeSettings`, c'est pratique pour ajouter plus de compteurs sans désactiver les autres\n\n__**Supprimer un compteur**__\nModifiez le salon et écrivez {disable} dans le(la) nom/description, Member Counter va remplacer le texte avec un signe comme ça: ✔, ça veut dire que vous avez supprimé tous les compteurs de ce salon avec succès\n\nVous pouvez aussi supprimer directement le salon",
+      "explanation": "**Merci d'avoir ajouté Member Counter à votre serveur!**\n__**Créer/modifier un compteur**__\nPour cet exemple on va utiliser `{members}`, qui compte le nombre de membres dans votre serveur Discord, mais vous pourrez aussi trouver plus de compteurs dans les pages suivantes\nVous pouvez placer ce compteur à ces endroits précis:\n\n- Dans le **nom** d'un salon **vocal**\n- Dans le **nom** d'une **catégorie**\n- Dans la **description** d'un salon **textuel**\n- Dans la **description** d'un salon **d'annonces**\n\nMaintenant créez un nouveau salon, modifiez-le, et écrivez `{members}` dans le nom ou la description, et cliquez sur **Enregistrer les modifications**\n\nVous pouvez aussi ajouter plusieurs compteurs dans un(e) nom/description, et les combiner avec votre propre contenu, par exemple:\n```\nIl y a {onlineMembers}/{members} membres en ligne! Et {youtubeSubscribers:https://www.youtube.com/user/enyay} abonnés!\n{onlineMembersWithRole:614777997291028519,614816383053856769} administrateurs et modérateurs sont en ligne!\n```\n\n> Si vous atteignez la limite de caractères quand vous modifiez un nom ou une description, regardez dans `{PREFIX}help editChannel`\n> Vous pouvez voir les configurations des compteurs actuelles avec `{PREFIX}seeSettings`, c'est pratique pour ajouter plus de compteurs sans désactiver les autres\n\n__**Supprimer un compteur**__\nModifiez le salon et écrivez {disable} dans le nom ou la description, Member Counter va remplacer le texte par le signe: ✔, cela veut dire que vous avez supprimé tous les compteurs de ce salon avec succès\n\nVous pouvez aussi supprimer directement le salon",
       "counters": "__**Compteurs**__\n> Vous devez activer le mode développeur dans Discord (Paramètres utilisateur > Apparence > Avancés> Mode développeur)\n> Pour obtenir un ID, clique droit dans un salon/rôle et cliquer sur \"Copier ID\"\n\n> Les compteurs avec un athérisque (\\*) sont des compteurs premium, plus d'infos dans `{PREFIX}help upgradeServer`\n\n- `{members}` Membres dans votre serveur\n* `{onlineMembers}` Membres en ligne dans votre serveur\n* `{offlineMembers}` Membres hors ligne dans votre serveur\n* `{users}` Utilisateurs dans votre serveur (à l'exception des bots)\n* `{onlineUsers}` Utilisateurs en ligne dans votre serveur (à l'exception des bots)\n* `{offlineUsers}` Utilisateurs hors ligne dans votre serveur (à l'exception des bots)\n* `{bots}` Bots dans votre serveur (à l'exception des utilisateurs)\n* `{onlineBots}`  Bots en ligne dans votre serveur (à l'exception des utilisateurs)\n* `{offlineBots}`  Bots hors ligne dans votre serveur (à l'exception des utilisateurs)\n- `{roles}` Rôles dans votre serveur\n- `{channels}` Salons dans votre serveur (à l'exception des catégories)\n* `{membersWithRole:role1ID,role2ID}` Nombre de membres ayant un ou plusieurs rôles, écrivez les ID des rôles que vous voulez compter après `:` , et de séparer les ID des rôles par des virgules `,`\n* `{onlineMembersWithRole:role1ID,role2ID}` Comme `{membersWithRole:}` mais ne compte que les membres en ligne\n* `{offlineMembersWithRole:role1ID,role2ID}` Comme `{membersWithRole:}` mais ne compte que les membres en ligne\n* `{connectedMembers}` Nombre total de membres connectés dans les salons vocaux\n* `{connectedMembers:channel1ID,channel2ID}` Comme `{connectedMembers}`, mais le bot ne comptera que les membres connectés dans les salons spécifiés, écrivez les ID des salons que vous voulez compter après le `:`, et de séparer les ID des rôles par des virgules `,`\n- `{bannedMembers}` Nombre de membres bannis dans votre serveur, le bot doit avoir des autorisations de bannissement pour afficher ce nombre\n- `{http:url}` Cela affichera le montant retourné par la réponse à la ressource spécifiée, le bot effectuera une `GET` et le serveur **doit** répondre avec `200` et le `content-type: text/plain` Exemple: `{http:https://member-counter.eduardozgz.com/api/donation/count}`\n* `{youtubeSubscribers:channelUrl}` Affiche les abonnés d'une chaîne Youtube, remplacez channelUrl avec l'url de la chaîne souhaité\n* `{youtubeViews:channelUrl}` Affiche les vues d'une chaîne Youtube\n* `{twitchFollowers:channelName}` Affiche les followers d'une chaîne Twitch, remplacez channelUrl avec l'url de la chaîne souhaité\n* `{twitchViews:channelName}` Affiche les vues d'une chaîne Twitch\n\n__**Les prochains compteurs sont ceux des joueurs en ligne dans un serveur de jeu**__\nN'oubliez pas de remplacer `address` par l'adresse réelle du serveur\n\n- `{minecraft:address}` Minecraft\n- `{source:address}` Tous les jeux basé sur Source™ ou un jeu qui utilise le protocole A2S pour consulter les stats (Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)\n- `{gtasa-mta:address}` Grand Theft Auto: San Andreas (Multi Theft Auto)\n- `{gtasa-mp:address}` Grand Theft Auto: San Andreas (SA-MP)\n- `{gta5-fivem:address}` Grand Theft Auto 5 (FiveM)",
       "pagesText": "Page {CURRENT_PAGE}/{TOTAL_PAGES}"
     },
     "lockChannel": {
       "helpDescription": "Vous pouvez utiliser ces commandes pour afficher un cadena (🔒) au lieu d'un haut-parleur (🔊) dans les salons vocaux\n\n**Utlisation**```{PREFIX}lockChannel [salon id]```\n **Exemple**```{PREFIX}lockChannel 700336568099143710```",
-      "success": "Fait ! Maintenant, **pour les utilisateurs non administrateurs**, le salon sera affiché avec un 🔒",
-      "errorInvalidChannel": "Vous ne pouvez verrouiller que les salons vocaux !",
+      "success": "Fait! Maintenant, **pour les utilisateurs non administrateurs**, le salon sera affiché avec un 🔒",
+      "errorInvalidChannel": "Vous ne pouvez verrouiller que les salons vocaux!",
       "errorNoPerms": "Je ne peux pas modifier la chaîne `{CHANNEL}` par manque d'autorisations",
       "errorNotFound": "Salon non trouvé"
     },
@@ -74,7 +74,7 @@
     "seeSettings": {
       "helpDescription": "Affiche tous les paramètres du bot pour ce serveur.",
       "settingsMessage": {
-        "headerText": "Paramètres pour la guilde:",
+        "headerText": "Paramètres pour le serveur:",
         "prefixText": "Prefix:",
         "langText": "Langue:",
         "premiumText": "Premium:",
@@ -97,8 +97,8 @@
       "wait": "Attendez! Je suis déjà en train de le mettre à jour!"
     },
     "upgradeServer": {
-      "helpDescription": "Cette commande vous permet d'inviter Member Counter Premium, pour utiliser cette commande vous devez avoir un compte premium, que vous pouvez obtenir en faisant un don d'au moins 5 USD: `{PREFIX}donate`.",
-      "success": "Fait ! La prochaine étape est d'inviter le bot premium:\n{BOT_LINK}",
+      "helpDescription": "Cette commande vous permet d'inviter Member Counter Premium, pour utiliser cette commande vous devez avoir un compte premium que vous pouvez obtenir en faisant un don d'au moins 5 USD: `{PREFIX}donate`.",
+      "success": "Fait! La prochaine étape est d'inviter le bot premium:\n{BOT_LINK}",
       "noPremiumAccount": "Vous devez disposer d'un compte premium.",
       "errorCannotUpgrade": "Vous ne pouvez pas mettre le serveur à niveau parce qu'il est déjà premium.",
       "noServerUpgradesAvailable": "Vous ne pouvez pas mettre à niveau ce serveur car aucune amélioration n'est disponible, vous pouvez vérifier combien il vous en reste avec `{PREFIX}profil` ou en obtenir plus avec `{PREFIX}donate`"
@@ -106,18 +106,18 @@
     "info": {
       "helpDescription": "Liste de liens utiles",
       "embedReply": {
-        "description": "[Ajoute moi à ton serveur]({BOT_INVITE_URL})\n[Serveur de support]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+        "description": "[Ajoutez moi à votre serveur]({BOT_INVITE_URL})\n[Serveur de support]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
       }
     },
     "lang": {
-      "helpDescription": "Change le langage du bot pour ce serveur, vous devez avoir les autorisations administrateur pour exécuter cette commande.",
+      "helpDescription": "Change la langue du bot pour ce serveur, vous devez avoir les autorisations administrateur pour exécuter cette commande.",
       "success": "Langue changé avec succès.",
       "errorNotFound": "Liste des langues disponibles:"
     },
     "donate": {
       "helpDescription": "Montre les meilleurs dons.",
       "embedReply": {
-        "title": "Vous appréciez mon bot ? Faites-moi un don ! (Cliquez ici)",
+        "title": "Vous appréciez mon bot? Faites-moi un don! (Cliquez ici)",
         "fields": []
       },
       "misc": {
