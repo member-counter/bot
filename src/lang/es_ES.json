@@ -52,7 +52,7 @@
       "helpDescription": "Personaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un emoji o un número normal.\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 3```\nCon este ejemplo todos los 3 se mostraran como un 3 normal",
       "success": "Número personalizado correctamente.",
       "resetSuccess": "Todos los numeros han sido reestablecidos.",
-      "errorMissingParams": "Error: Faltan parámetros, `más info: {PREFIX}help setDigit`."
+      "errorMissingParams": "Missing parameters, More info: `{PREFIX}help setDigit`."
     },
     "shortNumber": {
       "helpDescription": "Este comando te permite mostrar el número de una cuenta en un formato abreviado en contadores que hayas colocado en un canal de voz o categoría\n\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Ejemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
