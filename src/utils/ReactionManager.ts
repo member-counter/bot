@@ -24,7 +24,6 @@ const reactionHandler = (message: Message, emoji: any, userId: string) => {
   ) {
     const callback = reactiveMessage.reactionListeners.get(reactedEmoji);
     callback(userId, () => reactiveMessages.delete(reactiveMessageKey));
-    message.removeReaction(reactedEmoji, userId).catch(console.error);
   }
 };
 
