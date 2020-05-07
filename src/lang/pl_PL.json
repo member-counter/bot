@@ -52,7 +52,7 @@
       "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 3```\nWith the previous example every 3 will be shown as a normal 3",
       "success": "Cyfra dostosowana.",
       "resetSuccess": "Liczby przywrócono do domyślnych.",
-      "errorMissingParams": "Błąd: Brakujący parametr, `więcej informacji: {PREFIX}help setDigit`."
+      "errorMissingParams": "Missing parameters, More info: `{PREFIX}help setDigit`."
     },
     "shortNumber": {
       "helpDescription": "Ta komenda pozwala wyświetlić liczbę w krótkiej formie w licznikach umieszczonych w nazwie kanału głosowego / kategorii\n\n**Użycie**\n```{PREFIX}shortNumber [enable/disable]```\n**Przykład**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
