@@ -52,7 +52,7 @@
       "helpDescription": "Personnalise les nombres qui seront affichés, l'argument du nombre doit être un nombre classique, le second argument peut être n'importe quoi, comme un emoji ou un nombre classique avec un marquage.\nSi le premier argument est le mot \"reset\", les nombres seront restaurés aux nombres par défaut.\n\nUtilisation: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [votre nombre personnalisé]```\nExemple: ```{PREFIX}setDigit 3 3```\nAvec l'exemple précédent, tous les 3 seront indiqués en gras 3",
       "success": "Chiffre personnalisé.",
       "resetSuccess": "Numéros par défaut rétablis.",
-      "errorMissingParams": "Erreur : Paramètres manquants, `plus d'info: {PREFIX}help setDigit`."
+      "errorMissingParams": "Missing parameters, More info: `{PREFIX}help setDigit`."
     },
     "shortNumber": {
       "helpDescription": "Cette commande permet d'afficher un compte sous une forme abrégée dans les compteurs placés dans le nom d'un salon vocal/catégorie\n\n**Utilisation**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
