@@ -49,8 +49,8 @@
       "errorNoContent": "Вы должны указать необходимые значения"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, you can customize multiple numbers at once by separating the arguments with commas (`,`), like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Digits customized.",
+      "helpDescription": "Кастомизирует (изменяет) цифры, которые будут выведены. Аргумент цифры должен быть нормальным числом, второй же аргумент может быть чем угодно, например эмоджи-цифрой или же цифрой с использованием языка разметки 'маркдаун'.\nЕсли же первым аргументом вы зададите значение \"reset\", все числа будут возвращены в состояние по умолчанию.\n\nИспользование: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nПример: ```{PREFIX}setDigit 3 3```\nПо умолчанию все цифры заменены эмодзи-цифрами. С этим примером все тройки будут отображаться как обычные, без какой-либо кастомизации или замены.",
+      "success": "Цифра кастомизирована успешно.",
       "resetSuccess": "Числа восстановлены к значению по умолчанию.",
       "errorMissingParams": "Ошибка: недостаточно параметров, `больше информации: {PREFIX}help setDigit`."
     },
@@ -99,7 +99,6 @@
     "upgradeServer": {
       "helpDescription": "Эта команда позволяет пригласить премиум версию счётчика, чтобы использовать эту команду у вас должен быть премиум аккаунт. Вы можете получить его, задонатив от 5-и долларов и выше: `{PREFIX}donate`.",
       "success": "Готово! Следующий шаг - приглашение премиум версии бота:\n{BOT_LINK}",
-      "noPremiumAccount": "Вы должны иметь премиум аккаунт.",
       "errorCannotUpgrade": "Вы не можете улучшить этот сервер, потому что он уже улучшен до премиум версии.",
       "noServerUpgradesAvailable": "Вы не можете сделать больше улучшений сервера, так как у вас не осталось такой возможности. Вы можете узнать, сколько у вас осталось улучшений с помощью команды `{PREFIX}profile` или получить больше с помощью `{PREFIX}donate`"
     },
