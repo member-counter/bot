@@ -49,10 +49,10 @@
       "errorNoContent": "Debes proporcionar algo de contenido"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "helpDescription": "Personaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un emoji o un número normal, puedes personalizar varios números a la vez separando los argumentos con comas (`,`)\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
       "success": "Números personalizados correctamente.",
       "resetSuccess": "Todos los numeros han sido reestablecidos.",
-      "errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+      "errorMissingParams": "Faltan parámetros, por favor, consulta `{PREFIX}help setDigit`."
     },
     "shortNumber": {
       "helpDescription": "Este comando te permite mostrar el número de una cuenta en un formato abreviado en contadores que hayas colocado en un canal de voz o categoría\n\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Ejemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
