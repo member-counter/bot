@@ -49,8 +49,8 @@
       "errorNoContent": "Musisz podać trochę treści"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, you can customize multiple numbers at once by separating the arguments with commas (`,`), like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Digits customized.",
+      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 3```\nWith the previous example every 3 will be shown as a normal 3",
+      "success": "Cyfra dostosowana.",
       "resetSuccess": "Liczby przywrócono do domyślnych.",
       "errorMissingParams": "Błąd: Brakujący parametr, `więcej informacji: {PREFIX}help setDigit`."
     },
@@ -99,7 +99,6 @@
     "upgradeServer": {
       "helpDescription": "Ta komenda pozwala zaprosić Member Counter Premium, aby użyć tej komendy, musisz mieć konto premium, które możesz uzyskać, przekazując darowiznę w wysokości co najmniej 5 USD: `{PREFIX}donate`.",
       "success": "Gotowe! Następnym krokiem jest zaproszenie bota premium:\n{BOT_LINK}",
-      "noPremiumAccount": "Musisz mieć konto premium.",
       "errorCannotUpgrade": "Nie możesz zaktualizować serwera, ponieważ ma już premium.",
       "noServerUpgradesAvailable": "Nie możesz zrobić więcej aktualizacji serwera, ponieważ nie masz więcej dostępnych aktualizacji serwera, możesz sprawdzić ile pozostało używając `{PREFIX}profile`  lub uzysk więcej dzięki `{PREFIX}donate`"
     },
