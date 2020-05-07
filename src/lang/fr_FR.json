@@ -49,8 +49,8 @@
       "errorNoContent": "Vous devez fournir du contenu"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, you can customize multiple numbers at once by separating the arguments with commas (`,`), like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Digits customized.",
+      "helpDescription": "Personnalise les nombres qui seront affichés, l'argument du nombre doit être un nombre classique, le second argument peut être n'importe quoi, comme un emoji ou un nombre classique avec un marquage.\nSi le premier argument est le mot \"reset\", les nombres seront restaurés aux nombres par défaut.\n\nUtilisation: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [votre nombre personnalisé]```\nExemple: ```{PREFIX}setDigit 3 3```\nAvec l'exemple précédent, tous les 3 seront indiqués en gras 3",
+      "success": "Chiffre personnalisé.",
       "resetSuccess": "Numéros par défaut rétablis.",
       "errorMissingParams": "Erreur : Paramètres manquants, `plus d'info: {PREFIX}help setDigit`."
     },
@@ -99,7 +99,6 @@
     "upgradeServer": {
       "helpDescription": "Cette commande vous permet d'inviter Member Counter Premium, pour utiliser cette commande vous devez avoir un compte premium que vous pouvez obtenir en faisant un don d'au moins 5 USD: `{PREFIX}donate`.",
       "success": "Fait! La prochaine étape est d'inviter le bot premium:\n{BOT_LINK}",
-      "noPremiumAccount": "Vous devez disposer d'un compte premium.",
       "errorCannotUpgrade": "Vous ne pouvez pas mettre le serveur à niveau parce qu'il est déjà premium.",
       "noServerUpgradesAvailable": "Vous ne pouvez pas mettre à niveau ce serveur car aucune amélioration n'est disponible, vous pouvez vérifier combien il vous en reste avec `{PREFIX}profil` ou en obtenir plus avec `{PREFIX}donate`"
     },
