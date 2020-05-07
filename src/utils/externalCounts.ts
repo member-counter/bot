@@ -61,8 +61,7 @@ const get = async (counter: string): Promise<number> => {
       }
 
       case 'twitchfollowers':
-      case 'twitchviews':
-      case 'twitcsubscribers': {
+      case 'twitchviews': {
         if (PREMIUM_BOT || FOSS_MODE) {
           const { followers, views } = await fetch.Twitch.getChannelStats(
             resource,
