@@ -16,6 +16,9 @@ import {
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
 import messageReactionAdd from '../events/messageReactionAdd';
+import getEnv from '../utils/getEnv';
+
+const { DISCORD_PREFIX } = getEnv();
 
 // TODO
 const seeSettings: MemberCounterCommand = {
@@ -328,24 +331,42 @@ const setDigit: MemberCounterCommand = {
   onlyAdmin: true,
   run: async ({ message, languagePack }) => {
     const { channel, content } = message;
-    const args = content.split(/\s+/);
+    const userWantsToReset = content.split(/\s+/)[1] === 'reset';
 
     if (channel instanceof GuildChannel) {
       const { guild } = channel;
       const guildSettings = await GuildService.init(guild.id);
 
-      if (args[1] === 'reset') {
+      if (userWantsToReset) {
         await guildSettings.resetDigits();
         await channel.createMessage(
           languagePack.commands.setDigit.resetSuccess,
         );
       } else {
-        if (args.length >= 3) {
-          const digitToUpdate = parseInt(args[1].slice(0, 1), 10);
-          const newDigitValue = args[2];
+        const digitsToSet = (() => {
+          let [command, ...args]: any = content.split(' ');
+          return args
+            .join(' ')
+            .split(',')
+            .map((set) => set.trim())
+            .map((set) => (set = set.split(/\s+/)))
+            .map((set) => {
+              if (parseInt(set[0], 10) && set[1]) {
+                return {
+                  digit: parseInt(set[0], 10),
+                  value: set[1],
+                };
+              } else {
+                return null;
+              }
+            })
+            .filter((digit) => digit !== null);
+        })();
 
-          await guildSettings.setDigit(digitToUpdate, newDigitValue);
-
+        if (digitsToSet.length > 0) {
+          for (const digitToSet of digitsToSet) {
+            await guildSettings.setDigit(digitToSet.digit, digitToSet.value);
+          }
           await channel.createMessage(languagePack.commands.setDigit.success);
         } else {
           await channel.createMessage(
