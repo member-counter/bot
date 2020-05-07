@@ -204,9 +204,7 @@ const prefix: MemberCounterCommand = {
           ),
         );
       } else {
-        await channel.createMessage(
-          languagePack.commands.prefix.noPrefixProvided,
-        );
+        throw new UserError(languagePack.commands.prefix.noPrefixProvided);
       }
     }
   },
@@ -257,7 +255,7 @@ const role: MemberCounterCommand = {
           break;
 
         default:
-          await channel.createMessage(
+          throw new UserError(
             languagePack.commands.role.invalidParams.replace(
               /\{PREFIX\}/gi,
               guildSettings.prefix,
@@ -271,9 +269,7 @@ const role: MemberCounterCommand = {
         await guildSettings.setAllowedRoles(newAllowedRoles);
         await channel.createMessage(languagePack.commands.role.rolesUpdated);
       } else {
-        await channel.createMessage(
-          languagePack.commands.role.errorNoRolesToUpdate,
-        );
+        throw new UserError(languagePack.commands.role.errorNoRolesToUpdate);
       }
     }
   },
@@ -306,11 +302,11 @@ const upgradeServer: MemberCounterCommand = {
         }
 
         case 'alreadyUpgraded': {
-          await channel.createMessage(errorCannotUpgrade);
+          throw new UserError(errorCannotUpgrade);
           break;
         }
         case 'noUpgradesAvailable': {
-          await channel.createMessage(
+          throw new UserError(
             noServerUpgradesAvailable.replace(
               /\{PREFIX\}/gi,
               guildSettings.prefix,
@@ -369,7 +365,7 @@ const setDigit: MemberCounterCommand = {
           }
           await channel.createMessage(languagePack.commands.setDigit.success);
         } else {
-          await channel.createMessage(
+          throw new UserError(
             languagePack.commands.setDigit.errorMissingParams.replace(
               /\{PREFIX\}/gi,
               guildSettings.prefix,
