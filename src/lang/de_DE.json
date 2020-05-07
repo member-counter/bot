@@ -49,8 +49,8 @@
       "errorNoContent": "Du musst einen Inhalt angeben"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, you can customize multiple numbers at once by separating the arguments with commas (`,`), like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Digits customized.",
+      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 3```\nWith the previous example every 3 will be shown as a normal 3",
+      "success": "Ziffer angepasst.",
       "resetSuccess": "Zahlen wurden auf den Standart zurückgesetzt.",
       "errorMissingParams": "Fehler: Fehlende Angabe, `mehr Infos: {PREFIX}help setDigit`."
     },
@@ -99,7 +99,6 @@
     "upgradeServer": {
       "helpDescription": "Dieser Command erlaubt es dir Member Counter Premium einzuladen, um diesen Command zu benutzen brauchst du einen Premium Account den du erhälst indem du mindestens 5 USD spendest: `{PREFIX}donate}`.",
       "success": "Erledigt! Als nächstes kannst du den Premium Bot einladen:\n{BOT_LINK}",
-      "noPremiumAccount": "Du brauchst einen Premium Account.",
       "errorCannotUpgrade": "Du kannst diesen Server nicht Verbessern da er bereits Premium besitzt.",
       "noServerUpgradesAvailable": "Du kannst keine weiteren Server verbessern da du keine Verbesserungen mehr zur verfügung hast, mit `{PREFIX}profile` kannst du die übrigen Verbesserungen einsehen und mit `{PREFIX}donate` weitere erhalten"
     },
