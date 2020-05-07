@@ -49,8 +49,8 @@
       "errorNoContent": "You must provide some content"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, you can customize multiple numbers at once by separating the arguments with commas (`,`), like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Digits customized.",
+      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExample: ```{PREFIX}setDigit 3 3```\nWith the previous example every 3 will be shown as a normal 3",
+      "success": "Digit customized.",
       "resetSuccess": "Numbers restored to the default ones.",
       "errorMissingParams": "Error: Missing parameters, `more info: {PREFIX}help setDigit`."
     },
@@ -99,7 +99,6 @@
     "upgradeServer": {
       "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
       "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-      "noPremiumAccount": "You must have a premium account.",
       "errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
       "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
     },
