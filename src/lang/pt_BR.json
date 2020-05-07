@@ -49,7 +49,7 @@
       "errorNoContent": "Você deve informar algum conteúdo"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "helpDescription": "Customiza números que serão mostrados, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal, você pode customizar números múltiplos de uma só vez separando os argumentos com vírgulas (`,`)\nSe o primeiro argumento for a palavra \"reset\", os números irão ser restaurados para os números padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número customizado]```\nExemplos: ```{PREFIX}setDigit 3 3```\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
       "success": "Dígito personalizado.",
       "resetSuccess": "Números restaurados para o padrão.",
       "errorMissingParams": "Parâmetros ausentes, por favor veja `{PREFIX}help setDigit`."
