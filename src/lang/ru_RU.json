@@ -49,8 +49,8 @@
       "errorNoContent": "Вы должны указать необходимые значения"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Цифра кастомизирована успешно.",
+      "helpDescription": "Кастомизирует (изменяет) цифры, которые будут выведены. Аргумент цифры должен быть нормальным числом, второй же аргумент может быть чем угодно, например эмоджи-цифрой или же обычной. Вы можете изменять несколько цифр сразу, разделяя их в аргументе запятой.\nЕсли же первым аргументом вы зададите значение \"reset\", все числа будут возвращены в состояние по умолчанию (эмоджи).\n\nИспользование: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nПример: ```{PREFIX}setDigit 3 3```\nПо умолчанию все цифры заменены эмодзи-цифрами. С этим примером все тройки будут отображаться как обычные, без какой-либо кастомизации или замены.\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```\nC этим же примером мы одновременно заменяем тройку и четвёрку на эмоджи-цифру.",
+      "success": "Цифра успешно изменена.",
       "resetSuccess": "Числа восстановлены к значению по умолчанию.",
       "errorMissingParams": "Недостаточно параметров, пожалуйста, просмотрите `{PREFIX}help setDigit`."
     },
