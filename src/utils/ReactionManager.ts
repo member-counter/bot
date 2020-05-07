@@ -23,8 +23,8 @@ const reactionHandler = (message: Message, emoji: any, userId: string) => {
     userId !== client.user.id
   ) {
     const callback = reactiveMessage.reactionListeners.get(reactedEmoji);
-
     callback(userId, () => reactiveMessages.delete(reactiveMessageKey));
+    channel.removeReaction(reactedEmoji, userID).catch(console.error);
   }
 };
 
