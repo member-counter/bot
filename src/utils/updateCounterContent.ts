@@ -7,7 +7,10 @@ import {
   CategoryChannel,
 } from 'eris';
 
-const updateCounterContent = async (channel: GuildChannel) => {
+const counterPattern: RegExp = /\{.+\}/;
+const disablePattern: RegExp = /\{disable\}/i;
+
+const updateCounterContent = async (channel: GuildChannel): Promise<void> => {
   if (
     channel instanceof TextChannel ||
     channel instanceof NewsChannel ||
@@ -18,21 +21,21 @@ const updateCounterContent = async (channel: GuildChannel) => {
 
     if (channel instanceof TextChannel || channel instanceof NewsChannel) {
       const { topic, id } = channel;
-      if (/\{disable\}/gi.test(channel.topic)) {
-        await guildSettings.deleteCounter(channel.id);
+      if (disablePattern.test(topic)) {
+        await guildSettings.deleteCounter(id);
         await channel.edit({ topic: ':white_check_mark:' });
-      } else if (/\{.+\}/.test(channel.topic)) {
-        await guildSettings.setCounter(channel.id, channel.topic);
+      } else if (counterPattern.test(topic)) {
+        await guildSettings.setCounter(id, topic);
       }
     }
 
     if (channel instanceof CategoryChannel || channel instanceof VoiceChannel) {
       const { name, id } = channel;
-      if (/\{disable\}/gi.test(channel.name)) {
-        await guildSettings.deleteCounter(channel.id);
+      if (disablePattern.test(name)) {
+        await guildSettings.deleteCounter(id);
         await channel.edit({ name: '✔' });
-      } else if (/\{.+\}/.test(channel.name)) {
-        await guildSettings.setCounter(channel.id, channel.name);
+      } else if (counterPattern.test(name)) {
+        await guildSettings.setCounter(id, name);
       }
     }
   }

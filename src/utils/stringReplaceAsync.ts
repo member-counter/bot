@@ -2,8 +2,9 @@ async function stringReplaceAsync(
   str: string,
   regex: RegExp | string,
   asyncFn: Function,
-) {
+): Promise<string> {
   const promises = [];
+
   //@ts-ignore
   str.replace(regex, (match, ...args) => {
     const promise = asyncFn(match, ...args);

@@ -8,7 +8,6 @@ import channelDelete from '../events/channelDelete';
 import guildCreate from '../events/guildCreate';
 import guildMemberAdd from '../events/guildMemberAdd';
 import messageCreate from '../events/messageCreate';
-import messageUpdate from '../events/messageUpdate';
 import messageReactionAdd from '../events/messageReactionAdd';
 import messageReactionRemove from '../events/messageReactionRemove';
 

@@ -40,13 +40,11 @@ const commands: Array<MemberCounterCommand> = [
 
 export default async (message: Eris.Message) => {
   const { channel, author, content } = message;
-  const { client } = channel;
 
   // Ignore requested commands in the official server since this server already has the premium bot
   if (
     channel instanceof Eris.GuildChannel &&
     !PREMIUM_BOT &&
-    channel.guild &&
     channel.guild.id === DISCORD_OFFICIAL_SERVER_ID
   ) {
     return;
@@ -96,6 +94,8 @@ export default async (message: Eris.Message) => {
             }
 
             try {
+              const guild = (channel instanceof Eris.GuildChannel) ? channel.guild : false;
+              console.log(`${author.username}#${author.discriminator} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}Channel: ${channel.id}]: ${content}`);
               await command.run({
                 message,
                 languagePack,

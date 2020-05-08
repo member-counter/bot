@@ -1,5 +1,5 @@
 import Eris, { TextChannel } from 'eris';
-// TODO
+
 const commandErrorHandler = async (
   channel: Eris.AnyChannel,
   languagePack,
