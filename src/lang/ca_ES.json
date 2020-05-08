@@ -39,7 +39,7 @@
       "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
       "success": "Fet! Ara, **para usuaris no administradors** el canal serà mostrat amb a 🔒",
       "errorInvalidChannel": "Només pots bloquejar els canals de veu!",
-      "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
+      "errorNoPerms": "No puc editar el canal `{CHANNEL} 'per falta de permisos",
       "errorNotFound": "Canal no trobat"
     },
     "editChannel": {
@@ -130,7 +130,7 @@
       "serverUpgradesAvailable": "Server upgrades left"
     },
     "counts": {
-      "helpDescription": "Shows some counts",
+      "helpDescription": "Mostra alguns comptadors",
       "members": "Membres:",
       "onlineMembers": "Usuaris conectats:",
       "offlineMembers": "Usuaris desconectats:",
@@ -142,21 +142,21 @@
   },
   "functions": {
     "commandHandler": {
-      "noDm": "You can't run this command on a DM channel"
+      "noDm": "No pots executar aquest comand per MD"
     },
     "getCounts": {
       "onlyPremium": "Només per servidors premium",
       "unknownCounter": "Comptador desconegut",
-      "noBanPerms": "I need ban permissions to show this",
-      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
+      "noBanPerms": "Necessit permisos de ban per mostrar això",
+      "invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo"
     }
   },
   "common": {
     "error": "Error",
-    "errorDb": "Database error, try again later",
+    "errorDb": "Error a la base de dades, prova de nou més tard",
     "errorDiscordAPI": "Discord API",
-    "errorUnknown": "Something went wrong, try again later.",
-    "errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
-    "noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+    "errorUnknown": "Una cosa va anar malament, prova de nou més tard.",
+    "errorNoAdmin": "Només membres amb permisos d'administrador en aquest canal poden utilitzar aquest comand.",
+    "noTopicCounterEnabled": "Sembla ser que encara no has habilitat cap comptador en un tema de canal, mira `{PREFIX} help topicCounter`"
   }
 }
