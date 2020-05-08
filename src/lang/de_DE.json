@@ -50,7 +50,7 @@
     },
     "setDigit": {
       "helpDescription": "Passt die angezeigten Zahlen an, die number Angabe muss eine normale Zahl sein, die zweite Angabe kann alles mögliche sein, etwa ein Emoji oder eine normale Zahl. Du kannst mehrere Zahlen geichzeitig bearbeiten indem du diese mit Kommans trennst (`,`) \nWenn die erste angabe \"reset\" ist ´werden die angezeigten Zahlen zum Standart zurückgesetzt.\n\nVerwendung: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [deine Benutzerdefinierte Zahl]```\nBeispiel:```{PREFIX}setDigit 3 3```\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Ziffer angepasst.",
+      "success": "Ziffern angepasst.",
       "resetSuccess": "Zahlen wurden auf den Standart zurückgesetzt.",
       "errorMissingParams": "Fehlende Angabe, bitte beachte `{PREFIX}help setDigit`."
     },
