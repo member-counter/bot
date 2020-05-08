@@ -3,7 +3,7 @@ import getEnv from './getEnv';
 
 const { PREMIUM_BOT } = getEnv();
 
-const embedBase = (embedToAppend: EmbedOptions): EmbedOptions => ({
+const embedBase = (embedToAppend?: EmbedOptions): EmbedOptions => ({
   color: PREMIUM_BOT ? 16723200 : 14503424,
   footer: {
     icon_url:

@@ -1,22 +1,22 @@
-import { Message, Emoji } from 'eris';
+import { Message } from 'eris';
 
 interface reactionListenerCallback {
   (userId: string, destroy: () => void): void;
 }
 
-interface configuration {
-  autoDestroy: any;
+interface ReactiveMessageConfig {
+  autoDestroy: false | NodeJS.Timeout;
   reactionListeners: Map<string, reactionListenerCallback>;
 }
 
-const reactiveMessages: Map<string, configuration> = new Map();
+const reactiveMessages: Map<string, ReactiveMessageConfig> = new Map();
 
 const reactionHandler = (message: Message, emoji: any, userId: string) => {
   const { channel } = message;
   const { client } = channel;
   const reactiveMessageKey = `${channel.id}:${message.id}`;
   const reactiveMessage = reactiveMessages.get(reactiveMessageKey);
-  const reactedEmoji = emoji.id || emoji.name || emoji;
+  const reactedEmoji: string = emoji.id || emoji.name || emoji;
 
   if (
     reactiveMessage?.reactionListeners?.get(reactedEmoji) &&
@@ -35,7 +35,7 @@ export const addReactionListener = ({
 }: {
   message: Message;
   emoji: any;
-  autoDestroy: number;
+  autoDestroy: false | number;
   callback: reactionListenerCallback;
 }) => {
   const { channel } = message;
@@ -47,10 +47,10 @@ export const addReactionListener = ({
       reactionListeners: new Map(),
       autoDestroy: autoDestroy
         ? setTimeout(
-            () => reactiveMessages.delete(reactiveMessageKey),
-            autoDestroy,
-          )
-        : null,
+          () => reactiveMessages.delete(reactiveMessageKey),
+          autoDestroy!,
+        )
+        : false,
     });
   }
 

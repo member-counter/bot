@@ -6,7 +6,7 @@ interface runArgs {
 }
 
 interface runFunction {
-  ({ message, languagePack }: runArgs): void;
+  ({ message, languagePack }: runArgs): Promise<void>;
 }
 
 interface MemberCounterCommand {
