@@ -49,10 +49,10 @@
       "errorNoContent": "Vous devez fournir du contenu"
     },
     "setDigit": {
-      "helpDescription": "Personnalise les nombres qui seront affichés, l'argument du nombre doit être un nombre classique, le second argument peut être n'importe quoi, comme un emoji ou un nombre classique avec un marquage.\nSi le premier argument est le mot \"reset\", les nombres seront restaurés aux nombres par défaut.\n\nUtilisation: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [votre nombre personnalisé]```\nExemple: ```{PREFIX}setDigit 3 3```\nAvec l'exemple précédent, tous les 3 seront indiqués en gras 3",
-      "success": "Chiffre personnalisé.",
+      "helpDescription": "Personnalise les nombres qui seront affichés, l'argument du nombre doit être un nombre normal, le second argument peut être n'importe quoi, comme un emoji ou un nombre normal, vous pouvez personnaliser plusieurs nombres à la fois en séparant les arguments par des virgules (`,`)\nSi le premier argument est le mot \"reset\", les chiffres seront rétablis à leur valeur par défaut.\n\nUtilsation: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExemples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "success": "Chiffres personnalisés.",
       "resetSuccess": "Numéros par défaut rétablis.",
-      "errorMissingParams": "Erreur : Paramètres manquants, `plus d'info: {PREFIX}help setDigit`."
+      "errorMissingParams": "Paramètres manquants, voir `{PREFIX}help setDigit`."
     },
     "shortNumber": {
       "helpDescription": "Cette commande permet d'afficher un compte sous une forme abrégée dans les compteurs placés dans le nom d'un salon vocal/catégorie\n\n**Utilisation**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
@@ -99,7 +99,6 @@
     "upgradeServer": {
       "helpDescription": "Cette commande vous permet d'inviter Member Counter Premium, pour utiliser cette commande vous devez avoir un compte premium que vous pouvez obtenir en faisant un don d'au moins 5 USD: `{PREFIX}donate`.",
       "success": "Fait! La prochaine étape est d'inviter le bot premium:\n{BOT_LINK}",
-      "noPremiumAccount": "Vous devez disposer d'un compte premium.",
       "errorCannotUpgrade": "Vous ne pouvez pas mettre le serveur à niveau parce qu'il est déjà premium.",
       "noServerUpgradesAvailable": "Vous ne pouvez pas mettre à niveau ce serveur car aucune amélioration n'est disponible, vous pouvez vérifier combien il vous en reste avec `{PREFIX}profil` ou en obtenir plus avec `{PREFIX}donate`"
     },

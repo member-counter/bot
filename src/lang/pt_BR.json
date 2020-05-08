@@ -49,10 +49,10 @@
       "errorNoContent": "Você deve informar algum conteúdo"
     },
     "setDigit": {
-      "helpDescription": "Customiza números que serão mostrados, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal\nSe o primeiro argumento for a palavra \"reset\", os números irão ser restaurados para os números padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número customizado]```\nExemplo: ```{PREFIX}setDigit 3 3```\nCom o exemplo anterior, a cada 3 será mostrado como um 3 normal",
+      "helpDescription": "Customiza números que serão mostrados, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal, você pode customizar números múltiplos de uma só vez separando os argumentos com vírgulas (`,`)\nSe o primeiro argumento for a palavra \"reset\", os números irão ser restaurados para os números padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número customizado]```\nExemplos: ```{PREFIX}setDigit 3 3```\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
       "success": "Dígito personalizado.",
       "resetSuccess": "Números restaurados para o padrão.",
-      "errorMissingParams": "Erro: Parâmetros ausentes, `mais informações: {PREFIX}help setDigit`."
+      "errorMissingParams": "Parâmetros ausentes, por favor veja `{PREFIX}help setDigit`."
     },
     "shortNumber": {
       "helpDescription": "Esse comando te permite mostrar um contador de forma reduzida nos contadores colocados no nome de um canal de voz/categoria\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
@@ -99,7 +99,6 @@
     "upgradeServer": {
       "helpDescription": "Esse comando permite que você convide o Member Counter Premium, para usar esse comando você deve ter uma conta premium, que você pode conseguir doando pelo menos $5 dólares: `{PREFIX}donate`.",
       "success": "Feito! O próximo passo é convidar o bot premium:\n{BOT_LINK}",
-      "noPremiumAccount": "Você deve ter uma conta premium.",
       "errorCannotUpgrade": "Você não pode dar upgrade no server porque ele já possui premium.",
       "noServerUpgradesAvailable": "Você não pode dar upgrades em mais servidores porque você não possui upgrades disponíveis, você pode checar quantos upgrades restantes você possui com `{PREFIX}profile` ou para ter mais com `{PREFIX}donate`"
     },

@@ -49,10 +49,10 @@
       "errorNoContent": "Debes proporcionar algo de contenido"
     },
     "setDigit": {
-      "helpDescription": "Personaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un emoji o un número normal.\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 3```\nCon este ejemplo todos los 3 se mostraran como un 3 normal",
-      "success": "Número personalizado correctamente.",
+      "helpDescription": "Personaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un emoji o un número normal, puedes personalizar varios números a la vez separando los argumentos con comas (`,`)\nSi el primero párametro es \"reset\", los números seran reestablecidos a los predeterminados.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [número personalizado]```\nEjemplo: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "success": "Números personalizados correctamente.",
       "resetSuccess": "Todos los numeros han sido reestablecidos.",
-      "errorMissingParams": "Error: Faltan parámetros, `más info: {PREFIX}help setDigit`."
+      "errorMissingParams": "Faltan parámetros, por favor, consulta `{PREFIX}help setDigit`."
     },
     "shortNumber": {
       "helpDescription": "Este comando te permite mostrar el número de una cuenta en un formato abreviado en contadores que hayas colocado en un canal de voz o categoría\n\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Ejemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
@@ -99,7 +99,6 @@
     "upgradeServer": {
       "helpDescription": "Este comando te permite invitar a Member Counter Premium, para usarlo debes tener una cuenta premium, la cual puedes obtener donando al menos 5 USD: `{PREFIX}donate`.",
       "success": "Hecho! El siguiente paso es invitar al bot premium:\n{BOT_LINK}",
-      "noPremiumAccount": "Debes tener una cuenta premium.",
       "errorCannotUpgrade": "No puedes mejorar el servidor porque ya tiene premium.",
       "noServerUpgradesAvailable": "No puedes mejorar este servidor porque no te quedan mejoras disponibles, puedes comprobar cuantas te quedan con `{PREFIX}profile` o conseguir más con `{PREFIX}donate`"
     },
