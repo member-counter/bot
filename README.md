@@ -37,4 +37,4 @@ Help Member Counter to be mantained by [donating](https://member-counter.eduardo
 ![A counter placed in a voice channel name showing the amount of subscribers in a youtube channel, and a counter placed in a text channel topic showing the amount of online Admins](https://i.imgur.com/OYDMEMQ.png)
 
 # Self-hosted bot tutorial
-https://eduardozgz.gitbook.io/member-counter/guides/how-to-install-and-host-your-own-bot-instance
+[https://eduardozgz.gitbook.io/member-counter/guides/how-to-install-and-host-your-own-bot-instance](https://eduardozgz.gitbook.io/member-counter/guides/how-to-install-and-host-your-own-bot-instance)
