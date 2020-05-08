@@ -87,17 +87,17 @@
       }
     },
     "resetSettings": {
-      "helpDescription": "Restores the custom settings of this server to the default ones",
-      "done": "Restored to default settings"
+      "helpDescription": "Restaura la configuració personalitzada d’aquest servidor a per defecte",
+      "done": "Restaurada a la configuració per defecte"
     },
     "update": {
-      "helpDescription": "If you think the counters are stuck use this command to update them again.",
-      "inProgress": "Updating the counters, this may take a while.",
+      "helpDescription": "Si creieu que els comptadors estan bloquejats, utilitzeu aquest comand per actualitzar-los de nou.",
+      "inProgress": "Actualitzant els comptadors, aixó pot durar una estona.",
       "success": "Fet.",
-      "wait": "Wait! I'm already updating it!"
+      "wait": "Espereu! Ja ho estic actualitzant!"
     },
     "upgradeServer": {
-      "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
+      "helpDescription": "Aquest comand et permet invitar Member Counter Premium, per poder utiliztar aquest comand has de tenir un compte,que podeu obtenir donant almenys 5 USD: `{PREFIX}donate`.",
       "success": "Fet! El següent pas és convidar el bot premium:\n{BOT_LINK}",
       "errorCannotUpgrade": "No podeu actualitzar el servidor perquè ja és premium.",
       "noServerUpgradesAvailable": "No podeu fer més actualitzacions del servidor perquè no teniu més actualitzacions del servidor disponibles, podeu comprovar quant vos queda amb `{PREFIX}profile` o obtenir més coses amb `{PREFIX}donate`"
