@@ -49,7 +49,7 @@
       "errorNoContent": "Has de proporcionar algun contingut"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "helpDescription": "Personalitza els dígits que seràn mostrats, el primer paràmetre ha de ser el que vols canviar, el segon paràmetre pot ser el que sigui, com un emoji o un nombre normal, pots personalitzar diversos nombres alhora separant els arguments amb comes (`, `)\nSi el primer pàrametre és \"reset\", els nombres seràn reestablerts als predeterminats.\n\nÚs: `` `{PREFIX} setDigit reset\n{PREFIX} setDigit [nombre] [nombre personalitzat] `` `\nExemple: `` `{PREFIX} setDigit 3 mar\n{PREFIX} setDigit 3: emoji3:, 4: emoji4: `` `",
       "success": "Dígits personalitzats correctament.",
       "resetSuccess": "Tots els dígits han estat reestablerts.",
       "errorMissingParams": "Falten paràmetres, si us plau, consulta `{PREFIX}help setDigit`."
@@ -81,8 +81,8 @@
         "premiumNoTierText": "No",
         "premiumConfirmedText": "Si",
         "allowedRolesText": "Allowed roles to use administrative commands:",
-        "countersText": "Counters:",
-        "customNumbersText": "Custom numbers:",
+        "countersText": "Comptadors:",
+        "customNumbersText": "Dígits personalitzats:",
         "warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
       }
     },
@@ -103,15 +103,15 @@
       "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
     },
     "info": {
-      "helpDescription": "List of useful links",
+      "helpDescription": "Llista de links útils",
       "embedReply": {
         "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
       }
     },
     "lang": {
       "helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-      "success": "Language changed successfully.",
-      "errorNotFound": "List of available languages:"
+      "success": "Llenguatge canviat amb éxit.",
+      "errorNotFound": "Lista de llenguatges disponibles:"
     },
     "donate": {
       "helpDescription": "Shows the top donations.",
@@ -120,7 +120,7 @@
         "fields": []
       },
       "misc": {
-        "emptyNote": "Empty note"
+        "emptyNote": "Nota buida"
       },
       "errorExchangeFetch": "Error while trying to fetch exchange rates"
     },
@@ -131,13 +131,13 @@
     },
     "counts": {
       "helpDescription": "Shows some counts",
-      "members": "Members:",
-      "onlineMembers": "Online members:",
-      "offlineMembers": "Offline members:",
+      "members": "Membres:",
+      "onlineMembers": "Usuaris conectats:",
+      "offlineMembers": "Usuaris desconectats:",
       "bots": "Bots:",
-      "connectedUsers": "Connected users:",
-      "channels": "Channels:",
-      "roles": "Roles:"
+      "connectedUsers": "Usuaris conectats:",
+      "channels": "Canals:",
+      "roles": "Rols:"
     }
   },
   "functions": {
@@ -145,8 +145,8 @@
       "noDm": "You can't run this command on a DM channel"
     },
     "getCounts": {
-      "onlyPremium": "Only Premium",
-      "unknownCounter": "Unknown counter",
+      "onlyPremium": "Només per servidors premium",
+      "unknownCounter": "Comptador desconegut",
       "noBanPerms": "I need ban permissions to show this",
       "invalidChannelLength": "Invalid channel name length, please setup the counter again"
     }
