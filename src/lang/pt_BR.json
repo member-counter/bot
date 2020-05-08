@@ -1,0 +1,162 @@
+{
+  "langCode": "pt_BR",
+  "langName": "Português (BR)",
+  "commands": {
+    "help": {
+      "helpDescription": "É realmente necessário explicar o propósito desse comando?",
+      "embedReply": {
+        "title": "Lista de Comandos | prefix: {PREFIX}",
+        "description": "[Adicione esse bot ao seu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentação](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nPara ter mais informações sobre um comando use `{PREFIX}help` mais o nome do comando: ```\n{PREFIX}help shortNumber```\n**Obs:** `()` significa um parâmetro opcional enquanto `[]` significa um parâmetro obrigatório",
+        "fields": [
+          {
+            "name": "**Contadores**",
+            "value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber```",
+            "inline": true
+          },
+          {
+            "name": "**Configurações do servidor**",
+            "value": "```\n{PREFIX}lang\n{PREFIX}prefix\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+            "inline": true
+          },
+          {
+            "name": "**Outros**",
+            "value": "```\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+            "inline": true
+          }
+        ]
+      },
+      "misc": {
+        "command": "Comando:"
+      }
+    },
+    "setup": {
+      "helpDescription": "Te mostra um guia de como usar o bot",
+      "explanation": "**Obrigado por ter adicionado Member Counter ao seu servidor!**\n__**Crie/edite um contador**__\nPara esse exemplo nós iremos usar `{members}`, que conta a quantidade total de memebros no seu servidor do discord, mas você irá encontrar mais contadores nas próximas páginas\nVocê pode colocar esse contador em um dos seguintes lugares:\n\n- Em um **nome** de um canal de **voz**\n- Em um **nome** de uma **categoria**\n- Em um **tópico** de um canal de **texto**\n- Em um **tópico** de um canal de **notícias**\n\nAgora crie um novo canal, o edite, e escreva `{members}` no nome ou tópico, e clique em 'salvar alterações'\n\nVocê pode também adicionar contadores múltiplos em um nome/tópico, e combinar eles com seu próprio conteúdo, aqui está um exemplo:\n```\n{onlineMembers}/{members} Membros Online, {youtubeSubscribers:https://www.youtube.com/user/enyay} Inscritos!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Administradores and mods estão online!\n```\n\n> Se você atingir o limite de caracteres quando estiver editando um nome/tópico, por favor veja `{PREFIX}help editChannel`\n> Você pode ver as configurações atuais dos contadores com `{PREFIX}seeSettings`, isto é útil para adicionar mais contadores sem desabilitar os anteriores\n\n__**Remover um contador**__\nEdite o canal e escreva {disable} no nome/tópico, Member Counter irá substituir com um \\✅, que significa que você removeu todos os contadores deste canal com sucesso\n\nVocê pode também deletar o canal diretamente",
+      "counters": "__**Contadores**__\n> Você deve habilitar o modo de desenvolvedor no Discord (Configurações de Usuário> Aparência > Avançado > Modo de Desenvolvedor)\n> Para copiar um ID, clique com o botão direito do mouse em um canal/cargo e clique em \"Copiar ID\"\n\n> Os contadores com um asterisco (\\*) são contadores premium, tenha mais informação em `{PREFIX}help upgradeServer`\n\n- `{members}` Membros no seu servidor\n* `{onlineMembers}` Membros online no seu servidor\n* `{offlineMembers}` Membros offline no seu servidor\n* `{users}` Usuários no seu servidor (exclui bots)\n* `{onlineUsers}` Usuários online no seu servidor (exclui bots)\n* `{offlineUsers}` Usuários offline no seu servidor (exclui bots)\n* `{bots}` Bots no seu servidor (exclui usuários normais)\n* `{onlineBots}` Bots online no seu servidor (exclui usuários normais)\n* `{offlineBots}` Bots offline no seu servidor (exclui usuários normais)\n- `{roles}` Cargos no seu servidor\n- `{channels}` Canais no seu servidor (exclui canais de categoria)\n* `{membersWithRole:role1ID,role2ID}` Este conta quantos membros tem um cargo ou cargos, escreva os IDs dos cargos que você quer contar depois do `:`, e separe o cargo com vírgulas `,`\n* `{onlineMembersWithRole:role1ID,role2ID}` Similar ao `{membersWithRole:}` mas só conta aqueles membros online\n* `{offlineMembersWithRole:role1ID,role2ID}` Similar ao `{membersWithRole:}` mas só conta aqueles membros offline\n* `{connectedMembers}` Quantidade total de membros conectados em canais de voz\n* `{connectedMembers:channel1ID,channel2ID}` Similar ao `{connectedMembers}`, mas o bot vai contar somente os membros conectados em canais específicos, escreva os IDs dos canais que você quer contar depois do `:`, e separe os IDs dos canais com vírgulas `,`\n- `{bannedMembers}` Quantidade de membros banidos do seu servidor, o bot deve ter permissões de ban para mostrar este contador\n- `{http:url}` Esse irá mostrar a quantidade retornada dada pela resposta do recurso especificado, o bot irá executar uma requisição `GET` e o servidor **deve** responder com `o status code 200` e o `content-type: text/plain` Exemplo: `{http:https://member-counter.eduardozgz.com/api/donation/count}`\n* `{youtubeSubscribers:channelUrl}` Mostra os inscritos de um canal do youtube, substitua channelUrl com a url do canal desejado\n* `{youtubeViews:channelUrl}` Mostra as visualizações de um canal do youtube\n* `{twitchFollowers:channelName}` Mostra os seguidores de um canal da twitch, substitua channelName com o nome do canal desejado\n* `{twitchViews:channelName}` Mostra as visualizações de um canal da twitch\n\n__**Os contadores a seguir são de jogadores online no servidor de um jogo**__\nLembre-se de substituir `address` com o endereço atual do servidor\n\n- `{minecraft:address}` Minecraft\n- `{source:address}` Qualquer jogo baseado em Source™ ou um jogo que use o A2S protocol para buscar stats (Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)\n- `{gtasa-mta:address}` Grand Theft Auto: San Andreas (Multi Theft Auto)\n- `{gtasa-mp:address}` Grand Theft Auto: San Andreas (SA-MP)\n- `{gta5-fivem:address}` Grand Theft Auto 5 (FiveM)",
+      "pagesText": "Página {CURRENT_PAGE}/{TOTAL_PAGES}"
+    },
+    "lockChannel": {
+      "helpDescription": "Você pode usar este comando para mostrar um cadeado(🔒) em vez de um alto-falante(🔊) nos canais de voz\n\n**Uso**```{PREFIX}lockChannel [id do canal]```\n **Exemplo**```{PREFIX}lockChannel 700336568099143710```",
+      "success": "Feito! Agora, **para usuários que não são administradores**, o canal será mostrado com um 🔒",
+      "errorInvalidChannel": "Você só pode travar canais de voz!",
+      "errorNoPerms": "Eu não posso editar o canal `{CHANNEL}` devido à problemas de permissão",
+      "errorNotFound": "Canal não encontrado"
+    },
+    "editChannel": {
+      "helpDescription": "Se você está tentando setar um contador mas o Discord te diz que você atingiu o limite de caracteres do nome/tópico do canal, você pode usar esse comando para \"ignorar\" esse limite\n**Uso**```{PREFIX}editChannel [channelId] [content]```\n**Exemplo**```{PREFIX}editChannel 701396983843127366 {onlinemembers} de {members} Online```",
+      "success": "Feito! Você talvez tenha que esperar alguns segundos para ver as novas mudanças",
+      "errorNotFound": "Canal não encontrado",
+      "errorNoContent": "Você deve informar algum conteúdo"
+    },
+    "setDigit": {
+      "helpDescription": "Customiza números que serão mostrados, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal, você pode customizar números múltiplos de uma só vez separando os argumentos com vírgulas (`,`)\nSe o primeiro argumento for a palavra \"reset\", os números irão ser restaurados para os números padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número customizado]```\nExemplos: ```{PREFIX}setDigit 3 3```\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "success": "Dígito personalizado.",
+      "resetSuccess": "Números restaurados para o padrão.",
+      "errorMissingParams": "Parâmetros ausentes, por favor veja `{PREFIX}help setDigit`."
+    },
+    "shortNumber": {
+      "helpDescription": "Esse comando te permite mostrar um contador de forma reduzida nos contadores colocados no nome de um canal de voz/categoria\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpImage": "https://i.imgur.com/Rzv4W0C.png",
+      "errorInvalidAction": "Ação inválida! por favor veja `{PREFIX}help shortNumber`",
+      "success": "Feito! Você talvez tenha que esperar alguns segundos para ver as novas mudanças"
+    },
+    "prefix": {
+      "helpDescription": "Muda o prefixo do bot.\n\nUso:```{PREFIX}prefix [novo prefixo]```",
+      "success": "Prefixo alterado para: `{NEW_PREFIX}`",
+      "noPrefixProvided": "Você deve informar um prefixo"
+    },
+    "role": {
+      "helpDescription": "Você pode permitir ou negar cargos de usar comandos administrativos do bot.\nVocê pode usar a chave ``all`` para permitir ou negar todos os cargos.\nPara ver quais cargos atualmente possuem permissão, use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "rolesUpdated": "Cargos Atualizados.",
+      "errorNoRolesToUpdate": "Vocë deve mencionar pelo menos 1 cargo",
+      "invalidParams": "Parâmetros inválidos, veja `{PREFIX}help role`"
+    },
+    "seeSettings": {
+      "helpDescription": "Mostra todas as configurações de bot para este servidor.",
+      "settingsMessage": {
+        "headerText": "Configurações para guild:",
+        "prefixText": "Prefixo:",
+        "langText": "Idioma: ",
+        "premiumText": "Premium:",
+        "premiumNoTierText": "Não",
+        "premiumConfirmedText": "Sim",
+        "allowedRolesText": "Cargos com permissão para utilizar comandos administrativos:",
+        "countersText": "Contadores:",
+        "customNumbersText": "Números personalizados:",
+        "warningNoPermsText": "\\⚠️ = O bot não pode continuar a atualizar este canal porque não possui as permissões necessárias"
+      }
+    },
+    "resetSettings": {
+      "helpDescription": "Restaura as configurações personalizadas deste servidor para o padrão.",
+      "done": "Restaurado para as configurações padrão."
+    },
+    "update": {
+      "helpDescription": "Se você acha que o contador está bloqueado, use este comando para forçar sua atualização",
+      "inProgress": "Atualizando os contadores, esse processo pode demorar um pouco.",
+      "success": "Feito.",
+      "wait": "Espere! Eu já estou atualizando isto!"
+    },
+    "upgradeServer": {
+      "helpDescription": "Esse comando permite que você convide o Member Counter Premium, para usar esse comando você deve ter uma conta premium, que você pode conseguir doando pelo menos $5 dólares: `{PREFIX}donate`.",
+      "success": "Feito! O próximo passo é convidar o bot premium:\n{BOT_LINK}",
+      "errorCannotUpgrade": "Você não pode dar upgrade no server porque ele já possui premium.",
+      "noServerUpgradesAvailable": "Você não pode dar upgrades em mais servidores porque você não possui upgrades disponíveis, você pode checar quantos upgrades restantes você possui com `{PREFIX}profile` ou para ter mais com `{PREFIX}donate`"
+    },
+    "info": {
+      "helpDescription": "Lista de links úteis",
+      "embedReply": {
+        "description": "[Adicione-me ao seu servidor]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Doações]({DONATION_URL})"
+      }
+    },
+    "lang": {
+      "helpDescription": "Altera o idioma do bot para este servidor, você deve ter permissões de administrador para executar este comando.",
+      "success": "Idioma alterado com sucesso.",
+      "errorNotFound": "Lista de linguagens disponíveis:"
+    },
+    "donate": {
+      "helpDescription": "Mostra as principais doações.",
+      "embedReply": {
+        "title": "Apreciando meu bot? Doe-me! (Click here)",
+        "fields": []
+      },
+      "misc": {
+        "emptyNote": "Nota vazia"
+      },
+      "errorExchangeFetch": "Erro ao tentar obter taxas de câmbio."
+    },
+    "profile": {
+      "helpDescription": "Mostra informações relacionadas entre você e esse bot",
+      "badges": "Badges",
+      "serverUpgradesAvailable": "Server upgrades restantes"
+    },
+    "counts": {
+      "helpDescription": "Exibe alguns contadores",
+      "members": "Membros",
+      "onlineMembers": "Membros online:",
+      "offlineMembers": "Membros offline:",
+      "bots": "Bots:",
+      "connectedUsers": "Usuários conectados:",
+      "channels": "Canais:",
+      "roles": "Cargos:"
+    }
+  },
+  "functions": {
+    "commandHandler": {
+      "noDm": "Você não pode executar este comando em um MP canal"
+    },
+    "getCounts": {
+      "onlyPremium": "Somente Premium",
+      "unknownCounter": "Contador desconhecido",
+      "noBanPerms": "Eu preciso ter permissão de bans para mostrar isso",
+      "invalidChannelLength": "Tamanho do nome do canal inválido, por favor configure o contador novamente"
+    }
+  },
+  "common": {
+    "error": "Erro",
+    "errorDb": "Erro no banco de dados, tente novamente mais tarde.",
+    "errorDiscordAPI": "Discord API",
+    "errorUnknown": "Ocorreu um erro. Tente novamente mais tarde.",
+    "errorNoAdmin": "Somente membros com permissões de administrador neste servidor podem usar este comando.",
+    "noTopicCounterEnabled": "Parece que você ainda não habilitou um contador de tópico, por favor, veja `{PREFIX}help topicCounter`"
+  }
+}
