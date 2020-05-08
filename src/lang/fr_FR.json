@@ -6,7 +6,7 @@
       "helpDescription": "C'est vraiment nécessaire d'expliquer le but de cette commande?",
       "embedReply": {
         "title": "Liste des commandes | prefix: {PREFIX}",
-        "description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+        "description": "[Ajoutez ce bot à votre serveur]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nPour avoir plus d'informations à propos de cette commande, envoyez `{PREFIX}help` et le nom de la commande: ```\n{PREFIX}help shortNumber```\n**Info:** `()` signifie qu'un paramètre est optionnel `[]` signifie qu'il est obligatoire",
         "fields": [
           {
             "name": "**Compteurs**",
