@@ -9,12 +9,12 @@
         "description": "[Afageix aquest bot al teu servidor]({DISCORD_BOT_INVITE}) **|** [Lloc web]({WEBSITE}) **|**   [Documentació](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nPer obtenir més informació sobre un comand, escrigui `{PREFIX}help` més el nom del comand: ```\n{PREFIX}help shortNumber```\n**Info:** `()` és un paràmetre opcional mentre que `[]` és un obligatori",
         "fields": [
           {
-            "name": "**Contadors**",
+            "name": "**Comptadors**",
             "value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber```",
             "inline": true
           },
           {
-            "name": "**Preferències de servidor**",
+            "name": "**Configuració de servidor**",
             "value": "```\n{PREFIX}lang\n{PREFIX}prefix\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
             "inline": true
           },
@@ -31,9 +31,9 @@
     },
     "setup": {
       "helpDescription": "Et mostra una guia de com utilitzar el bot",
-      "explanation": "**Gracies per afegir Member Counter al teu servidor!**\n__**Crear-editar un contador**__\nPer aquest exemple anam a utilitzar el contador `{members}`, el cual mostra la cantidad de membres que té el teu servidor, però pots trobar més contadors en les següents pàgines\nPots colocar aquest contador en un dels següents llocs:\n\n- En el **nom** d'un canal de **veu**\n- En el **nom** d'una **categoria**\n- En el **tema** d'un canal de **text**\n- En el **tema** d'un canal de **noticias**\n\nAra crea un canal, edita-ho, y escriu `{members}` en nom o tema, y fes click en 'Guardar canvis'\n\nTambé pots afegir diversos contadors en un mateix nom o tema, i combinar-los amb el teu propi contingut, aqui n'hi ha un exemple:\n```\n{onlineMembers}/{members} Membres online, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscriptors!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Administradors i mods online!\n```\n\n> Si aconsegueixes el limit de caràcters mentre edites un nom/tema, consulta `{PREFIX}help editChannel`\n> Pots veure les configuracions actuals amb `{PREFIX}seeSettings`, aixó és útil si vols afegir més contadors sense borrar els anteriors accidentalment\n\n__**Borrar un contador**__\nEdita el canal y escriu `{disable}` en el nomb/tema, Member Counter el reemplaçarà amb un \\✅, aixó vol dir que els contadors han estat borrats correctament\n\nTambé pots eliminar el canal directament",
+      "explanation": "**Gracies per afegir Member Counter al teu servidor!**\n__**Crear-editar un contador**__\nPer aquest exemple anam a utilitzar el comptador `{members}`, el cual mostra la cantidad de membres que té el teu servidor, però pots trobar més comptadors en les següents pàgines\nPots colocar aquest comptador en un dels següents llocs:\n\n- En el **nom** d'un canal de **veu**\n- En el **nom** d'una **categoria**\n- En el **tema** d'un canal de **text**\n- En el **tema** d'un canal de **noticias**\n\nAra crea un canal, edita-ho, y escriu `{members}` en nom o tema, y fes click en 'Guardar canvis'\n\nTambé pots afegir diversos comptadors en un mateix nom o tema, i combinar-los amb el teu propi contingut, aqui n'hi ha un exemple:\n```\n{onlineMembers}/{members} Membres online, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscriptors!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Administradors i mods online!\n```\n\n> Si aconsegueixes el limit de caràcters mentre edites un nom/tema, consulta `{PREFIX}help editChannel`\n> Pots veure les configuracions actuals amb `{PREFIX}seeSettings`, aixó és útil si vols afegir més contadors sense borrar els anteriors accidentalment\n\n__**Borrar un contador**__\nEdita el canal y escriu `{disable}` en el nomb/tema, Member Counter el reemplaçarà amb un \\✅, aixó vol dir que els comptadors han estat borrats correctament\n\nTambé pots eliminar el canal directament",
       "counters": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an atherisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n- `{members}` Members in your server\n* `{onlineMembers}` Online members in your server\n* `{offlineMembers}` Offline members in your server\n* `{users}` Users in your server (excludes bot)\n* `{onlineUsers}` Online users in your server (excludes bot)\n* `{offlineUsers}` Offline users in your server (excludes bot)\n* `{bots}` Bots in your server (excludes normal users)\n* `{onlineBots}` Online bots in your server (excludes normal users)\n* `{offlineBots}` Offline bots in your server (excludes normal users)\n- `{roles}` Roles in your server\n- `{channels}` Channels in your server (excludes category channels)\n* `{membersWithRole:role1ID,role2ID}` This counts how much members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas `,`\n* `{onlineMembersWithRole:role1ID,role2ID}` Like `{membersWithRole:}` but only counts those members online\n* `{offlineMembersWithRole:role1ID,role2ID}` Like `{membersWithRole:}` but only counts those members offline\n* `{connectedMembers}` Total amount of connected members in the voice channels\n* `{connectedMembers:channel1ID,channel2ID}` Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas `,`\n- `{bannedMembers}` Amount of banned members in your server, the bot must have ban permissons to display this count\n- `{http:url}` This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with `the status code 200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`\n* `{youtubeSubscribers:channelUrl}` Displays the youtube channel subscribers, replace channelUrl with the desired channel url\n* `{youtubeViews:channelUrl}` Displays the youtube channel views\n* `{twitchFollowers:channelName}` Displays the twitch channel followers, replace channelName with the desired channel name\n* `{twitchViews:channelName}` Displays the twitch channel views\n\n__**The following counters are of online players in a game server**__\nRemember to replace `address` by the actual server address\n\n- `{minecraft:address}` Minecraft\n- `{source:address}` Any Source™ based game or a game that uses the A2S protocol for querying stats (Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)\n- `{gtasa-mta:address}` Grand Theft Auto: San Andreas (Multi Theft Auto)\n- `{gtasa-mp:address}` Grand Theft Auto: San Andreas (SA-MP)\n- `{gta5-fivem:address}` Grand Theft Auto 5 (FiveM)",
-      "pagesText": "Page {CURRENT_PAGE}/{TOTAL_PAGES}"
+      "pagesText": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}"
     },
     "lockChannel": {
       "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
@@ -43,7 +43,7 @@
       "errorNotFound": "Canal no trobat"
     },
     "editChannel": {
-      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
+      "helpDescription": "Si estàs intentant establir un comptador però Discord et diu que has arribat al límit de caràcters en el nom / tema, pots \"ignorar\" aquest límit utilitzant aquest comand\n** Ús ** `` `{PREFIX} editChannel [id de canal] [contingut]` ``\n** Exemple ** `` `{PREFIX} editChannel 701396983843127366 {onlinemembers} de {members} Online```",
       "success": "Fet! Potser que hagis d'esperar uns segons per poder veure els nous canvis",
       "errorNotFound": "Canal no trobat",
       "errorNoContent": "Has de proporcionar algun contingut"
@@ -52,29 +52,29 @@
       "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
       "success": "Digits customized.",
       "resetSuccess": "Numbers restored to the default ones.",
-      "errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+      "errorMissingParams": "Falten paràmetres, si us plau, consulta `{PREFIX}help setDigit`."
     },
     "shortNumber": {
-      "helpDescription": "This command allows you to show a count in a short form in counters placed in the name of a voice/category channel\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpDescription": "Aquest comand et permet mostrar el nombre d'un compte en un format abreujat en comtadors que hagis col·locat en un canal de veu o categoria\n\n**Ús**\n```{PREFIX}shortNumber [enable/disable]```\n**Ejemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
-      "errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
-      "success": "Done! You may have to wait a few seconds to see the new changes"
+      "errorInvalidAction": "Acció invàlida! Per favor, consulta `{PREFIX}help shortNumber`",
+      "success": "Fet! Potser que hagis d'esperar uns segons per poder veure els nous canvis"
     },
     "prefix": {
-      "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
-      "success": "Prefix changed to: `{NEW_PREFIX}`",
-      "noPrefixProvided": "You must provide a prefix"
+      "helpDescription": "Canvia el prefix del bot.\n\nÚs:```{PREFIX}prefix [nuevo prefijo]```",
+      "success": "Prefix canviat a: `{NEW_PREFIX}`",
+      "noPrefixProvided": "Has de proporcionar un prefix"
     },
     "role": {
-      "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
-      "rolesUpdated": "Roles updated.",
-      "errorNoRolesToUpdate": "You must mention at least 1 role",
-      "invalidParams": "Invalid parameters, see `{PREFIX}help role`"
+      "helpDescription": "Pots permitir o denegar l'ús de comands administratius a rols que concretis\nTambé pots referir-te a tots amb la paraula ``all``\nPerveure els rols permesos utilitza``{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "rolesUpdated": "Rols actualitzats.",
+      "errorNoRolesToUpdate": "Has de esmentar com a mínim 1 rol",
+      "invalidParams": "Paràmetres invàlids, per més informació: `{PREFIX}help role`"
     },
     "seeSettings": {
-      "helpDescription": "Shows all bot settings for this server.",
+      "helpDescription": "Mostra tota la configuració del bot per aquest servidor.",
       "settingsMessage": {
-        "headerText": "Settings for guild:",
+        "headerText": "Configuració del servidor:",
         "prefixText": "Prefix:",
         "langText": "Llenguatge:",
         "premiumText": "Premium:",
