@@ -18,7 +18,7 @@ import UserError from '../utils/UserError';
 import messageReactionAdd from '../events/messageReactionAdd';
 import getEnv from '../utils/getEnv';
 
-const { DISCORD_PREFIX } = getEnv();
+const { DISCORD_PREFIX, PREMIUM_BOT_INVITE } = getEnv();
 
 // TODO
 const seeSettings: MemberCounterCommand = {
@@ -296,7 +296,8 @@ const upgradeServer: MemberCounterCommand = {
       switch (upgradeServer) {
         case 'success': {
           await channel.createMessage(
-            success.replace('{BOT_LINK}', process.env.PREMIUM_BOT_INVITE),
+            success.replace('{BOT_LINK}'),
+            PREMIUM_BOT_INVITE,
           );
           break;
         }
