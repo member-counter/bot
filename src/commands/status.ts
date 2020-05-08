@@ -142,25 +142,6 @@ const status: MemberCounterCommand = {
     });
 
     await channel.createMessage({ embed }).then(async (message) => {
-      // Git commit
-      let commitHash: string = await new Promise((resolve, reject) => {
-        let git = spawn('git', ['rev-parse', 'HEAD']);
-
-        let data = '';
-
-        git.stdout.on('data', (dataToAdd) => (data += dataToAdd));
-        git.stdout.on('error', reject);
-
-        git.on('close', () => {
-          resolve(data);
-        });
-
-        git.on('error', reject);
-      });
-
-      let commitHashShort = commitHash.slice(0, 6);
-      embed.description += ` ([${commitHashShort}](https://github.com/eduardozgz/member-counter-bot/tree/${commitHash}))`;
-
       // Bot latency field
       embed.fields[6].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
 
