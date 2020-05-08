@@ -1,6 +1,6 @@
 {
-  "langCode": "en_US",
-  "langName": "English (US)",
+  "langCode": "ca_ES",
+  "langName": "Català (ES)",
   "commands": {
     "help": {
       "helpDescription": "It's really necessary to explain the purpose of this command?",
