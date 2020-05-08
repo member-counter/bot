@@ -296,8 +296,7 @@ const upgradeServer: MemberCounterCommand = {
       switch (upgradeServer) {
         case 'success': {
           await channel.createMessage(
-            success.replace('{BOT_LINK}'),
-            PREMIUM_BOT_INVITE,
+            success.replace('{BOT_LINK}', PREMIUM_BOT_INVITE),
           );
           break;
         }
