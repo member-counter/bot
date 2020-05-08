@@ -6,7 +6,7 @@
       "helpDescription": "Ist es wirklich notwendig die Funktion dieses Befehls zu erklären?",
       "embedReply": {
         "title": "Liste der Befehle | prefix: {PREFIX}",
-        "description": "[Füge den Bot zu deinem Server hinzu]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter)\n\nUm mehr Infos über einen Befehl zu erhalten schreibe `{PREFIX}help` plus den Befehl: ```\n{PREFIX}help shortNumber```\n**Info:** `()` steht für eine optionale Angabe während `[]` erforderlich ist",
+        "description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
         "fields": [
           {
             "name": "**Zähler**",
@@ -49,10 +49,10 @@
       "errorNoContent": "Du musst einen Inhalt angeben"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "helpDescription": "Passt die angezeigten Zahlen an, die number Angabe muss eine normale Zahl sein, die zweite Angabe kann alles mögliche sein, etwa ein Emoji oder eine normale Zahl. Du kannst mehrere Zahlen geichzeitig bearbeiten indem du diese mit Kommans trennst (`,`) \nWenn die erste angabe \"reset\" ist ´werden die angezeigten Zahlen zum Standart zurückgesetzt.\n\nVerwendung: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [deine Benutzerdefinierte Zahl]```\nBeispiel:```{PREFIX}setDigit 3 3```\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
       "success": "Ziffer angepasst.",
       "resetSuccess": "Zahlen wurden auf den Standart zurückgesetzt.",
-      "errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+      "errorMissingParams": "Fehlende Angabe, bitte beachte `{PREFIX}help setDigit`."
     },
     "shortNumber": {
       "helpDescription": "Dieser Befehl erlaubt es dir Zähler in Kurzform anzuzeigen, die in Sprachkanal/Kagtegorie Namen zu lang wären\n\n**Verwendung**\n```{PREFIX}shortNumber [enable/disable]```\n**Beispiel**\n```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
