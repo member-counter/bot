@@ -36,7 +36,7 @@
       "pagesText": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}"
     },
     "lockChannel": {
-      "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
+      "helpDescription": "Pots utilitzar aquest comand per mostrar un cadenat (🔒) en lloc de un altaveu (🔊) en els canals de veu\n\n**Ús**```{PREFIX}lockChannel [id del canal]```\n **Exemple**```{PREFIX}lockChannel 700336568099143710```",
       "success": "Fet! Ara, **para usuaris no administradors** el canal serà mostrat amb a 🔒",
       "errorInvalidChannel": "Només pots bloquejar els canals de veu!",
       "errorNoPerms": "No puc editar el canal `{CHANNEL} 'per falta de permisos",
@@ -80,10 +80,10 @@
         "premiumText": "Premium:",
         "premiumNoTierText": "No",
         "premiumConfirmedText": "Si",
-        "allowedRolesText": "Allowed roles to use administrative commands:",
+        "allowedRolesText": "Els rols següents tenen permés utilitzar comands administratius:",
         "countersText": "Comptadors:",
         "customNumbersText": "Dígits personalitzats:",
-        "warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
+        "warningNoPermsText": "\\⚠️ = El bot no pot continuar actualitzant aquest canal degut a falta de permisos"
       }
     },
     "resetSettings": {
@@ -98,7 +98,7 @@
     },
     "upgradeServer": {
       "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
-      "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
+      "success": "Fet! El següent pas és convidar el bot premium:\n{BOT_LINK}",
       "errorCannotUpgrade": "No podeu actualitzar el servidor perquè ja és premium.",
       "noServerUpgradesAvailable": "No podeu fer més actualitzacions del servidor perquè no teniu més actualitzacions del servidor disponibles, podeu comprovar quant vos queda amb `{PREFIX}profile` o obtenir més coses amb `{PREFIX}donate`"
     },
