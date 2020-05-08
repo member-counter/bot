@@ -169,7 +169,8 @@ class CountService {
           ['{onlinebots}']: 0,
           ['{offlinebots}']: 0,
         };
-        if (!PREMIUM_BOT || !FOSS_MODE) {
+
+        if (!(PREMIUM_BOT || FOSS_MODE)) {
           for (const key in counts) {
             if (counts.hasOwnProperty(key)) {
               this.countCache.set(key, -1);
