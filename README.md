@@ -10,7 +10,7 @@ Member Counter is a bot that puts a counter into a channel name or topic, to lea
 
 ### Features
 - Counters displayed in a channel name/topic (`mc!guide`)
-- Instant counts (`mc!counts`)
+- Instant counters (`mc!counts`)
 - Fully customizable
 - Multilingual: Spanish, Portuguese/Brazilian, Russian, German, French... and growing! (`mc!lang`)
 - [Open Source](https://github.com/eduardozgz/member-counter-bot) 😉
