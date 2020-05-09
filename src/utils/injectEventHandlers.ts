@@ -15,7 +15,7 @@ const { DEBUG } = getEnv();
 
 export default (client: Eris.Client) => {
   if (DEBUG) {
-    client.on('debug', console.log).on('rawWS', console.log);
+    client.on('debug', console.log);
   }
   client
     .on('ready', () => ready(client))
