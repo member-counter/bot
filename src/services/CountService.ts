@@ -233,7 +233,7 @@ class CountService {
           const targetChannelsString =
             targetChannels.length > 0 ? ':' + targetChannels.join(',') : '';
 
-          if (!PREMIUM_BOT || !FOSS_MODE) {
+          if (!(PREMIUM_BOT || FOSS_MODE)) {
             this.countCache.set(
               `{connectedmembers${targetChannelsString}}`,
               -1,
