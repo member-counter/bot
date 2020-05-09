@@ -19,6 +19,7 @@ const generateBadgeList = (badges: number): string => {
   if (hasBadge(0b10000)) badgeList.push('💻');
   if (hasBadge(0b100000)) badgeList.push('🧠');
   if (hasBadge(0b1000000)) badgeList.push('🐛');
+  if (hasBadge(0b10000000)) badgeList.push('🐱');
 
   badgeList.map((item, i) => {
     if (i % 2 === 0) return item + ' ';

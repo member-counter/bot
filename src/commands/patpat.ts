@@ -8,7 +8,7 @@ const patpat: MemberCounterCommand = {
   onlyAdmin: false,
   run: async ({ message }) => {
     const userSettings = await UserService.init(message.author.id);
-    await userSettings.grantBadge(0b1000);
+    await userSettings.grantBadge(0b10000000);
 
     await message.channel.createMessage('https://i.imgflip.com/2yya22.png');
     // i never thought i will ever been coding with a very cute guy -alex
