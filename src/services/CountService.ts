@@ -62,23 +62,23 @@ class CountService {
       );
 
       if (counterIsTopicType) {
+        const topicToSet = processedContent.slice(0, 1023);
         if (
           botHasPermsToEdit(discordChannel) &&
           //@ts-ignore
-          discordChannel.topic !== processedContent
+          discordChannel.topic !== topicToSet
         )
-          await discordChannel.edit({ topic: processedContent.slice(0, 1023) });
+          await discordChannel.edit({ topic: topicToSet });
       } else if (counterIsNameType) {
-        if (processedContent.length < 2) return;
+        const nameToSet =
+          processedContent.length > 2
+            ? processedContent.slice(0, 99)
+            : this.languagePack.functions.getCounts.invalidChannelLength;
         if (
           botHasPermsToEdit(discordChannel) &&
           //@ts-ignore
-          discordChannel.name !== processedContent
+          discordChannel.name !== nameToSet
         ) {
-          const nameToSet =
-            processedContent.length > 2
-              ? processedContent.slice(0, 99)
-              : this.languagePack.functions.getCount.invalidChannelLength;
           await discordChannel.edit({ name: nameToSet });
         }
       }
