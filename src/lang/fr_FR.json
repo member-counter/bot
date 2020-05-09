@@ -5,7 +5,7 @@
     "help": {
       "helpDescription": "C'est vraiment nécessaire d'expliquer le but de cette commande?",
       "embedReply": {
-        "title": "Liste des commandes | prefix: {PREFIX}",
+        "title": "Liste des commandes | préfixe: {PREFIX}",
         "description": "[Ajoutez ce bot à votre serveur]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nPour avoir plus d'informations à propos de cette commande, envoyez `{PREFIX}help` et le nom de la commande: ```\n{PREFIX}help shortNumber```\n**Info:** `()` signifie qu'un paramètre est optionnel `[]` signifie qu'il est obligatoire",
         "fields": [
           {
@@ -50,8 +50,8 @@
     },
     "setDigit": {
       "helpDescription": "Personnalise les nombres qui seront affichés, l'argument du nombre doit être un nombre normal, le second argument peut être n'importe quoi, comme un emoji ou un nombre normal, vous pouvez personnaliser plusieurs nombres à la fois en séparant les arguments par des virgules (`,`)\nSi le premier argument est le mot \"reset\", les chiffres seront rétablis à leur valeur par défaut.\n\nUtilsation: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExemples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Chiffres personnalisés.",
-      "resetSuccess": "Numéros par défaut rétablis.",
+      "success": "Les chiffres ont été personnalisés.",
+      "resetSuccess": "Chiffres par défaut rétablis.",
       "errorMissingParams": "Paramètres manquants, voir `{PREFIX}help setDigit`."
     },
     "shortNumber": {
@@ -61,9 +61,9 @@
       "success": "Fait ! Vous devrez peut-être attendre quelques secondes pour voir les nouveaux changements"
     },
     "prefix": {
-      "helpDescription": "Changement du prefix du bot.\n\nUtilisation:```{PREFIX}prefix [new prefix]```",
-      "success": "Prefix changé en: `{NEW_PREFIX}`",
-      "noPrefixProvided": "Vous devez fournir un prefix"
+      "helpDescription": "Changer le préfixe du bot.\n\nUtilisation:```{PREFIX}prefix [new prefix]```",
+      "success": "Préfixe changé en: `{NEW_PREFIX}`",
+      "noPrefixProvided": "Vous devez fournir un préfixe"
     },
     "role": {
       "helpDescription": "Vous pouvez autoriser ou refuser des rôles pour utiliser les commandes administratives des bots.\nVous pouvez utiliser le mot-clé ``all`` pour autoriser ou refuser tous les rôles.\nPour voir quels rôles sont actuellement autorisés à être utilisés `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
@@ -75,7 +75,7 @@
       "helpDescription": "Affiche tous les paramètres du bot pour ce serveur.",
       "settingsMessage": {
         "headerText": "Paramètres pour le serveur:",
-        "prefixText": "Prefix:",
+        "prefixText": "Préfixe:",
         "langText": "Langue:",
         "premiumText": "Premium:",
         "premiumNoTierText": "Non",
