@@ -347,7 +347,7 @@ const setDigit: MemberCounterCommand = {
             .map((set) => set.trim())
             .map((set) => (set = set.split(/\s+/)))
             .map((set) => {
-              if (parseInt(set[0], 10) && set[1]) {
+              if (!isNaN(parseInt(set[0], 10)) && set[1]) {
                 return {
                   digit: parseInt(set[0], 10),
                   value: set[1],
