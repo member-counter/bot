@@ -192,7 +192,7 @@ class CountService {
           if (memberIsOffline && member.bot) counts['{offlinebots}']++;
           else if (memberIsOffline) counts['{offlineusers}']++;
 
-          if (!memberIsOffline && member.bot) counts['onlinebots']++;
+          if (!memberIsOffline && member.bot) counts['{onlinebots}']++;
           else if (!memberIsOffline) counts['{onlineusers}']++;
         }
 
