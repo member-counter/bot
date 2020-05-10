@@ -6,7 +6,7 @@ import gta5fiveM from './externalCounts/gta5-fivem';
 import gtasaMTA from './externalCounts/gtasa-mta';
 import gtasaMP from './externalCounts/gtasa-mp';
 import sourceGame from './externalCounts/source-game';
-import getEnv from './getEnv';
+import getEnv from '../utils/getEnv';
 
 const { PREMIUM_BOT, FOSS_MODE } = getEnv();
 

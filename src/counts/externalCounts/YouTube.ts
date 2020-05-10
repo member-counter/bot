@@ -1,4 +1,4 @@
-import getEnv from '../getEnv';
+import getEnv from '../../utils/getEnv';
 import fetch from 'node-fetch';
 const { YOUTUBE_API_KEY } = getEnv();
 
