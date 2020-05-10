@@ -1,5 +1,5 @@
 import { Guild, Collection } from 'eris';
-import CountService from './services/CountService';
+import CountService from '../services/CountService';
 
 const countersBeingUpdated: Set<string> = new Set();
 
