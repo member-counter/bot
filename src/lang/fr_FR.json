@@ -127,7 +127,7 @@
     "profile": {
       "helpDescription": "Montre les informations liées entre vous et ce bot",
       "badges": "Badges",
-      "serverUpgradesAvailable": "Améliorations restantes du serveur"
+      "serverUpgradesAvailable": "Améliorations restantes de serveur"
     },
     "counts": {
       "helpDescription": "Montre quelques comptes",
