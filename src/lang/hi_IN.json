@@ -1,12 +1,12 @@
 {
-  "langCode": "en_US",
-  "langName": "English (US)",
+  "langCode": "hi_IN",
+  "langName": "Hindi (India)",
   "commands": {
     "help": {
-      "helpDescription": "It's really necessary to explain the purpose of this command?",
+      "helpDescription": "क्या ये आदेश का उद्देश्य वर्णन करना आवश्यक है?",
       "embedReply": {
-        "title": "Command list | prefix: {PREFIX}",
-        "description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+        "title": "आदेश सूची | उपसर्ग : {PREFIX}",
+        "description": "[यह बॉट अपने सर्वर पे जोडे]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nअधिक जानकारी प्राप्त करने के लिए आदेश दे `{PREFIX}सहायता और आदेश का नाम: ```\n{PREFIX}help shortNumber```\n",
         "fields": [
           {
             "name": "**Counters**",
