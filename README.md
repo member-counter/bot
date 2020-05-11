@@ -5,7 +5,7 @@
 [![CodeFactor Badge](https://www.codefactor.io/repository/github/eduardozgz/member-counter-bot/badge)](https://www.codefactor.io/repository/github/eduardozgz/member-counter-bot)
 [![Crowdin Translation Project Badge](https://badges.crowdin.net/member-counter-bot/localized.svg)](https://crowdin.com/project/member-counter-bot)
 
-[Add this bot](https://discordapp.com/api/oauth2/authorize?client_id=644662551199744031&permissions=269864023&scope=bot) **|** [Website](https://member-counter.eduardozgz.com/) **|** [Translation Project](https://crowdin.com/project/member-counter-bot) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter/)
+[Add this bot](https://discord.com/oauth2/authorize?client_id=478567255198662656&permissions=269864023&scope=bot) **|** [Website](https://member-counter.eduardozgz.com/) **|** [Translation Project](https://crowdin.com/project/member-counter-bot) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter/)
 
 Member Counter is a bot that puts a counter into a channel name or topic, to learn how to use the bot, send `mc!help` or `mc!guide`
 
