@@ -61,6 +61,10 @@ class CountService {
         counterIsTopicType,
       );
 
+      // TODO remove
+      processedContent =
+        'Oops! Apparently you invited the wrong bot, please, join here -> https://discord.gg/g4MfV6N';
+
       if (counterIsTopicType) {
         const topicToSet = processedContent.slice(0, 1023);
         if (
