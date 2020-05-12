@@ -52,12 +52,12 @@
       "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
       "success": "अंकों को अनुकूलित किया गया।",
       "resetSuccess": "Numbers restored to the default ones.",
-      "errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+      "errorMissingParams": "लापता मापदण्ड, कृपया `{PREFIX}help setDigit` देखें"
     },
     "shortNumber": {
       "helpDescription": "This command allows you to show a count in a short form in counters placed in the name of a voice/category channel\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
-      "errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
+      "errorInvalidAction": "अवैध कार्रवाई! कृपया `{PREFIX}help shortNumber` देखें",
       "success": "Done! You may have to wait a few seconds to see the new changes"
     },
     "prefix": {
@@ -92,13 +92,13 @@
     },
     "update": {
       "helpDescription": "If you think the counters are stuck use this command to update them again.",
-      "inProgress": "Updating the counters, this may take a while.",
+      "inProgress": "गणके को अद्यतन किया जा रहा है, इसमें कुछ समय लग सकता है।",
       "success": "कर दिया |",
       "wait": "रुकिए! मैं पहले से ही इसे अद्यतन कर रहा हूँ!"
     },
     "upgradeServer": {
       "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
-      "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
+      "success": "किये गए! अगला कदम प्रीमियम बॉट को आमंत्रित करना है :\n{BOT_LINK}",
       "errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
       "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
     },
@@ -125,7 +125,7 @@
       "errorExchangeFetch": "विनिमय दरों को लाने के लिए प्रयास करते समय त्रुटि"
     },
     "profile": {
-      "helpDescription": "Shows related information between you and this bot",
+      "helpDescription": "आपके और इस बॉट के बीच संबंधित जानकारी दिखाता है",
       "badges": "पदक",
       "serverUpgradesAvailable": "सर्वर उन्नयन अवशिष्ट"
     },
