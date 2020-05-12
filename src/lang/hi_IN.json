@@ -46,7 +46,7 @@
       "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
       "success": "Done! You may have to wait a few seconds to see the new changes",
       "errorNotFound": "चैनल नहीं मिला",
-      "errorNoContent": "You must provide some content"
+      "errorNoContent": "आपको कुछ सामग्री प्रदान करनी होगी"
     },
     "setDigit": {
       "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
@@ -88,13 +88,13 @@
     },
     "resetSettings": {
       "helpDescription": "Restores the custom settings of this server to the default ones",
-      "done": "Restored to default settings"
+      "done": "समायोजन पुनः स्थापित किए गए"
     },
     "update": {
       "helpDescription": "If you think the counters are stuck use this command to update them again.",
       "inProgress": "Updating the counters, this may take a while.",
       "success": "कर दिया |",
-      "wait": "Wait! I'm already updating it!"
+      "wait": "रुकिए! मैं पहले से ही इसे अद्यतन कर रहा हूँ!"
     },
     "upgradeServer": {
       "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
@@ -110,8 +110,8 @@
     },
     "lang": {
       "helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-      "success": "Language changed successfully.",
-      "errorNotFound": "List of available languages:"
+      "success": "भाषा सफलतापूर्वक बदला गया।",
+      "errorNotFound": "उपलब्ध भाषाओं की सूची :"
     },
     "donate": {
       "helpDescription": "शीर्ष दान दिखाता है।",
