@@ -40,17 +40,17 @@
       "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
       "errorInvalidChannel": "You can only lock voice channels!",
       "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-      "errorNotFound": "Channel not found"
+      "errorNotFound": "चैनल नहीं मिला"
     },
     "editChannel": {
       "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
       "success": "Done! You may have to wait a few seconds to see the new changes",
-      "errorNotFound": "Channel not found",
+      "errorNotFound": "चैनल नहीं मिला",
       "errorNoContent": "You must provide some content"
     },
     "setDigit": {
       "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Digits customized.",
+      "success": "अंकों को अनुकूलित किया गया।",
       "resetSuccess": "Numbers restored to the default ones.",
       "errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
     },
@@ -130,7 +130,7 @@
       "serverUpgradesAvailable": "Server upgrades left"
     },
     "counts": {
-      "helpDescription": "Shows some counts",
+      "helpDescription": "कुछ मायने दिखाता है",
       "members": "सदस्य :",
       "onlineMembers": "ऑनलाइन सदस्य :",
       "offlineMembers": "ऑफलाइन सदस्य :",
