@@ -33,130 +33,130 @@
       "helpDescription": "आपको बॉट का उपयोग करने का एक सूचना दिखाता है",
       "explanation": "** अपने सर्वर में मेंबर काउंटर जोड़ने के लिए धन्यवाद! **\n__ ** काउंटर बनाएं / संपादित करें ** __\nउदाहरण के लिए हम `{members}`, का उपयोग करने वाले हैं, जो आपके डिसॉर्ड सर्वर में सदस्यों की कुल मात्रा को गिनता है, लेकिन आपको अगले पृष्ठों में अधिक गणको का पता चलेगा\nआप उस काउंटर को निम्न स्थानों में से एक में रख सकते हैं:\n\n- एक ** आवाज ** चैनल ** नाम ** में\n- एक ** श्रेणी में ** चैनल ** नाम ** में\n- एक ** पाठ ** चैनल ** विषय ** में\n- एक ** समाचार ** चैनल ** विषय ** में\n\nअब एक नया चैनल बनाएं, इसे संपादित करें, और नाम या विषय में `{members} लिखें, और 'परिवर्तन सहेजें' पर क्लिक करें\n\nआप एक नाम / विषय में कई काउंटर जोड़ सकते हैं, और उन्हें अपनी सामग्री के साथ जोड़ सकते हैं, यहाँ एक उदाहरण है:\n```\n{onlineMembers}/{members} ऑनलाइन सदस्य, {youtubeSubscribers:https: //www.youtube.com/user/enyay} सदस्य!\n{onlineMembersWithRole:614777997291028519,614816383053856769} प्रशासक और मध्यस्थ ऑनलाइन हैं!\n```\n\n> यदि आप किसी नाम / विषय का संपादन करते हुए वर्ण सीमा तक पहुँचते हैं, तो कृपया `{PREFIX}help editChannel` जांचे\n> आप वर्तमान काउंटर विन्यास को `{PREFIX}seeSettings` के साथ देख सकते हैं, यह पिछले वाले को अक्षम किए बिना अधिक काउंटर जोड़ने के लिए उपयोगी है\n\n__**एक काउंटर निकालें **__\nचैनल को संपादित करें और नाम / विषय में {disable} लिखें, सदस्य काउंटर इसे एक \\✅ की जगह परिवर्तित कर लेगा, इसका मतलब है कि आपने उस चैनल के सभी काउंटरों को सफलतापूर्वक हटा दिया है\n\nआप सीधे चैनल भी हटा सकते हैं",
       "counters": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an atherisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n- `{members}` Members in your server\n* `{onlineMembers}` Online members in your server\n* `{offlineMembers}` Offline members in your server\n* `{users}` Users in your server (excludes bot)\n* `{onlineUsers}` Online users in your server (excludes bot)\n* `{offlineUsers}` Offline users in your server (excludes bot)\n* `{bots}` Bots in your server (excludes normal users)\n* `{onlineBots}` Online bots in your server (excludes normal users)\n* `{offlineBots}` Offline bots in your server (excludes normal users)\n- `{roles}` Roles in your server\n- `{channels}` Channels in your server (excludes category channels)\n* `{membersWithRole:role1ID,role2ID}` This counts how much members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas `,`\n* `{onlineMembersWithRole:role1ID,role2ID}` Like `{membersWithRole:}` but only counts those members online\n* `{offlineMembersWithRole:role1ID,role2ID}` Like `{membersWithRole:}` but only counts those members offline\n* `{connectedMembers}` Total amount of connected members in the voice channels\n* `{connectedMembers:channel1ID,channel2ID}` Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas `,`\n- `{bannedMembers}` Amount of banned members in your server, the bot must have ban permissons to display this count\n- `{http:url}` This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with `the status code 200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`\n* `{youtubeSubscribers:channelUrl}` Displays the youtube channel subscribers, replace channelUrl with the desired channel url\n* `{youtubeViews:channelUrl}` Displays the youtube channel views\n* `{twitchFollowers:channelName}` Displays the twitch channel followers, replace channelName with the desired channel name\n* `{twitchViews:channelName}` Displays the twitch channel views\n\n__**The following counters are of online players in a game server**__\nRemember to replace `address` by the actual server address\n\n- `{minecraft:address}` Minecraft\n- `{source:address}` Any Source™ based game or a game that uses the A2S protocol for querying stats (Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)\n- `{gtasa-mta:address}` Grand Theft Auto: San Andreas (Multi Theft Auto)\n- `{gtasa-mp:address}` Grand Theft Auto: San Andreas (SA-MP)\n- `{gta5-fivem:address}` Grand Theft Auto 5 (FiveM)",
-      "pagesText": "Page {CURRENT_PAGE}/{TOTAL_PAGES}"
+      "pagesText": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}"
     },
     "lockChannel": {
       "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
-      "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
-      "errorInvalidChannel": "You can only lock voice channels!",
-      "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-      "errorNotFound": "Channel not found"
+      "success": "किये गए! अब, **गैर व्यवस्थापक उपयोगकर्ताओं के लिए**, चैनल को 🔒 के साथ प्रदर्शित किया जाएगा",
+      "errorInvalidChannel": "आप केवल वॉइस चैनल लॉक कर सकते हैं!",
+      "errorNoPerms": "अनुमतियों की कमी के कारण मैं चैनल `{CHANNEL}` को संपादित नहीं कर सकता",
+      "errorNotFound": "चैनल नहीं मिला"
     },
     "editChannel": {
       "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
-      "success": "Done! You may have to wait a few seconds to see the new changes",
-      "errorNotFound": "Channel not found",
-      "errorNoContent": "You must provide some content"
+      "success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है",
+      "errorNotFound": "चैनल नहीं मिला",
+      "errorNoContent": "आपको कुछ सामग्री प्रदान करनी होगी"
     },
     "setDigit": {
       "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-      "success": "Digits customized.",
+      "success": "अंकों को अनुकूलित किया गया।",
       "resetSuccess": "Numbers restored to the default ones.",
-      "errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+      "errorMissingParams": "लापता मापदण्ड, कृपया `{PREFIX}help setDigit` देखें"
     },
     "shortNumber": {
       "helpDescription": "This command allows you to show a count in a short form in counters placed in the name of a voice/category channel\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
-      "errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
-      "success": "Done! You may have to wait a few seconds to see the new changes"
+      "errorInvalidAction": "अवैध कार्रवाई! कृपया `{PREFIX}help shortNumber` देखें",
+      "success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है"
     },
     "prefix": {
-      "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
-      "success": "Prefix changed to: `{NEW_PREFIX}`",
-      "noPrefixProvided": "You must provide a prefix"
+      "helpDescription": "बॉट के उपसर्ग को बदलता है।\n\nउपयोग:```{PREFIX}prefix [new prefix]```",
+      "success": "उपसर्ग बदल गया: `{NEW_PREFIX}`",
+      "noPrefixProvided": "आपको एक उपसर्ग प्रदान करना होगा"
     },
     "role": {
       "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
       "rolesUpdated": "भूमिकाएँ अद्यतन किए गए है।",
-      "errorNoRolesToUpdate": "You must mention at least 1 role",
-      "invalidParams": "Invalid parameters, see `{PREFIX}help role`"
+      "errorNoRolesToUpdate": "आपको कम से कम 1 भूमिका का उल्लेख करना होगा",
+      "invalidParams": "अमान्य मापदण्ड, `{PREFIX}help role`"
     },
     "seeSettings": {
-      "helpDescription": "Shows all bot settings for this server.",
+      "helpDescription": "इस सर्वर के लिए सभी बॉट समायोजन दिखाता है।",
       "settingsMessage": {
-        "headerText": "Settings for guild:",
+        "headerText": "संघ के लिए समायोजन :",
         "prefixText": "उपसर्ग :",
         "langText": "भाषाएं :",
         "premiumText": "प्रीमियम :",
         "premiumNoTierText": "नहीं",
         "premiumConfirmedText": "हाँ",
-        "allowedRolesText": "Allowed roles to use administrative commands:",
+        "allowedRolesText": "प्रशासनिक आदेशों का उपयोग करने के लिए अनुमत भूमिकाएँ :",
         "countersText": "गणके :",
         "customNumbersText": "वैयक्तीकृत संख्या :",
-        "warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
+        "warningNoPermsText": "\\⚠️ = अनुमतियों की कमी के कारण बॉट इस चैनल को अद्यतन करना जारी नहीं रख सकता है"
       }
     },
     "resetSettings": {
       "helpDescription": "Restores the custom settings of this server to the default ones",
-      "done": "Restored to default settings"
+      "done": "समायोजन पुनः स्थापित किए गए"
     },
     "update": {
-      "helpDescription": "If you think the counters are stuck use this command to update them again.",
-      "inProgress": "Updating the counters, this may take a while.",
+      "helpDescription": "यदि आपको लगता है कि गणक अटक गए हैं तो उन्हें फिर से अपडेट करने के लिए इस आदेश का उपयोग करें।",
+      "inProgress": "गणके को अद्यतन किया जा रहा है, इसमें कुछ समय लग सकता है।",
       "success": "कर दिया |",
-      "wait": "Wait! I'm already updating it!"
+      "wait": "रुकिए! मैं पहले से ही इसे अद्यतन कर रहा हूँ!"
     },
     "upgradeServer": {
-      "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
-      "success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-      "errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
+      "helpDescription": "यह आदेश आपको Member Counter Premium को आमंत्रित करने की अनुमति देता है, इस आदेश का उपयोग करने के लिए आपके पास एक प्रीमियम खाता होना चाहिए, जिसे आप कम से कम 5 USD दान करके प्राप्त कर सकते हैं : `{PREFIX}donate`",
+      "success": "किये गए! अगला कदम प्रीमियम बॉट को आमंत्रित करना है :\n{BOT_LINK}",
+      "errorCannotUpgrade": "आप सर्वर उन्नयन नहीं कर सकते, क्योंकि यह पहले से ही प्रीमियम है।",
       "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
     },
     "info": {
-      "helpDescription": "List of useful links",
+      "helpDescription": "उपयोगी श्रंखलो की सूची",
       "embedReply": {
         "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
       }
     },
     "lang": {
-      "helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-      "success": "Language changed successfully.",
-      "errorNotFound": "List of available languages:"
+      "helpDescription": "इस सर्वर के लिए बॉट की भाषा में परिवर्तन करने के लिए आपके पास प्रशासक अनुमति होनी चाहिए।",
+      "success": "भाषा सफलतापूर्वक बदला गया।",
+      "errorNotFound": "उपलब्ध भाषाओं की सूची :"
     },
     "donate": {
-      "helpDescription": "Shows the top donations.",
+      "helpDescription": "शीर्ष दान दिखाता है।",
       "embedReply": {
-        "title": "Enjoying my bot? Donate me! (Click here)",
+        "title": "मेरे बॉट का आनंद ले रहे हैं? मुझे दान करें! (यहाँ क्लिक करें)",
         "fields": []
       },
       "misc": {
         "emptyNote": "खाली लेख"
       },
-      "errorExchangeFetch": "Error while trying to fetch exchange rates"
+      "errorExchangeFetch": "विनिमय दरों को लाने के लिए प्रयास करते समय त्रुटि"
     },
     "profile": {
-      "helpDescription": "Shows related information between you and this bot",
+      "helpDescription": "आपके और इस बॉट के बीच संबंधित जानकारी दिखाता है",
       "badges": "पदक",
-      "serverUpgradesAvailable": "Server upgrades left"
+      "serverUpgradesAvailable": "सर्वर उन्नयन अवशिष्ट"
     },
     "counts": {
-      "helpDescription": "Shows some counts",
+      "helpDescription": "कुछ मायने दिखाता है",
       "members": "सदस्य :",
       "onlineMembers": "ऑनलाइन सदस्य :",
       "offlineMembers": "ऑफलाइन सदस्य :",
       "bots": "बॉट:",
-      "connectedUsers": "Connected users:",
+      "connectedUsers": "संयुक्त सदस्य :",
       "channels": "चैनले :",
       "roles": "भूमिकाएँ :"
     }
   },
   "functions": {
     "commandHandler": {
-      "noDm": "You can't run this command on a DM channel"
+      "noDm": "आप इस कमांड को डायरेक्ट मैसेज चैनल पर नहीं चला सकते हैं"
     },
     "getCounts": {
       "onlyPremium": "केवल प्रीमियम",
       "unknownCounter": "अपरिचित गणक",
-      "noBanPerms": "I need ban permissions to show this",
-      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
+      "noBanPerms": "मुझे यह दिखाने के लिए प्रतिबंध अनुमति की आवश्यकता है",
+      "invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें"
     }
   },
   "common": {
     "error": "त्रुटि",
-    "errorDb": "Database error, try again later",
+    "errorDb": "डेटाबेस त्रुटि, बाद में पुन: प्रयास करें",
     "errorDiscordAPI": "Discord API",
-    "errorUnknown": "Something went wrong, try again later.",
-    "errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
-    "noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+    "errorUnknown": "कुछ गलत हुआ, बाद में फिर से प्रयास करें।",
+    "errorNoAdmin": "इस सर्वर में केवल प्रशासक अनुमति वाले सदस्य ही इस आदेश का उपयोग कर सकते हैं।",
+    "noTopicCounterEnabled": "लगता है कि आपने अभी तक किसी विषय गणक को सक्षम नहीं किया है, कृपया `{PREFIX}help topicCounter` देखें"
   }
 }
