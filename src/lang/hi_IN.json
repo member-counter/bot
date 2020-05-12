@@ -82,7 +82,7 @@
         "premiumConfirmedText": "हाँ",
         "allowedRolesText": "Allowed roles to use administrative commands:",
         "countersText": "गणके :",
-        "customNumbersText": "Custom numbers:",
+        "customNumbersText": "वैयक्तीकृत संख्या :",
         "warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions"
       }
     },
@@ -132,7 +132,7 @@
     "counts": {
       "helpDescription": "Shows some counts",
       "members": "सदस्य :",
-      "onlineMembers": "Online members:",
+      "onlineMembers": "ऑनलाइन सदस्य :",
       "offlineMembers": "Offline members:",
       "bots": "बॉट:",
       "connectedUsers": "Connected users:",
@@ -146,7 +146,7 @@
     },
     "getCounts": {
       "onlyPremium": "केवल प्रीमियम",
-      "unknownCounter": "Unknown counter",
+      "unknownCounter": "अपरिचित गणक",
       "noBanPerms": "I need ban permissions to show this",
       "invalidChannelLength": "Invalid channel name length, please setup the counter again"
     }
