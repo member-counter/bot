@@ -39,12 +39,12 @@
       "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
       "success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
       "errorInvalidChannel": "आप केवल वॉइस चैनल लॉक कर सकते हैं!",
-      "errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
+      "errorNoPerms": "अनुमतियों की कमी के कारण मैं चैनल `{CHANNEL}` को संपादित नहीं कर सकता",
       "errorNotFound": "चैनल नहीं मिला"
     },
     "editChannel": {
       "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
-      "success": "Done! You may have to wait a few seconds to see the new changes",
+      "success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है",
       "errorNotFound": "चैनल नहीं मिला",
       "errorNoContent": "आपको कुछ सामग्री प्रदान करनी होगी"
     },
@@ -58,10 +58,10 @@
       "helpDescription": "This command allows you to show a count in a short form in counters placed in the name of a voice/category channel\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "अवैध कार्रवाई! कृपया `{PREFIX}help shortNumber` देखें",
-      "success": "Done! You may have to wait a few seconds to see the new changes"
+      "success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है"
     },
     "prefix": {
-      "helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
+      "helpDescription": "बॉट के उपसर्ग को बदलता है।\n\nउपयोग:```{PREFIX}prefix [new prefix]```",
       "success": "उपसर्ग बदल गया: `{NEW_PREFIX}`",
       "noPrefixProvided": "आपको एक उपसर्ग प्रदान करना होगा"
     },
@@ -99,7 +99,7 @@
     "upgradeServer": {
       "helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
       "success": "किये गए! अगला कदम प्रीमियम बॉट को आमंत्रित करना है :\n{BOT_LINK}",
-      "errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
+      "errorCannotUpgrade": "आप सर्वर उन्नयन नहीं कर सकते, क्योंकि यह पहले से ही प्रीमियम है।",
       "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
     },
     "info": {
@@ -148,7 +148,7 @@
       "onlyPremium": "केवल प्रीमियम",
       "unknownCounter": "अपरिचित गणक",
       "noBanPerms": "मुझे यह दिखाने के लिए प्रतिबंध अनुमति की आवश्यकता है",
-      "invalidChannelLength": "Invalid channel name length, please setup the counter again"
+      "invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें"
     }
   },
   "common": {
