@@ -1,5 +1,5 @@
 import { AnyChannel, GuildChannel } from 'eris';
-import updateCounterContent from '../utils/updateCounterContent';
+import updateCounterContent from '../counts/updateCounterContent';
 
 const channelCreate = (channel: AnyChannel) => {
   if (channel instanceof GuildChannel) {

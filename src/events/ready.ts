@@ -2,7 +2,7 @@ import getEnv from '../utils/getEnv';
 import postBotStats from '../others/postBotStats';
 import checkPremiumGuilds from '../others/checkPremiumGuilds';
 import Eris from 'eris';
-import updateCounters from '../updateCounters';
+import updateCounters from '../counts/updateCounters';
 
 const { DISCORD_PREFIX, UPDATE_COUNTER_INTERVAL } = getEnv();
 
