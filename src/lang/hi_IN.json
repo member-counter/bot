@@ -66,7 +66,7 @@
       "noPrefixProvided": "आपको एक उपसर्ग प्रदान करना होगा"
     },
     "role": {
-      "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "helpDescription": "आप बॉट प्रशासनिक आदेशों का उपयोग करने के लिए भूमिकाओं की अनुमति या खंडन कर सकते हैं।\nआप सभी भूमिकाओं को अनुमति देने या अस्वीकार करने के लिए ``all`` सूचक का उपयोग कर सकते हैं।\nयह देखने के लिए कि वर्तमान में किन भूमिकाओं के उपयोग की अनुमति है, इस्तेमाल करे `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
       "rolesUpdated": "भूमिकाएँ अद्यतन किए गए है।",
       "errorNoRolesToUpdate": "आपको कम से कम 1 भूमिका का उल्लेख करना होगा",
       "invalidParams": "अमान्य मापदण्ड, `{PREFIX}help role`"
