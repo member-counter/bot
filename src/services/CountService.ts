@@ -10,7 +10,7 @@ import GuildService from './GuildService';
 import { loadLanguagePack } from '../utils/languagePack';
 import getEnv from '../utils/getEnv';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
-import ExternalCounts from '../utils/externalCounts';
+import ExternalCounts from '../counts/externalCounts';
 import shortNumber from '../utils/shortNumbers';
 import stringReplaceAsync from '../utils/stringReplaceAsync';
 
@@ -144,6 +144,7 @@ class CountService {
 
   /** Return: -1 = Premium, -2 = Error, -3 = Unknown counter */
   private async fetchCount(type: string): Promise<void> {
+    // This part is for guild related counts, below at the end is the part that fetches couns from external resources
     const typeL = type.toLowerCase();
 
     switch (typeL) {
@@ -191,7 +192,7 @@ class CountService {
           if (memberIsOffline && member.bot) counts['{offlinebots}']++;
           else if (memberIsOffline) counts['{offlineusers}']++;
 
-          if (!memberIsOffline && member.bot) counts['onlinebots']++;
+          if (!memberIsOffline && member.bot) counts['{onlinebots}']++;
           else if (!memberIsOffline) counts['{onlineusers}']++;
         }
 
@@ -304,6 +305,7 @@ class CountService {
             offlineMembersWithRole,
           );
         } else {
+          // if the counter is not a guild-related one, check if it's a external one
           try {
             this.countCache.set(typeL, await ExternalCounts.get(type));
           } catch (error) {

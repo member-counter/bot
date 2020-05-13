@@ -1,5 +1,5 @@
 import twitch from 'twitch';
-import getEnv from '../getEnv';
+import getEnv from '../../utils/getEnv';
 
 const { TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET } = getEnv();
 
