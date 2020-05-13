@@ -36,26 +36,26 @@
       "pagesText": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}"
     },
     "lockChannel": {
-      "helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
+      "helpDescription": "आप वाणी चैनलों में स्पीकर (🔊) के बजाय लॉकपैड (🔒) दिखाने के लिए इस आदेश का उपयोग कर सकते हैं\n\n**प्रयोग**```{PREFIX}lockChannel [channel id]```\n **उदाहरण**```{PREFIX}lockChannel 700336568099143710```",
       "success": "किये गए! अब, **गैर व्यवस्थापक उपयोगकर्ताओं के लिए**, चैनल को 🔒 के साथ प्रदर्शित किया जाएगा",
       "errorInvalidChannel": "आप केवल वॉइस चैनल लॉक कर सकते हैं!",
       "errorNoPerms": "अनुमतियों की कमी के कारण मैं चैनल `{CHANNEL}` को संपादित नहीं कर सकता",
       "errorNotFound": "चैनल नहीं मिला"
     },
     "editChannel": {
-      "helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
+      "helpDescription": "यदि आप एक काउंटर सेट करने की कोशिश कर रहे हैं, लेकिन डिस्कोर्ड आपको बताता है कि आप नाम / विषय की लंबाई सीमा तक पहुंच गए हैं, तो आप इस सीमा का उपयोग उस सीमा को \"अनदेखा\" करने के लिए कर सकते हैं\n**प्रयोग**```{PREFIX}editChannel [channelId] [content]```\n**उदाहरण**```{PREFIX}editChannel 701396983843127366 {members} मे से {onlinemembers} ऑनलाइन```",
       "success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है",
       "errorNotFound": "चैनल नहीं मिला",
       "errorNoContent": "आपको कुछ सामग्री प्रदान करनी होगी"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "helpDescription": "उन संख्याओं को अनुकूलित करता है जिन्हें प्रदर्शित किया जाएगा, संख्या तर्क एक सामान्य संख्या होनी चाहिए, दूसरा तर्क कुछ भी हो सकता है, जैसे इमोजी या सामान्य संख्या, आप कई बार तर्कों को अल्पविराम (`,`) के साथ अलग कर सकते हैं।\nयदि पहला तर्क \"reset\" शब्द है, तो संख्या डिफ़ॉल्ट बहाल हो जाएगी।\n\nप्रयोग : ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nउदाहरण : ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
       "success": "अंकों को अनुकूलित किया गया।",
       "resetSuccess": "Numbers restored to the default ones.",
       "errorMissingParams": "लापता मापदण्ड, कृपया `{PREFIX}help setDigit` देखें"
     },
     "shortNumber": {
-      "helpDescription": "This command allows you to show a count in a short form in counters placed in the name of a voice/category channel\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpDescription": "यह कमांड आपको आवाज़ / श्रेणी चैनल के नाम पर रखे गए काउंटरों में एक संक्षिप्त रूप में एक संख्या दिखाने की अनुमति देता है\n\n**प्रयोग**\n```{PREFIX}shortNumber [enable/disable]```\n**उदाहरण**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "अवैध कार्रवाई! कृपया `{PREFIX}help shortNumber` देखें",
       "success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है"
@@ -66,7 +66,7 @@
       "noPrefixProvided": "आपको एक उपसर्ग प्रदान करना होगा"
     },
     "role": {
-      "helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "helpDescription": "आप बॉट प्रशासनिक आदेशों का उपयोग करने के लिए भूमिकाओं की अनुमति या खंडन कर सकते हैं।\nआप सभी भूमिकाओं को अनुमति देने या अस्वीकार करने के लिए ``all`` सूचक का उपयोग कर सकते हैं।\nयह देखने के लिए कि वर्तमान में किन भूमिकाओं के उपयोग की अनुमति है, इस्तेमाल करे `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
       "rolesUpdated": "भूमिकाएँ अद्यतन किए गए है।",
       "errorNoRolesToUpdate": "आपको कम से कम 1 भूमिका का उल्लेख करना होगा",
       "invalidParams": "अमान्य मापदण्ड, `{PREFIX}help role`"
@@ -100,12 +100,12 @@
       "helpDescription": "यह आदेश आपको Member Counter Premium को आमंत्रित करने की अनुमति देता है, इस आदेश का उपयोग करने के लिए आपके पास एक प्रीमियम खाता होना चाहिए, जिसे आप कम से कम 5 USD दान करके प्राप्त कर सकते हैं : `{PREFIX}donate`",
       "success": "किये गए! अगला कदम प्रीमियम बॉट को आमंत्रित करना है :\n{BOT_LINK}",
       "errorCannotUpgrade": "आप सर्वर उन्नयन नहीं कर सकते, क्योंकि यह पहले से ही प्रीमियम है।",
-      "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+      "noServerUpgradesAvailable": "आप और सर्वर उन्नयन नहीं कर सकते हैं क्योंकि आपके पास इससे अधिक सर्वर उन्नयन उपलब्ध नहीं है, आप यह जांच सकते हैं कि आपके पास कितने सर्वर उन्नयन उपलब्ध है `{PREFIX}profile` या `{PREFIX}donate` के साथ कितने सर्वर उन्नयन प्राप्त कर सकते हैं"
     },
     "info": {
       "helpDescription": "उपयोगी श्रंखलो की सूची",
       "embedReply": {
-        "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+        "description": "[मुझे अपने सर्वर में जोड़ें]({BOT_INVITE_URL})\n[सहायक सर्वर]({BOT_SERVER_URL})\n[गिटहब रिपोजिटरी](https://github.com/eduardozgz/member-counter-bot)\n[दान]({DONATION_URL})"
       }
     },
     "lang": {
