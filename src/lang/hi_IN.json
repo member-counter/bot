@@ -43,13 +43,13 @@
       "errorNotFound": "चैनल नहीं मिला"
     },
     "editChannel": {
-      "helpDescription": "यदि आप एक काउंटर सेट करने की कोशिश कर रहे हैं, लेकिन डिस्कोर्ड आपको बताता है कि आप नाम / विषय की लंबाई सीमा तक पहुंच गए हैं, तो आप इस सीमा का उपयोग उस सीमा को \"अनदेखा\" करने के लिए कर सकते हैं\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
+      "helpDescription": "यदि आप एक काउंटर सेट करने की कोशिश कर रहे हैं, लेकिन डिस्कोर्ड आपको बताता है कि आप नाम / विषय की लंबाई सीमा तक पहुंच गए हैं, तो आप इस सीमा का उपयोग उस सीमा को \"अनदेखा\" करने के लिए कर सकते हैं\n**प्रयोग**```{PREFIX}editChannel [channelId] [content]```\n**उदाहरण**```{PREFIX}editChannel 701396983843127366 {members} मे से {onlinemembers} ऑनलाइन```",
       "success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है",
       "errorNotFound": "चैनल नहीं मिला",
       "errorNoContent": "आपको कुछ सामग्री प्रदान करनी होगी"
     },
     "setDigit": {
-      "helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "helpDescription": "उन संख्याओं को अनुकूलित करता है जिन्हें प्रदर्शित किया जाएगा, संख्या तर्क एक सामान्य संख्या होनी चाहिए, दूसरा तर्क कुछ भी हो सकता है, जैसे इमोजी या सामान्य संख्या, आप कई बार तर्कों को अल्पविराम (`,`) के साथ अलग कर सकते हैं।\nयदि पहला तर्क \"reset\" शब्द है, तो संख्या डिफ़ॉल्ट बहाल हो जाएगी।\n\nप्रयोग : ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nउदाहरण : ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
       "success": "अंकों को अनुकूलित किया गया।",
       "resetSuccess": "Numbers restored to the default ones.",
       "errorMissingParams": "लापता मापदण्ड, कृपया `{PREFIX}help setDigit` देखें"
