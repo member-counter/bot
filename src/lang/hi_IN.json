@@ -100,12 +100,12 @@
       "helpDescription": "यह आदेश आपको Member Counter Premium को आमंत्रित करने की अनुमति देता है, इस आदेश का उपयोग करने के लिए आपके पास एक प्रीमियम खाता होना चाहिए, जिसे आप कम से कम 5 USD दान करके प्राप्त कर सकते हैं : `{PREFIX}donate`",
       "success": "किये गए! अगला कदम प्रीमियम बॉट को आमंत्रित करना है :\n{BOT_LINK}",
       "errorCannotUpgrade": "आप सर्वर उन्नयन नहीं कर सकते, क्योंकि यह पहले से ही प्रीमियम है।",
-      "noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+      "noServerUpgradesAvailable": "आप और सर्वर उन्नयन नहीं कर सकते हैं क्योंकि आपके पास इससे अधिक सर्वर उन्नयन उपलब्ध नहीं है, आप यह जांच सकते हैं कि आपके पास कितने सर्वर उन्नयन उपलब्ध है `{PREFIX}profile` या `{PREFIX}donate` के साथ कितने सर्वर उन्नयन प्राप्त कर सकते हैं"
     },
     "info": {
       "helpDescription": "उपयोगी श्रंखलो की सूची",
       "embedReply": {
-        "description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+        "description": "[मुझे अपने सर्वर में जोड़ें]({BOT_INVITE_URL})\n[सहायक सर्वर]({BOT_SERVER_URL})\n[गिटहब रिपोजिटरी](https://github.com/eduardozgz/member-counter-bot)\n[दान]({DONATION_URL})"
       }
     },
     "lang": {
