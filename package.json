@@ -1,46 +1,46 @@
 {
-  "name": "member-counter-bot",
-  "version": "0.11.1",
-  "description": "",
-  "main": "dist/src/index.js",
-  "scripts": {
-    "start": "node .",
-    "build": "tsc",
-    "dev": "nodemon -e ts --exec \"(npm run build || exit 1) && npm run start --inspect\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eduardozgz/member-counter-bot.git"
-  },
-  "author": "eduardozgz#5695",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/eduardozgz/member-counter-bot/issues"
-  },
-  "homepage": "https://member-counter.eduardozgz.com",
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "dotenv-parse-variables": "^0.2.3",
-    "lodash.clonedeep": "^4.5.0",
-    "mongoose": "^5.9.11",
-    "eris": "^0.12.0",
-    "erlpack": "^0.1.3",
-    "bufferutil": "^4.0.1",
-    "zlib-sync": "^0.1.6",
-    "node-fetch": "^2.6.0",
-    "abort-controller": "^3.0.0",
-    "twitch": "^4.0.9",
-    "source-server-query": "0.0.1",
-    "mta-query": "^0.1.0",
-    "samp-query": "^0.1.5"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.4",
-    "typescript": "^3.8.3",
-    "@types/mongoose": "^5.7.10",
-    "@types/node": "^13.11.1",
-    "tslint": "^6.1.1",
-    "typescript-tslint-plugin": "^0.5.5",
-    "ts-node": "^8.8.2"
-  }
+	"name": "member-counter-bot",
+	"version": "0.11.2",
+	"description": "",
+	"main": "dist/src/index.js",
+	"scripts": {
+		"start": "node .",
+		"build": "tsc",
+		"dev": "nodemon -e ts --exec \"(npm run build || exit 1) && npm run start --inspect\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/eduardozgz/member-counter-bot.git"
+	},
+	"author": "eduardozgz#5695",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/eduardozgz/member-counter-bot/issues"
+	},
+	"homepage": "https://member-counter.eduardozgz.com",
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"dotenv-parse-variables": "^0.2.3",
+		"lodash.clonedeep": "^4.5.0",
+		"mongoose": "^5.9.11",
+		"eris": "^0.12.0",
+		"erlpack": "^0.1.3",
+		"bufferutil": "^4.0.1",
+		"zlib-sync": "^0.1.6",
+		"node-fetch": "^2.6.0",
+		"abort-controller": "^3.0.0",
+		"twitch": "^4.0.9",
+		"source-server-query": "0.0.1",
+		"mta-query": "^0.1.0",
+		"samp-query": "^0.1.5"
+	},
+	"devDependencies": {
+		"nodemon": "^1.19.4",
+		"typescript": "^3.8.3",
+		"@types/mongoose": "^5.7.10",
+		"@types/node": "^13.11.1",
+		"tslint": "^6.1.1",
+		"typescript-tslint-plugin": "^0.5.5",
+		"ts-node": "^8.8.2"
+	}
 }
