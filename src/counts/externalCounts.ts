@@ -1,6 +1,7 @@
 import http from './externalCounts/http';
 import YouTube from './externalCounts/YouTube';
 import Twitch from './externalCounts/Twitch';
+import Mixer from './externalCounts/Mixer';
 import minecraft from './externalCounts/minecraft';
 import gta5fiveM from './externalCounts/gta5-fivem';
 import gtasaMTA from './externalCounts/gtasa-mta';
@@ -14,6 +15,7 @@ const fetch = {
   http,
   YouTube,
   Twitch,
+  Mixer,
   minecraft,
   gta5fiveM,
   gtasaMTA,
@@ -80,6 +82,24 @@ const get = async (counter: string): Promise<number> => {
         }
       }
 
+      case 'mixerfollowers': {
+        if (PREMIUM_BOT || FOSS_MODE) {
+          const { followers } = await fetch.Mixer.getChannelStats(
+            resource,
+          );
+
+          expiresAt = Date.now() + 60 * 60 * 1000;
+          cache.set(`mixerfollowers:${resource}`, {
+            count: followers,
+            expiresAt,
+          });
+
+          return cache.get(`${type}:${resource}`).count;
+        } else {
+          return -1;
+        }
+      }
+
       case 'https':
       case 'http':
         count = await fetch.http(resource);
@@ -115,7 +135,7 @@ const get = async (counter: string): Promise<number> => {
         break;
     }
 
-    // Use the chached count if something went wrong
+    // Use the cached count if something went wrong
     if (count === -2 && cache.has(`${type}:${resource}`)) {
       count = cache.get(`${type}:${resource}`).count;
     }
