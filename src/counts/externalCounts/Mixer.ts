@@ -6,10 +6,10 @@ interface stats {
   followers: number;
 }
 
-const getChannelStats = async (username: string): Promise<stats> => {
+const getChannelStats = async (channelName: string): Promise<stats> => {
 
   const response = await fetch(
-    `https://mixer.com/api/v1/channels/${username}`
+    `https://mixer.com/api/v1/channels/${channelName}`
   ).then((response) => response.json());
 
   const followers = response?.numFollowers;
