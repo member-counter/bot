@@ -9,15 +9,15 @@ interface stats {
 
 const getChannelStats = async (channelUrl: string): Promise<stats> => {
   let channel = channelUrl.replace(
-    /^((http|https):\/\/|)(www\.|)youtube\.com\/(channel\/|user\/)/,
+    /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/(channel\/|user\/)/,
     '',
   );
   let searchChannelBy = '';
 
-  if (/^((http|https):\/\/|)(www\.|)youtube\.com\/user\//.test(channelUrl)) {
+  if (/^((http|https):\/\/|)(www\.|m\.)youtube\.com\/user\//.test(channelUrl)) {
     searchChannelBy = 'forUsername';
   } else if (
-    /^((http|https):\/\/|)(www\.|)youtube\.com\/channel\//.test(channelUrl)
+    /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/channel\//.test(channelUrl)
   ) {
     searchChannelBy = 'id';
   } else {
