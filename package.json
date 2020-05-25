@@ -2,11 +2,11 @@
 	"name": "member-counter-bot",
 	"version": "0.11.2",
 	"description": "",
-	"main": "dist/src/index.js",
+	"main": "./src/index.ts",
 	"scripts": {
-		"start": "node .",
+		"start": "node ./dist/src/index.js",
 		"build": "tsc",
-		"dev": "nodemon -e ts --exec \"(npm run build || exit 1) && npm run start --inspect\""
+		"dev": "nodemon -e ts --exec \"ts-node .\""
 	},
 	"repository": {
 		"type": "git",
