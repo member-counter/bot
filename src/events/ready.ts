@@ -53,7 +53,9 @@ const ready = (client: Eris.Client) => {
 		if (FOSS_MODE || PREMIUM_BOT) return;
 		client.users.clear();
 		client.guilds.forEach((guild) => {
-			guild.members.clear();
+      const botMember = guild.members.get(client.user.id);
+      guild.members.clear();
+      guild.members.add(client.user.id, botMember);
 		});
 	}, 30 * 1000);
 };
