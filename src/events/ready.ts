@@ -4,36 +4,58 @@ import checkPremiumGuilds from '../others/checkPremiumGuilds';
 import Eris from 'eris';
 import updateCounters from '../counts/updateCounters';
 
-const { DISCORD_PREFIX, UPDATE_COUNTER_INTERVAL } = getEnv();
+const {
+	DISCORD_PREFIX,
+	UPDATE_COUNTER_INTERVAL,
+	FOSS_MODE,
+	PREMIUM_BOT,
+} = getEnv();
 
 const ready = (client: Eris.Client) => {
-  const { users, guilds } = client;
+	const { users, guilds } = client;
 
-  const setStatus = () => {
-    client.editStatus('online', {
-      name: `${DISCORD_PREFIX}help`,
-      type: 3,
-    });
-  };
+	const setStatus = () => {
+		client.editStatus('online', {
+			name: `${DISCORD_PREFIX}help`,
+			type: 3,
+		});
+	};
 
-  console.log(`Eris ready!`);
+	console.log(`Eris ready!`);
 
-  console.log(`Serving to ${users.size} users in ${client.guilds.size} guilds`);
-  setStatus();
-  checkPremiumGuilds(guilds);
+	console.log(
+		`Serving to ${client.guilds.reduce(
+			(acc, curr) => acc + curr.memberCount,
+			0,
+		)} users in ${client.guilds.size} guilds`,
+	);
 
-  setInterval(() => {
-    console.log(
-      `Serving to ${users.size} users in ${client.guilds.size} guilds`,
-    );
-    setStatus();
-    postBotStats(guilds.size);
-    checkPremiumGuilds(guilds);
-  }, 1 * 60 * 60 * 1000);
+	setStatus();
+	checkPremiumGuilds(guilds);
 
-  setInterval(() => {
-    updateCounters(client.guilds);
-  }, UPDATE_COUNTER_INTERVAL * 1000);
+	setInterval(() => {
+		console.log(
+			`Serving to ${client.guilds.reduce(
+				(acc, curr) => acc + curr.memberCount,
+				0,
+			)} users in ${client.guilds.size} guilds`,
+		);
+		setStatus();
+		postBotStats(guilds.size);
+		checkPremiumGuilds(guilds);
+	}, 1 * 60 * 60 * 1000);
+
+	setInterval(() => {
+		updateCounters(client.guilds);
+	}, UPDATE_COUNTER_INTERVAL * 1000);
+
+	setInterval(() => {
+		if (FOSS_MODE || PREMIUM_BOT) return;
+		client.users.clear();
+		client.guilds.forEach((guild) => {
+			guild.members.clear();
+		});
+	}, 30 * 1000);
 };
 
 export default ready;
