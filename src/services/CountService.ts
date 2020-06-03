@@ -115,7 +115,6 @@ class CountService {
       await this.fetchCount(type);
     }
 
-    // TODO add translations
     if (this.countCache.get(typeL) === -1)
       return this.languagePack.functions.getCounts.onlyPremium;
     if (this.countCache.get(typeL) === -2)
