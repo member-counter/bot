@@ -50,10 +50,15 @@ const ready = (client: Eris.Client) => {
 	}, UPDATE_COUNTER_INTERVAL * 1000);
 
 	setInterval(() => {
-		if (FOSS_MODE || PREMIUM_BOT) return;
-		client.users.clear();
+    if (FOSS_MODE || PREMIUM_BOT) return;
+    const botUser = client.users.get(client.user.id);
+    client.users.clear();
+    client.users.add(botUser);
+    
 		client.guilds.forEach((guild) => {
-			guild.members.clear();
+      const botMember = guild.members.get(client.user.id);
+      guild.members.clear();
+      guild.members.add(botMember);
 		});
 	}, 30 * 1000);
 };
