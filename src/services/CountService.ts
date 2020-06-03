@@ -312,13 +312,13 @@ class CountService {
           const format = args[2] || '%d:%h:%m';
           const date = parseInt(args[1], 10) * 1000;
           let timeLeft = new Date(date - Date.now());
-          if (date - Date.now() < 0) new Date(0);
+          if (date - Date.now() < 0) timeLeft = new Date(0);
 
           const formated = format
             .replace(/%d/gi, `${Math.floor((timeLeft.getTime() / 1000) / 60 / 60 / 24)}`)
-            .replace(/%h/gi, `${timeLeft.getHours()}`)
-            .replace(/%m/gi, `${timeLeft.getMinutes()}`)
-            .replace(/%s/gi, `${timeLeft.getSeconds()}`);
+            .replace(/%h/gi, `${timeLeft.getUTCHours()}`)
+            .replace(/%m/gi, `${timeLeft.getUTCMinutes()}`)
+            .replace(/%s/gi, `${timeLeft.getUTCSeconds()}`);
 
           this.countCache.set(typeLC, formated);
         } else {
