@@ -20,7 +20,6 @@ import getEnv from '../utils/getEnv';
 
 const { DISCORD_PREFIX, PREMIUM_BOT_INVITE } = getEnv();
 
-// TODO
 const seeSettings: MemberCounterCommand = {
   aliases: ['seeSettings'],
   denyDm: true,

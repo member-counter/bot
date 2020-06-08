@@ -94,7 +94,7 @@ class CountService {
       /\{(.+?)\}/gi,
       async (counterDetected) => {
         let count = await this.getCount(counterDetected, customDigits);
-        const intCount = parseInt(count, 10);
+        const intCount = Number(count);
 
         if (!customDigits && intCount && this.guildSettings.shortNumber) {
           count = shortNumber(intCount);
@@ -115,7 +115,6 @@ class CountService {
       await this.fetchCount(type);
     }
 
-    // TODO add translations
     if (this.countCache.get(typeL) === -1)
       return this.languagePack.functions.getCounts.onlyPremium;
     if (this.countCache.get(typeL) === -2)
@@ -126,12 +125,15 @@ class CountService {
     if (customDigits) {
       if (!this.countCache.has(`${typeL}CustomDigit`)) {
         let rawCount = this.countCache.get(typeL);
+
         let processedCount: string = rawCount.toString();
 
-        processedCount = processedCount
+        if (Number(rawCount)) {
+          processedCount = processedCount
           .split('')
           .map((digit) => this.guildSettings.digits[digit])
           .join('');
+        }
 
         this.countCache.set(`${typeL}CustomDigit`, processedCount);
       }
@@ -145,11 +147,11 @@ class CountService {
   /** Return: -1 = Premium, -2 = Error, -3 = Unknown counter */
   private async fetchCount(type: string): Promise<void> {
     // This part is for guild related counts, below at the end is the part that fetches couns from external resources
-    const typeL = type.toLowerCase();
+    const typeLC = type.toLowerCase();
 
-    switch (typeL) {
+    switch (typeLC) {
       case '{members}':
-        this.countCache.set(typeL, this.guild.memberCount);
+        this.countCache.set(typeLC, this.guild.memberCount);
         break;
 
       case '{bots}':
@@ -205,18 +207,18 @@ class CountService {
 
       case '{channels}':
         this.countCache.set(
-          typeL,
+          typeLC,
           this.guild.channels.filter((channel) => channel.type !== 4).length,
         );
         break;
 
       case '{roles}':
-        this.countCache.set(typeL, this.guild.roles.size);
+        this.countCache.set(typeLC, this.guild.roles.size);
         break;
 
       case '{bannedmembers}': {
         this.countCache.set(
-          typeL,
+          typeLC,
           await this.guild
             .getBans()
             .then((bans) => bans.length)
@@ -226,9 +228,9 @@ class CountService {
       }
 
       default: {
-        if (/\{connectedmembers(:.+)?\}/.test(typeL)) {
-          const targetChannels: string[] = /\{connectedmembers:.+\}/.test(typeL)
-            ? typeL.slice(typeL.indexOf(':') + 1, -1).split(',')
+        if (/\{connectedmembers(:.+)?\}/.test(typeLC)) {
+          const targetChannels: string[] = /\{connectedmembers:.+\}/.test(typeLC)
+            ? typeLC.slice(typeLC.indexOf(':') + 1, -1).split(',')
             : [];
 
           const targetChannelsString =
@@ -258,12 +260,12 @@ class CountService {
               }, 0),
           );
         } else if (
-          /\{memberswithrole:.+\}/.test(typeL) ||
-          /\{onlinememberswithrole:.+\}/.test(typeL) ||
-          /\{offlinememberswithrole:.+\}/.test(typeL)
+          /\{memberswithrole:.+\}/.test(typeLC) ||
+          /\{onlinememberswithrole:.+\}/.test(typeLC) ||
+          /\{offlinememberswithrole:.+\}/.test(typeLC)
         ) {
-          const targetRoles: string[] = typeL
-            .slice(typeL.indexOf(':') + 1, -1)
+          const targetRoles: string[] = typeLC
+            .slice(typeLC.indexOf(':') + 1, -1)
             .split(',');
           const targetRolesString = targetRoles.join(',');
 
@@ -304,12 +306,27 @@ class CountService {
             `{offlinememberswithrole:${targetRolesString}`,
             offlineMembersWithRole,
           );
+        } else if (/\{countdown:.+\}/.test(typeLC)) {
+          // {countdown:date:format}
+          const args = type.substring(1, type.length - 1).split(':');
+          const format = args[2] || '%d:%h:%m';
+          const date = parseInt(args[1], 10) * 1000;
+          let timeLeft = new Date(date - Date.now());
+          if (date - Date.now() < 0) timeLeft = new Date(0);
+
+          const formated = format
+            .replace(/%d/gi, `${Math.floor((timeLeft.getTime() / 1000) / 60 / 60 / 24)}`)
+            .replace(/%h/gi, `${timeLeft.getUTCHours()}`)
+            .replace(/%m/gi, `${timeLeft.getUTCMinutes()}`)
+            .replace(/%s/gi, `${timeLeft.getUTCSeconds()}`);
+
+          this.countCache.set(typeLC, formated);
         } else {
           // if the counter is not a guild-related one, check if it's a external one
           try {
-            this.countCache.set(typeL, await ExternalCounts.get(type));
+            this.countCache.set(typeLC, await ExternalCounts.get(type));
           } catch (error) {
-            this.countCache.set(typeL, -2);
+            this.countCache.set(typeLC, -2);
           }
         }
         break;
