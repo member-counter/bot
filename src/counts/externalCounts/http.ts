@@ -24,7 +24,6 @@ export default async (resource: string): Promise<number> => {
   ) {
     count = parseInt(await response.text(), 10);
   } else {
-    controller.abort();
     count = -2;
   }
 
