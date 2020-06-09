@@ -9,7 +9,7 @@ import gtasaMP from './externalCounts/gtasa-mp';
 import sourceGame from './externalCounts/source-game';
 import getEnv from '../utils/getEnv';
 
-const { PREMIUM_BOT, FOSS_MODE } = getEnv();
+const { PREMIUM_BOT, FOSS_MODE, DEBUG } = getEnv();
 
 const fetch = {
   http,
@@ -135,7 +135,8 @@ const get = async (counter: string): Promise<number> => {
           count = -3;
           break;
       }
-    } catch {
+    } catch (err) {
+      if (DEBUG) console.error(err);
       count = -2;
     } finally {
       // Use the cached count if something went wrong
