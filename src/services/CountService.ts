@@ -323,11 +323,7 @@ class CountService {
           this.countCache.set(typeLC, formated);
         } else {
           // if the counter is not a guild-related one, check if it's a external one
-          try {
-            this.countCache.set(typeLC, await ExternalCounts.get(type));
-          } catch (error) {
-            this.countCache.set(typeLC, -2);
-          }
+          this.countCache.set(typeLC, await ExternalCounts.get(type));
         }
         break;
       }
