@@ -49,15 +49,15 @@ const get = async (counter: string): Promise<number> => {
             const { subscribers, views } = await fetch.YouTube.getChannelStats(
               resource,
             );
-  
-            expiresAt = Date.now() + 60 * 60 * 1000;
+
             cache.set(`youtubesubscribers:${resource}`, {
-              count: subscribers,
+              count: Number(subscribers),
               expiresAt,
             });
-            cache.set(`youtubeviews:${resource}`, { count: views, expiresAt });
-  
-            return cache.get(`${type}:${resource}`).count;
+            cache.set(`youtubeviews:${resource}`, { count: Number(subscribers), expiresAt });
+
+            expiresAt = Date.now() + 60 * 60 * 1000;
+            count = cache.get(`${type}:${resource}`).count;
           } else {
             return -1;
           }
@@ -70,14 +70,14 @@ const get = async (counter: string): Promise<number> => {
               resource,
             );
   
-            expiresAt = Date.now() + 60 * 60 * 1000;
             cache.set(`twitchfollowers:${resource}`, {
               count: followers,
               expiresAt,
             });
             cache.set(`twitchviews:${resource}`, { count: views, expiresAt });
   
-            return cache.get(`${type}:${resource}`).count;
+            expiresAt = Date.now() + 60 * 60 * 1000;
+            count = cache.get(`${type}:${resource}`).count;
           } else {
             return -1;
           }
@@ -90,12 +90,7 @@ const get = async (counter: string): Promise<number> => {
             );
   
             expiresAt = Date.now() + 60 * 60 * 1000;
-            cache.set(`mixerfollowers:${resource}`, {
-              count: followers,
-              expiresAt,
-            });
-  
-            return cache.get(`${type}:${resource}`).count;
+            count = followers;
           } else {
             return -1;
           }
@@ -139,11 +134,14 @@ const get = async (counter: string): Promise<number> => {
       if (DEBUG) console.error(err);
       count = -2;
     } finally {
+      // Just in case if some API decides to return a number as a string, like youtube did
+      count = Number(count);
+
       // Use the cached count if something went wrong
       if (count === -2 && cache.has(`${type}:${resource}`)) {
         count = cache.get(`${type}:${resource}`).count;
       }
-  
+
       cache.set(`${type}:${resource}`, { count, expiresAt });
       return count;
     }
