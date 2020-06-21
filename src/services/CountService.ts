@@ -227,6 +227,25 @@ class CountService {
         break;
       }
 
+      case '{member-counter-guilds}': {
+        this.countCache.set(
+          typeLC,
+          this.client.guilds.size,
+        );
+        break;
+      }
+
+      case '{member-counter-users}': {
+        this.countCache.set(
+          typeLC,
+          this.client.guilds.reduce(
+            (acc, curr) => acc + curr.memberCount,
+            0,
+          ),
+        );
+        break;
+      }
+
       default: {
         if (/\{connectedmembers(:.+)?\}/.test(typeLC)) {
           const targetChannels: string[] = /\{connectedmembers:.+\}/.test(typeLC)
