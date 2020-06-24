@@ -6,7 +6,7 @@
       "helpDescription": "क्या ये आदेश का उद्देश्य वर्णन करना आवश्यक है?",
       "embedReply": {
         "title": "आदेश सूची | उपसर्ग : {PREFIX}",
-        "description": "[इस बॉट को अपने सर्वर में जोड़ें]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nअधिक जानकारी प्राप्त करने के लिए आदेश दे `{PREFIX}help` और आदेश का नाम: ```\n{PREFIX}help shortNumber```\n** जानकारी: ** `()` का अर्थ है एक वैकल्पिक प्राचल जबकि `[]` का अर्थ है एक आवश्यक प्राचल",
+        "description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n[Try NotiBoi! Avanced mentions for Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
         "fields": [
           {
             "name": "**गणक**",
