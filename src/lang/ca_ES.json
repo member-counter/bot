@@ -6,7 +6,7 @@
       "helpDescription": "És realment necessari explicar el propòsit d'aquest comand?",
       "embedReply": {
         "title": "Llista de comands | prefix: {PREFIX}",
-        "description": "[Afageix aquest bot al teu servidor]({DISCORD_BOT_INVITE}) **|** [Lloc web]({WEBSITE}) **|**   [Documentació](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nPer obtenir més informació sobre un comand, escrigui `{PREFIX}help` més el nom del comand: ```\n{PREFIX}help shortNumber```\n**Info:** `()` és un paràmetre opcional mentre que `[]` és un obligatori",
+        "description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n[Try NotiBoi! Avanced mentions for Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
         "fields": [
           {
             "name": "**Comptadors**",
