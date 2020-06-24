@@ -21,7 +21,7 @@ const getChannelStats = async (channelUrl: string): Promise<stats> => {
   ) {
     searchChannelBy = 'id';
   } else {
-    return { subscribers: -3, views: -3 };
+    throw new Error(`Invalid youtube channel url: ${channelUrl}`)
   }
 
   const response = await fetch(

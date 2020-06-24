@@ -8,7 +8,7 @@ export default async (resource: string): Promise<number> => {
   const response = await query.info(host, parseInt(port, 10), 2000);
 
   if (response.constructor.name === 'Error') {
-    count = -2;
+    throw response;
   } else {
     count = Number(response.playersnum);
   }

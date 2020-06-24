@@ -13,6 +13,7 @@ import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import ExternalCounts from '../counts/externalCounts';
 import shortNumber from '../utils/shortNumbers';
 import stringReplaceAsync from '../utils/stringReplaceAsync';
+import Constants from '../utils/Constants';
 
 const { FOSS_MODE, PREMIUM_BOT } = getEnv();
 
@@ -115,11 +116,11 @@ class CountService {
       await this.fetchCount(type);
     }
 
-    if (this.countCache.get(typeL) === -1)
+    if (this.countCache.get(typeL) === Constants.CounterResult.PREMIUM)
       return this.languagePack.functions.getCounts.onlyPremium;
-    if (this.countCache.get(typeL) === -2)
+    if (this.countCache.get(typeL) === Constants.CounterResult.ERROR)
       return this.languagePack.common.error;
-    if (this.countCache.get(typeL) === -3)
+    if (this.countCache.get(typeL) === Constants.CounterResult.UNKNOWN)
       return this.languagePack.functions.getCounts.unknownCounter;
 
     if (customDigits) {
@@ -176,7 +177,7 @@ class CountService {
         if (!(PREMIUM_BOT || FOSS_MODE)) {
           for (const key in counts) {
             if (counts.hasOwnProperty(key)) {
-              this.countCache.set(key, -1);
+              this.countCache.set(key, Constants.CounterResult.PREMIUM);
             }
           }
           return;
@@ -222,7 +223,7 @@ class CountService {
           await this.guild
             .getBans()
             .then((bans) => bans.length)
-            .catch(() => -2),
+            .catch(() => Constants.CounterResult.ERROR),
         );
         break;
       }
@@ -258,7 +259,7 @@ class CountService {
           if (!(PREMIUM_BOT || FOSS_MODE)) {
             this.countCache.set(
               `{connectedmembers${targetChannelsString}}`,
-              -1,
+              Constants.CounterResult.PREMIUM,
             );
             return;
           }
@@ -308,9 +309,9 @@ class CountService {
             onlineMembersWithRole = onlineMembersWithRole.size;
             offlineMembersWithRole = offlineMembersWithRole.size;
           } else {
-            membersWithRole = -1;
-            onlineMembersWithRole = -1;
-            offlineMembersWithRole = -1;
+            membersWithRole = Constants.CounterResult.PREMIUM;
+            onlineMembersWithRole = Constants.CounterResult.PREMIUM;
+            offlineMembersWithRole = Constants.CounterResult.PREMIUM;
           }
 
           this.countCache.set(

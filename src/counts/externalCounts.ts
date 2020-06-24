@@ -1,3 +1,4 @@
+import Constants from '../utils/Constants';
 import http from './externalCounts/http';
 import YouTube from './externalCounts/YouTube';
 import Twitch from './externalCounts/Twitch';
@@ -59,7 +60,7 @@ const get = async (counter: string): Promise<number> => {
             expiresAt = Date.now() + 60 * 60 * 1000;
             count = cache.get(`${type}:${resource}`).count;
           } else {
-            return -1;
+            return Constants.CounterResult.PREMIUM;
           }
         }
   
@@ -79,7 +80,7 @@ const get = async (counter: string): Promise<number> => {
             expiresAt = Date.now() + 60 * 60 * 1000;
             count = cache.get(`${type}:${resource}`).count;
           } else {
-            return -1;
+            return Constants.CounterResult.PREMIUM;
           }
         }
   
@@ -92,7 +93,7 @@ const get = async (counter: string): Promise<number> => {
             expiresAt = Date.now() + 60 * 60 * 1000;
             count = followers;
           } else {
-            return -1;
+            return Constants.CounterResult.PREMIUM;
           }
         }
   
@@ -126,19 +127,18 @@ const get = async (counter: string): Promise<number> => {
   
         default:
           expiresAt = Infinity;
-          // -3 = Unknown Counter
-          count = -3;
+          count = Constants.CounterResult.UNKNOWN;
           break;
       }
     } catch (err) {
       if (DEBUG) console.error(err);
-      count = -2;
+      count = Constants.CounterResult.ERROR;
     } finally {
       // Just in case if some API decides to return a number as a string, like youtube did
       count = Number(count);
 
       // Use the cached count if something went wrong
-      if (count === -2 && cache.has(`${type}:${resource}`)) {
+      if (count === Constants.CounterResult.ERROR && cache.has(`${type}:${resource}`)) {
         count = cache.get(`${type}:${resource}`).count;
       }
 
