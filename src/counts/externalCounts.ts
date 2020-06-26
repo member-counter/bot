@@ -47,6 +47,7 @@ const get = async (counter: string): Promise<number> => {
         case 'youtubesubscribers':
         case 'youtubeviews': {
           if (PREMIUM_BOT || FOSS_MODE) {
+            expiresAt = Date.now() + 60 * 60 * 1000;
             const { subscribers, views } = await fetch.YouTube.getChannelStats(
               resource,
             );
@@ -55,10 +56,10 @@ const get = async (counter: string): Promise<number> => {
               count: Number(subscribers),
               expiresAt,
             });
-            cache.set(`youtubeviews:${resource}`, { count: Number(subscribers), expiresAt });
+            cache.set(`youtubeviews:${resource}`, { count: Number(views), expiresAt });
 
-            expiresAt = Date.now() + 60 * 60 * 1000;
             count = cache.get(`${type}:${resource}`).count;
+
           } else {
             return Constants.CounterResult.PREMIUM;
           }
@@ -67,6 +68,7 @@ const get = async (counter: string): Promise<number> => {
         case 'twitchfollowers':
         case 'twitchviews': {
           if (PREMIUM_BOT || FOSS_MODE) {
+            expiresAt = Date.now() + 60 * 60 * 1000;
             const { followers, views } = await fetch.Twitch.getChannelStats(
               resource,
             );
@@ -77,7 +79,6 @@ const get = async (counter: string): Promise<number> => {
             });
             cache.set(`twitchviews:${resource}`, { count: views, expiresAt });
   
-            expiresAt = Date.now() + 60 * 60 * 1000;
             count = cache.get(`${type}:${resource}`).count;
           } else {
             return Constants.CounterResult.PREMIUM;
