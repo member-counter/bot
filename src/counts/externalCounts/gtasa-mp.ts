@@ -5,6 +5,6 @@ export default (resource: string): Promise<number> =>
 		let [host, port] = resource.split(':');
 		query({ host, port: parseInt(port, 10) }, function (error, response) {
 			if (error) reject(error);
-			resolve(response.online);
+			resolve(response?.online);
 		});
 	});

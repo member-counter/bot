@@ -21,7 +21,7 @@ new Promise(async (resolve, reject) => {
 
   if (response.status === 200) {
     const result = await response.json();
-    count = result.players.online;
+    count = result?.players?.online;
   } else {
     controller.abort();
     reject(new Error(`[MINECRAFT] Invalid status code (not 200) in: ${resource}`));

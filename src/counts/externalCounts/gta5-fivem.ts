@@ -21,7 +21,7 @@ export default (resource: string): Promise<number> =>
 
 		if (response.status === 200) {
 			const result = await response.json();
-			count = result.length;
+			count = result?.length;
 		} else {
       controller.abort();
 			reject(new Error(`[FIVEM] Invalid status code (not 200) in: ${resource}`));

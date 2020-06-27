@@ -10,7 +10,7 @@ export default async (resource: string): Promise<number> => {
   if (response.constructor.name === 'Error') {
     throw response;
   } else {
-    count = Number(response.playersnum);
+    count = Number(response?.playersnum);
   }
 
   return count;
