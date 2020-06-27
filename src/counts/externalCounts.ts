@@ -138,6 +138,10 @@ const get = async (counter: string): Promise<number> => {
       // Just in case if some API decides to return a number as a string, like youtube did
       count = Number(count);
 
+      if (isNaN(count)) {
+        count = Constants.CounterResult.ERROR;
+      }
+
       // Use the cached count if something went wrong
       if (count === Constants.CounterResult.ERROR && cache.has(`${type}:${resource}`)) {
         count = cache.get(`${type}:${resource}`).count;
