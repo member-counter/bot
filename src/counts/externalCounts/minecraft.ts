@@ -12,13 +12,11 @@ export default async (resource: string): Promise<number> => {
     },
   }), controller);
 
-  console.log(response.status)
   if (response.status === 200) {
     const result = await response.json();
-    console.log(result)
     return result?.players?.online;
   } else {
     controller.abort();
     throw new Error(`[MINECRAFT] Invalid status code (not 200) in: ${resource}`);
-  } 
+  }
 }
