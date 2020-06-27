@@ -19,6 +19,7 @@
 	},
 	"homepage": "https://member-counter.eduardozgz.com",
 	"dependencies": {
+		"@types/node-fetch": "^2.5.7",
 		"abort-controller": "^3.0.0",
 		"bufferutil": "^4.0.1",
 		"dotenv": "^8.2.0",
