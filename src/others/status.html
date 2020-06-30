@@ -26,10 +26,20 @@
 			#ws-error {
 				display: none;
 				border: rgb(255, 94, 94) 5px solid;
-				border-radius: 10px;
+				border-radius: 5px;
 				background-color: rgb(255, 82, 82);
 				color: white;
 				padding: 20px;
+			}
+
+			#invite {
+				display: block;
+				border-radius: 5px;
+				background-color: #7289da;
+				color: white;
+				padding: 10px;
+				text-decoration: none;
+				text-align: center;
 			}
 
 			.panel-status {
@@ -53,6 +63,7 @@
 		</script>
 		<div class="container">
 			<h1>Member Counter Status</h1>
+			<a href="#!" id="invite">Invite bot</a>
 			<div id="ws-error">
 				I tried to connect to
 				<script>
@@ -70,6 +81,16 @@
 			</div>
 		</div>
 		<script>
+			fetch('/invite-link')
+				.then((res) => res.text())
+				.then((invite) => {
+					const inviteButton = document.getElementById('invite');
+
+					inviteButton.setAttribute('href', invite);
+					inviteButton.setAttribute('target', '_blank');
+				})
+				.catch(console.error);
+
 			const ws = new WebSocket(wsLocation);
 			ws.onclose = () =>
 				(document.getElementById('ws-error').style.display = 'block');
