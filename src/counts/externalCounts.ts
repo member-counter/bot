@@ -69,7 +69,7 @@ const get = async (counter: string): Promise<number> => {
   
         case 'twitchfollowers':
         case 'twitchviews': {
-          if (PREMIUM_BOT || FOSS_MODE) {            
+          if (PREMIUM_BOT || FOSS_MODE) {
             expiresAt = Date.now() + 60 * 60 * 1000;
             const { followers, views } = await fetch.Twitch.getChannelStats(
               resource,
