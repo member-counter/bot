@@ -22,7 +22,6 @@
 	},
 	"homepage": "https://member-counter.eduardozgz.com",
 	"dependencies": {
-		"@types/express": "^4.17.6",
 		"@types/node-fetch": "^2.5.7",
 		"@types/ws": "^7.2.6",
 		"abort-controller": "^3.0.0",
