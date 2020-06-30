@@ -29,8 +29,14 @@ function statusWS(discordClient: Eris.Client, mongoose: Mongoose) {
 	});
 
 	const wss = new WebSocket.Server({ path: '/ws', server });
+	wss.on('connection', (client) => client.send(generatePayload()));
 
 	setInterval(() => {
+		const payload = generatePayload();
+		wss.clients.forEach((client) => client.send(payload));
+	}, 5000);
+
+	function generatePayload() {
 		let discordShards = new Map<number, any>();
 		let dbStatus: string;
 
@@ -77,12 +83,11 @@ function statusWS(discordClient: Eris.Client, mongoose: Mongoose) {
 			shard.unavailableGuilds.push(guild.id);
 		});
 
-		const payload = JSON.stringify({
+		return JSON.stringify({
 			db: dbStatus,
 			discord: Array.from(discordShards),
 		});
-		wss.clients.forEach((client) => client.send(payload));
-	}, 5000);
+	}
 }
 
 export default statusWS;
