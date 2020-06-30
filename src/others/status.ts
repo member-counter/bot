@@ -1,0 +1,88 @@
+import http from 'http';
+import Eris from 'eris';
+import { Mongoose } from 'mongoose';
+import getEnv from '../utils/getEnv';
+import path from 'path';
+import { createReadStream } from 'fs';
+import expresss from 'express';
+import WebSocket from 'ws';
+
+const { PORT, DISCORD_CLIENT_ID } = getEnv();
+
+function statusWS(discordClient: Eris.Client, mongoose: Mongoose) {
+	const app = expresss();
+
+	app.get('/', (req, res) => {
+		createReadStream(path.resolve(__dirname, './status.html')).pipe(res);
+	});
+
+	app.get('/invite-link', (req, res) => {
+		res.send(
+			`https://discord.com/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&scope=bot&permissions=8`,
+		);
+	});
+
+	const server = http.createServer(app).listen(PORT || 8080, () => {
+		console.log(
+			`Basic status website ready (try visiting http://127.0.0.1:${PORT} ?)`,
+		);
+	});
+
+	const wss = new WebSocket.Server({ path: '/ws', server });
+
+	setInterval(() => {
+		let discordShards = new Map<number, any>();
+		let dbStatus: string;
+
+		switch (mongoose.connection.readyState) {
+			case mongoose.connection.states.uninitialized:
+				dbStatus = 'uninitialized';
+				break;
+
+			case mongoose.connection.states.connecting:
+				dbStatus = 'connecting';
+				break;
+
+			case mongoose.connection.states.connected:
+				dbStatus = 'connected';
+				break;
+
+			case mongoose.connection.states.disconnecting:
+				dbStatus = 'disconnecting';
+				break;
+
+			case mongoose.connection.states.disconnected:
+				dbStatus = 'disconnected';
+				break;
+
+			default:
+				break;
+		}
+
+		discordClient.shards.forEach((shard) => {
+			discordShards.set(shard.id, {
+				status: shard.status,
+				availableGuilds: [],
+				unavailableGuilds: [],
+			});
+		});
+
+		discordClient.guilds.forEach((guild) => {
+			const shard = discordShards.get(guild.shard.id);
+			shard.availableGuilds.push(guild.id);
+		});
+
+		discordClient.unavailableGuilds.forEach((guild) => {
+			const shard = discordShards.get(guild.shard.id);
+			shard.unavailableGuilds.push(guild.id);
+		});
+
+		const payload = JSON.stringify({
+			db: dbStatus,
+			discord: Array.from(discordShards),
+		});
+		wss.clients.forEach((client) => client.send(payload));
+	}, 5000);
+}
+
+export default statusWS;

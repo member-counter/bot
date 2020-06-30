@@ -2,6 +2,8 @@ export interface MemberCounterEnv {
   readonly NODE_ENV: 'development' | 'production';
   readonly DEBUG: boolean;
   readonly FOSS_MODE: boolean;
+  readonly PORT: number;
+  readonly BOT_POST_INSTALL_WEBSITE: boolean;
 
   readonly DB_URI: string;
 
