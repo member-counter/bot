@@ -74,13 +74,17 @@ function statusWS(discordClient: Eris.Client, mongoose: Mongoose) {
 		});
 
 		discordClient.guilds.forEach((guild) => {
-			const shard = discordShards.get(guild.shard.id);
-			shard.availableGuilds.push(guild.id);
+			if (guild.shard) {
+				const shard = discordShards.get(guild.shard.id);
+				shard.availableGuilds.push(guild.id);
+			}
 		});
 
 		discordClient.unavailableGuilds.forEach((guild) => {
-			const shard = discordShards.get(guild.shard.id);
-			shard.unavailableGuilds.push(guild.id);
+			if (guild.shard) {
+				const shard = discordShards.get(guild.shard.id);
+				shard.unavailableGuilds.push(guild.id);
+			}
 		});
 
 		return JSON.stringify({
