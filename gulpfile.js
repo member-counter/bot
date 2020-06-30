@@ -1,7 +1,7 @@
 const { src, dest } = require('gulp');
 
 function copyAssets() {
-	return src('src/**/*').pipe(dest('dist/'));
+	return src('src/**/*').pipe(dest('dist/src/'));
 }
 
 function defaultTask(cb) {
