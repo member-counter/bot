@@ -32,6 +32,7 @@ interface countCache {
 const cache: Map<string, countCache> = new Map();
 
 const get = async (counter: string): Promise<number> => {
+  console.log(counter)
   let [type, ...resource]: any = counter.slice(1, -1).split(':');
   type = type.toLowerCase();
   resource = resource.join(':');
@@ -61,13 +62,14 @@ const get = async (counter: string): Promise<number> => {
             count = cache.get(`${type}:${resource}`).count;
 
           } else {
-            return Constants.CounterResult.PREMIUM;
+            count = Constants.CounterResult.PREMIUM;
           }
+          break;
         }
   
         case 'twitchfollowers':
         case 'twitchviews': {
-          if (PREMIUM_BOT || FOSS_MODE) {
+          if (PREMIUM_BOT || FOSS_MODE) {            
             expiresAt = Date.now() + 60 * 60 * 1000;
             const { followers, views } = await fetch.Twitch.getChannelStats(
               resource,
@@ -81,8 +83,9 @@ const get = async (counter: string): Promise<number> => {
   
             count = cache.get(`${type}:${resource}`).count;
           } else {
-            return Constants.CounterResult.PREMIUM;
+            count = Constants.CounterResult.PREMIUM;
           }
+          break;
         }
   
         case 'mixerfollowers': {
@@ -94,12 +97,14 @@ const get = async (counter: string): Promise<number> => {
             expiresAt = Date.now() + 60 * 60 * 1000;
             count = followers;
           } else {
-            return Constants.CounterResult.PREMIUM;
+            count = Constants.CounterResult.PREMIUM;
           }
+          break;
         }
   
         case 'https':
         case 'http':
+          console.log(type, '??????????????');
           count = await fetch.http(resource);
           expiresAt = Date.now() + 1 * 60 * 1000;
           break;

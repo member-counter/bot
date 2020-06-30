@@ -342,7 +342,7 @@ class CountService {
 
           this.countCache.set(typeLC, formated);
         } else {
-          // if the counter is not a guild-related one, check if it's a external one
+          // check if the counter is a external one
           this.countCache.set(typeLC, await ExternalCounts.get(type));
         }
         break;
