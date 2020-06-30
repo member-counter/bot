@@ -47,7 +47,9 @@
 			}
 		</style>
 		<script>
-			const wsLocation = `ws://${window.location.host}/ws`;
+			const wsLocation = `${location.protocol === 'https:' ? 'wss' : 'ws'}://${
+				window.location.host
+			}/ws`;
 		</script>
 		<div class="container">
 			<h1>Member Counter Status</h1>
