@@ -141,8 +141,8 @@
     },
     "preview": {
       "helpDescription": "Shows a preview of how a counter or various counters will look in a channel",
-      "channelName": "Channel name preview",
-      "channelTopic": "Channel topic preview"
+      "channelName": "Предварительное название канала",
+      "channelTopic": "Предварительное содержание описания канала"
     }
   },
   "functions": {
