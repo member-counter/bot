@@ -32,7 +32,6 @@ interface countCache {
 const cache: Map<string, countCache> = new Map();
 
 const get = async (counter: string): Promise<number> => {
-  console.log(counter)
   let [type, ...resource]: any = counter.slice(1, -1).split(':');
   type = type.toLowerCase();
   resource = resource.join(':');
@@ -104,7 +103,6 @@ const get = async (counter: string): Promise<number> => {
   
         case 'https':
         case 'http':
-          console.log(type, '??????????????');
           count = await fetch.http(resource);
           expiresAt = Date.now() + 1 * 60 * 1000;
           break;
@@ -137,12 +135,12 @@ const get = async (counter: string): Promise<number> => {
           break;
       }
     } catch (err) {
-      if (true) console.error(err);
+      console.error(err);
       count = Constants.CounterResult.ERROR;
     } finally {
       // Just in case if some API decides to return a number as a string, like youtube did
       count = Number(count);
-
+      count = NaN;
       if (isNaN(count)) {
         count = Constants.CounterResult.ERROR;
       }
