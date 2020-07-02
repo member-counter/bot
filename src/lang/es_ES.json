@@ -140,7 +140,7 @@
       "roles": "Roles:"
     },
     "preview": {
-      "helpDescription": "Shows a preview of how a counter or various counters will look in a channel",
+      "helpDescription": "Muestra una vista previa de como se verá un contador o varios contadores se verían en un canal",
       "channelName": "Channel name preview",
       "channelTopic": "Channel topic preview"
     }
