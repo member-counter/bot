@@ -140,7 +140,7 @@ const get = async (counter: string): Promise<number> => {
     } finally {
       // Just in case if some API decides to return a number as a string, like youtube did
       count = Number(count);
-      count = NaN;
+
       if (isNaN(count)) {
         count = Constants.CounterResult.ERROR;
       }
