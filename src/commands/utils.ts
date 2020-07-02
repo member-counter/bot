@@ -3,9 +3,10 @@ import { GuildChannel, VoiceChannel, User } from 'eris';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
 import GuildService from '../services/GuildService';
+import CountService from '../services/CountService';
 
 const lockChannel: MemberCounterCommand = {
-  aliases: ['lockChannel'],
+  aliases: ['lockChannel', 'lock'],
   denyDm: true,
   onlyAdmin: true,
   run: async ({ message, languagePack }) => {
@@ -49,7 +50,7 @@ const lockChannel: MemberCounterCommand = {
 };
 
 const editChannel: MemberCounterCommand = {
-  aliases: ['editChannel'],
+  aliases: ['editChannel', 'edit'],
   denyDm: true,
   onlyAdmin: true,
   run: async ({ message, languagePack }) => {
@@ -73,6 +74,29 @@ const editChannel: MemberCounterCommand = {
   },
 };
 
-const utilCommands = [lockChannel, editChannel];
+const test: MemberCounterCommand = {
+  aliases: ['test', 'preview'],
+  denyDm: true,
+  onlyAdmin: false,
+  run: async ({ message, languagePack }) => {
+    const { channel, content } = message;
+
+    if (channel instanceof GuildChannel) {
+      const { guild, client } = channel;
+      const guildSettings = await GuildService.init(guild.id);
+      let [command, ...contentToTest]: any = content.split(/\s+/);
+      contentToTest = contentToTest.join(' ');
+
+      if (!contentToTest)
+        throw new UserError(languagePack.commands.editChannel.errorNoContent);
+
+      const counterService = await CountService.init(guild);
+
+      await channel.createMessage(await counterService.processContent(contentToTest, true));
+    }
+  },
+};
+
+const utilCommands = [lockChannel, editChannel, test];
 
 export default utilCommands;

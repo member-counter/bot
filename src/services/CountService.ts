@@ -86,7 +86,7 @@ class CountService {
     }
   }
 
-  private processContent(
+  processContent(
     content: string,
     customDigits: boolean = false,
   ): Promise<string> {
