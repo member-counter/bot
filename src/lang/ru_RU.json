@@ -6,7 +6,7 @@
       "helpDescription": "Тебе действительно так важно узнать предназначение этой команды?",
       "embedReply": {
         "title": "Лист команд | Префикс: {PREFIX}",
-        "description": "[Добавьте этого бота на ваш сервер]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Документация](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n[Попробуйте NotiBoi! Продвинутая система упоминаний для Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nЧтобы получить больше информации, отправьте `{PREFIX}help` с названием нужной вам команды: ```\n{PREFIX}help shortNumber```\n**Инфо:** `()`подразумевает за собой опциональный параметр, когда `[]` подразумевает обязательный параметр.",
+        "description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n[Try NotiBoi! An advanced mention system for Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
         "fields": [
           {
             "name": "**Счётчики**",
