@@ -140,7 +140,7 @@
       "roles": "Роли:"
     },
     "preview": {
-      "helpDescription": "Shows a preview of how a counter or various counters will look in a channel",
+      "helpDescription": "Показывает, как будет выглядеть в канале предварительная версия счётчика или различных счётчиков",
       "channelName": "Предварительное название канала",
       "channelTopic": "Предварительное содержание описания канала"
     }
