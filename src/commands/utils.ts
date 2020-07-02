@@ -74,7 +74,7 @@ const editChannel: MemberCounterCommand = {
   },
 };
 
-const test: MemberCounterCommand = {
+const preview: MemberCounterCommand = {
   aliases: ['test', 'preview'],
   denyDm: true,
   onlyAdmin: false,
@@ -92,11 +92,14 @@ const test: MemberCounterCommand = {
 
       const counterService = await CountService.init(guild);
 
-      await channel.createMessage(await counterService.processContent(contentToTest, true));
+      const { channelName, channelTopic } = languagePack.commands.preview;
+      await channel.createMessage(`${channelName}:\n${
+        await counterService.processContent(contentToTest, false)}\n\n${channelTopic}:\n${
+        await counterService.processContent(contentToTest, true)}`);
     }
   },
 };
 
-const utilCommands = [lockChannel, editChannel, test];
+const utilCommands = [lockChannel, editChannel, preview];
 
 export default utilCommands;
