@@ -8,7 +8,7 @@ import { EmbedField } from 'eris';
 const { DONATION_URL } = getEnv();
 
 const donate: MemberCounterCommand = {
-  aliases: ['donate', 'donators'],
+  aliases: ['donate', 'donators', 'premium'],
   onlyAdmin: false,
   denyDm: false,
   run: async ({ message, languagePack }) => {
