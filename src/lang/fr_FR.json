@@ -6,7 +6,7 @@
       "helpDescription": "C'est vraiment nécessaire d'expliquer le but de cette commande?",
       "embedReply": {
         "title": "Liste des commandes | préfixe: {PREFIX}",
-        "description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n[Try NotiBoi! An advanced mention system for Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+        "description": "[Ajoutez ce bot à votre serveur]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nEssayez NotiBoi! Un système de mention avancé pour Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nPour obtenir plus d'informations sur une commande, envoyez `{PREFIX}help` plus le nom de la commander: ```\n{PREFIX}help shortNumber```\n**Info:** `()` signifie un paramètre facultatif alors que `[]` signifie un paramètre obligatoire",
         "fields": [
           {
             "name": "**Compteurs**",
@@ -140,9 +140,9 @@
       "roles": "Rôles:"
     },
     "preview": {
-      "helpDescription": "Shows a preview of how a counter or various counters will look in a channel",
+      "helpDescription": "Affiche un aperçu de l'apparence d'un compteur ou de plusieurs compteurs dans un canal",
       "channelName": "Channel name preview",
-      "channelTopic": "Channel topic preview"
+      "channelTopic": "Aperçu du sujet de la chaîne"
     }
   },
   "functions": {
