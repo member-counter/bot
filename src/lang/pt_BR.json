@@ -6,11 +6,11 @@
       "helpDescription": "É realmente necessário explicar o propósito desse comando?",
       "embedReply": {
         "title": "Lista de Comandos | prefix: {PREFIX}",
-        "description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n[Try NotiBoi! An advanced mention system for Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+        "description": "[Adicione esse bot ao seu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n[Conheça o NotiBoi! Um sistema avançadi de menções para o Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nPara ter mais informações sobre um comando envie `{PREFIX}help` e o nome do comando: ```\n{PREFIX}help shortNumber```\n**Info:** `()` significa um parâmetro opcional enquanto `[]` significa um obrigatório",
         "fields": [
           {
             "name": "**Contadores**",
-            "value": "```\n{PREFIX}guia\n{PREFIX}contadores\n{PREFIX}travarCanal\n{PREFIX}editarCanal\n{PREFIX}setarDigito\n{PREFIX}numeroCurto\n{PREFIX}previsualizacao```",
+            "value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
             "inline": true
           },
           {
@@ -20,7 +20,7 @@
           },
           {
             "name": "**Outros**",
-            "value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}doação\n{PREFIX}suporte\n{PREFIX}invite\n{PREFIX}perfil\n{PREFIX}github```",
+            "value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
             "inline": true
           }
         ]
