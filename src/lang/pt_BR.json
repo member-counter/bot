@@ -10,7 +10,7 @@
         "fields": [
           {
             "name": "**Contadores**",
-            "value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
+            "value": "```\n{PREFIX}guia\n{PREFIX}contadores\n{PREFIX}travarCanal\n{PREFIX}editarCanal\n{PREFIX}setarDigito\n{PREFIX}numeroCurto\n{PREFIX}previsualizacao```",
             "inline": true
           },
           {
@@ -20,7 +20,7 @@
           },
           {
             "name": "**Outros**",
-            "value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+            "value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}doação\n{PREFIX}suporte\n{PREFIX}invite\n{PREFIX}perfil\n{PREFIX}github```",
             "inline": true
           }
         ]
@@ -140,9 +140,9 @@
       "roles": "Cargos:"
     },
     "preview": {
-      "helpDescription": "Shows a preview of how a counter or various counters will look in a channel",
-      "channelName": "Channel name preview",
-      "channelTopic": "Channel topic preview"
+      "helpDescription": "Mostra uma pré visualização de como um contador ou vários contadores irão ser em um canal",
+      "channelName": "Pré visualização do nome do canal",
+      "channelTopic": "Pré visualização do canal de tópico"
     }
   },
   "functions": {
