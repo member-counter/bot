@@ -6,7 +6,7 @@
       "helpDescription": "Ist es wirklich notwendig die Funktion dieses Befehls zu erklären?",
       "embedReply": {
         "title": "Liste der Befehle | prefix: {PREFIX}",
-        "description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n[Try NotiBoi! An advanced mention system for Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+        "description": "[Füge diesen Bot zu deinem Server hinzu]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n[Teste NotiBoi! Ein fortgeschrittenes Ping System für Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nUm mehr Infos über einen Befehl zu erhalten schreibe `{PREFIX}help` plus den Befehl: ```\n{PREFIX}help shortNumber```\n**Info:** `()` steht für eine optionale Angabe während `[]` erforderlich ist",
         "fields": [
           {
             "name": "**Zähler**",
@@ -140,7 +140,7 @@
       "roles": "Rollen:"
     },
     "preview": {
-      "helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
+      "helpDescription": "Zeigt eine Vorschau, wie ein Zähler in einem Channel aussehen wird.\n\n**Verwendung:**```{PREFIX}preview [content]```\n**Beispiel:**```{PREFIX}preview {members} Members```",
       "channelName": "Channel name preview",
       "channelTopic": "Channel topic preview"
     }
