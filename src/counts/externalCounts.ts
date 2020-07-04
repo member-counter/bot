@@ -6,6 +6,7 @@ import Twitch from './externalCounts/Twitch';
 import Mixer from './externalCounts/Mixer';
 import minecraft from './externalCounts/minecraft';
 import gta5fiveM from './externalCounts/gta5-fivem';
+import gta5rageMP from './externalCounts/gta5-ragemp';
 import gtasaMTA from './externalCounts/gtasa-mta';
 import gtasaMP from './externalCounts/gtasa-mp';
 import sourceGame from './externalCounts/source-game';
@@ -21,6 +22,7 @@ const fetch = {
   Mixer,
   minecraft,
   gta5fiveM,
+  gta5rageMP,
   gtasaMTA,
   gtasaMP,
   sourceGame,
@@ -117,7 +119,7 @@ const get = async (counter: string): Promise<number | string> => {
   
         case 'minecraft':
           count = await fetch.minecraft(resource);
-          expiresAt = Date.now() + 600 * 1000;
+          expiresAt = Date.now() + 60 * 1000;
           break;
   
         case 'gta5-fivem':
@@ -125,6 +127,11 @@ const get = async (counter: string): Promise<number | string> => {
           expiresAt = Date.now() + 60 * 1000;
           break;
   
+        case 'gta5-ragemp':
+          count = await fetch.gta5rageMP(resource);
+          expiresAt = Date.now() + 60 * 1000;
+          break;
+
         case 'gtasa-mta':
           count = await fetch.gtasaMTA(resource);
           break;
