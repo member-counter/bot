@@ -1,5 +1,6 @@
 import Constants from '../utils/Constants';
 import http from './externalCounts/http';
+import httpString from './externalCounts/httpString';
 import YouTube from './externalCounts/YouTube';
 import Twitch from './externalCounts/Twitch';
 import Mixer from './externalCounts/Mixer';
@@ -14,6 +15,7 @@ const { PREMIUM_BOT, FOSS_MODE, DEBUG } = getEnv();
 
 const fetch = {
   http,
+  httpString,
   YouTube,
   Twitch,
   Mixer,
@@ -25,13 +27,13 @@ const fetch = {
 };
 
 interface countCache {
-  count: number;
+  count: number | string;
   expiresAt: number;
 }
 
 const cache: Map<string, countCache> = new Map();
 
-const get = async (counter: string): Promise<number> => {
+const get = async (counter: string): Promise<number | string> => {
   let [type, ...resource]: any = counter.slice(1, -1).split(':');
   type = type.toLowerCase();
   resource = resource.join(':');
@@ -39,7 +41,7 @@ const get = async (counter: string): Promise<number> => {
   if (cache.get(`${type}:${resource}`)?.expiresAt > Date.now()) {
     return cache.get(`${type}:${resource}`).count;
   } else {
-    let count = 0;
+    let count: number | string = 0;
     let expiresAt = Date.now() + 15000;
 
     try {
@@ -106,6 +108,12 @@ const get = async (counter: string): Promise<number> => {
           count = await fetch.http(resource);
           expiresAt = Date.now() + 1 * 60 * 1000;
           break;
+
+        case 'https-string':
+        case 'http-string':
+            count = await fetch.httpString(resource);
+            expiresAt = Date.now() + 1 * 60 * 1000;
+            break;
   
         case 'minecraft':
           count = await fetch.minecraft(resource);
@@ -139,10 +147,12 @@ const get = async (counter: string): Promise<number> => {
       count = Constants.CounterResult.ERROR;
     } finally {
       // Just in case if some API decides to return a number as a string, like youtube did
-      count = Number(count);
-
-      if (isNaN(count)) {
-        count = Constants.CounterResult.ERROR;
+      if (type !== 'http-string') {
+        count = Number(count);
+      
+        if (isNaN(count)) {
+          count = Constants.CounterResult.ERROR;
+        }
       }
 
       // Use the cached count if something went wrong
