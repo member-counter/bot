@@ -150,7 +150,7 @@ const get = async (counter: string): Promise<number | string> => {
           break;
       }
     } catch (err) {
-      console.error(err);
+      if (DEBUG) console.error(err);
       count = Constants.CounterResult.ERROR;
     } finally {
       // Just in case if some API decides to return a number as a string, like youtube did
