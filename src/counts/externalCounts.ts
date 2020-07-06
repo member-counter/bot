@@ -118,7 +118,8 @@ const get = async (counter: string): Promise<number> => {
           break;
   
         case 'gtasa-mta':
-          count = await fetch.gtasaMTA(resource);
+          count = "Counter disabled"
+          // count = await fetch.gtasaMTA(resource);
           break;
   
         case 'gtasa-mp':
