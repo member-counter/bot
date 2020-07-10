@@ -145,7 +145,6 @@ class CountService {
     }
   }
 
-  /** Return: -1 = Premium, -2 = Error, -3 = Unknown counter */
   private async fetchCount(type: string): Promise<void> {
     // This part is for guild related counts, below at the end is the part that fetches couns from external resources
     const typeLC = type.toLowerCase();
@@ -323,7 +322,7 @@ class CountService {
             onlineMembersWithRole,
           );
           this.countCache.set(
-            `{offlinememberswithrole:${targetRolesString}`,
+            `{offlinememberswithrole:${targetRolesString}}`,
             offlineMembersWithRole,
           );
         } else if (/\{countdown:.+\}/.test(typeLC)) {
