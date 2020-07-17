@@ -28,7 +28,7 @@
 		"bufferutil": "^4.0.1",
 		"dotenv": "^8.2.0",
 		"dotenv-parse-variables": "^0.2.3",
-		"eris": "^0.12.0",
+		"eris": "^0.13.3",
 		"erlpack": "^0.1.3",
 		"express": "^4.17.1",
 		"gulp": "^4.0.2",
