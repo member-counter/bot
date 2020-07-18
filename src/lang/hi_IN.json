@@ -152,6 +152,7 @@
     "getCounts": {
       "onlyPremium": "केवल प्रीमियम",
       "unknownCounter": "अपरिचित गणक",
+      "disabled": "Counter Disabled",
       "noBanPerms": "मुझे यह दिखाने के लिए प्रतिबंध अनुमति की आवश्यकता है",
       "invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें"
     }
