@@ -136,7 +136,7 @@ class CountService {
 			content,
 			/\{(.+?)\}/gi,
 			async (wholeMatch, counterDetected) =>
-				await this.processCounter(counterDetected, legacy),
+				this.processCounter(counterDetected, legacy),
 		);
 	}
 
