@@ -152,6 +152,7 @@
     "getCounts": {
       "onlyPremium": "Только Премиум",
       "unknownCounter": "Неизвестный счётчик",
+      "disabled": "Counter Disabled",
       "noBanPerms": "Мне нужно право банить, чтобы показать это",
       "invalidChannelLength": "Достигнут лимит символов в названии канала, пожалуйста, настройте счётчик заново"
     }
