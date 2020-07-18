@@ -152,6 +152,7 @@
     "getCounts": {
       "onlyPremium": "Somente Premium",
       "unknownCounter": "Contador desconhecido",
+      "disabled": "Counter Disabled",
       "noBanPerms": "Eu preciso ter permissão de bans para mostrar isso",
       "invalidChannelLength": "Tamanho do nome do canal inválido, por favor configure o contador novamente"
     }
