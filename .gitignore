@@ -60,9 +60,6 @@ jspm_packages/
 # ignore the development folder
 dev/
 
-#vscode
-.vscode
-
 #macos stuff
 .DS_Store
 

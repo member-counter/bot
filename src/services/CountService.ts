@@ -1,353 +1,298 @@
-import Eris, {
-  Guild,
-  VoiceChannel,
-  Client,
-  TextChannel,
-  NewsChannel,
-  CategoryChannel,
-} from 'eris';
+import Eris from 'eris';
 import GuildService from './GuildService';
 import { loadLanguagePack } from '../utils/languagePack';
 import getEnv from '../utils/getEnv';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
-import ExternalCounts from '../counts/externalCounts';
 import shortNumber from '../utils/shortNumbers';
 import stringReplaceAsync from '../utils/stringReplaceAsync';
 import Constants from '../utils/Constants';
+import Counter from '../typings/Counter';
 
-const { FOSS_MODE, PREMIUM_BOT } = getEnv();
+import MyCounter from '../counters/counterTemplate';
+import BannedMembersCounter from '../counters/bannedMembers';
+import BotStatsCounter from '../counters/bot-stats';
+import ChannelCounter from '../counters/channels';
+import CountdownCounter from '../counters/countdown';
+import GTA5FiveMCounter from '../counters/gta5-fivem';
+import GTA5RageMPCounter from '../counters/gta5-ragemp';
+import HTTPCounter from '../counters/http';
+import httpString from '../counters/httpString';
+import HTTPStringCounter from '../counters/httpString';
+import MemberCounter from '../counters/members';
+import MembersConnectedCounter from '../counters/membersConnected';
+import MembersExtendedCounter from '../counters/membersExt';
+import MembersWithRoleCounter from '../counters/membersWithRole';
+import MinecraftCounter from '../counters/minecraft';
+import MixerCounter from '../counters/Mixer';
+import RolesCounter from '../counters/roles';
+import SoruceCounter from '../counters/source-game';
+import TwitchCounter from '../counters/Twitch';
+import YouTubeCounter from '../counters/YouTube';
+import { type } from 'os';
+
+// Do the aliases lowercase
+const counters: Counter[] = [
+	MyCounter,
+	BannedMembersCounter,
+	BotStatsCounter,
+	ChannelCounter,
+	CountdownCounter,
+	GTA5FiveMCounter,
+	GTA5RageMPCounter,
+	HTTPCounter,
+	HTTPStringCounter,
+	MemberCounter,
+	MembersConnectedCounter,
+	MembersExtendedCounter,
+	MembersWithRoleCounter,
+	MinecraftCounter,
+	MixerCounter,
+	RolesCounter,
+	SoruceCounter,
+	TwitchCounter,
+	YouTubeCounter,
+].map((counter) => {
+	counter.aliases = counter.aliases.map((alias) => alias.toLowerCase());
+	return counter;
+});
+
+const cache = new Map<string, { value: number | string; expiresAt: number }>();
+
+const { FOSS_MODE, PREMIUM_BOT, DEBUG } = getEnv();
 
 class CountService {
-  private client: Client;
-  private languagePack: any;
-  private countCache: Map<string, string | number>;
+	private client: Eris.Client;
+	public guild: Eris.Guild;
+	private guildSettings: GuildService;
+	private languagePack: any;
+	private tmpCache: Map<string, string>;
 
-  private constructor(
-    public guild: Guild,
-    private guildSettings: GuildService,
-  ) {
-    //@ts-ignore
-    this.client = this.guild._client;
-    this.languagePack = loadLanguagePack(this.guildSettings.language);
-    this.countCache = new Map();
-  }
+	private constructor(guild: Eris.Guild, guildSettings: GuildService) {
+		this.guild = guild;
+		this.guildSettings = guildSettings;
+		this.languagePack = loadLanguagePack(this.guildSettings.language);
+		this.tmpCache = new Map<string, string>();
+		//@ts-ignore
+		this.client = this.guild._client;
+	}
 
-  public static async init(guild: Guild): Promise<CountService> {
-    if (guild.unavailable) throw new Error(`Guild ${guild.id} is unavailable`);
-    const guildSettings = await GuildService.init(guild.id);
-    return new CountService(guild, guildSettings);
-  }
+	public static async init(guild: Eris.Guild): Promise<CountService> {
+		if (guild.unavailable)
+			throw new Error(`Eris.Guild ${guild.id} is unavailable`);
+		const guildSettings = await GuildService.init(guild.id);
+		return new CountService(guild, guildSettings);
+	}
 
-  public async updateCounters(): Promise<void> {
-    const { channels } = this.guild;
+	public async updateCounters(): Promise<void> {
+		const { channels } = this.guild;
 
-    for (const [id, rawContent] of this.guildSettings.counters) {
-      const discordChannel = channels.get(id);
+		for (const [id, rawContent] of this.guildSettings.counters) {
+			const discordChannel = channels.get(id);
 
-      if (!discordChannel) {
-        await this.guildSettings.deleteCounter(id);
-        return;
-      }
+			if (!discordChannel) {
+				await this.guildSettings.deleteCounter(id);
+				return;
+			}
 
-      const counterIsNameType =
-        discordChannel instanceof VoiceChannel ||
-        discordChannel instanceof CategoryChannel;
+			const counterIsNameType =
+				discordChannel.type === 2 || discordChannel.type === 4;
 
-      const counterIsTopicType =
-        discordChannel instanceof TextChannel ||
-        discordChannel instanceof NewsChannel;
+			const counterIsTopicType =
+				discordChannel.type === 0 || discordChannel.type === 5;
 
-      let processedContent = await this.processContent(
-        rawContent,
-        counterIsTopicType,
-      );
+			let processedContent = await this.processContent(
+				rawContent,
+				counterIsTopicType,
+			);
 
-      if (counterIsTopicType) {
-        const topicToSet = processedContent.slice(0, 1023);
-        if (
-          botHasPermsToEdit(discordChannel) &&
-          //@ts-ignore
-          discordChannel.topic !== topicToSet
-        )
-          await discordChannel.edit({ topic: topicToSet });
-      } else if (counterIsNameType) {
-        const nameToSet =
-          processedContent.length > 2
-            ? processedContent.slice(0, 99)
-            : this.languagePack.functions.getCounts.invalidChannelLength;
-        if (
-          botHasPermsToEdit(discordChannel) &&
-          //@ts-ignore
-          discordChannel.name !== nameToSet
-        ) {
-          await discordChannel.edit({ name: nameToSet });
-        }
-      }
-    }
-  }
+			if (counterIsTopicType) {
+				const topicToSet = processedContent.slice(0, 1023);
+				if (
+					botHasPermsToEdit(discordChannel) &&
+					//@ts-ignore
+					discordChannel.topic !== topicToSet
+				)
+					await discordChannel.edit({ topic: topicToSet });
+			} else if (counterIsNameType) {
+				const nameToSet =
+					processedContent.length > 2
+						? processedContent.slice(0, 99)
+						: this.languagePack.functions.getCounts
+								.invalidChannelLength;
+				if (
+					botHasPermsToEdit(discordChannel) &&
+					//@ts-ignore
+					discordChannel.name !== nameToSet
+				) {
+					await discordChannel.edit({ name: nameToSet });
+				}
+			}
+		}
+	}
 
-  processContent(
-    content: string,
-    customDigits: boolean = false,
-  ): Promise<string> {
-    return stringReplaceAsync(
-      content,
-      /\{(.+?)\}/gi,
-      async (counterDetected) => {
-        let count = await this.getCount(counterDetected, customDigits);
-        const intCount = Number(count);
+	// Legacy counters are those counters that are gonna be in a topic, they can't have the shortNumber option enabled there, because the digits are (or can be) cuztomized
+	processContent(content: string, legacy: boolean = false): Promise<string> {
+		return stringReplaceAsync(
+			content,
+			/\{(.+?)\}/gi,
+			async (wholeMatch, counterDetected) =>
+				await this.processCounter(counterDetected, legacy),
+		);
+	}
 
-        if (!customDigits && intCount && this.guildSettings.shortNumber) {
-          count = shortNumber(intCount);
-        }
+	public async processCounter(
+		counterRequested: string,
+		legacy: boolean = false,
+	): Promise<string> {
+		let [counterName, ...params] = counterRequested.split(':');
+		counterName = counterName.toLowerCase();
+		let resource = params.join(':');
+		let lifetime = 0;
+		let result: string | number;
 
-        return count;
-      },
-    );
-  }
+		// GET THE VALUE OF THE COUNTER
+		if (
+			cache.get(this.counterToKey(counterName, resource))?.expiresAt >
+			Date.now()
+		)
+			result = cache.get(this.counterToKey(counterName, resource)).value;
 
-  public async getCount(
-    type: string,
-    customDigits: boolean = false,
-  ): Promise<string> {
-    const typeL = type.toLowerCase();
+		if (this.tmpCache.has(this.counterToKey(counterName, resource)))
+			result = this.tmpCache.get(
+				this.counterToKey(counterName, resource),
+			);
 
-    if (!this.countCache.has(typeL)) {
-      await this.fetchCount(type);
-    }
+		if (!result) {
+			for (const counter of counters) {
+				if (counter.aliases.includes(counterName)) {
+					if (counter.isEnabled) {
+						if (counter.isPremium && !(PREMIUM_BOT || FOSS_MODE)) {
+							result = Constants.CounterResult.PREMIUM;
+							break;
+						}
 
-    if (this.countCache.get(typeL) === Constants.CounterResult.PREMIUM)
-      return this.languagePack.functions.getCounts.onlyPremium;
-    if (this.countCache.get(typeL) === Constants.CounterResult.ERROR)
-      return this.languagePack.common.error;
-    if (this.countCache.get(typeL) === Constants.CounterResult.UNKNOWN)
-      return this.languagePack.functions.getCounts.unknownCounter;
+						lifetime = counter.lifetime;
 
-    if (customDigits) {
-      if (!this.countCache.has(`${typeL}CustomDigit`)) {
-        let rawCount = this.countCache.get(typeL);
+						let returnedValue = await counter
+							.execute({
+								client: this.client,
+								guild: this.guild,
+								resource,
+							})
+							.catch((error) => {
+								// TODO guild logs
+								return (
+									cache.get(
+										this.counterToKey(
+											counterName,
+											resource,
+										),
+									)?.value || Constants.CounterResult.ERROR
+								);
+							});
 
-        let processedCount: string = rawCount.toString();
+						if (
+							typeof returnedValue === 'string' ||
+							typeof returnedValue === 'number'
+						) {
+							returnedValue = {
+								[counterName]: returnedValue,
+							};
+						} else if (typeof returnedValue === 'undefined') {
+							returnedValue = {
+								[counterName]: Constants.CounterResult.ERROR,
+							};
+						}
 
-        if (Number(rawCount)) {
-          processedCount = processedCount
-          .split('')
-          .map((digit) => this.guildSettings.digits[digit])
-          .join('');
-        }
+						for (const key in returnedValue) {
+							if (Object.prototype.hasOwnProperty.call(returnedValue, key)) {
+								let extValue = returnedValue[key];
+								let extKey = key.toLowerCase();
 
-        this.countCache.set(`${typeL}CustomDigit`, processedCount);
-      }
+								if (typeof extValue === 'string') {
+									// nothing, just don't convert it to an error
+								} else if (typeof extValue === 'number') {
+									extValue = !isNaN(extValue)
+										? extValue.toString()
+										: Constants.CounterResult.ERROR;
+								} else {
+									extValue = Constants.CounterResult.ERROR;
+								}
 
-      return this.countCache.get(`${typeL}CustomDigit`).toString();
-    } else {
-      return this.countCache.get(typeL).toString();
-    }
-  }
+								if (lifetime > 0)
+									cache.set(
+										this.counterToKey(extKey, resource),
+										{
+											value: extValue,
+											expiresAt: Date.now() + lifetime,
+										},
+									);
 
-  private async fetchCount(type: string): Promise<void> {
-    // This part is for guild related counts, below at the end is the part that fetches couns from external resources
-    const typeLC = type.toLowerCase();
+								this.tmpCache.set(
+									this.counterToKey(extKey, resource),
+									extValue.toString(),
+								);
+							}
 
-    switch (typeLC) {
-      case '{members}':
-        this.countCache.set(typeLC, this.guild.memberCount);
-        break;
+							result =
+								cache.get(
+									this.counterToKey(counterName, resource),
+								)?.value ||
+								this.tmpCache.get(
+									this.counterToKey(counterName, resource),
+								);
+						}
+					} else {
+						result = Constants.CounterResult.DISABLED;
+					}
+					break;
+				}
+			}
+		}
 
-      case '{bots}':
-      case '{users}':
-      case '{onlinemembers}':
-      case '{offlinemembers}':
-      case '{onlineusers}':
-      case '{offlineusers}':
-      case '{onlinebots}':
-      case '{offlinebots}': {
-        const counts = {
-          ['{bots}']: 0,
-          ['{users}']: 0,
-          ['{onlinemembers}']: 0,
-          ['{offlinemembers}']: 0,
-          ['{onlineusers}']: 0,
-          ['{offlineusers}']: 0,
-          ['{onlinebots}']: 0,
-          ['{offlinebots}']: 0,
-        };
+		if (!result) result = Constants.CounterResult.UNKNOWN;
 
-        if (!(PREMIUM_BOT || FOSS_MODE)) {
-          for (const key in counts) {
-            if (counts.hasOwnProperty(key)) {
-              this.countCache.set(key, Constants.CounterResult.PREMIUM);
-            }
-          }
-          return;
-        }
+		// PROCESS THE VALUE
+		switch (Number(result)) {
+			case Constants.CounterResult.PREMIUM:
+				result = this.languagePack.functions.getCounts.onlyPremium;
+				break;
 
-        for (const [memberId, member] of this.guild.members) {
-          const memberIsOffline = member.status === 'offline';
+			case Constants.CounterResult.ERROR:
+				result = this.languagePack.common.error;
+				break;
 
-          if (member.bot) counts['{bots}']++;
-          else counts['{users}']++;
+			case Constants.CounterResult.UNKNOWN:
+				result = this.languagePack.functions.getCounts.unknownCounter;
+				break;
 
-          if (memberIsOffline) counts['{offlinemembers}']++;
-          else counts['{onlinemembers}']++;
+			case Constants.CounterResult.DISABLED:
+				result = this.languagePack.functions.getCounts.disabled;
+				break;
+		}
 
-          if (memberIsOffline && member.bot) counts['{offlinebots}']++;
-          else if (memberIsOffline) counts['{offlineusers}']++;
+		// Customize digits
+		if (legacy) {
+			if (Number(result)) {
+				result = result
+					.toString()
+					.split('')
+					.map((digit) => this.guildSettings.digits[digit])
+					.join('');
+			}
+		} else {
+			const intCount = Number(result);
+			if (intCount && this.guildSettings.shortNumber) {
+				result = shortNumber(intCount);
+			}
+		}
 
-          if (!memberIsOffline && member.bot) counts['{onlinebots}']++;
-          else if (!memberIsOffline) counts['{onlineusers}']++;
-        }
+		return result.toString();
+	}
 
-        for (const [key, value] of Object.entries(counts)) {
-          this.countCache.set(key, value);
-        }
-
-        break;
-      }
-
-      case '{channels}':
-        this.countCache.set(
-          typeLC,
-          this.guild.channels.filter((channel) => channel.type !== 4).length,
-        );
-        break;
-
-      case '{roles}':
-        this.countCache.set(typeLC, this.guild.roles.size);
-        break;
-
-      case '{bannedmembers}': {
-        this.countCache.set(
-          typeLC,
-          await this.guild
-            .getBans()
-            .then((bans) => bans.length)
-            .catch(() => Constants.CounterResult.ERROR),
-        );
-        break;
-      }
-
-      case '{member-counter-guilds}': {
-        this.countCache.set(
-          typeLC,
-          this.client.guilds.size,
-        );
-        break;
-      }
-
-      case '{member-counter-users}': {
-        this.countCache.set(
-          typeLC,
-          this.client.guilds.reduce(
-            (acc, curr) => acc + curr.memberCount,
-            0,
-          ),
-        );
-        break;
-      }
-
-      default: {
-        if (/\{connectedmembers(:.+)?\}/.test(typeLC)) {
-          const targetChannels: string[] = /\{connectedmembers:.+\}/.test(typeLC)
-            ? typeLC.slice(typeLC.indexOf(':') + 1, -1).split(',')
-            : [];
-
-          const targetChannelsString =
-            targetChannels.length > 0 ? ':' + targetChannels.join(',') : '';
-
-          if (!(PREMIUM_BOT || FOSS_MODE)) {
-            this.countCache.set(
-              `{connectedmembers${targetChannelsString}}`,
-              Constants.CounterResult.PREMIUM,
-            );
-            return;
-          }
-
-          this.countCache.set(
-            `{connectedmembers${targetChannelsString}}`,
-            this.guild.channels
-              .filter((channel) => channel.type === 2)
-              .reduce((prev, current: VoiceChannel) => {
-                if (
-                  targetChannels.length > 0 &&
-                  !targetChannels.includes(current.id)
-                ) {
-                  return prev;
-                } else {
-                  return prev + current.voiceMembers.size;
-                }
-              }, 0),
-          );
-        } else if (
-          /\{memberswithrole:.+\}/.test(typeLC) ||
-          /\{onlinememberswithrole:.+\}/.test(typeLC) ||
-          /\{offlinememberswithrole:.+\}/.test(typeLC)
-        ) {
-          const targetRoles: string[] = typeLC
-            .slice(typeLC.indexOf(':') + 1, -1)
-            .split(',');
-          const targetRolesString = targetRoles.join(',');
-
-          let membersWithRole: any = new Set();
-          let onlineMembersWithRole: any = new Set();
-          let offlineMembersWithRole: any = new Set();
-
-          if (PREMIUM_BOT || FOSS_MODE) {
-            this.guild.members.forEach((member) => {
-              targetRoles.forEach((targetRole) => {
-                if (member.roles.includes(targetRole)) {
-                  membersWithRole.add(member.id);
-                  if (member.status === 'offline')
-                    offlineMembersWithRole.add(member.id);
-                  else onlineMembersWithRole.add(member.id);
-                }
-              });
-            });
-
-            membersWithRole = membersWithRole.size;
-            onlineMembersWithRole = onlineMembersWithRole.size;
-            offlineMembersWithRole = offlineMembersWithRole.size;
-          } else {
-            membersWithRole = Constants.CounterResult.PREMIUM;
-            onlineMembersWithRole = Constants.CounterResult.PREMIUM;
-            offlineMembersWithRole = Constants.CounterResult.PREMIUM;
-          }
-
-          this.countCache.set(
-            `{memberswithrole:${targetRolesString}}`,
-            membersWithRole,
-          );
-          this.countCache.set(
-            `{onlinememberswithrole:${targetRolesString}}`,
-            onlineMembersWithRole,
-          );
-          this.countCache.set(
-            `{offlinememberswithrole:${targetRolesString}}`,
-            offlineMembersWithRole,
-          );
-        } else if (/\{countdown:.+\}/.test(typeLC)) {
-          // {countdown:date:format}
-          const args = type.substring(1, type.length - 1).split(':');
-          const format = args[2] || '%d:%h:%m';
-          const date = parseInt(args[1], 10) * 1000;
-          let timeLeft = new Date(date - Date.now());
-          if (date - Date.now() < 0) timeLeft = new Date(0);
-
-          const formated = format
-            .replace(/%d/gi, `${Math.floor((timeLeft.getTime() / 1000) / 60 / 60 / 24)}`)
-            .replace(/%h/gi, `${timeLeft.getUTCHours()}`)
-            .replace(/%m/gi, `${timeLeft.getUTCMinutes()}`)
-            .replace(/%s/gi, `${timeLeft.getUTCSeconds()}`);
-
-          this.countCache.set(typeLC, formated);
-        } else {
-          // check if the counter is a external one
-          this.countCache.set(typeLC, await ExternalCounts.get(type));
-        }
-        break;
-      }
-    }
-  }
+	private counterToKey(counterName: string, resource: string): string {
+		return [counterName, resource].filter((x) => x).join(':');
+	}
 }
 
 export default CountService;
