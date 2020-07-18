@@ -152,6 +152,7 @@
     "getCounts": {
       "onlyPremium": "Seulement Premium",
       "unknownCounter": "Compteur inconnu",
+      "disabled": "Counter Disabled",
       "noBanPerms": "J'ai besoin d'une autorisation de bannir pour montrer ceci",
       "invalidChannelLength": "Longueur du nom de salon invalide, veuillez réinitialiser le compteur"
     }
