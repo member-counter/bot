@@ -1,8 +1,9 @@
-import GuildModel from '../models/GuildModel';
+import GuildModel, { GuildSettingsDocument } from '../models/GuildModel';
 import UserModel from '../models/UserModel';
+import GuildLogModel, { GuildLogDocument } from '../models/GuildLogModel';
 
 class GuildService {
-  private constructor(public id: string, private doc: any) {}
+  private constructor(public id: string, private doc: GuildSettingsDocument) {}
 
   public static async init(id: string): Promise<GuildService> {
     const doc = await GuildModel.findOneAndUpdate(
@@ -111,8 +112,19 @@ class GuildService {
     await this.doc.save();
   }
 
+  public async log(guild: string, text: string): Promise<void> {
+    await GuildLogModel.create({ guild, text });
+  }
+
+  public async getLatestLogs(): Promise<GuildLogDocument[]> {
+    return await GuildLogModel.find({ guild: this.id })
+      .limit(20)
+      .sort({ timestamp: 1 });
+  }
+
   public async resetSettings(): Promise<void> {
     const premiumStatus = this.premium;
+    await GuildLogModel.deleteMany({ guild: this.id });
     await GuildModel.findOneAndRemove({ guild: this.id });
     this.doc = await GuildModel.create({
       guild: this.id,

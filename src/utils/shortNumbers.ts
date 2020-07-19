@@ -1,5 +1,5 @@
 function short(n: number): number {
-  return Math.trunc(n * Math.pow(10, 2)) / Math.pow(10, 2);
+  return Math.trunc(n * Math.pow(10, 1)) / Math.pow(10, 1);
 }
 
 function shortNumber(n: number): string {

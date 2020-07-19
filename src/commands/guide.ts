@@ -27,7 +27,7 @@ const splitContent = (content: string): string[] => {
 };
 
 const guide: MemberCounterCommand = {
-	aliases: ['guide', 'setup', 'intro'],
+	aliases: ['guide', 'intro'],
 	denyDm: false,
 	onlyAdmin: false,
 	run: async ({ message, languagePack }) => {
