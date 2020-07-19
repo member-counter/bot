@@ -15,6 +15,8 @@ import ChannelCounter from '../counters/channels';
 import CountdownCounter from '../counters/countdown';
 import GTA5FiveMCounter from '../counters/gta5-fivem';
 import GTA5RageMPCounter from '../counters/gta5-ragemp';
+import GTASAMPCounter from '../counters/gtasa-mp';
+import GTASAMTACounter from '../counters/gtasa-mta';
 import HTTPCounter from '../counters/http';
 import httpString from '../counters/httpString';
 import HTTPStringCounter from '../counters/httpString';
@@ -28,7 +30,6 @@ import RolesCounter from '../counters/roles';
 import SoruceCounter from '../counters/source-game';
 import TwitchCounter from '../counters/Twitch';
 import YouTubeCounter from '../counters/YouTube';
-import { type } from 'os';
 
 // Do the aliases lowercase
 const counters: Counter[] = [
@@ -39,6 +40,8 @@ const counters: Counter[] = [
 	CountdownCounter,
 	GTA5FiveMCounter,
 	GTA5RageMPCounter,
+	GTASAMPCounter,
+	GTASAMTACounter,
 	HTTPCounter,
 	HTTPStringCounter,
 	MemberCounter,
@@ -284,6 +287,7 @@ class CountService {
 			const intCount = Number(result);
 			if (intCount && this.guildSettings.shortNumber) {
 				result = shortNumber(intCount);
+				// TODO olivia suggested something, "100,000,000" and "100.000.000" or whatever, just replace everytinh of counterContent to a , or . and every 3 digits from the right add a . or ,
 			}
 		}
 

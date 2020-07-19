@@ -2,7 +2,7 @@ import query from 'samp-query';
 import Counter from '../typings/Counter';
 import Constants from '../utils/Constants';
 
-const GTASARageMPCounter: Counter = {
+const GTASAMPCounter: Counter = {
 	aliases: ['gtasa-mp'],
 	isPremium: false,
 	isEnabled: true,
@@ -20,4 +20,4 @@ const GTASARageMPCounter: Counter = {
 		}),
 };
 
-export default GTASARageMPCounter;
+export default GTASAMPCounter;
