@@ -13,23 +13,18 @@ import BannedMembersCounter from '../counters/bannedMembers';
 import BotStatsCounter from '../counters/bot-stats';
 import ChannelCounter from '../counters/channels';
 import CountdownCounter from '../counters/countdown';
-import GTA5FiveMCounter from '../counters/gta5-fivem';
-import GTA5RageMPCounter from '../counters/gta5-ragemp';
-import GTASAMPCounter from '../counters/gtasa-mp';
-import GTASAMTACounter from '../counters/gtasa-mta';
+import GameCounter from '../counters/game';
 import HTTPCounter from '../counters/http';
-import httpString from '../counters/httpString';
 import HTTPStringCounter from '../counters/httpString';
 import MemberCounter from '../counters/members';
 import MembersConnectedCounter from '../counters/membersConnected';
 import MembersExtendedCounter from '../counters/membersExt';
 import MembersWithRoleCounter from '../counters/membersWithRole';
-import MinecraftCounter from '../counters/minecraft';
 import MixerCounter from '../counters/Mixer';
 import RolesCounter from '../counters/roles';
-import SoruceCounter from '../counters/source-game';
-import TwitchCounter from '../counters/Twitch';
-import YouTubeCounter from '../counters/YouTube';
+import TwitchCounter from '../counters/twitch';
+import YouTubeCounter from '../counters/youTube';
+import ErrorCounter from '../counters/throwErrorCounter';
 
 // Do the aliases lowercase
 const counters: Counter[] = [
@@ -38,20 +33,16 @@ const counters: Counter[] = [
 	BotStatsCounter,
 	ChannelCounter,
 	CountdownCounter,
-	GTA5FiveMCounter,
-	GTA5RageMPCounter,
-	GTASAMPCounter,
-	GTASAMTACounter,
+	GameCounter,
 	HTTPCounter,
 	HTTPStringCounter,
 	MemberCounter,
 	MembersConnectedCounter,
 	MembersExtendedCounter,
 	MembersWithRoleCounter,
-	MinecraftCounter,
 	MixerCounter,
 	RolesCounter,
-	SoruceCounter,
+	ErrorCounter,
 	TwitchCounter,
 	YouTubeCounter,
 ].map((counter) => {
@@ -183,7 +174,13 @@ class CountService {
 								resource,
 							})
 							.catch((error) => {
-								// TODO guild logs
+								if (DEBUG) console.error(error);
+								this.guildSettings
+									.log(
+										this.guild.id,
+										`{${counterRequested}}: ${error}`,
+									)
+									.catch(console.error);
 								return (
 									cache.get(
 										this.counterToKey(
@@ -208,7 +205,12 @@ class CountService {
 						}
 
 						for (const key in returnedValue) {
-							if (Object.prototype.hasOwnProperty.call(returnedValue, key)) {
+							if (
+								Object.prototype.hasOwnProperty.call(
+									returnedValue,
+									key,
+								)
+							) {
 								let extValue = returnedValue[key];
 								let extKey = key.toLowerCase();
 
@@ -287,7 +289,6 @@ class CountService {
 			const intCount = Number(result);
 			if (intCount && this.guildSettings.shortNumber) {
 				result = shortNumber(intCount);
-				// TODO olivia suggested something, "100,000,000" and "100.000.000" or whatever, just replace everytinh of counterContent to a , or . and every 3 digits from the right add a . or ,
 			}
 		}
 
