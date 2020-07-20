@@ -117,7 +117,7 @@ class GuildService {
   }
 
   public async getLatestLogs(): Promise<GuildLogDocument[]> {
-    return GuildLogModel.find({ guild: this.id })
+    return await GuildLogModel.find({ guild: this.id })
       .limit(20)
       .sort({ timestamp: 1 });
   }
