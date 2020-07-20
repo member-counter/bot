@@ -22,8 +22,8 @@ import MembersExtendedCounter from '../counters/membersExt';
 import MembersWithRoleCounter from '../counters/membersWithRole';
 import MixerCounter from '../counters/Mixer';
 import RolesCounter from '../counters/roles';
-import TwitchCounter from '../counters/twitch';
-import YouTubeCounter from '../counters/youTube';
+import TwitchCounter from '../counters/Twitch';
+import YouTubeCounter from '../counters/YouTube';
 import ErrorCounter from '../counters/throwErrorCounter';
 
 // Do the aliases lowercase
