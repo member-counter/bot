@@ -79,49 +79,56 @@ class CountService {
 
 	public async updateCounters(): Promise<void> {
 		const { channels } = this.guild;
+		const { counters } = this.guildSettings;
 
-		for (const [id, rawContent] of this.guildSettings.counters) {
-			const discordChannel = channels.get(id);
+		Promise.all(
+			Array.from(counters).map(([id, rawContent]) => {
+				const discordChannel = channels.get(id);
 
-			if (!discordChannel) {
-				await this.guildSettings.deleteCounter(id);
-				return;
-			}
-
-			const counterIsNameType =
-				discordChannel.type === 2 || discordChannel.type === 4;
-
-			const counterIsTopicType =
-				discordChannel.type === 0 || discordChannel.type === 5;
-
-			let processedContent = await this.processContent(
-				rawContent,
-				counterIsTopicType,
-			);
-
-			if (counterIsTopicType) {
-				const topicToSet = processedContent.slice(0, 1023);
-				if (
-					botHasPermsToEdit(discordChannel) &&
-					//@ts-ignore
-					discordChannel.topic !== topicToSet
-				)
-					await discordChannel.edit({ topic: topicToSet });
-			} else if (counterIsNameType) {
-				const nameToSet =
-					processedContent.length > 2
-						? processedContent.slice(0, 99)
-						: this.languagePack.functions.getCounts
-								.invalidChannelLength;
-				if (
-					botHasPermsToEdit(discordChannel) &&
-					//@ts-ignore
-					discordChannel.name !== nameToSet
-				) {
-					await discordChannel.edit({ name: nameToSet });
+				if (!discordChannel) {
+					await this.guildSettings.deleteCounter(id);
+					return;
 				}
-			}
-		}
+
+				const counterIsNameType =
+					discordChannel.type === 2 || discordChannel.type === 4;
+
+				const counterIsTopicType =
+					discordChannel.type === 0 || discordChannel.type === 5;
+
+				let processedContent = await this.processContent(
+					rawContent,
+					counterIsTopicType,
+				);
+
+				if (counterIsTopicType) {
+					const topicToSet = processedContent.slice(0, 1023);
+					if (
+						botHasPermsToEdit(discordChannel) &&
+						//@ts-ignore
+						discordChannel.topic !== topicToSet
+					)
+						await discordChannel
+							.edit({ topic: topicToSet })
+							.catch(console.error);
+				} else if (counterIsNameType) {
+					const nameToSet =
+						processedContent.length > 2
+							? processedContent.slice(0, 99)
+							: this.languagePack.functions.getCounts
+									.invalidChannelLength;
+					if (
+						botHasPermsToEdit(discordChannel) &&
+						//@ts-ignore
+						discordChannel.name !== nameToSet
+					) {
+						await discordChannel
+							.edit({ name: nameToSet })
+							.catch(console.error);
+					}
+				}
+			}),
+		);
 	}
 
 	// Legacy counters are those counters that are gonna be in a topic, they can't have the shortNumber option enabled there, because the digits are (or can be) cuztomized
