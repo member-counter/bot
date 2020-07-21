@@ -28,7 +28,7 @@ const HTTPCounter: Counter = {
 			response.status === 200 &&
 			response.headers.get('Content-Type').includes('text/plain')
 		) {
-			return parseInt(await response.text(), 10);
+			return parseFloat(await response.text());
 		} else {
 			controller.abort();
 			throw new Error(`Invalid status code (not 200) in: ${resource}`);
