@@ -82,7 +82,7 @@ class CountService {
 		const { counters } = this.guildSettings;
 
 		Promise.all(
-			Array.from(counters).map(([id, rawContent]) => {
+			Array.from(counters).map(async ([id, rawContent]) => {
 				const discordChannel = channels.get(id);
 
 				if (!discordChannel) {
@@ -109,8 +109,7 @@ class CountService {
 						discordChannel.topic !== topicToSet
 					)
 						await discordChannel
-							.edit({ topic: topicToSet })
-							.catch(console.error);
+							.edit({ topic: topicToSet });
 				} else if (counterIsNameType) {
 					const nameToSet =
 						processedContent.length > 2
@@ -123,8 +122,7 @@ class CountService {
 						discordChannel.name !== nameToSet
 					) {
 						await discordChannel
-							.edit({ name: nameToSet })
-							.catch(console.error);
+							.edit({ name: nameToSet });
 					}
 				}
 			}),
