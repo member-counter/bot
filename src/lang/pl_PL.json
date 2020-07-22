@@ -55,10 +55,14 @@
       "errorMissingParams": "Brakujące parametry, zobacz `{PREFIX}help setDigit`."
     },
     "shortNumber": {
-      "helpDescription": "Ta komenda pozwala wyświetlić liczbę w krótkiej formie w licznikach umieszczonych w nazwie kanału głosowego / kategorii\n\n**Użycie**\n```{PREFIX}shortNumber [enable/disable]```\n**Przykład**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "Nieprawidłowa akcja! zobacz `{PREFIX}help shortNumber`",
       "success": "Gotowy! Być może będziesz musiał poczekać kilka sekund, aby zobaczyć nowe zmiany"
+    },
+    "numberFormat": {
+      "helpDescription": "Formats the numbers to the specified locale (when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}shortNumber [locale/disable]```\n**Examples**```{PREFIX}numberFormat en\n{PREFIX}numberFormat es\n{PREFIX}numberFormat disable```",
+      "helpImage": "https://i.imgur.com/gnje0YB.png"
     },
     "prefix": {
       "helpDescription": "Zmień prefix bota.\n\nStosowanie:```{PREFIX}prefix [nowy prefix]```",
@@ -77,6 +81,7 @@
         "headerText": "Ustawienia dla serwera:",
         "prefixText": "Prefix:",
         "langText": "Język:",
+        "formatNumberLocaleText": "Number formatting locale:",
         "premiumText": "Premium:",
         "premiumNoTierText": "Nie",
         "premiumConfirmedText": "Tak",
