@@ -55,10 +55,14 @@
       "errorMissingParams": "Falten paràmetres, si us plau, consulta `{PREFIX}help setDigit`."
     },
     "shortNumber": {
-      "helpDescription": "Aquest comand et permet mostrar el nombre d'un compte en un format abreujat en comtadors que hagis col·locat en un canal de veu o categoria\n\n**Ús**\n```{PREFIX}shortNumber [enable/disable]```\n**Ejemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "Acció invàlida! Per favor, consulta `{PREFIX}help shortNumber`",
       "success": "Fet! Potser que hagis d'esperar uns segons per poder veure els nous canvis"
+    },
+    "numberFormat": {
+      "helpDescription": "Formats the numbers to the specified locale (when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}shortNumber [locale/disable]```\n**Examples**```{PREFIX}numberFormat en\n{PREFIX}numberFormat es\n{PREFIX}numberFormat disable```",
+      "helpImage": "https://i.imgur.com/gnje0YB.png"
     },
     "prefix": {
       "helpDescription": "Canvia el prefix del bot.\n\nÚs:```{PREFIX}prefix [nuevo prefijo]```",
@@ -77,6 +81,7 @@
         "headerText": "Configuració del servidor:",
         "prefixText": "Prefix:",
         "langText": "Llenguatge:",
+        "formatNumberLocaleText": "Number formatting locale:",
         "premiumText": "Premium:",
         "premiumNoTierText": "No",
         "premiumConfirmedText": "Si",
