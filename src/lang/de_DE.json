@@ -55,10 +55,14 @@
       "errorMissingParams": "Fehlende Angabe, bitte beachte `{PREFIX}help setDigit`."
     },
     "shortNumber": {
-      "helpDescription": "Dieser Befehl erlaubt es dir Zähler in Kurzform anzuzeigen, die in Sprachkanal/Kagtegorie Namen zu lang wären\n\n**Verwendung**\n```{PREFIX}shortNumber [enable/disable]```\n**Beispiel**\n```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "Ungültige Aktion! Siehe `{PREFIX}help shortNumber`",
       "success": "Erledigt! Möglicherweiße musst du einen Moment waren bis die Änderungen in Kraft treten"
+    },
+    "numberFormat": {
+      "helpDescription": "Formats the numbers to the specified locale (when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}shortNumber [locale/disable]```\n**Examples**```{PREFIX}numberFormat en\n{PREFIX}numberFormat es\n{PREFIX}numberFormat disable```",
+      "helpImage": "https://i.imgur.com/gnje0YB.png"
     },
     "prefix": {
       "helpDescription": "Ändere das Präfix des Bots.\n\nVerwendung:```{PREFIX}prefix [neues präfix]```",
@@ -77,6 +81,7 @@
         "headerText": "Einstellungen für den Server:",
         "prefixText": "Präfix:",
         "langText": "Sprache:",
+        "formatNumberLocaleText": "Number formatting locale:",
         "premiumText": "Premium:",
         "premiumNoTierText": "Nein",
         "premiumConfirmedText": "Ja",
