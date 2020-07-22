@@ -205,12 +205,8 @@ class CountService {
 						}
 
 						for (const key in returnedValue) {
-							if (
-								Object.prototype.hasOwnProperty.call(
-									returnedValue,
-									key,
-								)
-							) {
+							if (returnedValue.hasOwnProperty(key)) {
+
 								let extValue = returnedValue[key];
 								let extKey = key.toLowerCase();
 

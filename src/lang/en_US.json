@@ -61,7 +61,7 @@
       "success": "Done! You may have to wait a few seconds to see the new changes"
     },
     "numberFormat": {
-      "helpDescription": "Formats the numbers to the specified locale (when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}shortNumber [locale/disable]```\n**Examples**```{PREFIX}numberFormat en\n{PREFIX}numberFormat es\n{PREFIX}numberFormat disable```",
+      "helpDescription": "Formats the numbers to the specified locale (when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}numberFormat [locale/disable]```\n**Examples**```{PREFIX}numberFormat en\n{PREFIX}numberFormat es\n{PREFIX}numberFormat disable```",
       "helpImage": "https://i.imgur.com/gnje0YB.png"
     },
     "prefix": {
