@@ -55,10 +55,14 @@
       "errorMissingParams": "Недостаточно параметров, пожалуйста, просмотрите `{PREFIX}help setDigit`."
     },
     "shortNumber": {
-      "helpDescription": "Эта команда позволяет вам сократить значение считываемого ресурса в имени голосового канала/категории.\n\n**Использование:**\n```{PREFIX}shortNumber [enable/disable]```\n**Примеры:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "Неправильное действие! Пожалуйста, просмотрите `{PREFIX}help shortNumber`",
       "success": "Сделано! Необходимо немного подождать прежде, чем увидеть новые изменения"
+    },
+    "numberFormat": {
+      "helpDescription": "Formats the numbers to the specified locale (when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}shortNumber [locale/disable]```\n**Examples**```{PREFIX}numberFormat en\n{PREFIX}numberFormat es\n{PREFIX}numberFormat disable```",
+      "helpImage": "https://i.imgur.com/gnje0YB.png"
     },
     "prefix": {
       "helpDescription": "Меняет префикс бота.\n\nИспользование: ```{PREFIX}prefix [new prefix]```",
@@ -77,6 +81,7 @@
         "headerText": "Настройки для сервера:",
         "prefixText": "Префикс:",
         "langText": "Язык:",
+        "formatNumberLocaleText": "Number formatting locale:",
         "premiumText": "Премиум:",
         "premiumNoTierText": "Нет",
         "premiumConfirmedText": "Да",
