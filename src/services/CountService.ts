@@ -108,8 +108,7 @@ class CountService {
 						//@ts-ignore
 						discordChannel.topic !== topicToSet
 					)
-						await discordChannel
-							.edit({ topic: topicToSet });
+						await discordChannel.edit({ topic: topicToSet });
 				} else if (counterIsNameType) {
 					const nameToSet =
 						processedContent.length > 2
@@ -121,8 +120,7 @@ class CountService {
 						//@ts-ignore
 						discordChannel.name !== nameToSet
 					) {
-						await discordChannel
-							.edit({ name: nameToSet });
+						await discordChannel.edit({ name: nameToSet });
 					}
 				}
 			}),
@@ -181,10 +179,7 @@ class CountService {
 							.catch((error) => {
 								if (DEBUG) console.error(error);
 								this.guildSettings
-									.log(
-										this.guild.id,
-										`{${counterRequested}}: ${error}`,
-									)
+									.log(`{${counterRequested}}: ${error}`)
 									.catch(console.error);
 								return (
 									cache.get(
@@ -281,19 +276,31 @@ class CountService {
 				break;
 		}
 
-		// Customize digits
-		if (legacy) {
-			if (Number(result)) {
+		
+		const intCount = Number(result);
+		const isNumber = !isNaN(intCount);
+		if (isNumber) {
+			if (this.guildSettings.shortNumber) {
+				result = shortNumber(intCount);
+			} else if (
+				!this.guildSettings.formatNumberLocale.includes('disable')
+			) {
+				try {
+					result = new Intl.NumberFormat(
+						this.guildSettings.formatNumberLocale,
+					).format(intCount);
+				} catch (err) {
+					await this.guildSettings.log(err);
+				}
+			}
+
+			if (legacy) {
+				const { digits } = this.guildSettings;
 				result = result
 					.toString()
 					.split('')
-					.map((digit) => this.guildSettings.digits[digit])
+					.map((digit) => digits[digit] ? digits[digit] : digit)
 					.join('');
-			}
-		} else {
-			const intCount = Number(result);
-			if (intCount && this.guildSettings.shortNumber) {
-				result = shortNumber(intCount);
 			}
 		}
 

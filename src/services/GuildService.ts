@@ -53,6 +53,16 @@ class GuildService {
     return this.doc.shortNumber;
   }
 
+  public async setFormatNumberLocale(locale: string): Promise<string> {
+    this.doc.formatNumberLocale = locale;
+    await this.doc.save();
+    return this.doc.formatNumberLocale;
+  }
+
+  public get formatNumberLocale(): string {
+    return this.doc.formatNumberLocale;
+  }
+
   public get premium(): boolean {
     return this.doc.premium;
   }
@@ -112,8 +122,8 @@ class GuildService {
     await this.doc.save();
   }
 
-  public async log(guild: string, text: string): Promise<void> {
-    await GuildLogModel.create({ guild, text });
+  public async log(text: string): Promise<void> {
+    await GuildLogModel.create({ guild: this.id, text });
   }
 
   public async getLatestLogs(): Promise<GuildLogDocument[]> {
