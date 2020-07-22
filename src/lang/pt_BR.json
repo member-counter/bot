@@ -55,10 +55,14 @@
       "errorMissingParams": "Parâmetros ausentes, por favor veja `{PREFIX}help setDigit`."
     },
     "shortNumber": {
-      "helpDescription": "Esse comando te permite mostrar um contador de forma reduzida nos contadores colocados no nome de um canal de voz/categoria\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "Ação inválida! por favor veja `{PREFIX}help shortNumber`",
       "success": "Feito! Você talvez tenha que esperar alguns segundos para ver as novas mudanças"
+    },
+    "numberFormat": {
+      "helpDescription": "Formats the numbers to the specified locale (when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}shortNumber [locale/disable]```\n**Examples**```{PREFIX}numberFormat en\n{PREFIX}numberFormat es\n{PREFIX}numberFormat disable```",
+      "helpImage": "https://i.imgur.com/gnje0YB.png"
     },
     "prefix": {
       "helpDescription": "Muda o prefixo do bot.\n\nUso:```{PREFIX}prefix [novo prefixo]```",
@@ -77,6 +81,7 @@
         "headerText": "Configurações para guild:",
         "prefixText": "Prefixo:",
         "langText": "Idioma: ",
+        "formatNumberLocaleText": "Number formatting locale:",
         "premiumText": "Premium:",
         "premiumNoTierText": "Não",
         "premiumConfirmedText": "Sim",
