@@ -55,10 +55,14 @@
       "errorMissingParams": "लापता मापदण्ड, कृपया `{PREFIX}help setDigit` देखें"
     },
     "shortNumber": {
-      "helpDescription": "यह कमांड आपको आवाज़ / श्रेणी चैनल के नाम पर रखे गए काउंटरों में एक संक्षिप्त रूप में एक संख्या दिखाने की अनुमति देता है\n\n**प्रयोग**\n```{PREFIX}shortNumber [enable/disable]```\n**उदाहरण**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "अवैध कार्रवाई! कृपया `{PREFIX}help shortNumber` देखें",
       "success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है"
+    },
+    "numberFormat": {
+      "helpDescription": "Formats the numbers to the specified locale (when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}shortNumber [locale/disable]```\n**Examples**```{PREFIX}numberFormat en\n{PREFIX}numberFormat es\n{PREFIX}numberFormat disable```",
+      "helpImage": "https://i.imgur.com/gnje0YB.png"
     },
     "prefix": {
       "helpDescription": "बॉट के उपसर्ग को बदलता है।\n\nउपयोग:```{PREFIX}prefix [new prefix]```",
@@ -77,6 +81,7 @@
         "headerText": "संघ के लिए समायोजन :",
         "prefixText": "उपसर्ग :",
         "langText": "भाषाएं :",
+        "formatNumberLocaleText": "Number formatting locale:",
         "premiumText": "प्रीमियम :",
         "premiumNoTierText": "नहीं",
         "premiumConfirmedText": "हाँ",
