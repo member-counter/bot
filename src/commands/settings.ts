@@ -34,14 +34,15 @@ const seeSettings: MemberCounterCommand = {
 				headerText,
 				prefixText,
 				langText,
+				formatNumberLocaleText,
 				premiumText,
 				premiumNoTierText,
 				premiumConfirmedText,
 				allowedRolesText,
 				countersText,
 				customNumbersText,
-        warningNoPermsText,
-        guildLogsText,
+				warningNoPermsText,
+				guildLogsText,
 			} = languagePack.commands.seeSettings.settingsMessage;
 
 			const guildSettings = await GuildService.init(guild.id);
@@ -50,6 +51,7 @@ const seeSettings: MemberCounterCommand = {
 				prefix,
 				premium,
 				language,
+				formatNumberLocale,
 				allowedRoles,
 				counters,
 				digits,
@@ -75,26 +77,32 @@ const seeSettings: MemberCounterCommand = {
 			);
 			appendContent(`${prefixText} \`${prefix}\`\n`);
 			appendContent(`${langText} \`${language}\`\n`);
+			appendContent(`${formatNumberLocaleText} \`${formatNumberLocale}\`\n`);
 
-			appendContent(
-				`\n${allowedRolesText} ${allowedRoles
-					.map((role) => `<@&${role}>`)
-					.join(' ')}`,
-			);
-
-			appendContent(`\n\n${countersText}\n`);
-			for (const [counter, content] of counters) {
-				const discordChannel = guild.channels.get(counter);
-				const { name, type } = discordChannel;
-				const icon = ['\\#️⃣', ' ', '\\🔊', ' ', '\\📚', '\\📢', ' '];
+			if (allowedRoles.length) {
 				appendContent(
-					`${
-						botHasPermsToEdit(discordChannel) ? '     ' : ' \\⚠️ '
-					}- ${
-						icon[type]
-					} ${name} \`${counter}\`: \`\`\`${content}\`\`\`\n`,
+					`\n${allowedRolesText} ${allowedRoles
+						.map((role) => `<@&${role}>`)
+						.join(' ')}`,
 				);
 			}
+
+			if (counters.size) {
+				appendContent(`\n\n${countersText}\n`);
+				for (const [counter, content] of counters) {
+					const discordChannel = guild.channels.get(counter);
+					const { name, type } = discordChannel;
+					const icon = ['\\#️⃣', ' ', '\\🔊', ' ', '\\📚', '\\📢', ' '];
+					appendContent(
+						`${
+							botHasPermsToEdit(discordChannel) ? '     ' : ' \\⚠️ '
+						}- ${
+							icon[type]
+						} ${name} \`${counter}\`: \`\`\`${content}\`\`\`\n`,
+					);
+				}
+			}
+
 			appendContent(`\n${customNumbersText}`);
 			appendContent(` ${digits.join(' ')}\n`);
 
@@ -106,23 +114,24 @@ const seeSettings: MemberCounterCommand = {
 				}).length > 0
 			) {
 				appendContent(`\n${warningNoPermsText}`);
-      }
-      
+			}
 
-      let logsText = '\n' + guildLogsText + '\n```';
+			let logsText = '\n' + guildLogsText + '\n```';
 			const latestLogs = await guildSettings.getLatestLogs();
-      const latestLogsToAppend = '';
+			const latestLogsToAppend = '';
 
 			if (latestLogs.length) {
-        latestLogs.forEach(log => {
-          const text = `[${log.timestamp.toISOString()}] ${log.text}\n`;
-          if (logsText.length + text.length < 2000 - 3) logsText += text;
-        });
+				latestLogs.forEach((log) => {
+					const text = `[${log.timestamp.toISOString()}] ${
+						log.text
+					}\n`;
+					if (logsText.length + text.length < 2000 - 3)
+						logsText += text;
+				});
 
-        logsText += '```';
-        appendContent(logsText);
-      }
-      
+				logsText += '```';
+				appendContent(logsText);
+			}
 
 			for (const message of messagesToSend) {
 				await channel.createMessage(message);
@@ -462,7 +471,19 @@ const numberFormat: MemberCounterCommand = {
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
-		// TODO
+		const { channel, content } = message;
+		const [command, locale] = content.split(/\s+/);
+
+		if (channel instanceof GuildChannel) {
+			const { guild } = channel;
+			const guildSettings = await GuildService.init(guild.id);
+
+			await guildSettings.setFormatNumberLocale(locale);
+
+			await channel.createMessage(
+				languagePack.commands.shortNumber.success,
+			);
+		}
 	},
 };
 
