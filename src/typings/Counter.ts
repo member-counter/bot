@@ -1,21 +1,27 @@
 import Eris from 'eris';
+import GuildService from '../services/GuildService';
 
 interface executeArgs {
 	client: Eris.Client;
-	
-  /**
-   * @description Current guild
-   */
-  guild: Eris.Guild;
-  
-  /**
-   * @description Resource, like an array of role IDs, or an URI
-   */
+
+	/**
+	 * @description Current guild
+	 */
+	guild: Eris.Guild;
+
+	/**
+	 * @description Current guild
+	 */
+	guildSettings: GuildService;
+
+	/**
+	 * @description Resource, like an array of role IDs, or an URI
+	 */
 	resource: string;
 }
 
 interface executeFunction {
-	({ guild, resource }: executeArgs): Promise<
+	({}: executeArgs): Promise<
 		number | string | { [key: string]: number | string }
 	>;
 }
@@ -40,7 +46,6 @@ interface Counter {
 	 * @description Lifetime of the returned value(s) of 'execute' in milliseconds
 	 */
 	lifetime: number;
-
 
 	/**
 	 * @description When is executed,  form where is currently being used, and the resource (like a URI or discord roles)

@@ -25,6 +25,8 @@ import RolesCounter from '../counters/roles';
 import TwitchCounter from '../counters/Twitch';
 import YouTubeCounter from '../counters/YouTube';
 import ErrorCounter from '../counters/throwErrorCounter';
+import ClockCounter from '../counters/clock';
+import NitroBoostersCounter from '../counters/nitroBoosters';
 
 // Do the aliases lowercase
 const counters: Counter[] = [
@@ -32,6 +34,7 @@ const counters: Counter[] = [
 	BannedMembersCounter,
 	BotStatsCounter,
 	ChannelCounter,
+	ClockCounter,
 	CountdownCounter,
 	GameCounter,
 	HTTPCounter,
@@ -41,6 +44,7 @@ const counters: Counter[] = [
 	MembersExtendedCounter,
 	MembersWithRoleCounter,
 	MixerCounter,
+	NitroBoostersCounter,
 	RolesCounter,
 	ErrorCounter,
 	TwitchCounter,
@@ -113,8 +117,7 @@ class CountService {
 					const nameToSet =
 						processedContent.length > 2
 							? processedContent.slice(0, 99)
-							: this.languagePack.functions.getCounts
-									.invalidChannelLength;
+							: this.languagePack.functions.getCounts.invalidChannelLength;
 					if (
 						botHasPermsToEdit(discordChannel) &&
 						//@ts-ignore
@@ -155,9 +158,7 @@ class CountService {
 			result = cache.get(this.counterToKey(counterName, resource)).value;
 
 		if (this.tmpCache.has(this.counterToKey(counterName, resource)))
-			result = this.tmpCache.get(
-				this.counterToKey(counterName, resource),
-			);
+			result = this.tmpCache.get(this.counterToKey(counterName, resource));
 
 		if (!result) {
 			for (const counter of counters) {
@@ -174,6 +175,7 @@ class CountService {
 							.execute({
 								client: this.client,
 								guild: this.guild,
+								guildSettings: this.guildSettings,
 								resource,
 							})
 							.catch((error) => {
@@ -182,12 +184,8 @@ class CountService {
 									.log(`{${counterRequested}}: ${error}`)
 									.catch(console.error);
 								return (
-									cache.get(
-										this.counterToKey(
-											counterName,
-											resource,
-										),
-									)?.value || Constants.CounterResult.ERROR
+									cache.get(this.counterToKey(counterName, resource))?.value ||
+									Constants.CounterResult.ERROR
 								);
 							});
 
@@ -206,7 +204,6 @@ class CountService {
 
 						for (const key in returnedValue) {
 							if (returnedValue.hasOwnProperty(key)) {
-
 								let extValue = returnedValue[key];
 								let extKey = key.toLowerCase();
 
@@ -221,13 +218,10 @@ class CountService {
 								}
 
 								if (lifetime > 0)
-									cache.set(
-										this.counterToKey(extKey, resource),
-										{
-											value: extValue,
-											expiresAt: Date.now() + lifetime,
-										},
-									);
+									cache.set(this.counterToKey(extKey, resource), {
+										value: extValue,
+										expiresAt: Date.now() + lifetime,
+									});
 
 								this.tmpCache.set(
 									this.counterToKey(extKey, resource),
@@ -236,12 +230,8 @@ class CountService {
 							}
 
 							result =
-								cache.get(
-									this.counterToKey(counterName, resource),
-								)?.value ||
-								this.tmpCache.get(
-									this.counterToKey(counterName, resource),
-								);
+								cache.get(this.counterToKey(counterName, resource))?.value ||
+								this.tmpCache.get(this.counterToKey(counterName, resource));
 						}
 					} else {
 						result = Constants.CounterResult.DISABLED;
@@ -272,19 +262,16 @@ class CountService {
 				break;
 		}
 
-		
 		const intCount = Number(result);
 		const isNumber = !isNaN(intCount);
 		if (isNumber) {
 			if (this.guildSettings.shortNumber) {
 				result = shortNumber(intCount);
-			} else if (
-				!this.guildSettings.formatNumberLocale.includes('disable')
-			) {
+			} else if (!this.guildSettings.locale.includes('disable')) {
 				try {
-					result = new Intl.NumberFormat(
-						this.guildSettings.formatNumberLocale,
-					).format(intCount);
+					result = new Intl.NumberFormat(this.guildSettings.locale).format(
+						intCount,
+					);
 				} catch (err) {
 					await this.guildSettings.log(err);
 				}
@@ -295,7 +282,7 @@ class CountService {
 				result = result
 					.toString()
 					.split('')
-					.map((digit) => digits[digit] ? digits[digit] : digit)
+					.map((digit) => (digits[digit] ? digits[digit] : digit))
 					.join('');
 			}
 		}

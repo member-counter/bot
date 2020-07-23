@@ -11,7 +11,7 @@
 			"\tisPremium: false,",
 			"\tisEnabled: true,",
 			"\tlifetime: 0,",
-			"\texecute: async ({ client, guild, resource }) => {",
+			"\texecute: async ({ client, guild, guildSettings, resource }) => {",
 			"\t\treturn ${3:\"Working!\"}",
 			"\t}",
 			"}",

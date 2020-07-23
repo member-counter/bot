@@ -3,10 +3,7 @@ import UserModel from '../models/UserModel';
 import GuildLogModel, { GuildLogDocument } from '../models/GuildLogModel';
 
 class GuildService {
-	private constructor(
-		public id: string,
-		private doc: GuildSettingsDocument,
-	) {}
+	private constructor(public id: string, private doc: GuildSettingsDocument) {}
 
 	public static async init(id: string): Promise<GuildService> {
 		const doc = await GuildModel.findOneAndUpdate(
@@ -56,14 +53,14 @@ class GuildService {
 		return this.doc.shortNumber;
 	}
 
-	public async setFormatNumberLocale(locale: string): Promise<string> {
-		this.doc.formatNumberLocale = locale;
+	public async setLocale(locale: string): Promise<string> {
+		this.doc.locale = locale;
 		await this.doc.save();
-		return this.doc.formatNumberLocale;
+		return this.doc.locale;
 	}
 
-	public get formatNumberLocale(): string {
-		return this.doc.formatNumberLocale;
+	public get locale(): string {
+		return this.doc.locale;
 	}
 
 	public get premium(): boolean {
