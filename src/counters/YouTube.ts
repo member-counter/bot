@@ -10,7 +10,7 @@ const userChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/user\//;
 const userNameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/channel\//;
 
 const YouTubeCounter: Counter = {
-	aliases: ['youtubeSubscribers', 'youtubeViews'],
+	aliases: ['youtubeSubscribers', 'youtubeViews', 'youtubeVideos'],
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
@@ -30,9 +30,14 @@ const YouTubeCounter: Counter = {
 			`https://www.googleapis.com/youtube/v3/channels?part=statistics&key=${YOUTUBE_API_KEY}&${searchChannelBy}=${channel}`,
 		).then((response) => response.json());
 
-		const subscribers = response?.items?.[0]?.statistics?.subscriberCount;
-		const views = response?.items?.[0]?.statistics?.viewCount;
-		return { youtubeSubscribers: subscribers, youtubeViews: views };
+		const { subscriberCount, viewCount, videoCount } =
+			response?.items?.[0]?.statistics || {};
+
+		return {
+			youtubeSubscribers: subscriberCount,
+			youtubeViews: viewCount,
+			youtubeVideos: videoCount,
+		};
 	},
 };
 
