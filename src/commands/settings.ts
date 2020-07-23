@@ -2,11 +2,9 @@ import MemberCounterCommand from '../typings/MemberCounterCommand';
 import Eris, {
 	GuildChannel,
 	VoiceChannel,
-	Channel,
 	CategoryChannel,
 	TextChannel,
 	NewsChannel,
-	Guild,
 } from 'eris';
 import GuildService from '../services/GuildService';
 import {
@@ -34,7 +32,7 @@ const seeSettings: MemberCounterCommand = {
 				headerText,
 				prefixText,
 				langText,
-				formatNumberLocaleText,
+				localeText,
 				premiumText,
 				premiumNoTierText,
 				premiumConfirmedText,
@@ -51,16 +49,15 @@ const seeSettings: MemberCounterCommand = {
 				prefix,
 				premium,
 				language,
-				formatNumberLocale,
+				locale,
 				allowedRoles,
 				counters,
 				digits,
 			} = guildSettings;
-			let guildHasWarning: boolean = false;
+
 			const messagesToSend: string[] = [''];
 			const appendContent = (content: string) => {
-				const lastMessagePart =
-					messagesToSend[messagesToSend.length - 1];
+				const lastMessagePart = messagesToSend[messagesToSend.length - 1];
 				if ((lastMessagePart + content).length > 2000) {
 					messagesToSend.push(content);
 				} else {
@@ -77,7 +74,7 @@ const seeSettings: MemberCounterCommand = {
 			);
 			appendContent(`${prefixText} \`${prefix}\`\n`);
 			appendContent(`${langText} \`${language}\`\n`);
-			appendContent(`${formatNumberLocaleText} \`${formatNumberLocale}\`\n`);
+			appendContent(`${localeText} \`${locale}\`\n`);
 
 			if (allowedRoles.length) {
 				appendContent(
@@ -94,9 +91,7 @@ const seeSettings: MemberCounterCommand = {
 					const { name, type } = discordChannel;
 					const icon = ['\\#️⃣', ' ', '\\🔊', ' ', '\\📚', '\\📢', ' '];
 					appendContent(
-						`${
-							botHasPermsToEdit(discordChannel) ? '     ' : ' \\⚠️ '
-						}- ${
+						`${botHasPermsToEdit(discordChannel) ? '     ' : ' \\⚠️ '}- ${
 							icon[type]
 						} ${name} \`${counter}\`: \`\`\`${content}\`\`\`\n`,
 					);
@@ -122,11 +117,8 @@ const seeSettings: MemberCounterCommand = {
 
 			if (latestLogs.length) {
 				latestLogs.forEach((log) => {
-					const text = `[${log.timestamp.toISOString()}] ${
-						log.text
-					}\n`;
-					if (logsText.length + text.length < 2000 - 3)
-						logsText += text;
+					const text = `[${log.timestamp.toISOString()}] ${log.text}\n`;
+					if (logsText.length + text.length < 2000 - 3) logsText += text;
 				});
 
 				logsText += '```';
@@ -167,19 +159,14 @@ const resetSettings: MemberCounterCommand = {
 						channel instanceof NewsChannel
 					) {
 						channel
-							.edit(
-								{ topic: '' },
-								`Reset requested by <@${author.id}>`,
-							)
+							.edit({ topic: '' }, `Reset requested by <@${author.id}>`)
 							.catch(console.error);
 					}
 				}
 			});
 
 			await guildSettings.resetSettings();
-			await channel.createMessage(
-				languagePack.commands.resetSettings.done,
-			);
+			await channel.createMessage(languagePack.commands.resetSettings.done);
 		}
 	},
 };
@@ -207,14 +194,9 @@ const lang: MemberCounterCommand = {
 			} else {
 				errorNotFound += '\n```fix\n';
 				availableLanguages.forEach((availableLanguageCode) => {
-					const languagePack = loadLanguagePack(
-						availableLanguageCode,
-					);
+					const languagePack = loadLanguagePack(availableLanguageCode);
 					errorNotFound +=
-						availableLanguageCode +
-						' ➡ ' +
-						languagePack.langName +
-						'\n';
+						availableLanguageCode + ' ➡ ' + languagePack.langName + '\n';
 				});
 				errorNotFound += '```';
 				await channel.createMessage(errorNotFound);
@@ -243,9 +225,7 @@ const prefix: MemberCounterCommand = {
 					),
 				);
 			} else {
-				throw new UserError(
-					languagePack.commands.prefix.noPrefixProvided,
-				);
+				throw new UserError(languagePack.commands.prefix.noPrefixProvided);
 			}
 		}
 	},
@@ -278,8 +258,7 @@ const role: MemberCounterCommand = {
 						);
 					} else {
 						roleMentions.forEach((role) => {
-							if (!newAllowedRoles.includes(role))
-								newAllowedRoles.push(role);
+							if (!newAllowedRoles.includes(role)) newAllowedRoles.push(role);
 						});
 					}
 					break;
@@ -309,13 +288,9 @@ const role: MemberCounterCommand = {
 			// save config
 			if (newAllowedRoles.length > 0 || /all(\s|$)/g.test(content)) {
 				await guildSettings.setAllowedRoles(newAllowedRoles);
-				await channel.createMessage(
-					languagePack.commands.role.rolesUpdated,
-				);
+				await channel.createMessage(languagePack.commands.role.rolesUpdated);
 			} else {
-				throw new UserError(
-					languagePack.commands.role.errorNoRolesToUpdate,
-				);
+				throw new UserError(languagePack.commands.role.errorNoRolesToUpdate);
 			}
 		}
 	},
@@ -407,14 +382,9 @@ const setDigit: MemberCounterCommand = {
 
 				if (digitsToSet.length > 0) {
 					for (const digitToSet of digitsToSet) {
-						await guildSettings.setDigit(
-							digitToSet.digit,
-							digitToSet.value,
-						);
+						await guildSettings.setDigit(digitToSet.digit, digitToSet.value);
 					}
-					await channel.createMessage(
-						languagePack.commands.setDigit.success,
-					);
+					await channel.createMessage(languagePack.commands.setDigit.success);
 				} else {
 					throw new UserError(
 						languagePack.commands.setDigit.errorMissingParams.replace(
@@ -459,15 +429,13 @@ const shortNumber: MemberCounterCommand = {
 					break;
 			}
 
-			await channel.createMessage(
-				languagePack.commands.shortNumber.success,
-			);
+			await channel.createMessage(languagePack.commands.shortNumber.success);
 		}
 	},
 };
 
-const numberFormat: MemberCounterCommand = {
-	aliases: ['numberFormat'],
+const locale: MemberCounterCommand = {
+	aliases: ['locale'],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
@@ -478,11 +446,9 @@ const numberFormat: MemberCounterCommand = {
 			const { guild } = channel;
 			const guildSettings = await GuildService.init(guild.id);
 
-			await guildSettings.setFormatNumberLocale(locale);
+			await guildSettings.setLocale(locale);
 
-			await channel.createMessage(
-				languagePack.commands.shortNumber.success,
-			);
+			await channel.createMessage(languagePack.commands.shortNumber.success);
 		}
 	},
 };
@@ -496,7 +462,7 @@ const settingsCommands = [
 	upgradeServer,
 	setDigit,
 	shortNumber,
-	numberFormat,
+	locale,
 ];
 
 export default settingsCommands;
