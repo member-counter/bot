@@ -62,7 +62,7 @@ const user: MemberCounterCommand = {
           break;
         }
       }
-    }   
+    }
 
     const { badges, availableServerUpgrades } = userSettings;
 
