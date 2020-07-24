@@ -33,75 +33,63 @@ const user: MemberCounterCommand = {
   denyDm: false,
   onlyAdmin: false,
   run: async ({ message, languagePack }) => {
-    const { author, channel, mentions, cleanContent } = message;
-    const action = (() => {
-      if (!BOT_OWNERS.includes(author.id)) return;
-      if (
-        /grantserverupgrade|grantavailableserverupgrade/gi.test(cleanContent)
-      ) {
-        return 'grantserverupgrade';
-      } else if (/grantbadge/gi.test(cleanContent)) {
-        return 'grantbadge';
-      } else if (/revokebadge/gi.test(cleanContent)) {
-        return 'revokebadge';
-      }
-    })();
+    const { author, channel, mentions, content } = message;
+    const { client } = channel;
+    const [_command, userRequested, actionRequested, ...actionParams] = content.split(/\s+/);
 
-    let targetUser: Eris.User;
-
-    if (mentions.length > 0) {
-      targetUser = mentions[0];
-    } else {
-      targetUser = author;
-    }
-
+    let targetUser: Eris.User = mentions[0] || client.users.get(userRequested) || author;
     const userSettings = await UserService.init(targetUser.id);
 
-    switch (action) {
-      case 'grantserverupgrade': {
-        await userSettings.grantAvailableServerUpgrades(1);
-        break;
-      }
-      case 'grantbadge': {
-        const splitedContent = cleanContent.split(' ');
-        const badge = splitedContent[splitedContent.length - 1];
-        await userSettings.grantBadge(parseInt(badge, 2));
-        break;
-      }
-      case 'revokebadge': {
-        const splitedContent = cleanContent.split(' ');
-        const badge = splitedContent[splitedContent.length - 1];
-        await userSettings.revokeBadge(parseInt(badge, 2));
-        break;
-      }
-      default: {
-        const { badges, availableServerUpgrades } = userSettings;
-
-        const embed = embedBase({
-          author: {
-            icon_url: targetUser.dynamicAvatarURL(),
-            name: `${targetUser.username}#${targetUser.discriminator}`,
-          },
-          fields: [],
-        });
-
-        if (badges > 0) {
-          embed.fields.push({
-            name: languagePack.commands.profile.badges,
-            value: generateBadgeList(badges),
-            inline: true,
-          });
+    if (actionRequested && BOT_OWNERS.includes(author.id))  {
+      switch (actionRequested) {
+        case 'grantserverupgrade': {
+          await userSettings.grantAvailableServerUpgrades(1);
+          break;
         }
-
-        embed.fields.push({
-          name: languagePack.commands.profile.serverUpgradesAvailable,
-          value: availableServerUpgrades.toString(10),
-          inline: true,
-        });
-
-        await channel.createMessage({ embed });
+        case 'grantbadge': {
+          await userSettings.grantBadge(parseInt(actionParams[0], 2));
+          await message.addReaction('✅');
+          break;
+        }
+        case 'revokebadge': {
+          await userSettings.revokeBadge(parseInt(actionParams[0], 2));
+          await message.addReaction('✅');
+          break;
+        }
+        
+        default: {
+          await message.addReaction('❓');
+          break;
+        }
       }
+    }   
+
+    const { badges, availableServerUpgrades } = userSettings;
+
+    const embed = embedBase({
+      author: {
+        icon_url: targetUser.dynamicAvatarURL(),
+        name: `${targetUser.username}#${targetUser.discriminator}`,
+      },
+      fields: [],
+    });
+
+    if (badges > 0) {
+      embed.fields.push({
+        name: languagePack.commands.profile.badges,
+        value: generateBadgeList(badges),
+        inline: true,
+      });
     }
+
+    embed.fields.push({
+      name: languagePack.commands.profile.serverUpgradesAvailable,
+      value: availableServerUpgrades.toString(10),
+      inline: true,
+    });
+
+    await channel.createMessage({ embed });
+    
   },
 };
 

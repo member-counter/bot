@@ -64,7 +64,7 @@ const editChannel: MemberCounterCommand = {
 		if (channel instanceof GuildChannel) {
 			const { guild, client } = channel;
 			const guildSettings = await GuildService.init(guild.id);
-			let [command, channelId, ...newContent]: any = content.split(/\s+/);
+			let [command, channelId, ...newContent]: any = content.split(/ +/);
 			newContent = newContent.join(' ');
 
 			if (!newContent)
@@ -91,11 +91,10 @@ const preview: MemberCounterCommand = {
 	onlyAdmin: false,
 	run: async ({ message, languagePack }) => {
 		const { channel, content } = message;
-
 		if (channel instanceof GuildChannel) {
 			const { guild, client } = channel;
 			const guildSettings = await GuildService.init(guild.id);
-			let [command, ...contentToTest]: any = content.split(/\s+/);
+			let [command, ...contentToTest]: any = content.split(/ +/);
 			contentToTest = contentToTest.join(' ');
 
 			if (!contentToTest)
