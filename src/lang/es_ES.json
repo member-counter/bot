@@ -38,37 +38,37 @@
 				{
 					"premium": false,
 					"name": "{members}",
-					"description": "Members in your server"
+					"description": "Cantidad de miembros que hay en tu servidor"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "Online members in your server"
+					"description": "Miembros online en tu servidor"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "Offline members in your server"
+					"description": "Miembros offline en tu servidor"
 				},
 				{
 					"premium": true,
 					"name": "{users}",
-					"description": "Users in your server (excludes bot)"
+					"description": "Usuarios en tu servidor (excluye bots)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "Online users in your server (excludes bot)"
+					"description": "Usuarios online en tu servidor (excluye bots)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "Offline users in your server (excludes bot)"
+					"description": "Usuarios offline en tu servidor (excluye bots)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "Bots in your server (excludes normal users)"
+					"description": "Bots en tu servidor (excluye usuarios normales)"
 				},
 				{
 					"premium": true,
@@ -78,47 +78,47 @@
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "Offline bots in your server (excludes normal users)"
+					"description": "Bots offline en tu servidor (excluye usuarios normales)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Roles in your server"
+					"description": "Roles en tu servidor"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Channels in your server (excludes category channels)"
+					"description": "Canales en tu servidor (excluye categorías)"
 				},
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
+					"description": "Este contador muestra la cantidad de miembros que tiene un rol o roles, escribe el ID del rol que quieras contar despues de `:`, y separa los IDs con comas `,`"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members online"
+					"description": "Como `{membersWithRole:}` pero solo cuenta aquellos miembros online"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members offline"
+					"description": "Como `{membersWithRole:}` pero solo cuenta aquellos miembros offline"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers}",
-					"description": "Total amount of connected members in the voice channels"
+					"description": "Cantidad total de usuarios conectados a los canales de voz de tu servidor"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
+					"description": "Como {connectedMembers}, pero el bot solo contara los miembros conectados en los canales especificados, escribe el ID del canal que quieras contar despues de `:`, y separa los IDs con comas `,`"
 				},
 				{
 					"premium": false,
 					"name": "{bannedMembers}",
-					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
+					"description": "Cantidad de miembros baneados, el bot debe tener permisos de banear para poder mostrar este contador"
 				},
 				{
 					"premium": false,
