@@ -163,7 +163,7 @@
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Mostra uma contagem regressiva que vai diminuir até a data especificada, você pode facilmente [gerar esse contador aqui](https://member-counter.eduardozgz.com/utils/countdown) ou manualmente o criar substituindo `targetDate` com a data desejada em timestamp UNIX, e opcionalmente usar `format` para formatá-lo com um formato personalizado: use `%d` para mostrar os dias restantes, `%h` para mostrar as horas restantes, `%m` para mostrar os minutos restantes e `%s` para mostrar os segundos restantes"
 				},
 				{
 					"premium": false,
@@ -202,7 +202,7 @@
 			"errorMissingParams": "Parâmetros ausentes, por favor veja `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Esse comando te permite mostrar um contador de forma reduzida\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Ação inválida! por favor veja `{PREFIX}help shortNumber`",
 			"success": "Feito! Você talvez tenha que esperar alguns segundos para ver as novas mudanças"
