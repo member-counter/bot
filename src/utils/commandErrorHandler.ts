@@ -1,4 +1,5 @@
 import Eris, { TextChannel } from 'eris';
+import embedBase from './embedBase';
 
 const commandErrorHandler = async (
   channel: Eris.AnyChannel,
@@ -7,37 +8,38 @@ const commandErrorHandler = async (
 ): Promise<void> => {
   const { errorDb, errorDiscordAPI, errorUnknown } = languagePack.common;
   const errorText = languagePack.common.error;
-  try {
-    switch (error.constructor.name) {
-      case 'UserError':
-        if (channel instanceof TextChannel)
-          await channel.createMessage(`**${errorText}:** ${error.message}`);
-        break;
 
-      case 'MongooseError':
-      case 'MongooseNativeError':
-        if (channel instanceof TextChannel)
-          await channel.createMessage(`**${errorText}:** ${errorDb}`);
-        throw error;
-        break;
+  const errorEmbed = embedBase({
+    title: errorText,
+    description: '',
+    color: 16711680,
+  });
 
-      case 'DiscordRESTError':
-      case 'DiscordHTTPError':
-        if (channel instanceof TextChannel)
-          await channel.createMessage(
-            `**${errorText}:** ${errorDiscordAPI}: ${error.message} `,
-          );
-        break;
+  switch (error.constructor.name) {
+    case 'UserError':
+      errorEmbed.description = error.message;
+      break;
 
-      default:
-        if (channel instanceof TextChannel)
-          await channel.createMessage(`**${errorText}:** ${errorUnknown}`);
-        throw error;
-        break;
-    }
-  } catch (error) {
-    console.error(error);
+    case 'MongooseError':
+    case 'MongooseNativeError':
+      errorEmbed.description = errorDb;
+      console.error(error);
+      break;
+
+    case 'DiscordRESTError':
+    case 'DiscordHTTPError':
+      errorEmbed.description = `${errorDiscordAPI}: ${error.message}`;
+      break;
+
+    default:
+      errorEmbed.description = errorUnknown;
+      console.error(error);
+      break;
   }
+
+  
+  if (channel instanceof TextChannel)
+    channel.createMessage({ embed: errorEmbed }).catch(() => {});
 };
 
 export default commandErrorHandler;
