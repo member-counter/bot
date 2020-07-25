@@ -29,11 +29,153 @@
 				"command": "Befehl:"
 			}
 		},
-		"setup": {
-			"helpDescription": "Zeigt dir eine Anleitung zur Verwendung des Bots",
-			"explanation": "**Vielen Dank das du Member Counter zu deinem Server hinzugefügt hast!**\n__**Erstelle/Ändere einen Counter**__\nFür dieses Beispiel verwenden wir `{members}`, womit die gesamte Anzahl der Mitglieder des Servers gezählt werden, aber du findest weitere Zähler auf den nächsten Seiten.\nDu kannst diesen Zähler an einer der folgenden Stellen platzieren:\n\n- In einem **Sprach**kanal **Namen**\n- In einem **Kategorie Namen**\n- In einer **Text**kanal *Beschreibung**\n- In einer **News**kanal *Beschreibung**\n\nErstelle einen Channel, editiere ihn und schreibe `{members}` in Name oder Beschreibung und klicke 'änderung speichern'\n\nDu kannst auch mehrer Zähler im Namen oder der Beschreibung verwenden und kombinieren. Hier ist ein Beispiel:\n```\n{onlineMembers}/{members} Online Mitglieder, {youtubeSubscribers:https://www.youtube.com/user/enyay} Abonnenten!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins und Moderatoren sind Online!\n```\n\n> Wenn du das Zeichen Limit erreichst während du einen Kanal Editierst versuche es mit `{PREFIX}help editChannel`\n> Die aktuell eingestellten Zähler kannst du mit `{PREFIX}seeSettings` sehen, nützich um mehr Zähler hinzuzufügen ohne dabei bisherige zu deaktivieren\n\n__**Entferne einen Zähler**__\nEditierre den Kanal und schreibe `{disable}` in den Namen/die Beschreibung, Member Counter wird es durch ein \\✅ ersetzen, was bedeutet das der Channel erfolgreich entfernt wurde.\n\nDu kannst du den Kanal auch direkt löschen",
-			"counters": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an atherisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n- `{members}` Members in your server\n* `{onlineMembers}` Online members in your server\n* `{offlineMembers}` Offline members in your server\n* `{users}` Users in your server (excludes bot)\n* `{onlineUsers}` Online users in your server (excludes bot)\n* `{offlineUsers}` Offline users in your server (excludes bot)\n* `{bots}` Bots in your server (excludes normal users)\n* `{onlineBots}` Online bots in your server (excludes normal users)\n* `{offlineBots}` Offline bots in your server (excludes normal users)\n- `{roles}` Roles in your server\n- `{channels}` Channels in your server (excludes category channels)\n* `{membersWithRole:role1ID,role2ID}` This counts how much members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas `,`\n* `{onlineMembersWithRole:role1ID,role2ID}` Like `{membersWithRole:}` but only counts those members online\n* `{offlineMembersWithRole:role1ID,role2ID}` Like `{membersWithRole:}` but only counts those members offline\n* `{connectedMembers}` Total amount of connected members in the voice channels\n* `{connectedMembers:channel1ID,channel2ID}` Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas `,`\n- `{bannedMembers}` Amount of banned members in your server, the bot must have ban permissons to display this count\n- `{http:url}` This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with `the status code 200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`\n- `{http-string:url}` Like `{http}` but the bot won't parse anything, useful to display names instead of numbers\n* `{youtubeSubscribers:channelUrl}` Displays a youtube channel subscriber count, replace channelUrl with the desired channel url\n* `{youtubeViews:channelUrl}` Displays a youtube channel view count\n* `{youtubeVideos:channelUrl}` Displays a youtube channel video count\n* `{twitchFollowers:channelName}` Displays a twitch channel follower count, replace channelName with the desired channel name\n* `{twitchViews:channelName}` Displays a twitch channel view count\n* `{mixerFollowers:username}` Displays a mixer channel follower count, replace username with the desired channel name\n- `{countdown:targetDate:format}` Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left\n- `{game:gameId:address}` Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address\n - `{clock:timeZone}` Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone\n - `{nitro-boosters}` Shows the total amount of members boosting this server",
-			"pagesText": "Seite {CURRENT_PAGE}/{TOTAL_PAGES}"
+		"guide": {
+			"helpDescription": "Shows you a guide of how to use the bot",
+			"pagesText": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"explanation": "**Thanks for adding Member Counter to your server!**\n__**Create/edit a counter**__\nFor this example we are gonna use `{members}`, which counts the total amount of members in your discord server, but you will find out more counters in the next pages\nYou can place that counter in one of the following places:\n\n- In a **voice** channel **name**\n- In a **category** channel **name**\n- In a **text** channel **topic**\n- In a **news** channel **topic**\n\nNow create a new channel, edit it, and write `{members}` in the name or topic, and click 'save changes'\n\nYou can also add multiple counters in one name/topic, and combine them with your own content, here is a example:\n```\n{onlineMembers}/{members} Online Members, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscribers!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins and mods are online!\n```\n\n> If you reach the character limit when you are editing a name/topic, please check `{PREFIX}help editChannel`\n> You can see the current counter configurations with `{PREFIX}seeSettings`, this is useful to add more counters without disabling the previous ones\n\n__**Remove a counter**__\nEdit the channel and write {disable} in the name/topic, Member Counter will replace it to a \\✅, that means that you removed all the counters of that channel successfully\n\nYou can also delete the channel directly",
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an atherisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n",
+			"counters": [
+				{
+					"premium": false,
+					"name": "{members}",
+					"description": "Members in your server"
+				},
+				{
+					"premium": true,
+					"name": "{onlineMembers}",
+					"description": "Online members in your server"
+				},
+				{
+					"premium": true,
+					"name": "{offlineMembers}",
+					"description": "Offline members in your server"
+				},
+				{
+					"premium": true,
+					"name": "{users}",
+					"description": "Users in your server (excludes bot)"
+				},
+				{
+					"premium": true,
+					"name": "{onlineUsers}",
+					"description": "Online users in your server (excludes bot)"
+				},
+				{
+					"premium": true,
+					"name": "{offlineUsers}",
+					"description": "Offline users in your server (excludes bot)"
+				},
+				{
+					"premium": true,
+					"name": "{bots}",
+					"description": "Bots in your server (excludes normal users)"
+				},
+				{
+					"premium": true,
+					"name": "{onlineBots}",
+					"description": "Online bots in your server (excludes normal users"
+				},
+				{
+					"premium": true,
+					"name": "{offlineBots}",
+					"description": "Offline bots in your server (excludes normal users)"
+				},
+				{
+					"premium": false,
+					"name": "{roles}",
+					"description": "Roles in your server"
+				},
+				{
+					"premium": false,
+					"name": "{channels}",
+					"description": "Channels in your server (excludes category channels)"
+				},
+				{
+					"premium": true,
+					"name": "{membersWithRole:role1ID,role2ID}",
+					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
+				},
+				{
+					"premium": true,
+					"name": "{onlineMembersWithRole:role1ID,role2ID}",
+					"description": "Like `{membersWithRole:}` but only counts those members online"
+				},
+				{
+					"premium": true,
+					"name": "{offlineMembersWithRole:role1ID,role2ID}",
+					"description": "Like `{membersWithRole:}` but only counts those members offline"
+				},
+				{
+					"premium": true,
+					"name": "{connectedMembers}",
+					"description": "Total amount of connected members in the voice channels"
+				},
+				{
+					"premium": true,
+					"name": "{connectedMembers:channel1ID,channel2ID}",
+					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
+				},
+				{
+					"premium": false,
+					"name": "{bannedMembers}",
+					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
+				},
+				{
+					"premium": false,
+					"name": "{http:url}",
+					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with `the status code 200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`\n- `{http-string:url}` Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+				},
+				{
+					"premium": true,
+					"name": "{youtubeSubscribers:channelUrl}",
+					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
+				},
+				{
+					"premium": true,
+					"name": "{youtubeViews:channelUrl}",
+					"description": "Displays a youtube channel view count"
+				},
+				{
+					"premium": true,
+					"name": "{youtubeVideos:channelUrl}",
+					"description": "Displays a youtube channel video count"
+				},
+				{
+					"premium": true,
+					"name": "{twitchFollowers:channelName}",
+					"description": "Displays a twitch channel follower count, replace channelName with the desired channel name"
+				},
+				{
+					"premium": true,
+					"name": "{twitchViews:channelName}",
+					"description": "Displays a twitch channel view count"
+				},
+				{
+					"premium": true,
+					"name": "{mixerFollowers:username}",
+					"description": "Displays a mixer channel follower count, replace username with the desired channel name"
+				},
+				{
+					"premium": false,
+					"name": "{countdown:targetDate:format}",
+					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+				},
+				{
+					"premium": false,
+					"name": "{game:gameId:address}",
+					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+				},
+				{
+					"premium": false,
+					"name": "{clock:timeZone}",
+					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+				},
+				{
+					"premium": false,
+					"name": "{nitro-boosters}",
+					"description": "Shows the total amount of members boosting this server"
+				}
+			]
 		},
 		"lockChannel": {
 			"helpDescription": "Mit diesem Befehl kannst du bei Sprachkanälen ein Schloss (🔒) an stelle eines Lautsprechers (🔊) anzeigen lassen.\n\n**Verwendung**```{PREFIX}lockChannel [channel id]```\n **Beispiel**```{PREFIX}lockChannel 700336568099143710```",
@@ -147,8 +289,16 @@
 		},
 		"preview": {
 			"helpDescription": "Zeigt eine Vorschau, wie ein Zähler in einem Channel aussehen wird.\n\n**Verwendung:**```{PREFIX}preview [content]```\n**Beispiel:**```{PREFIX}preview {members} Members```",
+			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Kanal Name Vorschau",
 			"channelTopic": "Kanal beschreibung Vorschau"
+		},
+		"setup": {
+			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
+			"memberCounter": "{members} Members",
+			"boostingCounter": "{nitro-boosters} Boosting",
+			"rolesCounter": "{roles} Roles",
+			"channelsCounter": "{channels} Channels"
 		}
 	},
 	"functions": {
