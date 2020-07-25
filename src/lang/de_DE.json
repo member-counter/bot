@@ -73,7 +73,7 @@
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "Online bots in your server (excludes normal users"
+					"description": "Online bots in your server (excludes normal users)"
 				},
 				{
 					"premium": true,
@@ -123,7 +123,12 @@
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with `the status code 200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`\n- `{http-string:url}` Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with `the status code 200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+				},
+				{
+					"premium": false,
+					"name": "{http-string:url}",
+					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
 				},
 				{
 					"premium": true,
