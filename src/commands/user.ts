@@ -50,17 +50,22 @@ const user: MemberCounterCommand = {
 		const userSettings = await UserService.init(targetUser.id);
 
     if (actionRequested && BOT_OWNERS.includes(author.id))  {
-      switch (actionRequested) {
-        case 'grantserverupgrade': {
+      switch (actionRequested.toLowerCase()) {
+				case 'grantserverupgrade':
+        case 'grantserverupgrades': {
           await userSettings.grantAvailableServerUpgrades(parseInt(actionParams[0], 10) || 1);
           break;
-        }
-        case 'grantbadge': {
+				}
+
+				case 'grantbadge':
+        case 'grantbadges': {
           await userSettings.grantBadge(parseInt(actionParams[0], 2));
           await message.addReaction('✅');
           break;
-        }
-        case 'revokebadge': {
+				}
+				
+				case 'revokebadge':
+        case 'revokebadges': {
           await userSettings.revokeBadge(parseInt(actionParams[0], 2));
           await message.addReaction('✅');
           break;
