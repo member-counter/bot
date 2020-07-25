@@ -203,7 +203,7 @@
 			"success": "Listo! Quizas tengas que esperar unos segundos para ver los nuevos cambios"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale (numbers are only formatted when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Da formato a numeros y otras cosas dependiendo de la región especificada (los numeros solo son formateados cuando mc!shortNumber esta deshabilitado)\n**Uso**\n```{PREFIX}locale [locale/disable]```\n**Ejemplos**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -223,7 +223,7 @@
 				"headerText": "Ajustes para el servidor:",
 				"prefixText": "Prefijo:",
 				"langText": "Idioma:",
-				"localeText": "Locale:",
+				"localeText": "Región:",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "No",
 				"premiumConfirmedText": "Sí",
@@ -231,7 +231,7 @@
 				"countersText": "Contadores:",
 				"customNumbersText": "Números personalizados:",
 				"warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "Últimos registros:"
 			}
 		},
 		"resetSettings": {
@@ -294,11 +294,11 @@
 			"channelTopic": "Vista previa en el tema de un canal"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
+			"helpDescription": "Crea varios canales de voz bloqueados con contadores en sus nombres\n**Ejemplo**```{PREFIX}setup```",
+			"memberCounter": "{members} Miembros",
+			"boostingCounter": "{nitro-boosters} Boosteando",
 			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"channelsCounter": "{channels} Canales"
 		}
 	},
 	"functions": {
