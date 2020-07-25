@@ -6,7 +6,7 @@
 			"helpDescription": "Неужели нужно объяснять смысл этой команды?",
 			"embedReply": {
 				"title": "Лист команд | Префикс: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Добавьте этого бота на ваш сервер]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Документация](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nБыстрая настройка: `mc!setup`\n\nЧтобы получить больше информации, отправьте `{PREFIX}help` с названием нужной вам команды: ```\n{PREFIX}help shortNumber```\n**Инфо:** `()`подразумевает за собой опциональный параметр, когда `[]` подразумевает обязательный параметр.",
 				"fields": [
 					{
 						"name": "**Счётчики**",
@@ -30,7 +30,7 @@
 			}
 		},
 		"guide": {
-			"helpDescription": "Shows you a guide of how to use the bot",
+			"helpDescription": "Показывает вам гайд по использованию бота",
 			"pagesText": "Страница {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Спасибо за добавление Member Counter на ваш сервер!**\n__**Создание/изменение счётчика:**__\nДля этого примера мы будем использовать `{members}`, который считает общее кол-во участников в вашем дискорд сервере, но вы можете найти больше вариаций счётчиков на следующих страницах.\nВы можете поставить этот счётчик в одно из указанных мест:\n\n- В **имя** **голосового** канала\n- В **имя** **категории**\n- В **заголовок** **текстового** канала\n- В **заголовок** **новостного** канала\n\nА теперь создайте новый канал, измените его, и напишите `{members}` в имя этого канала или его заголовок, и нажмите 'сохранить изменения'.\n\nВы также можете добавлять несколько счётчиков в имя канала/заголовок канала, или комбинировать их как вашей душе угодно. Приведём пример:\n```\n{onlineMembers}/{members} Участники Онлайн, {youtubeSubscribers:https://www.youtube.com/user/enyay} Подписчики!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Админы и модераторы онлайн!\n```\n> Если вы достигаете лимита символов, когда вы изменяете имя/заголовок, пожалуйста, проверьте `{PREFIX}help editChannel`\n> Вы можете просмотреть конфигурацию нужного счётчика в `{PREFIX}seeSettings`, это полезно для того, чтобы добавлять больше счётчиков без отключения уже существующих.\n\n__**Удаление счётчика**__\nВ голосовом канале/категории:\nНапишите в имя канала/категории `{disable}`, и Member Counter заменит это на \\✅, что значит вы удалили все счётчики этого канала успешно.\n\nВы также можете удалить канал вручную.",
 			"countersHeader": "__**Счётчики**__\n> Вы должны включить режим разработчика в настройках дискорда (Настройки > Настройки приложения > Внешний вид > Расширенные > Режим разработчика)\n> Чтобы получить ID, нажмите правой кнопкой мыши по каналу/роли и кликните на \"Скопировать ID\"\n\n> Счётчики со звёздочкой (\\*) доступны только в премиум версии, подробнее:`{PREFIX}help upgradeServer`\n\n",
@@ -128,7 +128,7 @@
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "Как `{http}`, но бот не будет ничего парсить, удобно для отображения имён вместо чисел"
 				},
 				{
 					"premium": true,
@@ -143,7 +143,7 @@
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "Отображает просмотры YouTube канала"
 				},
 				{
 					"premium": true,
@@ -168,7 +168,7 @@
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Игроки онлайн на игровых серверах (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, и т.д.). Не забудьте заменить значение`gameId` на то, которое вам нужно [(их список здесь)](https://github.com/gamedig/node-gamedig/#games-list) и значение `address` заменить на актуальный адрес сервера. Пример: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
