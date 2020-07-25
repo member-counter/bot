@@ -123,62 +123,62 @@
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "Esto mostrara la cantidad respondida por el recurso establecido, el bot realizará una petición `GET` y el servidor **debe** responder con el código de estado `200` y el encabezado `content-type: text/plain` Ejemplo: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "Como `{http}` pero el bot no convertira el resultado a un número, útil para mostrar nombres en vez de números"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeSubscribers:channelUrl}",
-					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
+					"description": "Muestra la cantidad de suscriptores que tiene un canal de youtube, reemplaza channelUrl con la url del canal deseado"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeViews:channelUrl}",
-					"description": "Displays a youtube channel view count"
+					"description": "Muestra la cantidad de visualizaciones que tiene un canal de youtube"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "Muestra la cantidad de videos que tiene un canal de youtube"
 				},
 				{
 					"premium": true,
 					"name": "{twitchFollowers:channelName}",
-					"description": "Displays a twitch channel follower count, replace channelName with the desired channel name"
+					"description": "Muestra la cantidad de seguidores que tiene un canal de twitch, reemplaza channelUrl con la url del canal deseado"
 				},
 				{
 					"premium": true,
 					"name": "{twitchViews:channelName}",
-					"description": "Displays a twitch channel view count"
+					"description": "Muestra la cantidad de visualizaciones que tiene un canal de twitch"
 				},
 				{
 					"premium": true,
 					"name": "{mixerFollowers:username}",
-					"description": "Displays a mixer channel follower count, replace username with the desired channel name"
+					"description": "Muestra la cantidad de seguidores que tiene un canal de mixer, reemplaza username con el nombre del canal deseado"
 				},
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Muestra una cuenta atras que bajara hasta la fecha especificada, puedes [generar este contador fácilmente aquí](https://member-counter.eduardozgz.com/utils/countdown) o crearlo manualmente reemplazando targetDate por una marca de tiempo de UNIX, y opcionalmente darle un formato personalizando reemplazando format: Usa `%d` para mostrar los días restantes, `%h` para las horas restantes, `%m` para los minutos restantes y `%s` para mostrar los segundos restantes"
 				},
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Jugadores online en un servidor de un juego (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Recuerda reemplazar `gameId` con uno de los listados [aquí](https://github.com/gamedig/node-gamedig/#games-list) y `address` por la dirección IP. Ejemplo: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) or reemplazar `timeZone` cona una zona horaria IANA valida. Ejemplo: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Muestra la cantidad total de miembros que esta boosteando este servidor"
 				}
 			]
 		},
