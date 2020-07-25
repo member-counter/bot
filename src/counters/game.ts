@@ -47,7 +47,6 @@ const GameCounter: Counter = {
 			}
 
 			default: {
-				console.log({ type: type as Type, host, port, maxAttempts: 5 });
 				const response = await query({ type: type as Type, host, port, maxAttempts: 5 });
 				return response?.players?.length
 				
