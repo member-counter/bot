@@ -123,7 +123,7 @@
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "To wyświetli zwrócona liczbe podanej w odpowiedzi na określony zasób, bot ykona żądanie `GET`, a serwer **musi** odpowiedzieć kodem stanu `200` i `content-type: text/plain` Przykład: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
@@ -133,12 +133,12 @@
 				{
 					"premium": true,
 					"name": "{youtubeSubscribers:channelUrl}",
-					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
+					"description": "Wpokazuje subskrybentów kanału youtube, zamień channelUrl na żądany adres Url kanału"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeViews:channelUrl}",
-					"description": "Displays a youtube channel view count"
+					"description": "Pokazujea wyświetlenia kanałów YouTube"
 				},
 				{
 					"premium": true,
@@ -148,22 +148,22 @@
 				{
 					"premium": true,
 					"name": "{twitchFollowers:channelName}",
-					"description": "Displays a twitch channel follower count, replace channelName with the desired channel name"
+					"description": "Pokazuje obserwujących kanał twitch, zamień channelName na żądaną nazwę kanału"
 				},
 				{
 					"premium": true,
 					"name": "{twitchViews:channelName}",
-					"description": "Displays a twitch channel view count"
+					"description": "Pokazuje wyświetlenia kanałów twitch"
 				},
 				{
 					"premium": true,
 					"name": "{mixerFollowers:username}",
-					"description": "Displays a mixer channel follower count, replace username with the desired channel name"
+					"description": "Wyświetla obserwujących kanał mixer, zamień nazwę użytkownika na żądaną nazwę kanału"
 				},
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Pokazuje odliczanie, które spadnie do określonej daty docelowej, możesz łatwo [wygenerować ten licznik tutaj](https://member-counter.eduardozgz.com/utils/countdown) lub ręcznie utworzyć go, zastępując `targetDate` celem data w znaczniku czasu UNIX i opcjonalnie sformatuj 'go niestandardowym formatem: użyj `%d`, aby wyświetlić pozostałe dni, `%h`, aby wyświetlić pozostałe godziny, `%m`, aby wyświetlić pozostałe minuty, i `%s`, aby pokazać pozostałe sekundy"
 				},
 				{
 					"premium": false,
