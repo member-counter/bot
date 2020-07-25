@@ -6,16 +6,16 @@
 			"helpDescription": "C'est vraiment nécessaire d'expliquer le but de cette commande?",
 			"embedReply": {
 				"title": "Liste des commandes | préfixe: {PREFIX}",
-				"description": "[Ajoutez ce bot à votre serveur]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nEssayez NotiBoi! Un système de mention avancé pour Discord!](https://discord.com/oauth2/authorize?client_id=715997538557231175&scope=bot&permissions=537390160)\n\nPour obtenir plus d'informations sur une commande, envoyez `{PREFIX}help` plus le nom de la commander: ```\n{PREFIX}help shortNumber```\n**Info:** `()` signifie un paramètre facultatif alors que `[]` signifie un paramètre obligatoire",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Compteurs**",
-						"value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}numberFormat\n{PREFIX}preview```",
+						"value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
 						"inline": true
 					},
 					{
 						"name": "**Paramètres du serveur**",
-						"value": "```\n{PREFIX}lang\n{PREFIX}prefix\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
 						"inline": true
 					},
 					{
