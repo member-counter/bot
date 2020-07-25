@@ -8,37 +8,46 @@ import getEnv from '../utils/getEnv';
 const { BOT_OWNERS } = getEnv();
 
 const generateBadgeList = (badges: number): string => {
-  const hasBadge = (badgeN: number): boolean => (badges & badgeN) === badgeN;
+	const hasBadge = (badgeN: number): boolean => (badges & badgeN) === badgeN;
 
-  const badgeList = [];
+	const badgeList = [];
 
-  if (hasBadge(0b1)) badgeList.push('❤️');
-  if (hasBadge(0b10)) badgeList.push('💎');
-  if (hasBadge(0b100)) badgeList.push('🛠');
-  if (hasBadge(0b1000)) badgeList.push('🌎');
-  if (hasBadge(0b10000)) badgeList.push('💻');
-  if (hasBadge(0b100000)) badgeList.push('🧠');
-  if (hasBadge(0b1000000)) badgeList.push('🐛');
-  if (hasBadge(0b10000000)) badgeList.push('🐱');
+	if (hasBadge(0b1)) badgeList.push('❤️');
+	if (hasBadge(0b10)) badgeList.push('💎');
+	if (hasBadge(0b100)) badgeList.push('🛠');
+	if (hasBadge(0b1000)) badgeList.push('🌎');
+	if (hasBadge(0b10000)) badgeList.push('💻');
+	if (hasBadge(0b100000)) badgeList.push('🧠');
+	if (hasBadge(0b1000000)) badgeList.push('🐛');
+	if (hasBadge(0b10000000)) badgeList.push('🐱');
 
-  badgeList.map((item, i) => {
-    if (i % 2 === 0) return item + ' ';
-  });
+	badgeList.map((item, i) => {
+		if (i % 2 === 0) return item + ' ';
+	});
 
-  return '``` ' + badgeList.join(' ') + ' ```';
+	return '``` ' + badgeList.join(' ') + ' ```';
 };
 
 const user: MemberCounterCommand = {
-  aliases: ['me', 'profile', 'user'],
-  denyDm: false,
-  onlyAdmin: false,
-  run: async ({ message, languagePack }) => {
-    const { author, channel, mentions, content } = message;
-    const { client } = channel;
-    const [_command, userRequested, actionRequested, ...actionParams] = content.split(/\s+/);
+	aliases: ['me', 'profile', 'user'],
+	denyDm: false,
+	onlyAdmin: false,
+	run: async ({ message, languagePack }) => {
+		const { author, channel, mentions, content } = message;
+		const { client } = channel;
+		const [
+			_command,
+			userRequested,
+			actionRequested,
+			...actionParams
+		] = content.split(/\s+/);
 
-    let targetUser: Eris.User = mentions[0] || client.users.get(userRequested) || author;
-    const userSettings = await UserService.init(targetUser.id);
+		let targetUser: Eris.User =
+			mentions[0] ||
+			client.users.get(userRequested) ||
+			(await client.getRESTUser(userRequested).catch(console.error)) ||
+			author;
+		const userSettings = await UserService.init(targetUser.id);
 
     if (actionRequested && BOT_OWNERS.includes(author.id))  {
       switch (actionRequested) {
@@ -64,33 +73,39 @@ const user: MemberCounterCommand = {
       }
     }
 
-    const { badges, availableServerUpgrades } = userSettings;
+				default: {
+					await message.addReaction('❓');
+					break;
+				}
+			}
+		}
 
-    const embed = embedBase({
-      author: {
-        icon_url: targetUser.dynamicAvatarURL(),
-        name: `${targetUser.username}#${targetUser.discriminator}`,
-      },
-      fields: [],
-    });
+		const { badges, availableServerUpgrades } = userSettings;
 
-    if (badges > 0) {
-      embed.fields.push({
-        name: languagePack.commands.profile.badges,
-        value: generateBadgeList(badges),
-        inline: true,
-      });
-    }
+		const embed = embedBase({
+			author: {
+				icon_url: targetUser.dynamicAvatarURL(),
+				name: `${targetUser.username}#${targetUser.discriminator}`,
+			},
+			fields: [],
+		});
 
-    embed.fields.push({
-      name: languagePack.commands.profile.serverUpgradesAvailable,
-      value: availableServerUpgrades.toString(10),
-      inline: true,
-    });
+		if (badges > 0) {
+			embed.fields.push({
+				name: languagePack.commands.profile.badges,
+				value: generateBadgeList(badges),
+				inline: true,
+			});
+		}
 
-    await channel.createMessage({ embed });
-    
-  },
+		embed.fields.push({
+			name: languagePack.commands.profile.serverUpgradesAvailable,
+			value: availableServerUpgrades.toString(10),
+			inline: true,
+		});
+
+		await channel.createMessage({ embed });
+	},
 };
 
 const userCommands = [user];
