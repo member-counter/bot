@@ -38,87 +38,87 @@
 				{
 					"premium": false,
 					"name": "{members}",
-					"description": "Members in your server"
+					"description": "Все участники вашего сервера"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "Online members in your server"
+					"description": "Онлайн участники вашего сервера"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "Offline members in your server"
+					"description": "Оффлайн участники вашего сервера"
 				},
 				{
 					"premium": true,
 					"name": "{users}",
-					"description": "Users in your server (excludes bot)"
+					"description": "Все пользователи вашего сервера (исключая ботов)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "Online users in your server (excludes bot)"
+					"description": "Онлайн пользователи вашего сервера (исключая ботов)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "Offline users in your server (excludes bot)"
+					"description": "Оффлайн пользователи вашего сервера (исключая ботов)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "Bots in your server (excludes normal users)"
+					"description": "Боты вашего сервера (исключает нормальных пользователей)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "Online bots in your server (excludes normal users)"
+					"description": "Онлайн боты вашего сервера (исключает нормальных пользователей)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "Offline bots in your server (excludes normal users)"
+					"description": "Оффлайн боты вашего сервера (исключает нормальных пользователей)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Roles in your server"
+					"description": "Роли вашего сервера"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Channels in your server (excludes category channels)"
+					"description": "Каналы вашего сервера (исключая категории)"
 				},
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
+					"description": "Счётчик участников с определённой ролью/ролями. Необходимо вписать ID роли/ролей после двоеточия, и если их несколько, разделить запятой."
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members online"
+					"description": "как `{membersWithRole:}` только считает участников онлайн."
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members offline"
+					"description": "как `{membersWithRole:}` только считает участников оффлайн."
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers}",
-					"description": "Total amount of connected members in the voice channels"
+					"description": "Отображает сумму всех подключённых участников в голосовых каналах."
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
+					"description": "как `{connectedMembers}`, но бот будет считать только подключённых участников в указанных каналах. Необходимо вписать ID канала/каналов, в которых вы хотите считать участников после двоеточия, и разделить ID этих каналов запятой (если их несколько)."
 				},
 				{
 					"premium": false,
 					"name": "{bannedMembers}",
-					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
+					"description": "Количество забаненных участников вашего сервера, необходимо разрешение банить, чтобы отображать этот счётчик."
 				},
 				{
 					"premium": false,
