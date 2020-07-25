@@ -52,7 +52,7 @@ const user: MemberCounterCommand = {
     if (actionRequested && BOT_OWNERS.includes(author.id))  {
       switch (actionRequested) {
         case 'grantserverupgrade': {
-          await userSettings.grantAvailableServerUpgrades(1);
+          await userSettings.grantAvailableServerUpgrades(parseInt(actionParams[0], 10) || 1);
           break;
         }
         case 'grantbadge': {
@@ -72,13 +72,6 @@ const user: MemberCounterCommand = {
         }
       }
     }
-
-				default: {
-					await message.addReaction('❓');
-					break;
-				}
-			}
-		}
 
 		const { badges, availableServerUpgrades } = userSettings;
 
