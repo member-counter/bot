@@ -173,7 +173,7 @@
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "निर्दिष्ट समयक्षेत्र के समय के साथ एक घड़ी दिखाता है, आप आसानी से देख सकते हैं [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) या एक मान्य IANA समयक्षेत्र के साथ `timeZone` को बदलें। उदाहरण: `{clock:Europe/Madrid}`"
+					"description": "निर्दिष्ट समयक्षेत्र के समय के साथ एक घड़ी दिखाता है, आप आसानी से देख सकते हैं [इस काउंटर को जनरेट करें](https://member-counter.eduardozgz.com/utils/clock) या एक मान्य IANA समयक्षेत्र के साथ `timeZone` को बदलें। उदाहरण: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
