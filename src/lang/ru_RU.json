@@ -209,7 +209,7 @@
 		},
 		"locale": {
 			"helpDescription": "Форматирует числа и др. в соответствии с указанной локализацией (числа форматируются **только** если mc!shortNumber выключен)\n**Использование**\n```{PREFIX}locale [locale/disable]```\n**Примеры**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
-			"helpImage": "https://i.imgur.com/gnje0YB.png"
+			"helpImage": "https://i.imgur.com/BBD43CB.png"
 		},
 		"prefix": {
 			"helpDescription": "Меняет префикс бота.\n\nИспользование: ```{PREFIX}prefix [new prefix]```",
@@ -294,16 +294,16 @@
 		},
 		"preview": {
 			"helpDescription": "Показывает, как будет выглядеть в канале предварительный вид счётчика или различных счётчиков.\n\n**Использование**```{PREFIX}preview [content]```\n**Пример**```{PREFIX}preview {members} Members```",
-			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
+			"helpImage": "https://i.imgur.com/DoJXler.png",
 			"channelName": "Предварительное название канала",
 			"channelTopic": "Предварительное описание канала"
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} члены",
-			"boostingCounter": "{nitro-boosters} стимулирование",
+			"memberCounter": "{members} Members",
+			"boostingCounter": "{nitro-boosters} Boosting",
 			"rolesCounter": "{roles} Роли",
-			"channelsCounter": "{channels} каналы"
+			"channelsCounter": "{channels} Каналы"
 		}
 	},
 	"functions": {
