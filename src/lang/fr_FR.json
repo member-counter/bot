@@ -6,7 +6,7 @@
 			"helpDescription": "C'est vraiment nécessaire d'expliquer le but de cette commande?",
 			"embedReply": {
 				"title": "Liste des commandes | préfixe: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Ajoutez ce bot à votre serveur]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstallation rapide: `mc!setup`\n\nPour obtenir plus d'informations sur une commande, envoyez `{PREFIX}help` plus le nom de la commande: ```\n{PREFIX}help shortNumber```\n**Info:** `()` signifie un paramètre facultatif tandis que `[]` signifie un requis",
 				"fields": [
 					{
 						"name": "**Compteurs**",
@@ -30,7 +30,7 @@
 			}
 		},
 		"guide": {
-			"helpDescription": "Shows you a guide of how to use the bot",
+			"helpDescription": "Vous montre un guide d'utilisation du bot",
 			"pagesText": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Thanks for adding Member Counter to your server!**\n__**Create/edit a counter**__\nFor this example we are gonna use `{members}`, which counts the total amount of members in your discord server, but you will find out more counters in the next pages\nYou can place that counter in one of the following places:\n\n- In a **voice** channel **name**\n- In a **category** channel **name**\n- In a **text** channel **topic**\n- In a **news** channel **topic**\n\nNow create a new channel, edit it, and write `{members}` in the name or topic, and click 'save changes'\n\nYou can also add multiple counters in one name/topic, and combine them with your own content, here is a example:\n```\n{onlineMembers}/{members} Online Members, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscribers!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins and mods are online!\n```\n\n> If you reach the character limit when you are editing a name/topic, please check `{PREFIX}help editChannel`\n> You can see the current counter configurations with `{PREFIX}seeSettings`, this is useful to add more counters without disabling the previous ones\n\n__**Remove a counter**__\nEdit the channel and write {disable} in the name/topic, Member Counter will replace it to a \\✅, that means that you removed all the counters of that channel successfully\n\nYou can also delete the channel directly",
 			"countersHeader": "__**Compteurs**__\n> Vous devez activer le mode développeur dans Discord (Paramètres utilisateur > Apparence > Avancés> Mode développeur)\n> Pour obtenir un ID, clique droit dans un salon/rôle et cliquer sur \"Copier ID\"\n\n> Les compteurs avec un athérisque (\\*) sont des compteurs premium, plus d'infos dans `{PREFIX}help upgradeServer`\n\n",
@@ -103,7 +103,7 @@
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members offline"
+					"description": "Comme `{membersWithRole:}` mais ne compte que ces membres hors ligne"
 				},
 				{
 					"premium": true,
@@ -128,7 +128,7 @@
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "Comme `{http}` mais le bot n'analysera rien, utile pour afficher des noms au lieu de nombres"
 				},
 				{
 					"premium": true,
@@ -143,7 +143,7 @@
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "Affiche le nombre de vidéos d'une chaîne YouTube"
 				},
 				{
 					"premium": true,
@@ -158,22 +158,22 @@
 				{
 					"premium": true,
 					"name": "{mixerFollowers:username}",
-					"description": "Displays a mixer channel follower count, replace username with the desired channel name"
+					"description": "Affiche un nombre de suiveurs de canal de mixage, remplacez le nom d'utilisateur par le nom de canal souhaité"
 				},
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Affiche un compte à rebours qui diminuera jusqu'à la date cible spécifiée, vous pouvez facilement [générer ce compteur ici](https://member-counter.eduardozgz.com/utils/countdown) ou en le créant manuellement en remplaçant `targetDate` avec la date cible dans un horodatage UNIX, et éventuellement `format` avec un format personnalisé: use `%d`pour montrer les jours restants, `%h` pour afficher les heures restantes, `%m` pour afficher les minutes restantes et `%s` pour afficher les secondes restantes"
 				},
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Joueurs en ligne sur un serveur de jeu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) N'oubliez pas de remplacer `gameId` par l'un des [here](https://github.com/gamedig/node-gamedig/#games-list) et `address` par l'adresse réelle du serveur. Exemple: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "Affiche une horloge avec l'heure du fuseau horaire spécifié, vous pouvez facilement [générer ce compteur ici] (https://member-counter.eduardozgz.com/utils/clock) ou remplacer `timeZone` avec un fuseau horaire IANA valide. Exemple: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
