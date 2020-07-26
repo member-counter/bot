@@ -168,12 +168,12 @@
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "एक खेल सर्वर (Minecraft, काउंटर स्ट्राइक, जंग, सन्दूक, टीम किले 2, GMOD, आदि) में ऑनलाइन खिलाड़ियों को सूचीबद्ध करने के लिए `gameId` को बदलना याद रखें [here] (https://github.com/gamedig/node-gamedig/#games-list) और `address` वास्तविक सर्वर पते द्वारा। उदाहरण: {game:minecraft:mc.hypixel.net}"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "निर्दिष्ट समयक्षेत्र के समय के साथ एक घड़ी दिखाता है, आप आसानी से देख सकते हैं [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) या एक मान्य IANA समयक्षेत्र के साथ `timeZone` को बदलें। उदाहरण: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
@@ -202,13 +202,13 @@
 			"errorMissingParams": "लापता मापदण्ड, कृपया `{PREFIX}help setDigit` देखें"
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "यह कमांड आपको काउंटर्स में संक्षिप्त रूप में एक संख्या दिखाने की अनुमति देता है\n\n**प्रयोग**\n```{PREFIX}shortNumber [enable/disable]```\n**उदाहरण**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "अवैध कार्रवाई! कृपया `{PREFIX}help shortNumber` देखें",
 			"success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale (numbers are only formatted when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "निर्दिष्ट स्थान पर संख्याओं और अन्य सामानों को प्रारूपित करता है (केवल mc!shortNumber अक्षम होने पर संख्याएँ स्वरूपित होती हैं)\n\n**प्रयोग**\n```{PREFIX}locale [locale/disable]```\n**उदाहरण**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
