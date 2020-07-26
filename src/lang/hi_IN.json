@@ -228,7 +228,7 @@
 				"headerText": "संघ के लिए समायोजन :",
 				"prefixText": "उपसर्ग :",
 				"langText": "भाषाएं :",
-				"localeText": "Locale:",
+				"localeText": "स्थान:",
 				"premiumText": "प्रीमियम :",
 				"premiumNoTierText": "नहीं",
 				"premiumConfirmedText": "हाँ",
@@ -236,7 +236,7 @@
 				"countersText": "गणके :",
 				"customNumbersText": "वैयक्तीकृत संख्या :",
 				"warningNoPermsText": "\\⚠️ = अनुमतियों की कमी के कारण बॉट इस चैनल को अद्यतन करना जारी नहीं रख सकता है",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "नवीनतम लॉग:"
 			}
 		},
 		"resetSettings": {
@@ -299,11 +299,11 @@
 			"channelTopic": "चैनल विषय पूर्वावलोकन"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"helpDescription": "उन में कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\n**उदाहरण**```{PREFIX}setup```",
+			"memberCounter": "{members} सदस्य",
+			"boostingCounter": "{nitro-boosters} बढ़ाने",
+			"rolesCounter": "{roles} भूमिकाएँ",
+			"channelsCounter": "{channels} चैनल"
 		}
 	},
 	"functions": {
@@ -313,7 +313,7 @@
 		"getCounts": {
 			"onlyPremium": "केवल प्रीमियम",
 			"unknownCounter": "अपरिचित गणक",
-			"disabled": "Counter Disabled",
+			"disabled": "काउंटर अक्षम",
 			"noBanPerms": "मुझे यह दिखाने के लिए प्रतिबंध अनुमति की आवश्यकता है",
 			"invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें"
 		}
