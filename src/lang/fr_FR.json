@@ -103,7 +103,7 @@
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Comme `{membersWithRole:}` mais ne compte que ces membres hors ligne"
+					"description": "Comme `{membersWithRole:}` mais ne compte que les membres hors ligne"
 				},
 				{
 					"premium": true,
