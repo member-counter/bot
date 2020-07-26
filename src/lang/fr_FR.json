@@ -178,7 +178,7 @@
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Affiche le nombre total de membres augmentant ce serveur"
 				}
 			]
 		},
@@ -202,13 +202,13 @@
 			"errorMissingParams": "Paramètres manquants, voir `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Cette commande vous permet d'afficher un comptage sous une forme courte dans les compteurs\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Action invalide! voir `{PREFIX}help shortNumber`",
 			"success": "Fait ! Vous devrez peut-être attendre quelques secondes pour voir les nouveaux changements"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale (numbers are only formatted when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and other stuff to the specified locale (numbers are only formatted when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Exemples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -228,7 +228,7 @@
 				"headerText": "Paramètres pour le serveur:",
 				"prefixText": "Préfixe:",
 				"langText": "Langue:",
-				"localeText": "Locale:",
+				"localeText": "Lieu:",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "Non",
 				"premiumConfirmedText": "Oui",
@@ -236,7 +236,7 @@
 				"countersText": "Compteurs:",
 				"customNumbersText": "Nombres personnalisés:",
 				"warningNoPermsText": "\\⚠️ = Le bot ne peut pas continuer à mettre à jour ce vocal en raison d'un manque d'autorisations",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "Derniers journaux:"
 			}
 		},
 		"resetSettings": {
@@ -299,11 +299,11 @@
 			"channelTopic": "Aperçu du sujet de la chaîne"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
+			"helpDescription": "Crée des canaux vocaux verrouillés avec des compteurs\n**Exemple**```{PREFIX}setup```",
+			"memberCounter": "{members} Membres",
+			"boostingCounter": "{nitro-boosters} Booster",
 			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"channelsCounter": "{channels} Chaînes"
 		}
 	},
 	"functions": {
@@ -313,7 +313,7 @@
 		"getCounts": {
 			"onlyPremium": "Seulement Premium",
 			"unknownCounter": "Compteur inconnu",
-			"disabled": "Counter Disabled",
+			"disabled": "Compteur désactivé",
 			"noBanPerms": "J'ai besoin d'une autorisation de bannir pour montrer ceci",
 			"invalidChannelLength": "Longueur du nom de salon invalide, veuillez réinitialiser le compteur"
 		}
