@@ -6,7 +6,7 @@
 			"helpDescription": "É realmente necessário explicar o propósito desse comando?",
 			"embedReply": {
 				"title": "Lista de Comandos | prefix: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Adicione esse bot ao seu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentação](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nConfiguração Rápida: `mc!setup`\n\nPara ter mais informações sobre um comando envie `{PREFIX}help` e o nome do comando: ```\n{PREFIX}help shortNumber```\n**Info:** `()`significa um parâmetro opcional enquanto `[]` significa um obrigatório",
 				"fields": [
 					{
 						"name": "**Contadores**",
@@ -128,7 +128,7 @@
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "Similar ao `{http}` mas o bot não não analisará nada, útil para mostrar nomes em vez de números"
 				},
 				{
 					"premium": true,
@@ -143,7 +143,7 @@
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "Mostra um contador de video do youtube"
 				},
 				{
 					"premium": true,
@@ -168,17 +168,17 @@
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Jogadores online em um servidor (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Lembre-se de substituir `gameId` ´por um dos listados [aqui](https://github.com/gamedig/node-gamedig/#games-list) e `address` com o endereço atual do servidor. Exemplo: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "Mostra um relógio com o tempo da timezone especificada, você pode facilmente [gerar esse contador aqui](https://member-counter.eduardozgz.com/utils/clock) ou substitua `timeZone` com uma timezone IANA válida. Exemplo: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Mostra a quantidade total de membros dando boosting nesse servidor"
 				}
 			]
 		},
@@ -208,7 +208,7 @@
 			"success": "Feito! Você talvez tenha que esperar alguns segundos para ver as novas mudanças"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale (numbers are only formatted when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formata os números e outras coisas para um local (idioma) específico (números só são formatados quando mc!shortNumber está desabilitado)\n\n**Uso**\n```{PREFIX}locale [locale/disable]```\n**Exemplo**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
