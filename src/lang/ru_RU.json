@@ -299,9 +299,9 @@
 			"channelTopic": "Предварительное описание канала"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
+			"helpDescription": "Предустановка стандартных счётчиков.\nСоздаёт заблокированные (🔒) голосовые каналы сразу вместе с счётчиками.\n**Пример**```{PREFIX}setup```",
+			"memberCounter": "{members} Участники",
+			"boostingCounter": "{nitro-boosters} Бустеры",
 			"rolesCounter": "{roles} Роли",
 			"channelsCounter": "{channels} Каналы"
 		}
