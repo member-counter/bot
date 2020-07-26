@@ -202,13 +202,13 @@
 			"errorMissingParams": "Paramètres manquants, voir `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Cette commande vous permet d'afficher un comptage sous une forme courte dans les compteurs\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Cette commande vous permet d'afficher un comptage sous une forme courte dans les compteurs\n\n**Utilisation**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Action invalide! voir `{PREFIX}help shortNumber`",
 			"success": "Fait ! Vous devrez peut-être attendre quelques secondes pour voir les nouveaux changements"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale (numbers are only formatted when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Exemples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formate les numéros et autres éléments dans le lieu spécifié (les numéros ne sont formatés que lorsque mc!shortNumber est désactivé)\n\n**Utilisation**\n```{PREFIX}locale [locale/disable]```\n**Exemples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
