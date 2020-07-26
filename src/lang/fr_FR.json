@@ -178,7 +178,7 @@
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Montre le nombre total de membres qui boost ce serveur"
+					"description": "Montre le nombre total de membres qui boosts ce serveur"
 				}
 			]
 		},
@@ -236,7 +236,7 @@
 				"countersText": "Compteurs:",
 				"customNumbersText": "Nombres personnalisés:",
 				"warningNoPermsText": "\\⚠️ = Le bot ne peut pas continuer à mettre à jour ce vocal en raison d'un manque d'autorisations",
-				"guildLogsText": "Derniers journaux:"
+				"guildLogsText": "Derniers logs:"
 			}
 		},
 		"resetSettings": {
@@ -299,10 +299,10 @@
 			"channelTopic": "Aperçu du sujet de la chaîne"
 		},
 		"setup": {
-			"helpDescription": "Crée des canaux vocaux verrouillés avec des compteurs\n**Exemple**```{PREFIX}setup```",
+			"helpDescription": "Crée des salons vocaux verrouillés avec quelques compteurs en eux\n**Exemple**```{PREFIX}setup```",
 			"memberCounter": "{members} Membres",
-			"boostingCounter": "{nitro-boosters} Booster",
-			"rolesCounter": "{roles} Roles",
+			"boostingCounter": "{nitro-boosters} Boosters",
+			"rolesCounter": "{roles} Rôles",
 			"channelsCounter": "{channels} Chaînes"
 		}
 	},
