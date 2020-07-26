@@ -300,10 +300,10 @@
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"memberCounter": "{members} члены",
+			"boostingCounter": "{nitro-boosters} стимулирование",
+			"rolesCounter": "{roles} Роли",
+			"channelsCounter": "{channels} каналы"
 		}
 	},
 	"functions": {
