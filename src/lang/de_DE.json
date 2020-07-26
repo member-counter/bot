@@ -38,62 +38,62 @@
 				{
 					"premium": false,
 					"name": "{members}",
-					"description": "Members in your server"
+					"description": "Mitglieder deines Servers"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "Online members in your server"
+					"description": "Online Mitglieder deines Servers"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "Offline members in your server"
+					"description": "Offline Mitglieder deines Servers"
 				},
 				{
 					"premium": true,
 					"name": "{users}",
-					"description": "Users in your server (excludes bot)"
+					"description": "User deines Servers (ohne Bots)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "Online users in your server (excludes bot)"
+					"description": "Online User deines Servers (ohne Bots)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "Offline users in your server (excludes bot)"
+					"description": "Offline User deines Servers (ohne Bots)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "Bots in your server (excludes normal users)"
+					"description": "Bots auf deinem Server (ohne normale User)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "Online bots in your server (excludes normal users)"
+					"description": "Online Bots auf deinem Server (ohne normale User)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "Offline bots in your server (excludes normal users)"
+					"description": "Offline Bots auf deinem Server (ohne normale User)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Roles in your server"
+					"description": "Rollen in deinem Server"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Channels in your server (excludes category channels)"
+					"description": "Kanäle in deinem Server (Ohne Kategorien)"
 				},
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
+					"description": "Zählt wie viele User eine/mehrere Rollen haben, schreibe die Rollen IDs nach dem `:`, und trenne sie mit Kommas `,`"
 				},
 				{
 					"premium": true,
