@@ -163,22 +163,22 @@
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Affiche un compte à rebours qui diminuera jusqu'à la date cible spécifiée, vous pouvez facilement [générer ce compteur ici](https://member-counter.eduardozgz.com/utils/countdown) ou en le créant manuellement en remplaçant `targetDate` avec la date cible dans un horodatage UNIX, et éventuellement `format` avec un format personnalisé: use `%d`pour montrer les jours restants, `%h` pour afficher les heures restantes, `%m` pour afficher les minutes restantes et `%s` pour afficher les secondes restantes"
+					"description": "Affiche un compte à rebours qui diminuera jusqu'à la date cible spécifiée, vous pouvez facilement [générer ce compteur ici](https://member-counter.eduardozgz.com/utils/countdown) ou en le créant manuellement en remplaçant `targetDate` avec la date cible dans un horodatage UNIX, et optionnellement `format` avec un format personnalisé: utiliser `%d`pour montrer les jours restants, `%h` pour afficher les heures restantes, `%m` pour afficher les minutes restantes et `%s` pour afficher les secondes restantes"
 				},
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Joueurs en ligne sur un serveur de jeu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) N'oubliez pas de remplacer `gameId` par l'un des [here](https://github.com/gamedig/node-gamedig/#games-list) et `address` par l'adresse réelle du serveur. Exemple: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Joueurs en ligne sur un serveur de jeu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) N'oubliez pas de remplacer `gameId` par un de cette liste [here](https://github.com/gamedig/node-gamedig/#games-list) et `address` par l'adresse réelle du serveur. Exemple: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Affiche une horloge avec l'heure du fuseau horaire spécifié, vous pouvez facilement [générer ce compteur ici] (https://member-counter.eduardozgz.com/utils/clock) ou remplacer `timeZone` avec un fuseau horaire IANA valide. Exemple: `{clock:Europe/Madrid}`"
+					"description": "Montre une horloge avec l'heure du fuseau horaire spécifié, vous pouvez facilement [générer ce compteur ici] (https://member-counter.eduardozgz.com/utils/clock) ou remplacer `timeZone` avec un fuseau horaire IANA valide. Exemple: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Affiche le nombre total de membres augmentant ce serveur"
+					"description": "Montre le nombre total de membres qui boost ce serveur"
 				}
 			]
 		},
