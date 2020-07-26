@@ -296,7 +296,7 @@
 			"helpDescription": "Показывает, как будет выглядеть в канале предварительный вид счётчика или различных счётчиков.\n\n**Использование**```{PREFIX}preview [content]```\n**Пример**```{PREFIX}preview {members} Members```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Предварительное название канала",
-			"channelTopic": "Предварительное содержание описания канала"
+			"channelTopic": "Предварительное описание канала"
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
