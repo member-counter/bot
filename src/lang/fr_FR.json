@@ -158,7 +158,7 @@
 				{
 					"premium": true,
 					"name": "{mixerFollowers:username}",
-					"description": "Affiche un nombre de suiveurs de canal de mixage, remplacez le nom d'utilisateur par le nom de canal souhaité"
+					"description": "Affiche les followers d'une chaîne Mixer, remplacez username par l'url de la chaîne souhaité"
 				},
 				{
 					"premium": false,
