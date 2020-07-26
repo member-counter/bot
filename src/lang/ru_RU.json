@@ -228,7 +228,7 @@
 				"headerText": "Настройки для сервера:",
 				"prefixText": "Префикс:",
 				"langText": "Язык:",
-				"localeText": "Locale:",
+				"localeText": "Локализация:",
 				"premiumText": "Премиум:",
 				"premiumNoTierText": "Нет",
 				"premiumConfirmedText": "Да",
