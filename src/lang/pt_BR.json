@@ -228,7 +228,7 @@
 				"headerText": "Configurações para guild:",
 				"prefixText": "Prefixo:",
 				"langText": "Idioma: ",
-				"localeText": "Locale:",
+				"localeText": "Local:",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "Não",
 				"premiumConfirmedText": "Sim",
@@ -236,7 +236,7 @@
 				"countersText": "Contadores:",
 				"customNumbersText": "Números personalizados:",
 				"warningNoPermsText": "\\⚠️ = O bot não pode continuar a atualizar este canal porque não possui as permissões necessárias",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "Últimos logs:"
 			}
 		},
 		"resetSettings": {
@@ -299,11 +299,11 @@
 			"channelTopic": "Pré visualização do canal de tópico"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
+			"helpDescription": "Cria alguns canais de voz bloqueados com alguns contadores neles\n**Exemplo**```{PREFIX}setup```",
+			"memberCounter": "{members} Membros",
 			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"rolesCounter": "{roles} Cargos",
+			"channelsCounter": "{channels} Canais"
 		}
 	},
 	"functions": {
@@ -313,7 +313,7 @@
 		"getCounts": {
 			"onlyPremium": "Somente Premium",
 			"unknownCounter": "Contador desconhecido",
-			"disabled": "Counter Disabled",
+			"disabled": "Contador Desabilitado",
 			"noBanPerms": "Eu preciso ter permissão de bans para mostrar isso",
 			"invalidChannelLength": "Tamanho do nome do canal inválido, por favor configure o contador novamente"
 		}
