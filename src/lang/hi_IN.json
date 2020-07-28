@@ -6,7 +6,7 @@
 			"helpDescription": "क्या ये आदेश का उद्देश्य वर्णन करना आवश्यक है?",
 			"embedReply": {
 				"title": "आदेश सूची | उपसर्ग : {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[इस बॉट को अपने सर्वर में जोड़ें]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n\nअधिक जानकारी प्राप्त करने के लिए आदेश दे `{PREFIX}help` और आदेश का नाम: ```\n{PREFIX}help shortNumber```\n** जानकारी: ** `()` का अर्थ है एक वैकल्पिक प्राचल जबकि `[]` का अर्थ है एक आवश्यक प्राचल",
 				"fields": [
 					{
 						"name": "**गणक**",
@@ -30,7 +30,7 @@
 			}
 		},
 		"guide": {
-			"helpDescription": "Shows you a guide of how to use the bot",
+			"helpDescription": "आपको बॉट का उपयोग करने का एक सूचना दिखाता है",
 			"pagesText": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "** अपने सर्वर में मेंबर काउंटर जोड़ने के लिए धन्यवाद! **\n__ ** काउंटर बनाएं / संपादित करें ** __\nउदाहरण के लिए हम `{members}`, का उपयोग करने वाले हैं, जो आपके डिसॉर्ड सर्वर में सदस्यों की कुल मात्रा को गिनता है, लेकिन आपको अगले पृष्ठों में अधिक गणको का पता चलेगा\nआप उस काउंटर को निम्न स्थानों में से एक में रख सकते हैं:\n\n- एक ** आवाज ** चैनल ** नाम ** में\n- एक ** श्रेणी में ** चैनल ** नाम ** में\n- एक ** पाठ ** चैनल ** विषय ** में\n- एक ** समाचार ** चैनल ** विषय ** में\n\nअब एक नया चैनल बनाएं, इसे संपादित करें, और नाम या विषय में `{members}` लिखें, और 'परिवर्तन सहेजें' पर क्लिक करें\n\nआप एक नाम / विषय में कई काउंटर जोड़ सकते हैं, और उन्हें अपनी सामग्री के साथ जोड़ सकते हैं, यहाँ एक उदाहरण है:\n```\n{onlineMembers}/{members} ऑनलाइन सदस्य, {youtubeSubscribers:https: //www.youtube.com/user/enyay} सदस्य!\n{onlineMembersWithRole:614777997291028519,614816383053856769} प्रशासक और मध्यस्थ ऑनलाइन हैं!\n```\n\n> यदि आप किसी नाम / विषय का संपादन करते हुए वर्ण सीमा तक पहुँचते हैं, तो कृपया `{PREFIX}help editChannel` जांचे\n> आप वर्तमान काउंटर विन्यास को `{PREFIX}seeSettings` के साथ देख सकते हैं, यह पिछले वाले को अक्षम किए बिना अधिक काउंटर जोड़ने के लिए उपयोगी है\n\n__**एक काउंटर निकालें **__\nचैनल को संपादित करें और नाम / विषय में {disable} लिखें, सदस्य काउंटर इसे एक \\✅ की जगह परिवर्तित कर लेगा, इसका मतलब है कि आपने उस चैनल के सभी काउंटरों को सफलतापूर्वक हटा दिया है\n\nआप सीधे चैनल भी हटा सकते हैं",
 			"countersHeader": "__**काउंटर**__\n> आपको डिस्‍कॉर्ड में डेवलपर मोड सक्षम करना चाहिए (उपयोगकर्ता सेटिंग> प्रकटन> उन्नत> डेवलपर मोड)\n> एक आईडी पाने के लिए, चैनल/भूमिका पर राइट क्लिक करें और \"कॉपी आईडी\" पर क्लिक करें\n\n> तारांकन (\\*) वाले गणक प्रीमियम काउंटर हैं, `{PREFIX}help upgradeServer` अधिक जानकारी प्राप्त करने में मदद करेगा।\n\n",
@@ -123,12 +123,12 @@
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "यह निर्दिष्ट संसाधन की प्रतिक्रिया के द्वारा दी गई राशि को प्रदर्शित करेगा, बॉट `GET` अनुरोध करेगा और सर्वर को स्टेटस कोड `200` और `content-type: text/plain` के साथ ** उत्तर देना होगा**। उदाहरण: `{http: https: //member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "जैसे `{http}` लेकिन बॉट कुछ भी पार्स नहीं करेगा, संख्याओं के बजाय नाम प्रदर्शित करने के लिए उपयोगी है"
 				},
 				{
 					"premium": true,
@@ -143,7 +143,7 @@
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "यूट्यूब चैनल वीडियो काउंट दिखाता है"
 				},
 				{
 					"premium": true,
@@ -168,17 +168,17 @@
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "एक खेल सर्वर (Minecraft, काउंटर स्ट्राइक, जंग, सन्दूक, टीम किले 2, GMOD, आदि) में ऑनलाइन खिलाड़ियों को सूचीबद्ध करने के लिए `gameId` को बदलना याद रखें [here] (https://github.com/gamedig/node-gamedig/#games-list) और `address` वास्तविक सर्वर पते द्वारा। उदाहरण: {game:minecraft:mc.hypixel.net}"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "निर्दिष्ट समयक्षेत्र के समय के साथ एक घड़ी दिखाता है, आप आसानी से देख सकते हैं [इस काउंटर को जनरेट करें](https://member-counter.eduardozgz.com/utils/clock) या एक मान्य IANA समयक्षेत्र के साथ `timeZone` को बदलें। उदाहरण: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "इस सर्वर को बढ़ाने वाले सदस्यों की कुल राशि दिखाता है"
 				}
 			]
 		},
@@ -202,13 +202,13 @@
 			"errorMissingParams": "लापता मापदण्ड, कृपया `{PREFIX}help setDigit` देखें"
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "यह कमांड आपको काउंटर्स में संक्षिप्त रूप में एक संख्या दिखाने की अनुमति देता है\n\n**प्रयोग**\n```{PREFIX}shortNumber [enable/disable]```\n**उदाहरण**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "अवैध कार्रवाई! कृपया `{PREFIX}help shortNumber` देखें",
 			"success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale (numbers are only formatted when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "निर्दिष्ट स्थान पर संख्याओं और अन्य सामानों को प्रारूपित करता है (केवल mc!shortNumber अक्षम होने पर संख्याएँ स्वरूपित होती हैं)\n\n**प्रयोग**\n```{PREFIX}locale [locale/disable]```\n**उदाहरण**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -228,7 +228,7 @@
 				"headerText": "संघ के लिए समायोजन :",
 				"prefixText": "उपसर्ग :",
 				"langText": "भाषाएं :",
-				"localeText": "Locale:",
+				"localeText": "स्थान:",
 				"premiumText": "प्रीमियम :",
 				"premiumNoTierText": "नहीं",
 				"premiumConfirmedText": "हाँ",
@@ -236,7 +236,7 @@
 				"countersText": "गणके :",
 				"customNumbersText": "वैयक्तीकृत संख्या :",
 				"warningNoPermsText": "\\⚠️ = अनुमतियों की कमी के कारण बॉट इस चैनल को अद्यतन करना जारी नहीं रख सकता है",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "नवीनतम लॉग:"
 			}
 		},
 		"resetSettings": {
@@ -299,11 +299,11 @@
 			"channelTopic": "चैनल विषय पूर्वावलोकन"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"helpDescription": "उन में कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\n**उदाहरण**```{PREFIX}setup```",
+			"memberCounter": "{members} सदस्य",
+			"boostingCounter": "{nitro-boosters} बढ़ाने",
+			"rolesCounter": "{roles} भूमिकाएँ",
+			"channelsCounter": "{channels} चैनल"
 		}
 	},
 	"functions": {
@@ -313,7 +313,7 @@
 		"getCounts": {
 			"onlyPremium": "केवल प्रीमियम",
 			"unknownCounter": "अपरिचित गणक",
-			"disabled": "Counter Disabled",
+			"disabled": "काउंटर अक्षम",
 			"noBanPerms": "मुझे यह दिखाने के लिए प्रतिबंध अनुमति की आवश्यकता है",
 			"invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें"
 		}
