@@ -6,7 +6,7 @@
 			"helpDescription": "C'est vraiment nécessaire d'expliquer le but de cette commande?",
 			"embedReply": {
 				"title": "Liste des commandes | préfixe: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Ajoutez ce bot à votre serveur]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstallation rapide: `mc!setup`\n\nPour obtenir plus d'informations sur une commande, envoyez `{PREFIX}help` plus le nom de la commande: ```\n{PREFIX}help shortNumber```\n**Info:** `()` signifie un paramètre facultatif tandis que `[]` signifie un requis",
 				"fields": [
 					{
 						"name": "**Compteurs**",
@@ -30,7 +30,7 @@
 			}
 		},
 		"guide": {
-			"helpDescription": "Shows you a guide of how to use the bot",
+			"helpDescription": "Vous montre un guide d'utilisation du bot",
 			"pagesText": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Thanks for adding Member Counter to your server!**\n__**Create/edit a counter**__\nFor this example we are gonna use `{members}`, which counts the total amount of members in your discord server, but you will find out more counters in the next pages\nYou can place that counter in one of the following places:\n\n- In a **voice** channel **name**\n- In a **category** channel **name**\n- In a **text** channel **topic**\n- In a **news** channel **topic**\n\nNow create a new channel, edit it, and write `{members}` in the name or topic, and click 'save changes'\n\nYou can also add multiple counters in one name/topic, and combine them with your own content, here is a example:\n```\n{onlineMembers}/{members} Online Members, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscribers!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins and mods are online!\n```\n\n> If you reach the character limit when you are editing a name/topic, please check `{PREFIX}help editChannel`\n> You can see the current counter configurations with `{PREFIX}seeSettings`, this is useful to add more counters without disabling the previous ones\n\n__**Remove a counter**__\nEdit the channel and write {disable} in the name/topic, Member Counter will replace it to a \\✅, that means that you removed all the counters of that channel successfully\n\nYou can also delete the channel directly",
 			"countersHeader": "__**Compteurs**__\n> Vous devez activer le mode développeur dans Discord (Paramètres utilisateur > Apparence > Avancés> Mode développeur)\n> Pour obtenir un ID, clique droit dans un salon/rôle et cliquer sur \"Copier ID\"\n\n> Les compteurs avec un athérisque (\\*) sont des compteurs premium, plus d'infos dans `{PREFIX}help upgradeServer`\n\n",
@@ -103,7 +103,7 @@
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members offline"
+					"description": "Comme `{membersWithRole:}` mais ne compte que les membres hors ligne"
 				},
 				{
 					"premium": true,
@@ -123,12 +123,12 @@
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "Cela affichera le montant retourné par la réponse à la ressource spécifiée, le bot effectuera une `GET` et le serveur **doit** répondre avec 200 et le `content-type: text/plain` Exemple: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "Cela affichera le montant retourné par la réponse à la ressource spécifiée, le bot effectuera une `GET` et le serveur **doit** répondre avec `200` et le `content-type: text/plain` Exemple: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "Comme `{http}` mais le bot n'analysera rien, utile pour afficher des noms au lieu de nombres"
 				},
 				{
 					"premium": true,
@@ -143,7 +143,7 @@
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "Affiche le nombre de vidéos d'une chaîne YouTube"
 				},
 				{
 					"premium": true,
@@ -158,27 +158,27 @@
 				{
 					"premium": true,
 					"name": "{mixerFollowers:username}",
-					"description": "Displays a mixer channel follower count, replace username with the desired channel name"
+					"description": "Affiche les followers d'une chaîne Mixer, remplacez username par l'url de la chaîne souhaité"
 				},
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Affiche un compte à rebours qui diminuera jusqu'à la date cible spécifiée, vous pouvez facilement [générer ce compteur ici](https://member-counter.eduardozgz.com/utils/countdown) ou en le créant manuellement en remplaçant `targetDate` avec la date cible dans un horodatage UNIX, et optionnellement `format` avec un format personnalisé: utiliser `%d`pour montrer les jours restants, `%h` pour afficher les heures restantes, `%m` pour afficher les minutes restantes et `%s` pour afficher les secondes restantes"
 				},
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Joueurs en ligne sur un serveur de jeu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) N'oubliez pas de remplacer `gameId` par un de cette liste [here](https://github.com/gamedig/node-gamedig/#games-list) et `address` par l'adresse réelle du serveur. Exemple: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "Montre une horloge avec l'heure du fuseau horaire spécifié, vous pouvez facilement [générer ce compteur ici] (https://member-counter.eduardozgz.com/utils/clock) ou remplacer `timeZone` avec un fuseau horaire IANA valide. Exemple: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Montre le nombre total de membres qui boosts ce serveur"
 				}
 			]
 		},
@@ -202,13 +202,13 @@
 			"errorMissingParams": "Paramètres manquants, voir `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a short form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Cette commande vous permet d'afficher un comptage sous une forme courte dans les compteurs\n\n**Utilisation**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Action invalide! voir `{PREFIX}help shortNumber`",
 			"success": "Fait ! Vous devrez peut-être attendre quelques secondes pour voir les nouveaux changements"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale (numbers are only formatted when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formate les numéros et autres éléments dans le lieu spécifié (les numéros ne sont formatés que lorsque mc!shortNumber est désactivé)\n\n**Utilisation**\n```{PREFIX}locale [locale/disable]```\n**Exemples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -228,7 +228,7 @@
 				"headerText": "Paramètres pour le serveur:",
 				"prefixText": "Préfixe:",
 				"langText": "Langue:",
-				"localeText": "Locale:",
+				"localeText": "Lieu:",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "Non",
 				"premiumConfirmedText": "Oui",
@@ -236,7 +236,7 @@
 				"countersText": "Compteurs:",
 				"customNumbersText": "Nombres personnalisés:",
 				"warningNoPermsText": "\\⚠️ = Le bot ne peut pas continuer à mettre à jour ce vocal en raison d'un manque d'autorisations",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "Derniers logs:"
 			}
 		},
 		"resetSettings": {
@@ -299,11 +299,11 @@
 			"channelTopic": "Aperçu du sujet de la chaîne"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"helpDescription": "Crée des salons vocaux verrouillés avec quelques compteurs en eux\n**Exemple**```{PREFIX}setup```",
+			"memberCounter": "{members} Membres",
+			"boostingCounter": "{nitro-boosters} Boosters",
+			"rolesCounter": "{roles} Rôles",
+			"channelsCounter": "{channels} Chaînes"
 		}
 	},
 	"functions": {
@@ -313,7 +313,7 @@
 		"getCounts": {
 			"onlyPremium": "Seulement Premium",
 			"unknownCounter": "Compteur inconnu",
-			"disabled": "Counter Disabled",
+			"disabled": "Compteur désactivé",
 			"noBanPerms": "J'ai besoin d'une autorisation de bannir pour montrer ceci",
 			"invalidChannelLength": "Longueur du nom de salon invalide, veuillez réinitialiser le compteur"
 		}
