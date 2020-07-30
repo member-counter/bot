@@ -163,7 +163,7 @@
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Mostra una compta enrere que anirà baixant fins arribar a la data especificada, pots fàcilment [genera aquesta compta aqui](https://member-counter.eduardozgz.com/utils/countdown) o manualment creant-la substituint `targetDate` amb la data desitjada en la marca de tiempo Unix, i opcionalment pots personalitzar el `format`: utilitza `%d` per mostrar els dies restants, `%h` per mostrar les hores restants, `%m` per mostrar els minuts restants i `%s` per mostrar els segons restants"
 				},
 				{
 					"premium": false,
