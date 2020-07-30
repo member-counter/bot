@@ -27,7 +27,7 @@ const splitContent = (content: string): string[] => {
 };
 
 const guide: MemberCounterCommand = {
-	aliases: ['guide', 'setup', 'intro'],
+	aliases: ['guide', 'intro'],
 	denyDm: false,
 	onlyAdmin: false,
 	run: async ({ message, languagePack }) => {
@@ -39,11 +39,26 @@ const guide: MemberCounterCommand = {
 			} else return DISCORD_PREFIX;
 		})();
 
-		const { explanation, counters, pagesText } = languagePack.commands.setup;
+		const {
+			explanation,
+			countersHeader,
+			counters,
+			pagesText,
+		} = languagePack.commands.guide;
 		const pages = [
 			...splitContent(explanation),
-			...splitContent(counters),
+			...splitContent(
+				countersHeader +
+					counters
+						.map((counter) => {
+							return `${counter.premium ? '*' : '-'} \`${
+								counter.name
+							}\` ${counter.description}`;
+						})
+						.join('\n'),
+			),
 		].map((page) => page.replace(/\{PREFIX\}/g, prefix));
+
 		let currentPage = 0;
 
 		const embed = embedBase({

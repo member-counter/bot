@@ -11,7 +11,7 @@ export default async (guild: Eris.Guild, member: Eris.Member) => {
 
     if (guildSettings.premium) {
       console.log(
-        `Premium Bot joined in a premium guild, ${guild.name} (${guild.id}), applyign permissions for the enabled channels`,
+        `Premium Bot joined in a premium guild, ${guild.name} (${guild.id}), applying permissions for the enabled channels`,
       );
       for (const [channelId] of guildSettings.counters) {
         if (guild.channels.has(channelId)) {

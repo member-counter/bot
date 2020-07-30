@@ -17,37 +17,37 @@ const counts: MemberCounterCommand = {
         fields: [
           {
             name: languagePack.commands.counts.members,
-            value: await counts.getCount('{members}'),
+            value: await counts.processCounter('members'),
             inline: true,
           },
           {
             name: languagePack.commands.counts.onlineMembers,
-            value: await counts.getCount('{onlinemembers}'),
+            value: await counts.processCounter('onlinemembers'),
             inline: true,
           },
           {
             name: languagePack.commands.counts.offlineMembers,
-            value: await counts.getCount('{offlinemembers}'),
+            value: await counts.processCounter('offlinemembers'),
             inline: true,
           },
           {
             name: languagePack.commands.counts.bots,
-            value: await counts.getCount('{bots}'),
+            value: await counts.processCounter('bots'),
             inline: true,
           },
           {
             name: languagePack.commands.counts.connectedUsers,
-            value: await counts.getCount('{connectedmembers}'),
+            value: await counts.processCounter('connectedmembers'),
             inline: true,
           },
           {
             name: languagePack.commands.counts.channels,
-            value: await counts.getCount('{channels}'),
+            value: await counts.processCounter('channels'),
             inline: true,
           },
           {
             name: languagePack.commands.counts.roles,
-            value: await counts.getCount('{roles}'),
+            value: await counts.processCounter('roles'),
             inline: true,
           },
         ],

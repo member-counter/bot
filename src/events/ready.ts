@@ -2,7 +2,7 @@ import getEnv from '../utils/getEnv';
 import postBotStats from '../others/postBotStats';
 import checkPremiumGuilds from '../others/checkPremiumGuilds';
 import Eris from 'eris';
-import updateCounters from '../counts/updateCounters';
+import updateCounters from '../utils/updateCounters';
 
 const {
 	DISCORD_PREFIX,
@@ -45,9 +45,19 @@ const ready = (client: Eris.Client) => {
 		checkPremiumGuilds(guilds);
 	}, 1 * 60 * 60 * 1000);
 
-	setInterval(() => {
-		updateCounters(client.guilds);
-	}, UPDATE_COUNTER_INTERVAL * 1000);
+	
+	// set the interval in the nearest 5min
+	setTimeout(() => {
+		setInterval(() => {
+			updateCounters(client.guilds);
+		}, UPDATE_COUNTER_INTERVAL * 1000);
+	}, (() => {
+		const coeff = 1000 * 60 * 5;
+		const date = new Date();
+		const rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
+
+		return rounded.getTime() - Date.now();
+	})());
 
 	setInterval(() => {
     if (FOSS_MODE || PREMIUM_BOT) return;

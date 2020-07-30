@@ -1,21 +1,11 @@
-interface ICounterResult {
-	PREMIUM: number;
-	ERROR: number;
-	UNKNOWN: number;
-}
-
-const CounterResult: ICounterResult = {
+const CounterResult = {
 	PREMIUM: -1,
 	ERROR: -2,
 	UNKNOWN: -3,
+	DISABLED: -4,
 }
 
-
-interface IConstants {
-	CounterResult: ICounterResult;
-}
-
-const Constants: IConstants = {
+const Constants = {
 	CounterResult,
 };
 

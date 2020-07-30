@@ -1,124 +1,147 @@
-import GuildModel from '../models/GuildModel';
+import GuildModel, { GuildSettingsDocument } from '../models/GuildModel';
 import UserModel from '../models/UserModel';
+import GuildLogModel, { GuildLogDocument } from '../models/GuildLogModel';
 
 class GuildService {
-  private constructor(public id: string, private doc: any) {}
+	private constructor(public id: string, private doc: GuildSettingsDocument) {}
 
-  public static async init(id: string): Promise<GuildService> {
-    const doc = await GuildModel.findOneAndUpdate(
-      { guild: id },
-      {},
-      { new: true, upsert: true },
-    );
-    return new GuildService(id, doc);
-  }
+	public static async init(id: string): Promise<GuildService> {
+		const doc = await GuildModel.findOneAndUpdate(
+			{ guild: id },
+			{},
+			{ new: true, upsert: true },
+		);
+		return new GuildService(id, doc);
+	}
 
-  public get language(): string {
-    return this.doc.language;
-  }
+	public get language(): string {
+		return this.doc.language;
+	}
 
-  public async setLanguage(value: string): Promise<void> {
-    this.doc.language = value;
-    await this.doc.save();
-  }
+	public async setLanguage(value: string): Promise<void> {
+		this.doc.language = value;
+		await this.doc.save();
+	}
 
-  public get prefix(): string {
-    return this.doc.prefix;
-  }
+	public get prefix(): string {
+		return this.doc.prefix;
+	}
 
-  public async setPrefix(newPrefix: string): Promise<string> {
-    this.doc.prefix = newPrefix;
-    await this.doc.save();
-    return this.doc.prefix;
-  }
+	public async setPrefix(newPrefix: string): Promise<string> {
+		this.doc.prefix = newPrefix;
+		await this.doc.save();
+		return this.doc.prefix;
+	}
 
-  public get allowedRoles(): string[] {
-    return this.doc.allowedRoles;
-  }
+	public get allowedRoles(): string[] {
+		return this.doc.allowedRoles;
+	}
 
-  public async setAllowedRoles(roles: string[]): Promise<string[]> {
-    this.doc.allowedRoles = roles;
-    await this.doc.save();
-    return this.doc.allowedRoles;
-  }
+	public async setAllowedRoles(roles: string[]): Promise<string[]> {
+		this.doc.allowedRoles = roles;
+		await this.doc.save();
+		return this.doc.allowedRoles;
+	}
 
-  public async setShortNumber(state: boolean): Promise<boolean> {
-    this.doc.shortNumber = state;
-    await this.doc.save();
-    return this.doc.shortNumber;
-  }
+	public async setShortNumber(state: boolean): Promise<boolean> {
+		this.doc.shortNumber = state;
+		await this.doc.save();
+		return this.doc.shortNumber;
+	}
 
-  public get shortNumber(): boolean {
-    return this.doc.shortNumber;
-  }
+	public get shortNumber(): boolean {
+		return this.doc.shortNumber;
+	}
 
-  public get premium(): boolean {
-    return this.doc.premium;
-  }
+	public async setLocale(locale: string): Promise<string> {
+		this.doc.locale = locale;
+		await this.doc.save();
+		return this.doc.locale;
+	}
 
-  public async upgradeServer(
-    grantorId: string,
-  ): Promise<'success' | 'noUpgradesAvailable' | 'alreadyUpgraded'> {
-    if (this.premium) return 'alreadyUpgraded';
+	public get locale(): string {
+		return this.doc.locale;
+	}
 
-    const userDoc: any = await UserModel.findOneAndUpdate(
-      { user: grantorId },
-      {},
-      { new: true, upsert: true },
-    );
+	public get premium(): boolean {
+		return this.doc.premium;
+	}
 
-    if (userDoc.availableServerUpgrades <= 0) return 'noUpgradesAvailable';
+	public async upgradeServer(
+		grantorId: string,
+	): Promise<'success' | 'noUpgradesAvailable' | 'alreadyUpgraded'> {
+		if (this.premium) return 'alreadyUpgraded';
 
-    userDoc.availableServerUpgrades -= 1;
-    this.doc.premium = true;
+		const userDoc: any = await UserModel.findOneAndUpdate(
+			{ user: grantorId },
+			{},
+			{ new: true, upsert: true },
+		);
 
-    await this.doc.save();
-    await userDoc.save();
+		if (userDoc.availableServerUpgrades <= 0) return 'noUpgradesAvailable';
 
-    return 'success';
-  }
+		userDoc.availableServerUpgrades -= 1;
+		this.doc.premium = true;
 
-  public get digits(): string[] {
-    return this.doc.digits;
-  }
+		await this.doc.save();
+		await userDoc.save();
 
-  public async setDigit(number: number, value: string): Promise<void> {
-    this.doc.digits[number] = value;
-    this.doc.markModified('digits');
-    await this.doc.save();
-  }
+		return 'success';
+	}
 
-  public async resetDigits(): Promise<void> {
-    this.doc.digits = undefined;
-    await this.doc.save();
-  }
+	public get digits(): string[] {
+		return this.doc.digits;
+	}
 
-  public get counters(): Map<string, string> {
-    return this.doc.counters;
-  }
+	public async setDigit(number: number, value: string): Promise<void> {
+		this.doc.digits[number] = value;
+		this.doc.markModified('digits');
+		await this.doc.save();
+	}
 
-  public async setCounter(
-    channelId: string,
-    content: string,
-  ): Promise<Map<string, string>> {
-    this.doc.counters.set(channelId, content);
-    await this.doc.save();
-    return this.counters;
-  }
+	public async resetDigits(): Promise<void> {
+		this.doc.digits = undefined;
+		await this.doc.save();
+	}
 
-  public async deleteCounter(channelId: string): Promise<void> {
-    this.doc.counters.delete(channelId);
-    await this.doc.save();
-  }
+	public get counters(): Map<string, string> {
+		return this.doc.counters;
+	}
 
-  public async resetSettings(): Promise<void> {
-    const premiumStatus = this.premium;
-    await GuildModel.findOneAndRemove({ guild: this.id });
-    this.doc = await GuildModel.create({
-      guild: this.id,
-      premium: premiumStatus,
-    });
-  }
+	public async setCounter(
+		channelId: string,
+		content: string,
+	): Promise<Map<string, string>> {
+		this.doc.counters.set(channelId, content);
+		await this.doc.save();
+		return this.counters;
+	}
+
+	public async deleteCounter(channelId: string): Promise<void> {
+		this.doc.counters.delete(channelId);
+		await this.doc.save();
+	}
+
+	public async log(text: string): Promise<void> {
+		await GuildLogModel.create({ guild: this.id, text });
+	}
+
+	public async getLatestLogs(): Promise<GuildLogDocument[]> {
+		const latestLogs = await GuildLogModel.find({ guild: this.id })
+			.limit(20)
+			.sort({ timestamp: 1 });
+		return latestLogs;
+	}
+
+	public async resetSettings(): Promise<void> {
+		const premiumStatus = this.premium;
+		await GuildLogModel.deleteMany({ guild: this.id });
+		await GuildModel.findOneAndRemove({ guild: this.id });
+		this.doc = await GuildModel.create({
+			guild: this.id,
+			premium: premiumStatus,
+		});
+	}
 }
 
 export default GuildService;
