@@ -1,7 +1,7 @@
-import UserModel from '../models/UserModel';
+import UserModel, { UserSettingsDocument } from '../models/UserModel';
 
 class UserService {
-  private constructor(public id: string, private doc: any) {}
+  private constructor(public id: string, private doc: UserSettingsDocument) {}
 
   public static async init(id: string): Promise<UserService> {
     const doc = await UserModel.findOneAndUpdate(
