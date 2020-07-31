@@ -5,7 +5,7 @@ import getEnv from './utils/getEnv';
 import injectEventHandlers from './utils/injectEventHandlers';
 import statusWS from './others/status';
 
-const { PREMIUM_BOT, DISCORD_CLIENT_TOKEN, DB_URI } = getEnv();
+const { PREMIUM_BOT, DISCORD_CLIENT_TOKEN, DB_URI, NODE_ENV } = getEnv();
 
 // Discord client
 const intents: Eris.IntentStrings[] = [
@@ -48,3 +48,13 @@ mongoose
 	.catch(console.error);
 
 statusWS(client, mongoose);
+
+
+if (NODE_ENV === "production") {
+	process.on('unhandledRejection', (reason, p) => {
+    console.error("Unhandled Rejection at: Promise ", p, " reason: ", reason);
+	});
+	process.on('uncaughtException', (exception) => {
+    console.error("Uncaught Exception ", exception);
+	});
+}
