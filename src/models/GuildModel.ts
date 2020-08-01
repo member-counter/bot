@@ -10,7 +10,7 @@ interface GuildSettings {
 	language?: string;
 	allowedRoles?: string[];
 	counters?: Map<string, string>;
-	shortNumber?: boolean;
+	shortNumber?: number;
 	locale?: string;
 	digits?: string[];
 }
@@ -26,7 +26,7 @@ const GuildSchema = new Schema({
 	language: { type: String, default: 'en_US' },
 	allowedRoles: [{ type: String, default: [] }],
 	counters: { type: Map, of: String, default: new Map() },
-	shortNumber: { type: Boolean, default: false },
+	shortNumber: { type: Number, default: 1 },
 	locale: { type: String, default: 'disabled' },
 	digits: {
 		type: Array,

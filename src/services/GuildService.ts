@@ -1,9 +1,13 @@
 import GuildModel, { GuildSettingsDocument } from '../models/GuildModel';
 import UserModel from '../models/UserModel';
 import GuildLogModel, { GuildLogDocument } from '../models/GuildLogModel';
+import UserError from '../utils/UserError';
 
 class GuildService {
-	private constructor(public id: string, private doc: GuildSettingsDocument) {}
+	private constructor(
+		public id: string,
+		private doc: GuildSettingsDocument,
+	) {}
 
 	public static async init(id: string): Promise<GuildService> {
 		const doc = await GuildModel.findOneAndUpdate(
@@ -43,13 +47,18 @@ class GuildService {
 		return this.doc.allowedRoles;
 	}
 
-	public async setShortNumber(state: boolean): Promise<boolean> {
-		this.doc.shortNumber = state;
-		await this.doc.save();
-		return this.doc.shortNumber;
+	// -1 = disabled
+	public async setShortNumber(decimals: number): Promise<number> {
+		if (isNaN(decimals) || decimals < -1 || 3 < decimals) {
+			throw new UserError('You can only show from 0 to 3 decimals');
+		} else {
+			this.doc.shortNumber = decimals;
+			await this.doc.save();
+			return this.doc.shortNumber;
+		}
 	}
 
-	public get shortNumber(): boolean {
+	public get shortNumber(): number {
 		return this.doc.shortNumber;
 	}
 
