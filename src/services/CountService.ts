@@ -8,7 +8,7 @@ import stringReplaceAsync from '../utils/stringReplaceAsync';
 import Constants from '../utils/Constants';
 import Counter from '../typings/Counter';
 
-import MyCounter from '../counters/counterTemplate';
+import TestCounter from '../counters/_test';
 import BannedMembersCounter from '../counters/bannedMembers';
 import BotStatsCounter from '../counters/bot-stats';
 import ChannelCounter from '../counters/channels';
@@ -24,13 +24,13 @@ import MixerCounter from '../counters/Mixer';
 import RolesCounter from '../counters/roles';
 import TwitchCounter from '../counters/Twitch';
 import YouTubeCounter from '../counters/YouTube';
-import ErrorCounter from '../counters/throwErrorCounter';
+import ErrorCounter from '../counters/_error';
 import ClockCounter from '../counters/clock';
 import NitroBoostersCounter from '../counters/nitroBoosters';
 
 // Do the aliases lowercase
 const counters: Counter[] = [
-	MyCounter,
+	TestCounter,
 	BannedMembersCounter,
 	BotStatsCounter,
 	ChannelCounter,
@@ -265,8 +265,8 @@ class CountService {
 		const intCount = Number(result);
 		const isNumber = !isNaN(intCount);
 		if (isNumber) {
-			if (this.guildSettings.shortNumber) {
-				result = shortNumber(intCount);
+			if (this.guildSettings.shortNumber > -1) {
+				result = shortNumber(intCount, this.guildSettings.shortNumber);
 			} else if (!this.guildSettings.locale.includes('disable')) {
 				try {
 					result = new Intl.NumberFormat(this.guildSettings.locale).format(

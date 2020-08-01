@@ -1,18 +1,21 @@
 import Counter from '../typings/Counter';
 import Constants from '../utils/Constants';
+import getEnv from '../utils/getEnv';
 
-const MyCounter: Counter = {
-	aliases: ['myCounter', 'myRandomCounter'],
+const { NODE_ENV } = getEnv();
+
+const TestCounter: Counter = {
+	aliases: ['test'],
 	isPremium: false,
-	isEnabled: false,
+	isEnabled: NODE_ENV === "development",
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
-		// return 1234567890;
+		return 1234567890;
 		// return "Working!";
 		// return { myCounter: Date.now(), myRandomCounter: "Working!" };
 		// return Constants.CounterResult.ERROR;
-		return 1337;
+		// return 1337;
 	},
 };
 
-export default MyCounter;
+export default TestCounter;
