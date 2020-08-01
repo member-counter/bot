@@ -202,7 +202,7 @@
 			"errorMissingParams": "Faltan parámetros, por favor, consulta `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Este comando te permite mostrar el número de una cuenta en un formato abreviado en los contadores\n\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Ejemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a short form in counters, you can specify how much decimals are shown\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable/0/1/2/3]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber 0\n{PREFIX}shortNumber 1\n{PREFIX}shortNumber 2\n{PREFIX}shortNumber 3```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "¡Acción invalida! Por favor, consulta `{PREFIX}help shortNumber`",
 			"success": "Listo! Quizas tengas que esperar unos segundos para ver los nuevos cambios"
