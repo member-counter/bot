@@ -16,6 +16,7 @@ import UserError from '../utils/UserError';
 import messageReactionAdd from '../events/messageReactionAdd';
 import getEnv from '../utils/getEnv';
 import GuildLogModel from '../models/GuildLogModel';
+import { parse } from 'path';
 
 const { DISCORD_PREFIX, PREMIUM_BOT_INVITE } = getEnv();
 
@@ -410,23 +411,12 @@ const shortNumber: MemberCounterCommand = {
 			const { guild } = channel;
 			const guildSettings = await GuildService.init(guild.id);
 
-			switch (action) {
-				case 'enable':
-					await guildSettings.setShortNumber(true);
-					break;
-
-				case 'disable':
-					await guildSettings.setShortNumber(false);
-					break;
-
-				default:
-					throw new UserError(
-						languagePack.commands.shortNumber.errorInvalidAction.replace(
-							'{PREFIX}',
-							guildSettings.prefix,
-						),
-					);
-					break;
+			if (action === 'enable') {
+				await guildSettings.setShortNumber(1);
+			} else if (action === 'disable') {
+				await guildSettings.setShortNumber(-1);
+			} else {
+				await guildSettings.setShortNumber(parseInt(action, 10));
 			}
 
 			await channel.createMessage(languagePack.commands.shortNumber.success);
