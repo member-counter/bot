@@ -113,7 +113,7 @@
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
+					"description": "Come `{connectedMembers}`, ma il bot conterà solamente i membri connessi in specifici canali, scrivi l'ID dei canali che vuoi contare dopo il ':`, e separa gli ID dei canali con delle virgole"
 				},
 				{
 					"premium": false,
@@ -231,11 +231,11 @@
 				"localeText": "Locale:",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "No",
-				"premiumConfirmedText": "Yes",
-				"allowedRolesText": "Allowed roles to use administrative commands:",
-				"countersText": "Counters:",
-				"customNumbersText": "Custom numbers:",
-				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions",
+				"premiumConfirmedText": "Sì",
+				"allowedRolesText": "Ruoli a cui è permesso usare comandi amministrativi:",
+				"countersText": "Contatori:",
+				"customNumbersText": "Numeri personalizzati:",
+				"warningNoPermsText": "\\⚠️ = Questo bot non può continuare ad aggiornarsi a causa della mancanza di permessi",
 				"guildLogsText": "Latest logs:"
 			}
 		},
@@ -300,7 +300,7 @@
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
+			"memberCounter": "{members} Membri",
 			"boostingCounter": "{nitro-boosters} Stanno Boostando",
 			"rolesCounter": "{roles} Ruoli",
 			"channelsCounter": "{channels} Canali"
@@ -324,6 +324,6 @@
 		"errorDiscordAPI": "API di Discord",
 		"errorUnknown": "Qualcosa è andato storto, riprova più tardi.",
 		"errorNoAdmin": "Solo i membri coi permessi di amministratore di questo server possono usare questo comando.",
-		"noTopicCounterEnabled": "Sembra che tu non abbia abilitato un contatore dell'argomento, perfavore, guarda `{PREFIX}help topicCounter`"
+		"noTopicCounterEnabled": "Sembra che tu non abbia abilitato un contatore dell'argomento, per favore, guarda `{PREFIX}help topicCounter`"
 	}
 }
