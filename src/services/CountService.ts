@@ -20,7 +20,7 @@ import MemberCounter from '../counters/members';
 import MembersConnectedCounter from '../counters/membersConnected';
 import MembersExtendedCounter from '../counters/membersExt';
 import MembersWithRoleCounter from '../counters/membersWithRole';
-import MixerCounter from '../counters/Mixer';
+import MemeratorCounter from '../counters/Memerator';
 import RolesCounter from '../counters/roles';
 import TwitchCounter from '../counters/Twitch';
 import YouTubeCounter from '../counters/YouTube';
@@ -43,7 +43,7 @@ const counters: Counter[] = [
 	MembersConnectedCounter,
 	MembersExtendedCounter,
 	MembersWithRoleCounter,
-	MixerCounter,
+	MemeratorCounter,
 	NitroBoostersCounter,
 	RolesCounter,
 	ErrorCounter,
