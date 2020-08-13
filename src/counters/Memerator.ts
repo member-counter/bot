@@ -1,0 +1,24 @@
+import fetch from 'node-fetch';
+import Counter from '../typings/Counter';
+import getEnv from "../utils/getEnv";
+const { MEMERATOR_API_KEY } = getEnv();
+
+const MemeratorCounter: Counter = {
+	aliases: ['memeratorFollowers', 'memeratorMemes'],
+	isPremium: true,
+	isEnabled: true,
+	lifetime: 60 * 1000,
+
+	execute: async ({resource }) => {
+		const response = await fetch(
+			`https://api.memerator.me/v1/profile/${resource}`, { headers: { "Authorization": MEMERATOR_API_KEY } }
+		).then((response) => response.json());
+
+		return {
+			memeratorFollowers: response?.stats?.followers,
+			memeratorMemes: response?.stats?.memes,
+		};
+	},
+};
+
+export default MemeratorCounter;

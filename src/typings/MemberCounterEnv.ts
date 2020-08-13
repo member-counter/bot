@@ -25,6 +25,8 @@ export interface MemberCounterEnv {
 	readonly WEBSITE_URL: string;
 	readonly DONATION_URL: string;
 
+	readonly MEMERATOR_API_KEY: string;
+
 	readonly YOUTUBE_API_KEY: string;
 
 	readonly TWITCH_CLIENT_ID: string;
