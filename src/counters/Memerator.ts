@@ -5,9 +5,9 @@ const { MEMERATOR_API_KEY } = getEnv();
 
 const MemeratorCounter: Counter = {
 	aliases: ['memeratorFollowers', 'memeratorMemes'],
-	isPremium: true,
+	isPremium: false,
 	isEnabled: true,
-	lifetime: 60 * 1000,
+	lifetime: 30 * 60 * 1000,
 
 	execute: async ({resource }) => {
 		const response = await fetch(
