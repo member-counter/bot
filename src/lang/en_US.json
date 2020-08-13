@@ -158,12 +158,12 @@
 				{
 					"premium": false,
 					"name": "{memeratorMemes:username}",
-					"description": "Displays a Memerator user's meme count, replace username with the desired profile name"
+					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
 				},
 				{
 					"premium": false,
 					"name": "{memeratorFollowers:username}",
-					"description": "Displays a Memerator user's follower count, replace username with the desired profile name"
+					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
 				},
 				{
 					"premium": false,
