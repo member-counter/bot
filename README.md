@@ -33,12 +33,12 @@ Join the support server and ask your questions in [#support](https://discord.com
 
 # Donations
 
-Help Member Counter to be mantained by [donating](https://member-counter.eduardozgz.com/donate) and you will get access to Member Counter Premium
+Help Member Counter to be maintained by [donating](https://member-counter.eduardozgz.com/donate) and you will get access to Member Counter Premium
 
 # Gallery
 
-![Various counters placed in a voice channel name showing the amount of members, online members, donators and online members in a role](https://i.imgur.com/d0kN63N.png)
-![Various counters placed in a voice channel name showing the amount of connectd members to voice channels](https://i.imgur.com/AJ168AK.png)
+![Various counters placed in a voice channel name showing the amount of members, online members, donors and online members in a role](https://i.imgur.com/d0kN63N.png)
+![Various counters placed in a voice channel name showing the amount of connected members to voice channels](https://i.imgur.com/AJ168AK.png)
 ![Counters placed in a voice channel name showing the amount of online players in a Minecraft server and in FiveM](https://i.imgur.com/gKUR8Ke.png)
 ![A counter placed in a voice channel name showing the amount of subscribers in a youtube channel, and a counter placed in a text channel topic showing the amount of online Admins](https://i.imgur.com/OYDMEMQ.png)
 
