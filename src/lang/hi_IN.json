@@ -156,29 +156,34 @@
 					"description": "प्रदर्शित करता है ट्विच चैनल इतनी बार देखा गया"
 				},
 				{
-					"premium": true,
-					"name": "{mixerFollowers:username}",
-					"description": "मिक्सर चैनल अनुयायियों को प्रदर्शित करता है, उपयोगकर्ता नाम को वांछित चैनल नाम से बदले"
+					"premium": false,
+					"name": "{memeratorMemes:username}",
+					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
+				},
+				{
+					"premium": false,
+					"name": "{memeratorFollowers:username}",
+					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
 				},
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "एक उलट गनत दखत ह ज नरदषट लकषय तथ तक घट जएग, आप आसन स [इस कउटर क यह उतपनन कर सकत ह](https://member-counter.eduardozgz.com/utils/countdown) य मनयअल रप स एक UNIX टइमसटमप म लकषय तथ क सथ `targetDate` क परतसथपत करक और वकलपक रप स `format` इस कसटम पररप क सथ बनय: बच हए दन क दखन क लए `%d` क उपयग कर, घट क दखन क लए `%h`, `%m` मनट क दखन क लए और `%s` बच हए सकड दखन क लए"
+					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
 				},
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "एक खेल सर्वर (Minecraft, काउंटर स्ट्राइक, जंग, सन्दूक, टीम किले 2, GMOD, आदि) में ऑनलाइन खिलाड़ियों को सूचीबद्ध करने के लिए `gameId` को बदलना याद रखें [here] (https://github.com/gamedig/node-gamedig/#games-list) और `address` वास्तविक सर्वर पते द्वारा। उदाहरण: {game:minecraft:mc.hypixel.net}"
+					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "निर्दिष्ट समयक्षेत्र के समय के साथ एक घड़ी दिखाता है, आप आसानी से देख सकते हैं [इस काउंटर को जनरेट करें](https://member-counter.eduardozgz.com/utils/clock) या एक मान्य IANA समयक्षेत्र के साथ `timeZone` को बदलें। उदाहरण: `{clock:Europe/Madrid}`"
+					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "इस सर्वर को बढ़ाने वाले सदस्यों की कुल राशि दिखाता है"
+					"description": "Shows the total amount of members boosting this server"
 				}
 			]
 		},
