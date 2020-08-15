@@ -268,7 +268,7 @@
 		},
 		"lang": {
 			"helpDescription": "Change la langue du bot pour ce serveur, vous devez avoir les autorisations administrateur pour exécuter cette commande.",
-			"success": "Langue changé avec succès.",
+			"success": "Langue changée avec succès.",
 			"errorNotFound": "Liste des langues disponibles:"
 		},
 		"donate": {
