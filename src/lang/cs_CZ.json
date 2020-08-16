@@ -1,37 +1,37 @@
 {
 	"langCode": "cs_CZ",
-	"langName": "English (US)",
+	"langName": "Čeština (CS)",
 	"commands": {
 		"help": {
-			"helpDescription": "It's really necessary to explain the purpose of this command?",
+			"helpDescription": "Je opravdu nutné vysvětlit účel tohoto příkazu?",
 			"embedReply": {
-				"title": "Command list | prefix: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"title": "Seznam příkazů | prefix: {PREFIX}",
+				"description": "[Přidat tohoto bota na svůj server]({DISCORD_BOT_INVITE}) **|** [Stránka]({WEBSITE}) **|**   [Dokumentace](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nRychlé nastavení: `mc!setup`\n\nPro získání více informací o příkazu, použijte příkaz `{PREFIX}help` a jméno příkazu: ```\n{PREFIX}help shortNumber```\n**Info:** `()` znamená volitelný parametr, zatímco `[]` znamená požadovaný parametr",
 				"fields": [
 					{
-						"name": "**Counters**",
+						"name": "**Počítadla**",
 						"value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
 						"inline": true
 					},
 					{
-						"name": "**Server settings**",
+						"name": "**Nastavení serveru**",
 						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
 						"inline": true
 					},
 					{
-						"name": "**Others**",
+						"name": "**Ostatní**",
 						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
 				]
 			},
 			"misc": {
-				"command": "Command:"
+				"command": "Příkaz:"
 			}
 		},
 		"guide": {
-			"helpDescription": "Shows you a guide of how to use the bot",
-			"pagesText": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"helpDescription": "Zobrazí návod, jak používat bota",
+			"pagesText": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Thanks for adding Member Counter to your server!**\n__**Create/edit a counter**__\nFor this example we are gonna use `{members}`, which counts the total amount of members in your discord server, but you will find out more counters in the next pages\nYou can place that counter in one of the following places:\n\n- In a **voice** channel **name**\n- In a **category** channel **name**\n- In a **text** channel **topic**\n- In a **news** channel **topic**\n\nNow create a new channel, edit it, and write `{members}` in the name or topic, and click 'save changes'\n\nYou can also add multiple counters in one name/topic, and combine them with your own content, here is a example:\n```\n{onlineMembers}/{members} Online Members, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscribers!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins and mods are online!\n```\n\n> If you reach the character limit when you are editing a name/topic, please check `{PREFIX}help editChannel`\n> You can see the current counter configurations with `{PREFIX}seeSettings`, this is useful to add more counters without disabling the previous ones\n\n__**Remove a counter**__\nEdit the channel and write {disable} in the name/topic, Member Counter will replace it to a \\✅, that means that you removed all the counters of that channel successfully\n\nYou can also delete the channel directly",
 			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n",
 			"counters": [
