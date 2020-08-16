@@ -192,12 +192,12 @@
 			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
 			"errorInvalidChannel": "You can only lock voice channels!",
 			"errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-			"errorNotFound": "Channel not found"
+			"errorNotFound": "Kanál nebyl nalezen"
 		},
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
 			"success": "Done! You may have to wait a few seconds to see the new changes",
-			"errorNotFound": "Channel not found",
+			"errorNotFound": "Kanál nebyl nalezen",
 			"errorNoContent": "You must provide some content"
 		},
 		"setDigit": {
@@ -291,8 +291,8 @@
 			"helpDescription": "Shows some counts",
 			"members": "Členové:",
 			"onlineMembers": "Online uživatelé:",
-			"offlineMembers": "Offline members:",
-			"bots": "Bots:",
+			"offlineMembers": "Offline uživatelé:",
+			"bots": "Boti:",
 			"connectedUsers": "Connected users:",
 			"channels": "Channels:",
 			"roles": "Roles:"
