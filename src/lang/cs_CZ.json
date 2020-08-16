@@ -233,7 +233,7 @@
 				"headerText": "Settings for guild:",
 				"prefixText": "Prefix:",
 				"langText": "Jazyk:",
-				"localeText": "Locale:",
+				"localeText": "Lokalizace:",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "Ne",
 				"premiumConfirmedText": "Ano",
@@ -251,7 +251,7 @@
 		"update": {
 			"helpDescription": "If you think the counters are stuck use this command to update them again.",
 			"inProgress": "Updating the counters, this may take a while.",
-			"success": "Done.",
+			"success": "Hotovo.",
 			"wait": "Wait! I'm already updating it!"
 		},
 		"upgradeServer": {
@@ -263,7 +263,7 @@
 		"info": {
 			"helpDescription": "List of useful links",
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+				"description": "[Přidej si mě na tvůj server]({BOT_INVITE_URL})\n[Server pro podporu]({BOT_SERVER_URL})\n[GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Podpořit]({DONATION_URL})"
 			}
 		},
 		"lang": {
