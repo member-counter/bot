@@ -218,7 +218,7 @@
 		},
 		"prefix": {
 			"helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
-			"success": "Prefix changed to: `{NEW_PREFIX}`",
+			"success": "Prefix změněn na: `{NEW_PREFIX}`",
 			"noPrefixProvided": "You must provide a prefix"
 		},
 		"role": {
@@ -269,7 +269,7 @@
 		"lang": {
 			"helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
 			"success": "Language changed successfully.",
-			"errorNotFound": "List of available languages:"
+			"errorNotFound": "Seznam dostupných jazyků:"
 		},
 		"donate": {
 			"helpDescription": "Shows the top donations.",
@@ -289,8 +289,8 @@
 		},
 		"counts": {
 			"helpDescription": "Shows some counts",
-			"members": "Members:",
-			"onlineMembers": "Online members:",
+			"members": "Členové:",
+			"onlineMembers": "Online uživatelé:",
 			"offlineMembers": "Offline members:",
 			"bots": "Bots:",
 			"connectedUsers": "Connected users:",
@@ -307,8 +307,8 @@
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
 			"memberCounter": "{members} Members",
 			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"rolesCounter": "{roles} role/í",
+			"channelsCounter": "{channels} kanály/ů"
 		}
 	},
 	"functions": {
@@ -324,10 +324,10 @@
 		}
 	},
 	"common": {
-		"error": "Error",
-		"errorDb": "Database error, try again later",
+		"error": "Chyba",
+		"errorDb": "Chyba databáze, zkuste to prosím znovu",
 		"errorDiscordAPI": "Discord API",
-		"errorUnknown": "Something went wrong, try again later.",
+		"errorUnknown": "Něco se pokazilo, zkuste to prosím znovu.",
 		"errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
 		"noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
 	}
