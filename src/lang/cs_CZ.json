@@ -38,37 +38,37 @@
 				{
 					"premium": false,
 					"name": "{members}",
-					"description": "Members in your server"
+					"description": "Uživatelé na serveru"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "Online members in your server"
+					"description": "Online uživatelé na serveru"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "Offline members in your server"
+					"description": "Offline uživatelé na serveru"
 				},
 				{
 					"premium": true,
 					"name": "{users}",
-					"description": "Users in your server (excludes bot)"
+					"description": "Uživatelé na serveru (kromě botů)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "Online users in your server (excludes bot)"
+					"description": "Online uživatelé na serveru (kromě botů)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "Offline users in your server (excludes bot)"
+					"description": "Offline uživatelé na serveru (kromě botů)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "Bots in your server (excludes normal users)"
+					"description": "Boti na severu (počet neobsahuje normální uživatele)"
 				},
 				{
 					"premium": true,
