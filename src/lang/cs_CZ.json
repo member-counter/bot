@@ -1,6 +1,6 @@
 {
 	"langCode": "cs_CZ",
-	"langName": "Čeština (CS)",
+	"langName": "Čeština (CZ)",
 	"commands": {
 		"help": {
 			"helpDescription": "Je opravdu nutné vysvětlit účel tohoto příkazu?",
@@ -33,7 +33,7 @@
 			"helpDescription": "Zobrazí návod, jak používat bota",
 			"pagesText": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Děkujeme za přidání Member Counter bota na Váš server!**\n__**Vytvořit/upravit počítadla**__\nMůžete například použít `{members}`, který spočítá celkový počet členů na vašem Discord serveru. Více možností naleznete na dalších stránkách.\nToto můžete umístit na jedno z následujících míst:\n\n- In a **voice** channel **name**\n- In a **category** channel **name**\n- In a **text** channel **topic**\n- In a **news** channel **topic**\n\nNow create a new channel, edit it, and write `{members}` in the name or topic, and click 'save changes'\n\nYou can also add multiple counters in one name/topic, and combine them with your own content, here is a example:\n```\n{onlineMembers}/{members} Online Members, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscribers!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins and mods are online!\n```\n\n> If you reach the character limit when you are editing a name/topic, please check `{PREFIX}help editChannel`\n> You can see the current counter configurations with `{PREFIX}seeSettings`, this is useful to add more counters without disabling the previous ones\n\n__**Remove a counter**__\nEdit the channel and write {disable} in the name/topic, Member Counter will replace it to a \\✅, that means that you removed all the counters of that channel successfully\n\nYou can also delete the channel directly",
-			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n",
+			"countersHeader": "__**Počítadla**__\n> Doporučujeme si zapnout Developer mode/Vývojářský režim (Uživatelská nastavení > Vzhled > Pokročilé > Vývojářský režim)\n> Chcete-li získat ID, klikněte pravým tlačítkem na kanál/roli a poté klikněte na „Kopírovat ID“\n\n> Počítadla označený s hvězdičkou (\\*) jsou dostupné pouze pro Premium. Více informací ohledně Premium zjistíte zadáním příkazu `{PREFIX}help upgradeServer`\n\n",
 			"counters": [
 				{
 					"premium": false,
@@ -93,7 +93,7 @@
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
+					"description": "Toto spočítá, kolik členů má roli/role. Pro sčítání více rolí napište ID role, které chcete spočítat, za `:` a oddělte ID role čárkami"
 				},
 				{
 					"premium": true,
@@ -196,9 +196,9 @@
 		},
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
-			"success": "Done! You may have to wait a few seconds to see the new changes",
+			"success": "Úspěšně upraveno! Možná budete muset počkat několik sekund, než uvidíte tyto změny",
 			"errorNotFound": "Kanál nebyl nalezen",
-			"errorNoContent": "You must provide some content"
+			"errorNoContent": "Musíte poskytnout nějaký obsah"
 		},
 		"setDigit": {
 			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
@@ -240,7 +240,7 @@
 				"allowedRolesText": "Allowed roles to use administrative commands:",
 				"countersText": "Counters:",
 				"customNumbersText": "Vlastní čísla:",
-				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions",
+				"warningNoPermsText": "\\⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatečných oprávnění",
 				"guildLogsText": "Latest logs:"
 			}
 		},
@@ -268,7 +268,7 @@
 		},
 		"lang": {
 			"helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-			"success": "Language changed successfully.",
+			"success": "Jazyk úspěšně změnen.",
 			"errorNotFound": "Seznam dostupných jazyků:"
 		},
 		"donate": {
@@ -278,13 +278,13 @@
 				"fields": []
 			},
 			"misc": {
-				"emptyNote": "Empty note"
+				"emptyNote": "Prázdná poznámka"
 			},
 			"errorExchangeFetch": "Error while trying to fetch exchange rates"
 		},
 		"profile": {
 			"helpDescription": "Shows related information between you and this bot",
-			"badges": "Badges",
+			"badges": "Odznaky",
 			"serverUpgradesAvailable": "Server upgrades left"
 		},
 		"counts": {
@@ -293,14 +293,14 @@
 			"onlineMembers": "Online uživatelé:",
 			"offlineMembers": "Offline uživatelé:",
 			"bots": "Boti:",
-			"connectedUsers": "Connected users:",
+			"connectedUsers": "Připojených uživatelů:",
 			"channels": "Kanály:",
 			"roles": "Role:"
 		},
 		"preview": {
-			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
+			"helpDescription": "Zobrazuje náhled, jak bude počítadlo nebo různé počítadla vypadat v kanálu\n\n**Použití** ```{PREFIX}preview [content]```\n**Příklad** ```{PREFIX}preview {members} Uživatelů```",
 			"helpImage": "https://i.imgur.com/VzdqzT3.png",
-			"channelName": "Channel name preview",
+			"channelName": "Náhled názvu kanálu",
 			"channelTopic": "Channel topic preview"
 		},
 		"setup": {
