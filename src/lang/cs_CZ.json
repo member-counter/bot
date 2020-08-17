@@ -32,7 +32,7 @@
 		"guide": {
 			"helpDescription": "Zobrazí návod, jak používat bota",
 			"pagesText": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"explanation": "**Děkujeme za přidání Member Counter bota na Váš server!**\n__**Vytvořit/upravit počítadla**__\nMůžete například použít `{members}`, který spočítá celkový počet členů na vašem Discord serveru. Více možností naleznete na dalších stránkách.\nToto můžete umístit na jedno z následujících míst:\n\n- In a **voice** channel **name**\n- In a **category** channel **name**\n- In a **text** channel **topic**\n- In a **news** channel **topic**\n\nNow create a new channel, edit it, and write `{members}` in the name or topic, and click 'save changes'\n\nYou can also add multiple counters in one name/topic, and combine them with your own content, here is a example:\n```\n{onlineMembers}/{members} Online Members, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscribers!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins and mods are online!\n```\n\n> If you reach the character limit when you are editing a name/topic, please check `{PREFIX}help editChannel`\n> You can see the current counter configurations with `{PREFIX}seeSettings`, this is useful to add more counters without disabling the previous ones\n\n__**Remove a counter**__\nEdit the channel and write {disable} in the name/topic, Member Counter will replace it to a \\✅, that means that you removed all the counters of that channel successfully\n\nYou can also delete the channel directly",
+			"explanation": "**Thanks for adding Member Counter to your server!**\n__**Create/edit a counter**__\nFor this example we are gonna use `{members}`, which counts the total amount of members in your discord server, but you will find out more counters in the next pages\nYou can place that counter in one of the following places:\n\n- In a **voice** channel **name**\n- In a **category** channel **name**\n- In a **text** channel **topic**\n- In a **news** channel **topic**\n\nNow create a new channel, edit it, and write `{members}` in the name or topic, and click 'save changes'\n\nYou can also add multiple counters in one name/topic, and combine them with your own content, here is a example:\n```\n{onlineMembers}/{members} Online Members, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscribers!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins and mods are online!\n```\n\n> If you reach the character limit when you are editing a name/topic, please check `{PREFIX}help editChannel`\n> You can see the current counter configurations with `{PREFIX}seeSettings`, this is useful to add more counters without disabling the previous ones\n\n__**Remove a counter**__\nEdit the channel and write {disable} in the name/topic, Member Counter will replace it to a \\✅, that means that you removed all the counters of that channel successfully\n\nYou can also delete the channel directly",
 			"countersHeader": "__**Počítadla**__\n> Doporučujeme si zapnout Developer mode/Vývojářský režim (Uživatelská nastavení > Vzhled > Pokročilé > Vývojářský režim)\n> Chcete-li získat ID, klikněte pravým tlačítkem na kanál/roli a poté klikněte na „Kopírovat ID“\n\n> Počítadla označený s hvězdičkou (\\*) jsou dostupné pouze pro Premium. Více informací ohledně Premium zjistíte zadáním příkazu `{PREFIX}help upgradeServer`\n\n",
 			"counters": [
 				{
@@ -93,7 +93,7 @@
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "Toto spočítá, kolik členů má roli/role. Pro sčítání více rolí napište ID role, které chcete spočítat, za `:` a oddělte ID role čárkami"
+					"description": "Toto spočítá, kolik členů má roli/role. Pro sčítání více rolí napište za `:` ID role, kterou chcete spočítat a každé další ID role oddělte čárkou"
 				},
 				{
 					"premium": true,
@@ -113,7 +113,7 @@
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
+					"description": "Podobné jako `{connectedMembers}` ale bot bude analyzovat pouze připojené uživatele ve specifických kanálech. Pro sčítání více kanálů napište za `:` ID kanálu, který chcete spočítat a každý další ID kanálu oddělte čárkou"
 				},
 				{
 					"premium": false,
@@ -128,7 +128,7 @@
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "Podobné jako `{http}`, ale bot nebude analyzovat nic kromě jmen namísto čísel"
 				},
 				{
 					"premium": true,
@@ -173,7 +173,7 @@
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Online hráči na herním serveru (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, atd). Nezapomeňte nahradit `gameId` jménem hry, seznam her naleznete [zde](https://github.com/gamedig/node-gamedig/#games-list) a `address` adresou serveru. Příklad: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
@@ -238,15 +238,15 @@
 				"premiumNoTierText": "Ne",
 				"premiumConfirmedText": "Ano",
 				"allowedRolesText": "Allowed roles to use administrative commands:",
-				"countersText": "Counters:",
+				"countersText": "Seznam počítel:",
 				"customNumbersText": "Vlastní čísla:",
 				"warningNoPermsText": "\\⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatečných oprávnění",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "Poslední logy:"
 			}
 		},
 		"resetSettings": {
 			"helpDescription": "Restores the custom settings of this server to the default ones",
-			"done": "Restored to default settings"
+			"done": "Nastavení obnoveno do základního stavu"
 		},
 		"update": {
 			"helpDescription": "If you think the counters are stuck use this command to update them again.",
