@@ -73,22 +73,22 @@
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "Online bots in your server (excludes normal users)"
+					"description": "Online boti na severu (počet neobsahuje normální uživatele)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "Offline bots in your server (excludes normal users)"
+					"description": "Offline boti na severu (počet neobsahuje normální uživatele)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Roles in your server"
+					"description": "Role na serveru"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Channels in your server (excludes category channels)"
+					"description": "Kanály na serveru (počet neobsahuje kategorie kanálů)"
 				},
 				{
 					"premium": true,
@@ -98,17 +98,17 @@
 				{
 					"premium": true,
 					"name": "{onlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members online"
+					"description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze online uživatelé"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members offline"
+					"description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze offline uživatelé"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers}",
-					"description": "Total amount of connected members in the voice channels"
+					"description": "Celkový počet připojených uživatelů v hlasových kanálech"
 				},
 				{
 					"premium": true,
@@ -138,12 +138,12 @@
 				{
 					"premium": true,
 					"name": "{youtubeViews:channelUrl}",
-					"description": "Displays a youtube channel view count"
+					"description": "Zobrazí počet odběratelů daného YouTube kanálu"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "Zobrazí počet odběratelů daného YouTube videa"
 				},
 				{
 					"premium": true,
@@ -153,7 +153,7 @@
 				{
 					"premium": true,
 					"name": "{twitchViews:channelName}",
-					"description": "Displays a twitch channel view count"
+					"description": "Zobrazí počet odběratelů daného Twitch kanálu"
 				},
 				{
 					"premium": false,
@@ -189,9 +189,9 @@
 		},
 		"lockChannel": {
 			"helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
-			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
-			"errorInvalidChannel": "You can only lock voice channels!",
-			"errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
+			"success": "Hotovo! Kanál je uzavřen **pro normální uživatele**. Kanál bude zobrazen s 🔒",
+			"errorInvalidChannel": "Můžete uzamknout pouze hlasové kanály!",
+			"errorNoPerms": "Nemohu upravovat kanál s názvem `{CHANNEL}` z důvodu nedostatečných oprávnění",
 			"errorNotFound": "Kanál nebyl nalezen"
 		},
 		"editChannel": {
@@ -202,7 +202,7 @@
 		},
 		"setDigit": {
 			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-			"success": "Digits customized.",
+			"success": "Číslice úspěšně přizpůsobené.",
 			"resetSuccess": "Numbers restored to the default ones.",
 			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
 		},
@@ -219,11 +219,11 @@
 		"prefix": {
 			"helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
 			"success": "Prefix změněn na: `{NEW_PREFIX}`",
-			"noPrefixProvided": "You must provide a prefix"
+			"noPrefixProvided": "Musíte zadat prefix"
 		},
 		"role": {
 			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
-			"rolesUpdated": "Roles updated.",
+			"rolesUpdated": "Role úspěšně aktualizovány.",
 			"errorNoRolesToUpdate": "Musíte označit minimálně 1 roli",
 			"invalidParams": "Invalid parameters, see `{PREFIX}help role`"
 		},
@@ -274,7 +274,7 @@
 		"donate": {
 			"helpDescription": "Shows the top donations.",
 			"embedReply": {
-				"title": "Enjoying my bot? Donate me! (Click here)",
+				"title": "Užíváte si tohoto bota? Podpoř mě prosím! (Klikni zde)",
 				"fields": []
 			},
 			"misc": {
@@ -316,10 +316,10 @@
 			"noDm": "You can't run this command on a DM channel"
 		},
 		"getCounts": {
-			"onlyPremium": "Only Premium",
-			"unknownCounter": "Unknown counter",
-			"disabled": "Counter Disabled",
-			"noBanPerms": "I need ban permissions to show this",
+			"onlyPremium": "Pouze pro Premium",
+			"unknownCounter": "Neznámý počítadlo",
+			"disabled": "Počítadlo zablokováno",
+			"noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
 			"invalidChannelLength": "Invalid channel name length, please setup the counter again"
 		}
 	},
