@@ -1,20 +1,17 @@
 import getEnv from '../utils/getEnv';
 import Eris from 'eris';
 import GuildService from '../services/GuildService';
+import { availableLanguagePacks } from '../utils/languagePack';
 
 const { PREMIUM_BOT_ID, PREMIUM_BOT, FOSS_MODE } = getEnv();
 
-const regionRelation = {
-  brazil: 'pt_BR',
-  russia: 'ru_RU',
-  india: 'hi_IN',
-};
-
 const guildCreate = async (guild: Eris.Guild) => {
+  const guildSettings = await GuildService.init(guild.id);
+  
+  await guildSettings.setLocale(guild.preferredLocale);
+
   // Self kick when premium bot is present and the guild is premium
   if (!PREMIUM_BOT && !FOSS_MODE) {
-    const guildSettings = await GuildService.init(guild.id);
-
     const premiumBotMember = await guild
       .getRESTMember(PREMIUM_BOT_ID)
       .catch(() => {});
@@ -24,10 +21,10 @@ const guildCreate = async (guild: Eris.Guild) => {
     }
   }
 
-  // set language for the guild based on its voice region
-  if (regionRelation[guild.region]) {
-    const guildSettings = await GuildService.init(guild.id);
-    await guildSettings.setLanguage(regionRelation[guild.region]);
+  // set language
+  const languageToSet = guild.preferredLocale.replace(/-/g, '_');
+  if (availableLanguagePacks.includes(languageToSet)) {
+    await guildSettings.setLanguage(languageToSet);
   }
 };
 

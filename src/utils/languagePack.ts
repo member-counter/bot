@@ -10,6 +10,8 @@ import * as de_DE from '../lang/de_DE.json';
 import * as fr_FR from '../lang/fr_FR.json';
 import * as ca_ES from '../lang/ca_ES.json';
 import * as hi_IN from '../lang/hi_IN.json';
+import * as cs_CZ from '../lang/cs_CZ.json';
+import * as it_IT from '../lang/it_IT.json';
 
 const { DISCORD_DEFAULT_LANG } = getEnv();
 
@@ -23,6 +25,8 @@ const languagePacks: object = {
   fr_FR,
   ca_ES,
   hi_IN,
+  cs_CZ,
+  it_IT
 };
 
 const availableLanguagePacks = Object.keys(languagePacks);

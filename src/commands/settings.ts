@@ -18,7 +18,7 @@ import getEnv from '../utils/getEnv';
 import GuildLogModel from '../models/GuildLogModel';
 import { parse } from 'path';
 
-const { DISCORD_PREFIX, PREMIUM_BOT_INVITE } = getEnv();
+const { DISCORD_PREFIX, PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 
 const seeSettings: MemberCounterCommand = {
 	aliases: ['seeSettings'],
@@ -443,6 +443,34 @@ const locale: MemberCounterCommand = {
 	},
 };
 
+const block: MemberCounterCommand = {
+	aliases: ['block', 'unblock'],
+	denyDm: true,
+	onlyAdmin: true,
+	run: async ({ message, languagePack }) => {
+		const { channel, content, author } = message;
+		const { client } = channel;
+		const [command, guildId] = content.split(/\s+/);
+		
+		if (!BOT_OWNERS.includes(author.id)) return;
+
+		if (channel instanceof GuildChannel) {
+			const { guild } = channel;
+			const guildSettings = await GuildService.init(guild.id);
+			const guildToPerformAction = await GuildService.init(guildId);
+
+			if (command === `${guildSettings.prefix}block`) {
+				await guildToPerformAction.block();
+				await client.guilds.get(guildId)?.leave();
+			} else {
+				await guildToPerformAction.unblock();
+			}
+
+			message.addReaction("✅");
+		}
+	},
+};
+
 const settingsCommands = [
 	seeSettings,
 	resetSettings,
@@ -453,6 +481,7 @@ const settingsCommands = [
 	setDigit,
 	shortNumber,
 	locale,
+	block,
 ];
 
 export default settingsCommands;

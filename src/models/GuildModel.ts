@@ -13,6 +13,7 @@ interface GuildSettings {
 	shortNumber?: number;
 	locale?: string;
 	digits?: string[];
+	blocked?: boolean;
 }
 
 interface GuildSettingsDocument extends GuildSettings, Document {
