@@ -156,29 +156,34 @@
 					"description": "Отображает просмотры Twitch канала."
 				},
 				{
-					"premium": true,
-					"name": "{mixerFollowers:username}",
-					"description": "Отображает фолловеров Mixer, замените channelName на желаемое имя канала."
+					"premium": false,
+					"name": "{memeratorMemes:username}",
+					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
+				},
+				{
+					"premium": false,
+					"name": "{memeratorFollowers:username}",
+					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
 				},
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Отображает заданный вами обратный отсчет, время которого закончится на указанной вами дате, вы можете легко [сгенерировать этот счётчик здесь](https://member-counter.eduardozgz.com/utils/countdown) или же создать его вручную путём замены значения `targetDate` на нужную дату в временном формате UNIX, также присутствует выбор отображаемого в счётчике формата - `format`: используйте `%d` для отображения оставшихся дней, `%h` для отображения оставшихся часов, `%m` для отображения оставшихся минут и `%s` для отображения оставшихся секунд в счётчике."
+					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
 				},
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Игроки онлайн на игровых серверах (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, и т.д.). Не забудьте заменить значение`gameId` на то, которое вам нужно [(их список здесь)](https://github.com/gamedig/node-gamedig/#games-list) и значение `address` заменить на актуальный адрес сервера. Пример: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Показывает часы с временем указанной временной зоны, вы можете легко [сгенерировать этот счётчик здесь](https://member-counter.eduardozgz.com/utils/clock) или заменить `timeZone` валидным IANA значением временной зоны. Пример: `{clock:Europe/Madrid}`"
+					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Показывает общее количество участников, которые использовали буст для этого сервера"
+					"description": "Shows the total amount of members boosting this server"
 				}
 			]
 		},

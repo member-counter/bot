@@ -156,14 +156,19 @@
 					"description": "Zeigt die Twitch Kanal Aufrufe"
 				},
 				{
-					"premium": true,
-					"name": "{mixerFollowers:username}",
-					"description": "Zeigt die Mixer Follower Zahl, ersetze channelName mit dem erwünschtem Kanal Namen"
+					"premium": false,
+					"name": "{memeratorMemes:username}",
+					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
+				},
+				{
+					"premium": false,
+					"name": "{memeratorFollowers:username}",
+					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
 				},
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Zeigt einen Countdown der bis zum angegebenen Datum abfällt, du kannst einfach [den Zähler hier erstellen](https://member-counter.eduardozgz.com/utils/countdown) oder manuell eingeben indem du `targetDate` mit dem Ziel ersetzt. Gib das Datum in einem UNIX-Zeitstempel an. Optional kannst du bei `format` ein benutzerdefinierten Format anfügen: Verwenden Sie `%d`, um die verbleibenden Tage anzuzeigen, `%h`, um die verbleibenden Stunden anzuzeigen, `%m`, um die verbleibenden Minuten anzuzeigen, und `%s`, um die verbleibenden Sekunden anzuzeigen"
+					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
 				},
 				{
 					"premium": false,

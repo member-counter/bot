@@ -156,29 +156,34 @@
 					"description": "Muestra la cantidad de visualizaciones que tiene un canal de twitch"
 				},
 				{
-					"premium": true,
-					"name": "{mixerFollowers:username}",
-					"description": "Muestra la cantidad de seguidores que tiene un canal de mixer, reemplaza username con el nombre del canal deseado"
+					"premium": false,
+					"name": "{memeratorMemes:username}",
+					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
+				},
+				{
+					"premium": false,
+					"name": "{memeratorFollowers:username}",
+					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
 				},
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Muestra una cuenta atras que bajara hasta la fecha especificada, puedes [generar este contador fácilmente aquí](https://member-counter.eduardozgz.com/utils/countdown) o crearlo manualmente reemplazando targetDate por una marca de tiempo de UNIX, y opcionalmente darle un formato personalizando reemplazando format: Usa `%d` para mostrar los días restantes, `%h` para las horas restantes, `%m` para los minutos restantes y `%s` para mostrar los segundos restantes"
+					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
 				},
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Jugadores online en un servidor de un juego (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Recuerda reemplazar `gameId` con uno de los listados [aquí](https://github.com/gamedig/node-gamedig/#games-list) y `address` por la dirección IP. Ejemplo: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) or reemplazar `timeZone` cona una zona horaria IANA valida. Ejemplo: `{clock:Europe/Madrid}`"
+					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Muestra la cantidad total de miembros que esta boosteando este servidor"
+					"description": "Shows the total amount of members boosting this server"
 				}
 			]
 		},
