@@ -19,6 +19,7 @@ import HTTPStringCounter from '../counters/httpString';
 import MemberCounter from '../counters/members';
 import MembersConnectedCounter from '../counters/membersConnected';
 import MembersExtendedCounter from '../counters/membersExt';
+import MembersOnlineApproximated from '../counters/membersOnlineApproximated';
 import MembersWithRoleCounter from '../counters/membersWithRole';
 import MemeratorCounter from '../counters/Memerator';
 import RolesCounter from '../counters/roles';
@@ -42,6 +43,7 @@ const counters: Counter[] = [
 	MemberCounter,
 	MembersConnectedCounter,
 	MembersExtendedCounter,
+	MembersOnlineApproximated,
 	MembersWithRoleCounter,
 	MemeratorCounter,
 	NitroBoostersCounter,

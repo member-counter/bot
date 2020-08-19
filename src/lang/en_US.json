@@ -41,6 +41,11 @@
 					"description": "Members in your server"
 				},
 				{
+					"premium": false,
+					"name": "{approximatedOnlineMembers}",
+					"description": "Approximated online members in your server"
+				},
+				{
 					"premium": true,
 					"name": "{onlineMembers}",
 					"description": "Online members in your server"
