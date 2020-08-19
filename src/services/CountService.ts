@@ -58,6 +58,12 @@ const cache = new Map<string, { value: number | string; expiresAt: number }>();
 
 const { FOSS_MODE, PREMIUM_BOT, DEBUG } = getEnv();
 
+setInterval(() => {
+	cache.forEach(({ expiresAt }, counterKey) => {
+		if (expiresAt < Date.now()) cache.delete(counterKey);
+	});
+}, 60 * 1000);
+
 class CountService {
 	private client: Eris.Client;
 	public guild: Eris.Guild;
@@ -117,7 +123,8 @@ class CountService {
 					const nameToSet =
 						processedContent.length > 2
 							? processedContent.slice(0, 99)
-							: this.languagePack.functions.getCounts.invalidChannelLength;
+							: this.languagePack.functions.getCounts
+									.invalidChannelLength;
 					if (
 						botHasPermsToEdit(discordChannel) &&
 						//@ts-ignore
@@ -158,7 +165,9 @@ class CountService {
 			result = cache.get(this.counterToKey(counterName, resource)).value;
 
 		if (this.tmpCache.has(this.counterToKey(counterName, resource)))
-			result = this.tmpCache.get(this.counterToKey(counterName, resource));
+			result = this.tmpCache.get(
+				this.counterToKey(counterName, resource),
+			);
 
 		if (!result) {
 			for (const counter of counters) {
@@ -184,8 +193,12 @@ class CountService {
 									.log(`{${counterRequested}}: ${error}`)
 									.catch(console.error);
 								return (
-									cache.get(this.counterToKey(counterName, resource))?.value ||
-									Constants.CounterResult.ERROR
+									cache.get(
+										this.counterToKey(
+											counterName,
+											resource,
+										),
+									)?.value || Constants.CounterResult.ERROR
 								);
 							});
 
@@ -218,10 +231,13 @@ class CountService {
 								}
 
 								if (lifetime > 0)
-									cache.set(this.counterToKey(extKey, resource), {
-										value: extValue,
-										expiresAt: Date.now() + lifetime,
-									});
+									cache.set(
+										this.counterToKey(extKey, resource),
+										{
+											value: extValue,
+											expiresAt: Date.now() + lifetime,
+										},
+									);
 
 								this.tmpCache.set(
 									this.counterToKey(extKey, resource),
@@ -230,8 +246,12 @@ class CountService {
 							}
 
 							result =
-								cache.get(this.counterToKey(counterName, resource))?.value ||
-								this.tmpCache.get(this.counterToKey(counterName, resource));
+								cache.get(
+									this.counterToKey(counterName, resource),
+								)?.value ||
+								this.tmpCache.get(
+									this.counterToKey(counterName, resource),
+								);
 						}
 					} else {
 						result = Constants.CounterResult.DISABLED;
@@ -269,9 +289,9 @@ class CountService {
 				result = shortNumber(intCount, this.guildSettings.shortNumber);
 			} else if (!this.guildSettings.locale.includes('disable')) {
 				try {
-					result = new Intl.NumberFormat(this.guildSettings.locale).format(
-						intCount,
-					);
+					result = new Intl.NumberFormat(
+						this.guildSettings.locale,
+					).format(intCount);
 				} catch (err) {
 					await this.guildSettings.log(err);
 				}
