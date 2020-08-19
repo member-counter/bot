@@ -21,7 +21,7 @@ import HTTPStringCounter from '../counters/httpString';
 import MemberCounter from '../counters/members';
 import MembersConnectedCounter from '../counters/membersConnected';
 import MembersExtendedCounter from '../counters/membersExt';
-import MembersOnlineApproximatedCounter from '../counters/MembersOnlineApproximated';
+import MembersOnlineApproximatedCounter from '../counters/membersOnlineApproximated';
 import MembersWithRoleCounter from '../counters/membersWithRole';
 import MemeratorCounter from '../counters/Memerator';
 import NitroBoostersCounter from '../counters/nitroBoosters';
