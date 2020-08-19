@@ -3,6 +3,7 @@ import postBotStats from '../others/postBotStats';
 import checkPremiumGuilds from '../others/checkPremiumGuilds';
 import Eris from 'eris';
 import updateCounters from '../utils/updateCounters';
+import GuildModel from '../models/GuildModel';
 
 const {
 	DISCORD_PREFIX,
@@ -45,32 +46,44 @@ const ready = (client: Eris.Client) => {
 		checkPremiumGuilds(guilds);
 	}, 1 * 60 * 60 * 1000);
 
-	
-	// set the interval in the nearest 5min
-	setTimeout(() => {
-		setInterval(() => {
-			updateCounters(client.guilds);
-		}, UPDATE_COUNTER_INTERVAL * 1000);
-	}, (() => {
-		const coeff = 1000 * 60 * 5;
-		const date = new Date();
-		const rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
+	// update counters, set the interval in the nearest 5min
+	setTimeout(
+		() => {
+			setInterval(() => {
+				updateCounters(client.guilds);
+			}, UPDATE_COUNTER_INTERVAL * 1000);
+		},
+		(() => {
+			const coeff = 1000 * 60 * 5;
+			const date = new Date();
+			const rounded = new Date(
+				Math.round(date.getTime() / coeff) * coeff,
+			);
 
-		return rounded.getTime() - Date.now();
-	})());
+			return rounded.getTime() - Date.now();
+		})(),
+	);
 
+	// free ram
 	setInterval(() => {
-    if (FOSS_MODE || PREMIUM_BOT) return;
-    const botUser = client.users.get(client.user.id);
-    client.users.clear();
-    client.users.add(botUser);
-    
+		if (FOSS_MODE || PREMIUM_BOT) return;
+		const botUser = client.users.get(client.user.id);
+		client.users.clear();
+		client.users.add(botUser);
+
 		client.guilds.forEach((guild) => {
-      const botMember = guild.members.get(client.user.id);
-      guild.members.clear();
-      guild.members.add(botMember);
+			const botMember = guild.members.get(client.user.id);
+			guild.members.clear();
+			guild.members.add(botMember);
 		});
 	}, 30 * 1000);
+
+	// check blocked guilds every 1h
+	GuildModel.find({ blocked: true }, { id: 1 }).then((blockedGuilds) => {
+		blockedGuilds.forEach((blockedGuild) => {
+			client.guilds.get(blockedGuild)?.leave();
+		});
+	});
 };
 
 export default ready;

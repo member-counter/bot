@@ -151,6 +151,16 @@ class GuildService {
 			premium: premiumStatus,
 		});
 	}
+
+	public async block(): Promise<void> {
+		this.doc.blocked = true;
+		await	this.doc.save();
+	}
+
+	public async unblock(): Promise<void> {
+		this.doc.blocked = false;
+		await	this.doc.save();
+	}
 }
 
 export default GuildService;
