@@ -41,119 +41,124 @@
 					"description": "Membros no seu servidor"
 				},
 				{
+					"premium": false,
+					"name": "{approximatedOnlineMembers}",
+					"description": "Approximated online members in your server"
+				},
+				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "Membros online no seu servidor"
+					"description": "Online members in your server"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "Membros offline no seu servidor"
+					"description": "Offline members in your server"
 				},
 				{
 					"premium": true,
 					"name": "{users}",
-					"description": "Usuários no seu servidor (exclui bots)"
+					"description": "Users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "Usuários online no seu servidor (exclui bots)"
+					"description": "Online users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "Usuários offline no seu servidor (exclui bots)"
+					"description": "Offline users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "Bots no seu servidor (exclui usuários normais)"
+					"description": "Bots in your server (excludes normal users)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "Bots online no seu servidor (exclui usuários normais)"
+					"description": "Online bots in your server (excludes normal users)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "Bots offline no seu servidor (exclui usuários normais)"
+					"description": "Offline bots in your server (excludes normal users)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Cargos no seu servidor"
+					"description": "Roles in your server"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Canais no seu servidor (exclui canais de categoria)"
+					"description": "Channels in your server (excludes category channels)"
 				},
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "Este conta quantos membros tem um cargo ou cargos, escreva os IDs dos cargos que você quer contar depois do `:`, e separe o cargo com vírgulas `,`"
+					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembersWithRole:role1ID,role2ID}",
-					"description": "Similar ao`{membersWithRole:}` mas só conta aqueles membros online"
+					"description": "Like `{membersWithRole:}` but only counts those members online"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Similar ao `{membersWithRole:}` mas só conta aqueles membros offline"
+					"description": "Like `{membersWithRole:}` but only counts those members offline"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers}",
-					"description": "Quantidade total de membros conectados em canais de voz"
+					"description": "Total amount of connected members in the voice channels"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "Similar ao `{connectedMembers}`, mas o bot vai contar somente os membros conectados em canais específicos, escreva os IDs dos canais que você quer contar depois do `:`, e separe os IDs dos canais com vírgulas `,`"
+					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
 				},
 				{
 					"premium": false,
 					"name": "{bannedMembers}",
-					"description": "Quantidade de membros banidos do seu servidor, o bot deve ter permissões de ban para mostrar este contador"
+					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
 				},
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "Esse irá mostrar a quantidade retornada dada pela resposta do recurso especificado, o bot irá executar uma requisição `GET` e o servidor **deve** responder com o status code `200` e o `content-type: text/plain` Exemplo: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Similar ao `{http}` mas o bot não não analisará nada, útil para mostrar nomes em vez de números"
+					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeSubscribers:channelUrl}",
-					"description": "Mostra os inscritos de um canal do youtube, substitua channelUrl com a url do canal desejado"
+					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeViews:channelUrl}",
-					"description": "Mostra as visualizações de um canal do youtube"
+					"description": "Displays a youtube channel view count"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Mostra um contador de video do youtube"
+					"description": "Displays a youtube channel video count"
 				},
 				{
 					"premium": true,
 					"name": "{twitchFollowers:channelName}",
-					"description": "Mostra os seguidores de um canal da twitch, substitua channelName com o nome do canal desejado"
+					"description": "Displays a twitch channel follower count, replace channelName with the desired channel name"
 				},
 				{
 					"premium": true,
 					"name": "{twitchViews:channelName}",
-					"description": "Mostra as visualizações de um canal da twitch"
+					"description": "Displays a twitch channel view count"
 				},
 				{
 					"premium": false,
