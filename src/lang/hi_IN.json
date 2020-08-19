@@ -41,119 +41,124 @@
 					"description": "आपके सर्वर में सदस्य"
 				},
 				{
+					"premium": false,
+					"name": "{approximatedOnlineMembers}",
+					"description": "Approximated online members in your server"
+				},
+				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "आपके सर्वर में ऑनलाइन सदस्य"
+					"description": "Online members in your server"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "आपके सर्वर में ऑफ़लाइन सदस्य"
+					"description": "Offline members in your server"
 				},
 				{
 					"premium": true,
 					"name": "{users}",
-					"description": "आपके सर्वर में उपयोगकर्ता (बॉट को छोड़कर)"
+					"description": "Users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "आपके सर्वर में ऑनलाइन उपयोगकर्ता (बॉट को छोड़कर)"
+					"description": "Online users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "आपके सर्वर में ऑफ़लाइन उपयोगकर्ता (बॉट को छोड़कर)"
+					"description": "Offline users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "आपके सर्वर में बॉट्स (सामान्य उपयोगकर्ताओं को छोड़कर)"
+					"description": "Bots in your server (excludes normal users)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "सर्वर में ऑनलाइन बॉट्स (सामान्य उपयगकरतओ क छडकर)"
+					"description": "Online bots in your server (excludes normal users)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "आपक सरवर म ऑफलइन बटस (समनय उपयगकरत क छडकर)"
+					"description": "Offline bots in your server (excludes normal users)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "आपक सरवर म भमकए"
+					"description": "Roles in your server"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "आपक सरवर म चनल (शरण चनल क छडकर)"
+					"description": "Channels in your server (excludes category channels)"
 				},
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "यह मयन रखत ह क कतन सदसय क भमक य भमकए ह, उन भमकओ क लख जनक आईड आप `:` क बद गनन चहत ह, और कम क सथ भमक आईड क अलग कर `,`"
+					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembersWithRole:role1ID,role2ID}",
-					"description": "`{membersWithRole:}` क तरह, लकन कवल ऑनलइन सदसय क गनत ह"
+					"description": "Like `{membersWithRole:}` but only counts those members online"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "`{membersWithRole:}` क तरह, लकन कवल ऑफलइन सदसय क गनत ह"
+					"description": "Like `{membersWithRole:}` but only counts those members offline"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers}",
-					"description": "वयस चनल म जड सदसय क कल मतर"
+					"description": "Total amount of connected members in the voice channels"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "`{connectedMembers}` क तरह, लकन बट नरदषट चनल म कवल जड सदसय क गनत करग, चनल आईड `:` क बद लख जस आप गनन चहत ह, और चनल आईड क अलग कर अलपवरम `,` स"
+					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
 				},
 				{
 					"premium": false,
 					"name": "{bannedMembers}",
-					"description": "आपक सरवर म परतबधत सदसय क मतर, बट क पस इस गनत क परदरशत करन क लए परतबध लगन क अनमत हन चहए"
+					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
 				},
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "यह निर्दिष्ट संसाधन की प्रतिक्रिया के द्वारा दी गई राशि को प्रदर्शित करेगा, बॉट `GET` अनुरोध करेगा और सर्वर को स्टेटस कोड `200` और `content-type: text/plain` के साथ ** उत्तर देना होगा**। उदाहरण: `{http: https: //member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "जैसे `{http}` लेकिन बॉट कुछ भी पार्स नहीं करेगा, संख्याओं के बजाय नाम प्रदर्शित करने के लिए उपयोगी है"
+					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeSubscribers:channelUrl}",
-					"description": "यूट्यूब चैनल ग्राहकों को प्रदर्शित करता है, इच्छित चैनल यूआरएल को channelUrl की जगह बदलें"
+					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeViews:channelUrl}",
-					"description": "प्रदर्शित करता है यूट्यूब चैनल इतनी बार देखा गया"
+					"description": "Displays a youtube channel view count"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "यूट्यूब चैनल वीडियो काउंट दिखाता है"
+					"description": "Displays a youtube channel video count"
 				},
 				{
 					"premium": true,
 					"name": "{twitchFollowers:channelName}",
-					"description": "ट्विच चैनल के अनुयायियों को प्रदर्शित करता है, इच्छित चैनल के नाम को channelName की जगह बदलें"
+					"description": "Displays a twitch channel follower count, replace channelName with the desired channel name"
 				},
 				{
 					"premium": true,
 					"name": "{twitchViews:channelName}",
-					"description": "प्रदर्शित करता है ट्विच चैनल इतनी बार देखा गया"
+					"description": "Displays a twitch channel view count"
 				},
 				{
 					"premium": false,
