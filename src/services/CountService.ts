@@ -9,9 +9,11 @@ import Constants from '../utils/Constants';
 import Counter from '../typings/Counter';
 
 import TestCounter from '../counters/_test';
+import ErrorCounter from '../counters/_error';
 import BannedMembersCounter from '../counters/bannedMembers';
 import BotStatsCounter from '../counters/bot-stats';
 import ChannelCounter from '../counters/channels';
+import ClockCounter from '../counters/clock';
 import CountdownCounter from '../counters/countdown';
 import GameCounter from '../counters/game';
 import HTTPCounter from '../counters/http';
@@ -19,19 +21,19 @@ import HTTPStringCounter from '../counters/httpString';
 import MemberCounter from '../counters/members';
 import MembersConnectedCounter from '../counters/membersConnected';
 import MembersExtendedCounter from '../counters/membersExt';
-import MembersOnlineApproximated from '../counters/membersOnlineApproximated';
+import MembersOnlineApproximatedCounter from '../counters/MembersOnlineApproximated';
 import MembersWithRoleCounter from '../counters/membersWithRole';
 import MemeratorCounter from '../counters/Memerator';
+import NitroBoostersCounter from '../counters/nitroBoosters';
 import RolesCounter from '../counters/roles';
 import TwitchCounter from '../counters/Twitch';
+import TwitterCounter from '../counters/Twitter';
 import YouTubeCounter from '../counters/YouTube';
-import ErrorCounter from '../counters/_error';
-import ClockCounter from '../counters/clock';
-import NitroBoostersCounter from '../counters/nitroBoosters';
 
 // Do the aliases lowercase
 const counters: Counter[] = [
 	TestCounter,
+	ErrorCounter,
 	BannedMembersCounter,
 	BotStatsCounter,
 	ChannelCounter,
@@ -43,13 +45,13 @@ const counters: Counter[] = [
 	MemberCounter,
 	MembersConnectedCounter,
 	MembersExtendedCounter,
-	MembersOnlineApproximated,
+	MembersOnlineApproximatedCounter,
 	MembersWithRoleCounter,
 	MemeratorCounter,
 	NitroBoostersCounter,
 	RolesCounter,
-	ErrorCounter,
 	TwitchCounter,
+	TwitterCounter,
 	YouTubeCounter,
 ].map((counter) => {
 	counter.aliases = counter.aliases.map((alias) => alias.toLowerCase());

@@ -2,7 +2,7 @@ import Counter from '../typings/Counter';
 import Constants from '../utils/Constants';
 import guildCreate from '../events/guildCreate';
 
-const MembersOnlineApproximated: Counter = {
+const MembersOnlineApproximatedCounter: Counter = {
 	aliases: ['approximatedOnlineMembers'],
 	isPremium: false,
 	isEnabled: true,
@@ -14,4 +14,4 @@ const MembersOnlineApproximated: Counter = {
 	},
 };
 
-export default MembersOnlineApproximated;
+export default MembersOnlineApproximatedCounter;

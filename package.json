@@ -38,6 +38,7 @@
 		"mongoose": "^5.9.11",
 		"node-fetch": "^2.6.0",
 		"twitch": "^4.0.9",
+		"twitter": "^1.7.1",
 		"ws": "^7.3.0",
 		"zlib-sync": "^0.1.6"
 	},
