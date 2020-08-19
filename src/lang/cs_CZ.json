@@ -41,79 +41,84 @@
 					"description": "Uživatelé na serveru"
 				},
 				{
+					"premium": false,
+					"name": "{approximatedOnlineMembers}",
+					"description": "Approximated online members in your server"
+				},
+				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "Online uživatelé na serveru"
+					"description": "Online members in your server"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "Offline uživatelé na serveru"
+					"description": "Offline members in your server"
 				},
 				{
 					"premium": true,
 					"name": "{users}",
-					"description": "Uživatelé na serveru (kromě botů)"
+					"description": "Users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "Online uživatelé na serveru (kromě botů)"
+					"description": "Online users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "Offline uživatelé na serveru (kromě botů)"
+					"description": "Offline users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "Boti na severu (počet neobsahuje normální uživatele)"
+					"description": "Bots in your server (excludes normal users)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "Online boti na severu (počet neobsahuje normální uživatele)"
+					"description": "Online bots in your server (excludes normal users)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "Offline boti na severu (počet neobsahuje normální uživatele)"
+					"description": "Offline bots in your server (excludes normal users)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Role na serveru"
+					"description": "Roles in your server"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Kanály na serveru (počet neobsahuje kategorie kanálů)"
+					"description": "Channels in your server (excludes category channels)"
 				},
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "Toto spočítá, kolik členů má roli/role. Pro sčítání více rolí napište za `:` ID role, kterou chcete spočítat a každé další ID role oddělte čárkou"
+					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembersWithRole:role1ID,role2ID}",
-					"description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze online uživatelé"
+					"description": "Like `{membersWithRole:}` but only counts those members online"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze offline uživatelé"
+					"description": "Like `{membersWithRole:}` but only counts those members offline"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers}",
-					"description": "Celkový počet připojených uživatelů v hlasových kanálech"
+					"description": "Total amount of connected members in the voice channels"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "Podobné jako `{connectedMembers}` ale bot bude analyzovat pouze připojené uživatele ve specifických kanálech. Pro sčítání více kanálů napište za `:` ID kanálu, který chcete spočítat a každý další ID kanálu oddělte čárkou"
+					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
 				},
 				{
 					"premium": false,
@@ -128,7 +133,7 @@
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Podobné jako `{http}`, ale bot nebude analyzovat nic kromě jmen namísto čísel"
+					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
 				},
 				{
 					"premium": true,
@@ -138,12 +143,12 @@
 				{
 					"premium": true,
 					"name": "{youtubeViews:channelUrl}",
-					"description": "Zobrazí počet odběratelů daného YouTube kanálu"
+					"description": "Displays a youtube channel view count"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Zobrazí počet odběratelů daného YouTube videa"
+					"description": "Displays a youtube channel video count"
 				},
 				{
 					"premium": true,
@@ -153,7 +158,7 @@
 				{
 					"premium": true,
 					"name": "{twitchViews:channelName}",
-					"description": "Zobrazí počet odběratelů daného Twitch kanálu"
+					"description": "Displays a twitch channel view count"
 				},
 				{
 					"premium": false,
@@ -173,7 +178,7 @@
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online hráči na herním serveru (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, atd). Nezapomeňte nahradit `gameId` jménem hry, seznam her naleznete [zde](https://github.com/gamedig/node-gamedig/#games-list) a `address` adresou serveru. Příklad: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
