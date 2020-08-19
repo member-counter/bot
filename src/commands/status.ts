@@ -66,7 +66,7 @@ const status: MemberCounterCommand = {
           inline: true,
         },
         {
-          name: '**Process uptime**',
+          name: '**Process uptime:**',
           value: parseUptime(process.uptime()),
           inline: true,
         },
@@ -81,7 +81,7 @@ const status: MemberCounterCommand = {
           inline: true,
         },
         {
-          name: '**Load avg**',
+          name: '**Load avg:**',
           value: `${os
             .loadavg()[0]
             .toPrecision(2)} - ${os
