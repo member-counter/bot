@@ -41,89 +41,94 @@
 					"description": "Członkowie na twoim serwerze"
 				},
 				{
+					"premium": false,
+					"name": "{approximatedOnlineMembers}",
+					"description": "Approximated online members in your server"
+				},
+				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "Członkowie online na twoim serwerze"
+					"description": "Online members in your server"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "Członkowie offline na twoim serwerze"
+					"description": "Offline members in your server"
 				},
 				{
 					"premium": true,
 					"name": "{users}",
-					"description": "Użytkownicy na twoim serwerze (bez bota)"
+					"description": "Users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "Użytkownicy online na twoim serwerze (bez bota)"
+					"description": "Online users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "Użytkownicy offline na twoim serwerze (nie dotyczy bota)"
+					"description": "Offline users in your server (excludes bot)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "Boty na twoim serwerze (z wyłączeniem zwykłych użytkowników)"
+					"description": "Bots in your server (excludes normal users)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "Boty online na twoim serwerze (z wyłączeniem zwykłych użytkowników)"
+					"description": "Online bots in your server (excludes normal users)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "Offline boty na twoim serwerze (nie dotyczy zwykłych użytkowników)"
+					"description": "Offline bots in your server (excludes normal users)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Role na twoim serwerze"
+					"description": "Roles in your server"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Kanały na twoim serwerze (nie obejmuje kanałów kategorii)"
+					"description": "Channels in your server (excludes category channels)"
 				},
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "Ten licznik zlicza, ile członków ma rolę lub kilka ról, zapisz identyfikatory ról, które chcesz policzyć po `:`, i oddziel identyfikatory ról przecinkami `,`"
+					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembersWithRole:role1ID,role2ID}",
-					"description": "Jak `{membersWithRole:}` ale liczy tylko tych członków online"
+					"description": "Like `{membersWithRole:}` but only counts those members online"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Jak `{membersWithRole:}` ale liczy tylko tych członków offline"
+					"description": "Like `{membersWithRole:}` but only counts those members offline"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers}",
-					"description": "Łączna liczba połączonych członków w kanałach głosowych"
+					"description": "Total amount of connected members in the voice channels"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "Jak {connectedMembers}, ale bot policzy tylko połączonych członków w określonych kanałach, zapisze identyfikatory kanałów, które chcesz policzyć po `:`, i oddzieli ID kanałów przecinkami `,`"
+					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
 				},
 				{
 					"premium": false,
 					"name": "{bannedMembers}",
-					"description": "Liczba zablokowanych członków na twoim serwerze, bot musi mieć uprawnienia do banowania, aby wyświetlić tę liczbę"
+					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
 				},
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "To wyświetli zwrócona liczbe podanej w odpowiedzi na określony zasób, bot ykona żądanie `GET`, a serwer **musi** odpowiedzieć kodem stanu `200` i `content-type: text/plain` Przykład: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
@@ -133,12 +138,12 @@
 				{
 					"premium": true,
 					"name": "{youtubeSubscribers:channelUrl}",
-					"description": "Wpokazuje subskrybentów kanału youtube, zamień channelUrl na żądany adres Url kanału"
+					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeViews:channelUrl}",
-					"description": "Pokazujea wyświetlenia kanałów YouTube"
+					"description": "Displays a youtube channel view count"
 				},
 				{
 					"premium": true,
@@ -148,12 +153,12 @@
 				{
 					"premium": true,
 					"name": "{twitchFollowers:channelName}",
-					"description": "Pokazuje obserwujących kanał twitch, zamień channelName na żądaną nazwę kanału"
+					"description": "Displays a twitch channel follower count, replace channelName with the desired channel name"
 				},
 				{
 					"premium": true,
 					"name": "{twitchViews:channelName}",
-					"description": "Pokazuje wyświetlenia kanałów twitch"
+					"description": "Displays a twitch channel view count"
 				},
 				{
 					"premium": false,
