@@ -41,6 +41,11 @@
 					"description": "Members in your server"
 				},
 				{
+					"premium": false,
+					"name": "{approximatedOnlineMembers}",
+					"description": "Approximated online members in your server"
+				},
+				{
 					"premium": true,
 					"name": "{onlineMembers}",
 					"description": "Online members in your server"
@@ -83,37 +88,37 @@
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Ruoli nel tuo server"
+					"description": "Roles in your server"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Canali nel tuo server (escludendo le categorie)"
+					"description": "Channels in your server (excludes category channels)"
 				},
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "Questo conta quanti membri hanno un ruolo o più ruoli, scrivi gli ID dei ruoli che vuoi contatore dopo il ':', e separa gli ID dei ruoli con delle virgole"
+					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembersWithRole:role1ID,role2ID}",
-					"description": "Come `{membersWithRole:}` ma vale solo per i membri online"
+					"description": "Like `{membersWithRole:}` but only counts those members online"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Come `{membersWithRole:}` ma vale solo per i membri offline"
+					"description": "Like `{membersWithRole:}` but only counts those members offline"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers}",
-					"description": "Numero totale di membri connessi nei canali vocali"
+					"description": "Total amount of connected members in the voice channels"
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "Come `{connectedMembers}`, ma il bot conterà solamente i membri connessi in specifici canali, scrivi l'ID dei canali che vuoi contare dopo il ':`, e separa gli ID dei canali con delle virgole"
+					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
 				},
 				{
 					"premium": false,
