@@ -10,7 +10,7 @@ const MembersOnlineApproximatedCounter: Counter = {
 	execute: async ({ guild, resource }) => {
 		const client = guild.shard.client;
 
-		return (await client.getRESTGuild(guild.id)).approximatePresenceCount;
+		return (await client.getRESTGuild(guild.id, true)).approximatePresenceCount;
 	},
 };
 
