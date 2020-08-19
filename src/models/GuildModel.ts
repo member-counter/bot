@@ -29,6 +29,7 @@ const GuildSchema = new Schema({
 	counters: { type: Map, of: String, default: new Map() },
 	shortNumber: { type: Number, default: 1 },
 	locale: { type: String, default: 'disabled' },
+	blocked: { type: Boolean, default: false },
 	digits: {
 		type: Array,
 		default: [

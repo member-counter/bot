@@ -152,6 +152,10 @@ class GuildService {
 		});
 	}
 
+	public get blocked(): boolean {
+		return this.doc.blocked;
+	}
+
 	public async block(): Promise<void> {
 		this.doc.blocked = true;
 		await	this.doc.save();

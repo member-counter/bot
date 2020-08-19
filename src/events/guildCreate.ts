@@ -7,7 +7,12 @@ const { PREMIUM_BOT_ID, PREMIUM_BOT, FOSS_MODE } = getEnv();
 
 const guildCreate = async (guild: Eris.Guild) => {
   const guildSettings = await GuildService.init(guild.id);
-  
+
+  if (guildSettings.blocked) {
+    await guild.leave();
+    return;
+  }
+
   await guildSettings.setLocale(guild.preferredLocale);
 
   // Self kick when premium bot is present and the guild is premium
