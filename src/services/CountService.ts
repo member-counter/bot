@@ -3,7 +3,6 @@ import GuildService from './GuildService';
 import { loadLanguagePack } from '../utils/languagePack';
 import getEnv from '../utils/getEnv';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
-import shortNumber from '../utils/shortNumbers';
 import stringReplaceAsync from '../utils/stringReplaceAsync';
 import Constants from '../utils/Constants';
 import Counter from '../typings/Counter';
@@ -141,7 +140,7 @@ class CountService {
 		);
 	}
 
-	// Legacy counters are those counters that are gonna be in a topic, they can't have the shortNumber option enabled there, because the digits are (or can be) cuztomized
+	// Legacy counters are those counters that are gonna be in a topic, the digits are (or can be) cuztomized
 	processContent(content: string, legacy: boolean = false): Promise<string> {
 		return stringReplaceAsync(
 			content,
@@ -289,13 +288,27 @@ class CountService {
 		const intCount = Number(result);
 		const isNumber = !isNaN(intCount);
 		if (isNumber) {
-			if (this.guildSettings.shortNumber > -1) {
-				result = shortNumber(intCount, this.guildSettings.shortNumber);
-			} else if (!this.guildSettings.locale.includes('disable')) {
+			if (
+				this.guildSettings.shortNumber > -1 ||
+				!this.guildSettings.locale.includes('disable')
+			) {
+				let locale = 'en';
+				let options = {};
+				if (!this.guildSettings.locale.includes('disable')) {
+					locale = this.guildSettings.locale;
+				}
+
+				if (this.guildSettings.shortNumber > -1) {
+					options = {
+						minimumFractionDigits: 3,
+						notation: 'compact',
+					};
+				}
+
 				try {
-					result = new Intl.NumberFormat(
-						this.guildSettings.locale,
-					).format(intCount);
+					result = new Intl.NumberFormat(locale, options).format(
+						intCount,
+					);
 				} catch (err) {
 					await this.guildSettings.log(err);
 				}
