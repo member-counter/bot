@@ -2,7 +2,7 @@ import Counter from '../typings/Counter';
 import Constants from '../utils/Constants';
 
 const MemberCounter: Counter = {
-	aliases: ['members'],
+	aliases: ['members', 'count'],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
