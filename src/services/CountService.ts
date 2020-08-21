@@ -289,20 +289,19 @@ class CountService {
 
 		const intCount = Number(result);
 		const isNumber = !isNaN(intCount);
+		const isShortNumberEnabled = this.guildSettings.shortNumber > -1;
+		const isLocaleSet = !this.guildSettings.locale.includes('disable');
 		if (isNumber) {
-			if (
-				this.guildSettings.shortNumber > -1 ||
-				!this.guildSettings.locale.includes('disable')
-			) {
+			if (isShortNumberEnabled || isLocaleSet) {
 				let locale = 'en';
 				let options = {};
-				if (!this.guildSettings.locale.includes('disable')) {
+				if (isLocaleSet) {
 					locale = this.guildSettings.locale;
 				}
 
-				if (this.guildSettings.shortNumber > -1) {
+				if (isShortNumberEnabled) {
 					options = {
-						minimumFractionDigits: 3,
+						minimumFractionDigits: this.guildSettings.shortNumber,
 						notation: 'compact',
 					};
 				}
