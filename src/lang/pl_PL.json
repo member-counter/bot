@@ -198,7 +198,7 @@
 				{
 					"premium": false,
 					"name": "{static:number}",
-					"description": "Shows the given `number` with custom formatting based on the guild settings"
+					"description": "Shows the given `number` with custom formatting based on the server settings"
 				}
 			]
 		},
@@ -222,7 +222,7 @@
 			"errorMissingParams": "Brakujące parametry, zobacz `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a short form in counters, you can specify how much decimals are shown\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable/0/1/2/3]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber 0\n{PREFIX}shortNumber 1\n{PREFIX}shortNumber 2\n{PREFIX}shortNumber 3```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Nieprawidłowa akcja! zobacz `{PREFIX}help shortNumber`",
 			"success": "Gotowy! Być może będziesz musiał poczekać kilka sekund, aby zobaczyć nowe zmiany"
