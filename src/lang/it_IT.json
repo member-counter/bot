@@ -194,6 +194,11 @@
 					"premium": false,
 					"name": "{nitro-boosters}",
 					"description": "Shows the total amount of members boosting this server"
+				},
+				{
+					"premium": false,
+					"name": "{static:number}",
+					"description": "Shows the given `number` with custom formatting based on the guild settings"
 				}
 			]
 		},
