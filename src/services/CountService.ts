@@ -25,6 +25,7 @@ import MembersWithRoleCounter from '../counters/membersWithRole';
 import MemeratorCounter from '../counters/Memerator';
 import NitroBoostersCounter from '../counters/nitroBoosters';
 import RolesCounter from '../counters/roles';
+import StaticCounter from '../counters/static';
 import TwitchCounter from '../counters/Twitch';
 import TwitterCounter from '../counters/Twitter';
 import YouTubeCounter from '../counters/YouTube';
@@ -49,6 +50,7 @@ const counters: Counter[] = [
 	MemeratorCounter,
 	NitroBoostersCounter,
 	RolesCounter,
+	StaticCounter,
 	TwitchCounter,
 	TwitterCounter,
 	YouTubeCounter,
