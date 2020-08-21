@@ -34,6 +34,7 @@ const seeSettings: MemberCounterCommand = {
 				prefixText,
 				langText,
 				localeText,
+				shortNumberText,
 				premiumText,
 				premiumNoTierText,
 				premiumConfirmedText,
@@ -51,6 +52,7 @@ const seeSettings: MemberCounterCommand = {
 				premium,
 				language,
 				locale,
+				shortNumber,
 				allowedRoles,
 				counters,
 				digits,
@@ -58,7 +60,8 @@ const seeSettings: MemberCounterCommand = {
 
 			const messagesToSend: string[] = [''];
 			const appendContent = (content: string) => {
-				const lastMessagePart = messagesToSend[messagesToSend.length - 1];
+				const lastMessagePart =
+					messagesToSend[messagesToSend.length - 1];
 				if ((lastMessagePart + content).length > 2000) {
 					messagesToSend.push(content);
 				} else {
@@ -76,6 +79,11 @@ const seeSettings: MemberCounterCommand = {
 			appendContent(`${prefixText} \`${prefix}\`\n`);
 			appendContent(`${langText} \`${language}\`\n`);
 			appendContent(`${localeText} \`${locale}\`\n`);
+			appendContent(
+				`${shortNumberText} \`${
+					shortNumber > -1 ? premiumConfirmedText : premiumNoTierText
+				}\`\n`,
+			);
 
 			if (allowedRoles.length) {
 				appendContent(
@@ -90,9 +98,21 @@ const seeSettings: MemberCounterCommand = {
 				for (const [counter, content] of counters) {
 					const discordChannel = guild.channels.get(counter);
 					const { name, type } = discordChannel;
-					const icon = ['\\#️⃣', ' ', '\\🔊', ' ', '\\📚', '\\📢', ' '];
+					const icon = [
+						'\\#️⃣',
+						' ',
+						'\\🔊',
+						' ',
+						'\\📚',
+						'\\📢',
+						' ',
+					];
 					appendContent(
-						`${botHasPermsToEdit(discordChannel) ? '     ' : ' \\⚠️ '}- ${
+						`${
+							botHasPermsToEdit(discordChannel)
+								? '     '
+								: ' \\⚠️ '
+						}- ${
 							icon[type]
 						} ${name} \`${counter}\`: \`\`\`${content}\`\`\`\n`,
 					);
@@ -118,8 +138,11 @@ const seeSettings: MemberCounterCommand = {
 
 			if (latestLogs.length) {
 				latestLogs.forEach((log) => {
-					const text = `[${log.timestamp.toISOString()}] ${log.text}\n`;
-					if (logsText.length + text.length < 2000 - 3) logsText += text;
+					const text = `[${log.timestamp.toISOString()}] ${
+						log.text
+					}\n`;
+					if (logsText.length + text.length < 2000 - 3)
+						logsText += text;
 				});
 
 				logsText += '```';
@@ -160,14 +183,19 @@ const resetSettings: MemberCounterCommand = {
 						channel instanceof NewsChannel
 					) {
 						channel
-							.edit({ topic: '' }, `Reset requested by <@${author.id}>`)
+							.edit(
+								{ topic: '' },
+								`Reset requested by <@${author.id}>`,
+							)
 							.catch(console.error);
 					}
 				}
 			});
 
 			await guildSettings.resetSettings();
-			await channel.createMessage(languagePack.commands.resetSettings.done);
+			await channel.createMessage(
+				languagePack.commands.resetSettings.done,
+			);
 		}
 	},
 };
@@ -195,9 +223,14 @@ const lang: MemberCounterCommand = {
 			} else {
 				errorNotFound += '\n```fix\n';
 				availableLanguages.forEach((availableLanguageCode) => {
-					const languagePack = loadLanguagePack(availableLanguageCode);
+					const languagePack = loadLanguagePack(
+						availableLanguageCode,
+					);
 					errorNotFound +=
-						availableLanguageCode + ' ➡ ' + languagePack.langName + '\n';
+						availableLanguageCode +
+						' ➡ ' +
+						languagePack.langName +
+						'\n';
 				});
 				errorNotFound += '```';
 				await channel.createMessage(errorNotFound);
@@ -226,7 +259,9 @@ const prefix: MemberCounterCommand = {
 					),
 				);
 			} else {
-				throw new UserError(languagePack.commands.prefix.noPrefixProvided);
+				throw new UserError(
+					languagePack.commands.prefix.noPrefixProvided,
+				);
 			}
 		}
 	},
@@ -259,7 +294,8 @@ const role: MemberCounterCommand = {
 						);
 					} else {
 						roleMentions.forEach((role) => {
-							if (!newAllowedRoles.includes(role)) newAllowedRoles.push(role);
+							if (!newAllowedRoles.includes(role))
+								newAllowedRoles.push(role);
 						});
 					}
 					break;
@@ -289,9 +325,13 @@ const role: MemberCounterCommand = {
 			// save config
 			if (newAllowedRoles.length > 0 || /all(\s|$)/g.test(content)) {
 				await guildSettings.setAllowedRoles(newAllowedRoles);
-				await channel.createMessage(languagePack.commands.role.rolesUpdated);
+				await channel.createMessage(
+					languagePack.commands.role.rolesUpdated,
+				);
 			} else {
-				throw new UserError(languagePack.commands.role.errorNoRolesToUpdate);
+				throw new UserError(
+					languagePack.commands.role.errorNoRolesToUpdate,
+				);
 			}
 		}
 	},
@@ -383,9 +423,14 @@ const setDigit: MemberCounterCommand = {
 
 				if (digitsToSet.length > 0) {
 					for (const digitToSet of digitsToSet) {
-						await guildSettings.setDigit(digitToSet.digit, digitToSet.value);
+						await guildSettings.setDigit(
+							digitToSet.digit,
+							digitToSet.value,
+						);
 					}
-					await channel.createMessage(languagePack.commands.setDigit.success);
+					await channel.createMessage(
+						languagePack.commands.setDigit.success,
+					);
 				} else {
 					throw new UserError(
 						languagePack.commands.setDigit.errorMissingParams.replace(
@@ -416,10 +461,14 @@ const shortNumber: MemberCounterCommand = {
 			} else if (action === 'disable') {
 				await guildSettings.setShortNumber(-1);
 			} else {
-				await channel.createMessage(languagePack.commands.shortNumber.errorInvalidAction);
+				await channel.createMessage(
+					languagePack.commands.shortNumber.errorInvalidAction,
+				);
 			}
 
-			await channel.createMessage(languagePack.commands.shortNumber.success);
+			await channel.createMessage(
+				languagePack.commands.shortNumber.success,
+			);
 		}
 	},
 };
@@ -438,7 +487,9 @@ const locale: MemberCounterCommand = {
 
 			await guildSettings.setLocale(locale);
 
-			await channel.createMessage(languagePack.commands.shortNumber.success);
+			await channel.createMessage(
+				languagePack.commands.shortNumber.success,
+			);
 		}
 	},
 };
@@ -451,7 +502,7 @@ const block: MemberCounterCommand = {
 		const { channel, content, author } = message;
 		const { client } = channel;
 		const [command, guildId] = content.split(/\s+/);
-		
+
 		if (!BOT_OWNERS.includes(author.id)) return;
 
 		if (channel instanceof GuildChannel) {
@@ -466,7 +517,7 @@ const block: MemberCounterCommand = {
 				await guildToPerformAction.unblock();
 			}
 
-			message.addReaction("✅");
+			message.addReaction('✅');
 		}
 	},
 };
