@@ -198,7 +198,7 @@
 				{
 					"premium": false,
 					"name": "{static:number}",
-					"description": "Shows the given `number` with custom formatting based on the server settings"
+					"description": "Muestra el número dado en `number` con un formato personalizado basado en los ajustes de tu servidor"
 				}
 			]
 		},
@@ -222,7 +222,7 @@
 			"errorMissingParams": "Faltan parámetros, por favor, consulta `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Este comando te permite mostrar el número de una cuenta en una forma compactada en contadores\n\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Ejemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "¡Acción invalida! Por favor, consulta `{PREFIX}help shortNumber`",
 			"success": "Listo! Quizas tengas que esperar unos segundos para ver los nuevos cambios"
