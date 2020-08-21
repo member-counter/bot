@@ -41,14 +41,19 @@
 					"description": "Все участники вашего сервера"
 				},
 				{
+					"premium": false,
+					"name": "{approximatedOnlineMembers}",
+					"description": "Приблизительное кол-во участников онлайн на вашем сервере"
+				},
+				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "Онлайн участники вашего сервера"
+					"description": "Участники онлайн на вашем сервере"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "Оффлайн участники вашего сервера"
+					"description": "Участники оффлайн на вашем сервере"
 				},
 				{
 					"premium": true,
@@ -58,37 +63,37 @@
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "Онлайн пользователи вашего сервера (исключая ботов)"
+					"description": "Пользователи онлайн на вашем сервере (исключая ботов)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "Оффлайн пользователи вашего сервера (исключая ботов)"
+					"description": "Пользователи оффлайн на вашем сервере (исключая ботов)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "Боты вашего сервера (исключает нормальных пользователей)"
+					"description": "Боты на вашем сервере (исключает нормальных пользователей)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "Онлайн боты вашего сервера (исключает нормальных пользователей)"
+					"description": "Боты онлайн на вашем сервере (исключает нормальных пользователей)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "Оффлайн боты вашего сервера (исключает нормальных пользователей)"
+					"description": "Боты оффлайн на вашем сервере (исключает нормальных пользователей)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Роли вашего сервера"
+					"description": "Кол-во ролей на вашем сервере"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Каналы вашего сервера (исключая категории)"
+					"description": "Кол-во каналов на вашем сервере (исключая категории)"
 				},
 				{
 					"premium": true,
@@ -118,7 +123,7 @@
 				{
 					"premium": false,
 					"name": "{bannedMembers}",
-					"description": "Количество забаненных участников вашего сервера, необходимо разрешение банить, чтобы отображать этот счётчик."
+					"description": "Количество забаненных участников вашего сервера. Необходимо разрешение на выдачу банов у бота, чтобы отображать этот счётчик."
 				},
 				{
 					"premium": false,
@@ -143,7 +148,7 @@
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Отображает просмотры YouTube канала"
+					"description": "Отображает кол-во видео на YouTube канале."
 				},
 				{
 					"premium": true,
@@ -158,32 +163,42 @@
 				{
 					"premium": false,
 					"name": "{memeratorMemes:username}",
-					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
+					"description": "Отображает кол-во мемов пользователя [Memerator](https://memerator.me). Замените `username` на желаемое имя профиля."
 				},
 				{
 					"premium": false,
 					"name": "{memeratorFollowers:username}",
-					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
+					"description": "Отображает кол-во подписчиков пользователя [Memerator](https://memerator.me). Замените `username` на желаемое имя профиля."
+				},
+				{
+					"premium": true,
+					"name": "{twitterFollowers:username}",
+					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Twitter."
 				},
 				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Отображает заданный вами обратный отсчет, время которого закончится на указанной вами дате, вы можете легко [сгенерировать этот счётчик здесь](https://member-counter.eduardozgz.com/utils/countdown) или же создать его вручную путём замены значения `targetDate` на нужную дату в временном формате UNIX, также присутствует выбор отображаемого в счётчике формата - `format`: используйте `%d` для отображения оставшихся дней, `%h` для отображения оставшихся часов, `%m` для отображения оставшихся минут и `%s` для отображения оставшихся секунд в счётчике."
 				},
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Игроки онлайн на игровых серверах (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, и т.д.). Не забудьте заменить значение`gameId` на то, которое вам нужно [(их список здесь)](https://github.com/gamedig/node-gamedig/#games-list) и значение `address` заменить на актуальный адрес сервера. Пример: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "Показывает часы с временем указанной временной зоны, вы можете легко [сгенерировать этот счётчик здесь](https://member-counter.eduardozgz.com/utils/clock) или заменить `timeZone` валидным IANA значением временной зоны. Пример: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Показывает общее количество участников, которые использовали буст для этого сервера"
+				},
+				{
+					"premium": false,
+					"name": "{static:number}",
+					"description": "Показывает заданное число с форматированием, основанным на настройках сервера"
 				}
 			]
 		},
@@ -207,13 +222,13 @@
 			"errorMissingParams": "Недостаточно параметров, пожалуйста, просмотрите `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a short form in counters, you can specify how much decimals are shown\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable/0/1/2/3]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber 0\n{PREFIX}shortNumber 1\n{PREFIX}shortNumber 2\n{PREFIX}shortNumber 3```",
+			"helpDescription": "Эта команда позволяет вам отображать счётчик в более компактной форме.\n\n**Использование:**\n```{PREFIX}shortNumber [enable/disable]```\n**Примеры:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Неправильное действие! Пожалуйста, просмотрите `{PREFIX}help shortNumber`",
 			"success": "Сделано! Необходимо немного подождать прежде, чем увидеть новые изменения"
 		},
 		"locale": {
-			"helpDescription": "Форматирует числа и др. в соответствии с указанной локализацией (числа форматируются **только** если mc!shortNumber выключен)\n**Использование**\n```{PREFIX}locale [locale/disable]```\n**Примеры**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Форматирует числа и др. в соответствии с указанной локализацией \n\n**Использование**\n```{PREFIX}locale [locale/disable]```\n**Примеры**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/BBD43CB.png"
 		},
 		"prefix": {

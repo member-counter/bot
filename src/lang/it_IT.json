@@ -41,6 +41,11 @@
 					"description": "Members in your server"
 				},
 				{
+					"premium": false,
+					"name": "{approximatedOnlineMembers}",
+					"description": "Approximated online members in your server"
+				},
+				{
 					"premium": true,
 					"name": "{onlineMembers}",
 					"description": "Online members in your server"
@@ -166,6 +171,11 @@
 					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
 				},
 				{
+					"premium": true,
+					"name": "{twitterFollowers:username}",
+					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
+				},
+				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
 					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
@@ -184,6 +194,11 @@
 					"premium": false,
 					"name": "{nitro-boosters}",
 					"description": "Shows the total amount of members boosting this server"
+				},
+				{
+					"premium": false,
+					"name": "{static:number}",
+					"description": "Shows the given `number` with custom formatting based on the server settings"
 				}
 			]
 		},
@@ -207,13 +222,13 @@
 			"errorMissingParams": "Parametri mancanti, perfavore vedi `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a short form in counters, you can specify how much decimals are shown\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable/0/1/2/3]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber 0\n{PREFIX}shortNumber 1\n{PREFIX}shortNumber 2\n{PREFIX}shortNumber 3```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
 			"success": "Done! You may have to wait a few seconds to see the new changes"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale (numbers are only formatted when mc!shortNumber is disabled)\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
