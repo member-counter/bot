@@ -17,6 +17,7 @@ import CountdownCounter from '../counters/countdown';
 import GameCounter from '../counters/game';
 import HTTPCounter from '../counters/http';
 import HTTPStringCounter from '../counters/httpString';
+import InstagramCounter from '../counters/Instagram';
 import MemberCounter from '../counters/members';
 import MembersConnectedCounter from '../counters/membersConnected';
 import MembersExtendedCounter from '../counters/membersExt';
@@ -42,6 +43,7 @@ const counters: Counter[] = [
 	GameCounter,
 	HTTPCounter,
 	HTTPStringCounter,
+	InstagramCounter,
 	MemberCounter,
 	MembersConnectedCounter,
 	MembersExtendedCounter,
