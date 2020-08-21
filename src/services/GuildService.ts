@@ -49,13 +49,10 @@ class GuildService {
 
 	// -1 = disabled
 	public async setShortNumber(decimals: number): Promise<number> {
-		if (isNaN(decimals) || decimals < -1 || 3 < decimals) {
-			throw new UserError('You can only show from 0 to 3 decimals');
-		} else {
-			this.doc.shortNumber = decimals;
-			await this.doc.save();
-			return this.doc.shortNumber;
-		}
+		this.doc.shortNumber = decimals;
+		await this.doc.save();
+		return this.doc.shortNumber;
+	
 	}
 
 	public get shortNumber(): number {

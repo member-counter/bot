@@ -416,7 +416,7 @@ const shortNumber: MemberCounterCommand = {
 			} else if (action === 'disable') {
 				await guildSettings.setShortNumber(-1);
 			} else {
-				await guildSettings.setShortNumber(parseInt(action, 10));
+				await channel.createMessage(languagePack.commands.shortNumber.errorInvalidAction);
 			}
 
 			await channel.createMessage(languagePack.commands.shortNumber.success);

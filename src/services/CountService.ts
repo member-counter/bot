@@ -301,7 +301,6 @@ class CountService {
 
 				if (isShortNumberEnabled) {
 					options = {
-						minimumFractionDigits: this.guildSettings.shortNumber,
 						notation: 'compact',
 					};
 				}
