@@ -113,52 +113,52 @@
 				{
 					"premium": true,
 					"name": "{connectedMembers}",
-					"description": "Total amount of connected members in the voice channels"
+					"description": "Отображает сумму всех подключённых участников в голосовых каналах."
 				},
 				{
 					"premium": true,
 					"name": "{connectedMembers:channel1ID,channel2ID}",
-					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
+					"description": "как `{connectedMembers}`, но бот будет считать только подключённых участников в указанных каналах. Необходимо вписать ID канала/каналов, в которых вы хотите считать участников после двоеточия, и разделить ID этих каналов запятой (если их несколько)."
 				},
 				{
 					"premium": false,
 					"name": "{bannedMembers}",
-					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
+					"description": "Количество забаненных участников вашего сервера. Необходимо разрешение на выдачу банов у бота, чтобы отображать этот счётчик."
 				},
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "Этот счётчик будет отображать возвращённое значение, данное ответом от специфического ресурса, бот будет выполнять `GET` запрос и сервер **должен** ответить с кодом состояния `200` и с `content-type: text/plain` возвратом, пример: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "Как `{http}`, но бот не будет ничего парсить, удобно для отображения имён вместо чисел"
 				},
 				{
 					"premium": true,
 					"name": "{youtubeSubscribers:channelUrl}",
-					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
+					"description": "Отображает кол-во подписчиков YouTube канала, замените channelUrl на ссылку желаемого канала."
 				},
 				{
 					"premium": true,
 					"name": "{youtubeViews:channelUrl}",
-					"description": "Displays a youtube channel view count"
+					"description": "Отображает просмотры YouTube канала."
 				},
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "Отображает кол-во видео на YouTube канале."
 				},
 				{
 					"premium": true,
 					"name": "{twitchFollowers:channelName}",
-					"description": "Displays a twitch channel follower count, replace channelName with the desired channel name"
+					"description": "Отображает фолловеров Twitch, замените channelName имя желаемого канала."
 				},
 				{
 					"premium": true,
 					"name": "{twitchViews:channelName}",
-					"description": "Displays a twitch channel view count"
+					"description": "Отображает просмотры Twitch канала."
 				},
 				{
 					"premium": false,
