@@ -43,72 +43,72 @@
 				{
 					"premium": false,
 					"name": "{approximatedOnlineMembers}",
-					"description": "Approximated online members in your server"
+					"description": "Приблизительное кол-во участников онлайн на вашем сервере"
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembers}",
-					"description": "Online members in your server"
+					"description": "Участники онлайн на вашем сервере"
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembers}",
-					"description": "Offline members in your server"
+					"description": "Участники оффлайн на вашем сервере"
 				},
 				{
 					"premium": true,
 					"name": "{users}",
-					"description": "Users in your server (excludes bot)"
+					"description": "Все пользователи вашего сервера (исключая ботов)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineUsers}",
-					"description": "Online users in your server (excludes bot)"
+					"description": "Пользователи онлайн на вашем сервере (исключая ботов)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineUsers}",
-					"description": "Offline users in your server (excludes bot)"
+					"description": "Пользователи оффлайн на вашем сервере (исключая ботов)"
 				},
 				{
 					"premium": true,
 					"name": "{bots}",
-					"description": "Bots in your server (excludes normal users)"
+					"description": "Боты на вашем сервере (исключает нормальных пользователей)"
 				},
 				{
 					"premium": true,
 					"name": "{onlineBots}",
-					"description": "Online bots in your server (excludes normal users)"
+					"description": "Боты онлайн на вашем сервере (исключает нормальных пользователей)"
 				},
 				{
 					"premium": true,
 					"name": "{offlineBots}",
-					"description": "Offline bots in your server (excludes normal users)"
+					"description": "Боты оффлайн на вашем сервере (исключает нормальных пользователей)"
 				},
 				{
 					"premium": false,
 					"name": "{roles}",
-					"description": "Roles in your server"
+					"description": "Кол-во ролей на вашем сервере"
 				},
 				{
 					"premium": false,
 					"name": "{channels}",
-					"description": "Channels in your server (excludes category channels)"
+					"description": "Кол-во каналов на вашем сервере (исключая категории)"
 				},
 				{
 					"premium": true,
 					"name": "{membersWithRole:role1ID,role2ID}",
-					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
+					"description": "Счётчик участников с определённой ролью/ролями. Необходимо вписать ID роли/ролей после двоеточия, и если их несколько, разделить запятой."
 				},
 				{
 					"premium": true,
 					"name": "{onlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members online"
+					"description": "как `{membersWithRole:}` только считает участников онлайн."
 				},
 				{
 					"premium": true,
 					"name": "{offlineMembersWithRole:role1ID,role2ID}",
-					"description": "Like `{membersWithRole:}` but only counts those members offline"
+					"description": "как `{membersWithRole:}` только считает участников оффлайн."
 				},
 				{
 					"premium": true,
