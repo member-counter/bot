@@ -41,6 +41,11 @@
 					"description": "Membros no seu servidor"
 				},
 				{
+					"premium": false,
+					"name": "{approximatedOnlineMembers}",
+					"description": "Approximated online members in your server"
+				},
+				{
 					"premium": true,
 					"name": "{onlineMembers}",
 					"description": "Membros online no seu servidor"
@@ -166,24 +171,34 @@
 					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
 				},
 				{
+					"premium": true,
+					"name": "{twitterFollowers:username}",
+					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
+				},
+				{
 					"premium": false,
 					"name": "{countdown:targetDate:format}",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Mostra uma contagem regressiva que vai diminuir até a data especificada, você pode facilmente [gerar esse contador aqui](https://member-counter.eduardozgz.com/utils/countdown) ou manualmente o criar substituindo `targetDate` com a data desejada em timestamp UNIX, e opcionalmente usar `format` para formatá-lo com um formato personalizado: use `%d` para mostrar os dias restantes, `%h` para mostrar as horas restantes, `%m` para mostrar os minutos restantes e `%s` para mostrar os segundos restantes"
 				},
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Jogadores online em um servidor (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Lembre-se de substituir `gameId` ´por um dos listados [aqui](https://github.com/gamedig/node-gamedig/#games-list) e `address` com o endereço atual do servidor. Exemplo: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
 					"name": "{clock:timeZone}",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "Mostra um relógio com o tempo da timezone especificada, você pode facilmente [gerar esse contador aqui](https://member-counter.eduardozgz.com/utils/clock) ou substitua `timeZone` com uma timezone IANA válida. Exemplo: `{clock:Europe/Madrid}`"
 				},
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Mostra a quantidade total de membros dando boosting nesse servidor"
+				},
+				{
+					"premium": false,
+					"name": "{static:number}",
+					"description": "Shows the given `number` with custom formatting based on the server settings"
 				}
 			]
 		},
@@ -207,13 +222,13 @@
 			"errorMissingParams": "Parâmetros ausentes, por favor veja `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a short form in counters, you can specify how much decimals are shown\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable/0/1/2/3]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber 0\n{PREFIX}shortNumber 1\n{PREFIX}shortNumber 2\n{PREFIX}shortNumber 3```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Ação inválida! por favor veja `{PREFIX}help shortNumber`",
 			"success": "Feito! Você talvez tenha que esperar alguns segundos para ver as novas mudanças"
 		},
 		"locale": {
-			"helpDescription": "Formata os números e outras coisas para um local (idioma) específico (números só são formatados quando mc!shortNumber está desabilitado)\n\n**Uso**\n```{PREFIX}locale [locale/disable]```\n**Exemplo**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
