@@ -199,6 +199,11 @@
 					"premium": false,
 					"name": "{static:number}",
 					"description": "Muestra el número dado en `number` con un formato personalizado basado en los ajustes de tu servidor"
+				},
+				{
+					"premium": true,
+					"name": "{instagramFollowers:username}",
+					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
 				}
 			]
 		},
@@ -249,6 +254,7 @@
 				"prefixText": "Prefijo:",
 				"langText": "Idioma:",
 				"localeText": "Región:",
+				"shortNumberText": "Short number (compact notation):",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "No",
 				"premiumConfirmedText": "Sí",
