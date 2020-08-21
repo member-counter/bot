@@ -223,7 +223,7 @@
 			"success": "Fait ! Vous devrez peut-être attendre quelques secondes pour voir les nouveaux changements"
 		},
 		"locale": {
-			"helpDescription": "Formate les numéros et autres éléments dans le lieu spécifié (les numéros ne sont formatés que lorsque mc!shortNumber est désactivé)\n\n**Utilisation**\n```{PREFIX}locale [locale/disable]```\n**Exemples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
