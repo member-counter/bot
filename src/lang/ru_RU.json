@@ -163,17 +163,17 @@
 				{
 					"premium": false,
 					"name": "{memeratorMemes:username}",
-					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
+					"description": "Отображает кол-во мемов пользователя [Memerator](https://memerator.me). Замените `username` на желаемое имя профиля."
 				},
 				{
 					"premium": false,
 					"name": "{memeratorFollowers:username}",
-					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
+					"description": "Отображает кол-во подписчиков пользователя [Memerator](https://memerator.me). Замените `username` на желаемое имя профиля."
 				},
 				{
 					"premium": true,
 					"name": "{twitterFollowers:username}",
-					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
+					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Twitter."
 				},
 				{
 					"premium": false,
@@ -198,7 +198,7 @@
 				{
 					"premium": false,
 					"name": "{static:number}",
-					"description": "Shows the given `number` with custom formatting based on the server settings"
+					"description": "Показывает заданное число с форматированием, основанным на настройках сервера"
 				}
 			]
 		},
@@ -222,13 +222,13 @@
 			"errorMissingParams": "Недостаточно параметров, пожалуйста, просмотрите `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Эта команда позволяет вам отображать счётчик в более компактной форме.\n\n**Использование:**\n```{PREFIX}shortNumber [enable/disable]```\n**Примеры:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Неправильное действие! Пожалуйста, просмотрите `{PREFIX}help shortNumber`",
 			"success": "Сделано! Необходимо немного подождать прежде, чем увидеть новые изменения"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Форматирует числа и др. в соответствии с указанной локализацией \n\n**Использование**\n```{PREFIX}locale [locale/disable]```\n**Примеры**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/BBD43CB.png"
 		},
 		"prefix": {
