@@ -199,6 +199,11 @@
 					"premium": false,
 					"name": "{static:number}",
 					"description": "Показывает заданное число с форматированием, основанным на настройках сервера"
+				},
+				{
+					"premium": true,
+					"name": "{instagramFollowers:username}",
+					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
 				}
 			]
 		},
@@ -249,6 +254,7 @@
 				"prefixText": "Префикс:",
 				"langText": "Язык:",
 				"localeText": "Локализация:",
+				"shortNumberText": "Short number (compact notation):",
 				"premiumText": "Премиум:",
 				"premiumNoTierText": "Нет",
 				"premiumConfirmedText": "Да",

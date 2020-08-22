@@ -199,6 +199,11 @@
 					"premium": false,
 					"name": "{static:number}",
 					"description": "सर्वर सेटिंग्स के आधार पर कस्टम स्वरूपण के साथ दिए गए `number` को दिखाता है"
+				},
+				{
+					"premium": true,
+					"name": "{instagramFollowers:username}",
+					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
 				}
 			]
 		},
@@ -249,6 +254,7 @@
 				"prefixText": "उपसर्ग :",
 				"langText": "भाषाएं :",
 				"localeText": "स्थान:",
+				"shortNumberText": "Short number (compact notation):",
 				"premiumText": "प्रीमियम :",
 				"premiumNoTierText": "नहीं",
 				"premiumConfirmedText": "हाँ",
