@@ -199,6 +199,11 @@
 					"premium": false,
 					"name": "{static:number}",
 					"description": "Shows the given `number` with custom formatting based on the server settings"
+				},
+				{
+					"premium": true,
+					"name": "{instagramFollowers:username}",
+					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
 				}
 			]
 		},
@@ -249,6 +254,7 @@
 				"prefixText": "Prefix:",
 				"langText": "Llenguatge:",
 				"localeText": "Locale:",
+				"shortNumberText": "Short number (compact notation):",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "No",
 				"premiumConfirmedText": "Si",

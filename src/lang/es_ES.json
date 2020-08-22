@@ -199,6 +199,11 @@
 					"premium": false,
 					"name": "{static:number}",
 					"description": "Muestra el número dado en `number` con un formato personalizado basado en los ajustes de tu servidor"
+				},
+				{
+					"premium": true,
+					"name": "{instagramFollowers:username}",
+					"description": "Muestra la cantidad de seguidores que tiene una cuenta, reemplaza username con el nombre de una cuenta de Intagram"
 				}
 			]
 		},
@@ -249,6 +254,7 @@
 				"prefixText": "Prefijo:",
 				"langText": "Idioma:",
 				"localeText": "Región:",
+				"shortNumberText": "Números abreviados (notación compacta):",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "No",
 				"premiumConfirmedText": "Sí",
