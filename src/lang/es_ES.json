@@ -203,7 +203,7 @@
 				{
 					"premium": true,
 					"name": "{instagramFollowers:username}",
-					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
+					"description": "Muestra la cantidad de seguidores que tiene una cuenta, reemplaza username con el nombre de una cuenta de Intagram"
 				}
 			]
 		},
@@ -254,7 +254,7 @@
 				"prefixText": "Prefijo:",
 				"langText": "Idioma:",
 				"localeText": "Región:",
-				"shortNumberText": "Short number (compact notation):",
+				"shortNumberText": "Números abreviados (notación compacta):",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "No",
 				"premiumConfirmedText": "Sí",
