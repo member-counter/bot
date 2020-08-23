@@ -148,7 +148,7 @@
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "Zeigt die YouTube Kanal Aufrufe"
 				},
 				{
 					"premium": true,
