@@ -6,7 +6,7 @@
 			"helpDescription": "Ist es wirklich notwendig die Funktion dieses Befehls zu erklären?",
 			"embedReply": {
 				"title": "Liste der Befehle | prefix: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Füge den Bot zu deinem Server hinzu]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\n\nUm mehr Infos zu einen Befehl zu erhalten, schreibe `{PREFIX}help` plus den Befehl: ```\n{PREFIX}help shortNumber```\n**Info:** `()` steht für eine optionale Angabe während `[]` erforderlich ist",
 				"fields": [
 					{
 						"name": "**Zähler**",
@@ -43,7 +43,7 @@
 				{
 					"premium": false,
 					"name": "{approximatedOnlineMembers}",
-					"description": "Approximated online members in your server"
+					"description": "Ungefähre Anzahl der Online-Member auf Ihrem Server"
 				},
 				{
 					"premium": true,
@@ -173,7 +173,7 @@
 				{
 					"premium": true,
 					"name": "{twitterFollowers:username}",
-					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
+					"description": "Zeigt die Anzahl der Follower Ihres Accounts an. Ersetzen sie \"username\" mit Ihrem Twitter Namen"
 				},
 				{
 					"premium": false,
@@ -193,7 +193,7 @@
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Zeigt die Anzahl der Member, die den Server boosten"
 				},
 				{
 					"premium": false,
@@ -227,7 +227,7 @@
 			"errorMissingParams": "Fehlende Angabe, bitte beachte `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Dieser Befehl erlaubt es dir Zähler in Kurzform anzuzeigen, die in einem Sprachkanal/Kategorie Namen zu lang wären\n\n**Verwendung**\n```{PREFIX}shortNumber [enable/disable]```\n**Beispiel**\n```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Ungültige Aktion! Siehe `{PREFIX}help shortNumber`",
 			"success": "Erledigt! Möglicherweiße musst du einen Moment waren bis die Änderungen in Kraft treten"
@@ -326,10 +326,10 @@
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"memberCounter": "{members} Member",
+			"boostingCounter": "{nitro-boosters} Boosts",
+			"rolesCounter": "{roles} Rollen",
+			"channelsCounter": "{channels} Channel"
 		}
 	},
 	"functions": {
@@ -339,7 +339,7 @@
 		"getCounts": {
 			"onlyPremium": "Nur für Premium",
 			"unknownCounter": "Unbekannter Zähler",
-			"disabled": "Counter Disabled",
+			"disabled": "Counter deaktiviert",
 			"noBanPerms": "Ich brauche Ban Berechtigungen um das anzeigen zu können",
 			"invalidChannelLength": "Ungültige Kanal Namen länge, bitte stelle den Zähler erneut ein"
 		}
