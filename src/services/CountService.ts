@@ -158,9 +158,39 @@ class CountService {
 		counterRequested: string,
 		legacy: boolean = false,
 	): Promise<string> {
-		let [counterName, ...params] = counterRequested.split(':');
-		counterName = counterName.toLowerCase();
-		let resource = params.join(':');
+		interface FormattingSettings {
+			locale: string;
+			shortNumber: number;
+			digits: string[];
+		}
+
+		const counterSections = counterRequested.split(':');
+		let formattingSettings: FormattingSettings = (() => {
+			const settings = {
+				locale: this.guildSettings.locale,
+				digits: this.guildSettings.digits,
+				shortNumber: this.guildSettings.shortNumber,
+			}
+			try {
+				const firstSectionDecoded = Buffer.from(
+					counterSections[0],
+					'base64',
+				).toString('utf-8');
+				const overwriteSettings = JSON.parse(firstSectionDecoded);
+
+				counterSections.shift();
+
+				return {
+					...settings,
+					...overwriteSettings,
+				};
+			} catch {
+				return settings;
+			}
+		})();
+
+		let counterName = counterSections.shift().toLowerCase();
+		let resource = counterSections.join(':');
 		let lifetime = 0;
 		let result: string | number;
 
@@ -291,14 +321,15 @@ class CountService {
 
 		const intCount = Number(result);
 		const isNumber = !isNaN(intCount);
-		const isShortNumberEnabled = this.guildSettings.shortNumber > -1;
-		const isLocaleSet = !this.guildSettings.locale.includes('disable');
+		const isShortNumberEnabled = formattingSettings.shortNumber > -1;
+		const isLocaleEnabled = !formattingSettings.locale.includes('disable');
+
 		if (isNumber) {
-			if (isShortNumberEnabled || isLocaleSet) {
+			if (isShortNumberEnabled || isLocaleEnabled) {
 				let locale = 'en';
 				let options = {};
-				if (isLocaleSet) {
-					locale = this.guildSettings.locale;
+				if (isLocaleEnabled) {
+					locale = formattingSettings.locale;
 				}
 
 				if (isShortNumberEnabled) {
@@ -317,7 +348,7 @@ class CountService {
 			}
 
 			if (legacy) {
-				const { digits } = this.guildSettings;
+				const { digits } = formattingSettings;
 				result = result
 					.toString()
 					.split('')
