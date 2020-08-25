@@ -30,6 +30,7 @@ import StaticCounter from '../counters/static';
 import TwitchCounter from '../counters/Twitch';
 import TwitterCounter from '../counters/Twitter';
 import YouTubeCounter from '../counters/YouTube';
+import FormattingSettings from '../typings/FormattingSettings';
 
 // Do the aliases lowercase
 const counters: Counter[] = [
@@ -158,12 +159,6 @@ class CountService {
 		counterRequested: string,
 		legacy: boolean = false,
 	): Promise<string> {
-		interface FormattingSettings {
-			locale: string;
-			shortNumber: number;
-			digits: string[];
-		}
-
 		const counterSections = counterRequested.split(':');
 		let formattingSettings: FormattingSettings = (() => {
 			const settings = {
@@ -222,6 +217,7 @@ class CountService {
 								client: this.client,
 								guild: this.guild,
 								guildSettings: this.guildSettings,
+								formattingSettings,
 								resource,
 							})
 							.catch((error) => {
