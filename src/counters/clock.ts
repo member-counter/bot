@@ -10,7 +10,6 @@ const ClockCounter: Counter = {
 		const date = new Date();
 		const rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
 
-
 		return new Intl.DateTimeFormat(formattingSettings.locale, {
 			hour: 'numeric',
 			minute: 'numeric',
