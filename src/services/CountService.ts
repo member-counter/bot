@@ -69,7 +69,7 @@ setInterval(() => {
 	cache.forEach(({ expiresAt }, counterKey) => {
 		if (expiresAt < Date.now()) cache.delete(counterKey);
 	});
-}, 60 * 1000);
+}, 24 * 60 * 60 * 1000);
 
 class CountService {
 	private client: Eris.Client;

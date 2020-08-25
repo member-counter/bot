@@ -1,7 +1,7 @@
 import Counter from '../typings/Counter';
 
 const ClockCounter: Counter = {
-	aliases: ['clock'],
+	aliases: ['clock', 'time'],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
