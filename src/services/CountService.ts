@@ -160,12 +160,13 @@ class CountService {
 		legacy: boolean = false,
 	): Promise<string> {
 		const counterSections = counterRequested.split(':');
-		let formattingSettings: FormattingSettings = (() => {
+		let formattingSettingsRaw: string;
+		const formattingSettings: FormattingSettings = (() => {
 			const settings = {
 				locale: this.guildSettings.locale,
 				digits: this.guildSettings.digits,
 				shortNumber: this.guildSettings.shortNumber,
-			}
+			};
 			try {
 				const firstSectionDecoded = Buffer.from(
 					counterSections[0],
@@ -173,7 +174,7 @@ class CountService {
 				).toString('utf-8');
 				const overwriteSettings = JSON.parse(firstSectionDecoded);
 
-				counterSections.shift();
+				formattingSettingsRaw = counterSections.shift();
 
 				return {
 					...settings,
@@ -191,14 +192,21 @@ class CountService {
 
 		// GET THE VALUE OF THE COUNTER
 		if (
-			cache.get(this.counterToKey(counterName, resource))?.expiresAt >
-			Date.now()
+			cache.get(
+				this.counterToKey(counterName, resource, formattingSettingsRaw),
+			)?.expiresAt > Date.now()
 		)
-			result = cache.get(this.counterToKey(counterName, resource)).value;
+			result = cache.get(
+				this.counterToKey(counterName, resource, formattingSettingsRaw),
+			).value;
 
-		if (this.tmpCache.has(this.counterToKey(counterName, resource)))
+		if (
+			this.tmpCache.has(
+				this.counterToKey(counterName, resource, formattingSettingsRaw),
+			)
+		)
 			result = this.tmpCache.get(
-				this.counterToKey(counterName, resource),
+				this.counterToKey(counterName, resource, formattingSettingsRaw),
 			);
 
 		if (!result) {
@@ -230,6 +238,7 @@ class CountService {
 										this.counterToKey(
 											counterName,
 											resource,
+											formattingSettingsRaw,
 										),
 									)?.value || Constants.CounterResult.ERROR
 								);
@@ -265,7 +274,11 @@ class CountService {
 
 								if (lifetime > 0)
 									cache.set(
-										this.counterToKey(extKey, resource),
+										this.counterToKey(
+											extKey,
+											resource,
+											formattingSettingsRaw,
+										),
 										{
 											value: extValue,
 											expiresAt: Date.now() + lifetime,
@@ -273,17 +286,29 @@ class CountService {
 									);
 
 								this.tmpCache.set(
-									this.counterToKey(extKey, resource),
+									this.counterToKey(
+										extKey,
+										resource,
+										formattingSettingsRaw,
+									),
 									extValue.toString(),
 								);
 							}
 
 							result =
 								cache.get(
-									this.counterToKey(counterName, resource),
+									this.counterToKey(
+										counterName,
+										resource,
+										formattingSettingsRaw,
+									),
 								)?.value ||
 								this.tmpCache.get(
-									this.counterToKey(counterName, resource),
+									this.counterToKey(
+										counterName,
+										resource,
+										formattingSettingsRaw,
+									),
 								);
 						}
 					} else {
@@ -356,8 +381,14 @@ class CountService {
 		return result.toString();
 	}
 
-	private counterToKey(counterName: string, resource: string): string {
-		return [counterName, resource].filter((x) => x).join(':');
+	private counterToKey(
+		counterName: string,
+		resource: string,
+		formattingSettingsRaw: string,
+	): string {
+		return [formattingSettingsRaw, counterName, resource]
+			.filter((x) => x)
+			.join(':');
 	}
 }
 
