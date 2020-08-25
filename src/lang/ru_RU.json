@@ -203,7 +203,7 @@
 				{
 					"premium": true,
 					"name": "{instagramFollowers:username}",
-					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
+					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Instagram."
 				}
 			]
 		},
@@ -254,7 +254,7 @@
 				"prefixText": "Префикс:",
 				"langText": "Язык:",
 				"localeText": "Локализация:",
-				"shortNumberText": "Short number (compact notation):",
+				"shortNumberText": "Сокращенная форма числа: ",
 				"premiumText": "Премиум:",
 				"premiumNoTierText": "Нет",
 				"premiumConfirmedText": "Да",
