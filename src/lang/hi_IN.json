@@ -203,7 +203,7 @@
 				{
 					"premium": true,
 					"name": "{instagramFollowers:username}",
-					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
+					"description": "एक ट्विटर अकाउंट में अनुयायियों की मात्रा प्रदर्शित करता है, उपयोगकर्ता नाम को वास्तविक Instagram उपयोगकर्ता नाम से बदलें"
 				}
 			]
 		},
@@ -254,7 +254,7 @@
 				"prefixText": "उपसर्ग :",
 				"langText": "भाषाएं :",
 				"localeText": "स्थान:",
-				"shortNumberText": "Short number (compact notation):",
+				"shortNumberText": "छोटी संख्या (कॉम्पैक्ट अंकन):",
 				"premiumText": "प्रीमियम :",
 				"premiumNoTierText": "नहीं",
 				"premiumConfirmedText": "हाँ",
