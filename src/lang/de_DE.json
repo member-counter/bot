@@ -253,8 +253,8 @@
 				"headerText": "Einstellungen für den Server:",
 				"prefixText": "Präfix:",
 				"langText": "Sprache:",
-				"localeText": "Locale:",
-				"shortNumberText": "Short number (compact notation):",
+				"localeText": "Region:",
+				"shortNumberText": "Kurze Nummer (compact notation):",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "Nein",
 				"premiumConfirmedText": "Ja",
@@ -262,7 +262,7 @@
 				"countersText": "Zähler:",
 				"customNumbersText": "Benutzerdefinierte Zahlen:",
 				"warningNoPermsText": "\\⚠️ = Der Bot kann diesen Kanal aufgrund fehlender Berechtigungen nicht weiter aktualisieren",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "Letzte Logs:"
 			}
 		},
 		"resetSettings": {
