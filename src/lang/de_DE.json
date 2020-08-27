@@ -198,7 +198,7 @@
 				{
 					"premium": false,
 					"name": "{static:number}",
-					"description": "Shows the given `number` with custom formatting based on the server settings"
+					"description": "Zeigt die angegebene `number` mit benutzerdefinierter Formatierung basierend auf den Servereinstellungen an"
 				},
 				{
 					"premium": true,
@@ -227,13 +227,13 @@
 			"errorMissingParams": "Fehlende Angabe, bitte beachte `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Dieser Befehl erlaubt es dir Zähler in Kurzform anzuzeigen, die in einem Sprachkanal/Kategorie Namen zu lang wären\n\n**Verwendung**\n```{PREFIX}shortNumber [enable/disable]```\n**Beispiel**\n```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Dieser Befehl erlaubt es dir Zähler in Kurzform anzuzeigen\n\n**Verwendung**\n```{PREFIX}shortNumber [enable/disable]```\n**Beispiel**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Ungültige Aktion! Siehe `{PREFIX}help shortNumber`",
 			"success": "Erledigt! Möglicherweiße musst du einen Moment waren bis die Änderungen in Kraft treten"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formatiere die Zahlen und andere Dinge passend zur angegebenen Region\n\n**Verwendung**\n```{PREFIX}locale [locale/disable]```\n**Beispiel**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -325,11 +325,11 @@
 			"channelTopic": "Kanal beschreibung Vorschau"
 		},
 		"setup": {
-			"helpDescription": "Erstelle einige gesperrte Sprachkanäle mit Countern in dem **Beispiel**```{PREFIX}setup```",
-			"memberCounter": "{members} Member",
-			"boostingCounter": "{nitro-boosters} Boosts",
+			"helpDescription": "Erstelle einige gesperrte Sprachkanäle mit einigen Zählern\n**Beispiel**```{PREFIX}setup```",
+			"memberCounter": "{members} Mitglieder",
+			"boostingCounter": "{nitro-boosters} Booster",
 			"rolesCounter": "{roles} Rollen",
-			"channelsCounter": "{channels} Channel"
+			"channelsCounter": "{channels} Kanäle"
 		}
 	},
 	"functions": {
