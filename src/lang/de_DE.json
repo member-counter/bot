@@ -128,12 +128,12 @@
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "Dies zeigt den zurückgegebenen Betrag an, der durch die Antwort auf die angegebene Ressource angegeben wird, der Bot führt eine GET-Anforderung aus und der Server **muss** mit dem Statuscode `200` und dem `content-type: text/plain` antworten. Beispiel: `{http: https: //member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "Wie `{http}` aber der bot wird nichts analysieren, nützliche um Namen statt Zahlen anzuzeigen"
 				},
 				{
 					"premium": true,
