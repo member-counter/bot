@@ -224,12 +224,12 @@
 			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Číslice úspěšně přizpůsobené.",
 			"resetSuccess": "Numbers restored to the default ones.",
-			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+			"errorMissingParams": "Příkaz byl zadán špatně, chybí parametry, prosím podívejte se na `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
 			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
-			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
+			"errorInvalidAction": "Neznámá akce! Prosím podívejte se na `{PREFIX}help shortNumber`",
 			"success": "Úspěšně upraveno! Možná budete muset počkat několik sekund, než uvidíte tyto změny"
 		},
 		"locale": {
