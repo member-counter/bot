@@ -8,7 +8,6 @@
 		"sourceMap": true,
 		"outDir": "./dist",
 		"allowJs": true,
-		"removeComments": true,
 		"plugins": [
 			{
 				"name": "typescript-tslint-plugin"

@@ -4,9 +4,10 @@
     {
       "type": "node",
       "request": "attach",
-      "name": "Node: Nodemon",
+      "name": "Node: ts-node",
       "processId": "${command:PickProcess}",
       "restart": true,
+      "skipFiles": ["<node_internals>/**"],
       "protocol": "inspector"
     }
   ]
