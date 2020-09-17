@@ -39,6 +39,10 @@ class UserService {
     this.doc.save();
     return this.doc.availableServerUpgrades;
   }
+
+  public async remove(): Promise<void> {
+    await this.doc.remove();
+  }
 }
 
 export default UserService;

@@ -35,7 +35,7 @@ const addReactionListener = ({
 }: {
 	message: Message;
 	emoji: any;
-	autoDestroy: false | number;
+	autoDestroy?: false | number;
 	callback: reactionListenerCallback;
 }) => {
 	const { channel } = message;
