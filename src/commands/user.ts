@@ -4,6 +4,7 @@ import UserService from "../services/UserService";
 import Eris from "eris";
 import getEnv from "../utils/getEnv";
 import { UserBadges } from "../utils/Constants";
+import ReactionManager from "../utils/ReactionManager";
 
 const { BOT_OWNERS } = getEnv();
 
@@ -27,7 +28,7 @@ const generateBadgeList = (badges: number): string => {
     const badgeInt = Number(badge);
     if (hasBadge(badgeInt)) badgeList.push(emoji);
   }
-  
+
   badgeList.map((item, i) => {
     if (i % 2 === 0) return item + " ";
   });
@@ -49,11 +50,11 @@ const user: MemberCounterCommand = {
       ...actionParams
     ] = content.split(/\s+/);
 
-
     let targetUser: Eris.User =
       mentions[0] ||
       client.users.get(userRequested) ||
-      (userRequested && (await client.getRESTUser(userRequested).catch(console.error))) ||
+      (userRequested &&
+        (await client.getRESTUser(userRequested).catch(console.error))) ||
       author;
     const userSettings = await UserService.init(targetUser.id);
 
@@ -112,7 +113,38 @@ const user: MemberCounterCommand = {
       inline: true,
     });
 
-    await channel.createMessage({ embed });
+    const userProfileMessage = await channel.createMessage({ embed });
+
+    if (targetUser.id === author.id) {
+      await userProfileMessage.addReaction("🗑️");
+      ReactionManager.addReactionListener({
+        message: userProfileMessage,
+        emoji: "🗑️",
+        callback: async (reactorId, destroyListener) => {
+          if (author.id === reactorId) {
+            destroyListener();
+            const confirmMessage = await channel.createMessage(
+              languagePack.commands.profile.removeDataConfirmation
+            );
+            confirmMessage.addReaction("✅");
+
+            ReactionManager.addReactionListener({
+              message: confirmMessage,
+              emoji: "✅",
+              callback: async (reactorId, destroyListener) => {
+                if (author.id === reactorId) {
+                  destroyListener();
+                  await userSettings.remove();
+                  await channel.createMessage(
+                    languagePack.commands.profile.removeDataSuccess
+                  );
+                }
+              },
+            });
+          }
+        },
+      });
+    }
   },
 };
 
