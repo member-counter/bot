@@ -30,11 +30,9 @@
 		"erlpack": "^0.1.3",
 		"express": "^4.17.1",
 		"gamedig": "^2.0.23",
-		"gulp": "^4.0.2",
 		"lodash.clonedeep": "^4.5.0",
 		"mongoose": "^5.10.5",
 		"node-fetch": "^2.6.1",
-		"ts-node-dev": "^1.0.0-pre.62",
 		"twitch": "^4.2.2",
 		"twitter": "^1.7.1",
 		"ws": "^7.3.1",
@@ -49,6 +47,8 @@
 		"@types/ws": "^7.2.6",
 		"tslint": "^6.1.3",
 		"typescript": "^3.9.7",
-		"typescript-tslint-plugin": "^0.5.5"
+		"typescript-tslint-plugin": "^0.5.5",
+		"ts-node-dev": "^1.0.0-pre.62",
+		"gulp": "^4.0.2"
 	}
 }
