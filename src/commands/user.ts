@@ -1,109 +1,119 @@
-import MemberCounterCommand from '../typings/MemberCounterCommand';
-import embedBase from '../utils/embedBase';
-import UserService from '../services/UserService';
-import Eris from 'eris';
-import UserError from '../utils/UserError';
-import getEnv from '../utils/getEnv';
+import MemberCounterCommand from "../typings/MemberCounterCommand";
+import embedBase from "../utils/embedBase";
+import UserService from "../services/UserService";
+import Eris from "eris";
+import getEnv from "../utils/getEnv";
+import { UserBadges } from "../utils/Constants";
 
 const { BOT_OWNERS } = getEnv();
 
+const emojiBadges = {
+  [UserBadges.DONATOR]: "❤️",
+  [UserBadges.SPONSOR]: "💎",
+  [UserBadges.BETA_TESTER]: "🛠",
+  [UserBadges.TRANSLATOR]: "🌎",
+  [UserBadges.CONTRIBUTOR]: "💻",
+  [UserBadges.BIG_BRAIN]: "🧠",
+  [UserBadges.BUG_CATCHER]: "🐛",
+  [UserBadges.PATPAT]: "🐱",
+};
+
 const generateBadgeList = (badges: number): string => {
-	const hasBadge = (badgeN: number): boolean => (badges & badgeN) === badgeN;
+  const hasBadge = (badgeN: number): boolean => (badges & badgeN) === badgeN;
 
-	const badgeList = [];
+  const badgeList = [];
 
-	if (hasBadge(0b1)) badgeList.push('❤️');
-	if (hasBadge(0b10)) badgeList.push('💎');
-	if (hasBadge(0b100)) badgeList.push('🛠');
-	if (hasBadge(0b1000)) badgeList.push('🌎');
-	if (hasBadge(0b10000)) badgeList.push('💻');
-	if (hasBadge(0b100000)) badgeList.push('🧠');
-	if (hasBadge(0b1000000)) badgeList.push('🐛');
-	if (hasBadge(0b10000000)) badgeList.push('🐱');
+  for (const [badge, emoji] of Object.entries(emojiBadges)) {
+    const badgeInt = Number(badge);
+    if (hasBadge(badgeInt)) badgeList.push(emoji);
+  }
+  
+  badgeList.map((item, i) => {
+    if (i % 2 === 0) return item + " ";
+  });
 
-	badgeList.map((item, i) => {
-		if (i % 2 === 0) return item + ' ';
-	});
-
-	return '``` ' + badgeList.join(' ') + ' ```';
+  return "``` " + badgeList.join(" ") + " ```";
 };
 
 const user: MemberCounterCommand = {
-	aliases: ['me', 'profile', 'user'],
-	denyDm: false,
-	onlyAdmin: false,
-	run: async ({ message, languagePack }) => {
-		const { author, channel, mentions, content } = message;
-		const { client } = channel;
-		const [
-			_command,
-			userRequested,
-			actionRequested,
-			...actionParams
-		] = content.split(/\s+/);
+  aliases: ["me", "profile", "user"],
+  denyDm: false,
+  onlyAdmin: false,
+  run: async ({ message, languagePack }) => {
+    const { author, channel, mentions, content } = message;
+    const { client } = channel;
+    const [
+      _command,
+      userRequested,
+      actionRequested,
+      ...actionParams
+    ] = content.split(/\s+/);
 
-		let targetUser: Eris.User =
-			mentions[0] ||
-			client.users.get(userRequested) ||
-			(await client.getRESTUser(userRequested).catch(console.error)) ||
-			author;
-		const userSettings = await UserService.init(targetUser.id);
 
-    if (actionRequested && BOT_OWNERS.includes(author.id))  {
+    let targetUser: Eris.User =
+      mentions[0] ||
+      client.users.get(userRequested) ||
+      (userRequested && (await client.getRESTUser(userRequested).catch(console.error))) ||
+      author;
+    const userSettings = await UserService.init(targetUser.id);
+
+    if (actionRequested && BOT_OWNERS.includes(author.id)) {
       switch (actionRequested.toLowerCase()) {
-				case 'grantserverupgrade':
-        case 'grantserverupgrades': {
-          await userSettings.grantAvailableServerUpgrades(parseInt(actionParams[0], 10) || 1);
-          break;
-				}
-
-				case 'grantbadge':
-        case 'grantbadges': {
-          await userSettings.grantBadge(parseInt(actionParams[0], 2));
-          await message.addReaction('✅');
-          break;
-				}
-				
-				case 'revokebadge':
-        case 'revokebadges': {
-          await userSettings.revokeBadge(parseInt(actionParams[0], 2));
-          await message.addReaction('✅');
+        case "grantserverupgrade":
+        case "grantserverupgrades": {
+          await userSettings.grantAvailableServerUpgrades(
+            parseInt(actionParams[0], 10) || 1
+          );
           break;
         }
-        
+
+        case "grantbadge":
+        case "grantbadges": {
+          await userSettings.grantBadge(parseInt(actionParams[0], 2));
+          await message.addReaction("✅");
+          break;
+        }
+
+        case "revokebadge":
+        case "revokebadges": {
+          await userSettings.revokeBadge(parseInt(actionParams[0], 2));
+          await message.addReaction("✅");
+          break;
+        }
+
         default: {
-          await message.addReaction('❓');
+          await message.addReaction("❓");
           break;
         }
       }
     }
 
-		const { badges, availableServerUpgrades } = userSettings;
+    const { badges, availableServerUpgrades } = userSettings;
 
-		const embed = embedBase({
-			author: {
-				icon_url: targetUser.dynamicAvatarURL(),
-				name: `${targetUser.username}#${targetUser.discriminator}`,
-			},
-			fields: [],
-		});
+    const embed = embedBase({
+      author: {
+        icon_url: targetUser.dynamicAvatarURL(),
+        name: `${targetUser.username}#${targetUser.discriminator}`,
+      },
+      fields: [],
+    });
 
-		if (badges > 0) {
-			embed.fields.push({
-				name: languagePack.commands.profile.badges,
-				value: generateBadgeList(badges),
-				inline: true,
-			});
-		}
+    if (badges > 0) {
+      embed.fields.push({
+        name: languagePack.commands.profile.badges,
+        value: generateBadgeList(badges),
+        inline: true,
+      });
+    }
 
-		embed.fields.push({
-			name: languagePack.commands.profile.serverUpgradesAvailable,
-			value: availableServerUpgrades.toString(10),
-			inline: true,
-		});
+    embed.fields.push({
+      name: languagePack.commands.profile.serverUpgradesAvailable,
+      value: availableServerUpgrades.toString(10),
+      inline: true,
+    });
 
-		await channel.createMessage({ embed });
-	},
+    await channel.createMessage({ embed });
+  },
 };
 
 const userCommands = [user];
