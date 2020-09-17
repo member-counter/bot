@@ -93,6 +93,8 @@ const seeSettings: MemberCounterCommand = {
 				);
 			}
 
+			appendContent(`\n${customNumbersText} ${digits.join(' ')}\n`);
+
 			if (counters.size) {
 				appendContent(`\n\n${countersText}\n`);
 				for (const [counter, content] of counters) {
@@ -118,9 +120,6 @@ const seeSettings: MemberCounterCommand = {
 					);
 				}
 			}
-
-			appendContent(`\n${customNumbersText}`);
-			appendContent(` ${digits.join(' ')}\n`);
 
 			// If there is some counter with lack of perms, show the legend
 			if (

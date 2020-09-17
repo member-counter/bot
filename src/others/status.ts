@@ -4,15 +4,16 @@ import { Mongoose } from 'mongoose';
 import getEnv from '../utils/getEnv';
 import path from 'path';
 import { createReadStream } from 'fs';
-import expresss from 'express';
+import express from 'express';
 import WebSocket from 'ws';
 
 const { PORT, DISCORD_CLIENT_ID } = getEnv();
 
 function statusWS(discordClient: Eris.Client, mongoose: Mongoose) {
-	const app = expresss();
+	const app = express();
 
 	app.get('/', (req, res) => {
+		res.setHeader('Content-Type', 'text/html');
 		createReadStream(path.resolve(__dirname, './status.html')).pipe(res);
 	});
 

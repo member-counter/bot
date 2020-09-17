@@ -6,7 +6,7 @@
 			"helpDescription": "Ist es wirklich notwendig die Funktion dieses Befehls zu erklären?",
 			"embedReply": {
 				"title": "Liste der Befehle | prefix: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Füge den Bot zu deinem Server hinzu]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nSchnelles Setup: `mc!setup`\n\nUm mehr Infos zu einen Befehl zu erhalten, schreibe `{PREFIX}help` plus den Befehl: ```\n{PREFIX}help shortNumber```\n**Info:** `()` steht für eine optionale Angabe während `[]` erforderlich ist",
 				"fields": [
 					{
 						"name": "**Zähler**",
@@ -33,7 +33,7 @@
 			"helpDescription": "Zeigt dir eine Anleitung zur Verwendung des Bots",
 			"pagesText": "Seite {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Vielen Dank das du Member Counter zu deinem Server hinzugefügt hast!**\n__**Erstelle/Ändere einen Counter**__\nFür dieses Beispiel verwenden wir `{members}`, womit die gesamte Anzahl der Mitglieder des Servers gezählt werden, aber du findest weitere Zähler auf den nächsten Seiten.\nDu kannst diesen Zähler an einer der folgenden Stellen platzieren:\n\n- In einem **Sprach**kanal **Namen**\n- In einem **Kategorie Namen**\n- In einer **Text**kanal *Beschreibung**\n- In einer **News**kanal *Beschreibung**\n\nErstelle einen Channel, editiere ihn und schreibe `{members}` in Name oder Beschreibung und klicke 'änderung speichern'\n\nDu kannst auch mehrer Zähler im Namen oder der Beschreibung verwenden und kombinieren. Hier ist ein Beispiel:\n```\n{onlineMembers}/{members} Online Mitglieder, {youtubeSubscribers:https://www.youtube.com/user/enyay} Abonnenten!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins und Moderatoren sind Online!\n```\n\n> Wenn du das Zeichen Limit erreichst während du einen Kanal Editierst versuche es mit `{PREFIX}help editChannel`\n> Die aktuell eingestellten Zähler kannst du mit `{PREFIX}seeSettings` sehen, nützich um mehr Zähler hinzuzufügen ohne dabei bisherige zu deaktivieren\n\n__**Entferne einen Zähler**__\nEditierre den Kanal und schreibe `{disable}` in den Namen/die Beschreibung, Member Counter wird es durch ein \\✅ ersetzen, was bedeutet das der Channel erfolgreich entfernt wurde.\n\nDu kannst du den Kanal auch direkt löschen",
-			"countersHeader": "__**Zähler**__\n> Du solltest den Entwicklermodus in Discord aktivieren (Benutzereinstellungen > Erscheinungsbild > Erweitert > Entwicklermodus)\n> Rechtsklicke auf Channels/Rollen um die ID zu kopieren\n\n> Zähler mit einem Sternchen (\\*) sind Premium Zähler, erhalte mehr Infos mit `{PREFIX}help upgradeServer`\n\n",
+			"countersHeader": "__**Zähler**__\n> Du solltest den Entwicklermodus von Discord aktivieren (Benutzereinstellungen > Erscheinungsbild > Erweitert > Entwicklermodus)\n> Um eine ID zu erhalten, rechts-klicke Channel/Rolle und klicke \"ID kopieren\"\n\n> Zähler mit einem Sternchen (\\*) sind Premium Zähler, erhalte mehr Infos mit  `{PREFIX}help upgradeServer`\n\n> Wenn du die Zahlenformatierung eines Zähler unabhängig von den Servereinstellungen ändern möchten, schau auf diese [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), oder ändere es manuell, indem du diesen Anweisungen folgst [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
 					"premium": false,
@@ -43,7 +43,7 @@
 				{
 					"premium": false,
 					"name": "{approximatedOnlineMembers}",
-					"description": "Approximated online members in your server"
+					"description": "Ungefähre Anzahl der Online-Member auf Ihrem Server"
 				},
 				{
 					"premium": true,
@@ -128,12 +128,12 @@
 				{
 					"premium": false,
 					"name": "{http:url}",
-					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "Dies zeigt den zurückgegebenen Betrag an, der durch die Antwort auf die angegebene Ressource angegeben wird, der Bot führt eine GET-Anforderung aus und der Server **muss** mit dem Statuscode `200` und dem `content-type: text/plain` antworten. Beispiel: `{http: https: //member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"premium": false,
 					"name": "{http-string:url}",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"description": "Wie `{http}` aber der bot wird nichts analysieren, nützliche um Namen statt Zahlen anzuzeigen"
 				},
 				{
 					"premium": true,
@@ -148,7 +148,7 @@
 				{
 					"premium": true,
 					"name": "{youtubeVideos:channelUrl}",
-					"description": "Displays a youtube channel video count"
+					"description": "Zeigt die Anzahl der Videos eines YouTube Kanals"
 				},
 				{
 					"premium": true,
@@ -163,17 +163,17 @@
 				{
 					"premium": false,
 					"name": "{memeratorMemes:username}",
-					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
+					"description": "Zeigt die Anzahl der Memes eines [Memerator](https://memerator.me) Users an, ersetze username mit dem gewünschten Profil Namen"
 				},
 				{
 					"premium": false,
 					"name": "{memeratorFollowers:username}",
-					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
+					"description": "Zeigt die Follower Zahl eines [Memerator](https://memerator.me) Users an, ersetze username mit dem gewünschten Profil Namen"
 				},
 				{
 					"premium": true,
 					"name": "{twitterFollowers:username}",
-					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
+					"description": "Zeigt die Anzahl der Follower Ihres Accounts an. Ersetzen sie \"username\" mit Ihrem Twitter Namen"
 				},
 				{
 					"premium": false,
@@ -183,7 +183,7 @@
 				{
 					"premium": false,
 					"name": "{game:gameId:address}",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Online Spieler auf einem Game-Server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Ersetze `gameId` mit einem der [here](https://github.com/gamedig/node-gamedig/#games-list) gelisteten und `address` mit der tatsächlichen Server-Adresse. Beispiel: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"premium": false,
@@ -193,17 +193,17 @@
 				{
 					"premium": false,
 					"name": "{nitro-boosters}",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Zeigt die Anzahl der Member, die den Server boosten"
 				},
 				{
 					"premium": false,
 					"name": "{static:number}",
-					"description": "Shows the given `number` with custom formatting based on the server settings"
+					"description": "Zeigt die angegebene `number` mit benutzerdefinierter Formatierung basierend auf den Servereinstellungen an"
 				},
 				{
 					"premium": true,
 					"name": "{instagramFollowers:username}",
-					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
+					"description": "Zeigt die Anzahl der Follower Ihres Accounts an. Ersetzen Sie \"username\" mit Ihrem Instagram Namen"
 				}
 			]
 		},
@@ -227,13 +227,13 @@
 			"errorMissingParams": "Fehlende Angabe, bitte beachte `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Dieser Befehl erlaubt es dir Zähler in Kurzform anzuzeigen\n\n**Verwendung**\n```{PREFIX}shortNumber [enable/disable]```\n**Beispiel**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Ungültige Aktion! Siehe `{PREFIX}help shortNumber`",
 			"success": "Erledigt! Möglicherweiße musst du einen Moment waren bis die Änderungen in Kraft treten"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formatiere die Zahlen und andere Dinge passend zur angegebenen Region\n\n**Verwendung**\n```{PREFIX}locale [locale/disable]```\n**Beispiel**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -253,8 +253,8 @@
 				"headerText": "Einstellungen für den Server:",
 				"prefixText": "Präfix:",
 				"langText": "Sprache:",
-				"localeText": "Locale:",
-				"shortNumberText": "Short number (compact notation):",
+				"localeText": "Region:",
+				"shortNumberText": "Kurze Nummer (compact notation):",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "Nein",
 				"premiumConfirmedText": "Ja",
@@ -262,7 +262,7 @@
 				"countersText": "Zähler:",
 				"customNumbersText": "Benutzerdefinierte Zahlen:",
 				"warningNoPermsText": "\\⚠️ = Der Bot kann diesen Kanal aufgrund fehlender Berechtigungen nicht weiter aktualisieren",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "Letzte Logs:"
 			}
 		},
 		"resetSettings": {
@@ -306,7 +306,9 @@
 		"profile": {
 			"helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
 			"badges": "Abzeichen",
-			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen"
+			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
+			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
+			"removeDataSuccess": "Your data has been removed successfully"
 		},
 		"counts": {
 			"helpDescription": "Zeigt einige Zählungen an",
@@ -325,11 +327,11 @@
 			"channelTopic": "Kanal beschreibung Vorschau"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"helpDescription": "Erstelle einige gesperrte Sprachkanäle mit einigen Zählern\n**Beispiel**```{PREFIX}setup```",
+			"memberCounter": "{members} Mitglieder",
+			"boostingCounter": "{nitro-boosters} Booster",
+			"rolesCounter": "{roles} Rollen",
+			"channelsCounter": "{channels} Kanäle"
 		}
 	},
 	"functions": {
@@ -339,7 +341,7 @@
 		"getCounts": {
 			"onlyPremium": "Nur für Premium",
 			"unknownCounter": "Unbekannter Zähler",
-			"disabled": "Counter Disabled",
+			"disabled": "Counter deaktiviert",
 			"noBanPerms": "Ich brauche Ban Berechtigungen um das anzeigen zu können",
 			"invalidChannelLength": "Ungültige Kanal Namen länge, bitte stelle den Zähler erneut ein"
 		}
