@@ -30,6 +30,7 @@ import StaticCounter from '../counters/static';
 import TwitchCounter from '../counters/Twitch';
 import TwitterCounter from '../counters/Twitter';
 import YouTubeCounter from '../counters/YouTube';
+import FormattingSettings from '../typings/FormattingSettings';
 
 // Do the aliases lowercase
 const counters: Counter[] = [
@@ -69,7 +70,7 @@ setInterval(() => {
 	cache.forEach(({ expiresAt }, counterKey) => {
 		if (expiresAt < Date.now()) cache.delete(counterKey);
 	});
-}, 60 * 1000);
+}, 24 * 60 * 60 * 1000);
 
 class CountService {
 	private client: Eris.Client;
@@ -158,22 +159,54 @@ class CountService {
 		counterRequested: string,
 		legacy: boolean = false,
 	): Promise<string> {
-		let [counterName, ...params] = counterRequested.split(':');
-		counterName = counterName.toLowerCase();
-		let resource = params.join(':');
+		const counterSections = counterRequested.split(':');
+		let formattingSettingsRaw: string;
+		const formattingSettings: FormattingSettings = (() => {
+			const settings = {
+				locale: this.guildSettings.locale,
+				digits: this.guildSettings.digits,
+				shortNumber: this.guildSettings.shortNumber,
+			};
+			try {
+				const firstSectionDecoded = Buffer.from(
+					counterSections[0],
+					'base64',
+				).toString('utf-8');
+				const overwriteSettings = JSON.parse(firstSectionDecoded);
+
+				formattingSettingsRaw = counterSections.shift();
+
+				return {
+					...settings,
+					...overwriteSettings,
+				};
+			} catch {
+				return settings;
+			}
+		})();
+
+		let counterName = counterSections.shift().toLowerCase();
+		let resource = counterSections.join(':');
 		let lifetime = 0;
 		let result: string | number;
 
 		// GET THE VALUE OF THE COUNTER
 		if (
-			cache.get(this.counterToKey(counterName, resource))?.expiresAt >
-			Date.now()
+			cache.get(
+				this.counterToKey(counterName, resource, formattingSettingsRaw),
+			)?.expiresAt > Date.now()
 		)
-			result = cache.get(this.counterToKey(counterName, resource)).value;
+			result = cache.get(
+				this.counterToKey(counterName, resource, formattingSettingsRaw),
+			).value;
 
-		if (this.tmpCache.has(this.counterToKey(counterName, resource)))
+		if (
+			this.tmpCache.has(
+				this.counterToKey(counterName, resource, formattingSettingsRaw),
+			)
+		)
 			result = this.tmpCache.get(
-				this.counterToKey(counterName, resource),
+				this.counterToKey(counterName, resource, formattingSettingsRaw),
 			);
 
 		if (!result) {
@@ -192,6 +225,7 @@ class CountService {
 								client: this.client,
 								guild: this.guild,
 								guildSettings: this.guildSettings,
+								formattingSettings,
 								resource,
 							})
 							.catch((error) => {
@@ -204,6 +238,7 @@ class CountService {
 										this.counterToKey(
 											counterName,
 											resource,
+											formattingSettingsRaw,
 										),
 									)?.value || Constants.CounterResult.ERROR
 								);
@@ -239,7 +274,11 @@ class CountService {
 
 								if (lifetime > 0)
 									cache.set(
-										this.counterToKey(extKey, resource),
+										this.counterToKey(
+											extKey,
+											resource,
+											formattingSettingsRaw,
+										),
 										{
 											value: extValue,
 											expiresAt: Date.now() + lifetime,
@@ -247,17 +286,29 @@ class CountService {
 									);
 
 								this.tmpCache.set(
-									this.counterToKey(extKey, resource),
+									this.counterToKey(
+										extKey,
+										resource,
+										formattingSettingsRaw,
+									),
 									extValue.toString(),
 								);
 							}
 
 							result =
 								cache.get(
-									this.counterToKey(counterName, resource),
+									this.counterToKey(
+										counterName,
+										resource,
+										formattingSettingsRaw,
+									),
 								)?.value ||
 								this.tmpCache.get(
-									this.counterToKey(counterName, resource),
+									this.counterToKey(
+										counterName,
+										resource,
+										formattingSettingsRaw,
+									),
 								);
 						}
 					} else {
@@ -291,14 +342,15 @@ class CountService {
 
 		const intCount = Number(result);
 		const isNumber = !isNaN(intCount);
-		const isShortNumberEnabled = this.guildSettings.shortNumber > -1;
-		const isLocaleSet = !this.guildSettings.locale.includes('disable');
+		const isShortNumberEnabled = formattingSettings.shortNumber > -1;
+		const isLocaleEnabled = !formattingSettings.locale.includes('disable');
+
 		if (isNumber) {
-			if (isShortNumberEnabled || isLocaleSet) {
+			if (isShortNumberEnabled || isLocaleEnabled) {
 				let locale = 'en';
 				let options = {};
-				if (isLocaleSet) {
-					locale = this.guildSettings.locale;
+				if (isLocaleEnabled) {
+					locale = formattingSettings.locale;
 				}
 
 				if (isShortNumberEnabled) {
@@ -317,7 +369,7 @@ class CountService {
 			}
 
 			if (legacy) {
-				const { digits } = this.guildSettings;
+				const { digits } = formattingSettings;
 				result = result
 					.toString()
 					.split('')
@@ -329,8 +381,14 @@ class CountService {
 		return result.toString();
 	}
 
-	private counterToKey(counterName: string, resource: string): string {
-		return [counterName, resource].filter((x) => x).join(':');
+	private counterToKey(
+		counterName: string,
+		resource: string,
+		formattingSettingsRaw: string,
+	): string {
+		return [formattingSettingsRaw, counterName, resource]
+			.filter((x) => x)
+			.join(':');
 	}
 }
 

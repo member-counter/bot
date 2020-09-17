@@ -79,11 +79,13 @@ const ready = (client: Eris.Client) => {
 	}, 30 * 1000);
 
 	// check blocked guilds every 1h
-	GuildModel.find({ blocked: true }, { id: 1 }).then((blockedGuilds) => {
-		blockedGuilds.forEach((blockedGuild) => {
-			client.guilds.get(blockedGuild.id)?.leave().catch(console.error);
+	setInterval(() => {
+		GuildModel.find({ blocked: true }, { id: 1 }).then((blockedGuilds) => {
+			blockedGuilds.forEach((blockedGuild) => {
+				client.guilds.get(blockedGuild.id)?.leave().catch(console.error);
+			});
 		});
-	});
+	}, 1 * 60 * 60 * 1000);
 };
 
 export default ready;

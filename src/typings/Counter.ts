@@ -1,5 +1,6 @@
 import Eris from 'eris';
 import GuildService from '../services/GuildService';
+import FormattingSettings from './FormattingSettings';
 
 interface executeArgs {
 	client: Eris.Client;
@@ -10,9 +11,14 @@ interface executeArgs {
 	guild: Eris.Guild;
 
 	/**
-	 * @description Current guild
+	 * @description Current guild settings
 	 */
 	guildSettings: GuildService;
+
+	/**
+	 * @description Formatting settings for the couner
+	 */
+	formattingSettings: FormattingSettings;
 
 	/**
 	 * @description Resource, like an array of role IDs, or an URI
