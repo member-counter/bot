@@ -306,7 +306,9 @@
 		"profile": {
 			"helpDescription": "Montre les informations liées entre vous et ce bot",
 			"badges": "Badges",
-			"serverUpgradesAvailable": "Améliorations restantes de serveur"
+			"serverUpgradesAvailable": "Améliorations restantes de serveur",
+			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
+			"removeDataSuccess": "Your data has been removed successfully"
 		},
 		"counts": {
 			"helpDescription": "Montre quelques comptes",

@@ -306,7 +306,9 @@
 		"profile": {
 			"helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
 			"badges": "Abzeichen",
-			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen"
+			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
+			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
+			"removeDataSuccess": "Your data has been removed successfully"
 		},
 		"counts": {
 			"helpDescription": "Zeigt einige Zählungen an",
