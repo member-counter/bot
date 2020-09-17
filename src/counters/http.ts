@@ -31,7 +31,7 @@ const HTTPCounter: Counter = {
 			return parseFloat(await response.text());
 		} else {
 			controller.abort();
-			throw new Error(`Invalid status code (not 200) in: ${resource}`);
+			throw new Error(`Invalid status code (not 200) or  invalid Content-Type (not text/plain) in: ${resource}`);
 		}
 	},
 };
