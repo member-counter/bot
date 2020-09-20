@@ -3,7 +3,7 @@ import GuildService from './GuildService';
 import { loadLanguagePack } from '../utils/languagePack';
 import getEnv from '../utils/getEnv';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
-import stringReplaceAsync from '../utils/stringReplaceAsync';
+import stringReplaceAsync from '../utils/stringReplaceAsyncSerial';
 import Constants from '../utils/Constants';
 import Counter from '../typings/Counter';
 
