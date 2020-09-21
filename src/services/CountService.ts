@@ -105,7 +105,7 @@ class CountService {
 
 			if (!discordChannel) {
 				await this.guildSettings.deleteCounter(id);
-				return;
+				continue;
 			}
 
 			const counterIsNameType =
