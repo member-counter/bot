@@ -10,15 +10,7 @@ const MembersOnlineApproximatedCounter: Counter = {
 	lifetime: 0,
 	execute: async ({ guild, client }) => {
 		const extendedGuild = await client.getRESTGuild(guild.id, true);
-	
-    if (PREMIUM_BOT) {
-			return extendedGuild.approximatePresenceCount;
-    } else {
-      return {
-        members: extendedGuild.approximateMemberCount,
-        approximatedOnlineMembers: extendedGuild.approximatePresenceCount,
-      };
-    }
+    return extendedGuild.approximatePresenceCount;
 	},
 };
 
