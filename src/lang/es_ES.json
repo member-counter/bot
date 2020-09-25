@@ -307,8 +307,8 @@
 			"helpDescription": "Muestra información relacionada entre tu y el bot",
 			"badges": "Insignias",
 			"serverUpgradesAvailable": "Mejoras de servidor restantes",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"removeDataConfirmation": ":warning: **Esta acción borrara todos tus datos, tus insignias y mejoras de servidor se perderan para siempre ¿Estas segur@ de querer continuar? (Ignora para cancelar)**",
+			"removeDataSuccess": "Tus datos han sido borrados correctamente"
 		},
 		"counts": {
 			"helpDescription": "Muestra algunos contadores",
