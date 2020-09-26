@@ -36,173 +36,173 @@
 			"countersHeader": "__**Zähler**__\n> Du solltest den Entwicklermodus von Discord aktivieren (Benutzereinstellungen > Erscheinungsbild > Erweitert > Entwicklermodus)\n> Um eine ID zu erhalten, rechts-klicke Channel/Rolle und klicke \"ID kopieren\"\n\n> Zähler mit einem Sternchen (\\*) sind Premium Zähler, erhalte mehr Infos mit  `{PREFIX}help upgradeServer`\n\n> Wenn du die Zahlenformatierung eines Zähler unabhängig von den Servereinstellungen ändern möchten, schau auf diese [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), oder ändere es manuell, indem du diesen Anweisungen folgst [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
-					"premium": false,
-					"name": "{members}",
+					"key": "members",
+					"name": "members",
 					"description": "Mitglieder deines Servers"
 				},
 				{
-					"premium": false,
-					"name": "{approximatedOnlineMembers}",
+					"key": "approximatedOnlineMembers",
+					"name": "approximatedOnlineMembers",
 					"description": "Ungefähre Anzahl der Online-Member auf Ihrem Server"
 				},
 				{
-					"premium": true,
-					"name": "{onlineMembers}",
+					"key": "onlineMembers",
+					"name": "onlineMembers",
 					"description": "Online Mitglieder deines Servers"
 				},
 				{
-					"premium": true,
-					"name": "{offlineMembers}",
+					"key": "offlineMembers",
+					"name": "offlineMembers",
 					"description": "Offline Mitglieder deines Servers"
 				},
 				{
-					"premium": true,
-					"name": "{users}",
+					"key": "users",
+					"name": "users",
 					"description": "User deines Servers (ohne Bots)"
 				},
 				{
-					"premium": true,
-					"name": "{onlineUsers}",
+					"key": "onlineUsers",
+					"name": "onlineUsers",
 					"description": "Online User deines Servers (ohne Bots)"
 				},
 				{
-					"premium": true,
-					"name": "{offlineUsers}",
+					"key": "offlineUsers",
+					"name": "offlineUsers",
 					"description": "Offline User deines Servers (ohne Bots)"
 				},
 				{
-					"premium": true,
-					"name": "{bots}",
+					"key": "bots",
+					"name": "bots",
 					"description": "Bots auf deinem Server (ohne normale User)"
 				},
 				{
-					"premium": true,
-					"name": "{onlineBots}",
+					"key": "onlineBots",
+					"name": "onlineBots",
 					"description": "Online Bots auf deinem Server (ohne normale User)"
 				},
 				{
-					"premium": true,
-					"name": "{offlineBots}",
+					"key": "offlineBots",
+					"name": "offlineBots",
 					"description": "Offline Bots auf deinem Server (ohne normale User)"
 				},
 				{
-					"premium": false,
-					"name": "{roles}",
+					"key": "roles",
+					"name": "roles",
 					"description": "Rollen in deinem Server"
 				},
 				{
-					"premium": false,
-					"name": "{channels}",
+					"key": "channels",
+					"name": "channels",
 					"description": "Kanäle in deinem Server (Ohne Kategorien)"
 				},
 				{
-					"premium": true,
-					"name": "{membersWithRole:role1ID,role2ID}",
+					"key": "membersWithRole",
+					"name": "membersWithRole:role1ID,role2ID",
 					"description": "Zählt wie viele User eine/mehrere Rollen haben, schreibe die Rollen IDs nach dem `:`, und trenne sie mit Kommas `,`"
 				},
 				{
-					"premium": true,
-					"name": "{onlineMembersWithRole:role1ID,role2ID}",
+					"key": "onlineMembersWithRole",
+					"name": "onlineMembersWithRole:role1ID,role2ID",
 					"description": "Gleich wie `{membersWithRole:}` aber zählt nur Online Mitglieder"
 				},
 				{
-					"premium": true,
-					"name": "{offlineMembersWithRole:role1ID,role2ID}",
+					"key": "offlineMembersWithRole",
+					"name": "offlineMembersWithRole:role1ID,role2ID",
 					"description": "Gleich wie `{membersWithRole:}` aber zählt nur Offline Mitglieder"
 				},
 				{
-					"premium": true,
-					"name": "{connectedMembers}",
+					"key": "connectedMembers",
+					"name": "connectedMembers",
 					"description": "Gesamt anzahl der in Sprachkanälen Verbundenen User"
 				},
 				{
-					"premium": true,
-					"name": "{connectedMembers:channel1ID,channel2ID}",
+					"key": "connectedMembers",
+					"name": "connectedMembers:channel1ID,channel2ID",
 					"description": "Gleich wie `{connectedMembers}`, aber der Bot zählt nur Mitglieder in den angegebenen Kanälen, schreibe die Kanal IDs nach dem `:`, und trenne sie mit Kommas `,`"
 				},
 				{
-					"premium": false,
-					"name": "{bannedMembers}",
+					"key": "bannedMembers",
+					"name": "bannedMembers",
 					"description": "Anzahl der gebannten User auf dem Server, der Bot braucht Bann Berechtigung um diese anzuzeigen"
 				},
 				{
-					"premium": false,
-					"name": "{http:url}",
+					"key": "http",
+					"name": "http:url",
 					"description": "Dies zeigt den zurückgegebenen Betrag an, der durch die Antwort auf die angegebene Ressource angegeben wird, der Bot führt eine GET-Anforderung aus und der Server **muss** mit dem Statuscode `200` und dem `content-type: text/plain` antworten. Beispiel: `{http: https: //member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
-					"premium": false,
-					"name": "{http-string:url}",
+					"key": "http-string",
+					"name": "http-string:url",
 					"description": "Wie `{http}` aber der bot wird nichts analysieren, nützliche um Namen statt Zahlen anzuzeigen"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeSubscribers:channelUrl}",
+					"key": "youtubeSubscribers",
+					"name": "youtubeSubscribers:channelUrl",
 					"description": "Zeigt die YouTube Kanal Abonnenten, ersetze channelUrl mit dem erwünschtem Kanal Link"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeViews:channelUrl}",
+					"key": "youtubeViews",
+					"name": "youtubeViews:channelUrl",
 					"description": "Zeigt die YouTube Kanals Aufrufe"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeVideos:channelUrl}",
+					"key": "youtubeVideos",
+					"name": "youtubeVideos:channelUrl",
 					"description": "Zeigt die Anzahl der Videos eines YouTube Kanals"
 				},
 				{
-					"premium": true,
-					"name": "{twitchFollowers:channelName}",
+					"key": "twitchFollowers",
+					"name": "twitchFollowers:channelName",
 					"description": "Zeigt die Twitch Follower Zahl, ersetze channelName mit dem erwünschtem Kanal Namen"
 				},
 				{
-					"premium": true,
-					"name": "{twitchViews:channelName}",
+					"key": "twitchViews",
+					"name": "twitchViews:channelName",
 					"description": "Zeigt die Twitch Kanal Aufrufe"
 				},
 				{
-					"premium": false,
-					"name": "{memeratorMemes:username}",
+					"key": "memeratorMemes",
+					"name": "memeratorMemes:username",
 					"description": "Zeigt die Anzahl der Memes eines [Memerator](https://memerator.me) Users an, ersetze username mit dem gewünschten Profil Namen"
 				},
 				{
-					"premium": false,
-					"name": "{memeratorFollowers:username}",
+					"key": "memeratorFollowers",
+					"name": "memeratorFollowers:username",
 					"description": "Zeigt die Follower Zahl eines [Memerator](https://memerator.me) Users an, ersetze username mit dem gewünschten Profil Namen"
 				},
 				{
-					"premium": true,
-					"name": "{twitterFollowers:username}",
+					"key": "twitterFollowers",
+					"name": "twitterFollowers:username",
 					"description": "Zeigt die Anzahl der Follower Ihres Accounts an. Ersetzen sie \"username\" mit Ihrem Twitter Namen"
 				},
 				{
-					"premium": false,
-					"name": "{countdown:targetDate:format}",
+					"key": "countdown",
+					"name": "countdown:targetDate:format",
 					"description": "Zeigt einen Countdown der bis zum angegebenen Datum abfällt, du kannst einfach [den Zähler hier erstellen](https://member-counter.eduardozgz.com/utils/countdown) oder manuell eingeben indem du `targetDate` mit dem Ziel ersetzt. Gib das Datum in einem UNIX-Zeitstempel an. Optional kannst du bei `format` ein benutzerdefinierten Format anfügen: Verwenden Sie `%d`, um die verbleibenden Tage anzuzeigen, `%h`, um die verbleibenden Stunden anzuzeigen, `%m`, um die verbleibenden Minuten anzuzeigen, und `%s`, um die verbleibenden Sekunden anzuzeigen"
 				},
 				{
-					"premium": false,
-					"name": "{game:gameId:address}",
+					"key": "game",
+					"name": "game:gameId:address",
 					"description": "Online Spieler auf einem Game-Server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Ersetze `gameId` mit einem der [here](https://github.com/gamedig/node-gamedig/#games-list) gelisteten und `address` mit der tatsächlichen Server-Adresse. Beispiel: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
-					"premium": false,
-					"name": "{clock:timeZone}",
+					"key": "clock",
+					"name": "clock:timeZone",
 					"description": "Zeigt einen Countdown der bis zum angegebenen Datum abfällt, du kannst einfach [den Zähler hier erstellen](https://member-counter.eduardozgz.com/utils/clock) oder manuell eingeben indem du `targetDate` mit dem Ziel ersetzt. Gib das Datum in einem UNIX-Zeitstempel an. Optional kannst du bei `format` ein benutzerdefinierten Format anfügen: Verwenden Sie ``, um die verbleibenden Tage anzuzeigen, ``, um die verbleibenden Stunden anzuzeigen, ``, um die verbleibenden Minuten anzuzeigen, und ``, um die verbleibenden Sekunden anzuzeigen}`"
 				},
 				{
-					"premium": false,
-					"name": "{nitro-boosters}",
+					"key": "nitro-boosters",
+					"name": "nitro-boosters",
 					"description": "Zeigt die Anzahl der Member, die den Server boosten"
 				},
 				{
-					"premium": false,
-					"name": "{static:number}",
+					"key": "static",
+					"name": "static:number",
 					"description": "Zeigt die angegebene `number` mit benutzerdefinierter Formatierung basierend auf den Servereinstellungen an"
 				},
 				{
-					"premium": true,
-					"name": "{instagramFollowers:username}",
+					"key": "instagramFollowers",
+					"name": "instagramFollowers:username",
 					"description": "Zeigt die Anzahl der Follower Ihres Accounts an. Ersetzen Sie \"username\" mit Ihrem Instagram Namen"
 				}
 			]
