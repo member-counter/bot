@@ -45,3 +45,5 @@ Help Member Counter to be maintained by [donating](https://member-counter.eduard
 # Self-hosted bot tutorial
 
 [https://eduardozgz.gitbook.io/member-counter/guides/how-to-install-and-host-your-own-bot-instance](https://eduardozgz.gitbook.io/member-counter/guides/how-to-install-and-host-your-own-bot-instance)
+
+[![Run on Repl.it](https://repl.it/badge/github/eduardozgz/member-counter-bot)](https://repl.it/github/eduardozgz/member-counter-bot)
