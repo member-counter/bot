@@ -36,173 +36,173 @@
 			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
-					"premium": false,
-					"name": "{members}",
+					"key": "members",
+					"name": "members",
 					"description": "Uživatelé na serveru"
 				},
 				{
-					"premium": false,
-					"name": "{approximatedOnlineMembers}",
+					"key": "approximatedOnlineMembers",
+					"name": "approximatedOnlineMembers",
 					"description": "Approximated online members in your server"
 				},
 				{
-					"premium": true,
-					"name": "{onlineMembers}",
+					"key": "onlineMembers",
+					"name": "onlineMembers",
 					"description": "Online uživatelé na serveru"
 				},
 				{
-					"premium": true,
-					"name": "{offlineMembers}",
+					"key": "offlineMembers",
+					"name": "offlineMembers",
 					"description": "Offline uživatelé na serveru"
 				},
 				{
-					"premium": true,
-					"name": "{users}",
+					"key": "users",
+					"name": "users",
 					"description": "Uživatelé na serveru (kromě botů)"
 				},
 				{
-					"premium": true,
-					"name": "{onlineUsers}",
+					"key": "onlineUsers",
+					"name": "onlineUsers",
 					"description": "Online uživatelé na serveru (kromě botů)"
 				},
 				{
-					"premium": true,
-					"name": "{offlineUsers}",
+					"key": "offlineUsers",
+					"name": "offlineUsers",
 					"description": "Offline uživatelé na serveru (kromě botů)"
 				},
 				{
-					"premium": true,
-					"name": "{bots}",
+					"key": "bots",
+					"name": "bots",
 					"description": "Boti na severu (počet neobsahuje normální uživatele)"
 				},
 				{
-					"premium": true,
-					"name": "{onlineBots}",
+					"key": "onlineBots",
+					"name": "onlineBots",
 					"description": "Online boti na severu (počet neobsahuje normální uživatele)"
 				},
 				{
-					"premium": true,
-					"name": "{offlineBots}",
+					"key": "offlineBots",
+					"name": "offlineBots",
 					"description": "Offline boti na severu (počet neobsahuje normální uživatele)"
 				},
 				{
-					"premium": false,
-					"name": "{roles}",
+					"key": "roles",
+					"name": "roles",
 					"description": "Role na serveru"
 				},
 				{
-					"premium": false,
-					"name": "{channels}",
+					"key": "channels",
+					"name": "channels",
 					"description": "Kanály na serveru (počet neobsahuje kategorie kanálů)"
 				},
 				{
-					"premium": true,
-					"name": "{membersWithRole:role1ID,role2ID}",
+					"key": "membersWithRole",
+					"name": "membersWithRole:role1ID,role2ID",
 					"description": "Toto spočítá, kolik členů má roli/role. Pro sčítání více rolí napište za `:` ID role, kterou chcete spočítat a každé další ID role oddělte čárkou"
 				},
 				{
-					"premium": true,
-					"name": "{onlineMembersWithRole:role1ID,role2ID}",
+					"key": "onlineMembersWithRole",
+					"name": "onlineMembersWithRole:role1ID,role2ID",
 					"description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze online uživatelé"
 				},
 				{
-					"premium": true,
-					"name": "{offlineMembersWithRole:role1ID,role2ID}",
+					"key": "offlineMembersWithRole",
+					"name": "offlineMembersWithRole:role1ID,role2ID",
 					"description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze offline uživatelé"
 				},
 				{
-					"premium": true,
-					"name": "{connectedMembers}",
+					"key": "connectedMembers",
+					"name": "connectedMembers",
 					"description": "Celkový počet připojených uživatelů v hlasových kanálech"
 				},
 				{
-					"premium": true,
-					"name": "{connectedMembers:channel1ID,channel2ID}",
+					"key": "connectedMembers",
+					"name": "connectedMembers:channel1ID,channel2ID",
 					"description": "Podobné jako `{connectedMembers}` ale bot bude analyzovat pouze připojené uživatele ve specifických kanálech. Pro sčítání více kanálů napište za `:` ID kanálu, který chcete spočítat a každý další ID kanálu oddělte čárkou"
 				},
 				{
-					"premium": false,
-					"name": "{bannedMembers}",
+					"key": "bannedMembers",
+					"name": "bannedMembers",
 					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
 				},
 				{
-					"premium": false,
-					"name": "{http:url}",
+					"key": "http",
+					"name": "http:url",
 					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
-					"premium": false,
-					"name": "{http-string:url}",
+					"key": "http-string",
+					"name": "http-string:url",
 					"description": "Podobné jako `{http}`, ale bot nebude analyzovat nic kromě jmen namísto čísel"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeSubscribers:channelUrl}",
+					"key": "youtubeSubscribers",
+					"name": "youtubeSubscribers:channelUrl",
 					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeViews:channelUrl}",
+					"key": "youtubeViews",
+					"name": "youtubeViews:channelUrl",
 					"description": "Zobrazí počet odběratelů daného YouTube kanálu"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeVideos:channelUrl}",
+					"key": "youtubeVideos",
+					"name": "youtubeVideos:channelUrl",
 					"description": "Zobrazí počet odběratelů daného YouTube videa"
 				},
 				{
-					"premium": true,
-					"name": "{twitchFollowers:channelName}",
+					"key": "twitchFollowers",
+					"name": "twitchFollowers:channelName",
 					"description": "Displays a twitch channel follower count, replace channelName with the desired channel name"
 				},
 				{
-					"premium": true,
-					"name": "{twitchViews:channelName}",
+					"key": "twitchViews",
+					"name": "twitchViews:channelName",
 					"description": "Zobrazí počet odběratelů daného Twitch kanálu"
 				},
 				{
-					"premium": false,
-					"name": "{memeratorMemes:username}",
+					"key": "memeratorMemes",
+					"name": "memeratorMemes:username",
 					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
 				},
 				{
-					"premium": false,
-					"name": "{memeratorFollowers:username}",
+					"key": "memeratorFollowers",
+					"name": "memeratorFollowers:username",
 					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
 				},
 				{
-					"premium": true,
-					"name": "{twitterFollowers:username}",
+					"key": "twitterFollowers",
+					"name": "twitterFollowers:username",
 					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
 				},
 				{
-					"premium": false,
-					"name": "{countdown:targetDate:format}",
+					"key": "countdown",
+					"name": "countdown:targetDate:format",
 					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
 				},
 				{
-					"premium": false,
-					"name": "{game:gameId:address}",
+					"key": "game",
+					"name": "game:gameId:address",
 					"description": "Online hráči na herním serveru (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, atd). Nezapomeňte nahradit `gameId` jménem hry, seznam her naleznete [zde](https://github.com/gamedig/node-gamedig/#games-list) a `address` adresou serveru. Příklad: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
-					"premium": false,
-					"name": "{clock:timeZone}",
+					"key": "clock",
+					"name": "clock:timeZone",
 					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
 				},
 				{
-					"premium": false,
-					"name": "{nitro-boosters}",
+					"key": "nitro-boosters",
+					"name": "nitro-boosters",
 					"description": "Shows the total amount of members boosting this server"
 				},
 				{
-					"premium": false,
-					"name": "{static:number}",
+					"key": "static",
+					"name": "static:number",
 					"description": "Shows the given `number` with custom formatting based on the server settings"
 				},
 				{
-					"premium": true,
-					"name": "{instagramFollowers:username}",
+					"key": "instagramFollowers",
+					"name": "instagramFollowers:username",
 					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
 				}
 			]
