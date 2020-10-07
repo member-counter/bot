@@ -75,6 +75,7 @@ const ready = (client: Eris.Client) => {
 			const botMember = guild.members.get(client.user.id);
 			guild.members.clear();
 			guild.members.add(botMember);
+			guild.roles.clear();
 		});
 	}, 30 * 1000);
 
