@@ -1,15 +1,28 @@
+import GuildCountCacheModel from "../models/GuildCountCache";
 import Counter from "../typings/Counter";
+import Constants from "../utils/Constants";
 import getEnv from "../utils/getEnv";
 
-const { PREMIUM_BOT } = getEnv();
-
 const MemberCounter: Counter = {
-  aliases: ["members", "count"],
+  aliases: ["members", "count", "approximatedOnlineMembers", "offlineMembers", "onlineMembers"],
   isPremium: false,
   isEnabled: true,
   lifetime: 0,
   execute: async ({ guild, client }) => {
-    return guild.memberCount;
+    let guildCountCache = await GuildCountCacheModel.findOne({ guild: guild.id });
+
+    if (guildCountCache) {
+      const { members, onlineMembers } = guildCountCache;
+      return {
+        count: members,
+        members,
+        onlineMembers,
+        offlineMembers: members - onlineMembers,
+        approximatedOnlineMembers: onlineMembers,
+      }
+    } else {
+      return Constants.CounterResult.NOT_AVAILABLE;
+    }
   },
 };
 

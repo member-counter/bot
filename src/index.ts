@@ -5,7 +5,7 @@ import getEnv from './utils/getEnv';
 import injectEventHandlers from './utils/injectEventHandlers';
 import statusWS from './others/status';
 
-const { PREMIUM_BOT, DISCORD_CLIENT_TOKEN, DB_URI, NODE_ENV } = getEnv();
+const { DISCORD_CLIENT_TOKEN, DB_URI, NODE_ENV } = getEnv();
 
 // Discord client
 const intents: Eris.IntentStrings[] = [
@@ -18,7 +18,7 @@ const intents: Eris.IntentStrings[] = [
 ];
 
 const client = new Eris.Client(DISCORD_CLIENT_TOKEN, {
-	getAllUsers: PREMIUM_BOT,
+	getAllUsers: false,
 	guildCreateTimeout: 15000,
 	intents,
 	maxShards: 'auto',

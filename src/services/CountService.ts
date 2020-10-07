@@ -21,7 +21,6 @@ import InstagramCounter from "../counters/Instagram";
 import MemberCounter from "../counters/members";
 import MembersConnectedCounter from "../counters/membersConnected";
 import MembersExtendedCounter from "../counters/membersExt";
-import MembersOnlineApproximatedCounter from "../counters/membersOnlineApproximated";
 import MembersWithRoleCounter from "../counters/membersWithRole";
 import MemeratorCounter from "../counters/Memerator";
 import NitroBoostersCounter from "../counters/nitroBoosters";
@@ -49,7 +48,6 @@ const counters: Counter[] = [
   MemberCounter,
   MembersConnectedCounter,
   MembersExtendedCounter,
-  MembersOnlineApproximatedCounter,
   MembersWithRoleCounter,
   MemeratorCounter,
   NitroBoostersCounter,

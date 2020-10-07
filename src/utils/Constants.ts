@@ -14,6 +14,7 @@ enum CounterResult {
 	ERROR = -2,
 	UNKNOWN = -3,
 	DISABLED = -4,
+	NOT_AVAILABLE = -5,
 }
 
 const Constants = {

@@ -21,6 +21,9 @@ interface MemberCounterEnv {
 	readonly BOT_OWNERS: string[];
 	readonly UPDATE_COUNTER_INTERVAL: number;
 
+	readonly MEMBER_COUNTS_CACHE_CHECK: number;
+	readonly MEMBER_COUNTS_CACHE_LIFETIME: number;
+
 	readonly PREMIUM_BOT: boolean;
 	readonly PREMIUM_BOT_ID: string;
 	readonly PREMIUM_BOT_INVITE: string;
