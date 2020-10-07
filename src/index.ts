@@ -9,7 +9,6 @@ const { PREMIUM_BOT, DISCORD_CLIENT_TOKEN, DB_URI, NODE_ENV } = getEnv();
 
 // Discord client
 const intents: Eris.IntentStrings[] = [
-	'guildMembers',
 	'guilds',
 	'guildBans',
 	'guildMessages',
@@ -17,8 +16,6 @@ const intents: Eris.IntentStrings[] = [
 	'guildMessageReactions',
 	'directMessageReactions',
 ];
-
-if (PREMIUM_BOT) intents.push('guildPresences', 'guildVoiceStates');
 
 const client = new Eris.Client(DISCORD_CLIENT_TOKEN, {
 	getAllUsers: PREMIUM_BOT,
