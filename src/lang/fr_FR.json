@@ -343,7 +343,8 @@
 			"unknownCounter": "Compteur inconnu",
 			"disabled": "Compteur désactivé",
 			"noBanPerms": "J'ai besoin d'une autorisation de bannir pour montrer ceci",
-			"invalidChannelLength": "Longueur du nom de salon invalide, veuillez réinitialiser le compteur"
+			"invalidChannelLength": "Longueur du nom de salon invalide, veuillez réinitialiser le compteur",
+			"notAvailable": "Not available, please wait"
 		}
 	},
 	"common": {
