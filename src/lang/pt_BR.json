@@ -343,7 +343,8 @@
 			"unknownCounter": "Contador desconhecido",
 			"disabled": "Contador Desabilitado",
 			"noBanPerms": "Eu preciso ter permissão de bans para mostrar isso",
-			"invalidChannelLength": "Tamanho do nome do canal inválido, por favor configure o contador novamente"
+			"invalidChannelLength": "Tamanho do nome do canal inválido, por favor configure o contador novamente",
+			"notAvailable": "Not available, please wait"
 		}
 	},
 	"common": {
