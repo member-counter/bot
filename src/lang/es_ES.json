@@ -343,7 +343,8 @@
 			"unknownCounter": "Error desconocido",
 			"disabled": "Contador Deshabilitado",
 			"noBanPerms": "Necesito permisos de ban para mostrar esto",
-			"invalidChannelLength": "Nombre de canal invalido, por favor, vuelve a establecerlo"
+			"invalidChannelLength": "Nombre de canal invalido, por favor, vuelve a establecerlo",
+			"notAvailable": "Not available, please wait"
 		}
 	},
 	"common": {
