@@ -70,7 +70,6 @@ const ready = (client: Eris.Client) => {
 
   // free ram
   setInterval(() => {
-    if (FOSS_MODE || PREMIUM_BOT) return;
     const botUser = client.users.get(client.user.id);
     client.users.clear();
     client.users.add(botUser);
@@ -79,7 +78,6 @@ const ready = (client: Eris.Client) => {
       const botMember = guild.members.get(client.user.id);
       guild.members.clear();
       guild.members.add(botMember);
-      guild.roles.clear();
     });
   }, 30 * 1000);
 
