@@ -343,7 +343,8 @@
 			"unknownCounter": "Unbekannter Zähler",
 			"disabled": "Counter deaktiviert",
 			"noBanPerms": "Ich brauche Ban Berechtigungen um das anzeigen zu können",
-			"invalidChannelLength": "Ungültige Kanal Namen länge, bitte stelle den Zähler erneut ein"
+			"invalidChannelLength": "Ungültige Kanal Namen länge, bitte stelle den Zähler erneut ein",
+			"notAvailable": "Not available, please wait"
 		}
 	},
 	"common": {
