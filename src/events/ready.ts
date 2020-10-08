@@ -5,6 +5,8 @@ import Eris from 'eris';
 import updateCounters from '../utils/updateCounters';
 import GuildModel from '../models/GuildModel';
 import GuildCountCacheModel from '../models/GuildCountCache';
+import wait from '../utils/sleep';
+import sleep from '../utils/sleep';
 
 const {
   DISCORD_PREFIX,
@@ -13,6 +15,7 @@ const {
   PREMIUM_BOT,
   MEMBER_COUNTS_CACHE_CHECK,
   MEMBER_COUNTS_CACHE_LIFETIME,
+  MEMBER_COUNTS_CACHE_CHECK_SLEEP
 } = getEnv();
 
 const ready = (client: Eris.Client) => {
@@ -90,9 +93,14 @@ const ready = (client: Eris.Client) => {
   }, 1 * 60 * 60 * 1000);
 
   // every 5min, if the current cached count is expired: fetch approximated member counts in all the guilds
+  let inProgress = false;
   setInterval(async () => {
+    if (inProgress) return;
+    inProgress = true;
+
     for (const [id] of client.guilds as Map<string, Eris.Guild>) {
       try {
+        await sleep(MEMBER_COUNTS_CACHE_CHECK_SLEEP * 1000);
         let guildCountCache = await GuildCountCacheModel.findOne({ guild: id });
 
         if (!guildCountCache) {
@@ -117,6 +125,8 @@ const ready = (client: Eris.Client) => {
         console.error(err);
       }
     }
+
+    inProgress = false;
   }, MEMBER_COUNTS_CACHE_CHECK * 1000);
 };
 

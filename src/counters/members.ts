@@ -1,7 +1,6 @@
 import GuildCountCacheModel from "../models/GuildCountCache";
 import Counter from "../typings/Counter";
 import Constants from "../utils/Constants";
-import getEnv from "../utils/getEnv";
 
 const MemberCounter: Counter = {
   aliases: ["members", "count", "approximatedOnlineMembers", "offlineMembers", "onlineMembers"],
