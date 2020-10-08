@@ -343,7 +343,8 @@
 			"unknownCounter": "Neznámý počítadlo",
 			"disabled": "Počítadlo zablokováno",
 			"noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
-			"invalidChannelLength": "Invalid channel name length, please setup the counter again"
+			"invalidChannelLength": "Invalid channel name length, please setup the counter again",
+			"notAvailable": "Not available, please wait"
 		}
 	},
 	"common": {
