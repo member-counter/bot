@@ -22,6 +22,7 @@ interface MemberCounterEnv {
 	readonly UPDATE_COUNTER_INTERVAL: number;
 
 	readonly MEMBER_COUNTS_CACHE_CHECK: number;
+	readonly MEMBER_COUNTS_CACHE_CHECK_SLEEP: number;
 	readonly MEMBER_COUNTS_CACHE_LIFETIME: number;
 
 	readonly PREMIUM_BOT: boolean;
