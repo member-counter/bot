@@ -41,12 +41,6 @@ const ready = (client: Eris.Client) => {
   checkPremiumGuilds(guilds);
 
   setInterval(() => {
-    console.log(
-      `Serving to ${client.guilds.reduce(
-        (acc, curr) => acc + curr.memberCount,
-        0
-      )} users in ${client.guilds.size} guilds`
-    );
     setStatus();
     postBotStats(guilds.size);
     checkPremiumGuilds(guilds);
