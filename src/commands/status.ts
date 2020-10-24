@@ -5,6 +5,7 @@ import { promises as fs } from 'fs';
 import * as packageJSON from '../../package.json';
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import embedBase from '../utils/embedBase';
+import GuildCountCacheModel from '../models/GuildCountCache';
 
 const getRealFreeMemory = (): Promise<number> => {
   return new Promise(async (resolve) => {
@@ -131,11 +132,15 @@ const status: MemberCounterCommand = {
           inline: true,
         },
         {
-          name: '**Cached users / In guilds:**',
-          value: `${client.users.size} / ${client.guilds.reduce(
-            (acc, curr) => acc + curr.memberCount,
-            0,
-          )}`,
+          name: '**Users:**',
+          value: (await GuildCountCacheModel.aggregate([{
+            $group: {
+              _id: null,
+              total: {
+                $sum: "$members"
+              }
+            }
+          }]))[0].total,
           inline: true,
         },
       ],

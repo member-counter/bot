@@ -1,3 +1,4 @@
+import GuildCountCacheModel from '../models/GuildCountCache';
 import Counter from '../typings/Counter';
 import Constants from '../utils/Constants';
 
@@ -7,13 +8,14 @@ const BotStatsCounter: Counter = {
 	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
-		return {
-			['member-counter-users']: client.guilds.reduce(
-				(acc, curr) => acc + curr.memberCount,
-				0,
-			),
-			['member-counter-guilds']: client.guilds.size,
-		};
+		return (await GuildCountCacheModel.aggregate([{
+			$group: {
+				_id: null,
+				total: {
+					$sum: "$members"
+				}
+			}
+		}]))[0].total;
 	},
 };
 
