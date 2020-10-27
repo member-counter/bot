@@ -307,8 +307,8 @@
 			"helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
 			"badges": "Abzeichen",
 			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"removeDataConfirmation": ":warning: **Diese Aktion wird alle deine Daten löschen, deine Abzeichen und Server Verbesserungen werden für immer verloren gehen. Bist du sicher dass du fortfahren willst? (Zum Abbrechen ignorieren)**",
+			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt"
 		},
 		"counts": {
 			"helpDescription": "Zeigt einige Zählungen an",
@@ -344,7 +344,7 @@
 			"disabled": "Counter deaktiviert",
 			"noBanPerms": "Ich brauche Ban Berechtigungen um das anzeigen zu können",
 			"invalidChannelLength": "Ungültige Kanal Namen länge, bitte stelle den Zähler erneut ein",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "Nicht verfügbar, bitte warten"
 		}
 	},
 	"common": {
