@@ -8,14 +8,17 @@ const BotStatsCounter: Counter = {
 	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
-		return (await GuildCountCacheModel.aggregate([{
-			$group: {
-				_id: null,
-				total: {
-					$sum: "$members"
+		return {
+			['member-counter-users']: (await GuildCountCacheModel.aggregate([{
+				$group: {
+					_id: null,
+					total: {
+						$sum: "$members"
+					}
 				}
-			}
-		}]))[0].total;
+			}]))[0].total,
+			['member-counter-guilds']: client.guilds.size,
+		};
 	},
 };
 
