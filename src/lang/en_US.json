@@ -261,7 +261,7 @@
 				"allowedRolesText": "Allowed roles to use administrative commands:",
 				"countersText": "Counters:",
 				"customNumbersText": "Custom numbers:",
-				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions",
+				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
 				"guildLogsText": "Latest logs:"
 			}
 		},
