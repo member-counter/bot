@@ -233,7 +233,7 @@
 			"success": "Úspěšně upraveno! Možná budete muset počkat několik sekund, než uvidíte tyto změny"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Naformátuje čísla a další položky do zadaného národního prostředí\n\n**Použít:**\n```{PREFIX}locale [locale/disable]```\n**Příklad:**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -242,13 +242,13 @@
 			"noPrefixProvided": "Musíte zadat prefix"
 		},
 		"role": {
-			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+			"helpDescription": "Můžete povolit nebo zakázat rolím používat administrační příkazy bota.\nSlovem `ʻall`` můžete povolit nebo zakázat všechny role.\nChcete-li zjistit, které role jsou aktuálně povoleny, použijte `{PREFIX} seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
 			"rolesUpdated": "Role úspěšně aktualizovány.",
 			"errorNoRolesToUpdate": "Musíte označit minimálně 1 roli",
 			"invalidParams": "Byly zadány neznámé parametry, pro více informací použijte `{PREFIX}help role`"
 		},
 		"seeSettings": {
-			"helpDescription": "Shows all bot settings for this server.",
+			"helpDescription": "Zobrazí všechna nastavení bota pro tento server.",
 			"settingsMessage": {
 				"headerText": "Nastavení pro server:",
 				"prefixText": "Prefix:",
@@ -266,7 +266,7 @@
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Restores the custom settings of this server to the default ones",
+			"helpDescription": "Obnoví vlastní nastavení tohoto serveru na výchozí hodnoty",
 			"done": "Nastavení obnoveno do základního stavu"
 		},
 		"update": {
@@ -344,7 +344,7 @@
 			"disabled": "Počítadlo zablokováno",
 			"noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
 			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "Není k dispozici, počkejte prosím"
 		}
 	},
 	"common": {
