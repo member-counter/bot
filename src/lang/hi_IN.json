@@ -261,7 +261,7 @@
 				"allowedRolesText": "प्रशासनिक आदेशों का उपयोग करने के लिए अनुमत भूमिकाएँ :",
 				"countersText": "गणके :",
 				"customNumbersText": "वैयक्तीकृत संख्या :",
-				"warningNoPermsText": "\\⚠️ = अनुमतियों की कमी के कारण बॉट इस चैनल को अद्यतन करना जारी नहीं रख सकता है",
+				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
 				"guildLogsText": "नवीनतम लॉग:"
 			}
 		},

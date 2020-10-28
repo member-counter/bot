@@ -261,7 +261,7 @@
 				"allowedRolesText": "Роли, которым разрешено использовать админ-команды:",
 				"countersText": "Счётчики:",
 				"customNumbersText": "Кастомизированные числа:",
-				"warningNoPermsText": "\\⚠️ = Бот не может продолжить обновлять этот канал из-за нехватки нужных прав доступа",
+				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
 				"guildLogsText": "Последние логи:"
 			}
 		},
