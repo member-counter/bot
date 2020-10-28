@@ -259,7 +259,7 @@
 				"premiumNoTierText": "Ne",
 				"premiumConfirmedText": "Ano",
 				"allowedRolesText": "Allowed roles to use administrative commands:",
-				"countersText": "Seznam počítadel:",
+				"countersText": "Počítadla:",
 				"customNumbersText": "Vlastní čísla:",
 				"warningNoPermsText": "\\⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatečných oprávnění",
 				"guildLogsText": "Poslední logy:"
@@ -324,7 +324,7 @@
 			"helpDescription": "Zobrazuje náhled, jak bude počítadlo nebo různé počítadla vypadat v kanálu\n\n**Použití** ```{PREFIX}preview [content]```\n**Příklad** ```{PREFIX}preview {members} Uživatelů```",
 			"helpImage": "https://i.imgur.com/VzdqzT3.png",
 			"channelName": "Náhled názvu kanálu",
-			"channelTopic": "Channel topic preview"
+			"channelTopic": "Náhled názvu kanálu"
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
