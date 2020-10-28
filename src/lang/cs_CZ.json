@@ -261,7 +261,7 @@
 				"allowedRolesText": "Povolené role, které mohou používat administrativní příkazy:",
 				"countersText": "Počítadla:",
 				"customNumbersText": "Vlastní čísla:",
-				"warningNoPermsText": "\\⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatečných oprávnění",
+				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
 				"guildLogsText": "Poslední logy:"
 			}
 		},
