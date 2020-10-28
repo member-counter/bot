@@ -43,7 +43,7 @@
 				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
-					"description": "Approximated online members in your server"
+					"description": "Přibližný počet online uživatelů na serveru"
 				},
 				{
 					"key": "onlineMembers",
@@ -224,7 +224,7 @@
 			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Číslice úspěšně přizpůsobené.",
 			"resetSuccess": "Numbers restored to the default ones.",
-			"errorMissingParams": "Příkaz byl zadán špatně, chybí parametry, prosím podívejte se na `{PREFIX}help setDigit`."
+			"errorMissingParams": "Chybějící parametry, prosím podívejte se na `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
 			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
@@ -306,9 +306,9 @@
 		"profile": {
 			"helpDescription": "Shows related information between you and this bot",
 			"badges": "Odznaky",
-			"serverUpgradesAvailable": "Server upgrades left",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"serverUpgradesAvailable": "Zbývající vylepšení serveru",
+			"removeDataConfirmation": ":warning: **Tato akce odstraní všechna date, vaše odznaky a vylepšení serveru budou navždy ztraceny, opravdu chcete pokračovat? (Ignorujte pro zrušení)**",
+			"removeDataSuccess": "Vaše data byly úspěšně smazány"
 		},
 		"counts": {
 			"helpDescription": "Shows some counts",
@@ -343,7 +343,7 @@
 			"unknownCounter": "Neznámý počítadlo",
 			"disabled": "Počítadlo zablokováno",
 			"noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
-			"invalidChannelLength": "Invalid channel name length, please setup the counter again",
+			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu",
 			"notAvailable": "Not available, please wait"
 		}
 	},
@@ -352,7 +352,7 @@
 		"errorDb": "Chyba databáze, zkuste to prosím znovu",
 		"errorDiscordAPI": "Discord API",
 		"errorUnknown": "Něco se pokazilo, zkuste to prosím znovu.",
-		"errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
-		"noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+		"errorNoAdmin": "Pouze uživatelé s administrativním oprávnění můžou na tomto serveru využít tento příkaz.",
+		"noTopicCounterEnabled": "Vypadá to, že jste doposud neaktivovali počítadlo, prosím podívejte se na `{PREFIX}help topicCounter`"
 	}
 }
