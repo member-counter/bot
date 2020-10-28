@@ -33,7 +33,7 @@
 			"helpDescription": "Zobrazí návod, jak používat bota",
 			"pagesText": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Děkujeme za přidání Member Counter bota na Váš server!**\n__**Vytvořit/upravit počítadla**__\nMůžete například použít `{members}`, který spočítá celkový počet členů na vašem Discord serveru. Více možností naleznete na dalších stránkách.\nPočítadla můžete umístit na jedno z následujících míst:\n\n- Ve **jméně** **hlasového** análu\n- Ve **jménu** **kategorie**\n- V **popisu/tématu** **textového** kanálu\n- V **popisu/tématu** kanálu **oznámení**\n\nNyní můžete vytvořit nový kanál, upravit ho a napsat `{members}` do názvu nebo do popisu/tématu kanálu a poté potvrdit změny.\n\nMůžete také přidat více počítadel do jednoho jména/tématu kanálu a kombinovat je s vlastním obsahem, níže je příklad.\n```\n{onlineMembers}/{members} online uživatelů,\n{youtubeSubscribers:https://www.youtube.com/user/mentoss97} odběratelů!\n{onlineMembersWithRole:614777997291028519,614816383053856769} adminů a moderátorů je nyní online!\n```\n\n> Pokud při úpravě názvu/tématu kanálu dosáhnete omezení počtu znaků, prosím zkontrolujte `{PREFIX}help editChannel`\n> Aktuální nástavení počítadel můžete zobrazit pomocí příkazu `{PREFIX}seeSettings`. Toto je užitečné pro přidání více počítadel bez deaktivace předchozího počítadla.\n\n__**Odstranění počítadel**__\nPro odstranění upravte kanál a napište {disable} do jména/tématu kanálu. Bot toto nahradí za \\✅, což bude znamenat, že byly odstraněny všechny počítadla v daném kanálu.\n\nKanál můžete také přímo smazat",
-			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"countersHeader": "__**Počítadla**__\n> Povolte si režim vývojáře na Discordu (Uživatelská nastavení > Vzhled > Pokročilé > Vývojářský režim)\n> Pro získání ID, klikněte pravým na kanál/roli a poté na \"Kopírovat ID\"\n\n> Počítadla s hvězdičkou (\\*) jsou premium počítadla, více informací v `{PREFIX}help upgradeServer`\n\n> Pokud chcete změnit formátování čísla v počítadlech nezávisle na nastavení serveru, navštivte tuto [stránku](https://member-counter.eduardozgz.com/utils/overwrite-settings), nebo to proveďte ručně podle tohoto [manuálu](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -123,12 +123,12 @@
 				{
 					"key": "bannedMembers",
 					"name": "bannedMembers",
-					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
+					"description": "Počet zabanovaných uživatelů na vašem serveru. Bot musí mít banovací oprávnění pro zobrazení tohoto počítadla"
 				},
 				{
 					"key": "http",
 					"name": "http:url",
-					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "Tímto se zobrazí vrácená data daná podle odpovědi zdroje, bot provede požadavek `GET` a server **musí** odpovědět stavovým kódem `200` a `content-type: text/plain` Příklad: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"key": "http-string",
@@ -138,7 +138,7 @@
 				{
 					"key": "youtubeSubscribers",
 					"name": "youtubeSubscribers:channelUrl",
-					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
+					"description": "Zobrazí počet youtube odběratelů, nahraďte channelUrl požadovanou adresou kanálu"
 				},
 				{
 					"key": "youtubeViews",
@@ -153,7 +153,7 @@
 				{
 					"key": "twitchFollowers",
 					"name": "twitchFollowers:channelName",
-					"description": "Displays a twitch channel follower count, replace channelName with the desired channel name"
+					"description": "Zobrazí počet twitch odběratelů, nahraďte channelUrl požadovanou adresou kanálu"
 				},
 				{
 					"key": "twitchViews",
@@ -163,22 +163,22 @@
 				{
 					"key": "memeratorMemes",
 					"name": "memeratorMemes:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
+					"description": "Zobrazí počet memů uživatele na [Memerator](https://memerator.me), nahraďte username požadovaným názvem kanálu"
 				},
 				{
 					"key": "memeratorFollowers",
 					"name": "memeratorFollowers:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
+					"description": "Zobrazí počet sledujících uživatelů na [Memerator](https://memerator.me), nahraďte username požadovaným názvem kanálu"
 				},
 				{
 					"key": "twitterFollowers",
 					"name": "twitterFollowers:username",
-					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
+					"description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Twitteru"
 				},
 				{
 					"key": "countdown",
 					"name": "countdown:targetDate:format",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Zobrazí odpočet, které se snižuje k uvedenému cílovému datu, můžete využít [generátor pro toto počítadlo](https://member-counter.eduardozgz.com/utils/countdown) nebo jej ručně vytvořit nahrazením `targetDate` cílovým datem v časovém razítíku UNIX a volitelně `format` s vlastním formátováním: použijte `%d` pro zobrazení zbývajících dnů, `%h` pro zobrazení zbývajících hodin, `%m` to pro zobrazení zbývajících minut a`%s` pro zobrazení zbývajících sekund"
 				},
 				{
 					"key": "game",
@@ -188,42 +188,42 @@
 				{
 					"key": "clock",
 					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "Zobrazí aktuální čas podle zadaného časového pásma, který můžete snadno [vygenerovat zde](https://member-counter.eduardozgz.com/utils/clock), nebo nahradit `timeZone` platným časovým pásmem IANA. Příklad: `{clock:Europe/Madrid}`"
 				},
 				{
 					"key": "nitro-boosters",
 					"name": "nitro-boosters",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Zobrazuje celkový počet členů podporujících tento server"
 				},
 				{
 					"key": "static",
 					"name": "static:number",
-					"description": "Shows the given `number` with custom formatting based on the server settings"
+					"description": "Zobrazí dané `číslo` s vlastním formátováním na základě nastavení serveru"
 				},
 				{
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
-					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
+					"description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Instagramu"
 				}
 			]
 		},
 		"lockChannel": {
-			"helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
+			"helpDescription": "Pomocí tohoto příkazu může zobrazit zámek(🔒) namísto reproduktoru (🔊).\n\n**Použtí:**```{PREFIX}lockChannel [id kanálu]```\n **Příklad:**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Hotovo! Kanál je uzavřen **pro normální uživatele**. Kanál bude zobrazen s 🔒",
 			"errorInvalidChannel": "Můžete uzamknout pouze hlasové kanály!",
 			"errorNoPerms": "Nemohu upravovat kanál s názvem `{CHANNEL}` z důvodu nedostatečných oprávnění",
 			"errorNotFound": "Kanál nebyl nalezen"
 		},
 		"editChannel": {
-			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
+			"helpDescription": "Pokud se pokoušíte nastavit počítadlo, ale Discord vám řekne, že jste dosáhli limitu délky názvu/tématu, můžete pomocí tohoto příkazu tento limit „ignorovat“\n**Použití:**```{PREFIX}editChannel [ID kanálu] [obsah]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} online z {members}```",
 			"success": "Úspěšně upraveno! Možná budete muset počkat několik sekund, než uvidíte tyto změny",
 			"errorNotFound": "Kanál nebyl nalezen",
 			"errorNoContent": "Musíte poskytnout nějaký obsah"
 		},
 		"setDigit": {
-			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "Přizpůsobí čísla, která se budou zobrazovat, argument čísla musí být normální číslo, druhý argument může být cokoli, například emoji nebo normální číslo, můžete přizpůsobit více čísel najednou oddělením argumentů čárkami (`,`)\nPokud je prvním argumentem slovo „reset“, budou čísla obnovena na výchozí.\n\n**Použítí:** ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [vlastní číslo]```\n**Příklad:** ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Číslice úspěšně přizpůsobené.",
-			"resetSuccess": "Numbers restored to the default ones.",
+			"resetSuccess": "Čísla byla obnovena na výchozí hodnotu.",
 			"errorMissingParams": "Chybějící parametry, prosím podívejte se na `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
@@ -254,11 +254,11 @@
 				"prefixText": "Prefix:",
 				"langText": "Jazyk:",
 				"localeText": "Lokalizace:",
-				"shortNumberText": "Short number (compact notation):",
+				"shortNumberText": "Zkrácené číslo (kompaktní notace):",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "Ne",
 				"premiumConfirmedText": "Ano",
-				"allowedRolesText": "Allowed roles to use administrative commands:",
+				"allowedRolesText": "Povolené role, které mohou používat administrativní příkazy:",
 				"countersText": "Počítadla:",
 				"customNumbersText": "Vlastní čísla:",
 				"warningNoPermsText": "\\⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatečných oprávnění",
@@ -270,16 +270,16 @@
 			"done": "Nastavení obnoveno do základního stavu"
 		},
 		"update": {
-			"helpDescription": "If you think the counters are stuck use this command to update them again.",
-			"inProgress": "Updating the counters, this may take a while.",
+			"helpDescription": "Pokud si myslíte, že se počítadla zasekly, použijte tento příkaz k jejich opětovné aktualizaci.",
+			"inProgress": "Aktualizace počítadel, toto může chvíli trvat.",
 			"success": "Hotovo.",
-			"wait": "Wait! I'm already updating it!"
+			"wait": "Počkejte! Již to aktualizuji!"
 		},
 		"upgradeServer": {
-			"helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
-			"success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-			"errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
-			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+			"helpDescription": "Tento příkaz umožňuje pozvat Member Counter Premium, abyste mohli tento příkaz využít, musíte míst premium účet, který získáte podporou minimálně 5 USD: `{PREFIX}donate`.",
+			"success": "Hotovo! Dalším krokem je pozvání premium bota:\n{BOT_LINK}",
+			"errorCannotUpgrade": "Server nelze vylepšit, protože již má premiovou verzi.",
+			"noServerUpgradesAvailable": "Nemůžete provést další vylepšení serveru, protože nemáte žádné vylepšení k dispozici, můžete zkontrolovat kolik vylepšení zbývá pomocí `{PREFIX}profile` nebo jich získat více pomocí `{PREFIX}donate`"
 		},
 		"info": {
 			"helpDescription": "Seznam užitečných odkazů",
@@ -293,7 +293,7 @@
 			"errorNotFound": "Seznam dostupných jazyků:"
 		},
 		"donate": {
-			"helpDescription": "Shows the top donations.",
+			"helpDescription": "Zobrazí nejvyšší dary.",
 			"embedReply": {
 				"title": "Užíváte si tohoto bota? Podpoř mě prosím! (Klikni zde)",
 				"fields": []
@@ -301,17 +301,17 @@
 			"misc": {
 				"emptyNote": "Prázdná poznámka"
 			},
-			"errorExchangeFetch": "Error while trying to fetch exchange rates"
+			"errorExchangeFetch": "Při pokusu o načtení směnných kurzů došlo k chybě"
 		},
 		"profile": {
-			"helpDescription": "Shows related information between you and this bot",
+			"helpDescription": "Zobrazuje související informace mezi vámi a botem",
 			"badges": "Odznaky",
 			"serverUpgradesAvailable": "Zbývající vylepšení serveru",
 			"removeDataConfirmation": ":warning: **Tato akce odstraní všechna date, vaše odznaky a vylepšení serveru budou navždy ztraceny, opravdu chcete pokračovat? (Ignorujte pro zrušení)**",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"removeDataSuccess": "Vaše data byly úspěšně smazány"
 		},
 		"counts": {
-			"helpDescription": "Shows some counts",
+			"helpDescription": "Zobrazí některé počítadla",
 			"members": "Členové:",
 			"onlineMembers": "Online uživatelé:",
 			"offlineMembers": "Offline uživatelé:",
@@ -327,7 +327,7 @@
 			"channelTopic": "Náhled názvu kanálu"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
+			"helpDescription": "Vytvoří uzamčené kanály s počítadly\n**Příklad:**```{PREFIX}setup```",
 			"memberCounter": "{members} uživatelé/ů",
 			"boostingCounter": "{nitro-boosters} boostů",
 			"rolesCounter": "{roles} role/í",
