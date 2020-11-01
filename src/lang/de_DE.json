@@ -261,7 +261,7 @@
 				"allowedRolesText": "Zulässige Rollen um Verwaltungsbefehle auszuführen:",
 				"countersText": "Zähler:",
 				"customNumbersText": "Benutzerdefinierte Zahlen:",
-				"warningNoPermsText": "\\⚠️ = Der Bot kann diesen Kanal aufgrund fehlender Berechtigungen nicht weiter aktualisieren",
+				"warningNoPermsText": "\\⚠️ = Der Bot kann den Kanal aufgrund Fehlender Berechtigungen nicht weiter bearbeiten (Du musst folgendes erlauben: Kanal Verwalten, Kanal sehen oder Nachrichten lesen, Verbinden)",
 				"guildLogsText": "Letzte Logs:"
 			}
 		},
@@ -307,8 +307,8 @@
 			"helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
 			"badges": "Abzeichen",
 			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"removeDataConfirmation": ":warning: **Diese Aktion wird alle deine Daten löschen, deine Abzeichen und Server Verbesserungen werden für immer verloren gehen. Bist du sicher dass du fortfahren willst? (Zum Abbrechen ignorieren)**",
+			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt"
 		},
 		"counts": {
 			"helpDescription": "Zeigt einige Zählungen an",
