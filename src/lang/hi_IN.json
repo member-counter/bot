@@ -261,7 +261,7 @@
 				"allowedRolesText": "प्रशासनिक आदेशों का उपयोग करने के लिए अनुमत भूमिकाएँ :",
 				"countersText": "गणके :",
 				"customNumbersText": "वैयक्तीकृत संख्या :",
-				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
+				"warningNoPermsText": "\\⚠️ = अनुमतियों की कमी के कारण बॉट इस चैनल को अपडेट नहीं कर सकता है (आपको बॉट को इसकी अनुमति देनी चाहिए: चैनल प्रबंधित करें, चैनल देखें या संदेश पढ़ें, कनेक्ट करें)",
 				"guildLogsText": "नवीनतम लॉग:"
 			}
 		},
@@ -344,7 +344,7 @@
 			"disabled": "काउंटर अक्षम",
 			"noBanPerms": "मुझे यह दिखाने के लिए प्रतिबंध अनुमति की आवश्यकता है",
 			"invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "उपलब्ध नहीं है, कृपया प्रतीक्षा करें"
 		}
 	},
 	"common": {
