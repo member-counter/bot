@@ -173,7 +173,7 @@
 				{
 					"key": "twitterFollowers",
 					"name": "twitterFollowers:username",
-					"description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Twitteru"
+					"description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Twitter"
 				},
 				{
 					"key": "countdown",
