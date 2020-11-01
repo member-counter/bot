@@ -307,8 +307,8 @@
 			"helpDescription": "Показывает связанную информацию между вами и этим ботом",
 			"badges": "Значки",
 			"serverUpgradesAvailable": "Осталось улучшений сервера",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"removeDataConfirmation": ":warning: **Это действие удалит все ваши данные, ваши значки и серверные улучшения будут потеряны навсегда, вы уверены, что хотите продолжить? (Игнорируйте, чтобы отменить)**",
+			"removeDataSuccess": "Ваши данные были успешно удалены."
 		},
 		"counts": {
 			"helpDescription": "Показывает некоторые счётчики",
