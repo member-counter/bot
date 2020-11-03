@@ -40,7 +40,41 @@ const GameCounter: Counter = {
 				} else {
 					controller.abort();
 					throw new Error(
-						`[GTA5 RAGE-MP] Invalid status code (not 200) in: ${resource}`,
+						`[GTA5 RAGE-MP] Invalid status code (not 200) in: ${host}:${port}`,
+					);
+				}
+				break;
+			}
+
+			case "minecraft-alt": {
+				let hostname = host;
+				if (!Number.isNaN(port)) hostname += port;
+
+				const controller = new AbortController();
+				const response = await timeoutFetch(
+					10000,
+					fetch(`https://api.mcsrvstat.us/2/${hostname}`, {
+						signal: controller.signal,
+						headers: {
+							'User-Agent': `Member Counter Discord Bot/${packageJSON.version}`,
+						},
+					}),
+					controller,
+				);
+		
+				if (response.status === 200) {
+					const data = await response.json();
+					if (data.online) {
+						return data.players?.online;
+					} else {
+						throw new Error(
+							`[Minecraft Alternative] Server offline or invalid address: ${hostname}`,
+						);;
+					}
+				} else {
+					controller.abort();
+					throw new Error(
+						`[Minecraft Alternative] Invalid status code (not 200) in: ${hostname}`,
 					);
 				}
 				break;
