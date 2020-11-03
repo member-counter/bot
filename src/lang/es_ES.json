@@ -261,7 +261,7 @@
 				"allowedRolesText": "Roles que están autorizados a usar comandos administrativos:",
 				"countersText": "Contadores:",
 				"customNumbersText": "Números personalizados:",
-				"warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos",
+				"warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos (Debes permitir al bot al menos a: Administrar el canal, Ver el canal o leer mensajes, conectar)",
 				"guildLogsText": "Últimos registros:"
 			}
 		},
@@ -344,7 +344,7 @@
 			"disabled": "Contador Deshabilitado",
 			"noBanPerms": "Necesito permisos de ban para mostrar esto",
 			"invalidChannelLength": "Nombre de canal invalido, por favor, vuelve a establecerlo",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "No disponible, espere por favor"
 		}
 	},
 	"common": {

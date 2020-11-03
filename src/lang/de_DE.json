@@ -261,7 +261,7 @@
 				"allowedRolesText": "Zulässige Rollen um Verwaltungsbefehle auszuführen:",
 				"countersText": "Zähler:",
 				"customNumbersText": "Benutzerdefinierte Zahlen:",
-				"warningNoPermsText": "\\⚠️ = Der Bot kann diesen Kanal aufgrund fehlender Berechtigungen nicht weiter aktualisieren",
+				"warningNoPermsText": "\\⚠️ = Der Bot kann den Kanal aufgrund Fehlender Berechtigungen nicht weiter bearbeiten (Du musst folgendes erlauben: Kanal Verwalten, Kanal sehen oder Nachrichten lesen, Verbinden)",
 				"guildLogsText": "Letzte Logs:"
 			}
 		},

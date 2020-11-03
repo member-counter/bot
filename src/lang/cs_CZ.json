@@ -173,7 +173,7 @@
 				{
 					"key": "twitterFollowers",
 					"name": "twitterFollowers:username",
-					"description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Twitteru"
+					"description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Twitter"
 				},
 				{
 					"key": "countdown",
@@ -261,7 +261,7 @@
 				"allowedRolesText": "Povolené role, které mohou používat administrativní příkazy:",
 				"countersText": "Počítadla:",
 				"customNumbersText": "Vlastní čísla:",
-				"warningNoPermsText": "\\⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatečných oprávnění",
+				"warningNoPermsText": "\\ ⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatku oprávnění (Botovi musíte povolit: Spravovat kanál, Zobrazit kanál nebo Číst zprávy, Připojit se)",
 				"guildLogsText": "Poslední logy:"
 			}
 		},

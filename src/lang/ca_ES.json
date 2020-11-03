@@ -261,7 +261,7 @@
 				"allowedRolesText": "Els rols següents tenen permés utilitzar comands administratius:",
 				"countersText": "Comptadors:",
 				"customNumbersText": "Dígits personalitzats:",
-				"warningNoPermsText": "\\⚠️ = El bot no pot continuar actualitzant aquest canal degut a falta de permisos",
+				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
 				"guildLogsText": "Latest logs:"
 			}
 		},
