@@ -259,7 +259,7 @@
 				"premiumNoTierText": "Ne",
 				"premiumConfirmedText": "Ano",
 				"allowedRolesText": "Allowed roles to use administrative commands:",
-				"countersText": "Seznam počítel:",
+				"countersText": "Počítadla:",
 				"customNumbersText": "Vlastní čísla:",
 				"warningNoPermsText": "\\⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatečných oprávnění",
 				"guildLogsText": "Poslední logy:"
