@@ -33,7 +33,7 @@
 			"helpDescription": "Показывает вам гайд по использованию бота",
 			"pagesText": "Страница {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Спасибо за добавление Member Counter на ваш сервер!**\n__**Создание/изменение счётчика:**__\nДля этого примера мы будем использовать `{members}`, который считает общее кол-во участников в вашем дискорд сервере, но вы можете найти больше вариаций счётчиков на следующих страницах.\nВы можете поставить этот счётчик в одно из указанных мест:\n\n- В **имя** **голосового** канала\n- В **имя** **категории**\n- В **заголовок** **текстового** канала\n- В **заголовок** **новостного** канала\n\nА теперь создайте новый канал, измените его, и напишите `{members}` в имя этого канала или его заголовок, и нажмите 'сохранить изменения'.\n\nВы также можете добавлять несколько счётчиков в имя канала/заголовок канала, или комбинировать их как вашей душе угодно. Приведём пример:\n```\n{onlineMembers}/{members} Участники Онлайн, {youtubeSubscribers:https://www.youtube.com/user/enyay} Подписчики!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Админы и модераторы онлайн!\n```\n> Если вы достигаете лимита символов, когда вы изменяете имя/заголовок, пожалуйста, проверьте `{PREFIX}help editChannel`\n> Вы можете просмотреть конфигурацию нужного счётчика в `{PREFIX}seeSettings`, это полезно для того, чтобы добавлять больше счётчиков без отключения уже существующих.\n\n__**Удаление счётчика**__\nВ голосовом канале/категории:\nНапишите в имя канала/категории `{disable}`, и Member Counter заменит это на \\✅, что значит вы удалили все счётчики этого канала успешно.\n\nВы также можете удалить канал вручную.",
-			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"countersHeader": "__**Счётчики**__\n> Вы должны включить режим разработчика в Дискорде (Настройки пользователя > Внешний вид > Расширенные > Режим разработчика)\n> Чтобы получить ID, кликните правой кнопкой мыши по каналу/роли и нажмите \"Копировать ID\"\n\n> Счётчики, помеченные звёздочкой (\\*) являются премиум-счётчиками, больше информации сможете найти в `{PREFIX}help upgradeServer`\n\n> Если вы хотите изменить форматирование цифр в счётчике независимо от серверных настроек, просмотрите эту [страницу](https://member-counter.eduardozgz.com/utils/overwrite-settings), или сделайте это вручную следуя [инструкции](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -261,7 +261,7 @@
 				"allowedRolesText": "Роли, которым разрешено использовать админ-команды:",
 				"countersText": "Счётчики:",
 				"customNumbersText": "Кастомизированные числа:",
-				"warningNoPermsText": "\\⚠️ = Бот не может продолжить обновлять этот канал из-за нехватки нужных прав доступа",
+				"warningNoPermsText": "\\⚠️ = Бот не может продолжить обновлять этот канал из-за отсутствия необходимых разрешений (Вы должны разрешить боту: Управление каналами, Просмотр каналов или Чтение сообщений, Подключение)",
 				"guildLogsText": "Последние логи:"
 			}
 		},
@@ -307,8 +307,8 @@
 			"helpDescription": "Показывает связанную информацию между вами и этим ботом",
 			"badges": "Значки",
 			"serverUpgradesAvailable": "Осталось улучшений сервера",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"removeDataConfirmation": ":warning: **Это действие удалит все ваши данные, ваши значки и серверные улучшения будут потеряны навсегда, вы уверены, что хотите продолжить? (Игнорируйте, чтобы отменить)**",
+			"removeDataSuccess": "Ваши данные были успешно удалены."
 		},
 		"counts": {
 			"helpDescription": "Показывает некоторые счётчики",
@@ -344,7 +344,7 @@
 			"disabled": "Счётчик Выключен",
 			"noBanPerms": "Мне нужно право банить, чтобы показать это",
 			"invalidChannelLength": "Достигнут лимит символов в названии канала, пожалуйста, настройте счётчик заново",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "Не доступно, пожалуйста подождите"
 		}
 	},
 	"common": {
