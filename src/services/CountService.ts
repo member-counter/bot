@@ -12,7 +12,7 @@ import counters from "../counters/all";
 const { FOSS_MODE, PREMIUM_BOT, DEBUG } = getEnv();
 
 // Do the aliases lowercase
-counters.forEach((counter) => 
+counters.forEach((counter) =>
   counter.aliases = counter.aliases.map((alias) => alias.toLowerCase())
 );
 
