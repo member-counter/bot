@@ -6,67 +6,17 @@ import botHasPermsToEdit from "../utils/botHasPermsToEdit";
 import stringReplaceAsync from "../utils/stringReplaceAsyncSerial";
 import Constants from "../utils/Constants";
 import Counter from "../typings/Counter";
-
-import TestCounter from "../counters/_test";
-import ErrorCounter from "../counters/_error";
-import BannedMembersCounter from "../counters/bannedMembers";
-import BotStatsCounter from "../counters/bot-stats";
-import ChannelCounter from "../counters/channels";
-import ClockCounter from "../counters/clock";
-import CountdownCounter from "../counters/countdown";
-import GameCounter from "../counters/game";
-import HTTPCounter from "../counters/http";
-import HTTPStringCounter from "../counters/httpString";
-import InstagramCounter from "../counters/Instagram";
-import MemberCounter from "../counters/members";
-import MembersConnectedCounter from "../counters/membersConnected";
-import MembersExtendedCounter from "../counters/membersExt";
-import MembersOnlineApproximatedCounter from "../counters/membersOnlineApproximated";
-import MembersWithRoleCounter from "../counters/membersWithRole";
-import MemeratorCounter from "../counters/Memerator";
-import NitroBoostersCounter from "../counters/nitroBoosters";
-import RolesCounter from "../counters/roles";
-import StaticCounter from "../counters/static";
-import TwitchCounter from "../counters/Twitch";
-import TwitterCounter from "../counters/Twitter";
-import YouTubeCounter from "../counters/YouTube";
 import FormattingSettings from "../typings/FormattingSettings";
-import { count } from "console";
-
-// Do the aliases lowercase
-const counters: Counter[] = [
-  TestCounter,
-  ErrorCounter,
-  BannedMembersCounter,
-  BotStatsCounter,
-  ChannelCounter,
-  ClockCounter,
-  CountdownCounter,
-  GameCounter,
-  HTTPCounter,
-  HTTPStringCounter,
-  InstagramCounter,
-  MemberCounter,
-  MembersConnectedCounter,
-  MembersExtendedCounter,
-  MembersOnlineApproximatedCounter,
-  MembersWithRoleCounter,
-  MemeratorCounter,
-  NitroBoostersCounter,
-  RolesCounter,
-  StaticCounter,
-  TwitchCounter,
-  TwitterCounter,
-  YouTubeCounter,
-].map((counter) => {
-  counter.aliases = counter.aliases.map((alias) => alias.toLowerCase());
-  return counter;
-});
-
-const cache = new Map<string, { value: number | string; expiresAt: number }>();
+import counters from "../counters/all";
 
 const { FOSS_MODE, PREMIUM_BOT, DEBUG } = getEnv();
 
+// Do the aliases lowercase
+counters.forEach((counter) => 
+  counter.aliases = counter.aliases.map((alias) => alias.toLowerCase())
+);
+
+const cache = new Map<string, { value: number | string; expiresAt: number }>();
 setInterval(() => {
   cache.forEach(({ expiresAt }, counterKey) => {
     if (expiresAt < Date.now()) cache.delete(counterKey);
@@ -124,8 +74,7 @@ class CountService {
           const topicToSet = processedContent.slice(0, 1023);
           if (
             botHasPermsToEdit(discordChannel) &&
-            //@ts-ignore
-            discordChannel.topic !== topicToSet
+            (discordChannel as Eris.TextChannel).topic !== topicToSet
           )
             await discordChannel.edit({ topic: topicToSet });
         } else if (counterIsNameType) {
@@ -135,7 +84,6 @@ class CountService {
               : this.languagePack.functions.getCounts.invalidChannelLength;
           if (
             botHasPermsToEdit(discordChannel) &&
-            //@ts-ignore
             discordChannel.name !== nameToSet
           ) {
             await discordChannel.edit({ name: nameToSet });
@@ -378,8 +326,8 @@ class CountService {
     formattingSettingsRaw: string
   ): string {
     return [formattingSettingsRaw, counterName, resource]
-      .filter((x) => x)
-      .join(":");
+      .filter((x) => x) // remove undefined stuff
+      .join(":"); // the final thing will look like "base64Settings:counterName:ExtraParamsAkaResource", like a normal counter but without the curly braces {}
   }
 
   public static getCounters(): Counter[] {

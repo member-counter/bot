@@ -2,9 +2,9 @@ import getEnv from './getEnv';
 import Eris from 'eris';
 import GuildService from '../services/GuildService';
 import { loadLanguagePack } from './languagePack';
-import MemberCounterCommand from '../typings/MemberCounterCommand';
 import memberHasAdminPermission from './memberHasAdminPermission';
 import commandErrorHandler from './commandErrorHandler';
+import commands from '../commands/all';
 
 const {
   PREMIUM_BOT,
@@ -12,33 +12,6 @@ const {
   DISCORD_DEFAULT_LANG,
   DISCORD_OFFICIAL_SERVER_ID,
 } = getEnv();
-
-// Commands
-import statusCommands from '../commands/status';
-import patpatCommands from '../commands/patpat';
-import userCommands from '../commands/user';
-import infoCommands from '../commands/info';
-import helpCommands from '../commands/help';
-import donateCommands from '../commands/donate';
-import settingsCommands from '../commands/settings';
-import countCommands from '../commands/counts';
-import utilCommands from '../commands/utils';
-import guideCommand from '../commands/guide';
-import setupCommand from '../commands/setup';
-
-const commands: Array<MemberCounterCommand> = [
-  ...userCommands,
-  ...statusCommands,
-  ...patpatCommands,
-  ...infoCommands,
-  ...helpCommands,
-  ...donateCommands,
-  ...settingsCommands,
-  ...countCommands,
-  ...utilCommands,
-  ...guideCommand,
-  ...setupCommand
-];
 
 export default async (message: Eris.Message) => {
   const { channel, author, content } = message;
