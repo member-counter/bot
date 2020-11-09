@@ -141,11 +141,13 @@ class GuildService {
 
 	public async resetSettings(): Promise<void> {
 		const premiumStatus = this.premium;
+		const blockedStatus = this.blocked;
 		await GuildLogModel.deleteMany({ guild: this.id });
 		await GuildModel.findOneAndRemove({ guild: this.id });
 		this.doc = await GuildModel.create({
 			guild: this.id,
 			premium: premiumStatus,
+			blocked: blockedStatus
 		});
 	}
 
