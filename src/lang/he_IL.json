@@ -328,6 +328,7 @@
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
+			"categoryName": "📊 Server Stats 📊",
 			"memberCounter": "{members} חברים",
 			"boostingCounter": "{nitro-boosters} Boosting",
 			"rolesCounter": "{roles} Roles",
