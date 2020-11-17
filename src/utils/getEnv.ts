@@ -6,6 +6,15 @@ interface MemberCounterEnv {
 	readonly DEBUG: boolean;
 	readonly FOSS_MODE: boolean;
 	readonly PORT: number;
+	readonly AGENDA_ENABLED_JOBS: string[];
+	readonly GHOST_MODE: boolean;
+
+	readonly DISTRIBUTED: boolean;
+	readonly FIRST_SHARD: number;
+	readonly SHARD_AMOUNT: number;
+	readonly TOTAL_SHARDS: number;
+	readonly REDIS_LOCK_KEY: string;
+	readonly REDIS_PASSWORD: string;
 
 	readonly DB_URI: string;
 

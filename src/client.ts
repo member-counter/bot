@@ -1,7 +1,9 @@
 import Eris from "eris";
 import getEnv from './utils/getEnv';
+import RedisSharder from '@arcanebot/redis-sharder';
 
 import ready from './events/ready';
+import error from './events/error';
 import channelCreate from './events/channelCreate';
 import channelUpdate from './events/channelUpdate';
 import channelDelete from './events/channelDelete';
@@ -10,53 +12,103 @@ import guildMemberAdd from './events/guildMemberAdd';
 import messageCreate from './events/messageCreate';
 import messageReactionAdd from './events/messageReactionAdd';
 import messageReactionRemove from './events/messageReactionRemove';
+import { read } from "fs";
 
-const { PREMIUM_BOT, DISCORD_CLIENT_TOKEN, DEBUG } = getEnv();
+const {
+  PREMIUM_BOT,
+  DISCORD_CLIENT_TOKEN,
+  DEBUG, DISTRIBUTED,
+  FIRST_SHARD,
+  SHARD_AMOUNT,
+  TOTAL_SHARDS,
+  REDIS_LOCK_KEY,
+  REDIS_PASSWORD
+} = getEnv();
 
-const startDiscordClient = (): Eris.Client => {
-  const intents: Eris.IntentStrings[] = [
-    'guildMembers',
-    'guilds',
-    'guildBans',
-    'guildMessages',
-    'directMessages',
-    'guildMessageReactions',
-    'directMessageReactions',
-  ];
-  
-  if (PREMIUM_BOT) intents.push('guildPresences', 'guildVoiceStates');
+type ErisClient = Eris.Client & Partial<RedisSharder.GatewayClient>;
 
-  const client = new Eris.Client(DISCORD_CLIENT_TOKEN, {
-    getAllUsers: PREMIUM_BOT,
-    guildCreateTimeout: 15000,
-    intents,
-    maxShards: 'auto',
-    messageLimit: 0,
-    defaultImageFormat: 'jpg',
-    compress: true,
-    restMode: true,
-  });
-  
-  if (DEBUG) {
-    client.on('debug', console.log);
+class Bot {
+  private static _client = null;
+  static init() {
+    if (this._client) throw new Error("Client is already initialized");
+
+    const intents: Eris.IntentStrings[] = [
+      'guildMembers',
+      'guilds',
+      'guildBans',
+      'guildMessages',
+      'directMessages',
+      'guildMessageReactions',
+      'directMessageReactions',
+    ];
+
+    if (PREMIUM_BOT) intents.push('guildPresences', 'guildVoiceStates');
+
+    const erisOptions: Eris.ClientOptions = {
+      getAllUsers: PREMIUM_BOT,
+      guildCreateTimeout: 15000,
+      intents,
+      maxShards: "auto",
+      messageLimit: 0,
+      defaultImageFormat: 'jpg',
+      compress: true,
+      restMode: true,
+    }
+
+    if (DISTRIBUTED) {
+      // TODO test!
+      const client = new RedisSharder.GatewayClient(DISCORD_CLIENT_TOKEN, {
+        erisOptions: { ...erisOptions, maxShards: TOTAL_SHARDS },
+        shardsPerCluster: SHARD_AMOUNT,
+        lockKey: REDIS_LOCK_KEY,
+        getFirstShard: async () => FIRST_SHARD,
+        redisPassword: REDIS_PASSWORD
+      });
+      this._client = client;
+
+      this.setupEventListeners(client);
+
+      client.queue();
+
+      return client;
+    } else {
+      const client = new Eris.Client(DISCORD_CLIENT_TOKEN, erisOptions);
+      this._client = client;
+
+      this.setupEventListeners(client);
+
+      client.connect();
+
+      return client;
+    }
   }
-  client
-    .on('ready', () => ready(client))
-    .on('error', console.error)
-    .on('warn', console.warn)
-    .on('channelCreate', channelCreate)
-    .on('channelUpdate', channelUpdate)
-    .on('channelDelete', channelDelete)
-    .on('guildCreate', guildCreate)
-    .on('guildMemberAdd', guildMemberAdd)
-    .on('messageCreate', messageCreate)
-    .on('messageUpdate', messageCreate)
-    .on('messageReactionAdd', messageReactionAdd)
-    .on('messageReactionRemove', messageReactionRemove);
-  
-  client.connect();
-  
-  return client;
+
+  private static setupEventListeners(client: Eris.Client) {
+    if (DEBUG) {
+      client.on('debug', console.info);
+    }
+
+    client
+      .on('ready', ready)
+      .on('error', console.error)
+      .on('warn', console.warn)
+      .on('channelCreate', channelCreate)
+      .on('channelUpdate', channelUpdate)
+      .on('channelDelete', channelDelete)
+      .on('guildCreate', guildCreate)
+      .on('guildMemberAdd', guildMemberAdd)
+      .on('messageCreate', messageCreate)
+      .on('messageUpdate', messageCreate)
+      .on('messageReactionAdd', messageReactionAdd)
+      .on('messageReactionRemove', messageReactionRemove);
+  }
+
+  // TODO do something like Eris.Client |
+  static get client(): ErisClient {
+    if (!this._client) throw new Error("You must call .init() first");
+    return this._client;
+  }
 }
 
-export default startDiscordClient;
+export default Bot;
+export { Bot, ErisClient }

@@ -6,39 +6,6 @@ import * as packageJSON from '../../package.json';
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import embedBase from '../utils/embedBase';
 
-const getRealFreeMemory = (): Promise<number> => {
-  return new Promise(async (resolve) => {
-    if (process.platform !== 'linux') {
-      resolve(os.freemem());
-      return;
-    }
-
-    try {
-      const memInfoResult = await fs.readFile('/proc/meminfo', 'utf-8');
-
-      let memInfo: any = {};
-      let realFreeMemory = 0;
-
-      if (typeof memInfoResult === 'string') {
-        memInfoResult.split('\n').forEach((line) => {
-          memInfo[line.split(/:\s+/)[0]] =
-            parseInt(line.split(/:\s+/)[1], 10) * 1024;
-        });
-      } else {
-        resolve(os.freemem());
-        return;
-      }
-
-      realFreeMemory = memInfo.MemFree + memInfo.Buffers + memInfo.Cached;
-
-      resolve(realFreeMemory);
-    } catch (error) {
-      console.error(error);
-      resolve(os.freemem());
-    }
-  });
-};
-
 const parseUptime = (inputDate: number) => {
   //inputDate must be in seconds
   const uptime = new Date(1970, 0, 1);
@@ -96,9 +63,9 @@ const status: MemberCounterCommand = {
               return bytes / 1024 / 1024 / 1024;
             };
 
-            const realFreeMemory = await getRealFreeMemory();
-            const totalMemory = os.totalmem();
-            const memoryUsed = totalMemory - realFreeMemory;
+            const freeMemory = os.freemem(); // TODO 
+            const totalMemory = os.totalmem(); // TODO
+            const memoryUsed = totalMemory - freeMemory;
             const memoryUsage = ((memoryUsed * 100) / totalMemory).toPrecision(
               2,
             );
@@ -117,7 +84,28 @@ const status: MemberCounterCommand = {
         },
         {
           name: '**BOT latency:**',
-          value: `${Date.now() - message.timestamp}ms`,
+          value: `${
+            await (async () => {
+              const time = process.hrtime()[1];
+              await (new Promise(r => setTimeout(r, 0)));
+              const latency = (process.hrtime()[1] - time) / 1000000;
+              return Number(latency.toPrecision(3)); // remove extra decimals
+            })()
+          }ms`,
+          inline: true,
+        },        {
+          name: '**Gateway latency:**',
+          value: `${client.shards.get(client.guildShardMap[message.guildID] || 0).latency}ms`,
+          inline: true,
+        },
+        {
+          name: '**Hostname:**',
+          value: `${os.hostname}`,
+          inline: true,
+        },
+        {
+          name: '**Shard:**',
+          value: `${client.guildShardMap[message.guildID] || 0}`,
           inline: true,
         },
         {
@@ -135,15 +123,16 @@ const status: MemberCounterCommand = {
           value: `${client.users.size} / ${client.guilds.reduce(
             (acc, curr) => acc + curr.memberCount,
             0,
-          )}`,
+          )}`, // TODO
           inline: true,
         },
       ],
     });
 
+    const RESTLatencyCheck = Date.now();
     await channel.createMessage({ embed }).then(async (message) => {
       // Bot latency field
-      embed.fields[6].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
+      embed.fields[6].value = `${Date.now() - RESTLatencyCheck}ms`;
 
       await message.edit({ embed });
     });
