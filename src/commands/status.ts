@@ -63,7 +63,7 @@ const status: MemberCounterCommand = {
               return bytes / 1024 / 1024 / 1024;
             };
 
-            const freeMemory = os.freemem(); // TODO 
+            const freeMemory = os.freemem(); // TODO
             const totalMemory = os.totalmem(); // TODO
             const memoryUsed = totalMemory - freeMemory;
             const memoryUsage = ((memoryUsed * 100) / totalMemory).toPrecision(
