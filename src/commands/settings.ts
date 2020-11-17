@@ -13,12 +13,9 @@ import {
 } from '../utils/languagePack';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
-import messageReactionAdd from '../events/messageReactionAdd';
 import getEnv from '../utils/getEnv';
-import GuildLogModel from '../models/GuildLogModel';
-import { parse } from 'path';
 
-const { DISCORD_PREFIX, PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
+const { PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 
 const seeSettings: MemberCounterCommand = {
 	aliases: ['seeSettings'],

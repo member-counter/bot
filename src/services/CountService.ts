@@ -9,7 +9,7 @@ import Counter from "../typings/Counter";
 import FormattingSettings from "../typings/FormattingSettings";
 import counters from "../counters/all";
 
-const { FOSS_MODE, PREMIUM_BOT, DEBUG } = getEnv();
+const { FOSS_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
 
 // Do the aliases lowercase
 counters.forEach((counter) =>
@@ -21,7 +21,7 @@ setInterval(() => {
   cache.forEach(({ expiresAt }, counterKey) => {
     if (expiresAt < Date.now()) cache.delete(counterKey);
   });
-}, 24 * 60 * 60 * 1000);
+}, 24 * 60 * 60 * 1000); // TODO put this in a job
 
 class CountService {
   private client: Eris.Client;
@@ -75,8 +75,10 @@ class CountService {
           if (
             botHasPermsToEdit(discordChannel) &&
             (discordChannel as Eris.TextChannel).topic !== topicToSet
-          )
+          ) {
+            if (GHOST_MODE) return;
             await discordChannel.edit({ topic: topicToSet });
+          }
         } else if (counterIsNameType) {
           const nameToSet =
             processedContent.length > 2
@@ -86,6 +88,7 @@ class CountService {
             botHasPermsToEdit(discordChannel) &&
             discordChannel.name !== nameToSet
           ) {
+            if (GHOST_MODE) return;
             await discordChannel.edit({ name: nameToSet });
           }
         }
@@ -332,6 +335,10 @@ class CountService {
 
   public static getCounters(): Counter[] {
     return counters;
+  }
+
+  public static getCache() {
+    return cache;
   }
 
   public static getCounterByAlias(alias: string): Counter {

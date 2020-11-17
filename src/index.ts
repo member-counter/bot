@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 import getEnv from './utils/getEnv';
-import startDiscordClient from './client';
-import startStatusWS from './others/status';
-import startDBClient from './db';
+import Bot from './client';
+import DatabaseClient from './db';
+import BasicStatusWebsite from './others/status';
 
-const { NODE_ENV } = getEnv();
+const { NODE_ENV, DISTRIBUTED } = getEnv();
 
-const discordClient = startDiscordClient();
-startDBClient();
-startStatusWS(discordClient);
+Bot.init();
+DatabaseClient.init();
+if (!DISTRIBUTED) BasicStatusWebsite.init();
 
 if (NODE_ENV === "production") {
 	process

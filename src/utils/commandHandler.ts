@@ -11,9 +11,12 @@ const {
   DISCORD_PREFIX,
   DISCORD_DEFAULT_LANG,
   DISCORD_OFFICIAL_SERVER_ID,
+  GHOST_MODE,
 } = getEnv();
 
 export default async (message: Eris.Message) => {
+  if (GHOST_MODE) return;
+
   const { channel, author, content } = message;
 
   // Ignore requested commands in the official server since this server already has the premium bot
