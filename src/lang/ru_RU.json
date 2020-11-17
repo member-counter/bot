@@ -33,177 +33,177 @@
 			"helpDescription": "Показывает вам гайд по использованию бота",
 			"pagesText": "Страница {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Спасибо за добавление Member Counter на ваш сервер!**\n__**Создание/изменение счётчика:**__\nДля этого примера мы будем использовать `{members}`, который считает общее кол-во участников в вашем дискорд сервере, но вы можете найти больше вариаций счётчиков на следующих страницах.\nВы можете поставить этот счётчик в одно из указанных мест:\n\n- В **имя** **голосового** канала\n- В **имя** **категории**\n- В **заголовок** **текстового** канала\n- В **заголовок** **новостного** канала\n\nА теперь создайте новый канал, измените его, и напишите `{members}` в имя этого канала или его заголовок, и нажмите 'сохранить изменения'.\n\nВы также можете добавлять несколько счётчиков в имя канала/заголовок канала, или комбинировать их как вашей душе угодно. Приведём пример:\n```\n{onlineMembers}/{members} Участники Онлайн, {youtubeSubscribers:https://www.youtube.com/user/enyay} Подписчики!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Админы и модераторы онлайн!\n```\n> Если вы достигаете лимита символов, когда вы изменяете имя/заголовок, пожалуйста, проверьте `{PREFIX}help editChannel`\n> Вы можете просмотреть конфигурацию нужного счётчика в `{PREFIX}seeSettings`, это полезно для того, чтобы добавлять больше счётчиков без отключения уже существующих.\n\n__**Удаление счётчика**__\nВ голосовом канале/категории:\nНапишите в имя канала/категории `{disable}`, и Member Counter заменит это на \\✅, что значит вы удалили все счётчики этого канала успешно.\n\nВы также можете удалить канал вручную.",
-			"countersHeader": "__**Счётчики**__\n> Вы должны включить режим разработчика в настройках дискорда (Настройки > Настройки приложения > Внешний вид > Расширенные > Режим разработчика)\n> Чтобы получить ID, нажмите правой кнопкой мыши по каналу/роли и кликните на \"Скопировать ID\"\n\n> Счётчики со звёздочкой (\\*) доступны только в премиум версии, подробнее:`{PREFIX}help upgradeServer`\n\n",
+			"countersHeader": "__**Счётчики**__\n> Вы должны включить режим разработчика в Дискорде (Настройки пользователя > Внешний вид > Расширенные > Режим разработчика)\n> Чтобы получить ID, кликните правой кнопкой мыши по каналу/роли и нажмите \"Копировать ID\"\n\n> Счётчики, помеченные звёздочкой (\\*) являются премиум-счётчиками, больше информации сможете найти в `{PREFIX}help upgradeServer`\n\n> Если вы хотите изменить форматирование цифр в счётчике независимо от серверных настроек, просмотрите эту [страницу](https://member-counter.eduardozgz.com/utils/overwrite-settings), или сделайте это вручную следуя [инструкции](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
-					"premium": false,
-					"name": "{members}",
+					"key": "members",
+					"name": "members",
 					"description": "Все участники вашего сервера"
 				},
 				{
-					"premium": false,
-					"name": "{approximatedOnlineMembers}",
+					"key": "approximatedOnlineMembers",
+					"name": "approximatedOnlineMembers",
 					"description": "Приблизительное кол-во участников онлайн на вашем сервере"
 				},
 				{
-					"premium": true,
-					"name": "{onlineMembers}",
+					"key": "onlineMembers",
+					"name": "onlineMembers",
 					"description": "Участники онлайн на вашем сервере"
 				},
 				{
-					"premium": true,
-					"name": "{offlineMembers}",
+					"key": "offlineMembers",
+					"name": "offlineMembers",
 					"description": "Участники оффлайн на вашем сервере"
 				},
 				{
-					"premium": true,
-					"name": "{users}",
+					"key": "users",
+					"name": "users",
 					"description": "Все пользователи вашего сервера (исключая ботов)"
 				},
 				{
-					"premium": true,
-					"name": "{onlineUsers}",
+					"key": "onlineUsers",
+					"name": "onlineUsers",
 					"description": "Пользователи онлайн на вашем сервере (исключая ботов)"
 				},
 				{
-					"premium": true,
-					"name": "{offlineUsers}",
+					"key": "offlineUsers",
+					"name": "offlineUsers",
 					"description": "Пользователи оффлайн на вашем сервере (исключая ботов)"
 				},
 				{
-					"premium": true,
-					"name": "{bots}",
+					"key": "bots",
+					"name": "bots",
 					"description": "Боты на вашем сервере (исключает нормальных пользователей)"
 				},
 				{
-					"premium": true,
-					"name": "{onlineBots}",
+					"key": "onlineBots",
+					"name": "onlineBots",
 					"description": "Боты онлайн на вашем сервере (исключает нормальных пользователей)"
 				},
 				{
-					"premium": true,
-					"name": "{offlineBots}",
+					"key": "offlineBots",
+					"name": "offlineBots",
 					"description": "Боты оффлайн на вашем сервере (исключает нормальных пользователей)"
 				},
 				{
-					"premium": false,
-					"name": "{roles}",
+					"key": "roles",
+					"name": "roles",
 					"description": "Кол-во ролей на вашем сервере"
 				},
 				{
-					"premium": false,
-					"name": "{channels}",
+					"key": "channels",
+					"name": "channels",
 					"description": "Кол-во каналов на вашем сервере (исключая категории)"
 				},
 				{
-					"premium": true,
-					"name": "{membersWithRole:role1ID,role2ID}",
+					"key": "membersWithRole",
+					"name": "membersWithRole:role1ID,role2ID",
 					"description": "Счётчик участников с определённой ролью/ролями. Необходимо вписать ID роли/ролей после двоеточия, и если их несколько, разделить запятой."
 				},
 				{
-					"premium": true,
-					"name": "{onlineMembersWithRole:role1ID,role2ID}",
+					"key": "onlineMembersWithRole",
+					"name": "onlineMembersWithRole:role1ID,role2ID",
 					"description": "как `{membersWithRole:}` только считает участников онлайн."
 				},
 				{
-					"premium": true,
-					"name": "{offlineMembersWithRole:role1ID,role2ID}",
+					"key": "offlineMembersWithRole",
+					"name": "offlineMembersWithRole:role1ID,role2ID",
 					"description": "как `{membersWithRole:}` только считает участников оффлайн."
 				},
 				{
-					"premium": true,
-					"name": "{connectedMembers}",
+					"key": "connectedMembers",
+					"name": "connectedMembers",
 					"description": "Отображает сумму всех подключённых участников в голосовых каналах."
 				},
 				{
-					"premium": true,
-					"name": "{connectedMembers:channel1ID,channel2ID}",
+					"key": "connectedMembers",
+					"name": "connectedMembers:channel1ID,channel2ID",
 					"description": "как `{connectedMembers}`, но бот будет считать только подключённых участников в указанных каналах. Необходимо вписать ID канала/каналов, в которых вы хотите считать участников после двоеточия, и разделить ID этих каналов запятой (если их несколько)."
 				},
 				{
-					"premium": false,
-					"name": "{bannedMembers}",
+					"key": "bannedMembers",
+					"name": "bannedMembers",
 					"description": "Количество забаненных участников вашего сервера. Необходимо разрешение на выдачу банов у бота, чтобы отображать этот счётчик."
 				},
 				{
-					"premium": false,
-					"name": "{http:url}",
+					"key": "http",
+					"name": "http:url",
 					"description": "Этот счётчик будет отображать возвращённое значение, данное ответом от специфического ресурса, бот будет выполнять `GET` запрос и сервер **должен** ответить с кодом состояния `200` и с `content-type: text/plain` возвратом, пример: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
-					"premium": false,
-					"name": "{http-string:url}",
+					"key": "http-string",
+					"name": "http-string:url",
 					"description": "Как `{http}`, но бот не будет ничего парсить, удобно для отображения имён вместо чисел"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeSubscribers:channelUrl}",
+					"key": "youtubeSubscribers",
+					"name": "youtubeSubscribers:channelUrl",
 					"description": "Отображает кол-во подписчиков YouTube канала, замените channelUrl на ссылку желаемого канала."
 				},
 				{
-					"premium": true,
-					"name": "{youtubeViews:channelUrl}",
+					"key": "youtubeViews",
+					"name": "youtubeViews:channelUrl",
 					"description": "Отображает просмотры YouTube канала."
 				},
 				{
-					"premium": true,
-					"name": "{youtubeVideos:channelUrl}",
+					"key": "youtubeVideos",
+					"name": "youtubeVideos:channelUrl",
 					"description": "Отображает кол-во видео на YouTube канале."
 				},
 				{
-					"premium": true,
-					"name": "{twitchFollowers:channelName}",
+					"key": "twitchFollowers",
+					"name": "twitchFollowers:channelName",
 					"description": "Отображает фолловеров Twitch, замените channelName имя желаемого канала."
 				},
 				{
-					"premium": true,
-					"name": "{twitchViews:channelName}",
+					"key": "twitchViews",
+					"name": "twitchViews:channelName",
 					"description": "Отображает просмотры Twitch канала."
 				},
 				{
-					"premium": false,
-					"name": "{memeratorMemes:username}",
+					"key": "memeratorMemes",
+					"name": "memeratorMemes:username",
 					"description": "Отображает кол-во мемов пользователя [Memerator](https://memerator.me). Замените `username` на желаемое имя профиля."
 				},
 				{
-					"premium": false,
-					"name": "{memeratorFollowers:username}",
+					"key": "memeratorFollowers",
+					"name": "memeratorFollowers:username",
 					"description": "Отображает кол-во подписчиков пользователя [Memerator](https://memerator.me). Замените `username` на желаемое имя профиля."
 				},
 				{
-					"premium": true,
-					"name": "{twitterFollowers:username}",
+					"key": "twitterFollowers",
+					"name": "twitterFollowers:username",
 					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Twitter."
 				},
 				{
-					"premium": false,
-					"name": "{countdown:targetDate:format}",
+					"key": "countdown",
+					"name": "countdown:targetDate:format",
 					"description": "Отображает заданный вами обратный отсчет, время которого закончится на указанной вами дате, вы можете легко [сгенерировать этот счётчик здесь](https://member-counter.eduardozgz.com/utils/countdown) или же создать его вручную путём замены значения `targetDate` на нужную дату в временном формате UNIX, также присутствует выбор отображаемого в счётчике формата - `format`: используйте `%d` для отображения оставшихся дней, `%h` для отображения оставшихся часов, `%m` для отображения оставшихся минут и `%s` для отображения оставшихся секунд в счётчике."
 				},
 				{
-					"premium": false,
-					"name": "{game:gameId:address}",
+					"key": "game",
+					"name": "game:gameId:address",
 					"description": "Игроки онлайн на игровых серверах (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, и т.д.). Не забудьте заменить значение`gameId` на то, которое вам нужно [(их список здесь)](https://github.com/gamedig/node-gamedig/#games-list) и значение `address` заменить на актуальный адрес сервера. Пример: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
-					"premium": false,
-					"name": "{clock:timeZone}",
+					"key": "clock",
+					"name": "clock:timeZone",
 					"description": "Показывает часы с временем указанной временной зоны, вы можете легко [сгенерировать этот счётчик здесь](https://member-counter.eduardozgz.com/utils/clock) или заменить `timeZone` валидным IANA значением временной зоны. Пример: `{clock:Europe/Madrid}`"
 				},
 				{
-					"premium": false,
-					"name": "{nitro-boosters}",
+					"key": "nitro-boosters",
+					"name": "nitro-boosters",
 					"description": "Показывает общее количество участников, которые использовали буст для этого сервера"
 				},
 				{
-					"premium": false,
-					"name": "{static:number}",
+					"key": "static",
+					"name": "static:number",
 					"description": "Показывает заданное число с форматированием, основанным на настройках сервера"
 				},
 				{
-					"premium": true,
-					"name": "{instagramFollowers:username}",
-					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
+					"key": "instagramFollowers",
+					"name": "instagramFollowers:username",
+					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Instagram."
 				}
 			]
 		},
@@ -254,14 +254,14 @@
 				"prefixText": "Префикс:",
 				"langText": "Язык:",
 				"localeText": "Локализация:",
-				"shortNumberText": "Short number (compact notation):",
+				"shortNumberText": "Сокращенная форма числа: ",
 				"premiumText": "Премиум:",
 				"premiumNoTierText": "Нет",
 				"premiumConfirmedText": "Да",
 				"allowedRolesText": "Роли, которым разрешено использовать админ-команды:",
 				"countersText": "Счётчики:",
 				"customNumbersText": "Кастомизированные числа:",
-				"warningNoPermsText": "\\⚠️ = Бот не может продолжить обновлять этот канал из-за нехватки нужных прав доступа",
+				"warningNoPermsText": "\\⚠️ = Бот не может продолжить обновлять этот канал из-за отсутствия необходимых разрешений (Вы должны разрешить боту: Управление каналами, Просмотр каналов или Чтение сообщений, Подключение)",
 				"guildLogsText": "Последние логи:"
 			}
 		},
@@ -306,7 +306,9 @@
 		"profile": {
 			"helpDescription": "Показывает связанную информацию между вами и этим ботом",
 			"badges": "Значки",
-			"serverUpgradesAvailable": "Осталось улучшений сервера"
+			"serverUpgradesAvailable": "Осталось улучшений сервера",
+			"removeDataConfirmation": ":warning: **Это действие удалит все ваши данные, ваши значки и серверные улучшения будут потеряны навсегда, вы уверены, что хотите продолжить? (Игнорируйте, чтобы отменить)**",
+			"removeDataSuccess": "Ваши данные были успешно удалены."
 		},
 		"counts": {
 			"helpDescription": "Показывает некоторые счётчики",

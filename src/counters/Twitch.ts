@@ -1,14 +1,15 @@
-import twitch from 'twitch';
+import { ApiClient, ClientCredentialsAuthProvider } from 'twitch';
 import getEnv from '../utils/getEnv';
 import Counter from '../typings/Counter';
-import Constants from '../utils/Constants';
 
 const { TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET } = getEnv();
 
-const client = twitch.withClientCredentials(
+const authProvider = new ClientCredentialsAuthProvider(
 	TWITCH_CLIENT_ID,
 	TWITCH_CLIENT_SECRET,
 );
+
+const client = new ApiClient({ authProvider });
 
 const TwitchCounter: Counter = {
 	aliases: ['twitchFollowers', 'twitchViews'],

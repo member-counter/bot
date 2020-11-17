@@ -1,15 +1,15 @@
 {
 	"name": "member-counter-bot",
-	"version": "0.13.0",
+	"version": "0.14.7",
 	"engines": {
 		"node": ">=14.0"
 	},
 	"description": "",
-	"main": "./src/index.ts",
+	"main": "./dist/src/index.js",
 	"scripts": {
-		"start": "node ./dist/src/index.js",
+		"start": "node .",
 		"build": "tsc && gulp",
-		"dev": "nodemon --inspect src/index.ts"
+		"dev": "ts-node-dev --inspect --ignore-watch node_modules src/index.ts"
 	},
 	"repository": {
 		"type": "git",
@@ -22,9 +22,6 @@
 	},
 	"homepage": "https://member-counter.eduardozgz.com",
 	"dependencies": {
-		"@types/gamedig": "^1.0.1",
-		"@types/node-fetch": "^2.5.7",
-		"@types/ws": "^7.2.6",
 		"abort-controller": "^3.0.0",
 		"bufferutil": "^4.0.1",
 		"dotenv": "^8.2.0",
@@ -32,23 +29,26 @@
 		"eris": "^0.13.3",
 		"erlpack": "^0.1.3",
 		"express": "^4.17.1",
-		"gamedig": "^2.0.21",
-		"gulp": "^4.0.2",
+		"gamedig": "^2.0.23",
 		"lodash.clonedeep": "^4.5.0",
-		"mongoose": "^5.9.11",
-		"node-fetch": "^2.6.0",
-		"twitch": "^4.0.9",
+		"mongoose": "^5.10.5",
+		"node-fetch": "^2.6.1",
+		"twitch": "^4.2.2",
 		"twitter": "^1.7.1",
-		"ws": "^7.3.0",
-		"zlib-sync": "^0.1.6"
+		"ws": "^7.3.1",
+		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {
-		"@types/mongoose": "^5.7.32",
-		"@types/node": "^13.11.1",
-		"nodemon": "^2.0.4",
-		"ts-node": "^8.8.2",
-		"tslint": "^6.1.1",
-		"typescript": "^3.9.5",
-		"typescript-tslint-plugin": "^0.5.5"
+		"@types/mongoose": "^5.7.36",
+		"@types/node": "^13.13.19",
+		"@types/express": "^4.17.8",
+		"@types/gamedig": "^1.0.1",
+		"@types/node-fetch": "^2.5.7",
+		"@types/ws": "^7.2.6",
+		"tslint": "^6.1.3",
+		"typescript": "^3.9.7",
+		"typescript-tslint-plugin": "^0.5.5",
+		"ts-node-dev": "^1.0.0-pre.62",
+		"gulp": "^4.0.2"
 	}
 }

@@ -3,7 +3,6 @@ import AbortController from 'abort-controller';
 import * as packageJSON from '../../package.json';
 import timeoutFetch from '../utils/timeoutFetch';
 import Counter from '../typings/Counter';
-import Constants from '../utils/Constants';
 
 const HTTPCounter: Counter = {
 	aliases: ['http', 'https'],
@@ -31,7 +30,7 @@ const HTTPCounter: Counter = {
 			return parseFloat(await response.text());
 		} else {
 			controller.abort();
-			throw new Error(`Invalid status code (not 200) in: ${resource}`);
+			throw new Error(`Invalid status code (not 200) or invalid Content-Type (not text/plain) in: ${resource}`);
 		}
 	},
 };

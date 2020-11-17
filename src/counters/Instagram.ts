@@ -11,7 +11,7 @@ const InstagramCounter: Counter = {
 			`https://www.instagram.com/${resource}/?__a=1`,
 		).then((response) => response.json());
 
-		return response?.graphql?.user?.edge_follow?.count
+		return response?.graphql?.user?.edge_followed_by?.count
 	}
 }
 

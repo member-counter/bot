@@ -22,7 +22,24 @@ const setup: MemberCounterCommand = {
 			const { guild } = channel;
 			const guildService = await GuildService.init(guild.id);
 			const countService = await CountService.init(guild);
-
+			const categoryName = languagePack.commands.setup.categoryName
+			const category = await guild.createChannel(categoryName, 4, {
+				permissionOverwrites: [
+						{
+								id: channel.client.user.id,
+								type: 'member',
+								allow: 0x00100000 | 0x00000400,
+								deny: 0,
+						},
+						{
+								id: guild.id,
+								type: 'role',
+								allow: 0,
+								deny: 0x00100000,
+						},
+				],
+		})
+		const categoryID = category.id; 
 			channelsToCreate.forEach(async (content) => {
 				guild
 					.createChannel(
@@ -43,6 +60,7 @@ const setup: MemberCounterCommand = {
 									deny: 0x00100000,
 								},
 							],
+							parentID: categoryID
 						},
 					)
 					.then((channel) => {

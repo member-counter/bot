@@ -1,5 +1,6 @@
 import Eris from 'eris';
 import GuildService from '../services/GuildService';
+import FormattingSettings from './FormattingSettings';
 
 interface executeArgs {
 	client: Eris.Client;
@@ -10,9 +11,14 @@ interface executeArgs {
 	guild: Eris.Guild;
 
 	/**
-	 * @description Current guild
+	 * @description Current guild settings
 	 */
 	guildSettings: GuildService;
+
+	/**
+	 * @description Formatting settings for the couner
+	 */
+	formattingSettings: FormattingSettings;
 
 	/**
 	 * @description Resource, like an array of role IDs, or an URI
@@ -48,7 +54,6 @@ interface Counter {
 	lifetime: number;
 
 	/**
-	 * @description When is executed,  form where is currently being used, and the resource (like a URI or discord roles)
 	 * @returns {number|string|object} When a number is returned, it will be processed depending on the guild settings, when a string is returned, it will be displayed directly, if it's a object, the keys (counter name) and it's values (string|number) will be added to the cache
 	 */
 	execute: executeFunction;

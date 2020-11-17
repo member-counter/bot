@@ -33,176 +33,176 @@
 			"helpDescription": "Pokazuje poradnik jak użyć bota",
 			"pagesText": "Strona {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "** Dziękujemy za dodanie Member Counter do serwera! **\n__ ** Utwórz / edytuj licznik ** __\nW tym przykładzie użyjemy `{members}`, która zlicza całkowitą liczbę członków na twoim serwerze discord, ale znajdziesz więcej liczników na następnych stronach\nMożesz umieścić ten licznik w jednym z następujących miejsc:\n\n- W ** głosowym ** kanale ** nazwa **\n- W  ** kategorii ** knału ** nazwa **\n- W ** tekstowym ** kanale ** temat **\n- W ** wiadomości  ** kanału ** temat *\n\nTeraz utwórz nowy kanał, edytuj go i napisz „{members}` w nazwie lub temacie i kliknij „zapisz zmiany”\n\nMożesz także dodać wiele liczników do jednej nazwy / tematu i połączyć je z własną treścią, oto przykład:\n\n{onlineMembers}/{members} Członkowie Online, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subskrypcje!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admini i moderatorzy są online!\n```\n\n> Jeśli osiągniesz limit znaków podczas edytowania nazwy/tematu, sprawdź „{PREFIX} help editChannel`\n> Możesz zobaczyć bieżące konfiguracje liczników za pomocą `{PREFIX} seeSettings`, przydatne jest dodanie większej liczby liczników bez wyłączania poprzednich\n\n__ ** Usuń licznik ** __\nW nazwie kanału głosowego / kategorii:\nEdytuj nazwę kanału i wpisz „{disable}” w nazwie, Member Counter zastąpi ją „✔”, co oznacza, że ​​pomyślnie usunąłeś wszystkie liczniki tego kanału\n\nMożesz także usunąć kanał bezpośrednio",
-			"countersHeader": "__**Liczniki**__\n> Powinieneś włączyć tryb programisty w Discord (Ustawienia użytkownika> Wygląd> Zaawansowane> Tryb programisty)\n> Aby uzyskać identyfikator, kliknij prawym przyciskiem myszy na kanał/ rolę i kliknij „Kopiuj identyfikator”\n\n> Liczniki z ateriskem (\\ *) są licznikami premium, więcej informacji znajdziesz w `{PREFIX}help upgradeServer`\n\n",
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
-					"premium": false,
-					"name": "{members}",
+					"key": "members",
+					"name": "members",
 					"description": "Członkowie na twoim serwerze"
 				},
 				{
-					"premium": false,
-					"name": "{approximatedOnlineMembers}",
+					"key": "approximatedOnlineMembers",
+					"name": "approximatedOnlineMembers",
 					"description": "Approximated online members in your server"
 				},
 				{
-					"premium": true,
-					"name": "{onlineMembers}",
+					"key": "onlineMembers",
+					"name": "onlineMembers",
 					"description": "Członkowie online na twoim serwerze"
 				},
 				{
-					"premium": true,
-					"name": "{offlineMembers}",
+					"key": "offlineMembers",
+					"name": "offlineMembers",
 					"description": "Członkowie offline na twoim serwerze"
 				},
 				{
-					"premium": true,
-					"name": "{users}",
+					"key": "users",
+					"name": "users",
 					"description": "Użytkownicy na twoim serwerze (bez bota)"
 				},
 				{
-					"premium": true,
-					"name": "{onlineUsers}",
+					"key": "onlineUsers",
+					"name": "onlineUsers",
 					"description": "Użytkownicy online na twoim serwerze (bez bota)"
 				},
 				{
-					"premium": true,
-					"name": "{offlineUsers}",
+					"key": "offlineUsers",
+					"name": "offlineUsers",
 					"description": "Użytkownicy offline na twoim serwerze (nie dotyczy bota)"
 				},
 				{
-					"premium": true,
-					"name": "{bots}",
+					"key": "bots",
+					"name": "bots",
 					"description": "Boty na twoim serwerze (z wyłączeniem zwykłych użytkowników)"
 				},
 				{
-					"premium": true,
-					"name": "{onlineBots}",
+					"key": "onlineBots",
+					"name": "onlineBots",
 					"description": "Boty online na twoim serwerze (z wyłączeniem zwykłych użytkowników)"
 				},
 				{
-					"premium": true,
-					"name": "{offlineBots}",
+					"key": "offlineBots",
+					"name": "offlineBots",
 					"description": "Offline boty na twoim serwerze (nie dotyczy zwykłych użytkowników)"
 				},
 				{
-					"premium": false,
-					"name": "{roles}",
+					"key": "roles",
+					"name": "roles",
 					"description": "Role na twoim serwerze"
 				},
 				{
-					"premium": false,
-					"name": "{channels}",
+					"key": "channels",
+					"name": "channels",
 					"description": "Kanały na twoim serwerze (nie obejmuje kanałów kategorii)"
 				},
 				{
-					"premium": true,
-					"name": "{membersWithRole:role1ID,role2ID}",
+					"key": "membersWithRole",
+					"name": "membersWithRole:role1ID,role2ID",
 					"description": "Ten licznik zlicza, ile członków ma rolę lub kilka ról, zapisz identyfikatory ról, które chcesz policzyć po `:`, i oddziel identyfikatory ról przecinkami `,`"
 				},
 				{
-					"premium": true,
-					"name": "{onlineMembersWithRole:role1ID,role2ID}",
+					"key": "onlineMembersWithRole",
+					"name": "onlineMembersWithRole:role1ID,role2ID",
 					"description": "Jak `{membersWithRole:}` ale liczy tylko tych członków online"
 				},
 				{
-					"premium": true,
-					"name": "{offlineMembersWithRole:role1ID,role2ID}",
+					"key": "offlineMembersWithRole",
+					"name": "offlineMembersWithRole:role1ID,role2ID",
 					"description": "Jak `{membersWithRole:}` ale liczy tylko tych członków offline"
 				},
 				{
-					"premium": true,
-					"name": "{connectedMembers}",
+					"key": "connectedMembers",
+					"name": "connectedMembers",
 					"description": "Łączna liczba połączonych członków w kanałach głosowych"
 				},
 				{
-					"premium": true,
-					"name": "{connectedMembers:channel1ID,channel2ID}",
+					"key": "connectedMembers",
+					"name": "connectedMembers:channel1ID,channel2ID",
 					"description": "Jak {connectedMembers}, ale bot policzy tylko połączonych członków w określonych kanałach, zapisze identyfikatory kanałów, które chcesz policzyć po `:`, i oddzieli ID kanałów przecinkami `,`"
 				},
 				{
-					"premium": false,
-					"name": "{bannedMembers}",
+					"key": "bannedMembers",
+					"name": "bannedMembers",
 					"description": "Liczba zablokowanych członków na twoim serwerze, bot musi mieć uprawnienia do banowania, aby wyświetlić tę liczbę"
 				},
 				{
-					"premium": false,
-					"name": "{http:url}",
+					"key": "http",
+					"name": "http:url",
 					"description": "To wyświetli zwrócona liczbe podanej w odpowiedzi na określony zasób, bot ykona żądanie `GET`, a serwer **musi** odpowiedzieć kodem stanu `200` i `content-type: text/plain` Przykład: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
-					"premium": false,
-					"name": "{http-string:url}",
+					"key": "http-string",
+					"name": "http-string:url",
 					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeSubscribers:channelUrl}",
+					"key": "youtubeSubscribers",
+					"name": "youtubeSubscribers:channelUrl",
 					"description": "Wpokazuje subskrybentów kanału youtube, zamień channelUrl na żądany adres Url kanału"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeViews:channelUrl}",
+					"key": "youtubeViews",
+					"name": "youtubeViews:channelUrl",
 					"description": "Pokazujea wyświetlenia kanałów YouTube"
 				},
 				{
-					"premium": true,
-					"name": "{youtubeVideos:channelUrl}",
+					"key": "youtubeVideos",
+					"name": "youtubeVideos:channelUrl",
 					"description": "Displays a youtube channel video count"
 				},
 				{
-					"premium": true,
-					"name": "{twitchFollowers:channelName}",
+					"key": "twitchFollowers",
+					"name": "twitchFollowers:channelName",
 					"description": "Pokazuje obserwujących kanał twitch, zamień channelName na żądaną nazwę kanału"
 				},
 				{
-					"premium": true,
-					"name": "{twitchViews:channelName}",
+					"key": "twitchViews",
+					"name": "twitchViews:channelName",
 					"description": "Pokazuje wyświetlenia kanałów twitch"
 				},
 				{
-					"premium": false,
-					"name": "{memeratorMemes:username}",
+					"key": "memeratorMemes",
+					"name": "memeratorMemes:username",
 					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
 				},
 				{
-					"premium": false,
-					"name": "{memeratorFollowers:username}",
+					"key": "memeratorFollowers",
+					"name": "memeratorFollowers:username",
 					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
 				},
 				{
-					"premium": true,
-					"name": "{twitterFollowers:username}",
+					"key": "twitterFollowers",
+					"name": "twitterFollowers:username",
 					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
 				},
 				{
-					"premium": false,
-					"name": "{countdown:targetDate:format}",
+					"key": "countdown",
+					"name": "countdown:targetDate:format",
 					"description": "Pokazuje odliczanie, które spadnie do określonej daty docelowej, możesz łatwo [wygenerować ten licznik tutaj](https://member-counter.eduardozgz.com/utils/countdown) lub ręcznie utworzyć go, zastępując `targetDate` celem data w znaczniku czasu UNIX i opcjonalnie sformatuj 'go niestandardowym formatem: użyj `%d`, aby wyświetlić pozostałe dni, `%h`, aby wyświetlić pozostałe godziny, `%m`, aby wyświetlić pozostałe minuty, i `%s`, aby pokazać pozostałe sekundy"
 				},
 				{
-					"premium": false,
-					"name": "{game:gameId:address}",
+					"key": "game",
+					"name": "game:gameId:address",
 					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
-					"premium": false,
-					"name": "{clock:timeZone}",
+					"key": "clock",
+					"name": "clock:timeZone",
 					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
 				},
 				{
-					"premium": false,
-					"name": "{nitro-boosters}",
+					"key": "nitro-boosters",
+					"name": "nitro-boosters",
 					"description": "Shows the total amount of members boosting this server"
 				},
 				{
-					"premium": false,
-					"name": "{static:number}",
+					"key": "static",
+					"name": "static:number",
 					"description": "Shows the given `number` with custom formatting based on the server settings"
 				},
 				{
-					"premium": true,
-					"name": "{instagramFollowers:username}",
+					"key": "instagramFollowers",
+					"name": "instagramFollowers:username",
 					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
 				}
 			]
@@ -261,7 +261,7 @@
 				"allowedRolesText": "Role które mają dostęp do korzystania z poleceń administracyjnych:",
 				"countersText": "Liczniki:",
 				"customNumbersText": "Niestandardowe numery:",
-				"warningNoPermsText": "\\⚠️ = Bot nie może kontynuować aktualizacji tego kanału z powodu braku uprawnień",
+				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
 				"guildLogsText": "Latest logs:"
 			}
 		},
@@ -306,7 +306,9 @@
 		"profile": {
 			"helpDescription": "Pokazuje powiązane informacje między tobą a tym botem",
 			"badges": "Odznaki",
-			"serverUpgradesAvailable": "Zostały aktualizacje serwera"
+			"serverUpgradesAvailable": "Zostały aktualizacje serwera",
+			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
+			"removeDataSuccess": "Your data has been removed successfully"
 		},
 		"counts": {
 			"helpDescription": "Pokazuje niektóre liczby",
