@@ -1,11 +1,11 @@
 {
-	"langCode": "en_US",
-	"langName": "English (US)",
+	"langCode": "he_IL",
+	"langName": "עברית (IL)",
 	"commands": {
 		"help": {
-			"helpDescription": "It's really necessary to explain the purpose of this command?",
+			"helpDescription": "האם זה באמת נחוץ לתרגם את המטרה של הפקודה הזו?",
 			"embedReply": {
-				"title": "Command list | prefix: {PREFIX}",
+				"title": "רשימת פקודות | קידומת {PREFIX}",
 				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
@@ -26,7 +26,7 @@
 				]
 			},
 			"misc": {
-				"command": "Command:"
+				"command": "פקודה:"
 			}
 		},
 		"guide": {
