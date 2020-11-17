@@ -93,7 +93,7 @@
 				{
 					"key": "channels",
 					"name": "channels",
-					"description": "Channels in your server (excludes category channels)"
+					"description": "ערוצים בשרת שלך (לא כולל ערוצי קטגוריות)"
 				},
 				{
 					"key": "membersWithRole",
