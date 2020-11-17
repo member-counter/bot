@@ -328,6 +328,7 @@
 		},
 		"setup": {
 			"helpDescription": "Cria alguns canais de voz bloqueados com alguns contadores neles\n**Exemplo**```{PREFIX}setup```",
+			"categoryName": "📊 Server Stats 📊",
 			"memberCounter": "{members} Membros",
 			"boostingCounter": "{nitro-boosters} Boosting",
 			"rolesCounter": "{roles} Cargos",
