@@ -39,7 +39,7 @@ const setup: MemberCounterCommand = {
 						},
 				],
 		})
-		const categoryID = category.id
+		const categoryID = category.id;
 			channelsToCreate.forEach(async (content) => {
 				guild
 					.createChannel(
