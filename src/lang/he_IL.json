@@ -209,10 +209,10 @@
 		},
 		"lockChannel": {
 			"helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
-			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
+			"success": "הושלם! עכשיו, **למשתמשים ללא הרשאות אדמין**, הערוץ יוצג עם סימן של 🔒",
 			"errorInvalidChannel": "אפשרי לנעול רק ערוצי אודיו!",
-			"errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-			"errorNotFound": "Channel not found"
+			"errorNoPerms": "אני לא יכול לערוך את הערוץ `{CHANNEL}` בגלל חוסר בהרשאות",
+			"errorNotFound": "ערוץ לא נמצא"
 		},
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
@@ -222,15 +222,15 @@
 		},
 		"setDigit": {
 			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-			"success": "Digits customized.",
-			"resetSuccess": "Numbers restored to the default ones.",
+			"success": "ספרות הותאמו אישית.",
+			"resetSuccess": "מספרים הוחזרו להגדרות ברירת המחדל.",
 			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
 			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
-			"success": "Done! You may have to wait a few seconds to see the new changes"
+			"success": "הושלם! אולי תצטרך להמתין מספר שניות כדי לראות את השינויים החדשים"
 		},
 		"locale": {
 			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
@@ -238,19 +238,19 @@
 		},
 		"prefix": {
 			"helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
-			"success": "Prefix changed to: `{NEW_PREFIX}`",
+			"success": "קידומת שונתה ל: `{NEW_PREFIX}`",
 			"noPrefixProvided": "חייב לספק קידומת"
 		},
 		"role": {
 			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
 			"rolesUpdated": "תפקידים עודכנו.",
 			"errorNoRolesToUpdate": "חייב לציין לפחות תפקיד אחד",
-			"invalidParams": "Invalid parameters, see `{PREFIX}help role`"
+			"invalidParams": "נתונים לא חוקיים, תראה `{PREFIX}help role`"
 		},
 		"seeSettings": {
-			"helpDescription": "Shows all bot settings for this server.",
+			"helpDescription": "מראה את כל הגדרות הבוט לשרת הזה.",
 			"settingsMessage": {
-				"headerText": "Settings for guild:",
+				"headerText": "הגדרות בשרת:",
 				"prefixText": "קידומת:",
 				"langText": "שפה:",
 				"localeText": "איזור:",
@@ -271,7 +271,7 @@
 		},
 		"update": {
 			"helpDescription": "If you think the counters are stuck use this command to update them again.",
-			"inProgress": "Updating the counters, this may take a while.",
+			"inProgress": "מעדכן את המדדים, זה אולי יקח קצת זמן.",
 			"success": "הושלם.",
 			"wait": "חכה! אני כבר מעדכן את זה!"
 		},
