@@ -21,6 +21,7 @@ const status: MemberCounterCommand = {
   onlyAdmin: false,
   run: async ({ message }) => {
     const { channel } = message;
+    // TODO adapt to new client
     const { client } = channel;
     const { version } = packageJSON;
 

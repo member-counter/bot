@@ -1,5 +1,8 @@
+import Bot from "../client";
+
 // TODO
 setInterval(() => {
+  const { client } = Bot;
   if (FOSS_MODE || PREMIUM_BOT) return;
   const botUser = client.users.get(client.user.id);
   client.users.clear();

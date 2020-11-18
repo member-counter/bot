@@ -3,6 +3,7 @@ import UserError from '../utils/UserError';
 import CountService from '../services/CountService';
 import { GuildChannel } from 'eris';
 import GuildService from '../services/GuildService';
+import Bot from '../client';
 
 const setup: MemberCounterCommand = {
 	aliases: ['setup'],
@@ -19,6 +20,7 @@ const setup: MemberCounterCommand = {
 		];
 
 		if (channel instanceof GuildChannel) {
+			const { client } = Bot;
 			const { guild } = channel;
 			const guildService = await GuildService.init(guild.id);
 			const countService = await CountService.init(guild);
@@ -26,7 +28,7 @@ const setup: MemberCounterCommand = {
 			const category = await guild.createChannel(categoryName, 4, {
 				permissionOverwrites: [
 						{
-								id: channel.client.user.id,
+								id: client.user.id,
 								type: 'member',
 								allow: 0x00100000 | 0x00000400,
 								deny: 0,
@@ -48,7 +50,7 @@ const setup: MemberCounterCommand = {
 						{
 							permissionOverwrites: [
 								{
-									id: channel.client.user.id,
+									id: client.user.id,
 									type: 'member',
 									allow: 0x00100000 | 0x00000400,
 									deny: 0,
