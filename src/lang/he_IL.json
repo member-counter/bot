@@ -210,7 +210,7 @@
 		"lockChannel": {
 			"helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
-			"errorInvalidChannel": "אתה יכול לנעול רק ערוצי אודיו!",
+			"errorInvalidChannel": "אפשרי לנעול רק ערוצי אודיו!",
 			"errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
 			"errorNotFound": "Channel not found"
 		},
@@ -272,25 +272,25 @@
 		"update": {
 			"helpDescription": "If you think the counters are stuck use this command to update them again.",
 			"inProgress": "Updating the counters, this may take a while.",
-			"success": "Done.",
-			"wait": "Wait! I'm already updating it!"
+			"success": "הושלם.",
+			"wait": "חכה! אני כבר מעדכן את זה!"
 		},
 		"upgradeServer": {
 			"helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
-			"success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-			"errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
+			"success": "הושלם! השלב הבא הוא להזמין את הבוט פרימיום:\n{BOT_LINK}",
+			"errorCannotUpgrade": "אי אפשר לשדרג את השרת הזה כי לשרת כבר יש פרימיום.",
 			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
 		},
 		"info": {
-			"helpDescription": "List of useful links",
+			"helpDescription": "רשימה של לינקים שימושים",
 			"embedReply": {
 				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
 			}
 		},
 		"lang": {
-			"helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-			"success": "Language changed successfully.",
-			"errorNotFound": "List of available languages:"
+			"helpDescription": "משנה את השפה של הבוט בשרת הזה, מחייב להיות בעל הרשאת אדמיניסטרטור בשביל להריץ את הפקודה הזו.",
+			"success": "השפה השתנתה בהצלחה.",
+			"errorNotFound": "רשימה של שפות אפשריות:"
 		},
 		"donate": {
 			"helpDescription": "Shows the top donations.",
@@ -304,9 +304,9 @@
 			"errorExchangeFetch": "Error while trying to fetch exchange rates"
 		},
 		"profile": {
-			"helpDescription": "Shows related information between you and this bot",
-			"badges": "Badges",
-			"serverUpgradesAvailable": "Server upgrades left",
+			"helpDescription": "מראה מידע רלוונטי בינך לבין הבוט הזה",
+			"badges": "תגים",
+			"serverUpgradesAvailable": "שידרוגי שרת נותרים",
 			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
 			"removeDataSuccess": "המידע שלך הוסר בהצלחה"
 		},
@@ -323,14 +323,14 @@
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
-			"channelName": "Channel name preview",
-			"channelTopic": "Channel topic preview"
+			"channelName": "תצוגה מוקדמת לשם ערוץ",
+			"channelTopic": "תצוגה מוקדמת לנושא ערוץ"
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
 			"memberCounter": "{members} חברים",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
+			"boostingCounter": "{nitro-boosters} בוסטרים",
+			"rolesCounter": "{roles} תפקידים",
 			"channelsCounter": "{channels} ערוצים"
 		}
 	},
@@ -350,7 +350,7 @@
 	"common": {
 		"error": "שגיאה",
 		"errorDb": "שגיאת מסד נתונים, נסה מאוחר יותר",
-		"errorDiscordAPI": "דיסקורד API",
+		"errorDiscordAPI": "Discord API",
 		"errorUnknown": "משהו השתבש, נסה מאוחר יותר.",
 		"errorNoAdmin": "רק אנשים עם הרשאת מנהל בשרת יכולים להשתמש בפקודה הזו.",
 		"noTopicCounterEnabled": "זה נראה שלא הפעלתה את מדד הנושאים עדיין, בבקשה תראה `help topicCounter{PREFIX}`"
