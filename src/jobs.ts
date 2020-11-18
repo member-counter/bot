@@ -25,7 +25,7 @@ const setupJobs = () => {
         await job.run({ client });
       } catch (error) {
         console.error("A job failed:");
-        console.error(error);        
+        console.error(error);
       } finally {
         job.locked = false;
       }
