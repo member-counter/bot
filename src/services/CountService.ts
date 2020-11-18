@@ -17,14 +17,8 @@ counters.forEach((counter) =>
   counter.aliases = counter.aliases.map((alias) => alias.toLowerCase())
 );
 
-const cache = new Map<string, { value: number | string; expiresAt: number }>();
-setInterval(() => {
-  cache.forEach(({ expiresAt }, counterKey) => {
-    if (expiresAt < Date.now()) cache.delete(counterKey);
-  });
-}, 24 * 60 * 60 * 1000); // TODO put this in a job
-
 class CountService {
+  public static cache = new Map<string, { value: number | string; expiresAt: number }>();
   private client: ErisClient;
   public guild: Eris.Guild;
   private guildSettings: GuildService;
@@ -145,10 +139,10 @@ class CountService {
 
     // GET THE VALUE OF THE COUNTER
     if (
-      cache.get(this.counterToKey(counterName, resource, formattingSettingsRaw))
+      CountService.cache.get(this.counterToKey(counterName, resource, formattingSettingsRaw))
         ?.expiresAt > Date.now()
     )
-      result = cache.get(
+      result = CountService.cache.get(
         this.counterToKey(counterName, resource, formattingSettingsRaw)
       ).value;
 
@@ -186,7 +180,7 @@ class CountService {
                   .log(`{${counterRequested}}: ${error}`)
                   .catch(console.error);
                 return (
-                  cache.get(
+                  CountService.cache.get(
                     this.counterToKey(
                       counterName,
                       resource,
@@ -225,7 +219,7 @@ class CountService {
                 }
 
                 if (lifetime > 0)
-                  cache.set(
+                  CountService.cache.set(
                     this.counterToKey(extKey, resource, formattingSettingsRaw),
                     {
                       value: extValue,
@@ -240,7 +234,7 @@ class CountService {
               }
 
               result =
-                cache.get(
+                CountService.cache.get(
                   this.counterToKey(
                     counterName,
                     resource,
@@ -338,7 +332,7 @@ class CountService {
   }
 
   public static getCache() {
-    return cache;
+    return CountService.cache;
   }
 
   public static getCounterByAlias(alias: string): Counter {

@@ -101,7 +101,6 @@ class Bot {
       .on('messageReactionRemove', messageReactionRemove);
   }
 
-  // TODO do something like Eris.Client |
   static get client(): ErisClient {
     if (!this._client) throw new Error("You must call .init() first");
     return this._client;

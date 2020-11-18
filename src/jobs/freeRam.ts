@@ -1,16 +1,24 @@
-import Bot from "../client";
+import Job from "../typings/Job";
+import getEnv from "../utils/getEnv";
 
-// TODO
-setInterval(() => {
-  const { client } = Bot;
-  if (FOSS_MODE || PREMIUM_BOT) return;
-  const botUser = client.users.get(client.user.id);
-  client.users.clear();
-  client.users.add(botUser);
+const { FOSS_MODE, PREMIUM_BOT } = getEnv();
 
-  client.guilds.forEach((guild) => {
-    const botMember = guild.members.get(client.user.id);
-    guild.members.clear();
-    guild.members.add(botMember);
-  });
-}, 30 * 1000);
+const freeRam: Job = {
+  time: '*/30 * * * * *',
+  runAtStartup: false,
+  runInOnlyFirstThread: false,
+  run: async ({ client }) => {
+    if (FOSS_MODE || PREMIUM_BOT) return;
+    const botUser = client.users.get(client.user.id);
+    client.users.clear();
+    client.users.add(botUser);
+  
+    client.guilds.forEach((guild) => {
+      const botMember = guild.members.get(client.user.id);
+      guild.members.clear();
+      guild.members.add(botMember);
+    });
+  }
+}
+
+export default freeRam;
