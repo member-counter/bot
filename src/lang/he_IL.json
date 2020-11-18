@@ -216,7 +216,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
-			"success": "Done! You may have to wait a few seconds to see the new changes",
+			"success": "הושלם! אולי תצטרך לחכות מספר שניות כדי לראות את השינויים החדשים",
 			"errorNotFound": "ערוץ לא נמצא",
 			"errorNoContent": "נחוץ להוסיף תוכן"
 		},
@@ -266,11 +266,11 @@
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Restores the custom settings of this server to the default ones",
+			"helpDescription": "מחזיר את ההגדרות של השרת הזה להגדרות ברירת המחדל",
 			"done": "ההגדרות הוחזרו לברירת המחדל"
 		},
 		"update": {
-			"helpDescription": "If you think the counters are stuck use this command to update them again.",
+			"helpDescription": "אם לדעתך המדדים תקועים אפשרי להשתמש בפקודה הזו כדי לעדכן אותם שוב.",
 			"inProgress": "מעדכן את המדדים, זה אולי יקח קצת זמן.",
 			"success": "הושלם.",
 			"wait": "חכה! אני כבר מעדכן את זה!"
