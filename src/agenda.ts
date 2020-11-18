@@ -1,9 +1,10 @@
 import Agenda from 'agenda';
+import mongoose from 'mongoose';
 import getEnv from './utils/getEnv';
 
 const { DB_URI } = getEnv();
 
-const agenda = new Agenda({ db: { address: DB_URI, collection: 'agendaJobs' } });
+const agenda = new Agenda({ mongo: mongoose.connection.db });
 
 const jobTypes = process.env.JOB_TYPES ? process.env.JOB_TYPES.split(',') : [];
 
