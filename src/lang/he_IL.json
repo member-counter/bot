@@ -209,28 +209,28 @@
 		},
 		"lockChannel": {
 			"helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
-			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
-			"errorInvalidChannel": "אתה יכול לנעול רק ערוצי אודיו!",
-			"errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-			"errorNotFound": "Channel not found"
+			"success": "הושלם! עכשיו, **למשתמשים ללא הרשאות אדמין**, הערוץ יוצג עם סימן של 🔒",
+			"errorInvalidChannel": "אפשרי לנעול רק ערוצי אודיו!",
+			"errorNoPerms": "אני לא יכול לערוך את הערוץ `{CHANNEL}` בגלל חוסר בהרשאות",
+			"errorNotFound": "ערוץ לא נמצא"
 		},
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
-			"success": "Done! You may have to wait a few seconds to see the new changes",
+			"success": "הושלם! אולי תצטרך לחכות מספר שניות כדי לראות את השינויים החדשים",
 			"errorNotFound": "ערוץ לא נמצא",
 			"errorNoContent": "נחוץ להוסיף תוכן"
 		},
 		"setDigit": {
 			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-			"success": "Digits customized.",
-			"resetSuccess": "Numbers restored to the default ones.",
+			"success": "ספרות הותאמו אישית.",
+			"resetSuccess": "מספרים הוחזרו להגדרות ברירת המחדל.",
 			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
 			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
-			"success": "Done! You may have to wait a few seconds to see the new changes"
+			"success": "הושלם! אולי תצטרך להמתין מספר שניות כדי לראות את השינויים החדשים"
 		},
 		"locale": {
 			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
@@ -238,75 +238,75 @@
 		},
 		"prefix": {
 			"helpDescription": "Changes the bot prefix.\n\nUsage:```{PREFIX}prefix [new prefix]```",
-			"success": "Prefix changed to: `{NEW_PREFIX}`",
+			"success": "קידומת שונתה ל: `{NEW_PREFIX}`",
 			"noPrefixProvided": "חייב לספק קידומת"
 		},
 		"role": {
 			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
-			"rolesUpdated": "Roles updated.",
-			"errorNoRolesToUpdate": "You must mention at least 1 role",
-			"invalidParams": "Invalid parameters, see `{PREFIX}help role`"
+			"rolesUpdated": "תפקידים עודכנו.",
+			"errorNoRolesToUpdate": "חייב לציין לפחות תפקיד אחד",
+			"invalidParams": "נתונים לא חוקיים, תראה `{PREFIX}help role`"
 		},
 		"seeSettings": {
-			"helpDescription": "Shows all bot settings for this server.",
+			"helpDescription": "מראה את כל הגדרות הבוט לשרת הזה.",
 			"settingsMessage": {
-				"headerText": "Settings for guild:",
-				"prefixText": "Prefix:",
-				"langText": "Language:",
-				"localeText": "Locale:",
+				"headerText": "הגדרות בשרת:",
+				"prefixText": "קידומת:",
+				"langText": "שפה:",
+				"localeText": "איזור:",
 				"shortNumberText": "Short number (compact notation):",
-				"premiumText": "Premium:",
-				"premiumNoTierText": "No",
-				"premiumConfirmedText": "Yes",
+				"premiumText": "פרימיום:",
+				"premiumNoTierText": "לא",
+				"premiumConfirmedText": "כן",
 				"allowedRolesText": "Allowed roles to use administrative commands:",
-				"countersText": "Counters:",
-				"customNumbersText": "Custom numbers:",
+				"countersText": "מדדים:",
+				"customNumbersText": "מספרים מותאמים אישית:",
 				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "לוגים אחרונים:"
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Restores the custom settings of this server to the default ones",
-			"done": "Restored to default settings"
+			"helpDescription": "מחזיר את ההגדרות של השרת הזה להגדרות ברירת המחדל",
+			"done": "ההגדרות הוחזרו לברירת המחדל"
 		},
 		"update": {
-			"helpDescription": "If you think the counters are stuck use this command to update them again.",
-			"inProgress": "Updating the counters, this may take a while.",
-			"success": "Done.",
-			"wait": "Wait! I'm already updating it!"
+			"helpDescription": "אם לדעתך המדדים תקועים אפשרי להשתמש בפקודה הזו כדי לעדכן אותם שוב.",
+			"inProgress": "מעדכן את המדדים, זה אולי יקח קצת זמן.",
+			"success": "הושלם.",
+			"wait": "חכה! אני כבר מעדכן את זה!"
 		},
 		"upgradeServer": {
 			"helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
-			"success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-			"errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
+			"success": "הושלם! השלב הבא הוא להזמין את הבוט פרימיום:\n{BOT_LINK}",
+			"errorCannotUpgrade": "אי אפשר לשדרג את השרת הזה כי לשרת כבר יש פרימיום.",
 			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
 		},
 		"info": {
-			"helpDescription": "List of useful links",
+			"helpDescription": "רשימה של לינקים שימושים",
 			"embedReply": {
 				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
 			}
 		},
 		"lang": {
-			"helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-			"success": "Language changed successfully.",
-			"errorNotFound": "List of available languages:"
+			"helpDescription": "משנה את השפה של הבוט בשרת הזה, מחייב להיות בעל הרשאת אדמיניסטרטור בשביל להריץ את הפקודה הזו.",
+			"success": "השפה השתנתה בהצלחה.",
+			"errorNotFound": "רשימה של שפות אפשריות:"
 		},
 		"donate": {
-			"helpDescription": "Shows the top donations.",
+			"helpDescription": "מראה את התרומות הגבוהות ביותר.",
 			"embedReply": {
-				"title": "Enjoying my bot? Donate me! (Click here)",
+				"title": "נהנה מהבוט? תתרום לי! (לחץ כאן)",
 				"fields": []
 			},
 			"misc": {
-				"emptyNote": "Empty note"
+				"emptyNote": "הערה ריקה"
 			},
-			"errorExchangeFetch": "Error while trying to fetch exchange rates"
+			"errorExchangeFetch": "שגיאה בניסיון להשיג שער חליפין"
 		},
 		"profile": {
-			"helpDescription": "Shows related information between you and this bot",
-			"badges": "Badges",
-			"serverUpgradesAvailable": "Server upgrades left",
+			"helpDescription": "מראה מידע רלוונטי בינך לבין הבוט הזה",
+			"badges": "תגים",
+			"serverUpgradesAvailable": "שידרוגי שרת נותרים",
 			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
 			"removeDataSuccess": "המידע שלך הוסר בהצלחה"
 		},
@@ -323,14 +323,14 @@
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
-			"channelName": "Channel name preview",
-			"channelTopic": "Channel topic preview"
+			"channelName": "תצוגה מוקדמת לשם ערוץ",
+			"channelTopic": "תצוגה מוקדמת לנושא ערוץ"
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
 			"memberCounter": "{members} חברים",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
+			"boostingCounter": "{nitro-boosters} בוסטרים",
+			"rolesCounter": "{roles} תפקידים",
 			"channelsCounter": "{channels} ערוצים"
 		}
 	},
@@ -350,7 +350,7 @@
 	"common": {
 		"error": "שגיאה",
 		"errorDb": "שגיאת מסד נתונים, נסה מאוחר יותר",
-		"errorDiscordAPI": "דיסקורד API",
+		"errorDiscordAPI": "Discord API",
 		"errorUnknown": "משהו השתבש, נסה מאוחר יותר.",
 		"errorNoAdmin": "רק אנשים עם הרשאת מנהל בשרת יכולים להשתמש בפקודה הזו.",
 		"noTopicCounterEnabled": "זה נראה שלא הפעלתה את מדד הנושאים עדיין, בבקשה תראה `help topicCounter{PREFIX}`"
