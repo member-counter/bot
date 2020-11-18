@@ -1,6 +1,6 @@
 import Eris from "eris";
 import getEnv from './utils/getEnv';
-import RedisSharder from '@arcanebot/redis-sharder';
+import { GatewayClient as RedisSharderClient } from '@arcanebot/redis-sharder';
 
 import ready from './events/ready';
 import error from './events/error';
@@ -12,7 +12,6 @@ import guildMemberAdd from './events/guildMemberAdd';
 import messageCreate from './events/messageCreate';
 import messageReactionAdd from './events/messageReactionAdd';
 import messageReactionRemove from './events/messageReactionRemove';
-import { read } from "fs";
 
 const {
   PREMIUM_BOT,
@@ -25,7 +24,7 @@ const {
   REDIS_PASSWORD
 } = getEnv();
 
-type ErisClient = Eris.Client & Partial<RedisSharder.GatewayClient>;
+type ErisClient = Eris.Client & Partial<RedisSharderClient>;
 
 class Bot {
   private static _client = null;
@@ -56,8 +55,7 @@ class Bot {
     }
 
     if (DISTRIBUTED) {
-      // TODO test!
-      const client = new RedisSharder.GatewayClient(DISCORD_CLIENT_TOKEN, {
+      const client = new RedisSharderClient(DISCORD_CLIENT_TOKEN, {
         erisOptions: { ...erisOptions, maxShards: TOTAL_SHARDS },
         shardsPerCluster: SHARD_AMOUNT,
         lockKey: REDIS_LOCK_KEY,
@@ -90,7 +88,7 @@ class Bot {
 
     client
       .on('ready', ready)
-      .on('error', console.error)
+      .on('error', error)
       .on('warn', console.warn)
       .on('channelCreate', channelCreate)
       .on('channelUpdate', channelUpdate)
