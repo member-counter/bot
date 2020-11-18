@@ -8,6 +8,7 @@ import Constants from "../utils/Constants";
 import Counter from "../typings/Counter";
 import FormattingSettings from "../typings/FormattingSettings";
 import counters from "../counters/all";
+import { Bot, ErisClient } from "../client";
 
 const { FOSS_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
 
@@ -24,7 +25,7 @@ setInterval(() => {
 }, 24 * 60 * 60 * 1000); // TODO put this in a job
 
 class CountService {
-  private client: Eris.Client;
+  private client: ErisClient;
   public guild: Eris.Guild;
   private guildSettings: GuildService;
   private languagePack: any;
@@ -35,8 +36,7 @@ class CountService {
     this.guildSettings = guildSettings;
     this.languagePack = loadLanguagePack(this.guildSettings.language);
     this.tmpCache = new Map<string, string>();
-    //@ts-ignore
-    this.client = this.guild._client;
+    this.client = Bot.client;
   }
 
   public static async init(guild: Eris.Guild): Promise<CountService> {

@@ -1,6 +1,8 @@
+import Bot from "../client";
+
 // TODO
 const setStatus = () => {
-  client.editStatus('online', {
+  Bot.client.editStatus('online', {
     name: `${DISCORD_PREFIX}help`,
     type: 3,
   });

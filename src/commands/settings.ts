@@ -14,6 +14,7 @@ import {
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
 import getEnv from '../utils/getEnv';
+import Bot from '../client';
 
 const { PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 
@@ -496,7 +497,7 @@ const block: MemberCounterCommand = {
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
 		const { channel, content, author } = message;
-		const { client } = channel;
+		const { client } = Bot;
 		const [command, guildId] = content.split(/\s+/);
 
 		if (!BOT_OWNERS.includes(author.id)) return;

@@ -5,6 +5,7 @@ import { loadLanguagePack } from './languagePack';
 import memberHasAdminPermission from './memberHasAdminPermission';
 import commandErrorHandler from './commandErrorHandler';
 import commands from '../commands/all';
+import Bot from '../client';
 
 const {
   PREMIUM_BOT,
@@ -18,6 +19,7 @@ export default async (message: Eris.Message) => {
   if (GHOST_MODE) return;
 
   const { channel, author, content } = message;
+  const { client } = Bot;
 
   // Ignore requested commands in the official server since this server already has the premium bot
   if (
@@ -75,6 +77,7 @@ export default async (message: Eris.Message) => {
               const guild = (channel instanceof Eris.GuildChannel) ? channel.guild : false;
               console.log(`${author.username}#${author.discriminator} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}Channel: ${channel.id}]: ${content}`);
               await command.run({
+                client,
                 message,
                 languagePack,
               });
