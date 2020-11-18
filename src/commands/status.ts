@@ -54,7 +54,7 @@ const status: MemberCounterCommand = {
       })() + 'ms',
       gatewayLatency: client.shards.get(client.guildShardMap[message.guildID] || 0).latency + 'ms',
       hostname: os.hostname(),
-      currentShard: '#' + (client.guildShardMap[message.guildID] || 0),
+      currentShard: '#' + ((client.guildShardMap[message.guildID] || 0) + 1),
       totalShards: client.shards.size.toString(),
       guilds: client.guilds.size.toString(),
       userStats: client.users.size + ' / ' + client.guilds.reduce((acc, curr) => acc + curr.memberCount, 0)
