@@ -158,7 +158,7 @@
 				{
 					"key": "twitchViews",
 					"name": "twitchViews:channelName",
-					"description": "Displays a twitch channel view count"
+					"description": "מציג מדד צפיות בערוץ Twitch"
 				},
 				{
 					"key": "memeratorMemes",
@@ -261,7 +261,7 @@
 				"allowedRolesText": "Allowed roles to use administrative commands:",
 				"countersText": "מדדים:",
 				"customNumbersText": "מספרים מותאמים אישית:",
-				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
+				"warningNoPermsText": "\\⚠️ = הבוט לא יכול להמשיך לעדכן את הערוץ הזה בשל חוסר בהרשאות (הבוט חייב את ההרשאות: לנעל ערוצים, לראות ולכתוב הודעות, להתחבר לאודיו)",
 				"guildLogsText": "לוגים אחרונים:"
 			}
 		},
