@@ -4,7 +4,6 @@ import jobs from './jobs/all';
 import Job from './typings/Job';
 
 let initialized = false;
-// TODO test this!
 const setupJobs = () => {
   if (initialized) return;
   initialized = true;

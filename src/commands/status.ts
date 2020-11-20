@@ -31,7 +31,7 @@ const status: MemberCounterCommand = {
       systemUptime: parseUptime(os.uptime()),
       shardClusters: clientStats.clusters.length.toString(),
       loadAvg: os.loadavg().map(x => x.toPrecision(2)).join(' - '),
-      memoryUsage: Number((clientStats.memoryUsage.heapUsed / 1024 / 1024).toPrecision(3)) + 'MB', // TODO,
+      memoryUsage: Number((clientStats.memoryUsage.heapUsed / 1024 / 1024).toPrecision(3)) + 'MB',
       botLatency: await (async () => {
         const time = process.hrtime()[1];
         await (new Promise(r => setTimeout(r, 0)));
