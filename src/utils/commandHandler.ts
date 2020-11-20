@@ -13,10 +13,11 @@ const {
   DISCORD_DEFAULT_LANG,
   DISCORD_OFFICIAL_SERVER_ID,
   GHOST_MODE,
+  BOT_OWNERS,
 } = getEnv();
 
 export default async (message: Eris.Message) => {
-  if (GHOST_MODE) return;
+  if (GHOST_MODE && !BOT_OWNERS.includes(message.author?.id)) return;
 
   const { channel, author, content } = message;
   const { client } = Bot;

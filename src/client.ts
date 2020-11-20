@@ -1,6 +1,6 @@
 import Eris from "eris";
 import getEnv from './utils/getEnv';
-import { GatewayClient as RedisSharderClient } from '@arcanebot/redis-sharder';
+import { GatewayClient as ErisClient } from '@arcanebot/redis-sharder';
 
 import ready from './events/ready';
 import error from './events/error';
@@ -25,8 +25,6 @@ const {
   REDIS_HOST,
   REDIS_PORT,
 } = getEnv();
-
-type ErisClient = Eris.Client & Partial<RedisSharderClient>;
 
 class Bot {
   private static _client = null;
@@ -56,7 +54,7 @@ class Bot {
       restMode: true,
     }
   
-    const client = new RedisSharderClient(DISCORD_CLIENT_TOKEN, {
+    const client = new ErisClient(DISCORD_CLIENT_TOKEN, {
       erisOptions,
       getFirstShard: async () => DISTRIBUTED ? FIRST_SHARD : 0,
       shardsPerCluster: DISTRIBUTED ? SHARD_AMOUNT : 1,
@@ -74,7 +72,7 @@ class Bot {
     return client;
   }
 
-  private static setupEventListeners(client: Eris.Client) {
+  private static setupEventListeners(client: ErisClient) {
     if (DEBUG) {
       client.on('debug', console.info);
     }

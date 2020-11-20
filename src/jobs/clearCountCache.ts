@@ -6,7 +6,7 @@ const { PREMIUM_BOT, FOSS_MODE } = getEnv();
 
 
 const clearCache: Job = {
-  time: '* * 24 * * *',
+  time: '* * 23 * * *',
   runAtStartup: false,
   runInOnlyFirstThread: false,
   run: async ({ client }) => {

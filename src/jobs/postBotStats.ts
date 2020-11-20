@@ -20,14 +20,9 @@ const postBotStatus: Job = {
   runInOnlyFirstThread: true,
   run: async ({ client }) => {
     if (SEND_BOT_STATS) {
-      let guildCount = client.guilds.size;
-      let shardCount = client.shards.size;
-
-      if (client.getStats) {
         const stats = await client.getStats();
-        shardCount = stats.shards.length;
-        guildCount = stats.guilds;
-      }
+        const shardCount = stats.shards.length;
+        const guildCount = stats.guilds;
 
       //https://discord.bots.gg
       fetch(`https://discord.bots.gg/api/v1/bots/${DISCORD_CLIENT_ID}/stats`, {
