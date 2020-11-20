@@ -1,0 +1,11 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY . .
+
+EXPOSE 9090
+
+RUN npm install
+
+CMD ["npm", "run", "dev"]

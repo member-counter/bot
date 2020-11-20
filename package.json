@@ -9,8 +9,8 @@
 	"scripts": {
 		"start": "node .",
 		"build": "tsc && gulp",
-		"dev": "ts-node-dev --inspect --ignore-watch node_modules src/index.ts",
-		"check-config": "node ./dist/src/others/check-config.js"
+		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
+		"dev:docker": "docker-compose -f docker-compose.dev.yml up --force-recreate --build"
 	},
 	"repository": {
 		"type": "git",

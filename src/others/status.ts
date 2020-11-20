@@ -76,20 +76,6 @@ class BasicStatusWebsite {
 				});
 			});
 
-			discordClient.guilds.forEach((guild) => {
-				if (guild.shard) {
-					const shard = discordShards.get(guild.shard.id);
-					shard.availableGuilds.push(guild.id);
-				}
-			});
-
-			discordClient.unavailableGuilds.forEach((guild) => {
-				if (guild.shard) {
-					const shard = discordShards.get(guild.shard.id);
-					shard.unavailableGuilds.push(guild.id);
-				}
-			});
-
 			return JSON.stringify({
 				db: dbStatus,
 				discord: Array.from(discordShards),

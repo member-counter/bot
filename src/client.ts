@@ -21,7 +21,9 @@ const {
   SHARD_AMOUNT,
   TOTAL_SHARDS,
   REDIS_LOCK_KEY,
-  REDIS_PASSWORD
+  REDIS_PASSWORD,
+  REDIS_HOST,
+  REDIS_PORT,
 } = getEnv();
 
 type ErisClient = Eris.Client & Partial<RedisSharderClient>;
@@ -42,43 +44,34 @@ class Bot {
     ];
 
     if (PREMIUM_BOT) intents.push('guildPresences', 'guildVoiceStates');
-
+    
     const erisOptions: Eris.ClientOptions = {
       getAllUsers: PREMIUM_BOT,
       guildCreateTimeout: 15000,
       intents,
-      maxShards: "auto",
+      maxShards: DISTRIBUTED ? TOTAL_SHARDS : 1,
       messageLimit: 0,
       defaultImageFormat: 'jpg',
       compress: true,
       restMode: true,
     }
+  
+    const client = new RedisSharderClient(DISCORD_CLIENT_TOKEN, {
+      erisOptions,
+      getFirstShard: async () => DISTRIBUTED ? FIRST_SHARD : 0,
+      shardsPerCluster: DISTRIBUTED ? SHARD_AMOUNT : 1,
+      lockKey: REDIS_LOCK_KEY,
+      redisPassword: REDIS_PASSWORD,
+      redisHost: REDIS_HOST,
+      redisPort: REDIS_PORT,
+    });
+    this._client = client;
 
-    if (DISTRIBUTED) {
-      const client = new RedisSharderClient(DISCORD_CLIENT_TOKEN, {
-        erisOptions: { ...erisOptions, maxShards: TOTAL_SHARDS },
-        shardsPerCluster: SHARD_AMOUNT,
-        lockKey: REDIS_LOCK_KEY,
-        getFirstShard: async () => FIRST_SHARD,
-        redisPassword: REDIS_PASSWORD
-      });
-      this._client = client;
+    this.setupEventListeners(client);
 
-      this.setupEventListeners(client);
+    client.queue();
 
-      client.queue();
-
-      return client;
-    } else {
-      const client = new Eris.Client(DISCORD_CLIENT_TOKEN, erisOptions);
-      this._client = client;
-
-      this.setupEventListeners(client);
-
-      client.connect();
-
-      return client;
-    }
+    return client;
   }
 
   private static setupEventListeners(client: Eris.Client) {
