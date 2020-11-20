@@ -7,7 +7,6 @@ const BannedMembersCounter: Counter = {
 	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
-			//@ts-ignore
 		return guild
 			.getBans()
 			.then((bans) => bans.length);

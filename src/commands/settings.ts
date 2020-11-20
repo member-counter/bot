@@ -13,12 +13,10 @@ import {
 } from '../utils/languagePack';
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
-import messageReactionAdd from '../events/messageReactionAdd';
 import getEnv from '../utils/getEnv';
-import GuildLogModel from '../models/GuildLogModel';
-import { parse } from 'path';
+import Bot from '../client';
 
-const { DISCORD_PREFIX, PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
+const { PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 
 const seeSettings: MemberCounterCommand = {
 	aliases: ['seeSettings'],
@@ -499,7 +497,7 @@ const block: MemberCounterCommand = {
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
 		const { channel, content, author } = message;
-		const { client } = channel;
+		const { client } = Bot;
 		const [command, guildId] = content.split(/\s+/);
 
 		if (!BOT_OWNERS.includes(author.id)) return;
