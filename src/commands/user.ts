@@ -5,6 +5,7 @@ import Eris from "eris";
 import getEnv from "../utils/getEnv";
 import { UserBadges } from "../utils/Constants";
 import ReactionManager from "../utils/ReactionManager";
+import Bot from "../client";
 
 const { BOT_OWNERS } = getEnv();
 
@@ -42,7 +43,7 @@ const user: MemberCounterCommand = {
   onlyAdmin: false,
   run: async ({ message, languagePack }) => {
     const { author, channel, mentions, content } = message;
-    const { client } = channel;
+    const { client } = Bot;
     const [
       _command,
       userRequested,

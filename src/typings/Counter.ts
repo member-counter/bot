@@ -1,9 +1,10 @@
 import Eris from 'eris';
+import { ErisClient } from '../client';
 import GuildService from '../services/GuildService';
 import FormattingSettings from './FormattingSettings';
 
 interface executeArgs {
-	client: Eris.Client;
+	client: ErisClient;
 
 	/**
 	 * @description Current guild

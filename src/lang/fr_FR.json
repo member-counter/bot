@@ -328,6 +328,7 @@
 		},
 		"setup": {
 			"helpDescription": "Crée des salons vocaux verrouillés avec quelques compteurs en eux\n**Exemple**```{PREFIX}setup```",
+			"categoryName": "📊 Server Stats 📊",
 			"memberCounter": "{members} Membres",
 			"boostingCounter": "{nitro-boosters} Boosters",
 			"rolesCounter": "{roles} Rôles",

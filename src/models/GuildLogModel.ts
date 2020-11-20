@@ -1,7 +1,4 @@
 import { model, Schema, Document, DocumentToObjectOptions } from 'mongoose';
-import getEnv from '../utils/getEnv';
-
-const { DISCORD_PREFIX } = getEnv();
 
 interface GuildLog {
   guild?: string;

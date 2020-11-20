@@ -2,46 +2,24 @@ import getEnv from './getEnv';
 import Eris from 'eris';
 import GuildService from '../services/GuildService';
 import { loadLanguagePack } from './languagePack';
-import MemberCounterCommand from '../typings/MemberCounterCommand';
 import memberHasAdminPermission from './memberHasAdminPermission';
 import commandErrorHandler from './commandErrorHandler';
+import commands from '../commands/all';
+import Bot from '../client';
 
 const {
   PREMIUM_BOT,
   DISCORD_PREFIX,
   DISCORD_DEFAULT_LANG,
   DISCORD_OFFICIAL_SERVER_ID,
+  GHOST_MODE,
 } = getEnv();
 
-// Commands
-import statusCommands from '../commands/status';
-import patpatCommands from '../commands/patpat';
-import userCommands from '../commands/user';
-import infoCommands from '../commands/info';
-import helpCommands from '../commands/help';
-import donateCommands from '../commands/donate';
-import settingsCommands from '../commands/settings';
-import countCommands from '../commands/counts';
-import utilCommands from '../commands/utils';
-import guideCommand from '../commands/guide';
-import setupCommand from '../commands/setup';
-
-const commands: Array<MemberCounterCommand> = [
-  ...userCommands,
-  ...statusCommands,
-  ...patpatCommands,
-  ...infoCommands,
-  ...helpCommands,
-  ...donateCommands,
-  ...settingsCommands,
-  ...countCommands,
-  ...utilCommands,
-  ...guideCommand,
-  ...setupCommand
-];
-
 export default async (message: Eris.Message) => {
+  if (GHOST_MODE) return;
+
   const { channel, author, content } = message;
+  const { client } = Bot;
 
   // Ignore requested commands in the official server since this server already has the premium bot
   if (
@@ -99,6 +77,7 @@ export default async (message: Eris.Message) => {
               const guild = (channel instanceof Eris.GuildChannel) ? channel.guild : false;
               console.log(`${author.username}#${author.discriminator} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}Channel: ${channel.id}]: ${content}`);
               await command.run({
+                client,
                 message,
                 languagePack,
               });
