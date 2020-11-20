@@ -6,9 +6,11 @@ import BasicStatusWebsite from './others/status';
 
 const { NODE_ENV, DISTRIBUTED } = getEnv();
 
-Bot.init();
+// TODO check config
 DatabaseClient.init();
-if (!DISTRIBUTED) BasicStatusWebsite.init();
+// TODO run db update scripts
+Bot.init();
+BasicStatusWebsite.init();
 
 if (NODE_ENV === "production") {
 	process

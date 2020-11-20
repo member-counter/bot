@@ -1,14 +1,15 @@
 version: '3.7'
 
 services:
-  member-counter-bot:
+  member-counter-bot-dev:
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     image: member-counter-bot:latest
-    container_name: Member-Counter-App
-    restart: always
+    container_name: Member-Counter-App-Dev
     env_file: .env
+    volumes:
+      - .:/app 
     depends_on:
       - member-counter-bot-mongodb
       - member-counter-bot-redis

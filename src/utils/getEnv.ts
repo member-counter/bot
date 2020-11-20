@@ -13,8 +13,11 @@ interface MemberCounterEnv {
 	readonly FIRST_SHARD: number;
 	readonly SHARD_AMOUNT: number;
 	readonly TOTAL_SHARDS: number;
+
 	readonly REDIS_LOCK_KEY: string;
 	readonly REDIS_PASSWORD: string;
+	readonly REDIS_HOST: string;
+	readonly REDIS_PORT: number;
 
 	readonly DB_URI: string;
 
