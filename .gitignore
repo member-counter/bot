@@ -68,3 +68,5 @@ dev/
 
 #build
 dist/
+
+storage/

@@ -9,7 +9,9 @@ services:
     container_name: Member-Counter-App
     restart: always
     volumes:
-      - /root/member-counter-bot/.env:/usr/src/app/.env
+      - type: bind
+        source: ./storage/.env
+        target: /app/.env
     depends_on:
       - member-counter-bot-mongodb
     ports:
@@ -22,9 +24,8 @@ services:
     container_name: Member-Counter-DB
     restart: always
     volumes:
-# Update `/root/member-counter-bot/data/db` and `/root/member-counter-bot/data/db` to your mongodb data location
-      - /root/member-counter-bot/data/db:/data/db
-      - /root/member-counter-bot/data/db:/data/configdb
+      - ./storage/db:/data/db
+      - ./storage/configdb:/data/configdb
     networks:
       - default
 
