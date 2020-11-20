@@ -4,7 +4,7 @@ import Bot from './client';
 import DatabaseClient from './db';
 import BasicStatusWebsite from './others/status';
 
-const { NODE_ENV, DISTRIBUTED } = getEnv();
+const { NODE_ENV } = getEnv();
 
 // TODO check config
 DatabaseClient.init();

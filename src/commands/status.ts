@@ -14,10 +14,6 @@ const parseUptime = (inputDate: number) => {
   )} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`;
 };
 
-const toGB = (bytes: number): number => {
-  return bytes / 1024 / 1024 / 1024;
-};
-
 const status: MemberCounterCommand = {
   aliases: ['uptime', 'status'],
   denyDm: false,
@@ -26,26 +22,16 @@ const status: MemberCounterCommand = {
     const { channel } = message;
     const { version } = packageJSON;
 
+    const clientStats = await client.getStats();
+
     const stats = {
       version: `Bot version: ${version}`, // TODO ADD COMMIT HASH
       clientUptime: parseUptime(client.uptime / 1000),
       processUptime: parseUptime(process.uptime()),
       systemUptime: parseUptime(os.uptime()),
-      serverCores: `${os.cpus().length}`, // TODO cluster lenght when using k8s?
+      shardClusters: clientStats.clusters.length.toString(),
       loadAvg: os.loadavg().map(x => x.toPrecision(2)).join(' - '),
-      memoryUsage: await (async () => {
-        const freeMemory = os.freemem();
-        const totalMemory = os.totalmem();
-        const memoryUsed = totalMemory - freeMemory;
-        const memoryUsage = ((memoryUsed * 100) / totalMemory).toPrecision(
-          2,
-        );
-
-        return `
-        ${toGB(memoryUsed).toPrecision(3)}GB of ${toGB(
-          totalMemory,
-        ).toPrecision(3)}GB (${memoryUsage}%)`;
-      })(), // TODO,
+      memoryUsage: Number((clientStats.memoryUsage.heapUsed / 1024 / 1024).toPrecision(3)) + 'MB', // TODO,
       botLatency: await (async () => {
         const time = process.hrtime()[1];
         await (new Promise(r => setTimeout(r, 0)));
@@ -55,18 +41,9 @@ const status: MemberCounterCommand = {
       gatewayLatency: client.shards.get(client.guildShardMap[message.guildID] || 0).latency + 'ms',
       hostname: os.hostname(),
       currentShard: '#' + ((client.guildShardMap[message.guildID] || 0) + 1),
-      totalShards: client.shards.size.toString(),
-      guilds: client.guilds.size.toString(),
-      userStats: client.users.size + ' / ' + client.guilds.reduce((acc, curr) => acc + curr.memberCount, 0)
-    }
-
-    if (client.getStats) {
-      const clientStats = await client.getStats();
-      stats.serverCores = clientStats.clusters.length.toString() // TODO TEST cluster lenght when using k8s?
-      stats.memoryUsage = toGB(clientStats.memoryUsage.heapUsed) + 'GB' // TODO get total
-      stats.totalShards = clientStats.shards.length.toString();
-      stats.userStats = clientStats.users + ' / ' + clientStats.estimatedTotalUsers;
-      stats.guilds = clientStats.guilds.toString();
+      totalShards: clientStats.shards.length.toString(),
+      guilds: clientStats.guilds.toString(),
+      userStats: clientStats.users + ' / ' + clientStats.estimatedTotalUsers
     }
 
     const embed = embedBase({
@@ -88,8 +65,8 @@ const status: MemberCounterCommand = {
           inline: true,
         },
         {
-          name: '**Server cores:**',
-          value: stats.serverCores,
+          name: '**Shard clusters**',
+          value: stats.shardClusters,
           inline: true,
         },
         {

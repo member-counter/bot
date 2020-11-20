@@ -1,4 +1,3 @@
-import { stat } from 'fs';
 import Counter from '../typings/Counter';
 
 const BotStatsCounter: Counter = {
@@ -7,20 +6,9 @@ const BotStatsCounter: Counter = {
 	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
-		let users = null;
-		let guilds = null;
-
-		if (client.getStats) {
-			const stats = await client.getStats();
-			users = stats.estimatedTotalUsers;
-			guilds = stats.guilds;
-		} else {
-			users = client.guilds.reduce(
-				(acc, curr) => acc + curr.memberCount,
-				0,
-			);
-			guilds = client.guilds.size;
-		}
+		const stats = await client.getStats();
+		let users = stats.estimatedTotalUsers;
+		let guilds = stats.guilds;
 
 		return {
 			['member-counter-users']: users,

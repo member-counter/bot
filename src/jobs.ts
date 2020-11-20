@@ -2,9 +2,6 @@ import cron, { CronJob } from 'cron';
 import Bot from './client';
 import jobs from './jobs/all';
 import Job from './typings/Job';
-import getEnv from './utils/getEnv';
-
-const { DISTRIBUTED } = getEnv();
 
 let initialized = false;
 // TODO test this!
@@ -12,11 +9,6 @@ const setupJobs = () => {
   if (initialized) return;
   initialized = true;
   const client = Bot.client;
-  const filteredJobs = jobs.filter(async (job) => {
-    // Jobs that must be runned in only one process will be only run in the first process
-    if (job.runInOnlyFirstThread && DISTRIBUTED && (await client.getFirstShard()) !== 0) return false;
-    else return true;
-  });
 
   async function run(job: Job) {
     if (!job.locked) {
@@ -32,7 +24,8 @@ const setupJobs = () => {
     }
   }
 
-  for (const job of filteredJobs) {
+  for (const job of jobs) {
+    if (job.runInOnlyFirstThread && client.getFirstShard() !== 0) continue;
     new CronJob(job.time, () => run(job), null, true);
     if (job.runAtStartup) run(job);
   }
