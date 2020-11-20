@@ -328,7 +328,6 @@
 		},
 		"setup": {
 			"helpDescription": "Vytvoří uzamčené kanály s počítadly\n**Příklad:**```{PREFIX}setup```",
-			"categoryName": "📊 Server Stats 📊",
 			"memberCounter": "{members} uživatelé/ů",
 			"boostingCounter": "{nitro-boosters} boostů",
 			"rolesCounter": "{roles} role/í",

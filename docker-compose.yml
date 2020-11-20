@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  member-counter-bot:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: member-counter-bot:latest
+    container_name: Member-Counter-App
+    restart: always
+    volumes:
+      - /root/member-counter-bot/.env:/usr/src/app/.env
+    depends_on:
+      - member-counter-bot-mongodb
+    ports:
+      - "9090:9090"
+    networks:
+      - default
+
+  member-counter-bot-mongodb:
+    image: mongo:3.6
+    container_name: Member-Counter-DB
+    restart: always
+    volumes:
+# Update `/root/member-counter-bot/data/db` and `/root/member-counter-bot/data/db` to your mongodb data location
+      - /root/member-counter-bot/data/db:/data/db
+      - /root/member-counter-bot/data/db:/data/configdb
+    networks:
+      - default
+
+volumes:
+  member-counter-bot_env:
+  member-counter-bot-mongodb_db:
+  member-counter-bot-mongodb_configdb:
+
+networks:
+  default:
