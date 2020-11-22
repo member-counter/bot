@@ -21,6 +21,9 @@ interface MemberCounterEnv {
 
 	readonly DB_URI: string;
 
+	readonly STATUS_WEBHOOK_ID: string;
+	readonly STATUS_WEBHOOK_TOKEN: string;
+
 	readonly DISCORD_CLIENT_ID: string;
 	readonly DISCORD_CLIENT_TOKEN: string;
 	readonly DISCORD_BOT_INVITE: string;
