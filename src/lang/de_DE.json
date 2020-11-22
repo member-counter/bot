@@ -328,7 +328,7 @@
 		},
 		"setup": {
 			"helpDescription": "Erstelle einige gesperrte Sprachkanäle mit einigen Zählern\n**Beispiel**```{PREFIX}setup```",
-			"categoryName": "📊 Server Stats 📊",
+			"categoryName": "📊 Server Statistiken 📊",
 			"memberCounter": "{members} Mitglieder",
 			"boostingCounter": "{nitro-boosters} Booster",
 			"rolesCounter": "{roles} Rollen",
