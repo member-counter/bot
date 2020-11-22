@@ -24,6 +24,8 @@ const {
   REDIS_PASSWORD,
   REDIS_HOST,
   REDIS_PORT,
+  STATUS_WEBHOOK_ID,
+  STATUS_WEBHOOK_TOKEN,
 } = getEnv();
 
 class Bot {
@@ -62,6 +64,12 @@ class Bot {
       redisPassword: REDIS_PASSWORD,
       redisHost: REDIS_HOST,
       redisPort: REDIS_PORT,
+      webhooks: {
+        discord: {
+          id: STATUS_WEBHOOK_ID,
+          token: STATUS_WEBHOOK_TOKEN,
+        }
+      }
     });
     this._client = client;
 
