@@ -9,7 +9,7 @@ const { NODE_ENV } = getEnv();
 // TODO check config
 DatabaseClient.init();
 // TODO run db update scripts
-const client = Bot.init();
+Bot.init();
 BasicStatusWebsite.init();
 
 if (NODE_ENV === "production") {
