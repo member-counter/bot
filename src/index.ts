@@ -19,3 +19,4 @@ if (NODE_ENV === "production") {
 			console.error("Uncaught Exception ", exception);
 		});
 }
+export default discordClient
