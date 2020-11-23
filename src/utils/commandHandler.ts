@@ -47,13 +47,19 @@ export default async (message: Eris.Message) => {
     }
 
     prefix = prefix.toLowerCase();
+    const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const prefixRegex =  new RegExp(
+      `^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`
+    );
+    if (!prefixRegex.test(content)) return;
 
+    const [matchedPrefix] = content.match(prefixRegex);
     const commandRequested = content.toLowerCase(); // Case insensitive match
 
-    if (commandRequested.startsWith(prefix)) {
+    if (commandRequested.startsWith(matchedPrefix)) {
       commandsLoop: for (const command of commands) {
         for (const alias of command.aliases) {
-          let commandAliasToCheck = prefix + alias.toLowerCase();
+          let commandAliasToCheck = matchedPrefix + alias.toLowerCase();
 
           if (commandRequested.startsWith(commandAliasToCheck)) {
             if (channel instanceof Eris.PrivateChannel && command.denyDm) {
