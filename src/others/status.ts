@@ -1,6 +1,6 @@
 import http from 'http';
 import Eris from 'eris';
-import mongoose, { Mongoose } from 'mongoose';
+import { Mongoose } from 'mongoose';
 import getEnv from '../utils/getEnv';
 import path from 'path';
 import { createReadStream } from 'fs';
@@ -9,7 +9,7 @@ import WebSocket from 'ws';
 
 const { PORT, DISCORD_CLIENT_ID } = getEnv();
 
-function startstatusWS(discordClient: Eris.Client) {
+function statusWS(discordClient: Eris.Client, mongoose: Mongoose) {
 	const app = express();
 
 	app.get('/', (req, res) => {
@@ -95,4 +95,4 @@ function startstatusWS(discordClient: Eris.Client) {
 	}
 }
 
-export default startstatusWS;
+export default statusWS;
