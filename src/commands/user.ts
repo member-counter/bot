@@ -18,6 +18,7 @@ const emojiBadges = {
   [UserBadges.BIG_BRAIN]: "🧠",
   [UserBadges.BUG_CATCHER]: "🐛",
   [UserBadges.PATPAT]: "🐱",
+  [UserBadges.FOLDING_AT_HOME]: "🧬"
 };
 
 const generateBadgeList = (badges: number): string => {
