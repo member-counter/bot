@@ -23,9 +23,9 @@ const status: MemberCounterCommand = {
     const { version } = packageJSON;
 
     const clientStats = await client.getStats();
-
+    var git = require('git-rev-sync');
     const stats = {
-      version: `Bot version: ${version}`, // TODO ADD COMMIT HASH
+      version: `Bot version: ${version} [${git.short()}](${git.remoteUrl().replace('.git', '/') + 'commit/' +git.long()})`,
       clientUptime: parseUptime(client.uptime / 1000),
       processUptime: parseUptime(process.uptime()),
       systemUptime: parseUptime(os.uptime()),
@@ -43,7 +43,7 @@ const status: MemberCounterCommand = {
       currentShard: '#' + ((client.guildShardMap[message.guildID] || 0) + 1),
       totalShards: clientStats.shards.length.toString(),
       guilds: clientStats.guilds.toString(),
-      userStats: clientStats.users + ' / ' + clientStats.estimatedTotalUsers
+      userStats: clientStats.users + ' / ' + clientStats.estimatedTotalUsers,
     }
 
     const embed = embedBase({

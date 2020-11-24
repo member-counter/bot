@@ -7,6 +7,7 @@ enum UserBadges {
 	BIG_BRAIN = 1 << 5,
 	BUG_CATCHER = 1 << 6,
 	PATPAT = 1 << 7,
+	FOLDING_AT_HOME = 1 << 8,
 }
 
 enum CounterResult {
