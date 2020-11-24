@@ -1,4 +1,3 @@
-import { stat } from 'fs';
 import os from 'os';
 import git from 'git-rev-sync';
 
