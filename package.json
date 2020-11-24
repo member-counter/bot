@@ -41,6 +41,7 @@
 		"ws": "^7.3.1"
 	},
 	"devDependencies": {
+		"@types/git-rev-sync": "^2.0.0",
 		"@types/cron": "^1.7.2",
 		"@types/express": "^4.17.8",
 		"@types/gamedig": "^1.0.1",
