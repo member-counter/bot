@@ -25,7 +25,7 @@ const status: MemberCounterCommand = {
     const clientStats = await client.getStats();
     var git = require('git-rev-sync');
     const stats = {
-      version: `Bot version: ${version} [${git.short()}](${git.remoteUrl().replace('.git', '/') + 'commit/' +git.long()})`, // TODO ADD COMMIT HASH
+      version: `Bot version: ${version} [${git.short()}](${git.remoteUrl().replace('.git', '/') + 'commit/' +git.long()})`,
       clientUptime: parseUptime(client.uptime / 1000),
       processUptime: parseUptime(process.uptime()),
       systemUptime: parseUptime(os.uptime()),
