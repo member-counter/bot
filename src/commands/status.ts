@@ -1,12 +1,12 @@
-import { stat } from 'fs';
 import os from 'os';
+import git from 'git-rev-sync';
 
 import * as packageJSON from '../../package.json';
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import embedBase from '../utils/embedBase';
 
 const parseUptime = (inputDate: number) => {
-  //inputDate must be in seconds
+  // inputDate must be in seconds
   const uptime = new Date(1970, 0, 1);
   uptime.setSeconds(Math.floor(inputDate));
   return `${Math.floor(
@@ -23,9 +23,8 @@ const status: MemberCounterCommand = {
     const { version } = packageJSON;
 
     const clientStats = await client.getStats();
-    var git = require('git-rev-sync');
     const stats = {
-      version: `Bot version: ${version} [${git.short()}](${git.remoteUrl().replace('.git', '/') + 'commit/' +git.long()})`,
+      version: `Bot version: ${version} [${git.short()}](${git.remoteUrl().replace('.git', '/') + 'commit/' + git.long()})`,
       clientUptime: parseUptime(client.uptime / 1000),
       processUptime: parseUptime(process.uptime()),
       systemUptime: parseUptime(os.uptime()),
