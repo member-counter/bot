@@ -1,5 +1,5 @@
 import cron, { CronJob } from 'cron';
-import Bot from './client';
+import Bot from './bot';
 import jobs from './jobs/all';
 import Job from './typings/Job';
 

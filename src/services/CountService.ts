@@ -8,7 +8,7 @@ import Constants from "../utils/Constants";
 import Counter from "../typings/Counter";
 import FormattingSettings from "../typings/FormattingSettings";
 import counters from "../counters/all";
-import { Bot, ErisClient } from "../client";
+import { Bot, ErisClient } from "../bot";
 
 const { UNRESTRICTED_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
 

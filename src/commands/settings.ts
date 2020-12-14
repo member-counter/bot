@@ -14,7 +14,7 @@ import {
 import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
 import getEnv from '../utils/getEnv';
-import Bot from '../client';
+import Bot from '../bot';
 
 const { PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 

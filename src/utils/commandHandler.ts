@@ -5,7 +5,7 @@ import { loadLanguagePack } from './languagePack';
 import memberHasAdminPermission from './memberHasAdminPermission';
 import commandErrorHandler from './commandErrorHandler';
 import commands from '../commands/all';
-import Bot from '../client';
+import Bot from '../bot';
 
 const {
   PREMIUM_BOT,

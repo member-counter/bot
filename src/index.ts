@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 import getEnv from './utils/getEnv';
-import Bot from './client';
+import Bot from './bot';
 import DatabaseClient from './db';
-import BasicStatusWebsite from './others/status';
-
+import Website from './others/website';
+import checkConfig from './others/checkConfig';
 const { NODE_ENV } = getEnv();
 
-// TODO check config
+checkConfig();
 DatabaseClient.init();
-// TODO run db update scripts
 Bot.init();
-BasicStatusWebsite.init();
+Website.init();
 
 if (NODE_ENV === "production") {
 	process

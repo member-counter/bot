@@ -1,5 +1,5 @@
 import { Message } from 'eris';
-import Bot from '../client';
+import Bot from '../bot';
 
 interface reactionListenerCallback {
 	(userId: string, destroy: () => void): void;

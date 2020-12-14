@@ -27,14 +27,12 @@ interface MemberCounterEnv {
 	readonly DISCORD_CLIENT_ID: string;
 	readonly DISCORD_CLIENT_TOKEN: string;
 	readonly DISCORD_BOT_INVITE: string;
-
 	readonly DISCORD_PREFIX: string;
 	readonly DISCORD_DEFAULT_LANG: string;
 	readonly DISCORD_OFFICIAL_SERVER_ID: string;
 	readonly DISCORD_OFFICIAL_SERVER_URL: string;
 
 	readonly BOT_OWNERS: string[];
-	readonly UPDATE_COUNTER_INTERVAL: number;
 
 	readonly PREMIUM_BOT: boolean;
 	readonly PREMIUM_BOT_ID: string;
@@ -66,8 +64,12 @@ interface MemberCounterEnv {
 }
 
 
-let env = dotenv.config();
-const parsedEnv = dotenvParseVariables({ ...process.env });
+dotenv.config();
+
+const parsedEnv = dotenvParseVariables({
+	...process.env,
+	DISCORD_CLIENT_ID: Buffer.from(process.env.DISCORD_CLIENT_TOKEN.split(".")[0], 'base64').toString("utf-8") + "*"
+});
 
 function getEnv(): MemberCounterEnv {
   return parsedEnv;
