@@ -17,6 +17,7 @@ const TwitchCounter: Counter = {
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
 	execute: async ({ guild, resource: userName }) => {
+		if (!TWITCH_CLIENT_ID) throw new Error("TWITCH_CLIENT_ID not provided");
 		const user = await client.kraken.users.getUserByName(userName);
 		const { followers, views } = await client.kraken.channels.getChannel(
 			user,
