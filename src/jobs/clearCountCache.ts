@@ -2,7 +2,7 @@ import CountService from "../services/CountService";
 import Job from "../typings/Job";
 import getEnv from '../utils/getEnv';
 
-const { PREMIUM_BOT, FOSS_MODE } = getEnv();
+const { PREMIUM_BOT, UNRESTRICTED_MODE } = getEnv();
 
 
 const clearCache: Job = {
