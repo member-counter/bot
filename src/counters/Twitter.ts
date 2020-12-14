@@ -24,6 +24,7 @@ const TwitterCounter: Counter = {
 	isEnabled: true,
 	lifetime: 5 * 60 * 1000,
 	execute: async ({ client, guild, guildSettings, resource }) => {
+		if (!TWITTER_ACCESS_TOKEN) throw new Error("TWITTER_ACCESS_TOKEN not provided");
 		const count = await twitterClient.get('users/show', {
 			screen_name: resource,
 		});

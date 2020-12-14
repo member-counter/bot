@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-EXPOSE 9090
+EXPOSE $PORT
 
 RUN npm install
 
