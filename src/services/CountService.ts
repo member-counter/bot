@@ -10,7 +10,7 @@ import FormattingSettings from "../typings/FormattingSettings";
 import counters from "../counters/all";
 import { Bot, ErisClient } from "../client";
 
-const { FOSS_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
+const { UNRESTRICTED_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
 
 // Do the aliases lowercase
 counters.forEach((counter) =>
@@ -159,7 +159,7 @@ class CountService {
       for (const counter of counters) {
         if (counter.aliases.includes(counterName)) {
           if (counter.isEnabled) {
-            if (counter.isPremium && !(PREMIUM_BOT || FOSS_MODE)) {
+            if (counter.isPremium && !(PREMIUM_BOT || UNRESTRICTED_MODE)) {
               result = Constants.CounterResult.PREMIUM;
               break;
             }

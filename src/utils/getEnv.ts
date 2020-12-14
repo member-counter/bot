@@ -4,7 +4,7 @@ import dotenvParseVariables from 'dotenv-parse-variables';
 interface MemberCounterEnv {
 	readonly NODE_ENV: 'development' | 'production';
 	readonly DEBUG: boolean;
-	readonly FOSS_MODE: boolean;
+	readonly UNRESTRICTED_MODE: boolean;
 	readonly PORT: number;
 	readonly AGENDA_ENABLED_JOBS: string[];
 	readonly GHOST_MODE: boolean;

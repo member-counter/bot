@@ -3,7 +3,7 @@ import Eris from 'eris';
 import GuildService from '../services/GuildService';
 import { availableLanguagePacks } from '../utils/languagePack';
 
-const { PREMIUM_BOT_ID, PREMIUM_BOT, FOSS_MODE } = getEnv();
+const { PREMIUM_BOT_ID, PREMIUM_BOT, UNRESTRICTED_MODE } = getEnv();
 
 const guildCreate = async (guild: Eris.Guild) => {
   const guildSettings = await GuildService.init(guild.id);
@@ -16,7 +16,7 @@ const guildCreate = async (guild: Eris.Guild) => {
   await guildSettings.setLocale(guild.preferredLocale);
 
   // Self kick when premium bot is present and the guild is premium
-  if (!PREMIUM_BOT && !FOSS_MODE) {
+  if (!PREMIUM_BOT && !UNRESTRICTED_MODE) {
     const premiumBotMember = await guild
       .getRESTMember(PREMIUM_BOT_ID)
       .catch(() => {});
