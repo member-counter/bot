@@ -1,5 +1,5 @@
 import Eris from 'eris';
-import { ErisClient } from '../client';
+import { ErisClient } from '../bot';
 import GuildService from '../services/GuildService';
 import FormattingSettings from './FormattingSettings';
 

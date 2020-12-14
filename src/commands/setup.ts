@@ -1,9 +1,8 @@
 import MemberCounterCommand from '../typings/MemberCounterCommand';
-import UserError from '../utils/UserError';
 import CountService from '../services/CountService';
 import { GuildChannel } from 'eris';
 import GuildService from '../services/GuildService';
-import Bot from '../client';
+import Bot from '../bot';
 
 const setup: MemberCounterCommand = {
 	aliases: ['setup'],

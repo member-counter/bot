@@ -1,7 +1,7 @@
 import getEnv from '../utils/getEnv';
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import embedBase from '../utils/embedBase';
-import Bot from '../client';
+import Bot from '../bot';
 
 const {
   DONATION_URL,

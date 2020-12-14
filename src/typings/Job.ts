@@ -1,4 +1,4 @@
-import { ErisClient } from '../client';
+import { ErisClient } from '../bot';
 
 interface runArgs {
   client: ErisClient;

@@ -5,7 +5,7 @@ import Eris from "eris";
 import getEnv from "../utils/getEnv";
 import { UserBadges } from "../utils/Constants";
 import ReactionManager from "../utils/ReactionManager";
-import Bot from "../client";
+import Bot from "../bot";
 
 const { BOT_OWNERS } = getEnv();
 
