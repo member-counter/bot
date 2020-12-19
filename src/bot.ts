@@ -12,6 +12,7 @@ import guildMemberAdd from './events/guildMemberAdd';
 import messageCreate from './events/messageCreate';
 import messageReactionAdd from './events/messageReactionAdd';
 import messageReactionRemove from './events/messageReactionRemove';
+import mongoose from 'mongoose';
 
 const {
   PREMIUM_BOT,
@@ -77,6 +78,12 @@ class Bot {
 
     client.queue();
 
+    process.on('SIGTERM', () => {
+      client.editStatus('dnd', { type: 0, name: "going offline" });
+      client.disconnect({ reconnect: false });
+      mongoose.disconnect();
+    });
+
     return client;
   }
 
@@ -99,7 +106,7 @@ class Bot {
       .on('messageReactionAdd', messageReactionAdd)
       .on('messageReactionRemove', messageReactionRemove);
   }
-
+  
   static get client(): ErisClient {
     if (!this._client) throw new Error("You must call .init() first");
     return this._client;

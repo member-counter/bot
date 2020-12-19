@@ -8,7 +8,7 @@
 	"main": "./dist/src/index.js",
 	"scripts": {
 		"start": "node .",
-		"build": "tsc && gulp",
+		"build": "tsc",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
 		"dev:docker": "docker-compose -f docker-compose.dev.yml up --force-recreate --build"
 	},
@@ -26,6 +26,7 @@
 		"@arcanebot/redis-sharder": "^1.0.15",
 		"abort-controller": "^3.0.0",
 		"bufferutil": "^4.0.1",
+		"colorthief": "^2.3.2",
 		"cron": "^1.8.2",
 		"dotenv": "^8.2.0",
 		"dotenv-parse-variables": "^0.2.3",
