@@ -12,7 +12,7 @@ import guildMemberAdd from './events/guildMemberAdd';
 import messageCreate from './events/messageCreate';
 import messageReactionAdd from './events/messageReactionAdd';
 import messageReactionRemove from './events/messageReactionRemove';
-import mongoose from 'mongoose';
+import userUpdate from './events/userUpdate';
 
 const {
   PREMIUM_BOT,
@@ -98,7 +98,8 @@ class Bot {
       .on('messageCreate', messageCreate)
       .on('messageUpdate', messageCreate)
       .on('messageReactionAdd', messageReactionAdd)
-      .on('messageReactionRemove', messageReactionRemove);
+      .on('messageReactionRemove', messageReactionRemove)
+      .on('userUpdate', userUpdate);
   }
   
   static get client(): ErisClient {

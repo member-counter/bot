@@ -32,6 +32,8 @@ interface MemberCounterEnv {
 	readonly DISCORD_OFFICIAL_SERVER_ID: string;
 	readonly DISCORD_OFFICIAL_SERVER_URL: string;
 
+	readonly BOT_COLOR: number;
+
 	readonly BOT_OWNERS: string[];
 
 	readonly MEMBER_COUNTS_CACHE_CHECK: number;
