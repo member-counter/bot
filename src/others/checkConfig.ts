@@ -7,6 +7,7 @@ const {
   GHOST_MODE,
   DISCORD_PREFIX,
   DISCORD_DEFAULT_LANG,
+  BOT_COLOR,
   PREMIUM_BOT,
   DB_URI,
   REDIS_HOST,
@@ -58,6 +59,11 @@ function checkConfig() {
 
   if (typeof DISCORD_PREFIX !== "string") {
     console.error(`[ENV ERROR] The current prefix "${DISCORD_PREFIX}" is invalid`);
+    fail = true;
+  }
+
+  if (BOT_COLOR.toString().length && typeof BOT_COLOR !== "number") {
+    console.error(`[ENV ERROR] The current BOT_COLOR "${BOT_COLOR}" is invalid`);
     fail = true;
   }
 
