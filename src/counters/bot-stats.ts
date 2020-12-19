@@ -1,6 +1,5 @@
 import GuildCountCacheModel from '../models/GuildCountCache';
 import Counter from '../typings/Counter';
-import Constants from '../utils/Constants';
 
 const BotStatsCounter: Counter = {
 	aliases: ['member-counter-users', 'member-counter-guilds'],
@@ -8,6 +7,10 @@ const BotStatsCounter: Counter = {
 	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
+		const stats = await client.getStats();
+		let users = stats.estimatedTotalUsers;
+		let guilds = stats.guilds;
+
 		return {
 			['member-counter-users']: (await GuildCountCacheModel.aggregate([{
 				$group: {

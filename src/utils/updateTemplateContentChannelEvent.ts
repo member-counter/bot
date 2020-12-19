@@ -10,7 +10,7 @@ import {
 const counterPattern: RegExp = /\{.+\}/;
 const disablePattern: RegExp = /\{disable\}/i;
 
-const updateCounterContent = async (channel: GuildChannel): Promise<void> => {
+const updateTemplateContent = async (channel: GuildChannel): Promise<void> => {
   if (
     channel instanceof TextChannel ||
     channel instanceof NewsChannel ||
@@ -41,4 +41,4 @@ const updateCounterContent = async (channel: GuildChannel): Promise<void> => {
   }
 };
 
-export default updateCounterContent;
+export default updateTemplateContent;

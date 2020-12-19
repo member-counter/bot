@@ -1,9 +1,10 @@
 import Eris from 'eris';
+import { ErisClient } from '../bot';
 import GuildService from '../services/GuildService';
 import FormattingSettings from './FormattingSettings';
 
 interface executeArgs {
-	client: Eris.Client;
+	client: ErisClient;
 
 	/**
 	 * @description Current guild
@@ -39,7 +40,7 @@ interface Counter {
 	aliases: string[];
 
 	/**
-	 * @description If false, "Only Premium" will be displayed (when PREMIUM_BOT or FOSS_MODE is true), and execute won't be run
+	 * @description If false, "Only Premium" will be displayed (when PREMIUM_BOT or UNRESTRICTED_MODE is true), and execute won't be run
 	 */
 	isPremium: boolean;
 

@@ -4,22 +4,35 @@ import dotenvParseVariables from 'dotenv-parse-variables';
 interface MemberCounterEnv {
 	readonly NODE_ENV: 'development' | 'production';
 	readonly DEBUG: boolean;
-	readonly FOSS_MODE: boolean;
+	readonly UNRESTRICTED_MODE: boolean;
 	readonly PORT: number;
+	readonly AGENDA_ENABLED_JOBS: string[];
+	readonly GHOST_MODE: boolean;
+
+	readonly DISTRIBUTED: boolean;
+	readonly FIRST_SHARD: number;
+	readonly SHARD_AMOUNT: number;
+	readonly TOTAL_SHARDS: number;
+
+	readonly REDIS_LOCK_KEY: string;
+	readonly REDIS_PASSWORD: string;
+	readonly REDIS_HOST: string;
+	readonly REDIS_PORT: number;
 
 	readonly DB_URI: string;
+
+	readonly STATUS_WEBHOOK_ID: string;
+	readonly STATUS_WEBHOOK_TOKEN: string;
 
 	readonly DISCORD_CLIENT_ID: string;
 	readonly DISCORD_CLIENT_TOKEN: string;
 	readonly DISCORD_BOT_INVITE: string;
-
 	readonly DISCORD_PREFIX: string;
 	readonly DISCORD_DEFAULT_LANG: string;
 	readonly DISCORD_OFFICIAL_SERVER_ID: string;
 	readonly DISCORD_OFFICIAL_SERVER_URL: string;
 
 	readonly BOT_OWNERS: string[];
-	readonly UPDATE_COUNTER_INTERVAL: number;
 
 	readonly MEMBER_COUNTS_CACHE_CHECK: number;
 	readonly MEMBER_COUNTS_CACHE_CHECK_SLEEP: number;
@@ -55,8 +68,12 @@ interface MemberCounterEnv {
 }
 
 
-let env = dotenv.config();
-const parsedEnv = dotenvParseVariables({ ...process.env });
+dotenv.config();
+
+const parsedEnv = dotenvParseVariables({
+	...process.env,
+	DISCORD_CLIENT_ID: Buffer.from(process.env.DISCORD_CLIENT_TOKEN.split(".")[0], 'base64').toString("utf-8") + "*"
+});
 
 function getEnv(): MemberCounterEnv {
   return parsedEnv;
