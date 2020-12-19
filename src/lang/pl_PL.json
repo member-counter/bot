@@ -6,7 +6,7 @@
 			"helpDescription": "Czy naprawdę konieczne jest wyjaśnienie celu tej komendy?",
 			"embedReply": {
 				"title": "Lista komend | prefix {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `mc!setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Liczniki**",
@@ -328,6 +328,7 @@
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
+			"categoryName": "📊 Server Stats 📊",
 			"memberCounter": "{members} Members",
 			"boostingCounter": "{nitro-boosters} Boosting",
 			"rolesCounter": "{roles} Roles",
