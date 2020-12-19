@@ -4,6 +4,7 @@ import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
 import GuildService from '../services/GuildService';
 import CountService from '../services/CountService';
+import Bot from '../bot';
 
 const lockChannel: MemberCounterCommand = {
 	aliases: ['lockChannel', 'lock'],
@@ -19,7 +20,8 @@ const lockChannel: MemberCounterCommand = {
 		const { channel, content } = message;
 		if (channel instanceof GuildChannel) {
 			const [command, channelId] = content.split(/\s+/);
-			const { guild, client } = channel;
+			const { guild } = channel;
+			const { client } = Bot;
 
 			if (guild.channels.has(channelId)) {
 				const channelToEdit = guild.channels.get(channelId);
@@ -62,7 +64,8 @@ const editChannel: MemberCounterCommand = {
 		const { channel, content } = message;
 
 		if (channel instanceof GuildChannel) {
-			const { guild, client } = channel;
+			const { guild } = channel;
+			const { client } = Bot;
 			const guildSettings = await GuildService.init(guild.id);
 			let [command, channelId, ...newContent]: any = content.split(/ +/);
 			newContent = newContent.join(' ');
@@ -92,7 +95,8 @@ const preview: MemberCounterCommand = {
 	run: async ({ message, languagePack }) => {
 		const { channel, content } = message;
 		if (channel instanceof GuildChannel) {
-			const { guild, client } = channel;
+			const { guild } = channel;
+			const { client } = Bot;
 			const guildSettings = await GuildService.init(guild.id);
 			let [command, ...contentToTest]: any = content.split(/ +/);
 			contentToTest = contentToTest.join(' ');

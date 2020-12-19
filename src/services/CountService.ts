@@ -6,73 +6,20 @@ import botHasPermsToEdit from "../utils/botHasPermsToEdit";
 import stringReplaceAsync from "../utils/stringReplaceAsyncSerial";
 import Constants from "../utils/Constants";
 import Counter from "../typings/Counter";
-
-import TestCounter from "../counters/_test";
-import ErrorCounter from "../counters/_error";
-import BannedMembersCounter from "../counters/bannedMembers";
-import BotStatsCounter from "../counters/bot-stats";
-import ChannelCounter from "../counters/channels";
-import ClockCounter from "../counters/clock";
-import CountdownCounter from "../counters/countdown";
-import GameCounter from "../counters/game";
-import HTTPCounter from "../counters/http";
-import HTTPStringCounter from "../counters/httpString";
-import InstagramCounter from "../counters/Instagram";
-import MemberCounter from "../counters/members";
-import MembersConnectedCounter from "../counters/membersConnected";
-import MembersExtendedCounter from "../counters/membersExt";
-import MembersWithRoleCounter from "../counters/membersWithRole";
-import MemeratorCounter from "../counters/Memerator";
-import NitroBoostersCounter from "../counters/nitroBoosters";
-import RolesCounter from "../counters/roles";
-import StaticCounter from "../counters/static";
-import TwitchCounter from "../counters/Twitch";
-import TwitterCounter from "../counters/Twitter";
-import YouTubeCounter from "../counters/YouTube";
 import FormattingSettings from "../typings/FormattingSettings";
-import { count } from "console";
+import counters from "../counters/all";
+import { Bot, ErisClient } from "../bot";
+
+const { UNRESTRICTED_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
 
 // Do the aliases lowercase
-const counters: Counter[] = [
-  TestCounter,
-  ErrorCounter,
-  BannedMembersCounter,
-  BotStatsCounter,
-  ChannelCounter,
-  ClockCounter,
-  CountdownCounter,
-  GameCounter,
-  HTTPCounter,
-  HTTPStringCounter,
-  InstagramCounter,
-  MemberCounter,
-  MembersConnectedCounter,
-  MembersExtendedCounter,
-  MembersWithRoleCounter,
-  MemeratorCounter,
-  NitroBoostersCounter,
-  RolesCounter,
-  StaticCounter,
-  TwitchCounter,
-  TwitterCounter,
-  YouTubeCounter,
-].map((counter) => {
-  counter.aliases = counter.aliases.map((alias) => alias.toLowerCase());
-  return counter;
-});
-
-const cache = new Map<string, { value: number | string; expiresAt: number }>();
-
-const { FOSS_MODE, PREMIUM_BOT, DEBUG } = getEnv();
-
-setInterval(() => {
-  cache.forEach(({ expiresAt }, counterKey) => {
-    if (expiresAt < Date.now()) cache.delete(counterKey);
-  });
-}, 24 * 60 * 60 * 1000);
+counters.forEach((counter) =>
+  counter.aliases = counter.aliases.map((alias) => alias.toLowerCase())
+);
 
 class CountService {
-  private client: Eris.Client;
+  public static cache = new Map<string, { value: number | string; expiresAt: number }>();
+  private client: ErisClient;
   public guild: Eris.Guild;
   private guildSettings: GuildService;
   private languagePack: any;
@@ -83,8 +30,7 @@ class CountService {
     this.guildSettings = guildSettings;
     this.languagePack = loadLanguagePack(this.guildSettings.language);
     this.tmpCache = new Map<string, string>();
-    //@ts-ignore
-    this.client = this.guild._client;
+    this.client = Bot.client;
   }
 
   public static async init(guild: Eris.Guild): Promise<CountService> {
@@ -122,10 +68,11 @@ class CountService {
           const topicToSet = processedContent.slice(0, 1023);
           if (
             botHasPermsToEdit(discordChannel) &&
-            //@ts-ignore
-            discordChannel.topic !== topicToSet
-          )
+            (discordChannel as Eris.TextChannel).topic !== topicToSet
+          ) {
+            if (GHOST_MODE) return;
             await discordChannel.edit({ topic: topicToSet });
+          }
         } else if (counterIsNameType) {
           const nameToSet =
             processedContent.length > 2
@@ -133,9 +80,9 @@ class CountService {
               : this.languagePack.functions.getCounts.invalidChannelLength;
           if (
             botHasPermsToEdit(discordChannel) &&
-            //@ts-ignore
             discordChannel.name !== nameToSet
           ) {
+            if (GHOST_MODE) return;
             await discordChannel.edit({ name: nameToSet });
           }
         }
@@ -192,10 +139,10 @@ class CountService {
 
     // GET THE VALUE OF THE COUNTER
     if (
-      cache.get(this.counterToKey(counterName, resource, formattingSettingsRaw))
+      CountService.cache.get(this.counterToKey(counterName, resource, formattingSettingsRaw))
         ?.expiresAt > Date.now()
     )
-      result = cache.get(
+      result = CountService.cache.get(
         this.counterToKey(counterName, resource, formattingSettingsRaw)
       ).value;
 
@@ -212,7 +159,7 @@ class CountService {
       for (const counter of counters) {
         if (counter.aliases.includes(counterName)) {
           if (counter.isEnabled) {
-            if (counter.isPremium && !(PREMIUM_BOT || FOSS_MODE)) {
+            if (counter.isPremium && !(PREMIUM_BOT || UNRESTRICTED_MODE)) {
               result = Constants.CounterResult.PREMIUM;
               break;
             }
@@ -233,7 +180,7 @@ class CountService {
                   .log(`{${counterRequested}}: ${error}`)
                   .catch(console.error);
                 return (
-                  cache.get(
+                  CountService.cache.get(
                     this.counterToKey(
                       counterName,
                       resource,
@@ -272,7 +219,7 @@ class CountService {
                 }
 
                 if (lifetime > 0)
-                  cache.set(
+                  CountService.cache.set(
                     this.counterToKey(extKey, resource, formattingSettingsRaw),
                     {
                       value: extValue,
@@ -287,7 +234,7 @@ class CountService {
               }
 
               result =
-                cache.get(
+                CountService.cache.get(
                   this.counterToKey(
                     counterName,
                     resource,
@@ -380,12 +327,16 @@ class CountService {
     formattingSettingsRaw: string
   ): string {
     return [formattingSettingsRaw, counterName, resource]
-      .filter((x) => x)
-      .join(":");
+      .filter((x) => x) // remove undefined stuff
+      .join(":"); // the final thing will look like "base64Settings:counterName:ExtraParamsAkaResource", like a normal counter but without the curly braces {}
   }
 
   public static getCounters(): Counter[] {
     return counters;
+  }
+
+  public static getCache() {
+    return CountService.cache;
   }
 
   public static getCounterByAlias(alias: string): Counter {

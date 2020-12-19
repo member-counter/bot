@@ -1,8 +1,8 @@
 import MemberCounterCommand from '../typings/MemberCounterCommand';
-import UserError from '../utils/UserError';
 import CountService from '../services/CountService';
 import { GuildChannel } from 'eris';
 import GuildService from '../services/GuildService';
+import Bot from '../bot';
 
 const setup: MemberCounterCommand = {
 	aliases: ['setup'],
@@ -19,10 +19,28 @@ const setup: MemberCounterCommand = {
 		];
 
 		if (channel instanceof GuildChannel) {
+			const { client } = Bot;
 			const { guild } = channel;
 			const guildService = await GuildService.init(guild.id);
 			const countService = await CountService.init(guild);
-
+			const categoryName = languagePack.commands.setup.categoryName
+			const category = await guild.createChannel(categoryName, 4, {
+				permissionOverwrites: [
+						{
+								id: client.user.id,
+								type: 'member',
+								allow: 0x00100000 | 0x00000400,
+								deny: 0,
+						},
+						{
+								id: guild.id,
+								type: 'role',
+								allow: 0,
+								deny: 0x00100000,
+						},
+				],
+		})
+		const categoryID = category.id;
 			channelsToCreate.forEach(async (content) => {
 				guild
 					.createChannel(
@@ -31,7 +49,7 @@ const setup: MemberCounterCommand = {
 						{
 							permissionOverwrites: [
 								{
-									id: channel.client.user.id,
+									id: client.user.id,
 									type: 'member',
 									allow: 0x00100000 | 0x00000400,
 									deny: 0,
@@ -43,6 +61,7 @@ const setup: MemberCounterCommand = {
 									deny: 0x00100000,
 								},
 							],
+							parentID: categoryID
 						},
 					)
 					.then((channel) => {

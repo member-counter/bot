@@ -1,4 +1,5 @@
 import { Message } from 'eris';
+import Bot from '../bot';
 
 interface reactionListenerCallback {
 	(userId: string, destroy: () => void): void;
@@ -13,7 +14,7 @@ const reactiveMessages: Map<string, ReactiveMessageConfig> = new Map();
 
 const reactionHandler = (message: Message, emoji: any, userId: string) => {
 	const { channel } = message;
-	const { client } = channel;
+	const { client } = Bot;
 	const reactiveMessageKey = `${channel.id}:${message.id}`;
 	const reactiveMessage = reactiveMessages.get(reactiveMessageKey);
 	const reactedEmoji: string = emoji.id || emoji.name || emoji;

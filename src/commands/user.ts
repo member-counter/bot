@@ -5,6 +5,7 @@ import Eris from "eris";
 import getEnv from "../utils/getEnv";
 import { UserBadges } from "../utils/Constants";
 import ReactionManager from "../utils/ReactionManager";
+import Bot from "../bot";
 
 const { BOT_OWNERS } = getEnv();
 
@@ -17,6 +18,7 @@ const emojiBadges = {
   [UserBadges.BIG_BRAIN]: "🧠",
   [UserBadges.BUG_CATCHER]: "🐛",
   [UserBadges.PATPAT]: "🐱",
+  [UserBadges.FOLDING_AT_HOME]: "🧬"
 };
 
 const generateBadgeList = (badges: number): string => {
@@ -42,7 +44,7 @@ const user: MemberCounterCommand = {
   onlyAdmin: false,
   run: async ({ message, languagePack }) => {
     const { author, channel, mentions, content } = message;
-    const { client } = channel;
+    const { client } = Bot;
     const [
       _command,
       userRequested,

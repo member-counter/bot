@@ -1,6 +1,7 @@
 import getEnv from '../utils/getEnv';
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import embedBase from '../utils/embedBase';
+import Bot from '../bot';
 
 const {
   DONATION_URL,
@@ -14,6 +15,7 @@ const info: MemberCounterCommand = {
   onlyAdmin: false,
   run: async ({ message, languagePack }) => {
     const { channel } = message;
+    const { client } = Bot;
     const embed = embedBase(languagePack.commands.info.embedReply);
     embed.description = embed.description
       .replace('{DONATION_URL}', DONATION_URL)
@@ -21,7 +23,7 @@ const info: MemberCounterCommand = {
       .replace('{BOT_INVITE_URL}', DISCORD_BOT_INVITE);
 
     embed.thumbnail = {
-      url: message.channel.client.user.dynamicAvatarURL(),
+      url: client.user.dynamicAvatarURL(),
     };
 
     await channel.createMessage({ embed });

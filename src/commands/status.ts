@@ -1,47 +1,13 @@
 import os from 'os';
-import { spawn } from 'child_process';
-import { promises as fs } from 'fs';
+import git from 'git-rev-sync';
 
 import * as packageJSON from '../../package.json';
 import MemberCounterCommand from '../typings/MemberCounterCommand';
 import embedBase from '../utils/embedBase';
 import GuildCountCacheModel from '../models/GuildCountCache';
 
-const getRealFreeMemory = (): Promise<number> => {
-  return new Promise(async (resolve) => {
-    if (process.platform !== 'linux') {
-      resolve(os.freemem());
-      return;
-    }
-
-    try {
-      const memInfoResult = await fs.readFile('/proc/meminfo', 'utf-8');
-
-      let memInfo: any = {};
-      let realFreeMemory = 0;
-
-      if (typeof memInfoResult === 'string') {
-        memInfoResult.split('\n').forEach((line) => {
-          memInfo[line.split(/:\s+/)[0]] =
-            parseInt(line.split(/:\s+/)[1], 10) * 1024;
-        });
-      } else {
-        resolve(os.freemem());
-        return;
-      }
-
-      realFreeMemory = memInfo.MemFree + memInfo.Buffers + memInfo.Cached;
-
-      resolve(realFreeMemory);
-    } catch (error) {
-      console.error(error);
-      resolve(os.freemem());
-    }
-  });
-};
-
 const parseUptime = (inputDate: number) => {
-  //inputDate must be in seconds
+  // inputDate must be in seconds
   const uptime = new Date(1970, 0, 1);
   uptime.setSeconds(Math.floor(inputDate));
   return `${Math.floor(
@@ -53,62 +19,64 @@ const status: MemberCounterCommand = {
   aliases: ['uptime', 'status'],
   denyDm: false,
   onlyAdmin: false,
-  run: async ({ message }) => {
+  run: async ({ message, client }) => {
     const { channel } = message;
-    const { client } = channel;
     const { version } = packageJSON;
 
+    const clientStats = await client.getStats();
+    const stats = {
+      version: `Bot version: ${version} [${git.short()}](${git.remoteUrl().replace('.git', '/') + 'commit/' + git.long()})`,
+      clientUptime: parseUptime(client.uptime / 1000),
+      processUptime: parseUptime(process.uptime()),
+      systemUptime: parseUptime(os.uptime()),
+      shardClusters: clientStats.clusters.length.toString(),
+      loadAvg: os.loadavg().map(x => x.toPrecision(2)).join(' - '),
+      memoryUsage: Number((clientStats.memoryUsage.heapUsed / 1024 / 1024).toPrecision(3)) + 'MB',
+      botLatency: await (async () => {
+        const time = process.hrtime()[1];
+        await (new Promise(r => setTimeout(r, 0)));
+        const latency = (process.hrtime()[1] - time) / 1000000;
+        return Number(latency.toPrecision(3)); // remove extra decimals
+      })() + 'ms',
+      gatewayLatency: client.shards.get(client.guildShardMap[message.guildID] || 0).latency + 'ms',
+      hostname: os.hostname(),
+      currentShard: '#' + ((client.guildShardMap[message.guildID] || 0) + 1),
+      totalShards: clientStats.shards.length.toString(),
+      guilds: clientStats.guilds.toString(),
+      userStats: clientStats.users + ' / ' + clientStats.estimatedTotalUsers,
+    }
+
     const embed = embedBase({
-      description: `Bot version: ${version}`,
+      description: stats.version,
       fields: [
         {
           name: '**Discord client uptime:**',
-          value: parseUptime(client.uptime / 1000),
+          value: stats.clientUptime,
           inline: true,
         },
         {
           name: '**Process uptime:**',
-          value: parseUptime(process.uptime()),
+          value: stats.processUptime,
           inline: true,
         },
         {
           name: '**System uptime:**',
-          value: parseUptime(os.uptime()),
+          value: stats.systemUptime,
           inline: true,
         },
         {
-          name: '**Server cores:**',
-          value: `${os.cpus().length}`,
+          name: '**Shard clusters**',
+          value: stats.shardClusters,
           inline: true,
         },
         {
           name: '**Load avg:**',
-          value: `${os
-            .loadavg()[0]
-            .toPrecision(2)} - ${os
-            .loadavg()[1]
-            .toPrecision(2)} - ${os.loadavg()[2].toPrecision(2)}`,
+          value: stats.loadAvg,
           inline: true,
         },
         {
-          name: '**Total memory usage:**',
-          value: await (async () => {
-            const toGB = (bytes: number): number => {
-              return bytes / 1024 / 1024 / 1024;
-            };
-
-            const realFreeMemory = await getRealFreeMemory();
-            const totalMemory = os.totalmem();
-            const memoryUsed = totalMemory - realFreeMemory;
-            const memoryUsage = ((memoryUsed * 100) / totalMemory).toPrecision(
-              2,
-            );
-
-            return `
-            ${toGB(memoryUsed).toPrecision(3)}GB of ${toGB(
-              totalMemory,
-            ).toPrecision(3)}GB (${memoryUsage}%)`;
-          })(),
+          name: '**Memory usage:**',
+          value: stats.memoryUsage,
           inline: true,
         },
         {
@@ -118,17 +86,31 @@ const status: MemberCounterCommand = {
         },
         {
           name: '**BOT latency:**',
-          value: `${Date.now() - message.timestamp}ms`,
+          value: stats.botLatency,
+          inline: true,
+        }, {
+          name: '**Gateway latency:**',
+          value: stats.gatewayLatency,
+          inline: true,
+        },
+        {
+          name: '**Hostname:**',
+          value: stats.hostname,
+          inline: true,
+        },
+        {
+          name: '**Current shard:**',
+          value: stats.currentShard,
           inline: true,
         },
         {
           name: '**Shards:**',
-          value: `${client.shards.size}`,
+          value: stats.totalShards,
           inline: true,
         },
         {
           name: '**Guilds:**',
-          value: `${client.guilds.size}`,
+          value: stats.guilds,
           inline: true,
         },
         {
@@ -146,9 +128,10 @@ const status: MemberCounterCommand = {
       ],
     });
 
+    const RESTLatencyCheck = Date.now();
     await channel.createMessage({ embed }).then(async (message) => {
       // Bot latency field
-      embed.fields[6].value = `${Math.abs(Date.now() - message.createdAt)}ms`;
+      embed.fields[6].value = `${Date.now() - RESTLatencyCheck}ms`;
 
       await message.edit({ embed });
     });

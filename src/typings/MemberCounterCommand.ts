@@ -1,6 +1,8 @@
 import { Message } from 'eris';
+import { ErisClient } from '../bot';
 
 interface runArgs {
+  client: ErisClient;
   message: Message;
   languagePack: any;
 }
