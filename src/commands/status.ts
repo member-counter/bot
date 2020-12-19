@@ -122,7 +122,7 @@ const status: MemberCounterCommand = {
                 $sum: "$members"
               }
             }
-          }]))[0].total,
+          }]))[0]?.total ?? "Unknown",
           inline: true,
         },
       ],
