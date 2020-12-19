@@ -4,6 +4,11 @@ WORKDIR /app
 
 COPY . .
 
+EXPOSE $PORT
+
+# DevTools/Debugger
+EXPOSE 9229:9229
+
 RUN npm install
 
 CMD ["npm", "run", "dev"]
