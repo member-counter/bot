@@ -78,12 +78,6 @@ class Bot {
 
     client.queue();
 
-    process.on('SIGTERM', () => {
-      client.editStatus('dnd', { type: 0, name: "going offline" });
-      client.disconnect({ reconnect: false });
-      mongoose.disconnect();
-    });
-
     return client;
   }
 
