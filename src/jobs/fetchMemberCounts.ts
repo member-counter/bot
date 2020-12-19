@@ -11,12 +11,9 @@ const fetchMemberCounts: Job = {
   runAtStartup: true,
   runInOnlyFirstThread: true,
   run: async ({ client }) => {
-    // TODO FIX
-    const guilds = await client.evalAll('this.client.guilds')
-    console.log(guilds);
+    const guilds = (await client.evalAll('[...this.client.guilds.keys()]') as string[]).flat();
 
-    return;
-    for (const [id] of guilds as Map<string, Eris.Guild>) {
+    for (const id of guilds) {
       try {
         await sleep(MEMBER_COUNTS_CACHE_CHECK_SLEEP * 1000);
         let guildCountCache = await GuildCountCacheModel.findOne({ guild: id });
