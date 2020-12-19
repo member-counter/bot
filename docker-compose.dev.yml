@@ -15,8 +15,10 @@ services:
       - member-counter-bot-redis
     ports:
       - "${PORT}:${PORT}"
+      - "9229:9229"
     networks:
       - default
+
   member-counter-bot-mongodb:
     image: mongo:3.6
     container_name: Member-Counter-DB
