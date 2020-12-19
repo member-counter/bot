@@ -35,7 +35,6 @@ class Bot {
     if (this._client) throw new Error("Client is already initialized");
 
     const intents: Eris.IntentStrings[] = [
-      'guildMembers',
       'guilds',
       'guildBans',
       'guildMessages',
@@ -43,11 +42,9 @@ class Bot {
       'guildMessageReactions',
       'directMessageReactions',
     ];
-
-    if (PREMIUM_BOT) intents.push('guildPresences', 'guildVoiceStates');
     
     const erisOptions: Eris.ClientOptions = {
-      getAllUsers: PREMIUM_BOT,
+      getAllUsers: false,
       guildCreateTimeout: 15000,
       intents,
       maxShards: DISTRIBUTED ? TOTAL_SHARDS : 1,
