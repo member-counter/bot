@@ -30,7 +30,7 @@
 		"cron": "^1.8.2",
 		"dotenv": "^8.2.0",
 		"dotenv-parse-variables": "^0.2.3",
-		"eris": "^0.13.3",
+		"eris": "^0.14.0",
 		"gamedig": "^2.0.23",
 		"git-rev-sync": "^3.0.1",
 		"lodash.clonedeep": "^4.5.0",
