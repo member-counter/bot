@@ -6,7 +6,7 @@
 			"helpDescription": "C'est vraiment nécessaire d'expliquer le but de cette commande?",
 			"embedReply": {
 				"title": "Liste des commandes | préfixe: {PREFIX}",
-				"description": "[Ajoutez ce bot à votre serveur]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstallation rapide: `mc!setup`\n\nPour obtenir plus d'informations sur une commande, envoyez `{PREFIX}help` plus le nom de la commande: ```\n{PREFIX}help shortNumber```\n**Info:** `()` signifie un paramètre facultatif tandis que `[]` signifie un requis",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Compteurs**",
@@ -328,6 +328,7 @@
 		},
 		"setup": {
 			"helpDescription": "Crée des salons vocaux verrouillés avec quelques compteurs en eux\n**Exemple**```{PREFIX}setup```",
+			"categoryName": "📊 Server Stats 📊",
 			"memberCounter": "{members} Membres",
 			"boostingCounter": "{nitro-boosters} Boosters",
 			"rolesCounter": "{roles} Rôles",
