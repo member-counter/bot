@@ -33,7 +33,7 @@
 			"helpDescription": "Size botun nasıl kullanılacağına dair bir rehber gösterir",
 			"pagesText": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Sunucunuza Member Counter'ı eklediğiniz için teşekkürler!**\n__**Sayaç oluşturma/düzenleme**__\nBu örnek için, discord sunucunuzdaki toplam üye sayısını sayan `{members}`ı kullanacağız, ancak sonraki sayfalarda daha fazla sayaç bulacaksınız.\nBu sayacı aşağıdaki yerlerden birine yerleştirebilirsiniz:\n\n- **ses kanal adına**\n- **kategori adına**\n- **yazı kanalı başlığına**\n- **duyuru kanalı başlığına**\n\nŞimdi yeni bir kanal oluşturun, düzenleyin ve ada veya başlığa `{members}` yazın ve 'değişiklikleri kaydet'e tıklayın\n\nAyrıca bir ad/başlığa birden fazla sayaç ekleyebilir ve bunları kendi içeriğinizle birleştirebilirsiniz, işte örnekler:\n```\n{onlineMembers}/{members} Aktif Üye, {youtubeSubscribers:https://www.youtube.com/user/enyay} Abone!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Yönetici ve mod aktif!\n```\n\n> Bir adı/konuyu düzenlerken karakter sınırına ulaşırsanız, lütfen `{PREFIX}help editChannel` ile kontrol edin.\n> Mevcut sayaç yapılandırmalarını `{PREFIX}seeSettings` ile görebilirsiniz, bu, önceki sayaçları devre dışı bırakmadan daha fazla sayaç eklemek için kullanışlıdır.\n__**Sayaç kaldırma**__\nKanalı düzenleyin ve kanal adına/başlığa {disable} yazın, Member Counter kanal adını \\✅ olarak değiştirecektir, bu şey kanalın tüm sayaçlarını başarıyla kaldırdığınız anlamına gelir.\nDoğrudan kanalı da silebilirsiniz.",
-			"countersHeader": "__**Sayaçlar**__\n> Geliştirici modunu Discord'da etkinleştirmelisiniz (Kullanıcı Ayarları > Görünüm > Gelişmiş > Geliştirici modu)\n> Bir ID almak için bir kanala/role sağ tıklayın ve \"IDyi Kopyala\"ya tıklayın.\n\n> Yıldız işaretli (\\*) sayaçlar premium sayaçlardır, daha fazla bilgiyi `{PREFIX}help upgradeServer` bölümünde bulabilirsiniz.\n\n> Sayaçtaki sayı biçimlendirmesini sunucu ayarlarından bağımsız olarak değiştirmek istiyorsanız, bu [sayfa](https://member-counter.eduardozgz.com/utils/overwrite-settings)yı ziyaret ediniz veya, bu [talimatları](https://github.com/eduardozgz/member-counter-bot/issues/98) okuyarak manuel olarak yapabilirsiniz.\n\n",
+			"countersHeader": "__**Sayaçlar**__\n> Geliştirici modunu Discord'da etkinleştirmelisiniz (Kullanıcı Ayarları > Görünüm > Gelişmiş > Geliştirici modu)\n> Bir ID almak için bir kanala/role sağ tıklayın ve \"IDyi Kopyala\"ya tıklayın.\n\n> Yıldız işaretli (\\*) sayaçlar premium sayaçlardır, daha fazla bilgiyi `{PREFIX}help upgradeServer` bölümünde bulabilirsiniz.\n\n> Sayaçtaki sayı biçimlendirmesini sunucu ayarlarından bağımsız olarak değiştirmek istiyorsanız, bu [sayfa](https://member-counter.eduardozgz.com/utils/overwrite-settings)yı ziyaret ediniz veya, bu [talimatlar](https://github.com/eduardozgz/member-counter-bot/issues/98)ı okuyarak bunu manuel olarak da yapabilirsiniz.\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -43,12 +43,12 @@
 				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
-					"description": "Sunucunuzdaki yaklaşık aktif üye"
+					"description": "Sunucunuzdaki yaklaşık aktif üye sayısı"
 				},
 				{
 					"key": "onlineMembers",
 					"name": "onlineMembers",
-					"description": "Sunucunuzdaki aktif üye"
+					"description": "Sunucunuzdaki aktif üye sayısı"
 				},
 				{
 					"key": "offlineMembers",
@@ -58,42 +58,42 @@
 				{
 					"key": "users",
 					"name": "users",
-					"description": "Sunucunuzdaki kullanıcılar (botlar hariç)"
+					"description": "Sunucunuzdaki kullanıcı sayısı (botlar hariç)"
 				},
 				{
 					"key": "onlineUsers",
 					"name": "onlineUsers",
-					"description": "Sunucunuzdaki aktif kullanıcılar (botlar hariç)"
+					"description": "Sunucunuzdaki aktif kullanıcı sayısı (botlar hariç)"
 				},
 				{
 					"key": "offlineUsers",
 					"name": "offlineUsers",
-					"description": "Sunucunuzdaki çevrimdışı kullanıcılar (botlar hariç)"
+					"description": "Sunucunuzdaki çevrimdışı kullanıcı sayısı (botlar hariç)"
 				},
 				{
 					"key": "bots",
 					"name": "bots",
-					"description": "Sunucunuzdaki botlar (normal kullanıcılar hariç)"
+					"description": "Sunucunuzdaki bot sayısı"
 				},
 				{
 					"key": "onlineBots",
 					"name": "onlineBots",
-					"description": "Sunucunuzdaki aktif botlar (normal kullanıcılar hariç)"
+					"description": "Sunucunuzdaki aktif bot sayısı"
 				},
 				{
 					"key": "offlineBots",
 					"name": "offlineBots",
-					"description": "Sunucunuzdaki çevrimdışı botlar (normal kullanıcılar hariç)"
+					"description": "Sunucunuzdaki çevrimdışı bot sayısı"
 				},
 				{
 					"key": "roles",
 					"name": "roles",
-					"description": "Sunucunuzdaki roller"
+					"description": "Sunucunuzdaki rol sayısı"
 				},
 				{
 					"key": "channels",
 					"name": "channels",
-					"description": "Sunucunuzdaki kanallar (kategoriler hariç)"
+					"description": "Sunucunuzdaki kanal sayısı (kategoriler hariç)"
 				},
 				{
 					"key": "membersWithRole",
@@ -123,7 +123,7 @@
 				{
 					"key": "bannedMembers",
 					"name": "bannedMembers",
-					"description": "Sunucunuzdaki banlı üyelerin miktarıdır, botun bu sayıyı göstermesi için üyeleri yasaklama yetkisine sahip olması gerekir"
+					"description": "Sunucunuzdaki banlı üyelerin sayısıdır, botun bu sayıyı göstermesi için üyeleri yasaklama yetkisine sahip olması gerekir"
 				},
 				{
 					"key": "http",
@@ -306,7 +306,7 @@
 		"profile": {
 			"helpDescription": "Siz ve bu bot arasındaki ilgili bilgileri gösterir",
 			"badges": "Rozetler",
-			"serverUpgradesAvailable": "Server upgrades left",
+			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
 			"removeDataConfirmation": ":warning: **Bu işlem tüm verilerinizi kaldıracak, rozetleriniz ve sunucu yükseltmeleriniz sonsuza kadar kaybolacak, devam etmek istediğinizden emin misiniz? (İptal etmek için bu mesajı görmezden gelin)**",
 			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı"
 		},
@@ -345,7 +345,7 @@
 			"disabled": "Sayaç Devre Dışı",
 			"noBanPerms": "Bunu göstermek için üyeleri yasaklama yetkisine ihtiyacım var",
 			"invalidChannelLength": "Geçersiz kanal adı uzunluğu, lütfen sayacı tekrar kurun",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "Bu şey mevcut değil, lütfen bekleyin"
 		}
 	},
 	"common": {
