@@ -284,7 +284,7 @@
 		"info": {
 			"helpDescription": "Yararlı linklerin listesi",
 			"embedReply": {
-				"description": "[Beni Sunucunuza Eklemek İçin Tıklayın]({BOT_INVITE_URL})\n[Destek Sunucum]({BOT_SERVER_URL})\n[GitHub Repositoryim](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+				"description": "[Beni Sunucunuza Eklemek İçin Tıklayın]({BOT_INVITE_URL})\n[Destek Sunucum]({BOT_SERVER_URL})\n[GitHub Repositoryim](https://github.com/eduardozgz/member-counter-bot)\n[Bağış Linkim]({DONATION_URL})"
 			}
 		},
 		"lang": {
@@ -295,7 +295,7 @@
 		"donate": {
 			"helpDescription": "Yapılan en iyi bağışları gösterir.",
 			"embedReply": {
-				"title": "Enjoying my bot? Donate me! (Click here)",
+				"title": "Bot'u beğendiniz mi? Bana bağışta bulunabilirsiniz! (Buraya Tıklayınız)",
 				"fields": []
 			},
 			"misc": {
