@@ -282,30 +282,30 @@
 			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
 		},
 		"info": {
-			"helpDescription": "List of useful links",
+			"helpDescription": "Yararlı linklerin listesi",
 			"embedReply": {
 				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
 			}
 		},
 		"lang": {
-			"helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
-			"success": "Language changed successfully.",
-			"errorNotFound": "List of available languages:"
+			"helpDescription": "Bu komut, bu sunucunun bot dilini değiştirir, bu komutu çalıştırmak için yönetici yetkisine sahip olmanız gerekmektedir.",
+			"success": "Dil başarıyla değiştirildi.",
+			"errorNotFound": "Mevcut dillerin listesi:"
 		},
 		"donate": {
-			"helpDescription": "Shows the top donations.",
+			"helpDescription": "Yapılan en iyi bağışları gösterir.",
 			"embedReply": {
 				"title": "Enjoying my bot? Donate me! (Click here)",
 				"fields": []
 			},
 			"misc": {
-				"emptyNote": "Empty note"
+				"emptyNote": "Boş not"
 			},
 			"errorExchangeFetch": "Error while trying to fetch exchange rates"
 		},
 		"profile": {
-			"helpDescription": "Shows related information between you and this bot",
-			"badges": "Badges",
+			"helpDescription": "Siz ve bu bot arasındaki ilgili bilgileri gösterir",
+			"badges": "Rozetler",
 			"serverUpgradesAvailable": "Server upgrades left",
 			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
 			"removeDataSuccess": "Your data has been removed successfully"
