@@ -328,20 +328,20 @@
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"categoryName": "📊 Server Stats 📊",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"categoryName": "📊 Sunucu İstatistikleri 📊",
+			"memberCounter": "{members} Üye",
+			"boostingCounter": "{nitro-boosters} Boost",
+			"rolesCounter": "{roles} Rol",
+			"channelsCounter": "{channels} Kanal"
 		}
 	},
 	"functions": {
 		"commandHandler": {
-			"noDm": "You can't run this command on a DM channel"
+			"noDm": "Bu komutu bir DMde çalıştıramazsınız"
 		},
 		"getCounts": {
-			"onlyPremium": "Only Premium",
-			"unknownCounter": "Unknown counter",
+			"onlyPremium": "Yalnızca Premium",
+			"unknownCounter": "Bilinmeyen sayaç",
 			"disabled": "Counter Disabled",
 			"noBanPerms": "I need ban permissions to show this",
 			"invalidChannelLength": "Invalid channel name length, please setup the counter again"
