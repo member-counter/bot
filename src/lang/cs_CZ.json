@@ -6,7 +6,7 @@
 			"helpDescription": "Je opravdu nutné vysvětlit účel tohoto příkazu?",
 			"embedReply": {
 				"title": "Seznam příkazů | prefix: {PREFIX}",
-				"description": "[Přidat tohoto bota na svůj server]({DISCORD_BOT_INVITE}) **|** [Stránka]({WEBSITE}) **|**   [Dokumentace](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nRychlé nastavení: `mc!setup`\n\nPro získání více informací o příkazu, použijte příkaz `{PREFIX}help` a jméno příkazu: ```\n{PREFIX}help shortNumber```\n**Info:** `()` znamená volitelný parametr, zatímco `[]` znamená požadovaný parametr",
+				"description": "[Přidat tohoto bota na svůj server]({DISCORD_BOT_INVITE}) **|** [Stránka]({WEBSITE}) **|**   [Dokumentace](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nRychlé nastavení: `{PREFIX}!setup`\n\nPro získání více informací o příkazu, použijte příkaz `{PREFIX}help` a jméno příkazu: ```\n{PREFIX}help shortNumber```\n**Info:** `()` znamená volitelný parametr, zatímco `[]` znamená požadovaný parametr",
 				"fields": [
 					{
 						"name": "**Počítadla**",
@@ -328,6 +328,7 @@
 		},
 		"setup": {
 			"helpDescription": "Vytvoří uzamčené kanály s počítadly\n**Příklad:**```{PREFIX}setup```",
+			"categoryName": "📊 Server Stats 📊",
 			"memberCounter": "{members} uživatelé/ů",
 			"boostingCounter": "{nitro-boosters} boostů",
 			"rolesCounter": "{roles} role/í",

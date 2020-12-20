@@ -6,7 +6,7 @@
 			"helpDescription": "Ist es wirklich notwendig die Funktion dieses Befehls zu erklären?",
 			"embedReply": {
 				"title": "Liste der Befehle | prefix: {PREFIX}",
-				"description": "[Füge den Bot zu deinem Server hinzu]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nSchnelles Setup: `mc!setup`\n\nUm mehr Infos zu einen Befehl zu erhalten, schreibe `{PREFIX}help` plus den Befehl: ```\n{PREFIX}help shortNumber```\n**Info:** `()` steht für eine optionale Angabe während `[]` erforderlich ist",
+				"description": "[Füge den Bot zu deinem Server hinzu]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nSchnelles Setup: `{PREFIX}!setup`\n\nUm mehr Infos zu einen Befehl zu erhalten, schreibe `{PREFIX}help` plus den Befehl: ```\n{PREFIX}help shortNumber```\n**Info:** `()` steht für eine optionale Angabe während `[]` erforderlich ist",
 				"fields": [
 					{
 						"name": "**Zähler**",
@@ -328,6 +328,7 @@
 		},
 		"setup": {
 			"helpDescription": "Erstelle einige gesperrte Sprachkanäle mit einigen Zählern\n**Beispiel**```{PREFIX}setup```",
+			"categoryName": "📊 Server Statistiken 📊",
 			"memberCounter": "{members} Mitglieder",
 			"boostingCounter": "{nitro-boosters} Booster",
 			"rolesCounter": "{roles} Rollen",
