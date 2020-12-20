@@ -233,7 +233,7 @@
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç saniye beklemeniz gerekebilir"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Sayıları ve diğer şeyleri belirtilen yerel ayara göre biçimlendirir\n\n**Kullanımı**\n```{PREFIX}locale [yer/disable]```\n**Örnekler**```{PREFIX}locale en\n{PREFIX}locale tr\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
