@@ -215,7 +215,7 @@
 			"errorNotFound": "Kanal bulunamadı"
 		},
 		"editChannel": {
-			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
+			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu komutu bu sınırı \"yok saymak\" için kullanabilirsiniz.\n**Kullanılışı**```{PREFIX}editChannel [channelId] [content]```\n**Örnek**```{PREFIX}editChannel 701396983843127366 {members} Üye {onlinemembers} Aktif Üye```",
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç saniye beklemeniz gerekebilir",
 			"errorNotFound": "Kanal bulunamadı",
 			"errorNoContent": "You must provide some content"
@@ -256,11 +256,11 @@
 				"localeText": "Yer:",
 				"shortNumberText": "Kısa sayı (kompakt gösterim):",
 				"premiumText": "Premium:",
-				"premiumNoTierText": "Hayır",
-				"premiumConfirmedText": "Evet",
+				"premiumNoTierText": "Kapalı",
+				"premiumConfirmedText": "Aktif",
 				"allowedRolesText": "Yönetim komutlarını kullanması için izin verilen roller:",
 				"countersText": "Sayaçlar:",
-				"customNumbersText": "Custom numbers:",
+				"customNumbersText": "Özel sayılar:",
 				"warningNoPermsText": "\\⚠️ = Bot, yetki eksikliği nedeniyle bu kanalı güncellemeye devam edemiyor (Bota: Kanalları yönetme, Kanalları görme, Mesajları Okuma, Bağlanma yetkilerini vermelisiniz)",
 				"guildLogsText": "Latest logs:"
 			}
