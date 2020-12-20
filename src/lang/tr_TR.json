@@ -208,26 +208,26 @@
 			]
 		},
 		"lockChannel": {
-			"helpDescription": "Ses kanallarında hoparlör (🔊) yerine bir kilit paneli (🔒) göstermek için bu komutları kullanabilirsiniz.\n\n**Kullanılışı**```{PREFIX}lockChannel [kanal idsi]```\n **Örnek**```{PREFIX}lockChannel 700336568099143710```",
+			"helpDescription": "Ses kanallarında hoparlör (🔊) yerine bir kilit paneli (🔒) göstermek için bu komutları kullanabilirsiniz.\n\n**Kullanımı**```{PREFIX}lockChannel [kanal idsi]```\n **Örnek**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Tamamdır! Artık **yönetici olmayan kullanıcılar için** kanal 🔒 olarak görüntülenecektir",
 			"errorInvalidChannel": "Yalnızca ses kanallarını kilitleyebilirsiniz!",
 			"errorNoPerms": "Yetki eksikliği nedeniyle `{CHANNEL}` kanalını düzenleyemiyorum",
 			"errorNotFound": "Kanal bulunamadı"
 		},
 		"editChannel": {
-			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu komutu bu sınırı \"yok saymak\" için kullanabilirsiniz.\n**Kullanılışı**```{PREFIX}editChannel [channelId] [content]```\n**Örnek**```{PREFIX}editChannel 701396983843127366 {members} Üye {onlinemembers} Aktif Üye```",
+			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu komutu bu sınırı \"yok saymak\" için kullanabilirsiniz.\n**Kullanımı**```{PREFIX}editChannel [channelId] [content]```\n**Örnek**```{PREFIX}editChannel 701396983843127366 {members} Üye {onlinemembers} Aktif Üye```",
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç saniye beklemeniz gerekebilir",
 			"errorNotFound": "Kanal bulunamadı",
 			"errorNoContent": "You must provide some content"
 		},
 		"setDigit": {
-			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsiniz\nİlk bağımsız değişken \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.\n\nKullanılışı: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [özel sayınız]```\nÖrnekler: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsiniz\nİlk bağımsız değişken \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.\n\nKullanımı: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [özel sayınız]```\nÖrnekleri: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Rakamlar özelleştirildi.",
 			"resetSuccess": "Numaralar varsayılan olanlara geri yüklendi.",
 			"errorMissingParams": "Eksik parametreler, lütfen `{PREFIX}help setDigit` bölümüne bakın."
 		},
 		"shortNumber": {
-			"helpDescription": "Bu komut, sayaçlarda kompakt bir biçimde bir sayı göstermenizi sağlar\n\n**Kullanılış**\n```{PREFIX}shortNumber [enable/disable]```\n**Örnekler**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "Bu komut, sayaçlarda kompakt bir biçimde bir sayı göstermenizi sağlar\n\n**Kullanımı**\n```{PREFIX}shortNumber [enable/disable]```\n**Örnekler**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Geçersiz eylem! lütfen `{PREFIX}help shortNumber` komutuna bakın",
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç saniye beklemeniz gerekebilir"
@@ -237,7 +237,7 @@
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Bot prefixini değiştirir.\n\nKullanılış:```{PREFIX}prefix [yeni prefix]```",
+			"helpDescription": "Bot prefixini değiştirir.\n\nKullanımı:```{PREFIX}prefix [yeni prefix]```",
 			"success": "Prefix şu şekilde değiştirildi: `{NEW_PREFIX}`",
 			"noPrefixProvided": "Bir prefix yazmalısınız"
 		},
@@ -316,12 +316,12 @@
 			"onlineMembers": "Aktif Üye Sayısı:",
 			"offlineMembers": "Çevrimdışı Üye Sayısı:",
 			"bots": "Bot Sayısı:",
-			"connectedUsers": "Connected users:",
-			"channels": "Kanal:",
+			"connectedUsers": "Sesli de Olan Üye Sayısı:",
+			"channels": "Kanal Sayısı:",
 			"roles": "Rol Sayısı:"
 		},
 		"preview": {
-			"helpDescription": "Kanalda bir sayacın veya çeşitli sayaçların nasıl görüneceğinin bir ön izlemesini gösterir\n\n**Kullanılışı**```{PREFIX}preview [content]```\n**Örnek**```{PREFIX}preview {members} Üye```",
+			"helpDescription": "Kanalda bir sayacın veya çeşitli sayaçların nasıl görüneceğinin bir ön izlemesini gösterir\n\n**Kullanımı**```{PREFIX}preview [content]```\n**Örnek**```{PREFIX}preview {members} Üye```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Kanal adı önizlemesi",
 			"channelTopic": "Kanal başlığı önizlemesi"
