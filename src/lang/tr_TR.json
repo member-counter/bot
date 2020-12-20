@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "**Others**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github``",
 						"inline": true
 					}
 				]
@@ -307,8 +307,8 @@
 			"helpDescription": "Siz ve bu bot arasındaki ilgili bilgileri gösterir",
 			"badges": "Rozetler",
 			"serverUpgradesAvailable": "Server upgrades left",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"removeDataConfirmation": ":warning: **Bu işlem tüm verilerinizi kaldıracak, rozetleriniz ve sunucu yükseltmeleriniz sonsuza kadar kaybolacak, devam etmek istediğinizden emin misiniz? (İptal etmek için bu mesajı görmezden gelin)**",
+			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı"
 		},
 		"counts": {
 			"helpDescription": "Shows some counts",
