@@ -5,22 +5,22 @@
 		"help": {
 			"helpDescription": "Bu komutun amacını açıklamak gerçekten gerekli mi?",
 			"embedReply": {
-				"title": "Komut listesi | prefix: {PREFIX}",
+				"title": "Komut Listesi | Prefix: {PREFIX}",
 				"description": "[Bu botu sunucunuza ekleyin]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum: `{PREFIX}setup`\n\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` artı komut adını yazın: ```\n{PREFIX}help shortNumber```\n**Bilgi:** `()` isteğe bağlı bir parametre anlamına gelirken `[]` gerekli olan anlamına gelir",
 				"fields": [
 					{
-						"name": "**Sayaçlar**",
+						"name": "**Sayaç Komutları**",
 						"value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
 						"inline": true
 					},
 					{
-						"name": "**Sunucu ayarları**",
+						"name": "**Ayar Komutları**",
 						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
 						"inline": true
 					},
 					{
-						"name": "**Diğerleri**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github``",
+						"name": "**Diğer Komutlar**",
+						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
 				]
@@ -250,7 +250,7 @@
 		"seeSettings": {
 			"helpDescription": "Bu sunucu için olan tüm bot ayarlarını gösterir.",
 			"settingsMessage": {
-				"headerText": "Sunucu ayarları:",
+				"headerText": "Sunucu Ayarları:",
 				"prefixText": "Prefix:",
 				"langText": "Dil:",
 				"localeText": "Yer:",
