@@ -266,8 +266,8 @@
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Bu sunucunun değiştirilmiş ayarlarını varsayılan ayarlara geri çevirir",
-			"done": "Varsayılan ayarlara geri çevrildi"
+			"helpDescription": "Değiştirilmiş ayarları varsayılan ayarlara geri çevirir.",
+			"done": "Ayarlar başarıyla sıfırlandı."
 		},
 		"update": {
 			"helpDescription": "Sayaçların sıkıştığını düşünüyorsanız, bunları güncellemek için bu komutu kullanın.",
@@ -279,7 +279,7 @@
 			"helpDescription": "Bu komut, Member Counter Premium'u davet etmenize olanak tanır, bu komutu kullanmak için en az 5 dolar bağış yaparak alabileceğiniz bir premium hesabınızın olması gerekir: `{PREFIX}donate`.",
 			"success": "Tamamdır! Bir sonraki adım, premium botu davet etmektir:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Sunucu zaten premium olduğu için sunucuyu daha fazla yükseltemezsiniz.",
-			"noServerUpgradesAvailable": "Daha fazla sunucu yükseltme hakkınız olmadığı için daha fazla sunucu yükseltmesi yapamazsınız, `{PREFIX}profile` ile ne kadar hakkınızın kaldığınıkontrol edebilir veya `{PREFIX}donate` ile daha fazla hak satın alabilirsiniz"
+			"noServerUpgradesAvailable": "Daha fazla sunucu yükseltme hakkınız olmadığı için sunucu yükseltmesi yapamazsınız, `{PREFIX}profile` ile ne kadar hakkınızın kaldığını kontrol edebilir veya `{PREFIX}donate` ile daha fazla hak satın alabilirsiniz"
 		},
 		"info": {
 			"helpDescription": "Yararlı linklerin listesi",
@@ -312,13 +312,13 @@
 		},
 		"counts": {
 			"helpDescription": "Bazı sayıları gösterir",
-			"members": "Üye:",
-			"onlineMembers": "Aktif üye:",
-			"offlineMembers": "Çevrimdışı üye:",
-			"bots": "Bot:",
+			"members": "Üye Sayısı:",
+			"onlineMembers": "Aktif Üye Sayısı:",
+			"offlineMembers": "Çevrimdışı Üye Sayısı:",
+			"bots": "Bot Sayısı:",
 			"connectedUsers": "Connected users:",
 			"channels": "Kanal:",
-			"roles": "Rol:"
+			"roles": "Rol Sayısı:"
 		},
 		"preview": {
 			"helpDescription": "Kanalda bir sayacın veya çeşitli sayaçların nasıl görüneceğinin bir ön izlemesini gösterir\n\n**Kullanılışı**```{PREFIX}preview [content]```\n**Örnek**```{PREFIX}preview {members} Üye```",
