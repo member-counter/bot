@@ -221,7 +221,7 @@
 			"errorNoContent": "You must provide some content"
 		},
 		"setDigit": {
-			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsiniz\nİlk bağımsız değişken \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.\n\nKullanılışı: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [özel sayınız]```\nÖrnekler: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Rakamlar özelleştirildi.",
 			"resetSuccess": "Numaralar varsayılan olanlara geri yüklendi.",
 			"errorMissingParams": "Eksik parametreler, lütfen `{PREFIX}help setDigit` bölümüne bakın."
@@ -262,7 +262,7 @@
 				"countersText": "Sayaçlar:",
 				"customNumbersText": "Özel sayılar:",
 				"warningNoPermsText": "\\⚠️ = Bot, yetki eksikliği nedeniyle bu kanalı güncellemeye devam edemiyor (Bota: Kanalları yönetme, Kanalları görme, Mesajları Okuma, Bağlanma yetkilerini vermelisiniz)",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "Son kayıtlar:"
 			}
 		},
 		"resetSettings": {
@@ -314,7 +314,7 @@
 			"helpDescription": "Shows some counts",
 			"members": "Üye:",
 			"onlineMembers": "Aktif üye:",
-			"offlineMembers": "Offline members:",
+			"offlineMembers": "Çevrimdışı üye:",
 			"bots": "Bot:",
 			"connectedUsers": "Connected users:",
 			"channels": "Kanal:",
