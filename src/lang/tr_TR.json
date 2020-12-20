@@ -193,7 +193,7 @@
 				{
 					"key": "nitro-boosters",
 					"name": "nitro-boosters",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "Bu sunucuyu boostlayan toplam üye sayısını gösterir"
 				},
 				{
 					"key": "static",
@@ -209,22 +209,22 @@
 		},
 		"lockChannel": {
 			"helpDescription": "Ses kanallarında hoparlör (🔊) yerine bir kilit paneli (🔒) göstermek için bu komutları kullanabilirsiniz.\n\n**Kullanılışı**```{PREFIX}lockChannel [kanal idsi]```\n **Örnek**```{PREFIX}lockChannel 700336568099143710```",
-			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
+			"success": "Tamamdır! Artık **yönetici olmayan kullanıcılar için** kanal 🔒 olarak görüntülenecektir",
 			"errorInvalidChannel": "Yalnızca ses kanallarını kilitleyebilirsiniz!",
-			"errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-			"errorNotFound": "Channel not found"
+			"errorNoPerms": "Yetki eksikliği nedeniyle `{CHANNEL}` kanalını düzenleyemiyorum",
+			"errorNotFound": "Kanal bulunamadı"
 		},
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
-			"success": "Done! You may have to wait a few seconds to see the new changes",
-			"errorNotFound": "Channel not found",
+			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç saniye beklemeniz gerekebilir",
+			"errorNotFound": "Kanal bulunamadı",
 			"errorNoContent": "You must provide some content"
 		},
 		"setDigit": {
 			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Digits customized.",
 			"resetSuccess": "Numbers restored to the default ones.",
-			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+			"errorMissingParams": "Eksik parametreler, lütfen `{PREFIX}help setDigit` bölümüne bakın."
 		},
 		"shortNumber": {
 			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
@@ -266,18 +266,18 @@
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Restores the custom settings of this server to the default ones",
-			"done": "Restored to default settings"
+			"helpDescription": "Bu sunucunun değiştirilmiş ayarlarını varsayılan ayarlara geri çevirir",
+			"done": "Varsayılan ayarlara geri çevrildi"
 		},
 		"update": {
-			"helpDescription": "If you think the counters are stuck use this command to update them again.",
-			"inProgress": "Updating the counters, this may take a while.",
-			"success": "Done.",
+			"helpDescription": "Sayaçların sıkıştığını düşünüyorsanız, bunları güncellemek için bu komutu kullanın.",
+			"inProgress": "Sayaçların güncellenmesi biraz zaman alabilir.",
+			"success": "Tamamdır.",
 			"wait": "Wait! I'm already updating it!"
 		},
 		"upgradeServer": {
 			"helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
-			"success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
+			"success": "Tamamdır! Bir sonraki adım, premium botu davet etmektir:\n{BOT_LINK}",
 			"errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
 			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
 		},
