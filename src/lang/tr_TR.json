@@ -276,15 +276,15 @@
 			"wait": "Lütfen bekleyin! Zaten güncelliyorum!"
 		},
 		"upgradeServer": {
-			"helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
+			"helpDescription": "Bu komut, Member Counter Premium'u davet etmenize olanak tanır, bu komutu kullanmak için en az 5 dolar bağış yaparak alabileceğiniz bir premium hesabınızın olması gerekir: `{PREFIX}donate`.",
 			"success": "Tamamdır! Bir sonraki adım, premium botu davet etmektir:\n{BOT_LINK}",
-			"errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
-			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available, you can check how much you have left with `{PREFIX}profile` or get more with `{PREFIX}donate`"
+			"errorCannotUpgrade": "Sunucu zaten premium olduğu için sunucuyu daha fazla yükseltemezsiniz.",
+			"noServerUpgradesAvailable": "Daha fazla sunucu yükseltme hakkınız olmadığı için daha fazla sunucu yükseltmesi yapamazsınız, `{PREFIX}profile` ile ne kadar hakkınızın kaldığınıkontrol edebilir veya `{PREFIX}donate` ile daha fazla hak satın alabilirsiniz"
 		},
 		"info": {
 			"helpDescription": "Yararlı linklerin listesi",
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+				"description": "[Beni Sunucunuza Eklemek İçin Tıklayın]({BOT_INVITE_URL})\n[Destek Sunucum]({BOT_SERVER_URL})\n[GitHub Repositoryim](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
 			}
 		},
 		"lang": {
