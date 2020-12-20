@@ -173,7 +173,7 @@
 				{
 					"key": "twitterFollowers",
 					"name": "twitterFollowers:username",
-					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
+					"description": "Bir hesaptaki takipçi sayısını görüntüler, username'i gerçek Twitter kullanıcı adınızla değiştirin"
 				},
 				{
 					"key": "countdown",
@@ -188,7 +188,7 @@
 				{
 					"key": "clock",
 					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "Belirtilen saat dilimine sahip bir saat gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/clock) veya \"timeZone\" öğesini geçerli bir IANA saat dilimiyle değiştirebilirsiniz. Örnek: `{clock:Europe/Istanbul}`"
 				},
 				{
 					"key": "nitro-boosters",
@@ -198,12 +198,12 @@
 				{
 					"key": "static",
 					"name": "static:number",
-					"description": "Shows the given `number` with custom formatting based on the server settings"
+					"description": "Sunucu ayarlarına göre özel biçimlendirmeyle verilen `number`ı gösterir"
 				},
 				{
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
-					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
+					"description": "Bir hesaptaki takipçi sayısını görüntüler, username'i gerçek Instagram kullanıcı adınızla değiştirin"
 				}
 			]
 		},
@@ -253,12 +253,12 @@
 				"headerText": "Sunucu ayarları:",
 				"prefixText": "Prefix:",
 				"langText": "Dil:",
-				"localeText": "Locale:",
+				"localeText": "Yer:",
 				"shortNumberText": "Kısa sayı (kompakt gösterim):",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "Hayır",
 				"premiumConfirmedText": "Evet",
-				"allowedRolesText": "Allowed roles to use administrative commands:",
+				"allowedRolesText": "Yönetim komutlarını kullanması için izin verilen roller:",
 				"countersText": "Sayaçlar:",
 				"customNumbersText": "Custom numbers:",
 				"warningNoPermsText": "\\⚠️ = Bot, yetki eksikliği nedeniyle bu kanalı güncellemeye devam edemiyor (Bota: Kanalları yönetme, Kanalları görme, Mesajları Okuma, Bağlanma yetkilerini vermelisiniz)",
