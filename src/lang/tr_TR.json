@@ -98,7 +98,7 @@
 				{
 					"key": "membersWithRole",
 					"name": "membersWithRole:role1ID,role2ID",
-					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
+					"description": "Bu, kaç üyenin bir role veya rollere sahip olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:`den sonra yazın ve rol IDlerini virgülle ayırın"
 				},
 				{
 					"key": "onlineMembersWithRole",
@@ -113,7 +113,7 @@
 				{
 					"key": "connectedMembers",
 					"name": "connectedMembers",
-					"description": "Total amount of connected members in the voice channels"
+					"description": "Ses kanallarında olan toplam üye sayısı"
 				},
 				{
 					"key": "connectedMembers",
@@ -248,20 +248,20 @@
 			"invalidParams": "Geçersiz parametreler, lütfen `{PREFIX}help role` komutuna bakın"
 		},
 		"seeSettings": {
-			"helpDescription": "Shows all bot settings for this server.",
+			"helpDescription": "Bu sunucu için olan tüm bot ayarlarını gösterir.",
 			"settingsMessage": {
-				"headerText": "Settings for guild:",
+				"headerText": "Sunucu ayarları:",
 				"prefixText": "Prefix:",
-				"langText": "Language:",
+				"langText": "Dil:",
 				"localeText": "Locale:",
-				"shortNumberText": "Short number (compact notation):",
+				"shortNumberText": "Kısa sayı (kompakt gösterim):",
 				"premiumText": "Premium:",
-				"premiumNoTierText": "No",
-				"premiumConfirmedText": "Yes",
+				"premiumNoTierText": "Hayır",
+				"premiumConfirmedText": "Evet",
 				"allowedRolesText": "Allowed roles to use administrative commands:",
-				"countersText": "Counters:",
+				"countersText": "Sayaçlar:",
 				"customNumbersText": "Custom numbers:",
-				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
+				"warningNoPermsText": "\\⚠️ = Bot, yetki eksikliği nedeniyle bu kanalı güncellemeye devam edemiyor (Bota: Kanalları yönetme, Kanalları görme, Mesajları Okuma, Bağlanma yetkilerini vermelisiniz)",
 				"guildLogsText": "Latest logs:"
 			}
 		},
@@ -273,7 +273,7 @@
 			"helpDescription": "Sayaçların sıkıştığını düşünüyorsanız, bunları güncellemek için bu komutu kullanın.",
 			"inProgress": "Sayaçların güncellenmesi biraz zaman alabilir.",
 			"success": "Tamamdır.",
-			"wait": "Wait! I'm already updating it!"
+			"wait": "Lütfen bekleyin! Zaten güncelliyorum!"
 		},
 		"upgradeServer": {
 			"helpDescription": "This command allows you to invite Member Counter Premium, to use this command you must have a premium account, which you can get by donating at least 5 USD: `{PREFIX}donate`.",
@@ -324,10 +324,10 @@
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Kanal adı önizlemesi",
-			"channelTopic": "Channel topic preview"
+			"channelTopic": "Kanal başlığı önizlemesi"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
+			"helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\n**Örnek**```{PREFIX}setup```",
 			"categoryName": "📊 Sunucu İstatistikleri 📊",
 			"memberCounter": "{members} Üye",
 			"boostingCounter": "{nitro-boosters} Boost",
@@ -342,8 +342,8 @@
 		"getCounts": {
 			"onlyPremium": "Yalnızca Premium",
 			"unknownCounter": "Bilinmeyen sayaç",
-			"disabled": "Counter Disabled",
-			"noBanPerms": "I need ban permissions to show this",
+			"disabled": "Sayaç Devre Dışı",
+			"noBanPerms": "Bunu göstermek için üyeleri yasaklama yetkisine ihtiyacım var",
 			"invalidChannelLength": "Geçersiz kanal adı uzunluğu, lütfen sayacı tekrar kurun",
 			"notAvailable": "Not available, please wait"
 		}
@@ -353,7 +353,7 @@
 		"errorDb": "Veritabanı hatası, daha sonra tekrar deneyin",
 		"errorDiscordAPI": "Discord API",
 		"errorUnknown": "Bir şeyler ters gitti, daha sonra tekrar deneyin.",
-		"errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
-		"noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+		"errorNoAdmin": "Sadece bu sunucuda yönetici yetkisine sahip üyeler bu komutu kullanabilir.",
+		"noTopicCounterEnabled": "Henüz bir konu sayacını etkinleştirmemişsiniz gibi görünüyor, lütfen `{PREFIX}help topicCounter` komutuna bakın"
 	}
 }
