@@ -1,6 +1,6 @@
 {
-	"langCode": "en_US",
-	"langName": "English (US)",
+	"langCode": "tr_TR",
+	"langName": "Türkçe (TR)",
 	"commands": {
 		"help": {
 			"helpDescription": "Bu komutun amacını açıklamak gerçekten gerekli mi?",
@@ -38,42 +38,42 @@
 				{
 					"key": "members",
 					"name": "members",
-					"description": "Members in your server"
+					"description": "Sunucunuzdaki üyeler"
 				},
 				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
-					"description": "Approximated online members in your server"
+					"description": "Sunucunuzdaki yaklaşık çevrimiçi üyeler"
 				},
 				{
 					"key": "onlineMembers",
 					"name": "onlineMembers",
-					"description": "Online members in your server"
+					"description": "Sunucunuzdaki çevrimiçi üyeler"
 				},
 				{
 					"key": "offlineMembers",
 					"name": "offlineMembers",
-					"description": "Offline members in your server"
+					"description": "Sunucunuzdaki çevrimdışı üyeler"
 				},
 				{
 					"key": "users",
 					"name": "users",
-					"description": "Users in your server (excludes bot)"
+					"description": "Sunucunuzdaki kullanıcılar (botlar hariç)"
 				},
 				{
 					"key": "onlineUsers",
 					"name": "onlineUsers",
-					"description": "Online users in your server (excludes bot)"
+					"description": "Sunucunuzdaki çevrimiçi kullanıcılar (botlar hariç)"
 				},
 				{
 					"key": "offlineUsers",
 					"name": "offlineUsers",
-					"description": "Offline users in your server (excludes bot)"
+					"description": "Sunucunuzdaki çevrimdışı kullanıcılar (botlar hariç)"
 				},
 				{
 					"key": "bots",
 					"name": "bots",
-					"description": "Bots in your server (excludes normal users)"
+					"description": "Sunucunuzdaki botlar (normal kullanıcılar hariç)"
 				},
 				{
 					"key": "onlineBots",
@@ -88,12 +88,12 @@
 				{
 					"key": "roles",
 					"name": "roles",
-					"description": "Roles in your server"
+					"description": "Sunucunuzdaki roller"
 				},
 				{
 					"key": "channels",
 					"name": "channels",
-					"description": "Channels in your server (excludes category channels)"
+					"description": "Sunucunuzdaki kanallar (kategoriler hariç)"
 				},
 				{
 					"key": "membersWithRole",
@@ -148,7 +148,7 @@
 				{
 					"key": "youtubeVideos",
 					"name": "youtubeVideos:channelUrl",
-					"description": "Displays a youtube channel video count"
+					"description": "Bir youtube kanalının video sayısını görüntüler"
 				},
 				{
 					"key": "twitchFollowers",
@@ -158,7 +158,7 @@
 				{
 					"key": "twitchViews",
 					"name": "twitchViews:channelName",
-					"description": "Displays a twitch channel view count"
+					"description": "Bir twitch kanalının izlenme sayısını görüntüler"
 				},
 				{
 					"key": "memeratorMemes",
@@ -210,7 +210,7 @@
 		"lockChannel": {
 			"helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
-			"errorInvalidChannel": "You can only lock voice channels!",
+			"errorInvalidChannel": "Yalnızca ses kanallarını kilitleyebilirsiniz!",
 			"errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
 			"errorNotFound": "Channel not found"
 		},
