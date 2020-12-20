@@ -312,18 +312,18 @@
 		},
 		"counts": {
 			"helpDescription": "Shows some counts",
-			"members": "Members:",
-			"onlineMembers": "Online members:",
+			"members": "Üye:",
+			"onlineMembers": "Aktif üye:",
 			"offlineMembers": "Offline members:",
-			"bots": "Bots:",
+			"bots": "Bot:",
 			"connectedUsers": "Connected users:",
-			"channels": "Channels:",
-			"roles": "Roles:"
+			"channels": "Kanal:",
+			"roles": "Rol:"
 		},
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
-			"channelName": "Channel name preview",
+			"channelName": "Kanal adı önizlemesi",
 			"channelTopic": "Channel topic preview"
 		},
 		"setup": {
@@ -344,14 +344,14 @@
 			"unknownCounter": "Bilinmeyen sayaç",
 			"disabled": "Counter Disabled",
 			"noBanPerms": "I need ban permissions to show this",
-			"invalidChannelLength": "Invalid channel name length, please setup the counter again"
+			"invalidChannelLength": "Geçersiz kanal adı uzunluğu, lütfen sayacı tekrar kurun"
 		}
 	},
 	"common": {
-		"error": "Error",
-		"errorDb": "Database error, try again later",
+		"error": "Hata",
+		"errorDb": "Veritabanı hatası, daha sonra tekrar deneyin",
 		"errorDiscordAPI": "Discord API",
-		"errorUnknown": "Something went wrong, try again later.",
+		"errorUnknown": "Bir şeyler ters gitti, daha sonra tekrar deneyin.",
 		"errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
 		"noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
 	}
