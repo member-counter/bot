@@ -503,11 +503,9 @@ const block: MemberCounterCommand = {
 		if (!BOT_OWNERS.includes(author.id)) return;
 
 		if (channel instanceof GuildChannel) {
-			const { guild } = channel;
-			const guildSettings = await GuildService.init(guild.id);
 			const guildToPerformAction = await GuildService.init(guildId);
 
-			if (command === `${guildSettings.prefix}block`) {
+			if (command === `block`) {
 				await guildToPerformAction.block();
 				await client.guilds.get(guildId)?.leave();
 			} else {
