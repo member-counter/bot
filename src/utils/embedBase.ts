@@ -5,7 +5,7 @@ import getEnv from './getEnv';
 
 const { BOT_COLOR } = getEnv();
 
-let dominantColor = { 
+let dominantColor = {
   current: BOT_COLOR.toString().length ? BOT_COLOR : null
 }
 
