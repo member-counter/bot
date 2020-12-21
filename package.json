@@ -30,11 +30,11 @@
 		"cron": "^1.8.2",
 		"dotenv": "^8.2.0",
 		"dotenv-parse-variables": "^0.2.3",
-		"eris": "^0.14.0",
+		"eris": "^0.13.3",
 		"gamedig": "^2.0.23",
 		"git-rev-sync": "^3.0.1",
 		"lodash.clonedeep": "^4.5.0",
-		"mongoose": "^5.10.5",
+		"mongoose": "5.10.5",
 		"node-fetch": "^2.6.1",
 		"twitch": "^4.2.2",
 		"twitter": "^1.7.1"
