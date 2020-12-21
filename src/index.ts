@@ -20,10 +20,11 @@ if (NODE_ENV === "production") {
 		.on('uncaughtException', (exception) => {
 			console.error("Uncaught Exception ", exception);
 		})
-		.on('SIGTERM', () => {
+		.on('SIGTERM', async () => {
       Bot.client.editStatus('dnd', { type: 0, name: "going offline" });
       Bot.client.disconnect({ reconnect: false });
-      mongoose.disconnect();
+			await mongoose.disconnect();
+			process.exit(0);
     });;
 }
 

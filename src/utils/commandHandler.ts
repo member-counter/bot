@@ -83,6 +83,9 @@ export default async (message: Eris.Message) => {
             try {
               const guild = (channel instanceof Eris.GuildChannel) ? channel.guild : false;
               console.log(`${author.username}#${author.discriminator} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``}Channel: ${channel.id}]: ${content}`);
+
+              message.content = message.content.replace(prefixRegex, '');
+
               await command.run({
                 client,
                 message,
