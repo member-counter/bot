@@ -34,7 +34,7 @@
 		"gamedig": "^2.0.23",
 		"git-rev-sync": "^3.0.1",
 		"lodash.clonedeep": "^4.5.0",
-		"mongoose": "^5.11.8",
+		"mongoose": "^5.10.5",
 		"node-fetch": "^2.6.1",
 		"twitch": "^4.2.2",
 		"twitter": "^1.7.1"
