@@ -15,6 +15,12 @@ const parseUptime = (inputDate: number) => {
   )} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`;
 };
 
+let gitHash = "";
+
+try {
+  gitHash = ` [${git.short()}](${git.remoteUrl().replace('.git', '/') + 'commit/' + git.long()})`;
+} catch {}
+
 const status: MemberCounterCommand = {
   aliases: ['uptime', 'status'],
   denyDm: false,
@@ -25,7 +31,7 @@ const status: MemberCounterCommand = {
 
     const clientStats = await client.getStats();
     const stats = {
-      version: `Bot version: ${version} [${git.short()}](${git.remoteUrl().replace('.git', '/') + 'commit/' + git.long()})`,
+      version: `Bot version: ${version}` + gitHash,
       clientUptime: parseUptime(client.uptime / 1000),
       processUptime: parseUptime(process.uptime()),
       systemUptime: parseUptime(os.uptime()),
