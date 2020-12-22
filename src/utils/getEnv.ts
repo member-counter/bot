@@ -44,6 +44,8 @@ interface MemberCounterEnv {
 	readonly PREMIUM_BOT_ID: string;
 	readonly PREMIUM_BOT_INVITE: string;
 
+	readonly UPDATE_COUNTER_INTERVAL: string;
+
 	readonly WEBSITE_URL: string;
 	readonly DONATION_URL: string;
 
