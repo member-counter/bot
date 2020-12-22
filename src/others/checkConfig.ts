@@ -9,6 +9,7 @@ const {
   DISCORD_DEFAULT_LANG,
   BOT_COLOR,
   PREMIUM_BOT,
+  UPDATE_COUNTER_INTERVAL,
   DB_URI,
   REDIS_HOST,
   REDIS_PORT,
@@ -35,21 +36,26 @@ function checkConfig() {
     fail = true;
   }
 
+  if (typeof UPDATE_COUNTER_INTERVAL !== "string") {
+    console.error(`[ENV ERROR] The current UPDATE_COUNTER_INTERVAL "${UPDATE_COUNTER_INTERVAL}" is invalid, if you wanna use the lowest possible interval, set this env var to "0 */5 * * * *"`);
+    fail = true;
+  }
+
   if (!DB_URI) {
-    console.error(`[ENV ERROR] The current DB_URI "${DB_URI}" is empty`);
+    console.error(`[ENV ERROR] The current DB_URI is empty`);
     fail = true;
   }
 
   if (!REDIS_HOST) {
-    console.error(`[ENV ERROR] The current REDIS_HOST "${REDIS_HOST}" is empty`);
+    console.error(`[ENV ERROR] The current REDIS_HOST is empty`);
     fail = true;
   }
   if (isNaN(Number(REDIS_PORT))) {
-    console.error(`[ENV ERROR] The current REDIS_PORT "${REDIS_PORT}" is not a valid port`);
+    console.error(`[ENV ERROR] The current REDIS_PORT ${REDIS_PORT} is not a valid port`);
     fail = true;
   }
   if (!REDIS_PASSWORD) {
-    console.error(`[ENV ERROR] The current REDIS_PASSWORD "${REDIS_PASSWORD}" is empty, you must set a password`);
+    console.error(`[ENV ERROR] The current REDIS_PASSWORD is empty, you must set a password`);
     fail = true;
   }
 
