@@ -8,6 +8,7 @@
 	"main": "./dist/src/index.js",
 	"scripts": {
 		"start": "node .",
+		"start:docker": "docker-compose -f docker-compose.yml up --force-recreate --build",
 		"build": "tsc",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
 		"dev:docker": "docker-compose -f docker-compose.dev.yml up --force-recreate --build"
