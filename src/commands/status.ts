@@ -22,7 +22,7 @@ try {
 } catch {}
 
 const status: MemberCounterCommand = {
-  aliases: ['uptime', 'status'],
+  aliases: ['uptime', 'status', 'ping'],
   denyDm: false,
   onlyAdmin: false,
   run: async ({ message, client }) => {
