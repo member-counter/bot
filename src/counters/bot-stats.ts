@@ -20,7 +20,7 @@ const BotStatsCounter: Counter = {
 					}
 				}
 			}]))[0].total,
-			['member-counter-guilds']: client.guilds.size,
+			['member-counter-guilds']: guilds,
 		};
 	},
 };
