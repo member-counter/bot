@@ -178,12 +178,12 @@
 				{
 					"key": "countdown",
 					"name": "countdown:targetDate:format",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Belirtilen hedef tarihe düşecek bir geri sayım gösterir, kolayca [bu sayacı burada oluşturabilir] (https://member-counter.eduardozgz.com/utils/countdown) veya `targetDate`i hedefle değiştirerek manuel olarak oluşturabilirsiniz. UNIX zaman damgasında tarih ve isteğe bağlı olarak özel bir formatla `format`a: kalan günü göstermek için `%d`, kalan saati göstermek için `%h`, kalan dakikayı göstermek için `%m` ve kalan saniyeyi göstermek için `%s` yazabilirsiniz"
 				},
 				{
 					"key": "game",
 					"name": "game:gameId:address",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Bir oyun sunucusundaki çevrimiçi oyuncular (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) `gameId` öğesini [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden biriyle değiştirmeyi ve `address`i sunucu adresiyle değiştirmeyi unutmayın. Örnek: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"key": "clock",
@@ -218,7 +218,7 @@
 			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu komutu bu sınırı \"yok saymak\" için kullanabilirsiniz.\n**Kullanımı**```{PREFIX}editChannel [channelId] [content]```\n**Örnek**```{PREFIX}editChannel 701396983843127366 {members} Üye {onlinemembers} Aktif Üye```",
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç saniye beklemeniz gerekebilir",
 			"errorNotFound": "Kanal bulunamadı",
-			"errorNoContent": "You must provide some content"
+			"errorNoContent": "Lütfen argüman belirtin"
 		},
 		"setDigit": {
 			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsiniz\nİlk bağımsız değişken \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.\n\nKullanımı: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [özel sayınız]```\nÖrnekleri: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
@@ -301,7 +301,7 @@
 			"misc": {
 				"emptyNote": "Boş not"
 			},
-			"errorExchangeFetch": "Error while trying to fetch exchange rates"
+			"errorExchangeFetch": "Döviz kurlarını kontrol edilirken bir hata oluştu"
 		},
 		"profile": {
 			"helpDescription": "Siz ve bu bot arasındaki ilgili bilgileri gösterir",
