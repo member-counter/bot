@@ -242,7 +242,7 @@
 			"noPrefixProvided": "Bir prefix yazmalısınız"
 		},
 		"role": {
-			"helpDescription": "Rollerin bot yönetim komutlarını kullanmasına izin verebilir veya verdiğiniz izni geri alabilirsiniz.\nTüm rollere izin vermek veya verdiğiniz izni geri almak için ``all`` sözcüğünü kullanabilirsiniz.\nŞu anda hangi rollere izin verildiğini görmek için `{PREFIX}seeSettings` komutunu kullanabilirsiniz.\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+			"helpDescription": "Rollerin bot yönetim komutlarını kullanmasına izin verebilir veya verdiğiniz izni geri alabilirsiniz.\nTüm rollere izin vermek veya verdiğiniz izni geri almak için ``all`` sözcüğünü kullanabilirsiniz.\nŞu anda hangi rollere izin verildiğini görmek için `{PREFIX}seeSettings` komutunu kullanabilirsiniz.\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @DiğerRol\n{PREFIX}role deny all```",
 			"rolesUpdated": "Roller güncellendi.",
 			"errorNoRolesToUpdate": "En az 1 rol etiketlemelisiniz",
 			"invalidParams": "Geçersiz parametreler, lütfen `{PREFIX}help role` komutuna bakın"
