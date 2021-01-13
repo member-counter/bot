@@ -6,7 +6,7 @@
 			"helpDescription": "क्या ये आदेश का उद्देश्य वर्णन करना आवश्यक है?",
 			"embedReply": {
 				"title": "आदेश सूची | उपसर्ग : {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[इस बॉट को अपने सर्वर में जोड़ें]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nतत्काल प्रबंध : `{PREFIX}setup`\n\nअधिक जानकारी प्राप्त करने के लिए आदेश दे `{PREFIX}help` और आदेश का नाम: ```\n{PREFIX}help shortNumber```\n** जानकारी : ** `()` का अर्थ है एक वैकल्पिक प्राचल जबकि `[]` का अर्थ है एक आवश्यक प्राचल",
 				"fields": [
 					{
 						"name": "**गणक**",
@@ -328,7 +328,7 @@
 		},
 		"setup": {
 			"helpDescription": "उन में कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\n**उदाहरण**```{PREFIX}setup```",
-			"categoryName": "📊 Server Stats 📊",
+			"categoryName": "📊 सर्वर आँकड़े 📊",
 			"memberCounter": "{members} सदस्य",
 			"boostingCounter": "{nitro-boosters} बढ़ाने",
 			"rolesCounter": "{roles} भूमिकाएँ",
