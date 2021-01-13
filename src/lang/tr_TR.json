@@ -38,7 +38,7 @@
 				{
 					"key": "members",
 					"name": "members",
-					"description": "Sunucunuzdaki üye"
+					"description": "Sunucunuzdaki üye sayısı"
 				},
 				{
 					"key": "approximatedOnlineMembers",
@@ -53,7 +53,7 @@
 				{
 					"key": "offlineMembers",
 					"name": "offlineMembers",
-					"description": "Sunucunuzdaki çevrimdışı üye"
+					"description": "Sunucunuzdaki çevrimdışı üye sayısı"
 				},
 				{
 					"key": "users",
@@ -103,12 +103,12 @@
 				{
 					"key": "onlineMembersWithRole",
 					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "{membersWithRole:} gibidir ancak yalnızca aktif olan üyeleri sayar"
+					"description": "`{membersWithRole:}` gibidir ancak yalnızca aktif olan üyeleri sayar"
 				},
 				{
 					"key": "offlineMembersWithRole",
 					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "{membersWithRole:} gibidir ancak yalnızca çevrimdışı olan üyeleri sayar"
+					"description": "`{membersWithRole:}` gibidir ancak yalnızca çevrimdışı olan üyeleri sayar"
 				},
 				{
 					"key": "connectedMembers",
@@ -128,7 +128,7 @@
 				{
 					"key": "http",
 					"name": "http:url",
-					"description": "Bu, belirtilen kaynağa verilen yanıt tarafından verilen iade miktarını gösterecek, bot bir \"GET\" isteği gerçekleştirecek ve sunucu `200` durum kodu ve `content-type: text/plain` ile yanıt vermelidir. Örnek: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+					"description": "Bu, belirtilen kaynağa verilen yanıt tarafından verilen iade miktarını gösterecektir, bot bir `GET` isteği gerçekleştirecektir ve sunucu buna `200` durum kodu ve `content-type: text/plain` ile yanıt vermelidir. Örnek: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
 				},
 				{
 					"key": "http-string",
@@ -178,17 +178,17 @@
 				{
 					"key": "countdown",
 					"name": "countdown:targetDate:format",
-					"description": "Belirtilen hedef tarihe düşecek bir geri sayım gösterir, kolayca [bu sayacı burada oluşturabilir] (https://member-counter.eduardozgz.com/utils/countdown) veya `targetDate`i hedefle değiştirerek manuel olarak oluşturabilirsiniz. UNIX zaman damgasında tarih ve isteğe bağlı olarak özel bir formatla `format`a: kalan günü göstermek için `%d`, kalan saati göstermek için `%h`, kalan dakikayı göstermek için `%m` ve kalan saniyeyi göstermek için `%s` yazabilirsiniz"
+					"description": "Belirtilen hedef tarihe düşecek bir geri sayım gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/countdown) veya `targetDate`i hedef tarihle değiştirerek manuel olarak oluşturabilirsiniz. UNIX zaman damgasında tarih ve isteğe bağlı olarak özel bir formatla `format`a: kalan günü göstermek için `%d`, kalan saati göstermek için `%h`, kalan dakikayı göstermek için `%m` ve kalan saniyeyi göstermek için `%s` yazabilirsiniz"
 				},
 				{
 					"key": "game",
 					"name": "game:gameId:address",
-					"description": "Bir oyun sunucusundaki çevrimiçi oyuncular (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) `gameId` öğesini [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden biriyle değiştirmeyi ve `address`i sunucu adresiyle değiştirmeyi unutmayın. Örnek: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Bir oyun sunucusundaki çevrimiçi oyuncu sayısı (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) `gameId` öğesini [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden biriyle değiştirmeyi ve `address`i sunucu adresiyle değiştirmeyi unutmayın. Örnek: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"key": "clock",
 					"name": "clock:timeZone",
-					"description": "Belirtilen saat dilimine sahip bir saat gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/clock) veya \"timeZone\" öğesini geçerli bir IANA saat dilimiyle değiştirebilirsiniz. Örnek: `{clock:Europe/Istanbul}`"
+					"description": "Belirtilen saat dilimine sahip bir saat gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/clock) veya `timeZone` öğesini geçerli bir IANA saat dilimiyle değiştirebilirsiniz. Örnek: `{clock:Europe/Istanbul}`"
 				},
 				{
 					"key": "nitro-boosters",
