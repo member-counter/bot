@@ -4,7 +4,7 @@ import botHasPermsToEdit from '../utils/botHasPermsToEdit';
 import UserError from '../utils/UserError';
 import GuildService from '../services/GuildService';
 import CountService from '../services/CountService';
-import Bot from '../client';
+import Bot from '../bot';
 
 const lockChannel: MemberCounterCommand = {
 	aliases: ['lockChannel', 'lock'],

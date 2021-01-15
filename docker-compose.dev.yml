@@ -14,7 +14,8 @@ services:
       - member-counter-bot-mongodb
       - member-counter-bot-redis
     ports:
-      - "9090:9090"
+      - "${PORT}:${PORT}"
+      - "9229:9229"
     networks:
       - default
 

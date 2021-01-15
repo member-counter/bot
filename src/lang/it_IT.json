@@ -6,7 +6,7 @@
 			"helpDescription": "E' veramente necessario spiegare lo scopo di questo comando?",
 			"embedReply": {
 				"title": "Lista dei comandi | prefisso: {PREFIX}",
-				"description": "[Aggiungi questo bot al tuo server]({DISCORD_BOT_INVITE}) **|** [Sito web]({WEBSITE}) **|**   [Documentazione](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstallazione veloce: `mc!setup`\n\nPer avere più informazioni su un comando invia `{PREFIX}help` assieme al nome del comando: ```\n{PREFIX}help shortNumber```\n**Info:** `()` significa che è un parametro opzionale mentre `[]` significa che è richiesto",
+				"description": "[Aggiungi questo bot al tuo server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**      [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstallazione veloce: `{PREFIX}setup`\n\nPer avere più informazioni su un comando invia `{PREFIX}help` assieme al nome del comando: ```\n{PREFIX}help numeroCorto```\n**Info:** `()` significa che è un parametro opzionale mentre `[]` significa che è richiesto",
 				"fields": [
 					{
 						"name": "**Contatori**",

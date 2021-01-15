@@ -12,6 +12,7 @@ import guildMemberAdd from './events/guildMemberAdd';
 import messageCreate from './events/messageCreate';
 import messageReactionAdd from './events/messageReactionAdd';
 import messageReactionRemove from './events/messageReactionRemove';
+import userUpdate from './events/userUpdate';
 
 const {
   PREMIUM_BOT,
@@ -97,9 +98,10 @@ class Bot {
       .on('messageCreate', messageCreate)
       .on('messageUpdate', messageCreate)
       .on('messageReactionAdd', messageReactionAdd)
-      .on('messageReactionRemove', messageReactionRemove);
+      .on('messageReactionRemove', messageReactionRemove)
+      .on('userUpdate', userUpdate);
   }
-
+  
   static get client(): ErisClient {
     if (!this._client) throw new Error("You must call .init() first");
     return this._client;

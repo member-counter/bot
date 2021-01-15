@@ -4,10 +4,10 @@ WORKDIR /app
 
 COPY . .
 
-EXPOSE 9090
+EXPOSE $PORT
 
 RUN npm install
 
 RUN npm run build
 
-CMD ["npm", "start"]
+CMD ["node", "."]
