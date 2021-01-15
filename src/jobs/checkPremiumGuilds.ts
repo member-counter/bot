@@ -2,7 +2,7 @@ import GuildService from '../services/GuildService';
 import Job from "../typings/Job";
 import getEnv from '../utils/getEnv';
 
-const { PREMIUM_BOT, FOSS_MODE } = getEnv();
+const { PREMIUM_BOT, UNRESTRICTED_MODE } = getEnv();
 
 
 const checkPremiumGuilds: Job = {
@@ -10,7 +10,7 @@ const checkPremiumGuilds: Job = {
   runAtStartup: false,
   runInOnlyFirstThread: false,
   run: async ({ client }) => {
-		if (PREMIUM_BOT && !FOSS_MODE) {
+		if (PREMIUM_BOT && !UNRESTRICTED_MODE) {
       client.guilds.forEach(async (guild) => {
         const guildSettings = await GuildService.init(guild.id);
         if (!guildSettings.premium) guild.leave().catch(console.error);

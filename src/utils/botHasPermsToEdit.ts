@@ -1,5 +1,5 @@
 import { GuildChannel } from 'eris';
-import Bot from '../client';
+import Bot from '../bot';
 
 const botHasPermsToEdit = (channel: GuildChannel): boolean => {
   const botPermsInChannel = channel.permissionsOf(Bot.client.user.id);

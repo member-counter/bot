@@ -1,10 +1,10 @@
 import cron, { CronJob } from 'cron';
-import Bot from './client';
+import Bot from './bot';
 import jobs from './jobs/all';
 import Job from './typings/Job';
 
 let initialized = false;
-const setupJobs = () => {
+const setupJobs = async () => {
   if (initialized) return;
   initialized = true;
   const client = Bot.client;
@@ -24,7 +24,7 @@ const setupJobs = () => {
   }
 
   for (const job of jobs) {
-    if (job.runInOnlyFirstThread && client.getFirstShard() !== 0) continue;
+    if (job.runInOnlyFirstThread && await client.getFirstShard() !== 0) continue;
     new CronJob(job.time, () => run(job), null, true);
     if (job.runAtStartup) run(job);
   }

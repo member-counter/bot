@@ -1,14 +1,14 @@
 import Job from "../typings/Job";
 import getEnv from "../utils/getEnv";
 
-const { FOSS_MODE, PREMIUM_BOT } = getEnv();
+const { UNRESTRICTED_MODE, PREMIUM_BOT } = getEnv();
 
 const freeRam: Job = {
   time: '*/30 * * * * *',
   runAtStartup: false,
   runInOnlyFirstThread: false,
   run: async ({ client }) => {
-    if (FOSS_MODE || PREMIUM_BOT) return;
+    if (UNRESTRICTED_MODE || PREMIUM_BOT) return;
     const botUser = client.users.get(client.user.id);
     client.users.clear();
     client.users.add(botUser);

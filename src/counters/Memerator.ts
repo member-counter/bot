@@ -10,6 +10,7 @@ const MemeratorCounter: Counter = {
 	lifetime: 30 * 60 * 1000,
 
 	execute: async ({ resource }) => {
+		if (!MEMERATOR_API_KEY) throw new Error("MEMERATOR_API_KEY not provided");
 		const response = await fetch(
 			`https://api.memerator.me/v1/profile/${resource}`,
 			{ headers: { Authorization: MEMERATOR_API_KEY } },
