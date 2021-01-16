@@ -49,7 +49,8 @@ export default async (message: Eris.Message) => {
     prefix = prefix.toLowerCase();
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const prefixRegex =  new RegExp(
-      `^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`
+      `^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`,
+      'i'
     );
     if (!prefixRegex.test(content)) return;
 
