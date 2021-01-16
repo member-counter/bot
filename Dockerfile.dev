@@ -7,7 +7,7 @@ COPY . .
 EXPOSE $PORT
 
 # DevTools/Debugger
-EXPOSE 9229:9229
+EXPOSE 9229
 
 RUN npm install
 
