@@ -51,7 +51,8 @@ export default async (message: Eris.Message) => {
     const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prefixToCheck)})\\s*`);
 
     const commandRequested = content.toLowerCase(); // Case insensitive match
-    const [matchedPrefix] = commandRequested.match(prefixRegex);
+    const matchedPrefix = commandRequested.match(prefixRegex)?.[0];
+    if (matchedPrefix == null) return;
 
     if (commandRequested.startsWith(matchedPrefix)) {
       commandsLoop: for (const command of commands) {
