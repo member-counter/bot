@@ -33,28 +33,26 @@ export default async (message: Eris.Message) => {
 
   // Avoid responding to other bots
   if (author && !author.bot) {
-    let prefix: string;
+    let prefixToCheck: string;
     let languagePack;
 
     if (channel instanceof Eris.GuildChannel) {
       const guildSettings = await GuildService.init(channel.guild.id);
 
       languagePack = loadLanguagePack(guildSettings.language);
-      prefix = guildSettings.prefix;
+      prefixToCheck = guildSettings.prefix;
     } else {
       languagePack = loadLanguagePack(DISCORD_DEFAULT_LANG);
-      prefix = DISCORD_PREFIX;
+      prefixToCheck = DISCORD_PREFIX;
     }
+    prefixToCheck = prefixToCheck.toLowerCase();
 
-    prefix = prefix.toLowerCase();
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const prefixRegex =  new RegExp(
-      `^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`
-    );
-    if (!prefixRegex.test(content)) return;
+    const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prefixToCheck)})\\s*`);
 
-    const [matchedPrefix] = content.match(prefixRegex);
     const commandRequested = content.toLowerCase(); // Case insensitive match
+    const matchedPrefix = commandRequested.match(prefixRegex)?.[0];
+    if (matchedPrefix == null) return;
 
     if (commandRequested.startsWith(matchedPrefix)) {
       commandsLoop: for (const command of commands) {
