@@ -61,7 +61,7 @@ class Paginator {
     pages: any[],
     footerText = ''
   ) {
-    this.client = client
+    this.client = msg.channel.client
     this.msg = msg
     this.originalMessage = msg
     this.channel = msg.channel as TextableChannel
@@ -261,54 +261,34 @@ class Paginator {
           break
         }
         // If user hits back, go back 1 page
-        case this.reactions.previousPage.name: {
-          if (this.page !== 1) await this.select(this.page - 1)
-
-          break
-        }
+        case this.reactions.previousPage.name:
         case '◀': {
           if (this.page !== 1) await this.select(this.page - 1)
 
           break
         }
         // If user hits next, go forward 1 page
-        case this.reactions.nextPage.name: {
-          if (this.page !== this.pages.length) await this.select(this.page + 1)
-
-          break
-        }
+        case this.reactions.nextPage.name:
         case '▶': {
           if (this.page !== this.pages.length) await this.select(this.page + 1)
 
           break
         }
         // Go to first page
-        case this.reactions.firstPage.name: {
-          await this.select(1)
-
-          break
-        }
+        case this.reactions.firstPage.name:
         case '⏮': {
           await this.select(1)
 
           break
         }
         // Go to last page
-        case this.reactions.lastPage.name: {
-          await this.select(this.pages.length)
-
-          break
-        }
+        case this.reactions.lastPage.name:
         case '⏭️': {
           await this.select(this.pages.length)
 
           break
         }
-        case this.reactions.jumpPage.name: {
-          await this.jump(this.userID)
-
-          break
-        }
+        case this.reactions.jumpPage.name:
         case '↗': {
           await this.jump(this.userID)
 
@@ -329,7 +309,16 @@ class Paginator {
     })
 
     // When the collector times out or the user hits stop, remove all reactions
-    collector.on('end', () => this.msg.removeReactions())
+    collector.on('end', () => {
+      if (
+        this.msg.channel instanceof GuildChannel &&
+        this.msg.channel
+          .permissionsOf(this.client.user.id)
+          .has('manageMessages')
+      ) {
+        this.msg.removeReactions()
+      }
+    })
   }
   /**
    * Adds needed reactions for pagination based on page count
