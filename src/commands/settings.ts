@@ -21,7 +21,7 @@ const seeSettings: MemberCounterCommand = {
   aliases: ['seeSettings'],
   denyDm: true,
   onlyAdmin: false,
-  run: async ({ client, message, languagePack }) => {
+  run: async ({  message, languagePack }) => {
     const { channel } = message
 
     if (channel instanceof GuildChannel) {
@@ -121,7 +121,7 @@ const seeSettings: MemberCounterCommand = {
           })
         )
       }
-      new Paginator(client, message, EmbedPages).send()
+      new Paginator(message, EmbedPages).send()
     }
   }
 }

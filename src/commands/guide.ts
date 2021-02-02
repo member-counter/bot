@@ -30,7 +30,7 @@ const guide: MemberCounterCommand = {
   aliases: ['guide', 'intro'],
   denyDm: false,
   onlyAdmin: false,
-  run: async ({ client, message, languagePack }) => {
+  run: async ({  message, languagePack }) => {
     const { channel, author } = message
     const prefix = await (async () => {
       if (channel instanceof GuildChannel) {
@@ -76,7 +76,7 @@ const guide: MemberCounterCommand = {
       )
     )
 
-    new Paginator(client, message, embedPages).send()
+    new Paginator(message, embedPages).send()
   }
 }
 
