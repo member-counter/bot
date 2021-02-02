@@ -56,7 +56,6 @@ class Paginator {
   }
 
   public constructor (
-    client: Client,
     msg: Message,
     pages: any[],
     footerText = ''
@@ -73,7 +72,7 @@ class Paginator {
     // EmbedList we will page over
     this.pages = pages
     this.totalPages = pages.length
-    this.reactions = emojis(client.guilds)
+    this.reactions = emojis(msg.channel.client.guilds)
 
     // Timeout time in milliseconds to stop listening for reactions
     this.timeoutTime = 60 * 1000 * 5
