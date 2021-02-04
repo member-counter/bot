@@ -328,27 +328,27 @@
     },
     "setup": {
       "helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\n**Örnek**```{PREFIX}setup```",
-      "creatingCounts": "Creating counts...",
+      "creatingCounts": "Sayımlar oluşturuluyor...",
       "createdCounts": "Tamamlandı",
       "categoryName": {
         "countTemplate": "📊 Sunucu İstatistikleri 📊",
         "creatingCategory": "{loading} Kategori oluşturuluyor",
-        "createdCategory": "{check} Kategori oluşturuldu\n"
+        "createdCategory": "{check} Kategory oluşturuldu\n"
       },
       "memberCounter": {
         "countTemplate": "{members} Üye",
-        "creatingmemberCounter": "{loading} Creating member count\n",
-        "createdmemberCounter": "{check} Members count created\n"
+        "creatingmemberCounter": "{loading} Kişi sayısı oluşturuluyor\n",
+        "createdmemberCounter": "{check} Kişi sayısı oluşturuldu\n"
       },
       "boostingCounter": {
         "countTemplate": "{nitro-boosters} Boost",
-        "creatingboostingCounter": "{loading} Creating boosting count\n",
-        "createdboostingCounter": "{check} Boosting count created\n"
+        "creatingboostingCounter": "{loading} Boost sayısı oluşturuluyor\n",
+        "createdboostingCounter": "{check} Boost sayısı oluşturuldu\n"
       },
       "rolesCounter": {
         "countTemplate": "{roles} Rol",
-        "creatingrolesCounter": "{loading} Creating roles count\n",
-        "createdrolesCounter": "{check} Roles count created\n"
+        "creatingrolesCounter": "{loading} Rol sayısı oluşturuluyor\n",
+        "createdrolesCounter": "{check} Rol sayısı kanalı oluşturuldu\n"
       },
       "channelsCounter": {
         "countTemplate": "{channels} Kanal",
