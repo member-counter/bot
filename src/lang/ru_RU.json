@@ -328,32 +328,32 @@
     },
     "setup": {
       "helpDescription": "Предустановка стандартных счётчиков.\nСоздаёт заблокированные (🔒) голосовые каналы сразу вместе с счётчиками.\n**Пример**```{PREFIX}setup```",
-      "creatingCounts": "Creating counts...",
+      "creatingCounts": "Creating counters...",
       "createdCounts": "Complete",
       "categoryName": {
         "countTemplate": "📊 Server Stats 📊",
-        "creatingCategory": "{loading} Creating category\n",
-        "createdCategory": "{check} Category created\n"
+        "creatingCategory": "{LOADING} Creating category\n",
+        "createdCategory": "{CHECK_MARK} Category created\n"
       },
       "memberCounter": {
         "countTemplate": "{members} Участники",
-        "creatingmemberCounter": "{loading} Creating member count\n",
-        "createdmemberCounter": "{check} Members count created\n"
+        "creatingmemberCounter": "{LOADING} Creating member counter\n",
+        "createdmemberCounter": "{CHECK_MARK} Members count created\n"
       },
       "boostingCounter": {
         "countTemplate": "{nitro-boosters} Бустеры",
-        "creatingboostingCounter": "{loading} Creating boosting count\n",
-        "createdboostingCounter": "{check} Boosting count created\n"
+        "creatingboostingCounter": "{LOADING} Creating boosting counter\n",
+        "createdboostingCounter": "{CHECK_MARK} Boosting count created\n"
       },
       "rolesCounter": {
         "countTemplate": "{roles} Роли",
-        "creatingrolesCounter": "{loading} Creating roles count\n",
-        "createdrolesCounter": "{check} Roles count created\n"
+        "creatingrolesCounter": "{LOADING} Creating roles counter\n",
+        "createdrolesCounter": "{CHECK_MARK} Roles count created\n"
       },
       "channelsCounter": {
         "countTemplate": "{channels} Каналы",
-        "creatingchannelsCounter": "{loading} Creating channels count\n",
-        "createdchannelsCounter": "{check} Channels count created\n"
+        "creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+        "createdchannelsCounter": "{CHECK_MARK} Channels count created\n"
       }
     }
   },
@@ -369,7 +369,10 @@
       "invalidChannelLength": "Достигнут лимит символов в названии канала, пожалуйста, настройте счётчик заново"
     },
     "paginator": {
-      "pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}"
+      "pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+      "jumpPrompt": "What page would you like to jump to? Say `cancel` or `0` to cancel the prompt. Your window to reply ends in 15 seconds.",
+      "errorPageLengthExceeded": "The page to jump to must be less than or equal to {TOTAL_PAGES}, Please try again.",
+      "errorNegativeInput": "The page to jump to can't be negative, Please try again."
     }
   },
   "common": {
