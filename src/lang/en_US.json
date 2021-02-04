@@ -367,6 +367,9 @@
       "disabled": "Counter Disabled",
       "noBanPerms": "I need ban permissions to show this",
       "invalidChannelLength": "Invalid channel name length, please setup the counter again"
+    },
+    "paginator": {
+      "pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}"
     }
   },
   "common": {

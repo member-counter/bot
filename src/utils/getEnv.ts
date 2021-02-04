@@ -45,6 +45,8 @@ interface MemberCounterEnv {
 	readonly WEBSITE_URL: string;
 	readonly DONATION_URL: string;
 
+	readonly USE_CUSTOM_EMOJIS: boolean;
+
 	readonly MEMERATOR_API_KEY: string;
 
 	readonly YOUTUBE_API_KEY: string;

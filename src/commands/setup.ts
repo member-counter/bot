@@ -10,7 +10,7 @@ const setup: MemberCounterCommand = {
   onlyAdmin: true,
   run: async ({ client, message, languagePack }) => {
     const { channel, content } = message
-    const { loading, check } = emojis(client.guilds)
+    const { loading, check } = emojis
     let channelsToCreate = [
       {
         countTemplate: languagePack.commands.setup.memberCounter.countTemplate,
