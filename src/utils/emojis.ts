@@ -16,17 +16,15 @@ class Emoji {
   private customEmoji?: string
   constructor (fallbackUnicodeEmoji: string, customEmoji?: string) {
     this.fallbackUnicodeEmoji = fallbackUnicodeEmoji
-    this.customEmoji = customEmoji
-    if (customEmoji?.match(/^a?::.+:\d+/))
-      throw new Error(
-        'If custom emoji is present, it must be in :name:id or a:name:id format'
-      )
+    if (USE_CUSTOM_EMOJIS && customEmoji && !customEmoji.match(/^<a?:.+:\d+>$/))
+      throw new Error(`The custom emoji "${customEmoji}" doesn't match the <:name:id> or <a:name:id> format, try to copy-paste it directly form discord by placing a backslash (\\) before the emoji`)
+    this.customEmoji = USE_CUSTOM_EMOJIS && customEmoji ? customEmoji.match(/^<(a?:.+:\d+)>$/)[1] : null;
   }
   /**
    *  Get name for paginator collector
    */
   get name (): string {
-    return USE_CUSTOM_EMOJIS && this.customEmoji
+    return this.customEmoji
       ? this.customEmoji.match(/(\w*\b)(?=:)/g).filter(str => str !== 'a')[0]
       : this.fallbackUnicodeEmoji
   }
@@ -34,7 +32,7 @@ class Emoji {
    * Use it in messages
    */
   get string (): string {
-    return USE_CUSTOM_EMOJIS && this.customEmoji
+    return this.customEmoji
       ? `<${this.customEmoji}>`
       : this.fallbackUnicodeEmoji
   }
@@ -43,7 +41,7 @@ class Emoji {
    * Use it in reactions
    */
   get reaction (): string {
-    return USE_CUSTOM_EMOJIS && this.customEmoji
+    return this.customEmoji
       ? this.customEmoji
       : this.fallbackUnicodeEmoji
   }
