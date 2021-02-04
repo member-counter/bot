@@ -333,12 +333,12 @@
       "categoryName": {
         "countTemplate": "📊 Sunucu İstatistikleri 📊",
         "creatingCategory": "{loading} Kategori oluşturuluyor",
-        "createdCategory": "{check} Kategory oluşturuldu\n"
+        "createdCategory": "{check} Kategori oluşturuldu\n"
       },
       "memberCounter": {
         "countTemplate": "{members} Üye",
-        "creatingmemberCounter": "{loading} Kişi sayısı kanalı oluşturuluyor\n",
-        "createdmemberCounter": "{check} Kişi sayısı kanalı oluşturuldu\n"
+        "creatingmemberCounter": "{loading} Üye sayısı kanalı oluşturuluyor\n",
+        "createdmemberCounter": "{check} Üye sayısı kanalı oluşturuldu\n"
       },
       "boostingCounter": {
         "countTemplate": "{nitro-boosters} Boost",
