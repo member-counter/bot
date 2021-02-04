@@ -369,7 +369,7 @@
       "invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें"
     },
     "paginator": {
-      "pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}"
+      "pageCounter": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}"
     }
   },
   "common": {
