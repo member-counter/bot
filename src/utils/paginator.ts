@@ -4,10 +4,9 @@ import {
   GuildChannel,
   PrivateChannel,
   Client,
-  EmojiOptions,
   EmbedOptions
 } from 'eris'
-import clonedeep from 'lodash.clonedeep';
+import clonedeep from 'lodash.clonedeep'
 import { ReactionCollector, MessageCollector } from 'eris-collector'
 import emojis from './emojis'
 
@@ -16,39 +15,39 @@ class Paginator {
   private channel: TextableChannel
   private client: Client
   private currentPage: number
-  private pages: any[]
+  private pages: EmbedOptions[]
   private readonly totalPages: number
   private readonly timeoutTime: number
   private collector: ReactionCollector
   private readonly targetUserID: string
-  private languagePack: any;
+  private languagePack: any
 
-  public constructor(
+  public constructor (
     channel: TextableChannel,
     targetUserID: string,
-    pages: EmojiOptions[],
-    languagePack: any,
+    pages: EmbedOptions[],
+    languagePack: any
   ) {
     this.client = channel.client
     this.channel = channel
     this.targetUserID = targetUserID
     // EmbedList we will page over
     this.pages = pages
-    this.currentPage = 0
+    this.currentPage = 1
     this.totalPages = pages.length
 
     // Timeout time in milliseconds to stop listening for reactions
-    this.timeoutTime = 60 * 1000 * 5
-    this.languagePack = languagePack;
+    this.timeoutTime = 60 * 1000 * 5 * pages.length
+    this.languagePack = languagePack
   }
 
   /**
    * Sends Pager to channel
    */
-  async displayPage(page) {
+  async displayPage (page) {
     // Clone the embed and modify it by adding a page indicator
-    const embedToSend: EmbedOptions = clonedeep(this.pages[page]);
-    this.appendPageCounter(embedToSend);
+    const embedToSend: EmbedOptions = clonedeep(this.pages[page])
+    this.appendPageCounter(embedToSend)
 
     // setup paginator in discord if it doesn't exists
     if (!this.message) {
@@ -67,12 +66,9 @@ class Paginator {
   /**
    * Initiates jumping to specified page
    */
-  async jump() {
-    // TODO use languagePack
+  async jump () {
     await this.message.channel
-      .createMessage(
-        `What page would you like to jump to? Say \`cancel\` or \`0\` to cancel the prompt. Your window to reply ends in 15 seconds.`
-      )
+      .createMessage(this.languagePack.functions.paginator.jumpPrompt)
       .then(async message => {
         const filter = m =>
           (isNaN(m.content) &&
@@ -122,10 +118,12 @@ class Paginator {
               m.delete()
             }
             if (Number(m.content) > this.totalPages) {
-              // TODO use languagePack
               return message.channel
                 .createMessage(
-                  `The page to jump to must be less than or equal to ${this.totalPages}, Please try again.`
+                  this.languagePack.functions.paginator.errorPageLengthExceeded.replace(
+                    /\{TOTAL_PAGES\}/,
+                    this.totalPages
+                  )
                 )
                 .then(message => {
                   setTimeout(() => {
@@ -134,10 +132,9 @@ class Paginator {
                 })
             }
             if (Math.sign(m.content) === -1) {
-              // TODO use languagePack
               return message.channel
                 .createMessage(
-                  `The page to jump to can't be negative, Please try again.`
+                  this.languagePack.functions.paginator.errorNegativeInput
                 )
                 .then(message => {
                   setTimeout(() => {
@@ -145,7 +142,8 @@ class Paginator {
                   }, 15000)
                 })
             }
-            this.displayPage(Number(m.content) - 1)
+            this.currentPage = Number(m.content)
+            this.displayPage(this.currentPage - 1)
           }
         })
       })
@@ -154,7 +152,7 @@ class Paginator {
   /**
    * Creates the Reaction Collector to listen to reactions from user
    */
-  createCollector() {
+  createCollector () {
     // Filter reactions to the user that requested the embed
     const filter = (_m, _emoji, userID) => userID === this.targetUserID
     // Create Reaction Collector
@@ -165,35 +163,42 @@ class Paginator {
     this.collector = collector
     // Handle actions based on selected reaction from user
     collector.on('collect', async (_m, react, _userId) => {
-      // TODO test what the hell returns react so we can add fallback emojis
-      console.info({ react })
       // If reaction is the back button and we are NOT on the first page, go back
       switch (react.name) {
         // If user hits back, go back 1 page
-        case emojis.previousPage.reaction: {
-          if (this.currentPage !== 0) await this.displayPage(--this.currentPage)
+        case emojis.previousPage.name:
+        case '◀️': {
+          if (this.currentPage !== 1)
+            await this.displayPage(--this.currentPage - 1)
 
           break
         }
         // If user hits next, go forward 1 page
-        case emojis.nextPage.reaction: {
-          if (this.currentPage !== this.pages.length) await this.displayPage(++this.currentPage)
+        case emojis.nextPage.name:
+        case '▶️': {
+          if (this.currentPage !== this.pages.length)
+            await this.displayPage(++this.currentPage - 1)
 
           break
         }
         // Go to first page
-        case emojis.firstPage.reaction: {
-          await this.displayPage(0)
+        case emojis.firstPage.name:
+        case '⏪': {
+          this.currentPage = 1
+          await this.displayPage(this.currentPage - 1)
 
           break
         }
         // Go to last page
-        case emojis.lastPage.reaction: {
-          await this.displayPage(this.pages.length - 1)
+        case emojis.lastPage.name:
+        case '⏩': {
+          this.currentPage = this.pages.length
+          await this.displayPage(this.currentPage - 1)
 
           break
         }
-        case emojis.jumpPage.reaction: {
+        case emojis.jumpPage.name:
+        case '↗️': {
           await this.jump()
 
           break
@@ -205,7 +210,6 @@ class Paginator {
           .permissionsOf(this.client.user.id)
           .has('manageMessages')
       ) {
-        // TODO fix this
         await this.message.removeReaction(
           react.id ? react.name + ':' + react.id : react.name,
           this.targetUserID
@@ -228,7 +232,7 @@ class Paginator {
   /**
    * Adds needed reactions for pagination based on page count
    */
-  async addReactions() {
+  async addReactions () {
     // If more than 1 page, display navigation controls
     if (this.totalPages > 1) {
       // If more than 5 pages display first and last button reactions
@@ -242,7 +246,9 @@ class Paginator {
           await this.message.addReaction(emojis.jumpPage.reaction)
         } else {
           await this.message.addReaction(emojis.firstPage.fallbackUnicodeEmoji)
-          await this.message.addReaction(emojis.previousPage.fallbackUnicodeEmoji)
+          await this.message.addReaction(
+            emojis.previousPage.fallbackUnicodeEmoji
+          )
           await this.message.addReaction(emojis.nextPage.fallbackUnicodeEmoji)
           await this.message.addReaction(emojis.lastPage.fallbackUnicodeEmoji)
           await this.message.addReaction(emojis.jumpPage.fallbackUnicodeEmoji)
@@ -253,26 +259,37 @@ class Paginator {
           await this.message.addReaction(emojis.previousPage.reaction)
           await this.message.addReaction(emojis.nextPage.reaction)
         } else {
-          await this.message.addReaction(emojis.previousPage.fallbackUnicodeEmoji)
+          await this.message.addReaction(
+            emojis.previousPage.fallbackUnicodeEmoji
+          )
           await this.message.addReaction(emojis.nextPage.fallbackUnicodeEmoji)
         }
       }
     }
   }
 
-  private botCanUseCustomEmojis() {
-    return (this.channel instanceof GuildChannel && this.channel.permissionsOf(this.client.user.id).has('externalEmojis')) ||
-      (this.channel instanceof PrivateChannel);
+  private botCanUseCustomEmojis () {
+    return (
+      (this.channel instanceof GuildChannel &&
+        this.channel
+          .permissionsOf(this.client.user.id)
+          .has('externalEmojis')) ||
+      this.channel instanceof PrivateChannel
+    )
   }
 
-  private appendPageCounter(embed: EmbedOptions) {
+  private appendPageCounter (embed: EmbedOptions) {
     if (embed.footer) {
-      embed.footer.text += " - " + this.languagePack.functions.paginator.pageCounter.replace(/\{CURRENT_PAGE\}/, this.currentPage)
-        .replace(/\{TOTAL_PAGES\}/, this.totalPages);
-    }
-    else {
+      embed.footer.text =
+        this.languagePack.functions.paginator.pageCounter
+          .replace(/\{CURRENT_PAGE\}/, this.currentPage)
+          .replace(/\{TOTAL_PAGES\}/, this.totalPages) +
+        ' - ' +
+        embed.footer.text
+    } else {
       embed.footer = {
-        text: this.languagePack.functions.paginator.pageCounter.replace(/\{CURRENT_PAGE\}/, this.currentPage)
+        text: this.languagePack.functions.paginator.pageCounter
+          .replace(/\{CURRENT_PAGE\}/, this.currentPage)
           .replace(/\{TOTAL_PAGES\}/, this.totalPages)
       }
     }
