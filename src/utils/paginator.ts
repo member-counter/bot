@@ -67,7 +67,7 @@ class Paginator {
    * Initiates jumping to specified page
    */
   async jump () {
-    await this.message.channel
+    await this.channel
       .createMessage(this.languagePack.functions.paginator.jumpPrompt)
       .then(async message => {
         const filter = m =>
@@ -77,7 +77,7 @@ class Paginator {
           (!isNaN(m.content) && this.targetUserID === m.author.id)
         const collector = new MessageCollector(
           this.client,
-          this.message.channel,
+          this.channel,
           filter,
           {
             time: 15000,
@@ -89,8 +89,8 @@ class Paginator {
             collector.stop()
             message.delete()
             if (
-              this.message.channel instanceof GuildChannel &&
-              this.message.channel
+              this.channel instanceof GuildChannel &&
+              this.channel
                 .permissionsOf(this.client.user.id)
                 .has('manageMessages')
             ) {
@@ -100,8 +100,8 @@ class Paginator {
             collector.stop()
             message.delete()
             if (
-              this.message.channel instanceof GuildChannel &&
-              this.message.channel
+              this.channel instanceof GuildChannel &&
+              this.channel
                 .permissionsOf(this.client.user.id)
                 .has('manageMessages')
             ) {
@@ -110,8 +110,8 @@ class Paginator {
           } else {
             message.delete()
             if (
-              this.message.channel instanceof GuildChannel &&
-              this.message.channel
+              this.channel instanceof GuildChannel &&
+              this.channel
                 .permissionsOf(this.client.user.id)
                 .has('manageMessages')
             ) {
@@ -167,7 +167,7 @@ class Paginator {
       switch (react.name) {
         // If user hits back, go back 1 page
         case emojis.previousPage.name:
-        case '◀️': {
+        case emojis.previousPage.fallbackUnicodeEmoji: {
           if (this.currentPage !== 1)
             await this.displayPage(--this.currentPage - 1)
 
@@ -175,7 +175,7 @@ class Paginator {
         }
         // If user hits next, go forward 1 page
         case emojis.nextPage.name:
-        case '▶️': {
+        case emojis.nextPage.fallbackUnicodeEmoji: {
           if (this.currentPage !== this.pages.length)
             await this.displayPage(++this.currentPage - 1)
 
@@ -183,7 +183,7 @@ class Paginator {
         }
         // Go to first page
         case emojis.firstPage.name:
-        case '⏪': {
+        case emojis.firstPage.fallbackUnicodeEmoji: {
           this.currentPage = 1
           await this.displayPage(this.currentPage - 1)
 
@@ -191,22 +191,23 @@ class Paginator {
         }
         // Go to last page
         case emojis.lastPage.name:
-        case '⏩': {
+        case emojis.lastPage.fallbackUnicodeEmoji: {
           this.currentPage = this.pages.length
           await this.displayPage(this.currentPage - 1)
 
           break
         }
-        case emojis.jumpPage.name:
-        case '↗️': {
+        case emojis.jump.name:
+        case emojis.jump.fallbackUnicodeEmoji: {
+
           await this.jump()
 
           break
         }
       }
       if (
-        this.message.channel instanceof GuildChannel &&
-        this.message.channel
+        this.channel instanceof GuildChannel &&
+        this.channel
           .permissionsOf(this.client.user.id)
           .has('manageMessages')
       ) {
@@ -220,8 +221,8 @@ class Paginator {
     // When the collector times out or the user hits stop, remove all reactions
     collector.on('end', () => {
       if (
-        this.message.channel instanceof GuildChannel &&
-        this.message.channel
+        this.channel instanceof GuildChannel &&
+        this.channel
           .permissionsOf(this.client.user.id)
           .has('manageMessages')
       ) {
@@ -243,7 +244,7 @@ class Paginator {
           await this.message.addReaction(emojis.previousPage.reaction)
           await this.message.addReaction(emojis.nextPage.reaction)
           await this.message.addReaction(emojis.lastPage.reaction)
-          await this.message.addReaction(emojis.jumpPage.reaction)
+          await this.message.addReaction(emojis.jump.reaction)
         } else {
           await this.message.addReaction(emojis.firstPage.fallbackUnicodeEmoji)
           await this.message.addReaction(
@@ -251,7 +252,7 @@ class Paginator {
           )
           await this.message.addReaction(emojis.nextPage.fallbackUnicodeEmoji)
           await this.message.addReaction(emojis.lastPage.fallbackUnicodeEmoji)
-          await this.message.addReaction(emojis.jumpPage.fallbackUnicodeEmoji)
+          await this.message.addReaction(emojis.jump.fallbackUnicodeEmoji)
         }
         // If less than 5 pages only shows back and next reactions
       } else {
