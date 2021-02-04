@@ -154,23 +154,25 @@ class Paginator {
    */
   createCollector () {
     // Filter reactions to the user that requested the embed
-    const filter = (_m, _emoji, userID) => userID === this.targetUserID
+    const filter = (_m, _emoji, userID) => userID === this.targetUserID;
     // Create Reaction Collector
     const collector = new ReactionCollector(this.client, this.message, filter, {
-      time: this.timeoutTime
+      time: this.timeoutTime, dispose: true,
     })
     // Save collector to be used later in execution
     this.collector = collector
-    // Handle actions based on selected reaction from user
-    collector.on('collect', async (_m, react, _userId) => {
+
+    const reactionHandler = async (event, emoji, _userId) => {
+      // Avoid double clicking because the bot is also removing the user's reaction, the bot removes the reaction when it has permissions to do it
+      if (this.botCanManageMessages() && event === "remove") return;
+
       // If reaction is the back button and we are NOT on the first page, go back
-      switch (react.name) {
+      switch (emoji.name) {
         // If user hits back, go back 1 page
         case emojis.previousPage.name:
         case emojis.previousPage.fallbackUnicodeEmoji: {
           if (this.currentPage !== 1)
             await this.displayPage(--this.currentPage - 1)
-
           break
         }
         // If user hits next, go forward 1 page
@@ -205,18 +207,17 @@ class Paginator {
           break
         }
       }
-      if (
-        this.channel instanceof GuildChannel &&
-        this.channel
-          .permissionsOf(this.client.user.id)
-          .has('manageMessages')
-      ) {
+      if (this.botCanManageMessages()) {
         await this.message.removeReaction(
-          react.id ? react.name + ':' + react.id : react.name,
+          emoji.id ? emoji.name + ':' + emoji.id : emoji.name,
           this.targetUserID
         )
       }
-    })
+    }
+
+    // Handle actions based on selected reaction from user
+    collector.on('collect', (message, emoji, userID) => reactionHandler("collect", emoji, userID));
+    collector.on('remove', (emoji, userID) => reactionHandler("remove", emoji, userID));
 
     // When the collector times out or the user hits stop, remove all reactions
     collector.on('end', () => {
@@ -276,6 +277,15 @@ class Paginator {
           .permissionsOf(this.client.user.id)
           .has('externalEmojis')) ||
       this.channel instanceof PrivateChannel
+    )
+  }
+
+  private botCanManageMessages () {
+    return (
+      this.channel instanceof GuildChannel &&
+      this.channel
+        .permissionsOf(this.client.user.id)
+        .has('manageMessages')
     )
   }
 
