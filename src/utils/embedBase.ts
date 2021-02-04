@@ -21,8 +21,8 @@ const embedBase = (embedToAppend?: EmbedOptions): EmbedOptions => {
     color: dominantColor.current,
     footer: {
       icon_url:
-        'https://cdn.discordapp.com/avatars/343884247263608832/98ce0df05fc35de2510c045cb469e4f7.png?size=64',
-      text: 'by eduardozgz#5695',
+        'https://cdn.discordapp.com/avatars/478567255198662656/97f5120bb63e1015d9ff5593f1fa9cae.png?size=64',
+      text: 'Member Counter bot by eduardozgz#5695',
     },
     ...embedToAppend,
   }
