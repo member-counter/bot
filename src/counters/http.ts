@@ -10,6 +10,7 @@ const HTTPCounter: Counter = {
 	isEnabled: true,
 	lifetime: 1 * 60 * 1000,
 	execute: async ({ guild, resource }) => {
+		// TODO add json support and refactor
 		const controller = new AbortController();
 		const response = await timeoutFetch(
 			10000,

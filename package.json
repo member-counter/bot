@@ -24,7 +24,7 @@
 	},
 	"homepage": "https://member-counter.eduardozgz.com",
 	"dependencies": {
-		"@arcanebot/redis-sharder": "^1.0.15",
+		"@arcanebot/redis-sharder": "github:eduardozgz/redis-sharder",
 		"abort-controller": "^3.0.0",
 		"bufferutil": "^4.0.1",
 		"colorthief": "^2.3.2",
@@ -32,7 +32,7 @@
 		"dotenv": "^8.2.0",
 		"dotenv-parse-variables": "^0.2.3",
 		"eris": "^0.13.3",
-		"eris-collector": "^1.0.1",
+		"eris-collector": "github:eduardozgz/eris-collector#master",
 		"erlpack": "^0.1.3",
 		"gamedig": "^2.0.23",
 		"git-rev-sync": "^3.0.1",
