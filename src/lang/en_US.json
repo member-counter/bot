@@ -332,28 +332,28 @@
       "createdCounts": "Complete",
       "categoryName": {
         "countTemplate": "📊 Server Stats 📊",
-        "creatingCategory": "{loading} Creating category\n",
-        "createdCategory": "{check} Category created\n"
+        "creatingCategory": "{LOADING} Creating category\n",
+        "createdCategory": "{CHECK_MARK} Category created\n"
       },
       "memberCounter": {
         "countTemplate": "{members} Members",
-        "creatingmemberCounter": "{loading} Creating member count\n",
-        "createdmemberCounter": "{check} Members count created\n"
+        "creatingmemberCounter": "{LOADING} Creating member count\n",
+        "createdmemberCounter": "{CHECK_MARK} Members count created\n"
       },
       "boostingCounter": {
         "countTemplate": "{nitro-boosters} Boosting",
-        "creatingboostingCounter": "{loading} Creating boosting count\n",
-        "createdboostingCounter": "{check} Boosting count created\n"
+        "creatingboostingCounter": "{LOADING} Creating boosting count\n",
+        "createdboostingCounter": "{CHECK_MARK} Boosting count created\n"
       },
       "rolesCounter": {
         "countTemplate": "{roles} Roles",
-        "creatingrolesCounter": "{loading} Creating roles count\n",
-        "createdrolesCounter": "{check} Roles count created\n"
+        "creatingrolesCounter": "{LOADING} Creating roles count\n",
+        "createdrolesCounter": "{CHECK_MARK} Roles count created\n"
       },
       "channelsCounter": {
         "countTemplate": "{channels} Channels",
-        "creatingchannelsCounter": "{loading} Creating channels count\n",
-        "createdchannelsCounter": "{check} Channels count created\n"
+        "creatingchannelsCounter": "{LOADING} Creating channels count\n",
+        "createdchannelsCounter": "{CHECK_MARK} Channels count created\n"
       }
     }
   },

@@ -72,7 +72,6 @@ const guide: MemberCounterCommand = {
         })
       )
     )
-
     new Paginator(
       message.channel,
       message.author.id,
