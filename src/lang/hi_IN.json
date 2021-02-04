@@ -328,32 +328,32 @@
     },
     "setup": {
       "helpDescription": "उन में कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\n**उदाहरण**```{PREFIX}setup```",
-      "creatingCounts": "Creating counts...",
+      "creatingCounts": "Creating counters...",
       "createdCounts": "पूर्ण",
       "categoryName": {
         "countTemplate": "📊 सर्वर आँकड़े 📊",
-        "creatingCategory": "{loading} श्रेणी बनाए जा रहे हैं",
-        "createdCategory": "{check} श्रेणी बनाई गई"
+        "creatingCategory": "{LOADING} Creating category\n",
+        "createdCategory": "{CHECK_MARK} Category created\n"
       },
       "memberCounter": {
         "countTemplate": "{members} सदस्य",
-        "creatingmemberCounter": "{loading} सदस्य संख्या बनाए जा रहे हैं",
-        "createdmemberCounter": "{check} सदस्य संख्या बनाई गई"
+        "creatingmemberCounter": "{LOADING} Creating member counter\n",
+        "createdmemberCounter": "{CHECK_MARK} Members count created\n"
       },
       "boostingCounter": {
         "countTemplate": "{nitro-boosters} बढ़ाने",
-        "creatingboostingCounter": "{loading} Creating boosting count\n",
-        "createdboostingCounter": "{check} Boosting count created\n"
+        "creatingboostingCounter": "{LOADING} Creating boosting counter\n",
+        "createdboostingCounter": "{CHECK_MARK} Boosting count created\n"
       },
       "rolesCounter": {
         "countTemplate": "{roles} भूमिकाएँ",
-        "creatingrolesCounter": "{loading} Creating roles count\n",
-        "createdrolesCounter": "{check} Roles count created\n"
+        "creatingrolesCounter": "{LOADING} Creating roles counter\n",
+        "createdrolesCounter": "{CHECK_MARK} Roles count created\n"
       },
       "channelsCounter": {
         "countTemplate": "{channels} चैनल",
-        "creatingchannelsCounter": "{loading} Creating channels count\n",
-        "createdchannelsCounter": "{check} Channels count created\n"
+        "creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+        "createdchannelsCounter": "{CHECK_MARK} Channels count created\n"
       }
     }
   },
@@ -369,7 +369,10 @@
       "invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें"
     },
     "paginator": {
-      "pageCounter": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}"
+      "pageCounter": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}",
+      "jumpPrompt": "What page would you like to jump to? Say `cancel` or `0` to cancel the prompt. Your window to reply ends in 15 seconds.",
+      "errorPageLengthExceeded": "The page to jump to must be less than or equal to {TOTAL_PAGES}, Please try again.",
+      "errorNegativeInput": "The page to jump to can't be negative, Please try again."
     }
   },
   "common": {
