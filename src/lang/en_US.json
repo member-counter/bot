@@ -328,7 +328,7 @@
     },
     "setup": {
       "helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-      "creatingCounts": "Creating counts...",
+      "creatingCounts": "Creating counters...",
       "createdCounts": "Complete",
       "categoryName": {
         "countTemplate": "📊 Server Stats 📊",
@@ -337,22 +337,22 @@
       },
       "memberCounter": {
         "countTemplate": "{members} Members",
-        "creatingmemberCounter": "{LOADING} Creating member count\n",
+        "creatingmemberCounter": "{LOADING} Creating member counter\n",
         "createdmemberCounter": "{CHECK_MARK} Members count created\n"
       },
       "boostingCounter": {
         "countTemplate": "{nitro-boosters} Boosting",
-        "creatingboostingCounter": "{LOADING} Creating boosting count\n",
+        "creatingboostingCounter": "{LOADING} Creating boosting counter\n",
         "createdboostingCounter": "{CHECK_MARK} Boosting count created\n"
       },
       "rolesCounter": {
         "countTemplate": "{roles} Roles",
-        "creatingrolesCounter": "{LOADING} Creating roles count\n",
+        "creatingrolesCounter": "{LOADING} Creating roles counter\n",
         "createdrolesCounter": "{CHECK_MARK} Roles count created\n"
       },
       "channelsCounter": {
         "countTemplate": "{channels} Channels",
-        "creatingchannelsCounter": "{LOADING} Creating channels count\n",
+        "creatingchannelsCounter": "{LOADING} Creating channels counter\n",
         "createdchannelsCounter": "{CHECK_MARK} Channels count created\n"
       }
     }
