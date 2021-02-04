@@ -72,13 +72,7 @@ const guide: MemberCounterCommand = {
         })
       )
     )
-    pages.forEach(page =>
-      embedPages.push(
-        embedBase({
-          description: page
-        })
-      )
-    )
+
     new Paginator(
       message.channel,
       message.author.id,
