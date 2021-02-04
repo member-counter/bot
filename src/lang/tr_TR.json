@@ -216,7 +216,7 @@
     },
     "editChannel": {
       "helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu komutu bu sınırı \"yok saymak\" için kullanabilirsiniz.\n**Kullanımı**```{PREFIX}editChannel [channelId] [content]```\n**Örnek**```{PREFIX}editChannel 701396983843127366 {members} Üye {onlinemembers} Aktif Üye```",
-      "success": "Done! You may have to wait a few minutes to see the new changes",
+      "success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir",
       "errorNotFound": "Kanal bulunamadı",
       "errorNoContent": "Lütfen argüman belirtin"
     },
@@ -230,7 +230,7 @@
       "helpDescription": "Bu komut, sayaçlarda kompakt bir biçimde bir sayı göstermenizi sağlar\n\n**Kullanımı**\n```{PREFIX}shortNumber [enable/disable]```\n**Örnekler**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "Geçersiz eylem! lütfen `{PREFIX}help shortNumber` komutuna bakın",
-      "success": "Done! You may have to wait a few minutes to see the new changes"
+      "success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir"
     },
     "locale": {
       "helpDescription": "Sayıları ve diğer şeyleri belirtilen yerel ayara göre biçimlendirir\n\n**Kullanımı**\n```{PREFIX}locale [yer/disable]```\n**Örnekler**```{PREFIX}locale en\n{PREFIX}locale tr\n{PREFIX}locale disable```",
@@ -329,11 +329,11 @@
     "setup": {
       "helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\n**Örnek**```{PREFIX}setup```",
       "creatingCounts": "Creating counts...",
-      "createdCounts": "Complete",
+      "createdCounts": "Tamamlandı",
       "categoryName": {
         "countTemplate": "📊 Sunucu İstatistikleri 📊",
-        "creatingCategory": "{loading} Creating category\n",
-        "createdCategory": "{check} Category created\n"
+        "creatingCategory": "{loading} Kategori oluşturuluyor",
+        "createdCategory": "{check} Kategori oluşturuldu\n"
       },
       "memberCounter": {
         "countTemplate": "{members} Üye",
