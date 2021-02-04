@@ -65,7 +65,7 @@ let emojis: BotEmojis = {
   previousPage: new Emoji('◀️', CUSTOM_EMOJI_PREVIOUS_PAGE),
   nextPage: new Emoji('▶️', CUSTOM_EMOJI_NEXT_PAGE),
   jump: new Emoji('↗️', CUSTOM_EMOJI_JUMP),
-  loading: new Emoji('⏲️', CUSTOM_EMOJI_LOADING),
+  loading: new Emoji('🕓', CUSTOM_EMOJI_LOADING),
   check_mark: new Emoji('✅', CUSTOM_EMOJI_CHECK_MARK)
 }
 
