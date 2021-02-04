@@ -328,32 +328,32 @@
     },
     "setup": {
       "helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\n**Örnek**```{PREFIX}setup```",
-      "creatingCounts": "Sayımlar oluşturuluyor...",
+      "creatingCounts": "Creating counters...",
       "createdCounts": "Tamamlandı",
       "categoryName": {
         "countTemplate": "📊 Sunucu İstatistikleri 📊",
-        "creatingCategory": "{loading} Kategori oluşturuluyor",
-        "createdCategory": "{check} Kategori oluşturuldu\n"
+        "creatingCategory": "{LOADING} Creating category\n",
+        "createdCategory": "{CHECK_MARK} Category created\n"
       },
       "memberCounter": {
         "countTemplate": "{members} Üye",
-        "creatingmemberCounter": "{loading} Üye sayısı oluşturuluyor\n",
-        "createdmemberCounter": "{check} Üye sayısı oluşturuldu\n"
+        "creatingmemberCounter": "{LOADING} Creating member counter\n",
+        "createdmemberCounter": "{CHECK_MARK} Members count created\n"
       },
       "boostingCounter": {
         "countTemplate": "{nitro-boosters} Boost",
-        "creatingboostingCounter": "{loading} Boost sayısı oluşturuluyor\n",
-        "createdboostingCounter": "{check} Boost sayısı oluşturuldu\n"
+        "creatingboostingCounter": "{LOADING} Creating boosting counter\n",
+        "createdboostingCounter": "{CHECK_MARK} Boosting count created\n"
       },
       "rolesCounter": {
         "countTemplate": "{roles} Rol",
-        "creatingrolesCounter": "{loading} Rol sayısı oluşturuluyor\n",
-        "createdrolesCounter": "{check} Rol sayısı oluşturuldu\n"
+        "creatingrolesCounter": "{LOADING} Creating roles counter\n",
+        "createdrolesCounter": "{CHECK_MARK} Roles count created\n"
       },
       "channelsCounter": {
         "countTemplate": "{channels} Kanal",
-        "creatingchannelsCounter": "{loading} Kanal sayısı oluşturuluyor\n",
-        "createdchannelsCounter": "{check} Kanal sayısı oluşturuldu\n"
+        "creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+        "createdchannelsCounter": "{CHECK_MARK} Channels count created\n"
       }
     }
   },
@@ -369,7 +369,10 @@
       "invalidChannelLength": "Geçersiz kanal adı uzunluğu, lütfen sayacı tekrar kurun"
     },
     "paginator": {
-      "pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}"
+      "pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
+      "jumpPrompt": "What page would you like to jump to? Say `cancel` or `0` to cancel the prompt. Your window to reply ends in 15 seconds.",
+      "errorPageLengthExceeded": "The page to jump to must be less than or equal to {TOTAL_PAGES}, Please try again.",
+      "errorNegativeInput": "The page to jump to can't be negative, Please try again."
     }
   },
   "common": {
