@@ -337,23 +337,23 @@
       },
       "memberCounter": {
         "countTemplate": "{members} Üye",
-        "creatingmemberCounter": "{loading} Üye sayısı kanalı oluşturuluyor\n",
-        "createdmemberCounter": "{check} Üye sayısı kanalı oluşturuldu\n"
+        "creatingmemberCounter": "{loading} Üye sayısı oluşturuluyor\n",
+        "createdmemberCounter": "{check} Üye sayısı oluşturuldu\n"
       },
       "boostingCounter": {
         "countTemplate": "{nitro-boosters} Boost",
-        "creatingboostingCounter": "{loading} Boost sayısı kanalı oluşturuluyor\n",
-        "createdboostingCounter": "{check} Boost sayısı kanalı oluşturuldu\n"
+        "creatingboostingCounter": "{loading} Boost sayısı oluşturuluyor\n",
+        "createdboostingCounter": "{check} Boost sayısı oluşturuldu\n"
       },
       "rolesCounter": {
         "countTemplate": "{roles} Rol",
-        "creatingrolesCounter": "{loading} Rol sayısı kanalı oluşturuluyor\n",
-        "createdrolesCounter": "{check} Rol sayısı kanalı oluşturuldu\n"
+        "creatingrolesCounter": "{loading} Rol sayısı oluşturuluyor\n",
+        "createdrolesCounter": "{check} Rol sayısı oluşturuldu\n"
       },
       "channelsCounter": {
         "countTemplate": "{channels} Kanal",
-        "creatingchannelsCounter": "{loading} Kanal sayısı kanalı oluşturuluyor\n",
-        "createdchannelsCounter": "{check} Kanal sayısı kanalı oluşturuldu\n"
+        "creatingchannelsCounter": "{loading} Kanal sayısı oluşturuluyor\n",
+        "createdchannelsCounter": "{check} Kanal sayısı oluşturuldu\n"
       }
     }
   },
