@@ -369,7 +369,7 @@
       "invalidChannelLength": "Geçersiz kanal adı uzunluğu, lütfen sayacı tekrar kurun"
     },
     "paginator": {
-      "pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}"
+      "pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}"
     }
   },
   "common": {
