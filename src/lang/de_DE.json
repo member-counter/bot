@@ -216,7 +216,7 @@
     },
     "editChannel": {
       "helpDescription": "Wenn du versuchst eine Zähler einzustellen aber das Zeichen Limit erreicht wurde, kannst du diesen Befehl benutzen um das limit zu \"ignorieren\" \n**Verwendung**```{PREFIX}editChannel [channelId] [content]```\n**Beispiel**```{PREFIX}editChannel 701396983843127366 {onlinemembers} von {members} Online```",
-      "success": "Done! You may have to wait a few minutes to see the new changes",
+      "success": "Erledigt! Möglicherweise musst du einige Minuten warten, um die neuen Änderungen zu sehen",
       "errorNotFound": "Kanal nicht gefunden",
       "errorNoContent": "Du musst einen Inhalt angeben"
     },
@@ -230,7 +230,7 @@
       "helpDescription": "Dieser Befehl erlaubt es dir Zähler in Kurzform anzuzeigen\n\n**Verwendung**\n```{PREFIX}shortNumber [enable/disable]```\n**Beispiel**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
       "helpImage": "https://i.imgur.com/Rzv4W0C.png",
       "errorInvalidAction": "Ungültige Aktion! Siehe `{PREFIX}help shortNumber`",
-      "success": "Done! You may have to wait a few minutes to see the new changes"
+      "success": "Erledigt! Möglicherweise musst du einige Minuten warten, um die neuen Änderungen zu sehen"
     },
     "locale": {
       "helpDescription": "Formatiere die Zahlen und andere Dinge passend zur angegebenen Region\n\n**Verwendung**\n```{PREFIX}locale [locale/disable]```\n**Beispiel**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
@@ -328,32 +328,32 @@
     },
     "setup": {
       "helpDescription": "Erstelle einige gesperrte Sprachkanäle mit einigen Zählern\n**Beispiel**```{PREFIX}setup```",
-      "creatingCounts": "Creating counts...",
-      "createdCounts": "Complete",
+      "creatingCounts": "Zähler erstellen...",
+      "createdCounts": "Vollständig",
       "categoryName": {
         "countTemplate": "📊 Server Statistiken 📊",
-        "creatingCategory": "{loading} Creating category\n",
-        "createdCategory": "{check} Category created\n"
+        "creatingCategory": "{loading} Erstelle Kategorie\n",
+        "createdCategory": "{check} Kategorie erstellt\n"
       },
       "memberCounter": {
         "countTemplate": "{members} Mitglieder",
-        "creatingmemberCounter": "{loading} Creating member count\n",
-        "createdmemberCounter": "{check} Members count created\n"
+        "creatingmemberCounter": "{loading} Mitglied Zähler erstellen\n",
+        "createdmemberCounter": "{check} Mitglied Zähler erstellt\n"
       },
       "boostingCounter": {
         "countTemplate": "{nitro-boosters} Booster",
-        "creatingboostingCounter": "{loading} Creating boosting count\n",
-        "createdboostingCounter": "{check} Boosting count created\n"
+        "creatingboostingCounter": "{loading} Boosting Anzahl erstellen\n",
+        "createdboostingCounter": "{check} Boosting Zähler erstellt\n"
       },
       "rolesCounter": {
         "countTemplate": "{roles} Rollen",
-        "creatingrolesCounter": "{loading} Creating roles count\n",
-        "createdrolesCounter": "{check} Roles count created\n"
+        "creatingrolesCounter": "{loading} Rollen Zähler erstellen\n",
+        "createdrolesCounter": "{check} Rollen Zähler erstellt\n"
       },
       "channelsCounter": {
         "countTemplate": "{channels} Kanäle",
-        "creatingchannelsCounter": "{loading} Creating channels count\n",
-        "createdchannelsCounter": "{check} Channels count created\n"
+        "creatingchannelsCounter": "{loading} Kanal Zähler erstellen\n",
+        "createdchannelsCounter": "{check} Kanal Zähler erstellt\n"
       }
     }
   },
@@ -369,7 +369,7 @@
       "invalidChannelLength": "Ungültige Kanal Namen länge, bitte stelle den Zähler erneut ein"
     },
     "paginator": {
-      "pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}"
+      "pageCounter": "Seite {CURRENT_PAGE}/{TOTAL_PAGES}"
     }
   },
   "common": {
