@@ -21,7 +21,7 @@ const seeSettings: MemberCounterCommand = {
   aliases: ['seeSettings'],
   denyDm: true,
   onlyAdmin: false,
-  run: async ({  message, languagePack }) => {
+  run: async ({ message, languagePack }) => {
     const { channel } = message
 
     if (channel instanceof GuildChannel) {
@@ -98,12 +98,15 @@ const seeSettings: MemberCounterCommand = {
       ) {
         string += `\n${warningNoPermsText}`
       }
-      EmbedPages.push(
-        embedBase({
-          title: `**${headerText}** ${guild.name} \`${guild.id}\``,
-          description: string
-        })
-      )
+      if (string.length > 0) {
+        EmbedPages.push(
+          embedBase({
+            title: `**${headerText}** ${guild.name} \`${guild.id}\``,
+            description: string
+          })
+        )
+      }
+
       let logsText = '\n' + guildLogsText + '\n```'
       const latestLogs = await guildSettings.getLatestLogs()
 
@@ -121,7 +124,12 @@ const seeSettings: MemberCounterCommand = {
           })
         )
       }
-      new Paginator(message, EmbedPages).send()
+      new Paginator(
+        message.channel,
+        message.author.id,
+        EmbedPages,
+        languagePack
+      ).displayPage(0)
     }
   }
 }

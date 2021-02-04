@@ -1,6 +1,6 @@
 import MemberCounterCommand from '../typings/MemberCounterCommand'
 import CountService from '../services/CountService'
-import { GuildChannel, TextChannel } from 'eris'
+import { GuildChannel, PrivateChannel, TextChannel } from 'eris'
 import GuildService from '../services/GuildService'
 import Bot from '../bot'
 import emojis from '../utils/emojis'
@@ -16,44 +16,44 @@ const setup: MemberCounterCommand = {
         countTemplate: languagePack.commands.setup.memberCounter.countTemplate,
         creating: languagePack.commands.setup.memberCounter.creatingmemberCounter.replace(
           /{loading}/g,
-          loading.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? loading.string : loading.fallbackUnicodeEmoji : loading.fallbackUnicodeEmoji
         ),
         created: languagePack.commands.setup.memberCounter.createdmemberCounter.replace(
           /{check}/g,
-          check.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? check.string : check.fallbackUnicodeEmoji
         )
       },
       {
         countTemplate: languagePack.commands.setup.boostingCounter.countTemplate,
         creating: languagePack.commands.setup.boostingCounter.creatingboostingCounter.replace(
           /{loading}/g,
-          loading.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? loading.string : loading.fallbackUnicodeEmoji
         ),
         created: languagePack.commands.setup.boostingCounter.createdboostingCounter.replace(
           /{check}/g,
-          check.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? check.string : check.fallbackUnicodeEmoji
         )
       },
       {
         countTemplate: languagePack.commands.setup.rolesCounter.countTemplate,
         creating: languagePack.commands.setup.rolesCounter.creatingrolesCounter.replace(
           /{loading}/g,
-          loading.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? loading.string : loading.fallbackUnicodeEmoji
         ),
         created: languagePack.commands.setup.rolesCounter.createdrolesCounter.replace(
           /{check}/g,
-          check.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? check.string : check.fallbackUnicodeEmoji
         )
       },
       {
         countTemplate: languagePack.commands.setup.channelsCounter.countTemplate,
         creating: languagePack.commands.setup.channelsCounter.creatingchannelsCounter.replace(
           /{loading}/g,
-          loading.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? loading.string : loading.fallbackUnicodeEmoji
         ),
         created: languagePack.commands.setup.channelsCounter.createdchannelsCounter.replace(
           /{check}/g,
-          check.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? check.string : check.fallbackUnicodeEmoji
         )
       }
     ]
@@ -70,7 +70,7 @@ const setup: MemberCounterCommand = {
       )
       str += languagePack.commands.setup.categoryName.creatingCategory.replace(
         /{loading}/g,
-        loading.string
+        message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? loading.string : loading.fallbackUnicodeEmoji
       )
       const category = await guild.createChannel(categoryName, 4, {
         permissionOverwrites: [
@@ -92,11 +92,11 @@ const setup: MemberCounterCommand = {
       str = str.replace(
         languagePack.commands.setup.categoryName.creatingCategory.replace(
           /{loading}/g,
-          loading.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? loading.string : loading.fallbackUnicodeEmoji
         ),
         languagePack.commands.setup.categoryName.createdCategory.replace(
           /{check}/g,
-          check.string
+          message.channel instanceof GuildChannel && message.channel.permissionsOf(message.channel.client.user.id).has('externalEmojis') || message.channel instanceof PrivateChannel ? check.string : check.fallbackUnicodeEmoji
         )
       )
       const categoryID = category.id
