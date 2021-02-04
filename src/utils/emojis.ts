@@ -1,58 +1,45 @@
-import Eris from "eris";
-const cache = new Map<string, any>();
-const emojis = (guilds: Eris.Collection<Eris.Guild>) => {
-  const emojiGuild = guilds.get(process.env.DISCORD_OFFICIAL_SERVER_ID);
+  import getEnv from "./getEnv";
 
-  const getEmoji = (name: string) => {
-    if (cache.has(name)) {
-      return cache.get(name);
-    } else {
-      const emoji = emojiGuild.emojis.find((e) => e.name === name);
-      if (emoji) {
-        cache.set(name, {
-          ...emoji,
-          string: emoji.animated
-            ? "<a:" + emoji.name + ":" + emoji.id + ">"
-            : "<:" + emoji.name + ":" + emoji.id + ">",
-        });
-        return {
-          ...emoji,
-          string: emoji.animated
-            ? "<a:" + emoji.name + ":" + emoji.id + ">"
-            : "<:" + emoji.name + ":" + emoji.id + ">",
-        };
-      } else {
-        return null;
-      }
+  const { USE_CUSTOM_EMOJIS } = getEnv();
+
+  class Emoji {
+    public fallbackUnicodeEmoji: string
+    private customEmoji?: string;
+    constructor(fallbackUnicodeEmoji: string, customEmoji?: string) {
+      this.fallbackUnicodeEmoji = fallbackUnicodeEmoji;
+      this.customEmoji = customEmoji;
+      if (customEmoji?.match(/^a?:.+:\d+/)) throw new Error("If custom emoji is present, it must be in :name:id or a:name:id format");
     }
+
+    /**
+     * Use it in messages
+     */
+    get string(): string {
+      return (USE_CUSTOM_EMOJIS && this.customEmoji) ? `<${this.customEmoji}>` : this.fallbackUnicodeEmoji;
+    }
+    
+    /**
+     * Use it in reactions
+     */
+    get reaction(): string {
+      return (USE_CUSTOM_EMOJIS && this.customEmoji) ? this.customEmoji : this.fallbackUnicodeEmoji;
+    }
+  }
+
+  interface BotEmojis {
+    readonly firstPage: Emoji;
+    readonly previousPage: Emoji;
+    readonly nextPage: Emoji;
+    readonly lastPage: Emoji;
+    readonly jumpPage: Emoji;
+  }
+
+  let emojis: BotEmojis = {
+    firstPage: new Emoji("⏪", "firstpage:806259951830827018"),
+    lastPage: new Emoji("⏩", "lastpage:806259951738683402"),
+    previousPage: new Emoji("◀️", "previouspage:806259951638151190"),
+    nextPage: new Emoji("▶️", "nextpage:806259951411658754"),
+    jumpPage: new Emoji("↗️", "jumppage:806259951612854334"),
   };
 
-  return {
-    firstPage: getEmoji("firstpage"),
-    previousPage: getEmoji("previouspage"),
-    nextPage: getEmoji("nextpage"),
-    lastPage: getEmoji("lastpage"),
-    jumpPage: getEmoji("jumppage"),
-    loading: getEmoji("loading"),
-    bin: getEmoji("bin"),
-    check: getEmoji("Check"),
-    cross_mark: getEmoji("cross_mark"),
-    queue_repeat: getEmoji("queue_repeat"),
-    track_repeat: getEmoji("track_repeat"),
-    eraser: getEmoji("eraser"),
-    backArrow: getEmoji("backarrow"),
-    upArrow: getEmoji("uparrow"),
-    downArrow: getEmoji("downarrow"),
-    stop: getEmoji("stop"),
-    note: getEmoji("note"),
-    404: getEmoji("404"),
-    warning: getEmoji("warning"),
-    rock: getEmoji("rock"),
-    paper: getEmoji("paper"),
-    scissors: getEmoji("scissors"),
-    typescript: getEmoji("typescript"),
-    incoming: getEmoji("incoming"),
-    outgoing: getEmoji("outgoing"),
-  };
-};
-export default emojis;
+  export default emojis;
