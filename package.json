@@ -52,6 +52,9 @@
 		"@types/node": "^13.13.19",
 		"@types/node-fetch": "^2.5.7",
 		"@types/ws": "^7.2.6",
+		"husky": "^4.3.8",
+		"prettier": "2.2.1",
+		"pretty-quick": "^3.1.0",
 		"ts-node-dev": "^1.0.0-pre.62",
 		"tslint": "^6.1.3",
 		"typescript": "^3.9.7",
@@ -60,5 +63,16 @@
 	"optionalDependencies": {
 		"erlpack": "^0.1.3",
 		"zlib-sync": "^0.1.7"
+	},
+	"prettier": {
+		"useTabs": true,
+		"semi": true,
+		"trailingComma": "none",
+		"arrowParens": "always"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
 	}
 }
