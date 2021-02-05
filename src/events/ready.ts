@@ -1,6 +1,6 @@
-import setupJobs from '../jobs';
-import embedBase from '../utils/embedBase';
-import getBotInviteLink from '../utils/getBotInviteLink';
+import setupJobs from "../jobs";
+import embedBase from "../utils/embedBase";
+import getBotInviteLink from "../utils/getBotInviteLink";
 
 const ready = () => {
 	console.log(`Bot ready`);

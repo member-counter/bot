@@ -1,5 +1,5 @@
-import { Message } from 'eris';
-import Bot from '../bot';
+import { Message } from "eris";
+import Bot from "../bot";
 
 interface reactionListenerCallback {
 	(userId: string, destroy: () => void): void;
@@ -32,7 +32,7 @@ const addReactionListener = ({
 	message,
 	emoji,
 	autoDestroy = 5 * 60 * 1000,
-	callback,
+	callback
 }: {
 	message: Message;
 	emoji: any;
@@ -49,9 +49,9 @@ const addReactionListener = ({
 			autoDestroy: autoDestroy
 				? setTimeout(
 						() => reactiveMessages.delete(reactiveMessageKey),
-						autoDestroy!,
+						autoDestroy!
 				  )
-				: false,
+				: false
 		});
 	}
 

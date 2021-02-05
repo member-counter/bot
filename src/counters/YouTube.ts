@@ -1,34 +1,34 @@
-import getEnv from '../utils/getEnv';
-import fetch from 'node-fetch';
+import getEnv from "../utils/getEnv";
+import fetch from "node-fetch";
 const { YOUTUBE_API_KEY } = getEnv();
 
-import Counter from '../typings/Counter';
-import Constants from '../utils/Constants';
+import Counter from "../typings/Counter";
+import Constants from "../utils/Constants";
 
 const anyChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/(channel\/|user\/)/;
 const userChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/user\//;
 const userNameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/channel\//;
 
 const YouTubeCounter: Counter = {
-	aliases: ['youtubeSubscribers', 'youtubeViews', 'youtubeVideos'],
+	aliases: ["youtubeSubscribers", "youtubeViews", "youtubeVideos"],
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
 	execute: async ({ guild, resource: channelUrl }) => {
 		if (!YOUTUBE_API_KEY) throw new Error("YOUTUBE_API_KEY not provided");
-		let channel = channelUrl.replace(anyChannelMatch, '');
-		let searchChannelBy = '';
+		let channel = channelUrl.replace(anyChannelMatch, "");
+		let searchChannelBy = "";
 
 		if (userChannelMatch.test(channelUrl)) {
-			searchChannelBy = 'forUsername';
+			searchChannelBy = "forUsername";
 		} else if (userNameChannelMatch.test(channelUrl)) {
-			searchChannelBy = 'id';
+			searchChannelBy = "id";
 		} else {
 			throw new Error(`Invalid youtube channel url: ${channelUrl}`);
 		}
 
 		const response = await fetch(
-			`https://www.googleapis.com/youtube/v3/channels?part=statistics&key=${YOUTUBE_API_KEY}&${searchChannelBy}=${channel}`,
+			`https://www.googleapis.com/youtube/v3/channels?part=statistics&key=${YOUTUBE_API_KEY}&${searchChannelBy}=${channel}`
 		).then((response) => response.json());
 
 		const { subscriberCount, viewCount, videoCount } =
@@ -37,9 +37,9 @@ const YouTubeCounter: Counter = {
 		return {
 			youtubeSubscribers: subscriberCount,
 			youtubeViews: viewCount,
-			youtubeVideos: videoCount,
+			youtubeVideos: videoCount
 		};
-	},
+	}
 };
 
 export default YouTubeCounter;

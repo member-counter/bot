@@ -1,33 +1,33 @@
-import getEnv from '../utils/getEnv';
-import MemberCounterCommand from '../typings/MemberCounterCommand';
-import embedBase from '../utils/embedBase';
-import Bot from '../bot';
+import getEnv from "../utils/getEnv";
+import MemberCounterCommand from "../typings/MemberCounterCommand";
+import embedBase from "../utils/embedBase";
+import Bot from "../bot";
 
 const {
-  DONATION_URL,
-  DISCORD_BOT_INVITE,
-  DISCORD_OFFICIAL_SERVER_URL,
+	DONATION_URL,
+	DISCORD_BOT_INVITE,
+	DISCORD_OFFICIAL_SERVER_URL
 } = getEnv();
 
 const info: MemberCounterCommand = {
-  aliases: ['info', 'invite', 'github', 'support', 'bug'],
-  denyDm: false,
-  onlyAdmin: false,
-  run: async ({ message, languagePack }) => {
-    const { channel } = message;
-    const { client } = Bot;
-    const embed = embedBase(languagePack.commands.info.embedReply);
-    embed.description = embed.description
-      .replace('{DONATION_URL}', DONATION_URL)
-      .replace('{BOT_SERVER_URL}', DISCORD_OFFICIAL_SERVER_URL)
-      .replace('{BOT_INVITE_URL}', DISCORD_BOT_INVITE);
+	aliases: ["info", "invite", "github", "support", "bug"],
+	denyDm: false,
+	onlyAdmin: false,
+	run: async ({ message, languagePack }) => {
+		const { channel } = message;
+		const { client } = Bot;
+		const embed = embedBase(languagePack.commands.info.embedReply);
+		embed.description = embed.description
+			.replace("{DONATION_URL}", DONATION_URL)
+			.replace("{BOT_SERVER_URL}", DISCORD_OFFICIAL_SERVER_URL)
+			.replace("{BOT_INVITE_URL}", DISCORD_BOT_INVITE);
 
-    embed.thumbnail = {
-      url: client.user.dynamicAvatarURL(),
-    };
+		embed.thumbnail = {
+			url: client.user.dynamicAvatarURL()
+		};
 
-    await channel.createMessage({ embed });
-  },
+		await channel.createMessage({ embed });
+	}
 };
 
 const infoCommands = [info];
