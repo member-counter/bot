@@ -1,7 +1,7 @@
-import Eris from 'eris';
-import { ErisClient } from '../bot';
-import GuildService from '../services/GuildService';
-import FormattingSettings from './FormattingSettings';
+import Eris from "eris";
+import { ErisClient } from "../bot";
+import GuildService from "../services/GuildService";
+import FormattingSettings from "./FormattingSettings";
 
 interface executeArgs {
 	client: ErisClient;

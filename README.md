@@ -12,7 +12,9 @@ Member Counter is a Discord bot which lets you easily display counts and other d
 See also the [documentation](https://eduardozgz.gitbook.io/member-counter/) to learn about every feature of the bot
 
 # Self-host
+
 Read this guide to setup this bot using docker: https://docs.member-counter.eduardozgz.com/guides/how-to-self-host-member-counter
 
 # Developing
+
 Use `npm run dev:docker`, which will start and auto reload the bot when you change something in the code
