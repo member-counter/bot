@@ -1,19 +1,16 @@
-import GuildModel, { GuildSettingsDocument } from '../models/GuildModel';
-import UserModel from '../models/UserModel';
-import GuildLogModel, { GuildLogDocument } from '../models/GuildLogModel';
-import UserError from '../utils/UserError';
+import GuildModel, { GuildSettingsDocument } from "../models/GuildModel";
+import UserModel from "../models/UserModel";
+import GuildLogModel, { GuildLogDocument } from "../models/GuildLogModel";
+import UserError from "../utils/UserError";
 
 class GuildService {
-	private constructor(
-		public id: string,
-		private doc: GuildSettingsDocument,
-	) {}
+	private constructor(public id: string, private doc: GuildSettingsDocument) {}
 
 	public static async init(id: string): Promise<GuildService> {
 		const doc = await GuildModel.findOneAndUpdate(
 			{ guild: id },
 			{},
-			{ new: true, upsert: true },
+			{ new: true, upsert: true }
 		);
 		return new GuildService(id, doc);
 	}
@@ -52,7 +49,6 @@ class GuildService {
 		this.doc.shortNumber = decimals;
 		await this.doc.save();
 		return this.doc.shortNumber;
-	
 	}
 
 	public get shortNumber(): number {
@@ -74,17 +70,17 @@ class GuildService {
 	}
 
 	public async upgradeServer(
-		grantorId: string,
-	): Promise<'success' | 'noUpgradesAvailable' | 'alreadyUpgraded'> {
-		if (this.premium) return 'alreadyUpgraded';
+		grantorId: string
+	): Promise<"success" | "noUpgradesAvailable" | "alreadyUpgraded"> {
+		if (this.premium) return "alreadyUpgraded";
 
 		const userDoc: any = await UserModel.findOneAndUpdate(
 			{ user: grantorId },
 			{},
-			{ new: true, upsert: true },
+			{ new: true, upsert: true }
 		);
 
-		if (userDoc.availableServerUpgrades <= 0) return 'noUpgradesAvailable';
+		if (userDoc.availableServerUpgrades <= 0) return "noUpgradesAvailable";
 
 		userDoc.availableServerUpgrades -= 1;
 		this.doc.premium = true;
@@ -92,7 +88,7 @@ class GuildService {
 		await this.doc.save();
 		await userDoc.save();
 
-		return 'success';
+		return "success";
 	}
 
 	public get digits(): string[] {
@@ -101,7 +97,7 @@ class GuildService {
 
 	public async setDigit(number: number, value: string): Promise<void> {
 		this.doc.digits[number] = value;
-		this.doc.markModified('digits');
+		this.doc.markModified("digits");
 		await this.doc.save();
 	}
 
@@ -116,7 +112,7 @@ class GuildService {
 
 	public async setCounter(
 		channelId: string,
-		content: string,
+		content: string
 	): Promise<Map<string, string>> {
 		this.doc.counters.set(channelId, content);
 		await this.doc.save();
@@ -157,12 +153,12 @@ class GuildService {
 
 	public async block(): Promise<void> {
 		this.doc.blocked = true;
-		await	this.doc.save();
+		await this.doc.save();
 	}
 
 	public async unblock(): Promise<void> {
 		this.doc.blocked = false;
-		await	this.doc.save();
+		await this.doc.save();
 	}
 }
 

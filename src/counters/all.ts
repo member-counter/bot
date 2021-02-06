@@ -1,4 +1,3 @@
-
 import TestCounter from "./test";
 import ErrorCounter from "./error";
 import BannedMembersCounter from "./bannedMembers";
@@ -24,29 +23,29 @@ import TwitterCounter from "./Twitter";
 import YouTubeCounter from "./YouTube";
 
 const counters = [
-  TestCounter,
-  ErrorCounter,
-  BannedMembersCounter,
-  BotStatsCounter,
-  ChannelCounter,
-  ClockCounter,
-  CountdownCounter,
-  GameCounter,
-  HTTPCounter,
-  HTTPStringCounter,
-  InstagramCounter,
-  MemberCounter,
-  MembersConnectedCounter,
-  MembersExtendedCounter,
-  MembersOnlineApproximatedCounter,
-  MembersWithRoleCounter,
-  MemeratorCounter,
-  NitroBoostersCounter,
-  RolesCounter,
-  StaticCounter,
-  TwitchCounter,
-  TwitterCounter,
-  YouTubeCounter,
-]
+	TestCounter,
+	ErrorCounter,
+	BannedMembersCounter,
+	BotStatsCounter,
+	ChannelCounter,
+	ClockCounter,
+	CountdownCounter,
+	GameCounter,
+	HTTPCounter,
+	HTTPStringCounter,
+	InstagramCounter,
+	MemberCounter,
+	MembersConnectedCounter,
+	MembersExtendedCounter,
+	MembersOnlineApproximatedCounter,
+	MembersWithRoleCounter,
+	MemeratorCounter,
+	NitroBoostersCounter,
+	RolesCounter,
+	StaticCounter,
+	TwitchCounter,
+	TwitterCounter,
+	YouTubeCounter
+];
 
 export default counters;
