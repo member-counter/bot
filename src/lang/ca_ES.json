@@ -342,7 +342,7 @@
 		"getCounts": {
 			"onlyPremium": "Només per servidors premium",
 			"unknownCounter": "Comptador desconegut",
-			"disabled": "Counter Disabled",
+			"disabled": "Comptador deshabilitat",
 			"noBanPerms": "Necessit permisos de ban per mostrar això",
 			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo",
 			"notAvailable": "Not available, please wait"
