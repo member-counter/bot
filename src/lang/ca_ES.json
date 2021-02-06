@@ -371,8 +371,8 @@
 		"paginator": {
 			"pageCounter": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"jumpPrompt": "A quina pàgina t'agradaria anar? Escriu `cancel` o `0` para cancelar-lo. Tens 15 segons per respondre.",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"errorPageLengthExceeded": "La pàgina ha de ser menor o igual que {TOTAL_PAGES}. Per favor, intenteu de nou.",
+			"errorNegativeInput": "La pàgina no pot ser negativa. Per favor, intenteu de nou."
 		}
 	},
 	"common": {
