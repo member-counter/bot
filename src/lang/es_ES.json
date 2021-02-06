@@ -188,12 +188,12 @@
 				{
 					"key": "clock",
 					"name": "clock:timeZone",
-					"description": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) or reemplazar `timeZone` cona una zona horaria IANA valida. Ejemplo: `{clock:Europe/Madrid}`"
+					"description": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) o reemplazar `timeZone` con una zona horaria IANA válida. Ejemplo: `{clock:Europe/Madrid}`"
 				},
 				{
 					"key": "nitro-boosters",
 					"name": "nitro-boosters",
-					"description": "Muestra la cantidad total de miembros que esta boosteando este servidor"
+					"description": "Muestra la cantidad total de miembros que está boosteando este servidor"
 				},
 				{
 					"key": "static",
