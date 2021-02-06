@@ -328,16 +328,16 @@
 		},
 		"setup": {
 			"helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\n**Örnek**```{PREFIX}setup```",
-			"creatingCounts": "Creating counters...",
+			"creatingCounts": "Sayaçlar oluşturuluyor...",
 			"createdCounts": "Tamamlandı",
 			"categoryName": {
 				"countTemplate": "📊 Sunucu İstatistikleri 📊",
-				"creatingCategory": "{LOADING} Creating category\n",
-				"createdCategory": "{CHECK_MARK} Category created\n"
+				"creatingCategory": "{LOADING} Kategori oluşturuluyor\n",
+				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu\n"
 			},
 			"memberCounter": {
 				"countTemplate": "{members} Üye",
-				"creatingmemberCounter": "{LOADING} Creating member counter\n",
+				"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
 				"createdmemberCounter": "{CHECK_MARK} Members count created\n"
 			},
 			"boostingCounter": {
