@@ -6,7 +6,7 @@
 			"helpDescription": "És realment necessari explicar el propòsit d'aquest comand?",
 			"embedReply": {
 				"title": "Llista de comands | prefix: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Afageix aquest bot al teu servidor]({DISCORD_BOT_INVITE}) **|** [Lloc web]({WEBSITE}) **|**   [Documentació](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstalació ràpida: `{PREFIX}setup`\n\nPer obtenir més informació sobre un comand, escrigui `{PREFIX}help` més el nom del comand: ```\n{PREFIX}help shortNumber```\n**Info:** `()` és un paràmetre opcional mentre que `[]` és un obligatori",
 				"fields": [
 					{
 						"name": "**Comptadors**",
@@ -43,7 +43,7 @@
 				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
-					"description": "Approximated online members in your server"
+					"description": "Membres aproximats en linea en el teu servidor"
 				},
 				{
 					"key": "onlineMembers",
