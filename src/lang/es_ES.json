@@ -261,7 +261,7 @@
 				"allowedRolesText": "Roles que están autorizados a usar comandos administrativos:",
 				"countersText": "Contadores:",
 				"customNumbersText": "Números personalizados:",
-				"warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos (Debes permitir al bot al menos a: Administrar el canal, Ver el canal o leer mensajes, conectar)",
+				"warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos (Debes permitir al bot al menos a: Administrar el canal, Ver el canal o Leer mensajes y Conectar)",
 				"guildLogsText": "Últimos registros:"
 			}
 		},
@@ -321,19 +321,19 @@
 			"roles": "Roles:"
 		},
 		"preview": {
-			"helpDescription": "Muestra una vista previa de como se veran los contadores en un canal\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
+			"helpDescription": "Muestra una vista previa de como se veran los contadores en un canal\n\n**Uso**```{PREFIX}preview [content]```\n**Ejemplo**```{PREFIX}preview {members} Members```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Vista previa en el nombre de un canal",
 			"channelTopic": "Vista previa en el tema de un canal"
 		},
 		"setup": {
 			"helpDescription": "Crea varios canales de voz bloqueados con contadores en sus nombres\n**Ejemplo**```{PREFIX}setup```",
-			"creatingCounts": "Creating counters...",
-			"createdCounts": "Complete",
+			"creatingCounts": "Creando contadores...",
+			"createdCounts": "Completado",
 			"categoryName": {
-				"countTemplate": "📊 Stats del servidor 📊",
-				"creatingCategory": "{LOADING} Creating category\n",
-				"createdCategory": "{CHECK_MARK} Category created\n"
+				"countTemplate": "📊 Estadísticas del servidor 📊",
+				"creatingCategory": "{LOADING} Creando categoría\n",
+				"createdCategory": "{CHECK_MARK} Categoría creada"
 			},
 			"memberCounter": {
 				"countTemplate": "{members} Miembros",
