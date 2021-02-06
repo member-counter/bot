@@ -27,13 +27,13 @@ class CountService {
 	public guild: Eris.Guild;
 	private guildSettings: GuildService;
 	private languagePack: any;
-	private tmpCache: Map<string, string>;
+	private tmpCache: Map<string, string | number>;
 
 	private constructor(guild: Eris.Guild, guildSettings: GuildService) {
 		this.guild = guild;
 		this.guildSettings = guildSettings;
 		this.languagePack = loadLanguagePack(this.guildSettings.language);
-		this.tmpCache = new Map<string, string>();
+		this.tmpCache = new Map();
 		this.client = Bot.client;
 	}
 
@@ -58,10 +58,12 @@ class CountService {
 				}
 
 				const counterIsNameType =
-					discordChannel.type === 2 || discordChannel.type === 4;
+					discordChannel.type === Eris.Constants.ChannelTypes.GUILD_VOICE ||
+					discordChannel.type === Eris.Constants.ChannelTypes.GUILD_CATEGORY;
 
 				const counterIsTopicType =
-					discordChannel.type === 0 || discordChannel.type === 5;
+					discordChannel.type === Eris.Constants.ChannelTypes.GUILD_TEXT ||
+					discordChannel.type === Eris.Constants.ChannelTypes.GUILD_NEWS;
 
 				let processedContent = await this.processContent(
 					rawContent,
@@ -96,19 +98,22 @@ class CountService {
 		}
 	}
 
-	// Legacy counters are those counters that are gonna be in a topic, the digits are (or can be) cuztomized
-	processContent(content: string, legacy: boolean = false): Promise<string> {
+	// Legacy counters are those counters that are gonna be in a topic, the digits are (or can be) cuztomized0+
+	processContent(
+		content: string,
+		canHaveCustomEmojis: boolean = false
+	): Promise<string> {
 		return stringReplaceAsync(
 			content,
 			/\{(.+?)\}/gi,
 			async (wholeMatch, counterDetected) =>
-				this.processCounter(counterDetected, legacy)
+				this.processCounter(counterDetected, canHaveCustomEmojis)
 		);
 	}
 
 	public async processCounter(
 		counterRequested: string,
-		legacy: boolean = false
+		canHaveCustomEmojis: boolean = false
 	): Promise<string> {
 		const counterSections = counterRequested.split(":");
 		let formattingSettingsRaw: string;
@@ -141,7 +146,7 @@ class CountService {
 		let lifetime = 0;
 		let result: string | number;
 
-		// GET THE VALUE OF THE COUNTER
+		// Try to get the value from the cache
 		if (
 			CountService.cache.get(
 				this.counterToKey(counterName, resource, formattingSettingsRaw)
@@ -160,112 +165,94 @@ class CountService {
 				this.counterToKey(counterName, resource, formattingSettingsRaw)
 			);
 
-		if (!result) {
-			for (const counter of counters) {
-				if (counter.aliases.includes(counterName)) {
-					if (counter.isEnabled) {
-						if (counter.isPremium && !(PREMIUM_BOT || UNRESTRICTED_MODE)) {
-							result = Constants.CounterResult.PREMIUM;
-							break;
+		// else, process the counter
+		if (result === undefined) {
+			const counter = CountService.getCounterByAlias(counterName);
+
+			if (!counter) {
+				result = Constants.CounterResult.UNKNOWN;
+			} else if (!counter.isEnabled) {
+				result = Constants.CounterResult.DISABLED;
+			} else if (counter.isPremium && !(PREMIUM_BOT || UNRESTRICTED_MODE)) {
+				result = Constants.CounterResult.PREMIUM;
+			} else {
+				lifetime = counter.lifetime;
+
+				let returnedValue = await counter
+					.execute({
+						client: this.client,
+						guild: this.guild,
+						guildSettings: this.guildSettings,
+						aliasUsed: counterName,
+						formattingSettings,
+						resource
+					})
+					.catch((error) => {
+						if (DEBUG) console.error(error);
+						this.guildSettings
+							.log(`{${counterRequested}}: ${error}`)
+							.catch(console.error);
+						return (
+							CountService.cache.get(
+								this.counterToKey(counterName, resource, formattingSettingsRaw)
+							)?.value || Constants.CounterResult.ERROR
+						);
+					});
+
+				if (
+					typeof returnedValue === "string" ||
+					typeof returnedValue === "number"
+				) {
+					returnedValue = {
+						[counterName]: returnedValue
+					};
+				} else if (typeof returnedValue === "undefined") {
+					returnedValue = {
+						[counterName]: Constants.CounterResult.ERROR
+					};
+				}
+
+				for (const key in returnedValue) {
+					if (returnedValue.hasOwnProperty(key)) {
+						let extKey = key.toLowerCase();
+						let extValue = returnedValue[key];
+
+						if (typeof extValue === "string") {
+							// nothing, just don't convert it to an error
+						} else if (typeof extValue === "number") {
+							if (isNaN(extValue)) extValue = Constants.CounterResult.ERROR;
+						} else {
+							extValue = Constants.CounterResult.ERROR;
 						}
 
-						lifetime = counter.lifetime;
-
-						let returnedValue = await counter
-							.execute({
-								client: this.client,
-								guild: this.guild,
-								guildSettings: this.guildSettings,
-								formattingSettings,
-								resource
-							})
-							.catch((error) => {
-								if (DEBUG) console.error(error);
-								this.guildSettings
-									.log(`{${counterRequested}}: ${error}`)
-									.catch(console.error);
-								return (
-									CountService.cache.get(
-										this.counterToKey(
-											counterName,
-											resource,
-											formattingSettingsRaw
-										)
-									)?.value || Constants.CounterResult.ERROR
-								);
-							});
-
-						if (
-							typeof returnedValue === "string" ||
-							typeof returnedValue === "number"
-						) {
-							returnedValue = {
-								[counterName]: returnedValue
-							};
-						} else if (typeof returnedValue === "undefined") {
-							returnedValue = {
-								[counterName]: Constants.CounterResult.ERROR
-							};
-						}
-
-						for (const key in returnedValue) {
-							if (returnedValue.hasOwnProperty(key)) {
-								let extValue = returnedValue[key];
-								let extKey = key.toLowerCase();
-
-								if (typeof extValue === "string") {
-									// nothing, just don't convert it to an error
-								} else if (typeof extValue === "number") {
-									extValue = !isNaN(extValue)
-										? extValue.toString()
-										: Constants.CounterResult.ERROR;
-								} else {
-									extValue = Constants.CounterResult.ERROR;
+						if (lifetime > 0)
+							CountService.cache.set(
+								this.counterToKey(extKey, resource, formattingSettingsRaw),
+								{
+									value: extValue,
+									expiresAt: Date.now() + lifetime
 								}
+							);
 
-								if (lifetime > 0)
-									CountService.cache.set(
-										this.counterToKey(extKey, resource, formattingSettingsRaw),
-										{
-											value: extValue,
-											expiresAt: Date.now() + lifetime
-										}
-									);
-
-								this.tmpCache.set(
-									this.counterToKey(extKey, resource, formattingSettingsRaw),
-									extValue.toString()
-								);
-							}
-
-							result =
-								CountService.cache.get(
-									this.counterToKey(
-										counterName,
-										resource,
-										formattingSettingsRaw
-									)
-								)?.value ||
-								this.tmpCache.get(
-									this.counterToKey(
-										counterName,
-										resource,
-										formattingSettingsRaw
-									)
-								);
-						}
-					} else {
-						result = Constants.CounterResult.DISABLED;
+						this.tmpCache.set(
+							this.counterToKey(extKey, resource, formattingSettingsRaw),
+							extValue
+						);
 					}
-					break;
+
+					result =
+						CountService.cache.get(
+							this.counterToKey(counterName, resource, formattingSettingsRaw)
+						)?.value ||
+						this.tmpCache.get(
+							this.counterToKey(counterName, resource, formattingSettingsRaw)
+						);
 				}
 			}
 		}
 
-		if (!result) result = Constants.CounterResult.UNKNOWN;
-
-		// PROCESS THE VALUE
-		switch (Number(result)) {
+		// If the result is some error, display it
+		switch (result) {
 			case Constants.CounterResult.PREMIUM:
 				result = this.languagePack.functions.getCounts.onlyPremium;
 				break;
@@ -283,12 +270,10 @@ class CountService {
 				break;
 		}
 
-		const intCount = Number(result);
-		const isNumber = !isNaN(intCount);
-		const isShortNumberEnabled = formattingSettings.shortNumber > -1;
-		const isLocaleEnabled = !formattingSettings.locale.includes("disable");
-
-		if (isNumber) {
+		// format result if it's a number according to the formatting settings
+		if (typeof result === "number" && !isNaN(result)) {
+			const isShortNumberEnabled = formattingSettings.shortNumber > -1;
+			const isLocaleEnabled = !formattingSettings.locale.includes("disable");
 			if (isShortNumberEnabled || isLocaleEnabled) {
 				let locale = "en";
 				let options = {};
@@ -303,13 +288,13 @@ class CountService {
 				}
 
 				try {
-					result = new Intl.NumberFormat(locale, options).format(intCount);
+					result = new Intl.NumberFormat(locale, options).format(result);
 				} catch (err) {
 					await this.guildSettings.log(err);
 				}
 			}
 
-			if (legacy) {
+			if (canHaveCustomEmojis) {
 				const { digits } = formattingSettings;
 				result = result
 					.toString()
