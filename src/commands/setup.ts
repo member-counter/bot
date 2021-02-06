@@ -11,32 +11,24 @@ const setup: MemberCounterCommand = {
 	run: async ({ message, languagePack }) => {
 		const { channel, content } = message;
 		const { loading, check_mark } = emojis;
+		function canUseExternalEmojis() {
+			return (
+				message.channel instanceof GuildChannel &&
+				message.channel
+					.permissionsOf(message.channel.client.user.id)
+					.has("externalEmojis")
+			);
+		}
 		let channelsToCreate = [
 			{
 				countTemplate: languagePack.commands.setup.memberCounter.countTemplate,
 				creating: languagePack.commands.setup.memberCounter.creatingmemberCounter.replace(
 					/{LOADING}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
-						? (message.channel instanceof GuildChannel &&
-								message.channel
-									.permissionsOf(message.channel.client.user.id)
-									.has("externalEmojis")) ||
-						  message.channel instanceof PrivateChannel
-							? loading.string
-							: loading.fallbackUnicodeEmoji
-						: loading.fallbackUnicodeEmoji
+					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
 				),
 				created: languagePack.commands.setup.memberCounter.createdmemberCounter.replace(
 					/{CHECK_MARK}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
+					canUseExternalEmojis()
 						? check_mark.string
 						: check_mark.fallbackUnicodeEmoji
 				)
@@ -46,21 +38,11 @@ const setup: MemberCounterCommand = {
 					languagePack.commands.setup.boostingCounter.countTemplate,
 				creating: languagePack.commands.setup.boostingCounter.creatingboostingCounter.replace(
 					/{LOADING}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
-						? loading.string
-						: loading.fallbackUnicodeEmoji
+					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
 				),
 				created: languagePack.commands.setup.boostingCounter.createdboostingCounter.replace(
 					/{CHECK_MARK}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
+					canUseExternalEmojis()
 						? check_mark.string
 						: check_mark.fallbackUnicodeEmoji
 				)
@@ -69,21 +51,11 @@ const setup: MemberCounterCommand = {
 				countTemplate: languagePack.commands.setup.rolesCounter.countTemplate,
 				creating: languagePack.commands.setup.rolesCounter.creatingrolesCounter.replace(
 					/{LOADING}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
-						? loading.string
-						: loading.fallbackUnicodeEmoji
+					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
 				),
 				created: languagePack.commands.setup.rolesCounter.createdrolesCounter.replace(
 					/{CHECK_MARK}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
+					canUseExternalEmojis()
 						? check_mark.string
 						: check_mark.fallbackUnicodeEmoji
 				)
@@ -93,21 +65,11 @@ const setup: MemberCounterCommand = {
 					languagePack.commands.setup.channelsCounter.countTemplate,
 				creating: languagePack.commands.setup.channelsCounter.creatingchannelsCounter.replace(
 					/{LOADING}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
-						? loading.string
-						: loading.fallbackUnicodeEmoji
+					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
 				),
 				created: languagePack.commands.setup.channelsCounter.createdchannelsCounter.replace(
 					/{CHECK_MARK}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
+					canUseExternalEmojis()
 						? check_mark.string
 						: check_mark.fallbackUnicodeEmoji
 				)
@@ -127,13 +89,7 @@ const setup: MemberCounterCommand = {
 			);
 			str += languagePack.commands.setup.categoryName.creatingCategory.replace(
 				/{LOADING}/g,
-				(message.channel instanceof GuildChannel &&
-					message.channel
-						.permissionsOf(message.channel.client.user.id)
-						.has("externalEmojis")) ||
-					message.channel instanceof PrivateChannel
-					? loading.string
-					: loading.fallbackUnicodeEmoji
+				canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
 			);
 			const category = await guild.createChannel(categoryName, 4, {
 				permissionOverwrites: [
@@ -155,21 +111,11 @@ const setup: MemberCounterCommand = {
 			str = str.replace(
 				languagePack.commands.setup.categoryName.creatingCategory.replace(
 					/{LOADING}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
-						? loading.string
-						: loading.fallbackUnicodeEmoji
+					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
 				),
 				languagePack.commands.setup.categoryName.createdCategory.replace(
 					/{CHECK_MARK}/g,
-					(message.channel instanceof GuildChannel &&
-						message.channel
-							.permissionsOf(message.channel.client.user.id)
-							.has("externalEmojis")) ||
-						message.channel instanceof PrivateChannel
+					canUseExternalEmojis()
 						? check_mark.string
 						: check_mark.fallbackUnicodeEmoji
 				)
