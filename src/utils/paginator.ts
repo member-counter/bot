@@ -4,118 +4,97 @@ import {
   GuildChannel,
   PrivateChannel,
   Client,
-  EmbedOptions
-} from 'eris'
-import clonedeep from 'lodash.clonedeep'
-import { ReactionCollector, MessageCollector } from 'eris-collector'
-import emojis from './emojis'
+  EmbedOptions,
+} from "eris";
+import clonedeep from "lodash.clonedeep";
+import { ReactionCollector, MessageCollector } from "eris-collector";
+import emojis from "./emojis";
 
 class Paginator {
-  private message: Message
-  private channel: TextableChannel
-  private client: Client
-  private currentPage: number
-  private pages: EmbedOptions[]
-  private readonly totalPages: number
-  private readonly timeoutTime: number
-  private collector: ReactionCollector
-  private readonly targetUserID: string
-  private languagePack: any
+  private message: Message;
+  private channel: TextableChannel;
+  private client: Client;
+  private currentPage: number;
+  private pages: EmbedOptions[];
+  private readonly totalPages: number;
+  private readonly timeoutTime: number;
+  private collector: ReactionCollector;
+  private readonly targetUserID: string;
+  private languagePack: any;
 
-  public constructor (
+  public constructor(
     channel: TextableChannel,
     targetUserID: string,
     pages: EmbedOptions[],
     languagePack: any
   ) {
-    this.client = channel.client
-    this.channel = channel
-    this.targetUserID = targetUserID
+    this.client = channel.client;
+    this.channel = channel;
+    this.targetUserID = targetUserID;
     // EmbedList we will page over
-    this.pages = pages
-    this.currentPage = 1
-    this.totalPages = pages.length
+    this.pages = pages;
+    this.currentPage = 1;
+    this.totalPages = pages.length;
 
     // Timeout time in milliseconds to stop listening for reactions
-    this.timeoutTime = 60 * 1000 * 5 * pages.length
-    this.languagePack = languagePack
+    this.timeoutTime = 60 * 1000 * 5 * pages.length;
+    this.languagePack = languagePack;
   }
 
   /**
    * Sends Pager to channel
    */
-  async displayPage (page) {
+  async displayPage(page) {
     // Clone the embed and modify it by adding a page indicator
-    const embedToSend: EmbedOptions = clonedeep(this.pages[page])
-    this.appendPageCounter(embedToSend)
+    const embedToSend: EmbedOptions = clonedeep(this.pages[page]);
+    this.appendPageCounter(embedToSend);
 
     // setup paginator in discord if it doesn't exists
     if (!this.message) {
-      this.message = await this.channel.createMessage({ embed: embedToSend })
+      this.message = await this.channel.createMessage({ embed: embedToSend });
       // Create Reaction Collector to listen for user reactions
-      this.createCollector()
+      this.createCollector();
       // Add reactions based on page counts
-      await this.addReactions()
+      await this.addReactions();
     } else {
-      await this.message.edit({ embed: embedToSend })
+      await this.message.edit({ embed: embedToSend });
     }
 
     // Return our message object if we want to parse it after pagination
-    return this.message
+    return this.message;
   }
   /**
    * Initiates jumping to specified page
    */
-  async jump () {
+  async jump() {
     await this.channel
       .createMessage(this.languagePack.functions.paginator.jumpPrompt)
-      .then(async message => {
-        const filter = m =>
+      .then(async (message) => {
+        const filter = (m) =>
           (isNaN(m.content) &&
-            ['cancel'].includes(m.content) &&
+            ["cancel"].includes(m.content) &&
             this.targetUserID === m.author.id) ||
-          (!isNaN(m.content) && this.targetUserID === m.author.id)
+          (!isNaN(m.content) && this.targetUserID === m.author.id);
         const collector = new MessageCollector(
           this.client,
           this.channel,
           filter,
           {
             time: 15000,
-            max: 1
+            max: 1,
           }
-        )
-        collector.on('collect', m => {
-          if (m.content === 'cancel') {
-            collector.stop()
-            message.delete()
-            if (
-              this.channel instanceof GuildChannel &&
-              this.channel
-                .permissionsOf(this.client.user.id)
-                .has('manageMessages')
-            ) {
-              m.delete()
-            }
-          } else if (m.content === '0') {
-            collector.stop()
-            message.delete()
-            if (
-              this.channel instanceof GuildChannel &&
-              this.channel
-                .permissionsOf(this.client.user.id)
-                .has('manageMessages')
-            ) {
-              m.delete()
+        );
+        collector.on("collect", (m) => {
+          if (m.content === "cancel" || m.content === "0") {
+            collector.stop();
+            message.delete();
+            if (this.botCanManageMessages()) {
+              m.delete();
             }
           } else {
-            message.delete()
-            if (
-              this.channel instanceof GuildChannel &&
-              this.channel
-                .permissionsOf(this.client.user.id)
-                .has('manageMessages')
-            ) {
-              m.delete()
+            message.delete();
+            if (this.botCanManageMessages()) {
+              m.delete();
             }
             if (Number(m.content) > this.totalPages) {
               return message.channel
@@ -125,175 +104,170 @@ class Paginator {
                     this.totalPages
                   )
                 )
-                .then(message => {
+                .then((message) => {
                   setTimeout(() => {
-                    message.delete()
-                  }, 15000)
-                })
+                    message.delete();
+                  }, 15000);
+                });
             }
             if (Math.sign(m.content) === -1) {
               return message.channel
                 .createMessage(
                   this.languagePack.functions.paginator.errorNegativeInput
                 )
-                .then(message => {
+                .then((message) => {
                   setTimeout(() => {
-                    message.delete()
-                  }, 15000)
-                })
+                    message.delete();
+                  }, 15000);
+                });
             }
-            this.currentPage = Number(m.content)
-            this.displayPage(this.currentPage - 1)
+            this.currentPage = Number(m.content);
+            this.displayPage(this.currentPage - 1);
           }
-        })
-      })
+        });
+      });
   }
 
   /**
    * Creates the Reaction Collector to listen to reactions from user
    */
-  createCollector () {
+  createCollector() {
     // Filter reactions to the user that requested the embed
-    const filter = (_m, _emoji, userID) => userID === this.targetUserID
+    const filter = (_m, _emoji, userID) => userID === this.targetUserID;
     // Create Reaction Collector
     const collector = new ReactionCollector(this.client, this.message, filter, {
-      time: this.timeoutTime
-    })
+      time: this.timeoutTime,
+    });
     // Save collector to be used later in execution
-    this.collector = collector
+    this.collector = collector;
     // Handle actions based on selected reaction from user
-    collector.on('collect', async (_m, react, _userId) => {
+    collector.on("collect", async (_m, react, _userId) => {
       // If reaction is the back button and we are NOT on the first page, go back
       switch (react.name) {
         // If user hits back, go back 1 page
         case emojis.previousPage.name:
         case emojis.previousPage.fallbackUnicodeEmoji: {
           if (this.currentPage !== 1)
-            await this.displayPage(--this.currentPage - 1)
+            await this.displayPage(--this.currentPage - 1);
 
-          break
+          break;
         }
         // If user hits next, go forward 1 page
         case emojis.nextPage.name:
         case emojis.nextPage.fallbackUnicodeEmoji: {
           if (this.currentPage !== this.pages.length)
-            await this.displayPage(++this.currentPage - 1)
+            await this.displayPage(++this.currentPage - 1);
 
-          break
+          break;
         }
         // Go to first page
         case emojis.firstPage.name:
         case emojis.firstPage.fallbackUnicodeEmoji: {
-          this.currentPage = 1
-          await this.displayPage(this.currentPage - 1)
+          this.currentPage = 1;
+          await this.displayPage(this.currentPage - 1);
 
-          break
+          break;
         }
         // Go to last page
         case emojis.lastPage.name:
         case emojis.lastPage.fallbackUnicodeEmoji: {
-          this.currentPage = this.pages.length
-          await this.displayPage(this.currentPage - 1)
+          this.currentPage = this.pages.length;
+          await this.displayPage(this.currentPage - 1);
 
-          break
+          break;
         }
         case emojis.jump.name:
         case emojis.jump.fallbackUnicodeEmoji: {
+          await this.jump();
 
-          await this.jump()
-
-          break
+          break;
         }
       }
-      if (
-        this.channel instanceof GuildChannel &&
-        this.channel
-          .permissionsOf(this.client.user.id)
-          .has('manageMessages')
-      ) {
+      if (this.botCanManageMessages()) {
         await this.message.removeReaction(
-          react.id ? react.name + ':' + react.id : react.name,
+          react.id ? react.name + ":" + react.id : react.name,
           this.targetUserID
-        )
+        );
       }
-    })
+    });
 
     // When the collector times out or the user hits stop, remove all reactions
-    collector.on('end', () => {
-      if (
-        this.channel instanceof GuildChannel &&
-        this.channel
-          .permissionsOf(this.client.user.id)
-          .has('manageMessages')
-      ) {
-        this.message.removeReactions()
+    collector.on("end", () => {
+      if (this.botCanManageMessages()) {
+        this.message.removeReactions();
       }
-    })
+    });
   }
   /**
    * Adds needed reactions for pagination based on page count
    */
-  async addReactions () {
+  async addReactions() {
     // If more than 1 page, display navigation controls
     if (this.totalPages > 1) {
       // If more than 5 pages display first and last button reactions
       if (this.totalPages >= 5) {
         // if bot can use custom emojis
         if (this.botCanUseCustomEmojis()) {
-          await this.message.addReaction(emojis.firstPage.reaction)
-          await this.message.addReaction(emojis.previousPage.reaction)
-          await this.message.addReaction(emojis.nextPage.reaction)
-          await this.message.addReaction(emojis.lastPage.reaction)
-          await this.message.addReaction(emojis.jump.reaction)
+          await this.message.addReaction(emojis.firstPage.reaction);
+          await this.message.addReaction(emojis.previousPage.reaction);
+          await this.message.addReaction(emojis.nextPage.reaction);
+          await this.message.addReaction(emojis.lastPage.reaction);
+          await this.message.addReaction(emojis.jump.reaction);
         } else {
-          await this.message.addReaction(emojis.firstPage.fallbackUnicodeEmoji)
+          await this.message.addReaction(emojis.firstPage.fallbackUnicodeEmoji);
           await this.message.addReaction(
             emojis.previousPage.fallbackUnicodeEmoji
-          )
-          await this.message.addReaction(emojis.nextPage.fallbackUnicodeEmoji)
-          await this.message.addReaction(emojis.lastPage.fallbackUnicodeEmoji)
-          await this.message.addReaction(emojis.jump.fallbackUnicodeEmoji)
+          );
+          await this.message.addReaction(emojis.nextPage.fallbackUnicodeEmoji);
+          await this.message.addReaction(emojis.lastPage.fallbackUnicodeEmoji);
+          await this.message.addReaction(emojis.jump.fallbackUnicodeEmoji);
         }
         // If less than 5 pages only shows back and next reactions
       } else {
         if (this.botCanUseCustomEmojis()) {
-          await this.message.addReaction(emojis.previousPage.reaction)
-          await this.message.addReaction(emojis.nextPage.reaction)
+          await this.message.addReaction(emojis.previousPage.reaction);
+          await this.message.addReaction(emojis.nextPage.reaction);
         } else {
           await this.message.addReaction(
             emojis.previousPage.fallbackUnicodeEmoji
-          )
-          await this.message.addReaction(emojis.nextPage.fallbackUnicodeEmoji)
+          );
+          await this.message.addReaction(emojis.nextPage.fallbackUnicodeEmoji);
         }
       }
     }
   }
 
-  private botCanUseCustomEmojis () {
+  private botCanUseCustomEmojis() {
     return (
       (this.channel instanceof GuildChannel &&
         this.channel
           .permissionsOf(this.client.user.id)
-          .has('externalEmojis')) ||
+          .has("externalEmojis")) ||
       this.channel instanceof PrivateChannel
-    )
+    );
+  }
+  private botCanManageMessages() {
+    return (
+      this.channel instanceof GuildChannel &&
+      this.channel.permissionsOf(this.client.user.id).has("manageMessages")
+    );
   }
 
-  private appendPageCounter (embed: EmbedOptions) {
+  private appendPageCounter(embed: EmbedOptions) {
     if (embed.footer) {
       embed.footer.text =
         this.languagePack.functions.paginator.pageCounter
           .replace(/\{CURRENT_PAGE\}/, this.currentPage)
           .replace(/\{TOTAL_PAGES\}/, this.totalPages) +
-        ' - ' +
-        embed.footer.text
+        " - " +
+        embed.footer.text;
     } else {
       embed.footer = {
         text: this.languagePack.functions.paginator.pageCounter
           .replace(/\{CURRENT_PAGE\}/, this.currentPage)
-          .replace(/\{TOTAL_PAGES\}/, this.totalPages)
-      }
+          .replace(/\{TOTAL_PAGES\}/, this.totalPages),
+      };
     }
   }
 }
-export default Paginator
+export default Paginator;
