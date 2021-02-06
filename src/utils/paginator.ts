@@ -88,12 +88,12 @@ class Paginator {
           if (m.content === "cancel" || m.content === "0") {
             collector.stop();
             message.delete();
-            if (this.botCanManageMessages()) {
+            if (this.botCanManageMessages) {
               m.delete();
             }
           } else {
             message.delete();
-            if (this.botCanManageMessages()) {
+            if (this.botCanManageMessages) {
               m.delete();
             }
             if (Number(m.content) > this.totalPages) {
@@ -183,7 +183,7 @@ class Paginator {
           break;
         }
       }
-      if (this.botCanManageMessages()) {
+      if (this.botCanManageMessages) {
         await this.message.removeReaction(
           react.id ? react.name + ":" + react.id : react.name,
           this.targetUserID
@@ -193,7 +193,7 @@ class Paginator {
 
     // When the collector times out or the user hits stop, remove all reactions
     collector.on("end", () => {
-      if (this.botCanManageMessages()) {
+      if (this.botCanManageMessages) {
         this.message.removeReactions();
       }
     });
@@ -207,7 +207,7 @@ class Paginator {
       // If more than 5 pages display first and last button reactions
       if (this.totalPages >= 5) {
         // if bot can use custom emojis
-        if (this.botCanUseCustomEmojis()) {
+        if (this.botCanUseCustomEmojis) {
           await this.message.addReaction(emojis.firstPage.reaction);
           await this.message.addReaction(emojis.previousPage.reaction);
           await this.message.addReaction(emojis.nextPage.reaction);
@@ -224,7 +224,7 @@ class Paginator {
         }
         // If less than 5 pages only shows back and next reactions
       } else {
-        if (this.botCanUseCustomEmojis()) {
+        if (this.botCanUseCustomEmojis) {
           await this.message.addReaction(emojis.previousPage.reaction);
           await this.message.addReaction(emojis.nextPage.reaction);
         } else {
@@ -237,7 +237,7 @@ class Paginator {
     }
   }
 
-  private botCanUseCustomEmojis() {
+  get botCanUseCustomEmojis() {
     return (
       (this.channel instanceof GuildChannel &&
         this.channel
@@ -246,7 +246,7 @@ class Paginator {
       this.channel instanceof PrivateChannel
     );
   }
-  private botCanManageMessages() {
+  get botCanManageMessages() {
     return (
       this.channel instanceof GuildChannel &&
       this.channel.permissionsOf(this.client.user.id).has("manageMessages")
