@@ -1,18 +1,18 @@
 import Counter from "../typings/Counter";
 import Constants from "../utils/Constants";
 import { query, Type } from "gamedig";
-import fetch from 'node-fetch';
-import AbortController from 'abort-controller';
-import * as packageJSON from '../../package.json';
-import timeoutFetch from '../utils/timeoutFetch';
+import fetch from "node-fetch";
+import AbortController from "abort-controller";
+import * as packageJSON from "../../package.json";
+import timeoutFetch from "../utils/timeoutFetch";
 
 const GameCounter: Counter = {
-	aliases: ['game'],
+	aliases: ["game"],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 5 * 1000,
 	execute: async ({ client, guild, resource }) => {
-		let splited = resource.split(':');
+		let splited = resource.split(":");
 
 		const type = splited[0];
 		const host = splited[1];
@@ -28,24 +28,24 @@ const GameCounter: Counter = {
 					fetch(`https://cdn.rage.mp/master/`, {
 						signal: controller.signal,
 						headers: {
-							'User-Agent': `Member Counter Discord Bot/${packageJSON.version}`,
-						},
+							"User-Agent": `Member Counter Discord Bot/${packageJSON.version}`
+						}
 					}),
-					controller,
+					controller
 				);
-		
+
 				if (response.status === 200) {
 					const result = await response.json();
 					return result?.[`${host}:${port}`]?.players;
 				} else {
 					controller.abort();
 					throw new Error(
-						`[GTA5 RAGE-MP] Invalid status code (not 200) in: ${host}:${port}`,
+						`[GTA5 RAGE-MP] Invalid status code (not 200) in: ${host}:${port}`
 					);
 				}
 				break;
 			}
-			
+
 			case "fivem-alt": {
 				let hostname = host;
 				if (!Number.isNaN(port)) hostname += ":" + port;
@@ -56,19 +56,19 @@ const GameCounter: Counter = {
 					fetch(`http://${hostname}/players.json`, {
 						signal: controller.signal,
 						headers: {
-							'User-Agent': `Member Counter Discord Bot/${packageJSON.version}`,
-						},
+							"User-Agent": `Member Counter Discord Bot/${packageJSON.version}`
+						}
 					}),
-					controller,
+					controller
 				);
-		
+
 				if (response.status === 200) {
 					const result = await response.json();
 					return result.length;
 				} else {
 					controller.abort();
 					throw new Error(
-						`[GTA5 FIVEM-ALT] Invalid status code (not 200) in: ${hostname}`,
+						`[GTA5 FIVEM-ALT] Invalid status code (not 200) in: ${hostname}`
 					);
 				}
 				break;
@@ -84,38 +84,43 @@ const GameCounter: Counter = {
 					fetch(`https://api.mcsrvstat.us/2/${hostname}`, {
 						signal: controller.signal,
 						headers: {
-							'User-Agent': `Member Counter Discord Bot/${packageJSON.version}`,
-						},
+							"User-Agent": `Member Counter Discord Bot/${packageJSON.version}`
+						}
 					}),
-					controller,
+					controller
 				);
-		
+
 				if (response.status === 200) {
 					const data = await response.json();
 					if (data.online) {
 						return data.players?.online;
 					} else {
 						throw new Error(
-							`[Minecraft Alternative] Server offline or invalid address: ${hostname}`,
-						);;
+							`[Minecraft Alternative] Server offline or invalid address: ${hostname}`
+						);
 					}
 				} else {
 					controller.abort();
 					throw new Error(
-						`[Minecraft Alternative] Invalid status code (not 200) in: ${hostname}`,
+						`[Minecraft Alternative] Invalid status code (not 200) in: ${hostname}`
 					);
 				}
 				break;
 			}
 
 			default: {
-				const response = await query({ type: type as Type, host, port, maxAttempts: 5 });
-				return response?.players?.length
-				
+				const response = await query({
+					type: type as Type,
+					host,
+					port,
+					maxAttempts: 5
+				});
+				return response?.players?.length;
+
 				break;
 			}
 		}
 	}
-}
+};
 
 export default GameCounter;
