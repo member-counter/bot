@@ -370,9 +370,9 @@
 		},
 		"paginator": {
 			"pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "What page would you like to jump to? Say `cancel` or `0` to cancel the prompt. Your window to reply ends in 15 seconds.",
-			"errorPageLengthExceeded": "The page to jump to must be less than or equal to {TOTAL_PAGES}, Please try again.",
-			"errorNegativeInput": "The page to jump to can't be negative, Please try again."
+			"jumpPrompt": "Hangi sayfaya gitmek istersiniz? İstemi iptal etmek için `cancel` veya `0` yazınız. Bu mesajı yanıtlamak için 15 saniyeniz bulunmaktadır.",
+			"errorPageLengthExceeded": "Atlanacak sayfa {TOTAL_PAGES}} değerinden küçük veya ona eşit olmalıdır. Lütfen tekrar deneyin.",
+			"errorNegativeInput": "Atlanacak sayfa negatif olamaz. Lütfen tekrar deneyin."
 		}
 	},
 	"common": {
