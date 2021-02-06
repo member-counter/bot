@@ -188,12 +188,12 @@
 				{
 					"key": "clock",
 					"name": "clock:timeZone",
-					"description": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) or reemplazar `timeZone` cona una zona horaria IANA valida. Ejemplo: `{clock:Europe/Madrid}`"
+					"description": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) o reemplazar `timeZone` con una zona horaria IANA válida. Ejemplo: `{clock:Europe/Madrid}`"
 				},
 				{
 					"key": "nitro-boosters",
 					"name": "nitro-boosters",
-					"description": "Muestra la cantidad total de miembros que esta boosteando este servidor"
+					"description": "Muestra la cantidad total de miembros que está boosteando este servidor"
 				},
 				{
 					"key": "static",
@@ -216,7 +216,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "Si estas intentando establecer un contador pero Discord te dice que has alcanzado el limite de caracteres en el nombre/tema, puedes \"ignorar\" este limite usando este comando\n**Uso**```{PREFIX}editChannel [id del canal] [contenido]```\n**Ejemplo**```{PREFIX}editChannel 701396983843127366 {onlinemembers} de {members} Online```",
-			"success": "Done! You may have to wait a few minutes to see the new changes",
+			"success": "Hecho! Deberás esperar unos minutos para ver los nuevos cambios",
 			"errorNotFound": "Canal no encontrado",
 			"errorNoContent": "Debes proporcionar algo de contenido"
 		},
@@ -230,7 +230,7 @@
 			"helpDescription": "Este comando te permite mostrar el número de una cuenta en una forma compactada en contadores\n\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Ejemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "¡Acción invalida! Por favor, consulta `{PREFIX}help shortNumber`",
-			"success": "Done! You may have to wait a few minutes to see the new changes"
+			"success": "Hecho! Deberás esperar unos minutos para ver los nuevos cambios"
 		},
 		"locale": {
 			"helpDescription": "Da formato a numeros y otras cosas dependiendo de la región especificada \n**Uso**\n```{PREFIX}locale [locale/disable]```\n**Ejemplos**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
