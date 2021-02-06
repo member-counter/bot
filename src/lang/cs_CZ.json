@@ -1,386 +1,386 @@
 {
-	"langCode": "cs_CZ",
-	"langName": "Čeština (CZ)",
-	"commands": {
-		"help": {
-			"helpDescription": "Je opravdu nutné vysvětlit účel tohoto příkazu?",
-			"embedReply": {
-				"title": "Seznam příkazů | prefix: {PREFIX}",
-				"description": "[Přidat tohoto bota na svůj server]({DISCORD_BOT_INVITE}) **|** [Stránka]({WEBSITE}) **|**   [Dokumentace](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nRychlé nastavení: `{PREFIX}!setup`\n\nPro získání více informací o příkazu, použijte příkaz `{PREFIX}help` a jméno příkazu: ```\n{PREFIX}help shortNumber```\n**Info:** `()` znamená volitelný parametr, zatímco `[]` znamená požadovaný parametr",
-				"fields": [
-					{
-						"name": "**Počítadla**",
-						"value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
-						"inline": true
-					},
-					{
-						"name": "**Nastavení serveru**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
-						"inline": true
-					},
-					{
-						"name": "**Ostatní**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
-						"inline": true
-					}
-				]
-			},
-			"misc": {
-				"command": "Příkaz:"
-			}
-		},
-		"guide": {
-			"helpDescription": "Zobrazí návod, jak používat bota",
-			"pagesText": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"explanation": "**Děkujeme za přidání Member Counter bota na Váš server!**\n__**Vytvořit/upravit počítadla**__\nMůžete například použít `{members}`, který spočítá celkový počet členů na vašem Discord serveru. Více možností naleznete na dalších stránkách.\nPočítadla můžete umístit na jedno z následujících míst:\n\n- Ve **jméně** **hlasového** análu\n- Ve **jménu** **kategorie**\n- V **popisu/tématu** **textového** kanálu\n- V **popisu/tématu** kanálu **oznámení**\n\nNyní můžete vytvořit nový kanál, upravit ho a napsat `{members}` do názvu nebo do popisu/tématu kanálu a poté potvrdit změny.\n\nMůžete také přidat více počítadel do jednoho jména/tématu kanálu a kombinovat je s vlastním obsahem, níže je příklad.\n```\n{onlineMembers}/{members} online uživatelů,\n{youtubeSubscribers:https://www.youtube.com/user/mentoss97} odběratelů!\n{onlineMembersWithRole:614777997291028519,614816383053856769} adminů a moderátorů je nyní online!\n```\n\n> Pokud při úpravě názvu/tématu kanálu dosáhnete omezení počtu znaků, prosím zkontrolujte `{PREFIX}help editChannel`\n> Aktuální nástavení počítadel můžete zobrazit pomocí příkazu `{PREFIX}seeSettings`. Toto je užitečné pro přidání více počítadel bez deaktivace předchozího počítadla.\n\n__**Odstranění počítadel**__\nPro odstranění upravte kanál a napište {disable} do jména/tématu kanálu. Bot toto nahradí za \\✅, což bude znamenat, že byly odstraněny všechny počítadla v daném kanálu.\n\nKanál můžete také přímo smazat",
-			"countersHeader": "__**Počítadla**__\n> Povolte si režim vývojáře na Discordu (Uživatelská nastavení > Vzhled > Pokročilé > Vývojářský režim)\n> Pro získání ID, klikněte pravým na kanál/roli a poté na \"Kopírovat ID\"\n\n> Počítadla s hvězdičkou (\\*) jsou premium počítadla, více informací v `{PREFIX}help upgradeServer`\n\n> Pokud chcete změnit formátování čísla v počítadlech nezávisle na nastavení serveru, navštivte tuto [stránku](https://member-counter.eduardozgz.com/utils/overwrite-settings), nebo to proveďte ručně podle tohoto [manuálu](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
-			"counters": [
-				{
-					"key": "members",
-					"name": "members",
-					"description": "Uživatelé na serveru"
-				},
-				{
-					"key": "approximatedOnlineMembers",
-					"name": "approximatedOnlineMembers",
-					"description": "Přibližný počet online uživatelů na serveru"
-				},
-				{
-					"key": "onlineMembers",
-					"name": "onlineMembers",
-					"description": "Online uživatelé na serveru"
-				},
-				{
-					"key": "offlineMembers",
-					"name": "offlineMembers",
-					"description": "Offline uživatelé na serveru"
-				},
-				{
-					"key": "users",
-					"name": "users",
-					"description": "Uživatelé na serveru (kromě botů)"
-				},
-				{
-					"key": "onlineUsers",
-					"name": "onlineUsers",
-					"description": "Online uživatelé na serveru (kromě botů)"
-				},
-				{
-					"key": "offlineUsers",
-					"name": "offlineUsers",
-					"description": "Offline uživatelé na serveru (kromě botů)"
-				},
-				{
-					"key": "bots",
-					"name": "bots",
-					"description": "Boti na severu (počet neobsahuje normální uživatele)"
-				},
-				{
-					"key": "onlineBots",
-					"name": "onlineBots",
-					"description": "Online boti na severu (počet neobsahuje normální uživatele)"
-				},
-				{
-					"key": "offlineBots",
-					"name": "offlineBots",
-					"description": "Offline boti na severu (počet neobsahuje normální uživatele)"
-				},
-				{
-					"key": "roles",
-					"name": "roles",
-					"description": "Role na serveru"
-				},
-				{
-					"key": "channels",
-					"name": "channels",
-					"description": "Kanály na serveru (počet neobsahuje kategorie kanálů)"
-				},
-				{
-					"key": "membersWithRole",
-					"name": "membersWithRole:role1ID,role2ID",
-					"description": "Toto spočítá, kolik členů má roli/role. Pro sčítání více rolí napište za `:` ID role, kterou chcete spočítat a každé další ID role oddělte čárkou"
-				},
-				{
-					"key": "onlineMembersWithRole",
-					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze online uživatelé"
-				},
-				{
-					"key": "offlineMembersWithRole",
-					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze offline uživatelé"
-				},
-				{
-					"key": "connectedMembers",
-					"name": "connectedMembers",
-					"description": "Celkový počet připojených uživatelů v hlasových kanálech"
-				},
-				{
-					"key": "connectedMembers",
-					"name": "connectedMembers:channel1ID,channel2ID",
-					"description": "Podobné jako `{connectedMembers}` ale bot bude analyzovat pouze připojené uživatele ve specifických kanálech. Pro sčítání více kanálů napište za `:` ID kanálu, který chcete spočítat a každý další ID kanálu oddělte čárkou"
-				},
-				{
-					"key": "bannedMembers",
-					"name": "bannedMembers",
-					"description": "Počet zabanovaných uživatelů na vašem serveru. Bot musí mít banovací oprávnění pro zobrazení tohoto počítadla"
-				},
-				{
-					"key": "http",
-					"name": "http:url",
-					"description": "Tímto se zobrazí vrácená data daná podle odpovědi zdroje, bot provede požadavek `GET` a server **musí** odpovědět stavovým kódem `200` a `content-type: text/plain` Příklad: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "Podobné jako `{http}`, ale bot nebude analyzovat nic kromě jmen namísto čísel"
-				},
-				{
-					"key": "youtubeSubscribers",
-					"name": "youtubeSubscribers:channelUrl",
-					"description": "Zobrazí počet youtube odběratelů, nahraďte channelUrl požadovanou adresou kanálu"
-				},
-				{
-					"key": "youtubeViews",
-					"name": "youtubeViews:channelUrl",
-					"description": "Zobrazí počet odběratelů daného YouTube kanálu"
-				},
-				{
-					"key": "youtubeVideos",
-					"name": "youtubeVideos:channelUrl",
-					"description": "Zobrazí počet odběratelů daného YouTube videa"
-				},
-				{
-					"key": "twitchFollowers",
-					"name": "twitchFollowers:channelName",
-					"description": "Zobrazí počet twitch odběratelů, nahraďte channelUrl požadovanou adresou kanálu"
-				},
-				{
-					"key": "twitchViews",
-					"name": "twitchViews:channelName",
-					"description": "Zobrazí počet odběratelů daného Twitch kanálu"
-				},
-				{
-					"key": "memeratorMemes",
-					"name": "memeratorMemes:username",
-					"description": "Zobrazí počet memů uživatele na [Memerator](https://memerator.me), nahraďte username požadovaným názvem kanálu"
-				},
-				{
-					"key": "memeratorFollowers",
-					"name": "memeratorFollowers:username",
-					"description": "Zobrazí počet sledujících uživatelů na [Memerator](https://memerator.me), nahraďte username požadovaným názvem kanálu"
-				},
-				{
-					"key": "twitterFollowers",
-					"name": "twitterFollowers:username",
-					"description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Twitter"
-				},
-				{
-					"key": "countdown",
-					"name": "countdown:targetDate:format",
-					"description": "Zobrazí odpočet, které se snižuje k uvedenému cílovému datu, můžete využít [generátor pro toto počítadlo](https://member-counter.eduardozgz.com/utils/countdown) nebo jej ručně vytvořit nahrazením `targetDate` cílovým datem v časovém razítíku UNIX a volitelně `format` s vlastním formátováním: použijte `%d` pro zobrazení zbývajících dnů, `%h` pro zobrazení zbývajících hodin, `%m` to pro zobrazení zbývajících minut a`%s` pro zobrazení zbývajících sekund"
-				},
-				{
-					"key": "game",
-					"name": "game:gameId:address",
-					"description": "Online hráči na herním serveru (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, atd). Nezapomeňte nahradit `gameId` jménem hry, seznam her naleznete [zde](https://github.com/gamedig/node-gamedig/#games-list) a `address` adresou serveru. Příklad: `{game:minecraft:mc.hypixel.net}`"
-				},
-				{
-					"key": "clock",
-					"name": "clock:timeZone",
-					"description": "Zobrazí aktuální čas podle zadaného časového pásma, který můžete snadno [vygenerovat zde](https://member-counter.eduardozgz.com/utils/clock), nebo nahradit `timeZone` platným časovým pásmem IANA. Příklad: `{clock:Europe/Madrid}`"
-				},
-				{
-					"key": "nitro-boosters",
-					"name": "nitro-boosters",
-					"description": "Zobrazuje celkový počet členů podporujících tento server"
-				},
-				{
-					"key": "static",
-					"name": "static:number",
-					"description": "Zobrazí dané `číslo` s vlastním formátováním na základě nastavení serveru"
-				},
-				{
-					"key": "instagramFollowers",
-					"name": "instagramFollowers:username",
-					"description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Instagramu"
-				}
-			]
-		},
-		"lockChannel": {
-			"helpDescription": "Pomocí tohoto příkazu může zobrazit zámek(🔒) namísto reproduktoru (🔊).\n\n**Použtí:**```{PREFIX}lockChannel [id kanálu]```\n **Příklad:**```{PREFIX}lockChannel 700336568099143710```",
-			"success": "Hotovo! Kanál je uzavřen **pro normální uživatele**. Kanál bude zobrazen s 🔒",
-			"errorInvalidChannel": "Můžete uzamknout pouze hlasové kanály!",
-			"errorNoPerms": "Nemohu upravovat kanál s názvem `{CHANNEL}` z důvodu nedostatečných oprávnění",
-			"errorNotFound": "Kanál nebyl nalezen"
-		},
-		"editChannel": {
-			"helpDescription": "Pokud se pokoušíte nastavit počítadlo, ale Discord vám řekne, že jste dosáhli limitu délky názvu/tématu, můžete pomocí tohoto příkazu tento limit „ignorovat“\n**Použití:**```{PREFIX}editChannel [ID kanálu] [obsah]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} online z {members}```",
-			"success": "Done! You may have to wait a few minutes to see the new changes",
-			"errorNotFound": "Kanál nebyl nalezen",
-			"errorNoContent": "Musíte poskytnout nějaký obsah"
-		},
-		"setDigit": {
-			"helpDescription": "Přizpůsobí čísla, která se budou zobrazovat, argument čísla musí být normální číslo, druhý argument může být cokoli, například emoji nebo normální číslo, můžete přizpůsobit více čísel najednou oddělením argumentů čárkami (`,`)\nPokud je prvním argumentem slovo „reset“, budou čísla obnovena na výchozí.\n\n**Použítí:** ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [vlastní číslo]```\n**Příklad:** ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
-			"success": "Číslice úspěšně přizpůsobené.",
-			"resetSuccess": "Čísla byla obnovena na výchozí hodnotu.",
-			"errorMissingParams": "Chybějící parametry, prosím podívejte se na `{PREFIX}help setDigit`."
-		},
-		"shortNumber": {
-			"helpDescription": "Tento příkaz umožňuje zobrazit počet v kompaktní formě v počítadlech\n\n**Použít:**\n```{PREFIX}shortNumber [enable/disable]```\n**Příklad:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
-			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
-			"errorInvalidAction": "Neznámá akce! Prosím podívejte se na `{PREFIX}help shortNumber`",
-			"success": "Done! You may have to wait a few minutes to see the new changes"
-		},
-		"locale": {
-			"helpDescription": "Naformátuje čísla a další položky do zadaného národního prostředí\n\n**Použít:**\n```{PREFIX}locale [locale/disable]```\n**Příklad:**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
-			"helpImage": "https://i.imgur.com/gnje0YB.png"
-		},
-		"prefix": {
-			"helpDescription": "Změnit prefix bota\n\nPoužití:```{PREFIX}prefix [nový prefix]```",
-			"success": "Prefix změněn na: `{NEW_PREFIX}`",
-			"noPrefixProvided": "Musíte zadat prefix"
-		},
-		"role": {
-			"helpDescription": "Můžete povolit nebo zakázat rolím používat administrační příkazy bota.\nSlovem `ʻall`` můžete povolit nebo zakázat všechny role.\nChcete-li zjistit, které role jsou aktuálně povoleny, použijte `{PREFIX} seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
-			"rolesUpdated": "Role úspěšně aktualizovány.",
-			"errorNoRolesToUpdate": "Musíte označit minimálně 1 roli",
-			"invalidParams": "Byly zadány neznámé parametry, pro více informací použijte `{PREFIX}help role`"
-		},
-		"seeSettings": {
-			"helpDescription": "Zobrazí všechna nastavení bota pro tento server.",
-			"settingsMessage": {
-				"headerText": "Nastavení pro server:",
-				"prefixText": "Prefix:",
-				"langText": "Jazyk:",
-				"localeText": "Lokalizace:",
-				"shortNumberText": "Zkrácené číslo (kompaktní notace):",
-				"premiumText": "Premium:",
-				"premiumNoTierText": "Ne",
-				"premiumConfirmedText": "Ano",
-				"allowedRolesText": "Povolené role, které mohou používat administrativní příkazy:",
-				"countersText": "Počítadla:",
-				"customNumbersText": "Vlastní čísla:",
-				"warningNoPermsText": "\\ ⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatku oprávnění (Botovi musíte povolit: Spravovat kanál, Zobrazit kanál nebo Číst zprávy, Připojit se)",
-				"guildLogsText": "Poslední logy:"
-			}
-		},
-		"resetSettings": {
-			"helpDescription": "Obnoví vlastní nastavení tohoto serveru na výchozí hodnoty",
-			"done": "Nastavení obnoveno do základního stavu"
-		},
-		"update": {
-			"helpDescription": "Pokud si myslíte, že se počítadla zasekly, použijte tento příkaz k jejich opětovné aktualizaci.",
-			"inProgress": "Aktualizace počítadel, toto může chvíli trvat.",
-			"success": "Hotovo.",
-			"wait": "Počkejte! Již to aktualizuji!"
-		},
-		"upgradeServer": {
-			"helpDescription": "Tento příkaz umožňuje pozvat Member Counter Premium, abyste mohli tento příkaz využít, musíte míst premium účet, který získáte podporou minimálně 5 USD: `{PREFIX}donate`.",
-			"success": "Hotovo! Dalším krokem je pozvání premium bota:\n{BOT_LINK}",
-			"errorCannotUpgrade": "Server nelze vylepšit, protože již má premiovou verzi.",
-			"noServerUpgradesAvailable": "Nemůžete provést další vylepšení serveru, protože nemáte žádné vylepšení k dispozici, můžete zkontrolovat kolik vylepšení zbývá pomocí `{PREFIX}profile` nebo jich získat více pomocí `{PREFIX}donate`"
-		},
-		"info": {
-			"helpDescription": "Seznam užitečných odkazů",
-			"embedReply": {
-				"description": "[Přidej si mě na tvůj server]({BOT_INVITE_URL})\n[Server pro podporu]({BOT_SERVER_URL})\n[GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Podpořit]({DONATION_URL})"
-			}
-		},
-		"lang": {
-			"helpDescription": "Změní jazyk bota pro server, pro změnu musíte mít oprávnění Administrátor.",
-			"success": "Jazyk úspěšně změnen.",
-			"errorNotFound": "Seznam dostupných jazyků:"
-		},
-		"donate": {
-			"helpDescription": "Zobrazí nejvyšší dary.",
-			"embedReply": {
-				"title": "Užíváte si tohoto bota? Podpoř mě prosím! (Klikni zde)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "Prázdná poznámka"
-			},
-			"errorExchangeFetch": "Při pokusu o načtení směnných kurzů došlo k chybě"
-		},
-		"profile": {
-			"helpDescription": "Zobrazuje související informace mezi vámi a botem",
-			"badges": "Odznaky",
-			"serverUpgradesAvailable": "Zbývající vylepšení serveru",
-			"removeDataConfirmation": ":warning: **Tato akce odstraní všechna date, vaše odznaky a vylepšení serveru budou navždy ztraceny, opravdu chcete pokračovat? (Ignorujte pro zrušení)**",
-			"removeDataSuccess": "Vaše data byly úspěšně smazány"
-		},
-		"counts": {
-			"helpDescription": "Zobrazí některé počítadla",
-			"members": "Členové:",
-			"onlineMembers": "Online uživatelé:",
-			"offlineMembers": "Offline uživatelé:",
-			"bots": "Boti:",
-			"connectedUsers": "Připojených uživatelů:",
-			"channels": "Kanály:",
-			"roles": "Role:"
-		},
-		"preview": {
-			"helpDescription": "Zobrazuje náhled, jak bude počítadlo nebo různé počítadla vypadat v kanálu\n\n**Použití** ```{PREFIX}preview [content]```\n**Příklad** ```{PREFIX}preview {members} Uživatelů```",
-			"helpImage": "https://i.imgur.com/VzdqzT3.png",
-			"channelName": "Náhled názvu kanálu",
-			"channelTopic": "Náhled názvu kanálu"
-		},
-		"setup": {
-			"helpDescription": "Vytvoří uzamčené kanály s počítadly\n**Příklad:**```{PREFIX}setup```",
-			"creatingCounts": "Creating counters...",
-			"createdCounts": "Complete",
-			"categoryName": {
-				"countTemplate": "📊 Server Stats 📊",
-				"creatingCategory": "{LOADING} Creating category\n",
-				"createdCategory": "{CHECK_MARK} Category created\n"
-			},
-			"memberCounter": {
-				"countTemplate": "{members} uživatelé/ů",
-				"creatingmemberCounter": "{LOADING} Creating member counter\n",
-				"createdmemberCounter": "{CHECK_MARK} Members count created\n"
-			},
-			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} boostů",
-				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
-				"createdboostingCounter": "{CHECK_MARK} Boosting count created\n"
-			},
-			"rolesCounter": {
-				"countTemplate": "{roles} role/í",
-				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
-				"createdrolesCounter": "{CHECK_MARK} Roles count created\n"
-			},
-			"channelsCounter": {
-				"countTemplate": "{channels} kanály/ů",
-				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
-				"createdchannelsCounter": "{CHECK_MARK} Channels count created\n"
-			}
-		}
-	},
-	"functions": {
-		"commandHandler": {
-			"noDm": "Tento příkaz nelze použít v DM kanálu"
-		},
-		"getCounts": {
-			"onlyPremium": "Pouze pro Premium",
-			"unknownCounter": "Neznámý počítadlo",
-			"disabled": "Počítadlo zablokováno",
-			"noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
-			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu"
-		},
-		"paginator": {
-			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "What page would you like to jump to? Say `cancel` or `0` to cancel the prompt. Your window to reply ends in 15 seconds.",
-			"errorPageLengthExceeded": "The page to jump to must be less than or equal to {TOTAL_PAGES}, Please try again.",
-			"errorNegativeInput": "The page to jump to can't be negative, Please try again."
-		}
-	},
-	"common": {
-		"error": "Chyba",
-		"errorDb": "Chyba databáze, zkuste to prosím znovu",
-		"errorDiscordAPI": "Discord API",
-		"errorUnknown": "Něco se pokazilo, zkuste to prosím znovu.",
-		"errorNoAdmin": "Pouze uživatelé s administrativním oprávnění můžou na tomto serveru využít tento příkaz.",
-		"noTopicCounterEnabled": "Vypadá to, že jste doposud neaktivovali počítadlo, prosím podívejte se na `{PREFIX}help topicCounter`"
-	}
+  "langCode": "cs_CZ",
+  "langName": "Čeština (CZ)",
+  "commands": {
+    "help": {
+      "helpDescription": "Je opravdu nutné vysvětlit účel tohoto příkazu?",
+      "embedReply": {
+        "title": "Seznam příkazů | prefix: {PREFIX}",
+        "description": "[Přidat tohoto bota na svůj server]({DISCORD_BOT_INVITE}) **|** [Stránka]({WEBSITE}) **|**   [Dokumentace](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nRychlé nastavení: `{PREFIX}!setup`\n\nPro získání více informací o příkazu, použijte příkaz `{PREFIX}help` a jméno příkazu: ```\n{PREFIX}help shortNumber```\n**Info:** `()` znamená volitelný parametr, zatímco `[]` znamená požadovaný parametr",
+        "fields": [
+          {
+            "name": "**Počítadla**",
+            "value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
+            "inline": true
+          },
+          {
+            "name": "**Nastavení serveru**",
+            "value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+            "inline": true
+          },
+          {
+            "name": "**Ostatní**",
+            "value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+            "inline": true
+          }
+        ]
+      },
+      "misc": {
+        "command": "Příkaz:"
+      }
+    },
+    "guide": {
+      "helpDescription": "Zobrazí návod, jak používat bota",
+      "pagesText": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
+      "explanation": "**Děkujeme za přidání Member Counter bota na Váš server!**\n__**Vytvořit/upravit počítadla**__\nMůžete například použít `{members}`, který spočítá celkový počet členů na vašem Discord serveru. Více možností naleznete na dalších stránkách.\nPočítadla můžete umístit na jedno z následujících míst:\n\n- Ve **jméně** **hlasového** análu\n- Ve **jménu** **kategorie**\n- V **popisu/tématu** **textového** kanálu\n- V **popisu/tématu** kanálu **oznámení**\n\nNyní můžete vytvořit nový kanál, upravit ho a napsat `{members}` do názvu nebo do popisu/tématu kanálu a poté potvrdit změny.\n\nMůžete také přidat více počítadel do jednoho jména/tématu kanálu a kombinovat je s vlastním obsahem, níže je příklad.\n```\n{onlineMembers}/{members} online uživatelů,\n{youtubeSubscribers:https://www.youtube.com/user/mentoss97} odběratelů!\n{onlineMembersWithRole:614777997291028519,614816383053856769} adminů a moderátorů je nyní online!\n```\n\n> Pokud při úpravě názvu/tématu kanálu dosáhnete omezení počtu znaků, prosím zkontrolujte `{PREFIX}help editChannel`\n> Aktuální nástavení počítadel můžete zobrazit pomocí příkazu `{PREFIX}seeSettings`. Toto je užitečné pro přidání více počítadel bez deaktivace předchozího počítadla.\n\n__**Odstranění počítadel**__\nPro odstranění upravte kanál a napište {disable} do jména/tématu kanálu. Bot toto nahradí za \\✅, což bude znamenat, že byly odstraněny všechny počítadla v daném kanálu.\n\nKanál můžete také přímo smazat",
+      "countersHeader": "__**Počítadla**__\n> Povolte si režim vývojáře na Discordu (Uživatelská nastavení > Vzhled > Pokročilé > Vývojářský režim)\n> Pro získání ID, klikněte pravým na kanál/roli a poté na \"Kopírovat ID\"\n\n> Počítadla s hvězdičkou (\\*) jsou premium počítadla, více informací v `{PREFIX}help upgradeServer`\n\n> Pokud chcete změnit formátování čísla v počítadlech nezávisle na nastavení serveru, navštivte tuto [stránku](https://member-counter.eduardozgz.com/utils/overwrite-settings), nebo to proveďte ručně podle tohoto [manuálu](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+      "counters": [
+        {
+          "key": "members",
+          "name": "members",
+          "description": "Uživatelé na serveru"
+        },
+        {
+          "key": "approximatedOnlineMembers",
+          "name": "approximatedOnlineMembers",
+          "description": "Přibližný počet online uživatelů na serveru"
+        },
+        {
+          "key": "onlineMembers",
+          "name": "onlineMembers",
+          "description": "Online uživatelé na serveru"
+        },
+        {
+          "key": "offlineMembers",
+          "name": "offlineMembers",
+          "description": "Offline uživatelé na serveru"
+        },
+        {
+          "key": "users",
+          "name": "users",
+          "description": "Uživatelé na serveru (kromě botů)"
+        },
+        {
+          "key": "onlineUsers",
+          "name": "onlineUsers",
+          "description": "Online uživatelé na serveru (kromě botů)"
+        },
+        {
+          "key": "offlineUsers",
+          "name": "offlineUsers",
+          "description": "Offline uživatelé na serveru (kromě botů)"
+        },
+        {
+          "key": "bots",
+          "name": "bots",
+          "description": "Boti na severu (počet neobsahuje normální uživatele)"
+        },
+        {
+          "key": "onlineBots",
+          "name": "onlineBots",
+          "description": "Online boti na severu (počet neobsahuje normální uživatele)"
+        },
+        {
+          "key": "offlineBots",
+          "name": "offlineBots",
+          "description": "Offline boti na severu (počet neobsahuje normální uživatele)"
+        },
+        {
+          "key": "roles",
+          "name": "roles",
+          "description": "Role na serveru"
+        },
+        {
+          "key": "channels",
+          "name": "channels",
+          "description": "Kanály na serveru (počet neobsahuje kategorie kanálů)"
+        },
+        {
+          "key": "membersWithRole",
+          "name": "membersWithRole:role1ID,role2ID",
+          "description": "Toto spočítá, kolik členů má roli/role. Pro sčítání více rolí napište za `:` ID role, kterou chcete spočítat a každé další ID role oddělte čárkou"
+        },
+        {
+          "key": "onlineMembersWithRole",
+          "name": "onlineMembersWithRole:role1ID,role2ID",
+          "description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze online uživatelé"
+        },
+        {
+          "key": "offlineMembersWithRole",
+          "name": "offlineMembersWithRole:role1ID,role2ID",
+          "description": "Podobné jako `{membersWithRole:}`, ale počítají se pouze offline uživatelé"
+        },
+        {
+          "key": "connectedMembers",
+          "name": "connectedMembers",
+          "description": "Celkový počet připojených uživatelů v hlasových kanálech"
+        },
+        {
+          "key": "connectedMembers",
+          "name": "connectedMembers:channel1ID,channel2ID",
+          "description": "Podobné jako `{connectedMembers}` ale bot bude analyzovat pouze připojené uživatele ve specifických kanálech. Pro sčítání více kanálů napište za `:` ID kanálu, který chcete spočítat a každý další ID kanálu oddělte čárkou"
+        },
+        {
+          "key": "bannedMembers",
+          "name": "bannedMembers",
+          "description": "Počet zabanovaných uživatelů na vašem serveru. Bot musí mít banovací oprávnění pro zobrazení tohoto počítadla"
+        },
+        {
+          "key": "http",
+          "name": "http:url",
+          "description": "Tímto se zobrazí vrácená data daná podle odpovědi zdroje, bot provede požadavek `GET` a server **musí** odpovědět stavovým kódem `200` a `content-type: text/plain` Příklad: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
+        },
+        {
+          "key": "http-string",
+          "name": "http-string:url",
+          "description": "Podobné jako `{http}`, ale bot nebude analyzovat nic kromě jmen namísto čísel"
+        },
+        {
+          "key": "youtubeSubscribers",
+          "name": "youtubeSubscribers:channelUrl",
+          "description": "Zobrazí počet youtube odběratelů, nahraďte channelUrl požadovanou adresou kanálu"
+        },
+        {
+          "key": "youtubeViews",
+          "name": "youtubeViews:channelUrl",
+          "description": "Zobrazí počet odběratelů daného YouTube kanálu"
+        },
+        {
+          "key": "youtubeVideos",
+          "name": "youtubeVideos:channelUrl",
+          "description": "Zobrazí počet odběratelů daného YouTube videa"
+        },
+        {
+          "key": "twitchFollowers",
+          "name": "twitchFollowers:channelName",
+          "description": "Zobrazí počet twitch odběratelů, nahraďte channelUrl požadovanou adresou kanálu"
+        },
+        {
+          "key": "twitchViews",
+          "name": "twitchViews:channelName",
+          "description": "Zobrazí počet odběratelů daného Twitch kanálu"
+        },
+        {
+          "key": "memeratorMemes",
+          "name": "memeratorMemes:username",
+          "description": "Zobrazí počet memů uživatele na [Memerator](https://memerator.me), nahraďte username požadovaným názvem kanálu"
+        },
+        {
+          "key": "memeratorFollowers",
+          "name": "memeratorFollowers:username",
+          "description": "Zobrazí počet sledujících uživatelů na [Memerator](https://memerator.me), nahraďte username požadovaným názvem kanálu"
+        },
+        {
+          "key": "twitterFollowers",
+          "name": "twitterFollowers:username",
+          "description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Twitter"
+        },
+        {
+          "key": "countdown",
+          "name": "countdown:targetDate:format",
+          "description": "Zobrazí odpočet, které se snižuje k uvedenému cílovému datu, můžete využít [generátor pro toto počítadlo](https://member-counter.eduardozgz.com/utils/countdown) nebo jej ručně vytvořit nahrazením `targetDate` cílovým datem v časovém razítíku UNIX a volitelně `format` s vlastním formátováním: použijte `%d` pro zobrazení zbývajících dnů, `%h` pro zobrazení zbývajících hodin, `%m` to pro zobrazení zbývajících minut a`%s` pro zobrazení zbývajících sekund"
+        },
+        {
+          "key": "game",
+          "name": "game:gameId:address",
+          "description": "Online hráči na herním serveru (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, atd). Nezapomeňte nahradit `gameId` jménem hry, seznam her naleznete [zde](https://github.com/gamedig/node-gamedig/#games-list) a `address` adresou serveru. Příklad: `{game:minecraft:mc.hypixel.net}`"
+        },
+        {
+          "key": "clock",
+          "name": "clock:timeZone",
+          "description": "Zobrazí aktuální čas podle zadaného časového pásma, který můžete snadno [vygenerovat zde](https://member-counter.eduardozgz.com/utils/clock), nebo nahradit `timeZone` platným časovým pásmem IANA. Příklad: `{clock:Europe/Madrid}`"
+        },
+        {
+          "key": "nitro-boosters",
+          "name": "nitro-boosters",
+          "description": "Zobrazuje celkový počet členů podporujících tento server"
+        },
+        {
+          "key": "static",
+          "name": "static:number",
+          "description": "Zobrazí dané `číslo` s vlastním formátováním na základě nastavení serveru"
+        },
+        {
+          "key": "instagramFollowers",
+          "name": "instagramFollowers:username",
+          "description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Instagramu"
+        }
+      ]
+    },
+    "lockChannel": {
+      "helpDescription": "Pomocí tohoto příkazu může zobrazit zámek(🔒) namísto reproduktoru (🔊).\n\n**Použtí:**```{PREFIX}lockChannel [id kanálu]```\n **Příklad:**```{PREFIX}lockChannel 700336568099143710```",
+      "success": "Hotovo! Kanál je uzavřen **pro normální uživatele**. Kanál bude zobrazen s 🔒",
+      "errorInvalidChannel": "Můžete uzamknout pouze hlasové kanály!",
+      "errorNoPerms": "Nemohu upravovat kanál s názvem `{CHANNEL}` z důvodu nedostatečných oprávnění",
+      "errorNotFound": "Kanál nebyl nalezen"
+    },
+    "editChannel": {
+      "helpDescription": "Pokud se pokoušíte nastavit počítadlo, ale Discord vám řekne, že jste dosáhli limitu délky názvu/tématu, můžete pomocí tohoto příkazu tento limit „ignorovat“\n**Použití:**```{PREFIX}editChannel [ID kanálu] [obsah]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} online z {members}```",
+      "success": "Done! You may have to wait a few minutes to see the new changes",
+      "errorNotFound": "Kanál nebyl nalezen",
+      "errorNoContent": "Musíte poskytnout nějaký obsah"
+    },
+    "setDigit": {
+      "helpDescription": "Přizpůsobí čísla, která se budou zobrazovat, argument čísla musí být normální číslo, druhý argument může být cokoli, například emoji nebo normální číslo, můžete přizpůsobit více čísel najednou oddělením argumentů čárkami (`,`)\nPokud je prvním argumentem slovo „reset“, budou čísla obnovena na výchozí.\n\n**Použítí:** ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [vlastní číslo]```\n**Příklad:** ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+      "success": "Číslice úspěšně přizpůsobené.",
+      "resetSuccess": "Čísla byla obnovena na výchozí hodnotu.",
+      "errorMissingParams": "Chybějící parametry, prosím podívejte se na `{PREFIX}help setDigit`."
+    },
+    "shortNumber": {
+      "helpDescription": "Tento příkaz umožňuje zobrazit počet v kompaktní formě v počítadlech\n\n**Použít:**\n```{PREFIX}shortNumber [enable/disable]```\n**Příklad:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+      "helpImage": "https://i.imgur.com/Rzv4W0C.png",
+      "errorInvalidAction": "Neznámá akce! Prosím podívejte se na `{PREFIX}help shortNumber`",
+      "success": "Done! You may have to wait a few minutes to see the new changes"
+    },
+    "locale": {
+      "helpDescription": "Naformátuje čísla a další položky do zadaného národního prostředí\n\n**Použít:**\n```{PREFIX}locale [locale/disable]```\n**Příklad:**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+      "helpImage": "https://i.imgur.com/gnje0YB.png"
+    },
+    "prefix": {
+      "helpDescription": "Změnit prefix bota\n\nPoužití:```{PREFIX}prefix [nový prefix]```",
+      "success": "Prefix změněn na: `{NEW_PREFIX}`",
+      "noPrefixProvided": "Musíte zadat prefix"
+    },
+    "role": {
+      "helpDescription": "Můžete povolit nebo zakázat rolím používat administrační příkazy bota.\nSlovem `ʻall`` můžete povolit nebo zakázat všechny role.\nChcete-li zjistit, které role jsou aktuálně povoleny, použijte `{PREFIX} seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+      "rolesUpdated": "Role úspěšně aktualizovány.",
+      "errorNoRolesToUpdate": "Musíte označit minimálně 1 roli",
+      "invalidParams": "Byly zadány neznámé parametry, pro více informací použijte `{PREFIX}help role`"
+    },
+    "seeSettings": {
+      "helpDescription": "Zobrazí všechna nastavení bota pro tento server.",
+      "settingsMessage": {
+        "headerText": "Nastavení pro server:",
+        "prefixText": "Prefix:",
+        "langText": "Jazyk:",
+        "localeText": "Lokalizace:",
+        "shortNumberText": "Zkrácené číslo (kompaktní notace):",
+        "premiumText": "Premium:",
+        "premiumNoTierText": "Ne",
+        "premiumConfirmedText": "Ano",
+        "allowedRolesText": "Povolené role, které mohou používat administrativní příkazy:",
+        "countersText": "Počítadla:",
+        "customNumbersText": "Vlastní čísla:",
+        "warningNoPermsText": "\\ ⚠️ = Bot nemůže pokračovat v aktualizaci tohoto kanálu z důvodu nedostatku oprávnění (Botovi musíte povolit: Spravovat kanál, Zobrazit kanál nebo Číst zprávy, Připojit se)",
+        "guildLogsText": "Poslední logy:"
+      }
+    },
+    "resetSettings": {
+      "helpDescription": "Obnoví vlastní nastavení tohoto serveru na výchozí hodnoty",
+      "done": "Nastavení obnoveno do základního stavu"
+    },
+    "update": {
+      "helpDescription": "Pokud si myslíte, že se počítadla zasekly, použijte tento příkaz k jejich opětovné aktualizaci.",
+      "inProgress": "Aktualizace počítadel, toto může chvíli trvat.",
+      "success": "Hotovo.",
+      "wait": "Počkejte! Již to aktualizuji!"
+    },
+    "upgradeServer": {
+      "helpDescription": "Tento příkaz umožňuje pozvat Member Counter Premium, abyste mohli tento příkaz využít, musíte míst premium účet, který získáte podporou minimálně 5 USD: `{PREFIX}donate`.",
+      "success": "Hotovo! Dalším krokem je pozvání premium bota:\n{BOT_LINK}",
+      "errorCannotUpgrade": "Server nelze vylepšit, protože již má premiovou verzi.",
+      "noServerUpgradesAvailable": "Nemůžete provést další vylepšení serveru, protože nemáte žádné vylepšení k dispozici, můžete zkontrolovat kolik vylepšení zbývá pomocí `{PREFIX}profile` nebo jich získat více pomocí `{PREFIX}donate`"
+    },
+    "info": {
+      "helpDescription": "Seznam užitečných odkazů",
+      "embedReply": {
+        "description": "[Přidej si mě na tvůj server]({BOT_INVITE_URL})\n[Server pro podporu]({BOT_SERVER_URL})\n[GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Podpořit]({DONATION_URL})"
+      }
+    },
+    "lang": {
+      "helpDescription": "Změní jazyk bota pro server, pro změnu musíte mít oprávnění Administrátor.",
+      "success": "Jazyk úspěšně změnen.",
+      "errorNotFound": "Seznam dostupných jazyků:"
+    },
+    "donate": {
+      "helpDescription": "Zobrazí nejvyšší dary.",
+      "embedReply": {
+        "title": "Užíváte si tohoto bota? Podpoř mě prosím! (Klikni zde)",
+        "fields": []
+      },
+      "misc": {
+        "emptyNote": "Prázdná poznámka"
+      },
+      "errorExchangeFetch": "Při pokusu o načtení směnných kurzů došlo k chybě"
+    },
+    "profile": {
+      "helpDescription": "Zobrazuje související informace mezi vámi a botem",
+      "badges": "Odznaky",
+      "serverUpgradesAvailable": "Zbývající vylepšení serveru",
+      "removeDataConfirmation": ":warning: **Tato akce odstraní všechna date, vaše odznaky a vylepšení serveru budou navždy ztraceny, opravdu chcete pokračovat? (Ignorujte pro zrušení)**",
+      "removeDataSuccess": "Vaše data byly úspěšně smazány"
+    },
+    "counts": {
+      "helpDescription": "Zobrazí některé počítadla",
+      "members": "Členové:",
+      "onlineMembers": "Online uživatelé:",
+      "offlineMembers": "Offline uživatelé:",
+      "bots": "Boti:",
+      "connectedUsers": "Připojených uživatelů:",
+      "channels": "Kanály:",
+      "roles": "Role:"
+    },
+    "preview": {
+      "helpDescription": "Zobrazuje náhled, jak bude počítadlo nebo různé počítadla vypadat v kanálu\n\n**Použití** ```{PREFIX}preview [content]```\n**Příklad** ```{PREFIX}preview {members} Uživatelů```",
+      "helpImage": "https://i.imgur.com/VzdqzT3.png",
+      "channelName": "Náhled názvu kanálu",
+      "channelTopic": "Náhled názvu kanálu"
+    },
+    "setup": {
+      "helpDescription": "Vytvoří uzamčené kanály s počítadly\n**Příklad:**```{PREFIX}setup```",
+      "creatingCounts": "Creating counters...",
+      "createdCounts": "Complete",
+      "categoryName": {
+        "countTemplate": "📊 Server Stats 📊",
+        "creatingCategory": "{LOADING} Creating category\n",
+        "createdCategory": "{CHECK_MARK} Category created\n"
+      },
+      "memberCounter": {
+        "countTemplate": "{members} uživatelé/ů",
+        "creatingmemberCounter": "{LOADING} Creating member counter\n",
+        "createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+      },
+      "boostingCounter": {
+        "countTemplate": "{nitro-boosters} boostů",
+        "creatingboostingCounter": "{LOADING} Creating boosting counter\n",
+        "createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+      },
+      "rolesCounter": {
+        "countTemplate": "{roles} role/í",
+        "creatingrolesCounter": "{LOADING} Creating roles counter\n",
+        "createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+      },
+      "channelsCounter": {
+        "countTemplate": "{channels} kanály/ů",
+        "creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+        "createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+      }
+    }
+  },
+  "functions": {
+    "commandHandler": {
+      "noDm": "Tento příkaz nelze použít v DM kanálu"
+    },
+    "getCounts": {
+      "onlyPremium": "Pouze pro Premium",
+      "unknownCounter": "Neznámý počítadlo",
+      "disabled": "Počítadlo zablokováno",
+      "noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
+      "invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu"
+    },
+    "paginator": {
+      "pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+      "jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+      "errorPageLengthExceeded": "The page to go to must be less than or equal to {TOTAL_PAGES}. Please try again.",
+      "errorNegativeInput": "The page to go to can't be negative. Please try again."
+    }
+  },
+  "common": {
+    "error": "Chyba",
+    "errorDb": "Chyba databáze, zkuste to prosím znovu",
+    "errorDiscordAPI": "Discord API",
+    "errorUnknown": "Něco se pokazilo, zkuste to prosím znovu.",
+    "errorNoAdmin": "Pouze uživatelé s administrativním oprávnění můžou na tomto serveru využít tento příkaz.",
+    "noTopicCounterEnabled": "Vypadá to, že jste doposud neaktivovali počítadlo, prosím podívejte se na `{PREFIX}help topicCounter`"
+  }
 }
