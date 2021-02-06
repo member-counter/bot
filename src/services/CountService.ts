@@ -195,7 +195,7 @@ class CountService {
 						return (
 							CountService.cache.get(
 								this.counterToKey(counterName, resource, formattingSettingsRaw)
-							)?.value || Constants.CounterResult.ERROR
+							)?.value ?? Constants.CounterResult.ERROR
 						);
 					});
 
@@ -243,7 +243,7 @@ class CountService {
 					result =
 						CountService.cache.get(
 							this.counterToKey(counterName, resource, formattingSettingsRaw)
-						)?.value ||
+						)?.value ??
 						this.tmpCache.get(
 							this.counterToKey(counterName, resource, formattingSettingsRaw)
 						);
