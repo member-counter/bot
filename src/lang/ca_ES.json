@@ -233,7 +233,7 @@
 			"success": "Fet! Potser que hagis d'esperar uns segons per poder veure els nous canvis"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Dona format a nombres i altres cosas depenent de la regió especificada \n**Ús**\n```{PREFIX}locale [locale/disable]```\n**Exemples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -253,16 +253,16 @@
 				"headerText": "Configuració del servidor:",
 				"prefixText": "Prefix:",
 				"langText": "Llenguatge:",
-				"localeText": "Locale:",
-				"shortNumberText": "Short number (compact notation):",
+				"localeText": "Regió:",
+				"shortNumberText": "Nombres abreujats (notació compacta):",
 				"premiumText": "Premium:",
 				"premiumNoTierText": "No",
 				"premiumConfirmedText": "Si",
 				"allowedRolesText": "Els rols següents tenen permés utilitzar comands administratius:",
 				"countersText": "Comptadors:",
 				"customNumbersText": "Dígits personalitzats:",
-				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
-				"guildLogsText": "Latest logs:"
+				"warningNoPermsText": "\\⚠️ = El bot no pot seguir actualitzant aquest canal degut a la falta de permisos (Has de permitir al bot al menys a: Administrar el canal, Veure el canal o Llegir missatges i Conectar)",
+				"guildLogsText": "Darrers registres:"
 			}
 		},
 		"resetSettings": {
@@ -307,8 +307,8 @@
 			"helpDescription": "Mostra informació relacionada entre tu i el bot",
 			"badges": "Insígnies",
 			"serverUpgradesAvailable": "Millores de servidor restants",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"removeDataConfirmation": ":warning: **Aquesta acció borrarà totes les teves dades, les teves insignies i millores de servidor es perdran per sempre ¿Estas segur de voler continuar? (Ignora per cancelar)**",
+			"removeDataSuccess": "Les teves dades han estat borrades correctament"
 		},
 		"counts": {
 			"helpDescription": "Mostra alguns comptadors",
@@ -321,13 +321,13 @@
 			"roles": "Rols:"
 		},
 		"preview": {
-			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
+			"helpDescription": "Mostra una vista prèvia de com es veuran els comtpadors de un canal\n\n**Ús**```{PREFIX}preview [content]```\n**Exemple**```{PREFIX}preview {members} Members```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Vista previa del nombre del canal",
 			"channelTopic": "Vista previa del tema del canal"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
+			"helpDescription": "Crea diversos canals de veu bloquejats amb contadors al seu nom\n**Exemple**```{PREFIX}setup```",
 			"categoryName": "📊 Server Stats 📊",
 			"memberCounter": "{members} Members",
 			"boostingCounter": "{nitro-boosters} Boosting",
