@@ -32,7 +32,7 @@
 		"dotenv": "^8.2.0",
 		"dotenv-parse-variables": "^0.2.3",
 		"eris": "^0.13.3",
-		"eris-collector": "github:eduardozgz/eris-collector#master",
+		"eris-collector": "github:eduardozgz/eris-collector",
 		"erlpack": "^0.1.3",
 		"gamedig": "^2.0.23",
 		"git-rev-sync": "^3.0.1",
