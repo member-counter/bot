@@ -337,23 +337,23 @@
 			},
 			"memberCounter": {
 				"countTemplate": "{members} Miembros",
-				"creatingmemberCounter": "{LOADING} Creating member counter\n",
-				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+				"creatingmemberCounter": "{LOADING} Creando contador de miembros\n",
+				"createdmemberCounter": "{CHECK_MARK} Contador de miembros creado\n"
 			},
 			"boostingCounter": {
 				"countTemplate": "{nitro-boosters} Boosteando",
-				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
-				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+				"creatingboostingCounter": "{LOADING} Creando contadores de boosters\n",
+				"createdboostingCounter": "{CHECK_MARK} Contador de boosters creado\n"
 			},
 			"rolesCounter": {
 				"countTemplate": "{roles} Roles",
-				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
-				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+				"creatingrolesCounter": "{LOADING} Creando contador de roles\n",
+				"createdrolesCounter": "{CHECK_MARK} Contador de roles creado"
 			},
 			"channelsCounter": {
 				"countTemplate": "{channels} Canales",
-				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
-				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+				"creatingchannelsCounter": "{LOADING} Creando contador de canales\n",
+				"createdchannelsCounter": "{CHECK_MARK} Contador de canales creado\n"
 			}
 		}
 	},
@@ -369,8 +369,8 @@
 			"invalidChannelLength": "Nombre de canal invalido, por favor, vuelve a establecerlo"
 		},
 		"paginator": {
-			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"pageCounter": "Página {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "¿A qué página te gustaría ir? Escribe `cancel` o `0` para cancelarlo. Tienes 15 segundos para responder.",
 			"errorPageLengthExceeded": "The page to go to must be less than or equal to {TOTAL_PAGES}. Please try again.",
 			"errorNegativeInput": "The page to go to can't be negative. Please try again."
 		}
