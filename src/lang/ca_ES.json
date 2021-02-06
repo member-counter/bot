@@ -337,23 +337,23 @@
 			},
 			"memberCounter": {
 				"countTemplate": "{members} Membres",
-				"creatingmemberCounter": "{LOADING} Creating member counter\n",
-				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+				"creatingmemberCounter": "{LOADING} Creant comptador de membres\n",
+				"createdmemberCounter": "{CHECK_MARK} Comptador de membres creat\n"
 			},
 			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Boosting",
-				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
-				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+				"countTemplate": "{nitro-boosters} Boosteant",
+				"creatingboostingCounter": "{LOADING} Creant comptador de boosters\n",
+				"createdboostingCounter": "{CHECK_MARK} Comptador de boosters creat\n"
 			},
 			"rolesCounter": {
-				"countTemplate": "{roles} Roles",
-				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
-				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+				"countTemplate": "{roles} Rols",
+				"creatingrolesCounter": "{LOADING} Creant comptador de rols\n",
+				"createdrolesCounter": "{CHECK_MARK} Comptador de rols creat\n"
 			},
 			"channelsCounter": {
-				"countTemplate": "{channels} Channels",
-				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
-				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+				"countTemplate": "{channels} Canals",
+				"creatingchannelsCounter": "{LOADING} Creant comptador de canals\n",
+				"createdchannelsCounter": "{CHECK_MARK} Comptador de canals creat\n"
 			}
 		}
 	},
@@ -364,13 +364,13 @@
 		"getCounts": {
 			"onlyPremium": "Només per servidors premium",
 			"unknownCounter": "Comptador desconegut",
-			"disabled": "Counter Disabled",
+			"disabled": "Comptador deshabilitat",
 			"noBanPerms": "Necessit permisos de ban per mostrar això",
 			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo"
 		},
 		"paginator": {
-			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"pageCounter": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "A quina pàgina t'agradaria anar? Escriu `cancel` o `0` para cancelar-lo. Tens 15 segons per respondre.",
 			"errorPageLengthExceeded": "The page to go to must be less than or equal to {TOTAL_PAGES}. Please try again.",
 			"errorNegativeInput": "The page to go to can't be negative. Please try again."
 		}
