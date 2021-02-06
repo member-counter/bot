@@ -1,4 +1,4 @@
-import { GuildChannel } from "eris";
+import { GuildChannel, Constants } from "eris";
 import Bot from "../bot";
 
 const botHasPermsToEdit = (channel: GuildChannel): boolean => {
@@ -7,12 +7,16 @@ const botHasPermsToEdit = (channel: GuildChannel): boolean => {
 	const botCanManage = botPermsInChannel.has("manageChannels");
 
 	const botCanRead =
-		channel.type === 0 || channel.type === 4 || channel.type === 5
+		channel.type === Constants.ChannelTypes.GUILD_TEXT ||
+		channel.type === Constants.ChannelTypes.GUILD_CATEGORY ||
+		channel.type === Constants.ChannelTypes.GUILD_NEWS
 			? botPermsInChannel.has("readMessages")
 			: true;
 
 	const botCanConnect =
-		channel.type === 2 ? botPermsInChannel.has("voiceConnect") : true;
+		channel.type === Constants.ChannelTypes.GUILD_VOICE
+			? botPermsInChannel.has("voiceConnect")
+			: true;
 
 	return botCanManage && botCanRead && botCanConnect;
 };
