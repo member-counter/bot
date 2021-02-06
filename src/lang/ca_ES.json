@@ -328,11 +328,11 @@
 		},
 		"setup": {
 			"helpDescription": "Crea diversos canals de veu bloquejats amb contadors al seu nom\n**Exemple**```{PREFIX}setup```",
-			"categoryName": "📊 Server Stats 📊",
-			"memberCounter": "{members} Members",
-			"boostingCounter": "{nitro-boosters} Boosting",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Channels"
+			"categoryName": "📊 Estadístiques del servidor 📊",
+			"memberCounter": "{members} Membres",
+			"boostingCounter": "{nitro-boosters} Boosteant",
+			"rolesCounter": "{roles} Rols",
+			"channelsCounter": "{channels} Canals"
 		}
 	},
 	"functions": {
@@ -345,7 +345,7 @@
 			"disabled": "Comptador deshabilitat",
 			"noBanPerms": "Necessit permisos de ban per mostrar això",
 			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "No està disponible, per favor esperi"
 		}
 	},
 	"common": {
