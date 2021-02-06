@@ -1,6 +1,6 @@
 import MemberCounterCommand from "../typings/MemberCounterCommand";
 import CountService from "../services/CountService";
-import { GuildChannel, PrivateChannel, TextChannel } from "eris";
+import { GuildChannel, PrivateChannel } from "eris";
 import GuildService from "../services/GuildService";
 import Bot from "../bot";
 import emojis from "../utils/emojis";
@@ -8,7 +8,7 @@ const setup: MemberCounterCommand = {
 	aliases: ["setup"],
 	denyDm: true,
 	onlyAdmin: true,
-	run: async ({ client, message, languagePack }) => {
+	run: async ({ message, languagePack }) => {
 		const { channel, content } = message;
 		const { loading, check_mark } = emojis;
 		let channelsToCreate = [
