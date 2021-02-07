@@ -331,22 +331,22 @@
 				"createdCategory": "{CHECK_MARK} Categoria creada\n"
 			},
 			"memberCounter": {
-				"countTemplate": "{members} Membres",
+				"countTemplate": "Members Count: {members}",
 				"creatingmemberCounter": "{LOADING} Creant comptador de membres\n",
 				"createdmemberCounter": "{CHECK_MARK} Comptador de membres creat\n"
 			},
 			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Boosteant",
+				"countTemplate": "Boosting Count: {nitro-boosters}",
 				"creatingboostingCounter": "{LOADING} Creant comptador de boosters\n",
 				"createdboostingCounter": "{CHECK_MARK} Comptador de boosters creat\n"
 			},
 			"rolesCounter": {
-				"countTemplate": "{roles} Rols",
+				"countTemplate": "Roles Count: {roles}",
 				"creatingrolesCounter": "{LOADING} Creant comptador de rols\n",
 				"createdrolesCounter": "{CHECK_MARK} Comptador de rols creat\n"
 			},
 			"channelsCounter": {
-				"countTemplate": "{channels} Canals",
+				"countTemplate": "Channels Count: {channels}",
 				"creatingchannelsCounter": "{LOADING} Creant comptador de canals\n",
 				"createdchannelsCounter": "{CHECK_MARK} Comptador de canals creat\n"
 			}
