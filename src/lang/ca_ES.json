@@ -331,7 +331,7 @@
 				"createdCategory": "{CHECK_MARK} Categoria creada\n"
 			},
 			"memberCounter": {
-				"countTemplate": "Members Count: {members}",
+				"countTemplate": "Member Count: {members}",
 				"creatingmemberCounter": "{LOADING} Creant comptador de membres\n",
 				"createdmemberCounter": "{CHECK_MARK} Comptador de membres creat\n"
 			},
@@ -341,12 +341,12 @@
 				"createdboostingCounter": "{CHECK_MARK} Comptador de boosters creat\n"
 			},
 			"rolesCounter": {
-				"countTemplate": "Roles Count: {roles}",
+				"countTemplate": "Role Count: {roles}",
 				"creatingrolesCounter": "{LOADING} Creant comptador de rols\n",
 				"createdrolesCounter": "{CHECK_MARK} Comptador de rols creat\n"
 			},
 			"channelsCounter": {
-				"countTemplate": "Channels Count: {channels}",
+				"countTemplate": "Channel Count: {channels}",
 				"creatingchannelsCounter": "{LOADING} Creant comptador de canals\n",
 				"createdchannelsCounter": "{CHECK_MARK} Comptador de canals creat\n"
 			}
