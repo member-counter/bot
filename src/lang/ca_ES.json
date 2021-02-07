@@ -216,7 +216,7 @@
 			"errorNoContent": "Has de proporcionar algun contingut"
 		},
 		"setDigit": {
-			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\n**Usage**```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\n**Examples**```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "Personalitza els dígits que seràn mostrats, el primer paràmetre ha de ser el que vols canviar, el segon paràmetre pot ser el que sigui, com un emoji o un nombre normal, pots personalitzar diversos nombres alhora separant els arguments amb comes (`, `)\nSi el primer pàrametre és \"reset\", els nombres seràn reestablerts als predeterminats.\n\nÚs `` `{PREFIX} setDigit reset\n{PREFIX} setDigit [nombre] [nombre personalitzat] `` `\nExemple `` `{PREFIX} setDigit 3 mar\n{PREFIX} setDigit 3: emoji3:, 4: emoji4: `` `",
 			"success": "Dígits personalitzats correctament.",
 			"resetSuccess": "Tots els dígits han estat reestablerts.",
 			"errorMissingParams": "Falten paràmetres, si us plau, consulta `{PREFIX}help setDigit`."
@@ -232,7 +232,7 @@
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Changes the bot prefix.\n\n**Usage**```{PREFIX}prefix [new prefix]```",
+			"helpDescription": "Canvia el prefix del bot.\n\nÚs```{PREFIX}prefix [nuevo prefijo]```",
 			"success": "Prefix canviat a: `{NEW_PREFIX}`",
 			"noPrefixProvided": "Has de proporcionar un prefix"
 		},
