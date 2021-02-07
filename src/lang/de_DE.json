@@ -127,13 +127,8 @@
 				},
 				{
 					"key": "http",
-					"name": "http:url",
-					"description": "Dies zeigt den zurückgegebenen Betrag an, der durch die Antwort auf die angegebene Ressource angegeben wird, der Bot führt eine GET-Anforderung aus und der Server **muss** mit dem Statuscode `200` und dem `content-type: text/plain` antworten. Beispiel: `{http: https: //member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "Wie `{http}` aber der bot wird nichts analysieren, nützliche um Namen statt Zahlen anzuzeigen"
+					"name": "http:options",
+					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
 				},
 				{
 					"key": "youtubeSubscribers",
