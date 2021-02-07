@@ -1,5 +1,4 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 import Eris from "eris";
 
 const MembersConnectedCounter: Counter = {
@@ -11,7 +10,9 @@ const MembersConnectedCounter: Counter = {
 		const targetChannels = resource.length ? resource.split(",") : [];
 
 		return guild.channels
-			.filter((channel) => channel.type === 2)
+			.filter(
+				(channel) => channel.type === Eris.Constants.ChannelTypes.GUILD_VOICE
+			)
 			.reduce((prev, current: Eris.VoiceChannel) => {
 				if (targetChannels.length > 0 && !targetChannels.includes(current.id)) {
 					return prev;
