@@ -216,7 +216,7 @@
 			"errorNoContent": "Musíte poskytnout nějaký obsah"
 		},
 		"setDigit": {
-			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\n**Usage**```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\n**Examples**```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "Přizpůsobí čísla, která se budou zobrazovat, argument čísla musí být normální číslo, druhý argument může být cokoli, například emoji nebo normální číslo, můžete přizpůsobit více čísel najednou oddělením argumentů čárkami (`,`)\nPokud je prvním argumentem slovo „reset“, budou čísla obnovena na výchozí.\n\n**Použítí** ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [vlastní číslo]```\n**Příklad** ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Číslice úspěšně přizpůsobené.",
 			"resetSuccess": "Čísla byla obnovena na výchozí hodnotu.",
 			"errorMissingParams": "Chybějící parametry, prosím podívejte se na `{PREFIX}help setDigit`."
@@ -232,7 +232,7 @@
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Changes the bot prefix.\n\n**Usage**```{PREFIX}prefix [new prefix]```",
+			"helpDescription": "Změnit prefix bota\n\nPoužití```{PREFIX}prefix [nový prefix]```",
 			"success": "Prefix změněn na: `{NEW_PREFIX}`",
 			"noPrefixProvided": "Musíte zadat prefix"
 		},
