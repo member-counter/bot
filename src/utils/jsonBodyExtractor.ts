@@ -18,7 +18,7 @@ function jsonBodyExtractor(body = "", path = "") {
 			matched = matchGroups.propName;
 			pathLeft = pathLeft.slice(matched.length);
 
-			if (!cwo.hasOwnProperty(matched))
+			if (!Object.prototype.hasOwnProperty.call(cwo, matched))
 				throw new Error(`"${matched}" doesn't exists in ${lastMatch}!`);
 		} else if (
 			matchGroups.propNameDoubleQuotes ??
@@ -29,7 +29,7 @@ function jsonBodyExtractor(body = "", path = "") {
 				matchGroups.propNameDoubleQuotes ?? matchGroups.propNameSingleQuotes;
 			pathLeft = pathLeft.slice(matched.length + 4);
 
-			if (!cwo.hasOwnProperty(matched))
+			if (!Object.prototype.hasOwnProperty.call(cwo, matched))
 				throw new Error(`"${matched}" doesn't exists in ${lastMatch}!`);
 		} else if (matchGroups.indexSelector) {
 			// if [bar]
