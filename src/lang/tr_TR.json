@@ -331,7 +331,7 @@
 				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu\n"
 			},
 			"memberCounter": {
-				"countTemplate": "Members Count: {members}",
+				"countTemplate": "Member Count: {members}",
 				"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
 				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
 			},
@@ -341,12 +341,12 @@
 				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
 			},
 			"rolesCounter": {
-				"countTemplate": "Roles Count: {roles}",
+				"countTemplate": "Role Count: {roles}",
 				"creatingrolesCounter": "{LOADING} Rol sayacı oluşturuluyor\n",
 				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
 			},
 			"channelsCounter": {
-				"countTemplate": "Channels Count: {channels}",
+				"countTemplate": "Channel Count: {channels}",
 				"creatingchannelsCounter": "{LOADING} Kanal sayacı oluşturuluyor\n",
 				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
 			}
