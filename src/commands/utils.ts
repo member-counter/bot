@@ -110,6 +110,51 @@ const preview: MemberCounterCommand = {
 	}
 };
 
-const utilCommands = [lockChannel, editChannel, preview];
+const base64: MemberCounterCommand = {
+	aliases: ["base64"],
+	denyDm: false,
+	onlyAdmin: false,
+	run: async ({ message, languagePack }) => {
+		const { channel, content } = message;
+
+		let action = "";
+		let string = "";
+		let parts = content.trimStart().split(" ");
+		parts.shift(); // remove command (base64 or any alias)
+
+		for (const part of parts) {
+			// if action has been found set yet and part is a whitespace, then
+			if (!action && !part) continue;
+			// else, if there is no action, set the current part to the action
+			else if (!action) action = part;
+			// else, if there is no part (but the action has been found before), recover a whitespace lost in the split
+			else if (!part) string += " ";
+			// else, concatenate the part to the string that will be encoded or decoded
+			else string += part;
+		}
+
+		// remove the space that should be used to separate the action from the string
+		string.slice(0, 1);
+
+		switch (action) {
+			case "encode": {
+				await channel.createMessage(Buffer.from(string).toString("base64"));
+				break;
+			}
+
+			case "decode": {
+				await channel.createMessage(Buffer.from(string, "base64").toString());
+				break;
+			}
+
+			default: {
+				await channel.createMessage(languagePack.commands.base64.invalidAction);
+				break;
+			}
+		}
+	}
+};
+
+const utilCommands = [lockChannel, editChannel, preview, base64];
 
 export default utilCommands;
