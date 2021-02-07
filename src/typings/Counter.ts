@@ -25,6 +25,11 @@ interface executeArgs {
 	 * @description Resource, like an array of role IDs, or an URI
 	 */
 	resource: string;
+
+	/**
+	 * @description The alias that was used
+	 */
+	aliasUsed: string;
 }
 
 interface executeFunction {
