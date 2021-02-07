@@ -331,22 +331,22 @@
 				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu\n"
 			},
 			"memberCounter": {
-				"countTemplate": "{members} Üye",
+				"countTemplate": "Members Count: {members}",
 				"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
 				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
 			},
 			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Boost",
+				"countTemplate": "Boosting Count: {nitro-boosters}",
 				"creatingboostingCounter": "{LOADING} Boost sayacı oluşturuluyor\n",
 				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
 			},
 			"rolesCounter": {
-				"countTemplate": "{roles} Rol",
+				"countTemplate": "Roles Count: {roles}",
 				"creatingrolesCounter": "{LOADING} Rol sayacı oluşturuluyor\n",
 				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
 			},
 			"channelsCounter": {
-				"countTemplate": "{channels} Kanal",
+				"countTemplate": "Channels Count: {channels}",
 				"creatingchannelsCounter": "{LOADING} Kanal sayacı oluşturuluyor\n",
 				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
 			}
