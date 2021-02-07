@@ -110,27 +110,22 @@ const seeSettings: MemberCounterCommand = {
 				);
 			}
 
+			let logsText = "\n" + guildLogsText + "\n```";
 			const latestLogs = await guildSettings.getLatestLogs();
 
 			if (latestLogs.length) {
-				let logs = [];
 				latestLogs.forEach((log) => {
-					let logsText = "\n" + guildLogsText + "\n```";
 					const text = `[${log.timestamp.toISOString()}] ${log.text}\n`;
 					if (logsText.length + text.length < 2000 - 3) logsText += text;
-					if (logsText.length >= 2000 - 3) {
-						logsText += "```";
-						logs.push(logsText);
-					}
 				});
-				logs.forEach((log) => {
-					EmbedPages.push(
-						embedBase({
-							title: `**${headerText}** ${guild.name} \`${guild.id}\``,
-							description: log
-						})
-					);
-				});
+
+				logsText += "```";
+				EmbedPages.push(
+					embedBase({
+						title: `**${headerText}** ${guild.name} \`${guild.id}\``,
+						description: logsText
+					})
+				);
 			}
 			new Paginator(
 				message.channel,
