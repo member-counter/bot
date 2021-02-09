@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "**Другое**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}base64\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
 				]
@@ -127,13 +127,8 @@
 				},
 				{
 					"key": "http",
-					"name": "http:url",
-					"description": "Этот счётчик будет отображать возвращённое значение, данное ответом от специфического ресурса, бот будет выполнять `GET` запрос и сервер **должен** ответить с кодом состояния `200` и с `content-type: text/plain` возвратом, пример: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "Как `{http}`, но бот не будет ничего парсить, удобно для отображения имён вместо чисел"
+					"name": "http:options",
+					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -216,7 +211,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "Если вы пытаетесь настроить счётчик но Discord вам говорит, что вы достигли лимита символов в названии канала/заголовка, вы можете использовать эту команду, чтобы \"игнорировать\" этот лимит.\n**Использование:**```{PREFIX}editChannel [channelId] [content]```\n**Пример:**```{PREFIX}editChannel 701396983843127366 {onlinemembers} из {members} онлайн```",
-			"success": "Сделано! Необходимо немного подождать прежде, чем увидеть новые изменения",
+			"success": "Done! You may have to wait a few minutes to see the new changes",
 			"errorNotFound": "Канал не найден",
 			"errorNoContent": "Вы должны указать необходимые значения"
 		},
@@ -230,7 +225,7 @@
 			"helpDescription": "Эта команда позволяет вам отображать счётчик в более компактной форме.\n\n**Использование:**\n```{PREFIX}shortNumber [enable/disable]```\n**Примеры:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Неправильное действие! Пожалуйста, просмотрите `{PREFIX}help shortNumber`",
-			"success": "Сделано! Необходимо немного подождать прежде, чем увидеть новые изменения"
+			"success": "Done! You may have to wait a few minutes to see the new changes"
 		},
 		"locale": {
 			"helpDescription": "Форматирует числа и др. в соответствии с указанной локализацией \n\n**Использование**\n```{PREFIX}locale [locale/disable]```\n**Примеры**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
@@ -328,11 +323,37 @@
 		},
 		"setup": {
 			"helpDescription": "Предустановка стандартных счётчиков.\nСоздаёт заблокированные (🔒) голосовые каналы сразу вместе с счётчиками.\n**Пример**```{PREFIX}setup```",
-			"categoryName": "📊 Server Stats 📊",
-			"memberCounter": "{members} Участники",
-			"boostingCounter": "{nitro-boosters} Бустеры",
-			"rolesCounter": "{roles} Роли",
-			"channelsCounter": "{channels} Каналы"
+			"creatingCounts": "Creating counters...",
+			"createdCounts": "Complete",
+			"categoryName": {
+				"countTemplate": "📊 Server Stats 📊",
+				"creatingCategory": "{LOADING} Creating category\n",
+				"createdCategory": "{CHECK_MARK} Category created\n"
+			},
+			"memberCounter": {
+				"countTemplate": "{members} Участники",
+				"creatingmemberCounter": "{LOADING} Creating member counter\n",
+				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+			},
+			"boostingCounter": {
+				"countTemplate": "{nitro-boosters} Бустеры",
+				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
+				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+			},
+			"rolesCounter": {
+				"countTemplate": "{roles} Роли",
+				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
+				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+			},
+			"channelsCounter": {
+				"countTemplate": "{channels} Каналы",
+				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+			}
+		},
+		"base64": {
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		}
 	},
 	"functions": {
@@ -346,6 +367,12 @@
 			"noBanPerms": "Мне нужно право банить, чтобы показать это",
 			"invalidChannelLength": "Достигнут лимит символов в названии канала, пожалуйста, настройте счётчик заново",
 			"notAvailable": "Не доступно, пожалуйста подождите"
+		},
+		"paginator": {
+			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
+			"errorNegativeInput": "The page number can't be negative. Please try again."
 		}
 	},
 	"common": {
