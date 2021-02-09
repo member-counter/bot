@@ -1,25 +1,27 @@
-import MemberCounterCommand from '../typings/MemberCounterCommand';
+import MemberCounterCommand from "../typings/MemberCounterCommand";
 import Eris, {
 	GuildChannel,
 	VoiceChannel,
 	CategoryChannel,
 	TextChannel,
-	NewsChannel,
-} from 'eris';
-import GuildService from '../services/GuildService';
+	NewsChannel
+} from "eris";
+import embedBase from "../utils/embedBase";
+import GuildService from "../services/GuildService";
 import {
 	loadLanguagePack,
-	availableLanguagePacks,
-} from '../utils/languagePack';
-import botHasPermsToEdit from '../utils/botHasPermsToEdit';
-import UserError from '../utils/UserError';
-import getEnv from '../utils/getEnv';
-import Bot from '../bot';
+	availableLanguagePacks
+} from "../utils/languagePack";
+import botHasPermsToEdit from "../utils/botHasPermsToEdit";
+import UserError from "../utils/UserError";
+import getEnv from "../utils/getEnv";
+import Bot from "../bot";
+import Paginator from "../utils/paginator";
 
 const { PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 
 const seeSettings: MemberCounterCommand = {
-	aliases: ['seeSettings'],
+	aliases: ["seeSettings"],
 	denyDm: true,
 	onlyAdmin: false,
 	run: async ({ message, languagePack }) => {
@@ -40,7 +42,7 @@ const seeSettings: MemberCounterCommand = {
 				countersText,
 				customNumbersText,
 				warningNoPermsText,
-				guildLogsText,
+				guildLogsText
 			} = languagePack.commands.seeSettings.settingsMessage;
 
 			const guildSettings = await GuildService.init(guild.id);
@@ -53,69 +55,40 @@ const seeSettings: MemberCounterCommand = {
 				shortNumber,
 				allowedRoles,
 				counters,
-				digits,
+				digits
 			} = guildSettings;
-
-			const messagesToSend: string[] = [''];
-			const appendContent = (content: string) => {
-				const lastMessagePart =
-					messagesToSend[messagesToSend.length - 1];
-				if ((lastMessagePart + content).length > 2000) {
-					messagesToSend.push(content);
-				} else {
-					messagesToSend[messagesToSend.length - 1] += content;
-				}
-			};
-
-			// Build Message
-			appendContent(`**${headerText}** ${guild.name} \`${guild.id}\`\n`);
-			appendContent(
-				`${premiumText} ${
-					premium ? premiumConfirmedText : premiumNoTierText
-				}\n`,
-			);
-			appendContent(`${prefixText} \`${prefix}\`\n`);
-			appendContent(`${langText} \`${language}\`\n`);
-			appendContent(`${localeText} \`${locale}\`\n`);
-			appendContent(
-				`${shortNumberText} \`${
-					shortNumber > -1 ? premiumConfirmedText : premiumNoTierText
-				}\`\n`,
-			);
-
-			if (allowedRoles.length) {
-				appendContent(
-					`\n${allowedRolesText} ${allowedRoles
-						.map((role) => `<@&${role}>`)
-						.join(' ')}`,
+			const EmbedPages = [];
+			for (let i = 0; i < 1; i++) {
+				EmbedPages.push(
+					embedBase({
+						title: `**${headerText}** ${guild.name} \`${guild.id}\``,
+						description: `${premiumText} ${
+							premium ? premiumConfirmedText : premiumNoTierText
+						}\n${prefixText} \`${prefix}\`\n${langText} \`${language}\`\n${localeText} \`${locale}\`\n${shortNumberText} \`${
+							shortNumber > -1 ? premiumConfirmedText : premiumNoTierText
+						}\`\n${
+							allowedRoles.length
+								? "\n" +
+								  allowedRolesText +
+								  " " +
+								  allowedRoles.map((role) => `<@&${role}>`).join(" ")
+								: ""
+						}\n${customNumbersText} ${digits.join(" ")}`
+					})
 				);
 			}
 
-			appendContent(`\n${customNumbersText} ${digits.join(' ')}\n`);
-
+			let string = "";
 			if (counters.size) {
-				appendContent(`\n\n${countersText}\n`);
+				string += `\n\n${countersText}\n`;
 				for (const [counter, content] of counters) {
 					const discordChannel = guild.channels.get(counter);
 					const { name, type } = discordChannel;
-					const icon = [
-						'\\#️⃣',
-						' ',
-						'\\🔊',
-						' ',
-						'\\📚',
-						'\\📢',
-						' ',
-					];
-					appendContent(
-						`${
-							botHasPermsToEdit(discordChannel)
-								? '     '
-								: ' \\⚠️ '
-						}- ${
-							icon[type]
-						} ${name} \`${counter}\`: \`\`\`${content}\`\`\`\n`,
-					);
+					const icon = ["\\#️⃣", " ", "\\🔊", " ", "\\📚", "\\📢", " "];
+
+					string += `${
+						botHasPermsToEdit(discordChannel) ? "     " : " \\⚠️ "
+					}- ${icon[type]} ${name} \`${counter}\`: \`\`\`${content}\`\`\`\n`;
 				}
 			}
 
@@ -126,35 +99,46 @@ const seeSettings: MemberCounterCommand = {
 					return !botHasPermsToEdit(discordChannel);
 				}).length > 0
 			) {
-				appendContent(`\n${warningNoPermsText}`);
+				string += `\n${warningNoPermsText}`;
+			}
+			if (string.length > 0) {
+				EmbedPages.push(
+					embedBase({
+						title: `**${headerText}** ${guild.name} \`${guild.id}\``,
+						description: string
+					})
+				);
 			}
 
-			let logsText = '\n' + guildLogsText + '\n```';
+			let logsText = "\n" + guildLogsText + "\n```";
 			const latestLogs = await guildSettings.getLatestLogs();
-			const latestLogsToAppend = '';
 
 			if (latestLogs.length) {
 				latestLogs.forEach((log) => {
-					const text = `[${log.timestamp.toISOString()}] ${
-						log.text
-					}\n`;
-					if (logsText.length + text.length < 2000 - 3)
-						logsText += text;
+					const text = `[${log.timestamp.toISOString()}] ${log.text}\n`;
+					if (logsText.length + text.length < 2000 - 3) logsText += text;
 				});
 
-				logsText += '```';
-				appendContent(logsText);
+				logsText += "```";
+				EmbedPages.push(
+					embedBase({
+						title: `**${headerText}** ${guild.name} \`${guild.id}\``,
+						description: logsText
+					})
+				);
 			}
-
-			for (const message of messagesToSend) {
-				await channel.createMessage(message);
-			}
+			new Paginator(
+				message.channel,
+				message.author.id,
+				EmbedPages,
+				languagePack
+			).displayPage(0);
 		}
-	},
+	}
 };
 
 const resetSettings: MemberCounterCommand = {
-	aliases: ['resetSettings', 'restoreSettings'],
+	aliases: ["resetSettings", "restoreSettings"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
@@ -180,25 +164,20 @@ const resetSettings: MemberCounterCommand = {
 						channel instanceof NewsChannel
 					) {
 						channel
-							.edit(
-								{ topic: '' },
-								`Reset requested by <@${author.id}>`,
-							)
+							.edit({ topic: "" }, `Reset requested by <@${author.id}>`)
 							.catch(console.error);
 					}
 				}
 			});
 
 			await guildSettings.resetSettings();
-			await channel.createMessage(
-				languagePack.commands.resetSettings.done,
-			);
+			await channel.createMessage(languagePack.commands.resetSettings.done);
 		}
-	},
+	}
 };
 
 const lang: MemberCounterCommand = {
-	aliases: ['lang', 'language'],
+	aliases: ["lang", "language"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
@@ -218,26 +197,21 @@ const lang: MemberCounterCommand = {
 				let { success } = languagePack.commands.lang;
 				await channel.createMessage(success);
 			} else {
-				errorNotFound += '\n```fix\n';
+				errorNotFound += "\n```fix\n";
 				availableLanguages.forEach((availableLanguageCode) => {
-					const languagePack = loadLanguagePack(
-						availableLanguageCode,
-					);
+					const languagePack = loadLanguagePack(availableLanguageCode);
 					errorNotFound +=
-						availableLanguageCode +
-						' ➡ ' +
-						languagePack.langName +
-						'\n';
+						availableLanguageCode + " ➡ " + languagePack.langName + "\n";
 				});
-				errorNotFound += '```';
+				errorNotFound += "```";
 				await channel.createMessage(errorNotFound);
 			}
 		}
-	},
+	}
 };
 
 const prefix: MemberCounterCommand = {
-	aliases: ['prefix'],
+	aliases: ["prefix"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
@@ -251,21 +225,19 @@ const prefix: MemberCounterCommand = {
 				await guildSettings.setPrefix(newPrefix);
 				await channel.createMessage(
 					languagePack.commands.prefix.success.replace(
-						'{NEW_PREFIX}',
-						guildSettings.prefix,
-					),
+						"{NEW_PREFIX}",
+						guildSettings.prefix
+					)
 				);
 			} else {
-				throw new UserError(
-					languagePack.commands.prefix.noPrefixProvided,
-				);
+				throw new UserError(languagePack.commands.prefix.noPrefixProvided);
 			}
 		}
-	},
+	}
 };
 
 const role: MemberCounterCommand = {
-	aliases: ['role', 'roles'],
+	aliases: ["role", "roles"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
@@ -280,30 +252,29 @@ const role: MemberCounterCommand = {
 			let newAllowedRoles: string[] = guildSettings.allowedRoles;
 
 			switch (action) {
-				case 'allow':
+				case "allow":
 					if (/all(\s|$)/g.test(content)) {
 						// that filter is to remove @everyone
 						newAllowedRoles = Array.from(guild.roles, (role) =>
-							role[0].toString(),
+							role[0].toString()
 						);
 						newAllowedRoles = newAllowedRoles.filter(
-							(role) => role !== guild.id,
+							(role) => role !== guild.id
 						);
 					} else {
 						roleMentions.forEach((role) => {
-							if (!newAllowedRoles.includes(role))
-								newAllowedRoles.push(role);
+							if (!newAllowedRoles.includes(role)) newAllowedRoles.push(role);
 						});
 					}
 					break;
 
-				case 'deny':
+				case "deny":
 					if (/all(\s|$)/g.test(content)) {
 						newAllowedRoles = [];
 					} else {
 						roleMentions.forEach((role) => {
 							newAllowedRoles = newAllowedRoles.filter(
-								(allowedRole) => role !== allowedRole,
+								(allowedRole) => role !== allowedRole
 							);
 						});
 					}
@@ -313,8 +284,8 @@ const role: MemberCounterCommand = {
 					throw new UserError(
 						languagePack.commands.role.invalidParams.replace(
 							/\{PREFIX\}/gi,
-							guildSettings.prefix,
-						),
+							guildSettings.prefix
+						)
 					);
 					return;
 			}
@@ -322,20 +293,16 @@ const role: MemberCounterCommand = {
 			// save config
 			if (newAllowedRoles.length > 0 || /all(\s|$)/g.test(content)) {
 				await guildSettings.setAllowedRoles(newAllowedRoles);
-				await channel.createMessage(
-					languagePack.commands.role.rolesUpdated,
-				);
+				await channel.createMessage(languagePack.commands.role.rolesUpdated);
 			} else {
-				throw new UserError(
-					languagePack.commands.role.errorNoRolesToUpdate,
-				);
+				throw new UserError(languagePack.commands.role.errorNoRolesToUpdate);
 			}
 		}
-	},
+	}
 };
 
 const upgradeServer: MemberCounterCommand = {
-	aliases: ['upgradeServer', 'serverupgrade'],
+	aliases: ["upgradeServer", "serverupgrade"],
 	denyDm: true,
 	onlyAdmin: false,
 	run: async ({ message, languagePack }) => {
@@ -343,7 +310,7 @@ const upgradeServer: MemberCounterCommand = {
 		const {
 			success,
 			noServerUpgradesAvailable,
-			errorCannotUpgrade,
+			errorCannotUpgrade
 		} = languagePack.commands.upgradeServer;
 
 		if (channel instanceof GuildChannel) {
@@ -353,23 +320,23 @@ const upgradeServer: MemberCounterCommand = {
 			const upgradeServer = await guildSettings.upgradeServer(author.id);
 
 			switch (upgradeServer) {
-				case 'success': {
+				case "success": {
 					await channel.createMessage(
-						success.replace('{BOT_LINK}', PREMIUM_BOT_INVITE),
+						success.replace("{BOT_LINK}", PREMIUM_BOT_INVITE)
 					);
 					break;
 				}
 
-				case 'alreadyUpgraded': {
+				case "alreadyUpgraded": {
 					throw new UserError(errorCannotUpgrade);
 					break;
 				}
-				case 'noUpgradesAvailable': {
+				case "noUpgradesAvailable": {
 					throw new UserError(
 						noServerUpgradesAvailable.replace(
 							/\{PREFIX\}/gi,
-							guildSettings.prefix,
-						),
+							guildSettings.prefix
+						)
 					);
 					break;
 				}
@@ -377,16 +344,16 @@ const upgradeServer: MemberCounterCommand = {
 					break;
 			}
 		}
-	},
+	}
 };
 
 const setDigit: MemberCounterCommand = {
-	aliases: ['setDigit'],
+	aliases: ["setDigit"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
 		const { channel, content } = message;
-		const userWantsToReset = content.split(/\s+/)[1] === 'reset';
+		const userWantsToReset = content.split(/\s+/)[1] === "reset";
 
 		if (channel instanceof GuildChannel) {
 			const { guild } = channel;
@@ -395,21 +362,21 @@ const setDigit: MemberCounterCommand = {
 			if (userWantsToReset) {
 				await guildSettings.resetDigits();
 				await channel.createMessage(
-					languagePack.commands.setDigit.resetSuccess,
+					languagePack.commands.setDigit.resetSuccess
 				);
 			} else {
 				const digitsToSet = (() => {
-					let [command, ...args]: any = content.split(' ');
+					let [command, ...args]: any = content.split(" ");
 					return args
-						.join(' ')
-						.split(',')
+						.join(" ")
+						.split(",")
 						.map((set) => set.trim())
 						.map((set) => (set = set.split(/\s+/)))
 						.map((set) => {
 							if (!isNaN(parseInt(set[0], 10)) && set[1]) {
 								return {
 									digit: parseInt(set[0], 10),
-									value: set[1],
+									value: set[1]
 								};
 							} else {
 								return null;
@@ -420,29 +387,24 @@ const setDigit: MemberCounterCommand = {
 
 				if (digitsToSet.length > 0) {
 					for (const digitToSet of digitsToSet) {
-						await guildSettings.setDigit(
-							digitToSet.digit,
-							digitToSet.value,
-						);
+						await guildSettings.setDigit(digitToSet.digit, digitToSet.value);
 					}
-					await channel.createMessage(
-						languagePack.commands.setDigit.success,
-					);
+					await channel.createMessage(languagePack.commands.setDigit.success);
 				} else {
 					throw new UserError(
 						languagePack.commands.setDigit.errorMissingParams.replace(
 							/\{PREFIX\}/gi,
-							guildSettings.prefix,
-						),
+							guildSettings.prefix
+						)
 					);
 				}
 			}
 		}
-	},
+	}
 };
 
 const shortNumber: MemberCounterCommand = {
-	aliases: ['shortNumber', 'shortNumbers'],
+	aliases: ["shortNumber", "shortNumbers"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
@@ -453,25 +415,23 @@ const shortNumber: MemberCounterCommand = {
 			const { guild } = channel;
 			const guildSettings = await GuildService.init(guild.id);
 
-			if (action === 'enable') {
+			if (action === "enable") {
 				await guildSettings.setShortNumber(1);
-			} else if (action === 'disable') {
+			} else if (action === "disable") {
 				await guildSettings.setShortNumber(-1);
 			} else {
 				await channel.createMessage(
-					languagePack.commands.shortNumber.errorInvalidAction,
+					languagePack.commands.shortNumber.errorInvalidAction
 				);
 			}
 
-			await channel.createMessage(
-				languagePack.commands.shortNumber.success,
-			);
+			await channel.createMessage(languagePack.commands.shortNumber.success);
 		}
-	},
+	}
 };
 
 const locale: MemberCounterCommand = {
-	aliases: ['locale'],
+	aliases: ["locale"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
@@ -484,15 +444,13 @@ const locale: MemberCounterCommand = {
 
 			await guildSettings.setLocale(locale);
 
-			await channel.createMessage(
-				languagePack.commands.shortNumber.success,
-			);
+			await channel.createMessage(languagePack.commands.shortNumber.success);
 		}
-	},
+	}
 };
 
 const block: MemberCounterCommand = {
-	aliases: ['block', 'unblock'],
+	aliases: ["block", "unblock"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
@@ -512,9 +470,9 @@ const block: MemberCounterCommand = {
 				await guildToPerformAction.unblock();
 			}
 
-			message.addReaction('✅');
+			message.addReaction("✅");
 		}
-	},
+	}
 };
 
 const settingsCommands = [
@@ -527,7 +485,7 @@ const settingsCommands = [
 	setDigit,
 	shortNumber,
 	locale,
-	block,
+	block
 ];
 
 export default settingsCommands;
