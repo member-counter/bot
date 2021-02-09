@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "**Diğer Komutlar**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}base64\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
 				]
@@ -127,13 +127,8 @@
 				},
 				{
 					"key": "http",
-					"name": "http:url",
-					"description": "Bu, belirtilen kaynağa verilen yanıt tarafından verilen iade miktarını gösterecektir, bot bir `GET` isteği gerçekleştirecektir ve sunucu buna `200` durum kodu ve `content-type: text/plain` ile yanıt vermelidir. Örnek: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "`{http}` gibidir, ancak bot hiçbir şeyi ayrıştırmaz, sayılar yerine adları görüntülemek için kullanışlıdır"
+					"name": "http:options",
+					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -216,7 +211,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu komutu bu sınırı \"yok saymak\" için kullanabilirsiniz.\n**Kullanımı**```{PREFIX}editChannel [channelId] [content]```\n**Örnek**```{PREFIX}editChannel 701396983843127366 {members} Üye {onlinemembers} Aktif Üye```",
-			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç saniye beklemeniz gerekebilir",
+			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir",
 			"errorNotFound": "Kanal bulunamadı",
 			"errorNoContent": "Lütfen argüman belirtin"
 		},
@@ -230,7 +225,7 @@
 			"helpDescription": "Bu komut, sayaçlarda kompakt bir biçimde bir sayı göstermenizi sağlar\n\n**Kullanımı**\n```{PREFIX}shortNumber [enable/disable]```\n**Örnekler**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Geçersiz eylem! lütfen `{PREFIX}help shortNumber` komutuna bakın",
-			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç saniye beklemeniz gerekebilir"
+			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir"
 		},
 		"locale": {
 			"helpDescription": "Sayıları ve diğer şeyleri belirtilen yerel ayara göre biçimlendirir\n\n**Kullanımı**\n```{PREFIX}locale [yer/disable]```\n**Örnekler**```{PREFIX}locale en\n{PREFIX}locale tr\n{PREFIX}locale disable```",
@@ -328,11 +323,37 @@
 		},
 		"setup": {
 			"helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\n**Örnek**```{PREFIX}setup```",
-			"categoryName": "📊 Sunucu İstatistikleri 📊",
-			"memberCounter": "{members} Üye",
-			"boostingCounter": "{nitro-boosters} Boost",
-			"rolesCounter": "{roles} Rol",
-			"channelsCounter": "{channels} Kanal"
+			"creatingCounts": "Sayaçlar oluşturuluyor...",
+			"createdCounts": "Tamamlandı",
+			"categoryName": {
+				"countTemplate": "📊 Sunucu İstatistikleri 📊",
+				"creatingCategory": "{LOADING} Kategori oluşturuluyor\n",
+				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu\n"
+			},
+			"memberCounter": {
+				"countTemplate": "{members} Üye",
+				"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
+				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+			},
+			"boostingCounter": {
+				"countTemplate": "{nitro-boosters} Boost",
+				"creatingboostingCounter": "{LOADING} Boost sayacı oluşturuluyor\n",
+				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+			},
+			"rolesCounter": {
+				"countTemplate": "{roles} Rol",
+				"creatingrolesCounter": "{LOADING} Rol sayacı oluşturuluyor\n",
+				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+			},
+			"channelsCounter": {
+				"countTemplate": "{channels} Kanal",
+				"creatingchannelsCounter": "{LOADING} Kanal sayacı oluşturuluyor\n",
+				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+			}
+		},
+		"base64": {
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		}
 	},
 	"functions": {
@@ -346,6 +367,12 @@
 			"noBanPerms": "Bunu göstermek için üyeleri yasaklama yetkisine ihtiyacım var",
 			"invalidChannelLength": "Geçersiz kanal adı uzunluğu, lütfen sayacı tekrar kurun",
 			"notAvailable": "Bu şey mevcut değil, lütfen bekleyin"
+		},
+		"paginator": {
+			"pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
+			"errorNegativeInput": "The page number can't be negative. Please try again."
 		}
 	},
 	"common": {
