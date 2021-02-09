@@ -127,13 +127,8 @@
 				},
 				{
 					"key": "http",
-					"name": "http:url",
-					"description": "Esto mostrara la cantidad respondida por el recurso establecido, el bot realizará una petición `GET` y el servidor **debe** responder con el código de estado `200` y el encabezado `content-type: text/plain` Ejemplo: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "Como `{http}` pero el bot no convertira el resultado a un número, útil para mostrar nombres en vez de números"
+					"name": "http:options",
+					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -188,12 +183,12 @@
 				{
 					"key": "clock",
 					"name": "clock:timeZone",
-					"description": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) or reemplazar `timeZone` cona una zona horaria IANA valida. Ejemplo: `{clock:Europe/Madrid}`"
+					"description": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) o reemplazar `timeZone` con una zona horaria IANA válida. Ejemplo: `{clock:Europe/Madrid}`"
 				},
 				{
 					"key": "nitro-boosters",
 					"name": "nitro-boosters",
-					"description": "Muestra la cantidad total de miembros que esta boosteando este servidor"
+					"description": "Muestra la cantidad total de miembros que está boosteando este servidor"
 				},
 				{
 					"key": "static",
@@ -216,7 +211,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "Si estas intentando establecer un contador pero Discord te dice que has alcanzado el limite de caracteres en el nombre/tema, puedes \"ignorar\" este limite usando este comando\n**Uso**```{PREFIX}editChannel [id del canal] [contenido]```\n**Ejemplo**```{PREFIX}editChannel 701396983843127366 {onlinemembers} de {members} Online```",
-			"success": "Listo! Quizas tengas que esperar unos segundos para ver los nuevos cambios",
+			"success": "Hecho! Deberás esperar unos minutos para ver los nuevos cambios",
 			"errorNotFound": "Canal no encontrado",
 			"errorNoContent": "Debes proporcionar algo de contenido"
 		},
@@ -230,7 +225,7 @@
 			"helpDescription": "Este comando te permite mostrar el número de una cuenta en una forma compactada en contadores\n\n**Uso**\n```{PREFIX}shortNumber [enable/disable]```\n**Ejemplos**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "¡Acción invalida! Por favor, consulta `{PREFIX}help shortNumber`",
-			"success": "Listo! Quizas tengas que esperar unos segundos para ver los nuevos cambios"
+			"success": "Hecho! Deberás esperar unos minutos para ver los nuevos cambios"
 		},
 		"locale": {
 			"helpDescription": "Da formato a numeros y otras cosas dependiendo de la región especificada \n**Uso**\n```{PREFIX}locale [locale/disable]```\n**Ejemplos**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
@@ -261,7 +256,7 @@
 				"allowedRolesText": "Roles que están autorizados a usar comandos administrativos:",
 				"countersText": "Contadores:",
 				"customNumbersText": "Números personalizados:",
-				"warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos (Debes permitir al bot al menos a: Administrar el canal, Ver el canal o leer mensajes, conectar)",
+				"warningNoPermsText": "\\⚠️ = El bot no puede seguir actualizando este canal debido a la falta de permisos (Debes permitir al bot al menos a: Administrar el canal, Ver el canal o Leer mensajes y Conectar)",
 				"guildLogsText": "Últimos registros:"
 			}
 		},
@@ -321,18 +316,40 @@
 			"roles": "Roles:"
 		},
 		"preview": {
-			"helpDescription": "Muestra una vista previa de como se veran los contadores en un canal\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
+			"helpDescription": "Muestra una vista previa de como se veran los contadores en un canal\n\n**Uso**```{PREFIX}preview [content]```\n**Ejemplo**```{PREFIX}preview {members} Members```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Vista previa en el nombre de un canal",
 			"channelTopic": "Vista previa en el tema de un canal"
 		},
 		"setup": {
 			"helpDescription": "Crea varios canales de voz bloqueados con contadores en sus nombres\n**Ejemplo**```{PREFIX}setup```",
-			"categoryName": "📊 Stats del servidor 📊",
-			"memberCounter": "{members} Miembros",
-			"boostingCounter": "{nitro-boosters} Boosteando",
-			"rolesCounter": "{roles} Roles",
-			"channelsCounter": "{channels} Canales"
+			"creatingCounts": "Creando contadores...",
+			"createdCounts": "Completado",
+			"categoryName": {
+				"countTemplate": "📊 Estadísticas del servidor 📊",
+				"creatingCategory": "{LOADING} Creando categoría\n",
+				"createdCategory": "{CHECK_MARK} Categoría creada"
+			},
+			"memberCounter": {
+				"countTemplate": "{members} Miembros",
+				"creatingmemberCounter": "{LOADING} Creando contador de miembros\n",
+				"createdmemberCounter": "{CHECK_MARK} Contador de miembros creado\n"
+			},
+			"boostingCounter": {
+				"countTemplate": "{nitro-boosters} Boosteando",
+				"creatingboostingCounter": "{LOADING} Creando contadores de boosters\n",
+				"createdboostingCounter": "{CHECK_MARK} Contador de boosters creado\n"
+			},
+			"rolesCounter": {
+				"countTemplate": "{roles} Roles",
+				"creatingrolesCounter": "{LOADING} Creando contador de roles\n",
+				"createdrolesCounter": "{CHECK_MARK} Contador de roles creado"
+			},
+			"channelsCounter": {
+				"countTemplate": "{channels} Canales",
+				"creatingchannelsCounter": "{LOADING} Creando contador de canales\n",
+				"createdchannelsCounter": "{CHECK_MARK} Contador de canales creado\n"
+			}
 		}
 	},
 	"functions": {
@@ -345,6 +362,12 @@
 			"disabled": "Contador Deshabilitado",
 			"noBanPerms": "Necesito permisos de ban para mostrar esto",
 			"invalidChannelLength": "Nombre de canal invalido, por favor, vuelve a establecerlo"
+		},
+		"paginator": {
+			"pageCounter": "Página {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "¿A qué página te gustaría ir? Escribe `cancel` o `0` para cancelarlo. Tienes 15 segundos para responder.",
+			"errorPageLengthExceeded": "La página debe ser menor o igual que {TOTAL_PAGES}. Por favor, inténtalo de nuevo.",
+			"errorNegativeInput": "La página no puede ser negativa. Inténtalo de nuevo."
 		}
 	},
 	"common": {

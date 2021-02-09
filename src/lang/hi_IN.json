@@ -127,13 +127,8 @@
 				},
 				{
 					"key": "http",
-					"name": "http:url",
-					"description": "यह निर्दिष्ट संसाधन की प्रतिक्रिया के द्वारा दी गई राशि को प्रदर्शित करेगा, बॉट `GET` अनुरोध करेगा और सर्वर को स्टेटस कोड `200` और `content-type: text/plain` के साथ ** उत्तर देना होगा**। उदाहरण: `{http: https: //member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "जैसे `{http}` लेकिन बॉट कुछ भी पार्स नहीं करेगा, संख्याओं के बजाय नाम प्रदर्शित करने के लिए उपयोगी है"
+					"name": "http:options",
+					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -216,7 +211,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "यदि आप एक काउंटर सेट करने की कोशिश कर रहे हैं, लेकिन डिस्कोर्ड आपको बताता है कि आप नाम / विषय की लंबाई सीमा तक पहुंच गए हैं, तो आप इस सीमा का उपयोग उस सीमा को \"अनदेखा\" करने के लिए कर सकते हैं\n**प्रयोग**```{PREFIX}editChannel [channelId] [content]```\n**उदाहरण**```{PREFIX}editChannel 701396983843127366 {members} मे से {onlinemembers} ऑनलाइन```",
-			"success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है",
+			"success": "कर दी है! नए बदलावों को देखने के लिए आपको कुछ मिनट इंतजार करना पड़ सकता है",
 			"errorNotFound": "चैनल नहीं मिला",
 			"errorNoContent": "आपको कुछ सामग्री प्रदान करनी होगी"
 		},
@@ -230,7 +225,7 @@
 			"helpDescription": "यह कमांड आपको काउंटर्स में संक्षिप्त रूप में एक संख्या दिखाने की अनुमति देता है\n\n**प्रयोग**\n```{PREFIX}shortNumber [enable/disable]```\n**उदाहरण**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "अवैध कार्रवाई! कृपया `{PREFIX}help shortNumber` देखें",
-			"success": "किये गए! नए बदलावों को देखने के लिए आपको कुछ क्षणों का इंतजार करना पड़ सकता है"
+			"success": "कर दी है! नए बदलावों को देखने के लिए आपको कुछ मिनट इंतजार करना पड़ सकता है"
 		},
 		"locale": {
 			"helpDescription": "निर्दिष्ट स्थान पर संख्याओं और अन्य सामानों को प्रारूपित करता है\n\n**प्रयोग**\n```{PREFIX}locale [locale/disable]```\n**उदाहरण**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
@@ -328,11 +323,33 @@
 		},
 		"setup": {
 			"helpDescription": "उन में कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\n**उदाहरण**```{PREFIX}setup```",
-			"categoryName": "📊 सर्वर आँकड़े 📊",
-			"memberCounter": "{members} सदस्य",
-			"boostingCounter": "{nitro-boosters} बढ़ाने",
-			"rolesCounter": "{roles} भूमिकाएँ",
-			"channelsCounter": "{channels} चैनल"
+			"creatingCounts": "Creating counters...",
+			"createdCounts": "पूर्ण",
+			"categoryName": {
+				"countTemplate": "📊 सर्वर आँकड़े 📊",
+				"creatingCategory": "{LOADING} Creating category\n",
+				"createdCategory": "{CHECK_MARK} Category created\n"
+			},
+			"memberCounter": {
+				"countTemplate": "{members} सदस्य",
+				"creatingmemberCounter": "{LOADING} Creating member counter\n",
+				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+			},
+			"boostingCounter": {
+				"countTemplate": "{nitro-boosters} बढ़ाने",
+				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
+				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+			},
+			"rolesCounter": {
+				"countTemplate": "{roles} भूमिकाएँ",
+				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
+				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+			},
+			"channelsCounter": {
+				"countTemplate": "{channels} चैनल",
+				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+			}
 		}
 	},
 	"functions": {
@@ -345,6 +362,12 @@
 			"disabled": "काउंटर अक्षम",
 			"noBanPerms": "मुझे यह दिखाने के लिए प्रतिबंध अनुमति की आवश्यकता है",
 			"invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें"
+		},
+		"paginator": {
+			"pageCounter": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
+			"errorNegativeInput": "The page number can't be negative. Please try again."
 		}
 	},
 	"common": {
