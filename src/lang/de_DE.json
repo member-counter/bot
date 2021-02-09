@@ -323,7 +323,7 @@
 		},
 		"setup": {
 			"helpDescription": "Erstelle einige gesperrte Sprachkanäle mit einigen Zählern\n**Beispiel**```{PREFIX}setup```",
-			"creatingCounts": "Creating counters...",
+			"creatingCounts": "Zähler werden erstellt...",
 			"createdCounts": "Vollständig",
 			"categoryName": {
 				"countTemplate": "📊 Server Statistiken 📊",
@@ -331,29 +331,29 @@
 				"createdCategory": "{CHECK_MARK} Category created\n"
 			},
 			"memberCounter": {
-				"countTemplate": "Member Count: {members}",
+				"countTemplate": "Mitglied Anzahl: {members}",
 				"creatingmemberCounter": "{LOADING} Creating member counter\n",
 				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
 			},
 			"boostingCounter": {
-				"countTemplate": "Boosting Count: {nitro-boosters}",
+				"countTemplate": "Booster Anzahl: {nitro-boosters}",
 				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
 				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
 			},
 			"rolesCounter": {
-				"countTemplate": "Role Count: {roles}",
+				"countTemplate": "Rollen Anzahl: {roles}",
 				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
 				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
 			},
 			"channelsCounter": {
-				"countTemplate": "Channel Count: {channels}",
+				"countTemplate": "Kanal Anzahl: {channels}",
 				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
 				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"helpDescription": "Ein base63 command, mit dem bestimmte Zähler anpassen oder erweiterte Zähler wie `{http}` erstellt werden können\n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "47 / 5000\nUngültige Aktion, es muss `encode` oder `decode` sein"
 		}
 	},
 	"functions": {
@@ -369,9 +369,9 @@
 		},
 		"paginator": {
 			"pageCounter": "Seite {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"jumpPrompt": "Zu welcher Seite willst du springen? Schreibe `cancel` oder `0` um abzubrechen. Du hast 15 Sekunden um zu Antworten.",
+			"errorPageLengthExceeded": "Die Seitenzahl kleiner oder gleich {TOTAL_PAGES} sein. Bitte versuche es erneut.",
+			"errorNegativeInput": "Die Seitenzahl kann nicht negativ sein. Bitte versuche es erneut."
 		}
 	},
 	"common": {
