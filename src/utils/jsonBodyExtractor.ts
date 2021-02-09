@@ -19,7 +19,7 @@ function jsonBodyExtractor(body: Record<string, any>, path: string) {
 			pathLeft = pathLeft.slice(matched.length);
 
 			if (!Object.prototype.hasOwnProperty.call(cwo, matched))
-				throw new Error(`"${matched}" doesn't exists in ${pathTraveled}!`);
+				throw new Error(`"${matched}" doesn't exists in ${pathTraveled}`);
 
 			pathTraveled += (pathTraveled ? "." : "") + `${matched}`;
 		} else if (
@@ -32,7 +32,7 @@ function jsonBodyExtractor(body: Record<string, any>, path: string) {
 			pathLeft = pathLeft.slice(matched.length + 4);
 
 			if (!Object.prototype.hasOwnProperty.call(cwo, matched))
-				throw new Error(`"${matched}" doesn't exists in ${pathTraveled}!`);
+				throw new Error(`"${matched}" doesn't exists in ${pathTraveled}`);
 			
 			pathTraveled += `["${matched}"]`;
 		} else if (matchGroups?.indexSelector) {
@@ -45,7 +45,7 @@ function jsonBodyExtractor(body: Record<string, any>, path: string) {
 				);
 
 			if (!cwo.hasOwnProperty(matched))
-				throw new Error(`"${matched}" doesn't exists in ${pathTraveled}!`);
+				throw new Error(`"${matched}" doesn't exists in ${pathTraveled}`);
 
 			pathTraveled += `[${matched}]`;
 		} else {
