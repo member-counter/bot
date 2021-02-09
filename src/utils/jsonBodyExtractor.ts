@@ -1,7 +1,7 @@
 const propExp = /^(?<propName>[^.[]+)|\["(?<propNameDoubleQuotes>.+)"\]|\['(?<propNameSingleQuotes>.+)'\]|^\[(?<indexSelector>\d)\]/;
 const allowedReturnTypes = ["number", "string"];
 
-function jsonBodyExtractor(body: Record<string, any>, path: string) {
+function jsonBodyExtractor(body: any, path: string) {
 	let cwo = body;
 	let pathLeft = path;
 	let pathTraveled = "";
