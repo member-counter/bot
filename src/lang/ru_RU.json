@@ -211,7 +211,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "Если вы пытаетесь настроить счётчик но Discord вам говорит, что вы достигли лимита символов в названии канала/заголовка, вы можете использовать эту команду, чтобы \"игнорировать\" этот лимит.\n**Использование:**```{PREFIX}editChannel [channelId] [content]```\n**Пример:**```{PREFIX}editChannel 701396983843127366 {onlinemembers} из {members} онлайн```",
-			"success": "Done! You may have to wait a few minutes to see the new changes",
+			"success": "Сделано! Необходимо немного подождать (около нескольких минут) прежде, чем увидеть новые изменения",
 			"errorNotFound": "Канал не найден",
 			"errorNoContent": "Вы должны указать необходимые значения"
 		},
@@ -225,7 +225,7 @@
 			"helpDescription": "Эта команда позволяет вам отображать счётчик в более компактной форме.\n\n**Использование:**\n```{PREFIX}shortNumber [enable/disable]```\n**Примеры:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Неправильное действие! Пожалуйста, просмотрите `{PREFIX}help shortNumber`",
-			"success": "Done! You may have to wait a few minutes to see the new changes"
+			"success": "Сделано! Необходимо немного подождать (около нескольких минут) прежде, чем увидеть новые изменения"
 		},
 		"locale": {
 			"helpDescription": "Форматирует числа и др. в соответствии с указанной локализацией \n\n**Использование**\n```{PREFIX}locale [locale/disable]```\n**Примеры**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
@@ -323,37 +323,37 @@
 		},
 		"setup": {
 			"helpDescription": "Предустановка стандартных счётчиков.\nСоздаёт заблокированные (🔒) голосовые каналы сразу вместе с счётчиками.\n**Пример**```{PREFIX}setup```",
-			"creatingCounts": "Creating counters...",
-			"createdCounts": "Complete",
+			"creatingCounts": "Создание счётчиков...",
+			"createdCounts": "Выполнено",
 			"categoryName": {
-				"countTemplate": "📊 Server Stats 📊",
-				"creatingCategory": "{LOADING} Creating category\n",
-				"createdCategory": "{CHECK_MARK} Category created\n"
+				"countTemplate": "📊 Статистика сервера 📊",
+				"creatingCategory": "{LOADING} Создание категории",
+				"createdCategory": "{CHECK_MARK} Категория создана"
 			},
 			"memberCounter": {
 				"countTemplate": "{members} Участники",
-				"creatingmemberCounter": "{LOADING} Creating member counter\n",
-				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+				"creatingmemberCounter": "{LOADING} Создание счётчика участников",
+				"createdmemberCounter": "{CHECK_MARK} Счётчик участников создан"
 			},
 			"boostingCounter": {
 				"countTemplate": "{nitro-boosters} Бустеры",
-				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
-				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+				"creatingboostingCounter": "{LOADING} Создание счётчика бустов",
+				"createdboostingCounter": "{CHECK_MARK} Счётчик бустов создан"
 			},
 			"rolesCounter": {
 				"countTemplate": "{roles} Роли",
-				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
-				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+				"creatingrolesCounter": "{LOADING} Создание счётчика ролей",
+				"createdrolesCounter": "{CHECK_MARK} Счётчик ролей создан"
 			},
 			"channelsCounter": {
 				"countTemplate": "{channels} Каналы",
-				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
-				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+				"creatingchannelsCounter": "{LOADING} Создание счётчика каналов",
+				"createdchannelsCounter": "{CHECK_MARK} Счётчик каналов создан"
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"helpDescription": "Команда из-под утилит base64, полезна для кастомизации специфических счётчиков или создавать их продвинутые версии, к примеру как `{http}` \n\n**Использование**```{PREFIX}base64 [encode/decode] [data]```\n **Пример**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Неверный параметр, должен быть `encode` либо `decode`"
 		}
 	},
 	"functions": {
