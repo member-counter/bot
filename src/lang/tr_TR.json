@@ -333,17 +333,17 @@
 			"memberCounter": {
 				"countTemplate": "{members} Üye",
 				"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
-				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+				"createdmemberCounter": "{CHECK_MARK} Üye sayacı oluşturuldu\n"
 			},
 			"boostingCounter": {
 				"countTemplate": "{nitro-boosters} Boost",
 				"creatingboostingCounter": "{LOADING} Boost sayacı oluşturuluyor\n",
-				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+				"createdboostingCounter": "{CHECK_MARK} Boost sayacı oluşturuldu\n"
 			},
 			"rolesCounter": {
 				"countTemplate": "{roles} Rol",
 				"creatingrolesCounter": "{LOADING} Rol sayacı oluşturuluyor\n",
-				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+				"createdrolesCounter": "{CHECK_MARK} Rol sayacı oluşturuldu\n"
 			},
 			"channelsCounter": {
 				"countTemplate": "{channels} Kanal",
