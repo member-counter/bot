@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "**अन्य**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}base64\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
 				]
@@ -216,7 +216,7 @@
 			"errorNoContent": "आपको कुछ सामग्री प्रदान करनी होगी"
 		},
 		"setDigit": {
-			"helpDescription": "उन संख्याओं को अनुकूलित करता है जिन्हें प्रदर्शित किया जाएगा, संख्या तर्क एक सामान्य संख्या होनी चाहिए, दूसरा तर्क कुछ भी हो सकता है, जैसे इमोजी या सामान्य संख्या, आप कई बार तर्कों को अल्पविराम (`,`) के साथ अलग कर सकते हैं।\nयदि पहला तर्क \"reset\" शब्द है, तो संख्या डिफ़ॉल्ट बहाल हो जाएगी।\n\nप्रयोग : ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nउदाहरण : ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "उन संख्याओं को अनुकूलित करता है जिन्हें प्रदर्शित किया जाएगा, संख्या तर्क एक सामान्य संख्या होनी चाहिए, दूसरा तर्क कुछ भी हो सकता है, जैसे इमोजी या सामान्य संख्या, आप कई बार तर्कों को अल्पविराम (`,`) के साथ अलग कर सकते हैं।\nयदि पहला तर्क \"reset\" शब्द है, तो संख्या डिफ़ॉल्ट बहाल हो जाएगी।\n\nप्रयोग  ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nउदाहरण  ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "अंकों को अनुकूलित किया गया।",
 			"resetSuccess": "संख्याओं को डिफ़ॉल्ट से पुनर्स्थापित किया गया |",
 			"errorMissingParams": "लापता मापदण्ड, कृपया `{PREFIX}help setDigit` देखें"
@@ -232,7 +232,7 @@
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "बॉट के उपसर्ग को बदलता है।\n\nउपयोग:```{PREFIX}prefix [new prefix]```",
+			"helpDescription": "बॉट के उपसर्ग को बदलता है।\n\nउपयोग```{PREFIX}prefix [new prefix]```",
 			"success": "उपसर्ग बदल गया: `{NEW_PREFIX}`",
 			"noPrefixProvided": "आपको एक उपसर्ग प्रदान करना होगा"
 		},
@@ -350,6 +350,10 @@
 				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
 				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
 			}
+		},
+		"base64": {
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		}
 	},
 	"functions": {

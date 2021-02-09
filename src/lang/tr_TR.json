@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "**Diğer Komutlar**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}base64\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
 				]
@@ -350,6 +350,10 @@
 				"creatingchannelsCounter": "{LOADING} Kanal sayacı oluşturuluyor\n",
 				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
 			}
+		},
+		"base64": {
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		}
 	},
 	"functions": {
