@@ -128,7 +128,7 @@
 				{
 					"key": "http",
 					"name": "http:options",
-					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64 (you can use {PREFIX}base64 command to archieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
+					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -216,7 +216,7 @@
 			"errorNoContent": "Você deve informar algum conteúdo"
 		},
 		"setDigit": {
-			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\n**Usage**```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\n**Examples**```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "Customiza números que serão mostrados, o argumento numérico deve ser um número normal, o segundo argumento pode ser qualquer coisa, como um emoji ou um número normal, você pode customizar números múltiplos de uma só vez separando os argumentos com vírgulas (`,`)\nSe o primeiro argumento for a palavra \"reset\", os números irão ser restaurados para os números padrão.\n\nUso: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [número] [seu número customizado]```\nExemplos: ```{PREFIX}setDigit 3 3```\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Dígito personalizado.",
 			"resetSuccess": "Números restaurados para o padrão.",
 			"errorMissingParams": "Parâmetros ausentes, por favor veja `{PREFIX}help setDigit`."
@@ -232,7 +232,7 @@
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Changes the bot prefix.\n\n**Usage**```{PREFIX}prefix [new prefix]```",
+			"helpDescription": "Muda o prefixo do bot.\n\nUso:```{PREFIX}prefix [novo prefixo]```",
 			"success": "Prefixo alterado para: `{NEW_PREFIX}`",
 			"noPrefixProvided": "Você deve informar um prefixo"
 		},
@@ -331,22 +331,22 @@
 				"createdCategory": "{CHECK_MARK} Category created\n"
 			},
 			"memberCounter": {
-				"countTemplate": "Member Count: {members}",
+				"countTemplate": "{members} Membros",
 				"creatingmemberCounter": "{LOADING} Creating member counter\n",
 				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
 			},
 			"boostingCounter": {
-				"countTemplate": "Boosting Count: {nitro-boosters}",
+				"countTemplate": "{nitro-boosters} Boosting",
 				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
 				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
 			},
 			"rolesCounter": {
-				"countTemplate": "Role Count: {roles}",
+				"countTemplate": "{roles} Cargos",
 				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
 				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
 			},
 			"channelsCounter": {
-				"countTemplate": "Channel Count: {channels}",
+				"countTemplate": "{channels} Canais",
 				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
 				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
 			}
