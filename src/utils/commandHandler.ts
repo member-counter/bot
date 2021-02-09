@@ -35,12 +35,21 @@ export default async (message: Eris.Message) => {
 	if (author && !author.bot) {
 		let prefixToCheck: string;
 		let languagePack;
+		let clientIntegrationRoleId: string;
 
 		if (channel instanceof Eris.GuildChannel) {
-			const guildSettings = await GuildService.init(channel.guild.id);
+			const { guild } = channel;
+
+			const guildSettings = await GuildService.init(guild.id);
 
 			languagePack = loadLanguagePack(guildSettings.language);
 			prefixToCheck = guildSettings.prefix;
+
+			clientIntegrationRoleId = guild.members
+				.get(client.user.id)
+				?.roles.filter((roleID) =>
+					guild.roles.get(roleID)?.managed ? roleID : null
+				)[0];
 		} else {
 			languagePack = loadLanguagePack(DISCORD_DEFAULT_LANG);
 			prefixToCheck = DISCORD_PREFIX;
@@ -49,7 +58,9 @@ export default async (message: Eris.Message) => {
 
 		const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 		const prefixRegex = new RegExp(
-			`^(<@!?${client.user.id}>|${escapeRegex(prefixToCheck)})\\s*`
+			`^(${
+				clientIntegrationRoleId ? `<@&${clientIntegrationRoleId}>|` : ""
+			}<@!?${client.user.id}>|${escapeRegex(prefixToCheck)})\\s*`
 		);
 
 		const commandRequested = content.toLowerCase(); // Case insensitive match
