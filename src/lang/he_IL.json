@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "**Others**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}base64\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
 				]
@@ -127,13 +127,8 @@
 				},
 				{
 					"key": "http",
-					"name": "http:url",
-					"description": "This will display the returned amount given by the response to the specified resource, the bot will perform a `GET` request and the server **must** reply with the status code `200` and the `content-type: text/plain` Example: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "Like `{http}` but the bot won't parse anything, useful to display names instead of numbers"
+					"name": "http:options",
+					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -216,7 +211,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
-			"success": "הושלם! אולי תצטרך לחכות מספר שניות כדי לראות את השינויים החדשים",
+			"success": "Done! You may have to wait a few minutes to see the new changes",
 			"errorNotFound": "ערוץ לא נמצא",
 			"errorNoContent": "נחוץ להוסיף תוכן"
 		},
@@ -230,7 +225,7 @@
 			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
-			"success": "הושלם! אולי תצטרך להמתין מספר שניות כדי לראות את השינויים החדשים"
+			"success": "Done! You may have to wait a few minutes to see the new changes"
 		},
 		"locale": {
 			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
@@ -328,11 +323,37 @@
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"categoryName": "📊 הסטטים של השרת 📊",
-			"memberCounter": "{members} חברים",
-			"boostingCounter": "{nitro-boosters} בוסטרים",
-			"rolesCounter": "{roles} תפקידים",
-			"channelsCounter": "{channels} ערוצים"
+			"creatingCounts": "Creating counters...",
+			"createdCounts": "Complete",
+			"categoryName": {
+				"countTemplate": "📊 הסטטים של השרת 📊",
+				"creatingCategory": "{LOADING} Creating category\n",
+				"createdCategory": "{CHECK_MARK} Category created\n"
+			},
+			"memberCounter": {
+				"countTemplate": "{members} חברים",
+				"creatingmemberCounter": "{LOADING} Creating member counter\n",
+				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+			},
+			"boostingCounter": {
+				"countTemplate": "{nitro-boosters} בוסטרים",
+				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
+				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+			},
+			"rolesCounter": {
+				"countTemplate": "{roles} תפקידים",
+				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
+				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+			},
+			"channelsCounter": {
+				"countTemplate": "{channels} ערוצים",
+				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+			}
+		},
+		"base64": {
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		}
 	},
 	"functions": {
@@ -346,6 +367,12 @@
 			"noBanPerms": "אני צריך הרשאה לבאן כדי להראות את זה",
 			"invalidChannelLength": "אורך שם ערוץ לא תקין, בבקשה להגדיר את המונה בשנית",
 			"notAvailable": "לא זמין, בבקשה להמתין"
+		},
+		"paginator": {
+			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
+			"errorNegativeInput": "The page number can't be negative. Please try again."
 		}
 	},
 	"common": {
