@@ -333,27 +333,27 @@
 			"memberCounter": {
 				"countTemplate": "{members} Üye",
 				"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
-				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+				"createdmemberCounter": "{CHECK_MARK} Üye sayacı oluşturuldu\n"
 			},
 			"boostingCounter": {
 				"countTemplate": "{nitro-boosters} Boost",
 				"creatingboostingCounter": "{LOADING} Boost sayacı oluşturuluyor\n",
-				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+				"createdboostingCounter": "{CHECK_MARK} Boost sayacı oluşturuldu\n"
 			},
 			"rolesCounter": {
 				"countTemplate": "{roles} Rol",
 				"creatingrolesCounter": "{LOADING} Rol sayacı oluşturuluyor\n",
-				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+				"createdrolesCounter": "{CHECK_MARK} Rol sayacı oluşturuldu\n"
 			},
 			"channelsCounter": {
 				"countTemplate": "{channels} Kanal",
 				"creatingchannelsCounter": "{LOADING} Kanal sayacı oluşturuluyor\n",
-				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+				"createdchannelsCounter": "{CHECK_MARK} Kanal sayacı oluşturuldu\n"
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"helpDescription": "Belirli sayaçları özelleştirmek veya `{http}` gibi gelişmiş sayaçlar oluşturmak için yararlı bir base64 yardımcı program komutu \n\n**Kullanım**```{PREFIX}base64 [encode/decode] [data]```\n **Örnek**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Geçersiz eylem, eylem `encode` veya `decode` olmalıdır"
 		}
 	},
 	"functions": {
@@ -369,9 +369,9 @@
 		},
 		"paginator": {
 			"pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"jumpPrompt": "Hangi sayfaya gitmek istersiniz? İstemi iptal etmek için `cancel` veya `0` yazın. Cevaplamak için 15 saniyeniz vardır.",
+			"errorPageLengthExceeded": "Gidilecek sayfa {TOTAL_PAGES} değerinden küçük veya ona eşit olmalıdır. Lütfen tekrar deneyin.",
+			"errorNegativeInput": "Gidilecek sayfa sayısı negatif olamaz. Lütfen tekrar deneyin."
 		}
 	},
 	"common": {
