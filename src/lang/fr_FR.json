@@ -127,13 +127,8 @@
 				},
 				{
 					"key": "http",
-					"name": "http:url",
-					"description": "Cela affichera le montant retourné par la réponse à la ressource spécifiée, le bot effectuera une `GET` et le serveur **doit** répondre avec `200` et le `content-type: text/plain` Exemple: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "Comme `{http}` mais le bot n'analysera rien, utile pour afficher des noms au lieu de nombres"
+					"name": "http:options",
+					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -216,7 +211,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "Si vous essayez de définir un compteur mais que Discord vous indique que vous avez atteint la limite de longueur du nom/sujet, vous pouvez utiliser cette commande pour \"ignorer\" cette limite\n**Utilisation**```{PREFIX}editChannel [channelId] [content]```\n**Exemple**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
-			"success": "Fait! Vous devrez peut-être attendre quelques secondes pour voir les nouveaux changements",
+			"success": "Done! You may have to wait a few minutes to see the new changes",
 			"errorNotFound": "Salon non trouvé",
 			"errorNoContent": "Vous devez fournir du contenu"
 		},
@@ -230,7 +225,7 @@
 			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Action invalide! voir `{PREFIX}help shortNumber`",
-			"success": "Fait ! Vous devrez peut-être attendre quelques secondes pour voir les nouveaux changements"
+			"success": "Done! You may have to wait a few minutes to see the new changes"
 		},
 		"locale": {
 			"helpDescription": "Formats the numbers and other stuff to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
@@ -328,11 +323,33 @@
 		},
 		"setup": {
 			"helpDescription": "Crée des salons vocaux verrouillés avec quelques compteurs en eux\n**Exemple**```{PREFIX}setup```",
-			"categoryName": "📊 Server Stats 📊",
-			"memberCounter": "{members} Membres",
-			"boostingCounter": "{nitro-boosters} Boosters",
-			"rolesCounter": "{roles} Rôles",
-			"channelsCounter": "{channels} Chaînes"
+			"creatingCounts": "Creating counters...",
+			"createdCounts": "Complete",
+			"categoryName": {
+				"countTemplate": "📊 Server Stats 📊",
+				"creatingCategory": "{LOADING} Creating category\n",
+				"createdCategory": "{CHECK_MARK} Category created\n"
+			},
+			"memberCounter": {
+				"countTemplate": "{members} Membres",
+				"creatingmemberCounter": "{LOADING} Creating member counter\n",
+				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+			},
+			"boostingCounter": {
+				"countTemplate": "{nitro-boosters} Boosters",
+				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
+				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+			},
+			"rolesCounter": {
+				"countTemplate": "{roles} Rôles",
+				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
+				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+			},
+			"channelsCounter": {
+				"countTemplate": "{channels} Chaînes",
+				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+			}
 		}
 	},
 	"functions": {
@@ -345,6 +362,12 @@
 			"disabled": "Compteur désactivé",
 			"noBanPerms": "J'ai besoin d'une autorisation de bannir pour montrer ceci",
 			"invalidChannelLength": "Longueur du nom de salon invalide, veuillez réinitialiser le compteur"
+		},
+		"paginator": {
+			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
+			"errorNegativeInput": "The page number can't be negative. Please try again."
 		}
 	},
 	"common": {
