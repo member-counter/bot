@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   member-counter-bot-dev:
@@ -9,7 +9,7 @@ services:
     container_name: Member-Counter-App-Dev
     env_file: .env
     volumes:
-      - .:/app 
+      - .:/app
     depends_on:
       - member-counter-bot-mongodb
       - member-counter-bot-redis

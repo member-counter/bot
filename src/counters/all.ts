@@ -1,4 +1,3 @@
-
 import TestCounter from "./test";
 import ErrorCounter from "./error";
 import BannedMembersCounter from "./bannedMembers";
@@ -8,7 +7,6 @@ import ClockCounter from "./clock";
 import CountdownCounter from "./countdown";
 import GameCounter from "./game";
 import HTTPCounter from "./http";
-import HTTPStringCounter from "./httpString";
 import InstagramCounter from "./Instagram";
 import MemberCounter from "./members";
 import MembersConnectedCounter from "./membersConnected";
@@ -32,7 +30,6 @@ const counters = [
   CountdownCounter,
   GameCounter,
   HTTPCounter,
-  HTTPStringCounter,
   InstagramCounter,
   MemberCounter,
   MembersConnectedCounter,

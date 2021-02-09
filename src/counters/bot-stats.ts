@@ -2,7 +2,7 @@ import GuildCountCacheModel from '../models/GuildCountCache';
 import Counter from '../typings/Counter';
 
 const BotStatsCounter: Counter = {
-	aliases: ['member-counter-users', 'member-counter-guilds'],
+	aliases: ["member-counter-users", "member-counter-guilds"],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
@@ -22,7 +22,7 @@ const BotStatsCounter: Counter = {
 			}]))[0].total,
 			['member-counter-guilds']: guilds,
 		};
-	},
+	}
 };
 
 export default BotStatsCounter;

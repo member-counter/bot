@@ -1,4 +1,4 @@
-import commandHandler from '../utils/commandHandler';
+import commandHandler from "../utils/commandHandler";
 
 const messageCreate = commandHandler;
 
