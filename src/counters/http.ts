@@ -4,6 +4,9 @@ import * as packageJSON from "../../package.json";
 import timeoutFetch from "../utils/timeoutFetch";
 import Counter from "../typings/Counter";
 import jsonBodyExtractor from "../utils/jsonBodyExtractor";
+import getEnv from "../utils/getEnv";
+
+const { COUNTER_HTTP_DENY_LIST } = getEnv();
 
 interface Resource {
 	url: string;
@@ -20,8 +23,10 @@ const HTTPCounter: Counter = {
 		const { url, parseNumber, dataPath }: Resource = JSON.parse(
 			Buffer.from(resource, "base64").toString("utf-8")
 		);
-		if (!url) throw new Error("You didn't specify a url property");
 
+		if (!url) throw new Error("You didn't specify a url property");
+		if (COUNTER_HTTP_DENY_LIST?.includes(new URL(url).hostname)) throw new Error("You can't make requests to this url!");
+	
 		console.log(url, parseInt, dataPath);
 
 		let body: string;

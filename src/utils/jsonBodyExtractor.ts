@@ -1,10 +1,10 @@
-const propExp = /^(?<propName>[^.\[]+)|\["(?<propNameDoubleQuotes>.+)"\]|\['(?<propNameSingleQuotes>.+)'\]|^\[(?<indexSelector>\d)\]/;
+const propExp = /^(?<propName>[^.[]+)|\["(?<propNameDoubleQuotes>.+)"\]|\['(?<propNameSingleQuotes>.+)'\]|^\[(?<indexSelector>\d)\]/;
 const allowedReturnTypes = ["number", "string"];
 
-function jsonBodyExtractor(body = "", path = "") {
+function jsonBodyExtractor(body: any, path: string) {
 	let cwo = body;
 	let pathLeft = path;
-	let lastMatch;
+	let pathTraveled = "";
 
 	let iterationsLeft = 50;
 	while (iterationsLeft) {
@@ -13,16 +13,18 @@ function jsonBodyExtractor(body = "", path = "") {
 		let { groups: matchGroups } = pathLeft.match(propExp) ?? { groups: {} };
 
 		let matched;
-		if (matchGroups.propName) {
+		if (matchGroups?.propName) {
 			// if .foo
 			matched = matchGroups.propName;
 			pathLeft = pathLeft.slice(matched.length);
 
 			if (!Object.prototype.hasOwnProperty.call(cwo, matched))
-				throw new Error(`"${matched}" doesn't exists in ${lastMatch}!`);
+				throw new Error(`"${matched}" doesn't exists in ${pathTraveled ? pathTraveled : "the response"}`);
+
+			pathTraveled += (pathTraveled ? "." : "") + `${matched}`;
 		} else if (
-			matchGroups.propNameDoubleQuotes ??
-			matchGroups.propNameSingleQuotes
+			matchGroups?.propNameDoubleQuotes ??
+			matchGroups?.propNameSingleQuotes
 		) {
 			// if ["foo"] or ['foo']
 			matched =
@@ -30,8 +32,10 @@ function jsonBodyExtractor(body = "", path = "") {
 			pathLeft = pathLeft.slice(matched.length + 4);
 
 			if (!Object.prototype.hasOwnProperty.call(cwo, matched))
-				throw new Error(`"${matched}" doesn't exists in ${lastMatch}!`);
-		} else if (matchGroups.indexSelector) {
+				throw new Error(`"${matched}" doesn't exists in ${pathTraveled ? pathTraveled : "the response"}`);
+			
+			pathTraveled += `["${matched}"]`;
+		} else if (matchGroups?.indexSelector) {
 			// if [bar]
 			matched = matchGroups.indexSelector;
 			pathLeft = pathLeft.slice(matched.length + 2);
@@ -41,13 +45,14 @@ function jsonBodyExtractor(body = "", path = "") {
 				);
 
 			if (!cwo.hasOwnProperty(matched))
-				throw new Error(`"${matched}" doesn't exists in ${lastMatch}!`);
+				throw new Error(`"${matched}" doesn't exists in ${pathTraveled ? pathTraveled : "the response"}`);
+
+			pathTraveled += `[${matched}]`;
 		} else {
 			break;
 		}
 
 		cwo = cwo[matched];
-		lastMatch = matched;
 
 		if (pathLeft.startsWith(".")) pathLeft = pathLeft.slice(1);
 	}
