@@ -17,4 +17,4 @@ EXPOSE $PORT
 # DevTools/Debugger
 EXPOSE 9229
 
-CMD ["npm", "run", "dev"]
+CMD ["./node_modules/.bin/ts-node-dev", "--inspect=0.0.0.0:9229", "--poll", "--respawn", "--ignore-watch", "node_modules",  "--transpile-only", "src/index.ts"]
