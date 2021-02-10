@@ -323,12 +323,12 @@
 		},
 		"setup": {
 			"helpDescription": "उन में कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\n**उदाहरण**```{PREFIX}setup```",
-			"creatingCounts": "Creating counters...",
+			"creatingCounts": "काउंटर बन रहा है...",
 			"createdCounts": "पूर्ण",
 			"categoryName": {
 				"countTemplate": "📊 सर्वर आँकड़े 📊",
-				"creatingCategory": "{LOADING} Creating category\n",
-				"createdCategory": "{CHECK_MARK} Category created\n"
+				"creatingCategory": "{LOADING} श्रेणी बनाई जा रही है",
+				"createdCategory": "{CHECK_MARK} श्रेणी बन गई है"
 			},
 			"memberCounter": {
 				"countTemplate": "{members} सदस्य",
