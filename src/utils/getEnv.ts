@@ -85,6 +85,8 @@ interface MemberCounterEnv {
 	readonly DBWORLD_TOKEN: string;
 	readonly BOND_TOKEN: string;
 	readonly BFD_TOKEN: string;
+
+	readonly COUNTER_HTTP_DENY_LIST: string[];
 }
 
 dotenv.config();
