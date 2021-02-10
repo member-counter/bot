@@ -322,13 +322,19 @@ const upgradeServer: MemberCounterCommand = {
 			switch (upgradeServer) {
 				case "success": {
 					await channel.createMessage(
-						success.replace("{BOT_LINK}", PREMIUM_BOT_INVITE)
+						success.replace(
+							"{BOT_LINK}",
+							PREMIUM_BOT_INVITE + `&guild_id=${guildSettings.id}`
+						)
 					);
 					break;
 				}
 
 				case "alreadyUpgraded": {
-					throw new UserError(errorCannotUpgrade);
+					throw new UserError(
+						errorCannotUpgrade +
+							` ${PREMIUM_BOT_INVITE + `&guild_id=${guildSettings.id}`}`
+					);
 					break;
 				}
 				case "noUpgradesAvailable": {
