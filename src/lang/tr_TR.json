@@ -216,7 +216,7 @@
 			"errorNoContent": "Lütfen argüman belirtin"
 		},
 		"setDigit": {
-			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsiniz\nİlk bağımsız değişken \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.\n\nKullanımı: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [özel sayınız]```\nÖrnekleri: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsiniz\nİlk argüman \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.\n\nKullanımı: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [özel sayınız]```\nÖrnekleri: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Rakamlar özelleştirildi.",
 			"resetSuccess": "Numaralar varsayılan olanlara geri yüklendi.",
 			"errorMissingParams": "Eksik parametreler, lütfen `{PREFIX}help setDigit` bölümüne bakın."
@@ -331,22 +331,22 @@
 				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu\n"
 			},
 			"memberCounter": {
-				"countTemplate": "{members} Üye",
+				"countTemplate": "Üye Sayısı: {members}",
 				"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
 				"createdmemberCounter": "{CHECK_MARK} Üye sayacı oluşturuldu\n"
 			},
 			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Boost",
+				"countTemplate": "Boost Sayısı: {nitro-boosters}",
 				"creatingboostingCounter": "{LOADING} Boost sayacı oluşturuluyor\n",
 				"createdboostingCounter": "{CHECK_MARK} Boost sayacı oluşturuldu\n"
 			},
 			"rolesCounter": {
-				"countTemplate": "{roles} Rol",
+				"countTemplate": "Rol Sayısı: {roles}",
 				"creatingrolesCounter": "{LOADING} Rol sayacı oluşturuluyor\n",
 				"createdrolesCounter": "{CHECK_MARK} Rol sayacı oluşturuldu\n"
 			},
 			"channelsCounter": {
-				"countTemplate": "{channels} Kanal",
+				"countTemplate": "Kanal Sayısı: {channels}",
 				"creatingchannelsCounter": "{LOADING} Kanal sayacı oluşturuluyor\n",
 				"createdchannelsCounter": "{CHECK_MARK} Kanal sayacı oluşturuldu\n"
 			}
