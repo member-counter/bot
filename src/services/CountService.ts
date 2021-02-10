@@ -268,16 +268,15 @@ class CountService {
 			case Constants.CounterResult.DISABLED:
 				result = this.languagePack.functions.getCounts.disabled;
 				break;
+
+			case Constants.CounterResult.DISABLED:
+				result = this.languagePack.functions.getCounts.disabled;
+				break;
+
+			case Constants.CounterResult.NOT_AVAILABLE:
+				result = this.languagePack.functions.getCounts.notAvailable;
+				break;
 		}
-
-      case Constants.CounterResult.DISABLED:
-        result = this.languagePack.functions.getCounts.disabled;
-        break;
-
-      case Constants.CounterResult.NOT_AVAILABLE:
-        result = this.languagePack.functions.getCounts.notAvailable;
-        break;
-    }
 		// format result if it's a number according to the formatting settings
 		if (typeof result === "number" && !isNaN(result)) {
 			const isShortNumberEnabled = formattingSettings.shortNumber > -1;
