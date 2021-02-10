@@ -352,7 +352,7 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "Belirli sayaçları özelleştirmek veya `{http}` gibi gelişmiş sayaçlar oluşturmak için yararlı bir base64 yardımcı program komutu \n\n**Kullanım**```{PREFIX}base64 [encode/decode] [data]```\n **Örnek**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"helpDescription": "Belirli sayaçları özelleştirmek veya `{http}` gibi gelişmiş sayaçlar oluşturmak için yararlı bir base64 yardımcı program komutu \n\n**Kullanımı**```{PREFIX}base64 [encode/decode] [data]```\n **Örnek**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
 			"invalidAction": "Geçersiz eylem, eylem `encode` veya `decode` olmalıdır"
 		}
 	},
