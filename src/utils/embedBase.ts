@@ -6,7 +6,7 @@ import getEnv from "./getEnv";
 const { BOT_COLOR } = getEnv();
 
 let dominantColor = {
-	current: BOT_COLOR.toString().length ? BOT_COLOR : null
+	current: BOT_COLOR?.toString().length ? BOT_COLOR : null
 };
 
 const embedBase = (embedToAppend?: EmbedOptions): EmbedOptions => {
