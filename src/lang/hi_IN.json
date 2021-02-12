@@ -353,7 +353,7 @@
 		},
 		"base64": {
 			"helpDescription": "एक बेस 64 यूटिलिटी कमांड, विशिष्ट काउंटरों को अनुकूलित करने या उन्नत काउंटर बनाने के लिए उपयोगी है, जैसे `{http}` \n\n**आचरण**```{PREFIX}base64 [encode/decode] [data]```\n **उदाहरण**```{PREFIX}base64 encode मिसाल\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "अमान्य कार्रवाई, यह `encode` या` decode` होनी चाहिए"
+			"invalidAction": "अमान्य कार्रवाई, यह `encode` या `decode` होनी चाहिए"
 		}
 	},
 	"functions": {
@@ -370,7 +370,7 @@
 		},
 		"paginator": {
 			"pageCounter": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "आप किस पेज पर जाना चाहेंगे? प्रॉम्प्ट रद्द करने के लिए `cancel` या` 0` टाइप करें। आपके पास उत्तर देने के लिए 15 सेकंड हैं।",
+			"jumpPrompt": "आप किस पेज पर जाना चाहेंगे? प्रॉम्प्ट रद्द करने के लिए `cancel` या `0` टाइप करें। आपके पास उत्तर देने के लिए 15 सेकंड हैं।",
 			"errorPageLengthExceeded": "पृष्ठ संख्या {TOTAL_PAGES} से कम या बराबर होनी चाहिए। कृपया पुन: प्रयास करें।",
 			"errorNegativeInput": "पृष्ठ संख्या नकारात्मक नहीं हो सकती। कृपया पुन: प्रयास करें।"
 		}
