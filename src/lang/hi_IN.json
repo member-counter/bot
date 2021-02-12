@@ -332,13 +332,13 @@
 			},
 			"memberCounter": {
 				"countTemplate": "{members} सदस्य",
-				"creatingmemberCounter": "{LOADING} Creating member counter\n",
-				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+				"creatingmemberCounter": "{LOADING} सदस्य काउंटर बनाई जा रही है",
+				"createdmemberCounter": "{CHECK_MARK} सदस्य संख्या बनाई गई"
 			},
 			"boostingCounter": {
 				"countTemplate": "{nitro-boosters} बढ़ाने",
-				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
-				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+				"creatingboostingCounter": "{LOADING} बूस्टिंग काउंटर बनाई जा रही है",
+				"createdboostingCounter": "{CHECK_MARK} बूस्टिंग काउंटर बनाई गई"
 			},
 			"rolesCounter": {
 				"countTemplate": "{roles} भूमिकाएँ",
