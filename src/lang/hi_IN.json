@@ -342,18 +342,18 @@
 			},
 			"rolesCounter": {
 				"countTemplate": "{roles} भूमिकाएँ",
-				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
-				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+				"creatingrolesCounter": "{LOADING} भूमिका काउंटर बनाई जा रही है",
+				"createdrolesCounter": "{CHECK_MARK} भूमिका काउंटर बनाई गई"
 			},
 			"channelsCounter": {
 				"countTemplate": "{channels} चैनल",
-				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
-				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+				"creatingchannelsCounter": "{LOADING} चैनल काउंटर बनाई जा रही है",
+				"createdchannelsCounter": "{CHECK_MARK} चैनल काउंटर बनाई गई"
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"helpDescription": "एक बेस 64 यूटिलिटी कमांड, विशिष्ट काउंटरों को अनुकूलित करने या उन्नत काउंटर बनाने के लिए उपयोगी है, जैसे `{http}` \n\n**आचरण**```{PREFIX}base64 [encode/decode] [data]```\n **उदाहरण**```{PREFIX}base64 encode मिसाल\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "अमान्य कार्रवाई, यह `encode` या` decode` होनी चाहिए"
 		}
 	},
 	"functions": {
@@ -369,9 +369,9 @@
 		},
 		"paginator": {
 			"pageCounter": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"jumpPrompt": "आप किस पेज पर जाना चाहेंगे? प्रॉम्प्ट रद्द करने के लिए `cancel` या` 0` टाइप करें। आपके पास उत्तर देने के लिए 15 सेकंड हैं।",
+			"errorPageLengthExceeded": "पृष्ठ संख्या {TOTAL_PAGES} से कम या बराबर होनी चाहिए। कृपया पुन: प्रयास करें।",
+			"errorNegativeInput": "पृष्ठ संख्या नकारात्मक नहीं हो सकती। कृपया पुन: प्रयास करें।"
 		}
 	},
 	"common": {
