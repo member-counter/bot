@@ -9,8 +9,8 @@ const setup: MemberCounterCommand = {
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
-		const { channel, content } = message;
-		const { loading, check_mark } = emojis;
+		const { channel } = message;
+		const { loading, checkMark } = emojis;
 		function canUseExternalEmojis() {
 			return (
 				message.channel instanceof GuildChannel &&
@@ -29,8 +29,8 @@ const setup: MemberCounterCommand = {
 				created: languagePack.commands.setup.memberCounter.createdmemberCounter.replace(
 					/{CHECK_MARK}/g,
 					canUseExternalEmojis()
-						? check_mark.string
-						: check_mark.fallbackUnicodeEmoji
+						? checkMark.string
+						: checkMark.fallbackUnicodeEmoji
 				)
 			},
 			{
@@ -43,8 +43,8 @@ const setup: MemberCounterCommand = {
 				created: languagePack.commands.setup.boostingCounter.createdboostingCounter.replace(
 					/{CHECK_MARK}/g,
 					canUseExternalEmojis()
-						? check_mark.string
-						: check_mark.fallbackUnicodeEmoji
+						? checkMark.string
+						: checkMark.fallbackUnicodeEmoji
 				)
 			},
 			{
@@ -56,8 +56,8 @@ const setup: MemberCounterCommand = {
 				created: languagePack.commands.setup.rolesCounter.createdrolesCounter.replace(
 					/{CHECK_MARK}/g,
 					canUseExternalEmojis()
-						? check_mark.string
-						: check_mark.fallbackUnicodeEmoji
+						? checkMark.string
+						: checkMark.fallbackUnicodeEmoji
 				)
 			},
 			{
@@ -70,8 +70,8 @@ const setup: MemberCounterCommand = {
 				created: languagePack.commands.setup.channelsCounter.createdchannelsCounter.replace(
 					/{CHECK_MARK}/g,
 					canUseExternalEmojis()
-						? check_mark.string
-						: check_mark.fallbackUnicodeEmoji
+						? checkMark.string
+						: checkMark.fallbackUnicodeEmoji
 				)
 			}
 		];
@@ -116,8 +116,8 @@ const setup: MemberCounterCommand = {
 				languagePack.commands.setup.categoryName.createdCategory.replace(
 					/{CHECK_MARK}/g,
 					canUseExternalEmojis()
-						? check_mark.string
-						: check_mark.fallbackUnicodeEmoji
+						? checkMark.string
+						: checkMark.fallbackUnicodeEmoji
 				)
 			);
 			const categoryID = category.id;
