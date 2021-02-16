@@ -5,26 +5,8 @@ import getEnv from "../utils/getEnv";
 import { GuildChannel } from "eris";
 import CountService from "../services/CountService";
 import Paginator from "../utils/paginator";
+import safeDiscordString from "../utils/safeDiscordString";
 const { DISCORD_PREFIX } = getEnv();
-
-const splitContent = (content: string): string[] => {
-	const splitedStrings = content.split("\n");
-	let result: string[] = [];
-
-	splitedStrings.forEach((portion) => {
-		const workingIndex = result.length - 1;
-		if (
-			result.length > 0 &&
-			portion.length + result[workingIndex].length < 2000 - "\n".length
-		) {
-			result[workingIndex] = `${result[workingIndex]}\n${portion}`;
-		} else {
-			result.push(`${portion}\n`);
-		}
-	});
-
-	return result;
-};
 
 const guide: MemberCounterCommand = {
 	aliases: ["guide", "intro"],
@@ -42,13 +24,15 @@ const guide: MemberCounterCommand = {
 		const {
 			explanation,
 			countersHeader,
-			counters: guideCounters,
-			pagesText
+			counters: guideCounters
 		} = languagePack.commands.guide;
 
 		const pages = [
-			...splitContent(explanation),
-			...splitContent(
+			// the actual guide
+			...safeDiscordString(explanation),
+
+			// the list of counters
+			...safeDiscordString(
 				countersHeader +
 					guideCounters
 						.filter(
@@ -64,6 +48,7 @@ const guide: MemberCounterCommand = {
 						.join("\n")
 			)
 		].map((page) => page.replace(/\{PREFIX\}/g, prefix));
+
 		const embedPages = [];
 		pages.forEach((page) =>
 			embedPages.push(
@@ -77,7 +62,7 @@ const guide: MemberCounterCommand = {
 			message.author.id,
 			embedPages,
 			languagePack
-		).displayPage("0");
+		).displayPage(0);
 	}
 };
 
