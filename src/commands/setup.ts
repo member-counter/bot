@@ -107,6 +107,9 @@ const setup: MemberCounterCommand = {
 					}
 				]
 			});
+
+			// Register category as a counter so it's removed when the user does mc!resetSettings
+			guildService.setCounter(category.id, categoryName);
 			msg.edit(str);
 			str = str.replace(
 				languagePack.commands.setup.categoryName.creatingCategory.replace(
