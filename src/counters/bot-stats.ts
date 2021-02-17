@@ -1,7 +1,7 @@
-import Counter from '../typings/Counter';
+import Counter from "../typings/Counter";
 
 const BotStatsCounter: Counter = {
-	aliases: ['member-counter-users', 'member-counter-guilds'],
+	aliases: ["member-counter-users", "member-counter-guilds"],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
@@ -11,10 +11,10 @@ const BotStatsCounter: Counter = {
 		let guilds = stats.guilds;
 
 		return {
-			['member-counter-users']: users,
-			['member-counter-guilds']: guilds,
+			["member-counter-users"]: users,
+			["member-counter-guilds"]: guilds
 		};
-	},
+	}
 };
 
 export default BotStatsCounter;
