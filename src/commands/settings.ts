@@ -90,7 +90,7 @@ const seeSettings: MemberCounterCommand = {
 						return !botHasPermsToEdit(discordChannel);
 					}).length > 0
 				) {
-					countersSection += `${warningNoPermsText}\n`;
+					countersSection += `> ${warningNoPermsText}\n\n`;
 				}
 
 				for (const [counter, content] of counters) {
