@@ -44,7 +44,7 @@ class Paginator {
 	/**
 	 * Sends Pager to channel
 	 */
-	async displayPage(page) {
+	async displayPage(page: number) {
 		// Clone the embed and modify it by adding a page indicator
 		const embedToSend: EmbedOptions = clonedeep(this.pages[page]);
 		this.appendPageCounter(embedToSend);
@@ -66,7 +66,7 @@ class Paginator {
 	/**
 	 * Initiates jumping to specified page
 	 */
-	async jump() {
+	async jumpPrompt() {
 		await this.channel
 			.createMessage(this.languagePack.functions.paginator.jumpPrompt)
 			.then(async (message) => {
@@ -182,7 +182,7 @@ class Paginator {
 				}
 				case emojis.jump.name:
 				case emojis.jump.fallbackUnicodeEmoji: {
-					await this.jump();
+					await this.jumpPrompt();
 
 					break;
 				}
@@ -222,6 +222,7 @@ class Paginator {
 					await this.message.addReaction(emojis.previousPage.reaction);
 					await this.message.addReaction(emojis.nextPage.reaction);
 					await this.message.addReaction(emojis.lastPage.reaction);
+					let _emojis = emojis;
 					await this.message.addReaction(emojis.jump.reaction);
 				} else {
 					await this.message.addReaction(emojis.firstPage.fallbackUnicodeEmoji);
