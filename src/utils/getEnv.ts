@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
-import dotenvParseVariables from 'dotenv-parse-variables';
+import dotenv from "dotenv";
+import dotenvParseVariables from "dotenv-parse-variables";
 
 interface MemberCounterEnv {
-	readonly NODE_ENV: 'development' | 'production';
+	readonly NODE_ENV: "development" | "production";
 	readonly DEBUG: boolean;
 	readonly UNRESTRICTED_MODE: boolean;
 	readonly PORT: number;
@@ -46,8 +46,24 @@ interface MemberCounterEnv {
 
 	readonly UPDATE_COUNTER_INTERVAL: string;
 
+	// Custom Emojis
+
+	// Paginator
+	readonly CUSTOM_EMOJI_FIRST_PAGE: string;
+	readonly CUSTOM_EMOJI_LAST_PAGE: string;
+	readonly CUSTOM_EMOJI_PREVIOUS_PAGE: string;
+	readonly CUSTOM_EMOJI_NEXT_PAGE: string;
+	readonly CUSTOM_EMOJI_JUMP: string;
+
+	// Setup command
+
+	readonly CUSTOM_EMOJI_LOADING: string;
+	readonly CUSTOM_EMOJI_CHECK_MARK: string;
+
 	readonly WEBSITE_URL: string;
 	readonly DONATION_URL: string;
+
+	readonly USE_CUSTOM_EMOJIS: boolean;
 
 	readonly MEMERATOR_API_KEY: string;
 
@@ -69,20 +85,25 @@ interface MemberCounterEnv {
 	readonly DBWORLD_TOKEN: string;
 	readonly BOND_TOKEN: string;
 	readonly BFD_TOKEN: string;
-}
 
+	readonly COUNTER_HTTP_DENY_LIST: string[];
+}
 
 dotenv.config();
 
 const parsedEnv = dotenvParseVariables({
 	...process.env,
-	DISCORD_CLIENT_ID: Buffer.from(process.env.DISCORD_CLIENT_TOKEN.split(".")[0], 'base64').toString("utf-8") + "*",
+	DISCORD_CLIENT_ID:
+		Buffer.from(
+			process.env.DISCORD_CLIENT_TOKEN.split(".")[0],
+			"base64"
+		).toString("utf-8") + "*",
 	// Since k8s doesn't offer any clean way to get the id of a pod in a statefulset, we must extract it from the pod's name
-	FIRST_SHARD: Number((process.env.FIRST_SHARD?.match(/(\d+)/)[0])),
+	FIRST_SHARD: Number(process.env.FIRST_SHARD?.match(/(\d+)/)[0])
 });
 
 function getEnv(): MemberCounterEnv {
-  return parsedEnv;
+	return parsedEnv;
 }
 
 export default getEnv;

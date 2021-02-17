@@ -11,23 +11,23 @@ const guildCreate = async (guild: Eris.Guild) => {
   const client: Eris.Client = guild._client;
   const guildSettings = await GuildService.init(guild.id);
 
-  if (guildSettings.blocked) {
-    await guild.leave();
-    return;
-  }
+	if (guildSettings.blocked) {
+		await guild.leave();
+		return;
+	}
 
-  await guildSettings.setLocale(guild.preferredLocale);
+	await guildSettings.setLocale(guild.preferredLocale);
 
-  // Self kick when premium bot is present and the guild is premium
-  if (!PREMIUM_BOT && !UNRESTRICTED_MODE) {
-    const premiumBotMember = await guild
-      .getRESTMember(PREMIUM_BOT_ID)
-      .catch(() => {});
+	// Self kick when premium bot is present and the guild is premium
+	if (!PREMIUM_BOT && !UNRESTRICTED_MODE) {
+		const premiumBotMember = await guild
+			.getRESTMember(PREMIUM_BOT_ID)
+			.catch(() => {});
 
-    if (guildSettings.premium && premiumBotMember) {
-      guild.leave().catch(console.error);
-    }
-  }
+		if (guildSettings.premium && premiumBotMember) {
+			guild.leave().catch(console.error);
+		}
+	}
 
   // set language
   const languageToSet = guild.preferredLocale.replace(/-/g, '_');

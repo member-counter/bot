@@ -1,5 +1,5 @@
-require('dotenv').config();
-const { MongoClient } = require('mongodb');
+require("dotenv").config();
+const { MongoClient } = require("mongodb");
 
 const { DB_URI } = process.env;
 
@@ -8,7 +8,7 @@ const { DB_URI } = process.env;
 	const db = mongoClient.db();
 
 	// Guild Settings
-	const guildsCollection = db.collection('guilds');
+	const guildsCollection = db.collection("guilds");
 	const guildsCollectionSize = await guildsCollection.countDocuments();
 
 	const guildsCursor = guildsCollection.find();
@@ -20,29 +20,26 @@ const { DB_URI } = process.env;
 	) {
 		const settings = await guildsCursor.next();
 
-		if ('shortNumber' in settings) {
-      if (settings.shortNumber) {
+		if ("shortNumber" in settings) {
+			if (settings.shortNumber) {
 				settings.shortNumber = 1;
 			} else {
 				settings.shortNumber = -1;
 			}
-    }
-    
-    delete settings._id;
-    delete settings.__v;
+		}
 
-    await guildsCollection
-      .findOneAndUpdate(
-        { guild: settings.guild },
-        { $set: settings },
-      )
-      .catch(console.error);
+		delete settings._id;
+		delete settings.__v;
+
+		await guildsCollection
+			.findOneAndUpdate({ guild: settings.guild }, { $set: settings })
+			.catch(console.error);
 		guildsProcessed++;
 		process.stdout.write(
-			`\r[${guildsProcessed} of ${guildsCollectionSize}] Documents Processed (Guild settings)`,
+			`\r[${guildsProcessed} of ${guildsCollectionSize}] Documents Processed (Guild settings)`
 		);
 	}
 
-	process.stdout.write('\n');
+	process.stdout.write("\n");
 	process.exit(0);
 })();

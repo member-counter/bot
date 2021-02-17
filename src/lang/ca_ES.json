@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "**Altres**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}base64\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
 				]
@@ -127,13 +127,8 @@
 				},
 				{
 					"key": "http",
-					"name": "http:url",
-					"description": "Aixó mostrará la quantitat resposta pel recurs establert, el bot realitzarà una petició `GET` i el servidor **ha de** respondre amb el codi d'estat `200` i l'encapçalat `content-type: text/plain` Exemple: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "Com `{http}` pero el bot no convetirà el resultat a un nombre, útil per mostrar noms en comptes de nombres"
+					"name": "http:options",
+					"description": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to archieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items."
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -216,12 +211,12 @@
 		},
 		"editChannel": {
 			"helpDescription": "Si estàs intentant establir un comptador però Discord et diu que has arribat al límit de caràcters en el nom / tema, pots \"ignorar\" aquest límit utilitzant aquest comand\n** Ús ** `` `{PREFIX} editChannel [id de canal] [contingut]` ``\n** Exemple ** `` `{PREFIX} editChannel 701396983843127366 {onlinemembers} de {members} Online```",
-			"success": "Fet! Potser que hagis d'esperar uns segons per poder veure els nous canvis",
+			"success": "Fet! Potser que hagis d'esperar uns minuts per poder veure els nous canvis",
 			"errorNotFound": "Canal no trobat",
 			"errorNoContent": "Has de proporcionar algun contingut"
 		},
 		"setDigit": {
-			"helpDescription": "Personalitza els dígits que seràn mostrats, el primer paràmetre ha de ser el que vols canviar, el segon paràmetre pot ser el que sigui, com un emoji o un nombre normal, pots personalitzar diversos nombres alhora separant els arguments amb comes (`, `)\nSi el primer pàrametre és \"reset\", els nombres seràn reestablerts als predeterminats.\n\nÚs: `` `{PREFIX} setDigit reset\n{PREFIX} setDigit [nombre] [nombre personalitzat] `` `\nExemple: `` `{PREFIX} setDigit 3 mar\n{PREFIX} setDigit 3: emoji3:, 4: emoji4: `` `",
+			"helpDescription": "Personalitza els dígits que seràn mostrats, el primer paràmetre ha de ser el que vols canviar, el segon paràmetre pot ser el que sigui, com un emoji o un nombre normal, pots personalitzar diversos nombres alhora separant els arguments amb comes (`, `)\nSi el primer pàrametre és \"reset\", els nombres seràn reestablerts als predeterminats.\n\nÚs `` `{PREFIX} setDigit reset\n{PREFIX} setDigit [nombre] [nombre personalitzat] `` `\nExemple `` `{PREFIX} setDigit 3 mar\n{PREFIX} setDigit 3: emoji3:, 4: emoji4: `` `",
 			"success": "Dígits personalitzats correctament.",
 			"resetSuccess": "Tots els dígits han estat reestablerts.",
 			"errorMissingParams": "Falten paràmetres, si us plau, consulta `{PREFIX}help setDigit`."
@@ -230,14 +225,14 @@
 			"helpDescription": "Aquest comand et permet mostrar el nombre d'un compte en un format abreujat en comtadors que hagis col·locat en un canal de veu o categoria\n\n**Ús**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Acció invàlida! Per favor, consulta `{PREFIX}help shortNumber`",
-			"success": "Fet! Potser que hagis d'esperar uns segons per poder veure els nous canvis"
+			"success": "Fet! Potser que hagis d'esperar uns minuts per poder veure els nous canvis"
 		},
 		"locale": {
 			"helpDescription": "Dona format a nombres i altres cosas depenent de la regió especificada \n**Ús**\n```{PREFIX}locale [locale/disable]```\n**Exemples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Canvia el prefix del bot.\n\nÚs:```{PREFIX}prefix [nuevo prefijo]```",
+			"helpDescription": "Canvia el prefix del bot.\n\nÚs```{PREFIX}prefix [nuevo prefijo]```",
 			"success": "Prefix canviat a: `{NEW_PREFIX}`",
 			"noPrefixProvided": "Has de proporcionar un prefix"
 		},
@@ -328,11 +323,37 @@
 		},
 		"setup": {
 			"helpDescription": "Crea diversos canals de veu bloquejats amb contadors al seu nom\n**Exemple**```{PREFIX}setup```",
-			"categoryName": "📊 Estadístiques del servidor 📊",
-			"memberCounter": "{members} Membres",
-			"boostingCounter": "{nitro-boosters} Boosteant",
-			"rolesCounter": "{roles} Rols",
-			"channelsCounter": "{channels} Canals"
+			"creatingCounts": "Creant comptadors...",
+			"createdCounts": "Completat",
+			"categoryName": {
+				"countTemplate": "📊 Estadístiques del servidor 📊",
+				"creatingCategory": "{LOADING} Creant categoria\n",
+				"createdCategory": "{CHECK_MARK} Categoria creada\n"
+			},
+			"memberCounter": {
+				"countTemplate": "Member Count: {members}",
+				"creatingmemberCounter": "{LOADING} Creant comptador de membres\n",
+				"createdmemberCounter": "{CHECK_MARK} Comptador de membres creat\n"
+			},
+			"boostingCounter": {
+				"countTemplate": "Boosting Count: {nitro-boosters}",
+				"creatingboostingCounter": "{LOADING} Creant comptador de boosters\n",
+				"createdboostingCounter": "{CHECK_MARK} Comptador de boosters creat\n"
+			},
+			"rolesCounter": {
+				"countTemplate": "Role Count: {roles}",
+				"creatingrolesCounter": "{LOADING} Creant comptador de rols\n",
+				"createdrolesCounter": "{CHECK_MARK} Comptador de rols creat\n"
+			},
+			"channelsCounter": {
+				"countTemplate": "Channel Count: {channels}",
+				"creatingchannelsCounter": "{LOADING} Creant comptador de canals\n",
+				"createdchannelsCounter": "{CHECK_MARK} Comptador de canals creat\n"
+			}
+		},
+		"base64": {
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		}
 	},
 	"functions": {
@@ -346,6 +367,12 @@
 			"noBanPerms": "Necessit permisos de ban per mostrar això",
 			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo",
 			"notAvailable": "No està disponible, per favor esperi"
+		},
+		"paginator": {
+			"pageCounter": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "A quina pàgina t'agradaria anar? Escriu `cancel` o `0` para cancelar-lo. Tens 15 segons per respondre.",
+			"errorPageLengthExceeded": "La pàgina ha de ser menor o igual que {TOTAL_PAGES}. Per favor, intenteu de nou.",
+			"errorNegativeInput": "La pàgina no pot ser negativa. Per favor, intenteu de nou."
 		}
 	},
 	"common": {

@@ -1,12 +1,20 @@
-FROM node:latest
+FROM node:alpine as node_modules_cache
+
+WORKDIR /cache/
+RUN apk add --no-cache make gcc g++ python3 git   
+COPY package.json .
+COPY package-lock.json .
+RUN npm prune 
+RUN npm install
+
+
+FROM node:alpine
 
 WORKDIR /app
-
+COPY --from=node_modules_cache /cache/ .
 COPY . .
 
 EXPOSE $PORT
-
-RUN npm install
 
 RUN npm run build
 

@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "**Ostatní**",
-						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}donate\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
+						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}base64\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
 				]
@@ -127,13 +127,8 @@
 				},
 				{
 					"key": "http",
-					"name": "http:url",
-					"description": "Tímto se zobrazí vrácená data daná podle odpovědi zdroje, bot provede požadavek `GET` a server **musí** odpovědět stavovým kódem `200` a `content-type: text/plain` Příklad: `{http:https://member-counter.eduardozgz.com/api/donation/count}`"
-				},
-				{
-					"key": "http-string",
-					"name": "http-string:url",
-					"description": "Podobné jako `{http}`, ale bot nebude analyzovat nic kromě jmen namísto čísel"
+					"name": "http:options",
+					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -216,12 +211,12 @@
 		},
 		"editChannel": {
 			"helpDescription": "Pokud se pokoušíte nastavit počítadlo, ale Discord vám řekne, že jste dosáhli limitu délky názvu/tématu, můžete pomocí tohoto příkazu tento limit „ignorovat“\n**Použití:**```{PREFIX}editChannel [ID kanálu] [obsah]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} online z {members}```",
-			"success": "Úspěšně upraveno! Možná budete muset počkat několik sekund, než uvidíte tyto změny",
+			"success": "Done! You may have to wait a few minutes to see the new changes",
 			"errorNotFound": "Kanál nebyl nalezen",
 			"errorNoContent": "Musíte poskytnout nějaký obsah"
 		},
 		"setDigit": {
-			"helpDescription": "Přizpůsobí čísla, která se budou zobrazovat, argument čísla musí být normální číslo, druhý argument může být cokoli, například emoji nebo normální číslo, můžete přizpůsobit více čísel najednou oddělením argumentů čárkami (`,`)\nPokud je prvním argumentem slovo „reset“, budou čísla obnovena na výchozí.\n\n**Použítí:** ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [vlastní číslo]```\n**Příklad:** ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "Přizpůsobí čísla, která se budou zobrazovat, argument čísla musí být normální číslo, druhý argument může být cokoli, například emoji nebo normální číslo, můžete přizpůsobit více čísel najednou oddělením argumentů čárkami (`,`)\nPokud je prvním argumentem slovo „reset“, budou čísla obnovena na výchozí.\n\n**Použítí** ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [vlastní číslo]```\n**Příklad** ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "Číslice úspěšně přizpůsobené.",
 			"resetSuccess": "Čísla byla obnovena na výchozí hodnotu.",
 			"errorMissingParams": "Chybějící parametry, prosím podívejte se na `{PREFIX}help setDigit`."
@@ -230,14 +225,14 @@
 			"helpDescription": "Tento příkaz umožňuje zobrazit počet v kompaktní formě v počítadlech\n\n**Použít:**\n```{PREFIX}shortNumber [enable/disable]```\n**Příklad:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Neznámá akce! Prosím podívejte se na `{PREFIX}help shortNumber`",
-			"success": "Úspěšně upraveno! Možná budete muset počkat několik sekund, než uvidíte tyto změny"
+			"success": "Done! You may have to wait a few minutes to see the new changes"
 		},
 		"locale": {
 			"helpDescription": "Naformátuje čísla a další položky do zadaného národního prostředí\n\n**Použít:**\n```{PREFIX}locale [locale/disable]```\n**Příklad:**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Změnit prefix bota\n\nPoužití:```{PREFIX}prefix [nový prefix]```",
+			"helpDescription": "Změnit prefix bota\n\nPoužití```{PREFIX}prefix [nový prefix]```",
 			"success": "Prefix změněn na: `{NEW_PREFIX}`",
 			"noPrefixProvided": "Musíte zadat prefix"
 		},
@@ -328,11 +323,37 @@
 		},
 		"setup": {
 			"helpDescription": "Vytvoří uzamčené kanály s počítadly\n**Příklad:**```{PREFIX}setup```",
-			"categoryName": "📊 Server Stats 📊",
-			"memberCounter": "{members} uživatelé/ů",
-			"boostingCounter": "{nitro-boosters} boostů",
-			"rolesCounter": "{roles} role/í",
-			"channelsCounter": "{channels} kanály/ů"
+			"creatingCounts": "Creating counters...",
+			"createdCounts": "Complete",
+			"categoryName": {
+				"countTemplate": "📊 Server Stats 📊",
+				"creatingCategory": "{LOADING} Creating category\n",
+				"createdCategory": "{CHECK_MARK} Category created\n"
+			},
+			"memberCounter": {
+				"countTemplate": "{members} uživatelé/ů",
+				"creatingmemberCounter": "{LOADING} Creating member counter\n",
+				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+			},
+			"boostingCounter": {
+				"countTemplate": "{nitro-boosters} boostů",
+				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
+				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+			},
+			"rolesCounter": {
+				"countTemplate": "{roles} role/í",
+				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
+				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+			},
+			"channelsCounter": {
+				"countTemplate": "{channels} kanály/ů",
+				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+			}
+		},
+		"base64": {
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		}
 	},
 	"functions": {
@@ -346,6 +367,12 @@
 			"noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
 			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu",
 			"notAvailable": "Není k dispozici, počkejte prosím"
+		},
+		"paginator": {
+			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
+			"errorNegativeInput": "The page number can't be negative. Please try again."
 		}
 	},
 	"common": {
