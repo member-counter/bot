@@ -57,7 +57,7 @@ interface BotEmojis {
 	readonly lastPage: Emoji;
 	readonly jump: Emoji;
 	readonly loading: Emoji;
-	readonly check_mark: Emoji;
+	readonly checkMark: Emoji;
 }
 
 let emojis: BotEmojis = {
@@ -67,7 +67,7 @@ let emojis: BotEmojis = {
 	nextPage: new Emoji("▶️", CUSTOM_EMOJI_NEXT_PAGE),
 	jump: new Emoji("↗️", CUSTOM_EMOJI_JUMP),
 	loading: new Emoji("🕓", CUSTOM_EMOJI_LOADING),
-	check_mark: new Emoji("✅", CUSTOM_EMOJI_CHECK_MARK)
+	checkMark: new Emoji("✅", CUSTOM_EMOJI_CHECK_MARK)
 };
 
 export default emojis;

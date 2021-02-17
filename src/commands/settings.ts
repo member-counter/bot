@@ -17,6 +17,7 @@ import UserError from "../utils/UserError";
 import getEnv from "../utils/getEnv";
 import Bot from "../bot";
 import Paginator from "../utils/paginator";
+import safeDiscordString from "../utils/safeDiscordString";
 
 const { PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 
@@ -46,7 +47,6 @@ const seeSettings: MemberCounterCommand = {
 			} = languagePack.commands.seeSettings.settingsMessage;
 
 			const guildSettings = await GuildService.init(guild.id);
-
 			const {
 				prefix,
 				premium,
@@ -57,80 +57,91 @@ const seeSettings: MemberCounterCommand = {
 				counters,
 				digits
 			} = guildSettings;
-			const EmbedPages = [];
-			for (let i = 0; i < 1; i++) {
-				EmbedPages.push(
-					embedBase({
-						title: `**${headerText}** ${guild.name} \`${guild.id}\``,
-						description: `${premiumText} ${
-							premium ? premiumConfirmedText : premiumNoTierText
-						}\n${prefixText} \`${prefix}\`\n${langText} \`${language}\`\n${localeText} \`${locale}\`\n${shortNumberText} \`${
-							shortNumber > -1 ? premiumConfirmedText : premiumNoTierText
-						}\`\n${
-							allowedRoles.length
-								? "\n" +
-								  allowedRolesText +
-								  " " +
-								  allowedRoles.map((role) => `<@&${role}>`).join(" ")
-								: ""
-						}\n${customNumbersText} ${digits.join(" ")}`
-					})
-				);
-			}
 
-			let string = "";
+			let generalSection = "";
+			let countersSection = "";
+			let logsSection: string[] = [];
+
+			// format general settings
+			generalSection += `${premiumText} ${
+				premium ? premiumConfirmedText : premiumNoTierText
+			}\n`;
+			generalSection += `${prefixText} \`${prefix}\`\n`;
+			generalSection += `${langText} \`${language}\`\n`;
+			generalSection += `${localeText} \`${locale}\`\n`;
+			generalSection += `${shortNumberText} \`${
+				shortNumber > -1 ? premiumConfirmedText : premiumNoTierText
+			}\`\n`;
+			generalSection += `${
+				allowedRoles.length
+					? allowedRolesText +
+					  " " +
+					  allowedRoles.map((role) => `<@&${role}>`).join(" ")
+					: ""
+			}\n`;
+			generalSection += `${customNumbersText} ${digits.join(" ")}`;
+
+			// format counters
 			if (counters.size) {
-				string += `\n\n${countersText}\n`;
+				// If there is some counter with lack of perms, show the legend
+				if (
+					Array.from(counters).filter(([channelId]) => {
+						const discordChannel = guild.channels.get(channelId);
+						return !botHasPermsToEdit(discordChannel);
+					}).length > 0
+				) {
+					countersSection += `${warningNoPermsText}\n`;
+				}
+
 				for (const [counter, content] of counters) {
 					const discordChannel = guild.channels.get(counter);
 					const { name, type } = discordChannel;
 					const icon = ["\\#️⃣", " ", "\\🔊", " ", "\\📚", "\\📢", " "];
 
-					string += `${
+					countersSection += `${
 						botHasPermsToEdit(discordChannel) ? "     " : " \\⚠️ "
 					}- ${icon[type]} ${name} \`${counter}\`: \`\`\`${content}\`\`\`\n`;
 				}
 			}
 
-			// If there is some counter with lack of perms, show the legend
-			if (
-				Array.from(counters).filter(([channelId]) => {
-					const discordChannel = guild.channels.get(channelId);
-					return !botHasPermsToEdit(discordChannel);
-				}).length > 0
-			) {
-				string += `\n${warningNoPermsText}`;
-			}
-			if (string.length > 0) {
-				EmbedPages.push(
-					embedBase({
-						title: `**${headerText}** ${guild.name} \`${guild.id}\``,
-						description: string
-					})
-				);
-			}
-
-			let logsText = "\n" + guildLogsText + "\n```";
-			const latestLogs = await guildSettings.getLatestLogs();
-
+			const latestLogs = await guildSettings.getLatestLogs(100);
 			if (latestLogs.length) {
-				latestLogs.forEach((log) => {
-					const text = `[${log.timestamp.toISOString()}] ${log.text}\n`;
-					if (logsText.length + text.length < 2000 - 3) logsText += text;
-				});
+				const formatedLatestLogs = latestLogs
+					.map(
+						({ timestamp, text }) => `[${timestamp.toISOString()}] ${text}\n`
+					)
+					.join("");
 
-				logsText += "```";
-				EmbedPages.push(
-					embedBase({
-						title: `**${headerText}** ${guild.name} \`${guild.id}\``,
-						description: logsText
-					})
+				logsSection = safeDiscordString(formatedLatestLogs).map(
+					(portion) => "```" + portion + "```"
 				);
 			}
+
+			const embedPages = [
+				...safeDiscordString(generalSection).map((text) => {
+					return embedBase({
+						title: `**${headerText}** ${guild.name} \`${guild.id}\``,
+						description: text
+					});
+				}),
+				...safeDiscordString(countersSection).map((text) => {
+					return embedBase({
+						title: `**${countersText}** ${guild.name} \`${guild.id}\``,
+						description: text
+					});
+				}),
+				...logsSection.map((text) => {
+					return embedBase({
+						title: `**${guildLogsText}** ${guild.name} \`${guild.id}\``,
+						description: text
+					});
+				})
+			];
+
 			new Paginator(
 				message.channel,
 				message.author.id,
-				EmbedPages,
+				embedPages,
 				languagePack
 			).displayPage(0);
 		}
@@ -322,13 +333,19 @@ const upgradeServer: MemberCounterCommand = {
 			switch (upgradeServer) {
 				case "success": {
 					await channel.createMessage(
-						success.replace("{BOT_LINK}", PREMIUM_BOT_INVITE)
+						success.replace(
+							"{BOT_LINK}",
+							PREMIUM_BOT_INVITE + `&guild_id=${guildSettings.id}`
+						)
 					);
 					break;
 				}
 
 				case "alreadyUpgraded": {
-					throw new UserError(errorCannotUpgrade);
+					throw new UserError(
+						errorCannotUpgrade +
+							` ${PREMIUM_BOT_INVITE + `&guild_id=${guildSettings.id}`}`
+					);
 					break;
 				}
 				case "noUpgradesAvailable": {

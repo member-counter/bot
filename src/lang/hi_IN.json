@@ -128,7 +128,7 @@
 				{
 					"key": "http",
 					"name": "http:options",
-					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
+					"description": "http `GET` अनुरोध द्वारा लौटाया गया परिणाम दिखाता है। आप `options` [here] (https://member-counter.eduardozgz.com/utils/http) सेटअप कर सकते हैं, या इसे मैन्युअल रूप से बना सकते हैं: `options` base64 में एन्कोड किया गया एक JSON ऑब्जेक्ट है (आप {PREFIX} का उपयोग कर सकते हैं) base64 इसे संग्रहीत करने की कमांड), इस ऑब्जेक्ट में निम्नलिखित कुंजियाँ हो सकती हैं: `url`: एक स्ट्रिंग; संसाधन के url के साथ, `parseNumber`: एक बूलियन; यदि परिणाम एक मान्य संख्या है, तो इसे आपके सर्वर की सेटिंग में पार्स और अनुकूलित किया जाएगा, `dataPath`: एक स्ट्रिंग ; यदि प्रतिक्रिया एक JSON ऑब्जेक्ट है, तो आपको एक कुंजी के लिए पथ निर्दिष्ट करना होगा जिसमें एक स्ट्रिंग या संख्या होनी चाहिए, इस पथ का सिंटैक्स के समान है जो JS गुणों और सरणी आइटम तक पहुंचने के लिए उपयोग करता है।"
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -323,37 +323,37 @@
 		},
 		"setup": {
 			"helpDescription": "उन में कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\n**उदाहरण**```{PREFIX}setup```",
-			"creatingCounts": "Creating counters...",
+			"creatingCounts": "काउंटर बन रहा है...",
 			"createdCounts": "पूर्ण",
 			"categoryName": {
 				"countTemplate": "📊 सर्वर आँकड़े 📊",
-				"creatingCategory": "{LOADING} Creating category\n",
-				"createdCategory": "{CHECK_MARK} Category created\n"
+				"creatingCategory": "{LOADING} श्रेणी बनाई जा रही है",
+				"createdCategory": "{CHECK_MARK} श्रेणी बन गई है"
 			},
 			"memberCounter": {
 				"countTemplate": "{members} सदस्य",
-				"creatingmemberCounter": "{LOADING} Creating member counter\n",
-				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+				"creatingmemberCounter": "{LOADING} सदस्य काउंटर बनाई जा रही है",
+				"createdmemberCounter": "{CHECK_MARK} सदस्य संख्या बनाई गई"
 			},
 			"boostingCounter": {
 				"countTemplate": "{nitro-boosters} बढ़ाने",
-				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
-				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
+				"creatingboostingCounter": "{LOADING} बूस्टिंग काउंटर बनाई जा रही है",
+				"createdboostingCounter": "{CHECK_MARK} बूस्टिंग काउंटर बनाई गई"
 			},
 			"rolesCounter": {
 				"countTemplate": "{roles} भूमिकाएँ",
-				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
-				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+				"creatingrolesCounter": "{LOADING} भूमिका काउंटर बनाई जा रही है",
+				"createdrolesCounter": "{CHECK_MARK} भूमिका काउंटर बनाई गई"
 			},
 			"channelsCounter": {
 				"countTemplate": "{channels} चैनल",
-				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
-				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+				"creatingchannelsCounter": "{LOADING} चैनल काउंटर बनाई जा रही है",
+				"createdchannelsCounter": "{CHECK_MARK} चैनल काउंटर बनाई गई"
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"helpDescription": "एक बेस 64 यूटिलिटी कमांड, विशिष्ट काउंटरों को अनुकूलित करने या उन्नत काउंटर बनाने के लिए उपयोगी है, जैसे `{http}` \n\n**आचरण**```{PREFIX}base64 [encode/decode] [data]```\n **उदाहरण**```{PREFIX}base64 encode मिसाल\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "अमान्य कार्रवाई, यह `encode` या `decode` होनी चाहिए"
 		}
 	},
 	"functions": {
@@ -370,9 +370,9 @@
 		},
 		"paginator": {
 			"pageCounter": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"jumpPrompt": "आप किस पेज पर जाना चाहेंगे? प्रॉम्प्ट रद्द करने के लिए `cancel` या `0` टाइप करें। आपके पास उत्तर देने के लिए 15 सेकंड हैं।",
+			"errorPageLengthExceeded": "पृष्ठ संख्या {TOTAL_PAGES} से कम या बराबर होनी चाहिए। कृपया पुन: प्रयास करें।",
+			"errorNegativeInput": "पृष्ठ संख्या नकारात्मक नहीं हो सकती। कृपया पुन: प्रयास करें।"
 		}
 	},
 	"common": {
