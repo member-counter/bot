@@ -1,6 +1,6 @@
 {
 	"name": "member-counter-bot",
-	"version": "0.15.2-verified-bot-edition",
+	"version": "0.16.0-verified-bot-edition-dev",
 	"engines": {
 		"node": ">=14.0"
 	},
@@ -24,7 +24,7 @@
 	},
 	"homepage": "https://member-counter.eduardozgz.com",
 	"dependencies": {
-		"@arcanebot/redis-sharder": "^1.0.15",
+		"@arcanebot/redis-sharder": "github:eduardozgz/redis-sharder",
 		"abort-controller": "^3.0.0",
 		"bufferutil": "^4.0.1",
 		"colorthief": "^2.3.2",
@@ -32,13 +32,16 @@
 		"dotenv": "^8.2.0",
 		"dotenv-parse-variables": "^0.2.3",
 		"eris": "^0.13.3",
+		"eris-collector": "github:eduardozgz/eris-collector",
+		"erlpack": "^0.1.3",
 		"gamedig": "^2.0.23",
 		"git-rev-sync": "^3.0.1",
 		"lodash.clonedeep": "^4.5.0",
 		"mongoose": "5.10.5",
 		"node-fetch": "^2.6.1",
 		"twitch": "^4.2.2",
-		"twitter": "^1.7.1"
+		"twitter": "^1.7.1",
+		"zlib-sync": "^0.1.7"
 	},
 	"devDependencies": {
 		"@types/cron": "^1.7.2",
@@ -49,13 +52,26 @@
 		"@types/node": "^13.13.19",
 		"@types/node-fetch": "^2.5.7",
 		"@types/ws": "^7.2.6",
+		"husky": "^4.3.8",
+		"prettier": "2.2.1",
+		"pretty-quick": "^3.1.0",
 		"ts-node-dev": "^1.0.0-pre.62",
 		"tslint": "^6.1.3",
-		"typescript": "^3.9.7",
-		"typescript-tslint-plugin": "^0.5.5"
+		"typescript": "^4.1.3"
 	},
 	"optionalDependencies": {
 		"erlpack": "^0.1.3",
 		"zlib-sync": "^0.1.7"
+	},
+	"prettier": {
+		"useTabs": true,
+		"semi": true,
+		"trailingComma": "none",
+		"arrowParens": "always"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
 	}
 }

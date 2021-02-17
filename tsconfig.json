@@ -7,12 +7,7 @@
 		"esModuleInterop": true,
 		"sourceMap": true,
 		"outDir": "./dist",
-		"allowJs": true,
-		"plugins": [
-			{
-				"name": "typescript-tslint-plugin"
-			}
-		]
+		"allowJs": true
 	},
 	"include": ["./src/**/*"],
 	"exclude": ["node_modules", "res"]
