@@ -60,10 +60,10 @@ jspm_packages/
 # ignore the development folder
 dev/
 
-#macos stuff
+# macos stuff
 .DS_Store
 
-#webstorm stuff
+# webstorm stuff
 .idea
 
 #build

@@ -1,14 +1,14 @@
-require('dotenv').config();
-const { MongoClient } = require('mongodb');
+require("dotenv").config();
+const { MongoClient } = require("mongodb");
 
 const { DB_URI } = process.env;
 
 const newCounters = [
-	[/\{minecraft/gi, '{game:minecraft'],
-	[/\{source/gi, '{game:css'],
-	[/\{gta5-fivem/gi, '{game:fivem'],
-	[/\{gtasa-mta/gi, '{game:mtasa'],
-	[/\{gtasa-mp/gi, '{game:samp'],
+	[/\{minecraft/gi, "{game:minecraft"],
+	[/\{source/gi, "{game:css"],
+	[/\{gta5-fivem/gi, "{game:fivem"],
+	[/\{gtasa-mta/gi, "{game:mtasa"],
+	[/\{gtasa-mp/gi, "{game:samp"]
 ];
 
 (async () => {
@@ -16,7 +16,7 @@ const newCounters = [
 	const db = mongoClient.db();
 
 	// Guild Settings
-	const guildsCollection = db.collection('guilds');
+	const guildsCollection = db.collection("guilds");
 	const guildsCollectionSize = await guildsCollection.countDocuments();
 
 	const guildsCursor = guildsCollection.find();
@@ -28,30 +28,33 @@ const newCounters = [
 	) {
 		const settings = await guildsCursor.next();
 
-		if ('counters' in settings) {
-      for (const id of Object.keys(settings.counters)) {
-        for (const [oldCounter, newCounter] of newCounters) {
-          settings.counters[id] = settings.counters[id].replace(oldCounter, newCounter);
-        }
-      }
-    }
-    
-    delete settings._id;
-    delete settings.__v;
+		if ("counters" in settings) {
+			for (const id of Object.keys(settings.counters)) {
+				for (const [oldCounter, newCounter] of newCounters) {
+					settings.counters[id] = settings.counters[id].replace(
+						oldCounter,
+						newCounter
+					);
+				}
+			}
+		}
 
-    await guildsCollection
-      .findOneAndUpdate(
-        { guild: settings.guild },
-        { $set: settings },
-        { new: true },
-      )
-      .catch(console.error);
+		delete settings._id;
+		delete settings.__v;
+
+		await guildsCollection
+			.findOneAndUpdate(
+				{ guild: settings.guild },
+				{ $set: settings },
+				{ new: true }
+			)
+			.catch(console.error);
 		guildsProcessed++;
 		process.stdout.write(
-			`\r[${guildsProcessed} of ${guildsCollectionSize}] Documents Processed (Guild settings)`,
+			`\r[${guildsProcessed} of ${guildsCollectionSize}] Documents Processed (Guild settings)`
 		);
 	}
 
-	process.stdout.write('\n');
+	process.stdout.write("\n");
 	process.exit(0);
 })();

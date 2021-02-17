@@ -1,6 +1,6 @@
-import http from 'http';
-import getEnv from '../utils/getEnv';
-import getBotInviteLink from '../utils/getBotInviteLink';
+import http from "http";
+import getEnv from "../utils/getEnv";
+import getBotInviteLink from "../utils/getBotInviteLink";
 
 const { PORT } = getEnv();
 
@@ -9,7 +9,7 @@ class Website {
 		http
 			.createServer((req, res) => {
 				res.writeHead(302, {
-					'Location': getBotInviteLink()
+					Location: getBotInviteLink()
 				});
 				res.end();
 			})

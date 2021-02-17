@@ -1,14 +1,16 @@
-import Counter from '../typings/Counter';
-import Constants from '../utils/Constants';
+import Eris from "eris";
+import Counter from "../typings/Counter";
 
 const ChannelCounter: Counter = {
-	aliases: ['channels'],
+	aliases: ["channels"],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ guild, resource }) => {
-		return guild.channels.filter((channel) => channel.type !== 4).length;
-	},
+		return guild.channels.filter(
+			(channel) => channel.type !== Eris.Constants.ChannelTypes.GUILD_CATEGORY
+		).length;
+	}
 };
 
 export default ChannelCounter;

@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   member-counter-bot:
@@ -34,10 +34,6 @@ services:
     restart: always
     networks:
       - default
-
-volumes:
-  member-counter-bot-mongodb_db:
-  member-counter-bot-mongodb_configdb:
 
 networks:
   default:

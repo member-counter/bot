@@ -7,19 +7,19 @@ enum UserBadges {
 	BIG_BRAIN = 1 << 5,
 	BUG_CATCHER = 1 << 6,
 	PATPAT = 1 << 7,
-	FOLDING_AT_HOME = 1 << 8,
+	FOLDING_AT_HOME = 1 << 8
 }
 
 enum CounterResult {
 	PREMIUM = -1,
 	ERROR = -2,
 	UNKNOWN = -3,
-	DISABLED = -4,
+	DISABLED = -4
 }
 
 const Constants = {
 	CounterResult,
-	UserBadges,
+	UserBadges
 };
 
 export default Constants;

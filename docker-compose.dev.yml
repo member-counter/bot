@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   member-counter-bot-dev:
@@ -9,7 +9,7 @@ services:
     container_name: Member-Counter-App-Dev
     env_file: .env
     volumes:
-      - .:/app 
+      - .:/app
     depends_on:
       - member-counter-bot-mongodb
       - member-counter-bot-redis
@@ -28,6 +28,8 @@ services:
       - ./storage/configdb:/data/configdb
     networks:
       - default
+    ports:
+      - "27017:27017"
 
   member-counter-bot-redis:
     image: redis
@@ -36,10 +38,6 @@ services:
     restart: always
     networks:
       - default
-
-volumes:
-  member-counter-bot-mongodb_db:
-  member-counter-bot-mongodb_configdb:
 
 networks:
   default:
