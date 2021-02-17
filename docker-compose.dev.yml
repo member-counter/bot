@@ -28,6 +28,8 @@ services:
       - ./storage/configdb:/data/configdb
     networks:
       - default
+    ports:
+      - "27017:27017"
 
   member-counter-bot-redis:
     image: redis
