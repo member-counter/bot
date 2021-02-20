@@ -1,6 +1,6 @@
 {
 	"langCode": "ru_RU",
-	"langName": "Русский (RU)",
+	"langName": "Русский",
 	"commands": {
 		"help": {
 			"helpDescription": "Неужели нужно объяснять смысл этой команды?",
