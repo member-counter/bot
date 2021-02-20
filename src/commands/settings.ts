@@ -6,6 +6,7 @@ import Eris, {
 	TextChannel,
 	NewsChannel
 } from "eris";
+import { table } from "table";
 import embedBase from "../utils/embedBase";
 import GuildService from "../services/GuildService";
 import {
@@ -195,9 +196,9 @@ const lang: MemberCounterCommand = {
 		if (message.channel instanceof GuildChannel) {
 			const { content, channel } = message;
 			const { guild } = channel;
-			const availableLanguages = availableLanguagePacks;
+			const availableLanguages = availableLanguagePacks.sort();
 			const [command, languageRequested]: any[] = content.split(/\s+/);
-			let { errorNotFound } = languagePack.commands.lang;
+			let { errorNotFound: listOfLangPacks } = languagePack.commands.lang;
 
 			if (availableLanguages.includes(languageRequested)) {
 				const guildSettings = await GuildService.init(guild.id);
@@ -208,14 +209,49 @@ const lang: MemberCounterCommand = {
 				let { success } = languagePack.commands.lang;
 				await channel.createMessage(success);
 			} else {
-				errorNotFound += "\n```fix\n";
-				availableLanguages.forEach((availableLanguageCode) => {
-					const languagePack = loadLanguagePack(availableLanguageCode);
-					errorNotFound +=
-						availableLanguageCode + " ➡ " + languagePack.langName + "\n";
+				let langTable: string[][] = [];
+
+				availableLanguages.forEach((availableLanguageCode, index) => {
+					const guildLanguagePack = languagePack;
+					const ilanguagePack = loadLanguagePack(availableLanguageCode);
+					const isSelected =
+						ilanguagePack.langName === guildLanguagePack.langName;
+
+					langTable[index] = [
+						`${isSelected ? " > " : "   "}` +
+							ilanguagePack.langCode +
+							`${isSelected ? " < " : "   "}`,
+						`${ilanguagePack.langName} (${
+							ilanguagePack.langCode.split("_")[1]
+						})`
+					];
 				});
-				errorNotFound += "```";
-				await channel.createMessage(errorNotFound);
+				let tableConfig = {
+					border: {
+						topBody: ` `,
+						topJoin: ` `,
+						topLeft: ` `,
+						topRight: ` `,
+
+						bottomBody: ` `,
+						bottomJoin: ` `,
+						bottomLeft: ` `,
+						bottomRight: ` `,
+
+						bodyLeft: ` `,
+						bodyRight: ` `,
+						bodyJoin: `│`,
+
+						joinBody: `─`,
+						joinLeft: ` `,
+						joinRight: ` `,
+						joinJoin: `┼`
+					}
+				};
+
+				await channel.createMessage(
+					`${listOfLangPacks}\`\`\`fix\n${table(langTable, tableConfig)}\`\`\``
+				);
 			}
 		}
 	}

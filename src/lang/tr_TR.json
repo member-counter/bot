@@ -1,6 +1,6 @@
 {
 	"langCode": "tr_TR",
-	"langName": "Türkçe (TR)",
+	"langName": "Türkçe",
 	"commands": {
 		"help": {
 			"helpDescription": "Bu komutun amacını açıklamak gerçekten gerekli mi?",

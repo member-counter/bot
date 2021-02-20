@@ -6,7 +6,9 @@ const StaticCounter: Counter = {
 	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ client, guild, guildSettings, resource }) => {
-		return Number(resource) ?? resource;
+		const intResource = Number(resource);
+		if (isNaN(intResource)) return resource;
+		else return intResource;
 	}
 };
 
