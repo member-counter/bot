@@ -9,7 +9,7 @@
 				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
-						"name": "**Counters**",
+						"name": "**מדדים**",
 						"value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
 						"inline": true
 					},
@@ -143,7 +143,7 @@
 				{
 					"key": "youtubeVideos",
 					"name": "youtubeVideos:channelUrl",
-					"description": "Displays a youtube channel video count"
+					"description": "מציג מדד צפיות בערוץ יוטיוב"
 				},
 				{
 					"key": "twitchFollowers",
