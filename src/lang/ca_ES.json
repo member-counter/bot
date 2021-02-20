@@ -1,6 +1,6 @@
 {
 	"langCode": "ca_ES",
-	"langName": "Català (ES)",
+	"langName": "Català",
 	"commands": {
 		"help": {
 			"helpDescription": "És realment necessari explicar el propòsit d'aquest comand?",
