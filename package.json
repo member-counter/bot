@@ -39,6 +39,7 @@
 		"lodash.clonedeep": "^4.5.0",
 		"mongoose": "5.10.5",
 		"node-fetch": "^2.6.1",
+		"table": "^6.0.7",
 		"twitch": "^4.2.2",
 		"twitter": "^1.7.1",
 		"zlib-sync": "^0.1.7"
