@@ -1,6 +1,6 @@
 {
 	"langCode": "he_IL",
-	"langName": "עברית (IL)",
+	"langName": "עברית",
 	"commands": {
 		"help": {
 			"helpDescription": "האם זה באמת נחוץ לתרגם את המטרה של הפקודה הזו?",
@@ -9,17 +9,17 @@
 				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
-						"name": "**Counters**",
+						"name": "**מדדים**",
 						"value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
 						"inline": true
 					},
 					{
-						"name": "**Server settings**",
+						"name": "**הגדרות שרת**",
 						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
 						"inline": true
 					},
 					{
-						"name": "**Others**",
+						"name": "**שונות**",
 						"value": "```\n{PREFIX}premium\n{PREFIX}info\n{PREFIX}base64\n{PREFIX}support\n{PREFIX}invite\n{PREFIX}profile\n{PREFIX}github```",
 						"inline": true
 					}
@@ -143,7 +143,7 @@
 				{
 					"key": "youtubeVideos",
 					"name": "youtubeVideos:channelUrl",
-					"description": "Displays a youtube channel video count"
+					"description": "מציג מדד צפיות בערוץ יוטיוב"
 				},
 				{
 					"key": "twitchFollowers",
@@ -323,11 +323,11 @@
 		},
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\n**Example**```{PREFIX}setup```",
-			"creatingCounts": "Creating counters...",
-			"createdCounts": "Complete",
+			"creatingCounts": "יוצר מדדים...",
+			"createdCounts": "מושלם",
 			"categoryName": {
 				"countTemplate": "📊 הסטטים של השרת 📊",
-				"creatingCategory": "{LOADING} Creating category\n",
+				"creatingCategory": "{LOADING} יוצר קטגוריה\n",
 				"createdCategory": "{CHECK_MARK} Category created\n"
 			},
 			"memberCounter": {
@@ -353,7 +353,7 @@
 		},
 		"base64": {
 			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"invalidAction": "פעולה לא חוקית, חייב להיות `encode` או `decode`"
 		}
 	},
 	"functions": {
@@ -369,10 +369,10 @@
 			"notAvailable": "לא זמין, בבקשה להמתין"
 		},
 		"paginator": {
-			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"pageCounter": "עמוד {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
 			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"errorNegativeInput": "מספר העמוד לא יכול להיות שלילי. בבקשה לנסות שוב."
 		}
 	},
 	"common": {
