@@ -4,7 +4,6 @@ WORKDIR /cache/
 RUN apk add --no-cache make gcc g++ python3 git
 COPY package.json .
 COPY package-lock.json .
-RUN npm prune 
 RUN npm install
 
 
