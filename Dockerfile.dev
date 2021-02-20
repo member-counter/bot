@@ -11,6 +11,7 @@ RUN npm install
 FROM node:alpine
 
 WORKDIR /app
+RUN apk add --no-cache git
 COPY --from=node_modules_cache /cache/ .
 COPY . .
 
