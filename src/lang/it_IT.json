@@ -1,6 +1,6 @@
 {
 	"langCode": "it_IT",
-	"langName": "Italiano (IT)",
+	"langName": "Italiano",
 	"commands": {
 		"help": {
 			"helpDescription": "E' veramente necessario spiegare lo scopo di questo comando?",
