@@ -215,7 +215,7 @@ const lang: MemberCounterCommand = {
 					const guildLanguagePack = languagePack;
 					const ilanguagePack = loadLanguagePack(availableLanguageCode);
 					const isSelected =
-						ilanguagePack.langName === guildLanguagePack.langName;
+						ilanguagePack.langCode === guildLanguagePack.langCode;
 
 					langTable[index] = [
 						`${isSelected ? " > " : "   "}` +
