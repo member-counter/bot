@@ -1,6 +1,6 @@
 {
 	"langCode": "fr_FR",
-	"langName": "Français (FR)",
+	"langName": "Français",
 	"commands": {
 		"help": {
 			"helpDescription": "C'est vraiment nécessaire d'expliquer le but de cette commande?",
