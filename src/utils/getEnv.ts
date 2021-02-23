@@ -85,6 +85,7 @@ interface MemberCounterEnv {
 	readonly COUNTER_HTTP_DENY_LIST: string[];
 }
 
+// this will load a .env file into process.env
 dotenv.config();
 
 const parsedEnv = dotenvParseVariables({
