@@ -330,25 +330,32 @@
 				"creatingCategory": "{LOADING} Creando categoría\n",
 				"createdCategory": "{CHECK_MARK} Categoría creada"
 			},
-			"memberCounter": {
-				"countTemplate": "{members} Miembros",
-				"creatingmemberCounter": "{LOADING} Creando contador de miembros\n",
-				"createdmemberCounter": "{CHECK_MARK} Contador de miembros creado\n"
-			},
-			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Boosteando",
-				"creatingboostingCounter": "{LOADING} Creando contadores de boosters\n",
-				"createdboostingCounter": "{CHECK_MARK} Contador de boosters creado\n"
-			},
-			"rolesCounter": {
-				"countTemplate": "{roles} Roles",
-				"creatingrolesCounter": "{LOADING} Creando contador de roles\n",
-				"createdrolesCounter": "{CHECK_MARK} Contador de roles creado"
-			},
-			"channelsCounter": {
-				"countTemplate": "{channels} Canales",
-				"creatingchannelsCounter": "{LOADING} Creando contador de canales\n",
-				"createdchannelsCounter": "{CHECK_MARK} Contador de canales creado\n"
+			"counterTemplates": {
+				"onlineMemberCounter": {
+					"countTemplate": "Online: {onlineMembers}",
+					"creatingonlineMemberCounter": "{LOADING} Creating online counter\n",
+					"createdonlineMemberCounter": "{CHECK_MARK} Online counter created\n"
+				},
+				"memberCounter": {
+					"countTemplate": "Members: {members}",
+					"creatingmemberCounter": "{LOADING} Creando contador de miembros\n",
+					"createdmemberCounter": "{CHECK_MARK} Contador de miembros creado\n"
+				},
+				"boosterCounter": {
+					"countTemplate": "Boosters: {nitro-boosters}",
+					"creatingboosterCounter": "{LOADING} Creating booster counter\n",
+					"createdboosterCounter": "{CHECK_MARK} Booster counter created\n"
+				},
+				"rolesCounter": {
+					"countTemplate": "Roles: {roles}",
+					"creatingrolesCounter": "{LOADING} Creando contador de roles\n",
+					"createdrolesCounter": "{CHECK_MARK} Contador de roles creado"
+				},
+				"channelsCounter": {
+					"countTemplate": "Channels: {channels}",
+					"creatingchannelsCounter": "{LOADING} Creando contador de canales\n",
+					"createdchannelsCounter": "{CHECK_MARK} Contador de canales creado\n"
+				}
 			}
 		},
 		"base64": {
