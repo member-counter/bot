@@ -330,25 +330,32 @@
 				"creatingCategory": "{LOADING} Kategori oluşturuluyor\n",
 				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu\n"
 			},
-			"memberCounter": {
-				"countTemplate": "Üye Sayısı: {members}",
-				"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
-				"createdmemberCounter": "{CHECK_MARK} Üye sayacı oluşturuldu\n"
-			},
-			"boostingCounter": {
-				"countTemplate": "Boost Sayısı: {nitro-boosters}",
-				"creatingboostingCounter": "{LOADING} Boost sayacı oluşturuluyor\n",
-				"createdboostingCounter": "{CHECK_MARK} Boost sayacı oluşturuldu\n"
-			},
-			"rolesCounter": {
-				"countTemplate": "Rol Sayısı: {roles}",
-				"creatingrolesCounter": "{LOADING} Rol sayacı oluşturuluyor\n",
-				"createdrolesCounter": "{CHECK_MARK} Rol sayacı oluşturuldu\n"
-			},
-			"channelsCounter": {
-				"countTemplate": "Kanal Sayısı: {channels}",
-				"creatingchannelsCounter": "{LOADING} Kanal sayacı oluşturuluyor\n",
-				"createdchannelsCounter": "{CHECK_MARK} Kanal sayacı oluşturuldu\n"
+			"counterTemplates": {
+				"onlineMemberCounter": {
+					"countTemplate": "Online: {onlineMembers}",
+					"creatingonlineMemberCounter": "{LOADING} Creating online counter\n",
+					"createdonlineMemberCounter": "{CHECK_MARK} Online counter created\n"
+				},
+				"memberCounter": {
+					"countTemplate": "Members: {members}",
+					"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
+					"createdmemberCounter": "{CHECK_MARK} Üye sayacı oluşturuldu\n"
+				},
+				"boosterCounter": {
+					"countTemplate": "Boosters: {nitro-boosters}",
+					"creatingboosterCounter": "{LOADING} Creating booster counter\n",
+					"createdboosterCounter": "{CHECK_MARK} Booster counter created\n"
+				},
+				"rolesCounter": {
+					"countTemplate": "Roles: {roles}",
+					"creatingrolesCounter": "{LOADING} Rol sayacı oluşturuluyor\n",
+					"createdrolesCounter": "{CHECK_MARK} Rol sayacı oluşturuldu\n"
+				},
+				"channelsCounter": {
+					"countTemplate": "Channels: {channels}",
+					"creatingchannelsCounter": "{LOADING} Kanal sayacı oluşturuluyor\n",
+					"createdchannelsCounter": "{CHECK_MARK} Kanal sayacı oluşturuldu\n"
+				}
 			}
 		},
 		"base64": {
