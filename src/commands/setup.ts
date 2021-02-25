@@ -11,70 +11,32 @@ const setup: MemberCounterCommand = {
 	run: async ({ message, languagePack }) => {
 		const { channel } = message;
 		const { loading, checkMark } = emojis;
-		function canUseExternalEmojis() {
+		const canUseExternalEmojis = (() => {
 			return (
 				message.channel instanceof GuildChannel &&
 				message.channel
 					.permissionsOf(message.channel.client.user.id)
 					.has("externalEmojis")
 			);
-		}
-		let channelsToCreate = [
-			{
-				countTemplate: languagePack.commands.setup.memberCounter.countTemplate,
-				creating: languagePack.commands.setup.memberCounter.creatingmemberCounter.replace(
-					/{LOADING}/g,
-					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
-				),
-				created: languagePack.commands.setup.memberCounter.createdmemberCounter.replace(
-					/{CHECK_MARK}/g,
-					canUseExternalEmojis()
-						? checkMark.string
-						: checkMark.fallbackUnicodeEmoji
-				)
-			},
-			{
-				countTemplate:
-					languagePack.commands.setup.boostingCounter.countTemplate,
-				creating: languagePack.commands.setup.boostingCounter.creatingboostingCounter.replace(
-					/{LOADING}/g,
-					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
-				),
-				created: languagePack.commands.setup.boostingCounter.createdboostingCounter.replace(
-					/{CHECK_MARK}/g,
-					canUseExternalEmojis()
-						? checkMark.string
-						: checkMark.fallbackUnicodeEmoji
-				)
-			},
-			{
-				countTemplate: languagePack.commands.setup.rolesCounter.countTemplate,
-				creating: languagePack.commands.setup.rolesCounter.creatingrolesCounter.replace(
-					/{LOADING}/g,
-					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
-				),
-				created: languagePack.commands.setup.rolesCounter.createdrolesCounter.replace(
-					/{CHECK_MARK}/g,
-					canUseExternalEmojis()
-						? checkMark.string
-						: checkMark.fallbackUnicodeEmoji
-				)
-			},
-			{
-				countTemplate:
-					languagePack.commands.setup.channelsCounter.countTemplate,
-				creating: languagePack.commands.setup.channelsCounter.creatingchannelsCounter.replace(
-					/{LOADING}/g,
-					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
-				),
-				created: languagePack.commands.setup.channelsCounter.createdchannelsCounter.replace(
-					/{CHECK_MARK}/g,
-					canUseExternalEmojis()
-						? checkMark.string
-						: checkMark.fallbackUnicodeEmoji
-				)
-			}
-		];
+		})();
+		let channelsToCreate = Object.keys(
+			languagePack.commands.setup.counterTemplates
+		).map((counter) => ({
+			countTemplate:
+				languagePack.commands.setup.counterTemplates[counter]["countTemplate"],
+			creating: languagePack.commands.setup.counterTemplates[counter][
+				"creating" + counter
+			].replace(
+				/{LOADING}/g,
+				canUseExternalEmojis ? loading.string : loading.fallbackUnicodeEmoji
+			),
+			created: languagePack.commands.setup.counterTemplates[counter][
+				"created" + counter
+			].replace(
+				/{CHECK_MARK}/g,
+				canUseExternalEmojis ? checkMark.string : checkMark.fallbackUnicodeEmoji
+			)
+		}));
 
 		if (channel instanceof GuildChannel) {
 			const { client } = Bot;
@@ -89,7 +51,7 @@ const setup: MemberCounterCommand = {
 			);
 			str += languagePack.commands.setup.categoryName.creatingCategory.replace(
 				/{LOADING}/g,
-				canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
+				canUseExternalEmojis ? loading.string : loading.fallbackUnicodeEmoji
 			);
 			const category = await guild.createChannel(categoryName, 4, {
 				permissionOverwrites: [
@@ -114,11 +76,11 @@ const setup: MemberCounterCommand = {
 			str = str.replace(
 				languagePack.commands.setup.categoryName.creatingCategory.replace(
 					/{LOADING}/g,
-					canUseExternalEmojis() ? loading.string : loading.fallbackUnicodeEmoji
+					canUseExternalEmojis ? loading.string : loading.fallbackUnicodeEmoji
 				),
 				languagePack.commands.setup.categoryName.createdCategory.replace(
 					/{CHECK_MARK}/g,
-					canUseExternalEmojis()
+					canUseExternalEmojis
 						? checkMark.string
 						: checkMark.fallbackUnicodeEmoji
 				)
