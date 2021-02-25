@@ -330,25 +330,32 @@
 				"creatingCategory": "{LOADING} Создание категории",
 				"createdCategory": "{CHECK_MARK} Категория создана"
 			},
-			"memberCounter": {
-				"countTemplate": "{members} Участники",
-				"creatingmemberCounter": "{LOADING} Создание счётчика участников",
-				"createdmemberCounter": "{CHECK_MARK} Счётчик участников создан"
-			},
-			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Бустеры",
-				"creatingboostingCounter": "{LOADING} Создание счётчика бустов",
-				"createdboostingCounter": "{CHECK_MARK} Счётчик бустов создан"
-			},
-			"rolesCounter": {
-				"countTemplate": "{roles} Роли",
-				"creatingrolesCounter": "{LOADING} Создание счётчика ролей",
-				"createdrolesCounter": "{CHECK_MARK} Счётчик ролей создан"
-			},
-			"channelsCounter": {
-				"countTemplate": "{channels} Каналы",
-				"creatingchannelsCounter": "{LOADING} Создание счётчика каналов",
-				"createdchannelsCounter": "{CHECK_MARK} Счётчик каналов создан"
+			"counterTemplates": {
+				"onlineMemberCounter": {
+					"countTemplate": "Online: {onlineMembers}",
+					"creatingonlineMemberCounter": "{LOADING} Creating online counter\n",
+					"createdonlineMemberCounter": "{CHECK_MARK} Online counter created\n"
+				},
+				"memberCounter": {
+					"countTemplate": "Members: {members}",
+					"creatingmemberCounter": "{LOADING} Создание счётчика участников",
+					"createdmemberCounter": "{CHECK_MARK} Счётчик участников создан"
+				},
+				"boosterCounter": {
+					"countTemplate": "Boosters: {nitro-boosters}",
+					"creatingboosterCounter": "{LOADING} Creating booster counter\n",
+					"createdboosterCounter": "{CHECK_MARK} Booster counter created\n"
+				},
+				"rolesCounter": {
+					"countTemplate": "Roles: {roles}",
+					"creatingrolesCounter": "{LOADING} Создание счётчика ролей",
+					"createdrolesCounter": "{CHECK_MARK} Счётчик ролей создан"
+				},
+				"channelsCounter": {
+					"countTemplate": "Channels: {channels}",
+					"creatingchannelsCounter": "{LOADING} Создание счётчика каналов",
+					"createdchannelsCounter": "{CHECK_MARK} Счётчик каналов создан"
+				}
 			}
 		},
 		"base64": {
