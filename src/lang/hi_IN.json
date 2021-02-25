@@ -330,25 +330,32 @@
 				"creatingCategory": "{LOADING} श्रेणी बनाई जा रही है",
 				"createdCategory": "{CHECK_MARK} श्रेणी बन गई है"
 			},
-			"memberCounter": {
-				"countTemplate": "{members} सदस्य",
-				"creatingmemberCounter": "{LOADING} सदस्य काउंटर बनाई जा रही है",
-				"createdmemberCounter": "{CHECK_MARK} सदस्य संख्या बनाई गई"
-			},
-			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} बढ़ाने",
-				"creatingboostingCounter": "{LOADING} बूस्टिंग काउंटर बनाई जा रही है",
-				"createdboostingCounter": "{CHECK_MARK} बूस्टिंग काउंटर बनाई गई"
-			},
-			"rolesCounter": {
-				"countTemplate": "{roles} भूमिकाएँ",
-				"creatingrolesCounter": "{LOADING} भूमिका काउंटर बनाई जा रही है",
-				"createdrolesCounter": "{CHECK_MARK} भूमिका काउंटर बनाई गई"
-			},
-			"channelsCounter": {
-				"countTemplate": "{channels} चैनल",
-				"creatingchannelsCounter": "{LOADING} चैनल काउंटर बनाई जा रही है",
-				"createdchannelsCounter": "{CHECK_MARK} चैनल काउंटर बनाई गई"
+			"counterTemplates": {
+				"onlineMemberCounter": {
+					"countTemplate": "Online: {onlineMembers}",
+					"creatingonlineMemberCounter": "{LOADING} Creating online counter\n",
+					"createdonlineMemberCounter": "{CHECK_MARK} Online counter created\n"
+				},
+				"memberCounter": {
+					"countTemplate": "Members: {members}",
+					"creatingmemberCounter": "{LOADING} सदस्य काउंटर बनाई जा रही है",
+					"createdmemberCounter": "{CHECK_MARK} सदस्य संख्या बनाई गई"
+				},
+				"boosterCounter": {
+					"countTemplate": "Boosters: {nitro-boosters}",
+					"creatingboosterCounter": "{LOADING} Creating booster counter\n",
+					"createdboosterCounter": "{CHECK_MARK} Booster counter created\n"
+				},
+				"rolesCounter": {
+					"countTemplate": "Roles: {roles}",
+					"creatingrolesCounter": "{LOADING} भूमिका काउंटर बनाई जा रही है",
+					"createdrolesCounter": "{CHECK_MARK} भूमिका काउंटर बनाई गई"
+				},
+				"channelsCounter": {
+					"countTemplate": "Channels: {channels}",
+					"creatingchannelsCounter": "{LOADING} चैनल काउंटर बनाई जा रही है",
+					"createdchannelsCounter": "{CHECK_MARK} चैनल काउंटर बनाई गई"
+				}
 			}
 		},
 		"base64": {
