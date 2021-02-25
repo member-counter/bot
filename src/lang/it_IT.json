@@ -330,25 +330,32 @@
 				"creatingCategory": "{LOADING} Creating category\n",
 				"createdCategory": "{CHECK_MARK} Category created\n"
 			},
-			"memberCounter": {
-				"countTemplate": "{members} Membri",
-				"creatingmemberCounter": "{LOADING} Creating member counter\n",
-				"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
-			},
-			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Stanno Boostando",
-				"creatingboostingCounter": "{LOADING} Creating boosting counter\n",
-				"createdboostingCounter": "{CHECK_MARK} Boosting counter created\n"
-			},
-			"rolesCounter": {
-				"countTemplate": "{roles} Ruoli",
-				"creatingrolesCounter": "{LOADING} Creating roles counter\n",
-				"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
-			},
-			"channelsCounter": {
-				"countTemplate": "{channels} Canali",
-				"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
-				"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+			"counterTemplates": {
+				"onlineMemberCounter": {
+					"countTemplate": "Online: {onlineMembers}",
+					"creatingonlineMemberCounter": "{LOADING} Creating online counter\n",
+					"createdonlineMemberCounter": "{CHECK_MARK} Online counter created\n"
+				},
+				"memberCounter": {
+					"countTemplate": "Members: {members}",
+					"creatingmemberCounter": "{LOADING} Creating member counter\n",
+					"createdmemberCounter": "{CHECK_MARK} Members counter created\n"
+				},
+				"boosterCounter": {
+					"countTemplate": "Boosters: {nitro-boosters}",
+					"creatingboosterCounter": "{LOADING} Creating booster counter\n",
+					"createdboosterCounter": "{CHECK_MARK} Booster counter created\n"
+				},
+				"rolesCounter": {
+					"countTemplate": "Roles: {roles}",
+					"creatingrolesCounter": "{LOADING} Creating roles counter\n",
+					"createdrolesCounter": "{CHECK_MARK} Roles counter created\n"
+				},
+				"channelsCounter": {
+					"countTemplate": "Channels: {channels}",
+					"creatingchannelsCounter": "{LOADING} Creating channels counter\n",
+					"createdchannelsCounter": "{CHECK_MARK} Channels counter created\n"
+				}
 			}
 		},
 		"base64": {
