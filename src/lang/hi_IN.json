@@ -332,27 +332,27 @@
 			},
 			"counterTemplates": {
 				"onlineMemberCounter": {
-					"countTemplate": "Online: {onlineMembers}",
-					"creatingonlineMemberCounter": "{LOADING} Creating online counter\n",
-					"createdonlineMemberCounter": "{CHECK_MARK} Online counter created\n"
+					"countTemplate": "ऑनलाइन सदस्य : {onlineMembers}",
+					"creatingonlineMemberCounter": "{LOADING} ऑनलाइन सदस्य काउंटर बनाई जा रही है",
+					"createdonlineMemberCounter": "{CHECK_MARK} ऑनलाइन सदस्य काउंटर बनाई गई"
 				},
 				"memberCounter": {
-					"countTemplate": "Members: {members}",
+					"countTemplate": "सदस्य : {members}",
 					"creatingmemberCounter": "{LOADING} सदस्य काउंटर बनाई जा रही है",
 					"createdmemberCounter": "{CHECK_MARK} सदस्य संख्या बनाई गई"
 				},
 				"boosterCounter": {
-					"countTemplate": "Boosters: {nitro-boosters}",
-					"creatingboosterCounter": "{LOADING} Creating booster counter\n",
-					"createdboosterCounter": "{CHECK_MARK} Booster counter created\n"
+					"countTemplate": "बूस्टर : {nitro-boosters}",
+					"creatingboosterCounter": "{LOADING} बूस्टिंग काउंटर बनाई जा रही है",
+					"createdboosterCounter": "{CHECK_MARK} बूस्टिंग काउंटर बनाई गई"
 				},
 				"rolesCounter": {
-					"countTemplate": "Roles: {roles}",
+					"countTemplate": "भूमिकाएँ : {roles}",
 					"creatingrolesCounter": "{LOADING} भूमिका काउंटर बनाई जा रही है",
 					"createdrolesCounter": "{CHECK_MARK} भूमिका काउंटर बनाई गई"
 				},
 				"channelsCounter": {
-					"countTemplate": "Channels: {channels}",
+					"countTemplate": "चैनल : {channels}",
 					"creatingchannelsCounter": "{LOADING} चैनल काउंटर बनाई जा रही है",
 					"createdchannelsCounter": "{CHECK_MARK} चैनल काउंटर बनाई गई"
 				}
