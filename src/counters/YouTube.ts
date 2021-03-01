@@ -28,16 +28,17 @@ const YouTubeCounter: Counter = {
 		}
 
 		const response = await fetch(
-			`https://www.googleapis.com/youtube/v3/channels?part=statistics&key=${YOUTUBE_API_KEY}&${searchChannelBy}=${channel}`
+			`https://www.googleapis.com/youtube/v3/channels?part=statistics,snippet&key=${YOUTUBE_API_KEY}&${searchChannelBy}=${channel}`
 		).then((response) => response.json());
 
 		const { subscriberCount, viewCount, videoCount } =
 			response?.items?.[0]?.statistics || {};
-
+		const { title: channelName } = response?.items?.[0]?.snippet || {};
 		return {
-			youtubeSubscribers: subscriberCount,
-			youtubeViews: viewCount,
-			youtubeVideos: videoCount
+			youtubeSubscribers: Number(subscriberCount),
+			youtubeViews: Number(viewCount),
+			youtubeVideos: Number(videoCount),
+			channelName
 		};
 	}
 };
