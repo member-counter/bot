@@ -322,39 +322,88 @@
 			"channelTopic": "Vista previa en el tema de un canal"
 		},
 		"setup": {
-			"helpDescription": "Crea varios canales de voz bloqueados con contadores en sus nombres\n**Ejemplo**```{PREFIX}setup```",
+			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"creatingCounts": "Creando contadores...",
 			"createdCounts": "Completado",
-			"categoryName": {
-				"countTemplate": "📊 Estadísticas del servidor 📊",
-				"creatingCategory": "{LOADING} Creando categoría\n",
-				"createdCategory": "{CHECK_MARK} Categoría creada"
+			"categoryNames": {
+				"counters": {
+					"categoryName": {
+						"countTemplate": "📊 Estadísticas del servidor 📊",
+						"creatingCategory": "{LOADING} Creando categoría\n",
+						"createdCategory": "{CHECK_MARK} Categoría creada"
+					}
+				},
+				"youtube": {
+					"categoryName": {
+						"countTemplate": "📊 {CHANNEL_NAME} Youtube Stats 📊",
+						"creatingCategory": "{LOADING} Creando categoría\n",
+						"createdCategory": "{CHECK_MARK} Categoría creada"
+					}
+				},
+				"twitch": {
+					"categoryName": {
+						"countTemplate": "📊 {CHANNEL_NAME} Twitch Stats 📊",
+						"creatingCategory": "{LOADING} Creando categoría\n",
+						"createdCategory": "{CHECK_MARK} Categoría creada"
+					}
+				}
 			},
 			"counterTemplates": {
-				"onlineMemberCounter": {
-					"countTemplate": "Online: {onlineMembers}",
-					"creatingonlineMemberCounter": "{LOADING} Creating online counter\n",
-					"createdonlineMemberCounter": "{CHECK_MARK} Online counter created\n"
+				"counters": {
+					"onlineMemberCounter": {
+						"countTemplate": "Online: {onlineMembers}",
+						"creatingonlineMemberCounter": "{LOADING} Creating online counter\n",
+						"createdonlineMemberCounter": "{CHECK_MARK} Online counter created\n"
+					},
+					"memberCounter": {
+						"countTemplate": "Members: {members}",
+						"creatingmemberCounter": "{LOADING} Creando contador de miembros\n",
+						"createdmemberCounter": "{CHECK_MARK} Contador de miembros creado\n"
+					},
+					"boosterCounter": {
+						"countTemplate": "Boosters: {nitro-boosters}",
+						"creatingboosterCounter": "{LOADING} Creating booster counter\n",
+						"createdboosterCounter": "{CHECK_MARK} Booster counter created\n"
+					},
+					"rolesCounter": {
+						"countTemplate": "Roles: {roles}",
+						"creatingrolesCounter": "{LOADING} Creando contador de roles\n",
+						"createdrolesCounter": "{CHECK_MARK} Contador de roles creado"
+					},
+					"channelsCounter": {
+						"countTemplate": "Channels: {channels}",
+						"creatingchannelsCounter": "{LOADING} Creando contador de canales\n",
+						"createdchannelsCounter": "{CHECK_MARK} Contador de canales creado\n"
+					}
 				},
-				"memberCounter": {
-					"countTemplate": "Members: {members}",
-					"creatingmemberCounter": "{LOADING} Creando contador de miembros\n",
-					"createdmemberCounter": "{CHECK_MARK} Contador de miembros creado\n"
+				"youtube": {
+					"youtubeSubscribers": {
+						"countTemplate": "{youtubeSubscribers:{CHANNEL_URL}} Subscribers",
+						"creatingyoutubeSubscribers": "{LOADING} Creating subscriber counter\n",
+						"createdyoutubeSubscribers": "{CHECK_MARK} Subscriber counter created\n"
+					},
+					"youtubeVideos": {
+						"countTemplate": "{youtubeVideos:{CHANNEL_URL}} Videos",
+						"creatingyoutubeVideos": "{LOADING} Creating video counter\n",
+						"createdyoutubeVideos": "{CHECK_MARK} Video counter created\n"
+					},
+					"youtubeViews": {
+						"countTemplate": "{youtubeViews:{CHANNEL_URL}} Views",
+						"creatingyoutubeViews": "{LOADING} Creating views counter\n",
+						"createdyoutubeViews": "{CHECK_MARK} Views counter created\n"
+					}
 				},
-				"boosterCounter": {
-					"countTemplate": "Boosters: {nitro-boosters}",
-					"creatingboosterCounter": "{LOADING} Creating booster counter\n",
-					"createdboosterCounter": "{CHECK_MARK} Booster counter created\n"
-				},
-				"rolesCounter": {
-					"countTemplate": "Roles: {roles}",
-					"creatingrolesCounter": "{LOADING} Creando contador de roles\n",
-					"createdrolesCounter": "{CHECK_MARK} Contador de roles creado"
-				},
-				"channelsCounter": {
-					"countTemplate": "Channels: {channels}",
-					"creatingchannelsCounter": "{LOADING} Creando contador de canales\n",
-					"createdchannelsCounter": "{CHECK_MARK} Contador de canales creado\n"
+				"twitch": {
+					"twitchFollowers": {
+						"countTemplate": "{twitchFollowers:{CHANNEL_NAME}} Followers",
+						"creatingtwitchFollowers": "{LOADING} Creating follower counter\n",
+						"createdtwitchFollowers": "{CHECK_MARK} Follower counter created\n"
+					},
+					"twitchViews": {
+						"countTemplate": "{twitchViews:{CHANNEL_NAME}} Views",
+						"creatingtwitchViews": "{LOADING} Creating views counter\n",
+						"createdtwitchViews": "{CHECK_MARK} Views counter created\n"
+					}
 				}
 			}
 		},
