@@ -23,6 +23,7 @@ const setup: MemberCounterCommand = {
 					.has("externalEmojis")
 			);
 		})();
+
 		async function createChannels(type: string) {
 			let channelsToCreate = Object.keys(
 				languagePack.commands.setup.counterTemplates[type]
@@ -181,24 +182,21 @@ const setup: MemberCounterCommand = {
 				msg.edit(str);
 			}
 		}
-		switch (typeof actionRequested) {
-			case "string": {
-				switch (actionRequested) {
-					case "youtube": {
-						return createChannels("youtube");
-						break;
-					}
-					case "twitch":
-						{
-							return createChannels("twitch");
-							break;
-						}
-						break;
-				}
+
+		switch (actionRequested) {
+			case "youtube": {
+				await createChannels("youtube");
+				break;
 			}
-			case "undefined": {
-				return createChannels("counters");
+			case "twitch": {
+				await createChannels("twitch");
+				break;
 			}
+			case undefined: {
+				await createChannels("counters");
+				break;
+			}
+			// add default when the actionRequested is invalid
 		}
 	}
 };
