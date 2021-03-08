@@ -326,43 +326,43 @@
 			"status": {
 				"creatingCounts": "काउंटर बन रहा है...",
 				"createdCounts": "पूर्ण",
-				"creatingCategory": "{LOADING} Creating category",
-				"createdCategory": "{CHECK_MARK} Category created"
+				"creatingCategory": "{LOADING} श्रेणी बनाई जा रही है",
+				"createdCategory": "{CHECK_MARK} श्रेणी बन गई है"
 			},
-			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"errorInvalidUsage": "अमान्य मापदण्ड, {PREFIX}help देखे",
 			"counterTemplates": {
 				"default": {
 					"categoryName": "📊 सर्वर आँकड़े 📊",
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Online: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"template": "ऑनलाइन : {onlineMembers}",
+							"statusCreating": "{LOADING} ऑनलाइन सदस्य काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} ऑनलाइन सदस्य काउंटर बनाई गई"
 						},
 						{
-							"name": "members",
-							"template": "Members: {members}",
-							"statusCreating": "{LOADING} Creating member counter",
-							"statusCreated": "{CHECK_MARK} Members counter created"
+							"name": "सदस्य",
+							"template": "सदस्य : {members}",
+							"statusCreating": "{LOADING} सदस्य काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} सदस्य संख्या बनाई गई"
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
-							"statusCreating": "{LOADING} Creating booster counter",
-							"statusCreated": "{CHECK_MARK} Booster counter created"
+							"template": "बूस्टर : {nitroBoosters}",
+							"statusCreating": "{LOADING} बूस्टिंग काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} बूस्टिंग काउंटर बनाई गई"
 						},
 						{
-							"name": "roles",
-							"template": "Roles: {roles}",
-							"statusCreating": "{LOADING} Creating roles counter",
-							"statusCreated": "{CHECK_MARK} Roles counter created"
+							"name": "भूमिकाएँ",
+							"template": "भूमिकाएँ : {roles}",
+							"statusCreating": "{LOADING} भूमिका काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} भूमिका काउंटर बनाई गई"
 						},
 						{
-							"name": "channels",
-							"template": "Channels: {channels}",
-							"statusCreating": "{LOADING} Creating channels counter",
-							"statusCreated": "{CHECK_MARK} Channels counter created"
+							"name": "चैनले",
+							"template": "चैनले : {channels}",
+							"statusCreating": "{LOADING} चैनल काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} चैनल काउंटर बनाई गई"
 						}
 					]
 				},
