@@ -322,33 +322,90 @@
 			"channelTopic": "Предварительное описание канала"
 		},
 		"setup": {
-			"helpDescription": "Предустановка стандартных счётчиков.\nСоздаёт заблокированные (🔒) голосовые каналы сразу вместе с счётчиками.\n**Пример**```{PREFIX}setup```",
-			"creatingCounts": "Создание счётчиков...",
-			"createdCounts": "Выполнено",
-			"categoryName": {
-				"countTemplate": "📊 Статистика сервера 📊",
-				"creatingCategory": "{LOADING} Создание категории",
-				"createdCategory": "{CHECK_MARK} Категория создана"
+			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"status": {
+				"creatingCounts": "Создание счётчиков...",
+				"createdCounts": "Выполнено",
+				"creatingCategory": "{LOADING} Creating category",
+				"createdCategory": "{CHECK_MARK} Category created"
 			},
-			"memberCounter": {
-				"countTemplate": "{members} Участники",
-				"creatingmemberCounter": "{LOADING} Создание счётчика участников",
-				"createdmemberCounter": "{CHECK_MARK} Счётчик участников создан"
-			},
-			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Бустеры",
-				"creatingboostingCounter": "{LOADING} Создание счётчика бустов",
-				"createdboostingCounter": "{CHECK_MARK} Счётчик бустов создан"
-			},
-			"rolesCounter": {
-				"countTemplate": "{roles} Роли",
-				"creatingrolesCounter": "{LOADING} Создание счётчика ролей",
-				"createdrolesCounter": "{CHECK_MARK} Счётчик ролей создан"
-			},
-			"channelsCounter": {
-				"countTemplate": "{channels} Каналы",
-				"creatingchannelsCounter": "{LOADING} Создание счётчика каналов",
-				"createdchannelsCounter": "{CHECK_MARK} Счётчик каналов создан"
+			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"counterTemplates": {
+				"default": {
+					"categoryName": "📊 Статистика сервера 📊",
+					"counters": [
+						{
+							"name": "onlineMembers",
+							"template": "Online: {onlineMembers}",
+							"statusCreating": "{LOADING} Creating online counter",
+							"statusCreated": "{CHECK_MARK} Online counter created"
+						},
+						{
+							"name": "members",
+							"template": "Members: {members}",
+							"statusCreating": "{LOADING} Creating member counter",
+							"statusCreated": "{CHECK_MARK} Members counter created"
+						},
+						{
+							"name": "nitroBoosters",
+							"template": "Boosters: {nitroBoosters}",
+							"statusCreating": "{LOADING} Creating booster counter",
+							"statusCreated": "{CHECK_MARK} Booster counter created"
+						},
+						{
+							"name": "roles",
+							"template": "Roles: {roles}",
+							"statusCreating": "{LOADING} Creating roles counter",
+							"statusCreated": "{CHECK_MARK} Roles counter created"
+						},
+						{
+							"name": "channels",
+							"template": "Channels: {channels}",
+							"statusCreating": "{LOADING} Creating channels counter",
+							"statusCreated": "{CHECK_MARK} Channels counter created"
+						}
+					]
+				},
+				"twitch": {
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Twitch Stats 📊",
+					"counters": [
+						{
+							"name": "twitchFollowers",
+							"template": "{twitchFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
+						},
+						{
+							"name": "twitchViews",
+							"template": "{twitchViews:{RESOURCE}} Views",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				},
+				"youtube": {
+					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Youtube Stats 📊",
+					"counters": [
+						{
+							"name": "youtubeSubscribers",
+							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
+							"statusCreating": "{LOADING} Creating subscriber counter",
+							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+						},
+						{
+							"name": "youtubeVideos",
+							"template": "{youtubeVideos:{RESOURCE}} Videos",
+							"statusCreating": "{LOADING} Creating video counter",
+							"statusCreated": "{CHECK_MARK} Video counter created"
+						},
+						{
+							"name": "youtubeViews",
+							"template": "{youtubeViews:{RESOURCE}} Views",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				}
 			}
 		},
 		"base64": {
