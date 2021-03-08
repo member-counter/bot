@@ -3,14 +3,18 @@ import fetch from "node-fetch";
 const { YOUTUBE_API_KEY } = getEnv();
 
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 
 const anyChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/(channel\/|user\/)/;
 const userChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/user\//;
 const userNameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/channel\//;
 
 const YouTubeCounter: Counter = {
-	aliases: ["youtubeSubscribers", "youtubeViews", "youtubeVideos"],
+	aliases: [
+		"youtubeSubscribers",
+		"youtubeViews",
+		"youtubeVideos",
+		"youtubeChannelName"
+	],
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
@@ -33,12 +37,12 @@ const YouTubeCounter: Counter = {
 
 		const { subscriberCount, viewCount, videoCount } =
 			response?.items?.[0]?.statistics || {};
-		const { title: channelName } = response?.items?.[0]?.snippet || {};
+		const { title: youtubeChannelName } = response?.items?.[0]?.snippet || {};
 		return {
 			youtubeSubscribers: Number(subscriberCount),
 			youtubeViews: Number(viewCount),
 			youtubeVideos: Number(videoCount),
-			channelName
+			youtubeChannelName
 		};
 	}
 };

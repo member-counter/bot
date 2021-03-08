@@ -9,6 +9,7 @@ import {
 import clonedeep from "lodash.clonedeep";
 import { ReactionCollector, MessageCollector } from "eris-collector";
 import emojis from "./emojis";
+import LanguagePack from "../typings/LanguagePack";
 
 class Paginator {
 	private message: Message;
@@ -20,7 +21,7 @@ class Paginator {
 	private readonly timeoutTime: number;
 	private collector: ReactionCollector;
 	private readonly targetUserID: string;
-	private languagePack: any;
+	private languagePack: LanguagePack;
 
 	public constructor(
 		channel: TextableChannel,

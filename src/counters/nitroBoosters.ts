@@ -1,7 +1,7 @@
 import Counter from "../typings/Counter";
 
 const NitroBoostersCounter: Counter = {
-	aliases: ["nitro-boosters"],
+	aliases: ["nitro-boosters", "nitroBoosters"],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
