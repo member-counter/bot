@@ -25,7 +25,7 @@ const { PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 const seeSettings: MemberCounterCommand = {
 	aliases: ["seeSettings"],
 	denyDm: true,
-	onlyAdmin: false,
+	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
 		const { channel } = message;
 
