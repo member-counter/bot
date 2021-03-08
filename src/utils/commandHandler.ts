@@ -6,6 +6,7 @@ import memberHasAdminPermission from "./memberHasAdminPermission";
 import commandErrorHandler from "./commandErrorHandler";
 import commands from "../commands/all";
 import Bot from "../bot";
+import LanguagePack from "../typings/LanguagePack";
 
 const {
 	PREMIUM_BOT,
@@ -34,7 +35,7 @@ export default async (message: Eris.Message) => {
 	// Avoid responding to other bots
 	if (author && !author.bot) {
 		let prefixToCheck: string;
-		let languagePack;
+		let languagePack: LanguagePack;
 		let clientIntegrationRoleId: string;
 
 		if (channel instanceof Eris.GuildChannel) {

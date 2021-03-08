@@ -1,10 +1,11 @@
 import { Message } from "eris";
 import { ErisClient } from "../bot";
+import LanguagePack from "./LanguagePack";
 
 interface runArgs {
 	client: ErisClient;
 	message: Message;
-	languagePack: any;
+	languagePack: LanguagePack;
 }
 
 interface runFunction {

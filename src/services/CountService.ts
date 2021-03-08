@@ -9,6 +9,7 @@ import Counter from "../typings/Counter";
 import FormattingSettings from "../typings/FormattingSettings";
 import counters from "../counters/all";
 import { Bot, ErisClient } from "../bot";
+import LanguagePack from "../typings/LanguagePack";
 
 const { UNRESTRICTED_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
 
@@ -26,7 +27,7 @@ class CountService {
 	private client: ErisClient;
 	public guild: Eris.Guild;
 	private guildSettings: GuildService;
-	private languagePack: any;
+	private languagePack: LanguagePack;
 	private tmpCache: Map<string, string | number>;
 
 	private constructor(guild: Eris.Guild, guildSettings: GuildService) {
