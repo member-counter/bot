@@ -457,7 +457,7 @@ const setDigit: MemberCounterCommand = {
 };
 
 const shortNumber: MemberCounterCommand = {
-	aliases: ["shortNumber", "shortNumbers"],
+	aliases: ["shortNumber"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack }) => {
@@ -474,7 +474,10 @@ const shortNumber: MemberCounterCommand = {
 				await guildSettings.setShortNumber(-1);
 			} else {
 				await channel.createMessage(
-					languagePack.commands.shortNumber.errorInvalidAction
+					languagePack.commands.shortNumber.errorInvalidAction.replace(
+						"{NEW_PREFIX}",
+						guildSettings.prefix
+					)
 				);
 			}
 
