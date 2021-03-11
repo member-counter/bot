@@ -26,7 +26,8 @@
 				]
 			},
 			"misc": {
-				"command": "Komut:"
+				"command": "Komut:",
+				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
