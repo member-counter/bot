@@ -26,7 +26,8 @@
 				]
 			},
 			"misc": {
-				"command": "Comando:"
+				"command": "Comando:",
+				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
