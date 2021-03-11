@@ -327,34 +327,29 @@ const upgradeServer: Command = {
 			errorCannotUpgrade
 		} = languagePack.commands.upgradeServer;
 
-		const { guild } = channel;
-
-		const upgradeServer = await guildService.upgradeServer(author.id);
-
-		switch (upgradeServer) {
-			case "success": {
-				await channel.createMessage(
-					success.replace(
-						"{BOT_LINK}",
-						PREMIUM_BOT_INVITE + `&guild_id=${guildService.id}`
-					)
-				);
-				break;
+		try {
+			await guildService.upgradeServer(author.id);
+			await channel.createMessage(
+				success.replace(
+					"{BOT_LINK}",
+					PREMIUM_BOT_INVITE + `&guild_id=${guildService.id}`
+				)
+			);
+		} catch (error) {
+			switch (error.message) {
+				case "alreadyUpgraded": {
+					throw new UserError(
+						errorCannotUpgrade +
+							` ${PREMIUM_BOT_INVITE + `&guild_id=${guildService.id}`}`
+					);
+				}
+				case "noUpgradesAvailable": {
+					throw new UserError(noServerUpgradesAvailable);
+				}
+				default:
+					throw error;
+					break;
 			}
-
-			case "alreadyUpgraded": {
-				throw new UserError(
-					errorCannotUpgrade +
-						` ${PREMIUM_BOT_INVITE + `&guild_id=${guildService.id}`}`
-				);
-				break;
-			}
-			case "noUpgradesAvailable": {
-				throw new UserError(noServerUpgradesAvailable);
-				break;
-			}
-			default:
-				break;
 		}
 	}
 };
@@ -366,8 +361,6 @@ const setDigit: Command = {
 	run: async ({ message, languagePack, guildService }) => {
 		const { channel, content } = message;
 		const userWantsToReset = content.split(/\s+/)[1] === "reset";
-
-		const { guild } = channel;
 
 		if (userWantsToReset) {
 			await guildService.resetDigits();
@@ -420,12 +413,7 @@ const shortNumber: Command = {
 		} else if (action === "disable") {
 			await guildService.setShortNumber(-1);
 		} else {
-			await channel.createMessage(
-				languagePack.commands.shortNumber.errorInvalidAction.replace(
-					"{NEW_PREFIX}",
-					guildService.prefix
-				)
-			);
+			throw new UserError(languagePack.commands.shortNumber.errorInvalidAction);
 		}
 
 		await channel.createMessage(languagePack.commands.shortNumber.success);
