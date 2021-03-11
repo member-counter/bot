@@ -19,7 +19,7 @@ const commandErrorHandler = async (
 
 	switch (error.constructor.name) {
 		case "UserError":
-			errorEmbed.description = error.message;
+			errorEmbed.description = error.message.replace("{PREFIX}", prefix);
 			break;
 
 		case "MongooseError":
