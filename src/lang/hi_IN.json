@@ -26,7 +26,8 @@
 				]
 			},
 			"misc": {
-				"command": "आदेश :"
+				"command": "आदेश :",
+				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
