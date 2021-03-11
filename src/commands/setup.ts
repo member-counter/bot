@@ -1,20 +1,16 @@
-import MemberCounterCommand from "../typings/MemberCounterCommand";
+import Command from "../typings/Command";
 import CountService from "../services/CountService";
-import { GuildChannel, PrivateChannel } from "eris";
-import GuildService from "../services/GuildService";
-import Bot from "../bot";
 import emojis from "../utils/emojis";
 import Eris from "eris";
 import UserError from "../utils/UserError";
 
-const setup: MemberCounterCommand = {
+const setup: Command = {
 	aliases: ["setup"],
 	denyDm: true,
 	onlyAdmin: true,
-	run: async ({ message, languagePack }) => {
+	run: async ({ message, languagePack, guildService, client }) => {
 		const availableSetups = ["youtube", "twitch"];
 		const { channel, content } = message;
-		if (!(channel instanceof GuildChannel)) return;
 		const { loading, checkMark } = emojis;
 		let [, type, resource]: (string | undefined)[] = content.split(/\s+/);
 
@@ -32,9 +28,7 @@ const setup: MemberCounterCommand = {
 			(type as "youtube" | "twitch") ?? "default"
 		];
 
-		const { client } = Bot;
 		const { guild } = channel;
-		const guildService = await GuildService.init(guild.id);
 		const countService = await CountService.init(guild);
 		const counterStatus = new Map<string, "creating" | "created" | "error">();
 		let categoryName: string;
@@ -42,12 +36,7 @@ const setup: MemberCounterCommand = {
 
 		// throw error if type was specified but resource wasn't
 		if (type && !resource)
-			throw new UserError(
-				languagePack.commands.setup.errorInvalidUsage.replace(
-					/\{PREFIX\}/g,
-					guildService.prefix
-				)
-			);
+			throw new UserError(languagePack.commands.setup.errorInvalidUsage);
 
 		switch (type) {
 			case "youtube": {

@@ -1,4 +1,4 @@
-import MemberCounterCommand from "../typings/MemberCounterCommand";
+import Command from "../typings/Command";
 import getEnv from "../utils/getEnv";
 import Donation from "../typings/Donation";
 import embedBase from "../utils/embedBase";
@@ -7,9 +7,8 @@ import { EmbedField } from "eris";
 
 const { DONATION_URL } = getEnv();
 
-const donate: MemberCounterCommand = {
+const donate: Command = {
 	aliases: ["donate", "donators", "premium"],
-	onlyAdmin: false,
 	denyDm: false,
 	run: async ({ message, languagePack }) => {
 		const { channel } = message;

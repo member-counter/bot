@@ -1,4 +1,4 @@
-import MemberCounterCommand from "../typings/MemberCounterCommand";
+import Command from "../typings/Command";
 import { GuildChannel, VoiceChannel, User } from "eris";
 import botHasPermsToEdit from "../utils/botHasPermsToEdit";
 import UserError from "../utils/UserError";
@@ -6,11 +6,11 @@ import GuildService from "../services/GuildService";
 import CountService from "../services/CountService";
 import Bot from "../bot";
 
-const lockChannel: MemberCounterCommand = {
+const lockChannel: Command = {
 	aliases: ["lockChannel", "lock"],
 	denyDm: true,
 	onlyAdmin: true,
-	run: async ({ message, languagePack }) => {
+	run: async ({ message, languagePack, client }) => {
 		const {
 			success,
 			errorInvalidChannel,
@@ -18,50 +18,43 @@ const lockChannel: MemberCounterCommand = {
 			errorNotFound
 		} = languagePack.commands.lockChannel;
 		const { channel, content } = message;
-		if (channel instanceof GuildChannel) {
-			const [command, channelId] = content.split(/\s+/);
-			const { guild } = channel;
-			const { client } = Bot;
+		const [command, channelId] = content.split(/\s+/);
+		const { guild } = channel;
 
-			if (guild.channels.has(channelId)) {
-				const channelToEdit = guild.channels.get(channelId);
-				if (channelToEdit instanceof VoiceChannel) {
-					if (botHasPermsToEdit(channelToEdit)) {
-						await channelToEdit.editPermission(
-							client.user.id,
-							0x00100000 | 0x00000400,
-							0,
-							"member"
-						);
-						await channelToEdit.editPermission(guild.id, 0, 0x00100000, "role");
-					} else {
-						throw new UserError(
-							errorNoPerms.replace(/\{CHANNEL\}/gi, channelId)
-						);
-					}
+		if (guild.channels.has(channelId)) {
+			const channelToEdit = guild.channels.get(channelId);
+			if (channelToEdit instanceof VoiceChannel) {
+				if (botHasPermsToEdit(channelToEdit)) {
+					await channelToEdit.editPermission(
+						client.user.id,
+						0x00100000 | 0x00000400,
+						0,
+						"member"
+					);
+					await channelToEdit.editPermission(guild.id, 0, 0x00100000, "role");
 				} else {
-					throw new UserError(errorInvalidChannel);
+					throw new UserError(errorNoPerms.replace(/\{CHANNEL\}/gi, channelId));
 				}
 			} else {
-				throw new UserError(errorNotFound);
+				throw new UserError(errorInvalidChannel);
 			}
-
-			await channel.createMessage(success);
+		} else {
+			throw new UserError(errorNotFound);
 		}
+
+		await channel.createMessage(success);
 	}
 };
 
-const editChannel: MemberCounterCommand = {
+const editChannel: Command = {
 	aliases: ["editChannel", "edit"],
 	denyDm: true,
 	onlyAdmin: true,
-	run: async ({ message, languagePack }) => {
+	run: async ({ message, languagePack, guildService }) => {
 		const { channel, content } = message;
 
 		if (channel instanceof GuildChannel) {
 			const { guild } = channel;
-			const { client } = Bot;
-			const guildSettings = await GuildService.init(guild.id);
 			let [command, channelId, ...newContent]: any = content.split(/ +/);
 			newContent = newContent.join(" ");
 
@@ -71,22 +64,20 @@ const editChannel: MemberCounterCommand = {
 			if (!guild.channels.has(channelId))
 				throw new UserError(languagePack.commands.editChannel.errorNotFound);
 
-			await guildSettings.setCounter(channelId, newContent);
+			await guildService.setCounter(channelId, newContent);
 			await channel.createMessage(languagePack.commands.editChannel.success);
 		}
 	}
 };
 
-const preview: MemberCounterCommand = {
+const preview: Command = {
 	aliases: ["test", "preview"],
 	denyDm: true,
 	onlyAdmin: false,
-	run: async ({ message, languagePack }) => {
+	run: async ({ message, languagePack, guildService }) => {
 		const { channel, content } = message;
 		if (channel instanceof GuildChannel) {
 			const { guild } = channel;
-			const { client } = Bot;
-			const guildSettings = await GuildService.init(guild.id);
 			let [command, ...contentToTest]: any = content.split(/ +/);
 			contentToTest = contentToTest.join(" ");
 
@@ -110,20 +101,19 @@ const preview: MemberCounterCommand = {
 	}
 };
 
-const base64: MemberCounterCommand = {
+const base64: Command = {
 	aliases: ["base64"],
 	denyDm: false,
-	onlyAdmin: false,
 	run: async ({ message, languagePack }) => {
 		const { channel, content } = message;
 
 		let action = "";
 		let string = "";
 		let parts = content.trimStart().split(" ");
-		parts.shift(); // remove command (base64 or any alias)
+		parts.shift(); // remove command ("base64" or any alias)
 
 		for (const part of parts) {
-			// if action has been found set yet and part is a whitespace, then
+			// if action has been not found yet AND part is a whitespace
 			if (!action && !part) continue;
 			// else, if there is no action, set the current part to the action
 			else if (!action) action = part;
@@ -133,7 +123,7 @@ const base64: MemberCounterCommand = {
 			else string += part;
 		}
 
-		// remove the space that should be used to separate the action from the string
+		// remove the space that is used to separate the action from the string to encode/decode
 		string.slice(0, 1);
 
 		switch (action) {

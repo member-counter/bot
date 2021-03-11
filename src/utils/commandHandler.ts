@@ -37,14 +37,15 @@ export default async (message: Eris.Message) => {
 		let prefixToCheck: string;
 		let languagePack: LanguagePack;
 		let clientIntegrationRoleId: string;
+		let guildService: GuildService;
 
 		if (channel instanceof Eris.GuildChannel) {
 			const { guild } = channel;
 
-			const guildSettings = await GuildService.init(guild.id);
+			guildService = await GuildService.init(guild.id);
 
-			languagePack = loadLanguagePack(guildSettings.language);
-			prefixToCheck = guildSettings.prefix;
+			languagePack = loadLanguagePack(guildService.language);
+			prefixToCheck = guildService.prefix;
 
 			clientIntegrationRoleId = guild.members
 				.get(client.user.id)
@@ -83,6 +84,7 @@ export default async (message: Eris.Message) => {
 
 						if (
 							channel instanceof Eris.GuildChannel &&
+							// @ts-ignore
 							command.onlyAdmin &&
 							!(await memberHasAdminPermission(message.member))
 						) {
@@ -106,10 +108,11 @@ export default async (message: Eris.Message) => {
 							await command.run({
 								client,
 								message,
-								languagePack
+								languagePack,
+								guildService
 							});
 						} catch (error) {
-							commandErrorHandler(channel, languagePack, error);
+							commandErrorHandler(channel, languagePack, prefixToCheck, error);
 						}
 						break commandsLoop;
 					}

@@ -274,6 +274,7 @@ interface Help {
 
 interface Misc {
 	command: string;
+	errorCommandNotFound: string;
 }
 
 interface EmbedReply {
