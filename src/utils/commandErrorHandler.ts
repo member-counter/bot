@@ -5,6 +5,7 @@ import embedBase from "./embedBase";
 const commandErrorHandler = async (
 	channel: Eris.AnyChannel,
 	languagePack: LanguagePack,
+	prefix: string,
 	error: any
 ): Promise<void> => {
 	const { errorDb, errorDiscordAPI, errorUnknown } = languagePack.common;

@@ -1,7 +1,6 @@
 import getEnv from "../utils/getEnv";
-import MemberCounterCommand from "../typings/MemberCounterCommand";
+import Command from "../typings/Command";
 import embedBase from "../utils/embedBase";
-import Bot from "../bot";
 
 const {
 	DONATION_URL,
@@ -9,13 +8,11 @@ const {
 	DISCORD_OFFICIAL_SERVER_URL
 } = getEnv();
 
-const info: MemberCounterCommand = {
+const info: Command = {
 	aliases: ["info", "invite", "github", "support", "bug"],
 	denyDm: false,
-	onlyAdmin: false,
-	run: async ({ message, languagePack }) => {
+	run: async ({ message, languagePack, client }) => {
 		const { channel } = message;
-		const { client } = Bot;
 		const embed = embedBase(languagePack.commands.info.embedReply);
 		embed.description = embed.description
 			.replace("{DONATION_URL}", DONATION_URL)

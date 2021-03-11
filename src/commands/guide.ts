@@ -1,25 +1,17 @@
-import MemberCounterCommand from "../typings/MemberCounterCommand";
+import Command from "../typings/Command";
 import embedBase from "../utils/embedBase";
-import GuildService from "../services/GuildService";
 import getEnv from "../utils/getEnv";
-import { GuildChannel } from "eris";
 import CountService from "../services/CountService";
 import Paginator from "../utils/paginator";
 import safeDiscordString from "../utils/safeDiscordString";
 const { DISCORD_PREFIX } = getEnv();
 
-const guide: MemberCounterCommand = {
+const guide: Command = {
 	aliases: ["guide", "intro"],
 	denyDm: false,
-	onlyAdmin: false,
-	run: async ({ message, languagePack }) => {
+	run: async ({ message, languagePack, guildService }) => {
 		const { channel, author } = message;
-		const prefix = await (async () => {
-			if (channel instanceof GuildChannel) {
-				const guildSettings = await GuildService.init(channel.guild.id);
-				return guildSettings.prefix;
-			} else return DISCORD_PREFIX;
-		})();
+		const prefix = guildService?.prefix ?? DISCORD_PREFIX;
 
 		const {
 			explanation,
