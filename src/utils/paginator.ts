@@ -102,7 +102,7 @@ class Paginator {
 								.createMessage(
 									this.languagePack.functions.paginator.errorPageLengthExceeded.replace(
 										/\{TOTAL_PAGES\}/,
-										this.totalPages
+										this.totalPages.toString()
 									)
 								)
 								.then((message) => {
@@ -269,15 +269,15 @@ class Paginator {
 		if (embed.footer) {
 			embed.footer.text =
 				this.languagePack.functions.paginator.pageCounter
-					.replace(/\{CURRENT_PAGE\}/, this.currentPage)
-					.replace(/\{TOTAL_PAGES\}/, this.totalPages) +
+					.replace(/\{CURRENT_PAGE\}/, this.currentPage.toString())
+					.replace(/\{TOTAL_PAGES\}/, this.totalPages.toString()) +
 				" - " +
 				embed.footer.text;
 		} else {
 			embed.footer = {
 				text: this.languagePack.functions.paginator.pageCounter
-					.replace(/\{CURRENT_PAGE\}/, this.currentPage)
-					.replace(/\{TOTAL_PAGES\}/, this.totalPages)
+					.replace(/\{CURRENT_PAGE\}/, this.currentPage.toString())
+					.replace(/\{TOTAL_PAGES\}/, this.totalPages.toString())
 			};
 		}
 	}

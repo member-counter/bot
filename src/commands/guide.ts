@@ -4,14 +4,21 @@ import getEnv from "../utils/getEnv";
 import CountService from "../services/CountService";
 import Paginator from "../utils/paginator";
 import safeDiscordString from "../utils/safeDiscordString";
+import { GuildChannel } from "eris";
+import GuildService from "../services/GuildService";
 const { DISCORD_PREFIX } = getEnv();
 
 const guide: Command = {
 	aliases: ["guide", "intro"],
 	denyDm: false,
-	run: async ({ message, languagePack, guildService }) => {
-		const { channel, author } = message;
-		const prefix = guildService?.prefix ?? DISCORD_PREFIX;
+	run: async ({ message, languagePack }) => {
+		const { channel } = message;
+
+		let prefix = DISCORD_PREFIX;
+
+		if (channel instanceof GuildChannel) {
+			prefix = (await GuildService.init(message.guildID)).prefix;
+		}
 
 		const {
 			explanation,
