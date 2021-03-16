@@ -229,7 +229,7 @@
 			"success": "Erledigt! Möglicherweise musst du einige Minuten warten, um die neuen Änderungen zu sehen"
 		},
 		"locale": {
-			"helpDescription": "Formatiere die Zahlen und andere Dinge passend zur angegebenen Region\n\n**Verwendung**\n```{PREFIX}locale [locale/disable]```\n**Beispiel**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
