@@ -1,10 +1,12 @@
 import Command from "../typings/Command";
-import { GuildChannel, VoiceChannel, User } from "eris";
+import { GuildChannel, VoiceChannel } from "eris";
 import botHasPermsToEdit from "../utils/botHasPermsToEdit";
 import UserError from "../utils/UserError";
-import GuildService from "../services/GuildService";
 import CountService from "../services/CountService";
-import Bot from "../bot";
+import getEnv from "../utils/getEnv";
+import setStatus from "../others/setStatus";
+
+const { BOT_OWNERS } = getEnv();
 
 const lockChannel: Command = {
 	aliases: ["lockChannel", "lock"],
@@ -123,9 +125,6 @@ const base64: Command = {
 			else string += part;
 		}
 
-		// remove the space that is used to separate the action from the string to encode/decode
-		string.slice(0, 1);
-
 		switch (action) {
 			case "encode": {
 				await channel.createMessage(Buffer.from(string).toString("base64"));
@@ -145,6 +144,16 @@ const base64: Command = {
 	}
 };
 
-const utilCommands = [lockChannel, editChannel, preview, base64];
+const setStatusCmd: Command = {
+	aliases: ["setStatus"],
+	denyDm: false,
+	run: async ({ client, message, languagePack }) => {
+		if (!BOT_OWNERS.includes(message.author.id)) return;
+		let [, ...content] = message.content.split(" ");
+		setStatus(client, content.join(" "));
+	}
+};
+
+const utilCommands = [lockChannel, editChannel, preview, base64, setStatusCmd];
 
 export default utilCommands;
