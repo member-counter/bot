@@ -1,12 +1,6 @@
 import Command from "../typings/Command";
-import Eris, {
-	GuildChannel,
-	VoiceChannel,
-	CategoryChannel,
-	TextChannel,
-	NewsChannel
-} from "eris";
-import { table } from "table";
+import { CategoryChannel, TextChannel, NewsChannel } from "eris";
+import table from "table";
 import embedBase from "../utils/embedBase";
 import GuildService from "../services/GuildService";
 import {

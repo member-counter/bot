@@ -7,24 +7,24 @@ interface ctx {
 	client: ErisClient;
 	message: Message;
 	languagePack: LanguagePack;
-	guildService?: GuildService;
 }
 interface guildCtx extends Omit<ctx, "message"> {
 	message: Message<GuildTextableChannel>;
 	guildService: GuildService;
 }
 
-interface anyChannelCommand {
+interface AnyChannelCommand {
 	aliases: string[];
 	denyDm: false;
 	run: (ctx: ctx) => void | Promise<void>;
 }
-interface guildChannelCommand extends Omit<anyChannelCommand, "denyDm"> {
+interface GuildChannelCommand extends Omit<AnyChannelCommand, "denyDm"> {
 	denyDm: true;
 	onlyAdmin?: boolean;
 	run: (guildCtx: guildCtx) => void | Promise<void>;
 }
 
-type Command = anyChannelCommand | guildChannelCommand;
+type Command = AnyChannelCommand | GuildChannelCommand;
 
 export default Command;
+export { Command, AnyChannelCommand, GuildChannelCommand };

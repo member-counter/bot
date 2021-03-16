@@ -1,5 +1,5 @@
 import getEnv from "./getEnv";
-import Eris from "eris";
+import Eris, { GuildTextableChannel, Message } from "eris";
 import GuildService from "../services/GuildService";
 import { loadLanguagePack } from "./languagePack";
 import memberHasAdminPermission from "./memberHasAdminPermission";
@@ -7,6 +7,7 @@ import commandErrorHandler from "./commandErrorHandler";
 import commands from "../commands/all";
 import Bot from "../bot";
 import LanguagePack from "../typings/LanguagePack";
+import { GuildChannelCommand, AnyChannelCommand } from "../typings/Command";
 
 const {
 	PREMIUM_BOT,
@@ -84,8 +85,7 @@ export default async (message: Eris.Message) => {
 
 						if (
 							channel instanceof Eris.GuildChannel &&
-							// @ts-ignore
-							command.onlyAdmin &&
+							(command as GuildChannelCommand).onlyAdmin &&
 							!(await memberHasAdminPermission(message.member))
 						) {
 							channel
@@ -105,12 +105,20 @@ export default async (message: Eris.Message) => {
 
 							message.content = message.content.replace(prefixRegex, "");
 
-							await command.run({
-								client,
-								message,
-								languagePack,
-								guildService
-							});
+							if (channel instanceof Eris.GuildChannel) {
+								await (command as GuildChannelCommand).run({
+									client,
+									message: message as Message<GuildTextableChannel>,
+									languagePack,
+									guildService
+								});
+							} else {
+								await (command as AnyChannelCommand).run({
+									client,
+									message,
+									languagePack
+								});
+							}
 						} catch (error) {
 							commandErrorHandler(channel, languagePack, prefixToCheck, error);
 						}
