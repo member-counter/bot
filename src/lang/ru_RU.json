@@ -229,7 +229,7 @@
 			"success": "Сделано! Необходимо немного подождать (около нескольких минут) прежде, чем увидеть новые изменения"
 		},
 		"locale": {
-			"helpDescription": "Форматирует числа и др. в соответствии с указанной локализацией \n\n**Использование**\n```{PREFIX}locale [locale/disable]```\n**Примеры**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/BBD43CB.png"
 		},
 		"prefix": {
