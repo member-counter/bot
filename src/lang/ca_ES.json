@@ -229,7 +229,7 @@
 			"success": "Fet! Potser que hagis d'esperar uns minuts per poder veure els nous canvis"
 		},
 		"locale": {
-			"helpDescription": "Dona format a nombres i altres cosas depenent de la regió especificada \n**Ús**\n```{PREFIX}locale [locale/disable]```\n**Exemples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
