@@ -44,14 +44,17 @@
 	},
 	"devDependencies": {
 		"@types/cron": "^1.7.2",
-		"@types/express": "^4.17.8",
-		"@types/gamedig": "^1.0.1",
+		"@types/gamedig": "^3.0.0",
 		"@types/git-rev-sync": "^2.0.0",
-		"@types/mongoose": "^5.7.36",
 		"@types/node": "^13.13.19",
+<<<<<<< HEAD
 		"@types/node-fetch": "^2.5.7",
 		"@types/table": "^6.0.0",
 		"@types/ws": "^7.2.6",
+=======
+		"@types/node-fetch": "^2.5.8",
+		"@types/table": "^6.0.0",
+>>>>>>> 18904325923fe5250426887396a688ca37f3d4ef
 		"husky": "^4.3.8",
 		"prettier": "2.2.1",
 		"pretty-quick": "^3.1.0",
