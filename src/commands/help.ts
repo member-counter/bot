@@ -2,15 +2,22 @@ import Command from "../typings/Command";
 import getEnv from "../utils/getEnv";
 import embedBase from "../utils/embedBase";
 import UserError from "../utils/UserError";
+import GuildService from "../services/GuildService";
+import { GuildChannel } from "eris";
 
 const { WEBSITE_URL, DISCORD_PREFIX, DISCORD_BOT_INVITE } = getEnv();
 
 const help: Command = {
 	aliases: ["help"],
 	denyDm: false,
-	run: async ({ message, languagePack, guildService }) => {
+	run: async ({ message, languagePack }) => {
 		const { channel, content } = message;
-		const prefix = guildService?.prefix ?? DISCORD_PREFIX;
+
+		let prefix = DISCORD_PREFIX;
+
+		if (channel instanceof GuildChannel) {
+			prefix = (await GuildService.init(message.guildID)).prefix;
+		}
 
 		let [, desiredCommand] = content.split(/\s+/g);
 

@@ -45,8 +45,8 @@ class GuildService {
 	}
 
 	// -1 = disabled
-	public async setShortNumber(decimals: number): Promise<number> {
-		this.doc.shortNumber = decimals;
+	public async setShortNumber(state: number): Promise<number> {
+		this.doc.shortNumber = state;
 		await this.doc.save();
 		return this.doc.shortNumber;
 	}

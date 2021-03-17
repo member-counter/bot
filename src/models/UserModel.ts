@@ -1,13 +1,9 @@
-import { model, Schema, Document, DocumentToObjectOptions } from "mongoose";
+import { model, Schema, Document } from "mongoose";
 
-interface UserSettings {
-	user?: string;
-	badges?: number;
-	availableServerUpgrades?: number;
-}
-
-interface UserSettingsDocument extends UserSettings, Document {
-	toObject(options?: DocumentToObjectOptions): UserSettings;
+interface UserSettingsDocument extends Document {
+	user: string;
+	badges: number;
+	availableServerUpgrades: number;
 }
 
 const UserSchema = new Schema({
@@ -18,5 +14,5 @@ const UserSchema = new Schema({
 
 const UserModel = model<UserSettingsDocument>("users", UserSchema);
 
-export { UserModel, UserSettingsDocument, UserSettings };
+export { UserModel, UserSettingsDocument };
 export default UserModel;
