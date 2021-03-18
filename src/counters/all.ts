@@ -9,6 +9,7 @@ import GameCounter from "./game";
 import HTTPCounter from "./http";
 import InstagramCounter from "./Instagram";
 import MemberCounter from "./members";
+import MembersPlayingCounter from "./membersPlaying";
 import MembersConnectedCounter from "./membersConnected";
 import MembersExtendedCounter from "./membersExt";
 import MembersOnlineApproximatedCounter from "./membersOnlineApproximated";
@@ -33,6 +34,7 @@ const counters = [
 	HTTPCounter,
 	InstagramCounter,
 	MemberCounter,
+	MembersPlayingCounter,
 	MembersConnectedCounter,
 	MembersExtendedCounter,
 	MembersOnlineApproximatedCounter,
