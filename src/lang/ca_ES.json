@@ -42,6 +42,11 @@
 					"description": "Quantitat de membres que hi ha al teu servidor"
 				},
 				{
+					"key": "membersplaying",
+					"name": "membersplaying:gameName",
+					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
+				},
+				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Membres aproximats en linea en el teu servidor"
