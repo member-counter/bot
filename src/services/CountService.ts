@@ -13,10 +13,12 @@ import LanguagePack from "../typings/LanguagePack";
 
 const { UNRESTRICTED_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
 
-// Do the aliases lowercase
+// Do the aliases lowercase, and remove "-", "_", " "
 counters.forEach(
 	(counter) =>
-		(counter.aliases = counter.aliases.map((alias) => alias.toLowerCase()))
+		(counter.aliases = counter.aliases.map((alias) =>
+			alias.replace(/-|_|\s/, "").toLowerCase()
+		))
 );
 
 class CountService {
@@ -142,7 +144,10 @@ class CountService {
 			}
 		})();
 
-		let counterName = counterSections.shift().toLowerCase();
+		let counterName = counterSections
+			.shift()
+			.replace(/-|_|\s/, "")
+			.toLowerCase();
 		let resource = counterSections.join(":");
 		let lifetime = 0;
 		let result: string | number;
@@ -215,7 +220,7 @@ class CountService {
 
 				for (const key in returnedValue) {
 					if (returnedValue.hasOwnProperty(key)) {
-						let extKey = key.toLowerCase();
+						let extKey = key.replace(/-|_|\s/, "").toLowerCase();
 						let extValue = returnedValue[key];
 
 						if (typeof extValue === "string") {
@@ -328,7 +333,8 @@ class CountService {
 
 	public static getCounterByAlias(alias: string): Counter {
 		for (const counter of counters) {
-			if (counter.aliases.includes(alias.toLowerCase())) return counter;
+			if (counter.aliases.includes(alias.replace(/-|_|\s/, "").toLowerCase()))
+				return counter;
 		}
 	}
 }
