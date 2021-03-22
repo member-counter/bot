@@ -33,6 +33,7 @@ const counters = [
 	HTTPCounter,
 	InstagramCounter,
 	MemberCounter,
+	MembersPlayingCounter,
 	MembersConnectedCounter,
 	MembersExtendedCounter,
 	MembersWithRoleCounter,
