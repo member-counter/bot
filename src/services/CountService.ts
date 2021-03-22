@@ -17,7 +17,7 @@ const { UNRESTRICTED_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
 counters.forEach(
 	(counter) =>
 		(counter.aliases = counter.aliases.map((alias) =>
-			alias.replace(/-|_|\s/, "").toLowerCase()
+			CountService.safeCounterName(alias)
 		))
 );
 
@@ -220,7 +220,7 @@ class CountService {
 
 				for (const key in returnedValue) {
 					if (returnedValue.hasOwnProperty(key)) {
-						let extKey = key.replace(/-|_|\s/, "").toLowerCase();
+						let extKey = CountService.safeCounterName(key);
 						let extValue = returnedValue[key];
 
 						if (typeof extValue === "string") {
@@ -313,6 +313,10 @@ class CountService {
 		return result.toString();
 	}
 
+	public static safeCounterName(name: string) {
+		return name.replace(/-|_|\s/, "").toLowerCase();
+	}
+
 	private counterToKey(
 		counterName: string,
 		resource: string,
@@ -333,7 +337,7 @@ class CountService {
 
 	public static getCounterByAlias(alias: string): Counter {
 		for (const counter of counters) {
-			if (counter.aliases.includes(alias.replace(/-|_|\s/, "").toLowerCase()))
+			if (counter.aliases.includes(CountService.safeCounterName(alias)))
 				return counter;
 		}
 	}
