@@ -33,7 +33,7 @@
 		"dotenv-parse-variables": "^0.2.3",
 		"eris": "^0.14.0",
 		"eris-collector": "github:eduardozgz/eris-collector",
-		"gamedig": "^2.0.23",
+		"gamedig": "^3.0.0",
 		"git-rev-sync": "^3.0.1",
 		"lodash.clonedeep": "^4.5.0",
 		"mongoose": "^5.12.0",
