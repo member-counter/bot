@@ -4,7 +4,7 @@ const { YOUTUBE_API_KEY } = getEnv();
 
 import Counter from "../typings/Counter";
 
-const anyChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/(channel\/|user\/)/;
+const anyChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/(channel|user)\//;
 const userChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/user\//;
 const userNameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/channel\//;
 
