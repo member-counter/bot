@@ -9,7 +9,7 @@ const setBotStatus: Job = {
 	runAtStartup: true,
 	runInOnlyFirstThread: false,
 	run: async ({ client }) => {
-		let statusToSet = DISCORD_STATUS[0] ?? "{online;watching} {prefix}help";
+		let statusToSet = DISCORD_STATUS?.[0] ?? "{online;watching} {prefix}help";
 
 		if (Math.random() * 100 < 1) {
 			statusToSet =
