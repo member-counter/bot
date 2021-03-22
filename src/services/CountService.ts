@@ -12,16 +12,14 @@ import { Bot, ErisClient } from "../bot";
 import LanguagePack from "../typings/LanguagePack";
 
 const { UNRESTRICTED_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
-
-// Do the aliases lowercase, and remove "-", "_", " "
-counters.forEach(
-	(counter) =>
-		(counter.aliases = counter.aliases.map((alias) =>
-			CountService.safeCounterName(alias)
-		))
-);
-
 class CountService {
+	private static counters = counters.map((counter) => {
+		counter.aliases = counter.aliases.map((alias) =>
+			CountService.safeCounterName(alias)
+		);
+		return counter;
+	});
+
 	public static cache = new Map<
 		string,
 		{ value: number | string; expiresAt: number }
@@ -144,10 +142,7 @@ class CountService {
 			}
 		})();
 
-		let counterName = counterSections
-			.shift()
-			.replace(/-|_|\s/, "")
-			.toLowerCase();
+		let counterName = CountService.safeCounterName(counterSections.shift());
 		let resource = counterSections.join(":");
 		let lifetime = 0;
 		let result: string | number;
@@ -313,8 +308,8 @@ class CountService {
 		return result.toString();
 	}
 
-	public static safeCounterName(name: string) {
-		return name.replace(/-|_|\s/, "").toLowerCase();
+	private static safeCounterName(name: string) {
+		return name.replace(/-|_|\s/g, "").toLowerCase();
 	}
 
 	private counterToKey(
@@ -327,18 +322,13 @@ class CountService {
 			.join(":"); // the final thing will look like "base64Settings:counterName:ExtraParamsAkaResource", like a normal counter but without the curly braces {}
 	}
 
-	public static getCounters(): Counter[] {
-		return counters;
-	}
-
 	public static getCache() {
 		return CountService.cache;
 	}
 
 	public static getCounterByAlias(alias: string): Counter {
-		for (const counter of counters) {
-			if (counter.aliases.includes(CountService.safeCounterName(alias)))
-				return counter;
+		for (const counter of this.counters) {
+			if (counter.aliases.includes(this.safeCounterName(alias))) return counter;
 		}
 	}
 }
