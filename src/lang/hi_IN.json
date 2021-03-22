@@ -26,7 +26,8 @@
 				]
 			},
 			"misc": {
-				"command": "आदेश :"
+				"command": "आदेश :",
+				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
@@ -39,6 +40,11 @@
 					"key": "members",
 					"name": "members",
 					"description": "आपके सर्वर में सदस्य"
+				},
+				{
+					"key": "membersplaying",
+					"name": "membersplaying:gameName",
+					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
 				},
 				{
 					"key": "approximatedOnlineMembers",
@@ -228,7 +234,7 @@
 			"success": "कर दी है! नए बदलावों को देखने के लिए आपको कुछ मिनट इंतजार करना पड़ सकता है"
 		},
 		"locale": {
-			"helpDescription": "निर्दिष्ट स्थान पर संख्याओं और अन्य सामानों को प्रारूपित करता है\n\n**प्रयोग**\n```{PREFIX}locale [locale/disable]```\n**उदाहरण**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -322,33 +328,90 @@
 			"channelTopic": "चैनल विषय पूर्वावलोकन"
 		},
 		"setup": {
-			"helpDescription": "उन में कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\n**उदाहरण**```{PREFIX}setup```",
-			"creatingCounts": "काउंटर बन रहा है...",
-			"createdCounts": "पूर्ण",
-			"categoryName": {
-				"countTemplate": "📊 सर्वर आँकड़े 📊",
+			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"status": {
+				"creatingCounts": "काउंटर बन रहा है...",
+				"createdCounts": "पूर्ण",
 				"creatingCategory": "{LOADING} श्रेणी बनाई जा रही है",
 				"createdCategory": "{CHECK_MARK} श्रेणी बन गई है"
 			},
-			"memberCounter": {
-				"countTemplate": "{members} सदस्य",
-				"creatingmemberCounter": "{LOADING} सदस्य काउंटर बनाई जा रही है",
-				"createdmemberCounter": "{CHECK_MARK} सदस्य संख्या बनाई गई"
-			},
-			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} बढ़ाने",
-				"creatingboostingCounter": "{LOADING} बूस्टिंग काउंटर बनाई जा रही है",
-				"createdboostingCounter": "{CHECK_MARK} बूस्टिंग काउंटर बनाई गई"
-			},
-			"rolesCounter": {
-				"countTemplate": "{roles} भूमिकाएँ",
-				"creatingrolesCounter": "{LOADING} भूमिका काउंटर बनाई जा रही है",
-				"createdrolesCounter": "{CHECK_MARK} भूमिका काउंटर बनाई गई"
-			},
-			"channelsCounter": {
-				"countTemplate": "{channels} चैनल",
-				"creatingchannelsCounter": "{LOADING} चैनल काउंटर बनाई जा रही है",
-				"createdchannelsCounter": "{CHECK_MARK} चैनल काउंटर बनाई गई"
+			"errorInvalidUsage": "अमान्य मापदण्ड, {PREFIX}help देखे",
+			"counterTemplates": {
+				"default": {
+					"categoryName": "📊 सर्वर आँकड़े 📊",
+					"counters": [
+						{
+							"name": "onlineMembers",
+							"template": "ऑनलाइन : {onlineMembers}",
+							"statusCreating": "{LOADING} ऑनलाइन सदस्य काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} ऑनलाइन सदस्य काउंटर बनाई गई"
+						},
+						{
+							"name": "सदस्य",
+							"template": "सदस्य : {members}",
+							"statusCreating": "{LOADING} सदस्य काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} सदस्य संख्या बनाई गई"
+						},
+						{
+							"name": "nitroBoosters",
+							"template": "बूस्टर : {nitroBoosters}",
+							"statusCreating": "{LOADING} बूस्टिंग काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} बूस्टिंग काउंटर बनाई गई"
+						},
+						{
+							"name": "भूमिकाएँ",
+							"template": "भूमिकाएँ : {roles}",
+							"statusCreating": "{LOADING} भूमिका काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} भूमिका काउंटर बनाई गई"
+						},
+						{
+							"name": "चैनले",
+							"template": "चैनले : {channels}",
+							"statusCreating": "{LOADING} चैनल काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} चैनल काउंटर बनाई गई"
+						}
+					]
+				},
+				"twitch": {
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Twitch Stats 📊",
+					"counters": [
+						{
+							"name": "twitchFollowers",
+							"template": "{twitchFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
+						},
+						{
+							"name": "twitchViews",
+							"template": "{twitchViews:{RESOURCE}} Views",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				},
+				"youtube": {
+					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Youtube Stats 📊",
+					"counters": [
+						{
+							"name": "youtubeSubscribers",
+							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
+							"statusCreating": "{LOADING} Creating subscriber counter",
+							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+						},
+						{
+							"name": "youtubeVideos",
+							"template": "{youtubeVideos:{RESOURCE}} Videos",
+							"statusCreating": "{LOADING} Creating video counter",
+							"statusCreated": "{CHECK_MARK} Video counter created"
+						},
+						{
+							"name": "youtubeViews",
+							"template": "{youtubeViews:{RESOURCE}} Views",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				}
 			}
 		},
 		"base64": {

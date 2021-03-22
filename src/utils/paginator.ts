@@ -9,6 +9,7 @@ import {
 import clonedeep from "lodash.clonedeep";
 import { ReactionCollector, MessageCollector } from "eris-collector";
 import emojis from "./emojis";
+import LanguagePack from "../typings/LanguagePack";
 
 class Paginator {
 	private message: Message;
@@ -20,7 +21,7 @@ class Paginator {
 	private readonly timeoutTime: number;
 	private collector: ReactionCollector;
 	private readonly targetUserID: string;
-	private languagePack: any;
+	private languagePack: LanguagePack;
 
 	public constructor(
 		channel: TextableChannel,
@@ -101,7 +102,7 @@ class Paginator {
 								.createMessage(
 									this.languagePack.functions.paginator.errorPageLengthExceeded.replace(
 										/\{TOTAL_PAGES\}/,
-										this.totalPages
+										this.totalPages.toString()
 									)
 								)
 								.then((message) => {
@@ -133,7 +134,8 @@ class Paginator {
 	 */
 	createCollector() {
 		// Filter reactions to the user that requested the embed
-		const filter = (_m, _emoji, userID) => userID === this.targetUserID;
+		const filter = (_m, _emoji, reactor) =>
+			(reactor.id ?? reactor) === this.targetUserID;
 		// Create Reaction Collector
 		const collector = new ReactionCollector(this.client, this.message, filter, {
 			time: this.timeoutTime,
@@ -268,15 +270,15 @@ class Paginator {
 		if (embed.footer) {
 			embed.footer.text =
 				this.languagePack.functions.paginator.pageCounter
-					.replace(/\{CURRENT_PAGE\}/, this.currentPage)
-					.replace(/\{TOTAL_PAGES\}/, this.totalPages) +
+					.replace(/\{CURRENT_PAGE\}/, this.currentPage.toString())
+					.replace(/\{TOTAL_PAGES\}/, this.totalPages.toString()) +
 				" - " +
 				embed.footer.text;
 		} else {
 			embed.footer = {
 				text: this.languagePack.functions.paginator.pageCounter
-					.replace(/\{CURRENT_PAGE\}/, this.currentPage)
-					.replace(/\{TOTAL_PAGES\}/, this.totalPages)
+					.replace(/\{CURRENT_PAGE\}/, this.currentPage.toString())
+					.replace(/\{TOTAL_PAGES\}/, this.totalPages.toString())
 			};
 		}
 	}
