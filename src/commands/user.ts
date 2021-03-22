@@ -1,12 +1,10 @@
-import MemberCounterCommand from "../typings/MemberCounterCommand";
+import Command from "../typings/Command";
 import embedBase from "../utils/embedBase";
 import UserService from "../services/UserService";
 import Eris from "eris";
 import getEnv from "../utils/getEnv";
 import { UserBadges } from "../utils/Constants";
 import ReactionManager from "../utils/ReactionManager";
-import Bot from "../bot";
-
 const { BOT_OWNERS } = getEnv();
 
 const emojiBadges = {
@@ -38,13 +36,11 @@ const generateBadgeList = (badges: number): string => {
 	return "``` " + badgeList.join(" ") + " ```";
 };
 
-const user: MemberCounterCommand = {
+const user: Command = {
 	aliases: ["me", "profile", "user"],
 	denyDm: false,
-	onlyAdmin: false,
-	run: async ({ message, languagePack }) => {
+	run: async ({ message, languagePack, client }) => {
 		const { author, channel, mentions, content } = message;
-		const { client } = Bot;
 		const [
 			_command,
 			userRequested,

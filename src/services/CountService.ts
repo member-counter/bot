@@ -9,16 +9,17 @@ import Counter from "../typings/Counter";
 import FormattingSettings from "../typings/FormattingSettings";
 import counters from "../counters/all";
 import { Bot, ErisClient } from "../bot";
+import LanguagePack from "../typings/LanguagePack";
 
 const { UNRESTRICTED_MODE, PREMIUM_BOT, DEBUG, GHOST_MODE } = getEnv();
-
-// Do the aliases lowercase
-counters.forEach(
-	(counter) =>
-		(counter.aliases = counter.aliases.map((alias) => alias.toLowerCase()))
-);
-
 class CountService {
+	private static counters = counters.map((counter) => {
+		counter.aliases = counter.aliases.map((alias) =>
+			CountService.safeCounterName(alias)
+		);
+		return counter;
+	});
+
 	public static cache = new Map<
 		string,
 		{ value: number | string; expiresAt: number }
@@ -26,7 +27,7 @@ class CountService {
 	private client: ErisClient;
 	public guild: Eris.Guild;
 	private guildSettings: GuildService;
-	private languagePack: any;
+	private languagePack: LanguagePack;
 	private tmpCache: Map<string, string | number>;
 
 	private constructor(guild: Eris.Guild, guildSettings: GuildService) {
@@ -141,7 +142,7 @@ class CountService {
 			}
 		})();
 
-		let counterName = counterSections.shift().toLowerCase();
+		let counterName = CountService.safeCounterName(counterSections.shift());
 		let resource = counterSections.join(":");
 		let lifetime = 0;
 		let result: string | number;
@@ -214,7 +215,7 @@ class CountService {
 
 				for (const key in returnedValue) {
 					if (returnedValue.hasOwnProperty(key)) {
-						let extKey = key.toLowerCase();
+						let extKey = CountService.safeCounterName(key);
 						let extValue = returnedValue[key];
 
 						if (typeof extValue === "string") {
@@ -314,6 +315,10 @@ class CountService {
 		return result.toString();
 	}
 
+	private static safeCounterName(name: string) {
+		return name.replace(/-|_|\s/g, "").toLowerCase();
+	}
+
 	private counterToKey(
 		counterName: string,
 		resource: string,
@@ -324,17 +329,13 @@ class CountService {
 			.join(":"); // the final thing will look like "base64Settings:counterName:ExtraParamsAkaResource", like a normal counter but without the curly braces {}
 	}
 
-	public static getCounters(): Counter[] {
-		return counters;
-	}
-
 	public static getCache() {
 		return CountService.cache;
 	}
 
 	public static getCounterByAlias(alias: string): Counter {
-		for (const counter of counters) {
-			if (counter.aliases.includes(alias.toLowerCase())) return counter;
+		for (const counter of this.counters) {
+			if (counter.aliases.includes(this.safeCounterName(alias))) return counter;
 		}
 	}
 }

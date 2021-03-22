@@ -1,23 +1,19 @@
-import { model, Schema, Document, DocumentToObjectOptions } from "mongoose";
+import { model, Schema, Document } from "mongoose";
 import getEnv from "../utils/getEnv";
 
 const { DISCORD_PREFIX } = getEnv();
 
-interface GuildSettings {
-	guild?: string;
-	premium?: boolean;
-	prefix?: string;
-	language?: string;
-	allowedRoles?: string[];
-	counters?: Map<string, string>;
-	shortNumber?: number;
-	locale?: string;
-	digits?: string[];
-	blocked?: boolean;
-}
-
-interface GuildSettingsDocument extends GuildSettings, Document {
-	toObject(options?: DocumentToObjectOptions): GuildSettings;
+interface GuildSettingsDocument extends Document {
+	guild: string;
+	premium: boolean;
+	prefix: string;
+	language: string;
+	allowedRoles: string[];
+	counters: Map<string, string>;
+	shortNumber: number;
+	locale: string;
+	digits: string[];
+	blocked: boolean;
 }
 
 const GuildSchema = new Schema({
@@ -50,5 +46,5 @@ const GuildSchema = new Schema({
 
 const GuildModel = model<GuildSettingsDocument>("guilds", GuildSchema);
 
-export { GuildModel, GuildSettingsDocument, GuildSettings };
+export { GuildModel, GuildSettingsDocument };
 export default GuildModel;
