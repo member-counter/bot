@@ -7,9 +7,7 @@ const MembersPlayingCounter: Counter = {
 	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
-		const counts = {
-			["membersplaying"]: 0
-		};
+		const count = 0;
 
 		for (const [memberId, member] of guild.members) {
 			if (
@@ -17,10 +15,10 @@ const MembersPlayingCounter: Counter = {
 				member.game &&
 				member.game.name.toLowerCase() === resource.toLowerCase()
 			) {
-				counts["membersplaying"]++;
+				count++;
 			}
 		}
-		return counts;
+		return count;
 	}
 };
 
