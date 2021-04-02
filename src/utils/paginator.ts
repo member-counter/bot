@@ -134,8 +134,7 @@ class Paginator {
 	 */
 	createCollector() {
 		// Filter reactions to the user that requested the embed
-		const filter = (_m, _emoji, reactor) =>
-			(reactor.id ?? reactor) === this.targetUserID;
+		const filter = (_m, _emoji, userID) => userID === this.targetUserID;
 		// Create Reaction Collector
 		const collector = new ReactionCollector(this.client, this.message, filter, {
 			time: this.timeoutTime,
