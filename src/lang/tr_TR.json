@@ -132,6 +132,11 @@
 					"description": "Sunucunuzdaki banlı üyelerin sayısıdır, botun bu sayıyı göstermesi için üyeleri yasaklama yetkisine sahip olması gerekir"
 				},
 				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+				},
+				{
 					"key": "http",
 					"name": "http:options",
 					"description": "HTTP `GET` request tarafından döndürülen sonucu gösterir. `options` (seçenekler) parametresini [buradan](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir, veya kendiniz oluşturabilirsiniz: `options` (seçenekler) parametresi, base64'te kodlanmış bir JSON objesidir (bunu arşivlemek için {PREFIX}base64 komutunu kullanabilirsiniz), bu obje aşağıdaki keylere sahip olabilir: `url`: Bir stringtir; kaynağın url'sini içerir, `parseNumber`: Bir booleandır; sonuç geçerli bir sayı ise, sunucunuzun ayarlarına göre ayrıştırılacak ve özelleştirilecektir, `dataPath`: Bir stringtir; yanıt bir JSON objesiyse, string veya sayı olması gereken bir değere sahip bir keyin yolunu belirtmeniz gerekir, bu yolun sözdizimi, JS'nin özelliklere ve array öğelerine erişmek için kullandığı sözdizimine benzer."
@@ -152,14 +157,24 @@
 					"description": "Bir youtube kanalının video sayısını görüntüler"
 				},
 				{
+					"key": "youtubeChannelName",
+					"name": "youtubeChannelName:channelUrl",
+					"description": "Displays a youtube channel name"
+				},
+				{
 					"key": "twitchFollowers",
-					"name": "twitchFollowers:channelName",
-					"description": "Bir twitch kanalının takipçi sayısını görüntüler, channelUrl'yi istediğiniz kanalın url'si ile değiştirin"
+					"name": "twitchFollowers:nickname",
+					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
 				},
 				{
 					"key": "twitchViews",
-					"name": "twitchViews:channelName",
+					"name": "twitchViews:nickname",
 					"description": "Bir twitch kanalının izlenme sayısını görüntüler"
+				},
+				{
+					"key": "twitchChannelName",
+					"name": "twitchChannelName:nickname",
+					"description": "Displays a twitch channel Name"
 				},
 				{
 					"key": "memeratorMemes",
@@ -205,6 +220,31 @@
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
 					"description": "Bir hesaptaki takipçi sayısını görüntüler, username'i gerçek Instagram kullanıcı adınızla değiştirin"
+				},
+				{
+					"key": "sum",
+					"name": "sum:value1,value2,more values",
+					"description": "Does a sum of the specified values"
+				},
+				{
+					"key": "substract",
+					"name": "substract:value1,value2,more values",
+					"description": "Substracts the specified values"
+				},
+				{
+					"key": "multiply",
+					"name": "multiply:value1,value2,more values",
+					"description": "Multiplies the specified values"
+				},
+				{
+					"key": "divide",
+					"name": "divide:value1,value2,more values",
+					"description": "Divides the specified values"
+				},
+				{
+					"key": "modulus",
+					"name": "modulus:value1,value2,more values",
+					"description": "Gets the modulus of the specified values"
 				}
 			]
 		},
