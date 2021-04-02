@@ -132,6 +132,11 @@
 					"description": "आपक सरवर म परतबधत सदसय क मतर, बट क पस इस गनत क परदरशत करन क लए परतबध लगन क अनमत हन चहए"
 				},
 				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+				},
+				{
 					"key": "http",
 					"name": "http:options",
 					"description": "http `GET` अनुरोध द्वारा लौटाया गया परिणाम दिखाता है। आप `options` [here] (https://member-counter.eduardozgz.com/utils/http) सेटअप कर सकते हैं, या इसे मैन्युअल रूप से बना सकते हैं: `options` base64 में एन्कोड किया गया एक JSON ऑब्जेक्ट है (आप {PREFIX} का उपयोग कर सकते हैं) base64 इसे संग्रहीत करने की कमांड), इस ऑब्जेक्ट में निम्नलिखित कुंजियाँ हो सकती हैं: `url`: एक स्ट्रिंग; संसाधन के url के साथ, `parseNumber`: एक बूलियन; यदि परिणाम एक मान्य संख्या है, तो इसे आपके सर्वर की सेटिंग में पार्स और अनुकूलित किया जाएगा, `dataPath`: एक स्ट्रिंग ; यदि प्रतिक्रिया एक JSON ऑब्जेक्ट है, तो आपको एक कुंजी के लिए पथ निर्दिष्ट करना होगा जिसमें एक स्ट्रिंग या संख्या होनी चाहिए, इस पथ का सिंटैक्स के समान है जो JS गुणों और सरणी आइटम तक पहुंचने के लिए उपयोग करता है।"
@@ -152,14 +157,24 @@
 					"description": "यूट्यूब चैनल वीडियो काउंट दिखाता है"
 				},
 				{
+					"key": "youtubeChannelName",
+					"name": "youtubeChannelName:channelUrl",
+					"description": "Displays a youtube channel name"
+				},
+				{
 					"key": "twitchFollowers",
-					"name": "twitchFollowers:channelName",
-					"description": "ट्विच चैनल के अनुयायियों को प्रदर्शित करता है, इच्छित चैनल के नाम को channelName की जगह बदलें"
+					"name": "twitchFollowers:nickname",
+					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
 				},
 				{
 					"key": "twitchViews",
-					"name": "twitchViews:channelName",
+					"name": "twitchViews:nickname",
 					"description": "प्रदर्शित करता है ट्विच चैनल इतनी बार देखा गया"
+				},
+				{
+					"key": "twitchChannelName",
+					"name": "twitchChannelName:nickname",
+					"description": "Displays a twitch channel Name"
 				},
 				{
 					"key": "memeratorMemes",
@@ -205,6 +220,31 @@
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
 					"description": "एक ट्विटर अकाउंट में अनुयायियों की मात्रा प्रदर्शित करता है, उपयोगकर्ता नाम को वास्तविक Instagram उपयोगकर्ता नाम से बदलें"
+				},
+				{
+					"key": "sum",
+					"name": "sum:value1,value2,more values",
+					"description": "Does a sum of the specified values"
+				},
+				{
+					"key": "substract",
+					"name": "substract:value1,value2,more values",
+					"description": "Substracts the specified values"
+				},
+				{
+					"key": "multiply",
+					"name": "multiply:value1,value2,more values",
+					"description": "Multiplies the specified values"
+				},
+				{
+					"key": "divide",
+					"name": "divide:value1,value2,more values",
+					"description": "Divides the specified values"
+				},
+				{
+					"key": "modulus",
+					"name": "modulus:value1,value2,more values",
+					"description": "Gets the modulus of the specified values"
 				}
 			]
 		},
