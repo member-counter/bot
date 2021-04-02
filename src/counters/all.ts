@@ -20,6 +20,7 @@ import StaticCounter from "./static";
 import TwitchCounter from "./Twitch";
 import TwitterCounter from "./Twitter";
 import YouTubeCounter from "./YouTube";
+import MathCounter from "./Math";
 
 const counters = [
 	TestCounter,
@@ -43,7 +44,8 @@ const counters = [
 	StaticCounter,
 	TwitchCounter,
 	TwitterCounter,
-	YouTubeCounter
+	YouTubeCounter,
+	MathCounter
 ];
 
 export default counters;
