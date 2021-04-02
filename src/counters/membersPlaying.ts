@@ -3,7 +3,7 @@ import Constants from "../utils/Constants";
 
 const MembersPlayingCounter: Counter = {
 	aliases: ["membersplaying"],
-	isPremium: false,
+	isPremium: true,
 	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
