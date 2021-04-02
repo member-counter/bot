@@ -6,7 +6,7 @@
 			"helpDescription": "Bu komutun amacını açıklamak gerçekten gerekli mi?",
 			"embedReply": {
 				"title": "Komut Listesi | Prefix: {PREFIX}",
-				"description": "[Davet]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum için: `{PREFIX}setup`\n\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` ve sonrasında komut adını yazın, örneğin: ```\n{PREFIX}help shortNumber```\nBilgi: `()` isteğe bağlı bir parametre anlamına gelirken `[]` gerekli bir parametre anlamına gelir.",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Sayaç Komutları**",
@@ -130,6 +130,11 @@
 					"key": "bannedMembers",
 					"name": "bannedMembers",
 					"description": "Sunucunuzdaki banlı üyelerin sayısıdır, botun bu sayıyı göstermesi için üyeleri yasaklama yetkisine sahip olması gerekir"
+				},
+				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
 				},
 				{
 					"key": "http",
