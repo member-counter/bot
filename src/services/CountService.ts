@@ -100,16 +100,40 @@ class CountService {
 	}
 
 	// Legacy counters are those counters that are gonna be in a topic, the digits are (or can be) cuztomized0+
-	processContent(
+	public async processContent(
 		content: string,
 		canHaveCustomEmojis: boolean = false
 	): Promise<string> {
-		return stringReplaceAsync(
-			content,
-			/\{(.+?)\}/gi,
-			async (wholeMatch, counterDetected) =>
-				this.processCounter(counterDetected, canHaveCustomEmojis)
-		);
+		while (/\{(.+?)\}/g.test(content)) {
+			for (
+				let i = 0, curlyOpenAt: number = null, isNested = false;
+				i < content.length;
+				i++
+			) {
+				const char = content[i];
+
+				if (char === "{") {
+					if (curlyOpenAt !== null) {
+						isNested = true;
+					}
+					curlyOpenAt = i;
+				} else if (curlyOpenAt !== null && char === "}") {
+					let curlyClosedAt = i;
+
+					content =
+						content.substring(0, curlyOpenAt) +
+						(await this.processCounter(
+							content.substring(curlyOpenAt + 1, curlyClosedAt),
+							isNested ? false : canHaveCustomEmojis
+						)) +
+						content.substring(curlyClosedAt + 1);
+
+					break;
+				}
+			}
+		}
+
+		return content;
 	}
 
 	public async processCounter(
