@@ -6,7 +6,7 @@
 			"helpDescription": "E' veramente necessario spiegare lo scopo di questo comando?",
 			"embedReply": {
 				"title": "Lista dei comandi | prefisso: {PREFIX}",
-				"description": "[Aggiungi questo bot al tuo server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**      [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstallazione veloce: `{PREFIX}setup`\n\nPer avere più informazioni su un comando invia `{PREFIX}help` assieme al nome del comando: ```\n{PREFIX}help numeroCorto```\n**Info:** `()` significa che è un parametro opzionale mentre `[]` significa che è richiesto",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Contatori**",
@@ -130,6 +130,11 @@
 					"key": "bannedMembers",
 					"name": "bannedMembers",
 					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
+				},
+				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
 				},
 				{
 					"key": "http",
