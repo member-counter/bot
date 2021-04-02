@@ -6,7 +6,7 @@
 			"helpDescription": "Je opravdu nutné vysvětlit účel tohoto příkazu?",
 			"embedReply": {
 				"title": "Seznam příkazů | prefix: {PREFIX}",
-				"description": "[Přidat tohoto bota na svůj server]({DISCORD_BOT_INVITE}) **|** [Stránka]({WEBSITE}) **|**   [Dokumentace](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nRychlé nastavení: `{PREFIX}!setup`\n\nPro získání více informací o příkazu, použijte příkaz `{PREFIX}help` a jméno příkazu: ```\n{PREFIX}help shortNumber```\n**Info:** `()` znamená volitelný parametr, zatímco `[]` znamená požadovaný parametr",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Počítadla**",
@@ -130,6 +130,11 @@
 					"key": "bannedMembers",
 					"name": "bannedMembers",
 					"description": "Počet zabanovaných uživatelů na vašem serveru. Bot musí mít banovací oprávnění pro zobrazení tohoto počítadla"
+				},
+				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
 				},
 				{
 					"key": "http",
