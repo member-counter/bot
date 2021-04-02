@@ -132,6 +132,11 @@
 					"description": "Počet zabanovaných uživatelů na vašem serveru. Bot musí mít banovací oprávnění pro zobrazení tohoto počítadla"
 				},
 				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+				},
+				{
 					"key": "http",
 					"name": "http:options",
 					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
@@ -152,14 +157,24 @@
 					"description": "Zobrazí počet odběratelů daného YouTube videa"
 				},
 				{
+					"key": "youtubeChannelName",
+					"name": "youtubeChannelName:channelUrl",
+					"description": "Displays a youtube channel name"
+				},
+				{
 					"key": "twitchFollowers",
-					"name": "twitchFollowers:channelName",
-					"description": "Zobrazí počet twitch odběratelů, nahraďte channelUrl požadovanou adresou kanálu"
+					"name": "twitchFollowers:nickname",
+					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
 				},
 				{
 					"key": "twitchViews",
-					"name": "twitchViews:channelName",
+					"name": "twitchViews:nickname",
 					"description": "Zobrazí počet odběratelů daného Twitch kanálu"
+				},
+				{
+					"key": "twitchChannelName",
+					"name": "twitchChannelName:nickname",
+					"description": "Displays a twitch channel Name"
 				},
 				{
 					"key": "memeratorMemes",
@@ -205,6 +220,31 @@
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
 					"description": "Zobrazí počet sledujících uživatelů na účtu, nahraďte username požadovaným jménem na Instagramu"
+				},
+				{
+					"key": "sum",
+					"name": "sum:value1,value2,more values",
+					"description": "Does a sum of the specified values"
+				},
+				{
+					"key": "substract",
+					"name": "substract:value1,value2,more values",
+					"description": "Substracts the specified values"
+				},
+				{
+					"key": "multiply",
+					"name": "multiply:value1,value2,more values",
+					"description": "Multiplies the specified values"
+				},
+				{
+					"key": "divide",
+					"name": "divide:value1,value2,more values",
+					"description": "Divides the specified values"
+				},
+				{
+					"key": "modulus",
+					"name": "modulus:value1,value2,more values",
+					"description": "Gets the modulus of the specified values"
 				}
 			]
 		},
