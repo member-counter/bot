@@ -132,6 +132,11 @@
 					"description": "Количество забаненных участников вашего сервера. Необходимо разрешение на выдачу банов у бота, чтобы отображать этот счётчик."
 				},
 				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+				},
+				{
 					"key": "http",
 					"name": "http:options",
 					"description": "Показывает результат, возвращаемый http-реквестом `GET`. Вы можете настроить опции счётчика [здесь](https://member-counter.eduardozgz.com/utils/http), или создать их вручную: `options` - JSON объект, закодированный в base64 (вы можете использовать {PREFIX}base64 команду для этого), этот объект может иметь следующие ключи: `url`: строка; с URL ресурса, `parseNumber`: Логическое значение; если результат - валидный номер, он будет парснут и кастомизирован в соответствии с настройками вашего сервера, `dataPath`: строка; если ответ - JSON объект, вы должны указать путь к ключу с значением которое должно быть строкой или номером, синтаксис этого пути схож с синтаксисом который использует JS чтобы получать свойства и значения массивов."
@@ -152,14 +157,24 @@
 					"description": "Отображает кол-во видео на YouTube канале."
 				},
 				{
+					"key": "youtubeChannelName",
+					"name": "youtubeChannelName:channelUrl",
+					"description": "Displays a youtube channel name"
+				},
+				{
 					"key": "twitchFollowers",
-					"name": "twitchFollowers:channelName",
-					"description": "Отображает фолловеров Twitch, замените channelName имя желаемого канала."
+					"name": "twitchFollowers:nickname",
+					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
 				},
 				{
 					"key": "twitchViews",
-					"name": "twitchViews:channelName",
+					"name": "twitchViews:nickname",
 					"description": "Отображает просмотры Twitch канала."
+				},
+				{
+					"key": "twitchChannelName",
+					"name": "twitchChannelName:nickname",
+					"description": "Displays a twitch channel Name"
 				},
 				{
 					"key": "memeratorMemes",
@@ -205,6 +220,31 @@
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
 					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Instagram."
+				},
+				{
+					"key": "sum",
+					"name": "sum:value1,value2,more values",
+					"description": "Does a sum of the specified values"
+				},
+				{
+					"key": "substract",
+					"name": "substract:value1,value2,more values",
+					"description": "Substracts the specified values"
+				},
+				{
+					"key": "multiply",
+					"name": "multiply:value1,value2,more values",
+					"description": "Multiplies the specified values"
+				},
+				{
+					"key": "divide",
+					"name": "divide:value1,value2,more values",
+					"description": "Divides the specified values"
+				},
+				{
+					"key": "modulus",
+					"name": "modulus:value1,value2,more values",
+					"description": "Gets the modulus of the specified values"
 				}
 			]
 		},
