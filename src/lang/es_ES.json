@@ -378,18 +378,18 @@
 						{
 							"name": "onlineMembers",
 							"template": "En línea: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"statusCreating": "{LOADING} Creando contador de miembros en línea",
+							"statusCreated": "{CHECK_MARK} Contador de miembros en línea creado"
 						},
 						{
 							"name": "members",
-							"template": "Members: {members}",
-							"statusCreating": "{LOADING} Creating member counter",
-							"statusCreated": "{CHECK_MARK} Members counter created"
+							"template": "Miembros: {members}",
+							"statusCreating": "{LOADING} Creando contador de miembros",
+							"statusCreated": "{CHECK_MARK} Contador de miembros creado"
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
+							"template": "{nitroBoosters} Boosteando",
 							"statusCreating": "{LOADING} Creando contador de boosters",
 							"statusCreated": "{CHECK_MARK} Contador de boosters creados"
 						},
@@ -450,7 +450,7 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"helpDescription": "Este comando codifica o descodifica en base64 el contenido que pases, útil para crear contadores avanzados como `{http}`\n\n**Uso**```{PREFIX}base64 [encode/decode] [contenido]```\n**Ejemplo**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
 			"invalidAction": "Acción inválida, debe ser `encode` o `decode`"
 		}
 	},
