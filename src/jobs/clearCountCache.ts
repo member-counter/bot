@@ -9,8 +9,8 @@ const clearCache: Job = {
 	runAtStartup: false,
 	runInOnlyFirstThread: false,
 	run: async ({ client }) => {
-		CountService.cache.forEach(({ expiresAt }, counterKey) => {
-			if (expiresAt < Date.now()) CountService.cache.delete(counterKey);
+		CountService.globalCache.forEach(({ expiresAt }, counterKey) => {
+			if (expiresAt < Date.now()) CountService.globalCache.delete(counterKey);
 		});
 	}
 };
