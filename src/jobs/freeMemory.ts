@@ -3,7 +3,7 @@ import getEnv from "../utils/getEnv";
 
 const { UNRESTRICTED_MODE, PREMIUM_BOT } = getEnv();
 
-const freeRam: Job = {
+const freeMemory: Job = {
 	time: "*/30 * * * * *",
 	runAtStartup: false,
 	runInOnlyFirstThread: false,
@@ -21,4 +21,4 @@ const freeRam: Job = {
 	}
 };
 
-export default freeRam;
+export default freeMemory;

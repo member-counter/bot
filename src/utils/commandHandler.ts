@@ -1,11 +1,13 @@
 import getEnv from "./getEnv";
-import Eris from "eris";
+import Eris, { GuildTextableChannel, Message } from "eris";
 import GuildService from "../services/GuildService";
 import { loadLanguagePack } from "./languagePack";
 import memberHasAdminPermission from "./memberHasAdminPermission";
 import commandErrorHandler from "./commandErrorHandler";
 import commands from "../commands/all";
 import Bot from "../bot";
+import LanguagePack from "../typings/LanguagePack";
+import { GuildChannelCommand, AnyChannelCommand } from "../typings/Command";
 
 const {
 	PREMIUM_BOT,
@@ -34,16 +36,17 @@ export default async (message: Eris.Message) => {
 	// Avoid responding to other bots
 	if (author && !author.bot) {
 		let prefixToCheck: string;
-		let languagePack;
+		let languagePack: LanguagePack;
 		let clientIntegrationRoleId: string;
+		let guildService: GuildService;
 
 		if (channel instanceof Eris.GuildChannel) {
 			const { guild } = channel;
 
-			const guildSettings = await GuildService.init(guild.id);
+			guildService = await GuildService.init(guild.id);
 
-			languagePack = loadLanguagePack(guildSettings.language);
-			prefixToCheck = guildSettings.prefix;
+			languagePack = loadLanguagePack(guildService.language);
+			prefixToCheck = guildService.prefix;
 
 			clientIntegrationRoleId = guild.members
 				.get(client.user.id)
@@ -82,7 +85,7 @@ export default async (message: Eris.Message) => {
 
 						if (
 							channel instanceof Eris.GuildChannel &&
-							command.onlyAdmin &&
+							(command as GuildChannelCommand).onlyAdmin &&
 							!(await memberHasAdminPermission(message.member))
 						) {
 							channel
@@ -102,13 +105,22 @@ export default async (message: Eris.Message) => {
 
 							message.content = message.content.replace(prefixRegex, "");
 
-							await command.run({
-								client,
-								message,
-								languagePack
-							});
+							if (channel instanceof Eris.GuildChannel) {
+								await (command as GuildChannelCommand).run({
+									client,
+									message: message as Message<GuildTextableChannel>,
+									languagePack,
+									guildService
+								});
+							} else {
+								await (command as AnyChannelCommand).run({
+									client,
+									message,
+									languagePack
+								});
+							}
 						} catch (error) {
-							commandErrorHandler(channel, languagePack, error);
+							commandErrorHandler(channel, languagePack, prefixToCheck, error);
 						}
 						break commandsLoop;
 					}
