@@ -1,9 +1,11 @@
 import Eris, { TextChannel } from "eris";
+import LanguagePack from "../typings/LanguagePack";
 import embedBase from "./embedBase";
 
 const commandErrorHandler = async (
 	channel: Eris.AnyChannel,
-	languagePack,
+	languagePack: LanguagePack,
+	prefix: string,
 	error: any
 ): Promise<void> => {
 	const { errorDb, errorDiscordAPI, errorUnknown } = languagePack.common;
@@ -17,7 +19,7 @@ const commandErrorHandler = async (
 
 	switch (error.constructor.name) {
 		case "UserError":
-			errorEmbed.description = error.message;
+			errorEmbed.description = error.message.replace("{PREFIX}", prefix);
 			break;
 
 		case "MongooseError":

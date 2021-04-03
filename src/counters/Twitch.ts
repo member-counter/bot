@@ -12,15 +12,23 @@ const authProvider = new ClientCredentialsAuthProvider(
 const client = new ApiClient({ authProvider });
 
 const TwitchCounter: Counter = {
-	aliases: ["twitchFollowers", "twitchViews"],
+	aliases: ["twitchFollowers", "twitchViews", "twitchChannelName"],
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
 	execute: async ({ guild, resource: userName }) => {
 		if (!TWITCH_CLIENT_ID) throw new Error("TWITCH_CLIENT_ID not provided");
 		const user = await client.kraken.users.getUserByName(userName);
-		const { followers, views } = await client.kraken.channels.getChannel(user);
-		return { twitchFollowers: followers, twitchViews: views };
+		const {
+			followers,
+			views,
+			displayName
+		} = await client.kraken.channels.getChannel(user);
+		return {
+			twitchFollowers: followers,
+			twitchViews: views,
+			twitchChannelName: displayName
+		};
 	}
 };
 

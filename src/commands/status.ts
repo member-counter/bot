@@ -1,10 +1,10 @@
 import os from "os";
 import git from "git-rev-sync";
 
-import * as packageJSON from '../../package.json';
-import MemberCounterCommand from '../typings/MemberCounterCommand';
-import embedBase from '../utils/embedBase';
-import GuildCountCacheModel from '../models/GuildCountCache';
+import * as packageJSON from "../../package.json";
+import Command from "../typings/Command";
+import embedBase from "../utils/embedBase";
+import GuildCountCacheModel from "../models/GuildCountCache";
 
 const parseUptime = (inputDate: number) => {
 	// inputDate must be in seconds
@@ -23,10 +23,9 @@ try {
 	})`;
 } catch {}
 
-const status: MemberCounterCommand = {
+const status: Command = {
 	aliases: ["uptime", "status", "ping"],
 	denyDm: false,
-	onlyAdmin: false,
 	run: async ({ message, client }) => {
 		const { channel } = message;
 		const { version } = packageJSON;
@@ -63,87 +62,93 @@ const status: MemberCounterCommand = {
 			userStats: clientStats.users + " / " + clientStats.estimatedTotalUsers
 		};
 
-    const embed = embedBase({
-      description: stats.version,
-      fields: [
-        {
-          name: '**Discord client uptime:**',
-          value: stats.clientUptime,
-          inline: true,
-        },
-        {
-          name: '**Process uptime:**',
-          value: stats.processUptime,
-          inline: true,
-        },
-        {
-          name: '**System uptime:**',
-          value: stats.systemUptime,
-          inline: true,
-        },
-        {
-          name: '**Shard clusters**',
-          value: stats.shardClusters,
-          inline: true,
-        },
-        {
-          name: '**Load avg:**',
-          value: stats.loadAvg,
-          inline: true,
-        },
-        {
-          name: '**Memory usage:**',
-          value: stats.memoryUsage,
-          inline: true,
-        },
-        {
-          name: '**REST latency:**',
-          value: 'Wait...',
-          inline: true,
-        },
-        {
-          name: '**BOT latency:**',
-          value: stats.botLatency,
-          inline: true,
-        }, {
-          name: '**Gateway latency:**',
-          value: stats.gatewayLatency,
-          inline: true,
-        },
-        {
-          name: '**Hostname:**',
-          value: stats.hostname,
-          inline: true,
-        },
-        {
-          name: '**Current shard:**',
-          value: stats.currentShard,
-          inline: true,
-        },
-        {
-          name: '**Shards:**',
-          value: stats.totalShards,
-          inline: true,
-        },
-        {
-          name: '**Guilds:**',
-          value: stats.guilds,
-          inline: true,
-        },
-        {
-          name: '**Users:**',
-          value: (await GuildCountCacheModel.aggregate([{
-            $group: {
-              _id: null,
-              total: {
-                $sum: "$members"
-              }
-            }
-          }]))[0]?.total ?? "Unknown",
-          inline: true,
-        },
-      ],
-    });
+		const embed = embedBase({
+			description: stats.version,
+			fields: [
+				{
+					name: "**Discord client uptime:**",
+					value: stats.clientUptime,
+					inline: true
+				},
+				{
+					name: "**Process uptime:**",
+					value: stats.processUptime,
+					inline: true
+				},
+				{
+					name: "**System uptime:**",
+					value: stats.systemUptime,
+					inline: true
+				},
+				{
+					name: "**Shard clusters**",
+					value: stats.shardClusters,
+					inline: true
+				},
+				{
+					name: "**Load avg:**",
+					value: stats.loadAvg,
+					inline: true
+				},
+				{
+					name: "**Memory usage:**",
+					value: stats.memoryUsage,
+					inline: true
+				},
+				{
+					name: "**REST latency:**",
+					value: "Wait...",
+					inline: true
+				},
+				{
+					name: "**BOT latency:**",
+					value: stats.botLatency,
+					inline: true
+				},
+				{
+					name: "**Gateway latency:**",
+					value: stats.gatewayLatency,
+					inline: true
+				},
+				{
+					name: "**Hostname:**",
+					value: stats.hostname,
+					inline: true
+				},
+				{
+					name: "**Current shard:**",
+					value: stats.currentShard,
+					inline: true
+				},
+				{
+					name: "**Shards:**",
+					value: stats.totalShards,
+					inline: true
+				},
+				{
+					name: "**Guilds:**",
+					value: stats.guilds,
+					inline: true
+				},
+				{
+					name: "**Users:**",
+					value:
+						(
+							await GuildCountCacheModel.aggregate([
+								{
+									$group: {
+										_id: null,
+										total: {
+											$sum: "$members"
+										}
+									}
+								}
+							])
+						)[0]?.total ?? "Unknown",
+					inline: true
+				}
+			]
+		});
 
 		const RESTLatencyCheck = Date.now();
 		await channel.createMessage({ embed }).then(async (message) => {
