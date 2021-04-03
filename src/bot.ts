@@ -35,45 +35,17 @@ class Bot {
 	static init() {
 		if (this._client) throw new Error("Client is already initialized");
 
-    const intents: Eris.IntentStrings[] = [
-      'guilds',
-      'guildBans',
-      'guildMessages',
-      'directMessages',
-      'guildMessageReactions',
-      'directMessageReactions',
-    ];
-    
-    const erisOptions: Eris.ClientOptions = {
-      getAllUsers: false,
-      guildCreateTimeout: 15000,
-      intents,
-      maxShards: DISTRIBUTED ? TOTAL_SHARDS : 1,
-      messageLimit: 0,
-      defaultImageFormat: 'jpg',
-      compress: true,
-      restMode: true,
-    }
-  
-    const client = new ErisClient(DISCORD_CLIENT_TOKEN, {
-      erisOptions,
-      getFirstShard: async () => DISTRIBUTED ? FIRST_SHARD : 0,
-      shardsPerCluster: DISTRIBUTED ? SHARD_AMOUNT : 1,
-      lockKey: REDIS_LOCK_KEY,
-      redisPassword: REDIS_PASSWORD,
-      redisHost: REDIS_HOST,
-      redisPort: REDIS_PORT,
-      webhooks: {
-        discord: {
-          id: STATUS_WEBHOOK_ID,
-          token: STATUS_WEBHOOK_TOKEN,
-        }
-      }
-    });
-    this._client = client;
+		const intents: Eris.IntentStrings[] = [
+			"guilds",
+			"guildBans",
+			"guildMessages",
+			"directMessages",
+			"guildMessageReactions",
+			"directMessageReactions"
+		];
 
 		const erisOptions: Eris.ClientOptions = {
-			getAllUsers: PREMIUM_BOT,
+			getAllUsers: false,
 			guildCreateTimeout: 15000,
 			intents,
 			maxShards: DISTRIBUTED ? TOTAL_SHARDS : 1,

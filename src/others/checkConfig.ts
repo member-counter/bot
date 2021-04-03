@@ -42,7 +42,7 @@ function checkConfig() {
 
 	if (typeof UPDATE_COUNTER_INTERVAL !== "string") {
 		console.error(
-			`[ENV ERROR] The current UPDATE_COUNTER_INTERVAL "${UPDATE_COUNTER_INTERVAL}" is invalid, if you wanna use the lowest possible interval, set this env var to "0 */5 * * * *"`
+			`[ENV ERROR] The current UPDATE_COUNTER_INTERVAL "${UPDATE_COUNTER_INTERVAL}" is invalid, if you wanna use the lowest possible interval, set this env var to \`0 */5 * * * *\``
 		);
 		fail = true;
 	}
@@ -89,7 +89,7 @@ function checkConfig() {
 		fail = true;
 	}
 
-	if (BOT_COLOR.toString().length && typeof BOT_COLOR !== "number") {
+	if (BOT_COLOR?.toString().length && typeof BOT_COLOR !== "number") {
 		console.error(
 			`[ENV ERROR] The current BOT_COLOR "${BOT_COLOR}" is invalid`
 		);

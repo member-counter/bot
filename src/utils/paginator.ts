@@ -9,6 +9,7 @@ import {
 import clonedeep from "lodash.clonedeep";
 import { ReactionCollector, MessageCollector } from "eris-collector";
 import emojis from "./emojis";
+import LanguagePack from "../typings/LanguagePack";
 
 class Paginator {
 	private message: Message;
@@ -20,7 +21,7 @@ class Paginator {
 	private readonly timeoutTime: number;
 	private collector: ReactionCollector;
 	private readonly targetUserID: string;
-	private languagePack: any;
+	private languagePack: LanguagePack;
 
 	public constructor(
 		channel: TextableChannel,
@@ -44,7 +45,7 @@ class Paginator {
 	/**
 	 * Sends Pager to channel
 	 */
-	async displayPage(page) {
+	async displayPage(page: number) {
 		// Clone the embed and modify it by adding a page indicator
 		const embedToSend: EmbedOptions = clonedeep(this.pages[page]);
 		this.appendPageCounter(embedToSend);
@@ -66,7 +67,7 @@ class Paginator {
 	/**
 	 * Initiates jumping to specified page
 	 */
-	async jump() {
+	async jumpPrompt() {
 		await this.channel
 			.createMessage(this.languagePack.functions.paginator.jumpPrompt)
 			.then(async (message) => {
@@ -101,7 +102,7 @@ class Paginator {
 								.createMessage(
 									this.languagePack.functions.paginator.errorPageLengthExceeded.replace(
 										/\{TOTAL_PAGES\}/,
-										this.totalPages
+										this.totalPages.toString()
 									)
 								)
 								.then((message) => {
@@ -182,7 +183,7 @@ class Paginator {
 				}
 				case emojis.jump.name:
 				case emojis.jump.fallbackUnicodeEmoji: {
-					await this.jump();
+					await this.jumpPrompt();
 
 					break;
 				}
@@ -222,6 +223,7 @@ class Paginator {
 					await this.message.addReaction(emojis.previousPage.reaction);
 					await this.message.addReaction(emojis.nextPage.reaction);
 					await this.message.addReaction(emojis.lastPage.reaction);
+					let _emojis = emojis;
 					await this.message.addReaction(emojis.jump.reaction);
 				} else {
 					await this.message.addReaction(emojis.firstPage.fallbackUnicodeEmoji);
@@ -267,15 +269,15 @@ class Paginator {
 		if (embed.footer) {
 			embed.footer.text =
 				this.languagePack.functions.paginator.pageCounter
-					.replace(/\{CURRENT_PAGE\}/, this.currentPage)
-					.replace(/\{TOTAL_PAGES\}/, this.totalPages) +
+					.replace(/\{CURRENT_PAGE\}/, this.currentPage.toString())
+					.replace(/\{TOTAL_PAGES\}/, this.totalPages.toString()) +
 				" - " +
 				embed.footer.text;
 		} else {
 			embed.footer = {
 				text: this.languagePack.functions.paginator.pageCounter
-					.replace(/\{CURRENT_PAGE\}/, this.currentPage)
-					.replace(/\{TOTAL_PAGES\}/, this.totalPages)
+					.replace(/\{CURRENT_PAGE\}/, this.currentPage.toString())
+					.replace(/\{TOTAL_PAGES\}/, this.totalPages.toString())
 			};
 		}
 	}

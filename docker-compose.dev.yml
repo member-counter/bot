@@ -28,6 +28,8 @@ services:
       - ./storage/configdb:/data/configdb
     networks:
       - default
+    ports:
+      - "27017:27017"
 
   member-counter-bot-redis:
     image: redis
@@ -36,10 +38,6 @@ services:
     restart: always
     networks:
       - default
-
-volumes:
-  member-counter-bot-mongodb_db:
-  member-counter-bot-mongodb_configdb:
 
 networks:
   default:

@@ -4,11 +4,17 @@
 		{
 			"type": "node",
 			"request": "attach",
-			"name": "Node: ts-node",
-			"processId": "${command:PickProcess}",
-			"restart": true,
-			"skipFiles": ["<node_internals>/**"],
-			"protocol": "inspector"
+			"name": "dev: Attach to Node",
+			"port": 9229
+		},
+		{
+			"type": "node",
+			"request": "attach",
+			"name": "dev:docker: Attach to Node",
+			"port": 9229,
+			"sourceMapPathOverrides": {
+				"/app/*": "${workspaceRoot}/*"
+			}
 		}
 	]
 }

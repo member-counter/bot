@@ -45,8 +45,8 @@ class GuildService {
 	}
 
 	// -1 = disabled
-	public async setShortNumber(decimals: number): Promise<number> {
-		this.doc.shortNumber = decimals;
+	public async setShortNumber(state: number): Promise<number> {
+		this.doc.shortNumber = state;
 		await this.doc.save();
 		return this.doc.shortNumber;
 	}
@@ -69,10 +69,8 @@ class GuildService {
 		return this.doc.premium;
 	}
 
-	public async upgradeServer(
-		grantorId: string
-	): Promise<"success" | "noUpgradesAvailable" | "alreadyUpgraded"> {
-		if (this.premium) return "alreadyUpgraded";
+	public async upgradeServer(grantorId: string): Promise<void> {
+		if (this.premium) throw new Error("alreadyUpgraded");
 
 		const userDoc: any = await UserModel.findOneAndUpdate(
 			{ user: grantorId },
@@ -80,7 +78,8 @@ class GuildService {
 			{ new: true, upsert: true }
 		);
 
-		if (userDoc.availableServerUpgrades <= 0) return "noUpgradesAvailable";
+		if (userDoc.availableServerUpgrades <= 0)
+			throw new Error("noUpgradesAvailable");
 
 		userDoc.availableServerUpgrades -= 1;
 		this.doc.premium = true;
@@ -88,7 +87,7 @@ class GuildService {
 		await this.doc.save();
 		await userDoc.save();
 
-		return "success";
+		return;
 	}
 
 	public get digits(): string[] {
@@ -128,9 +127,9 @@ class GuildService {
 		await GuildLogModel.create({ guild: this.id, text });
 	}
 
-	public async getLatestLogs(): Promise<GuildLogDocument[]> {
+	public async getLatestLogs(amount = 20): Promise<GuildLogDocument[]> {
 		const latestLogs = await GuildLogModel.find({ guild: this.id })
-			.limit(20)
+			.limit(amount)
 			.sort({ timestamp: 1 });
 		return latestLogs;
 	}

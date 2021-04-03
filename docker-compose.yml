@@ -35,9 +35,5 @@ services:
     networks:
       - default
 
-volumes:
-  member-counter-bot-mongodb_db:
-  member-counter-bot-mongodb_configdb:
-
 networks:
   default:

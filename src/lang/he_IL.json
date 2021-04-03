@@ -42,6 +42,11 @@
 					"description": "חברים בשרת שלך"
 				},
 				{
+					"key": "membersplaying",
+					"name": "membersplaying:gameName",
+					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
+				},
+				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "מספר חברים משוער בשרת שלך"
