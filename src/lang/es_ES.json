@@ -390,20 +390,20 @@
 						{
 							"name": "nitroBoosters",
 							"template": "Boosters: {nitroBoosters}",
-							"statusCreating": "{LOADING} Creating booster counter",
-							"statusCreated": "{CHECK_MARK} Booster counter created"
+							"statusCreating": "{LOADING} Creando contador de boosters",
+							"statusCreated": "{CHECK_MARK} Contador de boosters creados"
 						},
 						{
 							"name": "roles",
 							"template": "Roles: {roles}",
-							"statusCreating": "{LOADING} Creating roles counter",
-							"statusCreated": "{CHECK_MARK} Roles counter created"
+							"statusCreating": "{LOADING} Creando contador de roles",
+							"statusCreated": "{CHECK_MARK} Contador de roles creado"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
-							"statusCreating": "{LOADING} Creating channels counter",
-							"statusCreated": "{CHECK_MARK} Channels counter created"
+							"template": "{channels} Canales",
+							"statusCreating": "{LOADING} Creando contador de canales",
+							"statusCreated": "{CHECK_MARK} Contador de canales creado"
 						}
 					]
 				},
@@ -412,15 +412,15 @@
 					"counters": [
 						{
 							"name": "twitchFollowers",
-							"template": "{twitchFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"template": "{twitchFollowers:{RESOURCE}} Seguidores",
+							"statusCreating": "{LOADING} Creando contador de seguidores",
+							"statusCreated": "{CHECK_MARK} Contador de seguidores creado"
 						},
 						{
 							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{twitchViews:{RESOURCE}} Visitas",
+							"statusCreating": "{LOADING} Creando contador de visitas",
+							"statusCreated": "{CHECK_MARK} Contador de visitas creado"
 						}
 					]
 				},
@@ -429,21 +429,21 @@
 					"counters": [
 						{
 							"name": "youtubeSubscribers",
-							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
-							"statusCreating": "{LOADING} Creating subscriber counter",
-							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+							"template": "{youtubeSubscribers:{RESOURCE}} Suscriptores",
+							"statusCreating": "{LOADING} Creando contador de suscriptores",
+							"statusCreated": "{CHECK_MARK} Contador de suscriptores creados"
 						},
 						{
 							"name": "youtubeVideos",
 							"template": "{youtubeVideos:{RESOURCE}} Videos",
-							"statusCreating": "{LOADING} Creating video counter",
-							"statusCreated": "{CHECK_MARK} Video counter created"
+							"statusCreating": "{LOADING} Creando contador de videos",
+							"statusCreated": "{CHECK_MARK} Contador de videos creado"
 						},
 						{
 							"name": "youtubeViews",
-							"template": "{youtubeViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{youtubeViews:{RESOURCE}} Visitas",
+							"statusCreating": "{LOADING} Creando contador de visitas",
+							"statusCreated": "{CHECK_MARK} Contador de visitas creado"
 						}
 					]
 				}
@@ -451,7 +451,7 @@
 		},
 		"base64": {
 			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"invalidAction": "Acción inválida, debe ser `encode` o `decode`"
 		}
 	},
 	"functions": {
