@@ -6,7 +6,7 @@
 			"helpDescription": "Неужели нужно объяснять смысл этой команды?",
 			"embedReply": {
 				"title": "Лист команд | Префикс: {PREFIX}",
-				"description": "[Добавьте этого бота на ваш сервер]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Документация](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nБыстрая настройка: `{PREFIX}setup`\n\nЧтобы получить больше информации, отправьте `{PREFIX}help` с названием нужной вам команды: ```\n{PREFIX}help shortNumber```\n**Инфо:** `()`подразумевает за собой опциональный параметр, когда `[]` подразумевает обязательный параметр.",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Счётчики**",
@@ -26,7 +26,8 @@
 				]
 			},
 			"misc": {
-				"command": "Команда:"
+				"command": "Команда:",
+				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
@@ -126,6 +127,11 @@
 					"description": "Количество забаненных участников вашего сервера. Необходимо разрешение на выдачу банов у бота, чтобы отображать этот счётчик."
 				},
 				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+				},
+				{
 					"key": "http",
 					"name": "http:options",
 					"description": "Показывает результат, возвращаемый http-реквестом `GET`. Вы можете настроить опции счётчика [здесь](https://member-counter.eduardozgz.com/utils/http), или создать их вручную: `options` - JSON объект, закодированный в base64 (вы можете использовать {PREFIX}base64 команду для этого), этот объект может иметь следующие ключи: `url`: строка; с URL ресурса, `parseNumber`: Логическое значение; если результат - валидный номер, он будет парснут и кастомизирован в соответствии с настройками вашего сервера, `dataPath`: строка; если ответ - JSON объект, вы должны указать путь к ключу с значением которое должно быть строкой или номером, синтаксис этого пути схож с синтаксисом который использует JS чтобы получать свойства и значения массивов."
@@ -146,14 +152,24 @@
 					"description": "Отображает кол-во видео на YouTube канале."
 				},
 				{
+					"key": "youtubeChannelName",
+					"name": "youtubeChannelName:channelUrl",
+					"description": "Displays a youtube channel name"
+				},
+				{
 					"key": "twitchFollowers",
-					"name": "twitchFollowers:channelName",
-					"description": "Отображает фолловеров Twitch, замените channelName имя желаемого канала."
+					"name": "twitchFollowers:nickname",
+					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
 				},
 				{
 					"key": "twitchViews",
-					"name": "twitchViews:channelName",
+					"name": "twitchViews:nickname",
 					"description": "Отображает просмотры Twitch канала."
+				},
+				{
+					"key": "twitchChannelName",
+					"name": "twitchChannelName:nickname",
+					"description": "Displays a twitch channel Name"
 				},
 				{
 					"key": "memeratorMemes",
@@ -199,6 +215,31 @@
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
 					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Instagram."
+				},
+				{
+					"key": "sum",
+					"name": "sum:value1,value2,more values",
+					"description": "Does a sum of the specified values"
+				},
+				{
+					"key": "substract",
+					"name": "substract:value1,value2,more values",
+					"description": "Substracts the specified values"
+				},
+				{
+					"key": "multiply",
+					"name": "multiply:value1,value2,more values",
+					"description": "Multiplies the specified values"
+				},
+				{
+					"key": "divide",
+					"name": "divide:value1,value2,more values",
+					"description": "Divides the specified values"
+				},
+				{
+					"key": "modulus",
+					"name": "modulus:value1,value2,more values",
+					"description": "Gets the modulus of the specified values"
 				}
 			]
 		},
@@ -228,7 +269,7 @@
 			"success": "Сделано! Необходимо немного подождать (около нескольких минут) прежде, чем увидеть новые изменения"
 		},
 		"locale": {
-			"helpDescription": "Форматирует числа и др. в соответствии с указанной локализацией \n\n**Использование**\n```{PREFIX}locale [locale/disable]```\n**Примеры**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/BBD43CB.png"
 		},
 		"prefix": {
@@ -322,33 +363,90 @@
 			"channelTopic": "Предварительное описание канала"
 		},
 		"setup": {
-			"helpDescription": "Предустановка стандартных счётчиков.\nСоздаёт заблокированные (🔒) голосовые каналы сразу вместе с счётчиками.\n**Пример**```{PREFIX}setup```",
-			"creatingCounts": "Создание счётчиков...",
-			"createdCounts": "Выполнено",
-			"categoryName": {
-				"countTemplate": "📊 Статистика сервера 📊",
-				"creatingCategory": "{LOADING} Создание категории",
-				"createdCategory": "{CHECK_MARK} Категория создана"
+			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"status": {
+				"creatingCounts": "Создание счётчиков...",
+				"createdCounts": "Выполнено",
+				"creatingCategory": "{LOADING} Creating category",
+				"createdCategory": "{CHECK_MARK} Category created"
 			},
-			"memberCounter": {
-				"countTemplate": "{members} Участники",
-				"creatingmemberCounter": "{LOADING} Создание счётчика участников",
-				"createdmemberCounter": "{CHECK_MARK} Счётчик участников создан"
-			},
-			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Бустеры",
-				"creatingboostingCounter": "{LOADING} Создание счётчика бустов",
-				"createdboostingCounter": "{CHECK_MARK} Счётчик бустов создан"
-			},
-			"rolesCounter": {
-				"countTemplate": "{roles} Роли",
-				"creatingrolesCounter": "{LOADING} Создание счётчика ролей",
-				"createdrolesCounter": "{CHECK_MARK} Счётчик ролей создан"
-			},
-			"channelsCounter": {
-				"countTemplate": "{channels} Каналы",
-				"creatingchannelsCounter": "{LOADING} Создание счётчика каналов",
-				"createdchannelsCounter": "{CHECK_MARK} Счётчик каналов создан"
+			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"counterTemplates": {
+				"default": {
+					"categoryName": "📊 Статистика сервера 📊",
+					"counters": [
+						{
+							"name": "onlineMembers",
+							"template": "Online: {onlineMembers}",
+							"statusCreating": "{LOADING} Creating online counter",
+							"statusCreated": "{CHECK_MARK} Online counter created"
+						},
+						{
+							"name": "members",
+							"template": "Members: {members}",
+							"statusCreating": "{LOADING} Creating member counter",
+							"statusCreated": "{CHECK_MARK} Members counter created"
+						},
+						{
+							"name": "nitroBoosters",
+							"template": "Boosters: {nitroBoosters}",
+							"statusCreating": "{LOADING} Creating booster counter",
+							"statusCreated": "{CHECK_MARK} Booster counter created"
+						},
+						{
+							"name": "roles",
+							"template": "Roles: {roles}",
+							"statusCreating": "{LOADING} Creating roles counter",
+							"statusCreated": "{CHECK_MARK} Roles counter created"
+						},
+						{
+							"name": "channels",
+							"template": "Channels: {channels}",
+							"statusCreating": "{LOADING} Creating channels counter",
+							"statusCreated": "{CHECK_MARK} Channels counter created"
+						}
+					]
+				},
+				"twitch": {
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Twitch Stats 📊",
+					"counters": [
+						{
+							"name": "twitchFollowers",
+							"template": "{twitchFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
+						},
+						{
+							"name": "twitchViews",
+							"template": "{twitchViews:{RESOURCE}} Views",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				},
+				"youtube": {
+					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Youtube Stats 📊",
+					"counters": [
+						{
+							"name": "youtubeSubscribers",
+							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
+							"statusCreating": "{LOADING} Creating subscriber counter",
+							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+						},
+						{
+							"name": "youtubeVideos",
+							"template": "{youtubeVideos:{RESOURCE}} Videos",
+							"statusCreating": "{LOADING} Creating video counter",
+							"statusCreated": "{CHECK_MARK} Video counter created"
+						},
+						{
+							"name": "youtubeViews",
+							"template": "{youtubeViews:{RESOURCE}} Views",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				}
 			}
 		},
 		"base64": {

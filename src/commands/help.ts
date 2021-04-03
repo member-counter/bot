@@ -1,25 +1,23 @@
-import MemberCounterCommand from "../typings/MemberCounterCommand";
-import GuildService from "../services/GuildService";
+import Command from "../typings/Command";
 import getEnv from "../utils/getEnv";
-import { GuildChannel } from "eris";
 import embedBase from "../utils/embedBase";
-import commandErrorHandler from "../utils/commandErrorHandler";
+import UserError from "../utils/UserError";
+import GuildService from "../services/GuildService";
+import { GuildChannel } from "eris";
 
 const { WEBSITE_URL, DISCORD_PREFIX, DISCORD_BOT_INVITE } = getEnv();
 
-const help: MemberCounterCommand = {
+const help: Command = {
 	aliases: ["help"],
 	denyDm: false,
-	onlyAdmin: false,
 	run: async ({ message, languagePack }) => {
 		const { channel, content } = message;
 
-		const prefix = await (async () => {
-			if (channel instanceof GuildChannel) {
-				const guildSettings = await GuildService.init(channel.guild.id);
-				return guildSettings.prefix;
-			} else return DISCORD_PREFIX;
-		})();
+		let prefix = DISCORD_PREFIX;
+
+		if (channel instanceof GuildChannel) {
+			prefix = (await GuildService.init(message.guildID)).prefix;
+		}
 
 		let [, desiredCommand] = content.split(/\s+/g);
 
@@ -80,12 +78,12 @@ const help: MemberCounterCommand = {
 
 				await channel.createMessage({ embed });
 			} else {
-				await commandErrorHandler(channel, languagePack, {
-					constructor: {
-						name: "UserError"
-					},
-					message: `Sorry I couldn't find help for \`\`${desiredCommand}\`\``
-				});
+				throw new UserError(
+					languagePack.commands.help.misc.errorCommandNotFound.replace(
+						"{DESIRED_COMMAND}",
+						desiredCommand
+					)
+				);
 			}
 		}
 	}
