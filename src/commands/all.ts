@@ -1,4 +1,4 @@
-import MemberCounterCommand from "../typings/MemberCounterCommand";
+import Command from "../typings/Command";
 
 // Commands
 import statusCommands from "./status";
@@ -13,7 +13,7 @@ import utilCommands from "./utils";
 import guideCommand from "./guide";
 import setupCommand from "./setup";
 
-const commands: Array<MemberCounterCommand> = [
+const commands: Array<Command> = [
 	...userCommands,
 	...statusCommands,
 	...patpatCommands,

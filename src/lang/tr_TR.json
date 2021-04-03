@@ -6,7 +6,7 @@
 			"helpDescription": "Bu komutun amacını açıklamak gerçekten gerekli mi?",
 			"embedReply": {
 				"title": "Komut Listesi | Prefix: {PREFIX}",
-				"description": "[Davet]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum için: `{PREFIX}setup`\n\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` ve sonrasında komut adını yazın, örneğin: ```\n{PREFIX}help shortNumber```\nBilgi: `()` isteğe bağlı bir parametre anlamına gelirken `[]` gerekli bir parametre anlamına gelir.",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Sayaç Komutları**",
@@ -26,7 +26,8 @@
 				]
 			},
 			"misc": {
-				"command": "Komut:"
+				"command": "Komut:",
+				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
@@ -126,9 +127,14 @@
 					"description": "Sunucunuzdaki banlı üyelerin sayısıdır, botun bu sayıyı göstermesi için üyeleri yasaklama yetkisine sahip olması gerekir"
 				},
 				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+				},
+				{
 					"key": "http",
 					"name": "http:options",
-					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
+					"description": "HTTP `GET` request tarafından döndürülen sonucu gösterir. `options` (seçenekler) parametresini [buradan](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir, veya kendiniz oluşturabilirsiniz: `options` (seçenekler) parametresi, base64'te kodlanmış bir JSON objesidir (bunu arşivlemek için {PREFIX}base64 komutunu kullanabilirsiniz), bu obje aşağıdaki keylere sahip olabilir: `url`: Bir stringtir; kaynağın url'sini içerir, `parseNumber`: Bir booleandır; sonuç geçerli bir sayı ise, sunucunuzun ayarlarına göre ayrıştırılacak ve özelleştirilecektir, `dataPath`: Bir stringtir; yanıt bir JSON objesiyse, string veya sayı olması gereken bir değere sahip bir keyin yolunu belirtmeniz gerekir, bu yolun sözdizimi, JS'nin özelliklere ve array öğelerine erişmek için kullandığı sözdizimine benzer."
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -146,14 +152,24 @@
 					"description": "Bir youtube kanalının video sayısını görüntüler"
 				},
 				{
+					"key": "youtubeChannelName",
+					"name": "youtubeChannelName:channelUrl",
+					"description": "Displays a youtube channel name"
+				},
+				{
 					"key": "twitchFollowers",
-					"name": "twitchFollowers:channelName",
-					"description": "Bir twitch kanalının takipçi sayısını görüntüler, channelUrl'yi istediğiniz kanalın url'si ile değiştirin"
+					"name": "twitchFollowers:nickname",
+					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
 				},
 				{
 					"key": "twitchViews",
-					"name": "twitchViews:channelName",
+					"name": "twitchViews:nickname",
 					"description": "Bir twitch kanalının izlenme sayısını görüntüler"
+				},
+				{
+					"key": "twitchChannelName",
+					"name": "twitchChannelName:nickname",
+					"description": "Displays a twitch channel Name"
 				},
 				{
 					"key": "memeratorMemes",
@@ -199,6 +215,31 @@
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
 					"description": "Bir hesaptaki takipçi sayısını görüntüler, username'i gerçek Instagram kullanıcı adınızla değiştirin"
+				},
+				{
+					"key": "sum",
+					"name": "sum:value1,value2,more values",
+					"description": "Does a sum of the specified values"
+				},
+				{
+					"key": "substract",
+					"name": "substract:value1,value2,more values",
+					"description": "Substracts the specified values"
+				},
+				{
+					"key": "multiply",
+					"name": "multiply:value1,value2,more values",
+					"description": "Multiplies the specified values"
+				},
+				{
+					"key": "divide",
+					"name": "divide:value1,value2,more values",
+					"description": "Divides the specified values"
+				},
+				{
+					"key": "modulus",
+					"name": "modulus:value1,value2,more values",
+					"description": "Gets the modulus of the specified values"
 				}
 			]
 		},
@@ -228,7 +269,7 @@
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir"
 		},
 		"locale": {
-			"helpDescription": "Sayıları ve diğer şeyleri belirtilen yerel ayara göre biçimlendirir\n\n**Kullanımı**\n```{PREFIX}locale [yer/disable]```\n**Örnekler**```{PREFIX}locale en\n{PREFIX}locale tr\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -322,33 +363,90 @@
 			"channelTopic": "Kanal başlığı önizlemesi"
 		},
 		"setup": {
-			"helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\n**Örnek**```{PREFIX}setup```",
-			"creatingCounts": "Sayaçlar oluşturuluyor...",
-			"createdCounts": "Tamamlandı",
-			"categoryName": {
-				"countTemplate": "📊 Sunucu İstatistikleri 📊",
-				"creatingCategory": "{LOADING} Kategori oluşturuluyor\n",
-				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu\n"
+			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"status": {
+				"creatingCounts": "Sayaçlar oluşturuluyor...",
+				"createdCounts": "Tamamlandı",
+				"creatingCategory": "{LOADING} Creating category",
+				"createdCategory": "{CHECK_MARK} Category created"
 			},
-			"memberCounter": {
-				"countTemplate": "Üye Sayısı: {members}",
-				"creatingmemberCounter": "{LOADING} Üye sayacı oluşturuluyor\n",
-				"createdmemberCounter": "{CHECK_MARK} Üye sayacı oluşturuldu\n"
-			},
-			"boostingCounter": {
-				"countTemplate": "Boost Sayısı: {nitro-boosters}",
-				"creatingboostingCounter": "{LOADING} Boost sayacı oluşturuluyor\n",
-				"createdboostingCounter": "{CHECK_MARK} Boost sayacı oluşturuldu\n"
-			},
-			"rolesCounter": {
-				"countTemplate": "Rol Sayısı: {roles}",
-				"creatingrolesCounter": "{LOADING} Rol sayacı oluşturuluyor\n",
-				"createdrolesCounter": "{CHECK_MARK} Rol sayacı oluşturuldu\n"
-			},
-			"channelsCounter": {
-				"countTemplate": "Kanal Sayısı: {channels}",
-				"creatingchannelsCounter": "{LOADING} Kanal sayacı oluşturuluyor\n",
-				"createdchannelsCounter": "{CHECK_MARK} Kanal sayacı oluşturuldu\n"
+			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"counterTemplates": {
+				"default": {
+					"categoryName": "📊 Sunucu İstatistikleri 📊",
+					"counters": [
+						{
+							"name": "onlineMembers",
+							"template": "Online: {onlineMembers}",
+							"statusCreating": "{LOADING} Creating online counter",
+							"statusCreated": "{CHECK_MARK} Online counter created"
+						},
+						{
+							"name": "members",
+							"template": "Members: {members}",
+							"statusCreating": "{LOADING} Creating member counter",
+							"statusCreated": "{CHECK_MARK} Members counter created"
+						},
+						{
+							"name": "nitroBoosters",
+							"template": "Boosters: {nitroBoosters}",
+							"statusCreating": "{LOADING} Creating booster counter",
+							"statusCreated": "{CHECK_MARK} Booster counter created"
+						},
+						{
+							"name": "roles",
+							"template": "Roles: {roles}",
+							"statusCreating": "{LOADING} Creating roles counter",
+							"statusCreated": "{CHECK_MARK} Roles counter created"
+						},
+						{
+							"name": "channels",
+							"template": "Channels: {channels}",
+							"statusCreating": "{LOADING} Creating channels counter",
+							"statusCreated": "{CHECK_MARK} Channels counter created"
+						}
+					]
+				},
+				"twitch": {
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Twitch Stats 📊",
+					"counters": [
+						{
+							"name": "twitchFollowers",
+							"template": "{twitchFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
+						},
+						{
+							"name": "twitchViews",
+							"template": "{twitchViews:{RESOURCE}} Views",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				},
+				"youtube": {
+					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Youtube Stats 📊",
+					"counters": [
+						{
+							"name": "youtubeSubscribers",
+							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
+							"statusCreating": "{LOADING} Creating subscriber counter",
+							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+						},
+						{
+							"name": "youtubeVideos",
+							"template": "{youtubeVideos:{RESOURCE}} Videos",
+							"statusCreating": "{LOADING} Creating video counter",
+							"statusCreated": "{CHECK_MARK} Video counter created"
+						},
+						{
+							"name": "youtubeViews",
+							"template": "{youtubeViews:{RESOURCE}} Views",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				}
 			}
 		},
 		"base64": {

@@ -6,7 +6,7 @@
 			"helpDescription": "¿Es realmente necesario explicar el propósito de este comando?",
 			"embedReply": {
 				"title": "Lista de comandos | prefijo: {PREFIX}",
-				"description": "[Añade este bot a tu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentación](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstalación rapida: `{PREFIX}!setup`\n\nPara obtener mas información sobre un comando, escriba `{PREFIX}help` más el nombre del comando: ```\n{PREFIX}help shortNumber```\n**Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio",
+				"description": "[Añade este bot a tu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentación](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstalación rapida: `{PREFIX}!setup`\nAprende a usar el bot: `{PREFIX}guide`\n\nPara obtener mas información sobre un comando, escriba `{PREFIX}help` más el nombre del comando: ```\n{PREFIX}help shortNumber```\n**Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio",
 				"fields": [
 					{
 						"name": "**Contadores**",
@@ -26,7 +26,8 @@
 				]
 			},
 			"misc": {
-				"command": "Comando:"
+				"command": "Comando:",
+				"errorCommandNotFound": "Lo siento, no pude encontrar ayuda sobre ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
@@ -126,9 +127,14 @@
 					"description": "Cantidad de miembros baneados, el bot debe tener permisos de banear para poder mostrar este contador"
 				},
 				{
+					"key": "membersPlaying",
+					"name": "membersPlaying:game name",
+					"description": "Cuenta la cantidad de miembros que estan jugando un juego. Ejemplo: `{membersPlaying:Minecraft}`"
+				},
+				{
 					"key": "http",
 					"name": "http:options",
-					"description": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to archieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items."
+					"description": "Muestra el resultado de una peticion http `GET`. Puedes configurar las opciones (`options`) de este contador [aquí](https://member-counter.eduardozgz.com/utils/http), o crearlo manualmente: `options` es un objeto JSON codificado en base64 (puedes usar el comando {PREFIX}base64 para hacer esto), este objeto puede tener las siguientes claves: `url`: Una cadena de texto; con la url del recurso, `parseNumber`: Un boolean; si el resultado es numerico, este sera personalizado con los ajustes del servidor, `dataPath`: Una cadena de texto; si la respuesta al recurso es un ojbeto JSON, debes especificar la ruta a un campo con un valor que debe ser un numero o una cadena de texto, la sintaxis es similar a la que JS usa para acceder propiedades e items de un array."
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -146,14 +152,24 @@
 					"description": "Muestra la cantidad de videos que tiene un canal de youtube"
 				},
 				{
+					"key": "youtubeChannelName",
+					"name": "youtubeChannelName:channelUrl",
+					"description": "Muestra el nombre que tiene un canal de youtube"
+				},
+				{
 					"key": "twitchFollowers",
-					"name": "twitchFollowers:channelName",
-					"description": "Muestra la cantidad de seguidores que tiene un canal de twitch, reemplaza channelUrl con la url del canal deseado"
+					"name": "twitchFollowers:nickname",
+					"description": "Muestra la cantidad de seguidores que tiene un canal de twitch, reemplaza nickname con la url del canal deseado"
 				},
 				{
 					"key": "twitchViews",
-					"name": "twitchViews:channelName",
+					"name": "twitchViews:nickname",
 					"description": "Muestra la cantidad de visualizaciones que tiene un canal de twitch"
+				},
+				{
+					"key": "twitchChannelName",
+					"name": "twitchChannelName:nickname",
+					"description": "Muestra el nombre que tiene un canal de twitch"
 				},
 				{
 					"key": "memeratorMemes",
@@ -199,6 +215,31 @@
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
 					"description": "Muestra la cantidad de seguidores que tiene una cuenta, reemplaza username con el nombre de una cuenta de Intagram"
+				},
+				{
+					"key": "sum",
+					"name": "sum:value1,value2,more values",
+					"description": "Hace una suma de los valores especificados"
+				},
+				{
+					"key": "substract",
+					"name": "substract:value1,value2,more values",
+					"description": "Resta los valores especificados"
+				},
+				{
+					"key": "multiply",
+					"name": "multiply:value1,value2,more values",
+					"description": "Multiplica los valores especificados"
+				},
+				{
+					"key": "divide",
+					"name": "divide:value1,value2,more values",
+					"description": "Divide los valores especificados"
+				},
+				{
+					"key": "modulus",
+					"name": "modulus:value1,value2,more values",
+					"description": "Obtiene el modulo (tambien conocido como resto de la division) de los valores especificados"
 				}
 			]
 		},
@@ -228,7 +269,7 @@
 			"success": "Hecho! Deberás esperar unos minutos para ver los nuevos cambios"
 		},
 		"locale": {
-			"helpDescription": "Da formato a numeros y otras cosas dependiendo de la región especificada \n**Uso**\n```{PREFIX}locale [locale/disable]```\n**Ejemplos**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Da formato a numeros y a relojes (formato de 12h/24h) dependiendo de la región especificada \n**Uso**\n```{PREFIX}locale [locale/disable]```\n**Ejemplos**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -322,38 +363,95 @@
 			"channelTopic": "Vista previa en el tema de un canal"
 		},
 		"setup": {
-			"helpDescription": "Crea varios canales de voz bloqueados con contadores en sus nombres\n**Ejemplo**```{PREFIX}setup```",
-			"creatingCounts": "Creando contadores...",
-			"createdCounts": "Completado",
-			"categoryName": {
-				"countTemplate": "📊 Estadísticas del servidor 📊",
-				"creatingCategory": "{LOADING} Creando categoría\n",
-				"createdCategory": "{CHECK_MARK} Categoría creada"
+			"helpDescription": "Crea algunos canales de voz bloqueados con contadores en ellos\nOpcionalmente, puedes configurar contadores para Twitch o Youtube\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [nombre del canal]\n{PREFIX}setup youtube [enlace del canal]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"status": {
+				"creatingCounts": "Creando contadores...",
+				"createdCounts": "Completado",
+				"creatingCategory": "{LOADING} Creando categoria",
+				"createdCategory": "{CHECK_MARK} Categoria creada"
 			},
-			"memberCounter": {
-				"countTemplate": "{members} Miembros",
-				"creatingmemberCounter": "{LOADING} Creando contador de miembros\n",
-				"createdmemberCounter": "{CHECK_MARK} Contador de miembros creado\n"
-			},
-			"boostingCounter": {
-				"countTemplate": "{nitro-boosters} Boosteando",
-				"creatingboostingCounter": "{LOADING} Creando contadores de boosters\n",
-				"createdboostingCounter": "{CHECK_MARK} Contador de boosters creado\n"
-			},
-			"rolesCounter": {
-				"countTemplate": "{roles} Roles",
-				"creatingrolesCounter": "{LOADING} Creando contador de roles\n",
-				"createdrolesCounter": "{CHECK_MARK} Contador de roles creado"
-			},
-			"channelsCounter": {
-				"countTemplate": "{channels} Canales",
-				"creatingchannelsCounter": "{LOADING} Creando contador de canales\n",
-				"createdchannelsCounter": "{CHECK_MARK} Contador de canales creado\n"
+			"errorInvalidUsage": "Uso invalido, por favor, mire {PREFIX}help",
+			"counterTemplates": {
+				"default": {
+					"categoryName": "📊 Estadísticas del servidor 📊",
+					"counters": [
+						{
+							"name": "onlineMembers",
+							"template": "En línea: {onlineMembers}",
+							"statusCreating": "{LOADING} Creando contador de miembros en línea",
+							"statusCreated": "{CHECK_MARK} Contador de miembros en línea creado"
+						},
+						{
+							"name": "members",
+							"template": "Miembros: {members}",
+							"statusCreating": "{LOADING} Creando contador de miembros",
+							"statusCreated": "{CHECK_MARK} Contador de miembros creado"
+						},
+						{
+							"name": "nitroBoosters",
+							"template": "{nitroBoosters} Boosteando",
+							"statusCreating": "{LOADING} Creando contador de boosters",
+							"statusCreated": "{CHECK_MARK} Contador de boosters creados"
+						},
+						{
+							"name": "roles",
+							"template": "Roles: {roles}",
+							"statusCreating": "{LOADING} Creando contador de roles",
+							"statusCreated": "{CHECK_MARK} Contador de roles creado"
+						},
+						{
+							"name": "channels",
+							"template": "{channels} Canales",
+							"statusCreating": "{LOADING} Creando contador de canales",
+							"statusCreated": "{CHECK_MARK} Contador de canales creado"
+						}
+					]
+				},
+				"twitch": {
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Twitch Stats 📊",
+					"counters": [
+						{
+							"name": "twitchFollowers",
+							"template": "{twitchFollowers:{RESOURCE}} Seguidores",
+							"statusCreating": "{LOADING} Creando contador de seguidores",
+							"statusCreated": "{CHECK_MARK} Contador de seguidores creado"
+						},
+						{
+							"name": "twitchViews",
+							"template": "{twitchViews:{RESOURCE}} Visitas",
+							"statusCreating": "{LOADING} Creando contador de visitas",
+							"statusCreated": "{CHECK_MARK} Contador de visitas creado"
+						}
+					]
+				},
+				"youtube": {
+					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Youtube Stats 📊",
+					"counters": [
+						{
+							"name": "youtubeSubscribers",
+							"template": "{youtubeSubscribers:{RESOURCE}} Suscriptores",
+							"statusCreating": "{LOADING} Creando contador de suscriptores",
+							"statusCreated": "{CHECK_MARK} Contador de suscriptores creados"
+						},
+						{
+							"name": "youtubeVideos",
+							"template": "{youtubeVideos:{RESOURCE}} Videos",
+							"statusCreating": "{LOADING} Creando contador de videos",
+							"statusCreated": "{CHECK_MARK} Contador de videos creado"
+						},
+						{
+							"name": "youtubeViews",
+							"template": "{youtubeViews:{RESOURCE}} Visitas",
+							"statusCreating": "{LOADING} Creando contador de visitas",
+							"statusCreated": "{CHECK_MARK} Contador de visitas creado"
+						}
+					]
+				}
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"helpDescription": "Este comando codifica o descodifica en base64 el contenido que pases, útil para crear contadores avanzados como `{http}`\n\n**Uso**```{PREFIX}base64 [encode/decode] [contenido]```\n**Ejemplo**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Acción inválida, debe ser `encode` o `decode`"
 		}
 	},
 	"functions": {

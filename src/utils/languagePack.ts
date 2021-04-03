@@ -1,5 +1,6 @@
 import clonedeep from "lodash.clonedeep";
 import getEnv from "./getEnv";
+import LanguagePack from "../typings/LanguagePack";
 
 import * as ca_ES from "../lang/ca_ES.json";
 import * as cs_CZ from "../lang/cs_CZ.json";
@@ -35,7 +36,7 @@ const languagePacks: object = {
 
 const availableLanguagePacks = Object.keys(languagePacks);
 
-const loadLanguagePack = (langCode: string): any => {
+const loadLanguagePack = (langCode: string): LanguagePack => {
 	if (languagePacks[langCode]) {
 		return clonedeep(languagePacks[langCode]);
 	}

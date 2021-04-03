@@ -2,7 +2,7 @@ import os from "os";
 import git from "git-rev-sync";
 
 import * as packageJSON from "../../package.json";
-import MemberCounterCommand from "../typings/MemberCounterCommand";
+import Command from "../typings/Command";
 import embedBase from "../utils/embedBase";
 
 const parseUptime = (inputDate: number) => {
@@ -22,10 +22,9 @@ try {
 	})`;
 } catch {}
 
-const status: MemberCounterCommand = {
+const status: Command = {
 	aliases: ["uptime", "status", "ping"],
 	denyDm: false,
-	onlyAdmin: false,
 	run: async ({ message, client }) => {
 		const { channel } = message;
 		const { version } = packageJSON;

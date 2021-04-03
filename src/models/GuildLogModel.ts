@@ -1,13 +1,9 @@
-import { model, Schema, Document, DocumentToObjectOptions } from "mongoose";
+import { model, Schema, Document } from "mongoose";
 
-interface GuildLog {
-	guild?: string;
-	text?: string;
-	timestamp?: Date;
-}
-
-interface GuildLogDocument extends GuildLog, Document {
-	toObject(options?: DocumentToObjectOptions): GuildLog;
+interface GuildLogDocument extends Document {
+	guild: string;
+	text: string;
+	timestamp: Date;
 }
 
 const GuildLogSchema = new Schema({
@@ -17,5 +13,5 @@ const GuildLogSchema = new Schema({
 });
 
 const GuildLogModel = model<GuildLogDocument>("guildLogs", GuildLogSchema);
-export { GuildLogModel, GuildLogDocument, GuildLog };
+export { GuildLogModel, GuildLogDocument };
 export default GuildLogModel;
