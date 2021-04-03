@@ -342,8 +342,8 @@ class CountService {
 
 	/**
 	 * Removes spaces, dashes and underscore from the name of a counter
-	 * @param name 
-	 * @returns 
+	 * @param name
+	 * @returns
 	 */
 	private static safeCounterName(name: string) {
 		return name.replace(/-|_|\s/g, "").toLowerCase();
@@ -351,10 +351,10 @@ class CountService {
 
 	/**
 	 * Converts the a counter to the key format used in the cache
-	 * @param counterName 
-	 * @param resource 
-	 * @param formattingSettingsRaw 
-	 * @returns 
+	 * @param counterName
+	 * @param resource
+	 * @param formattingSettingsRaw
+	 * @returns
 	 */
 	private counterToKey(
 		counterName: string,
