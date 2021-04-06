@@ -42,11 +42,6 @@
 					"description": "Uživatelé na serveru"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Přibližný počet online uživatelů na serveru"
@@ -378,7 +373,7 @@
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
 			"counterTemplates": {
 				"default": {
-					"categoryName": "📊 Server Stats 📊",
+					"categoryName": "📊 Statistiky serveru 📊",
 					"counters": [
 						{
 							"name": "onlineMembers",
@@ -400,7 +395,7 @@
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
+							"template": "Role: {roles}",
 							"statusCreating": "{LOADING} Creating roles counter",
 							"statusCreated": "{CHECK_MARK} Roles counter created"
 						},
@@ -456,7 +451,7 @@
 		},
 		"base64": {
 			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"invalidAction": "Neplatná akce, zadejte `encode` nebo `decode`"
 		}
 	},
 	"functions": {
@@ -471,10 +466,10 @@
 			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu"
 		},
 		"paginator": {
-			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"pageCounter": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "Na kterou stránku bys chtěl přejít? Chceš-li výzvu zrušit, zadej `cancel` nebo `0`. Na odpověď máš 15 sekund.",
+			"errorPageLengthExceeded": "Číslo stránky musí být menší nebo rovno {TOTAL_PAGES}. Prosím zkuste to znovu.",
+			"errorNegativeInput": "Číslo stránky nesmí být záporné. Prosím zkuste to znovu."
 		}
 	},
 	"common": {
