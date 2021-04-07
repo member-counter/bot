@@ -14,7 +14,6 @@ const Math: Counter = {
 
 			case "substract":
 				return values.reduce((accu, curr) => {
-					console.log(accu, curr);
 					return accu - curr;
 				});
 
