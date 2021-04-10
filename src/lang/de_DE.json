@@ -154,7 +154,7 @@
 				{
 					"key": "youtubeChannelName",
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays a youtube channel name"
+					"description": "Zeigt einen YouTubenamen an"
 				},
 				{
 					"key": "twitchFollowers",
@@ -169,7 +169,7 @@
 				{
 					"key": "twitchChannelName",
 					"name": "twitchChannelName:nickname",
-					"description": "Displays a twitch channel Name"
+					"description": "Zeigt einen Twitchnamen an"
 				},
 				{
 					"key": "memeratorMemes",
@@ -219,22 +219,22 @@
 				{
 					"key": "sum",
 					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"description": "Addiert die angegeben Zahlen"
 				},
 				{
 					"key": "substract",
 					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+					"description": "Subtrahiert die angegeben Zahlen"
 				},
 				{
 					"key": "multiply",
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"description": "Multipliziert die angegeben Zahlen"
 				},
 				{
 					"key": "divide",
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"description": "Dividiert die angegeben Zahlen"
 				},
 				{
 					"key": "modulus",
@@ -379,31 +379,31 @@
 							"name": "onlineMembers",
 							"template": "Online: {onlineMembers}",
 							"statusCreating": "{LOADING} Erstelle online Zähler",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"statusCreated": "{CHECK_MARK} Online Zähler erstellt"
 						},
 						{
 							"name": "members",
 							"template": "Member: {members}",
-							"statusCreating": "{LOADING} Creating member counter",
-							"statusCreated": "{CHECK_MARK} Members counter created"
+							"statusCreating": "{LOADING} Erstelle Mitglieder Zähler",
+							"statusCreated": "{CHECK_MARK} Mitglieder Zähler erstellt"
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
-							"statusCreating": "{LOADING} Creating booster counter",
-							"statusCreated": "{CHECK_MARK} Booster counter created"
+							"template": "Booster: {nitroBoosters}",
+							"statusCreating": "{LOADING} Erstelle Booster Zähler",
+							"statusCreated": "{CHECK_MARK} Booster Zähler erstellt"
 						},
 						{
 							"name": "roles",
 							"template": "Rollen: {roles}",
-							"statusCreating": "{LOADING} Creating roles counter",
-							"statusCreated": "{CHECK_MARK} Roles counter created"
+							"statusCreating": "{LOADING} Erstelle Rolle Zähler",
+							"statusCreated": "{CHECK_MARK} Booster Zähler erstellt"
 						},
 						{
 							"name": "channels",
 							"template": "Kanäle: {channels}",
-							"statusCreating": "{LOADING} Creating channels counter",
-							"statusCreated": "{CHECK_MARK} Channels counter created"
+							"statusCreating": "{LOADING} Erstelle Kanal Zähler",
+							"statusCreated": "{CHECK_MARK} Kanal Zähler erstellt"
 						}
 					]
 				},
