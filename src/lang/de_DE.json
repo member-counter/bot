@@ -42,11 +42,6 @@
 					"description": "Mitglieder deines Servers"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Ungefähre Anzahl der Online-Member auf Ihrem Server"
@@ -134,7 +129,7 @@
 				{
 					"key": "membersPlaying",
 					"name": "membersPlaying:game name",
-					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+					"description": "Zählt wie viele Leute ein Spiel spielen. Beispiel:{membersPlaying:Minecraft}"
 				},
 				{
 					"key": "http",
@@ -372,8 +367,8 @@
 			"status": {
 				"creatingCounts": "Zähler werden erstellt...",
 				"createdCounts": "Vollständig",
-				"creatingCategory": "{LOADING} Creating category",
-				"createdCategory": "{CHECK_MARK} Category created"
+				"creatingCategory": "{LOADING} Erstelle die Kategorie",
+				"createdCategory": "{CHECK_MARK} Kategorie erstellt"
 			},
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
 			"counterTemplates": {
@@ -383,12 +378,12 @@
 						{
 							"name": "onlineMembers",
 							"template": "Online: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
+							"statusCreating": "{LOADING} Erstelle online Zähler",
 							"statusCreated": "{CHECK_MARK} Online counter created"
 						},
 						{
 							"name": "members",
-							"template": "Members: {members}",
+							"template": "Member: {members}",
 							"statusCreating": "{LOADING} Creating member counter",
 							"statusCreated": "{CHECK_MARK} Members counter created"
 						},
@@ -400,13 +395,13 @@
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
+							"template": "Rollen: {roles}",
 							"statusCreating": "{LOADING} Creating roles counter",
 							"statusCreated": "{CHECK_MARK} Roles counter created"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
+							"template": "Kanäle: {channels}",
 							"statusCreating": "{LOADING} Creating channels counter",
 							"statusCreated": "{CHECK_MARK} Channels counter created"
 						}
