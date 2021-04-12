@@ -42,11 +42,6 @@
 					"description": "Mitglieder deines Servers"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Ungefähre Anzahl der Online-Member auf Ihrem Server"
@@ -134,7 +129,7 @@
 				{
 					"key": "membersPlaying",
 					"name": "membersPlaying:game name",
-					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+					"description": "Zählt wie viele Leute ein Spiel spielen. Beispiel:{membersPlaying:Minecraft}"
 				},
 				{
 					"key": "http",
@@ -159,7 +154,7 @@
 				{
 					"key": "youtubeChannelName",
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays a youtube channel name"
+					"description": "Zeigt einen YouTubenamen an"
 				},
 				{
 					"key": "twitchFollowers",
@@ -174,7 +169,7 @@
 				{
 					"key": "twitchChannelName",
 					"name": "twitchChannelName:nickname",
-					"description": "Displays a twitch channel Name"
+					"description": "Zeigt einen Twitchnamen an"
 				},
 				{
 					"key": "memeratorMemes",
@@ -224,22 +219,22 @@
 				{
 					"key": "sum",
 					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"description": "Addiert die angegeben Zahlen"
 				},
 				{
 					"key": "substract",
 					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+					"description": "Subtrahiert die angegeben Zahlen"
 				},
 				{
 					"key": "multiply",
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"description": "Multipliziert die angegeben Zahlen"
 				},
 				{
 					"key": "divide",
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"description": "Dividiert die angegeben Zahlen"
 				},
 				{
 					"key": "modulus",
@@ -372,8 +367,8 @@
 			"status": {
 				"creatingCounts": "Zähler werden erstellt...",
 				"createdCounts": "Vollständig",
-				"creatingCategory": "{LOADING} Creating category",
-				"createdCategory": "{CHECK_MARK} Category created"
+				"creatingCategory": "{LOADING} Erstelle die Kategorie",
+				"createdCategory": "{CHECK_MARK} Kategorie erstellt"
 			},
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
 			"counterTemplates": {
@@ -383,32 +378,32 @@
 						{
 							"name": "onlineMembers",
 							"template": "Online: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"statusCreating": "{LOADING} Erstelle online Zähler",
+							"statusCreated": "{CHECK_MARK} Online Zähler erstellt"
 						},
 						{
 							"name": "members",
-							"template": "Members: {members}",
-							"statusCreating": "{LOADING} Creating member counter",
-							"statusCreated": "{CHECK_MARK} Members counter created"
+							"template": "Member: {members}",
+							"statusCreating": "{LOADING} Erstelle Mitglieder Zähler",
+							"statusCreated": "{CHECK_MARK} Mitglieder Zähler erstellt"
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
-							"statusCreating": "{LOADING} Creating booster counter",
-							"statusCreated": "{CHECK_MARK} Booster counter created"
+							"template": "Booster: {nitroBoosters}",
+							"statusCreating": "{LOADING} Erstelle Booster Zähler",
+							"statusCreated": "{CHECK_MARK} Booster Zähler erstellt"
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
-							"statusCreating": "{LOADING} Creating roles counter",
-							"statusCreated": "{CHECK_MARK} Roles counter created"
+							"template": "Rollen: {roles}",
+							"statusCreating": "{LOADING} Erstelle Rolle Zähler",
+							"statusCreated": "{CHECK_MARK} Booster Zähler erstellt"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
-							"statusCreating": "{LOADING} Creating channels counter",
-							"statusCreated": "{CHECK_MARK} Channels counter created"
+							"template": "Kanäle: {channels}",
+							"statusCreating": "{LOADING} Erstelle Kanal Zähler",
+							"statusCreated": "{CHECK_MARK} Kanal Zähler erstellt"
 						}
 					]
 				},
