@@ -99,7 +99,7 @@
 				{
 					"key": "membersWithRole",
 					"name": "membersWithRole:role1ID,role2ID",
-					"description": "This counts how many members has a role or roles, write the roles IDs you wanna count after the `:`, and separate the role IDs with commas"
+					"description": "מודד כמות שחקנים בעלי תפקיד מסוים בשרת.\nיש לרשום את איידי התפקיד אחרי הנקודותיים, ואם ברצונך למדוד סכום של כמות בעלי מספר תפקידים, יש להפריד כל איידי בפסיק. לדוגמה:\n{membersWithRole:1234}\n{membersWithRole:1234,4321}"
 				},
 				{
 					"key": "onlineMembersWithRole",
@@ -114,7 +114,7 @@
 				{
 					"key": "connectedMembers",
 					"name": "connectedMembers",
-					"description": "Total amount of connected members in the voice channels"
+					"description": "סכום כולל של שחקנים שנמצאים בצ'אנל של דיבור"
 				},
 				{
 					"key": "connectedMembers",
@@ -124,12 +124,12 @@
 				{
 					"key": "bannedMembers",
 					"name": "bannedMembers",
-					"description": "Amount of banned members in your server, the bot must have ban permissons to display this count"
+					"description": "כמות שחקנים שהורחקו לצמיתות מהשרת. הבוט חייב את הגישה לקבוע הרחקה על מנת להציג את המדד הזה"
 				},
 				{
 					"key": "membersPlaying",
 					"name": "membersPlaying:game name",
-					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+					"description": "מודד מספר שחקנים שמשחקים במשחק כלשהו, לדוגמה:\n`{membersPlaying:Minecraft}`"
 				},
 				{
 					"key": "http",
@@ -343,7 +343,7 @@
 			"helpDescription": "מראה מידע רלוונטי בינך לבין הבוט הזה",
 			"badges": "תגים",
 			"serverUpgradesAvailable": "שידרוגי שרת נותרים",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
+			"removeDataConfirmation": ":warning: **הפעולה הזאת תסיר את כל המידע שלך, את התגים שלך, ושיפורי השרתים שלך יאבדו לצמיתות. האם אתה בטוח שברצונך להמשיך? התעלם מההודעה הזאת אם ברצונך לבטל את הפעולה הזאת**",
 			"removeDataSuccess": "המידע שלך הוסר בהצלחה"
 		},
 		"counts": {
