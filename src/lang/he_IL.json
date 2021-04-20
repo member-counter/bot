@@ -6,7 +6,7 @@
 			"helpDescription": "האם זה באמת נחוץ לתרגם את המטרה של הפקודה הזו?",
 			"embedReply": {
 				"title": "רשימת פקודות | קידומת {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[הוסף את הבוט לשרת שלך]({DISCORD_BOT_INVITE}) | [קישור]({WEBSITE}) | [מדריך שימוש](https://eduardozgz.gitbook.io/member-counter) | [GitHub](https://github.com/eduardozgz/member-counter-bot/) התקנה מהירה: {PREFIX}setup איך להשתמש בבוט: {PREFIX}guide ניתן להשתמש בפקודה הבאה ביחד עם שם של פקודה לקבלת מידע נוסף על פקודה, לדוגמה הפקודת ההתקנה המהירה:\n{PREFIX}help setup``` מידע: פרמטר שהינו חובה יופיע]בסוגריים מרובעות[ ופרמטר שאינו חובה יופיע)בסוגריים רגילות(",
 				"fields": [
 					{
 						"name": "**מדדים**",
@@ -27,7 +27,7 @@
 			},
 			"misc": {
 				"command": "פקודה:",
-				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"errorCommandNotFound": "לא נמצא מדריך לפקודה\n``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
@@ -40,11 +40,6 @@
 					"key": "members",
 					"name": "members",
 					"description": "חברים בשרת שלך"
-				},
-				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
 				},
 				{
 					"key": "approximatedOnlineMembers",
@@ -109,12 +104,12 @@
 				{
 					"key": "onlineMembersWithRole",
 					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "Like `{membersWithRole:}` but only counts those members online"
+					"description": "מודד שחקנים בעלי תפקיד מסוים, אך רק אם הם מחוברים"
 				},
 				{
 					"key": "offlineMembersWithRole",
 					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "Like `{membersWithRole:}` but only counts those members offline"
+					"description": "מודד שחקנים בעלי תפקיד מסוים, אך רק אם הם אינם מחוברים"
 				},
 				{
 					"key": "connectedMembers",
