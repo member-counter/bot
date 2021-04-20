@@ -6,7 +6,7 @@
 			"helpDescription": "האם זה באמת נחוץ לתרגם את המטרה של הפקודה הזו?",
 			"embedReply": {
 				"title": "רשימת פקודות | קידומת {PREFIX}",
-				"description": "[הוסף את הבוט לשרת שלך]({DISCORD_BOT_INVITE}) | [קישור]({WEBSITE}) | [מדריך שימוש](https://eduardozgz.gitbook.io/member-counter) | [GitHub](https://github.com/eduardozgz/member-counter-bot/) התקנה מהירה: {PREFIX}setup איך להשתמש בבוט: {PREFIX}guide ניתן להשתמש בפקודה הבאה ביחד עם שם של פקודה לקבלת מידע נוסף על פקודה, לדוגמה הפקודת ההתקנה המהירה:\n{PREFIX}help setup``` מידע: פרמטר שהינו חובה יופיע]בסוגריים מרובעות[ ופרמטר שאינו חובה יופיע)בסוגריים רגילות(",
+				"description": "[הוסף את הבוט לשרת שלך]({DISCORD_BOT_INVITE}) | [קישור]({WEBSITE}) | [מדריך שימוש](https://eduardozgz.gitbook.io/member-counter) | [GitHub](https://github.com/eduardozgz/member-counter-bot/)\nהתקנה מהירה: {PREFIX}setup\nאיך להשתמש בבוט: {PREFIX}guide\nניתן להשתמש בפקודה הבאה ביחד עם שם של פקודה לקבלת מידע נוסף על פקודה, לדוגמה הפקודת ההתקנה המהירה:\n{PREFIX}help setup```\nמידע: פרמטר שהינו חובה יופיע [בסוגריים מרובעות] ופרמטר שאינו חובה יופיע (בסוגריים רגילות)",
 				"fields": [
 					{
 						"name": "**מדדים**",
