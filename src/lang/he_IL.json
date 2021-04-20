@@ -204,7 +204,7 @@
 				{
 					"key": "nitro-boosters",
 					"name": "nitro-boosters",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "מציג מדד של כמות המשתמשים אשר עשו בוסט\n לשרת הזה"
 				},
 				{
 					"key": "static",
@@ -214,32 +214,32 @@
 				{
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
-					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
+					"description": "מציג מדד כמות עוקבים של משתמש באינסטגרם.\nיש להחליף את המשתנה הבא בשם המשתמש של החשבון:\nusername"
 				},
 				{
 					"key": "sum",
 					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"description": "מציג סכום של הערכים שניתנו"
 				},
 				{
 					"key": "substract",
 					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+					"description": "מציג הפרש בין הערכים שניתנו"
 				},
 				{
 					"key": "multiply",
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"description": "מציג מכפלת הערכים שניתנו"
 				},
 				{
 					"key": "divide",
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"description": "מציג מנת (חילוק) הערכים שניתנו"
 				},
 				{
 					"key": "modulus",
 					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values"
+					"description": "מציג שארית של חילוק בין הערכים שניתנו"
 				}
 			]
 		},
