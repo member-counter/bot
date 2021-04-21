@@ -27,7 +27,7 @@
 			},
 			"misc": {
 				"command": "Komut:",
-				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"errorCommandNotFound": "Üzgünüm ``{DESIRED_COMMAND}`` için yardım edemedim"
 			}
 		},
 		"guide": {
@@ -219,22 +219,22 @@
 				{
 					"key": "sum",
 					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"description": "Belirtilen değerleri toplar"
 				},
 				{
 					"key": "substract",
 					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+					"description": "Belirtilen değerleri çıkarır"
 				},
 				{
 					"key": "multiply",
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"description": "Belirtilen değerleri çarpar"
 				},
 				{
 					"key": "divide",
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"description": "Belirtilen değerleri böler"
 				},
 				{
 					"key": "modulus",
@@ -377,7 +377,7 @@
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Online: {onlineMembers}",
+							"template": "Çevrim içi: {onlineMembers}",
 							"statusCreating": "{LOADING} Creating online counter",
 							"statusCreated": "{CHECK_MARK} Online counter created"
 						},
@@ -389,13 +389,13 @@
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
+							"template": "Boostlayanlar: {nitroBoosters}",
 							"statusCreating": "{LOADING} Boost sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Boost sayacı oluşturuldu"
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
+							"template": "Roller: {roles}",
 							"statusCreating": "{LOADING} Rol sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Rol sayacı oluşturuldu"
 						},
