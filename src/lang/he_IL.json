@@ -199,7 +199,7 @@
 				{
 					"key": "clock",
 					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "מציג שעון עם איזור הזמן שניתן. אתה יכול בקלות [לייצר את השעון הזה פה](https://member-counter.eduardozgz.com/utils/clock)"
 				},
 				{
 					"key": "nitro-boosters",
