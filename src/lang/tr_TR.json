@@ -363,7 +363,7 @@
 			"channelTopic": "Kanal başlığı önizlemesi"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "İçinde sayaç olan bazı kilitli kanallar oluşturur\nİsteğe bağlı olarak YouTube veya Twitch kanalı sayacı kur\n**Kullanım**```{PREFIX}setup\n{PREFIX}setup twitch [kanal ismi]\n{PREFIX}setup youtube [kanal ismi]```\n**Örnek**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
 				"creatingCounts": "Sayaçlar oluşturuluyor...",
 				"createdCounts": "Tamamlandı",
