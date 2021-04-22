@@ -370,7 +370,7 @@
 				"creatingCategory": "{LOADING} Kategori oluşturuluyor",
 				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu"
 			},
-			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"errorInvalidUsage": "Geçersiz kullanım, lütfen, {PREFIX}help kullanın",
 			"counterTemplates": {
 				"default": {
 					"categoryName": "📊 Sunucu İstatistikleri 📊",
@@ -378,8 +378,8 @@
 						{
 							"name": "onlineMembers",
 							"template": "Çevrim içi: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"statusCreating": "{LOADING} Çevrim içi sayaç oluşturuluyor",
+							"statusCreated": "{CHECK_MARK} Çevrim içi sayaç oluşturuldu"
 						},
 						{
 							"name": "members",
