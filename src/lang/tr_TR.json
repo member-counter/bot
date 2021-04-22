@@ -27,7 +27,7 @@
 			},
 			"misc": {
 				"command": "Komut:",
-				"errorCommandNotFound": "Üzgünüm ``{DESIRED_COMMAND}`` için yardım edemedim"
+				"errorCommandNotFound": "Maalesef ``{DESIRED_COMMAND}`` komutu için bir yardım sayfası bulamadım"
 			}
 		},
 		"guide": {
@@ -239,7 +239,7 @@
 				{
 					"key": "modulus",
 					"name": "modulus:value1,value2,more values",
-					"description": "Belirtilen değerlerin modülünü alır"
+					"description": "Gets the modulus of the specified values"
 				}
 			]
 		},
@@ -363,22 +363,22 @@
 			"channelTopic": "Kanal başlığı önizlemesi"
 		},
 		"setup": {
-			"helpDescription": "İçinde sayaç olan bazı kilitli kanallar oluşturur\nİsteğe bağlı olarak YouTube veya Twitch kanalı sayacı kur\n**Kullanım**```{PREFIX}setup\n{PREFIX}setup twitch [kanal ismi]\n{PREFIX}setup youtube [kanal ismi]```\n**Örnek**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\nİsteğe bağlı olarak YouTube veya Twitch kanal sayaçlarını kurar\n**Kullanım**```{PREFIX}setup\n{PREFIX}setup twitch [kanal ismi]\n{PREFIX}setup youtube [kanal bağlantısı]```\n**Örnek**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
 				"creatingCounts": "Sayaçlar oluşturuluyor...",
 				"createdCounts": "Tamamlandı",
 				"creatingCategory": "{LOADING} Kategori oluşturuluyor",
 				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu"
 			},
-			"errorInvalidUsage": "Geçersiz kullanım, lütfen, {PREFIX}help kullanın",
+			"errorInvalidUsage": "Geçersiz kullanım, lütfen, {PREFIX}help komutunu kullanın",
 			"counterTemplates": {
 				"default": {
 					"categoryName": "📊 Sunucu İstatistikleri 📊",
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Çevrim içi: {onlineMembers}",
-							"statusCreating": "{LOADING} Çevrim içi sayaç oluşturuluyor",
+							"template": "Çevrimiçi Üye Sayısı: {onlineMembers}",
+							"statusCreating": "{LOADING} Çevrimiçi üye sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Çevrim içi sayaç oluşturuldu"
 						},
 						{
