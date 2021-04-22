@@ -379,7 +379,7 @@
 							"name": "onlineMembers",
 							"template": "Çevrimiçi Üye Sayısı: {onlineMembers}",
 							"statusCreating": "{LOADING} Çevrimiçi üye sayacı oluşturuluyor",
-							"statusCreated": "{CHECK_MARK} Çevrim içi sayaç oluşturuldu"
+							"statusCreated": "{CHECK_MARK} Çevrimiçi üye sayacı oluşturuldu"
 						},
 						{
 							"name": "members",
@@ -389,13 +389,13 @@
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boostlayanlar: {nitroBoosters}",
+							"template": "Boostlayan Sayısı: {nitroBoosters}",
 							"statusCreating": "{LOADING} Boost sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Boost sayacı oluşturuldu"
 						},
 						{
 							"name": "roles",
-							"template": "Roller: {roles}",
+							"template": "Rol Sayısı: {roles}",
 							"statusCreating": "{LOADING} Rol sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Rol sayacı oluşturuldu"
 						},
