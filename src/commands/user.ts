@@ -10,7 +10,7 @@ const { BOT_OWNERS } = getEnv();
 const emojiBadges = {
 	[UserBadges.DONATOR]: "❤️",
 	[UserBadges.SPONSOR]: "💎",
-	[UserBadges.BETA_TESTER]: "🛠",
+	[UserBadges.BETA_TESTER]: "🧪",
 	[UserBadges.TRANSLATOR]: "🌎",
 	[UserBadges.CONTRIBUTOR]: "💻",
 	[UserBadges.BIG_BRAIN]: "🧠",
