@@ -463,7 +463,8 @@
 			"unknownCounter": "Unknown counter",
 			"disabled": "Counter Disabled",
 			"noBanPerms": "I need ban permissions to show this",
-			"invalidChannelLength": "Invalid channel name length, please setup the counter again"
+			"invalidChannelLength": "Invalid channel name length, please setup the counter again",
+			"notAvailable": "Not available, please wait"
 		},
 		"paginator": {
 			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",

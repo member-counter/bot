@@ -463,7 +463,8 @@
 			"unknownCounter": "Comptador desconegut",
 			"disabled": "Comptador deshabilitat",
 			"noBanPerms": "Necessit permisos de ban per mostrar això",
-			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo"
+			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo",
+			"notAvailable": "No està disponible, per favor esperi"
 		},
 		"paginator": {
 			"pageCounter": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}",

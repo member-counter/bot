@@ -4,6 +4,7 @@ import git from "git-rev-sync";
 import * as packageJSON from "../../package.json";
 import Command from "../typings/Command";
 import embedBase from "../utils/embedBase";
+import GuildCountCacheModel from "../models/GuildCountCache";
 
 const parseUptime = (inputDate: number) => {
 	// inputDate must be in seconds
@@ -130,8 +131,20 @@ const status: Command = {
 					inline: true
 				},
 				{
-					name: "**Cached users / In guilds:**",
-					value: stats.userStats,
+					name: "**Users:**",
+					value:
+						(
+							await GuildCountCacheModel.aggregate([
+								{
+									$group: {
+										_id: null,
+										total: {
+											$sum: "$members"
+										}
+									}
+								}
+							])
+						)[0]?.total ?? "Unknown",
 					inline: true
 				}
 			]

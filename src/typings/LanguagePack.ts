@@ -41,6 +41,7 @@ interface GetCounts {
 	disabled: string;
 	noBanPerms: string;
 	invalidChannelLength: string;
+	notAvailable: string;
 }
 
 interface CommandHandler {

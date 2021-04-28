@@ -463,7 +463,8 @@
 			"unknownCounter": "מונה לא ידוע",
 			"disabled": "מונה מבוטל",
 			"noBanPerms": "אני צריך הרשאה לבאן כדי להראות את זה",
-			"invalidChannelLength": "אורך שם ערוץ לא תקין, בבקשה להגדיר את המונה בשנית"
+			"invalidChannelLength": "אורך שם ערוץ לא תקין, בבקשה להגדיר את המונה בשנית",
+			"notAvailable": "לא זמין, בבקשה להמתין"
 		},
 		"paginator": {
 			"pageCounter": "עמוד {CURRENT_PAGE}/{TOTAL_PAGES}",
