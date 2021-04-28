@@ -42,11 +42,6 @@
 					"description": "Membres dans votre serveur"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Approximated online members in your server"
@@ -468,7 +463,8 @@
 			"unknownCounter": "Compteur inconnu",
 			"disabled": "Compteur désactivé",
 			"noBanPerms": "J'ai besoin d'une autorisation de bannir pour montrer ceci",
-			"invalidChannelLength": "Longueur du nom de salon invalide, veuillez réinitialiser le compteur"
+			"invalidChannelLength": "Longueur du nom de salon invalide, veuillez réinitialiser le compteur",
+			"notAvailable": "Not available, please wait"
 		},
 		"paginator": {
 			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
