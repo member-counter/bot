@@ -4,7 +4,7 @@ import Eris from "eris";
 const MembersConnectedCounter: Counter = {
 	aliases: ["connectedMembers", "membersConnected"],
 	isPremium: true,
-	isEnabled: true,
+	isEnabled: false,
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
 		const targetChannels = resource.length ? resource.split(",") : [];

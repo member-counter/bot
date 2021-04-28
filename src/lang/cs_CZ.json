@@ -463,7 +463,8 @@
 			"unknownCounter": "Neznámý počítadlo",
 			"disabled": "Počítadlo zablokováno",
 			"noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
-			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu"
+			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu",
+			"notAvailable": "Není k dispozici, počkejte prosím"
 		},
 		"paginator": {
 			"pageCounter": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",

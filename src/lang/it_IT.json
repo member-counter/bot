@@ -463,7 +463,8 @@
 			"unknownCounter": "Contatore sconosciuto",
 			"disabled": "Contatore Disabilitato",
 			"noBanPerms": "Ho bisogno dei permessi dei ban per mostrarlo",
-			"invalidChannelLength": "Lunghezza del nome del canale invalida, perfavore riesegui la configurazione del contatore"
+			"invalidChannelLength": "Lunghezza del nome del canale invalida, perfavore riesegui la configurazione del contatore",
+			"notAvailable": "Not available, please wait"
 		},
 		"paginator": {
 			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",

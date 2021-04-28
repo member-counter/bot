@@ -463,7 +463,8 @@
 			"unknownCounter": "Bilinmeyen sayaç",
 			"disabled": "Sayaç Devre Dışı",
 			"noBanPerms": "Bunu göstermek için üyeleri yasaklama yetkisine ihtiyacım var",
-			"invalidChannelLength": "Geçersiz kanal adı uzunluğu, lütfen sayacı tekrar kurun"
+			"invalidChannelLength": "Geçersiz kanal adı uzunluğu, lütfen sayacı tekrar kurun",
+			"notAvailable": "Bu şey mevcut değil, lütfen bekleyin"
 		},
 		"paginator": {
 			"pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
