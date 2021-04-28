@@ -6,7 +6,7 @@
 			"helpDescription": "¿Es realmente necesario explicar el propósito de este comando?",
 			"embedReply": {
 				"title": "Lista de comandos | prefijo: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Añade este bot a tu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentación](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstalación rapida: `{PREFIX}!setup`\nAprende a usar el bot: `{PREFIX}guide`\n\nPara obtener mas información sobre un comando, escriba `{PREFIX}help` más el nombre del comando: ```\n{PREFIX}help shortNumber```\n**Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio",
 				"fields": [
 					{
 						"name": "**Contadores**",
@@ -27,7 +27,7 @@
 			},
 			"misc": {
 				"command": "Comando:",
-				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"errorCommandNotFound": "Lo siento, no pude encontrar ayuda sobre ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
@@ -40,11 +40,6 @@
 					"key": "members",
 					"name": "members",
 					"description": "Cantidad de miembros que hay en tu servidor"
-				},
-				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
 				},
 				{
 					"key": "approximatedOnlineMembers",
@@ -134,12 +129,12 @@
 				{
 					"key": "membersPlaying",
 					"name": "membersPlaying:game name",
-					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+					"description": "Cuenta la cantidad de miembros que estan jugando un juego. Ejemplo: `{membersPlaying:Minecraft}`"
 				},
 				{
 					"key": "http",
 					"name": "http:options",
-					"description": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to archieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items."
+					"description": "Muestra el resultado de una peticion http `GET`. Puedes configurar las opciones (`options`) de este contador [aquí](https://member-counter.eduardozgz.com/utils/http), o crearlo manualmente: `options` es un objeto JSON codificado en base64 (puedes usar el comando {PREFIX}base64 para hacer esto), este objeto puede tener las siguientes claves: `url`: Una cadena de texto; con la url del recurso, `parseNumber`: Un boolean; si el resultado es numerico, este sera personalizado con los ajustes del servidor, `dataPath`: Una cadena de texto; si la respuesta al recurso es un ojbeto JSON, debes especificar la ruta a un campo con un valor que debe ser un numero o una cadena de texto, la sintaxis es similar a la que JS usa para acceder propiedades e items de un array."
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -159,12 +154,12 @@
 				{
 					"key": "youtubeChannelName",
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays a youtube channel name"
+					"description": "Muestra el nombre que tiene un canal de youtube"
 				},
 				{
 					"key": "twitchFollowers",
 					"name": "twitchFollowers:nickname",
-					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
+					"description": "Muestra la cantidad de seguidores que tiene un canal de twitch, reemplaza nickname con la url del canal deseado"
 				},
 				{
 					"key": "twitchViews",
@@ -174,7 +169,7 @@
 				{
 					"key": "twitchChannelName",
 					"name": "twitchChannelName:nickname",
-					"description": "Displays a twitch channel Name"
+					"description": "Muestra el nombre que tiene un canal de twitch"
 				},
 				{
 					"key": "memeratorMemes",
@@ -224,27 +219,27 @@
 				{
 					"key": "sum",
 					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"description": "Hace una suma de los valores especificados"
 				},
 				{
 					"key": "substract",
 					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+					"description": "Resta los valores especificados"
 				},
 				{
 					"key": "multiply",
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"description": "Multiplica los valores especificados"
 				},
 				{
 					"key": "divide",
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"description": "Divide los valores especificados"
 				},
 				{
 					"key": "modulus",
 					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values"
+					"description": "Obtiene el modulo (tambien conocido como resto de la division) de los valores especificados"
 				}
 			]
 		},
@@ -274,7 +269,7 @@
 			"success": "Hecho! Deberás esperar unos minutos para ver los nuevos cambios"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Da formato a numeros y a relojes (formato de 12h/24h) dependiendo de la región especificada \n**Uso**\n```{PREFIX}locale [locale/disable]```\n**Ejemplos**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -368,47 +363,47 @@
 			"channelTopic": "Vista previa en el tema de un canal"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "Crea algunos canales de voz bloqueados con contadores en ellos\nOpcionalmente, puedes configurar contadores para Twitch o Youtube\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [nombre del canal]\n{PREFIX}setup youtube [enlace del canal]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
 				"creatingCounts": "Creando contadores...",
 				"createdCounts": "Completado",
-				"creatingCategory": "{LOADING} Creating category",
-				"createdCategory": "{CHECK_MARK} Category created"
+				"creatingCategory": "{LOADING} Creando categoria",
+				"createdCategory": "{CHECK_MARK} Categoria creada"
 			},
-			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"errorInvalidUsage": "Uso invalido, por favor, mire {PREFIX}help",
 			"counterTemplates": {
 				"default": {
 					"categoryName": "📊 Estadísticas del servidor 📊",
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Online: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"template": "En línea: {onlineMembers}",
+							"statusCreating": "{LOADING} Creando contador de miembros en línea",
+							"statusCreated": "{CHECK_MARK} Contador de miembros en línea creado"
 						},
 						{
 							"name": "members",
-							"template": "Members: {members}",
-							"statusCreating": "{LOADING} Creating member counter",
-							"statusCreated": "{CHECK_MARK} Members counter created"
+							"template": "Miembros: {members}",
+							"statusCreating": "{LOADING} Creando contador de miembros",
+							"statusCreated": "{CHECK_MARK} Contador de miembros creado"
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
-							"statusCreating": "{LOADING} Creating booster counter",
-							"statusCreated": "{CHECK_MARK} Booster counter created"
+							"template": "{nitroBoosters} Boosteando",
+							"statusCreating": "{LOADING} Creando contador de boosters",
+							"statusCreated": "{CHECK_MARK} Contador de boosters creados"
 						},
 						{
 							"name": "roles",
 							"template": "Roles: {roles}",
-							"statusCreating": "{LOADING} Creating roles counter",
-							"statusCreated": "{CHECK_MARK} Roles counter created"
+							"statusCreating": "{LOADING} Creando contador de roles",
+							"statusCreated": "{CHECK_MARK} Contador de roles creado"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
-							"statusCreating": "{LOADING} Creating channels counter",
-							"statusCreated": "{CHECK_MARK} Channels counter created"
+							"template": "{channels} Canales",
+							"statusCreating": "{LOADING} Creando contador de canales",
+							"statusCreated": "{CHECK_MARK} Contador de canales creado"
 						}
 					]
 				},
@@ -417,15 +412,15 @@
 					"counters": [
 						{
 							"name": "twitchFollowers",
-							"template": "{twitchFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"template": "{twitchFollowers:{RESOURCE}} Seguidores",
+							"statusCreating": "{LOADING} Creando contador de seguidores",
+							"statusCreated": "{CHECK_MARK} Contador de seguidores creado"
 						},
 						{
 							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{twitchViews:{RESOURCE}} Visitas",
+							"statusCreating": "{LOADING} Creando contador de visitas",
+							"statusCreated": "{CHECK_MARK} Contador de visitas creado"
 						}
 					]
 				},
@@ -434,29 +429,29 @@
 					"counters": [
 						{
 							"name": "youtubeSubscribers",
-							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
-							"statusCreating": "{LOADING} Creating subscriber counter",
-							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+							"template": "{youtubeSubscribers:{RESOURCE}} Suscriptores",
+							"statusCreating": "{LOADING} Creando contador de suscriptores",
+							"statusCreated": "{CHECK_MARK} Contador de suscriptores creados"
 						},
 						{
 							"name": "youtubeVideos",
 							"template": "{youtubeVideos:{RESOURCE}} Videos",
-							"statusCreating": "{LOADING} Creating video counter",
-							"statusCreated": "{CHECK_MARK} Video counter created"
+							"statusCreating": "{LOADING} Creando contador de videos",
+							"statusCreated": "{CHECK_MARK} Contador de videos creado"
 						},
 						{
 							"name": "youtubeViews",
-							"template": "{youtubeViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{youtubeViews:{RESOURCE}} Visitas",
+							"statusCreating": "{LOADING} Creando contador de visitas",
+							"statusCreated": "{CHECK_MARK} Contador de visitas creado"
 						}
 					]
 				}
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"helpDescription": "Este comando codifica o descodifica en base64 el contenido que pases, útil para crear contadores avanzados como `{http}`\n\n**Uso**```{PREFIX}base64 [encode/decode] [contenido]```\n**Ejemplo**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Acción inválida, debe ser `encode` o `decode`"
 		}
 	},
 	"functions": {
@@ -468,7 +463,8 @@
 			"unknownCounter": "Error desconocido",
 			"disabled": "Contador Deshabilitado",
 			"noBanPerms": "Necesito permisos de ban para mostrar esto",
-			"invalidChannelLength": "Nombre de canal invalido, por favor, vuelve a establecerlo"
+			"invalidChannelLength": "Nombre de canal invalido, por favor, vuelve a establecerlo",
+			"notAvailable": "No disponible, espere por favor"
 		},
 		"paginator": {
 			"pageCounter": "Página {CURRENT_PAGE}/{TOTAL_PAGES}",
