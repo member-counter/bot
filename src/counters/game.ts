@@ -19,7 +19,6 @@ const GameCounter: Counter = {
 		const port = parseInt(splited[2], 10);
 
 		if (!host) throw new Error("You must provide an adress and port");
-
 		switch (type) {
 			case "ragemp": {
 				const controller = new AbortController();
@@ -115,9 +114,12 @@ const GameCounter: Counter = {
 					port,
 					maxAttempts: 5
 				});
-				return response?.players?.length;
 
-				break;
+				if (typeof response.players === "number") {
+					return response?.players;
+				} else {
+					return response?.players?.length;
+				}
 			}
 		}
 	}
