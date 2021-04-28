@@ -27,7 +27,7 @@
 			},
 			"misc": {
 				"command": "Komut:",
-				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"errorCommandNotFound": "Maalesef ``{DESIRED_COMMAND}`` komutu için bir yardım sayfası bulamadım"
 			}
 		},
 		"guide": {
@@ -219,27 +219,27 @@
 				{
 					"key": "sum",
 					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"description": "Belirtilen değerleri toplar"
 				},
 				{
 					"key": "substract",
 					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+					"description": "Belirtilen değerleri çıkarır"
 				},
 				{
 					"key": "multiply",
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"description": "Belirtilen değerleri çarpar"
 				},
 				{
 					"key": "divide",
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"description": "Belirtilen değerleri böler"
 				},
 				{
 					"key": "modulus",
 					"name": "modulus:value1,value2,more values",
-					"description": "Belirtilen değerlerin modülünü alır"
+					"description": "Gets the modulus of the specified values"
 				}
 			]
 		},
@@ -363,23 +363,23 @@
 			"channelTopic": "Kanal başlığı önizlemesi"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\nİsteğe bağlı olarak YouTube veya Twitch kanal sayaçlarını kurar\n**Kullanım**```{PREFIX}setup\n{PREFIX}setup twitch [kanal ismi]\n{PREFIX}setup youtube [kanal bağlantısı]```\n**Örnek**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
 				"creatingCounts": "Sayaçlar oluşturuluyor...",
 				"createdCounts": "Tamamlandı",
 				"creatingCategory": "{LOADING} Kategori oluşturuluyor",
 				"createdCategory": "{CHECK_MARK} Kategori oluşturuldu"
 			},
-			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"errorInvalidUsage": "Geçersiz kullanım, lütfen, {PREFIX}help komutunu kullanın",
 			"counterTemplates": {
 				"default": {
 					"categoryName": "📊 Sunucu İstatistikleri 📊",
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Online: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"template": "Çevrimiçi Üye Sayısı: {onlineMembers}",
+							"statusCreating": "{LOADING} Çevrimiçi üye sayacı oluşturuluyor",
+							"statusCreated": "{CHECK_MARK} Çevrimiçi üye sayacı oluşturuldu"
 						},
 						{
 							"name": "members",
@@ -389,13 +389,13 @@
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
+							"template": "Boostlayan Sayısı: {nitroBoosters}",
 							"statusCreating": "{LOADING} Boost sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Boost sayacı oluşturuldu"
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
+							"template": "Rol Sayısı: {roles}",
 							"statusCreating": "{LOADING} Rol sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Rol sayacı oluşturuldu"
 						},
