@@ -42,11 +42,6 @@
 					"description": "Quantitat de membres que hi ha al teu servidor"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Membres aproximats en linea en el teu servidor"
@@ -468,7 +463,8 @@
 			"unknownCounter": "Comptador desconegut",
 			"disabled": "Comptador deshabilitat",
 			"noBanPerms": "Necessit permisos de ban per mostrar això",
-			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo"
+			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo",
+			"notAvailable": "No està disponible, per favor esperi"
 		},
 		"paginator": {
 			"pageCounter": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}",
