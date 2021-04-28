@@ -6,7 +6,7 @@
 			"helpDescription": "האם זה באמת נחוץ לתרגם את המטרה של הפקודה הזו?",
 			"embedReply": {
 				"title": "רשימת פקודות | קידומת {PREFIX}",
-				"description": "[הוסף את הבוט לשרת שלך]({DISCORD_BOT_INVITE}) | [קישור]({WEBSITE}) | [מדריך שימוש](https://eduardozgz.gitbook.io/member-counter) | [GitHub](https://github.com/eduardozgz/member-counter-bot/) התקנה מהירה: {PREFIX}setup איך להשתמש בבוט: {PREFIX}guide ניתן להשתמש בפקודה הבאה ביחד עם שם של פקודה לקבלת מידע נוסף על פקודה, לדוגמה הפקודת ההתקנה המהירה:\n{PREFIX}help setup``` מידע: פרמטר שהינו חובה יופיע]בסוגריים מרובעות[ ופרמטר שאינו חובה יופיע)בסוגריים רגילות(",
+				"description": "[הוסף את הבוט לשרת שלך]({DISCORD_BOT_INVITE}) | [קישור]({WEBSITE}) | [מדריך שימוש](https://eduardozgz.gitbook.io/member-counter) | [GitHub](https://github.com/eduardozgz/member-counter-bot/)\nהתקנה מהירה: {PREFIX}setup\nאיך להשתמש בבוט: {PREFIX}guide\nניתן להשתמש בפקודה הבאה ביחד עם שם של פקודה לקבלת מידע נוסף על פקודה, לדוגמה הפקודת ההתקנה המהירה:\n{PREFIX}help setup```\nמידע: פרמטר שהינו חובה יופיע [בסוגריים מרובעות] ופרמטר שאינו חובה יופיע (בסוגריים רגילות)",
 				"fields": [
 					{
 						"name": "**מדדים**",
@@ -139,27 +139,27 @@
 				{
 					"key": "youtubeSubscribers",
 					"name": "youtubeSubscribers:channelUrl",
-					"description": "Displays a youtube channel subscriber count, replace channelUrl with the desired channel url"
+					"description": "מודד כמות רשומים לערוץ יוטיוב. יש להחליף את המשתנה הבא בקישור לערוץ:\nchannelUrl"
 				},
 				{
 					"key": "youtubeViews",
 					"name": "youtubeViews:channelUrl",
-					"description": "Displays a youtube channel view count"
+					"description": "מציג מדד צפיות בערוץ יוטיוב"
 				},
 				{
 					"key": "youtubeVideos",
 					"name": "youtubeVideos:channelUrl",
-					"description": "מציג מדד צפיות בערוץ יוטיוב"
+					"description": "מציג מדד סרטונים בערוץ יוטיוב"
 				},
 				{
 					"key": "youtubeChannelName",
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays a youtube channel name"
+					"description": "מציג שם של ערוץ יוטיוב"
 				},
 				{
 					"key": "twitchFollowers",
 					"name": "twitchFollowers:nickname",
-					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
+					"description": "מודד כמות רשומים לערוץ Twitch.\nיש להחליף את המשתנה הבא בקישור לערוץ:\nnickname"
 				},
 				{
 					"key": "twitchViews",
@@ -169,22 +169,22 @@
 				{
 					"key": "twitchChannelName",
 					"name": "twitchChannelName:nickname",
-					"description": "Displays a twitch channel Name"
+					"description": "מציג שם של ערוץ Twitch"
 				},
 				{
 					"key": "memeratorMemes",
 					"name": "memeratorMemes:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's meme count, replace username with the desired profile name"
+					"description": "מציג מדד כמות העלאות של משתמש באתר [Memerator](https://memerator.me)\nיש להחליף את המשתנה הבא בשם הפרופיל של המשתמש:\nusername"
 				},
 				{
 					"key": "memeratorFollowers",
 					"name": "memeratorFollowers:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's follower count, replace username with the desired profile name"
+					"description": "מציג מדד כמות עוקבים של משתמש באתר [Memerator](https://memerator.me)\nיש להחליף את המשתנה הבא בשם הפרופיל של המשתמש:\nusername"
 				},
 				{
 					"key": "twitterFollowers",
 					"name": "twitterFollowers:username",
-					"description": "Displays the amount of followers in an account, replace username with the actual Twitter username"
+					"description": "מציג מדד כמות עוקבים של משתמש בטוויטר.\nיש להחליף את המשתנה הבא בשם המשתמש של החשבון:\nusername"
 				},
 				{
 					"key": "countdown",
@@ -199,12 +199,12 @@
 				{
 					"key": "clock",
 					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone. Example: `{clock:Europe/Madrid}`"
+					"description": "מציג שעון עם איזור הזמן שניתן. אתה יכול בקלות [לייצר את השעון הזה פה](https://member-counter.eduardozgz.com/utils/clock)"
 				},
 				{
 					"key": "nitro-boosters",
 					"name": "nitro-boosters",
-					"description": "Shows the total amount of members boosting this server"
+					"description": "מציג מדד של כמות המשתמשים אשר עשו בוסט\n לשרת הזה"
 				},
 				{
 					"key": "static",
@@ -214,45 +214,45 @@
 				{
 					"key": "instagramFollowers",
 					"name": "instagramFollowers:username",
-					"description": "Displays the amount of followers in an account, replace username with the actual Instagram username"
+					"description": "מציג מדד כמות עוקבים של משתמש באינסטגרם.\nיש להחליף את המשתנה הבא בשם המשתמש של החשבון:\nusername"
 				},
 				{
 					"key": "sum",
 					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"description": "מציג סכום של הערכים שניתנו"
 				},
 				{
 					"key": "substract",
 					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+					"description": "מציג הפרש בין הערכים שניתנו"
 				},
 				{
 					"key": "multiply",
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"description": "מציג מכפלת הערכים שניתנו"
 				},
 				{
 					"key": "divide",
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"description": "מציג מנת (חילוק) הערכים שניתנו"
 				},
 				{
 					"key": "modulus",
 					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values"
+					"description": "מציג שארית של חילוק בין הערכים שניתנו"
 				}
 			]
 		},
 		"lockChannel": {
-			"helpDescription": "You can use this commands to show a lockpad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
+			"helpDescription": "הפקודה גורמת לערוץ להציג מנעול (🔒) במקום להציג רמקול (🔊) בשרתי דיבור\n\n**נוסח הפקודה**```{PREFIX}lockChannel [channel id]```\n **דוגמה**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "הושלם! עכשיו, **למשתמשים ללא הרשאות אדמין**, הערוץ יוצג עם סימן של 🔒",
 			"errorInvalidChannel": "אפשרי לנעול רק ערוצי אודיו!",
 			"errorNoPerms": "אני לא יכול לערוך את הערוץ `{CHANNEL}` בגלל חוסר בהרשאות",
 			"errorNotFound": "ערוץ לא נמצא"
 		},
 		"editChannel": {
-			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
-			"success": "Done! You may have to wait a few minutes to see the new changes",
+			"helpDescription": "במידה ואתה מנסה לייצר מדד וכמות התווים ארוכה מדי עקב פקודות ארוכות, ניתן להשתמש בפקודה הזאת כדי \"לעקוף\" את המגבלה הזאת\n**נוסח הפקודה**```{PREFIX}editChannel [channelId] [content]```\n**דוגמה**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
+			"success": "הושלם! אולי תצטרך לחכות מספר דקות כדי לראות את השינויים החדשים",
 			"errorNotFound": "ערוץ לא נמצא",
 			"errorNoContent": "נחוץ להוסיף תוכן"
 		},
@@ -260,13 +260,13 @@
 			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.\n\nUsage: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nExamples: ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
 			"success": "ספרות הותאמו אישית.",
 			"resetSuccess": "מספרים הוחזרו להגדרות ברירת המחדל.",
-			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+			"errorMissingParams": "חסרים פרמטרים לפקודה. ניתן למצוא רשימת פרמטרים בעזרת הפקודה הבאה:\n`{PREFIX}help setDigit`"
 		},
 		"shortNumber": {
 			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
-			"success": "Done! You may have to wait a few minutes to see the new changes"
+			"success": "הושלם! אולי תצטרך לחכות מספר דקות כדי לראות את השינויים החדשים"
 		},
 		"locale": {
 			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
