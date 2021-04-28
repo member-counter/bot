@@ -463,7 +463,8 @@
 			"unknownCounter": "Nieznany licznik",
 			"disabled": "Counter Disabled",
 			"noBanPerms": "Potrzebuję uprawnień banowania, aby to pokazać",
-			"invalidChannelLength": "Nieprawidłowa długość nazwy kanału, ponownie ustaw licznik"
+			"invalidChannelLength": "Nieprawidłowa długość nazwy kanału, ponownie ustaw licznik",
+			"notAvailable": "Not available, please wait"
 		},
 		"paginator": {
 			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",

@@ -365,15 +365,15 @@
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
-				"creatingCounts": "Creating counters...",
-				"createdCounts": "Complete",
+				"creatingCounts": "Vytváření počítadel...",
+				"createdCounts": "Kompletní",
 				"creatingCategory": "{LOADING} Creating category",
 				"createdCategory": "{CHECK_MARK} Category created"
 			},
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
 			"counterTemplates": {
 				"default": {
-					"categoryName": "📊 Server Stats 📊",
+					"categoryName": "📊 Statistiky serveru 📊",
 					"counters": [
 						{
 							"name": "onlineMembers",
@@ -389,19 +389,19 @@
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
+							"template": "Boostující uživatelé: {nitroBoosters}",
 							"statusCreating": "{LOADING} Creating booster counter",
 							"statusCreated": "{CHECK_MARK} Booster counter created"
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
+							"template": "Role: {roles}",
 							"statusCreating": "{LOADING} Creating roles counter",
 							"statusCreated": "{CHECK_MARK} Roles counter created"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
+							"template": "Kanály: {channels}",
 							"statusCreating": "{LOADING} Creating channels counter",
 							"statusCreated": "{CHECK_MARK} Channels counter created"
 						}
@@ -418,7 +418,7 @@
 						},
 						{
 							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Views",
+							"template": "{twitchViews:{RESOURCE}} sledujících",
 							"statusCreating": "{LOADING} Creating views counter",
 							"statusCreated": "{CHECK_MARK} Views counter created"
 						}
@@ -443,15 +443,15 @@
 							"name": "youtubeViews",
 							"template": "{youtubeViews:{RESOURCE}} Views",
 							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"statusCreated": "{CHECK_MARK} Zobrazovací počítadlo bylo vytvořeno"
 						}
 					]
 				}
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"helpDescription": "Příkaz base64 je užitečný k přizpůsobení konkrétních počítadel nebo k vytvoření pokročilých počítačů, jako je `{{http}` \n\n**Použití:** ```{PREFIX}base64 [encode/decode] [data]```\n **Příklad:**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Neplatná akce, zadejte `encode` nebo `decode`"
 		}
 	},
 	"functions": {
@@ -463,13 +463,14 @@
 			"unknownCounter": "Neznámý počítadlo",
 			"disabled": "Počítadlo zablokováno",
 			"noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
-			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu"
+			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu",
+			"notAvailable": "Není k dispozici, počkejte prosím"
 		},
 		"paginator": {
-			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"pageCounter": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "Na kterou stránku bys chtěl přejít? Chceš-li výzvu zrušit, zadej `cancel` nebo `0`. Na odpověď máš 15 sekund.",
+			"errorPageLengthExceeded": "Číslo stránky musí být menší nebo rovno {TOTAL_PAGES}. Prosím zkuste to znovu.",
+			"errorNegativeInput": "Číslo stránky nesmí být záporné. Prosím zkuste to znovu."
 		}
 	},
 	"common": {
