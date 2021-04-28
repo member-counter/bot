@@ -463,7 +463,8 @@
 			"unknownCounter": "अपरिचित गणक",
 			"disabled": "काउंटर अक्षम",
 			"noBanPerms": "मुझे यह दिखाने के लिए प्रतिबंध अनुमति की आवश्यकता है",
-			"invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें"
+			"invalidChannelLength": "अमान्य चैनल नाम की लंबाई, कृपया फिर से काउंटर निर्धारित करें",
+			"notAvailable": "उपलब्ध नहीं है, कृपया प्रतीक्षा करें"
 		},
 		"paginator": {
 			"pageCounter": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}",

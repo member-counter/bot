@@ -25,9 +25,8 @@ const HTTPCounter: Counter = {
 		);
 
 		if (!url) throw new Error("You didn't specify a url property");
-		if (COUNTER_HTTP_DENY_LIST?.includes(new URL(url).hostname)) throw new Error("You can't make requests to this url!");
-	
-		console.log(url, parseInt, dataPath);
+		if (COUNTER_HTTP_DENY_LIST?.includes(new URL(url).hostname))
+			throw new Error("You can't make requests to this url!");
 
 		let body: string;
 		let result: number | string;
