@@ -42,11 +42,6 @@
 					"description": "Все участники вашего сервера"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Приблизительное кол-во участников онлайн на вашем сервере"
@@ -468,7 +463,8 @@
 			"unknownCounter": "Неизвестный счётчик",
 			"disabled": "Счётчик Выключен",
 			"noBanPerms": "Мне нужно право банить, чтобы показать это",
-			"invalidChannelLength": "Достигнут лимит символов в названии канала, пожалуйста, настройте счётчик заново"
+			"invalidChannelLength": "Достигнут лимит символов в названии канала, пожалуйста, настройте счётчик заново",
+			"notAvailable": "Не доступно, пожалуйста подождите"
 		},
 		"paginator": {
 			"pageCounter": "Стр. {CURRENT_PAGE}/{TOTAL_PAGES}",
