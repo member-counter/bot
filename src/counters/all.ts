@@ -15,6 +15,7 @@ import MembersExtendedCounter from "./membersExt";
 import MembersWithRoleCounter from "./membersWithRole";
 import MemeratorCounter from "./Memerator";
 import NitroBoostersCounter from "./nitroBoosters";
+import redditMembers from "./redditMembers";
 import RolesCounter from "./roles";
 import StaticCounter from "./static";
 import TwitchCounter from "./Twitch";
@@ -40,6 +41,7 @@ const counters = [
 	MembersWithRoleCounter,
 	MemeratorCounter,
 	NitroBoostersCounter,
+	redditMembers,
 	RolesCounter,
 	StaticCounter,
 	TwitchCounter,
