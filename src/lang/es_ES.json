@@ -369,7 +369,9 @@
 			"bots": "Bots:",
 			"connectedUsers": "Usuarios conectados:",
 			"channels": "Canales:",
-			"roles": "Roles:"
+			"roles": "Roles:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Muestra una vista previa de como se veran los contadores en un canal\n\n**Uso**```{PREFIX}preview [content]```\n**Ejemplo**```{PREFIX}preview {members} Members```",

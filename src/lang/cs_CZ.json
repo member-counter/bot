@@ -369,7 +369,9 @@
 			"bots": "Boti:",
 			"connectedUsers": "Připojených uživatelů:",
 			"channels": "Kanály:",
-			"roles": "Role:"
+			"roles": "Role:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Zobrazuje náhled, jak bude počítadlo nebo různé počítadla vypadat v kanálu\n\n**Použití** ```{PREFIX}preview [content]```\n**Příklad** ```{PREFIX}preview {members} Uživatelů```",

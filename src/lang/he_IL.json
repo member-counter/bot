@@ -369,7 +369,9 @@
 			"bots": "בוטים:",
 			"connectedUsers": "משתמשים מחוברים:",
 			"channels": "ערוצים:",
-			"roles": "תפקידים:"
+			"roles": "תפקידים:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
