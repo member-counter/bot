@@ -207,6 +207,21 @@
 					"description": "Показывает общее количество участников, которые использовали буст для этого сервера"
 				},
 				{
+					"key": "redditMembers",
+					"name": "redditMembers",
+					"description": "Displays the amount of members for the given subreddit"
+				},
+				{
+					"key": "redditMembersOnline",
+					"name": "redditMembersOnline",
+					"description": "Displays the amount of online members for the given subreddit"
+				},
+				{
+					"key": "redditTitle",
+					"name": "redditTitle",
+					"description": "Displays the title for the given subreddit"
+				},
+				{
 					"key": "static",
 					"name": "static:number",
 					"description": "Показывает заданное число с форматированием, основанным на настройках сервера"
@@ -263,7 +278,7 @@
 			"errorMissingParams": "Недостаточно параметров, пожалуйста, просмотрите `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Эта команда позволяет вам отображать счётчик в более компактной форме.\n\n**Использование:**\n```{PREFIX}shortNumber [enable/disable]```\n**Примеры:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Неправильное действие! Пожалуйста, просмотрите `{PREFIX}help shortNumber`",
 			"success": "Сделано! Необходимо немного подождать (около нескольких минут) прежде, чем увидеть новые изменения"
@@ -354,7 +369,9 @@
 			"bots": "Боты:",
 			"connectedUsers": "Подключённые пользователи:",
 			"channels": "Каналы:",
-			"roles": "Роли:"
+			"roles": "Роли:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Показывает, как будет выглядеть в канале предварительный вид счётчика или различных счётчиков.\n\n**Использование**```{PREFIX}preview [content]```\n**Пример**```{PREFIX}preview {members} Members```",
