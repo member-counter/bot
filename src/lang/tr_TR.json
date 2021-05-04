@@ -369,7 +369,9 @@
 			"bots": "Bot Sayısı:",
 			"connectedUsers": "Sesli de Olan Üye Sayısı:",
 			"channels": "Kanal Sayısı:",
-			"roles": "Rol Sayısı:"
+			"roles": "Rol Sayısı:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Kanalda bir sayacın veya çeşitli sayaçların nasıl görüneceğinin bir ön izlemesini gösterir\n\n**Kullanımı**```{PREFIX}preview [content]```\n**Örnek**```{PREFIX}preview {members} Üye```",
