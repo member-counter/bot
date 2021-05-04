@@ -207,6 +207,21 @@
 					"description": "Sunucuyu boostlayan toplam üye sayısını gösterir"
 				},
 				{
+					"key": "redditMembers",
+					"name": "redditMembers",
+					"description": "Displays the amount of members for the given subreddit"
+				},
+				{
+					"key": "redditMembersOnline",
+					"name": "redditMembersOnline",
+					"description": "Displays the amount of online members for the given subreddit"
+				},
+				{
+					"key": "redditTitle",
+					"name": "redditTitle",
+					"description": "Displays the title for the given subreddit"
+				},
+				{
 					"key": "static",
 					"name": "static:number",
 					"description": "Sunucu ayarlarına göre özel biçimlendirmeyle verilen `number`ı gösterir"
@@ -263,7 +278,7 @@
 			"errorMissingParams": "Eksik parametreler, lütfen `{PREFIX}help setDigit` bölümüne bakın."
 		},
 		"shortNumber": {
-			"helpDescription": "Bu komut, sayaçlarda kompakt bir biçimde bir sayı göstermenizi sağlar\n\n**Kullanımı**\n```{PREFIX}shortNumber [enable/disable]```\n**Örnekler**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Geçersiz eylem! lütfen `{PREFIX}help shortNumber` komutuna bakın",
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir"
