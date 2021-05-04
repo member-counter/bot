@@ -29,6 +29,16 @@ const counts: Command = {
 					inline: true
 				},
 				{
+					name: languagePack.commands.counts.nitroBoosters,
+					value: await counts.processCounter("nitro-boosters"),
+					inline: true
+				},
+				{
+					name: languagePack.commands.counts.bannedMembers,
+					value: await counts.processCounter("bannedMembers"),
+					inline: true
+				},
+				{
 					name: languagePack.commands.counts.channels,
 					value: await counts.processCounter("channels"),
 					inline: true
