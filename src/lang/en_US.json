@@ -369,7 +369,9 @@
 			"bots": "Bots:",
 			"connectedUsers": "Connected users:",
 			"channels": "Channels:",
-			"roles": "Roles:"
+			"roles": "Roles:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",

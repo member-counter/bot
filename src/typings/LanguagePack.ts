@@ -125,6 +125,8 @@ interface Counts {
 	connectedUsers: string;
 	channels: string;
 	roles: string;
+	nitroBoosters: string;
+	bannedMembers: string;
 }
 
 interface Profile {
