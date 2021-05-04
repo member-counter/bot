@@ -194,7 +194,7 @@
 				{
 					"key": "game",
 					"name": "game:gameId:address",
-					"description": "Bir oyun sunucusundaki çevrimiçi oyuncu sayısı (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) `gameId` öğesini [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden biriyle değiştirmeyi ve `address`i sunucu adresiyle değiştirmeyi unutmayın. Örnek: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Bir oyun sunucusundaki aktif oyuncu sayısı (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) `gameId` öğesini [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden biriyle değiştirmeyi ve `address`i sunucu adresiyle değiştirmeyi unutmayın. Örnek: `{game:minecraft:mc.hypixel.net}`"
 				},
 				{
 					"key": "clock",
@@ -377,9 +377,9 @@
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Çevrimiçi Üye Sayısı: {onlineMembers}",
-							"statusCreating": "{LOADING} Çevrimiçi üye sayacı oluşturuluyor",
-							"statusCreated": "{CHECK_MARK} Çevrimiçi üye sayacı oluşturuldu"
+							"template": "Aktif Üye Sayısı: {onlineMembers}",
+							"statusCreating": "{LOADING} Aktif üye sayacı oluşturuluyor",
+							"statusCreated": "{CHECK_MARK} Aktif üye sayacı oluşturuldu"
 						},
 						{
 							"name": "members",
