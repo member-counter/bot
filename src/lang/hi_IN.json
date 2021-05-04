@@ -27,7 +27,7 @@
 			},
 			"misc": {
 				"command": "आदेश :",
-				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"errorCommandNotFound": "क्षमा करें, मुझे  ``{DESIRED_COMMAND}`` इसके लिए सहायता नहीं मिली"
 			}
 		},
 		"guide": {
@@ -129,7 +129,7 @@
 				{
 					"key": "membersPlaying",
 					"name": "membersPlaying:game name",
-					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+					"description": "गिनता है कि कितने सदस्य एक खेल खेल रहे हैं। उदाहरण: `{membersPlaying:Minecraft}`"
 				},
 				{
 					"key": "http",
@@ -154,12 +154,12 @@
 				{
 					"key": "youtubeChannelName",
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays a youtube channel name"
+					"description": "एक यूट्यूब चैनल का नाम प्रदर्शित करता है"
 				},
 				{
 					"key": "twitchFollowers",
 					"name": "twitchFollowers:nickname",
-					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
+					"description": "एक ट्विच चैनल अनुयायी गिनती प्रदर्शित करता है, उपनाम को वांछित चैनल नाम से बदलें"
 				},
 				{
 					"key": "twitchViews",
@@ -169,7 +169,7 @@
 				{
 					"key": "twitchChannelName",
 					"name": "twitchChannelName:nickname",
-					"description": "Displays a twitch channel Name"
+					"description": "एक ट्विच चैनल नाम प्रदर्शित करता है"
 				},
 				{
 					"key": "memeratorMemes",
@@ -269,7 +269,7 @@
 			"success": "कर दी है! नए बदलावों को देखने के लिए आपको कुछ मिनट इंतजार करना पड़ सकता है"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "निर्दिष्ट स्थान पर संख्या और घड़ियों (12h/24h प्रारूप) को प्रारूपित करता है\n\n**प्रयोग**\n```{PREFIX}locale [locale/disable]```\n**उदाहरण**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
@@ -363,7 +363,7 @@
 			"channelTopic": "चैनल विषय पूर्वावलोकन"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\nवैकल्पिक रूप से YouTube या ट्विच चैनल काउंटर स्थापित करें\n**प्रयोग**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**उदाहरण**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
 				"creatingCounts": "काउंटर बन रहा है...",
 				"createdCounts": "पूर्ण",
@@ -408,19 +408,19 @@
 					]
 				},
 				"twitch": {
-					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Twitch Stats 📊",
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} ट्विच के आँकड़े 📊",
 					"counters": [
 						{
 							"name": "twitchFollowers",
-							"template": "{twitchFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"template": "{twitchFollowers:{RESOURCE}} ट्विच समर्थक",
+							"statusCreating": "{LOADING} अनुयायी काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} अनुयायी काउंटर बनाई गई"
 						},
 						{
 							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{twitchFollowers:{RESOURCE}} ट्विच दर्शक",
+							"statusCreating": "{LOADING} व्यू काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} व्यू काउंटर बनाया गया"
 						}
 					]
 				},
@@ -442,8 +442,8 @@
 						{
 							"name": "youtubeViews",
 							"template": "{youtubeViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"statusCreating": "{LOADING} व्यू काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} व्यू काउंटर बनाया गया"
 						}
 					]
 				}
