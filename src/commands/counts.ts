@@ -29,13 +29,13 @@ const counts: Command = {
 					inline: true
 				},
 				{
-					name: languagePack.commands.counts.bots,
-					value: await counts.processCounter("bots"),
+					name: languagePack.commands.counts.nitroBoosters,
+					value: await counts.processCounter("nitro-boosters"),
 					inline: true
 				},
 				{
-					name: languagePack.commands.counts.connectedUsers,
-					value: await counts.processCounter("connectedmembers"),
+					name: languagePack.commands.counts.bannedMembers,
+					value: await counts.processCounter("bannedMembers"),
 					inline: true
 				},
 				{
