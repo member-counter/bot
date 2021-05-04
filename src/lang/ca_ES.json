@@ -219,7 +219,7 @@
 				{
 					"key": "redditTitle",
 					"name": "redditTitle",
-					"description": "Displaus the title for the given subreddit"
+					"description": "Displays the title for the given subreddit"
 				},
 				{
 					"key": "static",
