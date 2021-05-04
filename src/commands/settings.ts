@@ -393,7 +393,7 @@ const setDigit: Command = {
 };
 
 const shortNumber: Command = {
-	aliases: ["shortNumber"],
+	aliases: ["shortNumber", "shortDigit"],
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack, guildService }) => {
