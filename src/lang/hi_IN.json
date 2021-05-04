@@ -219,7 +219,7 @@
 				{
 					"key": "redditTitle",
 					"name": "redditTitle",
-					"description": "दिए गए सब्रेडिट के लिए शीर्षक को विस्थापित करें"
+					"description": "Displays the title for the given subreddit"
 				},
 				{
 					"key": "static",
