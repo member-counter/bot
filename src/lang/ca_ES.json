@@ -207,6 +207,21 @@
 					"description": "Mostra la quantitat total de membres que esta boosteant aquest servidor"
 				},
 				{
+					"key": "redditMembers",
+					"name": "redditMembers",
+					"description": "Displays the amount of members for the given subreddit"
+				},
+				{
+					"key": "redditMembersOnline",
+					"name": "redditMembersOnline",
+					"description": "Displays the amount of online members for the given subreddit"
+				},
+				{
+					"key": "redditTitle",
+					"name": "redditTitle",
+					"description": "Displays the title for the given subreddit"
+				},
+				{
 					"key": "static",
 					"name": "static:number",
 					"description": "Mostra el nombre donat en `number` amb un format personalitzat basat en la configuració del servidor"
@@ -263,7 +278,7 @@
 			"errorMissingParams": "Falten paràmetres, si us plau, consulta `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Aquest comand et permet mostrar el nombre d'un compte en un format abreujat en comtadors que hagis col·locat en un canal de veu o categoria\n\n**Ús**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Acció invàlida! Per favor, consulta `{PREFIX}help shortNumber`",
 			"success": "Fet! Potser que hagis d'esperar uns minuts per poder veure els nous canvis"
