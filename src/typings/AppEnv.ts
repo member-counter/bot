@@ -35,6 +35,10 @@ interface _AppEnv {
 
 	BOT_OWNERS: string[];
 
+	MEMBER_COUNTS_CACHE_LIFETIME: number;
+	MEMBER_COUNTS_CACHE_CHECK_SLEEP: number;
+	MEMBER_COUNTS_CACHE_CHECK: number;
+
 	PREMIUM_BOT: boolean;
 	PREMIUM_BOT_ID: string;
 	PREMIUM_BOT_INVITE: string;

@@ -12,10 +12,10 @@ import MemberCounter from "./members";
 import MembersPlayingCounter from "./membersPlaying";
 import MembersConnectedCounter from "./membersConnected";
 import MembersExtendedCounter from "./membersExt";
-import MembersOnlineApproximatedCounter from "./membersOnlineApproximated";
 import MembersWithRoleCounter from "./membersWithRole";
 import MemeratorCounter from "./Memerator";
 import NitroBoostersCounter from "./nitroBoosters";
+import reddit from "./reddit";
 import RolesCounter from "./roles";
 import StaticCounter from "./static";
 import TwitchCounter from "./Twitch";
@@ -38,10 +38,10 @@ const counters = [
 	MembersPlayingCounter,
 	MembersConnectedCounter,
 	MembersExtendedCounter,
-	MembersOnlineApproximatedCounter,
 	MembersWithRoleCounter,
 	MemeratorCounter,
 	NitroBoostersCounter,
+	reddit,
 	RolesCounter,
 	StaticCounter,
 	TwitchCounter,

@@ -402,9 +402,9 @@ const shortNumber: Command = {
 
 		const { guild } = channel;
 
-		if (action === "enable") {
+		if (action === "enable" || action === "on") {
 			await guildService.setShortNumber(1);
-		} else if (action === "disable") {
+		} else if (action === "disable" || action === "off") {
 			await guildService.setShortNumber(-1);
 		} else {
 			throw new UserError(languagePack.commands.shortNumber.errorInvalidAction);

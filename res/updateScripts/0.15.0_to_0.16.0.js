@@ -2,7 +2,6 @@ require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
 const { DB_URI } = process.env;
-console.log(DB_URI);
 
 (async () => {
 	const mongoClient = await MongoClient.connect(DB_URI, {
