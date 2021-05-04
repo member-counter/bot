@@ -369,7 +369,9 @@
 			"bots": "Боты:",
 			"connectedUsers": "Подключённые пользователи:",
 			"channels": "Каналы:",
-			"roles": "Роли:"
+			"roles": "Роли:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Показывает, как будет выглядеть в канале предварительный вид счётчика или различных счётчиков.\n\n**Использование**```{PREFIX}preview [content]```\n**Пример**```{PREFIX}preview {members} Members```",

@@ -369,7 +369,9 @@
 			"bots": "Bots:",
 			"connectedUsers": "Usuaris conectats:",
 			"channels": "Canals:",
-			"roles": "Rols:"
+			"roles": "Rols:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Mostra una vista prèvia de com es veuran els comtpadors de un canal\n\n**Ús**```{PREFIX}preview [content]```\n**Exemple**```{PREFIX}preview {members} Members```",

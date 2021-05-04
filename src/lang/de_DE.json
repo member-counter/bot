@@ -369,7 +369,9 @@
 			"bots": "Bots:",
 			"connectedUsers": "Verbundene User:",
 			"channels": "Kanäle:",
-			"roles": "Rollen:"
+			"roles": "Rollen:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Zeigt eine Vorschau, wie ein Zähler in einem Channel aussehen wird.\n\n**Verwendung:**```{PREFIX}preview [content]```\n**Beispiel:**```{PREFIX}preview {members} Members```",

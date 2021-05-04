@@ -369,7 +369,9 @@
 			"bots": "बॉट:",
 			"connectedUsers": "संयुक्त सदस्य :",
 			"channels": "चैनले :",
-			"roles": "भूमिकाएँ :"
+			"roles": "भूमिकाएँ :",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "एक चैनल में काउंटर या विभिन्न काउंटर कैसे दिखेंगे, इसका पूर्वावलोकन दिखाता है\n\n**प्रयोग**```{PREFIX}preview [content]```\n**उदाहरण**```{PREFIX}preview {members} Members```",
