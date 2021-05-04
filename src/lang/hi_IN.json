@@ -6,7 +6,7 @@
 			"helpDescription": "क्या ये आदेश का उद्देश्य वर्णन करना आवश्यक है?",
 			"embedReply": {
 				"title": "आदेश सूची | उपसर्ग : {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[इस बॉट को अपने सर्वर में जोड़ें]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nतत्काल प्रबंध : `{PREFIX}setup`\nबॉट का उपयोग करना सीखें : `{PREFIX}guide`\n\nअधिक जानकारी प्राप्त करने के लिए आदेश दे `{PREFIX}help` और आदेश का नाम: ```\n{PREFIX}help shortNumber```\n** जानकारी : ** `()` का अर्थ है एक वैकल्पिक प्राचल जबकि `[]` का अर्थ है एक आवश्यक प्राचल",
 				"fields": [
 					{
 						"name": "**गणक**",
@@ -425,23 +425,23 @@
 					]
 				},
 				"youtube": {
-					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Youtube Stats 📊",
+					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} यूट्यूब के आँकड़े 📊",
 					"counters": [
 						{
 							"name": "youtubeSubscribers",
-							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
-							"statusCreating": "{LOADING} Creating subscriber counter",
-							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+							"template": "{youtubeSubscribers:{RESOURCE}} सदस्य",
+							"statusCreating": "{LOADING} सदस्य काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} सदस्य संख्या बनाई गई"
 						},
 						{
 							"name": "youtubeVideos",
-							"template": "{youtubeVideos:{RESOURCE}} Videos",
-							"statusCreating": "{LOADING} Creating video counter",
-							"statusCreated": "{CHECK_MARK} Video counter created"
+							"template": "{twitchFollowers:{RESOURCE}} वीडियो",
+							"statusCreating": "{LOADING} वीडियो काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} वीडियो काउंटर बनाई गई"
 						},
 						{
 							"name": "youtubeViews",
-							"template": "{youtubeViews:{RESOURCE}} Views",
+							"template": "{twitchFollowers:{RESOURCE}} यूट्यूब दर्शक",
 							"statusCreating": "{LOADING} व्यू काउंटर बनाई जा रही है",
 							"statusCreated": "{CHECK_MARK} व्यू काउंटर बनाया गया"
 						}
