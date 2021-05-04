@@ -207,6 +207,21 @@
 					"description": "Zeigt die Anzahl der Member, die den Server boosten"
 				},
 				{
+					"key": "redditMembers",
+					"name": "redditMembers",
+					"description": "Displays the amount of members for the given subreddit"
+				},
+				{
+					"key": "redditMembersOnline",
+					"name": "redditMembersOnline",
+					"description": "Displays the amount of online members for the given subreddit"
+				},
+				{
+					"key": "redditTitle",
+					"name": "redditTitle",
+					"description": "Displays the title for the given subreddit"
+				},
+				{
 					"key": "static",
 					"name": "static:number",
 					"description": "Zeigt die angegebene `number` mit benutzerdefinierter Formatierung basierend auf den Servereinstellungen an"
@@ -263,7 +278,7 @@
 			"errorMissingParams": "Fehlende Angabe, bitte beachte `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Dieser Befehl erlaubt es dir Zähler in Kurzform anzuzeigen\n\n**Verwendung**\n```{PREFIX}shortNumber [enable/disable]```\n**Beispiel**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Ungültige Aktion! Siehe `{PREFIX}help shortNumber`",
 			"success": "Erledigt! Möglicherweise musst du einige Minuten warten, um die neuen Änderungen zu sehen"
