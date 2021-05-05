@@ -6,7 +6,7 @@ import getEnv from "../utils/getEnv";
 import { UserBadges } from "../utils/Constants";
 import ReactionManager from "../utils/ReactionManager";
 const { BOT_OWNERS } = getEnv();
-
+import { MessageCollector } from "eris-collector";
 const emojiBadges = {
 	[UserBadges.DONATOR]: "❤️",
 	[UserBadges.SPONSOR]: "💎",
@@ -115,29 +115,41 @@ const user: Command = {
 
 		if (targetUser.id === author.id) {
 			await userProfileMessage.addReaction("🗑️");
+
 			ReactionManager.addReactionListener({
 				message: userProfileMessage,
 				emoji: "🗑️",
 				callback: async (reactorId, destroyListener) => {
 					if (author.id === reactorId) {
 						destroyListener();
-						const confirmMessage = await channel.createMessage(
+						const confirmationPrompt = await channel.createMessage(
 							languagePack.commands.profile.removeDataConfirmation
 						);
-						confirmMessage.addReaction("✅");
-
-						ReactionManager.addReactionListener({
-							message: confirmMessage,
-							emoji: "✅",
-							callback: async (reactorId, destroyListener) => {
-								if (author.id === reactorId) {
-									destroyListener();
-									await userSettings.remove();
-									await channel.createMessage(
-										languagePack.commands.profile.removeDataSuccess
-									);
-								}
+						const filter = (m) =>
+							(["cancel"].includes(m.content) && reactorId === author.id) ||
+							reactorId === author.id;
+						const collector = new MessageCollector(client, channel, filter, {
+							time: 60000,
+							max: 1
+						});
+						collector.on("collect", async (m) => {
+							if (
+								m.content ===
+								languagePack.commands.profile.removeDataConfirmationString
+							) {
+								await userSettings.remove();
+								confirmationPrompt.delete();
+								await channel.createMessage(
+									languagePack.commands.profile.removeDataSuccess
+								);
 							}
+							if (m.content === "cancel") {
+								collector.stop();
+								confirmationPrompt.delete();
+							}
+						});
+						collector.on("end", () => {
+							confirmationPrompt.delete();
 						});
 					}
 				}

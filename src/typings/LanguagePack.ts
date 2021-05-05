@@ -134,6 +134,7 @@ interface Profile {
 	badges: string;
 	serverUpgradesAvailable: string;
 	removeDataConfirmation: string;
+	removeDataConfirmationString: string;
 	removeDataSuccess: string;
 }
 
