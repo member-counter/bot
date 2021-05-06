@@ -49,7 +49,7 @@ const user: Command = {
 		] = content.split(/\s+/);
 
 		let targetUser: Eris.User =
-			mentions[0] ||
+			mentions.filter((user) => !user.bot)[0] ||
 			client.users.get(userRequested) ||
 			(userRequested &&
 				(await client.getRESTUser(userRequested).catch(console.error))) ||
