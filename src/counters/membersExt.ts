@@ -3,15 +3,17 @@ import Constants from "../utils/Constants";
 
 const MembersExtendedCounter: Counter = {
 	aliases: [
-		'bots',
-		'users',
-		'onlineusers',
-		'offlineusers',
-		'onlinebots',
-		'offlinebots',
+		"bots",
+		"users",
+		"onlinemembers",
+		"offlinemembers",
+		"onlineusers",
+		"offlineusers",
+		"onlinebots",
+		"offlinebots"
 	],
 	isPremium: true,
-	isEnabled: false,
+	isEnabled: true,
 	lifetime: 0,
 	execute: async ({ client, guild, resource }) => {
 		const counts = {

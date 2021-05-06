@@ -105,6 +105,12 @@ export default async (message: Eris.Message) => {
 
 							message.content = message.content.replace(prefixRegex, "");
 
+							if (matchedPrefix.startsWith("<@&")) {
+								message.roleMentions.shift();
+							} else if (matchedPrefix.startsWith("<@")) {
+								message.mentions.shift();
+							}
+
 							if (channel instanceof Eris.GuildChannel) {
 								await (command as GuildChannelCommand).run({
 									client,
