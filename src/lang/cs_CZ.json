@@ -42,11 +42,6 @@
 					"description": "Uživatelé na serveru"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Přibližný počet online uživatelů na serveru"
@@ -212,6 +207,21 @@
 					"description": "Zobrazuje celkový počet členů podporujících tento server"
 				},
 				{
+					"key": "redditMembers",
+					"name": "redditMembers",
+					"description": "Displays the amount of members for the given subreddit"
+				},
+				{
+					"key": "redditMembersOnline",
+					"name": "redditMembersOnline",
+					"description": "Displays the amount of online members for the given subreddit"
+				},
+				{
+					"key": "redditTitle",
+					"name": "redditTitle",
+					"description": "Displays the title for the given subreddit"
+				},
+				{
 					"key": "static",
 					"name": "static:number",
 					"description": "Zobrazí dané `číslo` s vlastním formátováním na základě nastavení serveru"
@@ -268,7 +278,7 @@
 			"errorMissingParams": "Chybějící parametry, prosím podívejte se na `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Tento příkaz umožňuje zobrazit počet v kompaktní formě v počítadlech\n\n**Použít:**\n```{PREFIX}shortNumber [enable/disable]```\n**Příklad:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Neznámá akce! Prosím podívejte se na `{PREFIX}help shortNumber`",
 			"success": "Done! You may have to wait a few minutes to see the new changes"
@@ -348,7 +358,8 @@
 			"helpDescription": "Zobrazuje související informace mezi vámi a botem",
 			"badges": "Odznaky",
 			"serverUpgradesAvailable": "Zbývající vylepšení serveru",
-			"removeDataConfirmation": ":warning: **Tato akce odstraní všechna date, vaše odznaky a vylepšení serveru budou navždy ztraceny, opravdu chcete pokračovat? (Ignorujte pro zrušení)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Vaše data byly úspěšně smazány"
 		},
 		"counts": {
@@ -359,7 +370,9 @@
 			"bots": "Boti:",
 			"connectedUsers": "Připojených uživatelů:",
 			"channels": "Kanály:",
-			"roles": "Role:"
+			"roles": "Role:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Zobrazuje náhled, jak bude počítadlo nebo různé počítadla vypadat v kanálu\n\n**Použití** ```{PREFIX}preview [content]```\n**Příklad** ```{PREFIX}preview {members} Uživatelů```",
@@ -370,15 +383,15 @@
 		"setup": {
 			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
-				"creatingCounts": "Creating counters...",
-				"createdCounts": "Complete",
+				"creatingCounts": "Vytváření počítadel...",
+				"createdCounts": "Kompletní",
 				"creatingCategory": "{LOADING} Creating category",
 				"createdCategory": "{CHECK_MARK} Category created"
 			},
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
 			"counterTemplates": {
 				"default": {
-					"categoryName": "📊 Server Stats 📊",
+					"categoryName": "📊 Statistiky serveru 📊",
 					"counters": [
 						{
 							"name": "onlineMembers",
@@ -394,19 +407,19 @@
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
+							"template": "Boostující uživatelé: {nitroBoosters}",
 							"statusCreating": "{LOADING} Creating booster counter",
 							"statusCreated": "{CHECK_MARK} Booster counter created"
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
+							"template": "Role: {roles}",
 							"statusCreating": "{LOADING} Creating roles counter",
 							"statusCreated": "{CHECK_MARK} Roles counter created"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
+							"template": "Kanály: {channels}",
 							"statusCreating": "{LOADING} Creating channels counter",
 							"statusCreated": "{CHECK_MARK} Channels counter created"
 						}
@@ -423,7 +436,7 @@
 						},
 						{
 							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Views",
+							"template": "{twitchViews:{RESOURCE}} sledujících",
 							"statusCreating": "{LOADING} Creating views counter",
 							"statusCreated": "{CHECK_MARK} Views counter created"
 						}
@@ -448,15 +461,15 @@
 							"name": "youtubeViews",
 							"template": "{youtubeViews:{RESOURCE}} Views",
 							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"statusCreated": "{CHECK_MARK} Zobrazovací počítadlo bylo vytvořeno"
 						}
 					]
 				}
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` \n\n**Usage**```{PREFIX}base64 [encode/decode] [data]```\n **Example**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"helpDescription": "Příkaz base64 je užitečný k přizpůsobení konkrétních počítadel nebo k vytvoření pokročilých počítačů, jako je `{{http}` \n\n**Použití:** ```{PREFIX}base64 [encode/decode] [data]```\n **Příklad:**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"invalidAction": "Neplatná akce, zadejte `encode` nebo `decode`"
 		}
 	},
 	"functions": {
@@ -468,13 +481,14 @@
 			"unknownCounter": "Neznámý počítadlo",
 			"disabled": "Počítadlo zablokováno",
 			"noBanPerms": "Pro zobrazení potřebuji oprávnění na zabanování uživatelů",
-			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu"
+			"invalidChannelLength": "Neplatná délka kanálu, prosím nastavte počítadlo znovu",
+			"notAvailable": "Není k dispozici, počkejte prosím"
 		},
 		"paginator": {
-			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"pageCounter": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"jumpPrompt": "Na kterou stránku bys chtěl přejít? Chceš-li výzvu zrušit, zadej `cancel` nebo `0`. Na odpověď máš 15 sekund.",
+			"errorPageLengthExceeded": "Číslo stránky musí být menší nebo rovno {TOTAL_PAGES}. Prosím zkuste to znovu.",
+			"errorNegativeInput": "Číslo stránky nesmí být záporné. Prosím zkuste to znovu."
 		}
 	},
 	"common": {
