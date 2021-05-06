@@ -42,11 +42,6 @@
 					"description": "Quantitat de membres que hi ha al teu servidor"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Membres aproximats en linea en el teu servidor"
@@ -212,6 +207,21 @@
 					"description": "Mostra la quantitat total de membres que esta boosteant aquest servidor"
 				},
 				{
+					"key": "redditMembers",
+					"name": "redditMembers",
+					"description": "Displays the amount of members for the given subreddit"
+				},
+				{
+					"key": "redditMembersOnline",
+					"name": "redditMembersOnline",
+					"description": "Displays the amount of online members for the given subreddit"
+				},
+				{
+					"key": "redditTitle",
+					"name": "redditTitle",
+					"description": "Displays the title for the given subreddit"
+				},
+				{
 					"key": "static",
 					"name": "static:number",
 					"description": "Mostra el nombre donat en `number` amb un format personalitzat basat en la configuració del servidor"
@@ -268,7 +278,7 @@
 			"errorMissingParams": "Falten paràmetres, si us plau, consulta `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Aquest comand et permet mostrar el nombre d'un compte en un format abreujat en comtadors que hagis col·locat en un canal de veu o categoria\n\n**Ús**\n```{PREFIX}shortNumber [enable/disable]```\n**Exemples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Acció invàlida! Per favor, consulta `{PREFIX}help shortNumber`",
 			"success": "Fet! Potser que hagis d'esperar uns minuts per poder veure els nous canvis"
@@ -348,7 +358,8 @@
 			"helpDescription": "Mostra informació relacionada entre tu i el bot",
 			"badges": "Insígnies",
 			"serverUpgradesAvailable": "Millores de servidor restants",
-			"removeDataConfirmation": ":warning: **Aquesta acció borrarà totes les teves dades, les teves insignies i millores de servidor es perdran per sempre ¿Estas segur de voler continuar? (Ignora per cancelar)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Les teves dades han estat borrades correctament"
 		},
 		"counts": {
@@ -359,7 +370,9 @@
 			"bots": "Bots:",
 			"connectedUsers": "Usuaris conectats:",
 			"channels": "Canals:",
-			"roles": "Rols:"
+			"roles": "Rols:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Mostra una vista prèvia de com es veuran els comtpadors de un canal\n\n**Ús**```{PREFIX}preview [content]```\n**Exemple**```{PREFIX}preview {members} Members```",
@@ -468,7 +481,8 @@
 			"unknownCounter": "Comptador desconegut",
 			"disabled": "Comptador deshabilitat",
 			"noBanPerms": "Necessit permisos de ban per mostrar això",
-			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo"
+			"invalidChannelLength": "Nom de canal invàlid, si us plau, torna a establir-lo",
+			"notAvailable": "No està disponible, per favor esperi"
 		},
 		"paginator": {
 			"pageCounter": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}",
