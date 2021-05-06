@@ -42,11 +42,6 @@
 					"description": "Все участники вашего сервера"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Приблизительное кол-во участников онлайн на вашем сервере"
@@ -212,6 +207,21 @@
 					"description": "Показывает общее количество участников, которые использовали буст для этого сервера"
 				},
 				{
+					"key": "redditMembers",
+					"name": "redditMembers",
+					"description": "Displays the amount of members for the given subreddit"
+				},
+				{
+					"key": "redditMembersOnline",
+					"name": "redditMembersOnline",
+					"description": "Displays the amount of online members for the given subreddit"
+				},
+				{
+					"key": "redditTitle",
+					"name": "redditTitle",
+					"description": "Displays the title for the given subreddit"
+				},
+				{
 					"key": "static",
 					"name": "static:number",
 					"description": "Показывает заданное число с форматированием, основанным на настройках сервера"
@@ -268,7 +278,7 @@
 			"errorMissingParams": "Недостаточно параметров, пожалуйста, просмотрите `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Эта команда позволяет вам отображать счётчик в более компактной форме.\n\n**Использование:**\n```{PREFIX}shortNumber [enable/disable]```\n**Примеры:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Неправильное действие! Пожалуйста, просмотрите `{PREFIX}help shortNumber`",
 			"success": "Сделано! Необходимо немного подождать (около нескольких минут) прежде, чем увидеть новые изменения"
@@ -348,7 +358,8 @@
 			"helpDescription": "Показывает связанную информацию между вами и этим ботом",
 			"badges": "Значки",
 			"serverUpgradesAvailable": "Осталось улучшений сервера",
-			"removeDataConfirmation": ":warning: **Это действие удалит все ваши данные, ваши значки и серверные улучшения будут потеряны навсегда, вы уверены, что хотите продолжить? (Игнорируйте, чтобы отменить)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Ваши данные были успешно удалены."
 		},
 		"counts": {
@@ -359,7 +370,9 @@
 			"bots": "Боты:",
 			"connectedUsers": "Подключённые пользователи:",
 			"channels": "Каналы:",
-			"roles": "Роли:"
+			"roles": "Роли:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Показывает, как будет выглядеть в канале предварительный вид счётчика или различных счётчиков.\n\n**Использование**```{PREFIX}preview [content]```\n**Пример**```{PREFIX}preview {members} Members```",
@@ -468,7 +481,8 @@
 			"unknownCounter": "Неизвестный счётчик",
 			"disabled": "Счётчик Выключен",
 			"noBanPerms": "Мне нужно право банить, чтобы показать это",
-			"invalidChannelLength": "Достигнут лимит символов в названии канала, пожалуйста, настройте счётчик заново"
+			"invalidChannelLength": "Достигнут лимит символов в названии канала, пожалуйста, настройте счётчик заново",
+			"notAvailable": "Не доступно, пожалуйста подождите"
 		},
 		"paginator": {
 			"pageCounter": "Стр. {CURRENT_PAGE}/{TOTAL_PAGES}",
