@@ -358,7 +358,8 @@
 			"helpDescription": "Siz ve bu bot arasındaki ilgili bilgileri gösterir",
 			"badges": "Rozetler",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
-			"removeDataConfirmation": ":warning: **Bu işlem tüm verilerinizi kaldıracak, rozetleriniz ve sunucu yükseltmeleriniz sonsuza kadar kaybolacak, devam etmek istediğinizden emin misiniz? (İptal etmek için bu mesajı görmezden gelin)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: I want to delete all of my data\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı"
 		},
 		"counts": {
