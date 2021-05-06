@@ -42,11 +42,6 @@
 					"description": "Mitglieder deines Servers"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Ungefähre Anzahl der Online-Member auf Ihrem Server"
@@ -134,7 +129,7 @@
 				{
 					"key": "membersPlaying",
 					"name": "membersPlaying:game name",
-					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+					"description": "Zählt wie viele Leute ein Spiel spielen. Beispiel:{membersPlaying:Minecraft}"
 				},
 				{
 					"key": "http",
@@ -159,7 +154,7 @@
 				{
 					"key": "youtubeChannelName",
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays a youtube channel name"
+					"description": "Zeigt einen YouTubenamen an"
 				},
 				{
 					"key": "twitchFollowers",
@@ -174,7 +169,7 @@
 				{
 					"key": "twitchChannelName",
 					"name": "twitchChannelName:nickname",
-					"description": "Displays a twitch channel Name"
+					"description": "Zeigt einen Twitchnamen an"
 				},
 				{
 					"key": "memeratorMemes",
@@ -212,6 +207,21 @@
 					"description": "Zeigt die Anzahl der Member, die den Server boosten"
 				},
 				{
+					"key": "redditMembers",
+					"name": "redditMembers",
+					"description": "Displays the amount of members for the given subreddit"
+				},
+				{
+					"key": "redditMembersOnline",
+					"name": "redditMembersOnline",
+					"description": "Displays the amount of online members for the given subreddit"
+				},
+				{
+					"key": "redditTitle",
+					"name": "redditTitle",
+					"description": "Displays the title for the given subreddit"
+				},
+				{
 					"key": "static",
 					"name": "static:number",
 					"description": "Zeigt die angegebene `number` mit benutzerdefinierter Formatierung basierend auf den Servereinstellungen an"
@@ -224,22 +234,22 @@
 				{
 					"key": "sum",
 					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"description": "Addiert die angegeben Zahlen"
 				},
 				{
 					"key": "substract",
 					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+					"description": "Subtrahiert die angegeben Zahlen"
 				},
 				{
 					"key": "multiply",
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"description": "Multipliziert die angegeben Zahlen"
 				},
 				{
 					"key": "divide",
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"description": "Dividiert die angegeben Zahlen"
 				},
 				{
 					"key": "modulus",
@@ -268,7 +278,7 @@
 			"errorMissingParams": "Fehlende Angabe, bitte beachte `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "Dieser Befehl erlaubt es dir Zähler in Kurzform anzuzeigen\n\n**Verwendung**\n```{PREFIX}shortNumber [enable/disable]```\n**Beispiel**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Ungültige Aktion! Siehe `{PREFIX}help shortNumber`",
 			"success": "Erledigt! Möglicherweise musst du einige Minuten warten, um die neuen Änderungen zu sehen"
@@ -348,7 +358,8 @@
 			"helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
 			"badges": "Abzeichen",
 			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
-			"removeDataConfirmation": ":warning: **Diese Aktion wird alle deine Daten löschen, deine Abzeichen und Server Verbesserungen werden für immer verloren gehen. Bist du sicher dass du fortfahren willst? (Zum Abbrechen ignorieren)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt"
 		},
 		"counts": {
@@ -359,7 +370,9 @@
 			"bots": "Bots:",
 			"connectedUsers": "Verbundene User:",
 			"channels": "Kanäle:",
-			"roles": "Rollen:"
+			"roles": "Rollen:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Zeigt eine Vorschau, wie ein Zähler in einem Channel aussehen wird.\n\n**Verwendung:**```{PREFIX}preview [content]```\n**Beispiel:**```{PREFIX}preview {members} Members```",
@@ -372,8 +385,8 @@
 			"status": {
 				"creatingCounts": "Zähler werden erstellt...",
 				"createdCounts": "Vollständig",
-				"creatingCategory": "{LOADING} Creating category",
-				"createdCategory": "{CHECK_MARK} Category created"
+				"creatingCategory": "{LOADING} Erstelle die Kategorie",
+				"createdCategory": "{CHECK_MARK} Kategorie erstellt"
 			},
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
 			"counterTemplates": {
@@ -383,32 +396,32 @@
 						{
 							"name": "onlineMembers",
 							"template": "Online: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"statusCreating": "{LOADING} Erstelle online Zähler",
+							"statusCreated": "{CHECK_MARK} Online Zähler erstellt"
 						},
 						{
 							"name": "members",
-							"template": "Members: {members}",
-							"statusCreating": "{LOADING} Creating member counter",
-							"statusCreated": "{CHECK_MARK} Members counter created"
+							"template": "Member: {members}",
+							"statusCreating": "{LOADING} Erstelle Mitglieder Zähler",
+							"statusCreated": "{CHECK_MARK} Mitglieder Zähler erstellt"
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
-							"statusCreating": "{LOADING} Creating booster counter",
-							"statusCreated": "{CHECK_MARK} Booster counter created"
+							"template": "Booster: {nitroBoosters}",
+							"statusCreating": "{LOADING} Erstelle Booster Zähler",
+							"statusCreated": "{CHECK_MARK} Booster Zähler erstellt"
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
-							"statusCreating": "{LOADING} Creating roles counter",
-							"statusCreated": "{CHECK_MARK} Roles counter created"
+							"template": "Rollen: {roles}",
+							"statusCreating": "{LOADING} Erstelle Rolle Zähler",
+							"statusCreated": "{CHECK_MARK} Booster Zähler erstellt"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
-							"statusCreating": "{LOADING} Creating channels counter",
-							"statusCreated": "{CHECK_MARK} Channels counter created"
+							"template": "Kanäle: {channels}",
+							"statusCreating": "{LOADING} Erstelle Kanal Zähler",
+							"statusCreated": "{CHECK_MARK} Kanal Zähler erstellt"
 						}
 					]
 				},
@@ -468,7 +481,8 @@
 			"unknownCounter": "Unbekannter Zähler",
 			"disabled": "Counter deaktiviert",
 			"noBanPerms": "Ich brauche Ban Berechtigungen um das anzeigen zu können",
-			"invalidChannelLength": "Ungültige Kanal Namen länge, bitte stelle den Zähler erneut ein"
+			"invalidChannelLength": "Ungültige Kanal Namen länge, bitte stelle den Zähler erneut ein",
+			"notAvailable": "Nicht verfügbar, bitte warten"
 		},
 		"paginator": {
 			"pageCounter": "Seite {CURRENT_PAGE}/{TOTAL_PAGES}",
