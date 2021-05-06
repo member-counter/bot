@@ -1,28 +1,13 @@
-import GuildCountCacheModel from "../models/GuildCountCache";
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 
 const MemberCounter: Counter = {
-  aliases: ["members", "count", "approximatedOnlineMembers", "offlineMembers", "onlineMembers"],
-  isPremium: false,
-  isEnabled: true,
-  lifetime: 0,
-  execute: async ({ guild, client }) => {
-    let guildCountCache = await GuildCountCacheModel.findOne({ guild: guild.id });
-
-    if (guildCountCache) {
-      const { members, onlineMembers } = guildCountCache;
-      return {
-        count: members,
-        members,
-        onlineMembers,
-        offlineMembers: members - onlineMembers,
-        approximatedOnlineMembers: onlineMembers,
-      }
-    } else {
-      return Constants.CounterResult.NOT_AVAILABLE;
-    }
-  },
+	aliases: ["members", "count"],
+	isPremium: false,
+	isEnabled: true,
+	lifetime: 0,
+	execute: async ({ guild, client }) => {
+		return guild.memberCount;
+	}
 };
 
 export default MemberCounter;
