@@ -5,6 +5,8 @@ const MembersExtendedCounter: Counter = {
 	aliases: [
 		"bots",
 		"users",
+		"onlinemembers",
+		"offlinemembers",
 		"onlineusers",
 		"offlineusers",
 		"onlinebots",
