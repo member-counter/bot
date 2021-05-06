@@ -122,8 +122,12 @@ const user: Command = {
 				callback: async (reactorId, destroyListener) => {
 					if (author.id === reactorId) {
 						destroyListener();
+						const profileLP = languagePack.commands.profile;
 						const confirmationPrompt = await channel.createMessage(
-							languagePack.commands.profile.removeDataConfirmation
+							profileLP.removeDataConfirmation.replace(
+								"{CONFIRMATION_STRING}",
+								profileLP.removeDataConfirmationString
+							)
 						);
 						const filter = (m) =>
 							(["cancel"].includes(m.content) && reactorId === author.id) ||
@@ -133,15 +137,10 @@ const user: Command = {
 							max: 1
 						});
 						collector.on("collect", async (m) => {
-							if (
-								m.content ===
-								languagePack.commands.profile.removeDataConfirmationString
-							) {
+							if (m.content === profileLP.removeDataConfirmationString) {
 								await userSettings.remove();
 								confirmationPrompt.delete();
-								await channel.createMessage(
-									languagePack.commands.profile.removeDataSuccess
-								);
+								await channel.createMessage(profileLP.removeDataSuccess);
 							}
 							if (m.content === "cancel") {
 								collector.stop();
