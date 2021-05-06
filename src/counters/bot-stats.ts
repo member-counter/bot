@@ -1,3 +1,4 @@
+import GuildCountCacheModel from "../models/GuildCountCache";
 import Counter from "../typings/Counter";
 
 const BotStatsCounter: Counter = {
@@ -11,7 +12,18 @@ const BotStatsCounter: Counter = {
 		let guilds = stats.guilds;
 
 		return {
-			["member-counter-users"]: users,
+			["member-counter-users"]: (
+				await GuildCountCacheModel.aggregate([
+					{
+						$group: {
+							_id: null,
+							total: {
+								$sum: "$members"
+							}
+						}
+					}
+				])
+			)[0].total,
 			["member-counter-guilds"]: guilds
 		};
 	}
