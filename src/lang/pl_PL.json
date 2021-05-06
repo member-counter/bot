@@ -358,7 +358,8 @@
 			"helpDescription": "Pokazuje powiązane informacje między tobą a tym botem",
 			"badges": "Odznaki",
 			"serverUpgradesAvailable": "Zostały aktualizacje serwera",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: I want to delete all of my data\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Your data has been removed successfully"
 		},
 		"counts": {

@@ -358,7 +358,8 @@
 			"helpDescription": "आपके और इस बॉट के बीच संबंधित जानकारी दिखाता है",
 			"badges": "पदक",
 			"serverUpgradesAvailable": "सर्वर उन्नयन अवशिष्ट",
-			"removeDataConfirmation": ":warning: **यह क्रिया आपके सभी डेटा को हटा देगी, आपके बैज और सर्वर अपग्रेड हमेशा के लिए खो जाएंगे, क्या आप वाकई जारी रखना चाहते हैं? (रद्द करने पर ध्यान न दें)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: I want to delete all of my data\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "आपका डेटा सफलतापूर्वक निकाल दिया गया है"
 		},
 		"counts": {
