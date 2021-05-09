@@ -253,7 +253,7 @@
 				},
 				{
 					"key": "modulus",
-					"name": "modulus:value1,value2,more values",
+					"name": "modulus:değer1,değer2,daha fazla değer",
 					"description": "Gets the modulus of the specified values"
 				}
 			]
@@ -288,7 +288,7 @@
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Bot prefixini değiştirir.\n\nKullanımı:```{PREFIX}prefix [yeni prefix]```",
+			"helpDescription": "Bot prefixini değiştirir.\n\nKullanım:```{PREFIX}prefix [yeni prefix]```",
 			"success": "Prefix şu şekilde değiştirildi: `{NEW_PREFIX}`",
 			"noPrefixProvided": "Bir prefix yazmalısınız"
 		},
@@ -372,10 +372,10 @@
 			"channels": "Kanal Sayısı:",
 			"roles": "Rol Sayısı:",
 			"nitroBoosters": "Boosting:",
-			"bannedMembers": "Banned members:"
+			"bannedMembers": "Banlanan Üye Sayısı:"
 		},
 		"preview": {
-			"helpDescription": "Kanalda bir sayacın veya çeşitli sayaçların nasıl görüneceğinin bir ön izlemesini gösterir\n\n**Kullanımı**```{PREFIX}preview [content]```\n**Örnek**```{PREFIX}preview {members} Üye```",
+			"helpDescription": "Kanalda bir sayacın veya çeşitli sayaçların nasıl görüneceğinin bir ön izlemesini gösterir\n\n**Kullanım**```{PREFIX}preview [content]```\n**Örnek**```{PREFIX}preview {members} Üye```",
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Kanal adı önizlemesi",
 			"channelTopic": "Kanal başlığı önizlemesi"
@@ -468,7 +468,7 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "Belirli sayaçları özelleştirmek veya `{http}` gibi gelişmiş sayaçlar oluşturmak için yararlı bir base64 yardımcı program komutu \n\n**Kullanımı**```{PREFIX}base64 [encode/decode] [data]```\n **Örnek**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"helpDescription": "Belirli sayaçları özelleştirmek veya `{http}` gibi gelişmiş sayaçlar oluşturmak için yararlı bir base64 yardımcı program komutu \n\n**Kullanım**```{PREFIX}base64 [encode/decode] [data]```\n **Örnek**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
 			"invalidAction": "Geçersiz eylem, eylem `encode` veya `decode` olmalıdır"
 		}
 	},
