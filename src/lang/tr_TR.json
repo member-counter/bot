@@ -254,7 +254,7 @@
 				{
 					"key": "modulus",
 					"name": "modulus:değer1,değer2,daha fazla değer",
-					"description": "Gets the modulus of the specified values"
+					"description": "Belirtilen değerlerin modülünü alır"
 				}
 			]
 		},
