@@ -222,7 +222,7 @@
 					"description": "Verilen subredditin başlığını görüntüler"
 				},
 				{
-					"key": "statik",
+					"key": "static",
 					"name": "static:sayı",
 					"description": "Sunucu ayarlarına göre özel biçimlendirmeyle verilen `number`ı gösterir"
 				},
