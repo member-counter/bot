@@ -223,7 +223,7 @@
 				},
 				{
 					"key": "static",
-					"name": "static:number",
+					"name": "Statstik:Nummer",
 					"description": "Zeigt die angegebene `number` mit benutzerdefinierter Formatierung basierend auf den Servereinstellungen an"
 				},
 				{
@@ -254,7 +254,7 @@
 				{
 					"key": "modulus",
 					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values"
+					"description": "Ruft den Modul der angegebenen Werte ab"
 				}
 			]
 		},
@@ -358,8 +358,8 @@
 			"helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
 			"badges": "Abzeichen",
 			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
-			"removeDataConfirmationString": "I want to delete all of my data",
+			"removeDataConfirmation": "Bitte senden Sie genau diesen Text, wenn Sie alle Ihre Daten löschen möchten: `` `{CONFIRMATION_STRING}` ``\n:warning: ** Diese Aktion entfernt alle Ihre Daten, Ihre Badges und Server-Upgrades gehen für immer verloren. Sind Sie sicher, dass Sie fortfahren möchten? (Zum Abbrechen ignorieren oder 'Abbrechen' eingeben) **",
+			"removeDataConfirmationString": "Ich möchte alle meine Daten löschen",
 			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt"
 		},
 		"counts": {
@@ -381,14 +381,14 @@
 			"channelTopic": "Kanal beschreibung Vorschau"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "Erstellt einige gesperrte Sprachkanäle mit einigen Zählern\nRichten Sie optional YouTube- oder Twitch-Kanalzähler ein\n** Verwendung ** `` `{PREFIX} Setup\n{PREFIX} Twitch einrichten [Kanalname]\n{PREFIX} Youtube einrichten [Kanallink] `` `\n** Beispiel ** `` `{PREFIX} Setup\n{PREFIX} Setup Twitch Muhriaa\n{PREFIX} Youtube einrichten https://www.youtube.com /channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
 				"creatingCounts": "Zähler werden erstellt...",
 				"createdCounts": "Vollständig",
 				"creatingCategory": "{LOADING} Erstelle die Kategorie",
 				"createdCategory": "{CHECK_MARK} Kategorie erstellt"
 			},
-			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"errorInvalidUsage": "Ungültige Verwendung finden Sie in der Hilfe zu {PREFIX}",
 			"counterTemplates": {
 				"default": {
 					"categoryName": "📊 Server Statistiken 📊",
