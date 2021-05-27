@@ -6,7 +6,7 @@
 			"helpDescription": "Ist es wirklich notwendig die Funktion dieses Befehls zu erklären?",
 			"embedReply": {
 				"title": "Liste der Befehle | prefix: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Füge den Bot zu deinem Server hinzu]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nSchnelles Setup: `{PREFIX}!setup`\nLernen sie, wie sie den Bot benutzen: `{PREFIX}guide`\n\nUm mehr Infos zu einen Befehl zu erhalten, schreibe `{PREFIX}help` plus den Befehl: ```\n{PREFIX}help shortNumber```\n**Info:** `()` steht für eine optionale Angabe während `[]` erforderlich ist",
 				"fields": [
 					{
 						"name": "**Zähler**",
@@ -27,7 +27,7 @@
 			},
 			"misc": {
 				"command": "Befehl:",
-				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"errorCommandNotFound": "Tut mir leid, ich habe keine Hilfe für ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
@@ -134,7 +134,7 @@
 				{
 					"key": "http",
 					"name": "http:options",
-					"description": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to archieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items."
+					"description": "Zeigt das Ergebnis einer http-`GET`-Anfrage zurück. Du kannst die `options` [here]einrichten (https://member-counter.eduardozgz. om/utils/http), oder erstellen Sie es manuell: `options` ist ein JSON-Objekt, das in base64 kodiert ist (du kannst das {PREFIX}base64 Kommando verwenden, um dies zu archieve zu verwenden), dieses Objekt kann die folgenden Schlüssel haben: `url`: Eine String; mit der URL der Ressource, `parseNumber`: Ein Boolean; wenn das Ergebnis eine gültige Zahl ist, wird es analysiert und angepasst in die Einstellungen Ihres Servers, `dataPath`: Ein String; wenn die Antwort ein JSON-Objekt ist, müssen Sie den Pfad zu einem Schlüssel mit einem Wert angeben, der ein String oder eine Zahl sein muss die Syntax dieses Pfades ähnlich der Syntax ist, die JS verwendet, um auf Eigenschaften und Arrayelemente zuzugreifen."
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -159,7 +159,7 @@
 				{
 					"key": "twitchFollowers",
 					"name": "twitchFollowers:nickname",
-					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
+					"description": "Zeigt die Anzahl der Kanalfolger/Follower an. Ersetzen Sie den Spitznamen durch den gewünschten Kanalnamen"
 				},
 				{
 					"key": "twitchViews",
@@ -209,21 +209,21 @@
 				{
 					"key": "redditMembers",
 					"name": "redditMembers",
-					"description": "Displays the amount of members for the given subreddit"
+					"description": "Zeigt die Anzahl der Mitglieder für den angegebenen Subreddit an"
 				},
 				{
 					"key": "redditMembersOnline",
 					"name": "redditMembersOnline",
-					"description": "Displays the amount of online members for the given subreddit"
+					"description": "Zeigt die Anzahl der Online-Mitglieder für den angegebenen Subreddit an"
 				},
 				{
 					"key": "redditTitle",
 					"name": "redditTitle",
-					"description": "Displays the title for the given subreddit"
+					"description": "Zeigt den Titel für das angegebene Subreddit an"
 				},
 				{
 					"key": "static",
-					"name": "static:number",
+					"name": "Statstik:Nummer",
 					"description": "Zeigt die angegebene `number` mit benutzerdefinierter Formatierung basierend auf den Servereinstellungen an"
 				},
 				{
@@ -254,7 +254,7 @@
 				{
 					"key": "modulus",
 					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values"
+					"description": "Ruft den Modul der angegebenen Werte ab"
 				}
 			]
 		},
@@ -358,8 +358,8 @@
 			"helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
 			"badges": "Abzeichen",
 			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
-			"removeDataConfirmationString": "I want to delete all of my data",
+			"removeDataConfirmation": "Bitte senden Sie genau diesen Text, wenn Sie alle Ihre Daten löschen möchten: `` `{CONFIRMATION_STRING}` ``\n:warning: ** Diese Aktion entfernt alle Ihre Daten, Ihre Badges und Server-Upgrades gehen für immer verloren. Sind Sie sicher, dass Sie fortfahren möchten? (Zum Abbrechen ignorieren oder 'Abbrechen' eingeben) **",
+			"removeDataConfirmationString": "Ich möchte alle meine Daten löschen",
 			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt"
 		},
 		"counts": {
@@ -381,14 +381,14 @@
 			"channelTopic": "Kanal beschreibung Vorschau"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "Erstellt einige gesperrte Sprachkanäle mit einigen Zählern\nRichten Sie optional YouTube- oder Twitch-Kanalzähler ein\n** Verwendung ** `` `{PREFIX} Setup\n{PREFIX} Twitch einrichten [Kanalname]\n{PREFIX} Youtube einrichten [Kanallink] `` `\n** Beispiel ** `` `{PREFIX} Setup\n{PREFIX} Setup Twitch Muhriaa\n{PREFIX} Youtube einrichten https://www.youtube.com /channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
 				"creatingCounts": "Zähler werden erstellt...",
 				"createdCounts": "Vollständig",
 				"creatingCategory": "{LOADING} Erstelle die Kategorie",
 				"createdCategory": "{CHECK_MARK} Kategorie erstellt"
 			},
-			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"errorInvalidUsage": "Ungültige Verwendung finden Sie in der Hilfe zu {PREFIX}",
 			"counterTemplates": {
 				"default": {
 					"categoryName": "📊 Server Statistiken 📊",
