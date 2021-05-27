@@ -20,7 +20,7 @@ class CountService {
 		return counter;
 	});
 
-	public static cache = new Map<
+	public static globalCache = new Map<
 		string,
 		{ value: number | string; expiresAt: number }
 	>();
@@ -28,13 +28,13 @@ class CountService {
 	public guild: Eris.Guild;
 	private guildSettings: GuildService;
 	private languagePack: LanguagePack;
-	private tmpCache: Map<string, string | number>;
+	private localCache: Map<string, string | number>;
 
 	private constructor(guild: Eris.Guild, guildSettings: GuildService) {
 		this.guild = guild;
 		this.guildSettings = guildSettings;
 		this.languagePack = loadLanguagePack(this.guildSettings.language);
-		this.tmpCache = new Map();
+		this.localCache = new Map();
 		this.client = Bot.client;
 	}
 
@@ -99,11 +99,11 @@ class CountService {
 		}
 	}
 
-	// Legacy counters are those counters that are gonna be in a topic, the digits are (or can be) cuztomized0+
 	public async processContent(
 		content: string,
 		canHaveCustomEmojis: boolean = false
 	): Promise<string> {
+		// Check if there are counters pending to be processed
 		while (/\{(.+?)\}/g.test(content)) {
 			for (
 				let i = 0, curlyOpenAt: number = null, isNested = false;
@@ -118,12 +118,13 @@ class CountService {
 					}
 					curlyOpenAt = i;
 				} else if (curlyOpenAt !== null && char === "}") {
-					let curlyClosedAt = i;
+					const curlyClosedAt = i;
 
 					content =
 						content.substring(0, curlyOpenAt) +
 						(await this.processCounter(
 							content.substring(curlyOpenAt + 1, curlyClosedAt),
+							// never customize digits if it's nested so the parent counter can process the result correctly
 							isNested ? false : canHaveCustomEmojis
 						)) +
 						content.substring(curlyClosedAt + 1);
@@ -140,7 +141,8 @@ class CountService {
 		counterRequested: string,
 		canHaveCustomEmojis: boolean = false
 	): Promise<string> {
-		const counterSections = counterRequested.split(":");
+		const separator = (counterRequested.includes(";")) ? ";" : ":";
+		const counterSections = counterRequested.split(separator);
 		let formattingSettingsRaw: string;
 		const formattingSettings: FormattingSettings = (() => {
 			const settings = {
@@ -153,13 +155,13 @@ class CountService {
 					counterSections[0],
 					"base64"
 				).toString("utf-8");
-				const overwriteSettings = JSON.parse(firstSectionDecoded);
+				const specificSettings = JSON.parse(firstSectionDecoded);
 
 				formattingSettingsRaw = counterSections.shift();
 
 				return {
 					...settings,
-					...overwriteSettings
+					...specificSettings
 				};
 			} catch {
 				return settings;
@@ -167,26 +169,26 @@ class CountService {
 		})();
 
 		let counterName = CountService.safeCounterName(counterSections.shift());
-		let resource = counterSections.join(":");
+		let resource = counterSections.join(separator);
 		let lifetime = 0;
 		let result: string | number;
 
 		// Try to get the value from the cache
 		if (
-			CountService.cache.get(
+			CountService.globalCache.get(
 				this.counterToKey(counterName, resource, formattingSettingsRaw)
 			)?.expiresAt > Date.now()
 		)
-			result = CountService.cache.get(
+			result = CountService.globalCache.get(
 				this.counterToKey(counterName, resource, formattingSettingsRaw)
 			).value;
 
 		if (
-			this.tmpCache.has(
+			this.localCache.has(
 				this.counterToKey(counterName, resource, formattingSettingsRaw)
 			)
 		)
-			result = this.tmpCache.get(
+			result = this.localCache.get(
 				this.counterToKey(counterName, resource, formattingSettingsRaw)
 			);
 
@@ -218,7 +220,7 @@ class CountService {
 							.log(`{${counterRequested}}: ${error}`)
 							.catch(console.error);
 						return (
-							CountService.cache.get(
+							CountService.globalCache.get(
 								this.counterToKey(counterName, resource, formattingSettingsRaw)
 							)?.value ?? Constants.CounterResult.ERROR
 						);
@@ -251,7 +253,7 @@ class CountService {
 						}
 
 						if (lifetime > 0)
-							CountService.cache.set(
+							CountService.globalCache.set(
 								this.counterToKey(extKey, resource, formattingSettingsRaw),
 								{
 									value: extValue,
@@ -259,17 +261,17 @@ class CountService {
 								}
 							);
 
-						this.tmpCache.set(
+						this.localCache.set(
 							this.counterToKey(extKey, resource, formattingSettingsRaw),
 							extValue
 						);
 					}
 
 					result =
-						CountService.cache.get(
+						CountService.globalCache.get(
 							this.counterToKey(counterName, resource, formattingSettingsRaw)
 						)?.value ??
-						this.tmpCache.get(
+						this.localCache.get(
 							this.counterToKey(counterName, resource, formattingSettingsRaw)
 						);
 				}
@@ -293,8 +295,15 @@ class CountService {
 			case Constants.CounterResult.DISABLED:
 				result = this.languagePack.functions.getCounts.disabled;
 				break;
-		}
 
+			case Constants.CounterResult.DISABLED:
+				result = this.languagePack.functions.getCounts.disabled;
+				break;
+
+			case Constants.CounterResult.NOT_AVAILABLE:
+				result = this.languagePack.functions.getCounts.notAvailable;
+				break;
+		}
 		// format result if it's a number according to the formatting settings
 		if (typeof result === "number" && !isNaN(result)) {
 			const isShortNumberEnabled = formattingSettings.shortNumber > -1;
@@ -332,22 +341,30 @@ class CountService {
 		return result.toString();
 	}
 
+	/**
+	 * Removes spaces, dashes and underscore from the name of a counter
+	 * @param name
+	 * @returns
+	 */
 	private static safeCounterName(name: string) {
 		return name.replace(/-|_|\s/g, "").toLowerCase();
 	}
 
+	/**
+	 * Converts the a counter to the key format used in the cache
+	 * @param counterName
+	 * @param resource
+	 * @param formattingSettingsRaw
+	 * @returns
+	 */
 	private counterToKey(
 		counterName: string,
 		resource: string,
 		formattingSettingsRaw: string
 	): string {
-		return [formattingSettingsRaw, counterName, resource]
+		return [formattingSettingsRaw, (CountService.safeCounterName(counterName)), resource]
 			.filter((x) => x) // remove undefined stuff
 			.join(":"); // the final thing will look like "base64Settings:counterName:ExtraParamsAkaResource", like a normal counter but without the curly braces {}
-	}
-
-	public static getCache() {
-		return CountService.cache;
 	}
 
 	public static getCounterByAlias(alias: string): Counter {

@@ -6,11 +6,11 @@ import getEnv from "../utils/getEnv";
 import { UserBadges } from "../utils/Constants";
 import ReactionManager from "../utils/ReactionManager";
 const { BOT_OWNERS } = getEnv();
-
+import { MessageCollector } from "eris-collector";
 const emojiBadges = {
 	[UserBadges.DONATOR]: "❤️",
 	[UserBadges.SPONSOR]: "💎",
-	[UserBadges.BETA_TESTER]: "🛠",
+	[UserBadges.BETA_TESTER]: "🧪",
 	[UserBadges.TRANSLATOR]: "🌎",
 	[UserBadges.CONTRIBUTOR]: "💻",
 	[UserBadges.BIG_BRAIN]: "🧠",
@@ -115,29 +115,40 @@ const user: Command = {
 
 		if (targetUser.id === author.id) {
 			await userProfileMessage.addReaction("🗑️");
+
 			ReactionManager.addReactionListener({
 				message: userProfileMessage,
 				emoji: "🗑️",
 				callback: async (reactorId, destroyListener) => {
 					if (author.id === reactorId) {
 						destroyListener();
-						const confirmMessage = await channel.createMessage(
-							languagePack.commands.profile.removeDataConfirmation
+						const profileLP = languagePack.commands.profile;
+						const confirmationPrompt = await channel.createMessage(
+							profileLP.removeDataConfirmation.replace(
+								"{CONFIRMATION_STRING}",
+								profileLP.removeDataConfirmationString
+							)
 						);
-						confirmMessage.addReaction("✅");
-
-						ReactionManager.addReactionListener({
-							message: confirmMessage,
-							emoji: "✅",
-							callback: async (reactorId, destroyListener) => {
-								if (author.id === reactorId) {
-									destroyListener();
-									await userSettings.remove();
-									await channel.createMessage(
-										languagePack.commands.profile.removeDataSuccess
-									);
-								}
+						const filter = (m) =>
+							(["cancel"].includes(m.content) && reactorId === author.id) ||
+							reactorId === author.id;
+						const collector = new MessageCollector(client, channel, filter, {
+							time: 60000,
+							max: 1
+						});
+						collector.on("collect", async (m) => {
+							if (m.content === profileLP.removeDataConfirmationString) {
+								await userSettings.remove();
+								confirmationPrompt.delete();
+								await channel.createMessage(profileLP.removeDataSuccess);
 							}
+							if (m.content === "cancel") {
+								collector.stop();
+								confirmationPrompt.delete();
+							}
+						});
+						collector.on("end", () => {
+							confirmationPrompt.delete();
 						});
 					}
 				}

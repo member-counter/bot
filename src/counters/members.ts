@@ -1,7 +1,4 @@
 import Counter from "../typings/Counter";
-import getEnv from "../utils/getEnv";
-
-const { PREMIUM_BOT } = getEnv();
 
 const MemberCounter: Counter = {
 	aliases: ["members", "count"],

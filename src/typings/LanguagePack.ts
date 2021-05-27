@@ -41,6 +41,7 @@ interface GetCounts {
 	disabled: string;
 	noBanPerms: string;
 	invalidChannelLength: string;
+	notAvailable: string;
 }
 
 interface CommandHandler {
@@ -124,6 +125,8 @@ interface Counts {
 	connectedUsers: string;
 	channels: string;
 	roles: string;
+	nitroBoosters: string;
+	bannedMembers: string;
 }
 
 interface Profile {
@@ -131,6 +134,7 @@ interface Profile {
 	badges: string;
 	serverUpgradesAvailable: string;
 	removeDataConfirmation: string;
+	removeDataConfirmationString: string;
 	removeDataSuccess: string;
 }
 

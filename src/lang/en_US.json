@@ -42,11 +42,6 @@
 					"description": "Members in your server"
 				},
 				{
-					"key": "membersplaying",
-					"name": "membersplaying:gameName",
-					"description": "Counts the amount of members playing inputed game (gameName must match what is displayed on member's game status)"
-				},
-				{
 					"key": "approximatedOnlineMembers",
 					"name": "approximatedOnlineMembers",
 					"description": "Approximated online members in your server"
@@ -212,6 +207,21 @@
 					"description": "Shows the total amount of members boosting this server"
 				},
 				{
+					"key": "redditMembers",
+					"name": "redditMembers",
+					"description": "Displays the amount of members for the given subreddit"
+				},
+				{
+					"key": "redditMembersOnline",
+					"name": "redditMembersOnline",
+					"description": "Displays the amount of online members for the given subreddit"
+				},
+				{
+					"key": "redditTitle",
+					"name": "redditTitle",
+					"description": "Displays the title for the given subreddit"
+				},
+				{
 					"key": "static",
 					"name": "static:number",
 					"description": "Shows the given `number` with custom formatting based on the server settings"
@@ -268,7 +278,7 @@
 			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable/disable]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
 			"success": "Done! You may have to wait a few minutes to see the new changes"
@@ -348,7 +358,8 @@
 			"helpDescription": "Shows related information between you and this bot",
 			"badges": "Badges",
 			"serverUpgradesAvailable": "Server upgrades left",
-			"removeDataConfirmation": ":warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Your data has been removed successfully"
 		},
 		"counts": {
@@ -359,7 +370,9 @@
 			"bots": "Bots:",
 			"connectedUsers": "Connected users:",
 			"channels": "Channels:",
-			"roles": "Roles:"
+			"roles": "Roles:",
+			"nitroBoosters": "Boosting:",
+			"bannedMembers": "Banned members:"
 		},
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel\n\n**Usage**```{PREFIX}preview [content]```\n**Example**```{PREFIX}preview {members} Members```",
@@ -468,7 +481,8 @@
 			"unknownCounter": "Unknown counter",
 			"disabled": "Counter Disabled",
 			"noBanPerms": "I need ban permissions to show this",
-			"invalidChannelLength": "Invalid channel name length, please setup the counter again"
+			"invalidChannelLength": "Invalid channel name length, please setup the counter again",
+			"notAvailable": "Not available, please wait"
 		},
 		"paginator": {
 			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
