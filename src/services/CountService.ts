@@ -141,7 +141,8 @@ class CountService {
 		counterRequested: string,
 		canHaveCustomEmojis: boolean = false
 	): Promise<string> {
-		const counterSections = counterRequested.split(":");
+		const separator = (counterRequested.includes(";")) ? ";" : ":";
+		const counterSections = counterRequested.split(separator);
 		let formattingSettingsRaw: string;
 		const formattingSettings: FormattingSettings = (() => {
 			const settings = {
@@ -168,7 +169,7 @@ class CountService {
 		})();
 
 		let counterName = CountService.safeCounterName(counterSections.shift());
-		let resource = counterSections.join(":");
+		let resource = counterSections.join(separator);
 		let lifetime = 0;
 		let result: string | number;
 
