@@ -3,12 +3,12 @@ import Constants from "../utils/Constants";
 
 const MembersExtendedCounter: Counter = {
 	aliases: [
-		'bots',
-		'users',
-		'onlineusers',
-		'offlineusers',
-		'onlinebots',
-		'offlinebots',
+		"bots",
+		"users",
+		"onlineusers",
+		"offlineusers",
+		"onlinebots",
+		"offlinebots"
 	],
 	isPremium: true,
 	isEnabled: false,
