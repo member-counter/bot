@@ -110,7 +110,7 @@ function checkConfig() {
 		twitchCredentialsCheck.length !== twitchCredentialsCheckNull.length
 	) {
 		console.error(
-			`[ENV ERROR] WITCH_CLIENT_ID or TWITCH_CLIENT_SECRET is/are empty, empty the vars or fill out all`
+			`[ENV ERROR] TWITCH_CLIENT_ID or TWITCH_CLIENT_SECRET is/are empty, empty the vars or fill out all`
 		);
 		fail = true;
 	}
