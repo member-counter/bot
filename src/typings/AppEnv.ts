@@ -3,7 +3,6 @@ interface _AppEnv {
 	DEBUG: boolean;
 	UNRESTRICTED_MODE: boolean;
 	PORT: number;
-	AGENDA_ENABLED_JOBS: string[];
 	GHOST_MODE: boolean;
 
 	DISTRIBUTED: boolean;

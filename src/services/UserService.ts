@@ -5,7 +5,7 @@ class UserService {
 
 	public static async init(id: string): Promise<UserService> {
 		const doc = await UserModel.findOneAndUpdate(
-			{ user: id },
+			{ id: id },
 			{},
 			{ new: true, upsert: true }
 		);
