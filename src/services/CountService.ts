@@ -3,7 +3,6 @@ import GuildService from "./GuildService";
 import { loadLanguagePack } from "../utils/languagePack";
 import getEnv from "../utils/getEnv";
 import botHasPermsToEdit from "../utils/botHasPermsToEdit";
-import stringReplaceAsync from "../utils/stringReplaceAsyncSerial";
 import Constants from "../utils/Constants";
 import Counter from "../typings/Counter";
 import FormattingSettings from "../typings/FormattingSettings";
@@ -141,7 +140,7 @@ class CountService {
 		counterRequested: string,
 		canHaveCustomEmojis: boolean = false
 	): Promise<string> {
-		const separator = (counterRequested.includes(";")) ? ";" : ":";
+		const separator = counterRequested.includes(";") ? ";" : ":";
 		const counterSections = counterRequested.split(separator);
 		let formattingSettingsRaw: string;
 		const formattingSettings: FormattingSettings = (() => {
@@ -362,7 +361,11 @@ class CountService {
 		resource: string,
 		formattingSettingsRaw: string
 	): string {
-		return [formattingSettingsRaw, (CountService.safeCounterName(counterName)), resource]
+		return [
+			formattingSettingsRaw,
+			CountService.safeCounterName(counterName),
+			resource
+		]
 			.filter((x) => x) // remove undefined stuff
 			.join(":"); // the final thing will look like "base64Settings:counterName:ExtraParamsAkaResource", like a normal counter but without the curly braces {}
 	}

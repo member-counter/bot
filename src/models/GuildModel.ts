@@ -4,7 +4,7 @@ import getEnv from "../utils/getEnv";
 const { DISCORD_PREFIX } = getEnv();
 
 interface GuildSettingsDocument extends Document {
-	guild: string;
+	id: string;
 	premium: boolean;
 	prefix: string;
 	language: string;
@@ -17,7 +17,7 @@ interface GuildSettingsDocument extends Document {
 }
 
 const GuildSchema = new Schema({
-	guild: { type: String, require: true },
+	id: { type: String, require: true },
 	premium: { type: Boolean, default: false },
 	prefix: { type: String, default: DISCORD_PREFIX },
 	language: { type: String, default: "en_US" },

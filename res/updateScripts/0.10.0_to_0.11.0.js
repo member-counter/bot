@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+console.log("Updating from 0.10.0 to 0.11.0...");
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
@@ -29,7 +31,9 @@ const newDefaultDigits = [
 ];
 
 (async () => {
-	const mongoClient = await MongoClient.connect(DB_URI);
+	const mongoClient = await MongoClient.connect(DB_URI, {
+		useUnifiedTopology: true
+	});
 	const db = mongoClient.db();
 
 	// Guild Settings
@@ -147,6 +151,6 @@ const newDefaultDigits = [
 		);
 	}
 
-	process.stdout.write("\n");
+	process.stdout.write("\nDone\n");
 	process.exit(0);
 })();
