@@ -5,7 +5,7 @@ const ClockCounter: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ formattingSettings, resource: timeZone }) => {
+	execute: async ({ formattingSettings, unparsedArgs: timeZone }) => {
 		const coeff = 1000 * 60 * 5;
 		const date = new Date();
 		const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);

@@ -15,7 +15,7 @@ const MembersExtendedCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ client, guild, resource }) => {
+	execute: async ({ client, guild, unparsedArgs: resource }) => {
 		const counts = {
 			["bots"]: 0,
 			["users"]: 0,

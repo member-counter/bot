@@ -211,7 +211,7 @@ class CountService {
 						guildSettings: this.guildSettings,
 						aliasUsed: counterName,
 						formattingSettings,
-						resource
+						unparsedArgs: resource
 					})
 					.catch((error) => {
 						if (DEBUG) console.error(error);
