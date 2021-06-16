@@ -360,7 +360,8 @@
 			"serverUpgradesAvailable": "सर्वर उन्नयन अवशिष्ट",
 			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "आपका डेटा सफलतापूर्वक निकाल दिया गया है"
+			"removeDataSuccess": "आपका डेटा सफलतापूर्वक निकाल दिया गया है",
+			"userNotFound": "User not found in the DB"
 		},
 		"counts": {
 			"helpDescription": "कुछ मायने दिखाता है",
