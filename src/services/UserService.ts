@@ -3,6 +3,11 @@ import UserModel, { UserSettingsDocument } from "../models/UserModel";
 class UserService {
 	private constructor(public id: string, private doc: UserSettingsDocument) {}
 
+	public static async exists(id: string): Promise<boolean> {
+		const user = await UserModel.findOne({ id });
+		return !!user;
+	}
+
 	public static async init(id: string): Promise<UserService> {
 		const doc = await UserModel.findOneAndUpdate(
 			{ id: id },
