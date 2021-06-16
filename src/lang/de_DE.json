@@ -360,7 +360,8 @@
 			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
 			"removeDataConfirmation": "Bitte senden Sie genau diesen Text, wenn Sie alle Ihre Daten löschen möchten: `` `{CONFIRMATION_STRING}` ``\n:warning: ** Diese Aktion entfernt alle Ihre Daten, Ihre Badges und Server-Upgrades gehen für immer verloren. Sind Sie sicher, dass Sie fortfahren möchten? (Zum Abbrechen ignorieren oder 'Abbrechen' eingeben) **",
 			"removeDataConfirmationString": "Ich möchte alle meine Daten löschen",
-			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt"
+			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt",
+			"userNotFound": "User not found in the DB"
 		},
 		"counts": {
 			"helpDescription": "Zeigt einige Zählungen an",
