@@ -1,7 +1,6 @@
 import GuildModel, { GuildSettingsDocument } from "../models/GuildModel";
 import UserModel from "../models/UserModel";
 import GuildLogModel, { GuildLogDocument } from "../models/GuildLogModel";
-import UserError from "../utils/UserError";
 
 class GuildService {
 	private constructor(public id: string, private doc: GuildSettingsDocument) {}
@@ -124,7 +123,7 @@ class GuildService {
 	}
 
 	public async log(text: string): Promise<void> {
-		await GuildLogModel.create({ guild: this.id, text });
+		await GuildLogModel.create({ id: this.id, text });
 	}
 
 	public async getLatestLogs(amount = 20): Promise<GuildLogDocument[]> {
