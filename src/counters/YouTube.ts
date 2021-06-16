@@ -18,7 +18,7 @@ const YouTubeCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
-	execute: async ({ guild, resource: channelUrl }) => {
+	execute: async ({ guild, unparsedArgs: channelUrl }) => {
 		if (!YOUTUBE_API_KEY) throw new Error("YOUTUBE_API_KEY not provided");
 		let channel = channelUrl.replace(anyChannelMatch, "");
 		let searchChannelBy = "";

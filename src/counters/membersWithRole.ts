@@ -10,7 +10,7 @@ const MembersWithRoleCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ client, guild, resource }) => {
+	execute: async ({ client, guild, unparsedArgs: resource }) => {
 		const targetRoles: string[] = resource.split(",");
 
 		const membersWithRole = new Set<string>();

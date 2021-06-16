@@ -22,9 +22,14 @@ interface executeArgs {
 	formattingSettings: FormattingSettings;
 
 	/**
-	 * @description Resource, like an array of role IDs, or an URI
+	 * @description Resource, like a list of role IDs, a peice of text, an URI, etc
 	 */
-	resource: string;
+	unparsedArgs: string;
+
+	/**
+	 * @description The args but splited depening on which separator has been used
+	 */
+	args: string[];
 
 	/**
 	 * @description The alias that was used
