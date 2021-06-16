@@ -6,8 +6,7 @@ const CountdownCounter: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ guild, unparsedArgs: resource }) => {
-		const args = resource.split(":");
+	execute: async ({ guild, unparsedArgs: resource, args }) => {
 		const format = args[1] || "%d:%h:%m";
 		const date = parseInt(args[0], 10) * 1000 || 0;
 		let timeLeft = new Date(date - Date.now());

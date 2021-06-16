@@ -338,7 +338,9 @@ const upgradeServer: Command = {
 					);
 				}
 				case "noUpgradesAvailable": {
-					throw new UserError(noServerUpgradesAvailable);
+					throw new UserError(
+						noServerUpgradesAvailable.replace("{PREFIX}", guildService.prefix)
+					);
 				}
 				default:
 					throw error;
