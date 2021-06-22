@@ -1,5 +1,4 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 import { query, Type } from "gamedig";
 import fetch from "node-fetch";
 import AbortController from "abort-controller";

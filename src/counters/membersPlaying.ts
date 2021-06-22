@@ -1,5 +1,4 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 
 const MembersPlayingCounter: Counter = {
 	aliases: ["membersplaying"],

@@ -1,5 +1,4 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 import getEnv from "../utils/getEnv";
 
 const { NODE_ENV } = getEnv();
