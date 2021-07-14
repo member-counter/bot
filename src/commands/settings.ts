@@ -29,10 +29,9 @@ const seeSettings: Command = {
 			langText,
 			localeText,
 			shortNumberText,
-			premiumText,
-			premiumNoTierText,
-			premiumConfirmedText,
 			allowedRolesText,
+			noText,
+			yesText,
 			countersText,
 			customNumbersText,
 			warningNoPermsText,
@@ -41,7 +40,6 @@ const seeSettings: Command = {
 
 		const {
 			prefix,
-			premium,
 			language,
 			locale,
 			shortNumber,
@@ -55,14 +53,11 @@ const seeSettings: Command = {
 		let logsSection: string[] = [];
 
 		// format general settings
-		generalSection += `${premiumText} ${
-			premium ? premiumConfirmedText : premiumNoTierText
-		}\n`;
 		generalSection += `${prefixText} \`${prefix}\`\n`;
 		generalSection += `${langText} \`${language}\`\n`;
 		generalSection += `${localeText} \`${locale}\`\n`;
 		generalSection += `${shortNumberText} \`${
-			shortNumber > -1 ? premiumConfirmedText : premiumNoTierText
+			shortNumber > -1 ? yesText : noText
 		}\`\n`;
 		generalSection += `${
 			allowedRoles.length
