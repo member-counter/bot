@@ -15,7 +15,7 @@
 					},
 					{
 						"name": "**Server Einstellungen**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}premium```",
 						"inline": true
 					},
 					{
@@ -34,7 +34,7 @@
 			"helpDescription": "Zeigt dir eine Anleitung zur Verwendung des Bots",
 			"pagesText": "Seite {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Vielen Dank das du Member Counter zu deinem Server hinzugefügt hast!**\n__**Erstelle/Ändere einen Counter**__\nFür dieses Beispiel verwenden wir `{members}`, womit die gesamte Anzahl der Mitglieder des Servers gezählt werden, aber du findest weitere Zähler auf den nächsten Seiten.\nDu kannst diesen Zähler an einer der folgenden Stellen platzieren:\n\n- In einem **Sprach**kanal **Namen**\n- In einem **Kategorie Namen**\n- In einer **Text**kanal *Beschreibung**\n- In einer **News**kanal *Beschreibung**\n\nErstelle einen Channel, editiere ihn und schreibe `{members}` in Name oder Beschreibung und klicke 'änderung speichern'\n\nDu kannst auch mehrer Zähler im Namen oder der Beschreibung verwenden und kombinieren. Hier ist ein Beispiel:\n```\n{onlineMembers}/{members} Online Mitglieder, {youtubeSubscribers:https://www.youtube.com/user/enyay} Abonnenten!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins und Moderatoren sind Online!\n```\n\n> Wenn du das Zeichen Limit erreichst während du einen Kanal Editierst versuche es mit `{PREFIX}help editChannel`\n> Die aktuell eingestellten Zähler kannst du mit `{PREFIX}seeSettings` sehen, nützich um mehr Zähler hinzuzufügen ohne dabei bisherige zu deaktivieren\n\n__**Entferne einen Zähler**__\nEditierre den Kanal und schreibe `{disable}` in den Namen/die Beschreibung, Member Counter wird es durch ein \\✅ ersetzen, was bedeutet das der Channel erfolgreich entfernt wurde.\n\nDu kannst du den Kanal auch direkt löschen",
-			"countersHeader": "__**Zähler**__\n> Du solltest den Entwicklermodus von Discord aktivieren (Benutzereinstellungen > Erscheinungsbild > Erweitert > Entwicklermodus)\n> Um eine ID zu erhalten, rechts-klicke Channel/Rolle und klicke \"ID kopieren\"\n\n> Zähler mit einem Sternchen (\\*) sind Premium Zähler, erhalte mehr Infos mit  `{PREFIX}help upgradeServer`\n\n> Wenn du die Zahlenformatierung eines Zähler unabhängig von den Servereinstellungen ändern möchten, schau auf diese [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), oder ändere es manuell, indem du diesen Anweisungen folgst [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -306,9 +306,8 @@
 				"langText": "Sprache:",
 				"localeText": "Region:",
 				"shortNumberText": "Kurze Nummer (compact notation):",
-				"premiumText": "Premium:",
-				"premiumNoTierText": "Nein",
-				"premiumConfirmedText": "Ja",
+				"noText": "Nein",
+				"yesText": "Ja",
 				"allowedRolesText": "Zulässige Rollen um Verwaltungsbefehle auszuführen:",
 				"countersText": "Zähler:",
 				"customNumbersText": "Benutzerdefinierte Zahlen:",
@@ -327,15 +326,15 @@
 			"wait": "Warte! Ich bin dabei es zu aktualisieren!"
 		},
 		"upgradeServer": {
-			"helpDescription": "Dieser Command erlaubt es dir Member Counter Premium einzuladen, um diesen Command zu benutzen brauchst du einen Premium Account den du erhälst indem du mindestens 5 USD spendest: `{PREFIX}donate}`.",
+			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "Erledigt! Als nächstes kannst du den Premium Bot einladen:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Du kannst diesen Server nicht Verbessern da er bereits Premium besitzt.",
-			"noServerUpgradesAvailable": "Du kannst keine weiteren Server verbessern da du keine Verbesserungen mehr zur verfügung hast, mit `{PREFIX}profile` kannst du die übrigen Verbesserungen einsehen und mit `{PREFIX}donate` weitere erhalten"
+			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
 		},
 		"info": {
 			"helpDescription": "Liste aller hilfreichen Links",
 			"embedReply": {
-				"description": "[Füge mich zu deinem Server hinzu]({BOT_INVITE_URL})\n[Support Server]({BOT_SERVER_URL})\n[GitHub Quelle](https://github.com/eduardozgz/member-counter-bot)\n[Donations]({DONATION_URL})"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -343,22 +342,11 @@
 			"success": "Sprache erfolgreich aktualisiert.",
 			"errorNotFound": "Liste der verfügbaren Sprachen:"
 		},
-		"donate": {
-			"helpDescription": "Zeigt die Top-Spenden an.",
-			"embedReply": {
-				"title": "Gefällt dir mein Bot? Unterstütze mich! (Klicke hier)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "Leere Notiz"
-			},
-			"errorExchangeFetch": "Fehler beim Abrufen der Wechselkurse"
-		},
 		"profile": {
 			"helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
 			"badges": "Abzeichen",
 			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
-			"removeDataConfirmation": "Bitte senden Sie genau diesen Text, wenn Sie alle Ihre Daten löschen möchten: `` `{CONFIRMATION_STRING}` ``\n:warning: ** Diese Aktion entfernt alle Ihre Daten, Ihre Badges und Server-Upgrades gehen für immer verloren. Sind Sie sicher, dass Sie fortfahren möchten? (Zum Abbrechen ignorieren oder 'Abbrechen' eingeben) **",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "Ich möchte alle meine Daten löschen",
 			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt",
 			"userNotFound": "User not found in the DB"
