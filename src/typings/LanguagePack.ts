@@ -64,7 +64,6 @@ interface Commands {
 	upgradeServer: UpgradeServer;
 	info: Info;
 	lang: Lang;
-	donate: Donate;
 	profile: Profile;
 	counts: Counts;
 	preview: Preview;
@@ -139,22 +138,6 @@ interface Profile {
 	userNotFound: string;
 }
 
-interface Donate {
-	helpDescription: string;
-	embedReply: EmbedReply3;
-	misc: Misc2;
-	errorExchangeFetch: string;
-}
-
-interface Misc2 {
-	emptyNote: string;
-}
-
-interface EmbedReply3 {
-	title: string;
-	fields: any[];
-}
-
 interface Lang {
 	helpDescription: string;
 	success: string;
@@ -200,9 +183,8 @@ interface SettingsMessage {
 	langText: string;
 	localeText: string;
 	shortNumberText: string;
-	premiumText: string;
-	premiumNoTierText: string;
-	premiumConfirmedText: string;
+	noText: string;
+	yesText: string;
 	allowedRolesText: string;
 	countersText: string;
 	customNumbersText: string;
