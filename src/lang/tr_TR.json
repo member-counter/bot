@@ -15,7 +15,7 @@
 					},
 					{
 						"name": "**Ayar Komutları**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}premium```",
 						"inline": true
 					},
 					{
@@ -34,7 +34,7 @@
 			"helpDescription": "Size botun nasıl kullanılacağına dair bir rehber gösterir",
 			"pagesText": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Sunucunuza Member Counter'ı eklediğiniz için teşekkürler!**\n__**Sayaç oluşturma/düzenleme**__\nBu örnek için, discord sunucunuzdaki toplam üye sayısını sayan `{members}`ı kullanacağız, ancak sonraki sayfalarda daha fazla sayaç bulacaksınız.\nBu sayacı aşağıdaki yerlerden birine yerleştirebilirsiniz:\n\n- **ses** kanal **adına**\n- **kategori adına**\n- **yazı** kanalı **başlığına**\n- **duyuru** kanalı **başlığına**\n\nŞimdi yeni bir kanal oluşturun, düzenleyin ve ada veya başlığa `{members}` yazın ve 'değişiklikleri kaydet'e tıklayın\n\nAyrıca bir ad/başlığa birden fazla sayaç ekleyebilir ve bunları kendi içeriğinizle birleştirebilirsiniz, işte örnekler:\n```\n{onlineMembers}/{members} Aktif Üye, {youtubeSubscribers:https://www.youtube.com/user/enyay} Abone!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Yönetici ve mod aktif!\n```\n\n> Bir adı/konuyu düzenlerken karakter sınırına ulaşırsanız, lütfen `{PREFIX}help editChannel` ile kontrol edin.\n> Mevcut sayaç yapılandırmalarını `{PREFIX}seeSettings` ile görebilirsiniz, bu, önceki sayaçları devre dışı bırakmadan daha fazla sayaç eklemek için kullanışlıdır.\n__**Sayaç kaldırma**__\nKanalı düzenleyin ve kanal adına/başlığa {disable} yazın, Member Counter kanal adını \\✅ olarak değiştirecektir, bu şey kanalın tüm sayaçlarını başarıyla kaldırdığınız anlamına gelir.\nDoğrudan kanalı da silebilirsiniz",
-			"countersHeader": "__**Sayaçlar**__\n> Geliştirici modunu Discord'da etkinleştirmelisiniz (Kullanıcı Ayarları > Görünüm > Gelişmiş > Geliştirici modu)\n> Bir ID almak için bir kanala/role sağ tıklayın ve \"IDyi Kopyala\"ya tıklayın.\n\n> Yıldız işaretli (\\*) sayaçlar premium sayaçlardır, `{PREFIX}help upgradeServer` bölümünden daha fazla bilgi alabilirsiniz.\n\n> Sayaçtaki sayı biçimlendirmesini sunucu ayarlarından bağımsız olarak değiştirmek istiyorsanız, bu [sayfa](https://member-counter.eduardozgz.com/utils/overwrite-settings)yı ziyaret ediniz veya, bu [talimatlar](https://github.com/eduardozgz/member-counter-bot/issues/98)ı okuyarak bunu manuel olarak da yapabilirsiniz\n\n",
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -306,9 +306,8 @@
 				"langText": "Dil:",
 				"localeText": "Yer:",
 				"shortNumberText": "Kısa sayı (kompakt gösterim):",
-				"premiumText": "Premium:",
-				"premiumNoTierText": "Kapalı",
-				"premiumConfirmedText": "Aktif",
+				"noText": "Kapalı",
+				"yesText": "Aktif",
 				"allowedRolesText": "Yönetim komutlarını kullanması için izin verilen roller:",
 				"countersText": "Sayaçlar:",
 				"customNumbersText": "Özel sayılar:",
@@ -327,15 +326,15 @@
 			"wait": "Lütfen bekleyin! Zaten güncelliyorum!"
 		},
 		"upgradeServer": {
-			"helpDescription": "Bu komut, Member Counter Premium'u davet etmenize olanak tanır, bu komutu kullanmak için en az 5 dolar bağış yaparak alabileceğiniz bir premium hesabınızın olması gerekir: `{PREFIX}donate`.",
+			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "Tamamdır! Bir sonraki adım, premium botu davet etmektir:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Sunucu zaten premium olduğu için sunucuyu daha fazla yükseltemezsiniz.",
-			"noServerUpgradesAvailable": "Daha fazla sunucu yükseltme hakkınız olmadığı için sunucu yükseltmesi yapamazsınız, `{PREFIX}profile` ile ne kadar hakkınızın kaldığını kontrol edebilir veya `{PREFIX}donate` ile daha fazla hak satın alabilirsiniz"
+			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
 		},
 		"info": {
 			"helpDescription": "Yararlı linklerin listesi",
 			"embedReply": {
-				"description": "[Beni Sunucunuza Eklemek İçin Tıklayın]({BOT_INVITE_URL})\n[Destek Sunucum]({BOT_SERVER_URL})\n[GitHub Repositoryim](https://github.com/eduardozgz/member-counter-bot)\n[Bağış Linkim]({DONATION_URL})"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -343,22 +342,11 @@
 			"success": "Dil başarıyla değiştirildi.",
 			"errorNotFound": "Mevcut dillerin listesi:"
 		},
-		"donate": {
-			"helpDescription": "Yapılan en iyi bağışları gösterir.",
-			"embedReply": {
-				"title": "Botu beğendiniz mi? Bağışta bulunabilirsiniz! (Buraya Tıklayınız)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "Boş not"
-			},
-			"errorExchangeFetch": "Döviz kurlarını kontrol edilirken bir hata oluştu"
-		},
 		"profile": {
 			"helpDescription": "Siz ve bu bot arasındaki ilgili bilgileri gösterir",
 			"badges": "Rozetler",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı",
 			"userNotFound": "Kullanıcı DB'de bulunamadı"
