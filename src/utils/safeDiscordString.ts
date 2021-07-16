@@ -4,15 +4,15 @@
  */
 const safeDiscordString = (str: string, chars = 2000): string[] => {
 	const splited = str.split("\n");
-	let result: string[] = [""];
+	let result: string[] = [];
 
 	for (let portion of splited) {
 		const last = result.length - 1;
 
-		if ((result[last] + portion).length < chars) {
+		if (result[last] && (result[last] + portion).length < chars) {
 			result[last] = result[last] + "\n" + portion;
 		} else {
-			result.push(portion + "\n");
+			result.push(portion);
 		}
 	}
 	return result;

@@ -20,7 +20,7 @@ services:
       - default
 
   member-counter-bot-mongodb:
-    image: mongo:3.6
+    image: mongo:4.4.6
     container_name: Member-Counter-DB
     restart: always
     volumes:
@@ -41,5 +41,14 @@ services:
     ports:
       - "6379:6379"
 
+  member-counter-bot-mongoex:
+    image: mongo-express
+    container_name: Member-Counter-MongoEX
+    environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME=monokai
+      - ME_CONFIG_MONGODB_SERVER=member-counter-bot-mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+    ports:
+      - "8081:8081"
 networks:
   default:
