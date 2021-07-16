@@ -453,6 +453,17 @@
 							"statusCreated": "{CHECK_MARK} Zobrazovací počítadlo bylo vytvořeno"
 						}
 					]
+				},
+				"twitter": {
+					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"counters": [
+						{
+							"name": "twitterFollowers",
+							"template": "{twitterFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
+						}
+					]
 				}
 			}
 		},
