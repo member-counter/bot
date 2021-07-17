@@ -27,7 +27,7 @@
 			},
 			"misc": {
 				"command": "Команда:",
-				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"errorCommandNotFound": "Извините, я не смог найти информацию про ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
