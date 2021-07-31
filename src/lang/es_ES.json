@@ -258,6 +258,40 @@
 				}
 			]
 		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium",
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Use **all** the counters that exists in the bot, like `{youtubeSubscribers}`, `{}` or `{membersWithRole}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters`",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100k members, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Set a custom profile picture and username for the bot",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
+		},
 		"lockChannel": {
 			"helpDescription": "Puedes usar esta comando para mostrar un candado (🔒) en ved de un altavoz (🔊) en canales de voz\n\n**Usage**```{PREFIX}lockChannel [id del canal]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Hecho! Ahora, **para usuarios no administradores**, el canal sera mostrado con un 🔒",
@@ -319,12 +353,6 @@
 			"helpDescription": "Restablece los ajustes del bot para este servidor a los de por defecto",
 			"done": "Restablecido a los ajustes por defecto"
 		},
-		"update": {
-			"helpDescription": "Si crees que algún contador esta atascado, usa este comando para forzar su actualización.",
-			"inProgress": "Actualizando los contadores, esto podría tomar un tiempo.",
-			"success": "Hecho.",
-			"wait": "Espera! Aún lo estoy actualizando!"
-		},
 		"upgradeServer": {
 			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "Hecho! El siguiente paso es invitar al bot premium:\n{BOT_LINK}",
@@ -334,7 +362,7 @@
 		"info": {
 			"helpDescription": "Lista de enlaces útiles",
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
