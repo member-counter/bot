@@ -15,7 +15,7 @@
 					},
 					{
 						"name": "**Ustawienia Serwera**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}premium```",
 						"inline": true
 					},
 					{
@@ -34,7 +34,7 @@
 			"helpDescription": "Pokazuje poradnik jak użyć bota",
 			"pagesText": "Strona {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "** Dziękujemy za dodanie Member Counter do serwera! **\n__ ** Utwórz / edytuj licznik ** __\nW tym przykładzie użyjemy `{members}`, która zlicza całkowitą liczbę członków na twoim serwerze discord, ale znajdziesz więcej liczników na następnych stronach\nMożesz umieścić ten licznik w jednym z następujących miejsc:\n\n- W ** głosowym ** kanale ** nazwa **\n- W  ** kategorii ** knału ** nazwa **\n- W ** tekstowym ** kanale ** temat **\n- W ** wiadomości  ** kanału ** temat *\n\nTeraz utwórz nowy kanał, edytuj go i napisz „{members}` w nazwie lub temacie i kliknij „zapisz zmiany”\n\nMożesz także dodać wiele liczników do jednej nazwy / tematu i połączyć je z własną treścią, oto przykład:\n\n{onlineMembers}/{members} Członkowie Online, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subskrypcje!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admini i moderatorzy są online!\n```\n\n> Jeśli osiągniesz limit znaków podczas edytowania nazwy/tematu, sprawdź „{PREFIX} help editChannel`\n> Możesz zobaczyć bieżące konfiguracje liczników za pomocą `{PREFIX} seeSettings`, przydatne jest dodanie większej liczby liczników bez wyłączania poprzednich\n\n__ ** Usuń licznik ** __\nW nazwie kanału głosowego / kategorii:\nEdytuj nazwę kanału i wpisz „{disable}” w nazwie, Member Counter zastąpi ją „✔”, co oznacza, że ​​pomyślnie usunąłeś wszystkie liczniki tego kanału\n\nMożesz także usunąć kanał bezpośrednio",
-			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}help upgradeServer`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -258,6 +258,40 @@
 				}
 			]
 		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium",
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Use **all** the counters that exists in the bot, like `{youtubeSubscribers}`, `{}` or `{membersWithRole}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters`",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100k members, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Set a custom profile picture and username for the bot",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
+		},
 		"lockChannel": {
 			"helpDescription": "Możesz użyć tej komendy aby pokazywało zamknięte  (🔒) zamiast głośnika (🔊) w kanałach głosowych\n\n**Użycie**```{PREFIX}lockChannel [channel id]```\n **Przykład**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Gotowe! Teraz, **dla użytkowników bez admin'a**, then kanał będzie wyświetlać  🔒",
@@ -306,9 +340,8 @@
 				"langText": "Język:",
 				"localeText": "Locale:",
 				"shortNumberText": "Short number (compact notation):",
-				"premiumText": "Premium:",
-				"premiumNoTierText": "Nie",
-				"premiumConfirmedText": "Tak",
+				"noText": "Nie",
+				"yesText": "Tak",
 				"allowedRolesText": "Role które mają dostęp do korzystania z poleceń administracyjnych:",
 				"countersText": "Liczniki:",
 				"customNumbersText": "Niestandardowe numery:",
@@ -320,22 +353,16 @@
 			"helpDescription": "Przywraca ustawienia niestandardowe tego serwera do domyślnych",
 			"done": "Przywrócono ustawienia domyślne"
 		},
-		"update": {
-			"helpDescription": "Jeśli uważasz, że liczniki stanął, użyj tej komendy, aby zaktualizować je ponownie.",
-			"inProgress": "Aktualizacja liczników, może to chwilę potrwać.",
-			"success": "Gotowe.",
-			"wait": "Czekaj! Już to aktualizuję!"
-		},
 		"upgradeServer": {
-			"helpDescription": "Ta komenda pozwala zaprosić Member Counter Premium, aby użyć tej komendy, musisz mieć konto premium, które możesz uzyskać, przekazując darowiznę w wysokości co najmniej 5 USD: `{PREFIX}donate`.",
+			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "Gotowe! Następnym krokiem jest zaproszenie bota premium:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Nie możesz zaktualizować serwera, ponieważ ma już premium.",
-			"noServerUpgradesAvailable": "Nie możesz zrobić więcej aktualizacji serwera, ponieważ nie masz więcej dostępnych aktualizacji serwera, możesz sprawdzić ile pozostało używając `{PREFIX}profile`  lub uzysk więcej dzięki `{PREFIX}donate`"
+			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
 		},
 		"info": {
 			"helpDescription": "Lista przydatnych linków",
 			"embedReply": {
-				"description": "[Dodaj mnie na swój serwer]({BOT_INVITE_URL})\n[Support serwer]({BOT_SERVER_URL})\n[Magazyn GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Darowizny]({DONATION_URL})"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -343,24 +370,14 @@
 			"success": "Pomyślna zmiana języka.",
 			"errorNotFound": "Lista dostępnych języków:"
 		},
-		"donate": {
-			"helpDescription": "Pokazuje najwyższe darowizny.",
-			"embedReply": {
-				"title": "Podoba ci się mój bot? Wesprzyj mnie! (Kliknij tutaj)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "Pusta notatka"
-			},
-			"errorExchangeFetch": "Błąd podczas próby pobrania kursów wymiany"
-		},
 		"profile": {
 			"helpDescription": "Pokazuje powiązane informacje między tobą a tym botem",
 			"badges": "Odznaki",
 			"serverUpgradesAvailable": "Zostały aktualizacje serwera",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "Your data has been removed successfully"
+			"removeDataSuccess": "Your data has been removed successfully",
+			"userNotFound": "User not found in the DB"
 		},
 		"counts": {
 			"helpDescription": "Pokazuje niektóre liczby",
@@ -462,6 +479,17 @@
 							"template": "{youtubeViews:{RESOURCE}} Views",
 							"statusCreating": "{LOADING} Creating views counter",
 							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				},
+				"twitter": {
+					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"counters": [
+						{
+							"name": "twitterFollowers",
+							"template": "{twitterFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
 						}
 					]
 				}
