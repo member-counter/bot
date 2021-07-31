@@ -11,7 +11,8 @@
 		"start:docker": "docker-compose -f docker-compose.yml up --force-recreate --build",
 		"build": "tsc",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
-		"dev:docker": "docker-compose -f docker-compose.dev.yml up --force-recreate --build"
+		"dev:docker": "docker-compose -f docker-compose.dev.yml up --force-recreate --build",
+		"generateLPTypings": "node ./res/generateLanguagePackTypings"
 	},
 	"repository": {
 		"type": "git",
@@ -35,6 +36,7 @@
 		"eris-collector": "github:eduardozgz/eris-collector",
 		"gamedig": "^3.0.5",
 		"git-rev-sync": "^3.0.1",
+		"json-to-ts": "^1.7.0",
 		"lodash.clonedeep": "^4.5.0",
 		"mongoose": "^5.12.5",
 		"node-fetch": "^2.6.1",
@@ -68,7 +70,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "pretty-quick --staged"
+			"pre-commit": "./res/pre-commit.sh"
 		}
 	}
 }
