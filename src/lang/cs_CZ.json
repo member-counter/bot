@@ -258,6 +258,40 @@
 				}
 			]
 		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium",
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Use **all** the counters that exists in the bot, like `{youtubeSubscribers}`, `{}` or `{membersWithRole}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters`",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100k members, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Set a custom profile picture and username for the bot",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
+		},
 		"lockChannel": {
 			"helpDescription": "Pomocí tohoto příkazu může zobrazit zámek(🔒) namísto reproduktoru (🔊).\n\n**Použtí:**```{PREFIX}lockChannel [id kanálu]```\n **Příklad:**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Hotovo! Kanál je uzavřen **pro normální uživatele**. Kanál bude zobrazen s 🔒",
@@ -319,12 +353,6 @@
 			"helpDescription": "Obnoví vlastní nastavení tohoto serveru na výchozí hodnoty",
 			"done": "Nastavení obnoveno do základního stavu"
 		},
-		"update": {
-			"helpDescription": "Pokud si myslíte, že se počítadla zasekly, použijte tento příkaz k jejich opětovné aktualizaci.",
-			"inProgress": "Aktualizace počítadel, toto může chvíli trvat.",
-			"success": "Hotovo.",
-			"wait": "Počkejte! Již to aktualizuji!"
-		},
 		"upgradeServer": {
 			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "Hotovo! Dalším krokem je pozvání premium bota:\n{BOT_LINK}",
@@ -334,7 +362,7 @@
 		"info": {
 			"helpDescription": "Seznam užitečných odkazů",
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
