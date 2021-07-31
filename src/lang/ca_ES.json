@@ -15,7 +15,7 @@
 					},
 					{
 						"name": "**Configuració de servidor**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}premium```",
 						"inline": true
 					},
 					{
@@ -34,7 +34,7 @@
 			"helpDescription": "Et mostra una guia de com utilitzar el bot",
 			"pagesText": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Gracies per afegir Member Counter al teu servidor!**\n__**Crear-editar un contador**__\nPer aquest exemple anam a utilitzar el comptador `{members}`, el cual mostra la cantidad de membres que té el teu servidor, però pots trobar més comptadors en les següents pàgines\nPots colocar aquest comptador en un dels següents llocs:\n\n- En el **nom** d'un canal de **veu**\n- En el **nom** d'una **categoria**\n- En el **tema** d'un canal de **text**\n- En el **tema** d'un canal de **noticias**\n\nAra crea un canal, edita-ho, y escriu `{members}` en nom o tema, y fes click en 'Guardar canvis'\n\nTambé pots afegir diversos comptadors en un mateix nom o tema, i combinar-los amb el teu propi contingut, aqui n'hi ha un exemple:\n```\n{onlineMembers}/{members} Membres online, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscriptors!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Administradors i mods online!\n```\n\n> Si aconsegueixes el limit de caràcters mentre edites un nom/tema, consulta `{PREFIX}help editChannel`\n> Pots veure les configuracions actuals amb `{PREFIX}seeSettings`, aixó és útil si vols afegir més contadors sense borrar els anteriors accidentalment\n\n__**Borrar un contador**__\nEdita el canal y escriu `{disable}` en el nomb/tema, Member Counter el reemplaçarà amb un \\✅, aixó vol dir que els comptadors han estat borrats correctament\n\nTambé pots eliminar el canal directament",
-			"countersHeader": "__**Comptadors**__\n> Has de habilitar el mode the desenvolupador a Discord (Opcions de usuari > Apariencia > Avançat > Mode de desenvolupador)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Els contadors amb un asterisc (\\*) son contadors premium, aconsegueix més informació en `{PREFIX}help upgradeServer`\n\n> Si tu vols canviar el format del nombre en un contador independientment de les configuracions del servidor, visita aixó [pàgina](https://member-counter.eduardozgz.com/utils/overwrite-settings), o pots fer-lo manualment seguint aquestes  [instruccions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -258,6 +258,40 @@
 				}
 			]
 		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium",
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Use **all** the counters that exists in the bot, like `{youtubeSubscribers}`, `{}` or `{membersWithRole}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters`",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100k members, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Set a custom profile picture and username for the bot",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
+		},
 		"lockChannel": {
 			"helpDescription": "Pots utilitzar aquest comand per mostrar un cadenat (🔒) en lloc de un altaveu (🔊) en els canals de veu\n\n**Ús**```{PREFIX}lockChannel [id del canal]```\n **Exemple**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Fet! Ara, **para usuaris no administradors** el canal serà mostrat amb a 🔒",
@@ -306,9 +340,8 @@
 				"langText": "Llenguatge:",
 				"localeText": "Regió:",
 				"shortNumberText": "Nombres abreujats (notació compacta):",
-				"premiumText": "Premium:",
-				"premiumNoTierText": "No",
-				"premiumConfirmedText": "Si",
+				"noText": "No",
+				"yesText": "Si",
 				"allowedRolesText": "Els rols següents tenen permés utilitzar comands administratius:",
 				"countersText": "Comptadors:",
 				"customNumbersText": "Dígits personalitzats:",
@@ -320,22 +353,16 @@
 			"helpDescription": "Restaura la configuració personalitzada d’aquest servidor a per defecte",
 			"done": "Restaurada a la configuració per defecte"
 		},
-		"update": {
-			"helpDescription": "Si creieu que els comptadors estan bloquejats, utilitzeu aquest comand per actualitzar-los de nou.",
-			"inProgress": "Actualitzant els comptadors, aixó pot durar una estona.",
-			"success": "Fet.",
-			"wait": "Espereu! Ja ho estic actualitzant!"
-		},
 		"upgradeServer": {
-			"helpDescription": "Aquest comand et permet invitar Member Counter Premium, per poder utiliztar aquest comand has de tenir un compte,que podeu obtenir donant almenys 5 USD: `{PREFIX}donate`.",
+			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "Fet! El següent pas és convidar el bot premium:\n{BOT_LINK}",
 			"errorCannotUpgrade": "No podeu actualitzar el servidor perquè ja és premium.",
-			"noServerUpgradesAvailable": "No podeu fer més actualitzacions del servidor perquè no teniu més actualitzacions del servidor disponibles, podeu comprovar quant vos queda amb `{PREFIX}profile` o obtenir més coses amb `{PREFIX}donate`"
+			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
 		},
 		"info": {
 			"helpDescription": "Llista de links útils",
 			"embedReply": {
-				"description": "[Afeig-me al teu servidor]({BOT_INVITE_URL})\n[Servidor d'assistència]({BOT_SERVER_URL})\n[Repositori de GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Donacions]({DONATION_URL})"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -343,24 +370,14 @@
 			"success": "Llenguatge canviat amb éxit.",
 			"errorNotFound": "Lista de llenguatges disponibles:"
 		},
-		"donate": {
-			"helpDescription": "Mostra las donacions més grans.",
-			"embedReply": {
-				"title": "Disfrutant del meu bot? Dona'm! (Clic aqui)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "Nota buida"
-			},
-			"errorExchangeFetch": "Error mentre intentava obtenir els canvis de divises"
-		},
 		"profile": {
 			"helpDescription": "Mostra informació relacionada entre tu i el bot",
 			"badges": "Insígnies",
 			"serverUpgradesAvailable": "Millores de servidor restants",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "Les teves dades han estat borrades correctament"
+			"removeDataSuccess": "Les teves dades han estat borrades correctament",
+			"userNotFound": "User not found in the DB"
 		},
 		"counts": {
 			"helpDescription": "Mostra alguns comptadors",
@@ -462,6 +479,17 @@
 							"template": "{youtubeViews:{RESOURCE}} Views",
 							"statusCreating": "{LOADING} Creating views counter",
 							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				},
+				"twitter": {
+					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"counters": [
+						{
+							"name": "twitterFollowers",
+							"template": "{twitterFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
 						}
 					]
 				}
