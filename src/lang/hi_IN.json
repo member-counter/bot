@@ -258,6 +258,40 @@
 				}
 			]
 		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium",
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Use **all** the counters that exists in the bot, like `{youtubeSubscribers}`, `{}` or `{membersWithRole}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters`",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100k members, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Set a custom profile picture and username for the bot",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
+		},
 		"lockChannel": {
 			"helpDescription": "आप वाणी चैनलों में स्पीकर (🔊) के बजाय लॉकपैड (🔒) दिखाने के लिए इस आदेश का उपयोग कर सकते हैं\n\n**प्रयोग**```{PREFIX}lockChannel [channel id]```\n **उदाहरण**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "किये गए! अब, **गैर व्यवस्थापक उपयोगकर्ताओं के लिए**, चैनल को 🔒 के साथ प्रदर्शित किया जाएगा",
@@ -319,12 +353,6 @@
 			"helpDescription": "इस सर्वर की कस्टम समायोजन को डिफ़ॉल्ट से पुनर्स्थापित करता है",
 			"done": "समायोजन पुनः स्थापित किए गए"
 		},
-		"update": {
-			"helpDescription": "यदि आपको लगता है कि गणक अटक गए हैं तो उन्हें फिर से अपडेट करने के लिए इस आदेश का उपयोग करें।",
-			"inProgress": "गणके को अद्यतन किया जा रहा है, इसमें कुछ समय लग सकता है।",
-			"success": "कर दिया |",
-			"wait": "रुकिए! मैं पहले से ही इसे अद्यतन कर रहा हूँ!"
-		},
 		"upgradeServer": {
 			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "किये गए! अगला कदम प्रीमियम बॉट को आमंत्रित करना है :\n{BOT_LINK}",
@@ -334,7 +362,7 @@
 		"info": {
 			"helpDescription": "उपयोगी श्रंखलो की सूची",
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
