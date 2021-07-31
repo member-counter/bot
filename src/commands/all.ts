@@ -11,6 +11,7 @@ import countCommands from "./counts";
 import utilCommands from "./utils";
 import guideCommand from "./guide";
 import setupCommand from "./setup";
+import premiumCommands from "./premium";
 
 const commands: Array<Command> = [
 	...userCommands,
@@ -22,7 +23,8 @@ const commands: Array<Command> = [
 	...countCommands,
 	...utilCommands,
 	...guideCommand,
-	...setupCommand
+	...setupCommand,
+	...premiumCommands
 ];
 
 export default commands;

@@ -51,6 +51,7 @@ interface CommandHandler {
 interface Commands {
 	help: Help;
 	guide: Guide;
+	premium: Premium;
 	lockChannel: LockChannel;
 	editChannel: EditChannel;
 	setDigit: SetDigit;
@@ -60,7 +61,6 @@ interface Commands {
 	role: Role;
 	seeSettings: SeeSettings;
 	resetSettings: ResetSettings;
-	update: Update;
 	upgradeServer: UpgradeServer;
 	info: Info;
 	lang: Lang;
@@ -87,6 +87,7 @@ interface CounterTemplates {
 	default: Default;
 	twitch: Default;
 	youtube: Default;
+	twitter: Default;
 }
 
 interface Default {
@@ -160,13 +161,6 @@ interface UpgradeServer {
 	noServerUpgradesAvailable: string;
 }
 
-interface Update {
-	helpDescription: string;
-	inProgress: string;
-	success: string;
-	wait: string;
-}
-
 interface ResetSettings {
 	helpDescription: string;
 	done: string;
@@ -237,6 +231,11 @@ interface LockChannel {
 	errorInvalidChannel: string;
 	errorNoPerms: string;
 	errorNotFound: string;
+}
+
+interface Premium {
+	helpDescription: string;
+	embedReply: EmbedReply;
 }
 
 interface Guide {
