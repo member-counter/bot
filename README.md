@@ -27,6 +27,7 @@ Read this guide to setup this bot using docker: https://docs.membercounter.bot/g
 
 ```
 git clone -b dev https://github.com/eduardozgz/member-counter-bot.git
+cd member-counter-bot
 npm install
 ```
 
