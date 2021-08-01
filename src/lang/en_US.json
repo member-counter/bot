@@ -266,22 +266,22 @@
 				"fields": [
 					{
 						"name": "**✅ ALL the counters**",
-						"value": "Use **all** the counters that exists in the bot, like `{youtubeSubscribers}`, `{}` or `{membersWithRole}`",
+						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
 						"name": "**✅ More accurate**",
-						"value": "Get more accurate counts in all members related counters`",
+						"value": "Get more accurate counts in all members related counters",
 						"inline": false
 					},
 					{
 						"name": "**✅ Unlimited servers**",
-						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100k members, quarterly",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100,000 members, quarterly",
 						"inline": false
 					},
 					{
 						"name": "**✅ Custom bot**",
-						"value": "Set a custom profile picture and username for the bot",
+						"value": "Use your own bot account, with your chosen profile picture and username",
 						"inline": false
 					},
 					{
