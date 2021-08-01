@@ -296,10 +296,6 @@ class CountService {
 				result = this.languagePack.functions.getCounts.disabled;
 				break;
 
-			case Constants.CounterResult.DISABLED:
-				result = this.languagePack.functions.getCounts.disabled;
-				break;
-
 			case Constants.CounterResult.NOT_AVAILABLE:
 				result = this.languagePack.functions.getCounts.notAvailable;
 				break;
