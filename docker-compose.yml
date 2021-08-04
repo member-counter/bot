@@ -18,7 +18,7 @@ services:
       - default
 
   member-counter-bot-mongodb:
-    image: mongo:3.6
+    image: mongo:4.4.6
     container_name: Member-Counter-DB
     restart: always
     volumes:

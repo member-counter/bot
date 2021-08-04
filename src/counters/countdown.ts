@@ -1,13 +1,11 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 
 const CountdownCounter: Counter = {
 	aliases: ["countdown"],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ guild, resource }) => {
-		const args = resource.split(":");
+	execute: async ({ guild, unparsedArgs: resource, args }) => {
 		const format = args[1] || "%d:%h:%m";
 		const date = parseInt(args[0], 10) * 1000 || 0;
 		let timeLeft = new Date(date - Date.now());

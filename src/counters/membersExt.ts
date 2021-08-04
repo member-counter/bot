@@ -1,5 +1,4 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 
 const MembersExtendedCounter: Counter = {
 	aliases: [
@@ -13,7 +12,7 @@ const MembersExtendedCounter: Counter = {
 	isPremium: true,
 	isEnabled: false,
 	lifetime: 0,
-	execute: async ({ client, guild, resource }) => {
+	execute: async ({ client, guild, unparsedArgs: resource }) => {
 		const counts = {
 			["bots"]: 0,
 			["users"]: 0,

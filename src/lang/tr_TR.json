@@ -15,7 +15,7 @@
 					},
 					{
 						"name": "**Ayar Komutları**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}premium```",
 						"inline": true
 					},
 					{
@@ -258,6 +258,40 @@
 				}
 			]
 		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium",
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100,000 members, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Use your own bot account, with your chosen profile picture and username",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
+		},
 		"lockChannel": {
 			"helpDescription": "Ses kanallarında hoparlör (🔊) yerine bir kilit paneli (🔒) göstermek için bu komutu kullanabilirsiniz.\n\n**Kullanım**```{PREFIX}lockChannel [kanal id]```\n **Örnek**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Tamamdır! Artık **yönetici olmayan kullanıcılar için** kanal 🔒 olarak görüntülenecektir",
@@ -306,9 +340,8 @@
 				"langText": "Dil:",
 				"localeText": "Yer:",
 				"shortNumberText": "Kısa sayı (kompakt gösterim):",
-				"premiumText": "Premium:",
-				"premiumNoTierText": "Kapalı",
-				"premiumConfirmedText": "Aktif",
+				"noText": "Kapalı",
+				"yesText": "Aktif",
 				"allowedRolesText": "Yönetim komutlarını kullanması için izin verilen roller:",
 				"countersText": "Sayaçlar:",
 				"customNumbersText": "Özel sayılar:",
@@ -320,22 +353,16 @@
 			"helpDescription": "Değiştirilmiş ayarları varsayılan ayarlara geri çevirir.",
 			"done": "Ayarlar başarıyla sıfırlandı."
 		},
-		"update": {
-			"helpDescription": "Sayaçların sıkıştığını düşünüyorsanız, bunları güncellemek için bu komutu kullanın.",
-			"inProgress": "Sayaçların güncellenmesi biraz zaman alabilir.",
-			"success": "Tamamdır.",
-			"wait": "Lütfen bekleyin! Zaten güncelliyorum!"
-		},
 		"upgradeServer": {
-			"helpDescription": "Bu komut, Member Counter Premium'u davet etmenize olanak tanır, bu komutu kullanmak için en az 5 dolar bağış yaparak alabileceğiniz bir premium hesabınızın olması gerekir: `{PREFIX}donate`.",
+			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "Tamamdır! Bir sonraki adım, premium botu davet etmektir:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Sunucu zaten premium olduğu için sunucuyu daha fazla yükseltemezsiniz.",
-			"noServerUpgradesAvailable": "Daha fazla sunucu yükseltme hakkınız olmadığı için sunucu yükseltmesi yapamazsınız, `{PREFIX}profile` ile ne kadar hakkınızın kaldığını kontrol edebilir veya `{PREFIX}donate` ile daha fazla hak satın alabilirsiniz"
+			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
 		},
 		"info": {
 			"helpDescription": "Yararlı linklerin listesi",
 			"embedReply": {
-				"description": "[Beni Sunucunuza Eklemek İçin Tıklayın]({BOT_INVITE_URL})\n[Destek Sunucum]({BOT_SERVER_URL})\n[GitHub Repositoryim](https://github.com/eduardozgz/member-counter-bot)\n[Bağış Linkim]({DONATION_URL})"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -343,24 +370,14 @@
 			"success": "Dil başarıyla değiştirildi.",
 			"errorNotFound": "Mevcut dillerin listesi:"
 		},
-		"donate": {
-			"helpDescription": "Yapılan en iyi bağışları gösterir.",
-			"embedReply": {
-				"title": "Botu beğendiniz mi? Bağışta bulunabilirsiniz! (Buraya Tıklayınız)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "Boş not"
-			},
-			"errorExchangeFetch": "Döviz kurlarını kontrol edilirken bir hata oluştu"
-		},
 		"profile": {
 			"helpDescription": "Siz ve bu bot arasındaki ilgili bilgileri gösterir",
 			"badges": "Rozetler",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı"
+			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı",
+			"userNotFound": "Kullanıcı DB'de bulunamadı"
 		},
 		"counts": {
 			"helpDescription": "Bazı sayıları gösterir",
@@ -462,6 +479,17 @@
 							"template": "{youtubeViews:{RESOURCE}} Görüntüleme",
 							"statusCreating": "{LOADING} Görüntüleme sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Görüntüleme sayacı oluşturuldu"
+						}
+					]
+				},
+				"twitter": {
+					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"counters": [
+						{
+							"name": "twitterFollowers",
+							"template": "{twitterFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
 						}
 					]
 				}
