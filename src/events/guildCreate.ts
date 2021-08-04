@@ -36,7 +36,7 @@ const guildCreate = async (guild: Eris.Guild) => {
 	}
 
 	const guildCountCache = await GuildCountCacheModel.findOneAndUpdate(
-		{ guild: guild.id },
+		{ id: guild.id },
 		{},
 		{ upsert: true, new: true }
 	);

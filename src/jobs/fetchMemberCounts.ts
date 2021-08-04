@@ -33,7 +33,7 @@ const fetchMemberCounts: Job = {
 
 				if (!guildCountCache) {
 					guildCountCache = new GuildCountCacheModel({
-						guild: id,
+						id,
 						timestamp: Date.now()
 					});
 				} else if (
