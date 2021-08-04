@@ -1,12 +1,11 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 
 const MembersPlayingCounter: Counter = {
 	aliases: ["membersplaying"],
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ client, guild, resource }) => {
+	execute: async ({ client, guild, unparsedArgs: resource }) => {
 		let count = 0;
 
 		for (const [memberId, member] of guild.members) {

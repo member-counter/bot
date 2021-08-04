@@ -8,6 +8,7 @@ import commands from "../commands/all";
 import Bot from "../bot";
 import LanguagePack from "../typings/LanguagePack";
 import { GuildChannelCommand, AnyChannelCommand } from "../typings/Command";
+import UserService from "../services/UserService";
 
 const {
 	PREMIUM_BOT,
@@ -39,6 +40,9 @@ export default async (message: Eris.Message) => {
 		let languagePack: LanguagePack;
 		let clientIntegrationRoleId: string;
 		let guildService: GuildService;
+
+		// upsert the message author in the db
+		await UserService.init(author.id);
 
 		if (channel instanceof Eris.GuildChannel) {
 			const { guild } = channel;

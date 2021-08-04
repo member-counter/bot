@@ -1,5 +1,4 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 import { query, Type } from "gamedig";
 import fetch from "node-fetch";
 import AbortController from "abort-controller";
@@ -11,12 +10,10 @@ const GameCounter: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 5 * 1000,
-	execute: async ({ client, guild, resource }) => {
-		let splited = resource.split(":");
-
-		const type = splited[0];
-		const host = splited[1];
-		const port = parseInt(splited[2], 10);
+	execute: async ({ client, guild, unparsedArgs: resource, args }) => {
+		const type = args[0];
+		const host = args[1];
+		const port = parseInt(args[2], 10);
 
 		if (!host) throw new Error("You must provide an adress and port");
 		switch (type) {

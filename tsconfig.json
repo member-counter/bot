@@ -8,7 +8,6 @@
 		"sourceMap": true,
 		"outDir": "./dist",
 		"allowJs": true,
-		// TODO: Remove in the next eris update #1063
 		"skipLibCheck": true
 	},
 	"include": ["./src/**/*"],

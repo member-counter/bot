@@ -15,7 +15,7 @@
 					},
 					{
 						"name": "**Настройки сервера**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}premium```",
 						"inline": true
 					},
 					{
@@ -27,14 +27,14 @@
 			},
 			"misc": {
 				"command": "Команда:",
-				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"errorCommandNotFound": "Извините, я не смог найти информацию про ``{DESIRED_COMMAND}``"
 			}
 		},
 		"guide": {
 			"helpDescription": "Показывает вам гайд по использованию бота",
 			"pagesText": "Страница {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Спасибо за добавление Member Counter на ваш сервер!**\n__**Создание/изменение счётчика:**__\nДля этого примера мы будем использовать `{members}`, который считает общее кол-во участников в вашем дискорд сервере, но вы можете найти больше вариаций счётчиков на следующих страницах.\nВы можете поставить этот счётчик в одно из указанных мест:\n\n- В **имя** **голосового** канала\n- В **имя** **категории**\n- В **заголовок** **текстового** канала\n- В **заголовок** **новостного** канала\n\nА теперь создайте новый канал, измените его, и напишите `{members}` в имя этого канала или его заголовок, и нажмите 'сохранить изменения'.\n\nВы также можете добавлять несколько счётчиков в имя канала/заголовок канала, или комбинировать их как вашей душе угодно. Приведём пример:\n```\n{onlineMembers}/{members} Участники Онлайн, {youtubeSubscribers:https://www.youtube.com/user/enyay} Подписчики!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Админы и модераторы онлайн!\n```\n> Если вы достигаете лимита символов, когда вы изменяете имя/заголовок, пожалуйста, проверьте `{PREFIX}help editChannel`\n> Вы можете просмотреть конфигурацию нужного счётчика в `{PREFIX}seeSettings`, это полезно для того, чтобы добавлять больше счётчиков без отключения уже существующих.\n\n__**Удаление счётчика**__\nВ голосовом канале/категории:\nНапишите в имя канала/категории `{disable}`, и Member Counter заменит это на \\✅, что значит вы удалили все счётчики этого канала успешно.\n\nВы также можете удалить канал вручную.",
-			"countersHeader": "__**Счётчики**__\n> Вы должны включить режим разработчика в Дискорде (Настройки пользователя > Внешний вид > Расширенные > Режим разработчика)\n> Чтобы получить ID, кликните правой кнопкой мыши по каналу/роли и нажмите \"Копировать ID\"\n\n> Счётчики, помеченные звёздочкой (\\*) являются премиум-счётчиками, больше информации сможете найти в `{PREFIX}help upgradeServer`\n\n> Если вы хотите изменить форматирование цифр в счётчике независимо от серверных настроек, просмотрите эту [страницу](https://member-counter.eduardozgz.com/utils/overwrite-settings), или сделайте это вручную следуя [инструкции](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -258,6 +258,40 @@
 				}
 			]
 		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium",
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100,000 members, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Use your own bot account, with your chosen profile picture and username",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
+		},
 		"lockChannel": {
 			"helpDescription": "Вы можете использовать эти команды, чтобы показывалась иконка замка (🔒) вместо иконки звука (🔊) в голосовых каналах\n\n**Использование:**```{PREFIX}lockChannel [channel id]```\n **Пример:**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Выполнено! Теперь **для пользователей, не имеющих прав администратора** канал будет отображаться с 🔒",
@@ -306,9 +340,8 @@
 				"langText": "Язык:",
 				"localeText": "Локализация:",
 				"shortNumberText": "Сокращенная форма числа: ",
-				"premiumText": "Премиум:",
-				"premiumNoTierText": "Нет",
-				"premiumConfirmedText": "Да",
+				"noText": "Нет",
+				"yesText": "Да",
 				"allowedRolesText": "Роли, которым разрешено использовать админ-команды:",
 				"countersText": "Счётчики:",
 				"customNumbersText": "Кастомизированные числа:",
@@ -320,22 +353,16 @@
 			"helpDescription": "Восстанавливает кастомные настройки этого сервера к значению по умолчанию",
 			"done": "Восстановлено к значению по умолчанию"
 		},
-		"update": {
-			"helpDescription": "Если вы думаете, что счётчик сломался/застрял - используйте эту команду чтобы обновить их вручную.",
-			"inProgress": "Обновление счётчиков, может занять какое-то время.",
-			"success": "Готово.",
-			"wait": "Погоди! Я уже обновляю это!"
-		},
 		"upgradeServer": {
-			"helpDescription": "Эта команда позволяет пригласить премиум версию счётчика, чтобы использовать эту команду у вас должен быть премиум аккаунт. Вы можете получить его, задонатив от 5-и долларов и выше: `{PREFIX}donate`.",
+			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "Готово! Следующий шаг - приглашение премиум версии бота:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Вы не можете улучшить этот сервер, потому что он уже улучшен до премиум версии.",
-			"noServerUpgradesAvailable": "Вы не можете сделать больше улучшений сервера, так как у вас не осталось такой возможности. Вы можете узнать, сколько у вас осталось улучшений с помощью команды `{PREFIX}profile` или получить больше с помощью `{PREFIX}donate`"
+			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
 		},
 		"info": {
 			"helpDescription": "Список полезных ссылок",
 			"embedReply": {
-				"description": "[Добавь меня на свой сервер]({BOT_INVITE_URL})\n[Поддержать сервер]({BOT_SERVER_URL})\n[Репозиторий GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Пожертвования]({DONATION_URL})"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -343,24 +370,14 @@
 			"success": "Язык успешно изменён.",
 			"errorNotFound": "Список доступных языков:"
 		},
-		"donate": {
-			"helpDescription": "Показывает топ пожертвований.",
-			"embedReply": {
-				"title": "Понравился мой бот? Задонать мне! (Кликни сюда)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "Пустая заметка"
-			},
-			"errorExchangeFetch": "Ошибка при попытке получить курсы валют"
-		},
 		"profile": {
 			"helpDescription": "Показывает связанную информацию между вами и этим ботом",
 			"badges": "Значки",
 			"serverUpgradesAvailable": "Осталось улучшений сервера",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "Ваши данные были успешно удалены."
+			"removeDataSuccess": "Ваши данные были успешно удалены.",
+			"userNotFound": "User not found in the DB"
 		},
 		"counts": {
 			"helpDescription": "Показывает некоторые счётчики",
@@ -462,6 +479,17 @@
 							"template": "{youtubeViews:{RESOURCE}} Views",
 							"statusCreating": "{LOADING} Creating views counter",
 							"statusCreated": "{CHECK_MARK} Views counter created"
+						}
+					]
+				},
+				"twitter": {
+					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"counters": [
+						{
+							"name": "twitterFollowers",
+							"template": "{twitterFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
 						}
 					]
 				}
