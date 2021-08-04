@@ -9,8 +9,8 @@ const { BOT_OWNERS } = getEnv();
 import { MessageCollector } from "eris-collector";
 import UserError from "../utils/UserError";
 const emojiBadges = {
-	[UserBadges.DONATOR]: "❤️",
-	[UserBadges.SPONSOR]: "💎",
+	[UserBadges.DONOR]: "❤️",
+	[UserBadges.PREMIUM]: "💎",
 	[UserBadges.BETA_TESTER]: "🧪",
 	[UserBadges.TRANSLATOR]: "🌎",
 	[UserBadges.CONTRIBUTOR]: "💻",
