@@ -6,12 +6,12 @@ import patpatCommands from "./patpat";
 import userCommands from "./user";
 import infoCommands from "./info";
 import helpCommands from "./help";
-import donateCommands from "./donate";
 import settingsCommands from "./settings";
 import countCommands from "./counts";
 import utilCommands from "./utils";
 import guideCommand from "./guide";
 import setupCommand from "./setup";
+import premiumCommands from "./premium";
 
 const commands: Array<Command> = [
 	...userCommands,
@@ -19,12 +19,12 @@ const commands: Array<Command> = [
 	...patpatCommands,
 	...infoCommands,
 	...helpCommands,
-	...donateCommands,
 	...settingsCommands,
 	...countCommands,
 	...utilCommands,
 	...guideCommand,
-	...setupCommand
+	...setupCommand,
+	...premiumCommands
 ];
 
 export default commands;
