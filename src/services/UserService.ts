@@ -4,8 +4,7 @@ class UserService {
 	private constructor(public id: string, private doc: UserSettingsDocument) {}
 
 	public static async exists(id: string): Promise<boolean> {
-		const user = await UserModel.findOne({ id });
-		return !!user;
+		return await UserModel.exists({ id });
 	}
 
 	public static async init(id: string): Promise<UserService> {
