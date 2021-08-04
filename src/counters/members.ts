@@ -15,7 +15,7 @@ const MemberCounter: Counter = {
 	lifetime: 0,
 	execute: async ({ guild, client }) => {
 		let guildCountCache = await GuildCountCacheModel.findOne({
-			guild: guild.id
+			id: guild.id
 		});
 
 		if (guildCountCache) {
