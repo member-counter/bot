@@ -3,7 +3,7 @@ import UserModel, { UserSettingsDocument } from "../models/UserModel";
 class UserService {
 	private constructor(public id: string, private doc: UserSettingsDocument) {}
 
-	public static async exists(id: string): Promise<boolean> {
+	public static exists(id: string): Promise<boolean> {
 		return UserModel.exists({ id });
 	}
 
