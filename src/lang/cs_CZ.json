@@ -15,7 +15,7 @@
 					},
 					{
 						"name": "**Nastavení serveru**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}premium```",
 						"inline": true
 					},
 					{
@@ -34,7 +34,7 @@
 			"helpDescription": "Zobrazí návod, jak používat bota",
 			"pagesText": "Strana {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Děkujeme za přidání Member Counter bota na Váš server!**\n__**Vytvořit/upravit počítadla**__\nMůžete například použít `{members}`, který spočítá celkový počet členů na vašem Discord serveru. Více možností naleznete na dalších stránkách.\nPočítadla můžete umístit na jedno z následujících míst:\n\n- Ve **jméně** **hlasového** análu\n- Ve **jménu** **kategorie**\n- V **popisu/tématu** **textového** kanálu\n- V **popisu/tématu** kanálu **oznámení**\n\nNyní můžete vytvořit nový kanál, upravit ho a napsat `{members}` do názvu nebo do popisu/tématu kanálu a poté potvrdit změny.\n\nMůžete také přidat více počítadel do jednoho jména/tématu kanálu a kombinovat je s vlastním obsahem, níže je příklad.\n```\n{onlineMembers}/{members} online uživatelů,\n{youtubeSubscribers:https://www.youtube.com/user/mentoss97} odběratelů!\n{onlineMembersWithRole:614777997291028519,614816383053856769} adminů a moderátorů je nyní online!\n```\n\n> Pokud při úpravě názvu/tématu kanálu dosáhnete omezení počtu znaků, prosím zkontrolujte `{PREFIX}help editChannel`\n> Aktuální nástavení počítadel můžete zobrazit pomocí příkazu `{PREFIX}seeSettings`. Toto je užitečné pro přidání více počítadel bez deaktivace předchozího počítadla.\n\n__**Odstranění počítadel**__\nPro odstranění upravte kanál a napište {disable} do jména/tématu kanálu. Bot toto nahradí za \\✅, což bude znamenat, že byly odstraněny všechny počítadla v daném kanálu.\n\nKanál můžete také přímo smazat",
-			"countersHeader": "__**Počítadla**__\n> Povolte si režim vývojáře na Discordu (Uživatelská nastavení > Vzhled > Pokročilé > Vývojářský režim)\n> Pro získání ID, klikněte pravým na kanál/roli a poté na \"Kopírovat ID\"\n\n> Počítadla s hvězdičkou (\\*) jsou premium počítadla, více informací v `{PREFIX}help upgradeServer`\n\n> Pokud chcete změnit formátování čísla v počítadlech nezávisle na nastavení serveru, navštivte tuto [stránku](https://member-counter.eduardozgz.com/utils/overwrite-settings), nebo to proveďte ručně podle tohoto [manuálu](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -258,6 +258,40 @@
 				}
 			]
 		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium",
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100,000 members, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Use your own bot account, with your chosen profile picture and username",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
+		},
 		"lockChannel": {
 			"helpDescription": "Pomocí tohoto příkazu může zobrazit zámek(🔒) namísto reproduktoru (🔊).\n\n**Použtí:**```{PREFIX}lockChannel [id kanálu]```\n **Příklad:**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "Hotovo! Kanál je uzavřen **pro normální uživatele**. Kanál bude zobrazen s 🔒",
@@ -306,9 +340,8 @@
 				"langText": "Jazyk:",
 				"localeText": "Lokalizace:",
 				"shortNumberText": "Zkrácené číslo (kompaktní notace):",
-				"premiumText": "Premium:",
-				"premiumNoTierText": "Ne",
-				"premiumConfirmedText": "Ano",
+				"noText": "Ne",
+				"yesText": "Ano",
 				"allowedRolesText": "Povolené role, které mohou používat administrativní příkazy:",
 				"countersText": "Počítadla:",
 				"customNumbersText": "Vlastní čísla:",
@@ -320,22 +353,16 @@
 			"helpDescription": "Obnoví vlastní nastavení tohoto serveru na výchozí hodnoty",
 			"done": "Nastavení obnoveno do základního stavu"
 		},
-		"update": {
-			"helpDescription": "Pokud si myslíte, že se počítadla zasekly, použijte tento příkaz k jejich opětovné aktualizaci.",
-			"inProgress": "Aktualizace počítadel, toto může chvíli trvat.",
-			"success": "Hotovo.",
-			"wait": "Počkejte! Již to aktualizuji!"
-		},
 		"upgradeServer": {
-			"helpDescription": "Tento příkaz umožňuje pozvat Member Counter Premium, abyste mohli tento příkaz využít, musíte míst premium účet, který získáte podporou minimálně 5 USD: `{PREFIX}donate`.",
+			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
 			"success": "Hotovo! Dalším krokem je pozvání premium bota:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Server nelze vylepšit, protože již má premiovou verzi.",
-			"noServerUpgradesAvailable": "Nemůžete provést další vylepšení serveru, protože nemáte žádné vylepšení k dispozici, můžete zkontrolovat kolik vylepšení zbývá pomocí `{PREFIX}profile` nebo jich získat více pomocí `{PREFIX}donate`"
+			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
 		},
 		"info": {
 			"helpDescription": "Seznam užitečných odkazů",
 			"embedReply": {
-				"description": "[Přidej si mě na tvůj server]({BOT_INVITE_URL})\n[Server pro podporu]({BOT_SERVER_URL})\n[GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Podpořit]({DONATION_URL})"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -343,24 +370,14 @@
 			"success": "Jazyk úspěšně změnen.",
 			"errorNotFound": "Seznam dostupných jazyků:"
 		},
-		"donate": {
-			"helpDescription": "Zobrazí nejvyšší dary.",
-			"embedReply": {
-				"title": "Užíváte si tohoto bota? Podpoř mě prosím! (Klikni zde)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "Prázdná poznámka"
-			},
-			"errorExchangeFetch": "Při pokusu o načtení směnných kurzů došlo k chybě"
-		},
 		"profile": {
 			"helpDescription": "Zobrazuje související informace mezi vámi a botem",
 			"badges": "Odznaky",
 			"serverUpgradesAvailable": "Zbývající vylepšení serveru",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "Vaše data byly úspěšně smazány"
+			"removeDataSuccess": "Vaše data byly úspěšně smazány",
+			"userNotFound": "User not found in the DB"
 		},
 		"counts": {
 			"helpDescription": "Zobrazí některé počítadla",
@@ -462,6 +479,17 @@
 							"template": "{youtubeViews:{RESOURCE}} Views",
 							"statusCreating": "{LOADING} Creating views counter",
 							"statusCreated": "{CHECK_MARK} Zobrazovací počítadlo bylo vytvořeno"
+						}
+					]
+				},
+				"twitter": {
+					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"counters": [
+						{
+							"name": "twitterFollowers",
+							"template": "{twitterFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} Creating follower counter",
+							"statusCreated": "{CHECK_MARK} Follower counter created"
 						}
 					]
 				}
