@@ -16,7 +16,7 @@ const TwitchCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
-	execute: async ({ guild, resource: userName }) => {
+	execute: async ({ guild, unparsedArgs: userName }) => {
 		if (!TWITCH_CLIENT_ID) throw new Error("TWITCH_CLIENT_ID not provided");
 		const user = await client.kraken.users.getUserByName(userName);
 		const {

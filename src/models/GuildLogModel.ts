@@ -1,13 +1,13 @@
 import { model, Schema, Document } from "mongoose";
 
 interface GuildLogDocument extends Document {
-	guild: string;
+	id: string;
 	text: string;
 	timestamp: Date;
 }
 
 const GuildLogSchema = new Schema({
-	guild: { type: String, require: true },
+	id: { type: String, require: true },
 	text: { type: String, require: true },
 	timestamp: { type: Date, default: Date.now, required: true }
 });

@@ -5,7 +5,7 @@ const Math: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ resource, aliasUsed }) => {
+	execute: async ({ unparsedArgs: resource, aliasUsed }) => {
 		const values = resource.split(",").map((n) => Number(n));
 
 		switch (aliasUsed) {

@@ -9,7 +9,7 @@ const setup: Command = {
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack, guildService, client }) => {
-		const availableSetups = ["youtube", "twitch"];
+		const availableSetups = ["youtube", "twitch", "twitter"];
 		const { channel, content } = message;
 		const { loading, checkMark } = emojis;
 		let [, type, resource]: (string | undefined)[] = content.split(/\s+/);
@@ -25,7 +25,7 @@ const setup: Command = {
 			categoryName: catergoryNameTemplate,
 			counters: countersToCreate
 		} = languagePack.commands.setup.counterTemplates[
-			(type as "youtube" | "twitch") ?? "default"
+			(type as "youtube" | "twitch" | "twitter") ?? "default"
 		];
 
 		const { guild } = channel;
@@ -46,6 +46,9 @@ const setup: Command = {
 			case "twitch": {
 				categoryName = catergoryNameTemplate.replace(/\{RESOURCE}/g, resource);
 				break;
+			}
+			case "twitter": {
+				categoryName = catergoryNameTemplate.replace(/\{RESOURCE}/g, resource);
 			}
 			default: {
 				categoryName = catergoryNameTemplate;
