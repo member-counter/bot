@@ -3,9 +3,13 @@ import UserModel, { UserSettingsDocument } from "../models/UserModel";
 class UserService {
 	private constructor(public id: string, private doc: UserSettingsDocument) {}
 
+	public static exists(id: string): Promise<boolean> {
+		return UserModel.exists({ id });
+	}
+
 	public static async init(id: string): Promise<UserService> {
 		const doc = await UserModel.findOneAndUpdate(
-			{ user: id },
+			{ id: id },
 			{},
 			{ new: true, upsert: true }
 		);

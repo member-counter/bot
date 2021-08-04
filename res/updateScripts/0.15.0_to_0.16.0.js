@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+console.log("Updating from 0.15.0 to 0.16.0...");
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
@@ -47,6 +49,9 @@ const { DB_URI } = process.env;
 			}
 		}
 
+		delete guildSettings._id;
+		delete guildSettings.__v;
+
 		await guildsCollection.findOneAndUpdate(
 			{ guild: guild },
 			{ $set: guildSettings }
@@ -57,6 +62,6 @@ const { DB_URI } = process.env;
 			`\r[${guildsProcessed} of ${guildsCollectionSize}] Documents Processed (Guild settings)`
 		);
 	}
-	process.stdout.write("\n");
+	process.stdout.write("\nDone\n");
 	process.exit(0);
 })();

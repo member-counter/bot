@@ -6,7 +6,7 @@ const MembersConnectedCounter: Counter = {
 	isPremium: true,
 	isEnabled: false,
 	lifetime: 0,
-	execute: async ({ client, guild, resource }) => {
+	execute: async ({ client, guild, unparsedArgs: resource }) => {
 		const targetChannels = resource.length ? resource.split(",") : [];
 
 		return guild.channels
