@@ -6,7 +6,7 @@ const InstagramCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
-	execute: async ({ client, guild, guildSettings, resource }) => {
+	execute: async ({ client, guild, guildSettings, unparsedArgs: resource }) => {
 		const response = await fetch(
 			`https://www.instagram.com/${resource}/?__a=1`
 		).then((response) => response.json());

@@ -1,10 +1,10 @@
 import { model, Schema, Document } from "mongoose";
 import getEnv from "../utils/getEnv";
 
-const { DISCORD_PREFIX } = getEnv();
+const { DISCORD_PREFIX, DISCORD_DEFAULT_LANG } = getEnv();
 
 interface GuildSettingsDocument extends Document {
-	guild: string;
+	id: string;
 	premium: boolean;
 	prefix: string;
 	language: string;
@@ -17,10 +17,10 @@ interface GuildSettingsDocument extends Document {
 }
 
 const GuildSchema = new Schema({
-	guild: { type: String, require: true },
+	id: { type: String, require: true },
 	premium: { type: Boolean, default: false },
 	prefix: { type: String, default: DISCORD_PREFIX },
-	language: { type: String, default: "en_US" },
+	language: { type: String, default: DISCORD_DEFAULT_LANG },
 	allowedRoles: [{ type: String, default: [] }],
 	counters: { type: Map, of: String, default: new Map() },
 	shortNumber: { type: Number, default: 1 },

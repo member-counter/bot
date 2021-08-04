@@ -7,9 +7,10 @@ import { UserBadges } from "../utils/Constants";
 import ReactionManager from "../utils/ReactionManager";
 const { BOT_OWNERS } = getEnv();
 import { MessageCollector } from "eris-collector";
+import UserError from "../utils/UserError";
 const emojiBadges = {
-	[UserBadges.DONATOR]: "❤️",
-	[UserBadges.SPONSOR]: "💎",
+	[UserBadges.DONOR]: "❤️",
+	[UserBadges.PREMIUM]: "💎",
 	[UserBadges.BETA_TESTER]: "🧪",
 	[UserBadges.TRANSLATOR]: "🌎",
 	[UserBadges.CONTRIBUTOR]: "💻",
@@ -54,6 +55,9 @@ const user: Command = {
 			(userRequested &&
 				(await client.getRESTUser(userRequested).catch(console.error))) ||
 			author;
+
+		if (!(await UserService.exists(targetUser.id)))
+			throw new UserError(languagePack.commands.profile.userNotFound);
 		const userSettings = await UserService.init(targetUser.id);
 
 		if (actionRequested && BOT_OWNERS.includes(author.id)) {

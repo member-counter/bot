@@ -1,14 +1,13 @@
 import GuildModel, { GuildSettingsDocument } from "../models/GuildModel";
 import UserModel from "../models/UserModel";
 import GuildLogModel, { GuildLogDocument } from "../models/GuildLogModel";
-import UserError from "../utils/UserError";
 
 class GuildService {
 	private constructor(public id: string, private doc: GuildSettingsDocument) {}
 
 	public static async init(id: string): Promise<GuildService> {
 		const doc = await GuildModel.findOneAndUpdate(
-			{ guild: id },
+			{ id: id },
 			{},
 			{ new: true, upsert: true }
 		);
@@ -73,7 +72,7 @@ class GuildService {
 		if (this.premium) throw new Error("alreadyUpgraded");
 
 		const userDoc: any = await UserModel.findOneAndUpdate(
-			{ user: grantorId },
+			{ id: grantorId },
 			{},
 			{ new: true, upsert: true }
 		);
@@ -124,11 +123,11 @@ class GuildService {
 	}
 
 	public async log(text: string): Promise<void> {
-		await GuildLogModel.create({ guild: this.id, text });
+		await GuildLogModel.create({ id: this.id, text });
 	}
 
 	public async getLatestLogs(amount = 20): Promise<GuildLogDocument[]> {
-		const latestLogs = await GuildLogModel.find({ guild: this.id })
+		const latestLogs = await GuildLogModel.find({ id: this.id })
 			.limit(amount)
 			.sort({ timestamp: 1 });
 		return latestLogs;
@@ -137,10 +136,10 @@ class GuildService {
 	public async resetSettings(): Promise<void> {
 		const premiumStatus = this.premium;
 		const blockedStatus = this.blocked;
-		await GuildLogModel.deleteMany({ guild: this.id });
-		await GuildModel.findOneAndRemove({ guild: this.id });
+		await GuildLogModel.deleteMany({ id: this.id });
+		await GuildModel.findOneAndRemove({ id: this.id });
 		this.doc = await GuildModel.create({
-			guild: this.id,
+			id: this.id,
 			premium: premiumStatus,
 			blocked: blockedStatus
 		});

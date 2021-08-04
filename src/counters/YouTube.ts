@@ -4,9 +4,9 @@ const { YOUTUBE_API_KEY } = getEnv();
 
 import Counter from "../typings/Counter";
 
-const anyChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/(channel|user)\//;
-const userChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/user\//;
-const userNameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)youtube\.com\/channel\//;
+const anyChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(channel|user|c)\//;
+const usernameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(user|c)\//;
+const idChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/channel\//;
 
 const YouTubeCounter: Counter = {
 	aliases: [
@@ -18,14 +18,14 @@ const YouTubeCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
-	execute: async ({ guild, resource: channelUrl }) => {
+	execute: async ({ guild, unparsedArgs: channelUrl }) => {
 		if (!YOUTUBE_API_KEY) throw new Error("YOUTUBE_API_KEY not provided");
 		let channel = channelUrl.replace(anyChannelMatch, "");
 		let searchChannelBy = "";
 
-		if (userChannelMatch.test(channelUrl)) {
+		if (usernameChannelMatch.test(channelUrl)) {
 			searchChannelBy = "forUsername";
-		} else if (userNameChannelMatch.test(channelUrl)) {
+		} else if (idChannelMatch.test(channelUrl)) {
 			searchChannelBy = "id";
 		} else {
 			throw new Error(`Invalid youtube channel url: ${channelUrl}`);

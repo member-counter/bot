@@ -3,7 +3,6 @@ interface _AppEnv {
 	DEBUG: boolean;
 	UNRESTRICTED_MODE: boolean;
 	PORT: number;
-	AGENDA_ENABLED_JOBS: string[];
 	GHOST_MODE: boolean;
 
 	DISTRIBUTED: boolean;
@@ -48,6 +47,7 @@ interface _AppEnv {
 	// Custom Emojis
 
 	// Paginator
+	USE_CUSTOM_EMOJIS: boolean;
 	CUSTOM_EMOJI_FIRST_PAGE: string;
 	CUSTOM_EMOJI_LAST_PAGE: string;
 	CUSTOM_EMOJI_PREVIOUS_PAGE: string;
@@ -60,12 +60,12 @@ interface _AppEnv {
 	CUSTOM_EMOJI_CHECK_MARK: string;
 
 	WEBSITE_URL: string;
-	DONATION_URL: string;
+	GET_PREMIUM_BOT_URL: string;
 
-	USE_CUSTOM_EMOJIS: boolean;
-
+	// URLs
 	MEMERATOR_API_KEY: string;
 
+	// API Credentials
 	YOUTUBE_API_KEY: string;
 
 	TWITCH_CLIENT_ID: string;

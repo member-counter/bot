@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+console.log("Updating from 0.10.0 to 0.11.0...");
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
@@ -29,7 +31,9 @@ const newDefaultDigits = [
 ];
 
 (async () => {
-	const mongoClient = await MongoClient.connect(DB_URI);
+	const mongoClient = await MongoClient.connect(DB_URI, {
+		useUnifiedTopology: true
+	});
 	const db = mongoClient.db();
 
 	// Guild Settings
@@ -44,6 +48,10 @@ const newDefaultDigits = [
 		guildsProcessed < guildsCollectionSize
 	) {
 		const oldSettings = await guildsCursor.next();
+
+		// if it doesn't have guild_id, it's already updated
+		if (!oldSettings.guild_id) continue;
+
 		const newSettings = {
 			guild: oldSettings.guild_id,
 			counters: {}
@@ -126,6 +134,10 @@ const newDefaultDigits = [
 	let usersProcessed = 0;
 	while ((await userCursor.hasNext()) && usersProcessed < usersCollectionSize) {
 		const oldUser = await userCursor.next();
+
+		// if it doesn't have user_id, it's already updated
+		if (!oldUser.user_id) continue;
+
 		const newUser = {
 			user: oldUser.user_id
 		};
@@ -147,6 +159,6 @@ const newDefaultDigits = [
 		);
 	}
 
-	process.stdout.write("\n");
+	process.stdout.write("\nDone\n");
 	process.exit(0);
 })();
