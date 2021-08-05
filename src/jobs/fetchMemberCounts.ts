@@ -29,7 +29,7 @@ const fetchMemberCounts: Job = {
 		for (const id of guilds) {
 			try {
 				await sleep(MEMBER_COUNTS_CACHE_CHECK_SLEEP * 1000);
-				let guildCountCache = await GuildCountCacheModel.findOne({ guild: id });
+				let guildCountCache = await GuildCountCacheModel.findOne({ id });
 
 				if (!guildCountCache) {
 					guildCountCache = new GuildCountCacheModel({
