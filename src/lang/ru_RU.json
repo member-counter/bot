@@ -6,7 +6,7 @@
 			"helpDescription": "Неужели нужно объяснять смысл этой команды?",
 			"embedReply": {
 				"title": "Лист команд | Префикс: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Добавьте этого бота на ваш сервер]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Документация](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nБыстрая настройка: `{PREFIX}setup`\nЧтобы узнать, как пользоваться ботом: `{PREFIX}guide`\n\nЧтобы получить больше информации, отправьте `{PREFIX}help` с названием нужной вам команды: ```\n{PREFIX}help shortNumber```\n**Инфо:** `()`подразумевает за собой опциональный параметр, когда `[]` подразумевает обязательный параметр.",
 				"fields": [
 					{
 						"name": "**Счётчики**",
