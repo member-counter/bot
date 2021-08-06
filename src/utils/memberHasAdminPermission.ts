@@ -16,7 +16,7 @@ export default async (member: Eris.Member): Promise<boolean> => {
 	}
 
 	return (
-		(member.permissions.allow & 0x8n) === 0x8n ||
+		member.permissions.has("administrator") ||
 		BOT_OWNERS.includes(member.id) ||
 		hasAnyAllowedRole
 	);
