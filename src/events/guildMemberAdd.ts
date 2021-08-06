@@ -20,7 +20,13 @@ const guildMemberAdd = async (guild: Eris.Guild, member: Eris.Member) => {
 					await channel
 						.editPermission(
 							PREMIUM_BOT_ID,
-							0x00100000 | 0x00000400,
+							// TODO remove this weird fix in the next Eris update
+							Number(
+								(
+									Eris.Constants.Permissions.voiceConnect |
+									Eris.Constants.Permissions.viewChannel
+								).toString()
+							),
 							0,
 							"member"
 						)
