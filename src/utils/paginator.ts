@@ -19,7 +19,6 @@ class Paginator {
 	private pages: EmbedOptions[];
 	private readonly totalPages: number;
 	private readonly timeoutTime: number;
-	private collector: ReactionCollector;
 	private readonly targetUserID: string;
 	private languagePack: LanguagePack;
 
@@ -140,8 +139,6 @@ class Paginator {
 			time: this.timeoutTime,
 			dispose: true
 		});
-		// Save collector to be used later in execution
-		this.collector = collector;
 
 		const reactionHandler = async (event, emoji) => {
 			// Avoid double triggering because the bot is also removing the user's reaction, the bot removes the reaction when it has permissions to do it
@@ -217,34 +214,29 @@ class Paginator {
 		if (this.totalPages > 1) {
 			// If more than 5 pages display first and last button reactions
 			if (this.totalPages >= 5) {
-				// if bot can use custom emojis
-				if (this.botCanUseCustomEmojis) {
-					await this.message.addReaction(emojis.firstPage.reaction);
-					await this.message.addReaction(emojis.previousPage.reaction);
-					await this.message.addReaction(emojis.nextPage.reaction);
-					await this.message.addReaction(emojis.lastPage.reaction);
-					let _emojis = emojis;
-					await this.message.addReaction(emojis.jump.reaction);
-				} else {
-					await this.message.addReaction(emojis.firstPage.fallbackUnicodeEmoji);
-					await this.message.addReaction(
-						emojis.previousPage.fallbackUnicodeEmoji
-					);
-					await this.message.addReaction(emojis.nextPage.fallbackUnicodeEmoji);
-					await this.message.addReaction(emojis.lastPage.fallbackUnicodeEmoji);
-					await this.message.addReaction(emojis.jump.fallbackUnicodeEmoji);
-				}
+				await this.message.addReaction(
+					emojis.firstPage.reaction(this.botCanUseCustomEmojis)
+				);
+				await this.message.addReaction(
+					emojis.previousPage.reaction(this.botCanUseCustomEmojis)
+				);
+				await this.message.addReaction(
+					emojis.nextPage.reaction(this.botCanUseCustomEmojis)
+				);
+				await this.message.addReaction(
+					emojis.lastPage.reaction(this.botCanUseCustomEmojis)
+				);
+				await this.message.addReaction(
+					emojis.jump.reaction(this.botCanUseCustomEmojis)
+				);
 				// If less than 5 pages only shows back and next reactions
 			} else {
-				if (this.botCanUseCustomEmojis) {
-					await this.message.addReaction(emojis.previousPage.reaction);
-					await this.message.addReaction(emojis.nextPage.reaction);
-				} else {
-					await this.message.addReaction(
-						emojis.previousPage.fallbackUnicodeEmoji
-					);
-					await this.message.addReaction(emojis.nextPage.fallbackUnicodeEmoji);
-				}
+				await this.message.addReaction(
+					emojis.previousPage.reaction(this.botCanUseCustomEmojis)
+				);
+				await this.message.addReaction(
+					emojis.nextPage.reaction(this.botCanUseCustomEmojis)
+				);
 			}
 		}
 	}
