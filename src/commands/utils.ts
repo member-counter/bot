@@ -5,6 +5,7 @@ import UserError from "../utils/UserError";
 import CountService from "../services/CountService";
 import getEnv from "../utils/getEnv";
 import setStatus from "../others/setStatus";
+import Eris from "eris";
 
 const { BOT_OWNERS } = getEnv();
 
@@ -29,11 +30,16 @@ const lockChannel: Command = {
 				if (botHasPermsToEdit(channelToEdit)) {
 					await channelToEdit.editPermission(
 						client.user.id,
-						0x00100000 | 0x00000400,
+						// TODO remove this weird fix in the next Eris update
+						Number(
+							(
+								Eris.Constants.Permissions.voiceConnect |
+								Eris.Constants.Permissions.viewChannel
+							).toString()
+						),
 						0,
 						"member"
 					);
-					await channelToEdit.editPermission(guild.id, 0, 0x00100000, "role");
 				} else {
 					throw new UserError(errorNoPerms.replace(/\{CHANNEL\}/gi, channelId));
 				}
