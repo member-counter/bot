@@ -13,9 +13,15 @@ const {
 } = getEnv();
 
 class Emoji {
-	public fallbackUnicodeEmoji: string;
+	private canUseExternalEmojis: boolean;
+	private fallbackUnicodeEmoji: string;
 	private customEmoji?: string;
-	constructor(fallbackUnicodeEmoji: string, customEmoji?: string) {
+	constructor(
+		canUseExternalEmojis: boolean,
+		fallbackUnicodeEmoji: string,
+		customEmoji?: string
+	) {
+		this.canUseExternalEmojis = canUseExternalEmojis;
 		this.fallbackUnicodeEmoji = fallbackUnicodeEmoji;
 		if (USE_CUSTOM_EMOJIS && customEmoji && !customEmoji.match(/^<a?:.+:\d+>$/))
 			throw new Error(
@@ -29,16 +35,16 @@ class Emoji {
 	/**
 	 *  Get name for paginator collector
 	 */
-	name(canUseExternalEmojis?: boolean): string {
-		return this.customEmoji && canUseExternalEmojis
+	get name(): string {
+		return this.customEmoji && this.canUseExternalEmojis
 			? this.customEmoji.match(/(\w*\b)(?=:)/g).filter((str) => str !== "a")[0]
 			: this.fallbackUnicodeEmoji;
 	}
 	/**
 	 * Use it in messages
 	 */
-	toString(canUseExternalEmojis?: boolean): string {
-		return this.customEmoji && canUseExternalEmojis
+	get toString(): string {
+		return this.customEmoji && this.canUseExternalEmojis
 			? `<${this.customEmoji}>`
 			: this.fallbackUnicodeEmoji;
 	}
@@ -46,22 +52,28 @@ class Emoji {
 	/**
 	 * Use it in reactions
 	 */
-	reaction(canUseExternalEmojis?: boolean): string {
-		return this.customEmoji && canUseExternalEmojis
+	get reaction(): string {
+		return this.customEmoji && this.canUseExternalEmojis
 			? this.customEmoji
 			: this.fallbackUnicodeEmoji;
 	}
 }
 
-const emojis = {
-	firstPage: new Emoji("⏪", CUSTOM_EMOJI_FIRST_PAGE),
-	lastPage: new Emoji("⏩", CUSTOM_EMOJI_LAST_PAGE),
-	previousPage: new Emoji("◀️", CUSTOM_EMOJI_PREVIOUS_PAGE),
-	nextPage: new Emoji("▶️", CUSTOM_EMOJI_NEXT_PAGE),
-	jump: new Emoji("↗️", CUSTOM_EMOJI_JUMP),
-	loading: new Emoji("🕓", CUSTOM_EMOJI_LOADING),
-	checkMark: new Emoji("✅", CUSTOM_EMOJI_CHECK_MARK),
-	error: new Emoji("❌", CUSTOM_EMOJI_ERROR)
-} as const;
+const emojis = (canUseExternalEmojis: boolean) => {
+	return {
+		firstPage: new Emoji(canUseExternalEmojis, "⏪", CUSTOM_EMOJI_FIRST_PAGE),
+		lastPage: new Emoji(canUseExternalEmojis, "⏩", CUSTOM_EMOJI_LAST_PAGE),
+		previousPage: new Emoji(
+			canUseExternalEmojis,
+			"◀️",
+			CUSTOM_EMOJI_PREVIOUS_PAGE
+		),
+		nextPage: new Emoji(canUseExternalEmojis, "▶️", CUSTOM_EMOJI_NEXT_PAGE),
+		jump: new Emoji(canUseExternalEmojis, "↗️", CUSTOM_EMOJI_JUMP),
+		loading: new Emoji(canUseExternalEmojis, "🕓", CUSTOM_EMOJI_LOADING),
+		checkMark: new Emoji(canUseExternalEmojis, "✅", CUSTOM_EMOJI_CHECK_MARK),
+		error: new Emoji(canUseExternalEmojis, "❌", CUSTOM_EMOJI_ERROR)
+	} as const;
+};
 
 export default emojis;
