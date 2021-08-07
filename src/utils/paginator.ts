@@ -160,39 +160,34 @@ class Paginator {
 			// If reaction is the back button and we are NOT on the first page, go back
 			switch (emoji.name) {
 				// If user hits back, go back 1 page
-				case emojis.previousPage.name:
-				case emojis.previousPage.fallbackUnicodeEmoji: {
+				case emojis.previousPage.name: {
 					if (this.currentPage !== 1)
 						await this.displayPage(--this.currentPage - 1);
 
 					break;
 				}
 				// If user hits next, go forward 1 page
-				case emojis.nextPage.name:
-				case emojis.nextPage.fallbackUnicodeEmoji: {
+				case emojis.nextPage.name: {
 					if (this.currentPage !== this.pages.length)
 						await this.displayPage(++this.currentPage - 1);
 
 					break;
 				}
 				// Go to first page
-				case emojis.firstPage.name:
-				case emojis.firstPage.fallbackUnicodeEmoji: {
+				case emojis.firstPage.name: {
 					this.currentPage = 1;
 					await this.displayPage(this.currentPage - 1);
 
 					break;
 				}
 				// Go to last page
-				case emojis.lastPage.name:
-				case emojis.lastPage.fallbackUnicodeEmoji: {
+				case emojis.lastPage.name: {
 					this.currentPage = this.pages.length;
 					await this.displayPage(this.currentPage - 1);
 
 					break;
 				}
-				case emojis.jump.name:
-				case emojis.jump.fallbackUnicodeEmoji: {
+				case emojis.jump.name:{
 					await this.jumpPrompt();
 
 					break;
