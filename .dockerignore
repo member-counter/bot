@@ -70,3 +70,8 @@ dev/
 dist/
 
 storage/
+
+# Not included in .gitignore
+.git
+.github
+.vscode
