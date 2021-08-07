@@ -21,7 +21,7 @@ Read this guide to setup this bot using docker: https://docs.membercounter.bot/g
 
 - [Git](https://git-scm.com/downloads)
 - [NodeJS 14 or higher](https://nodejs.org/en/download/)
-- [Docker](https://www.docker.com/get-started)
+- [Docker (and docker-compose)](https://www.docker.com/get-started)
 
 ## Clone the bot and install dependencies
 
@@ -53,9 +53,12 @@ Now you can start editing the code, when you save a file the bot will be reloade
 
 ## Adding/editing text
 
-To add or edit a string, you must do it in the [./src/lang/en_US.json](./src/lang/en_US.json) file, after that, you may want to run `npm run generateLPTypings` to avoid compilation errors
+In English:
+ - To add or edit a string, you must do it in the [./src/lang/en_US.json](./src/lang/en_US.json) file, after that, you may want to run `npm run generateLPTypings` to avoid compilation errors
 
-To edit to other language you must do it trought the [translation project](https://crowdin.com/project/member-counter-bot)
+In other language:
+- To add a string: First add it in english in the [./src/lang/en_US.json](./src/lang/en_US.json) file, then commit the file to the `dev` branch and it will be available in the [translation project](https://crowdin.com/project/member-counter-bot) in the next 10 minutes
+- To edit a string: You must do it trought the [translation project](https://crowdin.com/project/member-counter-bot), if your language isn't there, contact me and I will add it
 
 ## Commiting
 
