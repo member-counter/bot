@@ -8,7 +8,7 @@ import {
 } from "eris";
 import clonedeep from "lodash.clonedeep";
 import { ReactionCollector, MessageCollector } from "eris-collector";
-import emojis from "./emojis";
+import Emojis from "./emojis";
 import LanguagePack from "../typings/LanguagePack";
 
 class Paginator {
@@ -153,14 +153,14 @@ class Paginator {
 			time: this.timeoutTime,
 			dispose: true
 		});
-
+		const emojis = Emojis(this.botCanUseCustomEmojis);
 		const reactionHandler = async (event, emoji) => {
 			// Avoid double triggering because the bot is also removing the user's reaction, the bot removes the reaction when it has permissions to do it
 			if (this.botCanManageMessages && event === "remove") return;
 			// If reaction is the back button and we are NOT on the first page, go back
 			switch (emoji.name) {
 				// If user hits back, go back 1 page
-				case emojis.previousPage.name(this.botCanUseCustomEmojis):
+				case emojis.previousPage.name:
 				case emojis.previousPage.fallbackUnicodeEmoji: {
 					if (this.currentPage !== 1)
 						await this.displayPage(--this.currentPage - 1);
@@ -168,7 +168,7 @@ class Paginator {
 					break;
 				}
 				// If user hits next, go forward 1 page
-				case emojis.nextPage.name(this.botCanUseCustomEmojis):
+				case emojis.nextPage.name:
 				case emojis.nextPage.fallbackUnicodeEmoji: {
 					if (this.currentPage !== this.pages.length)
 						await this.displayPage(++this.currentPage - 1);
@@ -176,7 +176,7 @@ class Paginator {
 					break;
 				}
 				// Go to first page
-				case emojis.firstPage.name(this.botCanUseCustomEmojis):
+				case emojis.firstPage.name:
 				case emojis.firstPage.fallbackUnicodeEmoji: {
 					this.currentPage = 1;
 					await this.displayPage(this.currentPage - 1);
@@ -184,14 +184,14 @@ class Paginator {
 					break;
 				}
 				// Go to last page
-				case emojis.lastPage.name(this.botCanUseCustomEmojis):
+				case emojis.lastPage.name:
 				case emojis.lastPage.fallbackUnicodeEmoji: {
 					this.currentPage = this.pages.length;
 					await this.displayPage(this.currentPage - 1);
 
 					break;
 				}
-				case emojis.jump.name(this.botCanUseCustomEmojis):
+				case emojis.jump.name:
 				case emojis.jump.fallbackUnicodeEmoji: {
 					await this.jumpPrompt();
 
@@ -223,33 +223,20 @@ class Paginator {
 	 * Adds needed reactions for pagination based on page count
 	 */
 	async addReactions() {
+		const emojis = Emojis(this.botCanUseCustomEmojis);
 		// If more than 1 page, display navigation controls
 		if (this.totalPages > 1) {
 			// If more than 5 pages display first and last button reactions
 			if (this.totalPages >= 5) {
-				await this.message.addReaction(
-					emojis.firstPage.reaction(this.botCanUseCustomEmojis)
-				);
-				await this.message.addReaction(
-					emojis.previousPage.reaction(this.botCanUseCustomEmojis)
-				);
-				await this.message.addReaction(
-					emojis.nextPage.reaction(this.botCanUseCustomEmojis)
-				);
-				await this.message.addReaction(
-					emojis.lastPage.reaction(this.botCanUseCustomEmojis)
-				);
-				await this.message.addReaction(
-					emojis.jump.reaction(this.botCanUseCustomEmojis)
-				);
+				await this.message.addReaction(emojis.firstPage.reaction);
+				await this.message.addReaction(emojis.previousPage.reaction);
+				await this.message.addReaction(emojis.nextPage.reaction);
+				await this.message.addReaction(emojis.lastPage.reaction);
+				await this.message.addReaction(emojis.jump.reaction);
 				// If less than 5 pages only shows back and next reactions
 			} else {
-				await this.message.addReaction(
-					emojis.previousPage.reaction(this.botCanUseCustomEmojis)
-				);
-				await this.message.addReaction(
-					emojis.nextPage.reaction(this.botCanUseCustomEmojis)
-				);
+				await this.message.addReaction(emojis.previousPage.reaction);
+				await this.message.addReaction(emojis.nextPage.reaction);
 			}
 		}
 	}
