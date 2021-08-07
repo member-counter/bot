@@ -1,6 +1,6 @@
 {
 	"name": "member-counter-bot",
-	"version": "0.18.3",
+	"version": "0.18.4",
 	"engines": {
 		"node": ">=14.0"
 	},
@@ -35,7 +35,6 @@
 		"eris": "^0.15.1",
 		"eris-collector": "github:eduardozgz/eris-collector",
 		"gamedig": "^3.0.5",
-		"git-rev-sync": "^3.0.1",
 		"json-to-ts": "^1.7.0",
 		"lodash.clonedeep": "^4.5.0",
 		"mongoose": "^5.12.5",
