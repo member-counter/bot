@@ -21,6 +21,7 @@ class Paginator {
 	private readonly timeoutTime: number;
 	private readonly targetUserID: string;
 	private languagePack: LanguagePack;
+	private jumpPromptCollector: MessageCollector | null;
 
 	public constructor(
 		channel: TextableChannel,
@@ -31,6 +32,7 @@ class Paginator {
 		this.client = channel.client;
 		this.channel = channel;
 		this.targetUserID = targetUserID;
+		this.jumpPromptCollector = null;
 		// EmbedList we will page over
 		this.pages = pages;
 		this.currentPage = 1;
@@ -63,10 +65,7 @@ class Paginator {
 		// Return our message object if we want to parse it after pagination
 		return this.message;
 	}
-	/**
-	 * Initiates jumping to specified page
-	 */
-	async jumpPrompt() {
+	async createJumpPrompt() {
 		await this.channel
 			.createMessage(this.languagePack.functions.paginator.jumpPrompt)
 			.then(async (message) => {
@@ -84,6 +83,7 @@ class Paginator {
 						max: 1
 					}
 				);
+				this.jumpPromptCollector = collector;
 				collector.on("collect", (m) => {
 					if (m.content === "cancel" || m.content === "0") {
 						collector.stop();
@@ -125,7 +125,21 @@ class Paginator {
 						this.displayPage(this.currentPage - 1);
 					}
 				});
+				collector.on("end", () => {
+					message.delete();
+				});
 			});
+	}
+	/**
+	 * Initiates jumping to specified page
+	 */
+	async jumpPrompt() {
+		if (this.jumpPromptCollector) {
+			this.jumpPromptCollector.stop();
+			await this.createJumpPrompt();
+		} else {
+			await this.createJumpPrompt();
+		}
 	}
 
 	/**
@@ -143,11 +157,10 @@ class Paginator {
 		const reactionHandler = async (event, emoji) => {
 			// Avoid double triggering because the bot is also removing the user's reaction, the bot removes the reaction when it has permissions to do it
 			if (this.botCanManageMessages && event === "remove") return;
-
 			// If reaction is the back button and we are NOT on the first page, go back
 			switch (emoji.name) {
 				// If user hits back, go back 1 page
-				case emojis.previousPage.name:
+				case emojis.previousPage.name(this.botCanUseCustomEmojis):
 				case emojis.previousPage.fallbackUnicodeEmoji: {
 					if (this.currentPage !== 1)
 						await this.displayPage(--this.currentPage - 1);
@@ -155,7 +168,7 @@ class Paginator {
 					break;
 				}
 				// If user hits next, go forward 1 page
-				case emojis.nextPage.name:
+				case emojis.nextPage.name(this.botCanUseCustomEmojis):
 				case emojis.nextPage.fallbackUnicodeEmoji: {
 					if (this.currentPage !== this.pages.length)
 						await this.displayPage(++this.currentPage - 1);
@@ -163,7 +176,7 @@ class Paginator {
 					break;
 				}
 				// Go to first page
-				case emojis.firstPage.name:
+				case emojis.firstPage.name(this.botCanUseCustomEmojis):
 				case emojis.firstPage.fallbackUnicodeEmoji: {
 					this.currentPage = 1;
 					await this.displayPage(this.currentPage - 1);
@@ -171,14 +184,14 @@ class Paginator {
 					break;
 				}
 				// Go to last page
-				case emojis.lastPage.name:
+				case emojis.lastPage.name(this.botCanUseCustomEmojis):
 				case emojis.lastPage.fallbackUnicodeEmoji: {
 					this.currentPage = this.pages.length;
 					await this.displayPage(this.currentPage - 1);
 
 					break;
 				}
-				case emojis.jump.name:
+				case emojis.jump.name(this.botCanUseCustomEmojis):
 				case emojis.jump.fallbackUnicodeEmoji: {
 					await this.jumpPrompt();
 
