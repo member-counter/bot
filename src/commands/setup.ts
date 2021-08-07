@@ -1,6 +1,6 @@
 import Command from "../typings/Command";
 import CountService from "../services/CountService";
-import emojis from "../utils/emojis";
+import Emojis from "../utils/emojis";
 import Eris from "eris";
 import UserError from "../utils/UserError";
 
@@ -16,7 +16,7 @@ const setup: Command = {
 		const canUseExternalEmojis = channel
 			.permissionsOf(message.channel.client.user.id)
 			.has("externalEmojis");
-
+		const emojis = Emojis(canUseExternalEmojis);
 		// use default if type is invalid
 		if (type && !availableSetups.includes(type)) type = "default";
 
@@ -68,19 +68,19 @@ const setup: Command = {
 				msg +=
 					statusTexts.creatingCategory.replace(
 						/{LOADING}/g,
-						emojis.loading.toString(canUseExternalEmojis)
+						emojis.loading.toString
 					) + "\n";
 			} else if (categoryStatus === "created") {
 				msg +=
 					statusTexts.createdCategory.replace(
 						/{CHECK_MARK}/g,
-						emojis.checkMark.toString(canUseExternalEmojis)
+						emojis.checkMark.toString
 					) + "\n";
 			} else {
 				msg +=
 					statusTexts.createdCategory.replace(
 						/{CHECK_MARK}/g,
-						emojis.error.toString(canUseExternalEmojis)
+						emojis.error.toString
 					) + "\n";
 			}
 
@@ -90,19 +90,19 @@ const setup: Command = {
 					msg +=
 						counter.statusCreating.replace(
 							/{LOADING}/g,
-							emojis.loading.toString(canUseExternalEmojis)
+							emojis.loading.toString
 						) + "\n";
 				} else if (status === "created") {
 					msg +=
 						counter.statusCreated.replace(
 							/{CHECK_MARK}/g,
-							emojis.checkMark.toString(canUseExternalEmojis)
+							emojis.checkMark.toString
 						) + "\n";
 				} else {
 					msg +=
 						counter.statusCreated.replace(
 							/{CHECK_MARK}/g,
-							emojis.error.toString(canUseExternalEmojis)
+							emojis.error.toString
 						) + "\n";
 				}
 			});
