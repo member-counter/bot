@@ -3,7 +3,7 @@ FROM node:alpine as pre_node_modules_cache
 WORKDIR /cache
 COPY package*.json ./
 # '3d' is the 3rd line of package*.json
-# If you are gonna use this in your project remember to select the right line (here the "version" field is)
+# If you are gonna use this in your project remember to select the right line (where the "version" field is)
 RUN sed -e '3d' -i package.json package-lock.json
 
 # install dev dependencies
