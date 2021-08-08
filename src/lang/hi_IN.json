@@ -15,7 +15,7 @@
 					},
 					{
 						"name": "** सर्वर समायोजन**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}premium```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}checkPermissions```",
 						"inline": true
 					},
 					{
@@ -498,6 +498,56 @@
 		"base64": {
 			"helpDescription": "एक बेस 64 यूटिलिटी कमांड, विशिष्ट काउंटरों को अनुकूलित करने या उन्नत काउंटर बनाने के लिए उपयोगी है, जैसे `{http}` \n\n**आचरण**```{PREFIX}base64 [encode/decode] [data]```\n **उदाहरण**```{PREFIX}base64 encode मिसाल\n{PREFIX}base64 decode dGVzdA==```",
 			"invalidAction": "अमान्य कार्रवाई, यह `encode` या `decode` होनी चाहिए"
+		},
+		"checkPermissions": {
+			"helpDescription": "Checks if the bot has the correct permissions to work correctly",
+			"optionalText": "(Optional)",
+			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
+			"footer": "If you need to fix permissions problems, try inviting the bot again:",
+			"details": {
+				"manageChannels": {
+					"name": "Manage channels",
+					"description": "Used to update the name/description of the channels to update the counters"
+				},
+				"viewChannel": {
+					"name": "View channels",
+					"description": "Used to update the name/description of the channels to update the counters, also used to receive commands"
+				},
+				"voiceConnect": {
+					"name": "Connect",
+					"description": "Used to update the name/description of the channels to update the counters"
+				},
+				"readMessageHistory": {
+					"name": "Read message history",
+					"description": "Used to update counters in messages/embeds"
+				},
+				"sendMessages": {
+					"name": "Send messages",
+					"description": "Used to reply to commands"
+				},
+				"embedLinks": {
+					"name": "Embed links",
+					"description": "Used to reply to commands"
+				},
+				"addReactions": {
+					"name": "Add reactions",
+					"description": "Used to add reactions in commands to interact with it"
+				},
+				"manageMessages": {
+					"name": "Manage messages",
+					"description": "Used to remove reactions in a command",
+					"optional": true
+				},
+				"manageRoles": {
+					"name": "Manage roles",
+					"description": "Used to update channel permissons when you add a Premium bot"
+				},
+				"banMembers": {
+					"name": "Ban members",
+					"description": "Used to display the amount of banned members in the `{bannedMembers}` counter",
+					"optional": true
+				}
+			}
 		}
 	},
 	"functions": {
