@@ -9,7 +9,10 @@ const {
 	CUSTOM_EMOJI_JUMP,
 	CUSTOM_EMOJI_LOADING,
 	CUSTOM_EMOJI_CHECK_MARK,
-	CUSTOM_EMOJI_ERROR
+	CUSTOM_EMOJI_ERROR,
+	CUSTOM_EMOJI_WARNING,
+	CUSTOM_EMOJI_CONFIRM,
+	CUSTOM_EMOJI_NEGATIVE
 } = getEnv();
 
 class Emoji {
@@ -43,7 +46,7 @@ class Emoji {
 	/**
 	 * Use it in messages
 	 */
-	get toString(): string {
+	toString(): string {
 		return this.customEmoji && this.canUseExternalEmojis
 			? `<${this.customEmoji}>`
 			: this.fallbackUnicodeEmoji;
@@ -59,7 +62,7 @@ class Emoji {
 	}
 }
 
-const emojis = (canUseExternalEmojis: boolean) => {
+const Emojis = (canUseExternalEmojis: boolean) => {
 	return {
 		firstPage: new Emoji(canUseExternalEmojis, "⏪", CUSTOM_EMOJI_FIRST_PAGE),
 		lastPage: new Emoji(canUseExternalEmojis, "⏩", CUSTOM_EMOJI_LAST_PAGE),
@@ -72,8 +75,11 @@ const emojis = (canUseExternalEmojis: boolean) => {
 		jump: new Emoji(canUseExternalEmojis, "↗️", CUSTOM_EMOJI_JUMP),
 		loading: new Emoji(canUseExternalEmojis, "🕓", CUSTOM_EMOJI_LOADING),
 		checkMark: new Emoji(canUseExternalEmojis, "✅", CUSTOM_EMOJI_CHECK_MARK),
-		error: new Emoji(canUseExternalEmojis, "❌", CUSTOM_EMOJI_ERROR)
+		error: new Emoji(canUseExternalEmojis, "❌", CUSTOM_EMOJI_ERROR),
+		confirm: new Emoji(canUseExternalEmojis, "✅", CUSTOM_EMOJI_CONFIRM),
+		negative: new Emoji(canUseExternalEmojis, "❌", CUSTOM_EMOJI_NEGATIVE),
+		warning: new Emoji(canUseExternalEmojis, "❌", CUSTOM_EMOJI_WARNING)
 	} as const;
 };
 
-export default emojis;
+export default Emojis;
