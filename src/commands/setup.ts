@@ -68,19 +68,19 @@ const setup: Command = {
 				msg +=
 					statusTexts.creatingCategory.replace(
 						/{LOADING}/g,
-						emojis.loading.toString
+						emojis.loading.toString()
 					) + "\n";
 			} else if (categoryStatus === "created") {
 				msg +=
 					statusTexts.createdCategory.replace(
 						/{CHECK_MARK}/g,
-						emojis.checkMark.toString
+						emojis.checkMark.toString()
 					) + "\n";
 			} else {
 				msg +=
 					statusTexts.createdCategory.replace(
 						/{CHECK_MARK}/g,
-						emojis.error.toString
+						emojis.error.toString()
 					) + "\n";
 			}
 
@@ -90,19 +90,19 @@ const setup: Command = {
 					msg +=
 						counter.statusCreating.replace(
 							/{LOADING}/g,
-							emojis.loading.toString
+							emojis.loading.toString()
 						) + "\n";
 				} else if (status === "created") {
 					msg +=
 						counter.statusCreated.replace(
 							/{CHECK_MARK}/g,
-							emojis.checkMark.toString
+							emojis.checkMark.toString()
 						) + "\n";
 				} else {
 					msg +=
 						counter.statusCreated.replace(
 							/{CHECK_MARK}/g,
-							emojis.error.toString
+							emojis.error.toString()
 						) + "\n";
 				}
 			});

@@ -78,7 +78,7 @@ const Emojis = (canUseExternalEmojis: boolean) => {
 		error: new Emoji(canUseExternalEmojis, "❌", CUSTOM_EMOJI_ERROR),
 		confirm: new Emoji(canUseExternalEmojis, "✅", CUSTOM_EMOJI_CONFIRM),
 		negative: new Emoji(canUseExternalEmojis, "❌", CUSTOM_EMOJI_NEGATIVE),
-		warning: new Emoji(canUseExternalEmojis, "❌", CUSTOM_EMOJI_WARNING)
+		warning: new Emoji(canUseExternalEmojis, "⚠️", CUSTOM_EMOJI_WARNING)
 	} as const;
 };
 
