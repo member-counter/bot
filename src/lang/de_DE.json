@@ -374,7 +374,7 @@
 			"helpDescription": "Zeigt Informationen zu deinem Bot Profil an",
 			"badges": "Abzeichen",
 			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
-			"removeDataConfirmation": "Bitte senden Sie genau diesen Text, wenn Sie alle Ihre Daten löschen möchten: `` `{CONFIRMATION_STRING}` ``\n:warning: ** Diese Aktion entfernt alle Ihre Daten, Ihre Badges und Server-Upgrades gehen für immer verloren. Sind Sie sicher, dass Sie fortfahren möchten? (Zum Abbrechen ignorieren oder 'Abbrechen' eingeben) **",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "Ich möchte alle meine Daten löschen",
 			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt",
 			"userNotFound": "User not found in the DB"
