@@ -61,6 +61,35 @@ interface Commands {
 	preview: Preview;
 	setup: Setup;
 	base64: Base64;
+	checkPermissions: CheckPermissions;
+}
+interface CheckPermissions {
+	helpDescription: string;
+	optionalText: string;
+	adminWarning: string;
+	footer: string;
+	details: Details;
+}
+interface Details {
+	manageChannels: ManageChannels;
+	viewChannel: ManageChannels;
+	voiceConnect: ManageChannels;
+	readMessageHistory: ManageChannels;
+	sendMessages: ManageChannels;
+	embedLinks: ManageChannels;
+	addReactions: ManageChannels;
+	manageMessages: ManageMessages;
+	manageRoles: ManageChannels;
+	banMembers: ManageMessages;
+}
+interface ManageMessages {
+	name: string;
+	description: string;
+	optional: boolean;
+}
+interface ManageChannels {
+	name: string;
+	description: string;
 }
 interface Base64 {
 	helpDescription: string;
