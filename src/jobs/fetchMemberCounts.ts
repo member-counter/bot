@@ -10,6 +10,7 @@ const {
 	PREMIUM_BOT
 } = getEnv();
 
+// TODO fix this: not updating cache at all when MEMBER_COUNTS_CACHE_CHECK_SLEEP and MEMBER_COUNTS_CACHE_LIFETIME is set
 const fetchMemberCounts: Job = {
 	time: "0 */10 * * * *",
 	runAtStartup: true,
