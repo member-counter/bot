@@ -40,6 +40,13 @@ const lockChannel: Command = {
 						0,
 						"member"
 					);
+					await channelToEdit.editPermission(
+						guild.id,
+						0,
+						// TODO remove this weird fix in the next Eris update
+						Number(Eris.Constants.Permissions.voiceConnect.toString()),
+						"role"
+					);
 				} else {
 					throw new UserError(errorNoPerms.replace(/\{CHANNEL\}/gi, channelId));
 				}
