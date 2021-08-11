@@ -1,5 +1,11 @@
 import Command from "../typings/Command";
-import { CategoryChannel, TextChannel, NewsChannel, VoiceChannel } from "eris";
+import {
+	CategoryChannel,
+	TextChannel,
+	NewsChannel,
+	VoiceChannel,
+	Constants
+} from "eris";
 import { table } from "table";
 import embedBase from "../utils/embedBase";
 import GuildService from "../services/GuildService";
@@ -12,6 +18,9 @@ import UserError from "../utils/UserError";
 import getEnv from "../utils/getEnv";
 import Paginator from "../utils/paginator";
 import safeDiscordString from "../utils/safeDiscordString";
+import Emojis from "../utils/emojis";
+import neededBotPermissions from "../utils/neededBotPermissions";
+import getBotInviteLink from "../utils/getBotInviteLink";
 
 const { PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 
@@ -450,6 +459,64 @@ const block: Command = {
 	}
 };
 
+const checkPerms: Command = {
+	aliases: ["checkPerms", "checkPermissions"],
+	denyDm: true,
+	onlyAdmin: true,
+	run: async ({ message, client, languagePack }) => {
+		const { content, channel } = message;
+		const { guild } = channel;
+		const languagePackCheckPermissions = languagePack.commands.checkPermissions;
+		const botMemberPermissions = guild.members.get(client.user.id).permissions;
+		const canUseExternalEmojis = channel
+			.permissionsOf(message.channel.client.user.id)
+			.has("externalEmojis");
+		const emojis = Emojis(canUseExternalEmojis);
+
+		let messageBody = "";
+
+		if (botMemberPermissions.has("administrator")) {
+			messageBody += `${emojis.warning} ${emojis.warning} ${emojis.warning} ${languagePackCheckPermissions.adminWarning} ${emojis.warning} ${emojis.warning} ${emojis.warning}\n\n`;
+		}
+
+		messageBody += neededBotPermissions
+			.map((permission) => {
+				const {
+					optional,
+					name,
+					description
+				} = languagePackCheckPermissions.details[permission];
+				let sectionBody = "";
+
+				if (botMemberPermissions.has(permission)) {
+					sectionBody += emojis.confirm;
+				} else if (optional) {
+					sectionBody += emojis.warning;
+				} else {
+					sectionBody += emojis.negative;
+				}
+
+				sectionBody += ` **__${name}__** ${
+					optional ? languagePackCheckPermissions.optionalText : ""
+				}\n`;
+				sectionBody += `${description}\n`;
+
+				return sectionBody;
+			})
+			.join("\n");
+
+		messageBody += "\n";
+		messageBody += "\n";
+		messageBody += languagePackCheckPermissions.footer;
+		messageBody += "\n";
+		messageBody += getBotInviteLink();
+
+		safeDiscordString(messageBody).forEach((content) =>
+			channel.createMessage(content)
+		);
+	}
+};
+
 const settingsCommands = [
 	seeSettings,
 	resetSettings,
@@ -460,7 +527,8 @@ const settingsCommands = [
 	setDigit,
 	shortNumber,
 	locale,
-	block
+	block,
+	checkPerms
 ];
 
 export default settingsCommands;
