@@ -25,7 +25,7 @@ const fetchMemberCounts: Job = {
 			? ((client.guilds.keys() as unknown) as string[])
 			: ((await client.evalAll(
 					"[...this.client.guilds.keys()]"
-			  )) as string[]).flat();
+			  )) as string[])?.flat();
 
 		for (const id of guilds) {
 			try {
