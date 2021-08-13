@@ -214,58 +214,58 @@
 				{
 					"key": "redditMembersOnline",
 					"name": "redditMembersOnline",
-					"description": "Displays the amount of online members for the given subreddit"
+					"description": "Отображает количество пользователей онлайн для заданного сабреддита"
 				},
 				{
 					"key": "redditTitle",
 					"name": "redditTitle",
-					"description": "Displays the title for the given subreddit"
+					"description": "Отображает название заданного сабреддита"
 				},
 				{
 					"key": "static",
-					"name": "static:number",
+					"name": "static:число",
 					"description": "Показывает заданное число с форматированием, основанным на настройках сервера"
 				},
 				{
 					"key": "instagramFollowers",
-					"name": "instagramFollowers:username",
+					"name": "instagramFollowers:никнейм",
 					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Instagram."
 				},
 				{
 					"key": "sum",
-					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"name": "sum:value1,value2,и т.д.",
+					"description": "Выполняет сумму указанных значений"
 				},
 				{
 					"key": "substract",
-					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+					"name": "substract:value1,value2,и т.д.",
+					"description": "Вычитает указанные значения"
 				},
 				{
 					"key": "multiply",
-					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"name": "multiply:value1,value2, и т.д.",
+					"description": "Умножает указанные значения"
 				},
 				{
 					"key": "divide",
-					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"name": "divide:value1,value2, и т.д.",
+					"description": "Деление указанных значений"
 				},
 				{
 					"key": "modulus",
-					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values"
+					"name": "modulus:value1,value2, и т.д.",
+					"description": "Получает модуль указанных значений"
 				}
 			]
 		},
 		"premium": {
-			"helpDescription": "Get information about Member Counter Premium",
+			"helpDescription": "Получить информацию о Member Counter Premium",
 			"embedReply": {
 				"title": "Member Counter Premium",
-				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"description": "[Получить премиум бота]({GET_PREMIUM_BOT_URL}) и наслаждаться:",
 				"fields": [
 					{
-						"name": "**✅ ALL the counters**",
+						"name": "**✅ ВСЕ счетчики**",
 						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
 						"inline": false
 					},
