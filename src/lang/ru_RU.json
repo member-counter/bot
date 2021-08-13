@@ -266,27 +266,27 @@
 				"fields": [
 					{
 						"name": "**✅ ВСЕ счетчики**",
-						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"value": "Получите доступ к **всем** счетчикам, существующим в боте, например, `{membersWithRole}` или `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
-						"name": "**✅ More accurate**",
-						"value": "Get more accurate counts in all members related counters",
+						"name": "**✅ Более точные счетчики**",
+						"value": "Получите более точные числа в счетчиках",
 						"inline": false
 					},
 					{
-						"name": "**✅ Unlimited servers**",
-						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100,000 members, quarterly",
+						"name": "**✅ Неограниченное кол-во серверов**",
+						"value": "Заплатите 5 евро за 100.000 пользователей, и приглашайте бота в безграничное кол-во серверов. Плата взымается ежеквартально",
 						"inline": false
 					},
 					{
-						"name": "**✅ Custom bot**",
-						"value": "Use your own bot account, with your chosen profile picture and username",
+						"name": "**✅ Собственный бот**",
+						"value": "Используйте собственную учетную запись бота с выбранной фотографией профиля и его именем",
 						"inline": false
 					},
 					{
-						"name": "**✅ Easy to setup**",
-						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"name": "**✅ Простая настройка**",
+						"value": "Всего лишь за несколько кликов вы можете создать своего Member Counter бота, и мы позаботимся о том, чтобы обновлять его. Гайд со скриншотами в наличии! Это ли не проще, чем хостить бота самому?",
 						"inline": false
 					}
 				]
@@ -312,13 +312,13 @@
 			"errorMissingParams": "Недостаточно параметров, пожалуйста, просмотрите `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
+			"helpDescription": "Эта команда позволяет вам отображать счётчик в более компактной форме.\n\n**Использование:**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Примеры:**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Неправильное действие! Пожалуйста, просмотрите `{PREFIX}help shortNumber`",
 			"success": "Сделано! Необходимо немного подождать (около нескольких минут) прежде, чем увидеть новые изменения"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Форматирует числа, часы (формат 12ч/24ч) и др. в соответствии с указанной локализацией \n\n**Использование**\n```{PREFIX}locale [locale/disable]```\n**Примеры**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
 			"helpImage": "https://i.imgur.com/BBD43CB.png"
 		},
 		"prefix": {
