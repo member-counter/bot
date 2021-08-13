@@ -354,15 +354,15 @@
 			"done": "Восстановлено к значению по умолчанию"
 		},
 		"upgradeServer": {
-			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account",
+			"helpDescription": "Эта команда позволяет вам пригласить на сервер старую версию Member Counter Premiumс помощью оставшихся апгрейдов на вашем аккаунте",
 			"success": "Готово! Следующий шаг - приглашение премиум версии бота:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Вы не можете улучшить этот сервер, потому что он уже улучшен до премиум версии.",
-			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
+			"noServerUpgradesAvailable": "Вы не можете использовать больше апгрейдов потому что у вас их не осталось"
 		},
 		"info": {
 			"helpDescription": "Список полезных ссылок",
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[Добавьте меня на свой сервер]({BOT_INVITE_URL})\n[Сайт]({WEBSITE})\n[Получить премиум]({GET_PREMIUM_BOT_URL})\n[Сервер поддержки]({BOT_SERVER_URL})\n[Репозиторий GitHub](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
