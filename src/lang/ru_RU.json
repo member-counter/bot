@@ -154,12 +154,12 @@
 				{
 					"key": "youtubeChannelName",
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays a youtube channel name"
+					"description": "Отображает имя YouTube канала."
 				},
 				{
 					"key": "twitchFollowers",
 					"name": "twitchFollowers:nickname",
-					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
+					"description": "Отображает кол-во фолловеров Twitch, замените nickname на имя желаемого канала"
 				},
 				{
 					"key": "twitchViews",
@@ -169,7 +169,7 @@
 				{
 					"key": "twitchChannelName",
 					"name": "twitchChannelName:nickname",
-					"description": "Displays a twitch channel Name"
+					"description": "Отображает имя Twitch канала."
 				},
 				{
 					"key": "memeratorMemes",
@@ -209,7 +209,7 @@
 				{
 					"key": "redditMembers",
 					"name": "redditMembers",
-					"description": "Displays the amount of members for the given subreddit"
+					"description": "Отображает количество участников для заданного сабреддита"
 				},
 				{
 					"key": "redditMembersOnline",
