@@ -16,15 +16,10 @@ const fetchMemberCounts: Job = {
 	runAtStartup: true,
 	runInOnlyFirstThread: true,
 	run: async ({ client }) => {
-		/**
-		 * The main and the premium bot are "connected" throught redis,
-		 * the premium bot tries to fetch guilds of the main bot which doesn't have access, and it's useless,
-		 * since the premium bot runs in only one proccess, we can obtain the guild list directly
-		 */
 		const guilds = PREMIUM_BOT
 			? ((client.guilds.keys() as unknown) as string[])
 			: ((await client.evalAll(
-					"[...this.client.guilds.keys()]"
+					`(this.client.lockKey === ${client.lockKey}) ? [...this.client.guilds.keys()] : []`
 			  )) as string[])?.flat();
 
 		for (const id of guilds) {
