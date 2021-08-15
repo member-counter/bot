@@ -515,35 +515,35 @@
 				},
 				"voiceConnect": {
 					"name": "Подключаться",
-					"description": "Used to update the name/description of the channels to update the counters"
+					"description": "Используется для доступа к имени/описанию каналов для обновления счетчиков"
 				},
 				"readMessageHistory": {
-					"name": "Read message history",
-					"description": "Used to update counters in messages/embeds"
+					"name": "Прочитать историю сообщений",
+					"description": "Используется для обновления счетчиков в сообщениях/embeds сообщениях"
 				},
 				"sendMessages": {
-					"name": "Send messages",
-					"description": "Used to reply to commands"
+					"name": "Отправка сообщений",
+					"description": "Используется для ответа на команды"
 				},
 				"embedLinks": {
-					"name": "Embed links",
-					"description": "Used to reply to commands"
+					"name": "Встраиваемые ссылки",
+					"description": "Используется для ответа на команды"
 				},
 				"addReactions": {
-					"name": "Add reactions",
-					"description": "Used to add reactions in commands to interact with it"
+					"name": "Добавлять реакции",
+					"description": "Используется для добавления реакций в командах для взаимодействия с ними"
 				},
 				"manageMessages": {
-					"name": "Manage messages",
-					"description": "Used to remove reactions in a command",
+					"name": "Управление сообщениями",
+					"description": "Используется для удаления реакций в команде",
 					"optional": true
 				},
 				"manageRoles": {
-					"name": "Manage roles",
-					"description": "Used to update channel permissons when you add a Premium bot"
+					"name": "Управлять ролями",
+					"description": "Используется для обновления прав канала при добавлении премиум бота"
 				},
 				"banMembers": {
-					"name": "Ban members",
+					"name": "Бан участников",
 					"description": "Используется для отображения кол-ва забаненных участников в счётчике `{bannedMembers}`",
 					"optional": true
 				}
