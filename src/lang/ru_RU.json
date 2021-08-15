@@ -374,10 +374,10 @@
 			"helpDescription": "Показывает связанную информацию между вами и этим ботом",
 			"badges": "Значки",
 			"serverUpgradesAvailable": "Осталось улучшений сервера",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
-			"removeDataConfirmationString": "I want to delete all of my data",
+			"removeDataConfirmation": "Пожалуйста, отправьте в точности этот же текст, если вы хотите удалить все ваши данные: ```{CONFIRMATION_STRING}```\n:warning: **Это действие удалит все ваши данные, включая значки, апгрейды и кредиты будут потеряны навсегда, счета будут сохранены в силу законодательных причин. Вы уверены, что хотите продолжить? (Игнорируйте или напишите 'cancel' чтобы отменить)**",
+			"removeDataConfirmationString": "Я хочу удалить все мои данные",
 			"removeDataSuccess": "Ваши данные были успешно удалены.",
-			"userNotFound": "User not found in the DB"
+			"userNotFound": "Пользователь не найден в БД"
 		},
 		"counts": {
 			"helpDescription": "Показывает некоторые счётчики",
@@ -388,8 +388,8 @@
 			"connectedUsers": "Подключённые пользователи:",
 			"channels": "Каналы:",
 			"roles": "Роли:",
-			"nitroBoosters": "Boosting:",
-			"bannedMembers": "Banned members:"
+			"nitroBoosters": "Бусты:",
+			"bannedMembers": "Забаненные:"
 		},
 		"preview": {
 			"helpDescription": "Показывает, как будет выглядеть в канале предварительный вид счётчика или различных счётчиков.\n\n**Использование**```{PREFIX}preview [content]```\n**Пример**```{PREFIX}preview {members} Members```",
@@ -398,14 +398,14 @@
 			"channelTopic": "Предварительное описание канала"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "Создает локнутые голосовые каналы (🔒) с некоторыми счетчиками в них\n**Usage**```{PREFIX}\n{PREFIX}setup twitch [название канала]\n{PREFIX}setup youtube [ссылка на канал]```\n**Пример**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www. youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
 			"status": {
 				"creatingCounts": "Создание счётчиков...",
 				"createdCounts": "Выполнено",
-				"creatingCategory": "{LOADING} Creating category",
-				"createdCategory": "{CHECK_MARK} Category created"
+				"creatingCategory": "{LOADING} Создание категории",
+				"createdCategory": "{CHECK_MARK} Категория создана"
 			},
-			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"errorInvalidUsage": "Неправильное использование, уточните использование команды - {PREFIX}help",
 			"counterTemplates": {
 				"default": {
 					"categoryName": "📊 Статистика сервера 📊",
