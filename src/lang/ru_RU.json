@@ -412,71 +412,71 @@
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Online: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"template": "Онлайн: {onlineMembers}",
+							"statusCreating": "{LOADING} Создание счётчика онлайн пользователей",
+							"statusCreated": "{CHECK_MARK} Счётчик онлайн пользователей создан"
 						},
 						{
 							"name": "members",
-							"template": "Members: {members}",
-							"statusCreating": "{LOADING} Creating member counter",
-							"statusCreated": "{CHECK_MARK} Members counter created"
+							"template": "Участники: {members}",
+							"statusCreating": "{LOADING} Создание счётчика участников",
+							"statusCreated": "{CHECK_MARK} Счётчик участников создан"
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
-							"statusCreating": "{LOADING} Creating booster counter",
-							"statusCreated": "{CHECK_MARK} Booster counter created"
+							"template": "Бустеры: {nitroBoosters}",
+							"statusCreating": "{LOADING} Создание счётчика бустеров",
+							"statusCreated": "{CHECK_MARK} Счётчик бустеров создан"
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
-							"statusCreating": "{LOADING} Creating roles counter",
-							"statusCreated": "{CHECK_MARK} Roles counter created"
+							"template": "Роли: {roles}",
+							"statusCreating": "{LOADING} Создание счётчика ролей",
+							"statusCreated": "{CHECK_MARK} Счётчик ролей создан"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
-							"statusCreating": "{LOADING} Creating channels counter",
-							"statusCreated": "{CHECK_MARK} Channels counter created"
+							"template": "Каналы: {channels}",
+							"statusCreating": "{LOADING} Создание счётчика каналов",
+							"statusCreated": "{CHECK_MARK} Счётчик каналов создан"
 						}
 					]
 				},
 				"twitch": {
-					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Twitch Stats 📊",
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Статистика Twitch 📊",
 					"counters": [
 						{
 							"name": "twitchFollowers",
-							"template": "{twitchFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"template": "{twitchFollowers:{RESOURCE}} Фолловеры",
+							"statusCreating": "{LOADING} Создание счётчика фолловеров",
+							"statusCreated": "{CHECK_MARK} Счётчик фолловеров создан"
 						},
 						{
 							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{twitchViews:{RESOURCE}} Просмотры",
+							"statusCreating": "{LOADING} Создание счётчика просмотров",
+							"statusCreated": "{CHECK_MARK} Счётчик просмотров создан"
 						}
 					]
 				},
 				"youtube": {
-					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Youtube Stats 📊",
+					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Статистика Youtube 📊",
 					"counters": [
 						{
 							"name": "youtubeSubscribers",
-							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
-							"statusCreating": "{LOADING} Creating subscriber counter",
-							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+							"template": "{youtubeSubscribers:{RESOURCE}} Подписчики",
+							"statusCreating": "{LOADING} Создание счётчика подписчиков",
+							"statusCreated": "{CHECK_MARK} Счётчик подписчиков создан"
 						},
 						{
 							"name": "youtubeVideos",
-							"template": "{youtubeVideos:{RESOURCE}} Videos",
-							"statusCreating": "{LOADING} Creating video counter",
-							"statusCreated": "{CHECK_MARK} Video counter created"
+							"template": "{youtubeVideos:{RESOURCE}} Видео",
+							"statusCreating": "{LOADING} Создание счётчика видео",
+							"statusCreated": "{CHECK_MARK} Счётчик видео создан"
 						},
 						{
 							"name": "youtubeViews",
-							"template": "{youtubeViews:{RESOURCE}} Views",
+							"template": "{youtubeViews:{RESOURCE}} Просмотры",
 							"statusCreating": "{LOADING} Creating views counter",
 							"statusCreated": "{CHECK_MARK} Views counter created"
 						}
@@ -544,7 +544,7 @@
 				},
 				"banMembers": {
 					"name": "Ban members",
-					"description": "Used to display the amount of banned members in the `{bannedMembers}` counter",
+					"description": "Используется для отображения кол-ва забаненных участников в счётчике `{bannedMembers}`",
 					"optional": true
 				}
 			}
