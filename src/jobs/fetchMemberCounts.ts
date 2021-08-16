@@ -6,27 +6,20 @@ import sleep from "../utils/sleep";
 
 const {
 	MEMBER_COUNTS_CACHE_CHECK_SLEEP,
-	MEMBER_COUNTS_CACHE_LIFETIME,
-	PREMIUM_BOT
+	MEMBER_COUNTS_CACHE_LIFETIME
 } = getEnv();
 
-// TODO fix this: not updating cache at all when MEMBER_COUNTS_CACHE_CHECK_SLEEP and MEMBER_COUNTS_CACHE_LIFETIME is set
 const fetchMemberCounts: Job = {
 	time: "0 */10 * * * *",
 	runAtStartup: true,
 	runInOnlyFirstThread: true,
 	run: async ({ client }) => {
-		/**
-		 * The main and the premium bot are "connected" throught redis,
-		 * the premium bot tries to fetch guilds of the main bot which doesn't have access, and it's useless,
-		 * since the premium bot runs in only one proccess, we can obtain the guild list directly
-		 */
-		const guilds = PREMIUM_BOT
-			? ((client.guilds.keys() as unknown) as string[])
-			: ((await client.evalAll(
-					"[...this.client.guilds.keys()]"
-			  )) as string[]).flat();
+		const guilds = ((await client.evalAll(
+			`[...this.client.guilds.keys()]`
+		)) as string[][])?.flat();
 
+		const startTimestamp = Date.now();
+		let fetchGuildCount = 0;
 		for (const id of guilds) {
 			try {
 				await sleep(MEMBER_COUNTS_CACHE_CHECK_SLEEP * 1000);
@@ -45,6 +38,7 @@ const fetchMemberCounts: Job = {
 				}
 
 				const guild = await client.getRESTGuild(id, true);
+				fetchGuildCount++;
 
 				guildCountCache.members = guild.approximateMemberCount;
 				guildCountCache.onlineMembers = guild.approximatePresenceCount;
@@ -52,8 +46,11 @@ const fetchMemberCounts: Job = {
 				await guildCountCache.save();
 			} catch (err) {
 				console.error(err);
+			} finally {
 			}
 		}
+
+		console.info(`${fetchGuildCount} guilds of ${guilds.length} were fetched in ${(Date.now() - startTimestamp) / 1000} seconds`)
 	}
 };
 
