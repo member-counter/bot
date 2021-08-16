@@ -1,6 +1,6 @@
 {
 	"name": "member-counter-bot",
-	"version": "0.18.5-dev",
+	"version": "0.18.5-verified-bot-edition-dev",
 	"engines": {
 		"node": ">=14.0"
 	},
