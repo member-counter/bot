@@ -464,8 +464,11 @@ const checkPerms: Command = {
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, client, languagePack }) => {
-		const { content, channel } = message;
-		const { guild } = channel;
+		const {
+			content,
+			channel,
+			channel: { guild }
+		} = message;
 		const languagePackCheckPermissions = languagePack.commands.checkPermissions;
 		const botMemberPermissions = guild.members.get(client.user.id).permissions;
 		const canUseExternalEmojis = channel
@@ -511,9 +514,21 @@ const checkPerms: Command = {
 		messageBody += "\n";
 		messageBody += getBotInviteLink();
 
-		safeDiscordString(messageBody).forEach((content) =>
-			channel.createMessage(content)
-		);
+		if (botMemberPermissions.has("embedLinks")) {
+			const embeds = safeDiscordString(messageBody).map((content) =>
+				embedBase({ title: `Check permissions`, description: content })
+			);
+			new Paginator(
+				message.channel,
+				message.author.id,
+				embeds,
+				languagePack
+			).displayPage(0);
+		} else {
+			safeDiscordString(messageBody).forEach((content) =>
+				channel.createMessage(content)
+			);
+		}
 	}
 };
 

@@ -30,7 +30,7 @@ RUN npm run build
 # copy the cached dependencies, copy the compiled code and set entrypoint
 FROM node:alpine as release
 WORKDIR /app
-COPY package*.json .
+COPY package*.json ./
 COPY --from=node_modules_cache_prod /cache/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 CMD ["node", "."]
