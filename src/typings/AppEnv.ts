@@ -54,10 +54,15 @@ interface _AppEnv {
 	CUSTOM_EMOJI_NEXT_PAGE: string;
 	CUSTOM_EMOJI_JUMP: string;
 
-	// Setup command
-
+	// Setup command1
 	CUSTOM_EMOJI_LOADING: string;
 	CUSTOM_EMOJI_CHECK_MARK: string;
+	CUSTOM_EMOJI_ERROR: string;
+
+	// Custom emojis for general use
+	CUSTOM_EMOJI_CONFIRM: string;
+	CUSTOM_EMOJI_NEGATIVE: string;
+	CUSTOM_EMOJI_WARNING: string;
 
 	WEBSITE_URL: string;
 	GET_PREMIUM_BOT_URL: string;

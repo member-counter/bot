@@ -1,6 +1,6 @@
 import Command from "../typings/Command";
 import CountService from "../services/CountService";
-import emojis from "../utils/emojis";
+import Emojis from "../utils/emojis";
 import Eris from "eris";
 import UserError from "../utils/UserError";
 
@@ -11,13 +11,12 @@ const setup: Command = {
 	run: async ({ message, languagePack, guildService, client }) => {
 		const availableSetups = ["youtube", "twitch", "twitter"];
 		const { channel, content } = message;
-		const { loading, checkMark } = emojis;
 		let [, type, resource]: (string | undefined)[] = content.split(/\s+/);
 
 		const canUseExternalEmojis = channel
 			.permissionsOf(message.channel.client.user.id)
 			.has("externalEmojis");
-
+		const emojis = Emojis(canUseExternalEmojis);
 		// use default if type is invalid
 		if (type && !availableSetups.includes(type)) type = "default";
 
@@ -38,23 +37,9 @@ const setup: Command = {
 		if (type && !resource)
 			throw new UserError(languagePack.commands.setup.errorInvalidUsage);
 
-		switch (type) {
-			case "youtube": {
-				categoryName = catergoryNameTemplate.replace(/\{RESOURCE}/g, resource);
-				break;
-			}
-			case "twitch": {
-				categoryName = catergoryNameTemplate.replace(/\{RESOURCE}/g, resource);
-				break;
-			}
-			case "twitter": {
-				categoryName = catergoryNameTemplate.replace(/\{RESOURCE}/g, resource);
-			}
-			default: {
-				categoryName = catergoryNameTemplate;
-				break;
-			}
-		}
+		categoryName = resource
+			? catergoryNameTemplate.replace(/\{RESOURCE}/g, resource)
+			: catergoryNameTemplate;
 
 		categoryNameProcessed = await countService.processContent(categoryName);
 
@@ -83,18 +68,20 @@ const setup: Command = {
 				msg +=
 					statusTexts.creatingCategory.replace(
 						/{LOADING}/g,
-						canUseExternalEmojis ? loading.string : loading.fallbackUnicodeEmoji
+						emojis.loading.toString()
 					) + "\n";
 			} else if (categoryStatus === "created") {
 				msg +=
 					statusTexts.createdCategory.replace(
 						/{CHECK_MARK}/g,
-						canUseExternalEmojis
-							? checkMark.string
-							: checkMark.fallbackUnicodeEmoji
+						emojis.checkMark.toString()
 					) + "\n";
 			} else {
-				// TODO add error emoji
+				msg +=
+					statusTexts.createdCategory.replace(
+						/{CHECK_MARK}/g,
+						emojis.error.toString()
+					) + "\n";
 			}
 
 			countersToCreate.forEach((counter) => {
@@ -103,20 +90,20 @@ const setup: Command = {
 					msg +=
 						counter.statusCreating.replace(
 							/{LOADING}/g,
-							canUseExternalEmojis
-								? loading.string
-								: loading.fallbackUnicodeEmoji
+							emojis.loading.toString()
 						) + "\n";
 				} else if (status === "created") {
 					msg +=
 						counter.statusCreated.replace(
 							/{CHECK_MARK}/g,
-							canUseExternalEmojis
-								? checkMark.string
-								: checkMark.fallbackUnicodeEmoji
+							emojis.checkMark.toString()
 						) + "\n";
 				} else {
-					// TODO add error emoji
+					msg +=
+						counter.statusCreated.replace(
+							/{CHECK_MARK}/g,
+							emojis.error.toString()
+						) + "\n";
 				}
 			});
 
@@ -149,15 +136,22 @@ const setup: Command = {
 						id: client.user.id,
 						type: "member",
 						allow:
-							Eris.Constants.Permissions.voiceConnect |
-							Eris.Constants.Permissions.readMessages,
+							// TODO remove this weird fix in the next Eris update
+							Number(
+								(
+									Eris.Constants.Permissions.voiceConnect |
+									Eris.Constants.Permissions.viewChannel
+								).toString()
+							),
 						deny: 0
 					},
 					{
 						id: guild.id,
 						type: "role",
 						allow: 0,
-						deny: Eris.Constants.Permissions.voiceConnect
+						deny:
+							// TODO remove this weird fix in the next Eris update
+							Number(Eris.Constants.Permissions.voiceConnect.toString())
 					}
 				]
 			}
@@ -181,15 +175,22 @@ const setup: Command = {
 								id: client.user.id,
 								type: "member",
 								allow:
-									Eris.Constants.Permissions.voiceConnect |
-									Eris.Constants.Permissions.readMessages,
+									// TODO remove this weird fix in the next Eris update
+									Number(
+										(
+											Eris.Constants.Permissions.voiceConnect |
+											Eris.Constants.Permissions.viewChannel
+										).toString()
+									),
 								deny: 0
 							},
 							{
 								id: guild.id,
 								type: "role",
 								allow: 0,
-								deny: Eris.Constants.Permissions.voiceConnect
+								deny:
+									// TODO remove this weird fix in the next Eris update
+									Number(Eris.Constants.Permissions.voiceConnect.toString())
 							}
 						],
 						parentID: discordCategory.id
