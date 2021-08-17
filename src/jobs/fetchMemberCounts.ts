@@ -31,7 +31,8 @@ const fetchMemberCounts: Job = {
 						timestamp: Date.now()
 					});
 				} else if (
-					guildCountCache?.timestamp + MEMBER_COUNTS_CACHE_LIFETIME * 1000 >=
+					guildCountCache?.timestamp.getTime() +
+						MEMBER_COUNTS_CACHE_LIFETIME * 1000 >=
 					Date.now()
 				) {
 					continue;
@@ -42,7 +43,7 @@ const fetchMemberCounts: Job = {
 
 				guildCountCache.members = guild.approximateMemberCount;
 				guildCountCache.onlineMembers = guild.approximatePresenceCount;
-				guildCountCache.timestamp = Date.now();
+				guildCountCache.timestamp = new Date();
 				await guildCountCache.save();
 			} catch (err) {
 				console.error(err);
@@ -50,7 +51,11 @@ const fetchMemberCounts: Job = {
 			}
 		}
 
-		console.info(`${fetchGuildCount} guilds of ${guilds.length} were fetched in ${(Date.now() - startTimestamp) / 1000} seconds`)
+		console.info(
+			`${fetchGuildCount} guilds of ${guilds.length} were fetched in ${
+				(Date.now() - startTimestamp) / 1000
+			} seconds`
+		);
 	}
 };
 
