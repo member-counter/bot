@@ -265,7 +265,7 @@
 				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
 				"fields": [
 					{
-						"name": "**✅ ALL the counters**",
+						"name": "**✅ Tüm sayaçlar**",
 						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
 						"inline": false
 					},
@@ -539,11 +539,11 @@
 					"optional": true
 				},
 				"manageRoles": {
-					"name": "Manage roles",
+					"name": "Rolleri yönet",
 					"description": "Used to update channel permissons when you add a Premium bot"
 				},
 				"banMembers": {
-					"name": "Ban members",
+					"name": "Üyeleri yasakla",
 					"description": "Used to display the amount of banned members in the `{bannedMembers}` counter",
 					"optional": true
 				}
