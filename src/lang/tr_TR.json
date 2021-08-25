@@ -483,13 +483,13 @@
 					]
 				},
 				"twitter": {
-					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter İstatistikleri 📊",
 					"counters": [
 						{
 							"name": "twitterFollowers",
-							"template": "{twitterFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"template": "{twitterFollowers:{RESOURCE}} Takipçi",
+							"statusCreating": "{LOADING} Takipçi sayacı oluşturuluyor",
+							"statusCreated": "{CHECK_MARK} Takipçi sayacı oluşturuldu"
 						}
 					]
 				}
@@ -500,7 +500,7 @@
 			"invalidAction": "Geçersiz eylem, eylem `encode` veya `decode` olmalıdır"
 		},
 		"checkPermissions": {
-			"helpDescription": "Botun doğru çalışmak için doğrı izinlere sahip olup olmadığını kontrol eder",
+			"helpDescription": "Botun doğru çalışmak için doğru izinlere sahip olup olmadığını kontrol eder",
 			"optionalText": "(İsteğe bağlı)",
 			"adminWarning": "**Bu botun yönetici yetkisi var, lütfen yönetici iznini kapatın ve doğru izinler ile tekrar kurun**",
 			"footer": "İzin sorunlarını düzeltmeniz gerekiyorsa botu tekrar davet etmeyi deneyin:",
