@@ -34,7 +34,7 @@
 			"helpDescription": "Size botun nasıl kullanılacağına dair bir rehber gösterir",
 			"pagesText": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Sunucunuza Member Counter'ı eklediğiniz için teşekkürler!**\n__**Sayaç oluşturma/düzenleme**__\nBu örnek için, discord sunucunuzdaki toplam üye sayısını sayan `{members}`ı kullanacağız, ancak sonraki sayfalarda daha fazla sayaç bulacaksınız.\nBu sayacı aşağıdaki yerlerden birine yerleştirebilirsiniz:\n\n- **ses** kanal **adına**\n- **kategori adına**\n- **yazı** kanalı **başlığına**\n- **duyuru** kanalı **başlığına**\n\nŞimdi yeni bir kanal oluşturun, düzenleyin ve ada veya başlığa `{members}` yazın ve 'değişiklikleri kaydet'e tıklayın\n\nAyrıca bir ad/başlığa birden fazla sayaç ekleyebilir ve bunları kendi içeriğinizle birleştirebilirsiniz, işte örnekler:\n```\n{onlineMembers}/{members} Aktif Üye, {youtubeSubscribers:https://www.youtube.com/user/enyay} Abone!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Yönetici ve mod aktif!\n```\n\n> Bir adı/konuyu düzenlerken karakter sınırına ulaşırsanız, lütfen `{PREFIX}help editChannel` ile kontrol edin.\n> Mevcut sayaç yapılandırmalarını `{PREFIX}seeSettings` ile görebilirsiniz, bu, önceki sayaçları devre dışı bırakmadan daha fazla sayaç eklemek için kullanışlıdır.\n__**Sayaç kaldırma**__\nKanalı düzenleyin ve kanal adına/başlığa {disable} yazın, Member Counter kanal adını \\✅ olarak değiştirecektir, bu şey kanalın tüm sayaçlarını başarıyla kaldırdığınız anlamına gelir.\nDoğrudan kanalı da silebilirsiniz",
-			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"countersHeader": "__**Sayaçlar**__\n> Discord'da Geliştirici modunu etkinleştirmelisiniz (Kulllanıcı Ayarları (Çark Sembolü) > Uygulama Ayarları > Gelişmiş > Geliştirici Modu)\n> Bir ID almak için, kanala/rollere sağ tıklayın ve \"ID'yi Kopyala\"ya tıklayın. \n\n> Yıldız işareti(\\*) olan sayaçlar premium sayaçlardır, daha fazla bilgiyi `{PREFIX}premium` ile alabilirsiniz\n\n> Bir sayaçtaki biçimlendirmesini sunucu ayarlarından bağımsız olarak değiştirmek istiyorsanız, [Bu sayfayı](https://member-counter.eduardozgz.com/utils/overwrite-settings) ziyaret edin, veya bu [talimatları](https://github.com/eduardozgz/member-counter-bot/issues/98) izleyerek manuel yapın.\n\n",
 			"counters": [
 				{
 					"key": "members",
@@ -134,7 +134,7 @@
 				{
 					"key": "http",
 					"name": "http:options",
-					"description": "HTTP `GET` request tarafından döndürülen sonucu gösterir. `options` (seçenekler) parametresini [buradan](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir, veya kendiniz oluşturabilirsiniz: `options` (seçenekler) parametresi, base64'te kodlanmış bir JSON objesidir (bunu arşivlemek için {PREFIX}base64 komutunu kullanabilirsiniz), bu obje aşağıdaki keylere sahip olabilir: `url`: Bir stringtir; kaynağın url'sini içerir, `parseNumber`: Bir booleandır; sonuç geçerli bir sayı ise, sunucunuzun ayarlarına göre ayrıştırılacak ve özelleştirilecektir, `dataPath`: Bir stringtir; yanıt bir JSON objesiyse, string veya sayı olması gereken bir değere sahip bir keyin yolunu belirtmeniz gerekir, bu yolun sözdizimi, JS'nin özelliklere ve array öğelerine erişmek için kullandığı sözdizimine benzer."
+					"description": "HTTP `GET` isteği tarafından döndürülen sonucu gösterir. `options` (seçenekler) parametresini [buradan](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir, veya kendiniz oluşturabilirsiniz: `options` (seçenekler) parametresi, base64'te kodlanmış bir JSON objesidir (bunu arşivlemek için {PREFIX}base64 komutunu kullanabilirsiniz), bu obje aşağıdaki keylere sahip olabilir: `url`: Bir stringtir; kaynağın url'sini içerir, `parseNumber`: Bir booleandır; sonuç geçerli bir sayı ise, sunucunuzun ayarlarına göre ayrıştırılacak ve özelleştirilecektir, `dataPath`: Bir stringtir; yanıt bir JSON objesiyse, string veya sayı olması gereken bir değere sahip bir keyin yolunu belirtmeniz gerekir, bu yolun sözdizimi, JS'nin özelliklere ve array öğelerine erişmek için kullandığı sözdizimine benzer."
 				},
 				{
 					"key": "youtubeSubscribers",
@@ -259,34 +259,34 @@
 			]
 		},
 		"premium": {
-			"helpDescription": "Get information about Member Counter Premium",
+			"helpDescription": "Member Counter Premium hakkında bilgi alın",
 			"embedReply": {
 				"title": "Member Counter Premium",
-				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"description": "[Premium'a geçin]({GET_PREMIUM_BOT_URL}) ve eğlenin:",
 				"fields": [
 					{
-						"name": "**✅ ALL the counters**",
-						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"name": "**✅ TÜM Sayaçlar**",
+						"value": "Botta yer alan **tüm** sayaçlara erişin. Örneğin : `{membersWithRole}` veya `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
-						"name": "**✅ More accurate**",
-						"value": "Get more accurate counts in all members related counters",
+						"name": "**✅ Daha Doğru**",
+						"value": "Üyelerle ilgili tüm sayaçlarda daha doğru sayımlar elde edin",
 						"inline": false
 					},
 					{
-						"name": "**✅ Unlimited servers**",
-						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100,000 members, quarterly",
+						"name": "**✅ Sınırsız sunucu**",
+						"value": "Yalnızca sahip olduğunuz üyeler için ödeme yapın ve botu istediğiniz kadar sunucuya davet edin. 100.000 üye için **5€** /3 aylık",
 						"inline": false
 					},
 					{
-						"name": "**✅ Custom bot**",
-						"value": "Use your own bot account, with your chosen profile picture and username",
+						"name": "**✅ Özel bot**",
+						"value": "Seçtiğiniz profil resmi ve kullanıcı adı ile kendi bot hesabınızı kullanın",
 						"inline": false
 					},
 					{
-						"name": "**✅ Easy to setup**",
-						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"name": "**✅ Kurulumu kolay**",
+						"value": "Birkaç tıklamayla kendi Üye Sayacı botunuzu oluşturabilirsiniz, onu güncellemekle biz ilgileneceğiz. Ekran görüntüleri dahil rehber! Bu, kendi kendini barındırmaktan daha kolay değil mi?",
 						"inline": false
 					}
 				]
@@ -362,7 +362,7 @@
 		"info": {
 			"helpDescription": "Yararlı linklerin listesi",
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[Botu sunucuna ekle]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Premium Alın]({GET_PREMIUM_BOT_URL})\n[Destek Sunucusu]({BOT_SERVER_URL})\n[GitHub Reposu](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -388,7 +388,7 @@
 			"connectedUsers": "Sesli de Olan Üye Sayısı:",
 			"channels": "Kanal Sayısı:",
 			"roles": "Rol Sayısı:",
-			"nitroBoosters": "Boosting:",
+			"nitroBoosters": "Nitrolayan Üye Sayısı:",
 			"bannedMembers": "Banlanan Üye Sayısı:"
 		},
 		"preview": {
@@ -483,13 +483,13 @@
 					]
 				},
 				"twitter": {
-					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter İstatistikleri 📊",
 					"counters": [
 						{
 							"name": "twitterFollowers",
-							"template": "{twitterFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"template": "{twitterFollowers:{RESOURCE}} Takipçi",
+							"statusCreating": "{LOADING} Takipçi sayacı oluşturuluyor",
+							"statusCreated": "{CHECK_MARK} Takipçi sayacı oluşturuldu"
 						}
 					]
 				}
@@ -500,51 +500,51 @@
 			"invalidAction": "Geçersiz eylem, eylem `encode` veya `decode` olmalıdır"
 		},
 		"checkPermissions": {
-			"helpDescription": "Checks if the bot has the correct permissions to work correctly",
-			"optionalText": "(Optional)",
-			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
-			"footer": "If you need to fix permissions problems, try inviting the bot again:",
+			"helpDescription": "Botun doğru çalışmak için doğru izinlere sahip olup olmadığını kontrol eder",
+			"optionalText": "(İsteğe bağlı)",
+			"adminWarning": "**Bu botun yönetici yetkisi var, lütfen yönetici iznini kapatın ve doğru izinler ile tekrar kurun**",
+			"footer": "İzin sorunlarını düzeltmeniz gerekiyorsa botu tekrar davet etmeyi deneyin:",
 			"details": {
 				"manageChannels": {
-					"name": "Manage channels",
-					"description": "Used to update the name/description of the channels to update the counters"
+					"name": "Kanalları Yönet",
+					"description": "Sayaçları güncellemek için kanalların adını/açıklamalarını güncellemek için kullanılır"
 				},
 				"viewChannel": {
-					"name": "View channels",
-					"description": "Used to update the name/description of the channels to update the counters, also used to receive commands"
+					"name": "Kanalları görüntüle",
+					"description": "Sayaçları güncellemek için kanalların adını/açıklamalarını güncellemek için kullanılır, ayrıca komutları almak için kullanılır"
 				},
 				"voiceConnect": {
-					"name": "Connect",
-					"description": "Used to update the name/description of the channels to update the counters"
+					"name": "Bağlan",
+					"description": "Sayaçları güncellemek için kanalların adını/açıklamalarını güncellemek için kullanılır"
 				},
 				"readMessageHistory": {
-					"name": "Read message history",
-					"description": "Used to update counters in messages/embeds"
+					"name": "Mesaj geçmişini oku",
+					"description": "Mesajlarda/Embedlerde sayaçları güncellemek için kullanılır"
 				},
 				"sendMessages": {
-					"name": "Send messages",
-					"description": "Used to reply to commands"
+					"name": "Mesaj Gönder",
+					"description": "Komutları yanıtlamak için kullanılır"
 				},
 				"embedLinks": {
-					"name": "Embed links",
-					"description": "Used to reply to commands"
+					"name": "Embed bağlantısı",
+					"description": "Komutları yanıtlamak için kullanılır"
 				},
 				"addReactions": {
-					"name": "Add reactions",
-					"description": "Used to add reactions in commands to interact with it"
+					"name": "Tepki ekle",
+					"description": "Komut etkileşimlerine tepki eklemek için kullanılır"
 				},
 				"manageMessages": {
-					"name": "Manage messages",
-					"description": "Used to remove reactions in a command",
+					"name": "Mesajları yönet",
+					"description": "Bir komutta yer alan reaksiyonları kaldırmak için kullanılır",
 					"optional": true
 				},
 				"manageRoles": {
-					"name": "Manage roles",
-					"description": "Used to update channel permissons when you add a Premium bot"
+					"name": "Rolleri yönet",
+					"description": "Premium bot eklediğinizde kanal izinlerini güncellemek için kullanılır"
 				},
 				"banMembers": {
-					"name": "Ban members",
-					"description": "Used to display the amount of banned members in the `{bannedMembers}` counter",
+					"name": "Üyeleri yasakla",
+					"description": "`{bannedMembers}` sayacında olan yasaklı üye sayısını görüntülemek için kullanılır",
 					"optional": true
 				}
 			}
