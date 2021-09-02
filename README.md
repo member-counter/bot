@@ -79,3 +79,9 @@ The following tasks will be run automatically when you create a commit
 Now just [create a pull request](https://github.com/eduardozgz/member-counter-bot/pulls) to the `dev` branch, and we will review it as soon as possible
 
 Happy coding!
+
+## Contributors
+
+<a href="https://github.com/eduardozgz/member-counter-bot/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=eduardozgz/member-counter-bot" />
+</a>
