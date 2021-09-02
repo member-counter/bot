@@ -64,10 +64,11 @@ interface _AppEnv {
 	CUSTOM_EMOJI_NEGATIVE: string;
 	CUSTOM_EMOJI_WARNING: string;
 
+	// URLs
 	WEBSITE_URL: string;
 	GET_PREMIUM_BOT_URL: string;
+	MOTD_URL: string;
 
-	// URLs
 	MEMERATOR_API_KEY: string;
 
 	// API Credentials
