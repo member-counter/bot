@@ -134,7 +134,7 @@
 				{
 					"key": "http",
 					"name": "http:options",
-					"description": "HTTP `GET` isteği tarafından döndürülen sonucu gösterir. `options` (seçenekler) parametresini [buradan](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir, veya kendiniz oluşturabilirsiniz: `options` (seçenekler) parametresi, base64'te kodlanmış bir JSON objesidir (bunu arşivlemek için {PREFIX}base64 komutunu kullanabilirsiniz), bu obje aşağıdaki keylere sahip olabilir: `url`: Bir stringtir; kaynağın url'sini içerir, `parseNumber`: Bir booleandır; sonuç geçerli bir sayı ise, sunucunuzun ayarlarına göre ayrıştırılacak ve özelleştirilecektir, `dataPath`: Bir stringtir; yanıt bir JSON objesiyse, string veya sayı olması gereken bir değere sahip bir keyin yolunu belirtmeniz gerekir, bu yolun sözdizimi, JS'nin özelliklere ve array öğelerine erişmek için kullandığı sözdizimine benzer."
+					"description": "HTTP `GET` request tarafından döndürülen sonucu gösterir. `options` (seçenekler) parametresini [buradan](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir, veya kendiniz oluşturabilirsiniz: `options` (seçenekler) parametresi, base64'te kodlanmış bir JSON objesidir (bunu arşivlemek için {PREFIX}base64 komutunu kullanabilirsiniz), bu obje aşağıdaki keylere sahip olabilir: `url`: Bir stringtir; kaynağın url'sini içerir, `parseNumber`: Bir booleandır; sonuç geçerli bir sayı ise, sunucunuzun ayarlarına göre ayrıştırılacak ve özelleştirilecektir, `dataPath`: Bir stringtir; yanıt bir JSON objesiyse, string veya sayı olması gereken bir değere sahip bir keyin yolunu belirtmeniz gerekir, bu yolun sözdizimi, JS'nin özelliklere ve array öğelerine erişmek için kullandığı sözdizimine benzer."
 				},
 				{
 					"key": "youtubeSubscribers",
