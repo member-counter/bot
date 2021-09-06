@@ -10,7 +10,8 @@ class DatabaseClient {
 			.connect(DB_URI, {
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
-				useFindAndModify: false
+				useFindAndModify: false,
+				reconnectTries: Infinity,
 			})
 			.then(() => {
 				console.log("Database connection ready");
