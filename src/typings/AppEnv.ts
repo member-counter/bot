@@ -87,7 +87,6 @@ interface _AppEnv {
 	DBL_TOKEN: string;
 	DBGG_TOKEN: string;
 	DBOATS_TOKEN: string;
-	DBWORLD_TOKEN: string;
 	BOND_TOKEN: string;
 	BFD_TOKEN: string;
 
