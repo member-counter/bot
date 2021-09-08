@@ -163,8 +163,8 @@ const setStatusCmd: Command = {
 	run: async ({ client, message, languagePack }) => {
 		if (!BOT_OWNERS.includes(message.author.id)) return;
 		let [, ...content] = message.content.split(" ");
-		await message.channel.sendTyping();	
-		const { text, type, status } = setStatus(client, content.join(" "));	
+		await message.channel.sendTyping();
+		const { text, type, status } = setStatus(client, content.join(" "));
 		await message.channel.createMessage(`Now _${type}_ **${text}**`);
 	}
 };
