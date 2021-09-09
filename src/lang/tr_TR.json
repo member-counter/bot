@@ -540,7 +540,7 @@
 				},
 				"manageRoles": {
 					"name": "Rolleri yönet",
-					"description": "Premium bot eklediğinizde kanal izinlerini güncellemek için kullanılır"
+					"description": "Used by the {PREFIX}setup command and to update channel permissons when you add a Premium bot"
 				},
 				"banMembers": {
 					"name": "Üyeleri yasakla",
