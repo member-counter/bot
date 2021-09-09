@@ -6,11 +6,12 @@ import sleep from "../utils/sleep";
 
 const {
 	MEMBER_COUNTS_CACHE_CHECK_SLEEP,
-	MEMBER_COUNTS_CACHE_LIFETIME
+	MEMBER_COUNTS_CACHE_LIFETIME,
+	MEMBER_COUNTS_BURST_RATE
 } = getEnv();
 
 const fetchMemberCounts: Job = {
-	time: "0 */10 * * * *",
+	time: "* * * * * *",
 	runAtStartup: true,
 	runInOnlyFirstThread: true,
 	run: async ({ client }) => {
@@ -20,9 +21,14 @@ const fetchMemberCounts: Job = {
 
 		const startTimestamp = Date.now();
 		let fetchGuildCount = 0;
+		let burstCount = 0;
 		for (const id of guilds) {
 			try {
-				await sleep(MEMBER_COUNTS_CACHE_CHECK_SLEEP * 1000);
+				if (burstCount > MEMBER_COUNTS_BURST_RATE) {
+					burstCount = 0;
+					await sleep(MEMBER_COUNTS_CACHE_CHECK_SLEEP * 1000);
+				}
+
 				let guildCountCache = await GuildCountCacheModel.findOne({ id });
 
 				if (!guildCountCache) {
@@ -39,6 +45,7 @@ const fetchMemberCounts: Job = {
 
 				const guild = await client.getRESTGuild(id, true);
 				fetchGuildCount++;
+				burstCount++;
 
 				guildCountCache.members = guild.approximateMemberCount;
 				guildCountCache.onlineMembers = guild.approximatePresenceCount;
