@@ -463,7 +463,7 @@ const checkPerms: Command = {
 	aliases: ["checkPerms", "checkPermissions"],
 	denyDm: true,
 	onlyAdmin: true,
-	run: async ({ message, client, languagePack }) => {
+	run: async ({ message, client, languagePack, guildService }) => {
 		const {
 			content,
 			channel,
@@ -503,6 +503,8 @@ const checkPerms: Command = {
 					optional ? languagePackCheckPermissions.optionalText : ""
 				}\n`;
 				sectionBody += `${description}\n`;
+
+				sectionBody = sectionBody.replace(/\{PREFIX\}/gi, guildService.prefix);
 
 				return sectionBody;
 			})
