@@ -1,6 +1,6 @@
 {
 	"name": "member-counter-bot",
-	"version": "0.18.6-verified-bot-edition-dev",
+	"version": "0.0.0-verified-bot-edition-dev",
 	"engines": {
 		"node": ">=14.0"
 	},
@@ -10,9 +10,12 @@
 		"start": "node .",
 		"start:docker": "docker-compose -f docker-compose.yml up --force-recreate --build",
 		"build": "tsc",
+		"build:docker": "docker build .",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
 		"dev:docker": "docker-compose -f docker-compose.dev.yml up --force-recreate --build",
-		"generateLPTypings": "node ./res/generateLanguagePackTypings"
+		"generateLPTypings": "node ./res/generateLanguagePackTypings",
+		"preversion": "npm run build && npm run build:docker",
+		"postversion": "git push && git push --tags"
 	},
 	"repository": {
 		"type": "git",
@@ -37,7 +40,7 @@
 		"gamedig": "^3.0.5",
 		"json-to-ts": "^1.7.0",
 		"lodash.clonedeep": "^4.5.0",
-		"mongoose": "^5.12.5",
+		"mongoose": "^6.0.5",
 		"node-fetch": "^2.6.1",
 		"table": "^6.0.7",
 		"twitch": "^4.2.2",
