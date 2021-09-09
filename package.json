@@ -29,6 +29,8 @@
 	"homepage": "https://member-counter.eduardozgz.com",
 	"dependencies": {
 		"@arcanebot/redis-sharder": "github:eduardozgz/redis-sharder",
+		"@twurple/api": "^5.0.1",
+		"@twurple/auth": "^5.0.1",
 		"abort-controller": "^3.0.0",
 		"bufferutil": "^4.0.1",
 		"colorthief": "^2.2.0",
@@ -43,7 +45,6 @@
 		"mongoose": "^6.0.5",
 		"node-fetch": "^2.6.1",
 		"table": "^6.0.7",
-		"twitch": "^4.2.2",
 		"twitter": "^1.7.1"
 	},
 	"devDependencies": {

@@ -20,7 +20,7 @@ Read this guide to setup this bot using docker: https://docs.membercounter.bot/g
 ## Software requirements
 
 - [Git](https://git-scm.com/downloads)
-- [NodeJS 14 or higher](https://nodejs.org/en/download/)
+- [NodeJS 16 or higher](https://nodejs.org/en/download/)
 - [Docker (and docker-compose)](https://www.docker.com/get-started)
 
 ## Clone the bot and install dependencies
