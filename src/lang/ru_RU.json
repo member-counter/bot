@@ -540,7 +540,7 @@
 				},
 				"manageRoles": {
 					"name": "Управлять ролями",
-					"description": "Используется для обновления прав канала при добавлении премиум бота"
+					"description": "Used by the {PREFIX}setup command and to update channel permissons when you add a Premium bot"
 				},
 				"banMembers": {
 					"name": "Бан участников",

@@ -8,6 +8,7 @@ export const neededBotPermissions: (keyof Eris.Constants["Permissions"])[] = [
 	"sendMessages",
 	"embedLinks",
 	"addReactions",
+	"manageRoles",
 	"manageMessages",
 	"banMembers"
 ];
