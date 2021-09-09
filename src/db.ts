@@ -7,11 +7,7 @@ class DatabaseClient {
 	static init() {
 		// Mongoose connection
 		mongoose
-			.connect(DB_URI, {
-				useNewUrlParser: true,
-				useUnifiedTopology: true,
-				useFindAndModify: false
-			})
+			.connect(DB_URI)
 			.then(() => {
 				console.log("Database connection ready");
 			})

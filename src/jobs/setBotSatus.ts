@@ -9,6 +9,8 @@ const setBotStatus: Job = {
 	runAtStartup: true,
 	runInOnlyFirstThread: false,
 	run: async ({ client }) => {
+		if (DISCORD_STATUS?.some((status) => status.match(/\{disable\}/gi))) return;
+
 		let statusToSet = DISCORD_STATUS?.[0] ?? "{online;watching} {prefix}help";
 
 		if (Math.random() * 100 < 1) {

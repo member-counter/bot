@@ -4,6 +4,7 @@ import embedBase from "../utils/embedBase";
 import UserError from "../utils/UserError";
 import GuildService from "../services/GuildService";
 import { GuildChannel } from "eris";
+import getMotd from "../utils/getMOTD";
 
 const { WEBSITE_URL, DISCORD_PREFIX, DISCORD_BOT_INVITE } = getEnv();
 
@@ -26,10 +27,13 @@ const help: Command = {
 			let embed = embedBase(languagePack.commands.help.embedReply);
 
 			embed.title = embed.title.replace(/\{PREFIX\}/g, prefix);
-			embed.description = embed.description
-				.replace(/\{DISCORD_BOT_INVITE\}/g, DISCORD_BOT_INVITE)
-				.replace(/\{PREFIX\}/g, prefix)
-				.replace(/\{WEBSITE\}/g, WEBSITE_URL);
+			const motd = getMotd();
+			embed.description =
+				(motd.length ? motd + "\n\n" : "") +
+				embed.description
+					.replace(/\{DISCORD_BOT_INVITE\}/g, DISCORD_BOT_INVITE)
+					.replace(/\{PREFIX\}/g, prefix)
+					.replace(/\{WEBSITE\}/g, WEBSITE_URL);
 
 			embed.fields.map((field) => {
 				field.value = field.value.replace(/\{PREFIX\}/g, prefix);
