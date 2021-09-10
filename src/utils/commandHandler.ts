@@ -13,6 +13,7 @@ import UserService from "../services/UserService";
 const {
 	PREMIUM_BOT,
 	DISCORD_PREFIX,
+	DISCORD_PREFIX_MENTION_DISABLE,
 	DISCORD_DEFAULT_LANG,
 	DISCORD_OFFICIAL_SERVER_ID,
 	GHOST_MODE,
@@ -64,11 +65,23 @@ export default async (message: Eris.Message) => {
 		prefixToCheck = prefixToCheck.toLowerCase();
 
 		const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-		const prefixRegex = new RegExp(
-			`^(${
-				clientIntegrationRoleId ? `<@&${clientIntegrationRoleId}>|` : ""
-			}<@!?${client.user.id}>|${escapeRegex(prefixToCheck)})\\s*`
-		);
+
+		let prefixRegexStr = "^(";
+
+		if (!DISCORD_PREFIX_MENTION_DISABLE) {
+			// mention of integration role as prefix
+			if (clientIntegrationRoleId) {
+				prefixRegexStr += `<@&${clientIntegrationRoleId}>|`;
+			}
+			// mention as prefix
+			prefixRegexStr += `<@!?${client.user.id}>|`;
+		}
+
+		// normal prefix
+		prefixRegexStr += escapeRegex(prefixToCheck);
+		prefixRegexStr += `)\\s*`
+
+		const prefixRegex = new RegExp(prefixRegexStr);
 
 		const commandRequested = content.toLowerCase(); // Case insensitive match
 		const matchedPrefix = commandRequested.match(prefixRegex)?.[0];
