@@ -6,12 +6,11 @@ import sleep from "../utils/sleep";
 
 const {
 	MEMBER_COUNTS_CACHE_CHECK_SLEEP,
-	MEMBER_COUNTS_CACHE_LIFETIME,
-	MEMBER_COUNTS_BURST_RATE
+	MEMBER_COUNTS_CACHE_LIFETIME
 } = getEnv();
 
 const fetchMemberCounts: Job = {
-	time: "* */5 * * * *",
+	time: "0 */5 * * * *",
 	runAtStartup: true,
 	runInOnlyFirstThread: true,
 	run: async ({ client }) => {
@@ -21,38 +20,34 @@ const fetchMemberCounts: Job = {
 
 		const startTimestamp = Date.now();
 		let fetchGuildCount = 0;
-		let burstCount = 0;
 		for (const id of guilds) {
-			if (burstCount > MEMBER_COUNTS_BURST_RATE) {
-				burstCount = 0;
+			try {
 				await sleep(MEMBER_COUNTS_CACHE_CHECK_SLEEP * 1000);
+
+				let guildCountCache = await GuildCountCacheModel.findOne({ id });
+				if (!guildCountCache) {
+					guildCountCache = new GuildCountCacheModel({
+						id,
+						timestamp: new Date()
+					});
+				} else if (
+					guildCountCache.timestamp.getTime() +
+						MEMBER_COUNTS_CACHE_LIFETIME * 1000 >=
+					Date.now()
+				) {
+					continue;
+				}
+
+				const guild = await client.getRESTGuild(id, true);
+				fetchGuildCount++;
+
+				guildCountCache.members = guild.approximateMemberCount;
+				guildCountCache.onlineMembers = guild.approximatePresenceCount;
+				guildCountCache.timestamp = new Date();
+				guildCountCache.save().catch(console.error);
+			} catch (e) {
+				console.error(e);
 			}
-
-			GuildCountCacheModel.findOne({ id })
-				.then(async (guildCountCache) => {
-					if (!guildCountCache) {
-						guildCountCache = new GuildCountCacheModel({
-							id,
-							timestamp: new Date()
-						});
-					} else if (
-						guildCountCache.timestamp.getTime() +
-							MEMBER_COUNTS_CACHE_LIFETIME * 1000 >=
-						Date.now()
-					) {
-						return;
-					}
-
-					burstCount++;
-					const guild = await client.getRESTGuild(id, true);
-					fetchGuildCount++;
-
-					guildCountCache.members = guild.approximateMemberCount;
-					guildCountCache.onlineMembers = guild.approximatePresenceCount;
-					guildCountCache.timestamp = new Date();
-					await guildCountCache.save();
-				})
-				.catch(console.error);
 		}
 
 		console.info(
