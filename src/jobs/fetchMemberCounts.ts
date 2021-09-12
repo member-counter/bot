@@ -11,7 +11,7 @@ const {
 } = getEnv();
 
 const fetchMemberCounts: Job = {
-	time: "0 */5 * * * *",
+	time: "* */5 * * * *",
 	runAtStartup: true,
 	runInOnlyFirstThread: true,
 	run: async ({ client }) => {
@@ -55,9 +55,8 @@ const fetchMemberCounts: Job = {
 				.catch(console.error);
 		}
 
-		await sleep(MEMBER_COUNTS_CACHE_CHECK_SLEEP * 1000);
 		console.info(
-			`${fetchGuildCount} guilds of ${guilds.length} were fetched in ${
+			`~${fetchGuildCount} guilds of ${guilds.length} were fetched in ${
 				(Date.now() - startTimestamp) / 1000
 			} seconds`
 		);
