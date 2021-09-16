@@ -263,7 +263,7 @@ interface Counters {
   connectedMembers: Members;
   bannedMembers: Members;
   membersPlaying: Members;
-  http: Members;
+  'nitro-boosters': Members;
   youtubeSubscribers: Members;
   youtubeViews: Members;
   youtubeVideos: Members;
@@ -274,15 +274,15 @@ interface Counters {
   memeratorMemes: Members;
   memeratorFollowers: Members;
   twitterFollowers: Members;
-  countdown: Members;
-  game: Members;
-  clock: Members;
-  'nitro-boosters': Members;
   redditMembers: Members;
   redditMembersOnline: Members;
   redditTitle: Members;
-  static: Members;
   instagramFollowers: Members;
+  countdown: Members;
+  game: Members;
+  clock: Members;
+  http: Members;
+  static: Members;
   sum: Members;
   subtract: Members;
   multiply: Members;
@@ -306,6 +306,7 @@ interface Misc {
   counter: string;
   errorNotFound: string;
   suggestCounter: string;
+  suggestCommand: string;
 }
 interface EmbedReply {
   title: string;
