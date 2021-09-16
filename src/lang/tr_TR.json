@@ -29,7 +29,8 @@
 				"command": "Komut:",
 				"counter": "Counter:",
 				"errorNotFound": "Maalesef ``{DESIRED_COMMAND}`` komutu için bir yardım sayfası bulamadım",
-				"suggestCounter": "Maybe you are looking for one of these counters:"
+				"suggestCounter": "Maybe you are looking for one of these counters:",
+				"suggestCommand": "Maybe you are looking for one of these commands:"
 			}
 		},
 		"guide": {
