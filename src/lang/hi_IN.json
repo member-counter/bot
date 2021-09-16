@@ -87,13 +87,13 @@
 					"description": "आपक सरवर म ऑफलइन बटस (समनय उपयगकरत क छडकर)"
 				},
 				{
-					"key": "roles",
-					"name": "roles",
+					"key": "भूमिकाएँ",
+					"name": "भूमिकाएँ",
 					"description": "आपक सरवर म भमकए"
 				},
 				{
-					"key": "channels",
-					"name": "channels",
+					"key": "चैनले",
+					"name": "चैनले",
 					"description": "आपक सरवर म चनल (शरण चनल क छडकर)"
 				},
 				{
