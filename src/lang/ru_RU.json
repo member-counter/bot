@@ -83,62 +83,62 @@
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Offline"
+						"{onlineMembers} Оффлайн"
 					]
 				},
 				"users": {
 					"name": "users",
 					"description": "Все пользователи вашего сервера (исключая ботов)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are in the server",
+					"detailedDescription": "Подсчитывает, сколько пользователей (за исключением ботов) находятся на сервере",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Users"
+						"{users} Пользователи"
 					]
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
 					"description": "Пользователи онлайн на вашем сервере (исключая ботов)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are online in the server",
+					"detailedDescription": "Подсчитывает, сколько пользователей (за исключением ботов) онлайн на сервере",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Online users"
+						"{users} Пользователей онлайн"
 					]
 				},
 				"offlineUsers": {
 					"name": "offlineUsers",
 					"description": "Пользователи оффлайн на вашем сервере (исключая ботов)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are offline in the server",
+					"detailedDescription": "Подсчитывает, сколько пользователей (за исключением ботов) оффлайн на сервере",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Offline"
+						"{users} Оффлайн"
 					]
 				},
 				"bots": {
 					"name": "bots",
 					"description": "Боты на вашем сервере (исключает нормальных пользователей)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are in the server",
+					"detailedDescription": "Подсчитывает, сколько ботов (за исключением обычных пользователей) находятся на сервере",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Bots"
+						"{bots} Ботов"
 					]
 				},
 				"onlineBots": {
 					"name": "onlineBots",
 					"description": "Боты онлайн на вашем сервере (исключает нормальных пользователей)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are online in the server",
+					"detailedDescription": "Подсчитывает, сколько ботов (за исключением обычных пользователей) онлайн на сервере",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Online bots"
+						"{bots} Ботов онлайн"
 					]
 				},
 				"offlineBots": {
