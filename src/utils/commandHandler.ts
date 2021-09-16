@@ -9,6 +9,7 @@ import Bot from "../bot";
 import LanguagePack from "../typings/LanguagePack";
 import { GuildChannelCommand, AnyChannelCommand } from "../typings/Command";
 import UserService from "../services/UserService";
+import escapeRegex from "./escapeRegex";
 
 const {
 	PREMIUM_BOT,
@@ -63,8 +64,6 @@ export default async (message: Eris.Message) => {
 			prefixToCheck = DISCORD_PREFIX;
 		}
 		prefixToCheck = prefixToCheck.toLowerCase();
-
-		const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 		let prefixRegexStr = "^(";
 

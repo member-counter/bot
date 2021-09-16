@@ -7,6 +7,7 @@ import CountService from "../services/CountService";
 import { GuildChannel } from "eris";
 import getMotd from "../utils/getMOTD";
 import commands from "../commands/all";
+import escapeRegex from "../utils/escapeRegex";
 
 const { WEBSITE_URL, DISCORD_PREFIX, DISCORD_BOT_INVITE } = getEnv();
 
@@ -27,7 +28,7 @@ const help: Command = {
 			.trim()
 			.toLowerCase()
 			.replace(/\{|\}/g, "")
-			.replace(prefix, "");
+			.replace(new RegExp(`^${escapeRegex(prefix)}`), "");
 
 		if (!desiredThing) {
 			// Main help page
