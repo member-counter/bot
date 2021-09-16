@@ -27,236 +27,502 @@
 			},
 			"misc": {
 				"command": "פקודה:",
-				"errorCommandNotFound": "לא נמצא מדריך לפקודה\n``{DESIRED_COMMAND}``"
+				"counter": "Counter:",
+				"errorNotFound": "לא נמצא מדריך לפקודה\n``{DESIRED_COMMAND}``",
+				"suggestCounter": "Maybe you are looking for one of these counters:"
 			}
 		},
 		"guide": {
 			"helpDescription": "מראה לך מדריך איך להשתמש בבוט",
 			"pagesText": "עמוד {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Thanks for adding Member Counter to your server!**\n__**Create/edit a counter**__\nFor this example we are gonna use `{members}`, which counts the total amount of members in your discord server, but you will find out more counters in the next pages\nYou can place that counter in one of the following places:\n\n- In a **voice** channel **name**\n- In a **category** channel **name**\n- In a **text** channel **topic**\n- In a **news** channel **topic**\n\nNow create a new channel, edit it, and write `{members}` in the name or topic, and click 'save changes'\n\nYou can also add multiple counters in one name/topic, and combine them with your own content, here is a example:\n```\n{onlineMembers}/{members} Online Members, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscribers!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins and mods are online!\n```\n\n> If you reach the character limit when you are editing a name/topic, please check `{PREFIX}help editChannel`\n> You can see the current counter configurations with `{PREFIX}seeSettings`, this is useful to add more counters without disabling the previous ones\n\n__**Remove a counter**__\nEdit the channel and write {disable} in the name/topic, Member Counter will replace it to a \\✅, that means that you removed all the counters of that channel successfully\n\nYou can also delete the channel directly",
-			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings > Appearence > Advanced > Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with an asterisk (\\*) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
-			"counters": [
-				{
-					"key": "members",
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings \\> Appearance \\> Advanced \\> Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with a plus sign (\\+) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"usageText": "Usage",
+			"exampleText": "Example",
+			"footerText": "Please read the first page of {PREFIX}guide to learn how to setup this counter",
+			"counters": {
+				"members": {
 					"name": "members",
-					"description": "חברים בשרת שלך"
+					"description": "חברים בשרת שלך",
+					"detailedDescription": "Counts how many members has a server",
+					"usage": [
+						"{members}"
+					],
+					"example": [
+						"{members} Members"
+					]
 				},
-				{
-					"key": "approximatedOnlineMembers",
+				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
-					"description": "מספר חברים משוער בשרת שלך"
+					"description": "מספר חברים משוער בשרת שלך",
+					"detailedDescription": "Counts approximately how many members are online in the server",
+					"usage": [
+						"{approximatedOnlineMembers}"
+					],
+					"example": [
+						"{approximatedOnlineMembers} Online"
+					]
 				},
-				{
-					"key": "onlineMembers",
+				"onlineMembers": {
 					"name": "onlineMembers",
-					"description": "חברים אונליין בשרת שלך"
+					"description": "חברים אונליין בשרת שלך",
+					"detailedDescription": "Counts how many members are online in the server",
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} Online"
+					]
 				},
-				{
-					"key": "offlineMembers",
+				"offlineMembers": {
 					"name": "offlineMembers",
-					"description": "חברים מנותקים בשרת שלך"
+					"description": "חברים מנותקים בשרת שלך",
+					"detailedDescription": "Counts how many members are offline in the server",
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} Offline"
+					]
 				},
-				{
-					"key": "users",
+				"users": {
 					"name": "users",
-					"description": "משתמשים בשרת שלך (לא כולל בוטים)"
+					"description": "משתמשים בשרת שלך (לא כולל בוטים)",
+					"detailedDescription": "Counts how many users (excluding bot accounts) are in the server",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Users"
+					]
 				},
-				{
-					"key": "onlineUsers",
+				"onlineUsers": {
 					"name": "onlineUsers",
-					"description": "משתמשים אונליין בשרת שלך (לא כולל בוטים)"
+					"description": "משתמשים אונליין בשרת שלך (לא כולל בוטים)",
+					"detailedDescription": "Counts how many users (excluding bot accounts) are online in the server",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Online users"
+					]
 				},
-				{
-					"key": "offlineUsers",
+				"offlineUsers": {
 					"name": "offlineUsers",
-					"description": "משתמשים מנותקים בשרת שלך (לא כולל בוטים)"
+					"description": "משתמשים מנותקים בשרת שלך (לא כולל בוטים)",
+					"detailedDescription": "Counts how many users (excluding bot accounts) are offline in the server",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Offline"
+					]
 				},
-				{
-					"key": "bots",
+				"bots": {
 					"name": "bots",
-					"description": "בוטים בשרת שלך (לא כולל משתמשים רגילים)"
+					"description": "בוטים בשרת שלך (לא כולל משתמשים רגילים)",
+					"detailedDescription": "Counts how many bots (excluding normal accounts) are in the server",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Bots"
+					]
 				},
-				{
-					"key": "onlineBots",
+				"onlineBots": {
 					"name": "onlineBots",
-					"description": "בוטים אונליין בשרת שלך (לא כולל משתמשים רגילים)"
+					"description": "בוטים אונליין בשרת שלך (לא כולל משתמשים רגילים)",
+					"detailedDescription": "Counts how many bots (excluding normal accounts) are online in the server",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Online bots"
+					]
 				},
-				{
-					"key": "offlineBots",
+				"offlineBots": {
 					"name": "offlineBots",
-					"description": "בוטים מנותקים בשרת שלך (לא כולל משתמשים רגילים)"
+					"description": "בוטים מנותקים בשרת שלך (לא כולל משתמשים רגילים)",
+					"detailedDescription": "Counts how many bots (excluding normal accounts) are offline in the server",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Offline bots"
+					]
 				},
-				{
-					"key": "roles",
+				"roles": {
 					"name": "roles",
-					"description": "תפקידים בשרת שלך"
+					"description": "תפקידים בשרת שלך",
+					"detailedDescription": "Counts how many roles are in the server",
+					"usage": [
+						"{roles}"
+					],
+					"example": [
+						"{roles} Roles"
+					]
 				},
-				{
-					"key": "channels",
+				"channels": {
 					"name": "channels",
-					"description": "ערוצים בשרת שלך (לא כולל ערוצי קטגוריות)"
+					"description": "Channels in your server (excludes categories)",
+					"detailedDescription": "Counts how many channels (excluding category channels) are in the server",
+					"usage": [
+						"{channels}"
+					],
+					"example": [
+						"{channels} Channels"
+					]
 				},
-				{
-					"key": "membersWithRole",
+				"membersWithRole": {
 					"name": "membersWithRole:role1ID,role2ID",
-					"description": "מודד כמות שחקנים בעלי תפקיד מסוים בשרת.\nיש לרשום את איידי התפקיד אחרי הנקודותיים, ואם ברצונך למדוד סכום של כמות בעלי מספר תפקידים, יש להפריד כל איידי בפסיק. לדוגמה:\n{membersWithRole:1234}\n{membersWithRole:1234,4321}"
+					"description": "Members with a role or roles",
+					"detailedDescription": "Counts how many members have a role or roles, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{membersWithRole:role1ID,role2ID}"
+					],
+					"example": [
+						"{membersWithRole:6509281904766437,5823659271648290} Admins and mods"
+					]
 				},
-				{
-					"key": "onlineMembersWithRole",
+				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "מודד שחקנים בעלי תפקיד מסוים, אך רק אם הם מחוברים"
+					"description": "Online members with a role or roles",
+					"detailedDescription": "Counts how many members with a role or roles are online, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{onlineMembersWithRole:role1ID,role2ID}"
+					],
+					"example": [
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} Online admins and mods",
+						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
+					]
 				},
-				{
-					"key": "offlineMembersWithRole",
+				"offlineMembersWithRole": {
 					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "מודד שחקנים בעלי תפקיד מסוים, אך רק אם הם אינם מחוברים"
+					"description": "Offline members with a role or roles",
+					"detailedDescription": "Counts how many members with a role or roles are offline, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{offlineMembersWithRole:role1ID,role2ID}"
+					],
+					"example": [
+						"{offlineMembersWithRole:6509281904766437,5823659271648290} Offline admins and mods",
+						"{offlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are offline"
+					]
 				},
-				{
-					"key": "connectedMembers",
-					"name": "connectedMembers",
-					"description": "סכום כולל של שחקנים שנמצאים בצ'אנל של דיבור"
-				},
-				{
-					"key": "connectedMembers",
+				"connectedMembers": {
 					"name": "connectedMembers:channel1ID,channel2ID",
-					"description": "Like `{connectedMembers}`, but the bot will count only the connected members in the specified channels, write the channel IDs you wanna count after the `:`, and separate the channel IDs with commas"
+					"description": "Connected members to voice channels",
+					"detailedDescription": "Counts how many members are connected to all the voice channels or to the specified ones, write the channel IDs you wanna filter after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{connectedMembers}",
+						"{connectedMembers:channel1ID,channel2ID}"
+					],
+					"example": [
+						"{connectedMembers} Talking",
+						"{connectedMembers:5823659271648290} talking in the lounge"
+					]
 				},
-				{
-					"key": "bannedMembers",
+				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "כמות שחקנים שהורחקו לצמיתות מהשרת. הבוט חייב את הגישה לקבוע הרחקה על מנת להציג את המדד הזה"
+					"description": "Amount of banned members in your server",
+					"detailedDescription": "Counts how many members are banned, the bot must have ban permissions to get this count",
+					"usage": [
+						"{bannedMembers}"
+					],
+					"example": [
+						"{bannedMembers} Banned",
+						"{bannedMembers} has been hit with the ban hammer"
+					]
 				},
-				{
-					"key": "membersPlaying",
+				"membersPlaying": {
 					"name": "membersPlaying:game name",
-					"description": "Counts how many members are playing a game. You can add multiple games by separating them with a comma. Example: `{membersPlaying:Minecraft}`"
+					"description": "Amount of members playing a game",
+					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
+					"usage": [
+						"{membersPlaying:Minecraft}",
+						"{membersPlaying: euro truck simulator 2, american truck simulator}"
+					],
+					"example": [
+						"{membersPlaying:Minecraft} Mining and crafting",
+						"{membersPlaying: euro truck simulator 2, american truck simulator} Trucking"
+					]
 				},
-				{
-					"key": "http",
+				"http": {
 					"name": "http:options",
-					"description": "Shows the result returned by a http `GET` request. Options is a JSON object encoded in base64, this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized acording to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items. If you are confused about how to setup this, here is a [tool](https://member-counter.eduardozgz.com/utils/http) to create this counter"
+					"description": "Shows the result of a http request",
+					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items.",
+					"usage": [
+						"{http:options}"
+					],
+					"example": [
+						"Last subscriber: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+					]
 				},
-				{
-					"key": "youtubeSubscribers",
+				"youtubeSubscribers": {
 					"name": "youtubeSubscribers:channelUrl",
-					"description": "מודד כמות רשומים לערוץ יוטיוב. יש להחליף את המשתנה הבא בקישור לערוץ:\nchannelUrl"
+					"description": "Amount of subscribers of a YouTube channel",
+					"detailedDescription": "Counts how many subscribers has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeSubscribers:channelUrl}"
+					],
+					"example": [
+						"Subscribers: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "youtubeViews",
+				"youtubeViews": {
 					"name": "youtubeViews:channelUrl",
-					"description": "מציג מדד צפיות בערוץ יוטיוב"
+					"description": "Amount of views of a YouTube channel",
+					"detailedDescription": "Counts how many views has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeViews:channelUrl}"
+					],
+					"example": [
+						"Views: {youtubeViews:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "youtubeVideos",
+				"youtubeVideos": {
 					"name": "youtubeVideos:channelUrl",
-					"description": "מציג מדד סרטונים בערוץ יוטיוב"
+					"description": "Amount of videos of a YouTube channel",
+					"detailedDescription": "Counts how many videos has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeVideos:channelUrl}"
+					],
+					"example": [
+						"Videos: {youtubeVideos:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "youtubeChannelName",
+				"youtubeChannelName": {
 					"name": "youtubeChannelName:channelUrl",
-					"description": "מציג שם של ערוץ יוטיוב"
+					"description": "Displays the name of a YouTube channel",
+					"detailedDescription": "Displays the name of a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeChannelName:channelUrl}"
+					],
+					"example": [
+						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "twitchFollowers",
+				"twitchFollowers": {
 					"name": "twitchFollowers:nickname",
-					"description": "מודד כמות רשומים לערוץ Twitch.\nיש להחליף את המשתנה הבא בקישור לערוץ:\nnickname"
+					"description": "Amount of followers of a Twitch channel",
+					"detailedDescription": "Counts how many followers has a Twitch channel, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchFollowers:nickname}"
+					],
+					"example": [
+						"{twitchFollowers:ninja} Followers"
+					]
 				},
-				{
-					"key": "twitchViews",
+				"twitchViews": {
 					"name": "twitchViews:nickname",
-					"description": "מציג מדד צפיות בערוץ Twitch"
+					"description": "Amount of views of a Twitch channel",
+					"detailedDescription": "Counts how many views has a Twitch channel, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchViews:nickname}"
+					],
+					"example": [
+						"{twitchViews:ninja} Views"
+					]
 				},
-				{
-					"key": "twitchChannelName",
+				"twitchChannelName": {
 					"name": "twitchChannelName:nickname",
-					"description": "מציג שם של ערוץ Twitch"
+					"description": "Displays the name of a Twitch channel",
+					"detailedDescription": "Displays the name of a Twitch channel, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchChannelName:nickname}"
+					],
+					"example": [
+						"{twitchChannelName:ninja}"
+					]
 				},
-				{
-					"key": "memeratorMemes",
+				"memeratorMemes": {
 					"name": "memeratorMemes:username",
-					"description": "מציג מדד כמות העלאות של משתמש באתר [Memerator](https://memerator.me)\nיש להחליף את המשתנה הבא בשם הפרופיל של המשתמש:\nusername"
+					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
+					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
+					"usage": [
+						"{memeratorMemes:nickname}"
+					],
+					"example": [
+						"Memes: {memeratorMemes:eduardozgz}"
+					]
 				},
-				{
-					"key": "memeratorFollowers",
+				"memeratorFollowers": {
 					"name": "memeratorFollowers:username",
-					"description": "מציג מדד כמות עוקבים של משתמש באתר [Memerator](https://memerator.me)\nיש להחליף את המשתנה הבא בשם הפרופיל של המשתמש:\nusername"
+					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
+					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
+					"usage": [
+						"{memeratorFollowers:nickname}"
+					],
+					"example": [
+						"Followers: {memeratorFollowers:eduardozgz}"
+					]
 				},
-				{
-					"key": "twitterFollowers",
+				"twitterFollowers": {
 					"name": "twitterFollowers:username",
-					"description": "מציג מדד כמות עוקבים של משתמש בטוויטר.\nיש להחליף את המשתנה הבא בשם המשתמש של החשבון:\nusername"
+					"description": "Amount of followers of a Twitter user",
+					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
+					"usage": [
+						"{twitterFollowers:nickname}"
+					],
+					"example": [
+						"Followers: {twitterFollowers:0xEduardozgz}"
+					]
 				},
-				{
-					"key": "countdown",
+				"countdown": {
 					"name": "countdown:targetDate:format",
-					"description": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left"
+					"description": "Shows a countdown that will decrease to the specified target date",
+					"detailedDescription": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left",
+					"usage": [
+						"{countdown:targetDate:format}"
+					],
+					"example": [
+						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
+					]
 				},
-				{
-					"key": "game",
+				"game": {
 					"name": "game:gameId:address",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc) Remember to replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address. Example: `{game:minecraft:mc.hypixel.net}`"
+					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
+					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
+					"usage": [
+						"{game:gameId:address}"
+					],
+					"example": [
+						"{game:minecraft:mc.hypixel.net} Mining and crafting"
+					]
 				},
-				{
-					"key": "clock",
+				"clock": {
 					"name": "clock:timeZone",
-					"description": "מציג שעון עם איזור הזמן שניתן. אתה יכול בקלות [לייצר את השעון הזה פה](https://member-counter.eduardozgz.com/utils/clock)"
+					"description": "Shows a clock with the time of the specified timezone",
+					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
+					"usage": [
+						"{clock:timeZone}"
+					],
+					"example": [
+						"Spain: {clock:Europe/Madrid}"
+					]
 				},
-				{
-					"key": "nitro-boosters",
+				"nitro-boosters": {
 					"name": "nitro-boosters",
-					"description": "מציג מדד של כמות המשתמשים אשר עשו בוסט\n לשרת הזה"
+					"description": "Counts the total amount of members boosting this server",
+					"detailedDescription": "Counts the total amount of members boosting this server",
+					"usage": [
+						"{nitro-boosters}"
+					],
+					"example": [
+						"Awesome boosters: {nitro-boosters}"
+					]
 				},
-				{
-					"key": "redditMembers",
-					"name": "redditMembers",
-					"description": "Displays the amount of members for the given subreddit"
+				"redditMembers": {
+					"name": "redditMembers:subreddit",
+					"description": "Counts the amount of members of a subreddit",
+					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"usage": [
+						"{redditMembers:subreddit}"
+					],
+					"example": [
+						"Redditors: {redditMembers:science}"
+					]
 				},
-				{
-					"key": "redditMembersOnline",
-					"name": "redditMembersOnline",
-					"description": "Displays the amount of online members for the given subreddit"
+				"redditMembersOnline": {
+					"name": "redditMembersOnline:subreddit",
+					"description": "Counts the amount of online members of a subreddit",
+					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"Online Redditors: {redditMembersOnline:science}"
+					]
 				},
-				{
-					"key": "redditTitle",
+				"redditTitle": {
 					"name": "redditTitle",
-					"description": "Displays the title for the given subreddit"
+					"description": "Displays the title of a subreddit",
+					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"{redditMembersOnline:science}"
+					]
 				},
-				{
-					"key": "static",
-					"name": "static:number",
-					"description": "Shows the given `number` with custom formatting based on the server settings"
+				"static": {
+					"name": "static:data",
+					"description": "Displays the given `data`",
+					"detailedDescription": "Displays the given `data` with custom formatting based on the server settings if it's a number, text is also accepted",
+					"usage": [
+						"{static:data}"
+					],
+					"example": [
+						"{static:420}",
+						"{static:Hello world!}"
+					]
 				},
-				{
-					"key": "instagramFollowers",
+				"instagramFollowers": {
 					"name": "instagramFollowers:username",
-					"description": "מציג מדד כמות עוקבים של משתמש באינסטגרם.\nיש להחליף את המשתנה הבא בשם המשתמש של החשבון:\nusername"
+					"description": "Counts the amount of followers in an Instagram account",
+					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
+					"usage": [
+						"{instagramFollowers:username}"
+					],
+					"example": [
+						"Followers: {instagramFollowers:eduardozgz}"
+					]
 				},
-				{
-					"key": "sum",
+				"sum": {
 					"name": "sum:value1,value2,more values",
-					"description": "מציג סכום של הערכים שניתנו"
+					"description": "Sum of the specified values",
+					"detailedDescription": "Sum of the specified values, done from the left to the right",
+					"usage": [
+						"{sum:value1,value2,more values}"
+					],
+					"example": [
+						"2 + 2 = {sum:2,2}"
+					]
 				},
-				{
-					"key": "substract",
-					"name": "substract:value1,value2,more values",
-					"description": "מציג הפרש בין הערכים שניתנו"
+				"subtract": {
+					"name": "subtract:value1,value2,more values",
+					"description": "Subtracts the specified values",
+					"detailedDescription": "Subtracts the specified values, done from the left to the right",
+					"usage": [
+						"{subtract:value1,value2,more values}"
+					],
+					"example": [
+						"2 - 2 = {subtract:2,2}"
+					]
 				},
-				{
-					"key": "multiply",
+				"multiply": {
 					"name": "multiply:value1,value2,more values",
-					"description": "מציג מכפלת הערכים שניתנו"
+					"description": "מציג מכפלת הערכים שניתנו",
+					"detailedDescription": "Multiplies the specified values, done from the left to the right",
+					"usage": [
+						"{multiply:value1,value2,more values}"
+					],
+					"example": [
+						"2 * 2 = {multiply:2,2}"
+					]
 				},
-				{
-					"key": "divide",
+				"divide": {
 					"name": "divide:value1,value2,more values",
-					"description": "מציג מנת (חילוק) הערכים שניתנו"
+					"description": "מציג מנת (חילוק) הערכים שניתנו",
+					"detailedDescription": "Divides the specified values, done from the left to the right",
+					"usage": [
+						"{divide:value1,value2,more values}"
+					],
+					"example": [
+						"10 / 2 = {divide:10,2}"
+					]
 				},
-				{
-					"key": "modulus",
+				"modulus": {
 					"name": "modulus:value1,value2,more values",
-					"description": "מציג שארית של חילוק בין הערכים שניתנו"
+					"description": "מציג שארית של חילוק בין הערכים שניתנו",
+					"detailedDescription": "Gets the modulus of the specified values, done from the left to the right",
+					"usage": [
+						"{modulus:value1,value2,more values}"
+					],
+					"example": [
+						"10 % 2 = {modulus:10,2}"
+					]
 				}
-			]
+			}
 		},
 		"premium": {
 			"helpDescription": "Get information about Member Counter Premium",
@@ -276,12 +542,12 @@
 					},
 					{
 						"name": "**✅ Unlimited servers**",
-						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 100,000 members, quarterly",
+						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 50,000 members, quarterly",
 						"inline": false
 					},
 					{
 						"name": "**✅ Custom bot**",
-						"value": "Use your own bot account, with your chosen profile picture and username",
+						"value": "Use your own bot account, with the profile picture and username of your choice",
 						"inline": false
 					},
 					{
@@ -293,14 +559,14 @@
 			}
 		},
 		"lockChannel": {
-			"helpDescription": "הפקודה גורמת לערוץ להציג מנעול (🔒) במקום להציג רמקול (🔊) בשרתי דיבור\n\n**נוסח הפקודה**```{PREFIX}lockChannel [channel id]```\n **דוגמה**```{PREFIX}lockChannel 700336568099143710```",
+			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels\n\n**Usage**```{PREFIX}lockChannel [channel id]```\n **Example**```{PREFIX}lockChannel 700336568099143710```",
 			"success": "הושלם! עכשיו, **למשתמשים ללא הרשאות אדמין**, הערוץ יוצג עם סימן של 🔒",
 			"errorInvalidChannel": "אפשרי לנעול רק ערוצי אודיו!",
 			"errorNoPerms": "אני לא יכול לערוך את הערוץ `{CHANNEL}` בגלל חוסר בהרשאות",
 			"errorNotFound": "ערוץ לא נמצא"
 		},
 		"editChannel": {
-			"helpDescription": "במידה ואתה מנסה לייצר מדד וכמות התווים ארוכה מדי עקב פקודות ארוכות, ניתן להשתמש בפקודה הזאת כדי \"לעקוף\" את המגבלה הזאת\n**נוסח הפקודה**```{PREFIX}editChannel [channelId] [content]```\n**דוגמה**```{PREFIX}editChannel 701396983843127366 {onlinemembers} of {members} Online```",
+			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit\n**Usage**```{PREFIX}editChannel [channelId] [content]```\n**Example**```{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online```",
 			"success": "הושלם! אולי תצטרך לחכות מספר דקות כדי לראות את השינויים החדשים",
 			"errorNotFound": "ערוץ לא נמצא",
 			"errorNoContent": "נחוץ להוסיף תוכן"
@@ -540,7 +806,7 @@
 				},
 				"manageRoles": {
 					"name": "Manage roles",
-					"description": "Used by the {PREFIX}setup command and to update channel permissons when you add a Premium bot"
+					"description": "Used by the {PREFIX}setup command and to update channel permissions when you add a Premium bot"
 				},
 				"banMembers": {
 					"name": "Ban members",
