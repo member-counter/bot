@@ -28,7 +28,8 @@
 			"misc": {
 				"command": "Command:",
 				"counter": "Counter:",
-				"errorNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"errorNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``",
+				"suggestCounter": "Maybe you are looking for one of these counters:"
 			}
 		},
 		"guide": {
@@ -38,6 +39,7 @@
 			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings \\> Appearance \\> Advanced \\> Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with a plus sign (\\+) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"usageText": "Usage",
 			"exampleText": "Example",
+			"footerText": "Please read the first page of {PREFIX}guide to learn how to setup this counter",
 			"counters": {
 				"members": {
 					"name": "members",
