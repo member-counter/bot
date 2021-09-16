@@ -29,7 +29,8 @@
 				"command": "आदेश :",
 				"counter": "Counter:",
 				"errorNotFound": "क्षमा करें, मुझे  ``{DESIRED_COMMAND}`` इसके लिए सहायता नहीं मिली",
-				"suggestCounter": "Maybe you are looking for one of these counters:"
+				"suggestCounter": "Maybe you are looking for one of these counters:",
+				"suggestCommand": "Maybe you are looking for one of these commands:"
 			}
 		},
 		"guide": {
