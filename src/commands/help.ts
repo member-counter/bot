@@ -3,8 +3,12 @@ import getEnv from "../utils/getEnv";
 import embedBase from "../utils/embedBase";
 import UserError from "../utils/UserError";
 import GuildService from "../services/GuildService";
+import CountService from "../services/CountService";
 import { GuildChannel } from "eris";
 import getMotd from "../utils/getMOTD";
+import commands from "../commands/all";
+import counters from "../counters/all";
+import { log } from "console";
 
 const { WEBSITE_URL, DISCORD_PREFIX, DISCORD_BOT_INVITE } = getEnv();
 
@@ -20,9 +24,9 @@ const help: Command = {
 			prefix = (await GuildService.init(message.guildID)).prefix;
 		}
 
-		let [, desiredCommand] = content.split(/\s+/g);
+		const desiredThing = content.replace(/\w+/, "").trim().toLowerCase();
 
-		if (!desiredCommand) {
+		if (!desiredThing) {
 			// Main help page
 			let embed = embedBase(languagePack.commands.help.embedReply);
 
@@ -42,50 +46,85 @@ const help: Command = {
 
 			await channel.createMessage({ embed });
 		} else {
-			// Help for the specified command
-			const { default: allcommands } = require("./all");
-			const { commands } = languagePack;
-			const aliascommand = allcommands.filter((cmd) =>
-				cmd.aliases
-					.map(function (value) {
-						return value.toLowerCase();
-					})
-					.includes(desiredCommand.toLowerCase())
+			// Help for the specified command or counter
+			const commandMatch = commands.filter((cmd) =>
+				cmd.aliases.map((alias) => alias.toLowerCase()).includes(desiredThing)
 			)[0];
-			let match;
-			for (let command of Object.entries(commands)) {
-				const [commandName, commandContent]: [string, any] = command;
-				if (
-					commandName.toLowerCase() === desiredCommand.toLowerCase() ||
-					aliascommand?.aliases
-						.map(function (value) {
-							return value.toLowerCase();
-						})
-						.includes(commandName.toLowerCase())
-				) {
-					match = [commandName, commandContent];
-				}
-			}
-			if (match) {
-				const [commandName, commandContent] = match;
-				const embed = embedBase({
-					title: commands.help.misc.command + " " + commandName,
-					description: commandContent.helpDescription.replace(
-						/\{PREFIX\}/gi,
-						prefix
-					)
-				});
+			const counterMatch = CountService.getCounterByAlias(
+				desiredThing.replace(/\{|\}/g, "")
+			);
 
-				if (commandContent.helpImage) {
-					embed.image = { url: commandContent.helpImage };
-				}
+			if (commandMatch) {
+				for (const [key, content] of Object.entries(languagePack.commands)) {
+					if (
+						key.toLowerCase() === desiredThing ||
+						commandMatch?.aliases
+							.map((alias) => alias.toLowerCase())
+							.includes(key.toLowerCase())
+					) {
+						const embed = embedBase({
+							title: languagePack.commands.help.misc.command + ` \`${key}\``,
+							description: content.helpDescription.replace(
+								/\{PREFIX\}/gi,
+								prefix
+							)
+						});
 
-				await channel.createMessage({ embed });
+						if (content.helpImage) {
+							embed.image = { url: content.helpImage };
+						}
+
+						await channel.createMessage({ embed });
+						break;
+					}
+				}
+			} else if (counterMatch) {
+				for (const [key, content] of Object.entries(
+					languagePack.commands.guide.counters
+				)) {
+					if (
+						key.toLowerCase() === CountService.safeCounterName(desiredThing) ||
+						counterMatch.aliases
+							.map((alias) => alias.toLowerCase())
+							.includes(key)
+					) {
+
+						const embed = embedBase({
+							title: languagePack.commands.help.misc.counter + ` \`{${key}}\``,
+							description: content.detailedDescription.replace(
+								/\{PREFIX\}/gi,
+								prefix
+							)
+						});
+	
+						embed.description += "\n";
+
+						if (content.usage.length) {
+							let usages = `\n**${languagePack.commands.guide.usageText}**\n`;
+							content.usage.forEach(i => {
+								usages += "```" + i + "```";
+							});
+							embed.description += usages;
+						}
+
+						if (content.example.length) {
+							let examples = `\n**${languagePack.commands.guide.exampleText}**\n`;
+							content.example.forEach(i => {
+								examples += "```" + i + "```";
+							});
+							embed.description += examples;
+						}
+
+						await channel.createMessage({ embed });
+						
+						break;
+					}
+				}
 			} else {
 				throw new UserError(
-					languagePack.commands.help.misc.errorCommandNotFound.replace(
+					languagePack.commands.help.misc.errorNotFound.replace(
 						"{DESIRED_COMMAND}",
-						desiredCommand
+						desiredThing
 					)
 				);
 			}
