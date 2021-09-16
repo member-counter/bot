@@ -129,7 +129,7 @@
 				{
 					"key": "membersPlaying",
 					"name": "membersPlaying:game name",
-					"description": "Zählt wie viele Leute ein Spiel spielen. Beispiel:{membersPlaying:Minecraft}"
+					"description": "Counts how many members are playing a game. You can add multiple games by separating them with a comma. Example: `{membersPlaying:Minecraft}`"
 				},
 				{
 					"key": "http",
