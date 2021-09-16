@@ -33,14 +33,11 @@ const guide: Command = {
 			// the list of counters
 			...safeDiscordString(
 				countersHeader +
-					guideCounters
-						.filter(
-							(guideCounter) =>
-								CountService.getCounterByAlias(guideCounter.key).isEnabled
-						)
-						.map((guideCounter) => {
-							const counter = CountService.getCounterByAlias(guideCounter.key);
-							return `${counter.isPremium ? "*" : "-"} \`{${
+					Object.entries(guideCounters)
+						.filter(([key]) => CountService.getCounterByAlias(key).isEnabled)
+						.map(([key, guideCounter]) => {
+							const counter = CountService.getCounterByAlias(key);
+							return `${counter.isPremium ? "+" : "-"} \`{${
 								guideCounter.name
 							}}\` ${guideCounter.description}`;
 						})
