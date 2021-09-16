@@ -50,35 +50,35 @@
 						"{members}"
 					],
 					"example": [
-						"{members} Members"
+						"{members} Участники"
 					]
 				},
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
 					"description": "Приблизительное кол-во участников онлайн на вашем сервере",
-					"detailedDescription": "Counts approximately how many members are online in the server",
+					"detailedDescription": "Подсчитывает примерное кол-во пользователей онлайн на сервере",
 					"usage": [
 						"{approximatedOnlineMembers}"
 					],
 					"example": [
-						"{approximatedOnlineMembers} Online"
+						"{approximatedOnlineMembers} Онлайн"
 					]
 				},
 				"onlineMembers": {
 					"name": "onlineMembers",
 					"description": "Участники онлайн на вашем сервере",
-					"detailedDescription": "Counts how many members are online in the server",
+					"detailedDescription": "Подсчитывает кол-во пользователей онлайн на сервере",
 					"usage": [
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Online"
+						"{onlineMembers} Онлайн"
 					]
 				},
 				"offlineMembers": {
 					"name": "offlineMembers",
 					"description": "Участники оффлайн на вашем сервере",
-					"detailedDescription": "Counts how many members are offline in the server",
+					"detailedDescription": "Подсчитывает кол-во пользователей оффлайн на сервере",
 					"usage": [
 						"{onlineMembers}"
 					],
