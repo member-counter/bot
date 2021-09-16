@@ -29,7 +29,8 @@
 				"command": "Command:",
 				"counter": "Counter:",
 				"errorNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``",
-				"suggestCounter": "Maybe you are looking for one of these counters:"
+				"suggestCounter": "Maybe you are looking for one of these counters:",
+				"suggestCommand": "Maybe you are looking for one of these commands:"
 			}
 		},
 		"guide": {

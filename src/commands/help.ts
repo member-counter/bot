@@ -26,7 +26,8 @@ const help: Command = {
 			.replace(/\w+/, "")
 			.trim()
 			.toLowerCase()
-			.replace(/\{|\}/g, "");
+			.replace(/\{|\}/g, "")
+			.replace(prefix, "");
 
 		if (!desiredThing) {
 			// Main help page
@@ -132,28 +133,34 @@ const help: Command = {
 				const keywords = desiredThing.split(/\s+|\n+/);
 
 				const bestCounterOccurrences = new Map<string, number>();
+				const bestCommandOccurrences = new Map<string, number>();
 
-				for (const [key, content] of Object.entries(
+				function search(text: string, map: Map<string, number>, key: string) {
+					text.split(/\s+|\n+/).forEach((word) =>
+						keywords.forEach((keyword) => {
+							const wordLC = word.toLowerCase();
+							if (
+								(keyword.startsWith(wordLC) || wordLC.startsWith(keyword)) &&
+								!trashWords.some((trashWord) => wordLC.startsWith(trashWord))
+							) {
+								let count = map.get(key) ?? 0;
+								count++;
+								map.set(key, count);
+							}
+						})
+					);
+				}
+
+				for (const [key, counterLP] of Object.entries(
 					languagePack.commands.guide.counters
 				)) {
-					function search(text: string) {
-						text.split(/\s+|\n+/).forEach((word) =>
-							keywords.forEach((keyword) => {
-								const wordLC = word.toLowerCase();
-								if (
-									(keyword.startsWith(wordLC) || wordLC.startsWith(keyword)) &&
-									!trashWords.some((trashWord) => wordLC.startsWith(trashWord))
-								) {
-									let count = bestCounterOccurrences.get(key) ?? 0;
-									count++;
-									bestCounterOccurrences.set(key, count);
-								}
-							})
-						);
-					}
+					search(counterLP.description, bestCounterOccurrences, key);
+					search(counterLP.detailedDescription, bestCounterOccurrences, key);
+				}
 
-					search(content.description);
-					search(content.detailedDescription);
+				for (const [key, commandLP] of Object.entries(languagePack.commands)) {
+					if ("helpDescription" in commandLP)
+						search(commandLP.helpDescription, bestCommandOccurrences, key);
 				}
 
 				let errorMessage = languagePack.commands.help.misc.errorNotFound.replace(
@@ -178,6 +185,25 @@ const help: Command = {
 							} \`{${counterKey}}\` ${
 								languagePack.commands.guide.counters[counterKey].description
 							}`;
+							errorMessage += "\n";
+						});
+				}
+
+				if (bestCommandOccurrences.size) {
+					errorMessage += "\n";
+					errorMessage += "\n";
+					errorMessage += languagePack.commands.help.misc.suggestCommand;
+					errorMessage += "\n";
+
+					Array.from(bestCommandOccurrences)
+						.sort((a, b) => b[1] - a[1])
+						.slice(0, 5)
+						.forEach(([key]) => {
+							const command = languagePack.commands[key];
+
+							errorMessage += `- \`${prefix}${key}\` ${
+								command?.helpDescription?.slice(0, 50) ?? ""
+							}...`;
 							errorMessage += "\n";
 						});
 				}
