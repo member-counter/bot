@@ -246,15 +246,15 @@
 						"{membersPlaying: euro truck simulator 2, american truck simulator} Trucking"
 					]
 				},
-				"http": {
-					"name": "http:options",
-					"description": "Shows the result of a http request",
-					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items.",
+				"nitro-boosters": {
+					"name": "nitro-boosters",
+					"description": "Counts the total amount of members boosting this server",
+					"detailedDescription": "Counts the total amount of members boosting this server",
 					"usage": [
-						"{http:options}"
+						"{nitro-boosters}"
 					],
 					"example": [
-						"Last subscriber: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+						"Awesome boosters: {nitro-boosters}"
 					]
 				},
 				"youtubeSubscribers": {
@@ -367,50 +367,6 @@
 						"Followers: {twitterFollowers:0xEduardozgz}"
 					]
 				},
-				"countdown": {
-					"name": "countdown:targetDate:format",
-					"description": "Shows a countdown that will decrease to the specified target date",
-					"detailedDescription": "Belirtilen hedef tarihe düşecek bir geri sayım gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/countdown) veya `targetDate`i hedef tarihle değiştirerek manuel olarak oluşturabilirsiniz. UNIX zaman damgasında tarih ve isteğe bağlı olarak özel bir formatla `format`a: kalan günü göstermek için `%d`, kalan saati göstermek için `%h`, kalan dakikayı göstermek için `%m` ve kalan saniyeyi göstermek için `%s` yazabilirsiniz",
-					"usage": [
-						"{countdown:targetDate:format}"
-					],
-					"example": [
-						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
-					]
-				},
-				"game": {
-					"name": "game:gameId:address",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
-					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
-					"usage": [
-						"{game:gameId:address}"
-					],
-					"example": [
-						"{game:minecraft:mc.hypixel.net} Mining and crafting"
-					]
-				},
-				"clock": {
-					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone",
-					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
-					"usage": [
-						"{clock:timeZone}"
-					],
-					"example": [
-						"Spain: {clock:Europe/Madrid}"
-					]
-				},
-				"nitro-boosters": {
-					"name": "nitro-boosters",
-					"description": "Counts the total amount of members boosting this server",
-					"detailedDescription": "Counts the total amount of members boosting this server",
-					"usage": [
-						"{nitro-boosters}"
-					],
-					"example": [
-						"Awesome boosters: {nitro-boosters}"
-					]
-				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
 					"description": "Counts the amount of members of a subreddit",
@@ -444,6 +400,61 @@
 						"{redditMembersOnline:science}"
 					]
 				},
+				"instagramFollowers": {
+					"name": "instagramFollowers:kullanıcıadı",
+					"description": "Counts the amount of followers in an Instagram account",
+					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
+					"usage": [
+						"{instagramFollowers:username}"
+					],
+					"example": [
+						"Followers: {instagramFollowers:eduardozgz}"
+					]
+				},
+				"countdown": {
+					"name": "countdown:targetDate:format",
+					"description": "Shows a countdown that will decrease to the specified target date",
+					"detailedDescription": "Belirtilen hedef tarihe düşecek bir geri sayım gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/countdown) veya `targetDate`i hedef tarihle değiştirerek manuel olarak oluşturabilirsiniz. UNIX zaman damgasında tarih ve isteğe bağlı olarak özel bir formatla `format`a: kalan günü göstermek için `%d`, kalan saati göstermek için `%h`, kalan dakikayı göstermek için `%m` ve kalan saniyeyi göstermek için `%s` yazabilirsiniz",
+					"usage": [
+						"{countdown:targetDate:format}"
+					],
+					"example": [
+						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
+					]
+				},
+				"game": {
+					"name": "game:gameId:address",
+					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
+					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
+					"usage": [
+						"{game:gameId:address}"
+					],
+					"example": [
+						"{game:minecraft:mc.hypixel.net} Mining and crafting"
+					]
+				},
+				"clock": {
+					"name": "clock:timeZone",
+					"description": "Shows a clock with the time of the specified timezone",
+					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
+					"usage": [
+						"{clock:timeZone}"
+					],
+					"example": [
+						"Spain: {clock:Europe/Madrid}"
+					]
+				},
+				"http": {
+					"name": "http:options",
+					"description": "Shows the result of a http request",
+					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items.",
+					"usage": [
+						"{http:options}"
+					],
+					"example": [
+						"Last subscriber: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+					]
+				},
 				"static": {
 					"name": "static:data",
 					"description": "Displays the given `data`",
@@ -454,17 +465,6 @@
 					"example": [
 						"{static:420}",
 						"{static:Hello world!}"
-					]
-				},
-				"instagramFollowers": {
-					"name": "instagramFollowers:kullanıcıadı",
-					"description": "Counts the amount of followers in an Instagram account",
-					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
-					"usage": [
-						"{instagramFollowers:username}"
-					],
-					"example": [
-						"Followers: {instagramFollowers:eduardozgz}"
 					]
 				},
 				"sum": {
