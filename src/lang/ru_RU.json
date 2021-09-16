@@ -29,7 +29,8 @@
 				"command": "Команда:",
 				"counter": "Счетчик:",
 				"errorNotFound": "Извините, я не смог найти информацию про ``{DESIRED_COMMAND}``",
-				"suggestCounter": "Возможно, вы ищете один из этих счетчиков:"
+				"suggestCounter": "Возможно, вы ищете один из этих счетчиков:",
+				"suggestCommand": "Maybe you are looking for one of these commands:"
 			}
 		},
 		"guide": {
