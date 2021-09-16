@@ -7,8 +7,6 @@ import CountService from "../services/CountService";
 import { GuildChannel } from "eris";
 import getMotd from "../utils/getMOTD";
 import commands from "../commands/all";
-import counters from "../counters/all";
-import { log } from "console";
 
 const { WEBSITE_URL, DISCORD_PREFIX, DISCORD_BOT_INVITE } = getEnv();
 
@@ -24,7 +22,11 @@ const help: Command = {
 			prefix = (await GuildService.init(message.guildID)).prefix;
 		}
 
-		const desiredThing = content.replace(/\w+/, "").trim().toLowerCase();
+		const desiredThing = content
+			.replace(/\w+/, "")
+			.trim()
+			.toLowerCase()
+			.replace(/\{|\}/g, "");
 
 		if (!desiredThing) {
 			// Main help page
@@ -50,9 +52,7 @@ const help: Command = {
 			const commandMatch = commands.filter((cmd) =>
 				cmd.aliases.map((alias) => alias.toLowerCase()).includes(desiredThing)
 			)[0];
-			const counterMatch = CountService.getCounterByAlias(
-				desiredThing.replace(/\{|\}/g, "")
-			);
+			const counterMatch = CountService.getCounterByAlias(desiredThing);
 
 			if (commandMatch) {
 				for (const [key, content] of Object.entries(languagePack.commands)) {
@@ -88,7 +88,6 @@ const help: Command = {
 							.map((alias) => alias.toLowerCase())
 							.includes(key)
 					) {
-
 						const embed = embedBase({
 							title: languagePack.commands.help.misc.counter + ` \`{${key}}\``,
 							description: content.detailedDescription.replace(
@@ -96,12 +95,12 @@ const help: Command = {
 								prefix
 							)
 						});
-	
+
 						embed.description += "\n";
 
 						if (content.usage.length) {
 							let usages = `\n**${languagePack.commands.guide.usageText}**\n`;
-							content.usage.forEach(i => {
+							content.usage.forEach((i) => {
 								usages += "```" + i + "```";
 							});
 							embed.description += usages;
@@ -109,24 +108,82 @@ const help: Command = {
 
 						if (content.example.length) {
 							let examples = `\n**${languagePack.commands.guide.exampleText}**\n`;
-							content.example.forEach(i => {
+							content.example.forEach((i) => {
 								examples += "```" + i + "```";
 							});
 							embed.description += examples;
 						}
 
+						embed.description +=
+							"\n> " +
+							languagePack.commands.guide.footerText.replace(
+								/\{PREFIX\}/gi,
+								prefix
+							);
+
 						await channel.createMessage({ embed });
-						
+
 						break;
 					}
 				}
 			} else {
-				throw new UserError(
-					languagePack.commands.help.misc.errorNotFound.replace(
-						"{DESIRED_COMMAND}",
-						desiredThing
-					)
+				// If nothing was found, suggest stuff
+				const trashWords = ["count"];
+				const keywords = desiredThing.split(/\s+|\n+/);
+
+				const bestCounterOccurrences = new Map<string, number>();
+
+				for (const [key, content] of Object.entries(
+					languagePack.commands.guide.counters
+				)) {
+					function search(text: string) {
+						text.split(/\s+|\n+/).forEach((word) =>
+							keywords.forEach((keyword) => {
+								const wordLC = word.toLowerCase();
+								if (
+									(keyword.startsWith(wordLC) || wordLC.startsWith(keyword)) &&
+									!trashWords.some((trashWord) => wordLC.startsWith(trashWord))
+								) {
+									let count = bestCounterOccurrences.get(key) ?? 0;
+									count++;
+									bestCounterOccurrences.set(key, count);
+								}
+							})
+						);
+					}
+
+					search(content.description);
+					search(content.detailedDescription);
+				}
+
+				let errorMessage = languagePack.commands.help.misc.errorNotFound.replace(
+					"{DESIRED_COMMAND}",
+					desiredThing
 				);
+
+				if (bestCounterOccurrences.size) {
+					errorMessage += "\n";
+					errorMessage += "\n";
+					errorMessage += languagePack.commands.help.misc.suggestCounter;
+					errorMessage += "\n";
+
+					console.log(bestCounterOccurrences);
+					Array.from(bestCounterOccurrences)
+						.sort((a, b) => b[1] - a[1])
+						.slice(0, 10)
+						.forEach(([counterKey]) => {
+							const counter = CountService.getCounterByAlias(counterKey);
+
+							errorMessage += `${
+								counter.isPremium ? "+" : "-"
+							} \`{${counterKey}}\` ${
+								languagePack.commands.guide.counters[counterKey].description
+							}`;
+							errorMessage += "\n";
+						});
+				}
+
+				throw new UserError(errorMessage);
 			}
 		}
 	}

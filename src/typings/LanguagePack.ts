@@ -241,6 +241,7 @@ interface Guide {
   countersHeader: string;
   usageText: string;
   exampleText: string;
+  footerText: string;
   counters: Counters;
 }
 interface Counters {
@@ -304,6 +305,7 @@ interface Misc {
   command: string;
   counter: string;
   errorNotFound: string;
+  suggestCounter: string;
 }
 interface EmbedReply {
   title: string;
