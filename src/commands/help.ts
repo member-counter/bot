@@ -167,7 +167,6 @@ const help: Command = {
 					errorMessage += languagePack.commands.help.misc.suggestCounter;
 					errorMessage += "\n";
 
-					console.log(bestCounterOccurrences);
 					Array.from(bestCounterOccurrences)
 						.sort((a, b) => b[1] - a[1])
 						.slice(0, 10)
