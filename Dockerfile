@@ -20,7 +20,7 @@ WORKDIR /cache
 RUN apk add --no-cache make gcc g++ python3 git
 COPY --from=pre_node_modules_cache /cache /cache
 RUN npm install -g pnpm
-RUN pnpm install
+RUN pnpm install --prod
 
 # compile the app using the cached dev dependencies
 FROM node:16-alpine as builder
