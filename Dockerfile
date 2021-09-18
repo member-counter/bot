@@ -11,14 +11,16 @@ FROM node:16-alpine as node_modules_cache_full
 WORKDIR /cache
 RUN apk add --no-cache make gcc g++ python3 git
 COPY --from=pre_node_modules_cache /cache /cache
-RUN npm ci --include=dev
+RUN npm install -g pnpm
+RUN pnpm install
 
 # install dependencies
 FROM node:16-alpine as node_modules_cache_prod
 WORKDIR /cache
 RUN apk add --no-cache make gcc g++ python3 git
 COPY --from=pre_node_modules_cache /cache /cache
-RUN npm ci --production
+RUN npm install -g pnpm
+RUN pnpm install
 
 # compile the app using the cached dev dependencies
 FROM node:16-alpine as builder
