@@ -808,7 +808,6 @@
 				"manageRoles": {
 					"name": "Manage roles",
 					"description": "Used by the {PREFIX}setup command and to update channel permissions when you add a Premium bot"
-
 				},
 				"banMembers": {
 					"name": "Ban members",
