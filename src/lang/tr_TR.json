@@ -551,17 +551,17 @@
 						"inline": false
 					},
 					{
-						"name": "**✅ Daha Doğru**",
+						"name": "**✅ Daha Kesin**",
 						"value": "Üyelerle ilgili tüm sayaçlarda daha doğru sayımlar elde edin",
 						"inline": false
 					},
 					{
-						"name": "**✅ Sınırsız sunucu**",
+						"name": "**✅ Sınırsız Sunucu**",
 						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 50,000 members, quarterly",
 						"inline": false
 					},
 					{
-						"name": "**✅ Özel bot**",
+						"name": "**✅ Özel Bot**",
 						"value": "Use your own bot account, with the profile picture and username of your choice",
 						"inline": false
 					},
@@ -898,44 +898,44 @@
 			"details": {
 				"manageChannels": {
 					"name": "Kanalları Yönet",
-					"description": "Used to update the name/description of the channels to update the counters"
+					"description": "Sayaçları, kanalların adını/açıklamasını güncellemek için kullanılır"
 				},
 				"viewChannel": {
-					"name": "Kanalları görüntüle",
-					"description": "Sayaçları güncellemek için kanalların adını/açıklamalarını güncellemek için kullanılır, ayrıca komutları almak için kullanılır"
+					"name": "Kanalları Görüntüle",
+					"description": "Sayaçları güncellemek, kanalların adını/açıklamasını güncellemek için kullanılır, ayrıca komutları görüntülemek için de kullanılır"
 				},
 				"voiceConnect": {
-					"name": "Bağlan",
-					"description": "Sayaçları güncellemek için kanalların adını/açıklamalarını güncellemek için kullanılır"
+					"name": "(Ses Kanalına) Bağlan",
+					"description": "Sayaçları, kanalların adını/açıklamasını güncellemek için kullanılır"
 				},
 				"readMessageHistory": {
-					"name": "Mesaj geçmişini oku",
-					"description": "Mesajlarda/Embedlerde sayaçları güncellemek için kullanılır"
+					"name": "Mesaj Geçmişini Oku",
+					"description": "Mesajlarda/embedlerde sayaçları güncellemek için kullanılır"
 				},
 				"sendMessages": {
 					"name": "Mesaj Gönder",
 					"description": "Komutları yanıtlamak için kullanılır"
 				},
 				"embedLinks": {
-					"name": "Embed bağlantısı",
+					"name": "Bağlantı Yerleştir",
 					"description": "Komutları yanıtlamak için kullanılır"
 				},
 				"addReactions": {
-					"name": "Tepki ekle",
+					"name": "Tepki Ekle",
 					"description": "Komut etkileşimlerine tepki eklemek için kullanılır"
 				},
 				"manageMessages": {
-					"name": "Mesajları yönet",
+					"name": "Mesajları Yönet",
 					"description": "Bir komutta yer alan reaksiyonları kaldırmak için kullanılır",
 					"optional": true
 				},
 				"manageRoles": {
-					"name": "Rolleri yönet",
+					"name": "Rolleri Yönet",
 					"description": "Used by the {PREFIX}setup command and to update channel permissions when you add a Premium bot"
 				},
 				"banMembers": {
-					"name": "Üyeleri yasakla",
-					"description": "`{bannedMembers}` sayacında olan yasaklı üye sayısını görüntülemek için kullanılır",
+					"name": "Üyeleri Engelle",
+					"description": "`{bannedMembers}` sayacında olan banlı üye sayısını görüntülemek için kullanılır",
 					"optional": true
 				}
 			}
