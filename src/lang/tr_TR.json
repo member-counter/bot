@@ -67,7 +67,7 @@
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
 					"description": "Sunucunuzdaki yaklaşık aktif üye sayısı",
-					"detailedDescription": "Counts approximately how many members are online in the server",
+					"detailedDescription": "Sunucunuzdaki yaklaşık aktif üye sayısı",
 					"usage": [
 						"{approximatedOnlineMembers}"
 					],
