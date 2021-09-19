@@ -14,7 +14,7 @@
 			],
 			"embedReply": {
 				"title": "आदेश सूची | उपसर्ग : {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name or counter name: ```\n{PREFIX}help shortNumber\n{PREFIX}help {members}```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**गणक**",
@@ -54,7 +54,7 @@
 			"footerText": "Please read the first page of {PREFIX}guide to learn how to setup this counter",
 			"counters": {
 				"members": {
-					"name": "members",
+					"name": "सदस्य",
 					"description": "आपके सर्वर में सदस्य",
 					"detailedDescription": "Counts how many members has a server",
 					"usage": [
@@ -164,7 +164,7 @@
 					]
 				},
 				"roles": {
-					"name": "roles",
+					"name": "भूमिकाएँ",
 					"description": "आपक सरवर म भमकए",
 					"detailedDescription": "Counts how many roles are in the server",
 					"usage": [
@@ -175,7 +175,7 @@
 					]
 				},
 				"channels": {
-					"name": "channels",
+					"name": "चैनले",
 					"description": "Channels in your server (excludes categories)",
 					"detailedDescription": "Counts how many channels (excluding category channels) are in the server",
 					"usage": [
@@ -351,7 +351,7 @@
 					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
 					"usage": [
-						"{memeratorMemes:nickname}"
+						"{memeratorMemes:username}"
 					],
 					"example": [
 						"Memes: {memeratorMemes:eduardozgz}"
@@ -362,7 +362,7 @@
 					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
 					"usage": [
-						"{memeratorFollowers:nickname}"
+						"{memeratorFollowers:username}"
 					],
 					"example": [
 						"Followers: {memeratorFollowers:eduardozgz}"
@@ -373,7 +373,7 @@
 					"description": "Amount of followers of a Twitter user",
 					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
 					"usage": [
-						"{twitterFollowers:nickname}"
+						"{twitterFollowers:username}"
 					],
 					"example": [
 						"Followers: {twitterFollowers:0xEduardozgz}"
@@ -869,8 +869,8 @@
 						{
 							"name": "twitterFollowers",
 							"template": "{twitterFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"statusCreating": "{LOADING} अनुयायी काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} अनुयायी काउंटर बनाई गई"
 						}
 					]
 				}
