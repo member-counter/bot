@@ -250,7 +250,8 @@
 					"description": "Amount of members playing a game",
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
-						"{membersPlaying:game name}"
+						"{membersPlaying:game name}",
+						"{membersPlaying:game name, game name 2}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
@@ -868,8 +869,8 @@
 						{
 							"name": "twitterFollowers",
 							"template": "{twitterFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"statusCreating": "{LOADING} Creando contador de seguidores",
+							"statusCreated": "{CHECK_MARK} Contador de seguidores creado"
 						}
 					]
 				}
