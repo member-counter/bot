@@ -349,40 +349,40 @@
 				"memeratorMemes": {
 					"name": "memeratorMemes:username",
 					"description": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler",
-					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
+					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
 						"{memeratorMemes:nickname}"
 					],
 					"example": [
-						"Memes: {memeratorMemes:eduardozgz}"
+						"Meme Sayısı: {memeratorMemes:eduardozgz}"
 					]
 				},
 				"memeratorFollowers": {
 					"name": "memeratorFollowers:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
-					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
+					"description": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler",
+					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
 						"{memeratorFollowers:nickname}"
 					],
 					"example": [
-						"Followers: {memeratorFollowers:eduardozgz}"
+						"Takipçi Sayısı: {memeratorFollowers:eduardozgz}"
 					]
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
 					"description": "Amount of followers of a Twitter user",
-					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
+					"detailedDescription": "Bir Twitter kullanıcısının kaç takipçisi olduğunu sayar, `username` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
 						"{twitterFollowers:nickname}"
 					],
 					"example": [
-						"Followers: {twitterFollowers:0xEduardozgz}"
+						"Takipçi Sayısı: {twitterFollowers:0xEduardozgz}"
 					]
 				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
-					"description": "Counts the amount of members of a subreddit",
-					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "Bir subredditin üye sayısını sayar",
+					"detailedDescription": "Bir subredditin üye sayısını sayar, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
 					"usage": [
 						"{redditMembers:subreddit}"
 					],
@@ -392,8 +392,8 @@
 				},
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
-					"description": "Counts the amount of online members of a subreddit",
-					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "Bir subredditin çevrimiçi üye sayısını sayar",
+					"detailedDescription": "Bir subredditin üye sayısını sayar, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
 					],
@@ -403,8 +403,8 @@
 				},
 				"redditTitle": {
 					"name": "redditTitle",
-					"description": "Displays the title of a subreddit",
-					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "Bir subredditin başlığını görüntüler",
+					"detailedDescription": "Bir subredditin başlığını görüntüler, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
 					],
@@ -414,7 +414,7 @@
 				},
 				"instagramFollowers": {
 					"name": "instagramFollowers:kullanıcıadı",
-					"description": "Counts the amount of followers in an Instagram account",
+					"description": "Bir Instagram hesabındaki takipçi miktarını sayar",
 					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
 					"usage": [
 						"{instagramFollowers:username}"
