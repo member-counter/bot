@@ -250,7 +250,8 @@
 					"description": "Amount of members playing a game",
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
-						"{membersPlaying:Minecraft}"
+						"{membersPlaying:Minecraft}",
+						"{membersPlaying: euro truck simulator 2, american truck simulator}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
@@ -868,8 +869,8 @@
 						{
 							"name": "twitterFollowers",
 							"template": "{twitterFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"statusCreating": "{LOADING} Creando contador de seguidores",
+							"statusCreated": "{CHECK_MARK} Contador de seguidores creado"
 						}
 					]
 				}
@@ -953,7 +954,7 @@
 			"notAvailable": "No disponible, espere por favor"
 		},
 		"paginator": {
-			"pageCounter": "Página {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"pageCounter": "Página {CURRENT_PAGE} de {TOTAL_PAGES}",
 			"jumpPrompt": "¿A qué página te gustaría ir? Escribe `cancel` o `0` para cancelarlo. Tienes 15 segundos para responder.",
 			"errorPageLengthExceeded": "La página debe ser menor o igual que {TOTAL_PAGES}. Por favor, inténtalo de nuevo.",
 			"errorNegativeInput": "La página no puede ser negativa. Inténtalo de nuevo."
