@@ -44,6 +44,16 @@ class UserService {
 		return this.doc.availableServerUpgrades;
 	}
 
+	public get credits(): number {
+		return this.doc.credits;
+	}
+
+	public async grantCredits(amount: number = 1): Promise<number> {
+		this.doc.credits += amount;
+		this.doc.save();
+		return this.doc.credits;
+	}
+
 	public async remove(): Promise<void> {
 		await this.doc.remove();
 	}

@@ -72,6 +72,24 @@ const help: Command = {
 							)
 						});
 
+						embed.description += "\n";
+
+						if (content.helpUsage?.length) {
+							let usages = `\n**${languagePack.commands.help.misc.usageText}**\n`;
+							content.helpUsage.forEach((i) => {
+								usages += "```" + i + "```";
+							});
+							embed.description += usages.replace(/\{PREFIX\}/gi, prefix);
+						}
+
+						if (content.helpExample?.length) {
+							let examples = `\n**${languagePack.commands.help.misc.exampleText}**\n`;
+							content.helpExample.forEach((i) => {
+								examples += "```" + i + "```";
+							});
+							embed.description += examples.replace(/\{PREFIX\}/gi, prefix);
+						}
+
 						if (content.helpImage) {
 							embed.image = { url: content.helpImage };
 						}
@@ -100,16 +118,16 @@ const help: Command = {
 
 						embed.description += "\n";
 
-						if (content.usage.length) {
-							let usages = `\n**${languagePack.commands.guide.usageText}**\n`;
+						if (content.usage?.length) {
+							let usages = `\n**${languagePack.commands.help.misc.usageText}**\n`;
 							content.usage.forEach((i) => {
 								usages += "```" + i + "```";
 							});
 							embed.description += usages;
 						}
 
-						if (content.example.length) {
-							let examples = `\n**${languagePack.commands.guide.exampleText}**\n`;
+						if (content.example?.length) {
+							let examples = `\n**${languagePack.commands.help.misc.exampleText}**\n`;
 							content.example.forEach((i) => {
 								examples += "```" + i + "```";
 							});
