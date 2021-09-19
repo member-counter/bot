@@ -14,7 +14,7 @@
 			],
 			"embedReply": {
 				"title": "Komut Listesi | Prefix: {PREFIX}",
-				"description": "[Bu botu sunucunuza ekleyin]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [[Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\\n\\nHızlı kurulum: `{PREFIX}setup`\\nBotu nasıl kullanacağınızı öğrenin: `{PREFIX}guide`\\n\\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` + komut adı yazın, örnek: ```\\n{PREFIX}help shortNumber```\\n**Bilgi:** `()` isteğe bağlı bir parametre anlamına gelirken `[]` gerekli bir parametre anlamına gelir",
+				"description": "[Botu Ekleyin]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum için: `{PREFIX}setup`\nBotun nasıl kullanılacağını öğrenmek için: `{PREFIX}guide`\n\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` + komut adı yazın, örneğin: ```\\n{PREFIX}help shortNumber```\n**Bilgi:** `()` isteğe bağlı bir parametre anlamına, `[]` ise gerekli bir parametre anlamına gelir",
 				"fields": [
 					{
 						"name": "**Sayaç Komutları**",
