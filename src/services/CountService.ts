@@ -342,7 +342,7 @@ class CountService {
 	 * @param name
 	 * @returns
 	 */
-	private static safeCounterName(name: string) {
+	public static safeCounterName(name: string) {
 		return name.replace(/-|_|\s/g, "").toLowerCase();
 	}
 
