@@ -448,12 +448,12 @@
 				"clock": {
 					"name": "clock:timeZone",
 					"description": "Belirtilen saat diliminin saatine sahip bir saat gösterir",
-					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
+					"detailedDescription": "Belirtilen saat dilimine göre saati gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/clock) veya `timeZone` bölümünü geçerli bir IANA saat dilimiyle değiştirebilirsiniz",
 					"usage": [
 						"{clock:timeZone}"
 					],
 					"example": [
-						"Spain: {clock:Europe/Madrid}"
+						"Türkiye: {clock:Europe/Istanbul}"
 					]
 				},
 				"http": {
@@ -562,7 +562,7 @@
 					},
 					{
 						"name": "**✅ Özel Bot**",
-						"value": "Use your own bot account, with the profile picture and username of your choice",
+						"value": "Seçtiğiniz profil resmi ve kullanıcı adı ile kendi bot hesabınızı kullanın",
 						"inline": false
 					},
 					{
@@ -574,9 +574,9 @@
 			}
 		},
 		"lockChannel": {
-			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels.",
+			"helpDescription": "Ses kanallarında bir hoparlör (🔊) yerine bir kilit (🔒) göstermek için bu komutları kullanabilirsiniz.",
 			"helpUsage": [
-				"{PREFIX}lockChannel [channel id]"
+				"{PREFIX}lockChannel [kanal id]"
 			],
 			"helpExample": [
 				"{PREFIX}lockChannel 700336568099143710"
@@ -587,7 +587,7 @@
 			"errorNotFound": "Kanal bulunamadı"
 		},
 		"editChannel": {
-			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
+			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu sınırı \"yoksaymak\" için bu komutu kullanabilirsiniz.",
 			"helpUsage": [
 				"{PREFIX}editChannel [channelId] [content]"
 			],
@@ -613,7 +613,7 @@
 			"errorMissingParams": "Eksik parametreler, lütfen `{PREFIX}help setDigit` bölümüne bakın."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters.",
+			"helpDescription": "Bu komut, bir sayıyı kompakt bir biçimde sayaçlarda göstermenizi sağlar.",
 			"helpUsage": [
 				"{PREFIX}shortNumber [enable|on/disable|off]"
 			],
@@ -633,7 +633,7 @@
 				"{PREFIX}locale [locale/disable]"
 			],
 			"helpExample": [
-				"{PREFIX}locale en",
+				"{PREFIX}locale tr",
 				"{PREFIX}locale tr",
 				"{PREFIX}locale disable"
 			],
@@ -769,7 +769,7 @@
 			"channelTopic": "Kanal başlığı önizlemesi"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters.",
+			"helpDescription": "İçlerinde bazı sayaçlar bulunan bazı kilitli ses kanalları oluşturur\nİsteğe bağlı olarak YouTube veya Twitch kanal sayaçlarını ayarlayın.",
 			"helpUsage": [
 				"{PREFIX}setup",
 				"{PREFIX}setup twitch [kanal adı]",
