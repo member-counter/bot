@@ -250,7 +250,8 @@
 					"description": "Amount of members playing a game",
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
-						"{membersPlaying:Minecraft}"
+						"{membersPlaying:game name}",
+						"{membersPlaying:game name, game name 2}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
@@ -953,7 +954,7 @@
 			"notAvailable": "No està disponible, per favor esperi"
 		},
 		"paginator": {
-			"pageCounter": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"jumpPrompt": "A quina pàgina t'agradaria anar? Escriu `cancel` o `0` para cancelar-lo. Tens 15 segons per respondre.",
 			"errorPageLengthExceeded": "La pàgina ha de ser menor o igual que {TOTAL_PAGES}. Per favor, intenteu de nou.",
 			"errorNegativeInput": "La pàgina no pot ser negativa. Per favor, intenteu de nou."

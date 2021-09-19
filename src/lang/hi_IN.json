@@ -54,7 +54,7 @@
 			"footerText": "Please read the first page of {PREFIX}guide to learn how to setup this counter",
 			"counters": {
 				"members": {
-					"name": "members",
+					"name": "सदस्य",
 					"description": "आपके सर्वर में सदस्य",
 					"detailedDescription": "Counts how many members has a server",
 					"usage": [
@@ -164,7 +164,7 @@
 					]
 				},
 				"roles": {
-					"name": "roles",
+					"name": "भूमिकाएँ",
 					"description": "आपक सरवर म भमकए",
 					"detailedDescription": "Counts how many roles are in the server",
 					"usage": [
@@ -175,7 +175,7 @@
 					]
 				},
 				"channels": {
-					"name": "channels",
+					"name": "चैनले",
 					"description": "Channels in your server (excludes categories)",
 					"detailedDescription": "Counts how many channels (excluding category channels) are in the server",
 					"usage": [
@@ -250,7 +250,8 @@
 					"description": "Amount of members playing a game",
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
-						"{membersPlaying:Minecraft}"
+						"{membersPlaying:game name}",
+						"{membersPlaying:game name, game name 2}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
@@ -868,8 +869,8 @@
 						{
 							"name": "twitterFollowers",
 							"template": "{twitterFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"statusCreating": "{LOADING} अनुयायी काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} अनुयायी काउंटर बनाई गई"
 						}
 					]
 				}
