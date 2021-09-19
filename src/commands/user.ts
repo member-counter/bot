@@ -62,7 +62,7 @@ const user: Command = {
 
 		if (actionRequested && BOT_OWNERS.includes(author.id)) {
 			switch (actionRequested.toLowerCase()) {
-				case "grantcredit": 
+				case "grantcredit":
 				case "grantcredits": {
 						await userSettings.grantCredits(
 							parseInt(actionParams[0], 10) || 1
