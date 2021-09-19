@@ -250,7 +250,8 @@
 					"description": "Amount of members playing a game",
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
-						"{membersPlaying:Minecraft}"
+						"{membersPlaying:Minecraft}",
+						"{membersPlaying: euro truck simulator 2, american truck simulator}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
@@ -858,7 +859,7 @@
 							"name": "youtubeViews",
 							"template": "{youtubeViews:{RESOURCE}} Views",
 							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Zobrazovací počítadlo bylo vytvořeno"
+							"statusCreated": "{CHECK_MARK} Views counter created"
 						}
 					]
 				},
