@@ -199,7 +199,7 @@
 				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:role1ID,role2ID",
 					"description": "Rol veya rollere sahip çevrimiçi üye sayısı",
-					"detailedDescription": "Counts how many members with a role or roles are online, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimiçi olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
 						"{onlineMembersWithRole:role1ID,role2ID}"
 					],
@@ -210,8 +210,8 @@
 				},
 				"offlineMembersWithRole": {
 					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "Offline members with a role or roles",
-					"detailedDescription": "Counts how many members with a role or roles are offline, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"description": "Rol veya rollere sahip çevrimdışı üye sayısı",
+					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimdışı olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
 						"{offlineMembersWithRole:role1ID,role2ID}"
 					],
@@ -222,8 +222,8 @@
 				},
 				"connectedMembers": {
 					"name": "connectedMembers:channel1ID,channel2ID",
-					"description": "Connected members to voice channels",
-					"detailedDescription": "Counts how many members are connected to all the voice channels or to the specified ones, write the channel IDs you wanna filter after the `:`, and separate the IDs with commas",
+					"description": "Ses kanallarına bağlı üye sayısı",
+					"detailedDescription": "Tüm veya belirtilen ses kanallarına kaç üyenin bağlı olduğunu sayar, filtrelemek istediğiniz kanal IDlerini `:` işaretinden sonra yazın ve IDleri virgülle ayırın",
 					"usage": [
 						"{connectedMembers}",
 						"{connectedMembers:channel1ID,channel2ID}"
@@ -235,20 +235,20 @@
 				},
 				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "Amount of banned members in your server",
-					"detailedDescription": "Counts how many members are banned, the bot must have ban permissions to get this count",
+					"description": "Sunucunuzdaki banlı üye sayısı",
+					"detailedDescription": "Kaç üyenin banlandığını sayar, botun bu sayıyı alabilmesi için üyeleri engelle yetkisine sahip olması gerekir",
 					"usage": [
 						"{bannedMembers}"
 					],
 					"example": [
-						"{bannedMembers} Banned",
-						"{bannedMembers} has been hit with the ban hammer"
+						"{bannedMembers} Banlı",
+						"{bannedMembers} üyeye ban çekiciyle vuruldu"
 					]
 				},
 				"membersPlaying": {
 					"name": "membersPlaying:game name",
-					"description": "Amount of members playing a game",
-					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
+					"description": "Oyun oynayan üye sayısı",
+					"detailedDescription": "Bir oyunu kaç üyenin oynadığını sayar, virgülle ayırarak birden fazla oyun ekleyebilirsiniz",
 					"usage": [
 						"{membersPlaying:Minecraft}",
 						"{membersPlaying: euro truck simulator 2, american truck simulator}"
@@ -327,18 +327,18 @@
 				"twitchViews": {
 					"name": "twitchViews:nickname",
 					"description": "Amount of views of a Twitch channel",
-					"detailedDescription": "Counts how many views has a Twitch channel, replace `nickname` with the desired channel name",
+					"detailedDescription": "Bir Twitch kanalının kaç kez görüntülendiğini sayar, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
 					"usage": [
 						"{twitchViews:nickname}"
 					],
 					"example": [
-						"{twitchViews:ninja} Views"
+						"{twitchViews:ninja} Görüntüleme"
 					]
 				},
 				"twitchChannelName": {
 					"name": "twitchChannelName:nickname",
-					"description": "Displays the name of a Twitch channel",
-					"detailedDescription": "Displays the name of a Twitch channel, replace `nickname` with the desired channel name",
+					"description": "Bir Twitch kanalının adını görüntüler",
+					"detailedDescription": "Bir Twitch kanalının adını görüntüler, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
 					"usage": [
 						"{twitchChannelName:nickname}"
 					],
@@ -348,7 +348,7 @@
 				},
 				"memeratorMemes": {
 					"name": "memeratorMemes:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
+					"description": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
 					"usage": [
 						"{memeratorMemes:nickname}"
