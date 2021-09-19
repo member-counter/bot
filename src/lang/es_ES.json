@@ -44,7 +44,7 @@
 			}
 		},
 		"guide": {
-			"helpDescription": "Te muestra una guía sobre como usar el bot y el listado de contadores.",
+			"helpDescription": "Te muestra una guía sobre como usar el bot y un listado de contadores.",
 			"helpExample": [
 				"{PREFIX}guide"
 			],
