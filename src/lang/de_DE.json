@@ -251,7 +251,7 @@
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
 						"{membersPlaying:game name}",
-						"{membersPlaying: euro truck simulator 2, american truck simulator}"
+						"{membersPlaying:game name, game name 2}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
