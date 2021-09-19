@@ -166,7 +166,7 @@
 				"roles": {
 					"name": "roles",
 					"description": "Sunucunuzdaki rol sayısı",
-					"detailedDescription": "Counts how many roles are in the server",
+					"detailedDescription": "Sunucunuzdaki rol sayısı",
 					"usage": [
 						"{roles}"
 					],
@@ -188,7 +188,7 @@
 				"membersWithRole": {
 					"name": "membersWithRole:role1ID,role2ID",
 					"description": "Members with a role or roles",
-					"detailedDescription": "Counts how many members have a role or roles, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"detailedDescription": "Bu, kaç üyenin bir role veya rollere sahip olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:`den sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
 						"{membersWithRole:role1ID,role2ID}"
 					],
