@@ -250,8 +250,7 @@
 					"description": "Amount of members playing a game",
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
-						"{membersPlaying:game name}",
-						"{membersPlaying: euro truck simulator 2, american truck simulator}"
+						"{membersPlaying:game name}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
@@ -351,7 +350,7 @@
 					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
 					"usage": [
-						"{memeratorMemes:nickname}"
+						"{memeratorMemes:username}"
 					],
 					"example": [
 						"Memes: {memeratorMemes:eduardozgz}"
