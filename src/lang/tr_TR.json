@@ -14,7 +14,7 @@
 			],
 			"embedReply": {
 				"title": "Komut Listesi | Prefix: {PREFIX}",
-				"description": "[Botu Ekleyin]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum için: `{PREFIX}setup`\nBotun nasıl kullanılacağını öğrenmek için: `{PREFIX}guide`\n\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` + komut adı yazın, örneğin: ```\\n{PREFIX}help shortNumber```\n**Bilgi:** `()` isteğe bağlı bir parametre anlamına, `[]` ise gerekli bir parametre anlamına gelir",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Sayaç Komutları**",
@@ -250,7 +250,8 @@
 					"description": "Oyun oynayan üye sayısı",
 					"detailedDescription": "Bir oyunu kaç üyenin oynadığını sayar, virgülle ayırarak birden fazla oyun ekleyebilirsiniz",
 					"usage": [
-						"{membersPlaying:Minecraft}"
+						"{membersPlaying:Minecraft}",
+						"{membersPlaying: euro truck simulator 2, american truck simulator}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
@@ -350,7 +351,7 @@
 					"description": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler",
 					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
-						"{memeratorMemes:username}"
+						"{memeratorMemes:nickname}"
 					],
 					"example": [
 						"Meme Sayısı: {memeratorMemes:eduardozgz}"
@@ -361,7 +362,7 @@
 					"description": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler",
 					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
-						"{memeratorFollowers:username}"
+						"{memeratorFollowers:nickname}"
 					],
 					"example": [
 						"Takipçi Sayısı: {memeratorFollowers:eduardozgz}"
@@ -372,7 +373,7 @@
 					"description": "Bir Twitter kullanıcısının takipçi sayısı",
 					"detailedDescription": "Bir Twitter kullanıcısının kaç takipçisi olduğunu sayar, `username` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
-						"{twitterFollowers:username}"
+						"{twitterFollowers:nickname}"
 					],
 					"example": [
 						"Takipçi Sayısı: {twitterFollowers:0xEduardozgz}"
@@ -401,7 +402,7 @@
 					]
 				},
 				"redditTitle": {
-					"name": "redditTitle:subreddit",
+					"name": "redditTitle",
 					"description": "Bir subredditin başlığını görüntüler",
 					"detailedDescription": "Bir subredditin başlığını görüntüler, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
 					"usage": [
