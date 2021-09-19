@@ -250,7 +250,8 @@
 					"description": "Oyun oynayan üye sayısı",
 					"detailedDescription": "Bir oyunu kaç üyenin oynadığını sayar, virgülle ayırarak birden fazla oyun ekleyebilirsiniz",
 					"usage": [
-						"{membersPlaying:Minecraft}"
+						"{membersPlaying:Minecraft}",
+						"{membersPlaying:game name, game name 2}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
