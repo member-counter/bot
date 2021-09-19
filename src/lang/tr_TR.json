@@ -260,8 +260,8 @@
 				},
 				"nitro-boosters": {
 					"name": "nitro-boosters",
-					"description": "Counts the total amount of members boosting this server",
-					"detailedDescription": "Counts the total amount of members boosting this server",
+					"description": "Sunucuyu boostlayan toplam üye sayısını sayar",
+					"detailedDescription": "Sunucuyu boostlayan toplam üye sayısını sayar",
 					"usage": [
 						"{nitro-boosters}"
 					],
@@ -272,40 +272,40 @@
 				"youtubeSubscribers": {
 					"name": "youtubeSubscribers:channelUrl",
 					"description": "Amount of subscribers of a YouTube channel",
-					"detailedDescription": "Counts how many subscribers has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"detailedDescription": "Bir YouTube kanalının kaç aboneye sahip olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
 						"{youtubeSubscribers:channelUrl}"
 					],
 					"example": [
-						"Subscribers: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
+						"Abone Sayısı: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeViews": {
 					"name": "youtubeViews:channelUrl",
 					"description": "Amount of views of a YouTube channel",
-					"detailedDescription": "Counts how many views has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"detailedDescription": "Bir YouTube kanalının kaç kez görüntülendiğini sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
 						"{youtubeViews:channelUrl}"
 					],
 					"example": [
-						"Views: {youtubeViews:https://www.youtube.com/user/enyay}"
+						"Görüntüleme Sayısı: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeVideos": {
 					"name": "youtubeVideos:channelUrl",
-					"description": "Amount of videos of a YouTube channel",
-					"detailedDescription": "Counts how many videos has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "Bir YouTube kanalının video sayısı",
+					"detailedDescription": "Bir YouTube kanalının kaç videosu olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
 						"{youtubeVideos:channelUrl}"
 					],
 					"example": [
-						"Videos: {youtubeVideos:https://www.youtube.com/user/enyay}"
+						"Video Sayısı: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeChannelName": {
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays the name of a YouTube channel",
-					"detailedDescription": "Displays the name of a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "Bir YouTube kanalının adını görüntüler",
+					"detailedDescription": "Bir YouTube kanalının adını görüntüler, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
 						"{youtubeChannelName:channelUrl}"
 					],
@@ -315,18 +315,18 @@
 				},
 				"twitchFollowers": {
 					"name": "twitchFollowers:nickname",
-					"description": "Amount of followers of a Twitch channel",
-					"detailedDescription": "Counts how many followers has a Twitch channel, replace `nickname` with the desired channel name",
+					"description": "Bir Twitch kanalının takipçi sayısı",
+					"detailedDescription": "Bir Twitch kanalının kaç takipçisi olduğunu sayar, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
 					"usage": [
 						"{twitchFollowers:nickname}"
 					],
 					"example": [
-						"{twitchFollowers:ninja} Followers"
+						"{twitchFollowers:ninja} Takipçi"
 					]
 				},
 				"twitchViews": {
 					"name": "twitchViews:nickname",
-					"description": "Amount of views of a Twitch channel",
+					"description": "Bir Twitch kanalının izlenme sayısı",
 					"detailedDescription": "Bir Twitch kanalının kaç kez görüntülendiğini sayar, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
 					"usage": [
 						"{twitchViews:nickname}"
@@ -415,17 +415,17 @@
 				"instagramFollowers": {
 					"name": "instagramFollowers:kullanıcıadı",
 					"description": "Bir Instagram hesabındaki takipçi miktarını sayar",
-					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
+					"detailedDescription": "Bir Instagram hesabındaki takipçi miktarını sayar, `username` bölümünü asıl Instagram kullanıcı adıyla değiştirin",
 					"usage": [
 						"{instagramFollowers:username}"
 					],
 					"example": [
-						"Followers: {instagramFollowers:eduardozgz}"
+						"Takipçi Sayısı: {instagramFollowers:eduardozgz}"
 					]
 				},
 				"countdown": {
 					"name": "countdown:targetDate:format",
-					"description": "Shows a countdown that will decrease to the specified target date",
+					"description": "Belirtilen hedef tarih için bir geri sayım gösterir",
 					"detailedDescription": "Belirtilen hedef tarihe düşecek bir geri sayım gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/countdown) veya `targetDate`i hedef tarihle değiştirerek manuel olarak oluşturabilirsiniz. UNIX zaman damgasında tarih ve isteğe bağlı olarak özel bir formatla `format`a: kalan günü göstermek için `%d`, kalan saati göstermek için `%h`, kalan dakikayı göstermek için `%m` ve kalan saniyeyi göstermek için `%s` yazabilirsiniz",
 					"usage": [
 						"{countdown:targetDate:format}"
@@ -447,7 +447,7 @@
 				},
 				"clock": {
 					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone",
+					"description": "Belirtilen saat diliminin saatine sahip bir saat gösterir",
 					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
 					"usage": [
 						"{clock:timeZone}"
