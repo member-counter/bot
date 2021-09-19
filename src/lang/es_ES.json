@@ -111,29 +111,29 @@
 				"onlineUsers": {
 					"name": "onlineUsers",
 					"description": "Usuarios online en tu servidor (excluye bots)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are online in the server",
+					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bot) en línea hay en el servidor",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Online users"
+						"{users} Usuario en línea"
 					]
 				},
 				"offlineUsers": {
 					"name": "offlineUsers",
 					"description": "Usuarios offline en tu servidor (excluye bots)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are offline in the server",
+					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bot) fuera de línea hay en el servidor",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Offline"
+						"{users} Fuera de línea"
 					]
 				},
 				"bots": {
 					"name": "bots",
 					"description": "Bots en tu servidor (excluye usuarios normales)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are in the server",
+					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) hay en el servidor",
 					"usage": [
 						"{bots}"
 					],
@@ -144,12 +144,12 @@
 				"onlineBots": {
 					"name": "onlineBots",
 					"description": "Bots online en tu servidor (excluye usuarios normales)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are online in the server",
+					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) están en línea hay en el servidor",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Online bots"
+						"{bots} Bots en línea"
 					]
 				},
 				"offlineBots": {
