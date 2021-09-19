@@ -595,7 +595,7 @@
 				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
 			],
 			"success": "Done! You may have to wait a few minutes to see the new changes",
-			"errorNotFound": "Canale non trovato",
+			"errorNotFound": "Channel not found",
 			"errorNoContent": "Devi fornire del contenuto"
 		},
 		"setDigit": {
@@ -954,7 +954,7 @@
 			"notAvailable": "Not available, please wait"
 		},
 		"paginator": {
-			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"pageCounter": "Pagina {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
 			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
 			"errorNegativeInput": "The page number can't be negative. Please try again."
