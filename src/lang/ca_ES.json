@@ -3,7 +3,7 @@
 	"langName": "Català",
 	"commands": {
 		"help": {
-			"helpDescription": "Get help about commands and counters",
+			"helpDescription": "Get help about commands and counters.",
 			"helpUsage": [
 				"{PREFIX}help [command or counter]"
 			],
@@ -44,7 +44,7 @@
 			}
 		},
 		"guide": {
-			"helpDescription": "Shows you a guide of how to use the bot and a list of available counters",
+			"helpDescription": "Shows you a guide of how to use the bot and a list of available counters.",
 			"helpExample": [
 				"{PREFIX}guide"
 			],
@@ -537,7 +537,7 @@
 			}
 		},
 		"premium": {
-			"helpDescription": "Get information about Member Counter Premium",
+			"helpDescription": "Get information about Member Counter Premium.",
 			"helpExample": [
 				"{PREFIX}premium"
 			],
@@ -574,7 +574,7 @@
 			}
 		},
 		"lockChannel": {
-			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels",
+			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels.",
 			"helpUsage": [
 				"{PREFIX}lockChannel [channel id]"
 			],
@@ -587,7 +587,7 @@
 			"errorNotFound": "Canal no trobat"
 		},
 		"editChannel": {
-			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit",
+			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
 			"helpUsage": [
 				"{PREFIX}editChannel [channelId] [content]"
 			],
@@ -613,7 +613,7 @@
 			"errorMissingParams": "Falten paràmetres, si us plau, consulta `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n``````\n**Examples**``````",
+			"helpDescription": "This command allows you to show a count in a compact form in counters.",
 			"helpUsage": [
 				"{PREFIX}shortNumber [enable|on/disable|off]"
 			],
@@ -653,7 +653,7 @@
 			"noPrefixProvided": "Has de proporcionar un prefix"
 		},
 		"role": {
-			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`",
+			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`.",
 			"helpUsage": [
 				"{PREFIX}role [allow/deny] [@roles/all]"
 			],
@@ -725,7 +725,7 @@
 			"errorNotFound": "Lista de llenguatges disponibles:"
 		},
 		"profile": {
-			"helpDescription": "Mostra informació relacionada entre tu i el bot",
+			"helpDescription": "Shows related information between you and this bot.",
 			"helpUsage": [
 				"{PREFIX}profile (@user)"
 			],
@@ -742,7 +742,7 @@
 			"userNotFound": "User not found in the DB"
 		},
 		"counts": {
-			"helpDescription": "Mostra alguns comptadors",
+			"helpDescription": "Shows some counts.",
 			"helpExample": [
 				"{PREFIX}counts"
 			],
@@ -877,7 +877,7 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` ",
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}`.",
 			"helpUsage": [
 				"{PREFIX}base64 [encode/decode] [data]"
 			],
@@ -888,7 +888,7 @@
 			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		},
 		"checkPermissions": {
-			"helpDescription": "Checks if the bot has the correct permissions to work correctly",
+			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
