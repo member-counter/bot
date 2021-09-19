@@ -362,7 +362,7 @@
 					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
 					"usage": [
-						"{memeratorFollowers:nickname}"
+						"{memeratorFollowers:username}"
 					],
 					"example": [
 						"Followers: {memeratorFollowers:eduardozgz}"
@@ -373,7 +373,7 @@
 					"description": "Amount of followers of a Twitter user",
 					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
 					"usage": [
-						"{twitterFollowers:nickname}"
+						"{twitterFollowers:username}"
 					],
 					"example": [
 						"Followers: {twitterFollowers:0xEduardozgz}"
@@ -402,7 +402,7 @@
 					]
 				},
 				"redditTitle": {
-					"name": "redditTitle",
+					"name": "redditTitle:subreddit",
 					"description": "Displays the title of a subreddit",
 					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
 					"usage": [
