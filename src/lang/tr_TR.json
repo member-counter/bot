@@ -251,7 +251,7 @@
 					"detailedDescription": "Bir oyunu kaç üyenin oynadığını sayar, virgülle ayırarak birden fazla oyun ekleyebilirsiniz",
 					"usage": [
 						"{membersPlaying:Minecraft}",
-						"{membersPlaying:game name, game name 2}"
+						"{membersPlaying: euro truck simulator 2, american truck simulator}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
