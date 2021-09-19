@@ -72,7 +72,7 @@
 						"{approximatedOnlineMembers}"
 					],
 					"example": [
-						"{approximatedOnlineMembers} Aktif"
+						"{approximatedOnlineMembers} Çevrimiçi"
 					]
 				},
 				"onlineMembers": {
@@ -83,7 +83,7 @@
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Aktif"
+						"{onlineMembers} Çevrimiçi"
 					]
 				},
 				"offlineMembers": {
@@ -94,73 +94,73 @@
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Offline"
+						"{onlineMembers} Çevrimdışı"
 					]
 				},
 				"users": {
 					"name": "users",
 					"description": "Sunucunuzdaki kullanıcı sayısı (botlar hariç)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are in the server",
+					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının olduğunu sayar",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Users"
+						"{users} Kullanıcı"
 					]
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
 					"description": "Sunucunuzdaki çevrimiçi kullanıcı sayısı (botlar hariç)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are online in the server",
+					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının çevrimiçi olduğunu sayar",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Online users"
+						"{users} Çevrimiçi Kullanıcı"
 					]
 				},
 				"offlineUsers": {
 					"name": "offlineUsers",
 					"description": "Sunucunuzdaki çevrimdışı kullanıcı sayısı (botlar hariç)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are offline in the server",
+					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının çevrimdışı olduğunu sayar",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Offline"
+						"{users} Çevrimdışı"
 					]
 				},
 				"bots": {
 					"name": "bots",
 					"description": "Sunucunuzdaki bot sayısı",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are in the server",
+					"detailedDescription": "Sunucuda kaç bot olduğunu sayar",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Bots"
+						"{bots} Bot"
 					]
 				},
 				"onlineBots": {
 					"name": "onlineBots",
 					"description": "Sunucunuzdaki çevrimiçi bot sayısı",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are online in the server",
+					"detailedDescription": "Sunucuda kaç botun çevrimiçi olduğunu sayar",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Online bots"
+						"{bots} Çevrimiçi Bot"
 					]
 				},
 				"offlineBots": {
 					"name": "offlineBots",
 					"description": "Sunucunuzdaki çevrimdışı bot sayısı",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are offline in the server",
+					"detailedDescription": "Sunucuda kaç botun çevrimdışı olduğunu sayar",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Offline bots"
+						"{bots} Çevrimdışı Bot"
 					]
 				},
 				"roles": {
@@ -171,24 +171,24 @@
 						"{roles}"
 					],
 					"example": [
-						"{roles} Roles"
+						"{roles} Rol"
 					]
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Channels in your server (excludes categories)",
-					"detailedDescription": "Counts how many channels (excluding category channels) are in the server",
+					"description": "Sunucunuzdaki kanal sayısı (kategoriler hariç)",
+					"detailedDescription": "Sunucuda (kategoriler hariç) kaç kanal olduğunu sayar",
 					"usage": [
 						"{channels}"
 					],
 					"example": [
-						"{channels} Channels"
+						"{channels} Kanal"
 					]
 				},
 				"membersWithRole": {
 					"name": "membersWithRole:role1ID,role2ID",
-					"description": "Members with a role or roles",
-					"detailedDescription": "Kaç üyenin bir role veya rollere sahip olduğunu olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
+					"description": "Rol veya rollere sahip üye sayısı",
+					"detailedDescription": "Bir role veya rollere sahip kaç üyenin olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
 						"{membersWithRole:role1ID,role2ID}"
 					],
@@ -198,7 +198,7 @@
 				},
 				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "Online members with a role or roles",
+					"description": "Rol veya rollere sahip çevrimiçi üye sayısı",
 					"detailedDescription": "Counts how many members with a role or roles are online, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
 					"usage": [
 						"{onlineMembersWithRole:role1ID,role2ID}"
@@ -793,9 +793,9 @@
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Aktif Üye Sayısı: {onlineMembers}",
-							"statusCreating": "{LOADING} Aktif üye sayacı oluşturuluyor",
-							"statusCreated": "{CHECK_MARK} Aktif üye sayacı oluşturuldu"
+							"template": "Çevrimiçi Üye Sayısı: {onlineMembers}",
+							"statusCreating": "{LOADING} Çevrimiçi üye sayacı oluşturuluyor",
+							"statusCreated": "{CHECK_MARK} Çevrimiçi üye sayacı oluşturuldu"
 						},
 						{
 							"name": "members",
@@ -949,7 +949,7 @@
 			"onlyPremium": "Yalnızca Premium",
 			"unknownCounter": "Bilinmeyen sayaç",
 			"disabled": "Sayaç Devre Dışı",
-			"noBanPerms": "Bunu göstermek için üyeleri yasaklama yetkisine ihtiyacım var",
+			"noBanPerms": "Bunu göstermek için üyeleri engelle yetkisine ihtiyacım var",
 			"invalidChannelLength": "Geçersiz kanal adı uzunluğu, lütfen sayacı tekrar kurun",
 			"notAvailable": "Bu şey mevcut değil, lütfen bekleyin"
 		},
@@ -966,6 +966,6 @@
 		"errorDiscordAPI": "Discord API",
 		"errorUnknown": "Bir şeyler ters gitti, daha sonra tekrar deneyin.",
 		"errorNoAdmin": "Sadece bu sunucuda yönetici yetkisine sahip üyeler bu komutu kullanabilir.",
-		"noTopicCounterEnabled": "Henüz bir konu sayacını etkinleştirmemişsiniz gibi görünüyor, lütfen `{PREFIX}help topicCounter` komutuna bakın"
+		"noTopicCounterEnabled": "Henüz bir konu sayacını etkinleştirmemişsiniz gibi görünüyor, lütfen `{PREFIX}help topicCounter` bölümüne bakın"
 	}
 }
