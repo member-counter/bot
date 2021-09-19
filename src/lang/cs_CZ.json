@@ -859,7 +859,7 @@
 							"name": "youtubeViews",
 							"template": "{youtubeViews:{RESOURCE}} Views",
 							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Zobrazovací počítadlo bylo vytvořeno"
+							"statusCreated": "{CHECK_MARK} Views counter created"
 						}
 					]
 				},
