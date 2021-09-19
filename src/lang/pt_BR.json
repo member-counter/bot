@@ -250,7 +250,8 @@
 					"description": "Amount of members playing a game",
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
-						"{membersPlaying:Minecraft}"
+						"{membersPlaying:Minecraft}",
+						"{membersPlaying: euro truck simulator 2, american truck simulator}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
@@ -953,7 +954,7 @@
 			"notAvailable": "Not available, please wait"
 		},
 		"paginator": {
-			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"pageCounter": "Página {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
 			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
 			"errorNegativeInput": "The page number can't be negative. Please try again."
