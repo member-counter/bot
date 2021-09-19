@@ -65,6 +65,7 @@ interface Commands {
 }
 interface CheckPermissions {
   helpDescription: string;
+  helpExample: string[];
   optionalText: string;
   adminWarning: string;
   footer: string;
@@ -93,10 +94,14 @@ interface ManageChannels {
 }
 interface Base64 {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   invalidAction: string;
 }
 interface Setup {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   status: Status;
   errorInvalidUsage: string;
   counterTemplates: CounterTemplates;
@@ -125,12 +130,15 @@ interface Status {
 }
 interface Preview {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   helpImage: string;
   channelName: string;
   channelTopic: string;
 }
 interface Counts {
   helpDescription: string;
+  helpExample: string[];
   members: string;
   onlineMembers: string;
   offlineMembers: string;
@@ -143,7 +151,10 @@ interface Counts {
 }
 interface Profile {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   badges: string;
+  credits: string;
   serverUpgradesAvailable: string;
   removeDataConfirmation: string;
   removeDataConfirmationString: string;
@@ -152,11 +163,14 @@ interface Profile {
 }
 interface Lang {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   success: string;
   errorNotFound: string;
 }
 interface Info {
   helpDescription: string;
+  helpExample: string[];
   embedReply: EmbedReply2;
 }
 interface EmbedReply2 {
@@ -164,16 +178,19 @@ interface EmbedReply2 {
 }
 interface UpgradeServer {
   helpDescription: string;
+  helpExample: string[];
   success: string;
   errorCannotUpgrade: string;
   noServerUpgradesAvailable: string;
 }
 interface ResetSettings {
   helpDescription: string;
+  helpExample: string[];
   done: string;
 }
 interface SeeSettings {
   helpDescription: string;
+  helpExample: string[];
   settingsMessage: SettingsMessage;
 }
 interface SettingsMessage {
@@ -192,39 +209,53 @@ interface SettingsMessage {
 }
 interface Role {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   rolesUpdated: string;
   errorNoRolesToUpdate: string;
   invalidParams: string;
 }
 interface Prefix {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   success: string;
   noPrefixProvided: string;
 }
 interface Locale {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   helpImage: string;
 }
 interface ShortNumber {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   helpImage: string;
   errorInvalidAction: string;
   success: string;
 }
 interface SetDigit {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   success: string;
   resetSuccess: string;
   errorMissingParams: string;
 }
 interface EditChannel {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   success: string;
   errorNotFound: string;
   errorNoContent: string;
 }
 interface LockChannel {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   success: string;
   errorInvalidChannel: string;
   errorNoPerms: string;
@@ -232,15 +263,15 @@ interface LockChannel {
 }
 interface Premium {
   helpDescription: string;
+  helpExample: string[];
   embedReply: EmbedReply;
 }
 interface Guide {
   helpDescription: string;
+  helpExample: string[];
   pagesText: string;
   explanation: string;
   countersHeader: string;
-  usageText: string;
-  exampleText: string;
   footerText: string;
   counters: Counters;
 }
@@ -298,6 +329,8 @@ interface Members {
 }
 interface Help {
   helpDescription: string;
+  helpUsage: string[];
+  helpExample: string[];
   embedReply: EmbedReply;
   misc: Misc;
 }
@@ -307,6 +340,8 @@ interface Misc {
   errorNotFound: string;
   suggestCounter: string;
   suggestCommand: string;
+  usageText: string;
+  exampleText: string;
 }
 interface EmbedReply {
   title: string;
