@@ -35,19 +35,20 @@ class Bot {
 	static init() {
 		if (this._client) throw new Error("Client is already initialized");
 
-		const intents: Eris.IntentStrings[] = [
-			"guilds",
-			"guildBans",
-			"guildMessages",
-			"directMessages",
-			"guildMessageReactions",
-			"directMessageReactions"
+		const Intents = Eris.Constants.Intents;
+		const intents: number[] = [
+			Intents.guilds,
+			Intents.guildBans,
+			Intents.guildMessages,
+			Intents.directMessages,
+			Intents.guildMessageReactions,
+			Intents.directMessageReactions
 		];
 
 		const erisOptions: Eris.ClientOptions = {
 			getAllUsers: false,
 			guildCreateTimeout: 15000,
-			intents,
+			intents: intents.reduce((acc, cur) => acc | cur, 0),
 			maxShards: DISTRIBUTED ? TOTAL_SHARDS : 1,
 			messageLimit: 0,
 			defaultImageFormat: "jpg",

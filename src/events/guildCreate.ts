@@ -44,7 +44,7 @@ const guildCreate = async (guild: Eris.Guild) => {
 
 	guildCountCache.members = guildExt.approximateMemberCount;
 	guildCountCache.onlineMembers = guildExt.approximatePresenceCount;
-	guildCountCache.timestamp = Date.now();
+	guildCountCache.timestamp = new Date();
 	await guildCountCache.save();
 };
 

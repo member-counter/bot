@@ -3,7 +3,11 @@ import getEnv from "../utils/getEnv";
 import embedBase from "../utils/embedBase";
 import UserError from "../utils/UserError";
 import GuildService from "../services/GuildService";
+import CountService from "../services/CountService";
 import { GuildChannel } from "eris";
+import getMotd from "../utils/getMOTD";
+import commands from "../commands/all";
+import escapeRegex from "../utils/escapeRegex";
 
 const { WEBSITE_URL, DISCORD_PREFIX, DISCORD_BOT_INVITE } = getEnv();
 
@@ -19,17 +23,25 @@ const help: Command = {
 			prefix = (await GuildService.init(message.guildID)).prefix;
 		}
 
-		let [, desiredCommand] = content.split(/\s+/g);
+		const desiredThing = content
+			.replace(/\w+/, "")
+			.trim()
+			.toLowerCase()
+			.replace(/\{|\}/g, "")
+			.replace(new RegExp(`^${escapeRegex(prefix)}`), "");
 
-		if (!desiredCommand) {
+		if (!desiredThing) {
 			// Main help page
 			let embed = embedBase(languagePack.commands.help.embedReply);
 
 			embed.title = embed.title.replace(/\{PREFIX\}/g, prefix);
-			embed.description = embed.description
-				.replace(/\{DISCORD_BOT_INVITE\}/g, DISCORD_BOT_INVITE)
-				.replace(/\{PREFIX\}/g, prefix)
-				.replace(/\{WEBSITE\}/g, WEBSITE_URL);
+			const motd = getMotd();
+			embed.description =
+				(motd.length ? motd + "\n\n" : "") +
+				embed.description
+					.replace(/\{DISCORD_BOT_INVITE\}/g, DISCORD_BOT_INVITE)
+					.replace(/\{PREFIX\}/g, prefix)
+					.replace(/\{WEBSITE\}/g, WEBSITE_URL);
 
 			embed.fields.map((field) => {
 				field.value = field.value.replace(/\{PREFIX\}/g, prefix);
@@ -38,52 +50,166 @@ const help: Command = {
 
 			await channel.createMessage({ embed });
 		} else {
-			// Help for the specified command
-			const { default: allcommands } = require("./all");
-			const { commands } = languagePack;
-			const aliascommand = allcommands.filter((cmd) =>
-				cmd.aliases
-					.map(function (value) {
-						return value.toLowerCase();
-					})
-					.includes(desiredCommand.toLowerCase())
+			// Help for the specified command or counter
+			const commandMatch = commands.filter((cmd) =>
+				cmd.aliases.map((alias) => alias.toLowerCase()).includes(desiredThing)
 			)[0];
-			let match;
-			for (let command of Object.entries(commands)) {
-				const [commandName, commandContent]: [string, any] = command;
-				if (
-					commandName.toLowerCase() === desiredCommand.toLowerCase() ||
-					aliascommand?.aliases
-						.map(function (value) {
-							return value.toLowerCase();
-						})
-						.includes(commandName.toLowerCase())
-				) {
-					match = [commandName, commandContent];
-				}
-			}
-			if (match) {
-				const [commandName, commandContent] = match;
-				const embed = embedBase({
-					title: commands.help.misc.command + " " + commandName,
-					description: commandContent.helpDescription.replace(
-						/\{PREFIX\}/gi,
-						prefix
-					)
-				});
+			const counterMatch = CountService.getCounterByAlias(desiredThing);
 
-				if (commandContent.helpImage) {
-					embed.image = { url: commandContent.helpImage };
-				}
+			if (commandMatch) {
+				for (const [key, content] of Object.entries(languagePack.commands)) {
+					if (
+						key.toLowerCase() === desiredThing ||
+						commandMatch?.aliases
+							.map((alias) => alias.toLowerCase())
+							.includes(key.toLowerCase())
+					) {
+						const embed = embedBase({
+							title: languagePack.commands.help.misc.command + ` \`${key}\``,
+							description: content.helpDescription.replace(
+								/\{PREFIX\}/gi,
+								prefix
+							)
+						});
 
-				await channel.createMessage({ embed });
+						if (content.helpImage) {
+							embed.image = { url: content.helpImage };
+						}
+
+						await channel.createMessage({ embed });
+						break;
+					}
+				}
+			} else if (counterMatch) {
+				for (const [key, content] of Object.entries(
+					languagePack.commands.guide.counters
+				)) {
+					if (
+						key.toLowerCase() === CountService.safeCounterName(desiredThing) ||
+						counterMatch.aliases
+							.map((alias) => alias.toLowerCase())
+							.includes(key)
+					) {
+						const embed = embedBase({
+							title: languagePack.commands.help.misc.counter + ` \`{${key}}\``,
+							description: content.detailedDescription.replace(
+								/\{PREFIX\}/gi,
+								prefix
+							)
+						});
+
+						embed.description += "\n";
+
+						if (content.usage.length) {
+							let usages = `\n**${languagePack.commands.guide.usageText}**\n`;
+							content.usage.forEach((i) => {
+								usages += "```" + i + "```";
+							});
+							embed.description += usages;
+						}
+
+						if (content.example.length) {
+							let examples = `\n**${languagePack.commands.guide.exampleText}**\n`;
+							content.example.forEach((i) => {
+								examples += "```" + i + "```";
+							});
+							embed.description += examples;
+						}
+
+						embed.description +=
+							"\n> " +
+							languagePack.commands.guide.footerText.replace(
+								/\{PREFIX\}/gi,
+								prefix
+							);
+
+						await channel.createMessage({ embed });
+
+						break;
+					}
+				}
 			} else {
-				throw new UserError(
-					languagePack.commands.help.misc.errorCommandNotFound.replace(
-						"{DESIRED_COMMAND}",
-						desiredCommand
-					)
+				// If nothing was found, suggest stuff
+				const trashWords = ["count"];
+				const keywords = desiredThing.split(/\s+|\n+/);
+
+				const bestCounterOccurrences = new Map<string, number>();
+				const bestCommandOccurrences = new Map<string, number>();
+
+				function search(text: string, map: Map<string, number>, key: string) {
+					text.split(/\s+|\n+/).forEach((word) =>
+						keywords.forEach((keyword) => {
+							const wordLC = word.toLowerCase();
+							if (
+								(keyword.startsWith(wordLC) || wordLC.startsWith(keyword)) &&
+								!trashWords.some((trashWord) => wordLC.startsWith(trashWord))
+							) {
+								let count = map.get(key) ?? 0;
+								count++;
+								map.set(key, count);
+							}
+						})
+					);
+				}
+
+				for (const [key, counterLP] of Object.entries(
+					languagePack.commands.guide.counters
+				)) {
+					search(counterLP.description, bestCounterOccurrences, key);
+					search(counterLP.detailedDescription, bestCounterOccurrences, key);
+				}
+
+				for (const [key, commandLP] of Object.entries(languagePack.commands)) {
+					if ("helpDescription" in commandLP)
+						search(commandLP.helpDescription, bestCommandOccurrences, key);
+				}
+
+				let errorMessage = languagePack.commands.help.misc.errorNotFound.replace(
+					"{DESIRED_COMMAND}",
+					desiredThing
 				);
+
+				if (bestCounterOccurrences.size) {
+					errorMessage += "\n";
+					errorMessage += "\n";
+					errorMessage += languagePack.commands.help.misc.suggestCounter;
+					errorMessage += "\n";
+
+					Array.from(bestCounterOccurrences)
+						.sort((a, b) => b[1] - a[1])
+						.slice(0, 10)
+						.forEach(([counterKey]) => {
+							const counter = CountService.getCounterByAlias(counterKey);
+
+							errorMessage += `${
+								counter.isPremium ? "+" : "-"
+							} \`{${counterKey}}\` ${
+								languagePack.commands.guide.counters[counterKey].description
+							}`;
+							errorMessage += "\n";
+						});
+				}
+
+				if (bestCommandOccurrences.size) {
+					errorMessage += "\n";
+					errorMessage += "\n";
+					errorMessage += languagePack.commands.help.misc.suggestCommand;
+					errorMessage += "\n";
+
+					Array.from(bestCommandOccurrences)
+						.sort((a, b) => b[1] - a[1])
+						.slice(0, 5)
+						.forEach(([key]) => {
+							const command = languagePack.commands[key];
+
+							errorMessage += `- \`${prefix}${key}\` ${
+								command?.helpDescription?.slice(0, 50) ?? ""
+							}...`;
+							errorMessage += "\n";
+						});
+				}
+
+				throw new UserError(errorMessage);
 			}
 		}
 	}

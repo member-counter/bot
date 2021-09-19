@@ -24,6 +24,7 @@ interface _AppEnv {
 	DISCORD_CLIENT_TOKEN: string;
 	DISCORD_BOT_INVITE: string;
 	DISCORD_PREFIX: string;
+	DISCORD_PREFIX_MENTION_DISABLE: boolean;
 	DISCORD_DEFAULT_LANG: string;
 	DISCORD_OFFICIAL_SERVER_ID: string;
 	DISCORD_OFFICIAL_SERVER_URL: string;
@@ -36,7 +37,6 @@ interface _AppEnv {
 
 	MEMBER_COUNTS_CACHE_LIFETIME: number;
 	MEMBER_COUNTS_CACHE_CHECK_SLEEP: number;
-	MEMBER_COUNTS_CACHE_CHECK: number;
 
 	PREMIUM_BOT: boolean;
 	PREMIUM_BOT_ID: string;
@@ -64,10 +64,11 @@ interface _AppEnv {
 	CUSTOM_EMOJI_NEGATIVE: string;
 	CUSTOM_EMOJI_WARNING: string;
 
+	// URLs
 	WEBSITE_URL: string;
 	GET_PREMIUM_BOT_URL: string;
+	MOTD_URL: string;
 
-	// URLs
 	MEMERATOR_API_KEY: string;
 
 	// API Credentials
@@ -86,7 +87,6 @@ interface _AppEnv {
 	DBL_TOKEN: string;
 	DBGG_TOKEN: string;
 	DBOATS_TOKEN: string;
-	DBWORLD_TOKEN: string;
 	BOND_TOKEN: string;
 	BFD_TOKEN: string;
 

@@ -4,6 +4,9 @@ import getEnv from "../utils/getEnv";
 
 const { DISCORD_PREFIX } = getEnv();
 
+const availableStatus = ["online", "idle", "dnd", "invisible"];
+const availableTypes = ["playing", "streaming", "listening", "watching"];
+
 function setStatus(client: ErisClient, statusText: string) {
 	let status = "online",
 		text = statusText,
@@ -18,10 +21,9 @@ function setStatus(client: ErisClient, statusText: string) {
 		const [requestedStatus, requestedType, requestedUrl] = text
 			.match(detectConfig)[1]
 			.split(";");
-		const availableTypes = ["playing", "streaming", "listening", "watching"];
 
 		if (
-			["online", "idle", "dnd", "invisible"].includes(
+			availableStatus.includes(
 				requestedStatus.toLowerCase()
 			)
 		) {
@@ -45,6 +47,8 @@ function setStatus(client: ErisClient, statusText: string) {
 		type: type as Eris.BotActivityType,
 		url
 	});
+
+	return { text, status, type: availableTypes[type] }
 }
 
 export default setStatus;

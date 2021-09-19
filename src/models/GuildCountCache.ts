@@ -4,14 +4,14 @@ interface GuildCountCacheDocument extends Document {
 	id: string;
 	members: number;
 	onlineMembers: number;
-	timestamp: number;
+	timestamp: Date;
 }
 
 const GuildCountCacheSchema = new Schema({
 	id: { type: String, require: true },
 	members: { type: Number, require: true },
 	onlineMembers: { type: Number, require: true },
-	timestamp: { type: Number, require: true, default: Date.now }
+	timestamp: { type: Date, require: true, default: () => new Date() }
 });
 
 const GuildCountCacheModel = model<GuildCountCacheDocument>(
