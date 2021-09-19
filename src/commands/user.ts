@@ -62,6 +62,14 @@ const user: Command = {
 
 		if (actionRequested && BOT_OWNERS.includes(author.id)) {
 			switch (actionRequested.toLowerCase()) {
+				case "grantcredit":
+				case "grantcredits": {
+						await userSettings.grantCredits(
+							parseInt(actionParams[0], 10) || 1
+						);
+						break;
+					}
+
 				case "grantserverupgrade":
 				case "grantserverupgrades": {
 					await userSettings.grantAvailableServerUpgrades(
@@ -91,7 +99,7 @@ const user: Command = {
 			}
 		}
 
-		const { badges, availableServerUpgrades } = userSettings;
+		const { badges, availableServerUpgrades, credits } = userSettings;
 
 		const embed = embedBase({
 			author: {
@@ -101,17 +109,21 @@ const user: Command = {
 			fields: []
 		});
 
-		if (badges > 0) {
 			embed.fields.push({
 				name: languagePack.commands.profile.badges,
 				value: generateBadgeList(badges),
 				inline: true
 			});
-		}
 
 		embed.fields.push({
 			name: languagePack.commands.profile.serverUpgradesAvailable,
 			value: availableServerUpgrades.toString(10),
+			inline: true
+		});
+
+		embed.fields.push({
+			name: languagePack.commands.profile.credits,
+			value: credits.toString(10),
 			inline: true
 		});
 
