@@ -370,7 +370,7 @@
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
-					"description": "Amount of followers of a Twitter user",
+					"description": "Bir Twitter kullanıcısının takipçi sayısı",
 					"detailedDescription": "Bir Twitter kullanıcısının kaç takipçisi olduğunu sayar, `username` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
 						"{twitterFollowers:username}"
@@ -701,7 +701,7 @@
 			],
 			"success": "Tamamdır! Bir sonraki adım, premium botu davet etmektir:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Sunucu zaten premium olduğu için sunucuyu daha fazla yükseltemezsiniz.",
-			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
+			"noServerUpgradesAvailable": "Kullanabileceğiniz daha fazla sunucu yükseltmesi olmadığı için daha fazla sunucu yükseltmesi yapamazsınız"
 		},
 		"info": {
 			"helpDescription": "List of useful links.",
