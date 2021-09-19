@@ -155,12 +155,12 @@
 				"offlineBots": {
 					"name": "offlineBots",
 					"description": "Bots offline en tu servidor (excluye usuarios normales)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are offline in the server",
+					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) están fuera de línea hay en el servidor",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Offline bots"
+						"{bots} Bots fuera de línea"
 					]
 				},
 				"roles": {
