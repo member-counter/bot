@@ -14,7 +14,7 @@
 			],
 			"embedReply": {
 				"title": "Liste der Befehle | prefix: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name or counter name: ```\n{PREFIX}help shortNumber\n{PREFIX}help {members}```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
 				"fields": [
 					{
 						"name": "**Zähler**",
@@ -250,7 +250,8 @@
 					"description": "Amount of members playing a game",
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
-						"{membersPlaying:game name}"
+						"{membersPlaying:game name}",
+						"{membersPlaying: euro truck simulator 2, american truck simulator}"
 					],
 					"example": [
 						"{membersPlaying:Minecraft} Mining and crafting",
@@ -350,7 +351,7 @@
 					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
 					"usage": [
-						"{memeratorMemes:username}"
+						"{memeratorMemes:nickname}"
 					],
 					"example": [
 						"Memes: {memeratorMemes:eduardozgz}"
@@ -361,7 +362,7 @@
 					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
 					"usage": [
-						"{memeratorFollowers:username}"
+						"{memeratorFollowers:nickname}"
 					],
 					"example": [
 						"Followers: {memeratorFollowers:eduardozgz}"
@@ -372,7 +373,7 @@
 					"description": "Amount of followers of a Twitter user",
 					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
 					"usage": [
-						"{twitterFollowers:username}"
+						"{twitterFollowers:nickname}"
 					],
 					"example": [
 						"Followers: {twitterFollowers:0xEduardozgz}"
@@ -401,7 +402,7 @@
 					]
 				},
 				"redditTitle": {
-					"name": "redditTitle:subreddit",
+					"name": "redditTitle",
 					"description": "Displays the title of a subreddit",
 					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
 					"usage": [
