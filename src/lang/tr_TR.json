@@ -543,11 +543,11 @@
 			],
 			"embedReply": {
 				"title": "Member Counter Premium",
-				"description": "[Premium'a geçin]({GET_PREMIUM_BOT_URL}) ve eğlenin:",
+				"description": "[Premium'a geçin]({GET_PREMIUM_BOT_URL}) ve şunların keyfini çıkarın:",
 				"fields": [
 					{
 						"name": "**✅ TÜM Sayaçlar**",
-						"value": "Botta yer alan **tüm** sayaçlara erişin. Örneğin : `{membersWithRole}` veya `{youtubeSubscribers}`",
+						"value": "`{membersWithRole}` veya `{youtubeSubscribers}` gibi botta bulunan **tüm** sayaçlara erişin",
 						"inline": false
 					},
 					{
@@ -567,7 +567,7 @@
 					},
 					{
 						"name": "**✅ Kurulumu kolay**",
-						"value": "Birkaç tıklamayla kendi Üye Sayacı botunuzu oluşturabilirsiniz, onu güncellemekle biz ilgileneceğiz. Ekran görüntüleri dahil rehber! Bu, kendi kendini barındırmaktan daha kolay değil mi?",
+						"value": "Birkaç tıklamayla kendi Member Counter botunuzu oluşturabilirsiniz, onu güncellemekle biz ilgileneceğiz. Ekran görüntüleri dahil rehber! Bu, self-hostingten daha kolay değil mi?",
 						"inline": false
 					}
 				]
@@ -599,7 +599,7 @@
 			"errorNoContent": "Lütfen argüman belirtin"
 		},
 		"setDigit": {
-			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsinizİlk bağımsız değişken \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.",
+			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsiniz. İlk argüman \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.",
 			"helpUsage": [
 				"{PREFIX}setDigit reset",
 				"{PREFIX}setDigit [number] [your custom number]"
@@ -709,7 +709,7 @@
 				"{PREFIX}info"
 			],
 			"embedReply": {
-				"description": "[Botu sunucuna ekle]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Premium Alın]({GET_PREMIUM_BOT_URL})\n[Destek Sunucusu]({BOT_SERVER_URL})\n[GitHub Reposu](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[Botu Ekleyin]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Premium Alın]({GET_PREMIUM_BOT_URL})\n[Destek Sunucusu]({BOT_SERVER_URL})\n[GitHub Reposu](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -892,13 +892,13 @@
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
-			"optionalText": "(İsteğe bağlı)",
-			"adminWarning": "**Bu botun yönetici yetkisi var, lütfen yönetici iznini kapatın ve doğru izinler ile tekrar kurun**",
-			"footer": "İzin sorunlarını düzeltmeniz gerekiyorsa botu tekrar davet etmeyi deneyin:",
+			"optionalText": "(İsteğe Bağlı)",
+			"adminWarning": "**Bu botun yönetici yetkisi var, lütfen yönetici yetkisini kapatın ve doğru yetkilerle kurulum yapın**",
+			"footer": "Yetki sorunlarını düzeltmeniz gerekiyorsa, botu tekrar davet etmeyi deneyin:",
 			"details": {
 				"manageChannels": {
 					"name": "Kanalları Yönet",
-					"description": "Sayaçları güncellemek için kanalların adını/açıklamalarını güncellemek için kullanılır"
+					"description": "Used to update the name/description of the channels to update the counters"
 				},
 				"viewChannel": {
 					"name": "Kanalları görüntüle",
