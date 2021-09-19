@@ -3,7 +3,7 @@
 	"langName": "Türkçe",
 	"commands": {
 		"help": {
-			"helpDescription": "Get help about commands and counters",
+			"helpDescription": "Get help about commands and counters.",
 			"helpUsage": [
 				"{PREFIX}help [command or counter]"
 			],
@@ -14,7 +14,7 @@
 			],
 			"embedReply": {
 				"title": "Komut Listesi | Prefix: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Bu botu sunucunuza ekleyin]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [[Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\\n\\nHızlı kurulum: `{PREFIX}setup`\\nBotu nasıl kullanacağınızı öğrenin: `{PREFIX}guide`\\n\\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` + komut adı yazın, örnek: ```\\n{PREFIX}help shortNumber```\\n**Bilgi:** `()` isteğe bağlı bir parametre anlamına gelirken `[]` gerekli bir parametre anlamına gelir",
 				"fields": [
 					{
 						"name": "**Sayaç Komutları**",
@@ -44,7 +44,7 @@
 			}
 		},
 		"guide": {
-			"helpDescription": "Shows you a guide of how to use the bot and a list of available counters",
+			"helpDescription": "Shows you a guide of how to use the bot and a list of available counters.",
 			"helpExample": [
 				"{PREFIX}guide"
 			],
@@ -537,7 +537,7 @@
 			}
 		},
 		"premium": {
-			"helpDescription": "Member Counter Premium hakkında bilgi alın",
+			"helpDescription": "Get information about Member Counter Premium.",
 			"helpExample": [
 				"{PREFIX}premium"
 			],
@@ -574,7 +574,7 @@
 			}
 		},
 		"lockChannel": {
-			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels",
+			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels.",
 			"helpUsage": [
 				"{PREFIX}lockChannel [channel id]"
 			],
@@ -587,7 +587,7 @@
 			"errorNotFound": "Kanal bulunamadı"
 		},
 		"editChannel": {
-			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit",
+			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
 			"helpUsage": [
 				"{PREFIX}editChannel [channelId] [content]"
 			],
@@ -599,7 +599,7 @@
 			"errorNoContent": "Lütfen argüman belirtin"
 		},
 		"setDigit": {
-			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.",
+			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsinizİlk bağımsız değişken \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.",
 			"helpUsage": [
 				"{PREFIX}setDigit reset",
 				"{PREFIX}setDigit [number] [your custom number]"
@@ -613,7 +613,7 @@
 			"errorMissingParams": "Eksik parametreler, lütfen `{PREFIX}help setDigit` bölümüne bakın."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n``````\n**Examples**``````",
+			"helpDescription": "This command allows you to show a count in a compact form in counters.",
 			"helpUsage": [
 				"{PREFIX}shortNumber [enable|on/disable|off]"
 			],
@@ -653,7 +653,7 @@
 			"noPrefixProvided": "Bir prefix yazmalısınız"
 		},
 		"role": {
-			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`",
+			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`.",
 			"helpUsage": [
 				"{PREFIX}role [allow/deny] [@roles/all]"
 			],
@@ -725,7 +725,7 @@
 			"errorNotFound": "Mevcut dillerin listesi:"
 		},
 		"profile": {
-			"helpDescription": "Siz ve bu bot arasındaki ilgili bilgileri gösterir",
+			"helpDescription": "Shows related information between you and this bot.",
 			"helpUsage": [
 				"{PREFIX}profile (@user)"
 			],
@@ -742,7 +742,7 @@
 			"userNotFound": "Kullanıcı DB'de bulunamadı"
 		},
 		"counts": {
-			"helpDescription": "Bazı sayıları gösterir",
+			"helpDescription": "Shows some counts.",
 			"helpExample": [
 				"{PREFIX}counts"
 			],
@@ -877,7 +877,7 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}` ",
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}`.",
 			"helpUsage": [
 				"{PREFIX}base64 [encode/decode] [data]"
 			],
@@ -888,7 +888,7 @@
 			"invalidAction": "Geçersiz eylem, eylem `encode` veya `decode` olmalıdır"
 		},
 		"checkPermissions": {
-			"helpDescription": "Botun doğru çalışmak için doğru izinlere sahip olup olmadığını kontrol eder",
+			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
