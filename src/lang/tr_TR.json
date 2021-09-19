@@ -350,7 +350,7 @@
 					"description": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler",
 					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
-						"{memeratorMemes:nickname}"
+						"{memeratorMemes:username}"
 					],
 					"example": [
 						"Meme Sayısı: {memeratorMemes:eduardozgz}"
