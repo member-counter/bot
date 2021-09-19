@@ -56,7 +56,7 @@
 				"members": {
 					"name": "members",
 					"description": "Sunucunuzdaki üye sayısı",
-					"detailedDescription": "Counts how many members has a server",
+					"detailedDescription": "Sunucunuzdaki üye sayısı",
 					"usage": [
 						"{members}"
 					],
@@ -78,7 +78,7 @@
 				"onlineMembers": {
 					"name": "onlineMembers",
 					"description": "Sunucunuzdaki aktif üye sayısı",
-					"detailedDescription": "Counts how many members are online in the server",
+					"detailedDescription": "Sunucunuzdaki aktif üye sayısı",
 					"usage": [
 						"{onlineMembers}"
 					],
@@ -89,7 +89,7 @@
 				"offlineMembers": {
 					"name": "offlineMembers",
 					"description": "Sunucunuzdaki çevrimdışı üye sayısı",
-					"detailedDescription": "Counts how many members are offline in the server",
+					"detailedDescription": "Sunucunuzdaki çevrimdışı üye sayısı",
 					"usage": [
 						"{onlineMembers}"
 					],
