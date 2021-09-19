@@ -362,7 +362,7 @@
 					"description": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler",
 					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
-						"{memeratorFollowers:nickname}"
+						"{memeratorFollowers:username}"
 					],
 					"example": [
 						"Takipçi Sayısı: {memeratorFollowers:eduardozgz}"
@@ -373,7 +373,7 @@
 					"description": "Amount of followers of a Twitter user",
 					"detailedDescription": "Bir Twitter kullanıcısının kaç takipçisi olduğunu sayar, `username` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
-						"{twitterFollowers:nickname}"
+						"{twitterFollowers:username}"
 					],
 					"example": [
 						"Takipçi Sayısı: {twitterFollowers:0xEduardozgz}"
@@ -402,7 +402,7 @@
 					]
 				},
 				"redditTitle": {
-					"name": "redditTitle",
+					"name": "redditTitle:subreddit",
 					"description": "Bir subredditin başlığını görüntüler",
 					"detailedDescription": "Bir subredditin başlığını görüntüler, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
 					"usage": [
@@ -447,7 +447,7 @@
 				},
 				"clock": {
 					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone",
+					"description": "Belirtilen saat diliminin saatine sahip bir saat gösterir",
 					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
 					"usage": [
 						"{clock:timeZone}"
@@ -458,13 +458,13 @@
 				},
 				"http": {
 					"name": "http:options",
-					"description": "Shows the result of a http request",
+					"description": "Bir http isteğinin sonucunu gösterir",
 					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items.",
 					"usage": [
 						"{http:options}"
 					],
 					"example": [
-						"Last subscriber: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+						"Son abone: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
 					]
 				},
 				"static": {
@@ -481,8 +481,8 @@
 				},
 				"sum": {
 					"name": "sum:değer1,değer2,daha fazla değer",
-					"description": "Sum of the specified values",
-					"detailedDescription": "Sum of the specified values, done from the left to the right",
+					"description": "Belirtilen değerlerin toplamı",
+					"detailedDescription": "Soldan sağa belirtilen değerlerin toplamı",
 					"usage": [
 						"{sum:value1,value2,more values}"
 					],
@@ -491,9 +491,9 @@
 					]
 				},
 				"subtract": {
-					"name": "subtract:value1,value2,more values",
-					"description": "Subtracts the specified values",
-					"detailedDescription": "Subtracts the specified values, done from the left to the right",
+					"name": "substract:değer1,değer2,daha fazla değer",
+					"description": "Belirtilen değerleri çıkarır",
+					"detailedDescription": "Soldan sağa belirtilen değerleri çıkarır",
 					"usage": [
 						"{subtract:value1,value2,more values}"
 					],
@@ -504,7 +504,7 @@
 				"multiply": {
 					"name": "multiply:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerleri çarpar",
-					"detailedDescription": "Multiplies the specified values, done from the left to the right",
+					"detailedDescription": "Soldan sağa belirtilen değerleri çarpar",
 					"usage": [
 						"{multiply:value1,value2,more values}"
 					],
@@ -515,7 +515,7 @@
 				"divide": {
 					"name": "divide:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerleri böler",
-					"detailedDescription": "Divides the specified values, done from the left to the right",
+					"detailedDescription": "Soldan sağa yapılan belirtilen değerleri böler",
 					"usage": [
 						"{divide:value1,value2,more values}"
 					],
@@ -531,13 +531,13 @@
 						"{modulus:value1,value2,more values}"
 					],
 					"example": [
-						"10 % 2 = {modulus:10,2}"
+						"10 / 2 = {modulus:10,2}"
 					]
 				}
 			}
 		},
 		"premium": {
-			"helpDescription": "Get information about Member Counter Premium.",
+			"helpDescription": "Member Counter Premium hakkında bilgi alın.",
 			"helpExample": [
 				"{PREFIX}premium"
 			],
@@ -634,15 +634,15 @@
 			],
 			"helpExample": [
 				"{PREFIX}locale en",
-				"{PREFIX}locale es",
+				"{PREFIX}locale tr",
 				"{PREFIX}locale disable"
 			],
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Changes the bot's prefix.",
+			"helpDescription": "Botun prefixini değiştirir.",
 			"helpUsage": [
-				"{PREFIX}prefix [new prefix]"
+				"{PREFIX}prefix [yeni prefix]"
 			],
 			"helpExample": [
 				"{PREFIX}prefix !",
@@ -695,7 +695,7 @@
 			"done": "Ayarlar başarıyla sıfırlandı."
 		},
 		"upgradeServer": {
-			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account.",
+			"helpDescription": "Bu komut, hesabınızın kalan sunucu yükseltmelerini kullanarak eski Member Counter Premium botunu davet etmenizi sağlar.",
 			"helpExample": [
 				"{PREFIX}upgradeServer"
 			],
@@ -715,26 +715,26 @@
 		"lang": {
 			"helpDescription": "Bu sunucunun bot dilini değiştirir, bu komutu çalıştırmak için yönetici yetkinizin olması gerekir.",
 			"helpUsage": [
-				"{PREFIX}lang (lang code)"
+				"{PREFIX}lang (dil kodu)"
 			],
 			"helpExample": [
 				"{PREFIX}lang",
-				"{PREFIX}lang es_ES"
+				"{PREFIX}lang tr_TR"
 			],
 			"success": "Dil başarıyla değiştirildi.",
 			"errorNotFound": "Mevcut dillerin listesi:"
 		},
 		"profile": {
-			"helpDescription": "Shows related information between you and this bot.",
+			"helpDescription": "Sizinle bot arasındaki ilgili bilgileri gösterir.",
 			"helpUsage": [
-				"{PREFIX}profile (@user)"
+				"{PREFIX}profile (@kullanıcı)"
 			],
 			"helpExample": [
 				"{PREFIX}profile",
 				"{PREFIX}profile @eduardozgz"
 			],
 			"badges": "Rozetler",
-			"credits": "Credits",
+			"credits": "Katkıda Bulunanlar",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
 			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
 			"removeDataConfirmationString": "I want to delete all of my data",
@@ -742,7 +742,7 @@
 			"userNotFound": "Kullanıcı DB'de bulunamadı"
 		},
 		"counts": {
-			"helpDescription": "Shows some counts.",
+			"helpDescription": "Bazı sayıları gösterir.",
 			"helpExample": [
 				"{PREFIX}counts"
 			],
@@ -757,12 +757,12 @@
 			"bannedMembers": "Banlanan Üye Sayısı:"
 		},
 		"preview": {
-			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
+			"helpDescription": "Bir sayacın veya çeşitli sayaçların bir kanalda nasıl görüneceğinin bir önizlemesini gösterir.",
 			"helpUsage": [
 				"{PREFIX}preview [content]"
 			],
 			"helpExample": [
-				"{PREFIX}preview {members} Members`"
+				"{PREFIX}preview {members} Üye`"
 			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Kanal adı önizlemesi",
@@ -772,8 +772,8 @@
 			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters.",
 			"helpUsage": [
 				"{PREFIX}setup",
-				"{PREFIX}setup twitch [channel name]",
-				"{PREFIX}setup youtube [channel link]"
+				"{PREFIX}setup twitch [kanal adı]",
+				"{PREFIX}setup youtube [kanal linki]"
 			],
 			"helpExample": [
 				"{PREFIX}setup",
@@ -888,7 +888,7 @@
 			"invalidAction": "Geçersiz eylem, eylem `encode` veya `decode` olmalıdır"
 		},
 		"checkPermissions": {
-			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
+			"helpDescription": "Botun doğru çalışması için doğru yetkilere sahip olup olmadığını kontrol eder.",
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
