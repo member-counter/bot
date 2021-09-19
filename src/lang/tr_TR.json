@@ -3,9 +3,9 @@
 	"langName": "Türkçe",
 	"commands": {
 		"help": {
-			"helpDescription": "Get help about commands and counters.",
+			"helpDescription": "Komutlar ve sayaçlar hakkında yardım alın.",
 			"helpUsage": [
-				"{PREFIX}help [command or counter]"
+				"{PREFIX}help [komut veya sayaç]"
 			],
 			"helpExample": [
 				"{PREFIX}help lockChannel",
@@ -35,23 +35,23 @@
 			},
 			"misc": {
 				"command": "Komut:",
-				"counter": "Counter:",
+				"counter": "Sayaç:",
 				"errorNotFound": "Maalesef ``{DESIRED_COMMAND}`` komutu için bir yardım sayfası bulamadım",
-				"suggestCounter": "Maybe you are looking for one of these counters:",
-				"suggestCommand": "Maybe you are looking for one of these commands:",
+				"suggestCounter": "Belki şu sayaçlardan birini arıyorsunuzdur:",
+				"suggestCommand": "Belki şu komutlardan birini arıyorsunuzdur:",
 				"usageText": "Kullanım",
 				"exampleText": "Örnek"
 			}
 		},
 		"guide": {
-			"helpDescription": "Shows you a guide of how to use the bot and a list of available counters.",
+			"helpDescription": "Botun nasıl kullanılacağına dair bir kılavuz ve mevcut sayaçların bir listesini gösterir.",
 			"helpExample": [
 				"{PREFIX}guide"
 			],
 			"pagesText": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Sunucunuza Member Counter'ı eklediğiniz için teşekkürler!**\n__**Sayaç oluşturma/düzenleme**__\nBu örnek için, discord sunucunuzdaki toplam üye sayısını sayan `{members}`ı kullanacağız, ancak sonraki sayfalarda daha fazla sayaç bulacaksınız.\nBu sayacı aşağıdaki yerlerden birine yerleştirebilirsiniz:\n\n- **ses** kanal **adına**\n- **kategori adına**\n- **yazı** kanalı **başlığına**\n- **duyuru** kanalı **başlığına**\n\nŞimdi yeni bir kanal oluşturun, düzenleyin ve ada veya başlığa `{members}` yazın ve 'değişiklikleri kaydet'e tıklayın\n\nAyrıca bir ad/başlığa birden fazla sayaç ekleyebilir ve bunları kendi içeriğinizle birleştirebilirsiniz, işte örnekler:\n```\n{onlineMembers}/{members} Aktif Üye, {youtubeSubscribers:https://www.youtube.com/user/enyay} Abone!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Yönetici ve mod aktif!\n```\n\n> Bir adı/konuyu düzenlerken karakter sınırına ulaşırsanız, lütfen `{PREFIX}help editChannel` ile kontrol edin.\n> Mevcut sayaç yapılandırmalarını `{PREFIX}seeSettings` ile görebilirsiniz, bu, önceki sayaçları devre dışı bırakmadan daha fazla sayaç eklemek için kullanışlıdır.\n__**Sayaç kaldırma**__\nKanalı düzenleyin ve kanal adına/başlığa {disable} yazın, Member Counter kanal adını \\✅ olarak değiştirecektir, bu şey kanalın tüm sayaçlarını başarıyla kaldırdığınız anlamına gelir.\nDoğrudan kanalı da silebilirsiniz",
 			"countersHeader": "__**Sayaçlar**__\n> Discord'da geliştirici modunu etkinleştirmelisiniz (Kullanıcı Ayarları \\> Görünüm \\> Gelişmiş \\> Geliştirici Modu)\n> Bir ID almak için, kanala/role sağ tıklayın ve \"ID'yi Kopyala\"ya basın. \n\n> Artı işaretli (\\+) sayaçlar premium sayaçlardır, `{PREFIX}premium` komutunu kullanarak daha fazla bilgi alabilirsiniz.\n\n> Bir sayaçtaki sayı biçimlendirmesini sunucu ayarlarından bağımsız olarak değiştirmek istiyorsanız bu [sayfayı](https://member-counter.eduardozgz.com/utils/overwrite-settings) ziyaret edebilir veya manuel olarak bu [talimatları](https://github.com/eduardozgz/member-counter-bot/issues/98) takip ederek yapabilirsiniz\n\n",
-			"footerText": "Please read the first page of {PREFIX}guide to learn how to setup this counter",
+			"footerText": "Bu sayacın nasıl kurulacağını öğrenmek için lütfen {PREFIX}guide komutunun ilk sayfasını okuyun",
 			"counters": {
 				"members": {
 					"name": "members",
@@ -61,7 +61,7 @@
 						"{members}"
 					],
 					"example": [
-						"{members} Members"
+						"{members} Üye"
 					]
 				},
 				"approximatedOnlineMembers": {
@@ -72,7 +72,7 @@
 						"{approximatedOnlineMembers}"
 					],
 					"example": [
-						"{approximatedOnlineMembers} Online"
+						"{approximatedOnlineMembers} Aktif"
 					]
 				},
 				"onlineMembers": {
@@ -83,7 +83,7 @@
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Online"
+						"{onlineMembers} Aktif"
 					]
 				},
 				"offlineMembers": {
@@ -566,7 +566,7 @@
 						"inline": false
 					},
 					{
-						"name": "**✅ Kurulumu kolay**",
+						"name": "**✅ Kurulumu Kolay**",
 						"value": "Birkaç tıklamayla kendi Member Counter botunuzu oluşturabilirsiniz, onu güncellemekle biz ilgileneceğiz. Ekran görüntüleri dahil rehber! Bu, self-hostingten daha kolay değil mi?",
 						"inline": false
 					}
@@ -753,7 +753,7 @@
 			"connectedUsers": "Sesli de Olan Üye Sayısı:",
 			"channels": "Kanal Sayısı:",
 			"roles": "Rol Sayısı:",
-			"nitroBoosters": "Nitrolayan Üye Sayısı:",
+			"nitroBoosters": "Boostlayan Üye Sayısı:",
 			"bannedMembers": "Banlanan Üye Sayısı:"
 		},
 		"preview": {
@@ -905,7 +905,7 @@
 					"description": "Sayaçları güncellemek, kanalların adını/açıklamasını güncellemek için kullanılır, ayrıca komutları görüntülemek için de kullanılır"
 				},
 				"voiceConnect": {
-					"name": "(Ses Kanalına) Bağlan",
+					"name": "Bağlan",
 					"description": "Sayaçları, kanalların adını/açıklamasını güncellemek için kullanılır"
 				},
 				"readMessageHistory": {
