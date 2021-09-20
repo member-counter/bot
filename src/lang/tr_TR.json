@@ -187,25 +187,25 @@
 					]
 				},
 				"membersWithRole": {
-					"name": "membersWithRole:role1ID,role2ID",
+					"name": "membersWithRole:rol1ID,rol2ID",
 					"description": "Rol veya rollere sahip üye sayısı",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
-						"{membersWithRole:role1ID,role2ID}"
+						"{membersWithRole:rol1ID,rol2ID}"
 					],
 					"example": [
-						"{membersWithRole:6509281904766437,5823659271648290} Admins and mods"
+						"{membersWithRole:6509281904766437,5823659271648290} Yönetici ve Mod"
 					]
 				},
 				"onlineMembersWithRole": {
-					"name": "onlineMembersWithRole:role1ID,role2ID",
+					"name": "onlineMembersWithRole:rol1ID,rol2ID",
 					"description": "Rol veya rollere sahip çevrimiçi üye sayısı",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimiçi olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
-						"{onlineMembersWithRole:role1ID,role2ID}"
+						"{onlineMembersWithRole:rol1ID,rol2ID}"
 					],
 					"example": [
-						"{onlineMembersWithRole:6509281904766437,5823659271648290} Online admins and mods",
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} Çevrimiçi Yönetici ve Mod",
 						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
 					]
 				},
