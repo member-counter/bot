@@ -737,7 +737,8 @@
 			"badges": "Значки",
 			"credits": "Credits",
 			"serverUpgradesAvailable": "Осталось улучшений сервера",
-			"removeDataConfirmation": "Пожалуйста, отправьте в точности этот же текст, если вы хотите удалить все ваши данные: ```{CONFIRMATION_STRING}```\n:warning: **Это действие удалит все ваши данные, включая значки, апгрейды и кредиты будут потеряны навсегда, счета будут сохранены в силу законодательных причин. Вы уверены, что хотите продолжить? (Игнорируйте или напишите 'cancel' чтобы отменить)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
+			"cancelText": "cancel",
 			"removeDataConfirmationString": "Я хочу удалить все мои данные",
 			"removeDataSuccess": "Ваши данные были успешно удалены.",
 			"userNotFound": "Пользователь не найден в БД"
@@ -956,7 +957,8 @@
 		},
 		"paginator": {
 			"pageCounter": "Стр. {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "На какую страницу вы хотите переместиться? Введите `cancel` или `0` чтобы отменить выбор. У вас 15 секунд для ответа.",
+			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"cancelText": "cancel",
 			"errorPageLengthExceeded": "Номер страницы должен быть меньше или равен {TOTAL_PAGES}. Пожалуйста, попробуйте ещё раз.",
 			"errorNegativeInput": "Номер страницы не может быть отрицательным. Пожалуйста, попробуйте ещё раз."
 		}
