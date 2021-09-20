@@ -763,7 +763,7 @@
 				"{PREFIX}preview [content and counters]"
 			],
 			"helpExample": [
-				"{PREFIX}preview {members} Members`"
+				"{PREFIX}preview {members} Members"
 			],
 			"helpImage": "https://i.imgur.com/VzdqzT3.png",
 			"channelName": "Náhled názvu kanálu",
