@@ -40,7 +40,8 @@
 				"suggestCounter": "Belki şu sayaçlardan birini arıyorsunuzdur:",
 				"suggestCommand": "Belki şu komutlardan birini arıyorsunuzdur:",
 				"usageText": "Kullanım",
-				"exampleText": "Örnek"
+				"exampleText": "Örnek",
+				"searchIgnoredWords": "amount count"
 			}
 		},
 		"guide": {
@@ -242,7 +243,7 @@
 					],
 					"example": [
 						"{bannedMembers} Banlı",
-						"{bannedMembers} üyeye ban çekiciyle vuruldu"
+						"{bannedMembers} have been hit with the ban hammer"
 					]
 				},
 				"membersPlaying": {

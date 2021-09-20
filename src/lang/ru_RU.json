@@ -40,7 +40,8 @@
 				"suggestCounter": "Возможно, вы ищете один из этих счетчиков:",
 				"suggestCommand": "Maybe you are looking for one of these commands:",
 				"usageText": "Использование",
-				"exampleText": "Пример"
+				"exampleText": "Пример",
+				"searchIgnoredWords": "amount count"
 			}
 		},
 		"guide": {
@@ -242,7 +243,7 @@
 					],
 					"example": [
 						"{bannedMembers} Banned",
-						"{bannedMembers} has been hit with the ban hammer"
+						"{bannedMembers} have been hit with the ban hammer"
 					]
 				},
 				"membersPlaying": {
