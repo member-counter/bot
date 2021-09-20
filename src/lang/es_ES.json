@@ -421,37 +421,37 @@
 						"{instagramFollowers:usuario}"
 					],
 					"example": [
-						"Followers: {instagramFollowers:eduardozgz}"
+						"Seguidores: {instagramFollowers:eduardozgz}"
 					]
 				},
 				"countdown": {
-					"name": "countdown:targetDate:format",
-					"description": "Shows a countdown that will decrease to the specified target date",
-					"detailedDescription": "Muestra una cuenta atras que bajara hasta la fecha especificada, puedes [generar este contador fácilmente aquí](https://member-counter.eduardozgz.com/utils/countdown) o crearlo manualmente reemplazando targetDate por una marca de tiempo de UNIX, y opcionalmente darle un formato personalizando reemplazando format: Usa `%d` para mostrar los días restantes, `%h` para las horas restantes, `%m` para los minutos restantes y `%s` para mostrar los segundos restantes",
+					"name": "{countdown:fecha:formato}",
+					"description": "Muestra una cuenta regresiva que disminuirá a la fecha especificada",
+					"detailedDescription": "Muestra una cuenta atras que bajara hasta la fecha especificada, puedes [generar este contador fácilmente aquí](https://member-counter.eduardozgz.com/utils/countdown) o crearlo manualmente reemplazando `fecha` por una marca de tiempo de UNIX, y opcionalmente darle un formato personalizando reemplazando `format`: Usa `%d` para mostrar los días restantes, `%h` para las horas restantes, `%m` para los minutos restantes y `%s` para mostrar los segundos restantes",
 					"usage": [
-						"{countdown:targetDate:format}"
+						"{countdown:fecha:formato}"
 					],
 					"example": [
-						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
+						"Año nuevo: {countdown:1640991600:%d días, %h horas, %m minutos}"
 					]
 				},
 				"game": {
-					"name": "game:gameId:address",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
-					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
+					"name": "game:gameId:dirección",
+					"description": "Jugadores en línea en un servidor de juegos (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc.)",
+					"detailedDescription": "Cuenta cuántos jugadores en línea hay en un servidor de juegos (como Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), reemplace `gameId` por uno de los listados [aquí](https://github. om/gamedig/node-gamedig/#games-list) y `dirección` por la dirección del servidor",
 					"usage": [
-						"{game:gameId:address}"
+						"{game:gameId:dirección}"
 					],
 					"example": [
-						"{game:minecraft:mc.hypixel.net} Mining and crafting"
+						"{game:minecraft:mc.hypixel.net} Mineando y crafteando"
 					]
 				},
 				"clock": {
-					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone",
-					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
+					"name": "clock:zona horaria",
+					"description": "Muestra un reloj con la hora de la zona horaria especificada",
+					"detailedDescription": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) o reemplazar `zona horaria` con una zona horaria IANA válida",
 					"usage": [
-						"{clock:timeZone}"
+						"{clock:zona horaria}"
 					],
 					"example": [
 						"España: {clock:Europe/Madrid}"
@@ -469,11 +469,11 @@
 					]
 				},
 				"static": {
-					"name": "static:data",
-					"description": "Displays the given `data`",
-					"detailedDescription": "Displays the given `data` with custom formatting based on the server settings if it's a number, text is also accepted",
+					"name": "static:datos",
+					"description": "Muestra los `datos` dados",
+					"detailedDescription": "Muestra los `datos` dados, con un formato personalizado basado en la configuración del servidor si es un número, también se puede introducir texto",
 					"usage": [
-						"{static:data}"
+						"{static:datos}"
 					],
 					"example": [
 						"{static:420}",
@@ -481,55 +481,55 @@
 					]
 				},
 				"sum": {
-					"name": "sum:value1,value2,more values",
-					"description": "Sum of the specified values",
+					"name": "sum:valor 1, valor 2, más valores",
+					"description": "Suma los valores especificados",
 					"detailedDescription": "Suma de los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
-						"{sum:value1,value2,more values}"
+						"{sum:valor 1, valor 2, más valores}"
 					],
 					"example": [
 						"2 + 2 = {sum:2,2}"
 					]
 				},
 				"subtract": {
-					"name": "subtract:value1,value2,more values",
-					"description": "Subtracts the specified values",
+					"name": "subtract:valor 1, valor 2, más valores",
+					"description": "Resta los valores especificados",
 					"detailedDescription": "Resta los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
-						"{subtract:value1,value2,more values}"
+						"{subtract:valor 1, valor 2, más valores}"
 					],
 					"example": [
 						"2 - 2 = {subtract:2,2}"
 					]
 				},
 				"multiply": {
-					"name": "multiply:value1,value2,more values",
+					"name": "multiply:valor 1,valor 2, más valores",
 					"description": "Multiplica los valores especificados",
 					"detailedDescription": "Multiplica los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
-						"{multiply:value1,value2,more values}"
+						"{multiply:valor 1,valor 2, más valores}"
 					],
 					"example": [
 						"2 * 2 = {multiply:2,2}"
 					]
 				},
 				"divide": {
-					"name": "divide:value1,value2,more values",
+					"name": "divide:valor 1,valor 2, más valores",
 					"description": "Divide los valores especificados",
 					"detailedDescription": "Divide los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
-						"{divide:value1,value2,more values}"
+						"{divide:valor 1,valor 2, más valores}"
 					],
 					"example": [
 						"10 / 2 = {divide:10,2}"
 					]
 				},
 				"modulus": {
-					"name": "modulus:value1,value2,more values",
+					"name": "modulus:valor 1,valor 2, más valores",
 					"description": "Obtiene el modulo (tambien conocido como resto de la division) de los valores especificados",
 					"detailedDescription": "Obtiene el modulo (tambien conocido como resto de la division) de los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
-						"{modulus:value1,value2,more values}"
+						"{modulus:valor 1,valor 2, más valores}"
 					],
 					"example": [
 						"10 % 2 = {modulus:10,2}"
@@ -553,7 +553,7 @@
 					},
 					{
 						"name": "**✅ Más preciso**",
-						"value": "Get more accurate counts in all members related counters",
+						"value": "Obtén cuentas más precisas en todos los contadores relacionados con los miembros",
 						"inline": false
 					},
 					{
@@ -590,7 +590,7 @@
 		"editChannel": {
 			"helpDescription": "Si estas intentando establecer un contador pero Discord te dice que has alcanzado el limite de caracteres en el nombre/tema, puedes \"ignorar\" este limite usando este comando.",
 			"helpUsage": [
-				"{PREFIX}editChannel [channel ID] [content and counters]"
+				"{PREFIX}editChannel [ID del canal] [contenido y contadores]"
 			],
 			"helpExample": [
 				"{PREFIX}editChannel 701396983843127366 {onlineMembers} de {members} En línea"
@@ -629,7 +629,7 @@
 			"success": "Hecho! Deberás esperar unos minutos para ver los nuevos cambios"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale.",
+			"helpDescription": "Formatea los números y relojes (formato 12h/24h) a la configuración local especificada.",
 			"helpUsage": [
 				"{PREFIX}locale [lugar/disable]"
 			],
