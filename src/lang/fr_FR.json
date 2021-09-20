@@ -590,7 +590,7 @@
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
 			"helpUsage": [
-				"{PREFIX}editChannel [channelId] [content]"
+				"{PREFIX}editChannel [channel ID] [content and counters]"
 			],
 			"helpExample": [
 				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
@@ -737,7 +737,8 @@
 			"badges": "Badges",
 			"credits": "Credits",
 			"serverUpgradesAvailable": "Améliorations restantes de serveur",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
+			"cancelText": "cancel",
 			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Your data has been removed successfully",
 			"userNotFound": "User not found in the DB"
@@ -760,10 +761,10 @@
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
 			"helpUsage": [
-				"{PREFIX}preview [content]"
+				"{PREFIX}preview [content and counters]"
 			],
 			"helpExample": [
-				"{PREFIX}preview {members} Members`"
+				"{PREFIX}preview {members} Members"
 			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Aperçu du nom du salon",
@@ -956,7 +957,8 @@
 		},
 		"paginator": {
 			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"cancelText": "cancel",
 			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
 			"errorNegativeInput": "The page number can't be negative. Please try again."
 		}
