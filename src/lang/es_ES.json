@@ -349,35 +349,35 @@
 				},
 				"memeratorMemes": {
 					"name": "memeratorMemes:usuario",
-					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
-					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
+					"description": "Muestra cantidad de memes de un usuario de [Memerator](https://memerator.me)",
+					"detailedDescription": "Muestra cantidad de memes de un usuario de [Memerator](https://memerator.me), reemplaza `usuario` con el nombre de perfil deseado",
 					"usage": [
-						"{memeratorMemes:username}"
+						"{memeratorMemes:usuario}"
 					],
 					"example": [
 						"Memes: {memeratorMemes:eduardozgz}"
 					]
 				},
 				"memeratorFollowers": {
-					"name": "memeratorFollowers:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
-					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
+					"name": "memeratorFollowers:usuario",
+					"description": "Muestra la cantidad de seguidores de un usuario de [Memerator](https://memerator.me)",
+					"detailedDescription": "Muestra la cantidad de seguidores de un usuario de [Memerator](https://memerator.me), reemplaza `usuario` con el nombre de perfil deseado",
 					"usage": [
-						"{memeratorFollowers:username}"
+						"{memeratorFollowers:usuario}"
 					],
 					"example": [
-						"Followers: {memeratorFollowers:eduardozgz}"
+						"Seguidores: {memeratorFollowers:eduardozgz}"
 					]
 				},
 				"twitterFollowers": {
-					"name": "twitterFollowers:username",
-					"description": "Amount of followers of a Twitter user",
-					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
+					"name": "twitterFollowers:usuario",
+					"description": "Cantidad de seguidores de un usuario de Twitter",
+					"detailedDescription": "Cuenta cuantos seguidores tienen un usuario de Twitter, reemplaza `usuario` con el nombre de perfil deseado",
 					"usage": [
-						"{twitterFollowers:username}"
+						"{twitterFollowers:usuario}"
 					],
 					"example": [
-						"Followers: {twitterFollowers:0xEduardozgz}"
+						"Seguidores: {twitterFollowers:0xEduardozgz}"
 					]
 				},
 				"redditMembers": {
@@ -458,14 +458,14 @@
 					]
 				},
 				"http": {
-					"name": "http:options",
-					"description": "Shows the result of a http request",
-					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items.",
+					"name": "http:opciones",
+					"description": "Muestra el resultado de una solicitud http",
+					"detailedDescription": "Muestra el resultado de una petición http `GET`. Puedes configurar las `opciones` de este contador [aquí](https://member-counter.eduardozgz.com/utils/http), o crearlo manualmente: `opciones` es un objeto JSON codificado en base64 (puedes usar el comando {PREFIX}base64 para hacer esto), este objeto puede tener las siguientes claves: `url`: Una cadena de texto; con la url del recurso, `parseNumber`: Un boolean; si el resultado es numérico, este sera personalizado con los ajustes del servidor, `dataPath`: Una cadena de texto; si la respuesta al recurso es un objeto JSON, debes especificar la ruta a un campo con un valor que debe ser un numero o una cadena de texto, la sintaxis es similar a la que JS usa para acceder propiedades e ítems de un array.",
 					"usage": [
-						"{http:options}"
+						"{http:opciones}"
 					],
 					"example": [
-						"Last subscriber: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+						"Último suscriptor: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
 					]
 				},
 				"static": {
