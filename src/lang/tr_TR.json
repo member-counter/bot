@@ -460,7 +460,7 @@
 				"http": {
 					"name": "http:options",
 					"description": "Bir http isteğinin sonucunu gösterir",
-					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items.",
+					"detailedDescription": "Bir http `GET` requesti tarafından döndürülen sonucu gösterir. `options`ı [burada](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir veya manuel olarak oluşturabilirsiniz: `options`, base64'te kodlanmış bir JSON objectidir (bunu elde etmek için {PREFIX}base64 komutunu kullanabilirsiniz), bu object aşağıdaki keylere sahip olabilir: `url`: Kaynağın url'si ile bir string döndürür, `parseNumber`: Eğer sonuç geçerli bir sayıysa, sayı sunucunuzun ayarlarına göre ayrıştırılıp özelleştirilip bir boolean döndürülür, `dataPath`: Yanıt bir JSON objectiyse, bir array veya sayı olması gereken bir stringe sahip bir keyin yolunu belirtmelisiniz, bu yolun syntaxi JS'nin özelliklere ve array öğelerine erişmek için kullandığı syntaxe benzer.",
 					"usage": [
 						"{http:options}"
 					],
@@ -471,7 +471,7 @@
 				"static": {
 					"name": "static:data",
 					"description": "Verilen `data`yı görüntüler",
-					"detailedDescription": "Verilen `data`yı sunucu ayarlarına göre bu bir sayıysa özel format ile görüntüler, metin de kabul edilir",
+					"detailedDescription": "Verilen `data`yı bu bir sayıysa sunucu ayarlarına göre özel format ile görüntüler, metin de kabul edilir",
 					"usage": [
 						"{static:data}"
 					],
@@ -738,7 +738,7 @@
 			"credits": "Katkıda Bulunanlar",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
 			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
-			"cancelText": "cancel",
+			"cancelText": "iptal",
 			"removeDataConfirmationString": "Tüm verilerimin silinmesini istiyorum",
 			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı",
 			"userNotFound": "Kullanıcı DB'de bulunamadı"
@@ -958,7 +958,7 @@
 		"paginator": {
 			"pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
-			"cancelText": "cancel",
+			"cancelText": "iptal",
 			"errorPageLengthExceeded": "Gidilecek sayfa {TOTAL_PAGES} değerinden küçük veya ona eşit olmalıdır. Lütfen tekrar deneyin.",
 			"errorNegativeInput": "Gidilecek sayfa sayısı negatif olamaz. Lütfen tekrar deneyin."
 		}
