@@ -483,7 +483,7 @@
 				"sum": {
 					"name": "sum:value1,value2,more values",
 					"description": "Sum of the specified values",
-					"detailedDescription": "Sum of the specified values, done from the left to the right",
+					"detailedDescription": "Suma de los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
 						"{sum:value1,value2,more values}"
 					],
@@ -494,7 +494,7 @@
 				"subtract": {
 					"name": "subtract:value1,value2,more values",
 					"description": "Subtracts the specified values",
-					"detailedDescription": "Subtracts the specified values, done from the left to the right",
+					"detailedDescription": "Resta los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
 						"{subtract:value1,value2,more values}"
 					],
@@ -505,7 +505,7 @@
 				"multiply": {
 					"name": "multiply:value1,value2,more values",
 					"description": "Multiplica los valores especificados",
-					"detailedDescription": "Multiplies the specified values, done from the left to the right",
+					"detailedDescription": "Multiplica los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
 						"{multiply:value1,value2,more values}"
 					],
@@ -516,7 +516,7 @@
 				"divide": {
 					"name": "divide:value1,value2,more values",
 					"description": "Divide los valores especificados",
-					"detailedDescription": "Divides the specified values, done from the left to the right",
+					"detailedDescription": "Divide los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
 						"{divide:value1,value2,more values}"
 					],
@@ -527,7 +527,7 @@
 				"modulus": {
 					"name": "modulus:value1,value2,more values",
 					"description": "Obtiene el modulo (tambien conocido como resto de la division) de los valores especificados",
-					"detailedDescription": "Gets the modulus of the specified values, done from the left to the right",
+					"detailedDescription": "Obtiene el modulo (tambien conocido como resto de la division) de los valores especificados, calculado desde la izquierda a la derecha",
 					"usage": [
 						"{modulus:value1,value2,more values}"
 					],
@@ -614,7 +614,7 @@
 			"errorMissingParams": "Faltan parámetros, por favor, consulta `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters.",
+			"helpDescription": "Este comando te permite mostrar cuentas de forma compacta",
 			"helpUsage": [
 				"{PREFIX}shortNumber [enable|on/disable|off]"
 			],
@@ -631,7 +631,7 @@
 		"locale": {
 			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale.",
 			"helpUsage": [
-				"{PREFIX}locale [locale/disable]"
+				"{PREFIX}locale [lugar/disable]"
 			],
 			"helpExample": [
 				"{PREFIX}locale en",
@@ -641,9 +641,9 @@
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Changes the bot's prefix.",
+			"helpDescription": "Cambia el prefijo del bot",
 			"helpUsage": [
-				"{PREFIX}prefix [new prefix]"
+				"{PREFIX}prefix [nuevo prefijo]"
 			],
 			"helpExample": [
 				"{PREFIX}prefix !",
@@ -654,13 +654,13 @@
 			"noPrefixProvided": "Debes proporcionar un prefijo"
 		},
 		"role": {
-			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`.",
+			"helpDescription": "Puedes permitir o denegar el uso de comandos administrativos a roles que concretes\nTambién puedes referirte a todos con la palabra ``all``\nPara ver los roles permitidos usa ``{PREFIX}seeSettings`.",
 			"helpUsage": [
 				"{PREFIX}role [allow/deny] [@roles/all]"
 			],
 			"helpExample": [
-				"{PREFIX}role allow @Mod",
-				"{PREFIX}role allow @Mod @OtherRole",
+				"{PREFIX}role allow @Moderador",
+				"{PREFIX}role allow @Moderador @OtroRol",
 				"{PREFIX}role allow all",
 				"{PREFIX}role deny all"
 			],
@@ -689,28 +689,28 @@
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Removes all the counters and restores the custom settings of this server to the default ones.",
+			"helpDescription": "Elimina todos los contadores y establece los ajustes del bot para este servidor a los de por defecto.",
 			"helpExample": [
 				"{PREFIX}resetSettings"
 			],
 			"done": "Restablecido a los ajustes por defecto"
 		},
 		"upgradeServer": {
-			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account.",
+			"helpDescription": "Este comando te permite invitar a al antiguo bot Member Counter Premium, usando mejoras del servidor disponibles.",
 			"helpExample": [
 				"{PREFIX}upgradeServer"
 			],
 			"success": "Hecho! El siguiente paso es invitar al bot premium:\n{BOT_LINK}",
 			"errorCannotUpgrade": "No puedes mejorar el servidor porque ya tiene premium.",
-			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
+			"noServerUpgradesAvailable": "No puedes mejorar este servidor porque no te quedan mejoras disponibles"
 		},
 		"info": {
-			"helpDescription": "List of useful links.",
+			"helpDescription": "Lista de enlaces útiles.",
 			"helpExample": [
 				"{PREFIX}info"
 			],
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[Añádeme a tu servidor]({BOT_INVITE_URL})\n[Sitio web]({WEBSITE})\n[Obtén premium]({GET_PREMIUM_BOT_URL})\n[Servidor de ayuda]({BOT_SERVER_URL})\n[Repositorio de GitHub](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
