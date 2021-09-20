@@ -573,7 +573,7 @@
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
 			"helpUsage": ["{PREFIX}preview [content and counters]"],
-			"helpExample": ["{PREFIX}preview {members} Members`"],
+			"helpExample": ["{PREFIX}preview {members} Members"],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Channel name preview",
 			"channelTopic": "Channel topic preview"
