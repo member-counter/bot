@@ -211,13 +211,13 @@
 				"offlineMembersWithRole": {
 					"name": "offlineMembersWithRole:IDdelRol1,IDdelRol2",
 					"description": "Miembros fuera de línea con un rol o roles",
-					"detailedDescription": "Counts how many members with a role or roles are offline, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"detailedDescription": "Cuenta cuentos miembros fuera de línea tienen un rol o roles, escribe el ID de los roles que quieras contar después de `:`, y separa los IDs con comas `,`",
 					"usage": [
-						"{offlineMembersWithRole:role1ID,role2ID}"
+						"{offlineMembersWithRole:IDdelRol1,IDdelRol2}"
 					],
 					"example": [
-						"{offlineMembersWithRole:6509281904766437,5823659271648290} Offline admins and mods",
-						"{offlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are offline"
+						"{offlineMembersWithRole:6509281904766437,5823659271648290} Admins y mods fuera de línea",
+						"{offlineMembersWithRole:5823659271648290} de {membersWithRole:5823659271648290} Admins están fuera de línea"
 					]
 				},
 				"connectedMembers": {
