@@ -66,12 +66,18 @@ class Paginator {
 		return this.message;
 	}
 	async createJumpPrompt() {
+		const { cancelText } = this.languagePack.functions.paginator;
 		await this.channel
-			.createMessage(this.languagePack.functions.paginator.jumpPrompt)
+			.createMessage(
+				this.languagePack.functions.paginator.jumpPrompt.replace(
+					"{CANCEL_STRING}",
+					this.languagePack.functions.paginator.cancelText
+				)
+			)
 			.then(async (message) => {
 				const filter = (m) =>
 					(isNaN(m.content) &&
-						["cancel"].includes(m.content) &&
+						["cancel", cancelText].includes(m.content) &&
 						this.targetUserID === m.author.id) ||
 					(!isNaN(m.content) && this.targetUserID === m.author.id);
 				const collector = new MessageCollector(
@@ -85,7 +91,7 @@ class Paginator {
 				);
 				this.jumpPromptCollector = collector;
 				collector.on("collect", (m) => {
-					if (m.content === "cancel" || m.content === "0") {
+					if (["cancel", "0", cancelText].includes(m.content)) {
 						collector.stop();
 						message.delete();
 						if (this.botCanManageMessages) {
@@ -187,7 +193,7 @@ class Paginator {
 
 					break;
 				}
-				case emojis.jump.name:{
+				case emojis.jump.name: {
 					await this.jumpPrompt();
 
 					break;
