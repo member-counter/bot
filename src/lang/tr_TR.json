@@ -41,7 +41,7 @@
 				"suggestCommand": "Belki şu komutlardan birini arıyorsunuzdur:",
 				"usageText": "Kullanım",
 				"exampleText": "Örnek",
-				"searchIgnoredWords": "amount count"
+				"searchIgnoredWords": "amount count miktar sayı"
 			}
 		},
 		"guide": {
@@ -558,7 +558,7 @@
 					},
 					{
 						"name": "**✅ Sınırsız Sunucu**",
-						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 50,000 members, quarterly",
+						"value": "Yalnızca sahip olduğunuz üyeler için ödeme yapın ve botu istediğiniz kadar sunucuya davet edin. Üç ayda bir 50.000 üye başına 5 EUR",
 						"inline": false
 					},
 					{
@@ -737,7 +737,7 @@
 			"badges": "Rozetler",
 			"credits": "Katkıda Bulunanlar",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
+			"removeDataConfirmation": "Tüm verilerinizi silmek istiyorsanız lütfen tam olarak şu metni yazıp gönderin: ```{CONFIRMATION_STRING}```\n:warning: **Bu işlem tüm verilerinizi silinecek, rozetleriniz, sunucu yükseltmeleriniz ve kredileriniz sonsuza kadar kaybolacak, faturalar yasal nedenlerle tutulacaktır, devam etmek istediğinizden emin misiniz? (Yoksayın veya iptal etmek için '{CANCEL_STRING}' yazın)**",
 			"cancelText": "iptal",
 			"removeDataConfirmationString": "Tüm verilerimin silinmesini istiyorum",
 			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı",
@@ -933,7 +933,7 @@
 				},
 				"manageRoles": {
 					"name": "Rolleri Yönet",
-					"description": "Used by the {PREFIX}setup command and to update channel permissions when you add a Premium bot"
+					"description": "{PREFIX}setup komutu tarafından ve Premium bot eklediğinizde kanal yetkilerini güncellemek için kullanılır"
 				},
 				"banMembers": {
 					"name": "Üyeleri Engelle",
@@ -957,7 +957,7 @@
 		},
 		"paginator": {
 			"pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"jumpPrompt": "Hangi sayfaya gitmek istersiniz? İstemi iptal etmek için `{CANCEL_STRING}` veya `0` yazın. Cevaplamak için 15 saniyeniz vardır.",
 			"cancelText": "iptal",
 			"errorPageLengthExceeded": "Gidilecek sayfa {TOTAL_PAGES} değerinden küçük veya ona eşit olmalıdır. Lütfen tekrar deneyin.",
 			"errorNegativeInput": "Gidilecek sayfa sayısı negatif olamaz. Lütfen tekrar deneyin."
