@@ -895,7 +895,7 @@
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
-			"title": "Check permissions",
+			"title": "Yetki Kontrolü",
 			"optionalText": "(İsteğe Bağlı)",
 			"adminWarning": "**Bu botun yönetici yetkisi var, lütfen yönetici yetkisini kapatın ve doğru yetkilerle kurulum yapın**",
 			"footer": "Yetki sorunlarını düzeltmeniz gerekiyorsa, botu tekrar davet etmeyi deneyin:",
