@@ -333,6 +333,7 @@ interface Help {
 	helpDescription: string;
 	helpUsage: string[];
 	helpExample: string[];
+	helpFooterText: string;
 	embedReply: EmbedReply;
 	misc: Misc;
 }

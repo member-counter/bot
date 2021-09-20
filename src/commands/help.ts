@@ -94,6 +94,9 @@ const help: Command = {
 							embed.image = { url: content.helpImage };
 						}
 
+						embed.description +=
+							"\n> " + languagePack.commands.help.helpFooterText;
+
 						await channel.createMessage({ embed });
 						break;
 					}
