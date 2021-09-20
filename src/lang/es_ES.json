@@ -40,7 +40,8 @@
 				"suggestCounter": "Quizás estas buscando uno de estos contadores:",
 				"suggestCommand": "Quizás estas buscando uno de estos comandos:",
 				"usageText": "Uso",
-				"exampleText": "Ejemplo"
+				"exampleText": "Ejemplo",
+				"searchIgnoredWords": "amount count"
 			}
 		},
 		"guide": {
@@ -223,26 +224,26 @@
 				"connectedMembers": {
 					"name": "connectedMembers:IDdelCanal1,IDdelCanal2",
 					"description": "Miembros conectados a canales de voz",
-					"detailedDescription": "Counts how many members are connected to all the voice channels or to the specified ones, write the channel IDs you wanna filter after the `:`, and separate the IDs with commas",
+					"detailedDescription": "Cuenta cuantos miembros hay conectados a los canales de voz del servidor, puedes filtrar uno o varios canales si especificas sus IDs después de `:` y separando los IDs con una coma `,`",
 					"usage": [
 						"{connectedMembers}",
 						"{connectedMembers:IDdelCanal1,IDdelCanal2}"
 					],
 					"example": [
-						"{connectedMembers} Talking",
-						"{connectedMembers:5823659271648290} talking in the lounge"
+						"{connectedMembers} Hablando",
+						"{connectedMembers:5823659271648290} hablando en el salón"
 					]
 				},
 				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "Amount of banned members in your server",
-					"detailedDescription": "Counts how many members are banned, the bot must have ban permissions to get this count",
+					"description": "Cantidad de miembros baneados en el servidor",
+					"detailedDescription": "Cuenta cuantos miembros hay baneados, el bot debe tener permisos de banear para poder obtener esta cuenta",
 					"usage": [
 						"{bannedMembers}"
 					],
 					"example": [
-						"{bannedMembers} Banned",
-						"{bannedMembers} has been hit with the ban hammer"
+						"{bannedMembers} Baneados",
+						"{bannedMembers} have been hit with the ban hammer"
 					]
 				},
 				"membersPlaying": {
