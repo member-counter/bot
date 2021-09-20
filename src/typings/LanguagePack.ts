@@ -342,6 +342,7 @@ interface Misc {
   suggestCommand: string;
   usageText: string;
   exampleText: string;
+  searchIgnoredWords: string;
 }
 interface EmbedReply {
   title: string;
