@@ -737,7 +737,8 @@
 			"badges": "Rozetler",
 			"credits": "Katkıda Bulunanlar",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
-			"removeDataConfirmation": "Tüm verilerinizi silmek istiyorsanız lütfen tam olarak şu metni yazıp gönderin: ```{CONFIRMATION_STRING}```\n:warning: **Bu işlem tüm verileriniz silinecek, rozetleriniz, sunucu yükseltmeleriniz ve kredileriniz sonsuza kadar kaybolacak, faturalar yasal nedenlerle tutulacak, devam etmek istediğinizden emin misiniz? (Yoksayın veya iptal etmek için 'cancel' yazın)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
+			"cancelText": "cancel",
 			"removeDataConfirmationString": "Tüm verilerimin silinmesini istiyorum",
 			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı",
 			"userNotFound": "Kullanıcı DB'de bulunamadı"
@@ -956,7 +957,8 @@
 		},
 		"paginator": {
 			"pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Hangi sayfaya gitmek istersiniz? İstemi iptal etmek için `cancel` veya `0` yazın. Cevaplamak için 15 saniyeniz vardır.",
+			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"cancelText": "cancel",
 			"errorPageLengthExceeded": "Gidilecek sayfa {TOTAL_PAGES} değerinden küçük veya ona eşit olmalıdır. Lütfen tekrar deneyin.",
 			"errorNegativeInput": "Gidilecek sayfa sayısı negatif olamaz. Lütfen tekrar deneyin."
 		}
