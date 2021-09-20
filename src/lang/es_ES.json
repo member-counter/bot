@@ -382,8 +382,8 @@
 				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
-					"description": "Counts the amount of members of a subreddit",
-					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "Cuenta la cantidad de miembros de un subreddit",
+					"detailedDescription": "Cuenta la cantidad de miembros de un subreddit, reemplaza `subreddit` con el subreddit deseado",
 					"usage": [
 						"{redditMembers:subreddit}"
 					],
@@ -393,19 +393,19 @@
 				},
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
-					"description": "Counts the amount of online members of a subreddit",
-					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "Cuenta la cantidad de miembros en línea de un subreddit",
+					"detailedDescription": "Cuenta la cantidad de miembros de un subreddit, reemplaza `subreddit` con el subreddit deseado",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
 					],
 					"example": [
-						"Online Redditors: {redditMembersOnline:science}"
+						"Redditors en línea: {redditMembersOnline:science}"
 					]
 				},
 				"redditTitle": {
 					"name": "redditTitle:subreddit",
-					"description": "Displays the title of a subreddit",
-					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "Muestra el título de un subreddit",
+					"detailedDescription": "Muestra el título de un subreddit, reemplaza `subreddit` con el subreddit deseado",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
 					],
@@ -414,11 +414,11 @@
 					]
 				},
 				"instagramFollowers": {
-					"name": "instagramFollowers:username",
-					"description": "Counts the amount of followers in an Instagram account",
-					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
+					"name": "instagramFollowers:usuario",
+					"description": "Cuenta la cantidad de seguidores de cuenta de Instagram",
+					"detailedDescription": "Cuenta la cantidad de seguidores de una cuenta de Instagram, reemplaza `usuario` con el nombre de usuario de Instagram",
 					"usage": [
-						"{instagramFollowers:username}"
+						"{instagramFollowers:usuario}"
 					],
 					"example": [
 						"Followers: {instagramFollowers:eduardozgz}"
