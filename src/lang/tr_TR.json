@@ -206,32 +206,32 @@
 					],
 					"example": [
 						"{onlineMembersWithRole:6509281904766437,5823659271648290} Çevrimiçi Yönetici ve Mod",
-						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
+						"{onlineMembersWithRole:5823659271648290}/{membersWithRole:5823659271648290} Yönetici Çevrimiçi"
 					]
 				},
 				"offlineMembersWithRole": {
-					"name": "offlineMembersWithRole:role1ID,role2ID",
+					"name": "offlineMembersWithRole:rol1ID,rol2ID",
 					"description": "Rol veya rollere sahip çevrimdışı üye sayısı",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimdışı olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
-						"{offlineMembersWithRole:role1ID,role2ID}"
+						"{offlineMembersWithRole:rol1ID,rol2ID}"
 					],
 					"example": [
-						"{offlineMembersWithRole:6509281904766437,5823659271648290} Offline admins and mods",
-						"{offlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are offline"
+						"{offlineMembersWithRole:6509281904766437,5823659271648290} Çevrimdışı Yönetici ve Mod",
+						"{offlineMembersWithRole:5823659271648290}/{membersWithRole:5823659271648290} Yönetici Çevrimdışı"
 					]
 				},
 				"connectedMembers": {
-					"name": "connectedMembers:channel1ID,channel2ID",
+					"name": "connectedMembers:kanal1ID,kanal2ID",
 					"description": "Ses kanallarına bağlı üye sayısı",
 					"detailedDescription": "Tüm veya belirtilen ses kanallarına kaç üyenin bağlı olduğunu sayar, filtrelemek istediğiniz kanal IDlerini `:` işaretinden sonra yazın ve IDleri virgülle ayırın",
 					"usage": [
 						"{connectedMembers}",
-						"{connectedMembers:channel1ID,channel2ID}"
+						"{connectedMembers:kanal1ID,kanal2ID}"
 					],
 					"example": [
-						"{connectedMembers} Talking",
-						"{connectedMembers:5823659271648290} talking in the lounge"
+						"{connectedMembers} Üye Konuşuyor",
+						"{connectedMembers:5823659271648290} üye sohbette konuşuyor"
 					]
 				},
 				"bannedMembers": {
@@ -243,20 +243,20 @@
 					],
 					"example": [
 						"{bannedMembers} Banlı",
-						"{bannedMembers} have been hit with the ban hammer"
+						"{bannedMembers} üyeye ban çekiciyle vuruldu"
 					]
 				},
 				"membersPlaying": {
-					"name": "membersPlaying:game name",
+					"name": "membersPlaying:oyunAdı",
 					"description": "Oyun oynayan üye sayısı",
 					"detailedDescription": "Bir oyunu kaç üyenin oynadığını sayar, virgülle ayırarak birden fazla oyun ekleyebilirsiniz",
 					"usage": [
 						"{membersPlaying:Minecraft}",
-						"{membersPlaying:game name, game name 2}"
+						"{membersPlaying:oyunAdı, oyunAdı2}"
 					],
 					"example": [
-						"{membersPlaying:Minecraft} Mining and crafting",
-						"{membersPlaying: euro truck simulator 2, american truck simulator} Trucking"
+						"{membersPlaying:Minecraft} Üye Madencilik ve Eşya Yapıyor",
+						"{membersPlaying: euro truck simulator 2, american truck simulator} Üye Kamyon Sürüşü Yapıyor"
 					]
 				},
 				"nitro-boosters": {
@@ -271,44 +271,44 @@
 					]
 				},
 				"youtubeSubscribers": {
-					"name": "youtubeSubscribers:channelUrl",
-					"description": "Amount of subscribers of a YouTube channel",
+					"name": "youtubeSubscribers:kanalURL'si",
+					"description": "Bir YouTube kanalının abone sayısı",
 					"detailedDescription": "Bir YouTube kanalının kaç aboneye sahip olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeSubscribers:channelUrl}"
+						"{youtubeSubscribers:kanalURL'si}"
 					],
 					"example": [
 						"Abone Sayısı: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeViews": {
-					"name": "youtubeViews:channelUrl",
-					"description": "Amount of views of a YouTube channel",
+					"name": "youtubeViews:kanalURL'si",
+					"description": "Bir YouTube kanalının izlenme sayısı",
 					"detailedDescription": "Bir YouTube kanalının kaç kez görüntülendiğini sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeViews:channelUrl}"
+						"{youtubeViews:kanalURL'si}"
 					],
 					"example": [
 						"Görüntüleme Sayısı: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeVideos": {
-					"name": "youtubeVideos:channelUrl",
+					"name": "youtubeVideos:kanalURL'si",
 					"description": "Bir YouTube kanalının video sayısı",
 					"detailedDescription": "Bir YouTube kanalının kaç videosu olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeVideos:channelUrl}"
+						"{youtubeVideos:kanalURL'si}"
 					],
 					"example": [
 						"Video Sayısı: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeChannelName": {
-					"name": "youtubeChannelName:channelUrl",
+					"name": "youtubeChannelName:kanalURL'si",
 					"description": "Bir YouTube kanalının adını görüntüler",
 					"detailedDescription": "Bir YouTube kanalının adını görüntüler, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeChannelName:channelUrl}"
+						"{youtubeChannelName:kanalURL'si}"
 					],
 					"example": [
 						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
