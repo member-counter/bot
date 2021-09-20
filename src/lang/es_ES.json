@@ -895,6 +895,7 @@
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
+			"title": "Check permissions",
 			"optionalText": "(Opcional)",
 			"adminWarning": "**Este bot tiene permisos de administrador, por favor desactiva el permiso de administrador y configura los permisos correctamente**",
 			"footer": "Si tienes problemas con los permisos, prueba a invitar el bot de nuevo:",
