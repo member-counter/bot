@@ -590,7 +590,7 @@
 		"editChannel": {
 			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu sınırı \"yoksaymak\" için bu komutu kullanabilirsiniz.",
 			"helpUsage": [
-				"{PREFIX}editChannel [channelId] [content]"
+				"{PREFIX}editChannel [channel ID] [content and counters]"
 			],
 			"helpExample": [
 				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
@@ -760,7 +760,7 @@
 		"preview": {
 			"helpDescription": "Bir sayacın veya çeşitli sayaçların bir kanalda nasıl görüneceğinin bir önizlemesini gösterir.",
 			"helpUsage": [
-				"{PREFIX}preview [content]"
+				"{PREFIX}preview [content and counters]"
 			],
 			"helpExample": [
 				"{PREFIX}preview {members} Üye`"
