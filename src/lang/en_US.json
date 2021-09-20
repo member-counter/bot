@@ -432,7 +432,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
-			"helpUsage": ["{PREFIX}editChannel [channel Id] [content]"],
+			"helpUsage": ["{PREFIX}editChannel [channel ID] [content and counters]"],
 			"helpExample": [
 				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
 			],
@@ -572,7 +572,7 @@
 		},
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
-			"helpUsage": ["{PREFIX}preview [content]"],
+			"helpUsage": ["{PREFIX}preview [content and counters]"],
 			"helpExample": ["{PREFIX}preview {members} Members`"],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Channel name preview",
