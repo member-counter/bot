@@ -38,7 +38,8 @@
 				"suggestCounter": "Maybe you are looking for one of these counters:",
 				"suggestCommand": "Maybe you are looking for one of these commands:",
 				"usageText": "Usage",
-				"exampleText": "Example"
+				"exampleText": "Example",
+				"searchIgnoredWords": "amount count"
 			}
 		},
 		"guide": {
@@ -182,7 +183,7 @@
 					"usage": ["{bannedMembers}"],
 					"example": [
 						"{bannedMembers} Banned",
-						"{bannedMembers} has been hit with the ban hammer"
+						"{bannedMembers} have been hit with the ban hammer"
 					]
 				},
 				"membersPlaying": {
@@ -264,21 +265,21 @@
 					"name": "memeratorMemes:username",
 					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
-					"usage": ["{memeratorMemes:nickname}"],
+					"usage": ["{memeratorMemes:username}"],
 					"example": ["Memes: {memeratorMemes:eduardozgz}"]
 				},
 				"memeratorFollowers": {
 					"name": "memeratorFollowers:username",
 					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
-					"usage": ["{memeratorFollowers:nickname}"],
+					"usage": ["{memeratorFollowers:username}"],
 					"example": ["Followers: {memeratorFollowers:eduardozgz}"]
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
 					"description": "Amount of followers of a Twitter user",
 					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
-					"usage": ["{twitterFollowers:nickname}"],
+					"usage": ["{twitterFollowers:username}"],
 					"example": ["Followers: {twitterFollowers:0xEduardozgz}"]
 				},
 				"redditMembers": {
@@ -296,7 +297,7 @@
 					"example": ["Online Redditors: {redditMembersOnline:science}"]
 				},
 				"redditTitle": {
-					"name": "redditTitle",
+					"name": "redditTitle:subreddit",
 					"description": "Displays the title of a subreddit",
 					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
 					"usage": ["{redditMembersOnline:subreddit}"],
@@ -431,7 +432,7 @@
 		},
 		"editChannel": {
 			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
-			"helpUsage": ["{PREFIX}editChannel [channelId] [content]"],
+			"helpUsage": ["{PREFIX}editChannel [channel ID] [content and counters]"],
 			"helpExample": [
 				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
 			],
@@ -551,7 +552,8 @@
 			"badges": "Badges",
 			"credits": "Credits",
 			"serverUpgradesAvailable": "Server upgrades left",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
+			"cancelText": "cancel",
 			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Your data has been removed successfully",
 			"userNotFound": "User not found in the DB"
@@ -571,8 +573,8 @@
 		},
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
-			"helpUsage": ["{PREFIX}preview [content]"],
-			"helpExample": ["{PREFIX}preview {members} Members`"],
+			"helpUsage": ["{PREFIX}preview [content and counters]"],
+			"helpExample": ["{PREFIX}preview {members} Members"],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Channel name preview",
 			"channelTopic": "Channel topic preview"
@@ -696,9 +698,7 @@
 		},
 		"checkPermissions": {
 			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
-			"helpExample": [
-				"{PREFIX}checkPermissions"
-			],
+			"helpExample": ["{PREFIX}checkPermissions"],
 			"optionalText": "(Optional)",
 			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
 			"footer": "If you need to fix permissions problems, try inviting the bot again:",
@@ -762,7 +762,8 @@
 		},
 		"paginator": {
 			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `cancel` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"cancelText": "cancel",
 			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
 			"errorNegativeInput": "The page number can't be negative. Please try again."
 		}
