@@ -716,7 +716,7 @@
 		"lang": {
 			"helpDescription": "Cambia el idioma de este servidor, debes ser administrador para ejecutar este comando.",
 			"helpUsage": [
-				"{PREFIX}lang (lang code)"
+				"{PREFIX}lang (código del idioma)"
 			],
 			"helpExample": [
 				"{PREFIX}lang",
@@ -726,24 +726,24 @@
 			"errorNotFound": "Lista de idiomas disponibles:"
 		},
 		"profile": {
-			"helpDescription": "Shows related information between you and this bot.",
+			"helpDescription": "Muestra información relacionada entre tu y el bot.",
 			"helpUsage": [
-				"{PREFIX}profile (@user)"
+				"{PREFIX}profile (@usuario)"
 			],
 			"helpExample": [
 				"{PREFIX}profile",
 				"{PREFIX}profile @eduardozgz"
 			],
 			"badges": "Insignias",
-			"credits": "Credits",
+			"credits": "Créditos",
 			"serverUpgradesAvailable": "Mejoras de servidor restantes",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
-			"removeDataConfirmationString": "I want to delete all of my data",
+			"removeDataConfirmation": "Por favor, envía exactamente este texto si quieres eliminar todos tus datos: ```{CONFIRMATION_STRING}```\n:warning: **Esta acción eliminará todos tus datos, tus insignias, mojoras de servidor y créditos se perderán para siempre, las facturas se mantendrán por motivos legales, ¿Estás seguro de que quieres continuar? (Ignora escribe 'cancel' para cancelar)**",
+			"removeDataConfirmationString": "Quiero eliminar mis datos",
 			"removeDataSuccess": "Tus datos han sido borrados correctamente",
-			"userNotFound": "User not found in the DB"
+			"userNotFound": "Usuario no encontrado en la base de datos"
 		},
 		"counts": {
-			"helpDescription": "Shows some counts.",
+			"helpDescription": "Muestra algunos contadores.",
 			"helpExample": [
 				"{PREFIX}counts"
 			],
@@ -754,27 +754,27 @@
 			"connectedUsers": "Usuarios conectados:",
 			"channels": "Canales:",
 			"roles": "Roles:",
-			"nitroBoosters": "Boosting:",
-			"bannedMembers": "Banned members:"
+			"nitroBoosters": "Boosteando:",
+			"bannedMembers": "Miembros baneados:"
 		},
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
 			"helpUsage": [
-				"{PREFIX}preview [content and counters]"
+				"{PREFIX}preview [contenido y contadores]"
 			],
 			"helpExample": [
-				"{PREFIX}preview {members} Members`"
+				"{PREFIX}preview {members} Members"
 			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Vista previa en el nombre de un canal",
 			"channelTopic": "Vista previa en el tema de un canal"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters.",
+			"helpDescription": "Crea varios canales de voz bloqueados con contadores en sus nombres\nOpcionalmente puedas configurar contadores de YouTube o Twitch.",
 			"helpUsage": [
 				"{PREFIX}setup",
-				"{PREFIX}setup twitch [channel name]",
-				"{PREFIX}setup youtube [channel link]"
+				"{PREFIX}setup twitch [nombre del canal]",
+				"{PREFIX}setup youtube [enlace del canal]"
 			],
 			"helpExample": [
 				"{PREFIX}setup",
