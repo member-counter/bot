@@ -737,8 +737,8 @@
 			"badges": "Insignias",
 			"credits": "Créditos",
 			"serverUpgradesAvailable": "Mejoras de servidor restantes",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
-			"cancelText": "cancel",
+			"removeDataConfirmation": "Por favor, envía exactamente este texto si quieres eliminar todos tus datos: ```{CONFIRMATION_STRING}```\n:warning: **Esta acción eliminará todos tus datos, tus insignias, mejoras de servidor y créditos se perderán para siempre, las facturas se mantendrán por motivos legales, ¿Estás seguro de que quieres continuar? (Ignora o escribe '{CANCEL_STRING}' para cancelar)**",
+			"cancelText": "cancelar",
 			"removeDataConfirmationString": "Quiero eliminar mis datos",
 			"removeDataSuccess": "Tus datos han sido borrados correctamente",
 			"userNotFound": "Usuario no encontrado en la base de datos"
@@ -957,8 +957,8 @@
 		},
 		"paginator": {
 			"pageCounter": "Página {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
-			"cancelText": "cancel",
+			"jumpPrompt": "¿A qué página te gustaría ir? Escribe `{CANCEL_STRING}` o `0` para cancelarlo. Tienes 15 segundos para responder.",
+			"cancelText": "cancelar",
 			"errorPageLengthExceeded": "La página debe ser menor o igual que {TOTAL_PAGES}. Por favor, inténtalo de nuevo.",
 			"errorNegativeInput": "La página no puede ser negativa. Inténtalo de nuevo."
 		}
