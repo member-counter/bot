@@ -67,6 +67,7 @@ interface Commands {
 interface CheckPermissions {
 	helpDescription: string;
 	helpExample: string[];
+	title: string;
 	optionalText: string;
 	adminWarning: string;
 	footer: string;

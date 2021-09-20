@@ -518,7 +518,10 @@ const checkPerms: Command = {
 
 		if (botMemberPermissions.has("embedLinks")) {
 			const embeds = safeDiscordString(messageBody).map((content) =>
-				embedBase({ title: `Check permissions`, description: content })
+				embedBase({
+					title: languagePackCheckPermissions.title,
+					description: content
+				})
 			);
 			new Paginator(
 				message.channel,
