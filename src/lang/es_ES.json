@@ -568,16 +568,16 @@
 					},
 					{
 						"name": "**✅ Fácil de configurar**",
-						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"value": "En unos pocos clics, podras crear tu propio bot Member Counter, y nosotros nos preocuparemos de mantenerlo actualizado. ¡Guía con capturas de pantalla incluida! ¿A caso esto no es mas fácil que auto hospedarlo?",
 						"inline": false
 					}
 				]
 			}
 		},
 		"lockChannel": {
-			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels.",
+			"helpDescription": "Puedes usar esta comando para mostrar un candado (🔒) en ved de un altavoz (🔊) en canales de voz.",
 			"helpUsage": [
-				"{PREFIX}lockChannel [channel id]"
+				"{PREFIX}lockChannel [id del canal]"
 			],
 			"helpExample": [
 				"{PREFIX}lockChannel 700336568099143710"
@@ -588,22 +588,22 @@
 			"errorNotFound": "Canal no encontrado"
 		},
 		"editChannel": {
-			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
+			"helpDescription": "Si estas intentando establecer un contador pero Discord te dice que has alcanzado el limite de caracteres en el nombre/tema, puedes \"ignorar\" este limite usando este comando.",
 			"helpUsage": [
-				"{PREFIX}editChannel [channelId] [content]"
+				"{PREFIX}editChannel [channel ID] [content and counters]"
 			],
 			"helpExample": [
-				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
+				"{PREFIX}editChannel 701396983843127366 {onlineMembers} de {members} En línea"
 			],
 			"success": "Hecho! Deberás esperar unos minutos para ver los nuevos cambios",
 			"errorNotFound": "Canal no encontrado",
 			"errorNoContent": "Debes proporcionar algo de contenido"
 		},
 		"setDigit": {
-			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.",
+			"helpDescription": "Personaliza los números que serán mostrados, el primer parámetro debe ser el número que quieres cambiar, el segundo parámetro puede ser lo que sea, como un emoji o un número normal, puedes personalizar varios números a la vez separando los argumentos con comas (`,`)\nSi el primero parámetro es \"reset\", los números serán restablecidos a los predeterminados.",
 			"helpUsage": [
 				"{PREFIX}setDigit reset",
-				"{PREFIX}setDigit [number] [your custom number]"
+				"{PREFIX}setDigit [número] [tu número personalizado]"
 			],
 			"helpExample": [
 				"{PREFIX}setDigit 3 3",
@@ -760,7 +760,7 @@
 		"preview": {
 			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
 			"helpUsage": [
-				"{PREFIX}preview [content]"
+				"{PREFIX}preview [content and counters]"
 			],
 			"helpExample": [
 				"{PREFIX}preview {members} Members`"
