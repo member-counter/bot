@@ -12,9 +12,10 @@
 				"{PREFIX}help {members}",
 				"{PREFIX}help members"
 			],
+			"helpFooterText": "**Info. sobre el uso:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio",
 			"embedReply": {
 				"title": "Lista de comandos | prefijo: {PREFIX}",
-				"description": "[Añade este bot a tu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentación](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstalación rapida: `{PREFIX}!setup`\nAprende a usar el bot: `{PREFIX}guide`\n\nPara obtener mas información sobre un comando, escriba `{PREFIX}help` más el nombre del comando: ```\n{PREFIX}help shortNumber```\n**Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio",
+				"description": "[Añade este bot a tu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentación](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstalación rápida: `{PREFIX}setup`\nAprende a usar el bot: `{PREFIX}guide`\n\nPara obtener mas información sobre un comando o contador, escriba `{PREFIX}help` más el nombre: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
 						"name": "**Contadores**",
@@ -894,6 +895,7 @@
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
+			"title": "Comprobar permisos",
 			"optionalText": "(Opcional)",
 			"adminWarning": "**Este bot tiene permisos de administrador, por favor desactiva el permiso de administrador y configura los permisos correctamente**",
 			"footer": "Si tienes problemas con los permisos, prueba a invitar el bot de nuevo:",
