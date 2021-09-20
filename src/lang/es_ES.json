@@ -737,7 +737,8 @@
 			"badges": "Insignias",
 			"credits": "Créditos",
 			"serverUpgradesAvailable": "Mejoras de servidor restantes",
-			"removeDataConfirmation": "Por favor, envía exactamente este texto si quieres eliminar todos tus datos: ```{CONFIRMATION_STRING}```\n:warning: **Esta acción eliminará todos tus datos, tus insignias, mojoras de servidor y créditos se perderán para siempre, las facturas se mantendrán por motivos legales, ¿Estás seguro de que quieres continuar? (Ignora escribe 'cancel' para cancelar)**",
+			"removeDataConfirmation": "Por favor, envía exactamente este texto si quieres eliminar todos tus datos: ```{CONFIRMATION_STRING}```\n:warning: **Esta acción eliminará todos tus datos, tus insignias, mejoras de servidor y créditos se perderán para siempre, las facturas se mantendrán por motivos legales, ¿Estás seguro de que quieres continuar? (Ignora o escribe '{CANCEL_STRING}' para cancelar)**",
+			"cancelText": "cancelar",
 			"removeDataConfirmationString": "Quiero eliminar mis datos",
 			"removeDataSuccess": "Tus datos han sido borrados correctamente",
 			"userNotFound": "Usuario no encontrado en la base de datos"
@@ -956,7 +957,8 @@
 		},
 		"paginator": {
 			"pageCounter": "Página {CURRENT_PAGE} de {TOTAL_PAGES}",
-			"jumpPrompt": "¿A qué página te gustaría ir? Escribe `cancel` o `0` para cancelarlo. Tienes 15 segundos para responder.",
+			"jumpPrompt": "¿A qué página te gustaría ir? Escribe `{CANCEL_STRING}` o `0` para cancelarlo. Tienes 15 segundos para responder.",
+			"cancelText": "cancelar",
 			"errorPageLengthExceeded": "La página debe ser menor o igual que {TOTAL_PAGES}. Por favor, inténtalo de nuevo.",
 			"errorNegativeInput": "La página no puede ser negativa. Inténtalo de nuevo."
 		}
