@@ -271,84 +271,84 @@
 					]
 				},
 				"youtubeSubscribers": {
-					"name": "youtubeSubscribers:channelUrl",
-					"description": "Amount of subscribers of a YouTube channel",
-					"detailedDescription": "Counts how many subscribers has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"name": "youtubeSubscribers:url del canal",
+					"description": "Cantidad de suscriptores de un canal de YouTube",
+					"detailedDescription": "Cuenta cuantos suscriptores tiene un canal de YouTube, reemplaza `url del canal` con el enlace del canal deseado",
 					"usage": [
-						"{youtubeSubscribers:channelUrl}"
+						"{youtubeSubscribers:url del canal}"
 					],
 					"example": [
-						"Subscribers: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
+						"Suscriptores: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeViews": {
-					"name": "youtubeViews:channelUrl",
-					"description": "Amount of views of a YouTube channel",
-					"detailedDescription": "Counts how many views has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"name": "youtubeViews:url del canal",
+					"description": "Cantidad de visualizaciones de un canal de YouTube",
+					"detailedDescription": "Cuenta cuantas visualizaciones tiene un canal de YouTube, reemplaza `url del canal` por el enlace del canal deseado",
 					"usage": [
-						"{youtubeViews:channelUrl}"
+						"{youtubeViews:url del canal}"
 					],
 					"example": [
-						"Views: {youtubeViews:https://www.youtube.com/user/enyay}"
+						"Visualizaciones: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeVideos": {
-					"name": "youtubeVideos:channelUrl",
-					"description": "Amount of videos of a YouTube channel",
-					"detailedDescription": "Counts how many videos has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"name": "youtubeVideos:url del canal",
+					"description": "Cantidad de videos de un canal de YouTube",
+					"detailedDescription": "Cuenta cuantos videos tiene un canal de YouTube, reemplaza `url del canal` con el enlace del canal deseado",
 					"usage": [
-						"{youtubeVideos:channelUrl}"
+						"{youtubeVideos:url del canal}"
 					],
 					"example": [
 						"Videos: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeChannelName": {
-					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays the name of a YouTube channel",
-					"detailedDescription": "Displays the name of a YouTube channel, replace `channelUrl` with the desired channel url",
+					"name": "youtubeChannelName:url del canal",
+					"description": "Muestra el nombre de un canal de YouTube",
+					"detailedDescription": "Muestra el nombre de un canal de YouTube, reemplaza `url del canal` con el enlace del canal deseado",
 					"usage": [
-						"{youtubeChannelName:channelUrl}"
+						"{youtubeChannelName:url del canal}"
 					],
 					"example": [
 						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"twitchFollowers": {
-					"name": "twitchFollowers:nickname",
-					"description": "Amount of followers of a Twitch channel",
-					"detailedDescription": "Counts how many followers has a Twitch channel, replace `nickname` with the desired channel name",
+					"name": "twitchFollowers:nombre",
+					"description": "Cantidad de seguidores de un canal de Twitch",
+					"detailedDescription": "Cuenta cuantos seguidores tiene un canal de Twitch, reemplaza `nombre` con el nombre del canal deseado",
 					"usage": [
-						"{twitchFollowers:nickname}"
+						"{twitchFollowers:nombre}"
 					],
 					"example": [
-						"{twitchFollowers:ninja} Followers"
+						"{twitchFollowers:ninja} Seguidores"
 					]
 				},
 				"twitchViews": {
-					"name": "twitchViews:nickname",
-					"description": "Amount of views of a Twitch channel",
-					"detailedDescription": "Counts how many views has a Twitch channel, replace `nickname` with the desired channel name",
+					"name": "twitchViews:nombre",
+					"description": "Cantidad de vistas de un canal de Twitch",
+					"detailedDescription": "Cuenta cuántas visualizaciones tiene un canal de Twitch, reemplaza `nombre` con el nombre del canal deseado",
 					"usage": [
-						"{twitchViews:nickname}"
+						"{twitchViews:nombre}"
 					],
 					"example": [
-						"{twitchViews:ninja} Views"
+						"{twitchViews:ninja} Visualizaciones"
 					]
 				},
 				"twitchChannelName": {
-					"name": "twitchChannelName:nickname",
-					"description": "Displays the name of a Twitch channel",
-					"detailedDescription": "Displays the name of a Twitch channel, replace `nickname` with the desired channel name",
+					"name": "twitchChannelName:nombre",
+					"description": "Muestra el nombre de un canal de Twitch",
+					"detailedDescription": "Muestra el nombre de un canal de Twitch, reemplaza `nombre` con el nombre del canal deseado",
 					"usage": [
-						"{twitchChannelName:nickname}"
+						"{twitchChannelName:nombre}"
 					],
 					"example": [
 						"{twitchChannelName:ninja}"
 					]
 				},
 				"memeratorMemes": {
-					"name": "memeratorMemes:username",
+					"name": "memeratorMemes:usuario",
 					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
 					"usage": [
@@ -758,7 +758,7 @@
 			"bannedMembers": "Miembros baneados:"
 		},
 		"preview": {
-			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
+			"helpDescription": "Muestra una vista previa de como se verá un contador o varios contadores en un canal.",
 			"helpUsage": [
 				"{PREFIX}preview [contenido y contadores]"
 			],
