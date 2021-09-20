@@ -454,7 +454,7 @@
 						"{clock:timeZone}"
 					],
 					"example": [
-						"Spain: {clock:Europe/Madrid}"
+						"España: {clock:Europe/Madrid}"
 					]
 				},
 				"http": {
@@ -477,7 +477,7 @@
 					],
 					"example": [
 						"{static:420}",
-						"{static:Hello world!}"
+						"{static:Hola mundo!}"
 					]
 				},
 				"sum": {
@@ -548,26 +548,26 @@
 				"fields": [
 					{
 						"name": "**✅ TODOS los cotadores**",
-						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"value": "Obten acceso a **todos** los contadores que existen en el bot, como `{membersWithRole}` o `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
-						"name": "**✅ More accurate**",
+						"name": "**✅ Más preciso**",
 						"value": "Get more accurate counts in all members related counters",
 						"inline": false
 					},
 					{
-						"name": "**✅ Unlimited servers**",
-						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 50,000 members, quarterly",
+						"name": "**✅ Servidores ilimitados**",
+						"value": "Paga solo por los miembros que tienes, e invita al bot a tantos servidores como quieras. Desde €5 EUR por 50,000 miembros, trimestralmente",
 						"inline": false
 					},
 					{
-						"name": "**✅ Custom bot**",
-						"value": "Use your own bot account, with the profile picture and username of your choice",
+						"name": "**✅ Bot personalizable**",
+						"value": "Usa tu propia cuenta de bot, con la foto de perfil y nombre de usuario de tu elección",
 						"inline": false
 					},
 					{
-						"name": "**✅ Easy to setup**",
+						"name": "**✅ Fácil de configurar**",
 						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
 						"inline": false
 					}
