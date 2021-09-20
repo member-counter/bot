@@ -865,11 +865,11 @@
 					]
 				},
 				"twitter": {
-					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"categoryName": "📊 {twitterName:{RESOURCE}} Stats de Twitter 📊",
 					"counters": [
 						{
 							"name": "twitterFollowers",
-							"template": "{twitterFollowers:{RESOURCE}} Followers",
+							"template": "{twitterFollowers:{RESOURCE}} Seguidores",
 							"statusCreating": "{LOADING} Creando contador de seguidores",
 							"statusCreated": "{CHECK_MARK} Contador de seguidores creado"
 						}
@@ -878,9 +878,9 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}`.",
+			"helpDescription": "Este comando codifica o descodifica en base64 el contenido que pases, útil para crear contadores avanzados como `{http}`.",
 			"helpUsage": [
-				"{PREFIX}base64 [encode/decode] [data]"
+				"{PREFIX}base64 [encode/decode] [datos]"
 			],
 			"helpExample": [
 				"{PREFIX}base64 encode test",
@@ -889,54 +889,54 @@
 			"invalidAction": "Acción inválida, debe ser `encode` o `decode`"
 		},
 		"checkPermissions": {
-			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
+			"helpDescription": "Comprueba si el bot tiene los permisos correctos para funcionar correctamente.",
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
-			"optionalText": "(Optional)",
-			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
-			"footer": "If you need to fix permissions problems, try inviting the bot again:",
+			"optionalText": "(Opcional)",
+			"adminWarning": "**Este bot tiene permisos de administrador, por favor desactiva el permiso de administrador y configura los permisos correctamente**",
+			"footer": "Si tienes problemas con los permisos, prueba a invitar el bot de nuevo:",
 			"details": {
 				"manageChannels": {
-					"name": "Manage channels",
-					"description": "Used to update the name/description of the channels to update the counters"
+					"name": "Administrar canales",
+					"description": "Usado para actualizar el nombre/descripción de canales para actualizar los contadores"
 				},
 				"viewChannel": {
-					"name": "View channels",
-					"description": "Used to update the name/description of the channels to update the counters, also used to receive commands"
+					"name": "Ver canales",
+					"description": "Usado para actualizar el nombre/descripción de canales para actualizar los contadores, también para recibir comandos"
 				},
 				"voiceConnect": {
-					"name": "Connect",
-					"description": "Used to update the name/description of the channels to update the counters"
+					"name": "Conectar",
+					"description": "Usado para actualizar el nombre/descripción de canales para actualizar los contadores"
 				},
 				"readMessageHistory": {
-					"name": "Read message history",
-					"description": "Used to update counters in messages/embeds"
+					"name": "Leer historial de mensajes",
+					"description": "Usado para actualizar los contadores en mensajes y mensajes incrustados"
 				},
 				"sendMessages": {
-					"name": "Send messages",
-					"description": "Used to reply to commands"
+					"name": "Enviar mensajes",
+					"description": "Usado para responder a comandos"
 				},
 				"embedLinks": {
-					"name": "Embed links",
-					"description": "Used to reply to commands"
+					"name": "Insertar enlaces",
+					"description": "Usado para responder a comandos"
 				},
 				"addReactions": {
-					"name": "Add reactions",
-					"description": "Used to add reactions in commands to interact with it"
+					"name": "Añadir reacciones",
+					"description": "Usado para añadir reacciones a comandos para interactuar con ellos"
 				},
 				"manageMessages": {
-					"name": "Manage messages",
-					"description": "Used to remove reactions in a command",
+					"name": "Gestionar mensajes",
+					"description": "Usado para borrar reacciones de un comando",
 					"optional": true
 				},
 				"manageRoles": {
-					"name": "Manage roles",
-					"description": "Used by the {PREFIX}setup command and to update channel permissions when you add a Premium bot"
+					"name": "Gestionar roles",
+					"description": "Usado por el comando {PREFIX}setup y para actualizar los permisos de los canales cuando añadas un bot Premium"
 				},
 				"banMembers": {
-					"name": "Ban members",
-					"description": "Used to display the amount of banned members in the `{bannedMembers}` counter",
+					"name": "Banear miembros",
+					"description": "Usado para mostrar la cantidad de miembros baneados en el contador `{bannedMembers}`",
 					"optional": true
 				}
 			}
