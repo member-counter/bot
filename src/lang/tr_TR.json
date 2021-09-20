@@ -4,9 +4,7 @@
 	"commands": {
 		"help": {
 			"helpDescription": "Komutlar ve sayaçlar hakkında yardım alın.",
-			"helpUsage": [
-				"{PREFIX}help [komut veya sayaç]"
-			],
+			"helpUsage": ["{PREFIX}help [komut veya sayaç]"],
 			"helpExample": [
 				"{PREFIX}help lockChannel",
 				"{PREFIX}help {members}",
@@ -47,9 +45,7 @@
 		},
 		"guide": {
 			"helpDescription": "Botun nasıl kullanılacağına dair bir kılavuz ve mevcut sayaçların bir listesini gösterir.",
-			"helpExample": [
-				"{PREFIX}guide"
-			],
+			"helpExample": ["{PREFIX}guide"],
 			"pagesText": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Sunucunuza Member Counter'ı eklediğiniz için teşekkürler!**\n__**Sayaç Oluşturma/Düzenleme**__\nBu örnek için, discord sunucunuzdaki toplam üye sayısını sayan `{members}`ı kullanacağız, ancak sonraki sayfalarda daha fazla sayaç bulacaksınız.\nBu sayacı aşağıdaki yerlerden birine yerleştirebilirsiniz:\n\n- **ses** kanal **adına**\n- **kategori adına**\n- **yazı** kanalı **başlığına**\n- **duyuru** kanalı **başlığına**\n\nŞimdi yeni bir kanal oluşturun, düzenleyin ve ada veya başlığa `{members}` yazın ve 'değişiklikleri kaydet'e tıklayın\n\nAyrıca bir ad/başlığa birden fazla sayaç ekleyebilir ve bunları kendi içeriğinizle birleştirebilirsiniz, işte örnekler:\n```\n{onlineMembers}/{members} Aktif Üye, {youtubeSubscribers:https://www.youtube.com/user/enyay} Abone!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Yönetici ve mod aktif!\n```\n\n> Bir adı/konuyu düzenlerken karakter sınırına ulaşırsanız, lütfen `{PREFIX}help editChannel` ile kontrol edin.\n> Mevcut sayaç yapılandırmalarını `{PREFIX}seeSettings` ile görebilirsiniz, bu, önceki sayaçları devre dışı bırakmadan daha fazla sayaç eklemek için kullanışlıdır.\n__**Sayaç kaldırma**__\nKanalı düzenleyin ve kanal adına/başlığa {disable} yazın, Member Counter kanal adını \\✅ olarak değiştirecektir, bu şey kanalın tüm sayaçlarını başarıyla kaldırdığınız anlamına gelir.\nDoğrudan kanalı da silebilirsiniz",
 			"countersHeader": "__**Sayaçlar**__\n> Discord'da geliştirici modunu etkinleştirmelisiniz (Kullanıcı Ayarları \\> Görünüm \\> Gelişmiş \\> Geliştirici Modu)\n> Bir ID almak için, kanala/role sağ tıklayın ve \"ID'yi Kopyala\"ya basın. \n\n> Artı işaretli (\\+) sayaçlar premium sayaçlardır, `{PREFIX}premium` komutunu kullanarak daha fazla bilgi alabilirsiniz.\n\n> Bir sayaçtaki sayı biçimlendirmesini sunucu ayarlarından bağımsız olarak değiştirmek istiyorsanız bu [sayfayı](https://member-counter.eduardozgz.com/utils/overwrite-settings) ziyaret edebilir veya manuel olarak bu [talimatları](https://github.com/eduardozgz/member-counter-bot/issues/98) takip ederek yapabilirsiniz\n\n",
@@ -59,12 +55,8 @@
 					"name": "members",
 					"description": "Sunucunuzdaki üye sayısını gösterir",
 					"detailedDescription": "Bir sunucunun kaç üyesi olduğunu sayar",
-					"usage": [
-						"{members}"
-					],
-					"example": [
-						"{members} Üye"
-					]
+					"usage": ["{members}"],
+					"example": ["{members} Üye"]
 				},
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
@@ -92,23 +84,15 @@
 					"name": "offlineMembers",
 					"description": "Sunucunuzdaki çevrimdışı üye sayısını gösterir",
 					"detailedDescription": "Sunucuda kaç üyenin çevrimdışı olduğunu sayar",
-					"usage": [
-						"{onlineMembers}"
-					],
-					"example": [
-						"{onlineMembers} Çevrimdışı"
-					]
+					"usage": ["{onlineMembers}"],
+					"example": ["{onlineMembers} Çevrimdışı"]
 				},
 				"users": {
 					"name": "users",
 					"description": "Sunucunuzdaki kullanıcı sayısı (botlar hariç)",
 					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının olduğunu sayar",
-					"usage": [
-						"{users}"
-					],
-					"example": [
-						"{users} Kullanıcı"
-					]
+					"usage": ["{users}"],
+					"example": ["{users} Kullanıcı"]
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
@@ -125,23 +109,15 @@
 					"name": "offlineUsers",
 					"description": "Sunucunuzdaki çevrimdışı kullanıcı sayısı (botlar hariç)",
 					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının çevrimdışı olduğunu sayar",
-					"usage": [
-						"{users}"
-					],
-					"example": [
-						"{users} Çevrimdışı"
-					]
+					"usage": ["{users}"],
+					"example": ["{users} Çevrimdışı"]
 				},
 				"bots": {
 					"name": "bots",
 					"description": "Sunucunuzdaki bot sayısı",
 					"detailedDescription": "Sunucuda kaç bot olduğunu sayar",
-					"usage": [
-						"{bots}"
-					],
-					"example": [
-						"{bots} Bot"
-					]
+					"usage": ["{bots}"],
+					"example": ["{bots} Bot"]
 				},
 				"onlineBots": {
 					"name": "onlineBots",
@@ -158,34 +134,22 @@
 					"name": "offlineBots",
 					"description": "Sunucunuzdaki çevrimdışı bot sayısı",
 					"detailedDescription": "Sunucuda kaç botun çevrimdışı olduğunu sayar",
-					"usage": [
-						"{bots}"
-					],
-					"example": [
-						"{bots} Çevrimdışı Bot"
-					]
+					"usage": ["{bots}"],
+					"example": ["{bots} Çevrimdışı Bot"]
 				},
 				"roles": {
 					"name": "roles",
 					"description": "Sunucunuzdaki rol sayısını gösterir",
 					"detailedDescription": "Sunucuda kaç tane rol olduğunu sayar",
-					"usage": [
-						"{roles}"
-					],
-					"example": [
-						"{roles} Rol"
-					]
+					"usage": ["{roles}"],
+					"example": ["{roles} Rol"]
 				},
 				"channels": {
 					"name": "channels",
 					"description": "Sunucunuzdaki kanal sayısını gösterir (kategoriler hariç)",
 					"detailedDescription": "Sunucuda (kategoriler hariç) kaç kanal olduğunu sayar",
-					"usage": [
-						"{channels}"
-					],
-					"example": [
-						"{channels} Kanal"
-					]
+					"usage": ["{channels}"],
+					"example": ["{channels} Kanal"]
 				},
 				"membersWithRole": {
 					"name": "membersWithRole:rol1ID,rol2ID",
@@ -239,9 +203,7 @@
 					"name": "bannedMembers",
 					"description": "Sunucunuzdaki banlı üye sayısını gösterir",
 					"detailedDescription": "Kaç üyenin banlandığını sayar, botun bu sayıyı alabilmesi için üyeleri engelle yetkisine sahip olması gerekir",
-					"usage": [
-						"{bannedMembers}"
-					],
+					"usage": ["{bannedMembers}"],
 					"example": [
 						"{bannedMembers} Banlı",
 						"{bannedMembers} üyeye ban çekiciyle vuruldu"
@@ -275,9 +237,7 @@
 					"name": "youtubeSubscribers:channelUrl",
 					"description": "Bir YouTube kanalının abone sayısını gösterir",
 					"detailedDescription": "Bir YouTube kanalının kaç aboneye sahip olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
-					"usage": [
-						"{youtubeSubscribers:channelUrl}"
-					],
+					"usage": ["{youtubeSubscribers:channelUrl}"],
 					"example": [
 						"Abone Sayısı: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
@@ -286,9 +246,7 @@
 					"name": "youtubeViews:channelUrl",
 					"description": "Bir YouTube kanalının izlenme sayısını gösterir",
 					"detailedDescription": "Bir YouTube kanalının kaç kez görüntülendiğini sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
-					"usage": [
-						"{youtubeViews:channelUrl}"
-					],
+					"usage": ["{youtubeViews:channelUrl}"],
 					"example": [
 						"Görüntüleme Sayısı: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
@@ -297,9 +255,7 @@
 					"name": "youtubeVideos:channelUrl",
 					"description": "Bir YouTube kanalının video sayısını gösterir",
 					"detailedDescription": "Bir YouTube kanalının kaç videosu olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
-					"usage": [
-						"{youtubeVideos:channelUrl}"
-					],
+					"usage": ["{youtubeVideos:channelUrl}"],
 					"example": [
 						"Video Sayısı: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
@@ -308,78 +264,50 @@
 					"name": "youtubeChannelName:channelUrl",
 					"description": "Bir YouTube kanalının adını görüntüler",
 					"detailedDescription": "Bir YouTube kanalının adını görüntüler, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
-					"usage": [
-						"{youtubeChannelName:channelUrl}"
-					],
-					"example": [
-						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
-					]
+					"usage": ["{youtubeChannelName:channelUrl}"],
+					"example": ["{youtubeChannelName:https://www.youtube.com/user/enyay}"]
 				},
 				"twitchFollowers": {
 					"name": "twitchFollowers:nickname",
 					"description": "Bir Twitch kanalının takipçi sayısı",
 					"detailedDescription": "Bir Twitch kanalının kaç takipçisi olduğunu sayar, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
-					"usage": [
-						"{twitchFollowers:nickname}"
-					],
-					"example": [
-						"{twitchFollowers:ninja} Takipçi"
-					]
+					"usage": ["{twitchFollowers:nickname}"],
+					"example": ["{twitchFollowers:ninja} Takipçi"]
 				},
 				"twitchViews": {
 					"name": "twitchViews:nickname",
 					"description": "Bir Twitch kanalının izlenme sayısını gösterir",
 					"detailedDescription": "Bir Twitch kanalının kaç kez görüntülendiğini sayar, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
-					"usage": [
-						"{twitchViews:nickname}"
-					],
-					"example": [
-						"{twitchViews:ninja} Görüntüleme"
-					]
+					"usage": ["{twitchViews:nickname}"],
+					"example": ["{twitchViews:ninja} Görüntüleme"]
 				},
 				"twitchChannelName": {
 					"name": "twitchChannelName:nickname",
 					"description": "Bir Twitch kanalının adını görüntüler",
 					"detailedDescription": "Bir Twitch kanalının adını görüntüler, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
-					"usage": [
-						"{twitchChannelName:nickname}"
-					],
-					"example": [
-						"{twitchChannelName:ninja}"
-					]
+					"usage": ["{twitchChannelName:nickname}"],
+					"example": ["{twitchChannelName:ninja}"]
 				},
 				"memeratorMemes": {
 					"name": "memeratorMemes:username",
 					"description": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler",
 					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
-					"usage": [
-						"{memeratorMemes:username}"
-					],
-					"example": [
-						"Meme Sayısı: {memeratorMemes:eduardozgz}"
-					]
+					"usage": ["{memeratorMemes:username}"],
+					"example": ["Meme Sayısı: {memeratorMemes:eduardozgz}"]
 				},
 				"memeratorFollowers": {
 					"name": "memeratorFollowers:username",
 					"description": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler",
 					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
-					"usage": [
-						"{memeratorFollowers:username}"
-					],
-					"example": [
-						"Takipçi Sayısı: {memeratorFollowers:eduardozgz}"
-					]
+					"usage": ["{memeratorFollowers:username}"],
+					"example": ["Takipçi Sayısı: {memeratorFollowers:eduardozgz}"]
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
 					"description": "Bir Twitter kullanıcısının takipçi sayısını gösterir",
 					"detailedDescription": "Bir Twitter kullanıcısının kaç takipçisi olduğunu sayar, `username` bölümünü istediğiniz profilin adıyla değiştirin",
-					"usage": [
-						"{twitterFollowers:username}"
-					],
-					"example": [
-						"Takipçi Sayısı: {twitterFollowers:0xEduardozgz}"
-					]
+					"usage": ["{twitterFollowers:username}"],
+					"example": ["Takipçi Sayısı: {twitterFollowers:0xEduardozgz}"]
 				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
@@ -407,12 +335,8 @@
 					"name": "redditTitle:subreddit",
 					"description": "Bir subredditin başlığını görüntüler",
 					"detailedDescription": "Bir subredditin başlığını görüntüler, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
-					"usage": [
-						"{redditMembersOnline:subreddit}"
-					],
-					"example": [
-						"{redditMembersOnline:science}"
-					]
+					"usage": ["{redditMembersOnline:subreddit}"],
+					"example": ["{redditMembersOnline:science}"]
 				},
 				"instagramFollowers": {
 					"name": "instagramFollowers:kullanıcıadı",
@@ -429,9 +353,7 @@
 					"name": "countdown:targetDate:format",
 					"description": "Belirtilen hedef tarih için bir geri sayım gösterir",
 					"detailedDescription": "Belirtilen hedef tarihe düşecek bir geri sayım gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/countdown) veya `targetDate`i hedef tarihle değiştirerek manuel olarak oluşturabilirsiniz. UNIX zaman damgasında tarih ve isteğe bağlı olarak özel bir formatla `format`a: kalan günü göstermek için `%d`, kalan saati göstermek için `%h`, kalan dakikayı göstermek için `%m` ve kalan saniyeyi göstermek için `%s` yazabilirsiniz",
-					"usage": [
-						"{countdown:targetDate:format}"
-					],
+					"usage": ["{countdown:targetDate:format}"],
 					"example": [
 						"Yeni yıl için; {countdown:1640991600:%d gün, %h saat, %m dakika} kaldı"
 					]
@@ -451,12 +373,8 @@
 					"name": "clock:timeZone",
 					"description": "Belirtilen saat diliminin saatine sahip bir saat gösterir",
 					"detailedDescription": "Belirtilen saat dilimine göre saati gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/clock) veya `timeZone` bölümünü geçerli bir IANA saat dilimiyle değiştirebilirsiniz",
-					"usage": [
-						"{clock:timeZone}"
-					],
-					"example": [
-						"Türkiye: {clock:Europe/Istanbul}"
-					]
+					"usage": ["{clock:timeZone}"],
+					"example": ["Türkiye: {clock:Europe/Istanbul}"]
 				},
 				"http": {
 					"name": "http:options",
@@ -540,9 +458,7 @@
 		},
 		"premium": {
 			"helpDescription": "Member Counter Premium hakkında bilgi alın.",
-			"helpExample": [
-				"{PREFIX}premium"
-			],
+			"helpExample": ["{PREFIX}premium"],
 			"embedReply": {
 				"title": "Member Counter Premium",
 				"description": "[Premium'a geçin]({GET_PREMIUM_BOT_URL}) ve şunların keyfini çıkarın:",
@@ -577,12 +493,8 @@
 		},
 		"lockChannel": {
 			"helpDescription": "Ses kanallarında bir hoparlör (🔊) yerine bir kilit (🔒) göstermek için bu komutları kullanabilirsiniz.",
-			"helpUsage": [
-				"{PREFIX}lockChannel [kanal id]"
-			],
-			"helpExample": [
-				"{PREFIX}lockChannel 700336568099143710"
-			],
+			"helpUsage": ["{PREFIX}lockChannel [kanal id]"],
+			"helpExample": ["{PREFIX}lockChannel 700336568099143710"],
 			"success": "Tamamdır! Artık **yönetici olmayan kullanıcılar için** kanal 🔒 olarak görüntülenecektir",
 			"errorInvalidChannel": "Yalnızca ses kanallarını kilitleyebilirsiniz!",
 			"errorNoPerms": "Yetki eksikliği nedeniyle `{CHANNEL}` kanalını düzenleyemiyorum",
@@ -616,9 +528,7 @@
 		},
 		"shortNumber": {
 			"helpDescription": "Bu komut, bir sayıyı kompakt bir biçimde sayaçlarda göstermenizi sağlar.",
-			"helpUsage": [
-				"{PREFIX}shortNumber [enable|on/disable|off]"
-			],
+			"helpUsage": ["{PREFIX}shortNumber [enable|on/disable|off]"],
 			"helpExample": [
 				"{PREFIX}shortNumber enable",
 				"{PREFIX}shortNumber disable",
@@ -643,9 +553,7 @@
 		},
 		"prefix": {
 			"helpDescription": "Botun prefixini değiştirir.",
-			"helpUsage": [
-				"{PREFIX}prefix [yeni prefix]"
-			],
+			"helpUsage": ["{PREFIX}prefix [yeni prefix]"],
 			"helpExample": [
 				"{PREFIX}prefix !",
 				"{PREFIX}prefix .",
@@ -671,9 +579,7 @@
 		},
 		"seeSettings": {
 			"helpDescription": "Bu sunucu için olan tüm bot ayarlarını gösterir.",
-			"helpExample": [
-				"{PREFIX}seeSettings"
-			],
+			"helpExample": ["{PREFIX}seeSettings"],
 			"settingsMessage": {
 				"headerText": "Sunucu Ayarları:",
 				"prefixText": "Prefix:",
@@ -698,9 +604,7 @@
 		},
 		"upgradeServer": {
 			"helpDescription": "Bu komut, hesabınızın kalan sunucu yükseltmelerini kullanarak eski Member Counter Premium botunu davet etmenizi sağlar.",
-			"helpExample": [
-				"{PREFIX}upgradeServer"
-			],
+			"helpExample": ["{PREFIX}upgradeServer"],
 			"success": "Tamamdır! Bir sonraki adım, premium botu davet etmektir:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Sunucu zaten premium olduğu için sunucuyu daha fazla yükseltemezsiniz.",
 			"noServerUpgradesAvailable": "Kullanabileceğiniz daha fazla sunucu yükseltmesi olmadığı için daha fazla sunucu yükseltmesi yapamazsınız"
@@ -716,25 +620,15 @@
 		},
 		"lang": {
 			"helpDescription": "Bu sunucunun bot dilini değiştirir, bu komutu çalıştırmak için yönetici yetkinizin olması gerekir.",
-			"helpUsage": [
-				"{PREFIX}lang (dil kodu)"
-			],
-			"helpExample": [
-				"{PREFIX}lang",
-				"{PREFIX}lang tr_TR"
-			],
+			"helpUsage": ["{PREFIX}lang (dil kodu)"],
+			"helpExample": ["{PREFIX}lang", "{PREFIX}lang tr_TR"],
 			"success": "Dil başarıyla değiştirildi.",
 			"errorNotFound": "Mevcut dillerin listesi:"
 		},
 		"profile": {
 			"helpDescription": "Sizinle bot arasındaki ilgili bilgileri gösterir.",
-			"helpUsage": [
-				"{PREFIX}profile (@kullanıcı)"
-			],
-			"helpExample": [
-				"{PREFIX}profile",
-				"{PREFIX}profile @eduardozgz"
-			],
+			"helpUsage": ["{PREFIX}profile (@kullanıcı)"],
+			"helpExample": ["{PREFIX}profile", "{PREFIX}profile @eduardozgz"],
 			"badges": "Rozetler",
 			"credits": "Kredi",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
@@ -746,9 +640,7 @@
 		},
 		"counts": {
 			"helpDescription": "Bazı sayıları gösterir.",
-			"helpExample": [
-				"{PREFIX}counts"
-			],
+			"helpExample": ["{PREFIX}counts"],
 			"members": "Üye Sayısı:",
 			"onlineMembers": "Aktif Üye Sayısı:",
 			"offlineMembers": "Çevrimdışı Üye Sayısı:",
