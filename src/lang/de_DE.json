@@ -737,7 +737,8 @@
 			"badges": "Abzeichen",
 			"credits": "Credits",
 			"serverUpgradesAvailable": "Verbleibende Server Verbesserungen",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
+			"cancelText": "cancel",
 			"removeDataConfirmationString": "Ich möchte alle meine Daten löschen",
 			"removeDataSuccess": "Deine Daten wurden erfolgreich entfernt",
 			"userNotFound": "User not found in the DB"
@@ -956,7 +957,8 @@
 		},
 		"paginator": {
 			"pageCounter": "Seite {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Zu welcher Seite willst du springen? Schreibe `cancel` oder `0` um abzubrechen. Du hast 15 Sekunden um zu Antworten.",
+			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"cancelText": "cancel",
 			"errorPageLengthExceeded": "Die Seitenzahl kleiner oder gleich {TOTAL_PAGES} sein. Bitte versuche es erneut.",
 			"errorNegativeInput": "Die Seitenzahl kann nicht negativ sein. Bitte versuche es erneut."
 		}
