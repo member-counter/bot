@@ -64,11 +64,9 @@ const user: Command = {
 			switch (actionRequested.toLowerCase()) {
 				case "grantcredit":
 				case "grantcredits": {
-						await userSettings.grantCredits(
-							parseInt(actionParams[0], 10) || 1
-						);
-						break;
-					}
+					await userSettings.grantCredits(parseInt(actionParams[0], 10) || 1);
+					break;
+				}
 
 				case "grantserverupgrade":
 				case "grantserverupgrades": {
@@ -109,11 +107,11 @@ const user: Command = {
 			fields: []
 		});
 
-			embed.fields.push({
-				name: languagePack.commands.profile.badges,
-				value: generateBadgeList(badges),
-				inline: true
-			});
+		embed.fields.push({
+			name: languagePack.commands.profile.badges,
+			value: generateBadgeList(badges),
+			inline: true
+		});
 
 		embed.fields.push({
 			name: languagePack.commands.profile.serverUpgradesAvailable,
@@ -132,6 +130,8 @@ const user: Command = {
 		if (targetUser.id === author.id) {
 			await userProfileMessage.addReaction("🗑️");
 
+			const { cancelText } = languagePack.commands.profile;
+
 			ReactionManager.addReactionListener({
 				message: userProfileMessage,
 				emoji: "🗑️",
@@ -140,13 +140,16 @@ const user: Command = {
 						destroyListener();
 						const profileLP = languagePack.commands.profile;
 						const confirmationPrompt = await channel.createMessage(
-							profileLP.removeDataConfirmation.replace(
-								"{CONFIRMATION_STRING}",
-								profileLP.removeDataConfirmationString
-							)
+							profileLP.removeDataConfirmation
+								.replace(
+									"{CONFIRMATION_STRING}",
+									profileLP.removeDataConfirmationString
+								)
+								.replace("{CANCEL_STRING}", profileLP.cancelText)
 						);
 						const filter = (m) =>
-							(["cancel"].includes(m.content) && reactorId === author.id) ||
+							(["cancel", cancelText].includes(m.content) &&
+								reactorId === author.id) ||
 							reactorId === author.id;
 						const collector = new MessageCollector(client, channel, filter, {
 							time: 60000,
@@ -158,7 +161,7 @@ const user: Command = {
 								confirmationPrompt.delete();
 								await channel.createMessage(profileLP.removeDataSuccess);
 							}
-							if (m.content === "cancel") {
+							if (["cancel", cancelText].includes(m.content)) {
 								collector.stop();
 								confirmationPrompt.delete();
 							}
