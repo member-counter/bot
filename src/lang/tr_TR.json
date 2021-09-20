@@ -15,7 +15,7 @@
 			"helpFooterText": "**Kullanım bilgisi:** `()` isteğe bağlı bir parametre anlamına, `[]` ise gerekli bir parametre anlamına gelir",
 			"embedReply": {
 				"title": "Komut Listesi | Prefix: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command or counter send `{PREFIX}help` plus the name: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
+				"description": "[Botu Ekleyin]({DISCORD_BOT_INVITE}) **|** [Web Sitesi]({WEBSITE}) **|** [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum için: `{PREFIX}setup`\nBotun nasıl kullanılacağını öğrenmek için: `{PREFIX}guide`\n\nBir komut veya sayaç hakkında daha fazla bilgi almak için `{PREFIX}help` + komut veya sayaç adı yazın. Örneğin: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
 						"name": "**Sayaç Komutları**",
@@ -895,6 +895,7 @@
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
+			"title": "Check permissions",
 			"optionalText": "(İsteğe Bağlı)",
 			"adminWarning": "**Bu botun yönetici yetkisi var, lütfen yönetici yetkisini kapatın ve doğru yetkilerle kurulum yapın**",
 			"footer": "Yetki sorunlarını düzeltmeniz gerekiyorsa, botu tekrar davet etmeyi deneyin:",
