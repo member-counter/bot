@@ -243,7 +243,7 @@
 					],
 					"example": [
 						"{bannedMembers} Baneados",
-						"{bannedMembers} have been hit with the ban hammer"
+						"{bannedMembers} han sido golpeados con el martillo del ban"
 					]
 				},
 				"membersPlaying": {
