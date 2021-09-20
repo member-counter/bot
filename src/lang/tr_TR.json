@@ -432,13 +432,13 @@
 						"{countdown:targetDate:format}"
 					],
 					"example": [
-						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
+						"Yeni yıl için; {countdown:1640991600:%d gün, %h saat, %m dakika} kaldı"
 					]
 				},
 				"game": {
 					"name": "game:gameId:address",
 					"description": "Bir oyun (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sunucusundaki çevrimiçi oyuncular",
-					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
+					"detailedDescription": "Bir oyun sunucusunda kaç çevrimiçi oyuncu olduğunu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sayar, `gameId` yerine [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden birini ve `address` kısmını ise asıl sunucu adresiyle değiştirin",
 					"usage": [
 						"{game:gameId:address}"
 					],
@@ -470,14 +470,14 @@
 				},
 				"static": {
 					"name": "static:data",
-					"description": "Displays the given `data`",
+					"description": "Verilen `data`yı görüntüler",
 					"detailedDescription": "Displays the given `data` with custom formatting based on the server settings if it's a number, text is also accepted",
 					"usage": [
 						"{static:data}"
 					],
 					"example": [
 						"{static:420}",
-						"{static:Hello world!}"
+						"{static:Selam Dünya!}"
 					]
 				},
 				"sum": {
@@ -527,7 +527,7 @@
 				"modulus": {
 					"name": "modulus:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerlerin modülünü alır",
-					"detailedDescription": "Gets the modulus of the specified values, done from the left to the right",
+					"detailedDescription": "Soldan sağa belirtilen değerlerin modülünü alır",
 					"usage": [
 						"{modulus:değer1,değer2,daha fazla değer}"
 					],
@@ -878,9 +878,9 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}`.",
+			"helpDescription": "Belirli sayaçları özelleştirmek veya `{http}` gibi gelişmiş sayaçlar oluşturmak için kullanışlı bir base64 komutu.",
 			"helpUsage": [
-				"{PREFIX}base64 [encode/decode] [data]"
+				"{PREFIX}base64 [encode/decode] [veri]"
 			],
 			"helpExample": [
 				"{PREFIX}base64 encode test",
