@@ -267,48 +267,48 @@
 						"{nitro-boosters}"
 					],
 					"example": [
-						"Awesome boosters: {nitro-boosters}"
+						"Müthiş Boostçu Sayısı: {nitro-boosters}"
 					]
 				},
 				"youtubeSubscribers": {
-					"name": "youtubeSubscribers:kanalURL'si",
+					"name": "youtubeSubscribers:channelUrl",
 					"description": "Bir YouTube kanalının abone sayısı",
 					"detailedDescription": "Bir YouTube kanalının kaç aboneye sahip olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeSubscribers:kanalURL'si}"
+						"{youtubeSubscribers:channelUrl}"
 					],
 					"example": [
 						"Abone Sayısı: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeViews": {
-					"name": "youtubeViews:kanalURL'si",
+					"name": "youtubeViews:channelUrl",
 					"description": "Bir YouTube kanalının izlenme sayısı",
 					"detailedDescription": "Bir YouTube kanalının kaç kez görüntülendiğini sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeViews:kanalURL'si}"
+						"{youtubeViews:channelUrl}"
 					],
 					"example": [
 						"Görüntüleme Sayısı: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeVideos": {
-					"name": "youtubeVideos:kanalURL'si",
+					"name": "youtubeVideos:channelUrl",
 					"description": "Bir YouTube kanalının video sayısı",
 					"detailedDescription": "Bir YouTube kanalının kaç videosu olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeVideos:kanalURL'si}"
+						"{youtubeVideos:channelUrl}"
 					],
 					"example": [
 						"Video Sayısı: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeChannelName": {
-					"name": "youtubeChannelName:kanalURL'si",
+					"name": "youtubeChannelName:channelUrl",
 					"description": "Bir YouTube kanalının adını görüntüler",
 					"detailedDescription": "Bir YouTube kanalının adını görüntüler, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeChannelName:kanalURL'si}"
+						"{youtubeChannelName:channelUrl}"
 					],
 					"example": [
 						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
@@ -388,7 +388,7 @@
 						"{redditMembers:subreddit}"
 					],
 					"example": [
-						"Redditors: {redditMembers:science}"
+						"Redditör Sayısı: {redditMembers:science}"
 					]
 				},
 				"redditMembersOnline": {
@@ -399,7 +399,7 @@
 						"{redditMembersOnline:subreddit}"
 					],
 					"example": [
-						"Online Redditors: {redditMembersOnline:science}"
+						"Çevrimiçi Redditör Sayısı: {redditMembersOnline:science}"
 					]
 				},
 				"redditTitle": {
@@ -437,13 +437,13 @@
 				},
 				"game": {
 					"name": "game:gameId:address",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
+					"description": "Bir oyun (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sunucusundaki çevrimiçi oyuncular",
 					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
 					"usage": [
 						"{game:gameId:address}"
 					],
 					"example": [
-						"{game:minecraft:mc.hypixel.net} Mining and crafting"
+						"{game:minecraft:mc.hypixel.net} Üye Madencilik ve Eşya Yapıyor"
 					]
 				},
 				"clock": {
@@ -485,7 +485,7 @@
 					"description": "Belirtilen değerlerin toplamı",
 					"detailedDescription": "Soldan sağa belirtilen değerlerin toplamı",
 					"usage": [
-						"{sum:value1,value2,more values}"
+						"{sum:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"2 + 2 = {sum:2,2}"
@@ -496,7 +496,7 @@
 					"description": "Belirtilen değerleri çıkarır",
 					"detailedDescription": "Soldan sağa belirtilen değerleri çıkarır",
 					"usage": [
-						"{subtract:value1,value2,more values}"
+						"{substract:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"2 - 2 = {subtract:2,2}"
@@ -507,7 +507,7 @@
 					"description": "Belirtilen değerleri çarpar",
 					"detailedDescription": "Soldan sağa belirtilen değerleri çarpar",
 					"usage": [
-						"{multiply:value1,value2,more values}"
+						"{multiply:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"2 * 2 = {multiply:2,2}"
@@ -518,7 +518,7 @@
 					"description": "Belirtilen değerleri böler",
 					"detailedDescription": "Soldan sağa yapılan belirtilen değerleri böler",
 					"usage": [
-						"{divide:value1,value2,more values}"
+						"{divide:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"10 / 2 = {divide:10,2}"
@@ -529,7 +529,7 @@
 					"description": "Belirtilen değerlerin modülünü alır",
 					"detailedDescription": "Gets the modulus of the specified values, done from the left to the right",
 					"usage": [
-						"{modulus:value1,value2,more values}"
+						"{modulus:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"10 / 2 = {modulus:10,2}"
@@ -590,10 +590,10 @@
 		"editChannel": {
 			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu sınırı \"yoksaymak\" için bu komutu kullanabilirsiniz.",
 			"helpUsage": [
-				"{PREFIX}editChannel [channel ID] [content and counters]"
+				"{PREFIX}editChannel [kanal ID] [içerik ve sayaçlar]"
 			],
 			"helpExample": [
-				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
+				"{PREFIX}editChannel 701396983843127366 {onlineMembers}/{members} Çevrimiçi"
 			],
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir",
 			"errorNotFound": "Kanal bulunamadı",
@@ -603,7 +603,7 @@
 			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsiniz. İlk argüman \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.",
 			"helpUsage": [
 				"{PREFIX}setDigit reset",
-				"{PREFIX}setDigit [number] [your custom number]"
+				"{PREFIX}setDigit [sayı] [özel sayı]"
 			],
 			"helpExample": [
 				"{PREFIX}setDigit 3 3",
@@ -629,9 +629,9 @@
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale.",
+			"helpDescription": "Sayıları ve saatleri (12 saat/24 saat formatıyla) belirtilen yerel ayara göre biçimlendirir.",
 			"helpUsage": [
-				"{PREFIX}locale [locale/disable]"
+				"{PREFIX}locale [yer/disable]"
 			],
 			"helpExample": [
 				"{PREFIX}locale tr",
@@ -656,11 +656,11 @@
 		"role": {
 			"helpDescription": "Rollerin bot yönetim komutlarını kullanmasına izin verebilir veya reddedebilirsiniz.\nTüm rollere izin vermek veya reddetmek için ``all`` anahtar kelimesini kullanabilirsiniz.\nŞu anda hangi rollere izin verildiğini görmek için `{PREFIX}seeSettings` komutunu kullanın.",
 			"helpUsage": [
-				"{PREFIX}role [allow/deny] [@roles/all]"
+				"{PREFIX}role [allow/deny] [@roller/all]"
 			],
 			"helpExample": [
 				"{PREFIX}role allow @Mod",
-				"{PREFIX}role allow @Mod @OtherRole",
+				"{PREFIX}role allow @Mod @DiğerRol",
 				"{PREFIX}role allow all",
 				"{PREFIX}role deny all"
 			],
@@ -689,7 +689,7 @@
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Removes all the counters and restores the custom settings of this server to the default ones.",
+			"helpDescription": "Tüm sayaçları kaldırır ve bu sunucunun özel ayarlarını varsayılan ayarlara geri yükler.",
 			"helpExample": [
 				"{PREFIX}resetSettings"
 			],
@@ -705,7 +705,7 @@
 			"noServerUpgradesAvailable": "Kullanabileceğiniz daha fazla sunucu yükseltmesi olmadığı için daha fazla sunucu yükseltmesi yapamazsınız"
 		},
 		"info": {
-			"helpDescription": "List of useful links.",
+			"helpDescription": "Yararlı linklerin listesi.",
 			"helpExample": [
 				"{PREFIX}info"
 			],
@@ -760,10 +760,10 @@
 		"preview": {
 			"helpDescription": "Bir sayacın veya çeşitli sayaçların bir kanalda nasıl görüneceğinin bir önizlemesini gösterir.",
 			"helpUsage": [
-				"{PREFIX}preview [content and counters]"
+				"{PREFIX}preview [içerik ve sayaçlar]"
 			],
 			"helpExample": [
-				"{PREFIX}preview {members} Members"
+				"{PREFIX}preview {members} Üye"
 			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Kanal adı önizlemesi",
