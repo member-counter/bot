@@ -700,6 +700,7 @@
 		"checkPermissions": {
 			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
 			"helpExample": ["{PREFIX}checkPermissions"],
+			"title": "Check permissions",
 			"optionalText": "(Optional)",
 			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
 			"footer": "If you need to fix permissions problems, try inviting the bot again:",
