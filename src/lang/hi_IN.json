@@ -403,7 +403,7 @@
 					]
 				},
 				"redditTitle": {
-					"name": "redditTitle",
+					"name": "redditTitle:subreddit",
 					"description": "Displays the title of a subreddit",
 					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
 					"usage": [
