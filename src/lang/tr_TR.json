@@ -10,9 +10,10 @@
 				"{PREFIX}help {members}",
 				"{PREFIX}help members"
 			],
+			"helpFooterText": "**Kullanım bilgisi:** `()` isteğe bağlı bir parametre anlamına, `[]` ise gerekli bir parametre anlamına gelir",
 			"embedReply": {
 				"title": "Komut Listesi | Prefix: {PREFIX}",
-				"description": "[Botu Ekleyin]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum için: `{PREFIX}setup`\nBotun nasıl kullanılacağını öğrenmek için: `{PREFIX}guide`\n\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` + komut adı yazın, örneğin: ```\\n{PREFIX}help shortNumber```\n**Bilgi:** `()` isteğe bağlı bir parametre anlamına, `[]` ise gerekli bir parametre anlamına gelir",
+				"description": "[Botu Ekleyin]({DISCORD_BOT_INVITE}) **|** [Web Sitesi]({WEBSITE}) **|** [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum için: `{PREFIX}setup`\nBotun nasıl kullanılacağını öğrenmek için: `{PREFIX}guide`\n\nBir komut veya sayaç hakkında daha fazla bilgi almak için `{PREFIX}help` + komut veya sayaç adı yazın. Örneğin: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
 						"name": "**Sayaç Komutları**",
@@ -52,28 +53,36 @@
 			"counters": {
 				"members": {
 					"name": "members",
-					"description": "Sunucunuzdaki üye sayısı",
+					"description": "Sunucunuzdaki üye sayısını gösterir",
 					"detailedDescription": "Bir sunucunun kaç üyesi olduğunu sayar",
 					"usage": ["{members}"],
 					"example": ["{members} Üye"]
 				},
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
-					"description": "Sunucunuzdaki yaklaşık çevrimiçi üye sayısı",
-					"detailedDescription": "Sunucuda yaklaşık olarak kaç üyenin çevrimiçi olduğunu sayar",
-					"usage": ["{approximatedOnlineMembers}"],
-					"example": ["{approximatedOnlineMembers} Çevrimiçi"]
+					"description": "Sunucunuzdaki yaklaşık üye sayısını gösterir",
+					"detailedDescription": "Sunucuda yaklaşık olarak kaç üyenin aktif olduğunu sayar",
+					"usage": [
+						"{approximatedOnlineMembers}"
+					],
+					"example": [
+						"{approximatedOnlineMembers} Aktif"
+					]
 				},
 				"onlineMembers": {
 					"name": "onlineMembers",
-					"description": "Sunucunuzdaki çevrimiçi üye sayısı",
-					"detailedDescription": "Sunucuda kaç üyenin çevrimiçi olduğunu sayar",
-					"usage": ["{onlineMembers}"],
-					"example": ["{onlineMembers} Çevrimiçi"]
+					"description": "Sunucunuzda aktif üye sayısını gösterir",
+					"detailedDescription": "Sunucuda kaç üyenin aktif olduğunu sayar",
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} Aktif"
+					]
 				},
 				"offlineMembers": {
 					"name": "offlineMembers",
-					"description": "Sunucunuzdaki çevrimdışı üye sayısı",
+					"description": "Sunucunuzdaki çevrimdışı üye sayısını gösterir",
 					"detailedDescription": "Sunucuda kaç üyenin çevrimdışı olduğunu sayar",
 					"usage": ["{onlineMembers}"],
 					"example": ["{onlineMembers} Çevrimdışı"]
@@ -87,10 +96,14 @@
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
-					"description": "Sunucunuzdaki çevrimiçi kullanıcı sayısı (botlar hariç)",
-					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının çevrimiçi olduğunu sayar",
-					"usage": ["{users}"],
-					"example": ["{users} Çevrimiçi Kullanıcı"]
+					"description": "Sunucunuzdaki aktif kullanıcı sayısı (botlar hariç)",
+					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının aktif olduğunu sayar",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Aktif Kullanıcı"
+					]
 				},
 				"offlineUsers": {
 					"name": "offlineUsers",
@@ -108,10 +121,14 @@
 				},
 				"onlineBots": {
 					"name": "onlineBots",
-					"description": "Sunucunuzdaki çevrimiçi bot sayısı",
-					"detailedDescription": "Sunucuda kaç botun çevrimiçi olduğunu sayar",
-					"usage": ["{bots}"],
-					"example": ["{bots} Çevrimiçi Bot"]
+					"description": "Sunucunuzdaki aktif bot sayısı",
+					"detailedDescription": "Sunucuda kaç botun aktif olduğunu sayar",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Aktif Bot"
+					]
 				},
 				"offlineBots": {
 					"name": "offlineBots",
@@ -122,14 +139,14 @@
 				},
 				"roles": {
 					"name": "roles",
-					"description": "Sunucunuzdaki rol sayısı",
+					"description": "Sunucunuzdaki rol sayısını gösterir",
 					"detailedDescription": "Sunucuda kaç tane rol olduğunu sayar",
 					"usage": ["{roles}"],
 					"example": ["{roles} Rol"]
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Sunucunuzdaki kanal sayısı (kategoriler hariç)",
+					"description": "Sunucunuzdaki kanal sayısını gösterir (kategoriler hariç)",
 					"detailedDescription": "Sunucuda (kategoriler hariç) kaç kanal olduğunu sayar",
 					"usage": ["{channels}"],
 					"example": ["{channels} Kanal"]
@@ -138,26 +155,32 @@
 					"name": "membersWithRole:rol1ID,rol2ID",
 					"description": "Rol veya rollere sahip üye sayısı",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
-					"usage": ["{membersWithRole:rol1ID,rol2ID}"],
+					"usage": [
+						"{membersWithRole:rol1ID,rol2ID}"
+					],
 					"example": [
 						"{membersWithRole:6509281904766437,5823659271648290} Yönetici ve Mod"
 					]
 				},
 				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:rol1ID,rol2ID",
-					"description": "Rol veya rollere sahip çevrimiçi üye sayısı",
-					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimiçi olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
-					"usage": ["{onlineMembersWithRole:rol1ID,rol2ID}"],
+					"description": "Rol veya rollere sahip aktif üye sayısı",
+					"detailedDescription": "Bir role veya rollere sahip kaç üyenin aktif olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
+					"usage": [
+						"{onlineMembersWithRole:rol1ID,rol2ID}"
+					],
 					"example": [
-						"{onlineMembersWithRole:6509281904766437,5823659271648290} Çevrimiçi Yönetici ve Mod",
-						"{onlineMembersWithRole:5823659271648290}/{membersWithRole:5823659271648290} Yönetici Çevrimiçi"
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} Aktif Yönetici ve Mod",
+						"{onlineMembersWithRole:5823659271648290}/{membersWithRole:5823659271648290} Yönetici Aktif"
 					]
 				},
 				"offlineMembersWithRole": {
 					"name": "offlineMembersWithRole:rol1ID,rol2ID",
 					"description": "Rol veya rollere sahip çevrimdışı üye sayısı",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimdışı olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
-					"usage": ["{offlineMembersWithRole:rol1ID,rol2ID}"],
+					"usage": [
+						"{offlineMembersWithRole:rol1ID,rol2ID}"
+					],
 					"example": [
 						"{offlineMembersWithRole:6509281904766437,5823659271648290} Çevrimdışı Yönetici ve Mod",
 						"{offlineMembersWithRole:5823659271648290}/{membersWithRole:5823659271648290} Yönetici Çevrimdışı"
@@ -178,7 +201,7 @@
 				},
 				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "Sunucunuzdaki banlı üye sayısı",
+					"description": "Sunucunuzdaki banlı üye sayısını gösterir",
 					"detailedDescription": "Kaç üyenin banlandığını sayar, botun bu sayıyı alabilmesi için üyeleri engelle yetkisine sahip olması gerekir",
 					"usage": ["{bannedMembers}"],
 					"example": [
@@ -201,14 +224,18 @@
 				},
 				"nitro-boosters": {
 					"name": "nitro-boosters",
-					"description": "Sunucuyu boostlayan toplam üye sayısını sayar",
-					"detailedDescription": "Sunucuyu boostlayan toplam üye sayısını sayar",
-					"usage": ["{nitro-boosters}"],
-					"example": ["Müthiş Boostçu Sayısı: {nitro-boosters}"]
+					"description": "Sunucuyu boostlayan toplam üye sayısını gösterir",
+					"detailedDescription": "Sunucuyu boostlayan toplam üye sayısını gösterir",
+					"usage": [
+						"{nitro-boosters}"
+					],
+					"example": [
+						"Müthiş Boostçu Sayısı: {nitro-boosters}"
+					]
 				},
 				"youtubeSubscribers": {
 					"name": "youtubeSubscribers:channelUrl",
-					"description": "Bir YouTube kanalının abone sayısı",
+					"description": "Bir YouTube kanalının abone sayısını gösterir",
 					"detailedDescription": "Bir YouTube kanalının kaç aboneye sahip olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": ["{youtubeSubscribers:channelUrl}"],
 					"example": [
@@ -217,7 +244,7 @@
 				},
 				"youtubeViews": {
 					"name": "youtubeViews:channelUrl",
-					"description": "Bir YouTube kanalının izlenme sayısı",
+					"description": "Bir YouTube kanalının izlenme sayısını gösterir",
 					"detailedDescription": "Bir YouTube kanalının kaç kez görüntülendiğini sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": ["{youtubeViews:channelUrl}"],
 					"example": [
@@ -226,7 +253,7 @@
 				},
 				"youtubeVideos": {
 					"name": "youtubeVideos:channelUrl",
-					"description": "Bir YouTube kanalının video sayısı",
+					"description": "Bir YouTube kanalının video sayısını gösterir",
 					"detailedDescription": "Bir YouTube kanalının kaç videosu olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": ["{youtubeVideos:channelUrl}"],
 					"example": [
@@ -249,7 +276,7 @@
 				},
 				"twitchViews": {
 					"name": "twitchViews:nickname",
-					"description": "Bir Twitch kanalının izlenme sayısı",
+					"description": "Bir Twitch kanalının izlenme sayısını gösterir",
 					"detailedDescription": "Bir Twitch kanalının kaç kez görüntülendiğini sayar, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
 					"usage": ["{twitchViews:nickname}"],
 					"example": ["{twitchViews:ninja} Görüntüleme"]
@@ -277,25 +304,31 @@
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
-					"description": "Bir Twitter kullanıcısının takipçi sayısı",
+					"description": "Bir Twitter kullanıcısının takipçi sayısını gösterir",
 					"detailedDescription": "Bir Twitter kullanıcısının kaç takipçisi olduğunu sayar, `username` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": ["{twitterFollowers:username}"],
 					"example": ["Takipçi Sayısı: {twitterFollowers:0xEduardozgz}"]
 				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
-					"description": "Bir subredditin üye sayısını sayar",
-					"detailedDescription": "Bir subredditin üye sayısını sayar, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
-					"usage": ["{redditMembers:subreddit}"],
-					"example": ["Redditör Sayısı: {redditMembers:science}"]
+					"description": "Bir subredditin üye sayısını gösterir",
+					"detailedDescription": "Bir subredditin üye sayısını gösterir, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
+					"usage": [
+						"{redditMembers:subreddit}"
+					],
+					"example": [
+						"Redditör Sayısı: {redditMembers:science}"
+					]
 				},
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
-					"description": "Bir subredditin çevrimiçi üye sayısını sayar",
-					"detailedDescription": "Bir subredditin üye sayısını sayar, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
-					"usage": ["{redditMembersOnline:subreddit}"],
+					"description": "Bir subredditin aktif üye sayısını gösterir",
+					"detailedDescription": "Bir subredditin üye sayısını gösterir, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
 					"example": [
-						"Çevrimiçi Redditör Sayısı: {redditMembersOnline:science}"
+						"Aktif Redditör Sayısı: {redditMembersOnline:science}"
 					]
 				},
 				"redditTitle": {
@@ -307,10 +340,14 @@
 				},
 				"instagramFollowers": {
 					"name": "instagramFollowers:kullanıcıadı",
-					"description": "Bir Instagram hesabındaki takipçi miktarını sayar",
-					"detailedDescription": "Bir Instagram hesabındaki takipçi miktarını sayar, `username` bölümünü asıl Instagram kullanıcı adıyla değiştirin",
-					"usage": ["{instagramFollowers:username}"],
-					"example": ["Takipçi Sayısı: {instagramFollowers:eduardozgz}"]
+					"description": "Bir Instagram hesabındaki takipçi sayısını gösterir",
+					"detailedDescription": "Bir Instagram hesabındaki takipçi sayısını gösterir, `username` bölümünü asıl Instagram kullanıcı adıyla değiştirin",
+					"usage": [
+						"{instagramFollowers:username}"
+					],
+					"example": [
+						"Takipçi Sayısı: {instagramFollowers:eduardozgz}"
+					]
 				},
 				"countdown": {
 					"name": "countdown:targetDate:format",
@@ -323,9 +360,11 @@
 				},
 				"game": {
 					"name": "game:gameId:address",
-					"description": "Bir oyun (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sunucusundaki çevrimiçi oyuncular",
-					"detailedDescription": "Bir oyun sunucusunda kaç çevrimiçi oyuncu olduğunu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sayar, `gameId` yerine [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden birini ve `address` kısmını ise asıl sunucu adresiyle değiştirin",
-					"usage": ["{game:gameId:address}"],
+					"description": "Bir oyun (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sunucusundaki aktif oyuncu sayısını gösterir",
+					"detailedDescription": "Bir oyun sunucusunda kaç aktif oyuncu olduğunu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sayar, `gameId` yerine [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden birini ve `address` kısmını ise asıl sunucu adresiyle değiştirin",
+					"usage": [
+						"{game:gameId:address}"
+					],
 					"example": [
 						"{game:minecraft:mc.hypixel.net} Üye Madencilik ve Eşya Yapıyor"
 					]
@@ -341,7 +380,9 @@
 					"name": "http:options",
 					"description": "Bir http isteğinin sonucunu gösterir",
 					"detailedDescription": "Bir http `GET` requesti tarafından döndürülen sonucu gösterir. `options`ı [burada](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir veya manuel olarak oluşturabilirsiniz: `options`, base64'te kodlanmış bir JSON objectidir (bunu elde etmek için {PREFIX}base64 komutunu kullanabilirsiniz), bu object aşağıdaki keylere sahip olabilir: `url`: Kaynağın url'si ile bir string döndürür, `parseNumber`: Eğer sonuç geçerli bir sayıysa, sayı sunucunuzun ayarlarına göre ayrıştırılıp özelleştirilip bir boolean döndürülür, `dataPath`: Yanıt bir JSON objectiyse, bir array veya sayı olması gereken bir stringe sahip bir keyin yolunu belirtmelisiniz, bu yolun syntaxi JS'nin özelliklere ve array öğelerine erişmek için kullandığı syntaxe benzer.",
-					"usage": ["{http:options}"],
+					"usage": [
+						"{http:options}"
+					],
 					"example": [
 						"Son abone: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
 					]
@@ -350,43 +391,68 @@
 					"name": "static:data",
 					"description": "Verilen `data`yı görüntüler",
 					"detailedDescription": "Verilen `data`yı bu bir sayıysa sunucu ayarlarına göre özel format ile görüntüler, metin de kabul edilir",
-					"usage": ["{static:data}"],
-					"example": ["{static:420}", "{static:Selam Dünya!}"]
+					"usage": [
+						"{static:data}"
+					],
+					"example": [
+						"{static:420}",
+						"{static:Selam Dünya!}"
+					]
 				},
 				"sum": {
 					"name": "sum:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerlerin toplamı",
 					"detailedDescription": "Soldan sağa belirtilen değerlerin toplamı",
-					"usage": ["{sum:değer1,değer2,daha fazla değer}"],
-					"example": ["2 + 2 = {sum:2,2}"]
+					"usage": [
+						"{sum:değer1,değer2,daha fazla değer}"
+					],
+					"example": [
+						"2 + 2 = {sum:2,2}"
+					]
 				},
 				"subtract": {
 					"name": "substract:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerleri çıkarır",
 					"detailedDescription": "Soldan sağa belirtilen değerleri çıkarır",
-					"usage": ["{substract:değer1,değer2,daha fazla değer}"],
-					"example": ["2 - 2 = {subtract:2,2}"]
+					"usage": [
+						"{substract:değer1,değer2,daha fazla değer}"
+					],
+					"example": [
+						"2 - 2 = {subtract:2,2}"
+					]
 				},
 				"multiply": {
 					"name": "multiply:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerleri çarpar",
 					"detailedDescription": "Soldan sağa belirtilen değerleri çarpar",
-					"usage": ["{multiply:değer1,değer2,daha fazla değer}"],
-					"example": ["2 * 2 = {multiply:2,2}"]
+					"usage": [
+						"{multiply:değer1,değer2,daha fazla değer}"
+					],
+					"example": [
+						"2 * 2 = {multiply:2,2}"
+					]
 				},
 				"divide": {
 					"name": "divide:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerleri böler",
 					"detailedDescription": "Soldan sağa yapılan belirtilen değerleri böler",
-					"usage": ["{divide:değer1,değer2,daha fazla değer}"],
-					"example": ["10 / 2 = {divide:10,2}"]
+					"usage": [
+						"{divide:değer1,değer2,daha fazla değer}"
+					],
+					"example": [
+						"10 / 2 = {divide:10,2}"
+					]
 				},
 				"modulus": {
 					"name": "modulus:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerlerin modülünü alır",
 					"detailedDescription": "Soldan sağa belirtilen değerlerin modülünü alır",
-					"usage": ["{modulus:değer1,değer2,daha fazla değer}"],
-					"example": ["10 / 2 = {modulus:10,2}"]
+					"usage": [
+						"{modulus:değer1,değer2,daha fazla değer}"
+					],
+					"example": [
+						"10 / 2 = {modulus:10,2}"
+					]
 				}
 			}
 		},
@@ -436,9 +502,11 @@
 		},
 		"editChannel": {
 			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu sınırı \"yoksaymak\" için bu komutu kullanabilirsiniz.",
-			"helpUsage": ["{PREFIX}editChannel [kanal ID] [içerik ve sayaçlar]"],
+			"helpUsage": [
+				"{PREFIX}editChannel [kanal ID] [içerik ve sayaçlar]"
+			],
 			"helpExample": [
-				"{PREFIX}editChannel 701396983843127366 {onlineMembers}/{members} Çevrimiçi"
+				"{PREFIX}editChannel 701396983843127366 {onlineMembers}/{members} Aktif"
 			],
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir",
 			"errorNotFound": "Kanal bulunamadı",
@@ -473,7 +541,9 @@
 		},
 		"locale": {
 			"helpDescription": "Sayıları ve saatleri (12 saat/24 saat formatıyla) belirtilen yerel ayara göre biçimlendirir.",
-			"helpUsage": ["{PREFIX}locale [yer/disable]"],
+			"helpUsage": [
+				"{PREFIX}locale [yer/disable]"
+			],
 			"helpExample": [
 				"{PREFIX}locale tr",
 				"{PREFIX}locale tr",
@@ -494,7 +564,9 @@
 		},
 		"role": {
 			"helpDescription": "Rollerin bot yönetim komutlarını kullanmasına izin verebilir veya reddedebilirsiniz.\nTüm rollere izin vermek veya reddetmek için ``all`` anahtar kelimesini kullanabilirsiniz.\nŞu anda hangi rollere izin verildiğini görmek için `{PREFIX}seeSettings` komutunu kullanın.",
-			"helpUsage": ["{PREFIX}role [allow/deny] [@roller/all]"],
+			"helpUsage": [
+				"{PREFIX}role [allow/deny] [@roller/all]"
+			],
 			"helpExample": [
 				"{PREFIX}role allow @Mod",
 				"{PREFIX}role allow @Mod @DiğerRol",
@@ -525,7 +597,9 @@
 		},
 		"resetSettings": {
 			"helpDescription": "Tüm sayaçları kaldırır ve bu sunucunun özel ayarlarını varsayılan ayarlara geri yükler.",
-			"helpExample": ["{PREFIX}resetSettings"],
+			"helpExample": [
+				"{PREFIX}resetSettings"
+			],
 			"done": "Ayarlar başarıyla sıfırlandı."
 		},
 		"upgradeServer": {
@@ -537,7 +611,9 @@
 		},
 		"info": {
 			"helpDescription": "Yararlı linklerin listesi.",
-			"helpExample": ["{PREFIX}info"],
+			"helpExample": [
+				"{PREFIX}info"
+			],
 			"embedReply": {
 				"description": "[Botu Ekleyin]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Premium Alın]({GET_PREMIUM_BOT_URL})\n[Destek Sunucusu]({BOT_SERVER_URL})\n[GitHub Reposu](https://github.com/eduardozgz/member-counter-bot)"
 			}
@@ -554,7 +630,7 @@
 			"helpUsage": ["{PREFIX}profile (@kullanıcı)"],
 			"helpExample": ["{PREFIX}profile", "{PREFIX}profile @eduardozgz"],
 			"badges": "Rozetler",
-			"credits": "Katkıda Bulunanlar",
+			"credits": "Kredi",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
 			"removeDataConfirmation": "Tüm verilerinizi silmek istiyorsanız lütfen tam olarak şu metni yazıp gönderin: ```{CONFIRMATION_STRING}```\n:warning: **Bu işlem tüm verilerinizi silinecek, rozetleriniz, sunucu yükseltmeleriniz ve kredileriniz sonsuza kadar kaybolacak, faturalar yasal nedenlerle tutulacaktır, devam etmek istediğinizden emin misiniz? (Yoksayın veya iptal etmek için '{CANCEL_STRING}' yazın)**",
 			"cancelText": "iptal",
@@ -566,19 +642,23 @@
 			"helpDescription": "Bazı sayıları gösterir.",
 			"helpExample": ["{PREFIX}counts"],
 			"members": "Üye Sayısı:",
-			"onlineMembers": "Çevrimiçi Üye Sayısı:",
+			"onlineMembers": "Aktif Üye Sayısı:",
 			"offlineMembers": "Çevrimdışı Üye Sayısı:",
 			"bots": "Bot Sayısı:",
 			"connectedUsers": "Ses Kanallarındaki Kullanıcı Sayısı:",
 			"channels": "Kanal Sayısı:",
 			"roles": "Rol Sayısı:",
-			"nitroBoosters": "Boostlayan Üye Sayısı:",
+			"nitroBoosters": "Boostçu Sayısı:",
 			"bannedMembers": "Banlanan Üye Sayısı:"
 		},
 		"preview": {
 			"helpDescription": "Bir sayacın veya çeşitli sayaçların bir kanalda nasıl görüneceğinin bir önizlemesini gösterir.",
-			"helpUsage": ["{PREFIX}preview [içerik ve sayaçlar]"],
-			"helpExample": ["{PREFIX}preview {members} Üye"],
+			"helpUsage": [
+				"{PREFIX}preview [içerik ve sayaçlar]"
+			],
+			"helpExample": [
+				"{PREFIX}preview {members} Üye"
+			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Kanal adı önizlemesi",
 			"channelTopic": "Kanal başlığı önizlemesi"
@@ -608,9 +688,9 @@
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Çevrimiçi Üye Sayısı: {onlineMembers}",
-							"statusCreating": "{LOADING} Çevrimiçi üye sayacı oluşturuluyor",
-							"statusCreated": "{CHECK_MARK} Çevrimiçi üye sayacı oluşturuldu"
+							"template": "Aktif Üye Sayısı: {onlineMembers}",
+							"statusCreating": "{LOADING} Aktif üye sayacı oluşturuluyor",
+							"statusCreated": "{CHECK_MARK} Aktif üye sayacı oluşturuldu"
 						},
 						{
 							"name": "members",
@@ -620,7 +700,7 @@
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boostlayan Sayısı: {nitroBoosters}",
+							"template": "Boostçu Sayısı: {nitroBoosters}",
 							"statusCreating": "{LOADING} Boost sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Boost sayacı oluşturuldu"
 						},
@@ -693,7 +773,9 @@
 		},
 		"base64": {
 			"helpDescription": "Belirli sayaçları özelleştirmek veya `{http}` gibi gelişmiş sayaçlar oluşturmak için kullanışlı bir base64 komutu.",
-			"helpUsage": ["{PREFIX}base64 [encode/decode] [veri]"],
+			"helpUsage": [
+				"{PREFIX}base64 [encode/decode] [veri]"
+			],
 			"helpExample": [
 				"{PREFIX}base64 encode test",
 				"{PREFIX}base64 decode dGVzdA=="
@@ -702,7 +784,10 @@
 		},
 		"checkPermissions": {
 			"helpDescription": "Botun doğru çalışması için doğru yetkilere sahip olup olmadığını kontrol eder.",
-			"helpExample": ["{PREFIX}checkPermissions"],
+			"helpExample": [
+				"{PREFIX}checkPermissions"
+			],
+			"title": "Yetki Kontrolü",
 			"optionalText": "(İsteğe Bağlı)",
 			"adminWarning": "**Bu botun yönetici yetkisi var, lütfen yönetici yetkisini kapatın ve doğru yetkilerle kurulum yapın**",
 			"footer": "Yetki sorunlarını düzeltmeniz gerekiyorsa, botu tekrar davet etmeyi deneyin:",
