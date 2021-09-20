@@ -40,11 +40,12 @@
 				"suggestCounter": "Quizás estas buscando uno de estos contadores:",
 				"suggestCommand": "Quizás estas buscando uno de estos comandos:",
 				"usageText": "Uso",
-				"exampleText": "Ejemplo"
+				"exampleText": "Ejemplo",
+				"searchIgnoredWords": "amount count cantidad cuenta"
 			}
 		},
 		"guide": {
-			"helpDescription": "Te muestra una guía sobre como usar el bot y el listado de contadores.",
+			"helpDescription": "Te muestra una guía sobre como usar el bot y un listado de contadores.",
 			"helpExample": [
 				"{PREFIX}guide"
 			],
@@ -77,8 +78,8 @@
 				},
 				"onlineMembers": {
 					"name": "onlineMembers",
-					"description": "Miembros online en tu servidor",
-					"detailedDescription": "Cuanta cuantos miembros en en línea tiene el servidor",
+					"description": "Miembros en línea en tu servidor",
+					"detailedDescription": "Cuanta cuantos miembros en línea tiene el servidor",
 					"usage": [
 						"{onlineMembers}"
 					],
@@ -100,7 +101,7 @@
 				"users": {
 					"name": "users",
 					"description": "Usuarios en tu servidor (excluye bots)",
-					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bot) hay en el servidor",
+					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bots) hay en el servidor",
 					"usage": [
 						"{users}"
 					],
@@ -111,7 +112,7 @@
 				"onlineUsers": {
 					"name": "onlineUsers",
 					"description": "Usuarios online en tu servidor (excluye bots)",
-					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bot) en línea hay en el servidor",
+					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bots) hay en línea en el servidor",
 					"usage": [
 						"{users}"
 					],
@@ -122,7 +123,7 @@
 				"offlineUsers": {
 					"name": "offlineUsers",
 					"description": "Usuarios offline en tu servidor (excluye bots)",
-					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bot) fuera de línea hay en el servidor",
+					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bots) hay fuera de línea en el servidor",
 					"usage": [
 						"{users}"
 					],
@@ -144,7 +145,7 @@
 				"onlineBots": {
 					"name": "onlineBots",
 					"description": "Bots online en tu servidor (excluye usuarios normales)",
-					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) están en línea hay en el servidor",
+					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) hay en línea en el servidor",
 					"usage": [
 						"{bots}"
 					],
@@ -155,7 +156,7 @@
 				"offlineBots": {
 					"name": "offlineBots",
 					"description": "Bots offline en tu servidor (excluye usuarios normales)",
-					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) están fuera de línea hay en el servidor",
+					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) hay fuera de línea en el servidor",
 					"usage": [
 						"{bots}"
 					],
@@ -166,7 +167,7 @@
 				"roles": {
 					"name": "roles",
 					"description": "Roles en tu servidor",
-					"detailedDescription": "Counts how many roles are in the server",
+					"detailedDescription": "Cuenta cuantos roles hay en el servidor",
 					"usage": [
 						"{roles}"
 					],
@@ -176,73 +177,73 @@
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Channels in your server (excludes categories)",
-					"detailedDescription": "Counts how many channels (excluding category channels) are in the server",
+					"description": "Canales en tu servidor (excluye categorías)",
+					"detailedDescription": "Cuenta cuantos canales (excluyendo categorías) hay en el servidor",
 					"usage": [
 						"{channels}"
 					],
 					"example": [
-						"{channels} Channels"
+						"{channels} Canales"
 					]
 				},
 				"membersWithRole": {
-					"name": "membersWithRole:role1ID,role2ID",
-					"description": "Members with a role or roles",
-					"detailedDescription": "Counts how many members have a role or roles, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"name": "membersWithRole:IDdelRol1,IDdelRol2",
+					"description": "Miembros con un rol o roles",
+					"detailedDescription": "Cuenta cuentos miembros tienen un rol o roles, escribe el ID de los roles que quieras contar después de `:`, y separa los IDs con comas `,`",
 					"usage": [
-						"{membersWithRole:role1ID,role2ID}"
+						"{membersWithRole:IDdelRol1,IDdelRol2}"
 					],
 					"example": [
-						"{membersWithRole:6509281904766437,5823659271648290} Admins and mods"
+						"{membersWithRole:6509281904766437,5823659271648290} Admins y mods"
 					]
 				},
 				"onlineMembersWithRole": {
-					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "Online members with a role or roles",
-					"detailedDescription": "Counts how many members with a role or roles are online, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"name": "onlineMembersWithRole:IDdelRol1,IDdelRol2",
+					"description": "Miembros en línea con un rol o roles",
+					"detailedDescription": "Cuenta cuentos miembros en línea tienen un rol o roles, escribe el ID de los roles que quieras contar después de `:`, y separa los IDs con comas `,`",
 					"usage": [
-						"{onlineMembersWithRole:role1ID,role2ID}"
+						"{onlineMembersWithRole:IDdelRol1,IDdelRol2}"
 					],
 					"example": [
-						"{onlineMembersWithRole:6509281904766437,5823659271648290} Online admins and mods",
-						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} Admins y mods en línea",
+						"{onlineMembersWithRole:5823659271648290} de {membersWithRole:5823659271648290} Admins están en línea"
 					]
 				},
 				"offlineMembersWithRole": {
-					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "Offline members with a role or roles",
-					"detailedDescription": "Counts how many members with a role or roles are offline, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"name": "offlineMembersWithRole:IDdelRol1,IDdelRol2",
+					"description": "Miembros fuera de línea con un rol o roles",
+					"detailedDescription": "Cuenta cuentos miembros fuera de línea tienen un rol o roles, escribe el ID de los roles que quieras contar después de `:`, y separa los IDs con comas `,`",
 					"usage": [
-						"{offlineMembersWithRole:role1ID,role2ID}"
+						"{offlineMembersWithRole:IDdelRol1,IDdelRol2}"
 					],
 					"example": [
-						"{offlineMembersWithRole:6509281904766437,5823659271648290} Offline admins and mods",
-						"{offlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are offline"
+						"{offlineMembersWithRole:6509281904766437,5823659271648290} Admins y mods fuera de línea",
+						"{offlineMembersWithRole:5823659271648290} de {membersWithRole:5823659271648290} Admins están fuera de línea"
 					]
 				},
 				"connectedMembers": {
-					"name": "connectedMembers:channel1ID,channel2ID",
-					"description": "Connected members to voice channels",
-					"detailedDescription": "Counts how many members are connected to all the voice channels or to the specified ones, write the channel IDs you wanna filter after the `:`, and separate the IDs with commas",
+					"name": "connectedMembers:IDdelCanal1,IDdelCanal2",
+					"description": "Miembros conectados a canales de voz",
+					"detailedDescription": "Cuenta cuantos miembros hay conectados a los canales de voz del servidor, puedes filtrar uno o varios canales si especificas sus IDs después de `:` y separando los IDs con una coma `,`",
 					"usage": [
 						"{connectedMembers}",
-						"{connectedMembers:channel1ID,channel2ID}"
+						"{connectedMembers:IDdelCanal1,IDdelCanal2}"
 					],
 					"example": [
-						"{connectedMembers} Talking",
-						"{connectedMembers:5823659271648290} talking in the lounge"
+						"{connectedMembers} Hablando",
+						"{connectedMembers:5823659271648290} hablando en el salón"
 					]
 				},
 				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "Amount of banned members in your server",
-					"detailedDescription": "Counts how many members are banned, the bot must have ban permissions to get this count",
+					"description": "Cantidad de miembros baneados en el servidor",
+					"detailedDescription": "Cuenta cuantos miembros hay baneados, el bot debe tener permisos de banear para poder obtener esta cuenta",
 					"usage": [
 						"{bannedMembers}"
 					],
 					"example": [
-						"{bannedMembers} Banned",
-						"{bannedMembers} has been hit with the ban hammer"
+						"{bannedMembers} Baneados",
+						"{bannedMembers} have been hit with the ban hammer"
 					]
 				},
 				"membersPlaying": {

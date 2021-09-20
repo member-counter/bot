@@ -40,7 +40,8 @@
 				"suggestCounter": "Maybe you are looking for one of these counters:",
 				"suggestCommand": "Maybe you are looking for one of these commands:",
 				"usageText": "Usage",
-				"exampleText": "Example"
+				"exampleText": "Example",
+				"searchIgnoredWords": "amount count"
 			}
 		},
 		"guide": {
@@ -242,7 +243,7 @@
 					],
 					"example": [
 						"{bannedMembers} Banned",
-						"{bannedMembers} has been hit with the ban hammer"
+						"{bannedMembers} have been hit with the ban hammer"
 					]
 				},
 				"membersPlaying": {
