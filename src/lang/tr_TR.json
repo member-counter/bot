@@ -261,7 +261,7 @@
 				},
 				"nitro-boosters": {
 					"name": "nitro-boosters",
-					"description": "Sunucuyu boostlayan toplam üye sayısını sayar",
+					"description": "Sunucuyu boostlayan toplam üye sayısını gösterir",
 					"detailedDescription": "Sunucuyu boostlayan toplam üye sayısını sayar",
 					"usage": [
 						"{nitro-boosters}"
@@ -272,7 +272,7 @@
 				},
 				"youtubeSubscribers": {
 					"name": "youtubeSubscribers:channelUrl",
-					"description": "Bir YouTube kanalının abone sayısı",
+					"description": "Bir YouTube kanalının abone sayısını gösterir",
 					"detailedDescription": "Bir YouTube kanalının kaç aboneye sahip olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
 						"{youtubeSubscribers:channelUrl}"
@@ -283,7 +283,7 @@
 				},
 				"youtubeViews": {
 					"name": "youtubeViews:channelUrl",
-					"description": "Bir YouTube kanalının izlenme sayısı",
+					"description": "Bir YouTube kanalının izlenme sayısını gösterir",
 					"detailedDescription": "Bir YouTube kanalının kaç kez görüntülendiğini sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
 						"{youtubeViews:channelUrl}"
@@ -294,7 +294,7 @@
 				},
 				"youtubeVideos": {
 					"name": "youtubeVideos:channelUrl",
-					"description": "Bir YouTube kanalının video sayısı",
+					"description": "Bir YouTube kanalının video sayısını gösterir",
 					"detailedDescription": "Bir YouTube kanalının kaç videosu olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
 						"{youtubeVideos:channelUrl}"
@@ -327,7 +327,7 @@
 				},
 				"twitchViews": {
 					"name": "twitchViews:nickname",
-					"description": "Bir Twitch kanalının izlenme sayısı",
+					"description": "Bir Twitch kanalının izlenme sayısını gösterir",
 					"detailedDescription": "Bir Twitch kanalının kaç kez görüntülendiğini sayar, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
 					"usage": [
 						"{twitchViews:nickname}"
@@ -371,7 +371,7 @@
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
-					"description": "Bir Twitter kullanıcısının takipçi sayısı",
+					"description": "Bir Twitter kullanıcısının takipçi sayısını gösterir",
 					"detailedDescription": "Bir Twitter kullanıcısının kaç takipçisi olduğunu sayar, `username` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
 						"{twitterFollowers:username}"
@@ -382,8 +382,8 @@
 				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
-					"description": "Bir subredditin üye sayısını sayar",
-					"detailedDescription": "Bir subredditin üye sayısını sayar, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
+					"description": "Bir subredditin üye sayısını gösterir",
+					"detailedDescription": "Bir subredditin üye sayısını gösterir, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
 					"usage": [
 						"{redditMembers:subreddit}"
 					],
@@ -393,7 +393,7 @@
 				},
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
-					"description": "Bir subredditin aktif üye sayısını sayar",
+					"description": "Bir subredditin aktif üye sayısını gösterir",
 					"detailedDescription": "Bir subredditin üye sayısını sayar, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
@@ -415,8 +415,8 @@
 				},
 				"instagramFollowers": {
 					"name": "instagramFollowers:kullanıcıadı",
-					"description": "Bir Instagram hesabındaki takipçi miktarını sayar",
-					"detailedDescription": "Bir Instagram hesabındaki takipçi miktarını sayar, `username` bölümünü asıl Instagram kullanıcı adıyla değiştirin",
+					"description": "Bir Instagram hesabındaki takipçi sayısını gösterir",
+					"detailedDescription": "Bir Instagram hesabındaki takipçi sayısını gösterir, `username` bölümünü asıl Instagram kullanıcı adıyla değiştirin",
 					"usage": [
 						"{instagramFollowers:username}"
 					],
@@ -735,7 +735,7 @@
 				"{PREFIX}profile @eduardozgz"
 			],
 			"badges": "Rozetler",
-			"credits": "Katkıda Bulunanlar",
+			"credits": "Kredi",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
 			"removeDataConfirmation": "Tüm verilerinizi silmek istiyorsanız lütfen tam olarak şu metni yazıp gönderin: ```{CONFIRMATION_STRING}```\n:warning: **Bu işlem tüm verilerinizi silinecek, rozetleriniz, sunucu yükseltmeleriniz ve kredileriniz sonsuza kadar kaybolacak, faturalar yasal nedenlerle tutulacaktır, devam etmek istediğinizden emin misiniz? (Yoksayın veya iptal etmek için '{CANCEL_STRING}' yazın)**",
 			"cancelText": "iptal",
