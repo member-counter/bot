@@ -148,8 +148,19 @@ const help: Command = {
 				}
 			} else {
 				// If nothing was found, suggest stuff
-				const trashWords = ["count"];
-				const keywords = desiredThing.split(/\s+|\n+/);
+				const searchIgnoredWords = languagePack.commands.help.misc.searchIgnoredWords
+					.normalize("NFD")
+					.toLowerCase()
+					.replace(/\p{Diacritic}/gu, "")
+					.split(/\s+/);
+
+				const keywords = desiredThing
+					.normalize("NFD")
+					.toLowerCase()
+					.replace(/\p{Diacritic}/gu, "")
+					.split(/\s+|\n+/);
+
+				console.log();
 
 				const bestCounterOccurrences = new Map<string, number>();
 				const bestCommandOccurrences = new Map<string, number>();
@@ -160,7 +171,9 @@ const help: Command = {
 							const wordLC = word.toLowerCase();
 							if (
 								(keyword.startsWith(wordLC) || wordLC.startsWith(keyword)) &&
-								!trashWords.some((trashWord) => wordLC.startsWith(trashWord))
+								!searchIgnoredWords.some((ignoreWord) =>
+									wordLC.startsWith(ignoreWord)
+								)
 							) {
 								let count = map.get(key) ?? 0;
 								count++;
