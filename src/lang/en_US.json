@@ -38,7 +38,8 @@
 				"suggestCounter": "Maybe you are looking for one of these counters:",
 				"suggestCommand": "Maybe you are looking for one of these commands:",
 				"usageText": "Usage",
-				"exampleText": "Example"
+				"exampleText": "Example",
+				"searchIgnoredWords": "amount count"
 			}
 		},
 		"guide": {
@@ -182,7 +183,7 @@
 					"usage": ["{bannedMembers}"],
 					"example": [
 						"{bannedMembers} Banned",
-						"{bannedMembers} has been hit with the ban hammer"
+						"{bannedMembers} have been hit with the ban hammer"
 					]
 				},
 				"membersPlaying": {
@@ -264,21 +265,21 @@
 					"name": "memeratorMemes:username",
 					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
-					"usage": ["{memeratorMemes:nickname}"],
+					"usage": ["{memeratorMemes:username}"],
 					"example": ["Memes: {memeratorMemes:eduardozgz}"]
 				},
 				"memeratorFollowers": {
 					"name": "memeratorFollowers:username",
 					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
 					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
-					"usage": ["{memeratorFollowers:nickname}"],
+					"usage": ["{memeratorFollowers:username}"],
 					"example": ["Followers: {memeratorFollowers:eduardozgz}"]
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
 					"description": "Amount of followers of a Twitter user",
 					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
-					"usage": ["{twitterFollowers:nickname}"],
+					"usage": ["{twitterFollowers:username}"],
 					"example": ["Followers: {twitterFollowers:0xEduardozgz}"]
 				},
 				"redditMembers": {
