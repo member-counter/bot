@@ -176,41 +176,41 @@
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Channels in your server (excludes categories)",
-					"detailedDescription": "Counts how many channels (excluding category channels) are in the server",
+					"description": "Canales en tu servidor (excluye categorías)",
+					"detailedDescription": "Cuenta cuantos canales (excluyendo categorías) hay en el servidor",
 					"usage": [
 						"{channels}"
 					],
 					"example": [
-						"{channels} Channels"
+						"{channels} Canales"
 					]
 				},
 				"membersWithRole": {
-					"name": "membersWithRole:role1ID,role2ID",
-					"description": "Members with a role or roles",
-					"detailedDescription": "Counts how many members have a role or roles, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"name": "membersWithRole:IDdelRol1,IDdelRol2",
+					"description": "Miembros con un rol o roles",
+					"detailedDescription": "Cuenta cuentos miembros tienen un rol o roles, escribe el ID de los roles que quieras contar después de `:`, y separa los IDs con comas `,`",
 					"usage": [
-						"{membersWithRole:role1ID,role2ID}"
+						"{membersWithRole:IDdelRol1,IDdelRol2}"
 					],
 					"example": [
-						"{membersWithRole:6509281904766437,5823659271648290} Admins and mods"
+						"{membersWithRole:6509281904766437,5823659271648290} Admins y mods"
 					]
 				},
 				"onlineMembersWithRole": {
-					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "Online members with a role or roles",
-					"detailedDescription": "Counts how many members with a role or roles are online, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"name": "onlineMembersWithRole:IDdelRol1,IDdelRol2",
+					"description": "Miembros en línea con un rol o roles",
+					"detailedDescription": "Cuenta cuentos miembros en línea tienen un rol o roles, escribe el ID de los roles que quieras contar después de `:`, y separa los IDs con comas `,`",
 					"usage": [
-						"{onlineMembersWithRole:role1ID,role2ID}"
+						"{onlineMembersWithRole:IDdelRol1,IDdelRol2}"
 					],
 					"example": [
-						"{onlineMembersWithRole:6509281904766437,5823659271648290} Online admins and mods",
-						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} Admins y mods en línea",
+						"{onlineMembersWithRole:5823659271648290} de {membersWithRole:5823659271648290} Admins están en línea"
 					]
 				},
 				"offlineMembersWithRole": {
-					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "Offline members with a role or roles",
+					"name": "offlineMembersWithRole:IDdelRol1,IDdelRol2",
+					"description": "Miembros fuera de línea con un rol o roles",
 					"detailedDescription": "Counts how many members with a role or roles are offline, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
 					"usage": [
 						"{offlineMembersWithRole:role1ID,role2ID}"
