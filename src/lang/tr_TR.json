@@ -56,7 +56,7 @@
 			"counters": {
 				"members": {
 					"name": "members",
-					"description": "Sunucunuzdaki üye sayısı",
+					"description": "Sunucunuzdaki üye sayısını gösterir",
 					"detailedDescription": "Bir sunucunun kaç üyesi olduğunu sayar",
 					"usage": [
 						"{members}"
@@ -67,29 +67,29 @@
 				},
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
-					"description": "Sunucunuzdaki yaklaşık aktif üye sayısı",
+					"description": "Sunucunuzdaki yaklaşık üye sayısını gösterir",
 					"detailedDescription": "Sunucuda yaklaşık olarak kaç üyenin aktif olduğunu sayar",
 					"usage": [
 						"{approximatedOnlineMembers}"
 					],
 					"example": [
-						"{approximatedOnlineMembers} Çevrimiçi"
+						"{approximatedOnlineMembers} Aktif"
 					]
 				},
 				"onlineMembers": {
 					"name": "onlineMembers",
-					"description": "Sunucunuzdaki aktif üye sayısı",
+					"description": "Sunucunuzda aktif üye sayısını gösterir",
 					"detailedDescription": "Sunucuda kaç üyenin aktif olduğunu sayar",
 					"usage": [
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Çevrimiçi"
+						"{onlineMembers} Aktif"
 					]
 				},
 				"offlineMembers": {
 					"name": "offlineMembers",
-					"description": "Sunucunuzdaki çevrimdışı üye sayısı",
+					"description": "Sunucunuzdaki çevrimdışı üye sayısını gösterir",
 					"detailedDescription": "Sunucuda kaç üyenin çevrimdışı olduğunu sayar",
 					"usage": [
 						"{onlineMembers}"
@@ -117,7 +117,7 @@
 						"{users}"
 					],
 					"example": [
-						"{users} Çevrimiçi Kullanıcı"
+						"{users} Aktif Kullanıcı"
 					]
 				},
 				"offlineUsers": {
@@ -150,7 +150,7 @@
 						"{bots}"
 					],
 					"example": [
-						"{bots} Çevrimiçi Bot"
+						"{bots} Aktif Bot"
 					]
 				},
 				"offlineBots": {
@@ -166,7 +166,7 @@
 				},
 				"roles": {
 					"name": "roles",
-					"description": "Sunucunuzdaki rol sayısı",
+					"description": "Sunucunuzdaki rol sayısını gösterir",
 					"detailedDescription": "Sunucuda kaç tane rol olduğunu sayar",
 					"usage": [
 						"{roles}"
@@ -177,7 +177,7 @@
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Sunucunuzdaki kanal sayısı (kategoriler hariç)",
+					"description": "Sunucunuzdaki kanal sayısını gösterir (kategoriler hariç)",
 					"detailedDescription": "Sunucuda (kategoriler hariç) kaç kanal olduğunu sayar",
 					"usage": [
 						"{channels}"
@@ -205,8 +205,8 @@
 						"{onlineMembersWithRole:rol1ID,rol2ID}"
 					],
 					"example": [
-						"{onlineMembersWithRole:6509281904766437,5823659271648290} Çevrimiçi Yönetici ve Mod",
-						"{onlineMembersWithRole:5823659271648290}/{membersWithRole:5823659271648290} Yönetici Çevrimiçi"
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} Aktif Yönetici ve Mod",
+						"{onlineMembersWithRole:5823659271648290}/{membersWithRole:5823659271648290} Yönetici Aktif"
 					]
 				},
 				"offlineMembersWithRole": {
@@ -236,7 +236,7 @@
 				},
 				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "Sunucunuzdaki banlı üye sayısı",
+					"description": "Sunucunuzdaki banlı üye sayısını gösterir",
 					"detailedDescription": "Kaç üyenin banlandığını sayar, botun bu sayıyı alabilmesi için üyeleri engelle yetkisine sahip olması gerekir",
 					"usage": [
 						"{bannedMembers}"
@@ -399,7 +399,7 @@
 						"{redditMembersOnline:subreddit}"
 					],
 					"example": [
-						"Çevrimiçi Redditör Sayısı: {redditMembersOnline:science}"
+						"Aktif Redditör Sayısı: {redditMembersOnline:science}"
 					]
 				},
 				"redditTitle": {
@@ -437,8 +437,8 @@
 				},
 				"game": {
 					"name": "game:gameId:address",
-					"description": "Bir oyun (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sunucusundaki çevrimiçi oyuncular",
-					"detailedDescription": "Bir oyun sunucusunda kaç çevrimiçi oyuncu olduğunu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sayar, `gameId` yerine [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden birini ve `address` kısmını ise asıl sunucu adresiyle değiştirin",
+					"description": "Bir oyun (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sunucusundaki aktif oyuncu sayısını gösterir",
+					"detailedDescription": "Bir oyun sunucusunda kaç aktif oyuncu olduğunu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sayar, `gameId` yerine [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden birini ve `address` kısmını ise asıl sunucu adresiyle değiştirin",
 					"usage": [
 						"{game:gameId:address}"
 					],
@@ -593,7 +593,7 @@
 				"{PREFIX}editChannel [kanal ID] [içerik ve sayaçlar]"
 			],
 			"helpExample": [
-				"{PREFIX}editChannel 701396983843127366 {onlineMembers}/{members} Çevrimiçi"
+				"{PREFIX}editChannel 701396983843127366 {onlineMembers}/{members} Aktif"
 			],
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir",
 			"errorNotFound": "Kanal bulunamadı",
@@ -749,7 +749,7 @@
 				"{PREFIX}counts"
 			],
 			"members": "Üye Sayısı:",
-			"onlineMembers": "Çevrimiçi Üye Sayısı:",
+			"onlineMembers": "Aktif Üye Sayısı:",
 			"offlineMembers": "Çevrimdışı Üye Sayısı:",
 			"bots": "Bot Sayısı:",
 			"connectedUsers": "Ses Kanallarındaki Kullanıcı Sayısı:",
@@ -795,9 +795,9 @@
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Çevrimiçi Üye Sayısı: {onlineMembers}",
-							"statusCreating": "{LOADING} Çevrimiçi üye sayacı oluşturuluyor",
-							"statusCreated": "{CHECK_MARK} Çevrimiçi üye sayacı oluşturuldu"
+							"template": "Aktif Üye Sayısı: {onlineMembers}",
+							"statusCreating": "{LOADING} Aktif üye sayacı oluşturuluyor",
+							"statusCreated": "{CHECK_MARK} Aktif üye sayacı oluşturuldu"
 						},
 						{
 							"name": "members",
