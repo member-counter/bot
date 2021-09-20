@@ -471,7 +471,7 @@
 				"static": {
 					"name": "static:data",
 					"description": "Verilen `data`yı görüntüler",
-					"detailedDescription": "Displays the given `data` with custom formatting based on the server settings if it's a number, text is also accepted",
+					"detailedDescription": "Verilen `data`yı sunucu ayarlarına göre bu bir sayıysa özel format ile görüntüler, metin de kabul edilir",
 					"usage": [
 						"{static:data}"
 					],
@@ -737,8 +737,8 @@
 			"badges": "Rozetler",
 			"credits": "Katkıda Bulunanlar",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
-			"removeDataConfirmationString": "I want to delete all of my data",
+			"removeDataConfirmation": "Tüm verilerinizi silmek istiyorsanız lütfen tam olarak şu metni yazıp gönderin: ```{CONFIRMATION_STRING}```\n:warning: **Bu işlem tüm verileriniz silinecek, rozetleriniz, sunucu yükseltmeleriniz ve kredileriniz sonsuza kadar kaybolacak, faturalar yasal nedenlerle tutulacak, devam etmek istediğinizden emin misiniz? (Yoksayın veya iptal etmek için 'cancel' yazın)**",
+			"removeDataConfirmationString": "Tüm verilerimin silinmesini istiyorum",
 			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı",
 			"userNotFound": "Kullanıcı DB'de bulunamadı"
 		},
