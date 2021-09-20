@@ -41,7 +41,7 @@
 				"suggestCommand": "Belki şu komutlardan birini arıyorsunuzdur:",
 				"usageText": "Kullanım",
 				"exampleText": "Örnek",
-				"searchIgnoredWords": "amount count"
+				"searchIgnoredWords": "amount count miktar sayı"
 			}
 		},
 		"guide": {
@@ -187,51 +187,51 @@
 					]
 				},
 				"membersWithRole": {
-					"name": "membersWithRole:role1ID,role2ID",
+					"name": "membersWithRole:rol1ID,rol2ID",
 					"description": "Rol veya rollere sahip üye sayısı",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
-						"{membersWithRole:role1ID,role2ID}"
+						"{membersWithRole:rol1ID,rol2ID}"
 					],
 					"example": [
-						"{membersWithRole:6509281904766437,5823659271648290} Admins and mods"
+						"{membersWithRole:6509281904766437,5823659271648290} Yönetici ve Mod"
 					]
 				},
 				"onlineMembersWithRole": {
-					"name": "onlineMembersWithRole:role1ID,role2ID",
+					"name": "onlineMembersWithRole:rol1ID,rol2ID",
 					"description": "Rol veya rollere sahip çevrimiçi üye sayısı",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimiçi olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
-						"{onlineMembersWithRole:role1ID,role2ID}"
+						"{onlineMembersWithRole:rol1ID,rol2ID}"
 					],
 					"example": [
-						"{onlineMembersWithRole:6509281904766437,5823659271648290} Online admins and mods",
-						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} Çevrimiçi Yönetici ve Mod",
+						"{onlineMembersWithRole:5823659271648290}/{membersWithRole:5823659271648290} Yönetici Çevrimiçi"
 					]
 				},
 				"offlineMembersWithRole": {
-					"name": "offlineMembersWithRole:role1ID,role2ID",
+					"name": "offlineMembersWithRole:rol1ID,rol2ID",
 					"description": "Rol veya rollere sahip çevrimdışı üye sayısı",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimdışı olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
-						"{offlineMembersWithRole:role1ID,role2ID}"
+						"{offlineMembersWithRole:rol1ID,rol2ID}"
 					],
 					"example": [
-						"{offlineMembersWithRole:6509281904766437,5823659271648290} Offline admins and mods",
-						"{offlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are offline"
+						"{offlineMembersWithRole:6509281904766437,5823659271648290} Çevrimdışı Yönetici ve Mod",
+						"{offlineMembersWithRole:5823659271648290}/{membersWithRole:5823659271648290} Yönetici Çevrimdışı"
 					]
 				},
 				"connectedMembers": {
-					"name": "connectedMembers:channel1ID,channel2ID",
+					"name": "connectedMembers:kanal1ID,kanal2ID",
 					"description": "Ses kanallarına bağlı üye sayısı",
 					"detailedDescription": "Tüm veya belirtilen ses kanallarına kaç üyenin bağlı olduğunu sayar, filtrelemek istediğiniz kanal IDlerini `:` işaretinden sonra yazın ve IDleri virgülle ayırın",
 					"usage": [
 						"{connectedMembers}",
-						"{connectedMembers:channel1ID,channel2ID}"
+						"{connectedMembers:kanal1ID,kanal2ID}"
 					],
 					"example": [
-						"{connectedMembers} Talking",
-						"{connectedMembers:5823659271648290} talking in the lounge"
+						"{connectedMembers} Üye Konuşuyor",
+						"{connectedMembers:5823659271648290} üye sohbette konuşuyor"
 					]
 				},
 				"bannedMembers": {
@@ -243,20 +243,20 @@
 					],
 					"example": [
 						"{bannedMembers} Banlı",
-						"{bannedMembers} have been hit with the ban hammer"
+						"{bannedMembers} üyeye ban çekiciyle vuruldu"
 					]
 				},
 				"membersPlaying": {
-					"name": "membersPlaying:game name",
+					"name": "membersPlaying:oyunAdı",
 					"description": "Oyun oynayan üye sayısı",
 					"detailedDescription": "Bir oyunu kaç üyenin oynadığını sayar, virgülle ayırarak birden fazla oyun ekleyebilirsiniz",
 					"usage": [
 						"{membersPlaying:Minecraft}",
-						"{membersPlaying:game name, game name 2}"
+						"{membersPlaying:oyunAdı, oyunAdı2}"
 					],
 					"example": [
-						"{membersPlaying:Minecraft} Mining and crafting",
-						"{membersPlaying: euro truck simulator 2, american truck simulator} Trucking"
+						"{membersPlaying:Minecraft} Üye Madencilik ve Eşya Yapıyor",
+						"{membersPlaying: euro truck simulator 2, american truck simulator} Üye Kamyon Sürüşü Yapıyor"
 					]
 				},
 				"nitro-boosters": {
@@ -267,12 +267,12 @@
 						"{nitro-boosters}"
 					],
 					"example": [
-						"Awesome boosters: {nitro-boosters}"
+						"Müthiş Boostçu Sayısı: {nitro-boosters}"
 					]
 				},
 				"youtubeSubscribers": {
 					"name": "youtubeSubscribers:channelUrl",
-					"description": "Amount of subscribers of a YouTube channel",
+					"description": "Bir YouTube kanalının abone sayısı",
 					"detailedDescription": "Bir YouTube kanalının kaç aboneye sahip olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
 						"{youtubeSubscribers:channelUrl}"
@@ -283,7 +283,7 @@
 				},
 				"youtubeViews": {
 					"name": "youtubeViews:channelUrl",
-					"description": "Amount of views of a YouTube channel",
+					"description": "Bir YouTube kanalının izlenme sayısı",
 					"detailedDescription": "Bir YouTube kanalının kaç kez görüntülendiğini sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
 						"{youtubeViews:channelUrl}"
@@ -388,7 +388,7 @@
 						"{redditMembers:subreddit}"
 					],
 					"example": [
-						"Redditors: {redditMembers:science}"
+						"Redditör Sayısı: {redditMembers:science}"
 					]
 				},
 				"redditMembersOnline": {
@@ -399,7 +399,7 @@
 						"{redditMembersOnline:subreddit}"
 					],
 					"example": [
-						"Online Redditors: {redditMembersOnline:science}"
+						"Çevrimiçi Redditör Sayısı: {redditMembersOnline:science}"
 					]
 				},
 				"redditTitle": {
@@ -432,18 +432,18 @@
 						"{countdown:targetDate:format}"
 					],
 					"example": [
-						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
+						"Yeni yıl için; {countdown:1640991600:%d gün, %h saat, %m dakika} kaldı"
 					]
 				},
 				"game": {
 					"name": "game:gameId:address",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
-					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
+					"description": "Bir oyun (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sunucusundaki çevrimiçi oyuncular",
+					"detailedDescription": "Bir oyun sunucusunda kaç çevrimiçi oyuncu olduğunu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sayar, `gameId` yerine [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden birini ve `address` kısmını ise asıl sunucu adresiyle değiştirin",
 					"usage": [
 						"{game:gameId:address}"
 					],
 					"example": [
-						"{game:minecraft:mc.hypixel.net} Mining and crafting"
+						"{game:minecraft:mc.hypixel.net} Üye Madencilik ve Eşya Yapıyor"
 					]
 				},
 				"clock": {
@@ -460,7 +460,7 @@
 				"http": {
 					"name": "http:options",
 					"description": "Bir http isteğinin sonucunu gösterir",
-					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items.",
+					"detailedDescription": "Bir http `GET` requesti tarafından döndürülen sonucu gösterir. `options`ı [burada](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir veya manuel olarak oluşturabilirsiniz: `options`, base64'te kodlanmış bir JSON objectidir (bunu elde etmek için {PREFIX}base64 komutunu kullanabilirsiniz), bu object aşağıdaki keylere sahip olabilir: `url`: Kaynağın url'si ile bir string döndürür, `parseNumber`: Eğer sonuç geçerli bir sayıysa, sayı sunucunuzun ayarlarına göre ayrıştırılıp özelleştirilip bir boolean döndürülür, `dataPath`: Yanıt bir JSON objectiyse, bir array veya sayı olması gereken bir stringe sahip bir keyin yolunu belirtmelisiniz, bu yolun syntaxi JS'nin özelliklere ve array öğelerine erişmek için kullandığı syntaxe benzer.",
 					"usage": [
 						"{http:options}"
 					],
@@ -470,14 +470,14 @@
 				},
 				"static": {
 					"name": "static:data",
-					"description": "Displays the given `data`",
-					"detailedDescription": "Displays the given `data` with custom formatting based on the server settings if it's a number, text is also accepted",
+					"description": "Verilen `data`yı görüntüler",
+					"detailedDescription": "Verilen `data`yı bu bir sayıysa sunucu ayarlarına göre özel format ile görüntüler, metin de kabul edilir",
 					"usage": [
 						"{static:data}"
 					],
 					"example": [
 						"{static:420}",
-						"{static:Hello world!}"
+						"{static:Selam Dünya!}"
 					]
 				},
 				"sum": {
@@ -485,7 +485,7 @@
 					"description": "Belirtilen değerlerin toplamı",
 					"detailedDescription": "Soldan sağa belirtilen değerlerin toplamı",
 					"usage": [
-						"{sum:value1,value2,more values}"
+						"{sum:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"2 + 2 = {sum:2,2}"
@@ -496,7 +496,7 @@
 					"description": "Belirtilen değerleri çıkarır",
 					"detailedDescription": "Soldan sağa belirtilen değerleri çıkarır",
 					"usage": [
-						"{subtract:value1,value2,more values}"
+						"{substract:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"2 - 2 = {subtract:2,2}"
@@ -507,7 +507,7 @@
 					"description": "Belirtilen değerleri çarpar",
 					"detailedDescription": "Soldan sağa belirtilen değerleri çarpar",
 					"usage": [
-						"{multiply:value1,value2,more values}"
+						"{multiply:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"2 * 2 = {multiply:2,2}"
@@ -518,7 +518,7 @@
 					"description": "Belirtilen değerleri böler",
 					"detailedDescription": "Soldan sağa yapılan belirtilen değerleri böler",
 					"usage": [
-						"{divide:value1,value2,more values}"
+						"{divide:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"10 / 2 = {divide:10,2}"
@@ -527,9 +527,9 @@
 				"modulus": {
 					"name": "modulus:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerlerin modülünü alır",
-					"detailedDescription": "Gets the modulus of the specified values, done from the left to the right",
+					"detailedDescription": "Soldan sağa belirtilen değerlerin modülünü alır",
 					"usage": [
-						"{modulus:value1,value2,more values}"
+						"{modulus:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"10 / 2 = {modulus:10,2}"
@@ -558,7 +558,7 @@
 					},
 					{
 						"name": "**✅ Sınırsız Sunucu**",
-						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 50,000 members, quarterly",
+						"value": "Yalnızca sahip olduğunuz üyeler için ödeme yapın ve botu istediğiniz kadar sunucuya davet edin. Üç ayda bir 50.000 üye başına 5 EUR",
 						"inline": false
 					},
 					{
@@ -590,10 +590,10 @@
 		"editChannel": {
 			"helpDescription": "Bir sayaç ayarlamaya çalışıyorsanız ancak Discord size ad/başlık uzunluğu sınırına ulaştığınızı söylüyorsa, bu sınırı \"yoksaymak\" için bu komutu kullanabilirsiniz.",
 			"helpUsage": [
-				"{PREFIX}editChannel [channelId] [content]"
+				"{PREFIX}editChannel [kanal ID] [içerik ve sayaçlar]"
 			],
 			"helpExample": [
-				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
+				"{PREFIX}editChannel 701396983843127366 {onlineMembers}/{members} Çevrimiçi"
 			],
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir",
 			"errorNotFound": "Kanal bulunamadı",
@@ -603,7 +603,7 @@
 			"helpDescription": "Gösterilecek sayıları özelleştirir, sayı argümanı normal bir sayı olmalıdır, ikinci argüman bir emoji veya normal bir sayı gibi herhangi bir şey olabilir, argümanları virgülle (`,`) ayırarak birden çok sayıyı tek seferde özelleştirebilirsiniz. İlk argüman \"reset\" sözcüğüyse, sayılar varsayılan olanlara geri yüklenecektir.",
 			"helpUsage": [
 				"{PREFIX}setDigit reset",
-				"{PREFIX}setDigit [number] [your custom number]"
+				"{PREFIX}setDigit [sayı] [özel sayı]"
 			],
 			"helpExample": [
 				"{PREFIX}setDigit 3 3",
@@ -629,9 +629,9 @@
 			"success": "Tamamdır! Yeni değişiklikleri görmek için birkaç dakika beklemeniz gerekebilir"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale.",
+			"helpDescription": "Sayıları ve saatleri (12 saat/24 saat formatıyla) belirtilen yerel ayara göre biçimlendirir.",
 			"helpUsage": [
-				"{PREFIX}locale [locale/disable]"
+				"{PREFIX}locale [yer/disable]"
 			],
 			"helpExample": [
 				"{PREFIX}locale tr",
@@ -656,11 +656,11 @@
 		"role": {
 			"helpDescription": "Rollerin bot yönetim komutlarını kullanmasına izin verebilir veya reddedebilirsiniz.\nTüm rollere izin vermek veya reddetmek için ``all`` anahtar kelimesini kullanabilirsiniz.\nŞu anda hangi rollere izin verildiğini görmek için `{PREFIX}seeSettings` komutunu kullanın.",
 			"helpUsage": [
-				"{PREFIX}role [allow/deny] [@roles/all]"
+				"{PREFIX}role [allow/deny] [@roller/all]"
 			],
 			"helpExample": [
 				"{PREFIX}role allow @Mod",
-				"{PREFIX}role allow @Mod @OtherRole",
+				"{PREFIX}role allow @Mod @DiğerRol",
 				"{PREFIX}role allow all",
 				"{PREFIX}role deny all"
 			],
@@ -689,7 +689,7 @@
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Removes all the counters and restores the custom settings of this server to the default ones.",
+			"helpDescription": "Tüm sayaçları kaldırır ve bu sunucunun özel ayarlarını varsayılan ayarlara geri yükler.",
 			"helpExample": [
 				"{PREFIX}resetSettings"
 			],
@@ -705,7 +705,7 @@
 			"noServerUpgradesAvailable": "Kullanabileceğiniz daha fazla sunucu yükseltmesi olmadığı için daha fazla sunucu yükseltmesi yapamazsınız"
 		},
 		"info": {
-			"helpDescription": "List of useful links.",
+			"helpDescription": "Yararlı linklerin listesi.",
 			"helpExample": [
 				"{PREFIX}info"
 			],
@@ -737,8 +737,9 @@
 			"badges": "Rozetler",
 			"credits": "Katkıda Bulunanlar",
 			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
-			"removeDataConfirmationString": "I want to delete all of my data",
+			"removeDataConfirmation": "Tüm verilerinizi silmek istiyorsanız lütfen tam olarak şu metni yazıp gönderin: ```{CONFIRMATION_STRING}```\n:warning: **Bu işlem tüm verilerinizi silinecek, rozetleriniz, sunucu yükseltmeleriniz ve kredileriniz sonsuza kadar kaybolacak, faturalar yasal nedenlerle tutulacaktır, devam etmek istediğinizden emin misiniz? (Yoksayın veya iptal etmek için '{CANCEL_STRING}' yazın)**",
+			"cancelText": "iptal",
+			"removeDataConfirmationString": "Tüm verilerimin silinmesini istiyorum",
 			"removeDataSuccess": "Verileriniz başarıyla kaldırıldı",
 			"userNotFound": "Kullanıcı DB'de bulunamadı"
 		},
@@ -760,10 +761,10 @@
 		"preview": {
 			"helpDescription": "Bir sayacın veya çeşitli sayaçların bir kanalda nasıl görüneceğinin bir önizlemesini gösterir.",
 			"helpUsage": [
-				"{PREFIX}preview [content]"
+				"{PREFIX}preview [içerik ve sayaçlar]"
 			],
 			"helpExample": [
-				"{PREFIX}preview {members} Üye`"
+				"{PREFIX}preview {members} Üye"
 			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Kanal adı önizlemesi",
@@ -878,9 +879,9 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}`.",
+			"helpDescription": "Belirli sayaçları özelleştirmek veya `{http}` gibi gelişmiş sayaçlar oluşturmak için kullanışlı bir base64 komutu.",
 			"helpUsage": [
-				"{PREFIX}base64 [encode/decode] [data]"
+				"{PREFIX}base64 [encode/decode] [veri]"
 			],
 			"helpExample": [
 				"{PREFIX}base64 encode test",
@@ -932,7 +933,7 @@
 				},
 				"manageRoles": {
 					"name": "Rolleri Yönet",
-					"description": "Used by the {PREFIX}setup command and to update channel permissions when you add a Premium bot"
+					"description": "{PREFIX}setup komutu tarafından ve Premium bot eklediğinizde kanal yetkilerini güncellemek için kullanılır"
 				},
 				"banMembers": {
 					"name": "Üyeleri Engelle",
@@ -956,7 +957,8 @@
 		},
 		"paginator": {
 			"pageCounter": "Sayfa {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Hangi sayfaya gitmek istersiniz? İstemi iptal etmek için `cancel` veya `0` yazın. Cevaplamak için 15 saniyeniz vardır.",
+			"jumpPrompt": "Hangi sayfaya gitmek istersiniz? İstemi iptal etmek için `{CANCEL_STRING}` veya `0` yazın. Cevaplamak için 15 saniyeniz vardır.",
+			"cancelText": "iptal",
 			"errorPageLengthExceeded": "Gidilecek sayfa {TOTAL_PAGES} değerinden küçük veya ona eşit olmalıdır. Lütfen tekrar deneyin.",
 			"errorNegativeInput": "Gidilecek sayfa sayısı negatif olamaz. Lütfen tekrar deneyin."
 		}
