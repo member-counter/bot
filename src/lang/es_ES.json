@@ -247,8 +247,8 @@
 					]
 				},
 				"membersPlaying": {
-					"name": "membersPlaying:game name",
-					"description": "Amount of members playing a game",
+					"name": "membersPlaying:nombre del juego",
+					"description": "Cantidad de miembros jugando un juego",
 					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
 					"usage": [
 						"{membersPlaying:game name}",
