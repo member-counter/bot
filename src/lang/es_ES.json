@@ -249,25 +249,25 @@
 				"membersPlaying": {
 					"name": "membersPlaying:nombre del juego",
 					"description": "Cantidad de miembros jugando un juego",
-					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
+					"detailedDescription": "Cuenta la cantidad de miembros que están jugando un juego. Puedes añadir múltiples juegos separándolos con una coma",
 					"usage": [
-						"{membersPlaying:game name}",
-						"{membersPlaying:game name, game name 2}"
+						"{membersPlaying:nombre del juego}",
+						"{membersPlaying:nombre del juego, nombre del juego 2}"
 					],
 					"example": [
-						"{membersPlaying:Minecraft} Mining and crafting",
-						"{membersPlaying: euro truck simulator 2, american truck simulator} Trucking"
+						"{membersPlaying:Minecraft} Mineando y crafteando",
+						"{membersPlaying: euro truck simulator 2, american truck simulator} Conduciendo"
 					]
 				},
 				"nitro-boosters": {
 					"name": "nitro-boosters",
-					"description": "Counts the total amount of members boosting this server",
-					"detailedDescription": "Counts the total amount of members boosting this server",
+					"description": "Cuenta la cantidad total de miembros que está boosteando este servidor",
+					"detailedDescription": "Cuenta la cantidad total de miembros que está boosteando este servidor",
 					"usage": [
 						"{nitro-boosters}"
 					],
 					"example": [
-						"Awesome boosters: {nitro-boosters}"
+						"{nitro-boosters} Boosteando"
 					]
 				},
 				"youtubeSubscribers": {
@@ -538,16 +538,16 @@
 			}
 		},
 		"premium": {
-			"helpDescription": "Get information about Member Counter Premium.",
+			"helpDescription": "Obtén información acerca de Member Counter Premium.",
 			"helpExample": [
 				"{PREFIX}premium"
 			],
 			"embedReply": {
 				"title": "Member Counter Premium",
-				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"description": "[Obtén el bot premium]({GET_PREMIUM_BOT_URL}) y disfruta:",
 				"fields": [
 					{
-						"name": "**✅ ALL the counters**",
+						"name": "**✅ TODOS los cotadores**",
 						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
 						"inline": false
 					},
