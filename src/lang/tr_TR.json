@@ -14,7 +14,7 @@
 			],
 			"embedReply": {
 				"title": "Komut Listesi | Prefix: {PREFIX}",
-				"description": "[Botu Ekleyin]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum için: `{PREFIX}setup`\nBotun nasıl kullanılacağını öğrenmek için: `{PREFIX}guide`\n\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` + komut adı yazın, örneğin: ```\\n{PREFIX}help shortNumber```\n**Bilgi:** `()` isteğe bağlı bir parametre anlamına, `[]` ise gerekli bir parametre anlamına gelir",
+				"description": "[Botu Ekleyin]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Dokümantasyon](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nHızlı kurulum için: `{PREFIX}setup`\nBotun nasıl kullanılacağını öğrenmek için: `{PREFIX}guide`\n\nBir komut hakkında daha fazla bilgi almak için `{PREFIX}help` + komut adı yazın, örneğin: ```{PREFIX}help shortNumber```\n**Bilgi:** `()` isteğe bağlı bir parametre anlamına, `[]` ise gerekli bir parametre anlamına gelir",
 				"fields": [
 					{
 						"name": "**Sayaç Komutları**",
@@ -67,8 +67,8 @@
 				},
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
-					"description": "Sunucunuzdaki yaklaşık çevrimiçi üye sayısı",
-					"detailedDescription": "Sunucuda yaklaşık olarak kaç üyenin çevrimiçi olduğunu sayar",
+					"description": "Sunucunuzdaki yaklaşık aktif üye sayısı",
+					"detailedDescription": "Sunucuda yaklaşık olarak kaç üyenin aktif olduğunu sayar",
 					"usage": [
 						"{approximatedOnlineMembers}"
 					],
@@ -78,8 +78,8 @@
 				},
 				"onlineMembers": {
 					"name": "onlineMembers",
-					"description": "Sunucunuzdaki çevrimiçi üye sayısı",
-					"detailedDescription": "Sunucuda kaç üyenin çevrimiçi olduğunu sayar",
+					"description": "Sunucunuzdaki aktif üye sayısı",
+					"detailedDescription": "Sunucuda kaç üyenin aktif olduğunu sayar",
 					"usage": [
 						"{onlineMembers}"
 					],
@@ -111,8 +111,8 @@
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
-					"description": "Sunucunuzdaki çevrimiçi kullanıcı sayısı (botlar hariç)",
-					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının çevrimiçi olduğunu sayar",
+					"description": "Sunucunuzdaki aktif kullanıcı sayısı (botlar hariç)",
+					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının aktif olduğunu sayar",
 					"usage": [
 						"{users}"
 					],
@@ -144,8 +144,8 @@
 				},
 				"onlineBots": {
 					"name": "onlineBots",
-					"description": "Sunucunuzdaki çevrimiçi bot sayısı",
-					"detailedDescription": "Sunucuda kaç botun çevrimiçi olduğunu sayar",
+					"description": "Sunucunuzdaki aktif bot sayısı",
+					"detailedDescription": "Sunucuda kaç botun aktif olduğunu sayar",
 					"usage": [
 						"{bots}"
 					],
@@ -199,8 +199,8 @@
 				},
 				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:rol1ID,rol2ID",
-					"description": "Rol veya rollere sahip çevrimiçi üye sayısı",
-					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimiçi olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
+					"description": "Rol veya rollere sahip aktif üye sayısı",
+					"detailedDescription": "Bir role veya rollere sahip kaç üyenin aktif olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
 						"{onlineMembersWithRole:rol1ID,rol2ID}"
 					],
@@ -243,7 +243,7 @@
 					],
 					"example": [
 						"{bannedMembers} Banlı",
-						"{bannedMembers} have been hit with the ban hammer"
+						"{bannedMembers} üyeye ban çekiciyle vuruldu"
 					]
 				},
 				"membersPlaying": {
@@ -393,7 +393,7 @@
 				},
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
-					"description": "Bir subredditin çevrimiçi üye sayısını sayar",
+					"description": "Bir subredditin aktif üye sayısını sayar",
 					"detailedDescription": "Bir subredditin üye sayısını sayar, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
@@ -755,7 +755,7 @@
 			"connectedUsers": "Ses Kanallarındaki Kullanıcı Sayısı:",
 			"channels": "Kanal Sayısı:",
 			"roles": "Rol Sayısı:",
-			"nitroBoosters": "Boostlayan Üye Sayısı:",
+			"nitroBoosters": "Boostçu Sayısı:",
 			"bannedMembers": "Banlanan Üye Sayısı:"
 		},
 		"preview": {
@@ -807,7 +807,7 @@
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boostlayan Sayısı: {nitroBoosters}",
+							"template": "Boostçu Sayısı: {nitroBoosters}",
 							"statusCreating": "{LOADING} Boost sayacı oluşturuluyor",
 							"statusCreated": "{CHECK_MARK} Boost sayacı oluşturuldu"
 						},
