@@ -101,7 +101,7 @@
 				},
 				"users": {
 					"name": "users",
-					"description": "Sunucunuzdaki kullanıcı sayısı (botlar hariç)",
+					"description": "Sunucunuzdaki kullanıcı sayısını gösterir (botlar hariç)",
 					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının olduğunu sayar",
 					"usage": [
 						"{users}"
@@ -112,7 +112,7 @@
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
-					"description": "Sunucunuzdaki aktif kullanıcı sayısı (botlar hariç)",
+					"description": "Sunucunuzdaki aktif kullanıcı sayısını gösterir (botlar hariç)",
 					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının aktif olduğunu sayar",
 					"usage": [
 						"{users}"
@@ -123,7 +123,7 @@
 				},
 				"offlineUsers": {
 					"name": "offlineUsers",
-					"description": "Sunucunuzdaki çevrimdışı kullanıcı sayısı (botlar hariç)",
+					"description": "Sunucunuzdaki çevrimdışı kullanıcı sayısını gösterir (botlar hariç)",
 					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının çevrimdışı olduğunu sayar",
 					"usage": [
 						"{users}"
@@ -156,7 +156,7 @@
 				},
 				"offlineBots": {
 					"name": "offlineBots",
-					"description": "Sunucunuzdaki çevrimdışı bot sayısı",
+					"description": "Sunucunuzdaki çevrimdışı bot sayısını gösterir",
 					"detailedDescription": "Sunucuda kaç botun çevrimdışı olduğunu sayar",
 					"usage": [
 						"{bots}"
@@ -189,7 +189,7 @@
 				},
 				"membersWithRole": {
 					"name": "membersWithRole:rol1ID,rol2ID",
-					"description": "Rol veya rollere sahip üye sayısı",
+					"description": "Rol veya rollere sahip üye sayısını gösterir",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
 						"{membersWithRole:rol1ID,rol2ID}"
@@ -200,7 +200,7 @@
 				},
 				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:rol1ID,rol2ID",
-					"description": "Rol veya rollere sahip aktif üye sayısı",
+					"description": "Rol veya rollere sahip aktif üye sayısını gösterir",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin aktif olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
 						"{onlineMembersWithRole:rol1ID,rol2ID}"
@@ -212,7 +212,7 @@
 				},
 				"offlineMembersWithRole": {
 					"name": "offlineMembersWithRole:rol1ID,rol2ID",
-					"description": "Rol veya rollere sahip çevrimdışı üye sayısı",
+					"description": "Rol veya rollere sahip çevrimdışı üye sayısını gösterir",
 					"detailedDescription": "Bir role veya rollere sahip kaç üyenin çevrimdışı olduğunu sayar, sayılmasını istediğiniz rol IDlerini `:` işaretinden sonra yazın ve rol IDlerini virgülle ayırın",
 					"usage": [
 						"{offlineMembersWithRole:rol1ID,rol2ID}"
@@ -224,7 +224,7 @@
 				},
 				"connectedMembers": {
 					"name": "connectedMembers:kanal1ID,kanal2ID",
-					"description": "Ses kanallarına bağlı üye sayısı",
+					"description": "Ses kanallarına bağlı üye sayısını gösterir",
 					"detailedDescription": "Tüm veya belirtilen ses kanallarına kaç üyenin bağlı olduğunu sayar, filtrelemek istediğiniz kanal IDlerini `:` işaretinden sonra yazın ve IDleri virgülle ayırın",
 					"usage": [
 						"{connectedMembers}",
