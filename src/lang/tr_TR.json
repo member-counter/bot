@@ -178,13 +178,15 @@
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Sunucunuzdaki kanal sayısını gösterir (kategoriler hariç)",
-					"detailedDescription": "Sunucuda (kategoriler hariç) kaç kanal olduğunu sayar",
+					"description": "Channels in your server (excludes categories) or under a category",
+					"detailedDescription": "Counts how many channels (excluding category channels) are in the server, if you specify one or more category IDs after the `:`, separated by commas, only the channels under those specified categories will be counted",
 					"usage": [
-						"{channels}"
+						"{channels}",
+						"{channels:categoryID1,categoryID2}"
 					],
 					"example": [
-						"{channels} Kanal"
+						"{channels} Kanal",
+						"{channels:6509281904766437,5823659271648290} Tickets open"
 					]
 				},
 				"membersWithRole": {
