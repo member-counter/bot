@@ -178,15 +178,15 @@
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Channels in your server (excludes categories) or under a category",
-					"detailedDescription": "Counts how many channels (excluding category channels) are in the server, if you specify one or more category IDs after the `:`, separated by commas, only the channels under those specified categories will be counted",
+					"description": "Sunucunuzdaki (kategoriler hariç) veya bir kategori altındaki kanal sayısını gösterir",
+					"detailedDescription": "Sunucuda kaç (kategori kanalları hariç) kanal olduğunu sayar, `:` işaretinden sonra virgülle ayırarak bir veya daha fazla kategori IDsi belirtirseniz, yalnızca belirtilen kategoriler altındaki kanallar sayılır",
 					"usage": [
 						"{channels}",
-						"{channels:categoryID1,categoryID2}"
+						"{channels:kategoriID1,kategoriID2}"
 					],
 					"example": [
 						"{channels} Kanal",
-						"{channels:6509281904766437,5823659271648290} Tickets open"
+						"{channels:6509281904766437,5823659271648290} Talep Açık"
 					]
 				},
 				"membersWithRole": {
@@ -274,110 +274,110 @@
 					]
 				},
 				"youtubeSubscribers": {
-					"name": "youtubeSubscribers:channelUrl",
+					"name": "youtubeSubscribers:kanalURLsi",
 					"description": "Bir YouTube kanalının abone sayısını gösterir",
-					"detailedDescription": "Bir YouTube kanalının kaç aboneye sahip olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
+					"detailedDescription": "Bir YouTube kanalının kaç aboneye sahip olduğunu sayar, `kanalURLsi` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeSubscribers:channelUrl}"
+						"{youtubeSubscribers:kanalURLsi}"
 					],
 					"example": [
 						"Abone Sayısı: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeViews": {
-					"name": "youtubeViews:channelUrl",
+					"name": "youtubeViews:kanalURLsi",
 					"description": "Bir YouTube kanalının izlenme sayısını gösterir",
-					"detailedDescription": "Bir YouTube kanalının kaç kez görüntülendiğini sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
+					"detailedDescription": "Bir YouTube kanalının kaç kez görüntülendiğini sayar, `kanalURLsi` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeViews:channelUrl}"
+						"{youtubeViews:kanalURLsi}"
 					],
 					"example": [
 						"Görüntüleme Sayısı: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeVideos": {
-					"name": "youtubeVideos:channelUrl",
+					"name": "youtubeVideos:kanalURLsi",
 					"description": "Bir YouTube kanalının video sayısını gösterir",
-					"detailedDescription": "Bir YouTube kanalının kaç videosu olduğunu sayar, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
+					"detailedDescription": "Bir YouTube kanalının kaç videosu olduğunu sayar, `kanalURLsi` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeVideos:channelUrl}"
+						"{youtubeVideos:kanalURLsi}"
 					],
 					"example": [
 						"Video Sayısı: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeChannelName": {
-					"name": "youtubeChannelName:channelUrl",
+					"name": "youtubeChannelName:kanalURLsi",
 					"description": "Bir YouTube kanalının adını görüntüler",
-					"detailedDescription": "Bir YouTube kanalının adını görüntüler, `channelUrl` yerine istediğiniz kanalın URL'sini girin",
+					"detailedDescription": "Bir YouTube kanalının adını görüntüler, `kanalURLsi` yerine istediğiniz kanalın URL'sini girin",
 					"usage": [
-						"{youtubeChannelName:channelUrl}"
+						"{youtubeChannelName:kanalURLsi}"
 					],
 					"example": [
 						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"twitchFollowers": {
-					"name": "twitchFollowers:nickname",
+					"name": "twitchFollowers:kullanıcıAdı",
 					"description": "Bir Twitch kanalının takipçi sayısı",
-					"detailedDescription": "Bir Twitch kanalının kaç takipçisi olduğunu sayar, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
+					"detailedDescription": "Bir Twitch kanalının kaç takipçisi olduğunu sayar, `kullanıcıAdı` bölümünü istediğiniz kanal adıyla değiştirin",
 					"usage": [
-						"{twitchFollowers:nickname}"
+						"{twitchFollowers:kullanıcıAdı}"
 					],
 					"example": [
 						"{twitchFollowers:ninja} Takipçi"
 					]
 				},
 				"twitchViews": {
-					"name": "twitchViews:nickname",
+					"name": "twitchViews:kullanıcıAdı",
 					"description": "Bir Twitch kanalının izlenme sayısını gösterir",
-					"detailedDescription": "Bir Twitch kanalının kaç kez görüntülendiğini sayar, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
+					"detailedDescription": "Bir Twitch kanalının kaç kez görüntülendiğini sayar, `kullanıcıAdı` bölümünü istediğiniz kanal adıyla değiştirin",
 					"usage": [
-						"{twitchViews:nickname}"
+						"{twitchViews:kullanıcıAdı}"
 					],
 					"example": [
 						"{twitchViews:ninja} Görüntüleme"
 					]
 				},
 				"twitchChannelName": {
-					"name": "twitchChannelName:nickname",
+					"name": "twitchChannelName:kullanıcıAdı",
 					"description": "Bir Twitch kanalının adını görüntüler",
-					"detailedDescription": "Bir Twitch kanalının adını görüntüler, `nickname` bölümünü istediğiniz kanal adıyla değiştirin",
+					"detailedDescription": "Bir Twitch kanalının adını görüntüler, `kullanıcıAdı` bölümünü istediğiniz kanal adıyla değiştirin",
 					"usage": [
-						"{twitchChannelName:nickname}"
+						"{twitchChannelName:kullanıcıAdı}"
 					],
 					"example": [
 						"{twitchChannelName:ninja}"
 					]
 				},
 				"memeratorMemes": {
-					"name": "memeratorMemes:username",
+					"name": "memeratorMemes:kullanıcıAdı",
 					"description": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler",
-					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
+					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının meme sayısını görüntüler, `kullanıcıAdı` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
-						"{memeratorMemes:username}"
+						"{memeratorMemes:kullanıcıAdı}"
 					],
 					"example": [
 						"Meme Sayısı: {memeratorMemes:eduardozgz}"
 					]
 				},
 				"memeratorFollowers": {
-					"name": "memeratorFollowers:username",
+					"name": "memeratorFollowers:kullanıcıAdı",
 					"description": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler",
-					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler, `nickname` bölümünü istediğiniz profilin adıyla değiştirin",
+					"detailedDescription": "Bir [Memerator](https://memerator.me) kullanıcısının takipçi sayısını görüntüler, `kullanıcıAdı` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
-						"{memeratorFollowers:username}"
+						"{memeratorFollowers:kullanıcıAdı}"
 					],
 					"example": [
 						"Takipçi Sayısı: {memeratorFollowers:eduardozgz}"
 					]
 				},
 				"twitterFollowers": {
-					"name": "twitterFollowers:username",
+					"name": "twitterFollowers:kullanıcıAdı",
 					"description": "Bir Twitter kullanıcısının takipçi sayısını gösterir",
-					"detailedDescription": "Bir Twitter kullanıcısının kaç takipçisi olduğunu sayar, `username` bölümünü istediğiniz profilin adıyla değiştirin",
+					"detailedDescription": "Bir Twitter kullanıcısının kaç takipçisi olduğunu sayar, `kullanıcıAdı` bölümünü istediğiniz profilin adıyla değiştirin",
 					"usage": [
-						"{twitterFollowers:username}"
+						"{twitterFollowers:kullanıcıAdı}"
 					],
 					"example": [
 						"Takipçi Sayısı: {twitterFollowers:0xEduardozgz}"
@@ -417,44 +417,44 @@
 					]
 				},
 				"instagramFollowers": {
-					"name": "instagramFollowers:kullanıcıadı",
+					"name": "instagramFollowers:kullanıcıAdı",
 					"description": "Bir Instagram hesabındaki takipçi sayısını gösterir",
-					"detailedDescription": "Bir Instagram hesabındaki takipçi sayısını gösterir, `username` bölümünü asıl Instagram kullanıcı adıyla değiştirin",
+					"detailedDescription": "Bir Instagram hesabındaki takipçi sayısını gösterir, `kullanıcıAdı` bölümünü asıl Instagram kullanıcı adıyla değiştirin",
 					"usage": [
-						"{instagramFollowers:username}"
+						"{instagramFollowers:kullanıcıAdı}"
 					],
 					"example": [
 						"Takipçi Sayısı: {instagramFollowers:eduardozgz}"
 					]
 				},
 				"countdown": {
-					"name": "countdown:targetDate:format",
+					"name": "countdown:hedefTarih:format",
 					"description": "Belirtilen hedef tarih için bir geri sayım gösterir",
-					"detailedDescription": "Belirtilen hedef tarihe düşecek bir geri sayım gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/countdown) veya `targetDate`i hedef tarihle değiştirerek manuel olarak oluşturabilirsiniz. UNIX zaman damgasında tarih ve isteğe bağlı olarak özel bir formatla `format`a: kalan günü göstermek için `%d`, kalan saati göstermek için `%h`, kalan dakikayı göstermek için `%m` ve kalan saniyeyi göstermek için `%s` yazabilirsiniz",
+					"detailedDescription": "Belirtilen hedef tarihe düşecek bir geri sayım gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/countdown) veya `hedefTarih`i hedef tarihle değiştirerek manuel olarak oluşturabilirsiniz. UNIX zaman damgasında tarih ve isteğe bağlı olarak özel bir formatla `format`a: kalan günü göstermek için `%d`, kalan saati göstermek için `%h`, kalan dakikayı göstermek için `%m` ve kalan saniyeyi göstermek için `%s` yazabilirsiniz",
 					"usage": [
-						"{countdown:targetDate:format}"
+						"{countdown:hedefTarih:format}"
 					],
 					"example": [
 						"Yeni yıl için; {countdown:1640991600:%d gün, %h saat, %m dakika} kaldı"
 					]
 				},
 				"game": {
-					"name": "game:gameId:address",
+					"name": "game:gameId:adres",
 					"description": "Bir oyun (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sunucusundaki aktif oyuncu sayısını gösterir",
-					"detailedDescription": "Bir oyun sunucusunda kaç aktif oyuncu olduğunu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sayar, `gameId` yerine [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden birini ve `address` kısmını ise asıl sunucu adresiyle değiştirin",
+					"detailedDescription": "Bir oyun sunucusunda kaç aktif oyuncu olduğunu (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, vb.) sayar, `gameId` yerine [burada](https://github.com/gamedig/node-gamedig/#games-list) listelenenlerden birini ve `adres` kısmını ise asıl sunucu adresiyle değiştirin",
 					"usage": [
-						"{game:gameId:address}"
+						"{game:gameId:adres}"
 					],
 					"example": [
 						"{game:minecraft:mc.hypixel.net} Üye Madencilik ve Eşya Yapıyor"
 					]
 				},
 				"clock": {
-					"name": "clock:timeZone",
+					"name": "clock:saatDilimi",
 					"description": "Belirtilen saat diliminin saatine sahip bir saat gösterir",
-					"detailedDescription": "Belirtilen saat dilimine göre saati gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/clock) veya `timeZone` bölümünü geçerli bir IANA saat dilimiyle değiştirebilirsiniz",
+					"detailedDescription": "Belirtilen saat dilimine göre saati gösterir, kolayca [bu sayacı burada oluşturabilir](https://member-counter.eduardozgz.com/utils/clock) veya `saatDilimi` bölümünü geçerli bir IANA saat dilimiyle değiştirebilirsiniz",
 					"usage": [
-						"{clock:timeZone}"
+						"{clock:saatDilimi}"
 					],
 					"example": [
 						"Türkiye: {clock:Europe/Istanbul}"
