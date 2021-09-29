@@ -178,13 +178,15 @@
 				},
 				"channels": {
 					"name": "चैनले",
-					"description": "Channels in your server (excludes categories)",
-					"detailedDescription": "Counts how many channels (excluding category channels) are in the server",
+					"description": "Channels in your server (excludes categories) or under a category",
+					"detailedDescription": "Counts how many channels (excluding category channels) are in the server, if you specify one or more category IDs after the `:`, separated by commas, only the channels under those specified categories will be counted",
 					"usage": [
-						"{channels}"
+						"{channels}",
+						"{channels:categoryID1,categoryID2}"
 					],
 					"example": [
-						"{channels} Channels"
+						"{channels} Channels",
+						"{channels:6509281904766437,5823659271648290} Tickets open"
 					]
 				},
 				"membersWithRole": {
