@@ -30,17 +30,25 @@ const MembersExtendedCounter: Counter = {
 			const memberIsOffline =
 				member.status === "offline" || member.status === undefined;
 
-			if (member.bot) counts.bots++;
-			else counts.users++;
-
-			if (memberIsOffline) counts.offlineMembers++;
-			else counts.onlineMembers++;
-
-			if (memberIsOffline && member.bot) counts.offlineBots++;
-			else if (memberIsOffline) counts.offlineUsers++;
-
-			if (!memberIsOffline && member.bot) counts.onlineBots++;
-			else if (!memberIsOffline) counts.onlineUsers++;
+			if (member.bot) {
+				counts.bots++;
+				if (memberIsOffline) {
+					counts.offlineMembers++;
+					counts.offlineBots++;
+				} else {
+					counts.onlineMembers++;
+					counts.onlineBots++;
+				}
+			} else {
+				counts.users++;
+				if (memberIsOffline) {
+					counts.offlineMembers++;
+					counts.offlineUsers++;
+				} else {
+					counts.onlineMembers++;
+					counts.onlineUsers++;
+				}
+			}
 		}
 		return counts;
 	}
