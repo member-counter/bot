@@ -5,10 +5,10 @@ const MembersPlayingCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ client, guild, unparsedArgs }) => {
+	execute: async ({ client, guild, args }) => {
 		let count = 0;
 
-		const games = unparsedArgs.split(",").map((game) => game.trim().toLowerCase());
+		const games = args[0]?.map((game) => game.trim().toLowerCase());
 
 		for (const [memberId, member] of guild.members) {
 			if (

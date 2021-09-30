@@ -6,8 +6,8 @@ const ChannelCounter: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ guild, unparsedArgs }) => {
-		const targetCategories = unparsedArgs.length ? unparsedArgs.split(",") : [];
+	execute: async ({ guild, args }) => {
+		const targetCategories = args[0] ?? [];
 
 		if (targetCategories.length) {
 			return guild.channels.filter((channel) =>

@@ -11,9 +11,9 @@ const GameCounter: Counter = {
 	isEnabled: true,
 	lifetime: 5 * 1000,
 	execute: async ({ client, guild, unparsedArgs: resource, args }) => {
-		const type = args[0];
-		const host = args[1];
-		const port = parseInt(args[2], 10);
+		const type = args[0]?.[0];
+		const host = args[1]?.[0];
+		const port = parseInt(args[2]?.[0], 10);
 
 		if (!host) throw new Error("You must provide an address and port");
 		switch (type) {
