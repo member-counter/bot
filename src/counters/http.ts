@@ -9,22 +9,21 @@ import redis from "../redis";
 
 const { COUNTER_HTTP_DENY_LIST } = getEnv();
 
-const LIFETIME = 1 * 60 * 1000;
-
 interface Resource {
 	url: string;
 	parseNumber: boolean;
 	dataPath: string;
+	lifetime: number;
 }
 
 const HTTPCounter: Counter = {
 	aliases: ["http", "https", "http-string", "https-string"],
 	isPremium: false,
 	isEnabled: true,
-	lifetime: LIFETIME,
-	execute: async ({ unparsedArgs: resource }) => {
-		const { url, parseNumber, dataPath }: Resource = JSON.parse(
-			Buffer.from(resource, "base64").toString("utf-8")
+	lifetime: 0,
+	execute: async ({ args }) => {
+		const { url, parseNumber, dataPath, lifetime }: Resource = JSON.parse(
+			Buffer.from(args[0][0], "base64").toString("utf-8")
 		);
 
 		if (!url) throw new Error("You didn't specify a url property");
@@ -54,7 +53,9 @@ const HTTPCounter: Counter = {
 			}
 
 			result = await response.text();
-			redis.set(url, result, "EX", LIFETIME / 1000).catch(console.error);
+			redis
+				.set(url, result, "EX", lifetime ?? 1 * 60 * 60)
+				.catch(console.error);
 
 			let responseContentType = response.headers.get("Content-Type");
 			if (responseContentType.includes("text/plain")) {
