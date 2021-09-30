@@ -5,7 +5,7 @@ const reddit: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ guild, unparsedArgs: subreddit }) => {
+	execute: async ({ unparsedArgs: subreddit }) => {
 		const response = await fetch(
 			`https://www.reddit.com/r/${subreddit}/about.json`
 		).then((response) => response.json());

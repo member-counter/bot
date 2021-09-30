@@ -316,6 +316,8 @@ interface Counters {
 	game: Members;
 	clock: Members;
 	http: Members;
+	replace: Members;
+	escape: Members;
 	static: Members;
 	sum: Members;
 	subtract: Members;
