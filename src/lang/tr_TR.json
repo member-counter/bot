@@ -472,15 +472,15 @@
 					]
 				},
 				"replace": {
-					"name": "replace:text:oldValue;newValue",
-					"description": "Replaces portions of the given text with the given values",
+					"name": "replace:metin:eskiDeğer;yeniDeğer",
+					"description": "Verilen metnin bölümlerini verilen değerlerle değiştirir",
 					"detailedDescription": "Replaces portions of the given text with the given values, this counter is useful alongside the `{http}` counter to for example, read data from an API, and depending on the returned response, translate the response to something more human friendly.\n`text` should be the original text or a counter like `{http}`, `oldValue` the value to search and `newValue` the value that will replace `oldValue`, you can replace multiple values by separating them with a comma as shown below in the examples.",
 					"usage": [
-						"{replace:text:oldValue;newValue}",
-						"{replace:text:oldValue;newValue,oldValue2;newValue2}"
+						"{replace:metin:eskiDeğer;yeniDeğer}",
+						"{replace:metin:eskiDeğer;yeniDeğer,eskiDeğer2;yeniDeğer2}"
 					],
 					"example": [
-						"{replace:Hello\\, world!:Hello;Goodbye,world;discord}",
+						"{replace:Merhaba\\, Dünya!:Merhaba;Güle güle,Dünya;discord}",
 						"Weather in Madrid: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:storm;🌩,sunny;☀,raining;🌧}"
 					]
 				},
