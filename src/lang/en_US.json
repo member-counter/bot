@@ -356,7 +356,7 @@
 					],
 					"example": [
 						"{replace:Hello\\, world!:Hello;Goodbye,world;discord}",
-						"Weather in Madrid: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:storm;🌩,sunny:=;☀,raining;🌧}"
+						"Weather in Madrid: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:storm;🌩,sunny;☀,raining;🌧}"
 					]
 				},
 				"escape": {
