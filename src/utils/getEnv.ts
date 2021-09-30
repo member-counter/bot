@@ -16,6 +16,14 @@ const parsedEnv = dotenvParseVariables({
 	FIRST_SHARD: Number(process.env.FIRST_SHARD?.match(/(\d+)/)[0])
 });
 
+// fix Env vars that are supposed to be an array (they aren't being parsed as arrays by dotenv-parse-variables because there are no commas sometimes)
+const arrayEnvVars = ["DISCORD_STATUS", "COUNTER_HTTP_DENY_LIST", "BOT_OWNERS"];
+
+arrayEnvVars.forEach((envVar) => {
+	const value = parsedEnv[envVar];
+	parsedEnv[envVar] = typeof value === "string" ? [value] : value;
+});
+
 function getEnv(): AppEnv {
 	return parsedEnv;
 }

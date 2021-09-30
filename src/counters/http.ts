@@ -19,7 +19,7 @@ const HTTPCounter: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 1 * 60 * 1000,
-	execute: async ({ unparsedArgs: resource, aliasUsed }) => {
+	execute: async ({ unparsedArgs: resource }) => {
 		const { url, parseNumber, dataPath }: Resource = JSON.parse(
 			Buffer.from(resource, "base64").toString("utf-8")
 		);

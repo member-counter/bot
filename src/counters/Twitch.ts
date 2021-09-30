@@ -7,7 +7,7 @@ const { TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET } = getEnv();
 
 const authProvider = new ClientCredentialsAuthProvider(
 	TWITCH_CLIENT_ID,
-	TWITCH_CLIENT_SECRET,
+	TWITCH_CLIENT_SECRET
 );
 
 const client = new ApiClient({ authProvider });
@@ -17,7 +17,7 @@ const TwitchCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
-	execute: async ({ guild, unparsedArgs: userName }) => {
+	execute: async ({ unparsedArgs: userName }) => {
 		try {
 			if (!TWITCH_CLIENT_ID) throw new Error("TWITCH_CLIENT_ID not provided");
 			if (!TWITCH_CLIENT_SECRET)
