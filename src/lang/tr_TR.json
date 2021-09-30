@@ -471,6 +471,30 @@
 						"Son abone: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
 					]
 				},
+				"replace": {
+					"name": "replace:text:oldValue;newValue",
+					"description": "Replaces portions of the given text with the given values",
+					"detailedDescription": "Replaces portions of the given text with the given values, this counter is useful alongside the `{http}` counter to for example, read data from an API, and depending on the returned response, translate the response to something more human friendly.\n`text` should be the original text or a counter like `{http}`, `oldValue` the value to search and `newValue` the value that will replace `oldValue`, you can replace multiple values by separating them with a comma as shown below in the examples.",
+					"usage": [
+						"{replace:text:oldValue;newValue}",
+						"{replace:text:oldValue;newValue,oldValue2;newValue2}"
+					],
+					"example": [
+						"{replace:Hello\\, world!:Hello;Goodbye,world;discord}",
+						"Weather in Madrid: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:storm;🌩,sunny;☀,raining;🌧}"
+					]
+				},
+				"escape": {
+					"name": "escape:stringToEscape",
+					"description": "Escapes common delimiters used by Member Counter",
+					"detailedDescription": "Escapes automatically all the delimiters used by Member Counter when processing a counter. Like `:`,`;` or `,`. You may need this if you want to pass arguments with the mentioned delimiters without getting them parsed. This is specially useful when you can't control well the content of the string like in the `{http}` counter",
+					"usage": [
+						"{escape:stringToEscape}"
+					],
+					"example": [
+						"{escape:Hello, world!}"
+					]
+				},
 				"static": {
 					"name": "static:data",
 					"description": "Verilen `data`yı görüntüler",
