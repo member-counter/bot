@@ -8,7 +8,7 @@ const TestCounter: Counter = {
 	isPremium: false,
 	isEnabled: NODE_ENV === "development",
 	lifetime: 0,
-	execute: async ({ client, guild, unparsedArgs: resource }) => {
+	execute: async () => {
 		return 1234567890;
 		// return "Working!";
 		// return { myCounter: Date.now(), myRandomCounter: "Working!" };

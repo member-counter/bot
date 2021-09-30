@@ -22,6 +22,8 @@ import TwitchCounter from "./Twitch";
 import TwitterCounter from "./Twitter";
 import YouTubeCounter from "./YouTube";
 import MathCounter from "./Math";
+import ReplaceCounter from "./replace";
+import EscapeCounter from "./escape";
 
 const counters = [
 	TestCounter,
@@ -47,7 +49,9 @@ const counters = [
 	TwitchCounter,
 	TwitterCounter,
 	YouTubeCounter,
-	MathCounter
+	MathCounter,
+	ReplaceCounter,
+	EscapeCounter
 ];
 
 export default counters;

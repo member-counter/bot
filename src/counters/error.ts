@@ -8,7 +8,7 @@ const ErrorCounter: Counter = {
 	isPremium: false,
 	isEnabled: NODE_ENV === "development",
 	lifetime: 0,
-	execute: async ({ client, guild, unparsedArgs: resource }) => {
+	execute: async () => {
 		throw new Error("Error!!!");
 	}
 };
