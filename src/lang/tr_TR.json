@@ -113,6 +113,7 @@
 				"onlineUsers": {
 					"name": "onlineUsers",
 					"description": "Sunucunuzdaki aktif kullanıcı sayısını gösterir (botlar hariç)",
+
 					"detailedDescription": "Sunucuda (bot hesapları hariç) kaç kullanıcının aktif olduğunu sayar",
 					"usage": [
 						"{users}"
