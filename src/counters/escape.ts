@@ -11,7 +11,7 @@ const EscapeCounter: Counter = {
 		let escapedString = unparsedArgs;
 
 		delimiters.forEach((delimiter) => {
-			escapedString = escapedString.replace(delimiter, `\\${delimiter}`);
+			escapedString = escapedString.replaceAll(delimiter, `\\${delimiter}`);
 		});
 
 		return escapedString;
