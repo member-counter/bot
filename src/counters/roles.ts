@@ -5,7 +5,7 @@ const RolesCounter: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ client, guild, unparsedArgs: resource }) => {
+	execute: async ({ guild }) => {
 		return guild.roles.size;
 	}
 };

@@ -17,19 +17,19 @@ interface executeArgs {
 	guildSettings: GuildService;
 
 	/**
-	 * @description Formatting settings for the couner
+	 * @description Formatting settings for the counter
 	 */
 	formattingSettings: FormattingSettings;
 
 	/**
-	 * @description Resource, like a list of role IDs, a peice of text, an URI, etc
+	 * @description Resource, like a list of role IDs, a piece of text, an URI, etc
 	 */
 	unparsedArgs: string;
 
 	/**
-	 * @description The args but splited depening on which separator has been used
+	 * @description The args but splitted depending on which separator has been used
 	 */
-	args: string[];
+	args: string[][];
 
 	/**
 	 * @description The alias that was used
