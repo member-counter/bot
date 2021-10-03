@@ -481,7 +481,7 @@
 					],
 					"example": [
 						"{replace:Merhaba\\, Dünya!:Merhaba;Güle güle,Dünya;discord}",
-						"Weather in Madrid: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:storm;🌩,sunny;☀,raining;🌧}"
+						"Madrid'de hava durumu: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:fırtınalı;🌩,güneşli;☀,yağmurlu;🌧}"
 					]
 				},
 				"escape": {
@@ -492,7 +492,7 @@
 						"{escape:stringToEscape}"
 					],
 					"example": [
-						"{escape:Hello, world!}"
+						"{escape:Merhaba, Dünya!}"
 					]
 				},
 				"static": {
