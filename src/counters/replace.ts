@@ -14,7 +14,7 @@ const ReplaceCounter: Counter = {
 
 		for (const pair of pairs) {
 			const [oldValue, newValue] = pair;
-			newText = newText.replace(oldValue, newValue);
+			newText = newText.replaceAll(oldValue, newValue);
 		}
 
 		return newText;
