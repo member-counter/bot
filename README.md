@@ -15,7 +15,7 @@ See also the [documentation](https://docs.membercounter.bot/) to learn about eve
 
 Read this guide to setup this bot using docker: https://docs.membercounter.bot/guides/how-to-self-host-member-counter
 
-# Development enviorement
+# Development environment
 
 ## Software requirements
 
