@@ -128,11 +128,11 @@ const status: Command = {
 		});
 
 		const RESTLatencyCheck = Date.now();
-		await channel.createMessage({ embed }).then(async (message) => {
+		await channel.createMessage({ embeds: [embed] }).then(async (message) => {
 			// Bot latency field
 			embed.fields[6].value = `${Date.now() - RESTLatencyCheck}ms`;
 
-			await message.edit({ embed });
+			await message.edit({ embeds: [embed] });
 		});
 	}
 };

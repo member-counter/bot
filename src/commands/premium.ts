@@ -19,7 +19,7 @@ const premium: Command = {
 			GET_PREMIUM_BOT_URL
 		);
 
-		await channel.createMessage({ embed });
+		await channel.createMessage({ embeds: [embed] });
 	}
 };
 

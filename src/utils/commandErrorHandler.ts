@@ -39,7 +39,7 @@ const commandErrorHandler = async (
 			break;
 	}
 
-	channel.createMessage({ embed: errorEmbed }).catch(() => {});
+	channel.createMessage({ embeds: [errorEmbed] }).catch(() => {});
 };
 
 export default commandErrorHandler;
