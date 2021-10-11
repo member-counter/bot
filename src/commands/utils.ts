@@ -30,22 +30,18 @@ const lockChannel: Command = {
 				if (botHasPermsToEdit(channelToEdit)) {
 					await channelToEdit.editPermission(
 						client.user.id,
-						// TODO remove this weird fix in the next Eris update
-						Number(
-							(
-								Eris.Constants.Permissions.voiceConnect |
-								Eris.Constants.Permissions.viewChannel
-							).toString()
-						),
+						Eris.Constants.Permissions.voiceConnect |
+							Eris.Constants.Permissions.viewChannel,
 						0,
-						"member"
+						// TODO use constants when abalabahaha/eris#1271 is merged
+						1
 					);
 					await channelToEdit.editPermission(
 						guild.id,
 						0,
-						// TODO remove this weird fix in the next Eris update
-						Number(Eris.Constants.Permissions.voiceConnect.toString()),
-						"role"
+						Eris.Constants.Permissions.voiceConnect,
+						// TODO use constants when abalabahaha/eris#1271 is merged
+						0
 					);
 				} else {
 					throw new UserError(errorNoPerms.replace(/\{CHANNEL\}/gi, channelId));
