@@ -61,7 +61,7 @@ const counts: Command = {
 			]
 		});
 
-		channel.createMessage({ embed });
+		channel.createMessage({ embeds: [embed] });
 	}
 };
 

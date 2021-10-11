@@ -25,7 +25,7 @@ const info: Command = {
 			url: client.user.dynamicAvatarURL()
 		};
 
-		await channel.createMessage({ embed });
+		await channel.createMessage({ embeds: [embed] });
 	}
 };
 
