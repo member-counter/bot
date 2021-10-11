@@ -134,24 +134,20 @@ const setup: Command = {
 				permissionOverwrites: [
 					{
 						id: client.user.id,
-						type: "member",
+
+						// TODO use constants when abalabahaha/eris#1271 is merged
+						type: 1,
 						allow:
-							// TODO remove this weird fix in the next Eris update
-							Number(
-								(
-									Eris.Constants.Permissions.voiceConnect |
-									Eris.Constants.Permissions.viewChannel
-								).toString()
-							),
+							Eris.Constants.Permissions.voiceConnect |
+							Eris.Constants.Permissions.viewChannel,
 						deny: 0
 					},
 					{
 						id: guild.id,
-						type: "role",
+						// TODO use constants when abalabahaha/eris#1271 is merged
+						type: 0,
 						allow: 0,
-						deny:
-							// TODO remove this weird fix in the next Eris update
-							Number(Eris.Constants.Permissions.voiceConnect.toString())
+						deny: Eris.Constants.Permissions.voiceConnect
 					}
 				]
 			}
@@ -173,24 +169,22 @@ const setup: Command = {
 						permissionOverwrites: [
 							{
 								id: client.user.id,
-								type: "member",
+
+								// TODO use constants when abalabahaha/eris#1271 is merged
+								type: 1,
 								allow:
-									// TODO remove this weird fix in the next Eris update
-									Number(
-										(
-											Eris.Constants.Permissions.voiceConnect |
-											Eris.Constants.Permissions.viewChannel
-										).toString()
-									),
+									Eris.Constants.Permissions.voiceConnect |
+									Eris.Constants.Permissions.viewChannel,
 								deny: 0
 							},
 							{
 								id: guild.id,
-								type: "role",
+
+								// TODO use constants when abalabahaha/eris#1271 is merged
+								type: 0,
 								allow: 0,
 								deny:
-									// TODO remove this weird fix in the next Eris update
-									Number(Eris.Constants.Permissions.voiceConnect.toString())
+									Eris.Constants.Permissions.voiceConnect
 							}
 						],
 						parentID: discordCategory.id

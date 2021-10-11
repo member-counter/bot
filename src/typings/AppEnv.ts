@@ -35,6 +35,8 @@ interface _AppEnv {
 
 	BOT_OWNERS: string[];
 
+	DISCORD_FILTER_GUILDS: string[];
+
 	MEMBER_COUNTS_CACHE_LIFETIME: number;
 	MEMBER_COUNTS_CACHE_CHECK_SLEEP: number;
 	MEMBER_COUNTS_CACHE_CHECK: number;
