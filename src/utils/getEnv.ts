@@ -21,7 +21,7 @@ const arrayEnvVars = [
 	"DISCORD_STATUS",
 	"COUNTER_HTTP_DENY_LIST",
 	"BOT_OWNERS",
-	"DISCORD_GUILDS"
+	"DISCORD_FILTER_GUILDS"
 ];
 
 arrayEnvVars.forEach((envVar) => {
