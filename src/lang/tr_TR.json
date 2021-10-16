@@ -463,7 +463,7 @@
 				"http": {
 					"name": "http:options",
 					"description": "Bir http isteğinin sonucunu gösterir",
-					"detailedDescription": "Bir http `GET` requesti tarafından döndürülen sonucu gösterir. `options`ı [burada](https://member-counter.eduardozgz.com/utils/http) ayarlayabilir veya manuel olarak oluşturabilirsiniz: `options`, base64'te kodlanmış bir JSON objectidir (bunu elde etmek için {PREFIX}base64 komutunu kullanabilirsiniz), bu object aşağıdaki keylere sahip olabilir: `url`: Kaynağın url'si ile bir string döndürür, `parseNumber`: Eğer sonuç geçerli bir sayıysa, sayı sunucunuzun ayarlarına göre ayrıştırılıp özelleştirilip bir boolean döndürülür, `dataPath`: Yanıt bir JSON objectiyse, bir array veya sayı olması gereken bir stringe sahip bir keyin yolunu belirtmelisiniz, bu yolun syntaxi JS'nin özelliklere ve array öğelerine erişmek için kullandığı syntaxe benzer.",
+					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items, `lifetime`: A number; specifies in seconds for how long the returned response will be cached and used, the default is 1 hour",
 					"usage": [
 						"{http:options}"
 					],
@@ -472,16 +472,16 @@
 					]
 				},
 				"replace": {
-					"name": "replace:text:oldValue;newValue",
-					"description": "Replaces portions of the given text with the given values",
+					"name": "replace:metin:eskiDeğer;yeniDeğer",
+					"description": "Verilen metnin bölümlerini verilen değerlerle değiştirir",
 					"detailedDescription": "Replaces portions of the given text with the given values, this counter is useful alongside the `{http}` counter to for example, read data from an API, and depending on the returned response, translate the response to something more human friendly.\n`text` should be the original text or a counter like `{http}`, `oldValue` the value to search and `newValue` the value that will replace `oldValue`, you can replace multiple values by separating them with a comma as shown below in the examples.",
 					"usage": [
-						"{replace:text:oldValue;newValue}",
-						"{replace:text:oldValue;newValue,oldValue2;newValue2}"
+						"{replace:metin:eskiDeğer;yeniDeğer}",
+						"{replace:metin:eskiDeğer;yeniDeğer,eskiDeğer2;yeniDeğer2}"
 					],
 					"example": [
-						"{replace:Hello\\, world!:Hello;Goodbye,world;discord}",
-						"Weather in Madrid: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:storm;🌩,sunny;☀,raining;🌧}"
+						"{replace:Merhaba\\, Dünya!:Merhaba;Güle güle,Dünya;discord}",
+						"Madrid'de hava durumu: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:fırtınalı;🌩,güneşli;☀,yağmurlu;🌧}"
 					]
 				},
 				"escape": {
@@ -492,7 +492,7 @@
 						"{escape:stringToEscape}"
 					],
 					"example": [
-						"{escape:Hello, world!}"
+						"{escape:Merhaba, Dünya!}"
 					]
 				},
 				"static": {
