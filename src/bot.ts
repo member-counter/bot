@@ -27,7 +27,8 @@ const {
 	REDIS_HOST,
 	REDIS_PORT,
 	STATUS_WEBHOOK_ID,
-	STATUS_WEBHOOK_TOKEN
+	STATUS_WEBHOOK_TOKEN,
+	DISCORD_FILTER_GUILDS
 } = getEnv();
 
 class Bot {
@@ -51,6 +52,7 @@ class Bot {
 			intents: intents.reduce((acc, cur) => acc | cur, 0),
 			maxShards: DISTRIBUTED ? TOTAL_SHARDS : 1,
 			messageLimit: 0,
+			filterGuilds: DISCORD_FILTER_GUILDS,
 			defaultImageFormat: "jpg",
 			compress: true,
 			restMode: true
@@ -73,16 +75,16 @@ class Bot {
 		});
 		this._client = client;
 
-		this.setupEventListeners(client);
+		this.setupListeners(client);
 
 		client.queue();
 
 		return client;
 	}
 
-	private static setupEventListeners(client: ErisClient) {
+	private static setupListeners(client: ErisClient) {
 		if (DEBUG) {
-			client.on("debug", console.info);
+			client.on("debug", console.debug);
 		}
 
 		client

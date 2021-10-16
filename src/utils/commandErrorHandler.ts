@@ -1,9 +1,9 @@
-import Eris, { TextChannel } from "eris";
+import Eris, { PrivateChannel, TextChannel } from "eris";
 import LanguagePack from "../typings/LanguagePack";
 import embedBase from "./embedBase";
 
 const commandErrorHandler = async (
-	channel: Eris.AnyChannel,
+	channel: Eris.TextableChannel,
 	languagePack: LanguagePack,
 	prefix: string,
 	error: any
@@ -39,8 +39,7 @@ const commandErrorHandler = async (
 			break;
 	}
 
-	if (channel instanceof TextChannel)
-		channel.createMessage({ embed: errorEmbed }).catch(() => {});
+	channel.createMessage({ embeds: [errorEmbed] }).catch(() => {});
 };
 
 export default commandErrorHandler;

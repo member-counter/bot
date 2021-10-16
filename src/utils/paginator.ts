@@ -53,25 +53,31 @@ class Paginator {
 
 		// setup paginator in discord if it doesn't exists
 		if (!this.message) {
-			this.message = await this.channel.createMessage({ embed: embedToSend });
+			this.message = await this.channel.createMessage({ embeds: [embedToSend] });
 			// Create Reaction Collector to listen for user reactions
 			this.createCollector();
 			// Add reactions based on page counts
 			await this.addReactions();
 		} else {
-			await this.message.edit({ embed: embedToSend });
+			await this.message.edit({ embeds: [embedToSend] });
 		}
 
 		// Return our message object if we want to parse it after pagination
 		return this.message;
 	}
 	async createJumpPrompt() {
+		const { cancelText } = this.languagePack.functions.paginator;
 		await this.channel
-			.createMessage(this.languagePack.functions.paginator.jumpPrompt)
+			.createMessage(
+				this.languagePack.functions.paginator.jumpPrompt.replace(
+					"{CANCEL_STRING}",
+					this.languagePack.functions.paginator.cancelText
+				)
+			)
 			.then(async (message) => {
 				const filter = (m) =>
 					(isNaN(m.content) &&
-						["cancel"].includes(m.content) &&
+						["cancel", cancelText].includes(m.content) &&
 						this.targetUserID === m.author.id) ||
 					(!isNaN(m.content) && this.targetUserID === m.author.id);
 				const collector = new MessageCollector(
@@ -85,7 +91,7 @@ class Paginator {
 				);
 				this.jumpPromptCollector = collector;
 				collector.on("collect", (m) => {
-					if (m.content === "cancel" || m.content === "0") {
+					if (["cancel", "0", cancelText].includes(m.content)) {
 						collector.stop();
 						message.delete();
 						if (this.botCanManageMessages) {
@@ -187,7 +193,7 @@ class Paginator {
 
 					break;
 				}
-				case emojis.jump.name:{
+				case emojis.jump.name: {
 					await this.jumpPrompt();
 
 					break;

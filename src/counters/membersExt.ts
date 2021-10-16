@@ -12,33 +12,41 @@ const MembersExtendedCounter: Counter = {
 	isPremium: true,
 	isEnabled: false,
 	lifetime: 0,
-	execute: async ({ client, guild, unparsedArgs: resource }) => {
+	execute: async ({ guild }) => {
 		const counts = {
-			["bots"]: 0,
-			["users"]: 0,
-			["onlinemembers"]: 0,
-			["offlinemembers"]: 0,
-			["onlineusers"]: 0,
-			["offlineusers"]: 0,
-			["onlinebots"]: 0,
-			["offlinebots"]: 0
+			bots: 0,
+			users: 0,
+			onlineMembers: 0,
+			offlineMembers: 0,
+			onlineUsers: 0,
+			offlineUsers: 0,
+			onlineBots: 0,
+			offlineBots: 0
 		};
 
 		for (const [memberId, member] of guild.members) {
 			const memberIsOffline =
 				member.status === "offline" || member.status === undefined;
 
-			if (member.bot) counts["bots"]++;
-			else counts["users"]++;
-
-			if (memberIsOffline) counts["offlinemembers"]++;
-			else counts["onlinemembers"]++;
-
-			if (memberIsOffline && member.bot) counts["offlinebots"]++;
-			else if (memberIsOffline) counts["offlineusers"]++;
-
-			if (!memberIsOffline && member.bot) counts["onlinebots"]++;
-			else if (!memberIsOffline) counts["onlineusers"]++;
+			if (member.bot) {
+				counts.bots++;
+				if (memberIsOffline) {
+					counts.offlineMembers++;
+					counts.offlineBots++;
+				} else {
+					counts.onlineMembers++;
+					counts.onlineBots++;
+				}
+			} else {
+				counts.users++;
+				if (memberIsOffline) {
+					counts.offlineMembers++;
+					counts.offlineUsers++;
+				} else {
+					counts.onlineMembers++;
+					counts.onlineUsers++;
+				}
+			}
 		}
 		return counts;
 	}

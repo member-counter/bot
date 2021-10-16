@@ -1,18 +1,18 @@
 import Counter from "../typings/Counter";
 
 const Math: Counter = {
-	aliases: ["sum", "substract", "multiply", "divide", "mod", "modulus"],
+	aliases: ["sum", "subtract", "multiply", "divide", "mod", "modulus"],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ unparsedArgs: resource, aliasUsed }) => {
-		const values = resource.split(",").map((n) => Number(n));
+	execute: async ({ args, aliasUsed }) => {
+		const values = args[0]?.map((n) => Number(n));
 
 		switch (aliasUsed) {
 			case "sum":
 				return values.reduce((accu, curr) => accu + curr);
 
-			case "substract":
+			case "subtract":
 				return values.reduce((accu, curr) => {
 					return accu - curr;
 				});

@@ -4,7 +4,6 @@ import {
 	TextChannel,
 	NewsChannel,
 	VoiceChannel,
-	Constants
 } from "eris";
 import { table } from "table";
 import embedBase from "../utils/embedBase";
@@ -514,11 +513,17 @@ const checkPerms: Command = {
 		messageBody += "\n";
 		messageBody += languagePackCheckPermissions.footer;
 		messageBody += "\n";
-		messageBody += getBotInviteLink();
+
+		const inviteLink = new URL(getBotInviteLink());
+		inviteLink.searchParams.set("guild_id", guild.id);
+		messageBody += inviteLink.toString();
 
 		if (botMemberPermissions.has("embedLinks")) {
 			const embeds = safeDiscordString(messageBody).map((content) =>
-				embedBase({ title: `Check permissions`, description: content })
+				embedBase({
+					title: languagePackCheckPermissions.title,
+					description: content
+				})
 			);
 			new Paginator(
 				message.channel,
