@@ -4,12 +4,14 @@ interface UserSettingsDocument extends Document {
 	id: string;
 	badges: number;
 	availableServerUpgrades: number;
+	credits: number;
 }
 
 const UserSchema = new Schema({
 	id: { type: String, require: true },
 	badges: { type: Number, default: 0 },
-	availableServerUpgrades: { type: Number, default: 0 }
+	availableServerUpgrades: { type: Number, default: 0 },
+	credits: { type: Number, default: 0 }
 });
 
 const UserModel = model<UserSettingsDocument>("users", UserSchema);

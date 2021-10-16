@@ -5,7 +5,7 @@ const MemberCounter: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ guild, client }) => {
+	execute: async ({ guild }) => {
 		return guild.memberCount;
 	}
 };

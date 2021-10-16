@@ -9,6 +9,7 @@ import Bot from "../bot";
 import LanguagePack from "../typings/LanguagePack";
 import { GuildChannelCommand, AnyChannelCommand } from "../typings/Command";
 import UserService from "../services/UserService";
+import escapeRegex from "./escapeRegex";
 
 const {
 	PREMIUM_BOT,
@@ -23,7 +24,8 @@ const {
 export default async (message: Eris.Message) => {
 	if (GHOST_MODE && !BOT_OWNERS.includes(message.author?.id)) return;
 
-	const { channel, author, content } = message;
+	const { author, content } = message;
+	let { channel } = message;
 	const { client } = Bot;
 
 	// Ignore requested commands in the official server since this server already has the premium bot
@@ -37,6 +39,12 @@ export default async (message: Eris.Message) => {
 
 	// Avoid responding to other bots
 	if (author && !author.bot) {
+		// fetch dm channel
+		if (!message.guildID) {
+			message.channel = await message.author.getDMChannel();
+			({ channel } = message);
+		}
+
 		let prefixToCheck: string;
 		let languagePack: LanguagePack;
 		let clientIntegrationRoleId: string;
@@ -64,8 +72,6 @@ export default async (message: Eris.Message) => {
 		}
 		prefixToCheck = prefixToCheck.toLowerCase();
 
-		const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
 		let prefixRegexStr = "^(";
 
 		if (!DISCORD_PREFIX_MENTION_DISABLE) {
@@ -79,9 +85,9 @@ export default async (message: Eris.Message) => {
 
 		// normal prefix
 		prefixRegexStr += escapeRegex(prefixToCheck);
-		prefixRegexStr += `)\\s*`
+		prefixRegexStr += `)\\s*`;
 
-		const prefixRegex = new RegExp(prefixRegexStr);
+		const prefixRegex = new RegExp(prefixRegexStr, "i");
 
 		const commandRequested = content.toLowerCase(); // Case insensitive match
 		const matchedPrefix = commandRequested.match(prefixRegex)?.[0];

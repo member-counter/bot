@@ -140,8 +140,9 @@ class CountService {
 		counterRequested: string,
 		canHaveCustomEmojis: boolean = false
 	): Promise<string> {
-		const separator = counterRequested.includes(";") ? ";" : ":";
-		const counterSections = counterRequested.split(separator);
+		const counterSections = counterRequested
+			.split(/(?<!\\):/)
+			.map((section) => section.replace("\\:", ":"));
 		let formattingSettingsRaw: string;
 		const formattingSettings: FormattingSettings = (() => {
 			const settings = {
@@ -168,7 +169,7 @@ class CountService {
 		})();
 
 		let counterName = CountService.safeCounterName(counterSections.shift());
-		let resource = counterSections.join(separator);
+		let resource = counterSections.join(":");
 		let lifetime = 0;
 		let result: string | number;
 
@@ -204,6 +205,11 @@ class CountService {
 			} else {
 				lifetime = counter.lifetime;
 
+				const unparsedArgs = counterSections.join(":");
+				const args = counterSections.map((section) =>
+					section.split(/(?<!\\),/).map((arg) => arg.replace(/\\(.)/g, "$1"))
+				);
+
 				let returnedValue = await counter
 					.execute({
 						client: this.client,
@@ -211,8 +217,8 @@ class CountService {
 						guildSettings: this.guildSettings,
 						aliasUsed: counterName,
 						formattingSettings,
-						unparsedArgs: resource,
-						args: resource.split(separator)
+						unparsedArgs,
+						args
 					})
 					.catch((error) => {
 						if (DEBUG) console.error(error);
@@ -342,7 +348,7 @@ class CountService {
 	 * @param name
 	 * @returns
 	 */
-	private static safeCounterName(name: string) {
+	public static safeCounterName(name: string) {
 		return name.replace(/-|_|\s/g, "").toLowerCase();
 	}
 

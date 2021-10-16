@@ -1,10 +1,12 @@
+import Bot from "../bot";
 import setupJobs from "../jobs";
 import embedBase from "../utils/embedBase";
 import getBotInviteLink from "../utils/getBotInviteLink";
 import getMotd from "../utils/getMOTD";
 
 const ready = () => {
-	console.log(`Bot ready`);
+	const { username, discriminator } = Bot.client.user;
+	console.log(`Bot ready - ${username}#${discriminator}`);
 	console.log(`Invite link: ${getBotInviteLink()}`);
 	setupJobs();
 
