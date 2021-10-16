@@ -125,7 +125,7 @@ const user: Command = {
 			inline: true
 		});
 
-		const userProfileMessage = await channel.createMessage({ embed });
+		const userProfileMessage = await channel.createMessage({ embeds: [embed] });
 
 		if (targetUser.id === author.id) {
 			await userProfileMessage.addReaction("🗑️");

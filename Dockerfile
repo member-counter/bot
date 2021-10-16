@@ -36,4 +36,5 @@ WORKDIR /app
 COPY package*.json ./
 COPY --from=app_production_dependencies /cache/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
+COPY ./res ./res
 CMD ["node", "."]
