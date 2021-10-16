@@ -87,7 +87,7 @@ export default async (message: Eris.Message) => {
 		prefixRegexStr += escapeRegex(prefixToCheck);
 		prefixRegexStr += `)\\s*`;
 
-		const prefixRegex = new RegExp(prefixRegexStr);
+		const prefixRegex = new RegExp(prefixRegexStr, "i");
 
 		const commandRequested = content.toLowerCase(); // Case insensitive match
 		const matchedPrefix = commandRequested.match(prefixRegex)?.[0];

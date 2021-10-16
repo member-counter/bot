@@ -28,7 +28,6 @@ const help: Command = {
 			.trim()
 			.toLowerCase()
 			.replace(/\{|\}/g, "")
-			.replace(new RegExp(`^${escapeRegex(prefix)}`), "");
 
 		if (!desiredThing) {
 			// Main help page
@@ -162,8 +161,6 @@ const help: Command = {
 					.toLowerCase()
 					.replace(/\p{Diacritic}/gu, "")
 					.split(/\s+|\n+/);
-
-				console.log();
 
 				const bestCounterOccurrences = new Map<string, number>();
 				const bestCommandOccurrences = new Map<string, number>();
