@@ -207,7 +207,7 @@ class CountService {
 
 				const unparsedArgs = counterSections.join(":");
 				const args = counterSections.map((section) =>
-					section.split(/(?<!\\),/)
+					section.split(/(?<!\\),/).map((arg) => arg.replace(/\\(.)/g, "$1"))
 				);
 
 				let returnedValue = await counter

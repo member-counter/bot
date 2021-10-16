@@ -17,11 +17,26 @@ const parsedEnv = dotenvParseVariables({
 });
 
 // fix Env vars that are supposed to be an array (they aren't being parsed as arrays by dotenv-parse-variables because there are no commas sometimes)
-const arrayEnvVars = ["DISCORD_STATUS", "COUNTER_HTTP_DENY_LIST", "BOT_OWNERS"];
+const arrayEnvVars = [
+	"DISCORD_STATUS",
+	"COUNTER_HTTP_DENY_LIST",
+	"BOT_OWNERS",
+	"DISCORD_FILTER_GUILDS"
+];
 
 arrayEnvVars.forEach((envVar) => {
 	const value = parsedEnv[envVar];
-	parsedEnv[envVar] = typeof value === "string" ? [value] : value;
+	let newValue = null;
+
+	if (Array.isArray(value)) {
+		newValue = value;
+	} else if (typeof value === "string") {
+		newValue = [value];
+	} else {
+		newValue = [];
+	}
+
+	parsedEnv[envVar] = newValue;
 });
 
 function getEnv(): AppEnv {
