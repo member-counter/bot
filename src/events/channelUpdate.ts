@@ -1,8 +1,8 @@
-import { AnyChannel, GuildChannel } from "eris";
+import Eris from "eris";
 import updateTemplateContent from "../utils/updateTemplateContentChannelEvent";
 
-const channelUpdate = (channel: AnyChannel) => {
-	if (channel instanceof GuildChannel) {
+const channelUpdate = (channel: Eris.AnyChannel, oldChannel: Eris.OldGuildChannel | Eris.OldGuildTextChannel | Eris.OldGuildVoiceChannel | Eris.OldGroupChannel) => {
+	if (channel instanceof Eris.GuildChannel) {
 		updateTemplateContent(channel);
 	}
 };
