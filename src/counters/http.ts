@@ -30,7 +30,6 @@ const HTTPCounter: Counter = {
 		if (COUNTER_HTTP_DENY_LIST?.includes(new URL(url).hostname))
 			throw new Error("You can't make requests to this url!");
 
-		let body: string;
 		let result: number | string;
 		let cachedResponse = await redis.get(url);
 
@@ -72,10 +71,10 @@ const HTTPCounter: Counter = {
 			result = cachedResponse;
 		}
 
-		try {
-			result = jsonBodyExtractor(JSON.parse(result), dataPath);
-		} catch {
-			result = body;
+		if (dataPath) {
+			try {
+				result = jsonBodyExtractor(JSON.parse(result), dataPath);
+			} catch {}
 		}
 
 		if (parseNumber === true) {
