@@ -12,9 +12,10 @@
 				"{PREFIX}help {members}",
 				"{PREFIX}help members"
 			],
+			"helpFooterText": "**Info. sobre el uso:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio",
 			"embedReply": {
 				"title": "Lista de comandos | prefijo: {PREFIX}",
-				"description": "[Añade este bot a tu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentación](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstalación rapida: `{PREFIX}!setup`\nAprende a usar el bot: `{PREFIX}guide`\n\nPara obtener mas información sobre un comando, escriba `{PREFIX}help` más el nombre del comando: ```\n{PREFIX}help shortNumber```\n**Info:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio",
+				"description": "[Añade este bot a tu servidor]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentación](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nInstalación rápida: `{PREFIX}setup`\nAprende a usar el bot: `{PREFIX}guide`\n\nPara obtener mas información sobre un comando o contador, escriba `{PREFIX}help` más el nombre: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
 						"name": "**Contadores**",
@@ -177,13 +178,15 @@
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Canales en tu servidor (excluye categorías)",
-					"detailedDescription": "Cuenta cuantos canales (excluyendo categorías) hay en el servidor",
+					"description": "Channels in your server (excludes categories) or under a category",
+					"detailedDescription": "Counts how many channels (excluding category channels) are in the server, if you specify one or more category IDs after the `:`, separated by commas, only the channels under those specified categories will be counted",
 					"usage": [
-						"{channels}"
+						"{channels}",
+						"{channels:categoryID1,categoryID2}"
 					],
 					"example": [
-						"{channels} Canales"
+						"{channels} Canales",
+						"{channels:6509281904766437,5823659271648290} Tickets open"
 					]
 				},
 				"membersWithRole": {
@@ -460,12 +463,36 @@
 				"http": {
 					"name": "http:opciones",
 					"description": "Muestra el resultado de una solicitud http",
-					"detailedDescription": "Muestra el resultado de una petición http `GET`. Puedes configurar las `opciones` de este contador [aquí](https://member-counter.eduardozgz.com/utils/http), o crearlo manualmente: `opciones` es un objeto JSON codificado en base64 (puedes usar el comando {PREFIX}base64 para hacer esto), este objeto puede tener las siguientes claves: `url`: Una cadena de texto; con la url del recurso, `parseNumber`: Un boolean; si el resultado es numérico, este sera personalizado con los ajustes del servidor, `dataPath`: Una cadena de texto; si la respuesta al recurso es un objeto JSON, debes especificar la ruta a un campo con un valor que debe ser un numero o una cadena de texto, la sintaxis es similar a la que JS usa para acceder propiedades e ítems de un array.",
+					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items, `lifetime`: A number; specifies in seconds for how long the returned response will be cached and used, the default is 1 hour",
 					"usage": [
 						"{http:opciones}"
 					],
 					"example": [
 						"Último suscriptor: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+					]
+				},
+				"replace": {
+					"name": "replace:text:oldValue;newValue",
+					"description": "Replaces portions of the given text with the given values",
+					"detailedDescription": "Replaces portions of the given text with the given values, this counter is useful alongside the `{http}` counter to for example, read data from an API, and depending on the returned response, translate the response to something more human friendly.\n`text` should be the original text or a counter like `{http}`, `oldValue` the value to search and `newValue` the value that will replace `oldValue`, you can replace multiple values by separating them with a comma as shown below in the examples.",
+					"usage": [
+						"{replace:text:oldValue;newValue}",
+						"{replace:text:oldValue;newValue,oldValue2;newValue2}"
+					],
+					"example": [
+						"{replace:Hello\\, world!:Hello;Goodbye,world;discord}",
+						"Weather in Madrid: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:storm;🌩,sunny;☀,raining;🌧}"
+					]
+				},
+				"escape": {
+					"name": "escape:stringToEscape",
+					"description": "Escapes common delimiters used by Member Counter",
+					"detailedDescription": "Escapes automatically all the delimiters used by Member Counter when processing a counter. Like `:`,`;` or `,`. You may need this if you want to pass arguments with the mentioned delimiters without getting them parsed. This is specially useful when you can't control well the content of the string like in the `{http}` counter",
+					"usage": [
+						"{escape:stringToEscape}"
+					],
+					"example": [
+						"{escape:Hello, world!}"
 					]
 				},
 				"static": {
@@ -894,6 +921,7 @@
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
+			"title": "Comprobar permisos",
 			"optionalText": "(Opcional)",
 			"adminWarning": "**Este bot tiene permisos de administrador, por favor desactiva el permiso de administrador y configura los permisos correctamente**",
 			"footer": "Si tienes problemas con los permisos, prueba a invitar el bot de nuevo:",
