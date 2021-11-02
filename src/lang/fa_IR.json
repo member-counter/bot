@@ -981,7 +981,7 @@
 			"disabled": "Counter Disabled",
 			"noBanPerms": "I need ban permissions to show this",
 			"invalidChannelLength": "Invalid channel name length, please setup the counter again",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "دردسترس نمی باشد، لطفا صبر کنید"
 		},
 		"paginator": {
 			"pageCounter": "صفحه {CURRENT_PAGE} از {TOTAL_PAGES}",
