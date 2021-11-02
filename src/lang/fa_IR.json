@@ -15,15 +15,15 @@
 			"helpFooterText": "**موارد استفاده:** `()` بدان معناست که ورود این مقدار اختیاری و `[]` یعنی وارد کردن این مقدار اجباری است",
 			"embedReply": {
 				"title": "لیست دستورات | پریفیکس: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command or counter send `{PREFIX}help` plus the name: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
+				"description": "[این بات را به سرور خود اضافه کنید]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nراه‌اندازی سریع: `{PREFIX}setup`\nآموختن بیشتر درباره نحوه استفاده از بات: `{PREFIX}guide`\n\nبرای گرفتن اطلاعات بیشتر درباره یک دستور یا شمارنده `{PREFIX}help` به علاوه نام آن را ارسال کنید: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
-						"name": "**Counters**",
+						"name": "**شمارنده ها**",
 						"value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
 						"inline": true
 					},
 					{
-						"name": "**Server settings**",
+						"name": "**تنظیمات سرور**",
 						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}checkPermissions```",
 						"inline": true
 					},
@@ -35,9 +35,9 @@
 				]
 			},
 			"misc": {
-				"command": "Command:",
-				"counter": "Counter:",
-				"errorNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``",
+				"command": "دستورات:",
+				"counter": "شمارنده:",
+				"errorNotFound": "ببخشید، نمی توانم راهنمایی دستور ``{DESIRED_COMMAND}`` را پیدا کنم",
 				"suggestCounter": "Maybe you are looking for one of these counters:",
 				"suggestCommand": "Maybe you are looking for one of these commands:",
 				"usageText": "Usage",
