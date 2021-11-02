@@ -1,6 +1,6 @@
 {
-	"langCode": "en_US",
-	"langName": "English",
+	"langCode": "fa_IR",
+	"langName": "فارسی",
 	"commands": {
 		"help": {
 			"helpDescription": "Get help about commands and counters.",
