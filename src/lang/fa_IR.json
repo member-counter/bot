@@ -38,10 +38,10 @@
 				"command": "دستورات:",
 				"counter": "شمارنده:",
 				"errorNotFound": "ببخشید، نمی توانم راهنمایی دستور ``{DESIRED_COMMAND}`` را پیدا کنم",
-				"suggestCounter": "Maybe you are looking for one of these counters:",
-				"suggestCommand": "Maybe you are looking for one of these commands:",
-				"usageText": "Usage",
-				"exampleText": "Example",
+				"suggestCounter": "شاید شما دارید دنبال این شمارنده ها می گردید:",
+				"suggestCommand": "شاید شما دارید دنبال این دستورات می گردید:",
+				"usageText": "استفاده",
+				"exampleText": "مثال",
 				"searchIgnoredWords": "amount count"
 			}
 		},
