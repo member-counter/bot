@@ -3,7 +3,7 @@
 	"langName": "فارسی",
 	"commands": {
 		"help": {
-			"helpDescription": "Get help about commands and counters.",
+			"helpDescription": "دریافت راهنمایی درباره دستورات و شمارنده ها.",
 			"helpUsage": [
 				"{PREFIX}help [command or counter]"
 			],
@@ -12,9 +12,9 @@
 				"{PREFIX}help {members}",
 				"{PREFIX}help members"
 			],
-			"helpFooterText": "**Usage info:** `()` means an optional parameter while `[]` means a required one",
+			"helpFooterText": "**موارد استفاده:** `()` بدان معناست که ورود این مقدار اختیاری و `[]` یعنی وارد کردن این مقدار اجباری است",
 			"embedReply": {
-				"title": "Command list | prefix: {PREFIX}",
+				"title": "لیست دستورات | پریفیکس: {PREFIX}",
 				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command or counter send `{PREFIX}help` plus the name: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
