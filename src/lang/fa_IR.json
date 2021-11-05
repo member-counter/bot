@@ -51,7 +51,7 @@
 				"{PREFIX}guide"
 			],
 			"pagesText": "صفحه {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"explanation": "**Thanks for adding Member Counter to your server!**\n__**Create/edit a counter**__\nFor this example we are gonna use `{members}`, which counts the total amount of members in your discord server, but you will find out more counters in the next pages\nYou can place that counter in one of the following places:\n\n- In a **voice** channel **name**\n- In a **category** channel **name**\n- In a **text** channel **topic**\n- In a **news** channel **topic**\n\nNow create a new channel, edit it, and write `{members}` in the name or topic, and click 'save changes'\n\nYou can also add multiple counters in one name/topic, and combine them with your own content, here is a example:\n```\n{onlineMembers}/{members} Online Members, {youtubeSubscribers:https://www.youtube.com/user/enyay} Subscribers!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins and mods are online!\n```\n\n> If you reach the character limit when you are editing a name/topic, please check `{PREFIX}help editChannel`\n> You can see the current counter configurations with `{PREFIX}seeSettings`, this is useful to add more counters without disabling the previous ones\n\n__**Remove a counter**__\nEdit the channel and write {disable} in the name/topic, Member Counter will replace it to a \\✅, that means that you removed all the counters of that channel successfully\n\nYou can also delete the channel directly",
+			"explanation": "**بابت افزودن Member Counter به سرورتان صمیمانه سپاسگذاریم!**\n__**افزودن/ویرایش یک شمارنده**__\nبرای این مثال ما میایم از `{members}` استفاده کنیم که باعث می شود تعداد کل اعضاء سرور دیسکورد شما را حساب می کند. با اینحال شما خودتان می توانید شمارنده های بیشتر را در صفحات بعد مشاهده کنید.\nشما می توانید شمارنده را در یکی از مکان های زیر قرار دهید:\n\n- در **نام** یک چنل **صوتی**\n- در **نام** یک *دسته‌بندی**\n- در**توضیحات** یک چنل **متنی**\n- در **توضیحات** یک چنل **اخبار**\n\nحال یک چنل جدید بسازید و با ویرایش آن، در قسمت نام یا توضیحات آن چنل `{members}` را بنویسید و سپس 'تغییرات را ذخیره' کنید\n\nشما همچنین می توانید از ترکیب دلخواه چند نوع شمارنده در نام/توضیحات یک چنل، استفاده کنید. اینم یک نمونه:\n```\n{onlineMembers}/{members} اعضاء آنلاین، {youtubeSubscribers:https://www.youtube.com/user/enyay} مشترکان یوتیوب!\n{onlineMembersWithRole:614777997291028519,614816383053856769} ادمین و مدراتور آنلاین هستند!\n```\n\n> اگر شما به محدودیت تعداد کاراکتر هنگام ویرایش نام/توضیحات یک چنل رسیدید، لطفا `{PREFIX}help editChannel` را امتحان کنید\n> شما می توانید با استفاده از `{PREFIX}seeSettings` پیکربندی فعلی یک شمارنده را مشاهده کنید. این مورد برای افزودن شمارنده ها بدون غیرفعال کردن شمارنده های قبلی می تواند کاربردی باشد\n\n__**حذف یک شمارنده**__\nبه قسمت ویرایش چنل رفته و {disable} را در نام یا توضیحات آن چنل بنویسید. پس از ذخیره تغییرات، Member Counter آن را با یک \\✅ جایگذین خواهد کرد، بدان معنی که شما تمام شمارنده ها را از آن چنل با موفقیت حذف نموده‌اید\n\nشما همچنین می توانید به طور مستقیم آن چنل را حذف کنید",
 			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings \\> Appearance \\> Advanced \\> Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with a plus sign (\\+) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
 			"footerText": "Please read the first page of {PREFIX}guide to learn how to setup this counter",
 			"counters": {
@@ -818,11 +818,11 @@
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
 			"counterTemplates": {
 				"default": {
-					"categoryName": "📊 Server Stats 📊",
+					"categoryName": "📊 وضعیت سرور 📊",
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Online: {onlineMembers}",
+							"template": "آنلاین: {onlineMembers}",
 							"statusCreating": "{LOADING} Creating online counter",
 							"statusCreated": "{CHECK_MARK} Online counter created"
 						},
@@ -978,7 +978,7 @@
 		"getCounts": {
 			"onlyPremium": "Only Premium",
 			"unknownCounter": "Unknown counter",
-			"disabled": "Counter Disabled",
+			"disabled": "شمارنده غیرفعال شد",
 			"noBanPerms": "I need ban permissions to show this",
 			"invalidChannelLength": "Invalid channel name length, please setup the counter again",
 			"notAvailable": "Not available, please wait"
@@ -992,11 +992,11 @@
 		}
 	},
 	"common": {
-		"error": "Error",
-		"errorDb": "Database error, try again later",
-		"errorDiscordAPI": "Discord API",
-		"errorUnknown": "Something went wrong, try again later.",
-		"errorNoAdmin": "Only members with administrator permissions in this server can use this command.",
+		"error": "خطا",
+		"errorDb": "خطای پایگاه داده، لطفا بعداً دوباره تلاش کنید",
+		"errorDiscordAPI": "API دیسکورد",
+		"errorUnknown": "مشکلی پیش آمد. بعدا دوباره تلاش کنید.",
+		"errorNoAdmin": "فقط اعضائی که دسترسی ادمین در این سرور دارند می توانند از این دستور استفاده کنند.",
 		"noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
 	}
 }
