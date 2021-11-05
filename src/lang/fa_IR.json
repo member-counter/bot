@@ -12,18 +12,18 @@
 				"{PREFIX}help {members}",
 				"{PREFIX}help members"
 			],
-			"helpFooterText": "**Usage info:** `()` means an optional parameter while `[]` means a required one",
+			"helpFooterText": "**اطلاعات استفاده:** `()` به معنای یک پارامتر اختیاری و `[]` به معنای یک پارامتر الزامی می باشد",
 			"embedReply": {
-				"title": "Command list | prefix: {PREFIX}",
+				"title": "لیست دستورات | پیشوند: {PREFIX}‎",
 				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command or counter send `{PREFIX}help` plus the name: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
-						"name": "**Counters**",
+						"name": "**شمارنده ها**",
 						"value": "```\n{PREFIX}guide\n{PREFIX}counts\n{PREFIX}lockChannel\n{PREFIX}editChannel\n{PREFIX}setDigit\n{PREFIX}shortNumber\n{PREFIX}preview```",
 						"inline": true
 					},
 					{
-						"name": "**Server settings**",
+						"name": "**تنظیمات سرور**",
 						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}checkPermissions```",
 						"inline": true
 					},
