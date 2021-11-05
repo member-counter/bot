@@ -702,9 +702,9 @@
 			],
 			"settingsMessage": {
 				"headerText": "Settings for guild:",
-				"prefixText": "Prefix:",
-				"langText": "Language:",
-				"localeText": "Locale:",
+				"prefixText": "پیشوند:",
+				"langText": "زبان:",
+				"localeText": "موقعیت مکانی:",
 				"shortNumberText": "Short number (compact notation):",
 				"noText": "No",
 				"yesText": "Yes",
@@ -743,14 +743,14 @@
 		"lang": {
 			"helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
 			"helpUsage": [
-				"{PREFIX}lang (lang code)"
+				"{PREFIX}lang (کد زبان)"
 			],
 			"helpExample": [
 				"{PREFIX}lang",
-				"{PREFIX}lang es_ES"
+				"{PREFIX}lang fa_IR"
 			],
-			"success": "Language changed successfully.",
-			"errorNotFound": "List of available languages:"
+			"success": "زبان با موفقیت تغییر یافت.",
+			"errorNotFound": "لیست زبان‌های در دسترس:"
 		},
 		"profile": {
 			"helpDescription": "Shows related information between you and this bot.",
@@ -823,32 +823,32 @@
 						{
 							"name": "onlineMembers",
 							"template": "آنلاین: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"statusCreating": "{LOADING} درحال ساختن شمارنده آنلاین",
+							"statusCreated": "{CHECK_MARK} شمارنده آنلاین ساخته شد"
 						},
 						{
 							"name": "members",
-							"template": "Members: {members}",
-							"statusCreating": "{LOADING} Creating member counter",
-							"statusCreated": "{CHECK_MARK} Members counter created"
+							"template": "اعضاء: {members}",
+							"statusCreating": "{LOADING} درحال ساختن شمارنده اعضاء",
+							"statusCreated": "{CHECK_MARK} شمارنده اعضاء ساخته شد"
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
-							"statusCreating": "{LOADING} Creating booster counter",
-							"statusCreated": "{CHECK_MARK} Booster counter created"
+							"template": "بوستر ها: {nitroBoosters}",
+							"statusCreating": "{LOADING} درحال ساختن شمارنده بوستر ها",
+							"statusCreated": "{CHECK_MARK} شمارنده بوستر ها ساخته شد"
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
-							"statusCreating": "{LOADING} Creating roles counter",
-							"statusCreated": "{CHECK_MARK} Roles counter created"
+							"template": "نقش ها: {roles}",
+							"statusCreating": "{LOADING} درحال ساختن شمارنده نقش ها",
+							"statusCreated": "{CHECK_MARK} شمارنده نقش ها ساخته شد"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
-							"statusCreating": "{LOADING} Creating channels counter",
-							"statusCreated": "{CHECK_MARK} Channels counter created"
+							"template": "چنل ها: {channels}",
+							"statusCreating": "{LOADING} درحال ساختن شمارنده چنل ها",
+							"statusCreated": "{CHECK_MARK} شمارنده چنل ها ساخته شد"
 						}
 					]
 				},
@@ -981,7 +981,7 @@
 			"disabled": "شمارنده غیرفعال شد",
 			"noBanPerms": "I need ban permissions to show this",
 			"invalidChannelLength": "Invalid channel name length, please setup the counter again",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "دردسترس نمی باشد، لطفا صبر کنید"
 		},
 		"paginator": {
 			"pageCounter": "صفحه {CURRENT_PAGE}/{TOTAL_PAGES}",
