@@ -602,7 +602,7 @@
 			}
 		},
 		"lockChannel": {
-			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels.",
+			"helpDescription": "شما می توانید از این دستور برای نمایش شکل قفل (🔒) به جای نمایش شکل بلندگو (🔊) در چنل های صوتی، استفاده کنید.",
 			"helpUsage": [
 				"{PREFIX}lockChannel [channel id]"
 			],
@@ -615,7 +615,7 @@
 			"errorNotFound": "Channel not found"
 		},
 		"editChannel": {
-			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
+			"helpDescription": "اگر سعی دارید که یک سری شمارنده تنظیم کنید اما دیسکورد به شما می گوید که به محدودیت تعداد کاراکتر در نام/توضیحات چنل رسیدید، شما می توانید از این دستور برای \"گذشتن\" از آن محدودیت استفاده کنید.",
 			"helpUsage": [
 				"{PREFIX}editChannel [channel ID] [content and counters]"
 			],
@@ -668,7 +668,7 @@
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Changes the bot's prefix.",
+			"helpDescription": "پیشوند بات را تغییر می‌دهد.",
 			"helpUsage": [
 				"{PREFIX}prefix [new prefix]"
 			],
@@ -696,7 +696,7 @@
 			"invalidParams": "Invalid parameters, see `{PREFIX}help role`"
 		},
 		"seeSettings": {
-			"helpDescription": "Shows all bot settings for this server.",
+			"helpDescription": "تمامی تنظیمات بات را در این سرور نشان می‌دهد.",
 			"helpExample": [
 				"{PREFIX}seeSettings"
 			],
