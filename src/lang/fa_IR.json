@@ -565,7 +565,7 @@
 			}
 		},
 		"premium": {
-			"helpDescription": "Get information about Member Counter Premium.",
+			"helpDescription": "دریافت اطلاعاتی درباره Member Counter نسخه پریمیوم.",
 			"helpExample": [
 				"{PREFIX}premium"
 			],
