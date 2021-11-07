@@ -701,22 +701,22 @@
 				"{PREFIX}seeSettings"
 			],
 			"settingsMessage": {
-				"headerText": "Settings for guild:",
+				"headerText": "تنظیمات اعمال شده برای این سرور:",
 				"prefixText": "پیشوند:",
 				"langText": "زبان:",
 				"localeText": "موقعیت مکانی:",
 				"shortNumberText": "Short number (compact notation):",
-				"noText": "No",
-				"yesText": "Yes",
+				"noText": "خیر",
+				"yesText": "بله",
 				"allowedRolesText": "Allowed roles to use administrative commands:",
-				"countersText": "Counters:",
+				"countersText": "شمارنده ها:",
 				"customNumbersText": "Custom numbers:",
 				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
-				"guildLogsText": "Latest logs:"
+				"guildLogsText": "آخرین تغییرات ضبط شده:"
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Removes all the counters and restores the custom settings of this server to the default ones.",
+			"helpDescription": "تمامی شمارنده ها را حذف می کند و تنظیمات شخصی سازی شده این سرور را به موارد پیشفرض بازمیگرداند.",
 			"helpExample": [
 				"{PREFIX}resetSettings"
 			],
@@ -732,7 +732,7 @@
 			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
 		},
 		"info": {
-			"helpDescription": "List of useful links.",
+			"helpDescription": "لیست لینک های کاربردی.",
 			"helpExample": [
 				"{PREFIX}info"
 			],
@@ -741,7 +741,7 @@
 			}
 		},
 		"lang": {
-			"helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
+			"helpDescription": "زبان بات را برای این سرور تغییر می دهد، توجه داشته باشید که شما برای اجرای این دستور، نیازمند به دسترسی ادمین هستید.",
 			"helpUsage": [
 				"{PREFIX}lang (کد زبان)"
 			],
@@ -753,7 +753,7 @@
 			"errorNotFound": "لیست زبان‌های در دسترس:"
 		},
 		"profile": {
-			"helpDescription": "Shows related information between you and this bot.",
+			"helpDescription": "ارتباط بین شما و این بات را نمایش می دهد.",
 			"helpUsage": [
 				"{PREFIX}profile (@user)"
 			],
@@ -786,7 +786,7 @@
 			"bannedMembers": "Banned members:"
 		},
 		"preview": {
-			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
+			"helpDescription": "یک پیش نمایش از اینکه چگونه یک شمارنده و شمارنده های دیگر در یک چنل به نظر می آیند، نشان می دهد.",
 			"helpUsage": [
 				"{PREFIX}preview [content and counters]"
 			],
@@ -917,7 +917,7 @@
 			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		},
 		"checkPermissions": {
-			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
+			"helpDescription": "بررسی می کند که بات آیا دسترسی های مورد نیاز را به درستی دارد تا به خوبی کار کند یا نه.",
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
