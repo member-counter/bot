@@ -594,8 +594,8 @@
 						"inline": false
 					},
 					{
-						"name": "**✅ Easy to setup**",
-						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"name": "**✅ راه اندازی سریع و راحت**",
+						"value": "با چند کلیک، صاحب بات Member Counter خودتان شوید و ما خودمان از عهده بروزرسانی آن برخواهیم آمد. یک راهنمایی با اسکرین شات های مختلف هم شاملش میشه! به نظرتون این کار ساده تر از self-hosting نیست؟",
 						"inline": false
 					}
 				]
@@ -610,9 +610,9 @@
 				"{PREFIX}lockChannel 700336568099143710"
 			],
 			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
-			"errorInvalidChannel": "You can only lock voice channels!",
+			"errorInvalidChannel": "شما فقط میتوانید چنل های صوتی را قفل کنید!",
 			"errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-			"errorNotFound": "Channel not found"
+			"errorNotFound": "چنل یافت نشد"
 		},
 		"editChannel": {
 			"helpDescription": "اگر سعی دارید که یک سری شمارنده تنظیم کنید اما دیسکورد به شما می گوید که به محدودیت تعداد کاراکتر در نام/توضیحات چنل رسیدید، شما می توانید از این دستور برای \"گذشتن\" از آن محدودیت استفاده کنید.",
@@ -623,7 +623,7 @@
 				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
 			],
 			"success": "Done! You may have to wait a few minutes to see the new changes",
-			"errorNotFound": "Channel not found",
+			"errorNotFound": "چنل یافت نشد",
 			"errorNoContent": "You must provide some content"
 		},
 		"setDigit": {
