@@ -570,8 +570,8 @@
 				"{PREFIX}premium"
 			],
 			"embedReply": {
-				"title": "Member Counter Premium",
-				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"title": "Member Counter پریمیوم",
+				"description": "[نسخه پریمیوم بات را بگیرید]({GET_PREMIUM_BOT_URL}) و از آن لذت ببرید:",
 				"fields": [
 					{
 						"name": "**✅ ALL the counters**",
@@ -711,7 +711,7 @@
 				"allowedRolesText": "Allowed roles to use administrative commands:",
 				"countersText": "شمارنده ها:",
 				"customNumbersText": "Custom numbers:",
-				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
+				"warningNoPermsText": "\\⚠️ = بات به علت کمبود دسترسی های مورد نیاز، نمی تواند به بروزرسانی اطلاعات این چنل ادامه دهد (شما باید این دسترسی هارا به بات داده باشید: Manage channel، See channel یا Read Messages، Connect)",
 				"guildLogsText": "آخرین تغییرات ضبط شده:"
 			}
 		},
@@ -727,9 +727,9 @@
 			"helpExample": [
 				"{PREFIX}upgradeServer"
 			],
-			"success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-			"errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
-			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
+			"success": "انجام شد! قدم بعدی دعوت کردن بات پریمیوم هست:\n{BOT_LINK}",
+			"errorCannotUpgrade": "شما نمی توانید این سرور را پریمیوم کنید زیرا این سرور از قبل پریمیوم دارد.",
+			"noServerUpgradesAvailable": "شما نمی توانید سرور های بیشتری را پریمیوم کنید چون هیچ ارتقاء سرور بیشتری برایتان باقی نمانده"
 		},
 		"info": {
 			"helpDescription": "لیست لینک های کاربردی.",
@@ -761,9 +761,9 @@
 				"{PREFIX}profile",
 				"{PREFIX}profile @eduardozgz"
 			],
-			"badges": "Badges",
+			"badges": "نماد ها",
 			"credits": "Credits",
-			"serverUpgradesAvailable": "Server upgrades left",
+			"serverUpgradesAvailable": "ارتقاء دادن سرور باقی مانده",
 			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
 			"cancelText": "cancel",
 			"removeDataConfirmationString": "I want to delete all of my data",
@@ -775,15 +775,15 @@
 			"helpExample": [
 				"{PREFIX}counts"
 			],
-			"members": "Members:",
-			"onlineMembers": "Online members:",
-			"offlineMembers": "Offline members:",
-			"bots": "Bots:",
-			"connectedUsers": "Connected users:",
-			"channels": "Channels:",
-			"roles": "Roles:",
-			"nitroBoosters": "Boosting:",
-			"bannedMembers": "Banned members:"
+			"members": "اعضاء:",
+			"onlineMembers": "اعضای آنلاین:",
+			"offlineMembers": "اعضای آفلاین:",
+			"bots": "بات ها:",
+			"connectedUsers": "کاربران متصل به چنل صوتی:",
+			"channels": "چنل ها:",
+			"roles": "نقش ها:",
+			"nitroBoosters": "بوست ها:",
+			"bannedMembers": "اعضاء بن شده:"
 		},
 		"preview": {
 			"helpDescription": "یک پیش نمایش از اینکه چگونه یک شمارنده و شمارنده های دیگر در یک چنل به نظر می آیند، نشان می دهد.",
@@ -811,7 +811,7 @@
 			],
 			"status": {
 				"creatingCounts": "Creating counters...",
-				"createdCounts": "Complete",
+				"createdCounts": "انجام شد",
 				"creatingCategory": "{LOADING} Creating category",
 				"createdCategory": "{CHECK_MARK} Category created"
 			},
