@@ -574,23 +574,23 @@
 				"description": "[نسخه پریمیوم بات را بگیرید]({GET_PREMIUM_BOT_URL}) و از آن لذت ببرید:",
 				"fields": [
 					{
-						"name": "**✅ ALL the counters**",
-						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"name": "**✅ دسترسی به همه شمارنده ها**",
+						"value": "به **تمام** شمارنده هایی که در بات وجود دارند دسترسی پیدا کنید، مثل `{membersWithRole}` یا `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
-						"name": "**✅ More accurate**",
-						"value": "Get more accurate counts in all members related counters",
+						"name": "**✅ دقت بیشتر و بهتر**",
+						"value": "شمارش های دقیق تری از همه شمارنده های مرتبط به اعضاء داشته باشید",
 						"inline": false
 					},
 					{
-						"name": "**✅ Unlimited servers**",
-						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 50,000 members, quarterly",
+						"name": "**✅ سرور های نامحدود**",
+						"value": "فقط به تعداد اعضائ که دارید بپردازید، و بات را به هر سروری که می خواهید دعوت کنید. آن هم به قیمت €5 یورو به ازای هر 50000 عضو، سه ماهه",
 						"inline": false
 					},
 					{
-						"name": "**✅ Custom bot**",
-						"value": "Use your own bot account, with the profile picture and username of your choice",
+						"name": "**✅ بات سفارشی**",
+						"value": "از حساب مورد نظر خودتان برای بات استفاده کنید، یعنی با عکس پروفایل و نام کاربری به دلخواه خودتان",
 						"inline": false
 					},
 					{
