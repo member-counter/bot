@@ -691,8 +691,8 @@
 				"{PREFIX}role allow all",
 				"{PREFIX}role deny all"
 			],
-			"rolesUpdated": "Roles updated.",
-			"errorNoRolesToUpdate": "You must mention at least 1 role",
+			"rolesUpdated": "نقش ها بروزرسانی شدند.",
+			"errorNoRolesToUpdate": "شما باید حداقل 1 نقش را منشن کنید",
 			"invalidParams": "Invalid parameters, see `{PREFIX}help role`"
 		},
 		"seeSettings": {
@@ -708,7 +708,7 @@
 				"shortNumberText": "Short number (compact notation):",
 				"noText": "خیر",
 				"yesText": "بله",
-				"allowedRolesText": "Allowed roles to use administrative commands:",
+				"allowedRolesText": "نقش های مجاز برای استفاده از دستورات مرتبط به ادمین:",
 				"countersText": "شمارنده ها:",
 				"customNumbersText": "Custom numbers:",
 				"warningNoPermsText": "\\⚠️ = بات به علت کمبود دسترسی های مورد نیاز، نمی تواند به بروزرسانی اطلاعات این چنل ادامه دهد (شما باید این دسترسی هارا به بات داده باشید: Manage channel، See channel یا Read Messages، Connect)",
@@ -720,10 +720,10 @@
 			"helpExample": [
 				"{PREFIX}resetSettings"
 			],
-			"done": "Restored to default settings"
+			"done": "تنظیمات به پیشفرض بازگردانی شدند"
 		},
 		"upgradeServer": {
-			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account.",
+			"helpDescription": "این دستور اجازه می دهد تا بات قدیمی Member Counter پریمیوم را به سروری دعوت کنید، با استفاده از ارتقاء سرور های باقی مانده در حساب شما.",
 			"helpExample": [
 				"{PREFIX}upgradeServer"
 			],
@@ -977,17 +977,17 @@
 		},
 		"getCounts": {
 			"onlyPremium": "Only Premium",
-			"unknownCounter": "Unknown counter",
+			"unknownCounter": "شمارنده نامعتبر",
 			"disabled": "شمارنده غیرفعال شد",
 			"noBanPerms": "I need ban permissions to show this",
-			"invalidChannelLength": "Invalid channel name length, please setup the counter again",
+			"invalidChannelLength": "طول نام چنل نامعتبر، لطفا دوباره شمارنده را راه اندازی کنید",
 			"notAvailable": "دردسترس نمی باشد، لطفا صبر کنید"
 		},
 		"paginator": {
 			"pageCounter": "صفحه {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"jumpPrompt": "به چه صفحه ای می خواهید بروید؟ برای لغو این عمل،`{CANCEL_STRING}` یا `0` را ارسال کنید. شما 15 ثانیه برای پاسخ دادن وقت دارید.",
 			"cancelText": "cancel",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
+			"errorPageLengthExceeded": "عدد باید مساوی یا کمتر از {TOTAL_PAGES} باشد. لطفا دوباره تلاش کنید.",
 			"errorNegativeInput": "The page number can't be negative. Please try again."
 		}
 	},
