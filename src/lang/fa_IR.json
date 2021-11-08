@@ -57,7 +57,7 @@
 			"counters": {
 				"members": {
 					"name": "members",
-					"description": "Members in your server",
+					"description": "اعضاء سرور شما",
 					"detailedDescription": "Counts how many members has a server",
 					"usage": [
 						"{members}"
