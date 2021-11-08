@@ -737,7 +737,7 @@
 				"{PREFIX}info"
 			],
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[من را به سرور خود اضافه کنید]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[گرفتن پریمیوم]({GET_PREMIUM_BOT_URL})\n[سرور پشتیبانی]({BOT_SERVER_URL})\n[رپو گیت هاب](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
@@ -767,8 +767,8 @@
 			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
 			"cancelText": "cancel",
 			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "Your data has been removed successfully",
-			"userNotFound": "User not found in the DB"
+			"removeDataSuccess": "اطلاعات شما با موفقیت پاک شد",
+			"userNotFound": "کاربر در پایگاه داده پیدا نشد"
 		},
 		"counts": {
 			"helpDescription": "Shows some counts.",
@@ -810,9 +810,9 @@
 				"{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw"
 			],
 			"status": {
-				"creatingCounts": "Creating counters...",
+				"creatingCounts": "درحال ساختن شمارنده ها...",
 				"createdCounts": "انجام شد",
-				"creatingCategory": "{LOADING} Creating category",
+				"creatingCategory": "{LOADING} درحال ساختن دسته بندی",
 				"createdCategory": "{CHECK_MARK} Category created"
 			},
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
@@ -875,8 +875,8 @@
 						{
 							"name": "youtubeSubscribers",
 							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
-							"statusCreating": "{LOADING} Creating subscriber counter",
-							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+							"statusCreating": "{LOADING} درحال ساختن شمارنده سابسکرایب ها",
+							"statusCreated": "{CHECK_MARK} شمارنده سابسکرایب های یوتیوب ساخته شد"
 						},
 						{
 							"name": "youtubeVideos",
