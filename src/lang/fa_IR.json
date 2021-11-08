@@ -924,7 +924,7 @@
 			"title": "Check permissions",
 			"optionalText": "(Optional)",
 			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
-			"footer": "If you need to fix permissions problems, try inviting the bot again:",
+			"footer": "اگر لازم است مشکل دسترسی های بات را حل کنید، می توانید دوباره بات را به سرور دعوت کنید:",
 			"details": {
 				"manageChannels": {
 					"name": "Manage channels",
@@ -988,7 +988,7 @@
 			"jumpPrompt": "به چه صفحه ای می خواهید بروید؟ برای لغو این عمل،`{CANCEL_STRING}` یا `0` را ارسال کنید. شما 15 ثانیه برای پاسخ دادن وقت دارید.",
 			"cancelText": "cancel",
 			"errorPageLengthExceeded": "عدد باید مساوی یا کمتر از {TOTAL_PAGES} باشد. لطفا دوباره تلاش کنید.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"errorNegativeInput": "عدد صفحه نمی تواند منفی باشد. لطفا دوباره تلاش کنید."
 		}
 	},
 	"common": {
