@@ -58,122 +58,122 @@
 				"members": {
 					"name": "members",
 					"description": "اعضاء سرور شما",
-					"detailedDescription": "Counts how many members has a server",
+					"detailedDescription": "تعداد اعضاء را در یک سرور می شمارد",
 					"usage": [
 						"{members}"
 					],
 					"example": [
-						"{members} Members"
+						"{members} عضو سرور"
 					]
 				},
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
-					"description": "Approximated online members in your server",
-					"detailedDescription": "Counts approximately how many members are online in the server",
+					"description": "تعداد تقریبی اعضاء آنلاین در سرور شما",
+					"detailedDescription": "تعداد تقریبی اعضاء آنلاین در سرور شما را می شمارد",
 					"usage": [
 						"{approximatedOnlineMembers}"
 					],
 					"example": [
-						"{approximatedOnlineMembers} Online"
+						"{approximatedOnlineMembers} آنلاین"
 					]
 				},
 				"onlineMembers": {
 					"name": "onlineMembers",
-					"description": "Online members in your server",
-					"detailedDescription": "Counts how many members are online in the server",
+					"description": "اعضاء آنلاین در سرور شما",
+					"detailedDescription": "تعداد اعضایی که در سرور شما آنلاین هستند را می شمارد",
 					"usage": [
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Online"
+						"{onlineMembers} آنلاین"
 					]
 				},
 				"offlineMembers": {
 					"name": "offlineMembers",
-					"description": "Offline members in your server",
-					"detailedDescription": "Counts how many members are offline in the server",
+					"description": "اعضاء آفلاین در سرور شما",
+					"detailedDescription": "تعداد اعضایی که در سرور آفلاین هستند را می شمارد",
 					"usage": [
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Offline"
+						"{onlineMembers} آفلاین"
 					]
 				},
 				"users": {
 					"name": "users",
-					"description": "Users in your server (excludes bot)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are in the server",
+					"description": "کاربران سرور شما (با استثناء گرفتن بات ها)",
+					"detailedDescription": "تعداد کاربرانی که در سرور شما هستند را (به استثناء بات ها) می شمارد",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Users"
+						"{users} کاربر"
 					]
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
-					"description": "Online users in your server (excludes bot)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are online in the server",
+					"description": "کاربران آنلاین در سرور شما (با استثناء گرفتن بات ها)",
+					"detailedDescription": "تعداد کاربرانی که آنلاین در سرور هستند را (به استثناء بات ها) می شمارد",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Online users"
+						"{users} کاربر آنلاین"
 					]
 				},
 				"offlineUsers": {
 					"name": "offlineUsers",
-					"description": "Offline users in your server (excludes bot)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are offline in the server",
+					"description": "کاربران آفلاین در سرور شما (با استثناء گرفتن بات ها)",
+					"detailedDescription": "تعداد کاربرانی که در سرور آفلاین هستند را (به استثناء بات ها) می شمارد",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Offline"
+						"{users} آفلاین"
 					]
 				},
 				"bots": {
 					"name": "bots",
-					"description": "Bots in your server (excludes normal users)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are in the server",
+					"description": "تعداد بات های سرور شما (با استثناء گرفتن کاربران عادی)",
+					"detailedDescription": "تعداد بات هایی که در سرور شما هستند را (با مستثنئ گرفتن کاربران عادی) می شمارد",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Bots"
+						"{bots} بات"
 					]
 				},
 				"onlineBots": {
 					"name": "onlineBots",
-					"description": "Online bots in your server (excludes normal users)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are online in the server",
+					"description": "تعداد بات های آنلاین در سرور شما (با استثناء گرفتن کاربران عادی)",
+					"detailedDescription": "تعداد بات هایی که در سرور شما آنلاین هستند را (با مستثنئ گرفتن کاربران عادی) می شمارد",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Online bots"
+						"{bots} بات آنلاین"
 					]
 				},
 				"offlineBots": {
 					"name": "offlineBots",
-					"description": "Offline bots in your server (excludes normal users)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are offline in the server",
+					"description": "تعداد بات های آفلاین در سرور شما (با استثناء گرفتن کاربران عادی)",
+					"detailedDescription": "تعداد بات هایی که در سرور شما آفلاین هستند را (با مستثنئ گرفتن کاربران عادی) می شمارد",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Offline bots"
+						"{bots} بات آفلاین"
 					]
 				},
 				"roles": {
 					"name": "roles",
-					"description": "Roles in your server",
-					"detailedDescription": "Counts how many roles are in the server",
+					"description": "نقش های سرور شما",
+					"detailedDescription": "تعداد نقش های سرور را می شمارد",
 					"usage": [
 						"{roles}"
 					],
 					"example": [
-						"{roles} Roles"
+						"{roles} نقش"
 					]
 				},
 				"channels": {
