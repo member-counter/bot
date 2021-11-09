@@ -214,26 +214,26 @@
 				},
 				"offlineMembersWithRole": {
 					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "Offline members with a role or roles",
-					"detailedDescription": "Counts how many members with a role or roles are offline, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"description": "اعضای آفلاین یک یا چند نقش",
+					"detailedDescription": "تعداد اعضای آفلاین که یک یا چند نقش مشخص را دارند را می شمارد. بعد از `:`، ID نقش هایی که می خواهید شمرده شوند را بنویسید. همچنین ID ها را با , می توانید جدا کنید",
 					"usage": [
 						"{offlineMembersWithRole:role1ID,role2ID}"
 					],
 					"example": [
-						"{offlineMembersWithRole:6509281904766437,5823659271648290} Offline admins and mods",
-						"{offlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are offline"
+						"{offlineMembersWithRole:6509281904766437,5823659271648290} ادمین و مدراتور های آفلاین",
+						"{offlineMembersWithRole:5823659271648290} از {membersWithRole:5823659271648290} ادمین آفلاین"
 					]
 				},
 				"connectedMembers": {
 					"name": "connectedMembers:channel1ID,channel2ID",
-					"description": "Connected members to voice channels",
-					"detailedDescription": "Counts how many members are connected to all the voice channels or to the specified ones, write the channel IDs you wanna filter after the `:`, and separate the IDs with commas",
+					"description": "اعضاء متصل شده به چنل های صوتی",
+					"detailedDescription": "تعداد اعضاء متصل شده به همه چنل های صوتی یا چنل های صوتی مشخص شده را می شمارد. بعد از `:` می توانید ID چنل هایی که می خواهید فیلتر کنید را وارد کنید. همچنین ID را می توانید با , جدا کنید",
 					"usage": [
 						"{connectedMembers}",
 						"{connectedMembers:channel1ID,channel2ID}"
 					],
 					"example": [
-						"{connectedMembers} Talking",
+						"{connectedMembers} نفر درحال گفتگو",
 						"{connectedMembers:5823659271648290} talking in the lounge"
 					]
 				},
