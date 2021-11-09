@@ -234,82 +234,82 @@
 					],
 					"example": [
 						"{connectedMembers} نفر درحال گفتگو",
-						"{connectedMembers:5823659271648290} talking in the lounge"
+						"{connectedMembers:5823659271648290} درحال صحبت کردن در lounge"
 					]
 				},
 				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "Amount of banned members in your server",
-					"detailedDescription": "Counts how many members are banned, the bot must have ban permissions to get this count",
+					"description": "تعداد اعضاء بن شده از سرور شما",
+					"detailedDescription": "تعداد اعضایی که بن شده‌اند را می شمارد. بات باید دسترسی بن را برای این کار داشته باشد",
 					"usage": [
 						"{bannedMembers}"
 					],
 					"example": [
-						"{bannedMembers} Banned",
-						"{bannedMembers} have been hit with the ban hammer"
+						"{bannedMembers} بن شده",
+						"{bannedMembers} طعم چکش بن رو چشیده‌اند"
 					]
 				},
 				"membersPlaying": {
 					"name": "membersPlaying:game name",
-					"description": "Amount of members playing a game",
-					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
+					"description": "تعداد کاربران درحال بازی",
+					"detailedDescription": "تعداد کاربرانی که درحال انجام یک بازی هستند را می شمارد. شما می توانید با , از چند بازی باهم استفاده کنید",
 					"usage": [
 						"{membersPlaying:game name}",
 						"{membersPlaying:game name, game name 2}"
 					],
 					"example": [
-						"{membersPlaying:Minecraft} Mining and crafting",
-						"{membersPlaying: euro truck simulator 2, american truck simulator} Trucking"
+						"{membersPlaying:Minecraft} درحال بازی کردن ماینکرافت",
+						"{membersPlaying: euro truck simulator 2, american truck simulator} درحال روندن کامیون"
 					]
 				},
 				"nitro-boosters": {
 					"name": "nitro-boosters",
-					"description": "Counts the total amount of members boosting this server",
-					"detailedDescription": "Counts the total amount of members boosting this server",
+					"description": "تعداد کل اعضایی که این سرور را بوست کرده‌اند را می شمارد",
+					"detailedDescription": "تعداد کل اعضایی که این سرور را بوست کرده‌اند را می شمارد",
 					"usage": [
 						"{nitro-boosters}"
 					],
 					"example": [
-						"Awesome boosters: {nitro-boosters}"
+						"بوستر های ارجمند: {nitro-boosters}"
 					]
 				},
 				"youtubeSubscribers": {
 					"name": "youtubeSubscribers:channelUrl",
-					"description": "Amount of subscribers of a YouTube channel",
-					"detailedDescription": "Counts how many subscribers has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "تعداد سابسکرایب های یک چنل یوتیوب",
+					"detailedDescription": "تعداد سابسکرایبر های یک چنل یوتیوب را می شمارد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
 					"usage": [
 						"{youtubeSubscribers:channelUrl}"
 					],
 					"example": [
-						"Subscribers: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
+						"سابسکرایب ها: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeViews": {
 					"name": "youtubeViews:channelUrl",
-					"description": "Amount of views of a YouTube channel",
-					"detailedDescription": "Counts how many views has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "تعداد بازدید های یک چنل یوتیوب",
+					"detailedDescription": "تعداد بازدید های یک چنل یوتیوب را می شمارد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
 					"usage": [
 						"{youtubeViews:channelUrl}"
 					],
 					"example": [
-						"Views: {youtubeViews:https://www.youtube.com/user/enyay}"
+						"تعداد بازدید ها: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeVideos": {
 					"name": "youtubeVideos:channelUrl",
-					"description": "Amount of videos of a YouTube channel",
-					"detailedDescription": "Counts how many videos has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "تعداد ویدیو های یک چنل یوتیوب",
+					"detailedDescription": "تعداد ویدیو های یک چنل یوتیوب را می شمارد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
 					"usage": [
 						"{youtubeVideos:channelUrl}"
 					],
 					"example": [
-						"Videos: {youtubeVideos:https://www.youtube.com/user/enyay}"
+						"تعداد ویدیو های آپلود شده: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeChannelName": {
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays the name of a YouTube channel",
-					"detailedDescription": "Displays the name of a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "نام یک چنل یوتیوب را نمایش می دهد",
+					"detailedDescription": "نام یک چنل یوتیوب را نمایش می دهد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
 					"usage": [
 						"{youtubeChannelName:channelUrl}"
 					],
@@ -319,30 +319,30 @@
 				},
 				"twitchFollowers": {
 					"name": "twitchFollowers:nickname",
-					"description": "Amount of followers of a Twitch channel",
-					"detailedDescription": "Counts how many followers has a Twitch channel, replace `nickname` with the desired channel name",
+					"description": "تعداد دنبال کننده های یک چنل توییچ",
+					"detailedDescription": "تعداد دنبال کننده های یک چنل توییچ را می شمارد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
 					"usage": [
 						"{twitchFollowers:nickname}"
 					],
 					"example": [
-						"{twitchFollowers:ninja} Followers"
+						"{twitchFollowers:ninja} دنبال کننده ها"
 					]
 				},
 				"twitchViews": {
 					"name": "twitchViews:nickname",
-					"description": "Amount of views of a Twitch channel",
-					"detailedDescription": "Counts how many views has a Twitch channel, replace `nickname` with the desired channel name",
+					"description": "تعداد بازدید های یک چنل توییچ",
+					"detailedDescription": "تعداد بازدید های یک چنل توییچ را می شمارد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
 					"usage": [
 						"{twitchViews:nickname}"
 					],
 					"example": [
-						"{twitchViews:ninja} Views"
+						"{twitchViews:ninja} بازدید ها"
 					]
 				},
 				"twitchChannelName": {
 					"name": "twitchChannelName:nickname",
-					"description": "Displays the name of a Twitch channel",
-					"detailedDescription": "Displays the name of a Twitch channel, replace `nickname` with the desired channel name",
+					"description": "نام یک چنل توییچ را نمایش می دهد",
+					"detailedDescription": "نام یک چنل توییچ را نمایش می دهد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
 					"usage": [
 						"{twitchChannelName:nickname}"
 					],
