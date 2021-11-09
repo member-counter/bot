@@ -191,25 +191,25 @@
 				},
 				"membersWithRole": {
 					"name": "membersWithRole:role1ID,role2ID",
-					"description": "Members with a role or roles",
-					"detailedDescription": "Counts how many members have a role or roles, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"description": "اعضای یک یا چند نقش",
+					"detailedDescription": "تعداد اعضایی که یک یا چند نقش مشخص را دارند را می شمارد. بعد از `:`، ID نقش هایی که می خواهید شمرده شوند را بنویسید. همچنین ID ها را با , می توانید جدا کنید",
 					"usage": [
 						"{membersWithRole:role1ID,role2ID}"
 					],
 					"example": [
-						"{membersWithRole:6509281904766437,5823659271648290} Admins and mods"
+						"{membersWithRole:6509281904766437,5823659271648290} ادمین و مدراتور"
 					]
 				},
 				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "Online members with a role or roles",
-					"detailedDescription": "Counts how many members with a role or roles are online, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"description": "اعضای آنلاین یک یا چند نقش",
+					"detailedDescription": "تعداد اعضای آنلاینی که یک یا چند نقش مشخص را دارند را می شمارد. بعد از `:`، ID نقش هایی که می خواهید شمرده شوند را بنویسید. همچنین ID ها را با , می توانید جدا کنید",
 					"usage": [
 						"{onlineMembersWithRole:role1ID,role2ID}"
 					],
 					"example": [
-						"{onlineMembersWithRole:6509281904766437,5823659271648290} Online admins and mods",
-						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} ادمین و مدراتور آنلاین",
+						"{onlineMembersWithRole:5823659271648290} از {membersWithRole:5823659271648290} ادمین ها آنلاین هستند"
 					]
 				},
 				"offlineMembersWithRole": {
