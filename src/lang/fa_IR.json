@@ -537,24 +537,24 @@
 						"{multiply:value1,value2,more values}"
 					],
 					"example": [
-						"2 * 2 = {multiply:2,2}"
+						"2 × 2 = {multiply:2,2}"
 					]
 				},
 				"divide": {
 					"name": "divide:value1,value2,more values",
 					"description": "تقسیم کردن مقادیر مشخص بر هم",
-					"detailedDescription": "Divides the specified values, done from the left to the right",
+					"detailedDescription": "مقادیر مشخصی را بر همدیگر تقسیم می کند. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{divide:value1,value2,more values}"
 					],
 					"example": [
-						"10 / 2 = {divide:10,2}"
+						"10 ÷ 2 = {divide:10,2}"
 					]
 				},
 				"modulus": {
 					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values",
-					"detailedDescription": "Gets the modulus of the specified values, done from the left to the right",
+					"description": "ضریب گرفتن مقادیر مشخص",
+					"detailedDescription": "ضریب مقادیر مشخصی را می گیرد. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{modulus:value1,value2,more values}"
 					],
