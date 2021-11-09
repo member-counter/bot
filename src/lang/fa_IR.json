@@ -352,63 +352,63 @@
 				},
 				"memeratorMemes": {
 					"name": "memeratorMemes:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
-					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
+					"description": "تعداد میم های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد",
+					"detailedDescription": "تعداد میم های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد. قسمت `username` را با نام پروفایل دلخواه تغییر دهید",
 					"usage": [
 						"{memeratorMemes:username}"
 					],
 					"example": [
-						"Memes: {memeratorMemes:eduardozgz}"
+						"تعداد میم ها: {memeratorMemes:eduardozgz}"
 					]
 				},
 				"memeratorFollowers": {
 					"name": "memeratorFollowers:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
-					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
+					"description": "تعداد دنبال کننده های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد",
+					"detailedDescription": "تعداد دنبال کننده های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد. قسمت `username` را با نام پروفایل دلخواه تغییر دهید",
 					"usage": [
 						"{memeratorFollowers:username}"
 					],
 					"example": [
-						"Followers: {memeratorFollowers:eduardozgz}"
+						"دنبال کننده ها: {memeratorFollowers:eduardozgz}"
 					]
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
-					"description": "Amount of followers of a Twitter user",
-					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
+					"description": "تعداد دنبال کننده های توییتر یک کاربر",
+					"detailedDescription": "تعداد دنبال کننده های توییتر کاربری را می شمارد. قسمت `username` را با نام پروفایل توییتر دلخواه تغییر دهید",
 					"usage": [
 						"{twitterFollowers:username}"
 					],
 					"example": [
-						"Followers: {twitterFollowers:0xEduardozgz}"
+						"دنبال کننده ها: {twitterFollowers:0xEduardozgz}"
 					]
 				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
-					"description": "Counts the amount of members of a subreddit",
-					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "تعداد کل اعضاء یک ساب رددیت را می شمارد",
+					"detailedDescription": "تعداد کل اعضاء یک ساب رددیت را می شمارد. قسمت `subreddit` را با ساب رددیت دلخواه تغییر دهید",
 					"usage": [
 						"{redditMembers:subreddit}"
 					],
 					"example": [
-						"Redditors: {redditMembers:science}"
+						"ردیتور ها: {redditMembers:science}"
 					]
 				},
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
-					"description": "Counts the amount of online members of a subreddit",
-					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "تعداد اعضاء آنلاین یک ساب رددیت را می شمارد",
+					"detailedDescription": "تعداد کل اعضاء یک ساب رددیت را می شمارد. قسمت `subreddit` را با ساب رددیت دلخواه تغییر دهید",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
 					],
 					"example": [
-						"Online Redditors: {redditMembersOnline:science}"
+						"ردیتور های آنلاین: {redditMembersOnline:science}"
 					]
 				},
 				"redditTitle": {
 					"name": "redditTitle:subreddit",
-					"description": "Displays the title of a subreddit",
-					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "عنوان یک ساب رددیت را نمایش می دهد",
+					"detailedDescription": "عنوان یک ساب رددیت را نمایش می دهد. قسمت `subreddit` را با ساب رددیت دلخواه تغییر دهید",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
 					],
@@ -418,19 +418,19 @@
 				},
 				"instagramFollowers": {
 					"name": "instagramFollowers:username",
-					"description": "Counts the amount of followers in an Instagram account",
-					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
+					"description": "تعداد دنبال کننده های یک حساب اینستاگرام را می شمارد",
+					"detailedDescription": "عنوان یک ساب رددیت را نمایش می دهد. قسمت `username` را با نام کاربری واقعی یک حساب ایسنتاگرام جایگذین کنید",
 					"usage": [
 						"{instagramFollowers:username}"
 					],
 					"example": [
-						"Followers: {instagramFollowers:eduardozgz}"
+						"دنبال کننده ها: {instagramFollowers:eduardozgz}"
 					]
 				},
 				"countdown": {
 					"name": "countdown:targetDate:format",
-					"description": "Shows a countdown that will decrease to the specified target date",
-					"detailedDescription": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left",
+					"description": "یک شمارش معکوس که با نزدیک شدن به تاریخ مشخص شده، شمارنده کاهش پیدا می کند",
+					"detailedDescription": "یک شمارش معکوس که با نزدیک شدن به تاریخ مشخص شده، شمارنده کاهش پیدا می کند. شما می توانید به راحتی [از اینجا این نوع شمارنده را درست کنید](https://member-counter.eduardozgz.com/utils/countdown) یا اینکه به طور دستی قسمت `targetDate` را با تاریخی از گاه‌شمار UNIX جایگذین کنید و به طور دلخواه قسمت `format` را با یک فرمت سفارشی جایگذین کنید: از `%d` برای نمایش روز های باقی مانده، از `%h` برای نمایش ساعات باقی مانده، از `%m` برای نمایش دقایق باقی مانده و از `%s` برای نمایش ثانیه های باقی مانده استفاده کنید",
 					"usage": [
 						"{countdown:targetDate:format}"
 					],
