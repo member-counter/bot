@@ -435,29 +435,29 @@
 						"{countdown:targetDate:format}"
 					],
 					"example": [
-						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
+						"تا سال جدید: {countdown:1640991600:%d روز، %h ساعت ، %m دقیقه باقی مانده}"
 					]
 				},
 				"game": {
 					"name": "game:gameId:address",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
-					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
+					"description": "بازیکنان آنلاین در سرور یک بازی (Minecraft، Counter Strike، Rust، Ark، Team Fortress 2، GMOD، دیگر...)",
+					"detailedDescription": "تعداد بازیکنان آنلاین در سرور یک بازی را (Minecraft، Counter Strike، Rust، Ark، Team Fortress 2، GMOD، دیگر...) می شمارد. در قسمت `gameId` یکی از ID های لیست شده در [اینجا](https://github.com/gamedig/node-gamedig/#games-list) را بگذارید و قسمت `address` را با آدرس واقعی سرور جایگذین کنید",
 					"usage": [
 						"{game:gameId:address}"
 					],
 					"example": [
-						"{game:minecraft:mc.hypixel.net} Mining and crafting"
+						"{game:minecraft:mc.hypixel.net} درحال بازی کردن در هایپیکسل"
 					]
 				},
 				"clock": {
 					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone",
-					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
+					"description": "زمان ساعتی را با موقعیت زمانی مشخص شده نمایش می دهد",
+					"detailedDescription": "زمان ساعتی را با موقعیت زمانی مشخص شده نمایش می دهد. شما می توانید به آسانی [این شمارنده را از اینجا بسازید](https://member-counter.eduardozgz.com/utils/clock) و یا اینکه دستی قسمت `timeZone` را با یک موقعیت زمانی IANA معتبر جایگذین کنید",
 					"usage": [
 						"{clock:timeZone}"
 					],
 					"example": [
-						"Spain: {clock:Europe/Madrid}"
+						"اسپانیا: {clock:Europe/Madrid}"
 					]
 				},
 				"http": {
@@ -509,8 +509,8 @@
 				},
 				"sum": {
 					"name": "sum:value1,value2,more values",
-					"description": "Sum of the specified values",
-					"detailedDescription": "Sum of the specified values, done from the left to the right",
+					"description": "جمع کردن مقادیر مشخص",
+					"detailedDescription": "مقادیر مشخصی را جمع می کند. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{sum:value1,value2,more values}"
 					],
@@ -520,8 +520,8 @@
 				},
 				"subtract": {
 					"name": "subtract:value1,value2,more values",
-					"description": "Subtracts the specified values",
-					"detailedDescription": "Subtracts the specified values, done from the left to the right",
+					"description": "کم کردن مقادیر مشخص از هم",
+					"detailedDescription": "مقادیر مشخصی را از هم کم می کند. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{subtract:value1,value2,more values}"
 					],
@@ -531,8 +531,8 @@
 				},
 				"multiply": {
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values",
-					"detailedDescription": "Multiplies the specified values, done from the left to the right",
+					"description": "ضرب کردن مقادیر مشخص",
+					"detailedDescription": "مقادیر مشخصی را در هم ضرب می کند. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{multiply:value1,value2,more values}"
 					],
@@ -542,7 +542,7 @@
 				},
 				"divide": {
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values",
+					"description": "تقسیم کردن مقادیر مشخص بر هم",
 					"detailedDescription": "Divides the specified values, done from the left to the right",
 					"usage": [
 						"{divide:value1,value2,more values}"
