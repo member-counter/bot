@@ -178,15 +178,15 @@
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Channels in your server (excludes categories) or under a category",
-					"detailedDescription": "Counts how many channels (excluding category channels) are in the server, if you specify one or more category IDs after the `:`, separated by commas, only the channels under those specified categories will be counted",
+					"description": "چنل های سرور (به استثناء دسته‌بندی ها) یا چنل های زیر دسته بندی",
+					"detailedDescription": "تعداد چنل های سرور را (با مستثنئ کردن دسته‌بندی ها) می شمارد. اگر شما یک یا چند ID دسته‌بندی را بعد از `:` وارد کنید، که با کاما , جدا می شوند، فقط چنل های زیر مجموعه آن دسته بندی ها شمارش می شوند",
 					"usage": [
 						"{channels}",
 						"{channels:categoryID1,categoryID2}"
 					],
 					"example": [
-						"{channels} Channels",
-						"{channels:6509281904766437,5823659271648290} Tickets open"
+						"{channels} کانال",
+						"{channels:6509281904766437,5823659271648290} تیکت باز"
 					]
 				},
 				"membersWithRole": {
