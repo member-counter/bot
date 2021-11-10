@@ -519,11 +519,11 @@
 					]
 				},
 				"subtract": {
-					"name": "substract:değer1,değer2,daha fazla değer",
+					"name": "subtract:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerleri çıkarır",
 					"detailedDescription": "Soldan sağa belirtilen değerleri çıkarır",
 					"usage": [
-						"{substract:değer1,değer2,daha fazla değer}"
+						"{subtract:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"2 - 2 = {subtract:2,2}"
