@@ -52,264 +52,264 @@
 			],
 			"pagesText": "صفحه {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**بابت افزودن Member Counter به سرورتان صمیمانه سپاسگذاریم!**\n__**افزودن/ویرایش یک شمارنده**__\nبرای این مثال ما میایم از `{members}` استفاده کنیم که باعث می شود تعداد کل اعضاء سرور دیسکورد شما را حساب می کند. با اینحال شما خودتان می توانید شمارنده های بیشتر را در صفحات بعد مشاهده کنید.\nشما می توانید شمارنده را در یکی از مکان های زیر قرار دهید:\n\n- در **نام** یک چنل **صوتی**\n- در **نام** یک *دسته‌بندی**\n- در**توضیحات** یک چنل **متنی**\n- در **توضیحات** یک چنل **اخبار**\n\nحال یک چنل جدید بسازید و با ویرایش آن، در قسمت نام یا توضیحات آن چنل `{members}` را بنویسید و سپس 'تغییرات را ذخیره' کنید\n\nشما همچنین می توانید از ترکیب دلخواه چند نوع شمارنده در نام/توضیحات یک چنل، استفاده کنید. اینم یک نمونه:\n```\n{onlineMembers}/{members} اعضاء آنلاین، {youtubeSubscribers:https://www.youtube.com/user/enyay} مشترکان یوتیوب!\n{onlineMembersWithRole:614777997291028519,614816383053856769} ادمین و مدراتور آنلاین هستند!\n```\n\n> اگر شما به محدودیت تعداد کاراکتر هنگام ویرایش نام/توضیحات یک چنل رسیدید، لطفا `{PREFIX}help editChannel` را امتحان کنید\n> شما می توانید با استفاده از `{PREFIX}seeSettings` پیکربندی فعلی یک شمارنده را مشاهده کنید. این مورد برای افزودن شمارنده ها بدون غیرفعال کردن شمارنده های قبلی می تواند کاربردی باشد\n\n__**حذف یک شمارنده**__\nبه قسمت ویرایش چنل رفته و {disable} را در نام یا توضیحات آن چنل بنویسید. پس از ذخیره تغییرات، Member Counter آن را با یک \\✅ جایگذین خواهد کرد، بدان معنی که شما تمام شمارنده ها را از آن چنل با موفقیت حذف نموده‌اید\n\nشما همچنین می توانید به طور مستقیم آن چنل را حذف کنید",
-			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings \\> Appearance \\> Advanced \\> Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with a plus sign (\\+) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
-			"footerText": "Please read the first page of {PREFIX}guide to learn how to setup this counter",
+			"countersHeader": "__**شمارنده ها**__\n> شما باید حالت توسعه دهنده دیسکورد خودتان را فعال کنید (User Settings \\> Appearance \\> Advanced \\> Developer Mode)\n> برای گرفتن ID، روی نقش/چنل مورد نظر راست کلیک کرده و روی \"Copy ID\" بزنید\n\n> شمارنده هایی که کنارشان (+\\) دارند، شمارنده های پریمیوم هستند. برای اطلاعات بیشتر از `{PREFIX}premium` استفاده کنید\n\n> اگر می خواهید فرمت عدد ها را در یک شمارنده جدا از تنظیمات سرور تغییر دهید، این [page](https://member-counter.eduardozgz.com/utils/overwrite-settings) را نگاه کنید یا اینکه به طور دستی این [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98) را دنبال کنید\n\n",
+			"footerText": "لطفا صفحه اول از {PREFIX}guide را بخوانید تا درباره نحوه راه‌اندازی این شمارنده بیشتر بدانید",
 			"counters": {
 				"members": {
 					"name": "members",
-					"description": "Members in your server",
-					"detailedDescription": "Counts how many members has a server",
+					"description": "اعضاء سرور شما",
+					"detailedDescription": "تعداد اعضاء را در یک سرور می شمارد",
 					"usage": [
 						"{members}"
 					],
 					"example": [
-						"{members} Members"
+						"{members} عضو سرور"
 					]
 				},
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
-					"description": "Approximated online members in your server",
-					"detailedDescription": "Counts approximately how many members are online in the server",
+					"description": "تعداد تقریبی اعضاء آنلاین در سرور شما",
+					"detailedDescription": "تعداد تقریبی اعضاء آنلاین در سرور شما را می شمارد",
 					"usage": [
 						"{approximatedOnlineMembers}"
 					],
 					"example": [
-						"{approximatedOnlineMembers} Online"
+						"{approximatedOnlineMembers} آنلاین"
 					]
 				},
 				"onlineMembers": {
 					"name": "onlineMembers",
-					"description": "Online members in your server",
-					"detailedDescription": "Counts how many members are online in the server",
+					"description": "اعضاء آنلاین در سرور شما",
+					"detailedDescription": "تعداد اعضایی که در سرور شما آنلاین هستند را می شمارد",
 					"usage": [
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Online"
+						"{onlineMembers} آنلاین"
 					]
 				},
 				"offlineMembers": {
 					"name": "offlineMembers",
-					"description": "Offline members in your server",
-					"detailedDescription": "Counts how many members are offline in the server",
+					"description": "اعضاء آفلاین در سرور شما",
+					"detailedDescription": "تعداد اعضایی که در سرور آفلاین هستند را می شمارد",
 					"usage": [
 						"{onlineMembers}"
 					],
 					"example": [
-						"{onlineMembers} Offline"
+						"{onlineMembers} آفلاین"
 					]
 				},
 				"users": {
 					"name": "users",
-					"description": "Users in your server (excludes bot)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are in the server",
+					"description": "کاربران سرور شما (با استثناء گرفتن بات ها)",
+					"detailedDescription": "تعداد کاربرانی که در سرور شما هستند را (به استثناء بات ها) می شمارد",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Users"
+						"{users} کاربر"
 					]
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
-					"description": "Online users in your server (excludes bot)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are online in the server",
+					"description": "کاربران آنلاین در سرور شما (با استثناء گرفتن بات ها)",
+					"detailedDescription": "تعداد کاربرانی که آنلاین در سرور هستند را (به استثناء بات ها) می شمارد",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Online users"
+						"{users} کاربر آنلاین"
 					]
 				},
 				"offlineUsers": {
 					"name": "offlineUsers",
-					"description": "Offline users in your server (excludes bot)",
-					"detailedDescription": "Counts how many users (excluding bot accounts) are offline in the server",
+					"description": "کاربران آفلاین در سرور شما (با استثناء گرفتن بات ها)",
+					"detailedDescription": "تعداد کاربرانی که در سرور آفلاین هستند را (به استثناء بات ها) می شمارد",
 					"usage": [
 						"{users}"
 					],
 					"example": [
-						"{users} Offline"
+						"{users} آفلاین"
 					]
 				},
 				"bots": {
 					"name": "bots",
-					"description": "Bots in your server (excludes normal users)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are in the server",
+					"description": "تعداد بات های سرور شما (با استثناء گرفتن کاربران عادی)",
+					"detailedDescription": "تعداد بات هایی که در سرور شما هستند را (با مستثنئ گرفتن کاربران عادی) می شمارد",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Bots"
+						"{bots} بات"
 					]
 				},
 				"onlineBots": {
 					"name": "onlineBots",
-					"description": "Online bots in your server (excludes normal users)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are online in the server",
+					"description": "تعداد بات های آنلاین در سرور شما (با استثناء گرفتن کاربران عادی)",
+					"detailedDescription": "تعداد بات هایی که در سرور شما آنلاین هستند را (با مستثنئ گرفتن کاربران عادی) می شمارد",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Online bots"
+						"{bots} بات آنلاین"
 					]
 				},
 				"offlineBots": {
 					"name": "offlineBots",
-					"description": "Offline bots in your server (excludes normal users)",
-					"detailedDescription": "Counts how many bots (excluding normal accounts) are offline in the server",
+					"description": "تعداد بات های آفلاین در سرور شما (با استثناء گرفتن کاربران عادی)",
+					"detailedDescription": "تعداد بات هایی که در سرور شما آفلاین هستند را (با مستثنئ گرفتن کاربران عادی) می شمارد",
 					"usage": [
 						"{bots}"
 					],
 					"example": [
-						"{bots} Offline bots"
+						"{bots} بات آفلاین"
 					]
 				},
 				"roles": {
 					"name": "roles",
-					"description": "Roles in your server",
-					"detailedDescription": "Counts how many roles are in the server",
+					"description": "نقش های سرور شما",
+					"detailedDescription": "تعداد نقش های سرور را می شمارد",
 					"usage": [
 						"{roles}"
 					],
 					"example": [
-						"{roles} Roles"
+						"{roles} نقش"
 					]
 				},
 				"channels": {
 					"name": "channels",
-					"description": "Channels in your server (excludes categories) or under a category",
-					"detailedDescription": "Counts how many channels (excluding category channels) are in the server, if you specify one or more category IDs after the `:`, separated by commas, only the channels under those specified categories will be counted",
+					"description": "چنل های سرور (به استثناء دسته‌بندی ها) یا چنل های زیر دسته بندی",
+					"detailedDescription": "تعداد چنل های سرور را (با مستثنئ کردن دسته‌بندی ها) می شمارد. اگر شما یک یا چند ID دسته‌بندی را بعد از `:` وارد کنید، که با کاما , جدا می شوند، فقط چنل های زیر مجموعه آن دسته بندی ها شمارش می شوند",
 					"usage": [
 						"{channels}",
 						"{channels:categoryID1,categoryID2}"
 					],
 					"example": [
-						"{channels} Channels",
-						"{channels:6509281904766437,5823659271648290} Tickets open"
+						"{channels} کانال",
+						"{channels:6509281904766437,5823659271648290} تیکت باز"
 					]
 				},
 				"membersWithRole": {
 					"name": "membersWithRole:role1ID,role2ID",
-					"description": "Members with a role or roles",
-					"detailedDescription": "Counts how many members have a role or roles, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"description": "اعضای یک یا چند نقش",
+					"detailedDescription": "تعداد اعضایی که یک یا چند نقش مشخص را دارند را می شمارد. بعد از `:`، ID نقش هایی که می خواهید شمرده شوند را بنویسید. همچنین ID ها را با , می توانید جدا کنید",
 					"usage": [
 						"{membersWithRole:role1ID,role2ID}"
 					],
 					"example": [
-						"{membersWithRole:6509281904766437,5823659271648290} Admins and mods"
+						"{membersWithRole:6509281904766437,5823659271648290} ادمین و مدراتور"
 					]
 				},
 				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "Online members with a role or roles",
-					"detailedDescription": "Counts how many members with a role or roles are online, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"description": "اعضای آنلاین یک یا چند نقش",
+					"detailedDescription": "تعداد اعضای آنلاینی که یک یا چند نقش مشخص را دارند را می شمارد. بعد از `:`، ID نقش هایی که می خواهید شمرده شوند را بنویسید. همچنین ID ها را با , می توانید جدا کنید",
 					"usage": [
 						"{onlineMembersWithRole:role1ID,role2ID}"
 					],
 					"example": [
-						"{onlineMembersWithRole:6509281904766437,5823659271648290} Online admins and mods",
-						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} ادمین و مدراتور آنلاین",
+						"{onlineMembersWithRole:5823659271648290} از {membersWithRole:5823659271648290} ادمین ها آنلاین هستند"
 					]
 				},
 				"offlineMembersWithRole": {
 					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "Offline members with a role or roles",
-					"detailedDescription": "Counts how many members with a role or roles are offline, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"description": "اعضای آفلاین یک یا چند نقش",
+					"detailedDescription": "تعداد اعضای آفلاین که یک یا چند نقش مشخص را دارند را می شمارد. بعد از `:`، ID نقش هایی که می خواهید شمرده شوند را بنویسید. همچنین ID ها را با , می توانید جدا کنید",
 					"usage": [
 						"{offlineMembersWithRole:role1ID,role2ID}"
 					],
 					"example": [
-						"{offlineMembersWithRole:6509281904766437,5823659271648290} Offline admins and mods",
-						"{offlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are offline"
+						"{offlineMembersWithRole:6509281904766437,5823659271648290} ادمین و مدراتور های آفلاین",
+						"{offlineMembersWithRole:5823659271648290} از {membersWithRole:5823659271648290} ادمین آفلاین"
 					]
 				},
 				"connectedMembers": {
 					"name": "connectedMembers:channel1ID,channel2ID",
-					"description": "Connected members to voice channels",
-					"detailedDescription": "Counts how many members are connected to all the voice channels or to the specified ones, write the channel IDs you wanna filter after the `:`, and separate the IDs with commas",
+					"description": "اعضاء متصل شده به چنل های صوتی",
+					"detailedDescription": "تعداد اعضاء متصل شده به همه چنل های صوتی یا چنل های صوتی مشخص شده را می شمارد. بعد از `:` می توانید ID چنل هایی که می خواهید فیلتر کنید را وارد کنید. همچنین ID را می توانید با , جدا کنید",
 					"usage": [
 						"{connectedMembers}",
 						"{connectedMembers:channel1ID,channel2ID}"
 					],
 					"example": [
-						"{connectedMembers} Talking",
-						"{connectedMembers:5823659271648290} talking in the lounge"
+						"{connectedMembers} نفر درحال گفتگو",
+						"{connectedMembers:5823659271648290} درحال صحبت کردن در lounge"
 					]
 				},
 				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "Amount of banned members in your server",
-					"detailedDescription": "Counts how many members are banned, the bot must have ban permissions to get this count",
+					"description": "تعداد اعضاء بن شده از سرور شما",
+					"detailedDescription": "تعداد اعضایی که بن شده‌اند را می شمارد. بات باید دسترسی بن را برای این کار داشته باشد",
 					"usage": [
 						"{bannedMembers}"
 					],
 					"example": [
-						"{bannedMembers} Banned",
-						"{bannedMembers} have been hit with the ban hammer"
+						"{bannedMembers} بن شده",
+						"{bannedMembers} طعم چکش بن رو چشیده‌اند"
 					]
 				},
 				"membersPlaying": {
 					"name": "membersPlaying:game name",
-					"description": "Amount of members playing a game",
-					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
+					"description": "تعداد کاربران درحال بازی",
+					"detailedDescription": "تعداد کاربرانی که درحال انجام یک بازی هستند را می شمارد. شما می توانید با , از چند بازی باهم استفاده کنید",
 					"usage": [
 						"{membersPlaying:game name}",
 						"{membersPlaying:game name, game name 2}"
 					],
 					"example": [
-						"{membersPlaying:Minecraft} Mining and crafting",
-						"{membersPlaying: euro truck simulator 2, american truck simulator} Trucking"
+						"{membersPlaying:Minecraft} درحال بازی کردن ماینکرافت",
+						"{membersPlaying: euro truck simulator 2, american truck simulator} درحال روندن کامیون"
 					]
 				},
 				"nitro-boosters": {
 					"name": "nitro-boosters",
-					"description": "Counts the total amount of members boosting this server",
-					"detailedDescription": "Counts the total amount of members boosting this server",
+					"description": "تعداد کل اعضایی که این سرور را بوست کرده‌اند را می شمارد",
+					"detailedDescription": "تعداد کل اعضایی که این سرور را بوست کرده‌اند را می شمارد",
 					"usage": [
 						"{nitro-boosters}"
 					],
 					"example": [
-						"Awesome boosters: {nitro-boosters}"
+						"بوستر های ارجمند: {nitro-boosters}"
 					]
 				},
 				"youtubeSubscribers": {
 					"name": "youtubeSubscribers:channelUrl",
-					"description": "Amount of subscribers of a YouTube channel",
-					"detailedDescription": "Counts how many subscribers has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "تعداد سابسکرایب های یک چنل یوتیوب",
+					"detailedDescription": "تعداد سابسکرایبر های یک چنل یوتیوب را می شمارد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
 					"usage": [
 						"{youtubeSubscribers:channelUrl}"
 					],
 					"example": [
-						"Subscribers: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
+						"سابسکرایب ها: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeViews": {
 					"name": "youtubeViews:channelUrl",
-					"description": "Amount of views of a YouTube channel",
-					"detailedDescription": "Counts how many views has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "تعداد بازدید های یک چنل یوتیوب",
+					"detailedDescription": "تعداد بازدید های یک چنل یوتیوب را می شمارد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
 					"usage": [
 						"{youtubeViews:channelUrl}"
 					],
 					"example": [
-						"Views: {youtubeViews:https://www.youtube.com/user/enyay}"
+						"تعداد بازدید ها: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeVideos": {
 					"name": "youtubeVideos:channelUrl",
-					"description": "Amount of videos of a YouTube channel",
-					"detailedDescription": "Counts how many videos has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "تعداد ویدیو های یک چنل یوتیوب",
+					"detailedDescription": "تعداد ویدیو های یک چنل یوتیوب را می شمارد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
 					"usage": [
 						"{youtubeVideos:channelUrl}"
 					],
 					"example": [
-						"Videos: {youtubeVideos:https://www.youtube.com/user/enyay}"
+						"تعداد ویدیو های آپلود شده: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
 				},
 				"youtubeChannelName": {
 					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays the name of a YouTube channel",
-					"detailedDescription": "Displays the name of a YouTube channel, replace `channelUrl` with the desired channel url",
+					"description": "نام یک چنل یوتیوب را نمایش می دهد",
+					"detailedDescription": "نام یک چنل یوتیوب را نمایش می دهد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
 					"usage": [
 						"{youtubeChannelName:channelUrl}"
 					],
@@ -319,30 +319,30 @@
 				},
 				"twitchFollowers": {
 					"name": "twitchFollowers:nickname",
-					"description": "Amount of followers of a Twitch channel",
-					"detailedDescription": "Counts how many followers has a Twitch channel, replace `nickname` with the desired channel name",
+					"description": "تعداد دنبال کننده های یک چنل توییچ",
+					"detailedDescription": "تعداد دنبال کننده های یک چنل توییچ را می شمارد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
 					"usage": [
 						"{twitchFollowers:nickname}"
 					],
 					"example": [
-						"{twitchFollowers:ninja} Followers"
+						"{twitchFollowers:ninja} دنبال کننده ها"
 					]
 				},
 				"twitchViews": {
 					"name": "twitchViews:nickname",
-					"description": "Amount of views of a Twitch channel",
-					"detailedDescription": "Counts how many views has a Twitch channel, replace `nickname` with the desired channel name",
+					"description": "تعداد بازدید های یک چنل توییچ",
+					"detailedDescription": "تعداد بازدید های یک چنل توییچ را می شمارد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
 					"usage": [
 						"{twitchViews:nickname}"
 					],
 					"example": [
-						"{twitchViews:ninja} Views"
+						"{twitchViews:ninja} بازدید ها"
 					]
 				},
 				"twitchChannelName": {
 					"name": "twitchChannelName:nickname",
-					"description": "Displays the name of a Twitch channel",
-					"detailedDescription": "Displays the name of a Twitch channel, replace `nickname` with the desired channel name",
+					"description": "نام یک چنل توییچ را نمایش می دهد",
+					"detailedDescription": "نام یک چنل توییچ را نمایش می دهد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
 					"usage": [
 						"{twitchChannelName:nickname}"
 					],
@@ -352,63 +352,63 @@
 				},
 				"memeratorMemes": {
 					"name": "memeratorMemes:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
-					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
+					"description": "تعداد میم های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد",
+					"detailedDescription": "تعداد میم های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد. قسمت `username` را با نام پروفایل دلخواه تغییر دهید",
 					"usage": [
 						"{memeratorMemes:username}"
 					],
 					"example": [
-						"Memes: {memeratorMemes:eduardozgz}"
+						"تعداد میم ها: {memeratorMemes:eduardozgz}"
 					]
 				},
 				"memeratorFollowers": {
 					"name": "memeratorFollowers:username",
-					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
-					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
+					"description": "تعداد دنبال کننده های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد",
+					"detailedDescription": "تعداد دنبال کننده های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد. قسمت `username` را با نام پروفایل دلخواه تغییر دهید",
 					"usage": [
 						"{memeratorFollowers:username}"
 					],
 					"example": [
-						"Followers: {memeratorFollowers:eduardozgz}"
+						"دنبال کننده ها: {memeratorFollowers:eduardozgz}"
 					]
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
-					"description": "Amount of followers of a Twitter user",
-					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
+					"description": "تعداد دنبال کننده های توییتر یک کاربر",
+					"detailedDescription": "تعداد دنبال کننده های توییتر کاربری را می شمارد. قسمت `username` را با نام پروفایل توییتر دلخواه تغییر دهید",
 					"usage": [
 						"{twitterFollowers:username}"
 					],
 					"example": [
-						"Followers: {twitterFollowers:0xEduardozgz}"
+						"دنبال کننده ها: {twitterFollowers:0xEduardozgz}"
 					]
 				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
-					"description": "Counts the amount of members of a subreddit",
-					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "تعداد کل اعضاء یک ساب رددیت را می شمارد",
+					"detailedDescription": "تعداد کل اعضاء یک ساب رددیت را می شمارد. قسمت `subreddit` را با ساب رددیت دلخواه تغییر دهید",
 					"usage": [
 						"{redditMembers:subreddit}"
 					],
 					"example": [
-						"Redditors: {redditMembers:science}"
+						"ردیتور ها: {redditMembers:science}"
 					]
 				},
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
-					"description": "Counts the amount of online members of a subreddit",
-					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "تعداد اعضاء آنلاین یک ساب رددیت را می شمارد",
+					"detailedDescription": "تعداد کل اعضاء یک ساب رددیت را می شمارد. قسمت `subreddit` را با ساب رددیت دلخواه تغییر دهید",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
 					],
 					"example": [
-						"Online Redditors: {redditMembersOnline:science}"
+						"ردیتور های آنلاین: {redditMembersOnline:science}"
 					]
 				},
 				"redditTitle": {
 					"name": "redditTitle:subreddit",
-					"description": "Displays the title of a subreddit",
-					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
+					"description": "عنوان یک ساب رددیت را نمایش می دهد",
+					"detailedDescription": "عنوان یک ساب رددیت را نمایش می دهد. قسمت `subreddit` را با ساب رددیت دلخواه تغییر دهید",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
 					],
@@ -418,46 +418,46 @@
 				},
 				"instagramFollowers": {
 					"name": "instagramFollowers:username",
-					"description": "Counts the amount of followers in an Instagram account",
-					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
+					"description": "تعداد دنبال کننده های یک حساب اینستاگرام را می شمارد",
+					"detailedDescription": "عنوان یک ساب رددیت را نمایش می دهد. قسمت `username` را با نام کاربری واقعی یک حساب ایسنتاگرام جایگذین کنید",
 					"usage": [
 						"{instagramFollowers:username}"
 					],
 					"example": [
-						"Followers: {instagramFollowers:eduardozgz}"
+						"دنبال کننده ها: {instagramFollowers:eduardozgz}"
 					]
 				},
 				"countdown": {
 					"name": "countdown:targetDate:format",
-					"description": "Shows a countdown that will decrease to the specified target date",
-					"detailedDescription": "Shows a countdown that will decrease to the specified target date, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/countdown) or manually creating it by replacing `targetDate` with the target date in a UNIX timestamp, and optionally `format` it with a custom format: use `%d` to show the days left, `%h` to show the hours left, `%m` to show the minutes left and `%s` to show the seconds left",
+					"description": "یک شمارش معکوس که با نزدیک شدن به تاریخ مشخص شده، شمارنده کاهش پیدا می کند",
+					"detailedDescription": "یک شمارش معکوس که با نزدیک شدن به تاریخ مشخص شده، شمارنده کاهش پیدا می کند. شما می توانید به راحتی [از اینجا این نوع شمارنده را درست کنید](https://member-counter.eduardozgz.com/utils/countdown) یا اینکه به طور دستی قسمت `targetDate` را با تاریخی از گاه‌شمار UNIX جایگذین کنید و به طور دلخواه قسمت `format` را با یک فرمت سفارشی جایگذین کنید: از `%d` برای نمایش روز های باقی مانده، از `%h` برای نمایش ساعات باقی مانده، از `%m` برای نمایش دقایق باقی مانده و از `%s` برای نمایش ثانیه های باقی مانده استفاده کنید",
 					"usage": [
 						"{countdown:targetDate:format}"
 					],
 					"example": [
-						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
+						"تا سال جدید: {countdown:1640991600:%d روز، %h ساعت ، %m دقیقه باقی مانده}"
 					]
 				},
 				"game": {
 					"name": "game:gameId:address",
-					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
-					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
+					"description": "بازیکنان آنلاین در سرور یک بازی (Minecraft، Counter Strike، Rust، Ark، Team Fortress 2، GMOD، دیگر...)",
+					"detailedDescription": "تعداد بازیکنان آنلاین در سرور یک بازی را (Minecraft، Counter Strike، Rust، Ark، Team Fortress 2، GMOD، دیگر...) می شمارد. در قسمت `gameId` یکی از ID های لیست شده در [اینجا](https://github.com/gamedig/node-gamedig/#games-list) را بگذارید و قسمت `address` را با آدرس واقعی سرور جایگذین کنید",
 					"usage": [
 						"{game:gameId:address}"
 					],
 					"example": [
-						"{game:minecraft:mc.hypixel.net} Mining and crafting"
+						"{game:minecraft:mc.hypixel.net} درحال بازی کردن در هایپیکسل"
 					]
 				},
 				"clock": {
 					"name": "clock:timeZone",
-					"description": "Shows a clock with the time of the specified timezone",
-					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
+					"description": "زمان ساعتی را با موقعیت زمانی مشخص شده نمایش می دهد",
+					"detailedDescription": "زمان ساعتی را با موقعیت زمانی مشخص شده نمایش می دهد. شما می توانید به آسانی [این شمارنده را از اینجا بسازید](https://member-counter.eduardozgz.com/utils/clock) و یا اینکه دستی قسمت `timeZone` را با یک موقعیت زمانی IANA معتبر جایگذین کنید",
 					"usage": [
 						"{clock:timeZone}"
 					],
 					"example": [
-						"Spain: {clock:Europe/Madrid}"
+						"اسپانیا: {clock:Europe/Madrid}"
 					]
 				},
 				"http": {
@@ -509,8 +509,8 @@
 				},
 				"sum": {
 					"name": "sum:value1,value2,more values",
-					"description": "Sum of the specified values",
-					"detailedDescription": "Sum of the specified values, done from the left to the right",
+					"description": "جمع کردن مقادیر مشخص",
+					"detailedDescription": "مقادیر مشخصی را جمع می کند. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{sum:value1,value2,more values}"
 					],
@@ -520,8 +520,8 @@
 				},
 				"subtract": {
 					"name": "subtract:value1,value2,more values",
-					"description": "Subtracts the specified values",
-					"detailedDescription": "Subtracts the specified values, done from the left to the right",
+					"description": "کم کردن مقادیر مشخص از هم",
+					"detailedDescription": "مقادیر مشخصی را از هم کم می کند. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{subtract:value1,value2,more values}"
 					],
@@ -531,30 +531,30 @@
 				},
 				"multiply": {
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values",
-					"detailedDescription": "Multiplies the specified values, done from the left to the right",
+					"description": "ضرب کردن مقادیر مشخص",
+					"detailedDescription": "مقادیر مشخصی را در هم ضرب می کند. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{multiply:value1,value2,more values}"
 					],
 					"example": [
-						"2 * 2 = {multiply:2,2}"
+						"2 × 2 = {multiply:2,2}"
 					]
 				},
 				"divide": {
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values",
-					"detailedDescription": "Divides the specified values, done from the left to the right",
+					"description": "تقسیم کردن مقادیر مشخص بر هم",
+					"detailedDescription": "مقادیر مشخصی را بر همدیگر تقسیم می کند. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{divide:value1,value2,more values}"
 					],
 					"example": [
-						"10 / 2 = {divide:10,2}"
+						"10 ÷ 2 = {divide:10,2}"
 					]
 				},
 				"modulus": {
 					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values",
-					"detailedDescription": "Gets the modulus of the specified values, done from the left to the right",
+					"description": "ضریب گرفتن مقادیر مشخص",
+					"detailedDescription": "ضریب مقادیر مشخصی را می گیرد. این کار از چپ به راست انجام می شود",
 					"usage": [
 						"{modulus:value1,value2,more values}"
 					],
@@ -565,66 +565,66 @@
 			}
 		},
 		"premium": {
-			"helpDescription": "Get information about Member Counter Premium.",
+			"helpDescription": "دریافت اطلاعاتی درباره Member Counter نسخه پریمیوم.",
 			"helpExample": [
 				"{PREFIX}premium"
 			],
 			"embedReply": {
-				"title": "Member Counter Premium",
-				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"title": "Member Counter پریمیوم",
+				"description": "[نسخه پریمیوم بات را بگیرید]({GET_PREMIUM_BOT_URL}) و از آن لذت ببرید:",
 				"fields": [
 					{
-						"name": "**✅ ALL the counters**",
-						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"name": "**✅ دسترسی به همه شمارنده ها**",
+						"value": "به **تمام** شمارنده هایی که در بات وجود دارند دسترسی پیدا کنید، مثل `{membersWithRole}` یا `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
-						"name": "**✅ More accurate**",
-						"value": "Get more accurate counts in all members related counters",
+						"name": "**✅ دقت بیشتر و بهتر**",
+						"value": "شمارش های دقیق تری از همه شمارنده های مرتبط به اعضاء داشته باشید",
 						"inline": false
 					},
 					{
-						"name": "**✅ Unlimited servers**",
-						"value": "Pay only for the members you have, and invite the bot to as many servers as you want. For €5 EUR per 50,000 members, quarterly",
+						"name": "**✅ سرور های نامحدود**",
+						"value": "فقط به تعداد اعضائ که دارید بپردازید، و بات را به هر سروری که می خواهید دعوت کنید. آن هم به قیمت €5 یورو به ازای هر 50000 عضو، سه ماهه",
 						"inline": false
 					},
 					{
-						"name": "**✅ Custom bot**",
-						"value": "Use your own bot account, with the profile picture and username of your choice",
+						"name": "**✅ بات سفارشی**",
+						"value": "از حساب مورد نظر خودتان برای بات استفاده کنید، یعنی با عکس پروفایل و نام کاربری به دلخواه خودتان",
 						"inline": false
 					},
 					{
-						"name": "**✅ Easy to setup**",
-						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"name": "**✅ راه اندازی سریع و راحت**",
+						"value": "با چند کلیک، صاحب بات Member Counter خودتان شوید و ما خودمان از عهده بروزرسانی آن برخواهیم آمد. یک راهنمایی با اسکرین شات های مختلف هم شاملش میشه! به نظرتون این کار ساده تر از self-hosting نیست؟",
 						"inline": false
 					}
 				]
 			}
 		},
 		"lockChannel": {
-			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels.",
+			"helpDescription": "شما می توانید از این دستور برای نمایش شکل قفل (🔒) به جای نمایش شکل بلندگو (🔊) در چنل های صوتی، استفاده کنید.",
 			"helpUsage": [
 				"{PREFIX}lockChannel [channel id]"
 			],
 			"helpExample": [
 				"{PREFIX}lockChannel 700336568099143710"
 			],
-			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
-			"errorInvalidChannel": "You can only lock voice channels!",
-			"errorNoPerms": "I can't edit the channel `{CHANNEL}` due to lack of permissions",
-			"errorNotFound": "Channel not found"
+			"success": "انجام شد. **برای کاربرانی که ادمین نیستند**، این چنل با شکل یک 🔒 نمایش داده خواهد شد",
+			"errorInvalidChannel": "شما فقط میتوانید چنل های صوتی را قفل کنید!",
+			"errorNoPerms": "من به علت کمبود دسترسی های لازم، نمی توانم چنل`{CHANNEL}` را ویرایش کنم",
+			"errorNotFound": "چنل یافت نشد"
 		},
 		"editChannel": {
-			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
+			"helpDescription": "اگر سعی دارید که یک سری شمارنده تنظیم کنید اما دیسکورد به شما می گوید که به محدودیت تعداد کاراکتر در نام/توضیحات چنل رسیدید، شما می توانید از این دستور برای \"گذشتن\" از آن محدودیت استفاده کنید.",
 			"helpUsage": [
 				"{PREFIX}editChannel [channel ID] [content and counters]"
 			],
 			"helpExample": [
 				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
 			],
-			"success": "Done! You may have to wait a few minutes to see the new changes",
-			"errorNotFound": "Channel not found",
-			"errorNoContent": "You must provide some content"
+			"success": "انجام شد! شما ممکن است لازم باشد یک چند دقیقه ای برای دیدن تغییرات صبر کنید",
+			"errorNotFound": "چنل یافت نشد",
+			"errorNoContent": "شما باید یک محتوای نوشتاری ارائه بدید"
 		},
 		"setDigit": {
 			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.",
@@ -653,7 +653,7 @@
 			],
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
-			"success": "Done! You may have to wait a few minutes to see the new changes"
+			"success": "انجام شد! شما ممکن است لازم باشد یک چند دقیقه ای برای دیدن تغییرات صبر کنید"
 		},
 		"locale": {
 			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale.",
@@ -668,7 +668,7 @@
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "Changes the bot's prefix.",
+			"helpDescription": "پیشوند بات را تغییر می‌دهد.",
 			"helpUsage": [
 				"{PREFIX}prefix [new prefix]"
 			],
@@ -691,57 +691,57 @@
 				"{PREFIX}role allow all",
 				"{PREFIX}role deny all"
 			],
-			"rolesUpdated": "Roles updated.",
-			"errorNoRolesToUpdate": "You must mention at least 1 role",
+			"rolesUpdated": "نقش ها بروزرسانی شدند.",
+			"errorNoRolesToUpdate": "شما باید حداقل 1 نقش را منشن کنید",
 			"invalidParams": "Invalid parameters, see `{PREFIX}help role`"
 		},
 		"seeSettings": {
-			"helpDescription": "Shows all bot settings for this server.",
+			"helpDescription": "تمامی تنظیمات بات را در این سرور نشان می‌دهد.",
 			"helpExample": [
 				"{PREFIX}seeSettings"
 			],
 			"settingsMessage": {
-				"headerText": "Settings for guild:",
+				"headerText": "تنظیمات اعمال شده برای این سرور:",
 				"prefixText": "پیشوند:",
 				"langText": "زبان:",
 				"localeText": "موقعیت مکانی:",
 				"shortNumberText": "Short number (compact notation):",
-				"noText": "No",
-				"yesText": "Yes",
-				"allowedRolesText": "Allowed roles to use administrative commands:",
-				"countersText": "Counters:",
+				"noText": "خیر",
+				"yesText": "بله",
+				"allowedRolesText": "نقش های مجاز برای استفاده از دستورات مرتبط به ادمین:",
+				"countersText": "شمارنده ها:",
 				"customNumbersText": "Custom numbers:",
-				"warningNoPermsText": "\\⚠️ = The bot cannot continue updating this channel due to lack of permissions (You must allow the bot to: Manage channel, See channel or Read Messages, Connect)",
-				"guildLogsText": "Latest logs:"
+				"warningNoPermsText": "\\⚠️ = بات به علت کمبود دسترسی های مورد نیاز، نمی تواند به بروزرسانی اطلاعات این چنل ادامه دهد (شما باید این دسترسی هارا به بات داده باشید: Manage channel، See channel یا Read Messages، Connect)",
+				"guildLogsText": "آخرین تغییرات ضبط شده:"
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Removes all the counters and restores the custom settings of this server to the default ones.",
+			"helpDescription": "تمامی شمارنده ها را حذف می کند و تنظیمات شخصی سازی شده این سرور را به موارد پیشفرض بازمیگرداند.",
 			"helpExample": [
 				"{PREFIX}resetSettings"
 			],
-			"done": "Restored to default settings"
+			"done": "تنظیمات به پیشفرض بازگردانی شدند"
 		},
 		"upgradeServer": {
-			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account.",
+			"helpDescription": "این دستور اجازه می دهد تا بات قدیمی Member Counter پریمیوم را به سروری دعوت کنید، با استفاده از ارتقاء سرور های باقی مانده در حساب شما.",
 			"helpExample": [
 				"{PREFIX}upgradeServer"
 			],
-			"success": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
-			"errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
-			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
+			"success": "انجام شد! قدم بعدی دعوت کردن بات پریمیوم هست:\n{BOT_LINK}",
+			"errorCannotUpgrade": "شما نمی توانید این سرور را پریمیوم کنید زیرا این سرور از قبل پریمیوم دارد.",
+			"noServerUpgradesAvailable": "شما نمی توانید سرور های بیشتری را پریمیوم کنید چون هیچ ارتقاء سرور بیشتری برایتان باقی نمانده"
 		},
 		"info": {
-			"helpDescription": "List of useful links.",
+			"helpDescription": "لیست لینک های کاربردی.",
 			"helpExample": [
 				"{PREFIX}info"
 			],
 			"embedReply": {
-				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[من را به سرور خود اضافه کنید]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[گرفتن پریمیوم]({GET_PREMIUM_BOT_URL})\n[سرور پشتیبانی]({BOT_SERVER_URL})\n[رپو گیت هاب](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
-			"helpDescription": "Changes the bot language for this server, you must have administrator permissions to run this command.",
+			"helpDescription": "زبان بات را برای این سرور تغییر می دهد، توجه داشته باشید که شما برای اجرای این دستور، نیازمند به دسترسی ادمین هستید.",
 			"helpUsage": [
 				"{PREFIX}lang (کد زبان)"
 			],
@@ -753,7 +753,7 @@
 			"errorNotFound": "لیست زبان‌های در دسترس:"
 		},
 		"profile": {
-			"helpDescription": "Shows related information between you and this bot.",
+			"helpDescription": "ارتباط بین شما و این بات را نمایش می دهد.",
 			"helpUsage": [
 				"{PREFIX}profile (@user)"
 			],
@@ -761,32 +761,32 @@
 				"{PREFIX}profile",
 				"{PREFIX}profile @eduardozgz"
 			],
-			"badges": "Badges",
+			"badges": "نماد ها",
 			"credits": "Credits",
-			"serverUpgradesAvailable": "Server upgrades left",
+			"serverUpgradesAvailable": "ارتقاء دادن سرور باقی مانده",
 			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
 			"cancelText": "cancel",
 			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "Your data has been removed successfully",
-			"userNotFound": "User not found in the DB"
+			"removeDataSuccess": "اطلاعات شما با موفقیت پاک شد",
+			"userNotFound": "کاربر در پایگاه داده پیدا نشد"
 		},
 		"counts": {
 			"helpDescription": "Shows some counts.",
 			"helpExample": [
 				"{PREFIX}counts"
 			],
-			"members": "Members:",
-			"onlineMembers": "Online members:",
-			"offlineMembers": "Offline members:",
-			"bots": "Bots:",
-			"connectedUsers": "Connected users:",
-			"channels": "Channels:",
-			"roles": "Roles:",
-			"nitroBoosters": "Boosting:",
-			"bannedMembers": "Banned members:"
+			"members": "اعضاء:",
+			"onlineMembers": "اعضای آنلاین:",
+			"offlineMembers": "اعضای آفلاین:",
+			"bots": "بات ها:",
+			"connectedUsers": "کاربران متصل به چنل صوتی:",
+			"channels": "چنل ها:",
+			"roles": "نقش ها:",
+			"nitroBoosters": "بوست ها:",
+			"bannedMembers": "اعضاء بن شده:"
 		},
 		"preview": {
-			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
+			"helpDescription": "یک پیش نمایش از اینکه چگونه یک شمارنده و شمارنده های دیگر در یک چنل به نظر می آیند، نشان می دهد.",
 			"helpUsage": [
 				"{PREFIX}preview [content and counters]"
 			],
@@ -810,9 +810,9 @@
 				"{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw"
 			],
 			"status": {
-				"creatingCounts": "Creating counters...",
-				"createdCounts": "Complete",
-				"creatingCategory": "{LOADING} Creating category",
+				"creatingCounts": "درحال ساختن شمارنده ها...",
+				"createdCounts": "انجام شد",
+				"creatingCategory": "{LOADING} درحال ساختن دسته بندی",
 				"createdCategory": "{CHECK_MARK} Category created"
 			},
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
@@ -875,14 +875,14 @@
 						{
 							"name": "youtubeSubscribers",
 							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
-							"statusCreating": "{LOADING} Creating subscriber counter",
-							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+							"statusCreating": "{LOADING} درحال ساختن شمارنده سابسکرایب ها",
+							"statusCreated": "{CHECK_MARK} شمارنده سابسکرایب های یوتیوب ساخته شد"
 						},
 						{
 							"name": "youtubeVideos",
 							"template": "{youtubeVideos:{RESOURCE}} Videos",
-							"statusCreating": "{LOADING} Creating video counter",
-							"statusCreated": "{CHECK_MARK} Video counter created"
+							"statusCreating": "{LOADING} درحال ساختن شمارنده ویدیو",
+							"statusCreated": "{CHECK_MARK} شمارنده ویدیو ساخته شد"
 						},
 						{
 							"name": "youtubeViews",
@@ -917,14 +917,14 @@
 			"invalidAction": "Invalid action, it must be `encode` or `decode`"
 		},
 		"checkPermissions": {
-			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
+			"helpDescription": "بررسی می کند که بات آیا دسترسی های مورد نیاز را به درستی دارد تا به خوبی کار کند یا نه.",
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
 			"title": "Check permissions",
 			"optionalText": "(Optional)",
 			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
-			"footer": "If you need to fix permissions problems, try inviting the bot again:",
+			"footer": "اگر لازم است مشکل دسترسی های بات را حل کنید، می توانید دوباره بات را به سرور دعوت کنید:",
 			"details": {
 				"manageChannels": {
 					"name": "Manage channels",
@@ -977,18 +977,18 @@
 		},
 		"getCounts": {
 			"onlyPremium": "Only Premium",
-			"unknownCounter": "Unknown counter",
+			"unknownCounter": "شمارنده نامعتبر",
 			"disabled": "شمارنده غیرفعال شد",
 			"noBanPerms": "I need ban permissions to show this",
-			"invalidChannelLength": "Invalid channel name length, please setup the counter again",
+			"invalidChannelLength": "طول نام چنل نامعتبر، لطفا دوباره شمارنده را راه اندازی کنید",
 			"notAvailable": "دردسترس نمی باشد، لطفا صبر کنید"
 		},
 		"paginator": {
 			"pageCounter": "صفحه {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"jumpPrompt": "به چه صفحه ای می خواهید بروید؟ برای لغو این عمل،`{CANCEL_STRING}` یا `0` را ارسال کنید. شما 15 ثانیه برای پاسخ دادن وقت دارید.",
 			"cancelText": "cancel",
-			"errorPageLengthExceeded": "The page number must be less than or equal to {TOTAL_PAGES}. Please try again.",
-			"errorNegativeInput": "The page number can't be negative. Please try again."
+			"errorPageLengthExceeded": "عدد باید مساوی یا کمتر از {TOTAL_PAGES} باشد. لطفا دوباره تلاش کنید.",
+			"errorNegativeInput": "عدد صفحه نمی تواند منفی باشد. لطفا دوباره تلاش کنید."
 		}
 	},
 	"common": {
