@@ -764,9 +764,9 @@
 			"badges": "نماد ها",
 			"credits": "Credits",
 			"serverUpgradesAvailable": "ارتقاء دادن سرور باقی مانده",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
+			"removeDataConfirmation": "اگر می خواهید تمام اطلاعات خودتان را پاک کنید، دقیقا عین متن رو به رو را بفرستید: ```{CONFIRMATION_STRING}```\n:warning: **این عمل باعث حذف شدن تمام اطلاعاتتان از جمله نشان ها، ارتقاء های سرور و اعتباراتی که داشتید. همه و همه این ها برای همیشه حذف خواهند شد اما فاکتور های خرید به دلایل قانونی نگه داشته خواهند شد. آیا مطمعن هستید که می خواهید ادامه دهید؟ (برای لغو عبارت '{CANCEL_STRING}' را بفرستید)**",
 			"cancelText": "cancel",
-			"removeDataConfirmationString": "I want to delete all of my data",
+			"removeDataConfirmationString": "من مایل به حذف تمام اطلاعاتم هستم",
 			"removeDataSuccess": "اطلاعات شما با موفقیت پاک شد",
 			"userNotFound": "کاربر در پایگاه داده پیدا نشد"
 		},
