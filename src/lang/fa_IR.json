@@ -771,7 +771,7 @@
 			"userNotFound": "کاربر در پایگاه داده پیدا نشد"
 		},
 		"counts": {
-			"helpDescription": "Shows some counts.",
+			"helpDescription": "مقادیری از شمارش را نشان می دهد.",
 			"helpExample": [
 				"{PREFIX}counts"
 			],
@@ -788,21 +788,21 @@
 		"preview": {
 			"helpDescription": "یک پیش نمایش از اینکه چگونه یک شمارنده و شمارنده های دیگر در یک چنل به نظر می آیند، نشان می دهد.",
 			"helpUsage": [
-				"{PREFIX}preview [content and counters]"
+				"{PREFIX}preview [محتوا و شمارنده]"
 			],
 			"helpExample": [
-				"{PREFIX}preview {members} Members"
+				"{PREFIX}preview {members} عضو سرور"
 			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
-			"channelName": "Channel name preview",
-			"channelTopic": "Channel topic preview"
+			"channelName": "پیش‌نمایش نام چنل",
+			"channelTopic": "پیش‌نمایش توضیحات چنل"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters.",
+			"helpDescription": "چنل های صوتی قفل شده ای را با تعدادی شمارنده از پیش تنظیم شده در آنها، ایجاد می کند\nبه طور دلخواه می توانید شمارنده هایی برای یوتیوب یا توییچ راه‌اندازی کنید.",
 			"helpUsage": [
 				"{PREFIX}setup",
-				"{PREFIX}setup twitch [channel name]",
-				"{PREFIX}setup youtube [channel link]"
+				"{PREFIX}setup twitch [نام چنل]",
+				"{PREFIX}setup youtube [لینک چنل]"
 			],
 			"helpExample": [
 				"{PREFIX}setup",
@@ -813,7 +813,7 @@
 				"creatingCounts": "درحال ساختن شمارنده ها...",
 				"createdCounts": "انجام شد",
 				"creatingCategory": "{LOADING} درحال ساختن دسته بندی",
-				"createdCategory": "{CHECK_MARK} Category created"
+				"createdCategory": "{CHECK_MARK} دسته‌بندی ساخته شد"
 			},
 			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
 			"counterTemplates": {
@@ -853,7 +853,7 @@
 					]
 				},
 				"twitch": {
-					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Twitch Stats 📊",
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} آمار توییچ 📊",
 					"counters": [
 						{
 							"name": "twitchFollowers",
@@ -997,6 +997,6 @@
 		"errorDiscordAPI": "API دیسکورد",
 		"errorUnknown": "مشکلی پیش آمد. بعدا دوباره تلاش کنید.",
 		"errorNoAdmin": "فقط اعضائی که دسترسی ادمین در این سرور دارند می توانند از این دستور استفاده کنند.",
-		"noTopicCounterEnabled": "Looks like you didn't enable a topic counter yet, please, see `{PREFIX}help topicCounter`"
+		"noTopicCounterEnabled": "به نظر میاد شما هنوز شمارنده در توضیحات چنل را فعال نکرده اید. از`{PREFIX}help topicCounter` استفاده کنید"
 	}
 }
