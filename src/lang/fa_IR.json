@@ -681,7 +681,7 @@
 			"noPrefixProvided": "شما باید یک پیشوند ارائه دهید"
 		},
 		"role": {
-			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`.",
+			"helpDescription": "شما می توانید نقش هایی را برای استفاده دستورات ادمین، مجاز یا مستثناء کنید.\nهمچنین از کلیدواژه``all`` برای مجاز یا غیرمجاز کردن همه نقش ها استفاده کنید\nبرای دیدن اینکه چه نقش هایی در حال حاضر مجاز به استفاده از دستورات هستند، عبارت `{PREFIX}seeSettings` را بفرستید.",
 			"helpUsage": [
 				"{PREFIX}role [allow/deny] [@roles/all]"
 			],
@@ -693,7 +693,7 @@
 			],
 			"rolesUpdated": "نقش ها بروزرسانی شدند.",
 			"errorNoRolesToUpdate": "شما باید حداقل 1 نقش را منشن کنید",
-			"invalidParams": "Invalid parameters, see `{PREFIX}help role`"
+			"invalidParams": "پارامتر نامعتبر، یک نگاهی به `{PREFIX}help role` بیاندازید"
 		},
 		"seeSettings": {
 			"helpDescription": "تمامی تنظیمات بات را در این سرور نشان می‌دهد.",
@@ -857,49 +857,49 @@
 					"counters": [
 						{
 							"name": "twitchFollowers",
-							"template": "{twitchFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"template": "{twitchFollowers:{RESOURCE}} دنبال کننده",
+							"statusCreating": "{LOADING} درحال ساختن شمارنده دنبال‌کننده",
+							"statusCreated": "{CHECK_MARK} شمارنده دنبال‌کننده ساخته شد"
 						},
 						{
 							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{twitchViews:{RESOURCE}} بازدید ها",
+							"statusCreating": "{LOADING} درحال ساخت شمارنده میزان بازدید ها",
+							"statusCreated": "{CHECK_MARK} شمارنده میزان بازدید ها ساخته شد"
 						}
 					]
 				},
 				"youtube": {
-					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Youtube Stats 📊",
+					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} آمار یوتیوب 📊",
 					"counters": [
 						{
 							"name": "youtubeSubscribers",
-							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
+							"template": "{youtubeSubscribers:{RESOURCE}} سابسکرایب",
 							"statusCreating": "{LOADING} درحال ساختن شمارنده سابسکرایب ها",
 							"statusCreated": "{CHECK_MARK} شمارنده سابسکرایب های یوتیوب ساخته شد"
 						},
 						{
 							"name": "youtubeVideos",
-							"template": "{youtubeVideos:{RESOURCE}} Videos",
+							"template": "{youtubeVideos:{RESOURCE}} ویدیو",
 							"statusCreating": "{LOADING} درحال ساختن شمارنده ویدیو",
 							"statusCreated": "{CHECK_MARK} شمارنده ویدیو ساخته شد"
 						},
 						{
 							"name": "youtubeViews",
-							"template": "{youtubeViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{youtubeViews:{RESOURCE}} بازدیدکل",
+							"statusCreating": "{LOADING} درحال ساخت شمارنده میزان بازدید ها",
+							"statusCreated": "{CHECK_MARK} شمارنده میزان بازدید ها ساخته شد"
 						}
 					]
 				},
 				"twitter": {
-					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"categoryName": "📊 {twitterName:{RESOURCE}} آمار توییچ 📊",
 					"counters": [
 						{
 							"name": "twitterFollowers",
-							"template": "{twitterFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"template": "{twitterFollowers:{RESOURCE}} دنبال‌کننده",
+							"statusCreating": "{LOADING} درحال ساختن شمارنده دنبال‌کننده",
+							"statusCreated": "{CHECK_MARK} شمارنده دنبال‌کننده ساخته شد"
 						}
 					]
 				}
@@ -921,51 +921,51 @@
 			"helpExample": [
 				"{PREFIX}checkPermissions"
 			],
-			"title": "Check permissions",
-			"optionalText": "(Optional)",
-			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
+			"title": "بررسی دسترسی ها",
+			"optionalText": "(دلخواه)",
+			"adminWarning": "**این بات دسترسی Administrator را دارد. لطفا آن را بردارید و دسترسی های درست را راه‌اندازی کنید**",
 			"footer": "اگر لازم است مشکل دسترسی های بات را حل کنید، می توانید دوباره بات را به سرور دعوت کنید:",
 			"details": {
 				"manageChannels": {
 					"name": "Manage channels",
-					"description": "Used to update the name/description of the channels to update the counters"
+					"description": "برای ویرایش نام/توضیحات یک چنل و بروزرسانی اطلاعات شمارنده استفاده می شود"
 				},
 				"viewChannel": {
 					"name": "View channels",
-					"description": "Used to update the name/description of the channels to update the counters, also used to receive commands"
+					"description": "برای ویرایش نام/توضیحات یک چنل و بروزرسانی اطلاعات شمارنده استفاده می شود. این همچنین برای دریافت دستورات ارسال شده نیز می باشد"
 				},
 				"voiceConnect": {
 					"name": "Connect",
-					"description": "Used to update the name/description of the channels to update the counters"
+					"description": "برای ویرایش نام/توضیحات یک چنل و بروزرسانی اطلاعات شمارنده استفاده می شود"
 				},
 				"readMessageHistory": {
 					"name": "Read message history",
-					"description": "Used to update counters in messages/embeds"
+					"description": "برای بروزرسانی شمارنده های داخل پیام ها/ایمبد ها استفاده می شود"
 				},
 				"sendMessages": {
 					"name": "Send messages",
-					"description": "Used to reply to commands"
+					"description": "برای دادن پاسخ به یک دستور استفاده می شود"
 				},
 				"embedLinks": {
 					"name": "Embed links",
-					"description": "Used to reply to commands"
+					"description": "برای دادن پاسخ به یک دستور استفاده می شود"
 				},
 				"addReactions": {
 					"name": "Add reactions",
-					"description": "Used to add reactions in commands to interact with it"
+					"description": "برای افزودن ایموجی های بازخوردی در دستورات و تعامل داشتن با آنان استفاده می شود"
 				},
 				"manageMessages": {
 					"name": "Manage messages",
-					"description": "Used to remove reactions in a command",
+					"description": "برای خذف کردن ایموجی های بازخوردی در دستورات استفاده می شود",
 					"optional": true
 				},
 				"manageRoles": {
 					"name": "Manage roles",
-					"description": "Used by the {PREFIX}setup command and to update channel permissions when you add a Premium bot"
+					"description": "برای دستور {PREFIX}setup و بروزرسانی دسترسی های چنل وقتی که یک بات پریمیوم می افزایید، استفاده می شود"
 				},
 				"banMembers": {
 					"name": "Ban members",
-					"description": "Used to display the amount of banned members in the `{bannedMembers}` counter",
+					"description": "برای شمردن تعداد اعضاء بن شده در شمارنده `{bannedMembers}` استفاده می شود",
 					"optional": true
 				}
 			}
@@ -973,13 +973,13 @@
 	},
 	"functions": {
 		"commandHandler": {
-			"noDm": "You can't run this command on a DM channel"
+			"noDm": "شما نمی توانید این دستور را در چنل DM اجرا کنید"
 		},
 		"getCounts": {
-			"onlyPremium": "Only Premium",
+			"onlyPremium": "فقط برای پریمیوم",
 			"unknownCounter": "شمارنده نامعتبر",
 			"disabled": "شمارنده غیرفعال شد",
-			"noBanPerms": "I need ban permissions to show this",
+			"noBanPerms": "من به دسترسی بن برای نشان دادن این مورد نیاز دارم",
 			"invalidChannelLength": "طول نام چنل نامعتبر، لطفا دوباره شمارنده را راه اندازی کنید",
 			"notAvailable": "دردسترس نمی باشد، لطفا صبر کنید"
 		},
