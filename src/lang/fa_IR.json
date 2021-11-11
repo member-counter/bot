@@ -5,7 +5,7 @@
 		"help": {
 			"helpDescription": "دریافت راهنمایی استفاده از دستورات و شمارنده ها.",
 			"helpUsage": [
-				"{PREFIX}help [command or counter]"
+				"{PREFIX}help [دستور یا شمارنده]"
 			],
 			"helpExample": [
 				"{PREFIX}help lockChannel",
@@ -15,7 +15,7 @@
 			"helpFooterText": "**اطلاعات استفاده:** `()` به معنای یک پارامتر اختیاری و `[]` به معنای یک پارامتر الزامی می باشد",
 			"embedReply": {
 				"title": "لیست دستورات | پیشوند: {PREFIX}‎",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command or counter send `{PREFIX}help` plus the name: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
+				"description": "[این بات را به سرورتان اضافه کنید]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [مستندات](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nراه‌اندازی سریع: `{PREFIX}setup`\nیادگرفتن نحوه استفاده از بات: `{PREFIX}guide`\n\nبرای دریافت اطلاعات بیشتر درباره یک دستور یا شمارنده `{PREFIX}help` را به علاوه نام آن را بفرستید: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
 						"name": "**شمارنده ها**",
@@ -620,7 +620,7 @@
 				"{PREFIX}editChannel [channel ID] [content and counters]"
 			],
 			"helpExample": [
-				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
+				"{PREFIX}editChannel 701396983843127366 {onlineMembers} از {members} عضو آنلاین"
 			],
 			"success": "انجام شد! شما ممکن است لازم باشد یک چند دقیقه ای برای دیدن تغییرات صبر کنید",
 			"errorNotFound": "چنل یافت نشد",
@@ -662,7 +662,7 @@
 			],
 			"helpExample": [
 				"{PREFIX}locale en",
-				"{PREFIX}locale es",
+				"{PREFIX}locale fa",
 				"{PREFIX}locale disable"
 			],
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
@@ -670,15 +670,15 @@
 		"prefix": {
 			"helpDescription": "پیشوند بات را تغییر می‌دهد.",
 			"helpUsage": [
-				"{PREFIX}prefix [new prefix]"
+				"{PREFIX}prefix [پیشوند جدید]"
 			],
 			"helpExample": [
 				"{PREFIX}prefix !",
 				"{PREFIX}prefix .",
 				"{PREFIX}prefix $"
 			],
-			"success": "Prefix changed to: `{NEW_PREFIX}`",
-			"noPrefixProvided": "You must provide a prefix"
+			"success": "پیشوند به `{NEW_PREFIX}` تغییر یافت",
+			"noPrefixProvided": "شما باید یک پیشوند ارائه دهید"
 		},
 		"role": {
 			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`.",
