@@ -497,8 +497,8 @@
 				},
 				"static": {
 					"name": "static:data",
-					"description": "Displays the given `data`",
-					"detailedDescription": "Displays the given `data` with custom formatting based on the server settings if it's a number, text is also accepted",
+					"description": "مقدار `data` داده شده را نمایش می دهد",
+					"detailedDescription": "مقدار `data` داده شده را با فرمت های شخصی سازی شده بر اساس تنظیمات سرور نمایش میدهد اگر این یک عدد باشد. متن نیز همینطور قابل قبول است",
 					"usage": [
 						"{static:data}"
 					],
@@ -638,10 +638,10 @@
 			],
 			"success": "اعداد شخصی سازی شدند.",
 			"resetSuccess": "اعداد به حالت پیشفرض بازگشتند.",
-			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+			"errorMissingParams": "پارامتر هایی وجود ندارند، لطفا `{PREFIX}help setDigit` را نگاه بیاندازید."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters.",
+			"helpDescription": "این دستور به شما این اجازه را می دهد که اعداد به حالت فشرده ای نمایش داده شوند.",
 			"helpUsage": [
 				"{PREFIX}shortNumber [enable|on/disable|off]"
 			],
@@ -652,11 +652,11 @@
 				"{PREFIX}shortNumber off"
 			],
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
-			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
+			"errorInvalidAction": "عملیات نامعتبر! لطفا `{PREFIX}help shortNumber` را مشاهده فرمایید",
 			"success": "انجام شد! شما ممکن است لازم باشد یک چند دقیقه ای برای دیدن تغییرات صبر کنید"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale.",
+			"helpDescription": "اعداد و ساعت ها را برای مشخص کردن موقعیت مکانی (فرمت های 12h/24h) فرمت می کند.",
 			"helpUsage": [
 				"{PREFIX}locale [locale/disable]"
 			],
@@ -705,12 +705,12 @@
 				"prefixText": "پیشوند:",
 				"langText": "زبان:",
 				"localeText": "موقعیت مکانی:",
-				"shortNumberText": "Short number (compact notation):",
+				"shortNumberText": "عدد کوتاه (حالت فشرده):",
 				"noText": "خیر",
 				"yesText": "بله",
 				"allowedRolesText": "نقش های مجاز برای استفاده از دستورات مرتبط به ادمین:",
 				"countersText": "شمارنده ها:",
-				"customNumbersText": "Custom numbers:",
+				"customNumbersText": "اعداد سفارشی:",
 				"warningNoPermsText": "\\⚠️ = بات به علت کمبود دسترسی های مورد نیاز، نمی تواند به بروزرسانی اطلاعات این چنل ادامه دهد (شما باید این دسترسی هارا به بات داده باشید: Manage channel، See channel یا Read Messages، Connect)",
 				"guildLogsText": "آخرین تغییرات ضبط شده:"
 			}
@@ -906,7 +906,7 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}`.",
+			"helpDescription": "یک دستور base64 کاربردی برای شخصی سازی دستوراتی خاص یا ساخت شمارنده های پیچیده مثل `{http}`.",
 			"helpUsage": [
 				"{PREFIX}base64 [encode/decode] [data]"
 			],
@@ -914,7 +914,7 @@
 				"{PREFIX}base64 encode test",
 				"{PREFIX}base64 decode dGVzdA=="
 			],
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"invalidAction": "عملیات نامعتبر، این باید `encode` یا `decode` باشد"
 		},
 		"checkPermissions": {
 			"helpDescription": "بررسی می کند که بات آیا دسترسی های مورد نیاز را به درستی دارد تا به خوبی کار کند یا نه.",
