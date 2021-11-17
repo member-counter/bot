@@ -463,12 +463,12 @@
 				"http": {
 					"name": "http:options",
 					"description": "نتایج یک درخواست http را نمایش می دهد",
-					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items, `lifetime`: A number; specifies in seconds for how long the returned response will be cached and used, the default is 1 hour",
+					"detailedDescription": "نتایج یک درخواست `GET` http را نشان می دهد. شما می توانید با استفاده از `options` [از اینجا](https://member-counter.eduardozgz.com/utils/http) راه‌اندازی را انجام دهید. یا اینکه به صورت دستی آن را ایجاد کنید: قسمت `options` یک شیء JSON کدگزاری شده به صورت base64 می باشد (شما می توانید با استفاده از دستور {PREFIX}base64 به این مورد برسید). این شیء می تواند کلید های رو به رو را دارا باشد: `url`: یک string، با آدرس url منبع. `parseNumber`: یک boolean، اگر نتیجه عددی معتبر باشد، آن parse خواهد شد و بر اساس تنظیمات سرور شما شخصی سازی می شود. `dataPath`: یک string، اگر پاسخ یک شیء JSON باشد، شما باید یک مسیری را به کلید مشخص کنید که مقدار آن به طور الزامی یک string یا number باشد. نوع syntax که برای مسیر استفاده می شود با نوعی که در JS برای دسترسی به خواص و آرایه های آیتم ها استفاده می شود، مشابه است. `lifetime`: یک number، مشخص می کند چقدر ثانیه پاسخ بازگشتی کش و استفاده خواهد شد، پیشفرض 1 ساعت می باشد",
 					"usage": [
 						"{http:options}"
 					],
 					"example": [
-						"Last subscriber: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+						"آخرین دنبال‌کننده: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
 					]
 				},
 				"replace": {
@@ -627,17 +627,17 @@
 			"errorNoContent": "شما باید یک محتوای نوشتاری ارائه بدید"
 		},
 		"setDigit": {
-			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.",
+			"helpDescription": "عددی که قرار است به نمایش در بیاید را سفارشی سازی می کند. نوع آرگومان عدد باید عدد عادی باشد. آرگومان دوم می تواند هر چیزی که خواستید باشد، مثل یه ایموجی یا یک عدد عادی دیگر. شما می توانید چند تا عدد را یکجا باهم شخصی سازی کنید با جدا کردن آرگومان ها با (`,`)\nاگر آرگومان اول کلمه \"reset\" باشد، اعداد به پیشفرض خود بازخواهند گشت.",
 			"helpUsage": [
 				"{PREFIX}setDigit reset",
-				"{PREFIX}setDigit [number] [your custom number]"
+				"{PREFIX}setDigit [عدد] [عدد یا متن دلخواه]"
 			],
 			"helpExample": [
 				"{PREFIX}setDigit 3 3",
 				"{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:"
 			],
-			"success": "Digits customized.",
-			"resetSuccess": "Numbers restored to the default ones.",
+			"success": "اعداد شخصی سازی شدند.",
+			"resetSuccess": "اعداد به حالت پیشفرض بازگشتند.",
 			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
