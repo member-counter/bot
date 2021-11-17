@@ -42,7 +42,7 @@
 				"suggestCommand": "شاید شما دارید دنبال یکی از این دستورات می گردید:",
 				"usageText": "استفاده",
 				"exampleText": "مثال",
-				"searchIgnoredWords": "amount count"
+				"searchIgnoredWords": "amount count مقدار شمارش"
 			}
 		},
 		"guide": {
@@ -473,8 +473,8 @@
 				},
 				"replace": {
 					"name": "replace:text:oldValue;newValue",
-					"description": "Replaces portions of the given text with the given values",
-					"detailedDescription": "Replaces portions of the given text with the given values, this counter is useful alongside the `{http}` counter to for example, read data from an API, and depending on the returned response, translate the response to something more human friendly.\n`text` should be the original text or a counter like `{http}`, `oldValue` the value to search and `newValue` the value that will replace `oldValue`, you can replace multiple values by separating them with a comma as shown below in the examples.",
+					"description": "بخش های داده شده از متن را با مقادیر داده شده جایگزین می کند",
+					"detailedDescription": "بخش های داده شده از متن را با مقادیر داده شده جایگزین می کند. این شمارنده در کنار شمارنده `{http}` کاربردی است. برای مثال، داده را از یک API می خواند و بر اساس پاسخ بازگشتی، آن را ترجمه به چیزی انسان دوستانه می کند.\nمقدار `text` باید متن اصلی یک شمارنده مثل `{http}` باشد. مثدار `oldValue` مقداری که برای آن جستجو انجا می شود و مقدار `newValue` به جای `oldValue` جایگذین خواهد شد. شما می توانید چندین مقدار را با یک `,` جوری که در مثال های زیر نمایش داده می شوند، جایگذین کنید.",
 					"usage": [
 						"{replace:text:oldValue;newValue}",
 						"{replace:text:oldValue;newValue,oldValue2;newValue2}"
@@ -486,7 +486,7 @@
 				},
 				"escape": {
 					"name": "escape:stringToEscape",
-					"description": "Escapes common delimiters used by Member Counter",
+					"description": "خروج از تعیین کننده های معمول مورد استفاده توسط Member Counter",
 					"detailedDescription": "Escapes automatically all the delimiters used by Member Counter when processing a counter. Like `:`,`;` or `,`. You may need this if you want to pass arguments with the mentioned delimiters without getting them parsed. This is specially useful when you can't control well the content of the string like in the `{http}` counter",
 					"usage": [
 						"{escape:stringToEscape}"
