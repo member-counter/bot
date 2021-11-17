@@ -42,7 +42,7 @@
 				"suggestCommand": "شاید شما دارید دنبال یکی از این دستورات می گردید:",
 				"usageText": "استفاده",
 				"exampleText": "مثال",
-				"searchIgnoredWords": "amount count"
+				"searchIgnoredWords": "amount count مقدار شمارش"
 			}
 		},
 		"guide": {
@@ -462,19 +462,19 @@
 				},
 				"http": {
 					"name": "http:options",
-					"description": "Shows the result of a http request",
-					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items, `lifetime`: A number; specifies in seconds for how long the returned response will be cached and used, the default is 1 hour",
+					"description": "نتایج یک درخواست http را نمایش می دهد",
+					"detailedDescription": "نتایج یک درخواست `GET` http را نشان می دهد. شما می توانید با استفاده از `options` [از اینجا](https://member-counter.eduardozgz.com/utils/http) راه‌اندازی را انجام دهید. یا اینکه به صورت دستی آن را ایجاد کنید: قسمت `options` یک شیء JSON کدگزاری شده به صورت base64 می باشد (شما می توانید با استفاده از دستور {PREFIX}base64 به این مورد برسید). این شیء می تواند کلید های رو به رو را دارا باشد: `url`: یک string، با آدرس url منبع. `parseNumber`: یک boolean، اگر نتیجه عددی معتبر باشد، آن parse خواهد شد و بر اساس تنظیمات سرور شما شخصی سازی می شود. `dataPath`: یک string، اگر پاسخ یک شیء JSON باشد، شما باید یک مسیری را به کلید مشخص کنید که مقدار آن به طور الزامی یک string یا number باشد. نوع syntax که برای مسیر استفاده می شود با نوعی که در JS برای دسترسی به خواص و آرایه های آیتم ها استفاده می شود، مشابه است. `lifetime`: یک number، مشخص می کند چقدر ثانیه پاسخ بازگشتی کش و استفاده خواهد شد، پیشفرض 1 ساعت می باشد",
 					"usage": [
 						"{http:options}"
 					],
 					"example": [
-						"Last subscriber: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+						"آخرین دنبال‌کننده: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
 					]
 				},
 				"replace": {
 					"name": "replace:text:oldValue;newValue",
-					"description": "Replaces portions of the given text with the given values",
-					"detailedDescription": "Replaces portions of the given text with the given values, this counter is useful alongside the `{http}` counter to for example, read data from an API, and depending on the returned response, translate the response to something more human friendly.\n`text` should be the original text or a counter like `{http}`, `oldValue` the value to search and `newValue` the value that will replace `oldValue`, you can replace multiple values by separating them with a comma as shown below in the examples.",
+					"description": "بخش های داده شده از متن را با مقادیر داده شده جایگزین می کند",
+					"detailedDescription": "بخش های داده شده از متن را با مقادیر داده شده جایگزین می کند. این شمارنده در کنار شمارنده `{http}` کاربردی است. برای مثال، داده را از یک API می خواند و بر اساس پاسخ بازگشتی، آن را ترجمه به چیزی انسان دوستانه می کند.\nمقدار `text` باید متن اصلی یک شمارنده مثل `{http}` باشد. مثدار `oldValue` مقداری که برای آن جستجو انجا می شود و مقدار `newValue` به جای `oldValue` جایگذین خواهد شد. شما می توانید چندین مقدار را با یک `,` جوری که در مثال های زیر نمایش داده می شوند، جایگذین کنید.",
 					"usage": [
 						"{replace:text:oldValue;newValue}",
 						"{replace:text:oldValue;newValue,oldValue2;newValue2}"
@@ -486,8 +486,8 @@
 				},
 				"escape": {
 					"name": "escape:stringToEscape",
-					"description": "Escapes common delimiters used by Member Counter",
-					"detailedDescription": "Escapes automatically all the delimiters used by Member Counter when processing a counter. Like `:`,`;` or `,`. You may need this if you want to pass arguments with the mentioned delimiters without getting them parsed. This is specially useful when you can't control well the content of the string like in the `{http}` counter",
+					"description": "خروج از تعیین کننده های معمول مورد استفاده توسط Member Counter",
+					"detailedDescription": "خروج از تعیین کننده های معمول مورد استفاده توسط Member Counter وقتی که به یک شمارنده درحال پردازش است. مثل `:`، `;` یا `,`. شما ممکن است برای گذشتن از آرگومان هایی که به تعیین کننده های آن اشاره شد بدون اینکه آنها parse شوند، به این نیاز داشته باشید. این مخصوصا برای زمانی کاربردی است که شما نمی توانید محتوای string را در شمارنده `{http}` کنترل کنید",
 					"usage": [
 						"{escape:stringToEscape}"
 					],
@@ -497,8 +497,8 @@
 				},
 				"static": {
 					"name": "static:data",
-					"description": "Displays the given `data`",
-					"detailedDescription": "Displays the given `data` with custom formatting based on the server settings if it's a number, text is also accepted",
+					"description": "مقدار `data` داده شده را نمایش می دهد",
+					"detailedDescription": "مقدار `data` داده شده را با فرمت های شخصی سازی شده بر اساس تنظیمات سرور نمایش میدهد اگر این یک عدد باشد. متن نیز همینطور قابل قبول است",
 					"usage": [
 						"{static:data}"
 					],
@@ -585,7 +585,7 @@
 					},
 					{
 						"name": "**✅ سرور های نامحدود**",
-						"value": "Pay only for the members and servers you have. For €5 EUR per 50,000 members and 5 servers, quarterly",
+						"value": "فقط به تعداد اعضائ که دارید بپردازید، و بات را به هر سروری که می خواهید دعوت کنید. آن هم به قیمت €5 یورو به ازای هر 50000 عضو، سه ماهه",
 						"inline": false
 					},
 					{
@@ -627,21 +627,21 @@
 			"errorNoContent": "شما باید یک محتوای نوشتاری ارائه بدید"
 		},
 		"setDigit": {
-			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.",
+			"helpDescription": "عددی که قرار است به نمایش در بیاید را سفارشی سازی می کند. نوع آرگومان عدد باید عدد عادی باشد. آرگومان دوم می تواند هر چیزی که خواستید باشد، مثل یه ایموجی یا یک عدد عادی دیگر. شما می توانید چند تا عدد را یکجا باهم شخصی سازی کنید با جدا کردن آرگومان ها با (`,`)\nاگر آرگومان اول کلمه \"reset\" باشد، اعداد به پیشفرض خود بازخواهند گشت.",
 			"helpUsage": [
 				"{PREFIX}setDigit reset",
-				"{PREFIX}setDigit [number] [your custom number]"
+				"{PREFIX}setDigit [عدد] [عدد یا متن دلخواه]"
 			],
 			"helpExample": [
 				"{PREFIX}setDigit 3 3",
 				"{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:"
 			],
-			"success": "Digits customized.",
-			"resetSuccess": "Numbers restored to the default ones.",
-			"errorMissingParams": "Missing parameters, please see `{PREFIX}help setDigit`."
+			"success": "اعداد شخصی سازی شدند.",
+			"resetSuccess": "اعداد به حالت پیشفرض بازگشتند.",
+			"errorMissingParams": "پارامتر هایی وجود ندارند، لطفا `{PREFIX}help setDigit` را نگاه بیاندازید."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters.",
+			"helpDescription": "این دستور به شما این اجازه را می دهد که اعداد به حالت فشرده ای نمایش داده شوند.",
 			"helpUsage": [
 				"{PREFIX}shortNumber [enable|on/disable|off]"
 			],
@@ -652,11 +652,11 @@
 				"{PREFIX}shortNumber off"
 			],
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
-			"errorInvalidAction": "Invalid action! please see `{PREFIX}help shortNumber`",
+			"errorInvalidAction": "عملیات نامعتبر! لطفا `{PREFIX}help shortNumber` را مشاهده فرمایید",
 			"success": "انجام شد! شما ممکن است لازم باشد یک چند دقیقه ای برای دیدن تغییرات صبر کنید"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale.",
+			"helpDescription": "اعداد و ساعت ها را برای مشخص کردن موقعیت مکانی (فرمت های 12h/24h) فرمت می کند.",
 			"helpUsage": [
 				"{PREFIX}locale [locale/disable]"
 			],
@@ -705,12 +705,12 @@
 				"prefixText": "پیشوند:",
 				"langText": "زبان:",
 				"localeText": "موقعیت مکانی:",
-				"shortNumberText": "Short number (compact notation):",
+				"shortNumberText": "عدد کوتاه (حالت فشرده):",
 				"noText": "خیر",
 				"yesText": "بله",
 				"allowedRolesText": "نقش های مجاز برای استفاده از دستورات مرتبط به ادمین:",
 				"countersText": "شمارنده ها:",
-				"customNumbersText": "Custom numbers:",
+				"customNumbersText": "اعداد سفارشی:",
 				"warningNoPermsText": "\\⚠️ = بات به علت کمبود دسترسی های مورد نیاز، نمی تواند به بروزرسانی اطلاعات این چنل ادامه دهد (شما باید این دسترسی هارا به بات داده باشید: Manage channel، See channel یا Read Messages، Connect)",
 				"guildLogsText": "آخرین تغییرات ضبط شده:"
 			}
@@ -906,7 +906,7 @@
 			}
 		},
 		"base64": {
-			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}`.",
+			"helpDescription": "یک دستور base64 کاربردی برای شخصی سازی دستوراتی خاص یا ساخت شمارنده های پیچیده مثل `{http}`.",
 			"helpUsage": [
 				"{PREFIX}base64 [encode/decode] [data]"
 			],
@@ -914,7 +914,7 @@
 				"{PREFIX}base64 encode test",
 				"{PREFIX}base64 decode dGVzdA=="
 			],
-			"invalidAction": "Invalid action, it must be `encode` or `decode`"
+			"invalidAction": "عملیات نامعتبر، این باید `encode` یا `decode` باشد"
 		},
 		"checkPermissions": {
 			"helpDescription": "بررسی می کند که بات آیا دسترسی های مورد نیاز را به درستی دارد تا به خوبی کار کند یا نه.",
