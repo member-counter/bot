@@ -487,7 +487,7 @@
 				"escape": {
 					"name": "escape:stringToEscape",
 					"description": "خروج از تعیین کننده های معمول مورد استفاده توسط Member Counter",
-					"detailedDescription": "Escapes automatically all the delimiters used by Member Counter when processing a counter. Like `:`,`;` or `,`. You may need this if you want to pass arguments with the mentioned delimiters without getting them parsed. This is specially useful when you can't control well the content of the string like in the `{http}` counter",
+					"detailedDescription": "خروج از تعیین کننده های معمول مورد استفاده توسط Member Counter وقتی که به یک شمارنده درحال پردازش است. مثل `:`، `;` یا `,`. شما ممکن است برای گذشتن از آرگومان هایی که به تعیین کننده های آن اشاره شد بدون اینکه آنها parse شوند، به این نیاز داشته باشید. این مخصوصا برای زمانی کاربردی است که شما نمی توانید محتوای string را در شمارنده `{http}` کنترل کنید",
 					"usage": [
 						"{escape:stringToEscape}"
 					],
