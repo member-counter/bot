@@ -15,7 +15,7 @@
 			"helpFooterText": "**اطلاعات استفاده:** `()` به معنای یک پارامتر اختیاری و `[]` به معنای یک پارامتر الزامی می باشد",
 			"embedReply": {
 				"title": "لیست دستورات | پیشوند: {PREFIX}‎",
-				"description": "[این بات را به سرورتان اضافه کنید]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [مستندات](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nراه‌اندازی سریع: `{PREFIX}setup`\nیادگرفتن نحوه استفاده از بات: `{PREFIX}guide`\n\nبرای دریافت اطلاعات بیشتر درباره یک دستور یا شمارنده `{PREFIX}help` را به علاوه نام آن را بفرستید: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
+				"description": "[این بات را به سرورتان اضافه کنید]({DISCORD_BOT_INVITE}) **|** [وبسایت]({WEBSITE}) **|** [مستندات](https://eduardozgz.gitbook.io/member-counter) **|** [گیت‌هاب](https://github.com/eduardozgz/member-counter-bot/)\n\nراه‌اندازی سریع: `{PREFIX}setup`\nیادگرفتن نحوه استفاده از بات: `{PREFIX}guide`\n\nبرای دریافت اطلاعات بیشتر درباره یک دستور یا شمارنده `{PREFIX}help` را به علاوه نام آن را بفرستید: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
 						"name": "**شمارنده ها**",
@@ -40,7 +40,7 @@
 				"errorNotFound": "متاسفانه من نتوانستم دستور ``{DESIRED_COMMAND}`` را پیدا کنم",
 				"suggestCounter": "شاید شما دارید دنبال یکی از این شمارنده ها می گردید:",
 				"suggestCommand": "شاید شما دارید دنبال یکی از این دستورات می گردید:",
-				"usageText": "استفاده",
+				"usageText": "نحوه استفاده",
 				"exampleText": "مثال",
 				"searchIgnoredWords": "amount count مقدار شمارش"
 			}
@@ -737,7 +737,7 @@
 				"{PREFIX}info"
 			],
 			"embedReply": {
-				"description": "[من را به سرور خود اضافه کنید]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[گرفتن پریمیوم]({GET_PREMIUM_BOT_URL})\n[سرور پشتیبانی]({BOT_SERVER_URL})\n[رپو گیت هاب](https://github.com/eduardozgz/member-counter-bot)"
+				"description": "[من را به سرور خود اضافه کنید]({BOT_INVITE_URL})\n[وبسایت]({WEBSITE})\n[گرفتن پریمیوم]({GET_PREMIUM_BOT_URL})\n[سرور پشتیبانی]({BOT_SERVER_URL})\n[گیت هاب](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
