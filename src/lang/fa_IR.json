@@ -620,7 +620,7 @@
 				"{PREFIX}editChannel [channel ID] [content and counters]"
 			],
 			"helpExample": [
-				"{PREFIX}editChannel 701396983843127366 {onlineMembers} از {members} عضو آنلاین"
+				"{PREFIX}editChannel 701396983843127366 اعضاء آنلاین هستند {members} از {onlineMembers}"
 			],
 			"success": "انجام شد! شما ممکن است لازم باشد یک چند دقیقه ای برای دیدن تغییرات صبر کنید",
 			"errorNotFound": "چنل یافت نشد",
