@@ -711,7 +711,7 @@
 				"allowedRolesText": "نقش های مجاز برای استفاده از دستورات مرتبط به ادمین:",
 				"countersText": "شمارنده ها:",
 				"customNumbersText": "اعداد سفارشی:",
-				"warningNoPermsText": "\\⚠️ = بات به علت کمبود دسترسی های مورد نیاز، نمی تواند به بروزرسانی اطلاعات این چنل ادامه دهد (شما باید این دسترسی هارا به بات داده باشید: Manage channel، See channel یا Read Messages، Connect)",
+				"warningNoPermsText": "بات به علت کمبود دسترسی های مورد نیاز، نمی تواند به بروزرسانی اطلاعات این چنل ادامه دهد (شما باید این دسترسی هارا به بات داده باشید: Manage channel، See channel یا Read Messages، Connect)",
 				"guildLogsText": "آخرین تغییرات ضبط شده:"
 			}
 		},
