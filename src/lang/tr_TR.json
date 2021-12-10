@@ -662,7 +662,7 @@
 			],
 			"helpExample": [
 				"{PREFIX}locale tr",
-				"{PREFIX}locale tr",
+				"{PREFIX}locale tr-TR",
 				"{PREFIX}locale disable"
 			],
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
