@@ -7,6 +7,7 @@ import * as cs_CZ from "../lang/cs_CZ.json";
 import * as de_DE from "../lang/de_DE.json";
 import * as en_US from "../lang/en_US.json";
 import * as es_ES from "../lang/es_ES.json";
+import * as fa_IR from "../lang/fa_IR.json";
 import * as fr_FR from "../lang/fr_FR.json";
 import * as he_IL from "../lang/he_IL.json";
 import * as hi_IN from "../lang/hi_IN.json";
@@ -31,7 +32,8 @@ const languagePacks: object = {
 	cs_CZ,
 	it_IT,
 	tr_TR,
-	he_IL
+	he_IL,
+	fa_IR,
 };
 
 const availableLanguagePacks = Object.keys(languagePacks);

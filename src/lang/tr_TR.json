@@ -519,11 +519,11 @@
 					]
 				},
 				"subtract": {
-					"name": "substract:değer1,değer2,daha fazla değer",
+					"name": "subtract:değer1,değer2,daha fazla değer",
 					"description": "Belirtilen değerleri çıkarır",
 					"detailedDescription": "Soldan sağa belirtilen değerleri çıkarır",
 					"usage": [
-						"{substract:değer1,değer2,daha fazla değer}"
+						"{subtract:değer1,değer2,daha fazla değer}"
 					],
 					"example": [
 						"2 - 2 = {subtract:2,2}"
@@ -585,7 +585,7 @@
 					},
 					{
 						"name": "**✅ Sınırsız Sunucu**",
-						"value": "Yalnızca sahip olduğunuz üyeler için ödeme yapın ve botu istediğiniz kadar sunucuya davet edin. Üç ayda bir 50.000 üye başına 5 EUR",
+						"value": "Pay only for the members and servers you have. For €5 EUR per 50,000 members and 5 servers, quarterly",
 						"inline": false
 					},
 					{
@@ -662,7 +662,7 @@
 			],
 			"helpExample": [
 				"{PREFIX}locale tr",
-				"{PREFIX}locale tr",
+				"{PREFIX}locale tr-TR",
 				"{PREFIX}locale disable"
 			],
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
@@ -710,7 +710,7 @@
 				"yesText": "Aktif",
 				"allowedRolesText": "Yönetim komutlarını kullanması için izin verilen roller:",
 				"countersText": "Sayaçlar:",
-				"customNumbersText": "Özel sayılar:",
+				"customNumbersText": "Özel Sayılar:",
 				"warningNoPermsText": "\\⚠️ = Bot, yetki eksikliği nedeniyle bu kanalı güncellemeye devam edemiyor (Bota: Kanalı Yönet, Kanalı Görüntüle/Mesajları Oku, Bağlan yetkilerini vermelisiniz)",
 				"guildLogsText": "Son kayıtlar:"
 			}
@@ -761,9 +761,9 @@
 				"{PREFIX}profile",
 				"{PREFIX}profile @eduardozgz"
 			],
-			"badges": "Rozetler",
-			"credits": "Kredi",
-			"serverUpgradesAvailable": "Sunucu Yükseltme Hakkı",
+			"badges": "Rozetleri",
+			"credits": "Kalan Kredi",
+			"serverUpgradesAvailable": "Kalan Sunucu Yükseltmeleri",
 			"removeDataConfirmation": "Tüm verilerinizi silmek istiyorsanız lütfen tam olarak şu metni yazıp gönderin: ```{CONFIRMATION_STRING}```\n:warning: **Bu işlem tüm verilerinizi silinecek, rozetleriniz, sunucu yükseltmeleriniz ve kredileriniz sonsuza kadar kaybolacak, faturalar yasal nedenlerle tutulacaktır, devam etmek istediğinizden emin misiniz? (Yoksayın veya iptal etmek için '{CANCEL_STRING}' yazın)**",
 			"cancelText": "iptal",
 			"removeDataConfirmationString": "Tüm verilerimin silinmesini istiyorum",
