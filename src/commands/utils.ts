@@ -6,7 +6,11 @@ import CountService from "../services/CountService";
 import getEnv from "../utils/getEnv";
 import setStatus from "../others/setStatus";
 import Eris from "eris";
-
+import ClientStatsService from "../services/ClientStatsService";
+import { CommandUsage } from "../models/ClientStats";
+import commands from "./all";
+import embedBase from "../utils/embedBase";
+import Paginator from "../utils/paginator";
 const { BOT_OWNERS } = getEnv();
 
 const lockChannel: Command = {
@@ -165,6 +169,119 @@ const setStatusCmd: Command = {
 	}
 };
 
-const utilCommands = [lockChannel, editChannel, preview, base64, setStatusCmd];
+const commandStats: Command = {
+	aliases: ["commandStats"],
+	denyDm: false,
+	run: async ({ client, message, languagePack }) => {
+		const clientStats = await ClientStatsService.init(client.user.id);
+		const commandStats: [string, CommandUsage][] = Array.from(
+			clientStats.commandUsageStats.entries()
+		).map(([key, entry]) => [JSON.parse(key), entry]);
+		const allTotalHourlyUsage = commandStats
+			.map(([, value]) => value.hourlyUsage)
+			.reduce((a, b) => a + b);
+		const allTotalDailyUsage = commandStats
+			.map(([, value]) => value.dailyUsage)
+			.reduce((a, b) => a + b);
+		const allTotalWeeklyUsage = commandStats
+			.map(([, value]) => value.weeklyUsage)
+			.reduce((a, b) => a + b);
+		const allTotalMonthlyUsage = commandStats
+			.map(([, value]) => value.monthlyUsage)
+			.reduce((a, b) => a + b);
+		const allTotalUsage = commandStats
+			.map(([, value]) => value.totalUsage)
+			.reduce((a, b) => a + b);
+		const description = languagePack.commands.commandStats.stats.usageText
+			.replace(/{totalHourlyUsage}/, String(allTotalHourlyUsage))
+			.replace(/{totalDailyUsage}/, String(allTotalDailyUsage))
+			.replace(/{totalWeeklyUsage}/, String(allTotalWeeklyUsage))
+			.replace(/{totalMonthlyUsage}/, String(allTotalMonthlyUsage))
+			.replace(/{totalUsage}/, String(allTotalUsage));
+		function chunkArray(array: Array<any>, arraySize: number): Array<any> {
+			let index: number;
+			const arrayLength = array.length;
+			const tempArray = [];
+			let splitArrays: Array<any>;
+
+			for (index = 0; index < arrayLength; index += arraySize) {
+				splitArrays = array.slice(index, index + arraySize);
+				tempArray.push(splitArrays);
+			}
+
+			return tempArray;
+		}
+		const fields = [];
+		commands.forEach((command) => {
+			const {
+				hourlyUsage,
+				dailyUsage,
+				weeklyUsage,
+				monthlyUsage,
+				totalUsage
+			} = clientStats.commandUsageStats.get(JSON.stringify(command.aliases));
+			const hourlyUsagePercent =
+				((hourlyUsage / allTotalHourlyUsage) * 100).toFixed(1) === "NaN"
+					? "0.0"
+					: ((hourlyUsage / allTotalHourlyUsage) * 100).toFixed(1) + "%";
+			const dailyUsagePercent =
+				((dailyUsage / allTotalDailyUsage) * 100).toFixed(1) === "NaN"
+					? "0.0"
+					: ((dailyUsage / allTotalDailyUsage) * 100).toFixed(1) + "%";
+			const weeklyUsagePercent =
+				((weeklyUsage / allTotalWeeklyUsage) * 100).toFixed(1) === "NaN"
+					? "0.0"
+					: ((weeklyUsage / allTotalWeeklyUsage) * 100).toFixed(1) + "%";
+			const monthlyUsagePercent =
+				((monthlyUsage / allTotalMonthlyUsage) * 100).toFixed(1) === "NaN"
+					? "0.0"
+					: ((monthlyUsage / allTotalMonthlyUsage) * 100).toFixed(1) + "%";
+			const totalUsagePercent =
+				((totalUsage / allTotalUsage) * 100).toFixed(1) === "NaN"
+					? "0.0"
+					: ((totalUsage / allTotalUsage) * 100).toFixed(1) + "%";
+			let field = Object.assign(
+				{},
+				languagePack.commands.commandStats.stats.commandUsageField
+			);
+			field = Object.assign(field, {
+				name: field.name.replace(/{commandName}/, command.aliases[0])
+			});
+			field = Object.assign(field, {
+				value: field.value
+					.replace(/{commandHourlyPercentageOfTotal}/, hourlyUsagePercent)
+					.replace(/{commandDailyPercentageOfTotal}/, dailyUsagePercent)
+					.replace(/{commandWeeklyPercentageOfTotal}/, weeklyUsagePercent)
+					.replace(/{commandMonthlyPercentageOfTotal}/, monthlyUsagePercent)
+					.replace(/{commandTotalPercentageOfTotal}/, totalUsagePercent)
+					.replace(/{commandHourlyUsage}/, String(hourlyUsage))
+					.replace(/{commandDailyUsage}/, String(dailyUsage))
+					.replace(/{commandWeeklyUsage}/, String(weeklyUsage))
+					.replace(/{commandMonthlyUsage}/, String(monthlyUsage))
+					.replace(/{commandUsageTotal}/, String(totalUsage))
+			});
+			fields.push(field);
+		});
+		const fieldsChunks = chunkArray(fields, 6);
+		const embeds = fieldsChunks.map((fields) => {
+			return embedBase({ description, fields, timestamp: new Date() });
+		});
+		new Paginator(
+			message.channel,
+			message.author.id,
+			embeds,
+			languagePack
+		).displayPage(0);
+	}
+};
+
+const utilCommands = [
+	lockChannel,
+	editChannel,
+	preview,
+	base64,
+	setStatusCmd,
+	commandStats
+];
 
 export default utilCommands;
