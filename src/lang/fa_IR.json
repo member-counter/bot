@@ -916,6 +916,20 @@
 			],
 			"invalidAction": "عملیات نامعتبر، این باید `encode` یا `decode` باشد"
 		},
+		"commandStats": {
+			"helpDescription": "Displays stats for command usage",
+			"helpExample": [
+				"{PREFIX}commandStats"
+			],
+			"stats": {
+				"usageText": "🇭 means hourly usage\n🇩 means daily usage\n🇼 means weekly usage\n🇲 means monthly usage\n🇹 means total usage\n\nAll commands total stats\n🇭 ({totalHourlyUsage})\n🇩 ({totalDailyUsage})\n🇼 ({totalWeeklyUsage})\n🇲 ({totalMonthlyUsage})\n🇹 ({totalUsage})",
+				"commandUsageField": {
+					"name": "{commandName}",
+					"value": "🇭 {commandHourlyPercentageOfTotal} ({commandHourlyUsage})\n🇩 {commandDailyPercentageOfTotal} ({commandDailyUsage})\n🇼 {commandWeeklyPercentageOfTotal} ({commandWeeklyUsage})\n🇲 {commandMonthlyPercentageOfTotal} ({commandMonthlyUsage})\n🇹 {commandTotalPercentageOfTotal} ({commandUsageTotal})",
+					"inline": true
+				}
+			}
+		},
 		"checkPermissions": {
 			"helpDescription": "بررسی می کند که بات آیا دسترسی های مورد نیاز را به درستی دارد تا به خوبی کار کند یا نه.",
 			"helpExample": [
