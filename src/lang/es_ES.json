@@ -916,6 +916,20 @@
 			],
 			"invalidAction": "Acción inválida, debe ser `encode` o `decode`"
 		},
+		"commandStats": {
+			"helpDescription": "Displays stats for command usage",
+			"helpExample": [
+				"{PREFIX}commandStats"
+			],
+			"stats": {
+				"usageText": "🇭 means hourly usage\n🇩 means daily usage\n🇼 means weekly usage\n🇲 means monthly usage\n🇹 means total usage\n\nAll commands total stats\n🇭 ({totalHourlyUsage})\n🇩 ({totalDailyUsage})\n🇼 ({totalWeeklyUsage})\n🇲 ({totalMonthlyUsage})\n🇹 ({totalUsage})",
+				"commandUsageField": {
+					"name": "{commandName}",
+					"value": "🇭 {commandHourlyPercentageOfTotal} ({commandHourlyUsage})\n🇩 {commandDailyPercentageOfTotal} ({commandDailyUsage})\n🇼 {commandWeeklyPercentageOfTotal} ({commandWeeklyUsage})\n🇲 {commandMonthlyPercentageOfTotal} ({commandMonthlyUsage})\n🇹 {commandTotalPercentageOfTotal} ({commandUsageTotal})",
+					"inline": true
+				}
+			}
+		},
 		"checkPermissions": {
 			"helpDescription": "Comprueba si el bot tiene los permisos correctos para funcionar correctamente.",
 			"helpExample": [
