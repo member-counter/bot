@@ -3,8 +3,8 @@ import UserModel, { UserSettingsDocument } from "../models/UserModel";
 class UserService {
 	private constructor(public id: string, private doc: UserSettingsDocument) {}
 
-	public static exists(id: string): Promise<boolean> {
-		return UserModel.exists({ id });
+	public static async exists(id: string): Promise<boolean> {
+		return !!(await UserModel.exists({ id }));
 	}
 
 	public static async init(id: string): Promise<UserService> {
