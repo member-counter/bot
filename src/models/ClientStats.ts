@@ -1,5 +1,5 @@
 import { Map } from "mongodb";
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, HydratedDocument } from "mongoose";
 interface CommandUsageStats {
 	engagedUsers: Array<string>;
 	uses: Map<string, number>;
@@ -20,14 +20,16 @@ export interface CommandUsageStatsByDate {
 	engagedUsers: Array<string>;
 	uses: number;
 }
-interface ClientStatsDocument extends Document {
+interface ClientStats {
 	id: string;
 	commandsRun: number;
 	commandUsageStats: Map<string, CommandUsage>;
 	commandUsageStatsByDate: Map<string, CommandUsageStatsByDate>;
 }
 
-const ClientStatsSchema = new Schema({
+type ClientStatsDocument = HydratedDocument<ClientStats>;
+
+const ClientStatsSchema = new Schema<ClientStats>({
 	id: { type: String, require: true },
 	commandsRun: { type: Number, default: 0 },
 	commandUsageStats: {
@@ -69,10 +71,7 @@ const ClientStatsSchema = new Schema({
 	}
 });
 
-const ClientStatsModel = model<ClientStatsDocument>(
-	"clientStats",
-	ClientStatsSchema
-);
+const ClientStatsModel = model<ClientStats>("clientStats", ClientStatsSchema);
 
 export { ClientStatsModel, ClientStatsDocument };
 export default ClientStatsModel;
