@@ -62,7 +62,6 @@ interface Commands {
 	preview: Preview;
 	setup: Setup;
 	base64: Base64;
-	commandStats: CommandStats;
 	checkPermissions: CheckPermissions;
 }
 interface CheckPermissions {
@@ -94,15 +93,6 @@ interface ManageMessages {
 interface ManageChannels {
 	name: string;
 	description: string;
-}
-interface CommandStats {
-	helpDescription: string;
-	helpExample: string[];
-	stats: Stats;
-}
-interface Stats {
-	usageText: string;
-	commandUsageField: Field;
 }
 interface Base64 {
 	helpDescription: string;

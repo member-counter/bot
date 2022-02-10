@@ -2,7 +2,7 @@ import os from "os";
 import * as packageJSON from "../../package.json";
 import Command from "../typings/Command";
 import embedBase from "../utils/embedBase";
-import ClientStatsService from "../services/ClientStatsService";
+
 const parseUptime = (inputDate: number) => {
 	// inputDate must be in seconds
 	const uptime = new Date(1970, 0, 1);
@@ -48,11 +48,7 @@ const status: Command = {
 			currentShard: "#" + ((client.guildShardMap[message.guildID] || 0) + 1),
 			totalShards: clientStats.shards.length.toString(),
 			guilds: clientStats.guilds.toString(),
-			userStats: clientStats.users + " / " + clientStats.estimatedTotalUsers,
-			commandsRun: await (async () => {
-				const ClientStats = await ClientStatsService.init(client.user.id);
-				return ClientStats.commandsRun;
-			})()
+			userStats: clientStats.users + " / " + clientStats.estimatedTotalUsers
 		};
 
 		const embed = embedBase({
@@ -126,11 +122,6 @@ const status: Command = {
 				{
 					name: "**Cached users / In guilds:**",
 					value: stats.userStats,
-					inline: true
-				},
-				{
-					name: "Commands run",
-					value: String(stats.commandsRun),
 					inline: true
 				}
 			]
