@@ -70,7 +70,7 @@ const ClientStatsSchema = new Schema({
 });
 
 const ClientStatsModel = model<ClientStatsDocument>(
-	"client-stats",
+	"clientStats",
 	ClientStatsSchema
 );
 
