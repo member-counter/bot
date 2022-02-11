@@ -22,11 +22,11 @@ jobs:
       with:
         buildkitd-flags: --debug
       
-#     - name: Log in to DockerHub Container registry
-#       uses: docker/login-action@v1
-#       with:
-#         username: ${{ secrets.DOCKERHUB_USERNAME }}
-#         password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Log in to DockerHub Container registry
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
       
     - name: Log in to GitHub Container registry
       uses: docker/login-action@v1
@@ -41,8 +41,8 @@ jobs:
         context: .
         platforms: linux/amd64,linux/arm64,linux/arm/v7
         push: true
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+#         cache-from: type=gha
+#         cache-to: type=gha,mode=max
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository }}:beta
           ghcr.io/${{ github.actor }}/${{ github.repository }}:beta
