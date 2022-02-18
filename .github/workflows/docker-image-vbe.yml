@@ -1,8 +1,8 @@
-name: Docker Image CI
+name: Docker Image CI - VFE
 
 on:
   push:
-    branches: [master]
+    branches: [verified-bot-edition]
 
 jobs:
   build:
@@ -48,7 +48,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            ${{ github.repository }}:latest
+            ${{ github.repository }}:latest-verified-bot-edition
             ${{ github.repository }}:${{ steps.package-version.outputs.current-version }}
-            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:latest-verified-bot-edition
             ghcr.io/${{ github.repository }}:${{ steps.package-version.outputs.current-version }}
