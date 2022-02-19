@@ -5,15 +5,15 @@
 [![CodeFactor Badge](https://www.codefactor.io/repository/github/eduardozgz/member-counter-bot/badge)](https://www.codefactor.io/repository/github/eduardozgz/member-counter-bot)
 [![Crowdin Translation Project Badge](https://badges.crowdin.net/member-counter-bot/localized.svg)](https://crowdin.com/project/member-counter-bot)
 
-[Add this bot](https://discord.com/oauth2/authorize?client_id=478567255198662656&permissions=269577300&scope=bot%20applications.commands) **|** [Website](https://membercounter.bot/) **|** [Translation Project](https://crowdin.com/project/member-counter-bot) **|** [Documentation](https://docs.membercounter.bot/)
+[Add this bot](https://discord.com/oauth2/authorize?client_id=478567255198662656&permissions=269577300&scope=bot%20applications.commands) **|** [Website](https://member-counter.eduardozgz.com/) **|** [Translation Project](https://crowdin.com/project/member-counter-bot) **|** [Documentation](https://docs.member-counter.eduardozgz.com/)
 
 Member Counter is a Discord bot which lets you easily display counts and other dynamic information in a channel name or topic, to get started, [add this bot](https://discord.com/oauth2/authorize?client_id=478567255198662656&permissions=269577300&scope=bot%20applications.commands) to your Discord server and type `mc!setup`, and then read `mc!guide` to learn how to make more cool stuff with the bot.
 
-See also the [documentation](https://docs.membercounter.bot/) to learn about every feature of the bot
+See also the [documentation](https://docs.member-counter.eduardozgz.com/) to learn about every feature of the bot
 
 # Self-host
 
-Read this guide to setup this bot using docker: https://docs.membercounter.bot/guides/how-to-self-host-member-counter
+Read this guide to setup this bot using docker: https://docs.member-counter.eduardozgz.com/guides/how-to-self-host-member-counter
 
 # Development environment
 

@@ -1,20 +1,22 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, HydratedDocument } from "mongoose";
 
-interface UserSettingsDocument extends Document {
+interface UserSettings {
 	id: string;
 	badges: number;
 	availableServerUpgrades: number;
 	credits: number;
 }
 
-const UserSchema = new Schema({
+type UserSettingsDocument = HydratedDocument<UserSettings>;
+
+const UserSchema = new Schema<UserSettings>({
 	id: { type: String, require: true },
 	badges: { type: Number, default: 0 },
 	availableServerUpgrades: { type: Number, default: 0 },
 	credits: { type: Number, default: 0 }
 });
 
-const UserModel = model<UserSettingsDocument>("users", UserSchema);
+const UserModel = model<UserSettings>("users", UserSchema);
 
 export { UserModel, UserSettingsDocument };
 export default UserModel;
