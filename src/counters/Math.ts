@@ -3,10 +3,12 @@ import Counter from "../typings/Counter";
 const Math: Counter = {
 	aliases: [
 		"add",
-		"sub",
 		"sum",
+		"sub",
 		"subtract",
+		"mult",
 		"multiply",
+		"div",
 		"divide",
 		"mod",
 		"modulus"
@@ -26,10 +28,10 @@ const Math: Counter = {
 				return values.reduce((accu, curr) => {
 					return accu - curr;
 				});
-
+			case "mult":
 			case "multiply":
 				return values.reduce((accu, curr) => accu * curr);
-
+			case "div":
 			case "divide":
 				return values.reduce((accu, curr) => accu / curr);
 
