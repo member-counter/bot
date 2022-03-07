@@ -23,7 +23,7 @@ const Math: Counter = {
 			case "multiply":
 				return values.reduce((accu, curr) => accu * curr);
 
-			case "add":
+			case "div":
 			case "divide":
 				return values.reduce((accu, curr) => accu / curr);
 
