@@ -1,7 +1,16 @@
 import Counter from "../typings/Counter";
 
 const Math: Counter = {
-	aliases: ["sum", "subtract", "multiply", "divide", "mod", "modulus"],
+	aliases: [
+		"add",
+		"sub",
+		"sum",
+		"subtract",
+		"multiply",
+		"divide",
+		"mod",
+		"modulus"
+	],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
@@ -9,9 +18,10 @@ const Math: Counter = {
 		const values = args[0]?.map((n) => Number(n));
 
 		switch (aliasUsed) {
+			case "add":
 			case "sum":
 				return values.reduce((accu, curr) => accu + curr);
-
+			case "sub":
 			case "subtract":
 				return values.reduce((accu, curr) => {
 					return accu - curr;
