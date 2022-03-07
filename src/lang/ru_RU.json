@@ -3,10 +3,19 @@
 	"langName": "Русский",
 	"commands": {
 		"help": {
-			"helpDescription": "Неужели нужно объяснять смысл этой команды?",
+			"helpDescription": "Get help about commands and counters.",
+			"helpUsage": [
+				"{PREFIX}help [command or counter]"
+			],
+			"helpExample": [
+				"{PREFIX}help lockChannel",
+				"{PREFIX}help {members}",
+				"{PREFIX}help members"
+			],
+			"helpFooterText": "**Usage info:** `()` means an optional parameter while `[]` means a required one",
 			"embedReply": {
 				"title": "Лист команд | Префикс: {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command send `{PREFIX}help` plus the command name: ```\n{PREFIX}help shortNumber```\n**Info:** `()` means an optional parameter while `[]` means a required one",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command or counter send `{PREFIX}help` plus the name: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
 						"name": "**Счётчики**",
@@ -15,7 +24,7 @@
 					},
 					{
 						"name": "**Настройки сервера**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}checkPermissions```",
 						"inline": true
 					},
 					{
@@ -27,288 +36,678 @@
 			},
 			"misc": {
 				"command": "Команда:",
-				"errorCommandNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``"
+				"counter": "Счетчик:",
+				"errorNotFound": "Извините, я не смог найти информацию про ``{DESIRED_COMMAND}``",
+				"suggestCounter": "Возможно, вы ищете один из этих счетчиков:",
+				"suggestCommand": "Maybe you are looking for one of these commands:",
+				"usageText": "Использование",
+				"exampleText": "Пример",
+				"searchIgnoredWords": "amount count"
 			}
 		},
 		"guide": {
-			"helpDescription": "Показывает вам гайд по использованию бота",
+			"helpDescription": "Shows you a guide of how to use the bot and a list of available counters.",
+			"helpExample": [
+				"{PREFIX}guide"
+			],
 			"pagesText": "Страница {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**Спасибо за добавление Member Counter на ваш сервер!**\n__**Создание/изменение счётчика:**__\nДля этого примера мы будем использовать `{members}`, который считает общее кол-во участников в вашем дискорд сервере, но вы можете найти больше вариаций счётчиков на следующих страницах.\nВы можете поставить этот счётчик в одно из указанных мест:\n\n- В **имя** **голосового** канала\n- В **имя** **категории**\n- В **заголовок** **текстового** канала\n- В **заголовок** **новостного** канала\n\nА теперь создайте новый канал, измените его, и напишите `{members}` в имя этого канала или его заголовок, и нажмите 'сохранить изменения'.\n\nВы также можете добавлять несколько счётчиков в имя канала/заголовок канала, или комбинировать их как вашей душе угодно. Приведём пример:\n```\n{onlineMembers}/{members} Участники Онлайн, {youtubeSubscribers:https://www.youtube.com/user/enyay} Подписчики!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Админы и модераторы онлайн!\n```\n> Если вы достигаете лимита символов, когда вы изменяете имя/заголовок, пожалуйста, проверьте `{PREFIX}help editChannel`\n> Вы можете просмотреть конфигурацию нужного счётчика в `{PREFIX}seeSettings`, это полезно для того, чтобы добавлять больше счётчиков без отключения уже существующих.\n\n__**Удаление счётчика**__\nВ голосовом канале/категории:\nНапишите в имя канала/категории `{disable}`, и Member Counter заменит это на \\✅, что значит вы удалили все счётчики этого канала успешно.\n\nВы также можете удалить канал вручную.",
-			"countersHeader": "__**Счётчики**__\n> Вы должны включить режим разработчика в Дискорде (Настройки пользователя > Внешний вид > Расширенные > Режим разработчика)\n> Чтобы получить ID, кликните правой кнопкой мыши по каналу/роли и нажмите \"Копировать ID\"\n\n> Счётчики, помеченные звёздочкой (\\*) являются премиум-счётчиками, больше информации сможете найти в `{PREFIX}help upgradeServer`\n\n> Если вы хотите изменить форматирование цифр в счётчике независимо от серверных настроек, просмотрите эту [страницу](https://member-counter.eduardozgz.com/utils/overwrite-settings), или сделайте это вручную следуя [инструкции](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
-			"counters": [
-				{
-					"key": "members",
+			"countersHeader": "__**Счётчики**__\n> Вы должны включить режим разработчика в Дискорде (Настройки пользователя > Внешний вид > Расширенные > Режим разработчика)\n> Чтобы получить ID, кликните правой кнопкой мыши по каналу/роли и нажмите \"Копировать ID\"\n\n> Счётчики, помеченные плюсом (\\+) являются премиум-счётчиками, больше информации сможете найти в `{PREFIX}premium`\n\n> Если вы хотите изменить форматирование цифр в счётчике независимо от серверных настроек, просмотрите эту [страницу](https://member-counter.eduardozgz.com/utils/overwrite-settings), или сделайте это вручную следуя [инструкции](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"footerText": "Пожалуйста, прочтите первую страницу {PREFIX}guide, чтобы узнать, как настроить этот счётчик",
+			"counters": {
+				"members": {
 					"name": "members",
-					"description": "Все участники вашего сервера"
+					"description": "Все участники вашего сервера",
+					"detailedDescription": "Подсчитывает, сколько участников имеет сервер",
+					"usage": [
+						"{members}"
+					],
+					"example": [
+						"{members} Участники"
+					]
 				},
-				{
-					"key": "approximatedOnlineMembers",
+				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
-					"description": "Приблизительное кол-во участников онлайн на вашем сервере"
+					"description": "Приблизительное кол-во участников онлайн на вашем сервере",
+					"detailedDescription": "Подсчитывает примерное кол-во пользователей онлайн на сервере",
+					"usage": [
+						"{approximatedOnlineMembers}"
+					],
+					"example": [
+						"{approximatedOnlineMembers} Онлайн"
+					]
 				},
-				{
-					"key": "onlineMembers",
+				"onlineMembers": {
 					"name": "onlineMembers",
-					"description": "Участники онлайн на вашем сервере"
+					"description": "Участники онлайн на вашем сервере",
+					"detailedDescription": "Подсчитывает кол-во пользователей онлайн на сервере",
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} Онлайн"
+					]
 				},
-				{
-					"key": "offlineMembers",
+				"offlineMembers": {
 					"name": "offlineMembers",
-					"description": "Участники оффлайн на вашем сервере"
+					"description": "Участники оффлайн на вашем сервере",
+					"detailedDescription": "Подсчитывает кол-во пользователей оффлайн на сервере",
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} Оффлайн"
+					]
 				},
-				{
-					"key": "users",
+				"users": {
 					"name": "users",
-					"description": "Все пользователи вашего сервера (исключая ботов)"
+					"description": "Все пользователи вашего сервера (исключая ботов)",
+					"detailedDescription": "Подсчитывает, сколько пользователей (за исключением ботов) находятся на сервере",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Пользователи"
+					]
 				},
-				{
-					"key": "onlineUsers",
+				"onlineUsers": {
 					"name": "onlineUsers",
-					"description": "Пользователи онлайн на вашем сервере (исключая ботов)"
+					"description": "Пользователи онлайн на вашем сервере (исключая ботов)",
+					"detailedDescription": "Подсчитывает, сколько пользователей (за исключением ботов) онлайн на сервере",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Пользователей онлайн"
+					]
 				},
-				{
-					"key": "offlineUsers",
+				"offlineUsers": {
 					"name": "offlineUsers",
-					"description": "Пользователи оффлайн на вашем сервере (исключая ботов)"
+					"description": "Пользователи оффлайн на вашем сервере (исключая ботов)",
+					"detailedDescription": "Подсчитывает, сколько пользователей (за исключением ботов) оффлайн на сервере",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Оффлайн"
+					]
 				},
-				{
-					"key": "bots",
+				"bots": {
 					"name": "bots",
-					"description": "Боты на вашем сервере (исключает нормальных пользователей)"
+					"description": "Боты на вашем сервере (исключает нормальных пользователей)",
+					"detailedDescription": "Подсчитывает, сколько ботов (за исключением обычных пользователей) находятся на сервере",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Ботов"
+					]
 				},
-				{
-					"key": "onlineBots",
+				"onlineBots": {
 					"name": "onlineBots",
-					"description": "Боты онлайн на вашем сервере (исключает нормальных пользователей)"
+					"description": "Боты онлайн на вашем сервере (исключает нормальных пользователей)",
+					"detailedDescription": "Подсчитывает, сколько ботов (за исключением обычных пользователей) онлайн на сервере",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Ботов онлайн"
+					]
 				},
-				{
-					"key": "offlineBots",
+				"offlineBots": {
 					"name": "offlineBots",
-					"description": "Боты оффлайн на вашем сервере (исключает нормальных пользователей)"
+					"description": "Боты оффлайн на вашем сервере (исключает нормальных пользователей)",
+					"detailedDescription": "Counts how many bots (excluding normal accounts) are offline in the server",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Offline bots"
+					]
 				},
-				{
-					"key": "roles",
+				"roles": {
 					"name": "roles",
-					"description": "Кол-во ролей на вашем сервере"
+					"description": "Кол-во ролей на вашем сервере",
+					"detailedDescription": "Counts how many roles are in the server",
+					"usage": [
+						"{roles}"
+					],
+					"example": [
+						"{roles} Roles"
+					]
 				},
-				{
-					"key": "channels",
+				"channels": {
 					"name": "channels",
-					"description": "Кол-во каналов на вашем сервере (исключая категории)"
+					"description": "Channels in your server (excludes categories) or under a category",
+					"detailedDescription": "Counts how many channels (excluding category channels) are in the server, if you specify one or more category IDs after the `:`, separated by commas, only the channels under those specified categories will be counted",
+					"usage": [
+						"{channels}",
+						"{channels:categoryID1,categoryID2}"
+					],
+					"example": [
+						"{channels} Channels",
+						"{channels:6509281904766437,5823659271648290} Tickets open"
+					]
 				},
-				{
-					"key": "membersWithRole",
+				"membersWithRole": {
 					"name": "membersWithRole:role1ID,role2ID",
-					"description": "Счётчик участников с определённой ролью/ролями. Необходимо вписать ID роли/ролей после двоеточия, и если их несколько, разделить запятой."
+					"description": "Members with a role or roles",
+					"detailedDescription": "Counts how many members have a role or roles, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{membersWithRole:role1ID,role2ID}"
+					],
+					"example": [
+						"{membersWithRole:6509281904766437,5823659271648290} Admins and mods"
+					]
 				},
-				{
-					"key": "onlineMembersWithRole",
+				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "как `{membersWithRole:}` только считает участников онлайн."
+					"description": "Online members with a role or roles",
+					"detailedDescription": "Counts how many members with a role or roles are online, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{onlineMembersWithRole:role1ID,role2ID}"
+					],
+					"example": [
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} Online admins and mods",
+						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
+					]
 				},
-				{
-					"key": "offlineMembersWithRole",
+				"offlineMembersWithRole": {
 					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "как `{membersWithRole:}` только считает участников оффлайн."
+					"description": "Offline members with a role or roles",
+					"detailedDescription": "Counts how many members with a role or roles are offline, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{offlineMembersWithRole:role1ID,role2ID}"
+					],
+					"example": [
+						"{offlineMembersWithRole:6509281904766437,5823659271648290} Offline admins and mods",
+						"{offlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are offline"
+					]
 				},
-				{
-					"key": "connectedMembers",
-					"name": "connectedMembers",
-					"description": "Отображает сумму всех подключённых участников в голосовых каналах."
-				},
-				{
-					"key": "connectedMembers",
+				"connectedMembers": {
 					"name": "connectedMembers:channel1ID,channel2ID",
-					"description": "как `{connectedMembers}`, но бот будет считать только подключённых участников в указанных каналах. Необходимо вписать ID канала/каналов, в которых вы хотите считать участников после двоеточия, и разделить ID этих каналов запятой (если их несколько)."
+					"description": "Connected members to voice channels",
+					"detailedDescription": "Counts how many members are connected to all the voice channels or to the specified ones, write the channel IDs you wanna filter after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{connectedMembers}",
+						"{connectedMembers:channel1ID,channel2ID}"
+					],
+					"example": [
+						"{connectedMembers} Talking",
+						"{connectedMembers:5823659271648290} talking in the lounge"
+					]
 				},
-				{
-					"key": "bannedMembers",
+				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "Количество забаненных участников вашего сервера. Необходимо разрешение на выдачу банов у бота, чтобы отображать этот счётчик."
+					"description": "Amount of banned members in your server",
+					"detailedDescription": "Counts how many members are banned, the bot must have ban permissions to get this count",
+					"usage": [
+						"{bannedMembers}"
+					],
+					"example": [
+						"{bannedMembers} Banned",
+						"{bannedMembers} have been hit with the ban hammer"
+					]
 				},
-				{
-					"key": "membersPlaying",
+				"membersPlaying": {
 					"name": "membersPlaying:game name",
-					"description": "Counts how many members are playing a game. Example: `{membersPlaying:Minecraft}`"
+					"description": "Amount of members playing a game",
+					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
+					"usage": [
+						"{membersPlaying:game name}",
+						"{membersPlaying:game name, game name 2}"
+					],
+					"example": [
+						"{membersPlaying:Minecraft} Mining and crafting",
+						"{membersPlaying: euro truck simulator 2, american truck simulator} Trucking"
+					]
 				},
-				{
-					"key": "http",
-					"name": "http:options",
-					"description": "Показывает результат, возвращаемый http-реквестом `GET`. Вы можете настроить опции счётчика [здесь](https://member-counter.eduardozgz.com/utils/http), или создать их вручную: `options` - JSON объект, закодированный в base64 (вы можете использовать {PREFIX}base64 команду для этого), этот объект может иметь следующие ключи: `url`: строка; с URL ресурса, `parseNumber`: Логическое значение; если результат - валидный номер, он будет парснут и кастомизирован в соответствии с настройками вашего сервера, `dataPath`: строка; если ответ - JSON объект, вы должны указать путь к ключу с значением которое должно быть строкой или номером, синтаксис этого пути схож с синтаксисом который использует JS чтобы получать свойства и значения массивов."
-				},
-				{
-					"key": "youtubeSubscribers",
-					"name": "youtubeSubscribers:channelUrl",
-					"description": "Отображает кол-во подписчиков YouTube канала, замените channelUrl на ссылку желаемого канала."
-				},
-				{
-					"key": "youtubeViews",
-					"name": "youtubeViews:channelUrl",
-					"description": "Отображает просмотры YouTube канала."
-				},
-				{
-					"key": "youtubeVideos",
-					"name": "youtubeVideos:channelUrl",
-					"description": "Отображает кол-во видео на YouTube канале."
-				},
-				{
-					"key": "youtubeChannelName",
-					"name": "youtubeChannelName:channelUrl",
-					"description": "Displays a youtube channel name"
-				},
-				{
-					"key": "twitchFollowers",
-					"name": "twitchFollowers:nickname",
-					"description": "Displays a twitch channel follower count, replace nickname with the desired channel name"
-				},
-				{
-					"key": "twitchViews",
-					"name": "twitchViews:nickname",
-					"description": "Отображает просмотры Twitch канала."
-				},
-				{
-					"key": "twitchChannelName",
-					"name": "twitchChannelName:nickname",
-					"description": "Displays a twitch channel Name"
-				},
-				{
-					"key": "memeratorMemes",
-					"name": "memeratorMemes:username",
-					"description": "Отображает кол-во мемов пользователя [Memerator](https://memerator.me). Замените `username` на желаемое имя профиля."
-				},
-				{
-					"key": "memeratorFollowers",
-					"name": "memeratorFollowers:username",
-					"description": "Отображает кол-во подписчиков пользователя [Memerator](https://memerator.me). Замените `username` на желаемое имя профиля."
-				},
-				{
-					"key": "twitterFollowers",
-					"name": "twitterFollowers:username",
-					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Twitter."
-				},
-				{
-					"key": "countdown",
-					"name": "countdown:targetDate:format",
-					"description": "Отображает заданный вами обратный отсчет, время которого закончится на указанной вами дате, вы можете легко [сгенерировать этот счётчик здесь](https://member-counter.eduardozgz.com/utils/countdown) или же создать его вручную путём замены значения `targetDate` на нужную дату в временном формате UNIX, также присутствует выбор отображаемого в счётчике формата - `format`: используйте `%d` для отображения оставшихся дней, `%h` для отображения оставшихся часов, `%m` для отображения оставшихся минут и `%s` для отображения оставшихся секунд в счётчике."
-				},
-				{
-					"key": "game",
-					"name": "game:gameId:address",
-					"description": "Игроки онлайн на игровых серверах (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, и т.д.). Не забудьте заменить значение`gameId` на то, которое вам нужно [(их список здесь)](https://github.com/gamedig/node-gamedig/#games-list) и значение `address` заменить на актуальный адрес сервера. Пример: `{game:minecraft:mc.hypixel.net}`"
-				},
-				{
-					"key": "clock",
-					"name": "clock:timeZone",
-					"description": "Показывает часы с временем указанной временной зоны, вы можете легко [сгенерировать этот счётчик здесь](https://member-counter.eduardozgz.com/utils/clock) или заменить `timeZone` валидным IANA значением временной зоны. Пример: `{clock:Europe/Madrid}`"
-				},
-				{
-					"key": "nitro-boosters",
+				"nitro-boosters": {
 					"name": "nitro-boosters",
-					"description": "Показывает общее количество участников, которые использовали буст для этого сервера"
+					"description": "Counts the total amount of members boosting this server",
+					"detailedDescription": "Counts the total amount of members boosting this server",
+					"usage": [
+						"{nitro-boosters}"
+					],
+					"example": [
+						"Awesome boosters: {nitro-boosters}"
+					]
 				},
-				{
-					"key": "redditMembers",
-					"name": "redditMembers",
-					"description": "Displays the amount of members for the given subreddit"
+				"youtubeSubscribers": {
+					"name": "youtubeSubscribers:channelUrl",
+					"description": "Amount of subscribers of a YouTube channel",
+					"detailedDescription": "Counts how many subscribers has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeSubscribers:channelUrl}"
+					],
+					"example": [
+						"Subscribers: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "redditMembersOnline",
-					"name": "redditMembersOnline",
-					"description": "Displays the amount of online members for the given subreddit"
+				"youtubeViews": {
+					"name": "youtubeViews:channelUrl",
+					"description": "Amount of views of a YouTube channel",
+					"detailedDescription": "Counts how many views has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeViews:channelUrl}"
+					],
+					"example": [
+						"Views: {youtubeViews:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "redditTitle",
-					"name": "redditTitle",
-					"description": "Displays the title for the given subreddit"
+				"youtubeVideos": {
+					"name": "youtubeVideos:channelUrl",
+					"description": "Amount of videos of a YouTube channel",
+					"detailedDescription": "Counts how many videos has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeVideos:channelUrl}"
+					],
+					"example": [
+						"Videos: {youtubeVideos:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "static",
-					"name": "static:number",
-					"description": "Показывает заданное число с форматированием, основанным на настройках сервера"
+				"youtubeChannelName": {
+					"name": "youtubeChannelName:channelUrl",
+					"description": "Displays the name of a YouTube channel",
+					"detailedDescription": "Displays the name of a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeChannelName:channelUrl}"
+					],
+					"example": [
+						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "instagramFollowers",
-					"name": "instagramFollowers:username",
-					"description": "Отображает кол-во подписчиков аккаунта. Замените `username` актуальным именем пользователя Instagram."
+				"twitchFollowers": {
+					"name": "twitchFollowers:nickname",
+					"description": "Amount of followers of a Twitch channel",
+					"detailedDescription": "Counts how many followers has a Twitch channel, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchFollowers:nickname}"
+					],
+					"example": [
+						"{twitchFollowers:ninja} Followers"
+					]
 				},
-				{
-					"key": "sum",
-					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+				"twitchViews": {
+					"name": "twitchViews:nickname",
+					"description": "Amount of views of a Twitch channel",
+					"detailedDescription": "Counts how many views has a Twitch channel, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchViews:nickname}"
+					],
+					"example": [
+						"{twitchViews:ninja} Views"
+					]
 				},
-				{
-					"key": "substract",
-					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+				"twitchChannelName": {
+					"name": "twitchChannelName:nickname",
+					"description": "Displays the name of a Twitch channel",
+					"detailedDescription": "Displays the name of a Twitch channel, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchChannelName:nickname}"
+					],
+					"example": [
+						"{twitchChannelName:ninja}"
+					]
 				},
-				{
-					"key": "multiply",
-					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+				"memeratorMemes": {
+					"name": "memeratorMemes:username",
+					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
+					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
+					"usage": [
+						"{memeratorMemes:username}"
+					],
+					"example": [
+						"Memes: {memeratorMemes:eduardozgz}"
+					]
 				},
-				{
-					"key": "divide",
-					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+				"memeratorFollowers": {
+					"name": "memeratorFollowers:username",
+					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
+					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
+					"usage": [
+						"{memeratorFollowers:username}"
+					],
+					"example": [
+						"Followers: {memeratorFollowers:eduardozgz}"
+					]
 				},
-				{
-					"key": "modulus",
-					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values"
+				"twitterFollowers": {
+					"name": "twitterFollowers:username",
+					"description": "Amount of followers of a Twitter user",
+					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
+					"usage": [
+						"{twitterFollowers:username}"
+					],
+					"example": [
+						"Followers: {twitterFollowers:0xEduardozgz}"
+					]
+				},
+				"redditMembers": {
+					"name": "redditMembers:subreddit",
+					"description": "Counts the amount of members of a subreddit",
+					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"usage": [
+						"{redditMembers:subreddit}"
+					],
+					"example": [
+						"Redditors: {redditMembers:science}"
+					]
+				},
+				"redditMembersOnline": {
+					"name": "redditMembersOnline:subreddit",
+					"description": "Counts the amount of online members of a subreddit",
+					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"Online Redditors: {redditMembersOnline:science}"
+					]
+				},
+				"redditTitle": {
+					"name": "redditTitle:subreddit",
+					"description": "Displays the title of a subreddit",
+					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"{redditMembersOnline:science}"
+					]
+				},
+				"instagramFollowers": {
+					"name": "instagramFollowers:никнейм",
+					"description": "Counts the amount of followers in an Instagram account",
+					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
+					"usage": [
+						"{instagramFollowers:username}"
+					],
+					"example": [
+						"Followers: {instagramFollowers:eduardozgz}"
+					]
+				},
+				"countdown": {
+					"name": "countdown:targetDate:format",
+					"description": "Shows a countdown that will decrease to the specified target date",
+					"detailedDescription": "Отображает заданный вами обратный отсчет, время которого закончится на указанной вами дате, вы можете легко [сгенерировать этот счётчик здесь](https://member-counter.eduardozgz.com/utils/countdown) или же создать его вручную путём замены значения `targetDate` на нужную дату в временном формате UNIX, также присутствует выбор отображаемого в счётчике формата - `format`: используйте `%d` для отображения оставшихся дней, `%h` для отображения оставшихся часов, `%m` для отображения оставшихся минут и `%s` для отображения оставшихся секунд в счётчике.",
+					"usage": [
+						"{countdown:targetDate:format}"
+					],
+					"example": [
+						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
+					]
+				},
+				"game": {
+					"name": "game:gameId:address",
+					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
+					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
+					"usage": [
+						"{game:gameId:address}"
+					],
+					"example": [
+						"{game:minecraft:mc.hypixel.net} Mining and crafting"
+					]
+				},
+				"clock": {
+					"name": "clock:timeZone",
+					"description": "Shows a clock with the time of the specified timezone",
+					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
+					"usage": [
+						"{clock:timeZone}"
+					],
+					"example": [
+						"Spain: {clock:Europe/Madrid}"
+					]
+				},
+				"http": {
+					"name": "http:options",
+					"description": "Shows the result of a http request",
+					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items, `lifetime`: A number; specifies in seconds for how long the returned response will be cached and used, the default is 1 hour",
+					"usage": [
+						"{http:options}"
+					],
+					"example": [
+						"Last subscriber: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+					]
+				},
+				"replace": {
+					"name": "replace:text:oldValue;newValue",
+					"description": "Replaces portions of the given text with the given values",
+					"detailedDescription": "Replaces portions of the given text with the given values, this counter is useful alongside the `{http}` counter to for example, read data from an API, and depending on the returned response, translate the response to something more human friendly.\n`text` should be the original text or a counter like `{http}`, `oldValue` the value to search and `newValue` the value that will replace `oldValue`, you can replace multiple values by separating them with a comma as shown below in the examples.",
+					"usage": [
+						"{replace:text:oldValue;newValue}",
+						"{replace:text:oldValue;newValue,oldValue2;newValue2}"
+					],
+					"example": [
+						"{replace:Hello\\, world!:Hello;Goodbye,world;discord}",
+						"Weather in Madrid: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:storm;🌩,sunny;☀,raining;🌧}"
+					]
+				},
+				"escape": {
+					"name": "escape:stringToEscape",
+					"description": "Escapes common delimiters used by Member Counter",
+					"detailedDescription": "Escapes automatically all the delimiters used by Member Counter when processing a counter. Like `:`,`;` or `,`. You may need this if you want to pass arguments with the mentioned delimiters without getting them parsed. This is specially useful when you can't control well the content of the string like in the `{http}` counter",
+					"usage": [
+						"{escape:stringToEscape}"
+					],
+					"example": [
+						"{escape:Hello, world!}"
+					]
+				},
+				"static": {
+					"name": "static:data",
+					"description": "Displays the given `data`",
+					"detailedDescription": "Displays the given `data` with custom formatting based on the server settings if it's a number, text is also accepted",
+					"usage": [
+						"{static:data}"
+					],
+					"example": [
+						"{static:420}",
+						"{static:Hello world!}"
+					]
+				},
+				"sum": {
+					"name": "sum:value1,value2,и т.д.",
+					"description": "Sum of the specified values",
+					"detailedDescription": "Sum of the specified values, done from the left to the right",
+					"usage": [
+						"{sum:value1,value2,more values}"
+					],
+					"example": [
+						"2 + 2 = {sum:2,2}"
+					]
+				},
+				"subtract": {
+					"name": "subtract:value1,value2,more values",
+					"description": "Subtracts the specified values",
+					"detailedDescription": "Subtracts the specified values, done from the left to the right",
+					"usage": [
+						"{subtract:value1,value2,more values}"
+					],
+					"example": [
+						"2 - 2 = {subtract:2,2}"
+					]
+				},
+				"multiply": {
+					"name": "multiply:value1,value2, и т.д.",
+					"description": "Умножает указанные значения",
+					"detailedDescription": "Multiplies the specified values, done from the left to the right",
+					"usage": [
+						"{multiply:value1,value2,more values}"
+					],
+					"example": [
+						"2 * 2 = {multiply:2,2}"
+					]
+				},
+				"divide": {
+					"name": "divide:value1,value2, и т.д.",
+					"description": "Деление указанных значений",
+					"detailedDescription": "Divides the specified values, done from the left to the right",
+					"usage": [
+						"{divide:value1,value2,more values}"
+					],
+					"example": [
+						"10 / 2 = {divide:10,2}"
+					]
+				},
+				"modulus": {
+					"name": "modulus:value1,value2, и т.д.",
+					"description": "Получает модуль указанных значений",
+					"detailedDescription": "Gets the modulus of the specified values, done from the left to the right",
+					"usage": [
+						"{modulus:value1,value2,more values}"
+					],
+					"example": [
+						"10 % 2 = {modulus:10,2}"
+					]
 				}
-			]
+			}
+		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium.",
+			"helpExample": [
+				"{PREFIX}premium"
+			],
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Получить премиум бота]({GET_PREMIUM_BOT_URL}) и наслаждаться:",
+				"fields": [
+					{
+						"name": "**✅ ВСЕ счетчики**",
+						"value": "Получите доступ к **всем** счетчикам, существующим в боте, например, `{membersWithRole}` или `{youtubeSubscribers}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ Более точные счетчики**",
+						"value": "Получите более точные числа в счетчиках",
+						"inline": false
+					},
+					{
+						"name": "**✅ Неограниченное кол-во серверов**",
+						"value": "Pay only for the members and servers you have. For €5 EUR per 50,000 members and 5 servers, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Собственный бот**",
+						"value": "Use your own bot account, with the profile picture and username of your choice",
+						"inline": false
+					},
+					{
+						"name": "**✅ Простая настройка**",
+						"value": "Всего лишь за несколько кликов вы можете создать своего Member Counter бота, и мы позаботимся о том, чтобы обновлять его. Гайд со скриншотами в наличии! Это ли не проще, чем хостить бота самому?",
+						"inline": false
+					}
+				]
+			}
 		},
 		"lockChannel": {
-			"helpDescription": "Вы можете использовать эти команды, чтобы показывалась иконка замка (🔒) вместо иконки звука (🔊) в голосовых каналах\n\n**Использование:**```{PREFIX}lockChannel [channel id]```\n **Пример:**```{PREFIX}lockChannel 700336568099143710```",
+			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels.",
+			"helpUsage": [
+				"{PREFIX}lockChannel [channel id]"
+			],
+			"helpExample": [
+				"{PREFIX}lockChannel 700336568099143710"
+			],
 			"success": "Выполнено! Теперь **для пользователей, не имеющих прав администратора** канал будет отображаться с 🔒",
 			"errorInvalidChannel": "Вы можете закрывать только голосовые каналы!",
 			"errorNoPerms": "Я не могу редактировать канал `{CHANNEL}`, потому что у меня недостаточно прав.",
 			"errorNotFound": "Канал не найден"
 		},
 		"editChannel": {
-			"helpDescription": "Если вы пытаетесь настроить счётчик но Discord вам говорит, что вы достигли лимита символов в названии канала/заголовка, вы можете использовать эту команду, чтобы \"игнорировать\" этот лимит.\n**Использование:**```{PREFIX}editChannel [channelId] [content]```\n**Пример:**```{PREFIX}editChannel 701396983843127366 {onlinemembers} из {members} онлайн```",
+			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
+			"helpUsage": [
+				"{PREFIX}editChannel [channel ID] [content and counters]"
+			],
+			"helpExample": [
+				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
+			],
 			"success": "Сделано! Необходимо немного подождать (около нескольких минут) прежде, чем увидеть новые изменения",
 			"errorNotFound": "Канал не найден",
 			"errorNoContent": "Вы должны указать необходимые значения"
 		},
 		"setDigit": {
-			"helpDescription": "Кастомизирует (изменяет) цифры, которые будут выведены. Аргумент цифры должен быть нормальным числом, второй же аргумент может быть чем угодно, например эмоджи-цифрой или же обычной. Вы можете изменять несколько цифр сразу, разделяя их в аргументе запятой.\nЕсли же первым аргументом вы зададите значение \"reset\", все числа будут возвращены в состояние по умолчанию (эмоджи).\n\nИспользование: ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nПример: ```{PREFIX}setDigit 3 3```\nПо умолчанию все цифры заменены эмодзи-цифрами. С этим примером все тройки будут отображаться как обычные, без какой-либо кастомизации или замены.\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```\nC этим же примером мы одновременно заменяем тройку и четвёрку на эмоджи-цифру.",
+			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.",
+			"helpUsage": [
+				"{PREFIX}setDigit reset",
+				"{PREFIX}setDigit [number] [your custom number]"
+			],
+			"helpExample": [
+				"{PREFIX}setDigit 3 3",
+				"{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:"
+			],
 			"success": "Цифра успешно изменена.",
 			"resetSuccess": "Числа восстановлены к значению по умолчанию.",
 			"errorMissingParams": "Недостаточно параметров, пожалуйста, просмотрите `{PREFIX}help setDigit`."
 		},
 		"shortNumber": {
-			"helpDescription": "This command allows you to show a count in a compact form in counters\n\n**Usage**\n```{PREFIX}shortNumber [enable|on/disable|off]```\n**Examples**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters.",
+			"helpUsage": [
+				"{PREFIX}shortNumber [enable|on/disable|off]"
+			],
+			"helpExample": [
+				"{PREFIX}shortNumber enable",
+				"{PREFIX}shortNumber disable",
+				"{PREFIX}shortNumber on",
+				"{PREFIX}shortNumber off"
+			],
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "Неправильное действие! Пожалуйста, просмотрите `{PREFIX}help shortNumber`",
 			"success": "Сделано! Необходимо немного подождать (около нескольких минут) прежде, чем увидеть новые изменения"
 		},
 		"locale": {
-			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale\n\n**Usage**\n```{PREFIX}locale [locale/disable]```\n**Examples**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale.",
+			"helpUsage": [
+				"{PREFIX}locale [locale/disable]"
+			],
+			"helpExample": [
+				"{PREFIX}locale en",
+				"{PREFIX}locale es",
+				"{PREFIX}locale disable"
+			],
 			"helpImage": "https://i.imgur.com/BBD43CB.png"
 		},
 		"prefix": {
-			"helpDescription": "Меняет префикс бота.\n\nИспользование: ```{PREFIX}prefix [new prefix]```",
+			"helpDescription": "Changes the bot's prefix.",
+			"helpUsage": [
+				"{PREFIX}prefix [new prefix]"
+			],
+			"helpExample": [
+				"{PREFIX}prefix !",
+				"{PREFIX}prefix .",
+				"{PREFIX}prefix $"
+			],
 			"success": "Префикс изменён на: `{NEW_PREFIX}`",
 			"noPrefixProvided": "Вы должны указать префикс"
 		},
 		"role": {
-			"helpDescription": "Вы можете разрешить или запретить определенным ролям использовать команды администратора бота.\nВы можете использовать значение ``all`` чтобы разрешить или запретить использование админ-команд всем ролям.\nЧтобы увидеть, каким ролям на данный момент разрешается использовать админ-команды используйте `{PREFIX}seeSettings```.\nПримеры:\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`.",
+			"helpUsage": [
+				"{PREFIX}role [allow/deny] [@roles/all]"
+			],
+			"helpExample": [
+				"{PREFIX}role allow @Mod",
+				"{PREFIX}role allow @Mod @OtherRole",
+				"{PREFIX}role allow all",
+				"{PREFIX}role deny all"
+			],
 			"rolesUpdated": "Роли обновлены.",
 			"errorNoRolesToUpdate": "Вы должны упомянуть хотя бы одну роль",
 			"invalidParams": "Недействительные параметры, для помощи просмотрите `{PREFIX}help role`"
 		},
 		"seeSettings": {
 			"helpDescription": "Показывает все настройки бота для этого сервера.",
+			"helpExample": [
+				"{PREFIX}seeSettings"
+			],
 			"settingsMessage": {
 				"headerText": "Настройки для сервера:",
 				"prefixText": "Префикс:",
 				"langText": "Язык:",
 				"localeText": "Локализация:",
 				"shortNumberText": "Сокращенная форма числа: ",
-				"premiumText": "Премиум:",
-				"premiumNoTierText": "Нет",
-				"premiumConfirmedText": "Да",
+				"noText": "Нет",
+				"yesText": "Да",
 				"allowedRolesText": "Роли, которым разрешено использовать админ-команды:",
 				"countersText": "Счётчики:",
 				"customNumbersText": "Кастомизированные числа:",
@@ -317,53 +716,65 @@
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "Восстанавливает кастомные настройки этого сервера к значению по умолчанию",
+			"helpDescription": "Removes all the counters and restores the custom settings of this server to the default ones.",
+			"helpExample": [
+				"{PREFIX}resetSettings"
+			],
 			"done": "Восстановлено к значению по умолчанию"
 		},
-		"update": {
-			"helpDescription": "Если вы думаете, что счётчик сломался/застрял - используйте эту команду чтобы обновить их вручную.",
-			"inProgress": "Обновление счётчиков, может занять какое-то время.",
-			"success": "Готово.",
-			"wait": "Погоди! Я уже обновляю это!"
-		},
 		"upgradeServer": {
-			"helpDescription": "Эта команда позволяет пригласить премиум версию счётчика, чтобы использовать эту команду у вас должен быть премиум аккаунт. Вы можете получить его, задонатив от 5-и долларов и выше: `{PREFIX}donate`.",
+			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account.",
+			"helpExample": [
+				"{PREFIX}upgradeServer"
+			],
 			"success": "Готово! Следующий шаг - приглашение премиум версии бота:\n{BOT_LINK}",
 			"errorCannotUpgrade": "Вы не можете улучшить этот сервер, потому что он уже улучшен до премиум версии.",
-			"noServerUpgradesAvailable": "Вы не можете сделать больше улучшений сервера, так как у вас не осталось такой возможности. Вы можете узнать, сколько у вас осталось улучшений с помощью команды `{PREFIX}profile` или получить больше с помощью `{PREFIX}donate`"
+			"noServerUpgradesAvailable": "Вы не можете использовать больше апгрейдов потому что у вас их не осталось"
 		},
 		"info": {
-			"helpDescription": "Список полезных ссылок",
+			"helpDescription": "List of useful links.",
+			"helpExample": [
+				"{PREFIX}info"
+			],
 			"embedReply": {
-				"description": "[Добавь меня на свой сервер]({BOT_INVITE_URL})\n[Поддержать сервер]({BOT_SERVER_URL})\n[Репозиторий GitHub](https://github.com/eduardozgz/member-counter-bot)\n[Пожертвования]({DONATION_URL})"
+				"description": "[Добавьте меня на свой сервер]({BOT_INVITE_URL})\n[Сайт]({WEBSITE})\n[Получить премиум]({GET_PREMIUM_BOT_URL})\n[Сервер поддержки]({BOT_SERVER_URL})\n[Репозиторий GitHub](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
 			"helpDescription": "Меняет язык бота для этого сервера, у вас должны быть права администратора, чтобы использовать эту команду.",
+			"helpUsage": [
+				"{PREFIX}lang (lang code)"
+			],
+			"helpExample": [
+				"{PREFIX}lang",
+				"{PREFIX}lang es_ES"
+			],
 			"success": "Язык успешно изменён.",
 			"errorNotFound": "Список доступных языков:"
 		},
-		"donate": {
-			"helpDescription": "Показывает топ пожертвований.",
-			"embedReply": {
-				"title": "Понравился мой бот? Задонать мне! (Кликни сюда)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "Пустая заметка"
-			},
-			"errorExchangeFetch": "Ошибка при попытке получить курсы валют"
-		},
 		"profile": {
-			"helpDescription": "Показывает связанную информацию между вами и этим ботом",
+			"helpDescription": "Shows related information between you and this bot.",
+			"helpUsage": [
+				"{PREFIX}profile (@user)"
+			],
+			"helpExample": [
+				"{PREFIX}profile",
+				"{PREFIX}profile @eduardozgz"
+			],
 			"badges": "Значки",
+			"credits": "Credits",
 			"serverUpgradesAvailable": "Осталось улучшений сервера",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
-			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "Ваши данные были успешно удалены."
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
+			"cancelText": "cancel",
+			"removeDataConfirmationString": "Я хочу удалить все мои данные",
+			"removeDataSuccess": "Ваши данные были успешно удалены.",
+			"userNotFound": "Пользователь не найден в БД"
 		},
 		"counts": {
-			"helpDescription": "Показывает некоторые счётчики",
+			"helpDescription": "Shows some counts.",
+			"helpExample": [
+				"{PREFIX}counts"
+			],
 			"members": "Участники:",
 			"onlineMembers": "Онлайн участники:",
 			"offlineMembers": "Оффлайн участники:",
@@ -371,105 +782,193 @@
 			"connectedUsers": "Подключённые пользователи:",
 			"channels": "Каналы:",
 			"roles": "Роли:",
-			"nitroBoosters": "Boosting:",
-			"bannedMembers": "Banned members:"
+			"nitroBoosters": "Бусты:",
+			"bannedMembers": "Забаненные:"
 		},
 		"preview": {
-			"helpDescription": "Показывает, как будет выглядеть в канале предварительный вид счётчика или различных счётчиков.\n\n**Использование**```{PREFIX}preview [content]```\n**Пример**```{PREFIX}preview {members} Members```",
+			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
+			"helpUsage": [
+				"{PREFIX}preview [content and counters]"
+			],
+			"helpExample": [
+				"{PREFIX}preview {members} Members"
+			],
 			"helpImage": "https://i.imgur.com/DoJXler.png",
 			"channelName": "Предварительное название канала",
 			"channelTopic": "Предварительное описание канала"
 		},
 		"setup": {
-			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters\n**Usage**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**Example**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters.",
+			"helpUsage": [
+				"{PREFIX}setup",
+				"{PREFIX}setup twitch [channel name]",
+				"{PREFIX}setup youtube [channel link]"
+			],
+			"helpExample": [
+				"{PREFIX}setup",
+				"{PREFIX}setup twitch muhriaa",
+				"{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw"
+			],
 			"status": {
 				"creatingCounts": "Создание счётчиков...",
 				"createdCounts": "Выполнено",
-				"creatingCategory": "{LOADING} Creating category",
-				"createdCategory": "{CHECK_MARK} Category created"
+				"creatingCategory": "{LOADING} Создание категории",
+				"createdCategory": "{CHECK_MARK} Категория создана"
 			},
-			"errorInvalidUsage": "Invalid usage, please, see {PREFIX}help",
+			"errorInvalidUsage": "Неправильное использование, уточните использование команды - {PREFIX}help",
 			"counterTemplates": {
 				"default": {
 					"categoryName": "📊 Статистика сервера 📊",
 					"counters": [
 						{
 							"name": "onlineMembers",
-							"template": "Online: {onlineMembers}",
-							"statusCreating": "{LOADING} Creating online counter",
-							"statusCreated": "{CHECK_MARK} Online counter created"
+							"template": "Онлайн: {onlineMembers}",
+							"statusCreating": "{LOADING} Создание счётчика онлайн пользователей",
+							"statusCreated": "{CHECK_MARK} Счётчик онлайн пользователей создан"
 						},
 						{
 							"name": "members",
-							"template": "Members: {members}",
-							"statusCreating": "{LOADING} Creating member counter",
-							"statusCreated": "{CHECK_MARK} Members counter created"
+							"template": "Участники: {members}",
+							"statusCreating": "{LOADING} Создание счётчика участников",
+							"statusCreated": "{CHECK_MARK} Счётчик участников создан"
 						},
 						{
 							"name": "nitroBoosters",
-							"template": "Boosters: {nitroBoosters}",
-							"statusCreating": "{LOADING} Creating booster counter",
-							"statusCreated": "{CHECK_MARK} Booster counter created"
+							"template": "Бустеры: {nitroBoosters}",
+							"statusCreating": "{LOADING} Создание счётчика бустеров",
+							"statusCreated": "{CHECK_MARK} Счётчик бустеров создан"
 						},
 						{
 							"name": "roles",
-							"template": "Roles: {roles}",
-							"statusCreating": "{LOADING} Creating roles counter",
-							"statusCreated": "{CHECK_MARK} Roles counter created"
+							"template": "Роли: {roles}",
+							"statusCreating": "{LOADING} Создание счётчика ролей",
+							"statusCreated": "{CHECK_MARK} Счётчик ролей создан"
 						},
 						{
 							"name": "channels",
-							"template": "Channels: {channels}",
-							"statusCreating": "{LOADING} Creating channels counter",
-							"statusCreated": "{CHECK_MARK} Channels counter created"
+							"template": "Каналы: {channels}",
+							"statusCreating": "{LOADING} Создание счётчика каналов",
+							"statusCreated": "{CHECK_MARK} Счётчик каналов создан"
 						}
 					]
 				},
 				"twitch": {
-					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Twitch Stats 📊",
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Статистика Twitch 📊",
 					"counters": [
 						{
 							"name": "twitchFollowers",
-							"template": "{twitchFollowers:{RESOURCE}} Followers",
-							"statusCreating": "{LOADING} Creating follower counter",
-							"statusCreated": "{CHECK_MARK} Follower counter created"
+							"template": "{twitchFollowers:{RESOURCE}} Фолловеры",
+							"statusCreating": "{LOADING} Создание счётчика фолловеров",
+							"statusCreated": "{CHECK_MARK} Счётчик фолловеров создан"
 						},
 						{
 							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{twitchViews:{RESOURCE}} Просмотры",
+							"statusCreating": "{LOADING} Создание счётчика просмотров",
+							"statusCreated": "{CHECK_MARK} Счётчик просмотров создан"
 						}
 					]
 				},
 				"youtube": {
-					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Youtube Stats 📊",
+					"categoryName": "📊 {youtubeChannelName:{RESOURCE}} Статистика Youtube 📊",
 					"counters": [
 						{
 							"name": "youtubeSubscribers",
-							"template": "{youtubeSubscribers:{RESOURCE}} Subscribers",
-							"statusCreating": "{LOADING} Creating subscriber counter",
-							"statusCreated": "{CHECK_MARK} Subscriber counter created"
+							"template": "{youtubeSubscribers:{RESOURCE}} Подписчики",
+							"statusCreating": "{LOADING} Создание счётчика подписчиков",
+							"statusCreated": "{CHECK_MARK} Счётчик подписчиков создан"
 						},
 						{
 							"name": "youtubeVideos",
-							"template": "{youtubeVideos:{RESOURCE}} Videos",
-							"statusCreating": "{LOADING} Creating video counter",
-							"statusCreated": "{CHECK_MARK} Video counter created"
+							"template": "{youtubeVideos:{RESOURCE}} Видео",
+							"statusCreating": "{LOADING} Создание счётчика видео",
+							"statusCreated": "{CHECK_MARK} Счётчик видео создан"
 						},
 						{
 							"name": "youtubeViews",
-							"template": "{youtubeViews:{RESOURCE}} Views",
-							"statusCreating": "{LOADING} Creating views counter",
-							"statusCreated": "{CHECK_MARK} Views counter created"
+							"template": "{youtubeViews:{RESOURCE}} Просмотры",
+							"statusCreating": "{LOADING} Создание счётчика просмотров",
+							"statusCreated": "{CHECK_MARK} Счётчик просмотров создан"
+						}
+					]
+				},
+				"twitter": {
+					"categoryName": "📊 {twitchChannelName:{RESOURCE}} Статистика Twitter 📊",
+					"counters": [
+						{
+							"name": "twitterFollowers",
+							"template": "{twitterFollowers:{RESOURCE}} Фолловеры",
+							"statusCreating": "{LOADING} Создание счётчика фолловеров",
+							"statusCreated": "{CHECK_MARK} Счётчик фолловеров создан"
 						}
 					]
 				}
 			}
 		},
 		"base64": {
-			"helpDescription": "Команда из-под утилит base64, полезна для кастомизации специфических счётчиков или создавать их продвинутые версии, к примеру как `{http}` \n\n**Использование**```{PREFIX}base64 [encode/decode] [data]```\n **Пример**```{PREFIX}base64 encode test\n{PREFIX}base64 decode dGVzdA==```",
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}`.",
+			"helpUsage": [
+				"{PREFIX}base64 [encode/decode] [data]"
+			],
+			"helpExample": [
+				"{PREFIX}base64 encode test",
+				"{PREFIX}base64 decode dGVzdA=="
+			],
 			"invalidAction": "Неверный параметр, должен быть `encode` либо `decode`"
+		},
+		"checkPermissions": {
+			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
+			"helpExample": [
+				"{PREFIX}checkPermissions"
+			],
+			"title": "Check permissions",
+			"optionalText": "(Опционально)",
+			"adminWarning": "**Этот бот имеет права администратора, пожалуйста, отключите права администратора и установите только необходимые для работы права**",
+			"footer": "Если вам нужно исправить проблемы с правами, попробуйте пригласить бота снова:",
+			"details": {
+				"manageChannels": {
+					"name": "Управление каналами",
+					"description": "Используется для обновления имени/описания каналов для обновления счетчиков"
+				},
+				"viewChannel": {
+					"name": "Просмотр каналов",
+					"description": "Используется для обновления имени/описания каналов для обновления счетчиков, также используется для получения команд"
+				},
+				"voiceConnect": {
+					"name": "Подключаться",
+					"description": "Используется для доступа к имени/описанию каналов для обновления счетчиков"
+				},
+				"readMessageHistory": {
+					"name": "Прочитать историю сообщений",
+					"description": "Используется для обновления счетчиков в сообщениях/embeds сообщениях"
+				},
+				"sendMessages": {
+					"name": "Отправка сообщений",
+					"description": "Используется для ответа на команды"
+				},
+				"embedLinks": {
+					"name": "Встраиваемые ссылки",
+					"description": "Используется для ответа на команды"
+				},
+				"addReactions": {
+					"name": "Добавлять реакции",
+					"description": "Используется для добавления реакций в командах для взаимодействия с ними"
+				},
+				"manageMessages": {
+					"name": "Управление сообщениями",
+					"description": "Используется для удаления реакций в команде",
+					"optional": true
+				},
+				"manageRoles": {
+					"name": "Управлять ролями",
+					"description": "Used by the {PREFIX}setup command and to update channel permissions when you add a Premium bot"
+				},
+				"banMembers": {
+					"name": "Бан участников",
+					"description": "Используется для отображения кол-ва забаненных участников в счётчике `{bannedMembers}`",
+					"optional": true
+				}
+			}
 		}
 	},
 	"functions": {
@@ -486,7 +985,8 @@
 		},
 		"paginator": {
 			"pageCounter": "Стр. {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "На какую страницу вы хотите переместиться? Введите `cancel` или `0` чтобы отменить выбор. У вас 15 секунд для ответа.",
+			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"cancelText": "cancel",
 			"errorPageLengthExceeded": "Номер страницы должен быть меньше или равен {TOTAL_PAGES}. Пожалуйста, попробуйте ещё раз.",
 			"errorNegativeInput": "Номер страницы не может быть отрицательным. Пожалуйста, попробуйте ещё раз."
 		}

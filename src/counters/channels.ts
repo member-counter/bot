@@ -6,7 +6,15 @@ const ChannelCounter: Counter = {
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ guild, resource }) => {
+	execute: async ({ guild, args }) => {
+		const targetCategories = args[0] ?? [];
+
+		if (targetCategories.length) {
+			return guild.channels.filter((channel) =>
+				targetCategories.includes(channel.parentID)
+			).length;
+		}
+
 		return guild.channels.filter(
 			(channel) => channel.type !== Eris.Constants.ChannelTypes.GUILD_CATEGORY
 		).length;

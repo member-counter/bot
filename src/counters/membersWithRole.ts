@@ -1,5 +1,4 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 
 const MembersWithRoleCounter: Counter = {
 	aliases: [
@@ -10,8 +9,8 @@ const MembersWithRoleCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ client, guild, resource }) => {
-		const targetRoles: string[] = resource.split(",");
+	execute: async ({ client, guild, args }) => {
+		const targetRoles: string[] = args[0];
 
 		const membersWithRole = new Set<string>();
 		const onlineMembersWithRole = new Set<string>();

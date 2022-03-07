@@ -3,8 +3,9 @@ import Command from "../typings/Command";
 import embedBase from "../utils/embedBase";
 
 const {
-	DONATION_URL,
+	GET_PREMIUM_BOT_URL,
 	DISCORD_BOT_INVITE,
+	WEBSITE_URL,
 	DISCORD_OFFICIAL_SERVER_URL
 } = getEnv();
 
@@ -15,7 +16,8 @@ const info: Command = {
 		const { channel } = message;
 		const embed = embedBase(languagePack.commands.info.embedReply);
 		embed.description = embed.description
-			.replace("{DONATION_URL}", DONATION_URL)
+			.replace("{GET_PREMIUM_BOT_URL}", GET_PREMIUM_BOT_URL)
+			.replace("{WEBSITE}", WEBSITE_URL)
 			.replace("{BOT_SERVER_URL}", DISCORD_OFFICIAL_SERVER_URL)
 			.replace("{BOT_INVITE_URL}", DISCORD_BOT_INVITE);
 
@@ -23,7 +25,7 @@ const info: Command = {
 			url: client.user.dynamicAvatarURL()
 		};
 
-		await channel.createMessage({ embed });
+		await channel.createMessage({ embeds: [embed] });
 	}
 };
 

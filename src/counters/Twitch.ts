@@ -1,4 +1,5 @@
-import { ApiClient, ClientCredentialsAuthProvider } from "twitch";
+import { ApiClient } from "@twurple/api";
+import { ClientCredentialsAuthProvider } from "@twurple/auth";
 import getEnv from "../utils/getEnv";
 import Counter from "../typings/Counter";
 
@@ -16,19 +17,26 @@ const TwitchCounter: Counter = {
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
-	execute: async ({ guild, resource: userName }) => {
-		if (!TWITCH_CLIENT_ID) throw new Error("TWITCH_CLIENT_ID not provided");
-		const user = await client.kraken.users.getUserByName(userName);
-		const {
-			followers,
-			views,
-			displayName
-		} = await client.kraken.channels.getChannel(user);
-		return {
-			twitchFollowers: followers,
-			twitchViews: views,
-			twitchChannelName: displayName
-		};
+	execute: async ({ unparsedArgs: userName }) => {
+		try {
+			if (!TWITCH_CLIENT_ID) throw new Error("TWITCH_CLIENT_ID not provided");
+			if (!TWITCH_CLIENT_SECRET)
+				throw new Error("TWITCH_CLIENT_SECRET not provided");
+
+			const user = await client.users.getUserByName(userName);
+			const { views, displayName } = user;
+			const followers = await client.users
+				.getFollowsPaginated({ followedUser: user })
+				.getTotalCount();
+
+			return {
+				twitchFollowers: followers,
+				twitchViews: views,
+				twitchChannelName: displayName
+			};
+		} catch (e) {
+			console.error(e);
+		}
 	}
 };
 

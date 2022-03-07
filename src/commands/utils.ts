@@ -5,6 +5,7 @@ import UserError from "../utils/UserError";
 import CountService from "../services/CountService";
 import getEnv from "../utils/getEnv";
 import setStatus from "../others/setStatus";
+import Eris from "eris";
 
 const { BOT_OWNERS } = getEnv();
 
@@ -29,11 +30,19 @@ const lockChannel: Command = {
 				if (botHasPermsToEdit(channelToEdit)) {
 					await channelToEdit.editPermission(
 						client.user.id,
-						0x00100000 | 0x00000400,
+						Eris.Constants.Permissions.voiceConnect |
+							Eris.Constants.Permissions.viewChannel,
 						0,
-						"member"
+						// TODO use constants when abalabahaha/eris#1271 is merged
+						1
 					);
-					await channelToEdit.editPermission(guild.id, 0, 0x00100000, "role");
+					await channelToEdit.editPermission(
+						guild.id,
+						0,
+						Eris.Constants.Permissions.voiceConnect,
+						// TODO use constants when abalabahaha/eris#1271 is merged
+						0
+					);
 				} else {
 					throw new UserError(errorNoPerms.replace(/\{CHANNEL\}/gi, channelId));
 				}
@@ -150,7 +159,9 @@ const setStatusCmd: Command = {
 	run: async ({ client, message, languagePack }) => {
 		if (!BOT_OWNERS.includes(message.author.id)) return;
 		let [, ...content] = message.content.split(" ");
-		setStatus(client, content.join(" "));
+		await message.channel.sendTyping();
+		const { text, type, status } = setStatus(client, content.join(" "));
+		await message.channel.createMessage(`Now _${type}_ **${text}**`);
 	}
 };
 

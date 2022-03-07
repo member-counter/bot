@@ -20,9 +20,11 @@ const guildMemberAdd = async (guild: Eris.Guild, member: Eris.Member) => {
 					await channel
 						.editPermission(
 							PREMIUM_BOT_ID,
-							0x00100000 | 0x00000400,
+							Eris.Constants.Permissions.voiceConnect |
+								Eris.Constants.Permissions.viewChannel,
 							0,
-							"member"
+							// TODO use constants when abalabahaha/eris#1271 is merged
+							1
 						)
 						.catch(console.error);
 				}

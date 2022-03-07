@@ -1,19 +1,18 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
+import UserError from "../utils/UserError";
 
 const CountdownCounter: Counter = {
 	aliases: ["countdown"],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ guild, resource }) => {
-		const args = resource.split(":");
-		const format = args[1] || "%d:%h:%m";
-		const date = parseInt(args[0], 10) * 1000 || 0;
+	execute: async ({ args }) => {
+		const format = args[1]?.[0] || "%d:%h:%m";
+		const date = parseInt(args[0]?.[0], 10) * 1000 || 0;
 		let timeLeft = new Date(date - Date.now());
 		if (date - Date.now() < 0) timeLeft = new Date(0);
 
-		const formated = format
+		const formatted = format
 			.replace(
 				/%d/gi,
 				`${Math.floor(timeLeft.getTime() / 1000 / 60 / 60 / 24)}`
@@ -22,7 +21,7 @@ const CountdownCounter: Counter = {
 			.replace(/%m/gi, `${timeLeft.getUTCMinutes()}`)
 			.replace(/%s/gi, `${timeLeft.getUTCSeconds()}`);
 
-		return formated;
+		return formatted;
 	}
 };
 

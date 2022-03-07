@@ -3,10 +3,19 @@
 	"langName": "Hindi",
 	"commands": {
 		"help": {
-			"helpDescription": "क्या ये आदेश का उद्देश्य वर्णन करना आवश्यक है?",
+			"helpDescription": "Get help about commands and counters.",
+			"helpUsage": [
+				"{PREFIX}help [command or counter]"
+			],
+			"helpExample": [
+				"{PREFIX}help lockChannel",
+				"{PREFIX}help {members}",
+				"{PREFIX}help members"
+			],
+			"helpFooterText": "**Usage info:** `()` means an optional parameter while `[]` means a required one",
 			"embedReply": {
 				"title": "आदेश सूची | उपसर्ग : {PREFIX}",
-				"description": "[इस बॉट को अपने सर्वर में जोड़ें]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|**   [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nतत्काल प्रबंध : `{PREFIX}setup`\nबॉट का उपयोग करना सीखें : `{PREFIX}guide`\n\nअधिक जानकारी प्राप्त करने के लिए आदेश दे `{PREFIX}help` और आदेश का नाम: ```\n{PREFIX}help shortNumber```\n** जानकारी : ** `()` का अर्थ है एक वैकल्पिक प्राचल जबकि `[]` का अर्थ है एक आवश्यक प्राचल",
+				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command or counter send `{PREFIX}help` plus the name: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
 						"name": "**गणक**",
@@ -15,7 +24,7 @@
 					},
 					{
 						"name": "** सर्वर समायोजन**",
-						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}upgradeServer```",
+						"value": "```\n{PREFIX}prefix\n{PREFIX}lang\n{PREFIX}locale\n{PREFIX}role\n{PREFIX}seeSettings\n{PREFIX}resetSettings\n{PREFIX}checkPermissions```",
 						"inline": true
 					},
 					{
@@ -27,288 +36,678 @@
 			},
 			"misc": {
 				"command": "आदेश :",
-				"errorCommandNotFound": "क्षमा करें, मुझे  ``{DESIRED_COMMAND}`` इसके लिए सहायता नहीं मिली"
+				"counter": "Counter:",
+				"errorNotFound": "क्षमा करें, मुझे  ``{DESIRED_COMMAND}`` इसके लिए सहायता नहीं मिली",
+				"suggestCounter": "Maybe you are looking for one of these counters:",
+				"suggestCommand": "Maybe you are looking for one of these commands:",
+				"usageText": "Usage",
+				"exampleText": "Example",
+				"searchIgnoredWords": "amount count"
 			}
 		},
 		"guide": {
-			"helpDescription": "आपको बॉट का उपयोग करने का एक सूचना दिखाता है",
+			"helpDescription": "Shows you a guide of how to use the bot and a list of available counters.",
+			"helpExample": [
+				"{PREFIX}guide"
+			],
 			"pagesText": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "** अपने सर्वर में मेंबर काउंटर जोड़ने के लिए धन्यवाद! **\n__ ** काउंटर बनाएं / संपादित करें ** __\nउदाहरण के लिए हम `{members}`, का उपयोग करने वाले हैं, जो आपके डिसॉर्ड सर्वर में सदस्यों की कुल मात्रा को गिनता है, लेकिन आपको अगले पृष्ठों में अधिक गणको का पता चलेगा\nआप उस काउंटर को निम्न स्थानों में से एक में रख सकते हैं:\n\n- एक ** आवाज ** चैनल ** नाम ** में\n- एक ** श्रेणी में ** चैनल ** नाम ** में\n- एक ** पाठ ** चैनल ** विषय ** में\n- एक ** समाचार ** चैनल ** विषय ** में\n\nअब एक नया चैनल बनाएं, इसे संपादित करें, और नाम या विषय में `{members}` लिखें, और 'परिवर्तन सहेजें' पर क्लिक करें\n\nआप एक नाम / विषय में कई काउंटर जोड़ सकते हैं, और उन्हें अपनी सामग्री के साथ जोड़ सकते हैं, यहाँ एक उदाहरण है:\n```\n{onlineMembers}/{members} ऑनलाइन सदस्य, {youtubeSubscribers:https: //www.youtube.com/user/enyay} सदस्य!\n{onlineMembersWithRole:614777997291028519,614816383053856769} प्रशासक और मध्यस्थ ऑनलाइन हैं!\n```\n\n> यदि आप किसी नाम / विषय का संपादन करते हुए वर्ण सीमा तक पहुँचते हैं, तो कृपया `{PREFIX}help editChannel` जांचे\n> आप वर्तमान काउंटर विन्यास को `{PREFIX}seeSettings` के साथ देख सकते हैं, यह पिछले वाले को अक्षम किए बिना अधिक काउंटर जोड़ने के लिए उपयोगी है\n\n__**एक काउंटर निकालें **__\nचैनल को संपादित करें और नाम / विषय में {disable} लिखें, सदस्य काउंटर इसे एक \\✅ की जगह परिवर्तित कर लेगा, इसका मतलब है कि आपने उस चैनल के सभी काउंटरों को सफलतापूर्वक हटा दिया है\n\nआप सीधे चैनल भी हटा सकते हैं",
-			"countersHeader": "__ ** काउंटर ** __\n> आपको डिस्‍कॉर्ड में डेवलपर मोड सक्षम करना चाहिए (उपयोगकर्ता सेटिंग> प्रकटन> उन्नत> डेवलपर मोड)\n> एक आईडी पाने के लिए, चैनल / भूमिका पर राइट क्लिक करें और \"कॉपी आईडी\" पर क्लिक करें\n\n> जिन काउंटरों पर तारांकन चिह्न (\\ *) प्रीमियम काउंटर होते हैं, अधिक जानकारी प्राप्त करें `{PREFIX}help upgradeServer`\n\n> > यदि आप सर्वर सेटिंग्स से स्वतंत्र रूप से एक काउंटर में संख्या स्वरूपण को बदलना चाहते हैं, तो इस पर जाएं [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), या इसे मैन्युअल रूप से इसका पालन करके करें [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
-			"counters": [
-				{
-					"key": "members",
-					"name": "members",
-					"description": "आपके सर्वर में सदस्य"
+			"countersHeader": "__**Counters**__\n> You should enable the developer mode in Discord (User Settings \\> Appearance \\> Advanced \\> Developer Mode)\n> To get an ID, right click in a channel/role and click \"Copy ID\"\n\n> Those counters with a plus sign (\\+) are premium counters, get more info in `{PREFIX}premium`\n\n> If you wanna change the number formatting in a counter independently of the server settings, visit this [page](https://member-counter.eduardozgz.com/utils/overwrite-settings), or do it manually by following this [instructions](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
+			"footerText": "Please read the first page of {PREFIX}guide to learn how to setup this counter",
+			"counters": {
+				"members": {
+					"name": "सदस्य",
+					"description": "आपके सर्वर में सदस्य",
+					"detailedDescription": "Counts how many members has a server",
+					"usage": [
+						"{members}"
+					],
+					"example": [
+						"{members} Members"
+					]
 				},
-				{
-					"key": "approximatedOnlineMembers",
+				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
-					"description": "आपके सर्वर में अनुमानित ऑनलाइन सदस्य"
+					"description": "आपके सर्वर में अनुमानित ऑनलाइन सदस्य",
+					"detailedDescription": "Counts approximately how many members are online in the server",
+					"usage": [
+						"{approximatedOnlineMembers}"
+					],
+					"example": [
+						"{approximatedOnlineMembers} Online"
+					]
 				},
-				{
-					"key": "onlineMembers",
+				"onlineMembers": {
 					"name": "onlineMembers",
-					"description": "आपके सर्वर में ऑनलाइन सदस्य"
+					"description": "आपके सर्वर में ऑनलाइन सदस्य",
+					"detailedDescription": "Counts how many members are online in the server",
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} Online"
+					]
 				},
-				{
-					"key": "offlineMembers",
+				"offlineMembers": {
 					"name": "offlineMembers",
-					"description": "आपके सर्वर में ऑफ़लाइन सदस्य"
+					"description": "आपके सर्वर में ऑफ़लाइन सदस्य",
+					"detailedDescription": "Counts how many members are offline in the server",
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} Offline"
+					]
 				},
-				{
-					"key": "users",
+				"users": {
 					"name": "users",
-					"description": "आपके सर्वर में उपयोगकर्ता (बॉट को छोड़कर)"
+					"description": "आपके सर्वर में उपयोगकर्ता (बॉट को छोड़कर)",
+					"detailedDescription": "Counts how many users (excluding bot accounts) are in the server",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Users"
+					]
 				},
-				{
-					"key": "onlineUsers",
+				"onlineUsers": {
 					"name": "onlineUsers",
-					"description": "आपके सर्वर में ऑनलाइन उपयोगकर्ता (बॉट को छोड़कर)"
+					"description": "आपके सर्वर में ऑनलाइन उपयोगकर्ता (बॉट को छोड़कर)",
+					"detailedDescription": "Counts how many users (excluding bot accounts) are online in the server",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Online users"
+					]
 				},
-				{
-					"key": "offlineUsers",
+				"offlineUsers": {
 					"name": "offlineUsers",
-					"description": "आपके सर्वर में ऑफ़लाइन उपयोगकर्ता (बॉट को छोड़कर)"
+					"description": "आपके सर्वर में ऑफ़लाइन उपयोगकर्ता (बॉट को छोड़कर)",
+					"detailedDescription": "Counts how many users (excluding bot accounts) are offline in the server",
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Offline"
+					]
 				},
-				{
-					"key": "bots",
+				"bots": {
 					"name": "bots",
-					"description": "आपके सर्वर में बॉट्स (सामान्य उपयोगकर्ताओं को छोड़कर)"
+					"description": "आपके सर्वर में बॉट्स (सामान्य उपयोगकर्ताओं को छोड़कर)",
+					"detailedDescription": "Counts how many bots (excluding normal accounts) are in the server",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Bots"
+					]
 				},
-				{
-					"key": "onlineBots",
+				"onlineBots": {
 					"name": "onlineBots",
-					"description": "सर्वर में ऑनलाइन बॉट्स (सामान्य उपयगकरतओ क छडकर)"
+					"description": "सर्वर में ऑनलाइन बॉट्स (सामान्य उपयगकरतओ क छडकर)",
+					"detailedDescription": "Counts how many bots (excluding normal accounts) are online in the server",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Online bots"
+					]
 				},
-				{
-					"key": "offlineBots",
+				"offlineBots": {
 					"name": "offlineBots",
-					"description": "आपक सरवर म ऑफलइन बटस (समनय उपयगकरत क छडकर)"
+					"description": "आपक सरवर म ऑफलइन बटस (समनय उपयगकरत क छडकर)",
+					"detailedDescription": "Counts how many bots (excluding normal accounts) are offline in the server",
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Offline bots"
+					]
 				},
-				{
-					"key": "roles",
-					"name": "roles",
-					"description": "आपक सरवर म भमकए"
+				"roles": {
+					"name": "भूमिकाएँ",
+					"description": "आपक सरवर म भमकए",
+					"detailedDescription": "Counts how many roles are in the server",
+					"usage": [
+						"{roles}"
+					],
+					"example": [
+						"{roles} Roles"
+					]
 				},
-				{
-					"key": "channels",
-					"name": "channels",
-					"description": "आपक सरवर म चनल (शरण चनल क छडकर)"
+				"channels": {
+					"name": "चैनले",
+					"description": "Channels in your server (excludes categories) or under a category",
+					"detailedDescription": "Counts how many channels (excluding category channels) are in the server, if you specify one or more category IDs after the `:`, separated by commas, only the channels under those specified categories will be counted",
+					"usage": [
+						"{channels}",
+						"{channels:categoryID1,categoryID2}"
+					],
+					"example": [
+						"{channels} Channels",
+						"{channels:6509281904766437,5823659271648290} Tickets open"
+					]
 				},
-				{
-					"key": "membersWithRole",
+				"membersWithRole": {
 					"name": "membersWithRole:role1ID,role2ID",
-					"description": "यह मयन रखत ह क कतन सदसय क भमक य भमकए ह, उन भमकओ क लख जनक आईड आप `:` क बद गनन चहत ह, और कम क सथ भमक आईड क अलग कर `,`"
+					"description": "Members with a role or roles",
+					"detailedDescription": "Counts how many members have a role or roles, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{membersWithRole:role1ID,role2ID}"
+					],
+					"example": [
+						"{membersWithRole:6509281904766437,5823659271648290} Admins and mods"
+					]
 				},
-				{
-					"key": "onlineMembersWithRole",
+				"onlineMembersWithRole": {
 					"name": "onlineMembersWithRole:role1ID,role2ID",
-					"description": "`{membersWithRole:}` क तरह, लकन कवल ऑनलइन सदसय क गनत ह"
+					"description": "Online members with a role or roles",
+					"detailedDescription": "Counts how many members with a role or roles are online, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{onlineMembersWithRole:role1ID,role2ID}"
+					],
+					"example": [
+						"{onlineMembersWithRole:6509281904766437,5823659271648290} Online admins and mods",
+						"{onlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are online"
+					]
 				},
-				{
-					"key": "offlineMembersWithRole",
+				"offlineMembersWithRole": {
 					"name": "offlineMembersWithRole:role1ID,role2ID",
-					"description": "`{membersWithRole:}` क तरह, लकन कवल ऑफलइन सदसय क गनत ह"
+					"description": "Offline members with a role or roles",
+					"detailedDescription": "Counts how many members with a role or roles are offline, write the roles IDs you wanna count after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{offlineMembersWithRole:role1ID,role2ID}"
+					],
+					"example": [
+						"{offlineMembersWithRole:6509281904766437,5823659271648290} Offline admins and mods",
+						"{offlineMembersWithRole:5823659271648290} of {membersWithRole:5823659271648290} Admins are offline"
+					]
 				},
-				{
-					"key": "connectedMembers",
-					"name": "connectedMembers",
-					"description": "वयस चनल म जड सदसय क कल मतर"
-				},
-				{
-					"key": "connectedMembers",
+				"connectedMembers": {
 					"name": "connectedMembers:channel1ID,channel2ID",
-					"description": "`{connectedMembers}` क तरह, लकन बट नरदषट चनल म कवल जड सदसय क गनत करग, चनल आईड `:` क बद लख जस आप गनन चहत ह, और चनल आईड क अलग कर अलपवरम `,` स"
+					"description": "Connected members to voice channels",
+					"detailedDescription": "Counts how many members are connected to all the voice channels or to the specified ones, write the channel IDs you wanna filter after the `:`, and separate the IDs with commas",
+					"usage": [
+						"{connectedMembers}",
+						"{connectedMembers:channel1ID,channel2ID}"
+					],
+					"example": [
+						"{connectedMembers} Talking",
+						"{connectedMembers:5823659271648290} talking in the lounge"
+					]
 				},
-				{
-					"key": "bannedMembers",
+				"bannedMembers": {
 					"name": "bannedMembers",
-					"description": "आपक सरवर म परतबधत सदसय क मतर, बट क पस इस गनत क परदरशत करन क लए परतबध लगन क अनमत हन चहए"
+					"description": "Amount of banned members in your server",
+					"detailedDescription": "Counts how many members are banned, the bot must have ban permissions to get this count",
+					"usage": [
+						"{bannedMembers}"
+					],
+					"example": [
+						"{bannedMembers} Banned",
+						"{bannedMembers} have been hit with the ban hammer"
+					]
 				},
-				{
-					"key": "membersPlaying",
+				"membersPlaying": {
 					"name": "membersPlaying:game name",
-					"description": "गिनता है कि कितने सदस्य एक खेल खेल रहे हैं। उदाहरण: `{membersPlaying:Minecraft}`"
+					"description": "Amount of members playing a game",
+					"detailedDescription": "Counts how many members are playing a game, you can add multiple games by separating them with a comma",
+					"usage": [
+						"{membersPlaying:game name}",
+						"{membersPlaying:game name, game name 2}"
+					],
+					"example": [
+						"{membersPlaying:Minecraft} Mining and crafting",
+						"{membersPlaying: euro truck simulator 2, american truck simulator} Trucking"
+					]
 				},
-				{
-					"key": "http",
-					"name": "http:options",
-					"description": "http `GET` अनुरोध द्वारा लौटाया गया परिणाम दिखाता है। आप `options` [here] (https://member-counter.eduardozgz.com/utils/http) सेटअप कर सकते हैं, या इसे मैन्युअल रूप से बना सकते हैं: `options` base64 में एन्कोड किया गया एक JSON ऑब्जेक्ट है (आप {PREFIX} का उपयोग कर सकते हैं) base64 इसे संग्रहीत करने की कमांड), इस ऑब्जेक्ट में निम्नलिखित कुंजियाँ हो सकती हैं: `url`: एक स्ट्रिंग; संसाधन के url के साथ, `parseNumber`: एक बूलियन; यदि परिणाम एक मान्य संख्या है, तो इसे आपके सर्वर की सेटिंग में पार्स और अनुकूलित किया जाएगा, `dataPath`: एक स्ट्रिंग ; यदि प्रतिक्रिया एक JSON ऑब्जेक्ट है, तो आपको एक कुंजी के लिए पथ निर्दिष्ट करना होगा जिसमें एक स्ट्रिंग या संख्या होनी चाहिए, इस पथ का सिंटैक्स के समान है जो JS गुणों और सरणी आइटम तक पहुंचने के लिए उपयोग करता है।"
-				},
-				{
-					"key": "youtubeSubscribers",
-					"name": "youtubeSubscribers:channelUrl",
-					"description": "यूट्यूब चैनल ग्राहकों को प्रदर्शित करता है, इच्छित चैनल यूआरएल को channelUrl की जगह बदलें"
-				},
-				{
-					"key": "youtubeViews",
-					"name": "youtubeViews:channelUrl",
-					"description": "प्रदर्शित करता है यूट्यूब चैनल इतनी बार देखा गया"
-				},
-				{
-					"key": "youtubeVideos",
-					"name": "youtubeVideos:channelUrl",
-					"description": "यूट्यूब चैनल वीडियो काउंट दिखाता है"
-				},
-				{
-					"key": "youtubeChannelName",
-					"name": "youtubeChannelName:channelUrl",
-					"description": "एक यूट्यूब चैनल का नाम प्रदर्शित करता है"
-				},
-				{
-					"key": "twitchFollowers",
-					"name": "twitchFollowers:nickname",
-					"description": "एक ट्विच चैनल अनुयायी गिनती प्रदर्शित करता है, उपनाम को वांछित चैनल नाम से बदलें"
-				},
-				{
-					"key": "twitchViews",
-					"name": "twitchViews:nickname",
-					"description": "प्रदर्शित करता है ट्विच चैनल इतनी बार देखा गया"
-				},
-				{
-					"key": "twitchChannelName",
-					"name": "twitchChannelName:nickname",
-					"description": "एक ट्विच चैनल नाम प्रदर्शित करता है"
-				},
-				{
-					"key": "memeratorMemes",
-					"name": "memeratorMemes:username",
-					"description": "एक [Memerator] (https://memerator.me) उपयोगकर्ता का मेम काउंट प्रदर्शित करता है, उपयोगकर्ता नाम को प्रोफ़ाइल नाम से बदलें"
-				},
-				{
-					"key": "memeratorFollowers",
-					"name": "memeratorFollowers:username",
-					"description": "एक [Memerator] (https://memerator.me) उपयोगकर्ता के अनुयायी की संख्या को प्रदर्शित करता है, उपयोगकर्ता नाम को प्रोफ़ाइल नाम से बदलें"
-				},
-				{
-					"key": "twitterFollowers",
-					"name": "twitterFollowers:username",
-					"description": "एक ट्विटर अकाउंट में अनुयायियों की मात्रा प्रदर्शित करता है, उपयोगकर्ता नाम को वास्तविक ट्विटर उपयोगकर्ता नाम से बदलें"
-				},
-				{
-					"key": "countdown",
-					"name": "countdown:targetDate:format",
-					"description": "एक उलट गनत दखत ह ज नरदषट लकषय तथ तक घट जएग, आप आसन स [इस कउटर क यह उतपनन कर सकत ह](https://member-counter.eduardozgz.com/utils/countdown) य मनयअल रप स एक UNIX टइमसटमप म लकषय तथ क सथ `targetDate` क परतसथपत करक और वकलपक रप स `format` इस कसटम पररप क सथ बनय: बच हए दन क दखन क लए `%d` क उपयग कर, घट क दखन क लए `%h`, `%m` मनट क दखन क लए और `%s` बच हए सकड दखन क लए"
-				},
-				{
-					"key": "game",
-					"name": "game:gameId:address",
-					"description": "एक खेल सर्वर (Minecraft, काउंटर स्ट्राइक, जंग, सन्दूक, टीम किले 2, GMOD, आदि) में ऑनलाइन खिलाड़ियों को सूचीबद्ध करने के लिए `gameId` को बदलना याद रखें [here] (https://github.com/gamedig/node-gamedig/#games-list) और `address` वास्तविक सर्वर पते द्वारा। उदाहरण: {game:minecraft:mc.hypixel.net}"
-				},
-				{
-					"key": "clock",
-					"name": "clock:timeZone",
-					"description": "निर्दिष्ट समयक्षेत्र के समय के साथ एक घड़ी दिखाता है, आप आसानी से देख सकते हैं [इस काउंटर को जनरेट करें](https://member-counter.eduardozgz.com/utils/clock) या एक मान्य IANA समयक्षेत्र के साथ `timeZone` को बदलें। उदाहरण: `{clock:Europe/Madrid}`"
-				},
-				{
-					"key": "nitro-boosters",
+				"nitro-boosters": {
 					"name": "nitro-boosters",
-					"description": "इस सर्वर को बढ़ाने वाले सदस्यों की कुल राशि दिखाता है"
+					"description": "Counts the total amount of members boosting this server",
+					"detailedDescription": "Counts the total amount of members boosting this server",
+					"usage": [
+						"{nitro-boosters}"
+					],
+					"example": [
+						"Awesome boosters: {nitro-boosters}"
+					]
 				},
-				{
-					"key": "redditMembers",
-					"name": "redditMembersOnline",
-					"description": "दिए गए सब्रेडिट के लिए सदस्यों की राशि प्रदर्शित करता है"
+				"youtubeSubscribers": {
+					"name": "youtubeSubscribers:channelUrl",
+					"description": "Amount of subscribers of a YouTube channel",
+					"detailedDescription": "Counts how many subscribers has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeSubscribers:channelUrl}"
+					],
+					"example": [
+						"Subscribers: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "redditMembersOnline",
-					"name": "redditMembersOnline",
-					"description": "दिए गए सब्रेडिट के लिए ऑनलाइन सदस्यों की राशि प्रदर्शित करता है"
+				"youtubeViews": {
+					"name": "youtubeViews:channelUrl",
+					"description": "Amount of views of a YouTube channel",
+					"detailedDescription": "Counts how many views has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeViews:channelUrl}"
+					],
+					"example": [
+						"Views: {youtubeViews:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "redditTitle",
-					"name": "redditTitle",
-					"description": "Displays the title for the given subreddit"
+				"youtubeVideos": {
+					"name": "youtubeVideos:channelUrl",
+					"description": "Amount of videos of a YouTube channel",
+					"detailedDescription": "Counts how many videos has a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeVideos:channelUrl}"
+					],
+					"example": [
+						"Videos: {youtubeVideos:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "static",
-					"name": "static:number",
-					"description": "सर्वर सेटिंग्स के आधार पर कस्टम स्वरूपण के साथ दिए गए `number` को दिखाता है"
+				"youtubeChannelName": {
+					"name": "youtubeChannelName:channelUrl",
+					"description": "Displays the name of a YouTube channel",
+					"detailedDescription": "Displays the name of a YouTube channel, replace `channelUrl` with the desired channel url",
+					"usage": [
+						"{youtubeChannelName:channelUrl}"
+					],
+					"example": [
+						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
+					]
 				},
-				{
-					"key": "instagramFollowers",
+				"twitchFollowers": {
+					"name": "twitchFollowers:nickname",
+					"description": "Amount of followers of a Twitch channel",
+					"detailedDescription": "Counts how many followers has a Twitch channel, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchFollowers:nickname}"
+					],
+					"example": [
+						"{twitchFollowers:ninja} Followers"
+					]
+				},
+				"twitchViews": {
+					"name": "twitchViews:nickname",
+					"description": "Amount of views of a Twitch channel",
+					"detailedDescription": "Counts how many views has a Twitch channel, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchViews:nickname}"
+					],
+					"example": [
+						"{twitchViews:ninja} Views"
+					]
+				},
+				"twitchChannelName": {
+					"name": "twitchChannelName:nickname",
+					"description": "Displays the name of a Twitch channel",
+					"detailedDescription": "Displays the name of a Twitch channel, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchChannelName:nickname}"
+					],
+					"example": [
+						"{twitchChannelName:ninja}"
+					]
+				},
+				"memeratorMemes": {
+					"name": "memeratorMemes:username",
+					"description": "Displays a [Memerator](https://memerator.me) user's meme count",
+					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's meme count, replace `username` with the desired profile name",
+					"usage": [
+						"{memeratorMemes:username}"
+					],
+					"example": [
+						"Memes: {memeratorMemes:eduardozgz}"
+					]
+				},
+				"memeratorFollowers": {
+					"name": "memeratorFollowers:username",
+					"description": "Displays a [Memerator](https://memerator.me) user's follower count",
+					"detailedDescription": "Displays a [Memerator](https://memerator.me) user's follower count, replace `username` with the desired profile name",
+					"usage": [
+						"{memeratorFollowers:username}"
+					],
+					"example": [
+						"Followers: {memeratorFollowers:eduardozgz}"
+					]
+				},
+				"twitterFollowers": {
+					"name": "twitterFollowers:username",
+					"description": "Amount of followers of a Twitter user",
+					"detailedDescription": "Counts how many followers has a Twitter user, replace `username` with the desired profile name",
+					"usage": [
+						"{twitterFollowers:username}"
+					],
+					"example": [
+						"Followers: {twitterFollowers:0xEduardozgz}"
+					]
+				},
+				"redditMembers": {
+					"name": "redditMembers:subreddit",
+					"description": "Counts the amount of members of a subreddit",
+					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"usage": [
+						"{redditMembers:subreddit}"
+					],
+					"example": [
+						"Redditors: {redditMembers:science}"
+					]
+				},
+				"redditMembersOnline": {
+					"name": "redditMembersOnline:subreddit",
+					"description": "Counts the amount of online members of a subreddit",
+					"detailedDescription": "Counts the amount of members of a subreddit, replace `subreddit` with the desired subreddit",
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"Online Redditors: {redditMembersOnline:science}"
+					]
+				},
+				"redditTitle": {
+					"name": "redditTitle:subreddit",
+					"description": "Displays the title of a subreddit",
+					"detailedDescription": "Displays the title of a subreddit, replace `subreddit` with the desired subreddit",
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"{redditMembersOnline:science}"
+					]
+				},
+				"instagramFollowers": {
 					"name": "instagramFollowers:username",
-					"description": "एक ट्विटर अकाउंट में अनुयायियों की मात्रा प्रदर्शित करता है, उपयोगकर्ता नाम को वास्तविक Instagram उपयोगकर्ता नाम से बदलें"
+					"description": "Counts the amount of followers in an Instagram account",
+					"detailedDescription": "Counts the amount of followers in an Instagram account, replace `username` with the actual Instagram username",
+					"usage": [
+						"{instagramFollowers:username}"
+					],
+					"example": [
+						"Followers: {instagramFollowers:eduardozgz}"
+					]
 				},
-				{
-					"key": "sum",
+				"countdown": {
+					"name": "countdown:targetDate:format",
+					"description": "Shows a countdown that will decrease to the specified target date",
+					"detailedDescription": "एक उलट गनत दखत ह ज नरदषट लकषय तथ तक घट जएग, आप आसन स [इस कउटर क यह उतपनन कर सकत ह](https://member-counter.eduardozgz.com/utils/countdown) य मनयअल रप स एक UNIX टइमसटमप म लकषय तथ क सथ `targetDate` क परतसथपत करक और वकलपक रप स `format` इस कसटम पररप क सथ बनय: बच हए दन क दखन क लए `%d` क उपयग कर, घट क दखन क लए `%h`, `%m` मनट क दखन क लए और `%s` बच हए सकड दखन क लए",
+					"usage": [
+						"{countdown:targetDate:format}"
+					],
+					"example": [
+						"New year: {countdown:1640991600:%d days, %h hours, %m minutes}"
+					]
+				},
+				"game": {
+					"name": "game:gameId:address",
+					"description": "Online players in a game server (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc)",
+					"detailedDescription": "Counts how many online players are in a game server (like Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), replace `gameId` by one of the listed [here](https://github.com/gamedig/node-gamedig/#games-list) and `address` by the actual server address",
+					"usage": [
+						"{game:gameId:address}"
+					],
+					"example": [
+						"{game:minecraft:mc.hypixel.net} Mining and crafting"
+					]
+				},
+				"clock": {
+					"name": "clock:timeZone",
+					"description": "Shows a clock with the time of the specified timezone",
+					"detailedDescription": "Shows a clock with the time of the specified timezone, you can easily [generate this counter here](https://member-counter.eduardozgz.com/utils/clock) or replace `timeZone` with a valid IANA timezone",
+					"usage": [
+						"{clock:timeZone}"
+					],
+					"example": [
+						"Spain: {clock:Europe/Madrid}"
+					]
+				},
+				"http": {
+					"name": "http:options",
+					"description": "Shows the result of a http request",
+					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use {PREFIX}base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items, `lifetime`: A number; specifies in seconds for how long the returned response will be cached and used, the default is 1 hour",
+					"usage": [
+						"{http:options}"
+					],
+					"example": [
+						"Last subscriber: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
+					]
+				},
+				"replace": {
+					"name": "replace:text:oldValue;newValue",
+					"description": "Replaces portions of the given text with the given values",
+					"detailedDescription": "Replaces portions of the given text with the given values, this counter is useful alongside the `{http}` counter to for example, read data from an API, and depending on the returned response, translate the response to something more human friendly.\n`text` should be the original text or a counter like `{http}`, `oldValue` the value to search and `newValue` the value that will replace `oldValue`, you can replace multiple values by separating them with a comma as shown below in the examples.",
+					"usage": [
+						"{replace:text:oldValue;newValue}",
+						"{replace:text:oldValue;newValue,oldValue2;newValue2}"
+					],
+					"example": [
+						"{replace:Hello\\, world!:Hello;Goodbye,world;discord}",
+						"Weather in Madrid: {replace:{http:eyJ1cmwiOiJ3ZWF0aGVyLmFwaS9tYWRyaWQifQ==}:storm;🌩,sunny;☀,raining;🌧}"
+					]
+				},
+				"escape": {
+					"name": "escape:stringToEscape",
+					"description": "Escapes common delimiters used by Member Counter",
+					"detailedDescription": "Escapes automatically all the delimiters used by Member Counter when processing a counter. Like `:`,`;` or `,`. You may need this if you want to pass arguments with the mentioned delimiters without getting them parsed. This is specially useful when you can't control well the content of the string like in the `{http}` counter",
+					"usage": [
+						"{escape:stringToEscape}"
+					],
+					"example": [
+						"{escape:Hello, world!}"
+					]
+				},
+				"static": {
+					"name": "static:data",
+					"description": "Displays the given `data`",
+					"detailedDescription": "Displays the given `data` with custom formatting based on the server settings if it's a number, text is also accepted",
+					"usage": [
+						"{static:data}"
+					],
+					"example": [
+						"{static:420}",
+						"{static:Hello world!}"
+					]
+				},
+				"sum": {
 					"name": "sum:value1,value2,more values",
-					"description": "Does a sum of the specified values"
+					"description": "Sum of the specified values",
+					"detailedDescription": "Sum of the specified values, done from the left to the right",
+					"usage": [
+						"{sum:value1,value2,more values}"
+					],
+					"example": [
+						"2 + 2 = {sum:2,2}"
+					]
 				},
-				{
-					"key": "substract",
-					"name": "substract:value1,value2,more values",
-					"description": "Substracts the specified values"
+				"subtract": {
+					"name": "subtract:value1,value2,more values",
+					"description": "Subtracts the specified values",
+					"detailedDescription": "Subtracts the specified values, done from the left to the right",
+					"usage": [
+						"{subtract:value1,value2,more values}"
+					],
+					"example": [
+						"2 - 2 = {subtract:2,2}"
+					]
 				},
-				{
-					"key": "multiply",
+				"multiply": {
 					"name": "multiply:value1,value2,more values",
-					"description": "Multiplies the specified values"
+					"description": "Multiplies the specified values",
+					"detailedDescription": "Multiplies the specified values, done from the left to the right",
+					"usage": [
+						"{multiply:value1,value2,more values}"
+					],
+					"example": [
+						"2 * 2 = {multiply:2,2}"
+					]
 				},
-				{
-					"key": "divide",
+				"divide": {
 					"name": "divide:value1,value2,more values",
-					"description": "Divides the specified values"
+					"description": "Divides the specified values",
+					"detailedDescription": "Divides the specified values, done from the left to the right",
+					"usage": [
+						"{divide:value1,value2,more values}"
+					],
+					"example": [
+						"10 / 2 = {divide:10,2}"
+					]
 				},
-				{
-					"key": "modulus",
+				"modulus": {
 					"name": "modulus:value1,value2,more values",
-					"description": "Gets the modulus of the specified values"
+					"description": "Gets the modulus of the specified values",
+					"detailedDescription": "Gets the modulus of the specified values, done from the left to the right",
+					"usage": [
+						"{modulus:value1,value2,more values}"
+					],
+					"example": [
+						"10 % 2 = {modulus:10,2}"
+					]
 				}
-			]
+			}
+		},
+		"premium": {
+			"helpDescription": "Get information about Member Counter Premium.",
+			"helpExample": [
+				"{PREFIX}premium"
+			],
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({GET_PREMIUM_BOT_URL}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members and servers you have. For €5 EUR per 50,000 members and 5 servers, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Use your own bot account, with the profile picture and username of your choice",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
 		},
 		"lockChannel": {
-			"helpDescription": "आप वाणी चैनलों में स्पीकर (🔊) के बजाय लॉकपैड (🔒) दिखाने के लिए इस आदेश का उपयोग कर सकते हैं\n\n**प्रयोग**```{PREFIX}lockChannel [channel id]```\n **उदाहरण**```{PREFIX}lockChannel 700336568099143710```",
+			"helpDescription": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels.",
+			"helpUsage": [
+				"{PREFIX}lockChannel [channel id]"
+			],
+			"helpExample": [
+				"{PREFIX}lockChannel 700336568099143710"
+			],
 			"success": "किये गए! अब, **गैर व्यवस्थापक उपयोगकर्ताओं के लिए**, चैनल को 🔒 के साथ प्रदर्शित किया जाएगा",
 			"errorInvalidChannel": "आप केवल वॉइस चैनल लॉक कर सकते हैं!",
 			"errorNoPerms": "अनुमतियों की कमी के कारण मैं चैनल `{CHANNEL}` को संपादित नहीं कर सकता",
 			"errorNotFound": "चैनल नहीं मिला"
 		},
 		"editChannel": {
-			"helpDescription": "यदि आप एक काउंटर सेट करने की कोशिश कर रहे हैं, लेकिन डिस्कोर्ड आपको बताता है कि आप नाम / विषय की लंबाई सीमा तक पहुंच गए हैं, तो आप इस सीमा का उपयोग उस सीमा को \"अनदेखा\" करने के लिए कर सकते हैं\n**प्रयोग**```{PREFIX}editChannel [channelId] [content]```\n**उदाहरण**```{PREFIX}editChannel 701396983843127366 {members} मे से {onlinemembers} ऑनलाइन```",
+			"helpDescription": "If you are trying to set a counter but Discord tells you that you reached the name/topic length limit, you can use this command to \"ignore\" that limit.",
+			"helpUsage": [
+				"{PREFIX}editChannel [channel ID] [content and counters]"
+			],
+			"helpExample": [
+				"{PREFIX}editChannel 701396983843127366 {onlineMembers} of {members} Online"
+			],
 			"success": "कर दी है! नए बदलावों को देखने के लिए आपको कुछ मिनट इंतजार करना पड़ सकता है",
 			"errorNotFound": "चैनल नहीं मिला",
 			"errorNoContent": "आपको कुछ सामग्री प्रदान करनी होगी"
 		},
 		"setDigit": {
-			"helpDescription": "उन संख्याओं को अनुकूलित करता है जिन्हें प्रदर्शित किया जाएगा, संख्या तर्क एक सामान्य संख्या होनी चाहिए, दूसरा तर्क कुछ भी हो सकता है, जैसे इमोजी या सामान्य संख्या, आप कई बार तर्कों को अल्पविराम (`,`) के साथ अलग कर सकते हैं।\nयदि पहला तर्क \"reset\" शब्द है, तो संख्या डिफ़ॉल्ट बहाल हो जाएगी।\n\nप्रयोग  ```{PREFIX}setDigit reset\n{PREFIX}setDigit [number] [your custom number]```\nउदाहरण  ```{PREFIX}setDigit 3 3\n{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:```",
+			"helpDescription": "Customizes numbers that will be displayed, the number argument must be a normal number, the second argument can be anything, like an emoji or a normal number, you can customize multiple numbers at once by separating the arguments with commas (`,`)\nIf the first argument is the word \"reset\", the numbers will be restored to the default ones.",
+			"helpUsage": [
+				"{PREFIX}setDigit reset",
+				"{PREFIX}setDigit [number] [your custom number]"
+			],
+			"helpExample": [
+				"{PREFIX}setDigit 3 3",
+				"{PREFIX}setDigit 3 :emoji3:, 4 :emoji4:"
+			],
 			"success": "अंकों को अनुकूलित किया गया।",
 			"resetSuccess": "संख्याओं को डिफ़ॉल्ट से पुनर्स्थापित किया गया |",
 			"errorMissingParams": "लापता मापदण्ड, कृपया `{PREFIX}help setDigit` देखें"
 		},
 		"shortNumber": {
-			"helpDescription": "यह कमांड आपको काउंटर में एक कॉम्पैक्ट रूप में एक गिनती दिखाने की अनुमति देता है\n\n**प्रयोग**\n```{PREFIX}shortNumber [enable/disable]```\n**उदाहरण**```{PREFIX}shortNumber enable\n{PREFIX}shortNumber disable\n{PREFIX}shortNumber on\n{PREFIX}shortNumber off```",
+			"helpDescription": "This command allows you to show a count in a compact form in counters.",
+			"helpUsage": [
+				"{PREFIX}shortNumber [enable|on/disable|off]"
+			],
+			"helpExample": [
+				"{PREFIX}shortNumber enable",
+				"{PREFIX}shortNumber disable",
+				"{PREFIX}shortNumber on",
+				"{PREFIX}shortNumber off"
+			],
 			"helpImage": "https://i.imgur.com/Rzv4W0C.png",
 			"errorInvalidAction": "अवैध कार्रवाई! कृपया `{PREFIX}help shortNumber` देखें",
 			"success": "कर दी है! नए बदलावों को देखने के लिए आपको कुछ मिनट इंतजार करना पड़ सकता है"
 		},
 		"locale": {
-			"helpDescription": "निर्दिष्ट स्थान पर संख्या और घड़ियों (12h/24h प्रारूप) को प्रारूपित करता है\n\n**प्रयोग**\n```{PREFIX}locale [locale/disable]```\n**उदाहरण**```{PREFIX}locale en\n{PREFIX}locale es\n{PREFIX}locale disable```",
+			"helpDescription": "Formats the numbers and clocks (12h/24h format) to the specified locale.",
+			"helpUsage": [
+				"{PREFIX}locale [locale/disable]"
+			],
+			"helpExample": [
+				"{PREFIX}locale en",
+				"{PREFIX}locale es",
+				"{PREFIX}locale disable"
+			],
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"prefix": {
-			"helpDescription": "बॉट के उपसर्ग को बदलता है।\n\nउपयोग```{PREFIX}prefix [new prefix]```",
+			"helpDescription": "Changes the bot's prefix.",
+			"helpUsage": [
+				"{PREFIX}prefix [new prefix]"
+			],
+			"helpExample": [
+				"{PREFIX}prefix !",
+				"{PREFIX}prefix .",
+				"{PREFIX}prefix $"
+			],
 			"success": "उपसर्ग बदल गया: `{NEW_PREFIX}`",
 			"noPrefixProvided": "आपको एक उपसर्ग प्रदान करना होगा"
 		},
 		"role": {
-			"helpDescription": "आप बॉट प्रशासनिक आदेशों का उपयोग करने के लिए भूमिकाओं की अनुमति या खंडन कर सकते हैं।\nआप सभी भूमिकाओं को अनुमति देने या अस्वीकार करने के लिए ``all`` सूचक का उपयोग कर सकते हैं।\nयह देखने के लिए कि वर्तमान में किन भूमिकाओं के उपयोग की अनुमति है, इस्तेमाल करे `{PREFIX}seeSettings`\n```{PREFIX}role allow @Mod\n{PREFIX}role allow @Mod @OtherRole\n{PREFIX}role deny all```",
+			"helpDescription": "You can allow or deny roles to use bot administrative commands.\nYou can use ``all`` keyword to allow or deny all roles.\nTo see which roles are currently allowed use `{PREFIX}seeSettings`.",
+			"helpUsage": [
+				"{PREFIX}role [allow/deny] [@roles/all]"
+			],
+			"helpExample": [
+				"{PREFIX}role allow @Mod",
+				"{PREFIX}role allow @Mod @OtherRole",
+				"{PREFIX}role allow all",
+				"{PREFIX}role deny all"
+			],
 			"rolesUpdated": "भूमिकाएँ अद्यतन किए गए है।",
 			"errorNoRolesToUpdate": "आपको कम से कम 1 भूमिका का उल्लेख करना होगा",
 			"invalidParams": "अमान्य मापदण्ड, `{PREFIX}help role`"
 		},
 		"seeSettings": {
 			"helpDescription": "इस सर्वर के लिए सभी बॉट समायोजन दिखाता है।",
+			"helpExample": [
+				"{PREFIX}seeSettings"
+			],
 			"settingsMessage": {
 				"headerText": "संघ के लिए समायोजन :",
 				"prefixText": "उपसर्ग :",
 				"langText": "भाषाएं :",
 				"localeText": "स्थान:",
 				"shortNumberText": "छोटी संख्या (कॉम्पैक्ट अंकन):",
-				"premiumText": "प्रीमियम :",
-				"premiumNoTierText": "नहीं",
-				"premiumConfirmedText": "हाँ",
+				"noText": "नहीं",
+				"yesText": "हाँ",
 				"allowedRolesText": "प्रशासनिक आदेशों का उपयोग करने के लिए अनुमत भूमिकाएँ :",
 				"countersText": "गणके :",
 				"customNumbersText": "वैयक्तीकृत संख्या :",
@@ -317,53 +716,65 @@
 			}
 		},
 		"resetSettings": {
-			"helpDescription": "इस सर्वर की कस्टम समायोजन को डिफ़ॉल्ट से पुनर्स्थापित करता है",
+			"helpDescription": "Removes all the counters and restores the custom settings of this server to the default ones.",
+			"helpExample": [
+				"{PREFIX}resetSettings"
+			],
 			"done": "समायोजन पुनः स्थापित किए गए"
 		},
-		"update": {
-			"helpDescription": "यदि आपको लगता है कि गणक अटक गए हैं तो उन्हें फिर से अपडेट करने के लिए इस आदेश का उपयोग करें।",
-			"inProgress": "गणके को अद्यतन किया जा रहा है, इसमें कुछ समय लग सकता है।",
-			"success": "कर दिया |",
-			"wait": "रुकिए! मैं पहले से ही इसे अद्यतन कर रहा हूँ!"
-		},
 		"upgradeServer": {
-			"helpDescription": "यह आदेश आपको Member Counter Premium को आमंत्रित करने की अनुमति देता है, इस आदेश का उपयोग करने के लिए आपके पास एक प्रीमियम खाता होना चाहिए, जिसे आप कम से कम 5 USD दान करके प्राप्त कर सकते हैं : `{PREFIX}donate`",
+			"helpDescription": "This command allows you to invite the old Member Counter Premium bot, by using remaining server upgrades of your account.",
+			"helpExample": [
+				"{PREFIX}upgradeServer"
+			],
 			"success": "किये गए! अगला कदम प्रीमियम बॉट को आमंत्रित करना है :\n{BOT_LINK}",
 			"errorCannotUpgrade": "आप सर्वर उन्नयन नहीं कर सकते, क्योंकि यह पहले से ही प्रीमियम है।",
-			"noServerUpgradesAvailable": "आप और सर्वर उन्नयन नहीं कर सकते हैं क्योंकि आपके पास इससे अधिक सर्वर उन्नयन उपलब्ध नहीं है, आप यह जांच सकते हैं कि आपके पास कितने सर्वर उन्नयन उपलब्ध है `{PREFIX}profile` या `{PREFIX}donate` के साथ कितने सर्वर उन्नयन प्राप्त कर सकते हैं"
+			"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
 		},
 		"info": {
-			"helpDescription": "उपयोगी श्रंखलो की सूची",
+			"helpDescription": "List of useful links.",
+			"helpExample": [
+				"{PREFIX}info"
+			],
 			"embedReply": {
-				"description": "[मुझे अपने सर्वर में जोड़ें]({BOT_INVITE_URL})\n[सहायक सर्वर]({BOT_SERVER_URL})\n[गिटहब रिपोजिटरी](https://github.com/eduardozgz/member-counter-bot)\n[दान]({DONATION_URL})"
+				"description": "[Add me to your server]({BOT_INVITE_URL})\n[Website]({WEBSITE})\n[Get premium]({GET_PREMIUM_BOT_URL})\n[Support server]({BOT_SERVER_URL})\n[GitHub Repository](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
 			"helpDescription": "इस सर्वर के लिए बॉट की भाषा में परिवर्तन करने के लिए आपके पास प्रशासक अनुमति होनी चाहिए।",
+			"helpUsage": [
+				"{PREFIX}lang (lang code)"
+			],
+			"helpExample": [
+				"{PREFIX}lang",
+				"{PREFIX}lang es_ES"
+			],
 			"success": "भाषा सफलतापूर्वक बदला गया।",
 			"errorNotFound": "उपलब्ध भाषाओं की सूची :"
 		},
-		"donate": {
-			"helpDescription": "शीर्ष दान दिखाता है।",
-			"embedReply": {
-				"title": "मेरे बॉट का आनंद ले रहे हैं? मुझे दान करें! (यहाँ क्लिक करें)",
-				"fields": []
-			},
-			"misc": {
-				"emptyNote": "खाली लेख"
-			},
-			"errorExchangeFetch": "विनिमय दरों को लाने के लिए प्रयास करते समय त्रुटि"
-		},
 		"profile": {
-			"helpDescription": "आपके और इस बॉट के बीच संबंधित जानकारी दिखाता है",
+			"helpDescription": "Shows related information between you and this bot.",
+			"helpUsage": [
+				"{PREFIX}profile (@user)"
+			],
+			"helpExample": [
+				"{PREFIX}profile",
+				"{PREFIX}profile @eduardozgz"
+			],
 			"badges": "पदक",
+			"credits": "Credits",
 			"serverUpgradesAvailable": "सर्वर उन्नयन अवशिष्ट",
-			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges and server upgrades will be lost forever, are you sure you want to continue? (Ignore or type 'cancel' to cancel)**",
+			"removeDataConfirmation": "Please send exactly this text if you want to delete all your data: ```{CONFIRMATION_STRING}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{CANCEL_STRING}' to cancel)**",
+			"cancelText": "cancel",
 			"removeDataConfirmationString": "I want to delete all of my data",
-			"removeDataSuccess": "आपका डेटा सफलतापूर्वक निकाल दिया गया है"
+			"removeDataSuccess": "आपका डेटा सफलतापूर्वक निकाल दिया गया है",
+			"userNotFound": "User not found in the DB"
 		},
 		"counts": {
-			"helpDescription": "कुछ मायने दिखाता है",
+			"helpDescription": "Shows some counts.",
+			"helpExample": [
+				"{PREFIX}counts"
+			],
 			"members": "सदस्य :",
 			"onlineMembers": "ऑनलाइन सदस्य :",
 			"offlineMembers": "ऑफलाइन सदस्य :",
@@ -375,13 +786,29 @@
 			"bannedMembers": "Banned members:"
 		},
 		"preview": {
-			"helpDescription": "एक चैनल में काउंटर या विभिन्न काउंटर कैसे दिखेंगे, इसका पूर्वावलोकन दिखाता है\n\n**प्रयोग**```{PREFIX}preview [content]```\n**उदाहरण**```{PREFIX}preview {members} Members```",
+			"helpDescription": "Shows a preview of how a counter or various counters will look in a channel.",
+			"helpUsage": [
+				"{PREFIX}preview [content and counters]"
+			],
+			"helpExample": [
+				"{PREFIX}preview {members} Members"
+			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "चैनल नाम पूर्वावलोकन",
 			"channelTopic": "चैनल विषय पूर्वावलोकन"
 		},
 		"setup": {
-			"helpDescription": "कुछ काउंटरों के साथ कुछ बंद आवाज चैनल बनाता है\nवैकल्पिक रूप से YouTube या ट्विच चैनल काउंटर स्थापित करें\n**प्रयोग**```{PREFIX}setup\n{PREFIX}setup twitch [channel name]\n{PREFIX}setup youtube [channel link]```\n**उदाहरण**```{PREFIX}setup\n{PREFIX}setup twitch muhriaa\n{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw```",
+			"helpDescription": "Creates some locked voice channels with some counters in them\nOptionally set up YouTube or Twitch channel counters.",
+			"helpUsage": [
+				"{PREFIX}setup",
+				"{PREFIX}setup twitch [channel name]",
+				"{PREFIX}setup youtube [channel link]"
+			],
+			"helpExample": [
+				"{PREFIX}setup",
+				"{PREFIX}setup twitch muhriaa",
+				"{PREFIX}setup youtube https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw"
+			],
 			"status": {
 				"creatingCounts": "काउंटर बन रहा है...",
 				"createdCounts": "पूर्ण",
@@ -464,12 +891,84 @@
 							"statusCreated": "{CHECK_MARK} व्यू काउंटर बनाया गया"
 						}
 					]
+				},
+				"twitter": {
+					"categoryName": "📊 {twitterName:{RESOURCE}} Twitter Stats 📊",
+					"counters": [
+						{
+							"name": "twitterFollowers",
+							"template": "{twitterFollowers:{RESOURCE}} Followers",
+							"statusCreating": "{LOADING} अनुयायी काउंटर बनाई जा रही है",
+							"statusCreated": "{CHECK_MARK} अनुयायी काउंटर बनाई गई"
+						}
+					]
 				}
 			}
 		},
 		"base64": {
-			"helpDescription": "एक बेस 64 यूटिलिटी कमांड, विशिष्ट काउंटरों को अनुकूलित करने या उन्नत काउंटर बनाने के लिए उपयोगी है, जैसे `{http}` \n\n**आचरण**```{PREFIX}base64 [encode/decode] [data]```\n **उदाहरण**```{PREFIX}base64 encode मिसाल\n{PREFIX}base64 decode dGVzdA==```",
+			"helpDescription": "A base64 utility command, useful to customize specific counters or create advanced counters like `{http}`.",
+			"helpUsage": [
+				"{PREFIX}base64 [encode/decode] [data]"
+			],
+			"helpExample": [
+				"{PREFIX}base64 encode test",
+				"{PREFIX}base64 decode dGVzdA=="
+			],
 			"invalidAction": "अमान्य कार्रवाई, यह `encode` या `decode` होनी चाहिए"
+		},
+		"checkPermissions": {
+			"helpDescription": "Checks if the bot has the correct permissions to work correctly.",
+			"helpExample": [
+				"{PREFIX}checkPermissions"
+			],
+			"title": "Check permissions",
+			"optionalText": "(Optional)",
+			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
+			"footer": "If you need to fix permissions problems, try inviting the bot again:",
+			"details": {
+				"manageChannels": {
+					"name": "Manage channels",
+					"description": "Used to update the name/description of the channels to update the counters"
+				},
+				"viewChannel": {
+					"name": "View channels",
+					"description": "Used to update the name/description of the channels to update the counters, also used to receive commands"
+				},
+				"voiceConnect": {
+					"name": "Connect",
+					"description": "Used to update the name/description of the channels to update the counters"
+				},
+				"readMessageHistory": {
+					"name": "Read message history",
+					"description": "Used to update counters in messages/embeds"
+				},
+				"sendMessages": {
+					"name": "Send messages",
+					"description": "Used to reply to commands"
+				},
+				"embedLinks": {
+					"name": "Embed links",
+					"description": "Used to reply to commands"
+				},
+				"addReactions": {
+					"name": "Add reactions",
+					"description": "Used to add reactions in commands to interact with it"
+				},
+				"manageMessages": {
+					"name": "Manage messages",
+					"description": "Used to remove reactions in a command",
+					"optional": true
+				},
+				"manageRoles": {
+					"name": "Manage roles",
+					"description": "Used by the {PREFIX}setup command and to update channel permissions when you add a Premium bot"
+				},
+				"banMembers": {
+					"name": "Ban members",
+					"description": "Used to display the amount of banned members in the `{bannedMembers}` counter",
+					"optional": true
+				}
+			}
 		}
 	},
 	"functions": {
@@ -486,7 +985,8 @@
 		},
 		"paginator": {
 			"pageCounter": "पृष्ठ {CURRENT_PAGE}/{TOTAL_PAGES}",
-			"jumpPrompt": "आप किस पेज पर जाना चाहेंगे? प्रॉम्प्ट रद्द करने के लिए `cancel` या `0` टाइप करें। आपके पास उत्तर देने के लिए 15 सेकंड हैं।",
+			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
+			"cancelText": "cancel",
 			"errorPageLengthExceeded": "पृष्ठ संख्या {TOTAL_PAGES} से कम या बराबर होनी चाहिए। कृपया पुन: प्रयास करें।",
 			"errorNegativeInput": "पृष्ठ संख्या नकारात्मक नहीं हो सकती। कृपया पुन: प्रयास करें।"
 		}

@@ -1,10 +1,14 @@
+#!/usr/bin/env node
+console.log("Updating from 0.12.0 to 0.12.1...");
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
 const { DB_URI } = process.env;
 
 (async () => {
-	const mongoClient = await MongoClient.connect(DB_URI);
+	const mongoClient = await MongoClient.connect(DB_URI, {
+		useUnifiedTopology: true
+	});
 	const db = mongoClient.db();
 
 	// Guild Settings
@@ -40,6 +44,6 @@ const { DB_URI } = process.env;
 		);
 	}
 
-	process.stdout.write("\n");
+	process.stdout.write("\nDone\n");
 	process.exit(0);
 })();

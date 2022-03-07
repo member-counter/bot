@@ -3,7 +3,6 @@ interface _AppEnv {
 	DEBUG: boolean;
 	UNRESTRICTED_MODE: boolean;
 	PORT: number;
-	AGENDA_ENABLED_JOBS: string[];
 	GHOST_MODE: boolean;
 
 	DISTRIBUTED: boolean;
@@ -25,6 +24,7 @@ interface _AppEnv {
 	DISCORD_CLIENT_TOKEN: string;
 	DISCORD_BOT_INVITE: string;
 	DISCORD_PREFIX: string;
+	DISCORD_PREFIX_MENTION_DISABLE: boolean;
 	DISCORD_DEFAULT_LANG: string;
 	DISCORD_OFFICIAL_SERVER_ID: string;
 	DISCORD_OFFICIAL_SERVER_URL: string;
@@ -34,6 +34,8 @@ interface _AppEnv {
 	BOT_COLOR: number;
 
 	BOT_OWNERS: string[];
+
+	DISCORD_FILTER_GUILDS: string[];
 
 	MEMBER_COUNTS_CACHE_LIFETIME: number;
 	MEMBER_COUNTS_CACHE_CHECK_SLEEP: number;
@@ -48,24 +50,31 @@ interface _AppEnv {
 	// Custom Emojis
 
 	// Paginator
+	USE_CUSTOM_EMOJIS: boolean;
 	CUSTOM_EMOJI_FIRST_PAGE: string;
 	CUSTOM_EMOJI_LAST_PAGE: string;
 	CUSTOM_EMOJI_PREVIOUS_PAGE: string;
 	CUSTOM_EMOJI_NEXT_PAGE: string;
 	CUSTOM_EMOJI_JUMP: string;
 
-	// Setup command
-
+	// Setup command1
 	CUSTOM_EMOJI_LOADING: string;
 	CUSTOM_EMOJI_CHECK_MARK: string;
+	CUSTOM_EMOJI_ERROR: string;
 
+	// Custom emojis for general use
+	CUSTOM_EMOJI_CONFIRM: string;
+	CUSTOM_EMOJI_NEGATIVE: string;
+	CUSTOM_EMOJI_WARNING: string;
+
+	// URLs
 	WEBSITE_URL: string;
-	DONATION_URL: string;
-
-	USE_CUSTOM_EMOJIS: boolean;
+	GET_PREMIUM_BOT_URL: string;
+	MOTD_URL: string;
 
 	MEMERATOR_API_KEY: string;
 
+	// API Credentials
 	YOUTUBE_API_KEY: string;
 
 	TWITCH_CLIENT_ID: string;
@@ -81,7 +90,6 @@ interface _AppEnv {
 	DBL_TOKEN: string;
 	DBGG_TOKEN: string;
 	DBOATS_TOKEN: string;
-	DBWORLD_TOKEN: string;
 	BOND_TOKEN: string;
 	BFD_TOKEN: string;
 

@@ -1,5 +1,10 @@
 import Command from "../typings/Command";
-import { CategoryChannel, TextChannel, NewsChannel, VoiceChannel } from "eris";
+import {
+	CategoryChannel,
+	TextChannel,
+	NewsChannel,
+	VoiceChannel,
+} from "eris";
 import { table } from "table";
 import embedBase from "../utils/embedBase";
 import GuildService from "../services/GuildService";
@@ -12,6 +17,9 @@ import UserError from "../utils/UserError";
 import getEnv from "../utils/getEnv";
 import Paginator from "../utils/paginator";
 import safeDiscordString from "../utils/safeDiscordString";
+import Emojis from "../utils/emojis";
+import neededBotPermissions from "../utils/neededBotPermissions";
+import getBotInviteLink from "../utils/getBotInviteLink";
 
 const { PREMIUM_BOT_INVITE, BOT_OWNERS } = getEnv();
 
@@ -29,10 +37,9 @@ const seeSettings: Command = {
 			langText,
 			localeText,
 			shortNumberText,
-			premiumText,
-			premiumNoTierText,
-			premiumConfirmedText,
 			allowedRolesText,
+			noText,
+			yesText,
 			countersText,
 			customNumbersText,
 			warningNoPermsText,
@@ -41,7 +48,6 @@ const seeSettings: Command = {
 
 		const {
 			prefix,
-			premium,
 			language,
 			locale,
 			shortNumber,
@@ -55,14 +61,11 @@ const seeSettings: Command = {
 		let logsSection: string[] = [];
 
 		// format general settings
-		generalSection += `${premiumText} ${
-			premium ? premiumConfirmedText : premiumNoTierText
-		}\n`;
 		generalSection += `${prefixText} \`${prefix}\`\n`;
 		generalSection += `${langText} \`${language}\`\n`;
 		generalSection += `${localeText} \`${locale}\`\n`;
 		generalSection += `${shortNumberText} \`${
-			shortNumber > -1 ? premiumConfirmedText : premiumNoTierText
+			shortNumber > -1 ? yesText : noText
 		}\`\n`;
 		generalSection += `${
 			allowedRoles.length
@@ -338,7 +341,9 @@ const upgradeServer: Command = {
 					);
 				}
 				case "noUpgradesAvailable": {
-					throw new UserError(noServerUpgradesAvailable);
+					throw new UserError(
+						noServerUpgradesAvailable.replace("{PREFIX}", guildService.prefix)
+					);
 				}
 				default:
 					throw error;
@@ -453,6 +458,87 @@ const block: Command = {
 	}
 };
 
+const checkPerms: Command = {
+	aliases: ["checkPerms", "checkPermissions"],
+	denyDm: true,
+	onlyAdmin: true,
+	run: async ({ message, client, languagePack, guildService }) => {
+		const {
+			content,
+			channel,
+			channel: { guild }
+		} = message;
+		const languagePackCheckPermissions = languagePack.commands.checkPermissions;
+		const botMemberPermissions = guild.members.get(client.user.id).permissions;
+		const canUseExternalEmojis = channel
+			.permissionsOf(message.channel.client.user.id)
+			.has("externalEmojis");
+		const emojis = Emojis(canUseExternalEmojis);
+
+		let messageBody = "";
+
+		if (botMemberPermissions.has("administrator")) {
+			messageBody += `${emojis.warning} ${emojis.warning} ${emojis.warning} ${languagePackCheckPermissions.adminWarning} ${emojis.warning} ${emojis.warning} ${emojis.warning}\n\n`;
+		}
+
+		messageBody += neededBotPermissions
+			.map((permission) => {
+				const {
+					optional,
+					name,
+					description
+				} = languagePackCheckPermissions.details[permission];
+				let sectionBody = "";
+
+				if (botMemberPermissions.has(permission)) {
+					sectionBody += emojis.confirm;
+				} else if (optional) {
+					sectionBody += emojis.warning;
+				} else {
+					sectionBody += emojis.negative;
+				}
+
+				sectionBody += ` **__${name}__** ${
+					optional ? languagePackCheckPermissions.optionalText : ""
+				}\n`;
+				sectionBody += `${description}\n`;
+
+				sectionBody = sectionBody.replace(/\{PREFIX\}/gi, guildService.prefix);
+
+				return sectionBody;
+			})
+			.join("\n");
+
+		messageBody += "\n";
+		messageBody += "\n";
+		messageBody += languagePackCheckPermissions.footer;
+		messageBody += "\n";
+
+		const inviteLink = new URL(getBotInviteLink());
+		inviteLink.searchParams.set("guild_id", guild.id);
+		messageBody += inviteLink.toString();
+
+		if (botMemberPermissions.has("embedLinks")) {
+			const embeds = safeDiscordString(messageBody).map((content) =>
+				embedBase({
+					title: languagePackCheckPermissions.title,
+					description: content
+				})
+			);
+			new Paginator(
+				message.channel,
+				message.author.id,
+				embeds,
+				languagePack
+			).displayPage(0);
+		} else {
+			safeDiscordString(messageBody).forEach((content) =>
+				channel.createMessage(content)
+			);
+		}
+	}
+};
+
 const settingsCommands = [
 	seeSettings,
 	resetSettings,
@@ -463,7 +549,8 @@ const settingsCommands = [
 	setDigit,
 	shortNumber,
 	locale,
-	block
+	block,
+	checkPerms
 ];
 
 export default settingsCommands;

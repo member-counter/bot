@@ -1,8 +1,7 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
+
 import getEnv from "../utils/getEnv";
 import Twitter from "twitter";
-import { Console } from "console";
 
 const {
 	TWITTER_CONSUMER_KEY,
@@ -19,18 +18,18 @@ const twitterClient = new Twitter({
 });
 
 const TwitterCounter: Counter = {
-	aliases: ["twitterFollowers"],
+	aliases: ["twitterFollowers", "twitterName"],
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 5 * 60 * 1000,
-	execute: async ({ client, guild, guildSettings, resource }) => {
+	execute: async ({ unparsedArgs: resource }) => {
 		if (!TWITTER_ACCESS_TOKEN)
 			throw new Error("TWITTER_ACCESS_TOKEN not provided");
 		const count = await twitterClient.get("users/show", {
 			screen_name: resource
 		});
 
-		return count?.followers_count;
+		return { twitterFollowers: count?.followers_count, twitterName: resource };
 	}
 };
 

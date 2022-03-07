@@ -3,9 +3,13 @@ import UserModel, { UserSettingsDocument } from "../models/UserModel";
 class UserService {
 	private constructor(public id: string, private doc: UserSettingsDocument) {}
 
+	public static async exists(id: string): Promise<boolean> {
+		return !!(await UserModel.exists({ id }));
+	}
+
 	public static async init(id: string): Promise<UserService> {
 		const doc = await UserModel.findOneAndUpdate(
-			{ user: id },
+			{ id: id },
 			{},
 			{ new: true, upsert: true }
 		);
@@ -38,6 +42,16 @@ class UserService {
 		this.doc.availableServerUpgrades += amount;
 		this.doc.save();
 		return this.doc.availableServerUpgrades;
+	}
+
+	public get credits(): number {
+		return this.doc.credits;
+	}
+
+	public async grantCredits(amount: number = 1): Promise<number> {
+		this.doc.credits += amount;
+		this.doc.save();
+		return this.doc.credits;
 	}
 
 	public async remove(): Promise<void> {

@@ -3,7 +3,6 @@ import GuildService from "./GuildService";
 import { loadLanguagePack } from "../utils/languagePack";
 import getEnv from "../utils/getEnv";
 import botHasPermsToEdit from "../utils/botHasPermsToEdit";
-import stringReplaceAsync from "../utils/stringReplaceAsyncSerial";
 import Constants from "../utils/Constants";
 import Counter from "../typings/Counter";
 import FormattingSettings from "../typings/FormattingSettings";
@@ -141,8 +140,9 @@ class CountService {
 		counterRequested: string,
 		canHaveCustomEmojis: boolean = false
 	): Promise<string> {
-		const separator = (counterRequested.includes(";")) ? ";" : ":";
-		const counterSections = counterRequested.split(separator);
+		const counterSections = counterRequested
+			.split(/(?<!\\):/)
+			.map((section) => section.replace("\\:", ":"));
 		let formattingSettingsRaw: string;
 		const formattingSettings: FormattingSettings = (() => {
 			const settings = {
@@ -169,7 +169,7 @@ class CountService {
 		})();
 
 		let counterName = CountService.safeCounterName(counterSections.shift());
-		let resource = counterSections.join(separator);
+		let resource = counterSections.join(":");
 		let lifetime = 0;
 		let result: string | number;
 
@@ -205,6 +205,11 @@ class CountService {
 			} else {
 				lifetime = counter.lifetime;
 
+				const unparsedArgs = counterSections.join(":");
+				const args = counterSections.map((section) =>
+					section.split(/(?<!\\),/).map((arg) => arg.replace(/\\(.)/g, "$1"))
+				);
+
 				let returnedValue = await counter
 					.execute({
 						client: this.client,
@@ -212,7 +217,8 @@ class CountService {
 						guildSettings: this.guildSettings,
 						aliasUsed: counterName,
 						formattingSettings,
-						resource
+						unparsedArgs,
+						args
 					})
 					.catch((error) => {
 						if (DEBUG) console.error(error);
@@ -296,10 +302,6 @@ class CountService {
 				result = this.languagePack.functions.getCounts.disabled;
 				break;
 
-			case Constants.CounterResult.DISABLED:
-				result = this.languagePack.functions.getCounts.disabled;
-				break;
-
 			case Constants.CounterResult.NOT_AVAILABLE:
 				result = this.languagePack.functions.getCounts.notAvailable;
 				break;
@@ -346,7 +348,7 @@ class CountService {
 	 * @param name
 	 * @returns
 	 */
-	private static safeCounterName(name: string) {
+	public static safeCounterName(name: string) {
 		return name.replace(/-|_|\s/g, "").toLowerCase();
 	}
 
@@ -362,7 +364,11 @@ class CountService {
 		resource: string,
 		formattingSettingsRaw: string
 	): string {
-		return [formattingSettingsRaw, (CountService.safeCounterName(counterName)), resource]
+		return [
+			formattingSettingsRaw,
+			CountService.safeCounterName(counterName),
+			resource
+		]
 			.filter((x) => x) // remove undefined stuff
 			.join(":"); // the final thing will look like "base64Settings:counterName:ExtraParamsAkaResource", like a normal counter but without the curly braces {}
 	}

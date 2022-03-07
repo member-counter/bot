@@ -1,12 +1,11 @@
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
 
 const RolesCounter: Counter = {
 	aliases: ["roles"],
 	isPremium: false,
 	isEnabled: true,
 	lifetime: 0,
-	execute: async ({ client, guild, resource }) => {
+	execute: async ({ guild }) => {
 		return guild.roles.size;
 	}
 };

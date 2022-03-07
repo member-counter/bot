@@ -1,14 +1,13 @@
 {
 	"compilerOptions": {
 		"module": "commonjs",
-		"target": "ES2020",
+		"target": "ES2021",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"sourceMap": true,
 		"outDir": "./dist",
 		"allowJs": true,
-		// TODO: Remove in the next eris update #1063
 		"skipLibCheck": true
 	},
 	"include": ["./src/**/*"],

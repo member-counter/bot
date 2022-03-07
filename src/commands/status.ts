@@ -1,6 +1,4 @@
 import os from "os";
-import git from "git-rev-sync";
-
 import * as packageJSON from "../../package.json";
 import Command from "../typings/Command";
 import embedBase from "../utils/embedBase";
@@ -14,14 +12,6 @@ const parseUptime = (inputDate: number) => {
 	)} Days\n${uptime.getHours()} Hours\n${uptime.getMinutes()} Minutes\n${uptime.getSeconds()} Seconds`;
 };
 
-let gitHash = "";
-
-try {
-	gitHash = ` [${git.short()}](${
-		git.remoteUrl().replace(".git", "/") + "commit/" + git.long()
-	})`;
-} catch {}
-
 const status: Command = {
 	aliases: ["uptime", "status", "ping"],
 	denyDm: false,
@@ -31,7 +21,7 @@ const status: Command = {
 
 		const clientStats = await client.getStats();
 		const stats = {
-			version: `Bot version: ${version}` + gitHash,
+			version: `Bot version: [${version}](https://github.com/eduardozgz/member-counter-bot/releases/tag/v${version})`,
 			clientUptime: parseUptime(client.uptime / 1000),
 			processUptime: parseUptime(process.uptime()),
 			systemUptime: parseUptime(os.uptime()),
@@ -138,11 +128,11 @@ const status: Command = {
 		});
 
 		const RESTLatencyCheck = Date.now();
-		await channel.createMessage({ embed }).then(async (message) => {
+		await channel.createMessage({ embeds: [embed] }).then(async (message) => {
 			// Bot latency field
 			embed.fields[6].value = `${Date.now() - RESTLatencyCheck}ms`;
 
-			await message.edit({ embed });
+			await message.edit({ embeds: [embed] });
 		});
 	}
 };

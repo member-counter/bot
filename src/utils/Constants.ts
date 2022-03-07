@@ -1,6 +1,6 @@
 enum UserBadges {
-	DONATOR = 1,
-	SPONSOR = 1 << 1,
+	DONOR = 1,
+	PREMIUM = 1 << 1,
 	BETA_TESTER = 1 << 2,
 	TRANSLATOR = 1 << 3,
 	CONTRIBUTOR = 1 << 4,
@@ -15,7 +15,7 @@ enum CounterResult {
 	ERROR = -2,
 	UNKNOWN = -3,
 	DISABLED = -4,
-	NOT_AVAILABLE = -5,
+	NOT_AVAILABLE = -5
 }
 
 const Constants = {
