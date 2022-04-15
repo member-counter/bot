@@ -3,19 +3,19 @@
 	"langName": "Polish",
 	"commands": {
 		"help": {
-			"helpDescription": "Get help about commands and counters.",
+			"helpDescription": "Uzyskaj pomoc na temat komend i liczników.",
 			"helpUsage": [
-				"{PREFIX}help [command or counter]"
+				"{PREFIX}pomoc [polecenie lub licznik]"
 			],
 			"helpExample": [
 				"{PREFIX}help lockChannel",
 				"{PREFIX}help {members}",
 				"{PREFIX}help members"
 			],
-			"helpFooterText": "**Usage info:** `()` means an optional parameter while `[]` means a required one",
+			"helpFooterText": "**Informacje o użytkowaniu:** `()` oznacza opcjonalny parametr, podczas gdy `[]` oznacza wymagany",
 			"embedReply": {
 				"title": "Lista komend | prefix {PREFIX}",
-				"description": "[Add this bot to your server]({DISCORD_BOT_INVITE}) **|** [Website]({WEBSITE}) **|** [Documentation](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nQuick setup: `{PREFIX}setup`\nLearn how to use the bot: `{PREFIX}guide`\n\nTo get more info about a command or counter send `{PREFIX}help` plus the name: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
+				"description": "[Dodaj tego bota do swojego serwera]({DISCORD_BOT_INVITE}) **|** [Strona]({WEBSITE}) **|** [Dokumentacja](https://eduardozgz.gitbook.io/member-counter) **|** [GitHub](https://github.com/eduardozgz/member-counter-bot/)\n\nSzybka konfiguracja: `{PREFIX}setup`\nDowiedz się, jak używać bota: `{PREFIX}guide`\nAby uzyskać więcej informacji na temat komend lub liczników użyj`{PREFIX}help` plus nazwa: ```\n{PREFIX}help shortNumber``````\n{PREFIX}help {members}```",
 				"fields": [
 					{
 						"name": "**Liczniki**",
@@ -36,17 +36,17 @@
 			},
 			"misc": {
 				"command": "Komenda:",
-				"counter": "Counter:",
-				"errorNotFound": "Sorry I couldn't find help for ``{DESIRED_COMMAND}``",
-				"suggestCounter": "Maybe you are looking for one of these counters:",
-				"suggestCommand": "Maybe you are looking for one of these commands:",
-				"usageText": "Usage",
-				"exampleText": "Example",
-				"searchIgnoredWords": "amount count"
+				"counter": "Licznik:",
+				"errorNotFound": "Niestety nie udało mi się znaleźć pomocy dla``{DESIRED_COMMAND}``",
+				"suggestCounter": "Być może szukasz jednego z tych liczników:",
+				"suggestCommand": "Być może szukasz jednego z tych poleceń:",
+				"usageText": "Wykorzystanie",
+				"exampleText": "Przykład",
+				"searchIgnoredWords": "ilość"
 			}
 		},
 		"guide": {
-			"helpDescription": "Shows you a guide of how to use the bot and a list of available counters.",
+			"helpDescription": "Wyświetla instrukcję bota oraz listę dostępnych liczników.",
 			"helpExample": [
 				"{PREFIX}guide"
 			],
