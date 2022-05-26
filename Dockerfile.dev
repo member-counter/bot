@@ -4,7 +4,7 @@ WORKDIR /cache/
 RUN apk add --no-cache make gcc g++ python3 git   
 COPY package*.json ./
 RUN npm install -g pnpm
-RUN pnpm install
+RUN pnpm install --strict-peer-dependencies=false
 
 
 FROM node:16-alpine
