@@ -73,7 +73,7 @@ const HTTPCounter: Counter = {
 
 		if (dataPath) {
 			try {
-				result = jsonBodyExtractor(JSON.parse(result), dataPath);
+				result = jsonBodyExtractor(JSON.parse(result.toString()), dataPath);
 			} catch {}
 		}
 
