@@ -33,7 +33,7 @@
 		"@twurple/auth": "^5.0.1",
 		"abort-controller": "^3.0.0",
 		"bufferutil": "^4.0.1",
-		"colorthief": "2.2.0",
+		"colorthief": "2.3.2",
 		"cron": "^1.8.2",
 		"dotenv": "^8.2.0",
 		"dotenv-parse-variables": "^0.2.3",
