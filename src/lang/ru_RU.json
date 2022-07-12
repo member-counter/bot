@@ -575,7 +575,7 @@
 				"fields": [
 					{
 						"name": "**✅ ВСЕ счетчики**",
-						"value": "Получите доступ к **всем** счетчикам, существующим в боте, например, `{membersWithRole}` или `{youtubeSubscribers}`",
+						"value": "Get access to **all** the counters that exists in the bot, like `{twitchFollowers}` or `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
