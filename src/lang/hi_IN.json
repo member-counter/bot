@@ -575,7 +575,7 @@
 				"fields": [
 					{
 						"name": "**✅ ALL the counters**",
-						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"value": "Get access to **all** the counters that exists in the bot, like `{twitchFollowers}` or `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
