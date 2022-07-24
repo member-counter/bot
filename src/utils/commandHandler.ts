@@ -1,15 +1,16 @@
-import getEnv from "./getEnv";
 import Eris, { GuildTextableChannel, Message } from "eris";
+
+import Bot from "../bot";
+import commands from "../commands/all";
 import GuildService from "../services/GuildService";
+import UserService from "../services/UserService";
+import { AnyChannelCommand, GuildChannelCommand } from "../typings/Command";
+import LanguagePack from "../typings/LanguagePack";
+import commandErrorHandler from "./commandErrorHandler";
+import escapeRegex from "./escapeRegex";
+import getEnv from "./getEnv";
 import { loadLanguagePack } from "./languagePack";
 import memberHasAdminPermission from "./memberHasAdminPermission";
-import commandErrorHandler from "./commandErrorHandler";
-import commands from "../commands/all";
-import Bot from "../bot";
-import LanguagePack from "../typings/LanguagePack";
-import { GuildChannelCommand, AnyChannelCommand } from "../typings/Command";
-import UserService from "../services/UserService";
-import escapeRegex from "./escapeRegex";
 
 const {
 	PREMIUM_BOT,
@@ -97,8 +98,7 @@ export default async (message: Eris.Message) => {
 			commandsLoop: for (const command of commands) {
 				for (const alias of command.aliases) {
 					let commandAliasToCheck = matchedPrefix + alias.toLowerCase();
-
-					if (commandRequested.startsWith(commandAliasToCheck)) {
+					if (commandRequested === commandAliasToCheck) {
 						if (channel instanceof Eris.PrivateChannel && command.denyDm) {
 							channel
 								.createMessage(languagePack.functions.commandHandler.noDm)
