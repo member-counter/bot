@@ -575,7 +575,7 @@
 				"fields": [
 					{
 						"name": "**✅ دسترسی به همه شمارنده ها**",
-						"value": "به **تمام** شمارنده هایی که در بات وجود دارند دسترسی پیدا کنید، مثل `{membersWithRole}` یا `{youtubeSubscribers}`",
+						"value": "Get access to **all** the counters that exists in the bot, like `{twitchFollowers}` or `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
