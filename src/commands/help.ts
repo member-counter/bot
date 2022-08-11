@@ -28,7 +28,6 @@ const help: Command = {
 			.trim()
 			.toLowerCase()
 			.replace(/\{|\}/g, "")
-			.replace(new RegExp(`^${escapeRegex(prefix)}`), "");
 
 		if (!desiredThing) {
 			// Main help page
@@ -48,7 +47,7 @@ const help: Command = {
 				return field;
 			});
 
-			await channel.createMessage({ embed });
+			await channel.createMessage({ embeds: [embed] });
 		} else {
 			// Help for the specified command or counter
 			const commandMatch = commands.filter((cmd) =>
@@ -97,7 +96,7 @@ const help: Command = {
 						embed.description +=
 							"\n> " + languagePack.commands.help.helpFooterText;
 
-						await channel.createMessage({ embed });
+						await channel.createMessage({ embeds: [embed] });
 						break;
 					}
 				}
@@ -144,7 +143,7 @@ const help: Command = {
 								prefix
 							);
 
-						await channel.createMessage({ embed });
+						await channel.createMessage({ embeds: [embed] });
 
 						break;
 					}
@@ -162,8 +161,6 @@ const help: Command = {
 					.toLowerCase()
 					.replace(/\p{Diacritic}/gu, "")
 					.split(/\s+|\n+/);
-
-				console.log();
 
 				const bestCounterOccurrences = new Map<string, number>();
 				const bestCommandOccurrences = new Map<string, number>();

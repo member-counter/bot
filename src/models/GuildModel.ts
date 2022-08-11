@@ -1,9 +1,9 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, HydratedDocument } from "mongoose";
 import getEnv from "../utils/getEnv";
 
 const { DISCORD_PREFIX, DISCORD_DEFAULT_LANG } = getEnv();
 
-interface GuildSettingsDocument extends Document {
+interface GuildSettings {
 	id: string;
 	premium: boolean;
 	prefix: string;
@@ -16,7 +16,9 @@ interface GuildSettingsDocument extends Document {
 	blocked: boolean;
 }
 
-const GuildSchema = new Schema({
+type GuildSettingsDocument = HydratedDocument<GuildSettings>;
+
+const GuildSchema = new Schema<GuildSettings>({
 	id: { type: String, require: true },
 	premium: { type: Boolean, default: false },
 	prefix: { type: String, default: DISCORD_PREFIX },
@@ -26,8 +28,8 @@ const GuildSchema = new Schema({
 	shortNumber: { type: Number, default: 1 },
 	locale: { type: String, default: "disabled" },
 	blocked: { type: Boolean, default: false },
-	digits: {
-		type: Array,
+	digits: [{
+		type: String,
 		default: [
 			"<a:0G:701869754616512672>",
 			"<a:1G:701869754578894939>",
@@ -41,7 +43,7 @@ const GuildSchema = new Schema({
 			"<a:9G:701869754687815720>"
 		],
 		require: true
-	}
+	}]
 });
 
 const GuildModel = model<GuildSettingsDocument>("guilds", GuildSchema);

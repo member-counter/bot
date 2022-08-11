@@ -1,6 +1,7 @@
 import Eris, { PrivateChannel, TextChannel } from "eris";
 import LanguagePack from "../typings/LanguagePack";
 import embedBase from "./embedBase";
+import { v4 as uuid } from "uuid";
 
 const commandErrorHandler = async (
 	channel: Eris.TextableChannel,
@@ -25,7 +26,6 @@ const commandErrorHandler = async (
 		case "MongooseError":
 		case "MongooseNativeError":
 			errorEmbed.description = errorDb;
-			console.error(error);
 			break;
 
 		case "DiscordRESTError":
@@ -35,11 +35,15 @@ const commandErrorHandler = async (
 
 		default:
 			errorEmbed.description = errorUnknown;
-			console.error(error);
 			break;
 	}
 
-	channel.createMessage({ embed: errorEmbed }).catch(() => {});
+	const errorId = uuid();
+
+	errorEmbed.description += `\nError ID: \`${errorId}\``;
+	console.error(`Error ${errorId}:`, error);
+
+	channel.createMessage({ embeds: [errorEmbed] }).catch(() => {});
 };
 
 export default commandErrorHandler;
