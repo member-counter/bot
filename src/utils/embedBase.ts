@@ -24,7 +24,7 @@ const embedBase = (embedToAppend?: EmbedOptions): EmbedOptions => {
 		footer: {
 			icon_url:
 				"https://cdn.discordapp.com/avatars/478567255198662656/97f5120bb63e1015d9ff5593f1fa9cae.png?size=64",
-			text: "www.membercounter.bot"
+			text: "member-counter.eduardozgz.com"
 		},
 		...embedToAppend
 	};

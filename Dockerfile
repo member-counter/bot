@@ -15,7 +15,7 @@ RUN sed -e '3d' -i package.json package-lock.json
 FROM base_dependencies as app_building_dependencies
 WORKDIR /cache
 COPY --from=version_cache_fix /cache /cache
-RUN pnpm install
+RUN pnpm install --strict-peer-dependencies=false
 
 # install dependencies for production 
 FROM app_building_dependencies as app_production_dependencies
@@ -36,4 +36,5 @@ WORKDIR /app
 COPY package*.json ./
 COPY --from=app_production_dependencies /cache/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
+COPY ./res ./res
 CMD ["node", "."]

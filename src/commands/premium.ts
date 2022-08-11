@@ -9,9 +9,6 @@ const premium: Command = {
 	aliases: ["premium", "donate", "donor", "donations"],
 	denyDm: false,
 	run: async ({ message, languagePack, client }) => {
-		throw new UserError(
-			"Oops, this isn't ready! Stay tuned to the announcements channel in the [support server](https://discord.gg/g4MfV6N)"
-		);
 		const { channel } = message;
 		const embed = embedBase(languagePack.commands.premium.embedReply);
 		embed.description = embed.description.replace(
@@ -19,7 +16,7 @@ const premium: Command = {
 			GET_PREMIUM_BOT_URL
 		);
 
-		await channel.createMessage({ embed });
+		await channel.createMessage({ embeds: [embed] });
 	}
 };
 
