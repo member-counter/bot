@@ -8,11 +8,11 @@
 	"main": "./dist/src/index.js",
 	"scripts": {
 		"start": "node .",
-		"start:docker": "docker-compose -f docker-compose.yml up --force-recreate --build",
+		"start:docker": "docker compose -f docker-compose.yml up --force-recreate --build",
 		"build": "tsc",
 		"build:docker": "docker build .",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
-		"dev:docker": "docker-compose -f docker-compose.dev.yml up --force-recreate --build",
+		"dev:docker": "docker compose -f docker-compose.dev.yml up --force-recreate --build",
 		"generateLPTypings": "node ./res/generateLanguagePackTypings",
 		"preversion": "npm run build && npm run build:docker",
 		"postversion": "git push && git push --tags"
