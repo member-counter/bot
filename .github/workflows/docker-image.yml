@@ -48,7 +48,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            ${{ github.repository }}:latest
-            ${{ github.repository }}:${{ steps.package-version.outputs.current-version }}
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ steps.package-version.outputs.current-version }}
+            member-counter/bot:latest
+            member-counter/bot:${{ steps.package-version.outputs.current-version }}
+            ghcr.io/member-counter/bot:latest
+            ghcr.io/member-counter/bot:${{ steps.package-version.outputs.current-version }}
