@@ -575,7 +575,7 @@
 				"fields": [
 					{
 						"name": "**✅ ALL the counters**",
-						"value": "Get access to **all** the counters that exists in the bot, like `{membersWithRole}` or `{youtubeSubscribers}`",
+						"value": "Get access to **all** the counters that exists in the bot, like `{twitchFollowers}` or `{youtubeSubscribers}`",
 						"inline": false
 					},
 					{
@@ -981,7 +981,7 @@
 			"disabled": "Compteur désactivé",
 			"noBanPerms": "J'ai besoin d'une autorisation de bannir pour montrer ceci",
 			"invalidChannelLength": "Longueur du nom de salon invalide, veuillez réinitialiser le compteur",
-			"notAvailable": "Not available, please wait"
+			"notAvailable": "Non disponible, veuillez patienter"
 		},
 		"paginator": {
 			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
