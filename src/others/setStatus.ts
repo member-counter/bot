@@ -1,8 +1,5 @@
 import Eris from "eris";
 import { ErisClient } from "../bot";
-import getEnv from "../utils/getEnv";
-
-const { DISCORD_PREFIX } = getEnv();
 
 const availableStatus = ["online", "idle", "dnd", "invisible"];
 const availableTypes = ["playing", "streaming", "listening", "watching"];
@@ -13,8 +10,6 @@ function setStatus(client: ErisClient, statusText: string) {
 		type = 0,
 		url: string;
 
-	text = text.replace(/\{prefix\}/gi, DISCORD_PREFIX);
-
 	// detect config
 	const detectConfig = /\{(.+)\}/;
 	if (text.match(detectConfig)) {
@@ -22,11 +17,7 @@ function setStatus(client: ErisClient, statusText: string) {
 			.match(detectConfig)[1]
 			.split(";");
 
-		if (
-			availableStatus.includes(
-				requestedStatus.toLowerCase()
-			)
-		) {
+		if (availableStatus.includes(requestedStatus.toLowerCase())) {
 			status = requestedStatus.toLowerCase();
 		}
 
@@ -48,7 +39,7 @@ function setStatus(client: ErisClient, statusText: string) {
 		url
 	});
 
-	return { text, status, type: availableTypes[type] }
+	return { text, status, type: availableTypes[type] };
 }
 
 export default setStatus;
