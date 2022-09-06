@@ -1,89 +1,103 @@
-# Member Counter
+# Discord bot template
 
-[![TOP.GG Badge](https://discordbots.org/api/widget/servers/478567255198662656.svg)](https://discordbots.org/bot/478567255198662656)
-[![TOP.GG Badge](https://discord.com/api/guilds/614777317733957632/widget.png?style=shield)](https://discord.gg/g4MfV6N)
-[![CodeFactor Badge](https://www.codefactor.io/repository/github/eduardozgz/member-counter-bot/badge)](https://www.codefactor.io/repository/github/eduardozgz/member-counter-bot)
-[![Crowdin Translation Project Badge](https://badges.crowdin.net/member-counter-bot/localized.svg)](https://crowdin.com/project/member-counter-bot)
+This is a template with everything I usually need to create discord bots
 
-[Add this bot](https://discord.com/oauth2/authorize?client_id=478567255198662656&permissions=269577300&scope=bot%20applications.commands) **|** [Website](https://member-counter.eduardozgz.com/) **|** [Translation Project](https://crowdin.com/project/member-counter-bot) **|** [Documentation](https://docs.member-counter.eduardozgz.com/)
+- Scalability
+- i18n
 
-Member Counter is a Discord bot which lets you easily display counts and other dynamic information in a channel name or topic, to get started, [add this bot](https://discord.com/oauth2/authorize?client_id=478567255198662656&permissions=269577300&scope=bot%20applications.commands) to your Discord server and type `@Member Counter setup`, and then read `@Member Counter guide` to learn how to make more cool stuff with the bot.
+# Configuration
 
-See also the [documentation](https://docs.member-counter.eduardozgz.com/) to learn about every feature of the bot
+Copy the `.env.example` to a `.env` file and fill out the variables
+`cp .env.example .env`
+Or take reference from `.env.example` and pass the variables directly
 
-# Self-host
+# The code
 
-Read this guide to setup this bot using docker: https://docs.member-counter.eduardozgz.com/guides/how-to-self-host-member-counter
+Under the `src/` folder, you will find different folders and files
 
-# Development environment
+- `events/`: Used to store event handlers, and these should be added in `src/events/index.ts` in the `allEvents` variable
+- `interactions/`: Used to store all kind of interaction handlers in their respective folder (`buttons/`, `commands/`, etc)
+- `locale/`: Used to store localization files
+- `models/`: Used to store DB models
+- `services/`: Used to store the classes the bussiness logic
+- `structures/`: Used for storing typings and other useful classes that aren't related specifically to the bussiness logic of the bot
+- `utils/`: Used to store more general function and classes
 
-## Software requirements
+# Translations
 
-- [Git](https://git-scm.com/downloads)
-- [NodeJS 16 or higher](https://nodejs.org/en/download/)
-- [Docker (and docker-compose)](https://www.docker.com/get-started)
+Translations can be obtained with the `txt` function, which is available in any command, or returned from the `i18n` function when you pass an (interaction)[https://discord.js.org/#/docs/discord.js/stable/class/Interaction] object, this `txt` function will translate the chosen string, and replace all the placeholders with the specified data (the priority order when choosing the language is: `explicitly set by a the settings command` > `guild locale` > `user locale`)
 
-## Clone the bot and install dependencies
+Example from the invite command:
 
-```
-git clone -b dev git@github.com:eduardozgz/member-counter-bot.git
-cd member-counter-bot
-npm install
-```
-
-## Create a .env file
-
-Create a .env file from the .env.example file:
-
-```
-cp .env.example .env
+```ts
+await txt("COMMAND_INVITE_DESCRIPTION", { INVITE_URL: getBotInviteLink() });
 ```
 
-Open `.env` with a text editor and set at least `DISCORD_CLIENT_TOKEN` with your development bot token
+The "COMMAND_INVITE_DESCRIPTION" looks like this in the `./src/locales/en_US.json` file:
 
-Remember that you can't hot-reload this file, you must fully restart the bot to apply new changes
-
-## Starting the bot
-
-```
-npm run dev:docker
+```json
+{
+	"COMMAND_INVITE_DESCRIPTION": "Beep boop! Your invite link is ready:\n{INVITE_URL}"
+}
 ```
 
-Now you can start editing the code, when you save a file the bot will be reloaded automatically
+Missing translations will be taken from the default language (English)
 
-## Adding/editing text
+## Loading translations locally
 
-In English:
+Just set the `I18N_PROVIDER` to `local`, remember to rebuild and restart the bot when you change something in `./src/locale/*`
 
-- To add or edit a string, you must do it in the [./src/lang/en_US.json](./src/lang/en_US.json) file, after that, you may want to run `npm run generateLPTypings` to avoid compilation errors
+## Loading translations from redis
 
-In other language:
+This way is specially useful if you wish to update frequently translations without restarting the bot
+Rebuild the bot when you get new translations, and load them with `npm i18nToRedis:docker`
 
-- To add a string: First add it in english in the [./src/lang/en_US.json](./src/lang/en_US.json) file, then commit the file to the `dev` branch and it will be available in the [translation project](https://crowdin.com/project/member-counter-bot) in the next 10 minutes
-- To edit a string: You must do it trought the [translation project](https://crowdin.com/project/member-counter-bot), if your language isn't there, contact me and I will add it
+# Logging
 
-## Commiting
+Logs are printed to `stdout` and `stderr`, and saved to log files under the `./logs` folder, you can change this behaviour by customizing `./src/logger.ts`
 
-### Commit
+# Sharding
 
-Stage your changes and add a short and descriptive commit message
+## Small bots
 
-### Pre-commit
+Sharding is done automatically inside a single process if you set `DISCORD_BOT_SHARDS` to `auto`.
 
-The following tasks will be run automatically when you create a commit
+## Large bots
 
-- Create language pack typings with `npm run generateLPTypings`
-- Prettify the code
-- Stage the previous changes
+> Currently, this is not implemented! See [#1](https://github.com/eduardozgz/discord-bot-template/issues/1)
 
-### Do a pull request
+For larger bots, you may want to have multiples shards over different processes across different nodes.
+Pass an array of the shards you want to create to `DISCORD_BOT_SHARDS`, and set `DISCORD_BOT_SHARDS_COUNT` to the sum of shards that are going to be created across all the processes. Keep in mind that the bot doesn't spawn any processes for you, it will only take care of syncing the shard connections with other processes using redis locks
 
-Now just [create a pull request](https://github.com/eduardozgz/member-counter-bot/pulls) to the `dev` branch, and we will review it as soon as possible
+# Developing
 
-Happy coding!
+## Committing
 
-## Contributors
+It's necessary to install the development dependencies (run `npm i`) to create commits, when you commit, your code will be automatically formatted using pretty-quick (prettier), you can change the formatting settings in the `prettier` property, located at the `package.json` file
 
-<a href="https://github.com/eduardozgz/member-counter-bot/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=eduardozgz/member-counter-bot" />
-</a>
+Sometimes git can't recognize binary files correctly and will convert their EOL from CRLF to LF, you can add them manually to `.gitattributes` (this means if you have an .png file and git considers it's a text file, it will corrupt it if you are committing it from windows)
+
+# Running the bot
+
+The easiest way to do it is using [docker](https://www.docker.com/get-started)
+
+After filling out your `.env`, run:
+
+```sh
+docker-compose up -d
+```
+
+This will build the bot from the source, generate an image of it, and get it running in a container, along with a redis a mongodb container
+
+You can also stop it with `docker-compose down`, or rebuild and start it after an update with `docker-compose up -d --force-recreate --build`
+
+To deploy your commands in discord, you can run this to register them globally in your bot (if `TEST_DEPLOY_INTERACTION_COMMAND_GUILD_ID` is set, it will be only registered in your testing guild, which is faster)
+
+```sh
+npm deployInteractions:docker
+```
+
+> If `docker-compose` is not working correctly, try to disable docker-compose v2 with `docker-compose disable-v2` and try again
+> Currently the DB data is stored in ./storage
+
+You can also use other container runtimes and orchestrators, but remember to have the bot connected to redis and to the mongodb database

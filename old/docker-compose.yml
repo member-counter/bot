@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  member-counter-bot:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: member-counter-bot:latest
+    container_name: Member-Counter-App
+    restart: always
+    env_file: .env
+    depends_on:
+      - member-counter-bot-mongodb
+      - member-counter-bot-redis
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - default
+
+  member-counter-bot-mongodb:
+    image: mongo:4.4.6
+    container_name: Member-Counter-DB
+    restart: always
+    volumes:
+      - ./storage/db:/data/db
+      - ./storage/configdb:/data/configdb
+    networks:
+      - default
+
+  member-counter-bot-redis:
+    image: redis
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    container_name: Member-Counter-Redis
+    restart: always
+    networks:
+      - default
+
+networks:
+  default:

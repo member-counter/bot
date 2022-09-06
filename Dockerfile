@@ -1,6 +1,7 @@
 # Install necessary dependencies to install the app's dependencies
 FROM node:16-alpine as base_dependencies
-RUN apk add --no-cache make gcc g++ python3 git
+# if native modules are needed: make gcc g++ python3
+RUN apk add --no-cache git
 RUN npm install -g pnpm
 
 # Ignore the app's version to avoid an unnecessary dependency install
@@ -15,7 +16,7 @@ RUN sed -e '3d' -i package.json package-lock.json
 FROM base_dependencies as app_building_dependencies
 WORKDIR /cache
 COPY --from=version_cache_fix /cache /cache
-RUN pnpm install --strict-peer-dependencies=false
+RUN pnpm install
 
 # install dependencies for production 
 FROM app_building_dependencies as app_production_dependencies
@@ -36,5 +37,10 @@ WORKDIR /app
 COPY package*.json ./
 COPY --from=app_production_dependencies /cache/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
-COPY ./res ./res
+
+# copy language files
+WORKDIR /app/dist/locales
+COPY --from=builder /app/src/locales ./
+
+WORKDIR /app
 CMD ["node", "."]

@@ -1,36 +1,33 @@
 version: "3.7"
 
 services:
-  member-counter-bot:
+  discord-bot:
+    env_file: .env
     build:
       context: ./
       dockerfile: Dockerfile
-    image: member-counter-bot:latest
-    container_name: Member-Counter-App
+    image: discord-bot:latest
+    container_name: Discord-Bot
     restart: always
-    env_file: .env
     depends_on:
-      - member-counter-bot-mongodb
-      - member-counter-bot-redis
-    ports:
-      - "${PORT}:${PORT}"
+      - bot-db
     networks:
       - default
-
-  member-counter-bot-mongodb:
-    image: mongo:4.4.6
-    container_name: Member-Counter-DB
+  bot-db:
+    image: mongo
+    container_name: Bot-DB
     restart: always
     volumes:
       - ./storage/db:/data/db
       - ./storage/configdb:/data/configdb
+      - ./logs:/app/logs
     networks:
       - default
 
-  member-counter-bot-redis:
+  bot-redis:
     image: redis
     command: redis-server --requirepass ${REDIS_PASSWORD}
-    container_name: Member-Counter-Redis
+    container_name: Bot-Redis
     restart: always
     networks:
       - default

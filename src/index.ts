@@ -1,28 +1,37 @@
 #!/usr/bin/env node
-import getEnv from "./utils/getEnv";
-import Bot from "./bot";
-import DatabaseClient from "./db";
+import config from "./config";
+import Bot from "./Bot";
 import mongoose from "mongoose";
-import Website from "./others/website";
-import checkConfig from "./others/checkConfig";
-const { NODE_ENV } = getEnv();
+import logger from "./logger";
+import { deployCommands } from "./utils/deployCommands";
 
-checkConfig();
-DatabaseClient.init();
-Bot.init();
-Website.init();
+// Bot
+const bot = new Bot();
+(async () => {
+	if (config.discord.autoDeployCommands) {
+		await deployCommands().catch(() => null);
+	}
+	bot.client.login(config.discord.bot.token);
+})();
 
-if (NODE_ENV === "production") {
+// Database
+mongoose
+	.connect(config.db.uri)
+	.then(() => {
+		logger.info("Database connection ready");
+	})
+	.catch(logger.error);
+
+if (config.env === "production") {
 	process
 		.on("unhandledRejection", (reason, p) => {
-			console.error("Unhandled Rejection at: Promise ", p, " reason: ", reason);
+			logger.error("Unhandled Rejection at: Promise ", p, " reason: ", reason);
 		})
 		.on("uncaughtException", (exception) => {
-			console.error("Uncaught Exception ", exception);
+			logger.error("Uncaught Exception ", exception);
 		})
 		.on("SIGTERM", async () => {
-			Bot.client.editStatus("dnd", { type: 0, name: "going offline" });
-			Bot.client.disconnect({ reconnect: false });
+			bot.client.destroy();
 			await mongoose.disconnect();
 			process.exit(0);
 		});
