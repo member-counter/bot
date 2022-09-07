@@ -1,5 +1,4 @@
 import { AutocompleteInteraction } from "discord.js";
-import logger from "../../logger";
 import { locales } from "./locales";
 
 export const allAutocompletes: ((

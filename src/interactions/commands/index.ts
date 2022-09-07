@@ -2,22 +2,21 @@ import { inlineCode } from "@discordjs/builders";
 import {
 	CommandInteraction,
 	Constants,
-	Intents,
-	Permissions
+	IntentsBitField,
+	PermissionsBitField
 } from "discord.js";
 import { i18n } from "../../services/i18n";
 import type { Command } from "../../structures";
-import { Unwrap } from "../../utils/Unwrap";
 import { inviteCommand } from "./invite";
 import { settingsCommand } from "./settings";
 
 export const allCommands: Command[] = [inviteCommand, settingsCommand];
 
-export const allCommandsNeededPermissions: Permissions = new Permissions(
+export const allCommandsNeededPermissions = new PermissionsBitField(
 	allCommands.map((c) => c.neededPermissions.bitfield)
 );
 
-export const allCommandsNeededIntents: Intents = new Intents(
+export const allCommandsNeededIntents = new IntentsBitField(
 	allCommands.map((c) => c.neededIntents.bitfield)
 );
 
