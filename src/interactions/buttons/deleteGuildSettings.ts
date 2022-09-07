@@ -22,7 +22,7 @@ export const deleteGuildSettings = async (
 			content: await txt("BUTTON_DELETE_SETTINGS_DONE")
 		});
 	} else {
-		const compoenentRow = new ActionRowBuilder();
+		const compoenentRow = new ActionRowBuilder<ButtonBuilder>();
 
 		compoenentRow.addComponents(
 			new ButtonBuilder({
