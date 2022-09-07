@@ -10,6 +10,7 @@
 		"build:docker": "docker build . -t discord-bot:latest",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
 		"dev:docker": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --force-recreate --build",
+		"lint": "eslint --fix .",
 		"deployInteractions": "node ./dist/deployCommands.js",
 		"deployInteractions:docker": "docker run --env-file .env --entrypoint node discord-bot:latest /app/dist/deployCommands.js",
 		"i18nToRedis": "node ./dist/i18nToRedis.js",
