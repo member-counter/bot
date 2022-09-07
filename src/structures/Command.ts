@@ -2,7 +2,10 @@ import {
 	CommandInteraction,
 	IntentsBitField,
 	PermissionResolvable,
-	PermissionsBitField
+	PermissionsBitField,
+	IntentsBitField,
+	BitFieldResolvable,
+	GatewayIntentsString
 } from "discord.js";
 
 import { i18n } from "../services/i18n";
@@ -23,7 +26,7 @@ interface CommandOptions {
 	/**
 	 * @description Add intents here that might be needed by your code, like intents for awaiting reactions
 	 */
-	neededIntents?: IntentsBitField;
+	neededIntents?: BitFieldResolvable<GatewayIntentsString, number>[];
 	/**
 	 * @description Add here the permissions needed, this will be used to create invite links with all the necessary permissions
 	 */

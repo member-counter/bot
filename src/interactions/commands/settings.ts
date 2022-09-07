@@ -11,6 +11,7 @@ import { i18n } from "../../services/i18n";
 import { Command } from "../../structures";
 import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
 import { UserError } from "../../utils/UserError";
+import { buttonId as deleteGuildSettingsButtonId } from "../buttons/deleteGuildSettings";
 
 export const settingsCommand = new Command({
 	definition: new SlashCommandBuilder()
@@ -122,7 +123,7 @@ export const settingsCommand = new Command({
 				})
 			);
 
-			if (!embed.data.fields) {
+			if (!embed.data.fields?.length) {
 				embed.setDescription(await txt("COMMAND_SETTINGS_SET_NO_CHANGES_MADE"));
 			} else {
 				embed.setDescription(await txt("COMMAND_SETTINGS_SET_CHANGES_MADE"));

@@ -1,5 +1,4 @@
 import { ButtonInteraction } from "discord.js";
-import logger from "../../logger";
 import { deleteGuildSettings } from "./deleteGuildSettings";
 
 export const allButtons: ((

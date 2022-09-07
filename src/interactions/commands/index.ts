@@ -7,7 +7,6 @@ import {
 } from "discord.js";
 import { i18n } from "../../services/i18n";
 import type { Command } from "../../structures";
-import { Unwrap } from "../../utils/Unwrap";
 import { inviteCommand } from "./invite";
 import { settingsCommand } from "./settings";
 

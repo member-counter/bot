@@ -1,5 +1,4 @@
 import { AutocompleteInteraction } from "discord.js";
-import GuildSettings from "../../services/GuildSettings";
 import { availableLocales, i18n } from "../../services/i18n";
 import searchInTexts from "../../utils/search";
 
@@ -11,10 +10,6 @@ export const locales = async (
 	if (!autocompleteInteraction.inGuild()) return;
 	if (autocompleteInteraction.commandName !== "settings") return;
 	if (focusedOption.name !== "language") return;
-
-	const guildSettings = await GuildSettings.init(
-		autocompleteInteraction.guildId
-	);
 
 	const allLocales = await Promise.all(
 		["server", ...availableLocales].map(async (locale) => {
