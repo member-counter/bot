@@ -1,5 +1,10 @@
 import { inlineCode, SlashCommandBuilder } from "@discordjs/builders";
-import { Constants, MessageActionRow, MessageButton } from "discord.js";
+import {
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+	PermissionFlagsBits
+} from "discord.js";
 import GuildSettings from "../../services/GuildSettings";
 import { i18n } from "../../services/i18n";
 import { Command } from "../../structures";
@@ -33,7 +38,7 @@ export const settingsCommand = new Command({
 	execute: {
 		see: async (command, txt) => {
 			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
-			if (!command.memberPermissions.has("ADMINISTRATOR"))
+			if (!command.memberPermissions.has(PermissionFlagsBits.Administrator))
 				throw new UserError("COMMON_ERROR_NO_PERMISSIONS");
 
 			const guildSettings = await GuildSettings.init(command.guildId);
@@ -56,11 +61,11 @@ export const settingsCommand = new Command({
 				]
 			});
 
-			const compoenentRow = new MessageActionRow();
+			const compoenentRow = new ActionRowBuilder<ButtonBuilder>();
 
 			compoenentRow.addComponents(
-				new MessageButton({
-					style: Constants.MessageButtonStyles.DANGER,
+				new ButtonBuilder({
+					style: ButtonStyle.Danger,
 					label: await txt("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
 					customId: "dgs",
 					emoji: "🗑"
@@ -75,7 +80,7 @@ export const settingsCommand = new Command({
 		},
 		set: async (command, txt) => {
 			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
-			if (!command.memberPermissions.has("ADMINISTRATOR"))
+			if (!command.memberPermissions.has(PermissionFlagsBits.Administrator))
 				throw new UserError("COMMON_ERROR_NO_PERMISSIONS");
 
 			const guildSettings = await GuildSettings.init(command.guildId);
@@ -90,16 +95,16 @@ export const settingsCommand = new Command({
 
 				txt = await i18n(guildSettings.locale ?? command.guildLocale);
 
-				embed.addField(
-					await txt("COMMAND_SETTINGS_SEE_LANGUAGE"),
-					error?.message
+				embed.addFields({
+					name: await txt("COMMAND_SETTINGS_SEE_LANGUAGE"),
+					value: error?.message
 						? await txt(error?.message)
 						: guildSettings.locale
 						? await txt("LANG_NAME")
 						: await txt("COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE", {
 								CURRENT_LANGUAGE: await txt("LANG_NAME")
 						  })
-				);
+				});
 			}
 
 			// Summary
@@ -110,7 +115,7 @@ export const settingsCommand = new Command({
 				})
 			);
 
-			if (!embed.fields.length) {
+			if (!embed.data.fields?.length) {
 				embed.setDescription(await txt("COMMAND_SETTINGS_SET_NO_CHANGES_MADE"));
 			} else {
 				embed.setDescription(await txt("COMMAND_SETTINGS_SET_CHANGES_MADE"));
