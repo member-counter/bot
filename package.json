@@ -48,6 +48,7 @@
 		"@types/ioredis": "^4.28.7",
 		"@types/lodash": "^4.14.178",
 		"@types/twemoji": "^12.1.2",
+		"@types/winston": "^2.4.4",
 		"@typescript-eslint/eslint-plugin": "^5.36.2",
 		"@typescript-eslint/parser": "^5.36.2",
 		"eslint": "^8.23.0",

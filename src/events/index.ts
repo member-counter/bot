@@ -1,15 +1,15 @@
-import { Intents, Permissions } from "discord.js";
+import { IntentsBitField, PermissionsBitField } from "discord.js";
 import type { Event } from "../structures";
 import { interactionCreateEvent } from "./interactionCreate";
 import { readyEvent } from "./ready";
 
 const allEvents: Event<any>[] = [readyEvent, interactionCreateEvent];
 
-const allEventsNeededPermissions: Permissions = new Permissions(
+const allEventsNeededPermissions: PermissionsBitField = new PermissionsBitField(
 	allEvents.map((e) => e.neededPermissions)
 );
 
-const allEventsNeededIntents: Intents = new Intents(
+const allEventsNeededIntents: IntentsBitField = new IntentsBitField(
 	allEvents.map((e) => e.neededIntents)
 );
 

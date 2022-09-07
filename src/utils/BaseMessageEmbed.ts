@@ -1,8 +1,8 @@
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "@discordjs/builders";
 import { Colors } from "../Constants";
 
-class BaseMessageEmbed extends MessageEmbed {
-	constructor(options?: ConstructorParameters<typeof MessageEmbed>[0]) {
+class BaseEmbed extends EmbedBuilder {
+	constructor(options?: ConstructorParameters<typeof EmbedBuilder>[0]) {
 		super(options);
 		if (!options?.color) {
 			this.setColor(Colors.BLURPLE);
@@ -10,4 +10,4 @@ class BaseMessageEmbed extends MessageEmbed {
 	}
 }
 
-export default BaseMessageEmbed;
+export default BaseEmbed;

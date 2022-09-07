@@ -1,10 +1,9 @@
 import {
-	Permissions,
-	Intents,
-	IntentsString,
-	WSEventType,
+	PermissionsBitField,
+	IntentsBitField,
+	GatewayIntentsString,
+	GatewayDispatchEvents,
 	ClientEvents,
-	Constants,
 	PermissionResolvable
 } from "discord.js";
 import { IntentsEventMap } from "../Constants";
@@ -13,36 +12,36 @@ interface EventOptions<E extends keyof ClientEvents> {
 	name: E;
 	handler: (...args: ClientEvents[E]) => void | Promise<void>;
 	neededPermissions?: PermissionResolvable[];
-	extraIntents?: Intents;
+	extraIntents?: IntentsBitField;
 }
 
 export class Event<E extends keyof ClientEvents> {
 	name: E;
 	handler: (...args: ClientEvents[E]) => void | Promise<void>;
-	neededPermissions: Permissions;
-	private extraIntents: Intents;
+	neededPermissions: PermissionsBitField;
+	private extraIntents: IntentsBitField;
 
 	constructor(options: EventOptions<E>) {
 		this.name = options.name;
 		this.handler = options.handler;
 
-		const neededPermissions = new Permissions();
+		const neededPermissions = new PermissionsBitField();
 		(options.neededPermissions ?? []).forEach((permission) => {
 			neededPermissions.add(permission);
 		});
 		this.neededPermissions = neededPermissions;
 
-		this.extraIntents = new Intents(options.extraIntents);
+		this.extraIntents = new IntentsBitField(options.extraIntents);
 	}
 
-	get neededIntents(): Intents {
-		const neededIntents = new Intents();
+	get neededIntents(): IntentsBitField {
+		const neededIntents = new IntentsBitField();
 		for (const [intent, events] of Object.entries(IntentsEventMap) as [
-			IntentsString,
-			WSEventType[]
+			GatewayIntentsString,
+			GatewayDispatchEvents[]
 		][]) {
 			for (const event of events) {
-				if (this.name.includes(Constants.Events[event])) {
+				if (this.name.includes(GatewayDispatchEvents[event])) {
 					neededIntents.add(intent);
 					break;
 				}

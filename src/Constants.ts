@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { IntentsString, MessageEmbedOptions, WSEventType } from "discord.js";
+import { GatewayIntentsString, GatewayDispatchEvents } from "discord.js";
 
 export const Colors = {
 	RED: 0xed4245,
@@ -12,11 +12,11 @@ export const Colors = {
 };
 
 type IntentsEventMap = {
-	[key in IntentsString]: WSEventType[];
+	[key in GatewayIntentsString]: `${GatewayDispatchEvents}`[];
 };
 
 export const IntentsEventMap: IntentsEventMap = {
-	GUILDS: [
+	Guilds: [
 		"GUILD_CREATE",
 		"GUILD_UPDATE",
 		"GUILD_DELETE",
@@ -35,53 +35,53 @@ export const IntentsEventMap: IntentsEventMap = {
 		"STAGE_INSTANCE_UPDATE",
 		"STAGE_INSTANCE_DELETE"
 	],
-	GUILD_MEMBERS: [
+	GuildMembers: [
 		"GUILD_MEMBER_ADD",
 		"GUILD_MEMBER_UPDATE",
 		"GUILD_MEMBER_REMOVE",
 		"THREAD_MEMBERS_UPDATE"
 	],
-	GUILD_BANS: ["GUILD_BAN_ADD", "GUILD_BAN_REMOVE"],
-	GUILD_EMOJIS_AND_STICKERS: ["GUILD_EMOJIS_UPDATE", "GUILD_STICKERS_UPDATE"],
-	GUILD_INTEGRATIONS: [
+	GuildBans: ["GUILD_BAN_ADD", "GUILD_BAN_REMOVE"],
+	GuildEmojisAndStickers: ["GUILD_EMOJIS_UPDATE", "GUILD_STICKERS_UPDATE"],
+	GuildIntegrations: [
 		"GUILD_INTEGRATIONS_UPDATE"
 		// These aren't supposed to be sent to bots
 		// "INTEGRATION_CREATE",
 		// "INTEGRATION_UPDATE",
 		// "INTEGRATION_DELETE"
 	],
-	GUILD_WEBHOOKS: ["WEBHOOKS_UPDATE"],
-	GUILD_INVITES: ["INVITE_CREATE", "INVITE_DELETE"],
-	GUILD_VOICE_STATES: ["VOICE_STATE_UPDATE"],
-	GUILD_PRESENCES: ["PRESENCE_UPDATE"],
-	GUILD_MESSAGES: [
+	GuildWebhooks: ["WEBHOOKS_UPDATE"],
+	GuildInvites: ["INVITE_CREATE", "INVITE_DELETE"],
+	GuildVoiceStates: ["VOICE_STATE_UPDATE"],
+	GuildPresences: ["PRESENCE_UPDATE"],
+	GuildMessages: [
 		"MESSAGE_CREATE",
 		"MESSAGE_UPDATE",
 		"MESSAGE_DELETE",
 		"MESSAGE_DELETE_BULK"
 	],
-	GUILD_MESSAGE_REACTIONS: [
+	GuildMessageReactions: [
 		"MESSAGE_REACTION_ADD",
 		"MESSAGE_REACTION_REMOVE",
 		"MESSAGE_REACTION_REMOVE_ALL",
 		"MESSAGE_REACTION_REMOVE_EMOJI"
 	],
-	GUILD_MESSAGE_TYPING: ["TYPING_START"],
-	DIRECT_MESSAGES: [
+	GuildMessageTyping: ["TYPING_START"],
+	DirectMessages: [
 		"MESSAGE_CREATE",
 		"MESSAGE_UPDATE",
 		"MESSAGE_DELETE",
 		"CHANNEL_PINS_UPDATE"
 	],
-	DIRECT_MESSAGE_REACTIONS: [
+	DirectMessageReactions: [
 		"MESSAGE_REACTION_ADD",
 		"MESSAGE_REACTION_REMOVE",
 		"MESSAGE_REACTION_REMOVE_ALL",
 		"MESSAGE_REACTION_REMOVE_EMOJI"
 	],
-	DIRECT_MESSAGE_TYPING: ["TYPING_START"],
-	// TODO remove these ts-ignores when WSEventType is updated
-	GUILD_SCHEDULED_EVENTS: [
+	DirectMessageTyping: ["TYPING_START"],
+	// TODO remove these ts-ignores when GatewayDispatchEvents is updated
+	GuildScheduledEvents: [
 		//@ts-ignore
 		"GUILD_SCHEDULED_EVENT_CREATE",
 		//@ts-ignore
@@ -92,7 +92,8 @@ export const IntentsEventMap: IntentsEventMap = {
 		"GUILD_SCHEDULED_EVENT_USER_ADD",
 		//@ts-ignore
 		"GUILD_SCHEDULED_EVENT_USER_REMOVE"
-	]
+	],
+	MessageContent: []
 };
 
 export const TranslationPlaceholders = {
