@@ -1,12 +1,16 @@
-import _ from "lodash";
 import {
+	ActionRowBuilder,
+	ButtonBuilder,
+	SelectMenuBuilder
+} from "@discordjs/builders";
+import { APIEmbed } from "discord-api-types/payloads/v10/channel";
+import {
+	ButtonStyle,
 	CommandInteraction,
-	InteractionCollector,
-	MessageActionRow,
-	MessageButton,
-	MessageEmbedOptions,
-	MessageSelectMenu
+	InteractionCollector
 } from "discord.js";
+import _ from "lodash";
+
 import logger from "../logger";
 
 /**
@@ -15,13 +19,13 @@ import logger from "../logger";
  */
 class Paginator {
 	private currentPage: number;
-	private pages: MessageEmbedOptions[];
+	private pages: APIEmbed[];
 	private ephemeral: boolean;
 	private commandInteraction: CommandInteraction;
 
 	public constructor(
 		commandInteraction: CommandInteraction,
-		pages: MessageEmbedOptions[],
+		pages: APIEmbed[],
 		ephemeral = false
 	) {
 		this.commandInteraction = commandInteraction;
@@ -50,7 +54,7 @@ class Paginator {
 				.on("collect", async (interaction) => {
 					if (interaction.isButton()) {
 						interaction.deferUpdate();
-						const [type, id, page] = interaction.customId.split(":");
+						const [, , page] = interaction.customId.split(":");
 						if (page === "showJump") {
 							this.commandInteraction.editReply({
 								components: this.generateComponents(true)
@@ -75,7 +79,7 @@ class Paginator {
 	async displayPage(page: number) {
 		this.currentPage = page;
 		// Clone the embed and modify it by adding a page indicator
-		const embedToSend: MessageEmbedOptions = _.cloneDeep(this.pages[page]);
+		const embedToSend: APIEmbed = _.cloneDeep(this.pages[page]);
 
 		if (this.pages.length > 1) this.appendPageCounter(embedToSend);
 
@@ -99,65 +103,67 @@ class Paginator {
 	/**
 	 * Adds needed components for pagination based on page count
 	 */
-	private generateComponents(showJump = false): MessageActionRow[] {
+	private generateComponents(
+		showJump = false
+	): ActionRowBuilder<ButtonBuilder>[] {
 		const rows = [];
 		// If more than 1 page, display navigation controls
 		if (this.pages.length > 1) {
 			rows.push(
-				new MessageActionRow()
+				new ActionRowBuilder()
 					.addComponents(
-						new MessageButton()
+						new ButtonBuilder()
 							.setCustomId(`paginator:${this.commandInteraction.id}:0:0`)
 							.setLabel("First")
-							.setStyle("PRIMARY")
+							.setStyle(ButtonStyle.Primary)
 							.setDisabled(this.currentPage === 0)
 					)
 					.addComponents(
-						new MessageButton()
+						new ButtonBuilder()
 							.setCustomId(
 								`paginator:${this.commandInteraction.id}:${
 									this.currentPage - 1
 								}:1`
 							)
 							.setLabel("Previous")
-							.setStyle("PRIMARY")
+							.setStyle(ButtonStyle.Primary)
 							.setDisabled(this.currentPage === 0)
 					)
 					.addComponents(
-						new MessageButton()
+						new ButtonBuilder()
 							.setCustomId(
 								`paginator:${this.commandInteraction.id}:${
 									this.currentPage + 1
 								}:2`
 							)
 							.setLabel("Next")
-							.setStyle("PRIMARY")
+							.setStyle(ButtonStyle.Primary)
 							.setDisabled(this.currentPage === this.pages.length - 1)
 					)
 					.addComponents(
-						new MessageButton()
+						new ButtonBuilder()
 							.setCustomId(
 								`paginator:${this.commandInteraction.id}:${
 									this.pages.length - 1
 								}:3`
 							)
 							.setLabel("Last")
-							.setStyle("PRIMARY")
+							.setStyle(ButtonStyle.Primary)
 							.setDisabled(this.currentPage === this.pages.length - 1)
 					)
 					.addComponents(
-						new MessageButton()
+						new ButtonBuilder()
 							.setCustomId(`paginator:${this.commandInteraction.id}:showJump`)
 							.setLabel("Jump")
-							.setStyle("PRIMARY")
+							.setStyle(ButtonStyle.Primary)
 							.setDisabled(showJump)
 					)
 			);
 
 			if (showJump) {
 				rows.push(
-					new MessageActionRow().addComponents(
-						new MessageSelectMenu()
+					new ActionRowBuilder().addComponents(
+						new SelectMenuBuilder()
 							.setCustomId(`paginator:${this.commandInteraction.id}`)
 							.setPlaceholder("Select a page")
 							.addOptions(
@@ -183,7 +189,7 @@ class Paginator {
 	/**
 	 * @param embed This object will be modified
 	 */
-	private appendPageCounter(embed: MessageEmbedOptions) {
+	private appendPageCounter(embed: APIEmbed) {
 		const pageText = "Page {CURRENT_PAGE}/{TOTAL_PAGES}"
 			.replace(/\{CURRENT_PAGE\}/, (this.currentPage + 1).toString())
 			.replace(/\{TOTAL_PAGES\}/, this.pages.length.toString());

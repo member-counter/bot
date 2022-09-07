@@ -1,14 +1,15 @@
+import { v4 as uuid } from "uuid";
+
+import config from "../config";
+import { Colors } from "../Constants";
 import handleAutocomplete from "../interactions/autocompletes";
 import handleButton from "../interactions/buttons";
 import handleCommand from "../interactions/commands";
 import logger from "../logger";
-import { Event } from "../structures";
-import { v4 as uuid } from "uuid";
-import BaseMessageEmbed from "../utils/BaseMessageEmbed";
 import { i18n } from "../services/i18n";
-import { Colors } from "../Constants";
+import { Event } from "../structures";
+import BaseMessageEmbed from "../utils/BaseMessageEmbed";
 import { UserError } from "../utils/UserError";
-import config from "../config";
 
 export const interactionCreateEvent = new Event({
 	name: "interactionCreate",

@@ -1,13 +1,14 @@
-import { allCommandsNeededPermissions } from "../interactions/commands";
-import { allEventsNeededPermissions } from "../events";
-import { tokenToClientId } from "./tokenToClientId";
+import { PermissionsBitField } from "discord.js";
+
 import config from "../config";
-import { Permissions } from "discord.js";
+import { allEventsNeededPermissions } from "../events";
+import { allCommandsNeededPermissions } from "../interactions/commands";
+import { tokenToClientId } from "./tokenToClientId";
 
 const clientId = tokenToClientId(config.discord.bot.token);
 
 function getBotInviteLink(guildId?: string): string {
-	const allNeededPermissions = new Permissions([
+	const allNeededPermissions = new PermissionsBitField([
 		allCommandsNeededPermissions,
 		allEventsNeededPermissions
 	]);

@@ -45,6 +45,7 @@ module.exports = {
 			}
 		],
 		"no-useless-escape": "off",
-		"no-console": ["error"]
+		"no-console": ["error"],
+		"no-empty": ["error", { allowEmptyCatch: true }]
 	}
 };

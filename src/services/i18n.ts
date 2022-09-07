@@ -1,7 +1,8 @@
-import config from "../config";
-import Redis from "ioredis";
-import { TranslationPlaceholders, Translations } from "../Constants";
 import { Interaction } from "discord.js";
+import Redis from "ioredis";
+
+import config from "../config";
+import { TranslationPlaceholders, Translations } from "../Constants";
 import GuildSettings from "./GuildSettings";
 
 const { provider, defaultLocale } = config.i18n;

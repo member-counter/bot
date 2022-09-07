@@ -1,7 +1,7 @@
-import dotenv from "dotenv";
-import path from "path";
-import JoiBase from "joi";
 import Bourne from "@hapi/bourne";
+import dotenv from "dotenv";
+import JoiBase from "joi";
+import path from "path";
 
 // Parse arrays and objects
 const Joi: typeof JoiBase = JoiBase.extend(
@@ -10,7 +10,7 @@ const Joi: typeof JoiBase = JoiBase.extend(
 		base: JoiBase.object(),
 		coerce: {
 			from: "string",
-			method(value, helpers) {
+			method(value) {
 				if (value[0] !== "{" && !/^\s*\{/.test(value)) {
 					return;
 				}
@@ -25,7 +25,7 @@ const Joi: typeof JoiBase = JoiBase.extend(
 		base: JoiBase.array(),
 		coerce: {
 			from: "string",
-			method(value, helpers) {
+			method(value) {
 				if (
 					typeof value !== "string" ||
 					(value[0] !== "[" && !/^\s*\[/.test(value))

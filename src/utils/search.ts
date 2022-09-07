@@ -1,7 +1,7 @@
 /**
  * @param {string[]} texts to search
  * @param {string} text to search in the texts
- * @returns {number[]} ordered from higher to lower, the index of the texts of the best matching results
+ * @returns {number[]} ordered from higher to lower, the index of the texts of the best  matching results
  */
 export function searchInTexts(texts: string[], text: string): number[] {
 	const plain = (string: string): string[] => {
@@ -32,8 +32,8 @@ export function searchInTexts(texts: string[], text: string): number[] {
 	});
 
 	return Array.from(result)
-		.sort(([index, score], [index2, score2]) => score - score2)
-		.map(([index, score]) => index);
+		.sort(([, score], [, score2]) => score - score2)
+		.map(([index]) => index);
 }
 
 export default searchInTexts;

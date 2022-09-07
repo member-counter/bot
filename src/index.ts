@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-import config from "./config";
-import Bot from "./Bot";
 import mongoose from "mongoose";
+
+import Bot from "./Bot";
+import config from "./config";
 import logger from "./logger";
 import { deployCommands } from "./utils/deployCommands";
 

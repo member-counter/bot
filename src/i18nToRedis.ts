@@ -1,6 +1,8 @@
 #!/usr/bin/env node
-import config from "./config";
 import Redis from "ioredis";
+
+import config from "./config";
+import logger from "./logger";
 import { availableLocales } from "./services/i18n";
 
 (async () => {
@@ -8,11 +10,11 @@ import { availableLocales } from "./services/i18n";
 		password: config.redis.password
 	});
 
-	console.log("Loading translations to redis");
+	logger.info("Loading translations to redis");
 
 	await Promise.all(
 		availableLocales.map(async (locale) => {
-			console.log(`Updating ${locale}`);
+			logger.info(`Updating ${locale}`);
 			const translations = await import(`./locales/${locale}`);
 			const pipeline = redis.pipeline();
 
@@ -24,11 +26,11 @@ import { availableLocales } from "./services/i18n";
 			}
 
 			await pipeline.exec();
-			console.log(`${locale} done`);
+			logger.info(`${locale} done`);
 		})
 	);
 
-	console.log("All done");
+	logger.info("All done");
 
 	process.exit(0);
 })();

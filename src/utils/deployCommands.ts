@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-import config from "../config";
 import { Routes } from "discord-api-types/v10";
+
+import config from "../config";
 import { allCommands } from "../interactions/commands";
+import logger from "../logger";
 import { discordRest } from "../services";
 import { tokenToClientId } from "../utils/tokenToClientId";
-import logger from "../logger";
+
 const clientId = tokenToClientId(config.discord.bot.token);
 
 export async function deployCommands() {

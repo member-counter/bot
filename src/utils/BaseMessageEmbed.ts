@@ -1,4 +1,5 @@
 import { EmbedBuilder } from "@discordjs/builders";
+
 import { Colors } from "../Constants";
 
 class BaseEmbed extends EmbedBuilder {

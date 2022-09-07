@@ -1,9 +1,9 @@
 import { inlineCode } from "@discordjs/builders";
 import {
 	CommandInteraction,
-	Constants,
-	Intents,
-	Permissions
+	PermissionsBitField,
+	IntentsBitField,
+	ApplicationCommandOptionType
 } from "discord.js";
 import { i18n } from "../../services/i18n";
 import type { Command } from "../../structures";
@@ -13,11 +13,10 @@ import { settingsCommand } from "./settings";
 
 export const allCommands: Command[] = [inviteCommand, settingsCommand];
 
-export const allCommandsNeededPermissions: Permissions = new Permissions(
-	allCommands.map((c) => c.neededPermissions.bitfield)
-);
+export const allCommandsNeededPermissions: PermissionsBitField =
+	new PermissionsBitField(allCommands.map((c) => c.neededPermissions.bitfield));
 
-export const allCommandsNeededIntents: Intents = new Intents(
+export const allCommandsNeededIntents: IntentsBitField = new IntentsBitField(
 	allCommands.map((c) => c.neededIntents.bitfield)
 );
 
@@ -28,15 +27,16 @@ export default async function handleCommand(
 
 	for (const command of allCommands) {
 		if (command.definition.name === commandInteraction.commandName) {
+			// eslint-disable-next-line no-inner-declarations
 			async function searchAndRunCommand(
 				subcommandExecute: typeof command.execute,
-				rawOptions
+				rawOptions: any[]
 			) {
-				const OptionTypes = Constants.ApplicationCommandOptionTypes;
+				const OptionTypes = ApplicationCommandOptionType;
 				if (
 					Array.isArray(rawOptions) &&
 					rawOptions.some((rawOption) =>
-						[OptionTypes.SUB_COMMAND_GROUP, OptionTypes.SUB_COMMAND].includes(
+						[OptionTypes.SubcommandGroup, OptionTypes.SubcommandGroup].includes(
 							rawOption.type
 						)
 					)

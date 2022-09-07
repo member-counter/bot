@@ -9,7 +9,7 @@ export const Colors = {
 	FUCHSIA: 0xeb459e,
 	WHITE: 0xffffff,
 	BLACK: 0x000000
-};
+} as const;
 
 type IntentsEventMap = {
 	[key in GatewayIntentsString]: `${GatewayDispatchEvents}`[];

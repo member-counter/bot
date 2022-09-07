@@ -1,11 +1,12 @@
 import {
-	PermissionsBitField,
-	IntentsBitField,
-	GatewayIntentsString,
-	GatewayDispatchEvents,
 	ClientEvents,
-	PermissionResolvable
+	GatewayDispatchEvents,
+	GatewayIntentsString,
+	IntentsBitField,
+	PermissionResolvable,
+	PermissionsBitField
 } from "discord.js";
+
 import { IntentsEventMap } from "../Constants";
 
 interface EventOptions<E extends keyof ClientEvents> {

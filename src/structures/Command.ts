@@ -1,9 +1,10 @@
 import {
 	CommandInteraction,
+	IntentsBitField,
 	PermissionResolvable,
-	PermissionsBitField,
-	IntentsBitField
+	PermissionsBitField
 } from "discord.js";
+
 import { i18n } from "../services/i18n";
 import { Unwrap } from "../utils/Unwrap";
 
