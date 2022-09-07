@@ -1,9 +1,6 @@
-import {
-	ButtonInteraction,
-	Constants,
-	MessageActionRow,
-	MessageButton
-} from "discord.js";
+import { ButtonInteraction } from "discord.js";
+import { ActionRowBuilder, ButtonBuilder } from "@discordjs/builders";
+import { ButtonStyle } from "discord-api-types/payloads";
 import GuildSettings from "../../services/GuildSettings";
 import { i18n } from "../../services/i18n";
 
@@ -13,7 +10,7 @@ export const deleteGuildSettings = async (
 	if (!buttonInteraction.inGuild()) return;
 	if (!buttonInteraction.customId.startsWith("dgs")) return;
 
-	const [name, confirm] = buttonInteraction.customId.split(":");
+	const [, confirm] = buttonInteraction.customId.split(":");
 
 	const txt = await i18n(buttonInteraction);
 
@@ -25,14 +22,14 @@ export const deleteGuildSettings = async (
 			content: await txt("BUTTON_DELETE_SETTINGS_DONE")
 		});
 	} else {
-		const compoenentRow = new MessageActionRow();
+		const compoenentRow = new ActionRowBuilder();
 
 		compoenentRow.addComponents(
-			new MessageButton({
-				style: Constants.MessageButtonStyles.DANGER,
+			new ButtonBuilder({
+				style: ButtonStyle.Danger,
 				label: await txt("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
-				customId: "dgs:true",
-				emoji: "🗑"
+				custom_id: "dgs:true",
+				emoji: { name: "🗑" }
 			})
 		);
 
