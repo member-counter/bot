@@ -7,7 +7,7 @@ let initialized = false;
 const setupJobs = async () => {
 	if (initialized) return;
 	initialized = true;
-	const client = Bot.client;
+	const { client } = Bot;
 
 	async function run(job: Job) {
 		if (!job.locked) {

@@ -7,7 +7,7 @@ const { BOT_OWNERS } = getEnv();
 export default async (member: Eris.Member): Promise<boolean> => {
 	const guildSettings = await GuildService.init(member.guild.id);
 
-	let hasAnyAllowedRole: boolean = false;
+	let hasAnyAllowedRole = false;
 	for (const allowedRoleId of guildSettings.allowedRoles) {
 		if (member.roles.includes(allowedRoleId)) {
 			hasAnyAllowedRole = true;

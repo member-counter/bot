@@ -7,8 +7,8 @@ const BotStatsCounter: Counter = {
 	lifetime: 0,
 	execute: async ({ client }) => {
 		const stats = await client.getStats();
-		let users = stats.estimatedTotalUsers;
-		let guilds = stats.guilds;
+		const users = stats.estimatedTotalUsers;
+		const { guilds } = stats;
 
 		return {
 			["member-counter-users"]: users,

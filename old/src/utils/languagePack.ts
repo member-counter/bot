@@ -33,7 +33,7 @@ const languagePacks: object = {
 	it_IT,
 	tr_TR,
 	he_IL,
-	fa_IR,
+	fa_IR
 };
 
 const availableLanguagePacks = Object.keys(languagePacks);

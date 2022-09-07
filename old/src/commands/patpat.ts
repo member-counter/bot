@@ -10,7 +10,9 @@ const patpat: Command = {
 		const userSettings = await UserService.init(message.author.id);
 		await userSettings.grantBadge(Constants.UserBadges.PATPAT);
 
-		await message.channel.createMessage("https://eduardozgz.com/max?discord_cache_fix="+Math.random());
+		await message.channel.createMessage(
+			"https://eduardozgz.com/max?discord_cache_fix=" + Math.random()
+		);
 		// i never thought i will ever been coding with a very cute guy -alex
 	}
 };

@@ -5,7 +5,7 @@ import getEnv from "./getEnv";
 
 const { BOT_COLOR, WEBSITE_URL } = getEnv();
 
-let dominantColor = {
+const dominantColor = {
 	current: BOT_COLOR?.toString().length ? BOT_COLOR : null
 };
 

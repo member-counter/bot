@@ -53,7 +53,9 @@ class Paginator {
 
 		// setup paginator in discord if it doesn't exists
 		if (!this.message) {
-			this.message = await this.channel.createMessage({ embeds: [embedToSend] });
+			this.message = await this.channel.createMessage({
+				embeds: [embedToSend]
+			});
 			// Create Reaction Collector to listen for user reactions
 			this.createCollector();
 			// Add reactions based on page counts

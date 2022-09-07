@@ -4,9 +4,12 @@ const { YOUTUBE_API_KEY } = getEnv();
 
 import Counter from "../typings/Counter";
 
-const anyChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(channel|user|c)\//;
-const usernameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(user|c)\//;
-const idChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/channel\//;
+const anyChannelMatch =
+	/^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(channel|user|c)\//;
+const usernameChannelMatch =
+	/^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(user|c)\//;
+const idChannelMatch =
+	/^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/channel\//;
 
 const YouTubeCounter: Counter = {
 	aliases: [
@@ -20,7 +23,7 @@ const YouTubeCounter: Counter = {
 	lifetime: 60 * 60 * 1000,
 	execute: async ({ unparsedArgs: channelUrl }) => {
 		if (!YOUTUBE_API_KEY) throw new Error("YOUTUBE_API_KEY not provided");
-		let channel = channelUrl.replace(anyChannelMatch, "");
+		const channel = channelUrl.replace(anyChannelMatch, "");
 		let searchChannelBy = "";
 
 		if (usernameChannelMatch.test(channelUrl)) {

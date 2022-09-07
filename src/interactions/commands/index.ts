@@ -28,57 +28,56 @@ export default async function handleCommand(
 
 	for (const command of allCommands) {
 		if (command.definition.name === commandInteraction.commandName) {
-				async function searchAndRunCommand(
-					subcommandExecute: typeof command.execute,
-					rawOptions
-				) {
-					const OptionTypes = Constants.ApplicationCommandOptionTypes;
-					if (
-						Array.isArray(rawOptions) &&
-						rawOptions.some((rawOption) =>
-							[OptionTypes.SUB_COMMAND_GROUP, OptionTypes.SUB_COMMAND].includes(
-								rawOption.type
-							)
+			async function searchAndRunCommand(
+				subcommandExecute: typeof command.execute,
+				rawOptions
+			) {
+				const OptionTypes = Constants.ApplicationCommandOptionTypes;
+				if (
+					Array.isArray(rawOptions) &&
+					rawOptions.some((rawOption) =>
+						[OptionTypes.SUB_COMMAND_GROUP, OptionTypes.SUB_COMMAND].includes(
+							rawOption.type
 						)
-					) {
-						let found = false;
-						for (const rawOption of rawOptions) {
-							if (
-								commandInteraction.options.getSubcommandGroup(false) ===
-									rawOption.name ||
-								commandInteraction.options.getSubcommand(false) ===
-									rawOption.name
-							) {
-								if (typeof subcommandExecute === "object") {
-									found = true;
-									await searchAndRunCommand(
-										subcommandExecute[rawOption.name],
-										rawOption.options
-									);
-								}
-								break;
+					)
+				) {
+					let found = false;
+					for (const rawOption of rawOptions) {
+						if (
+							commandInteraction.options.getSubcommandGroup(false) ===
+								rawOption.name ||
+							commandInteraction.options.getSubcommand(false) === rawOption.name
+						) {
+							if (typeof subcommandExecute === "object") {
+								found = true;
+								await searchAndRunCommand(
+									subcommandExecute[rawOption.name],
+									rawOption.options
+								);
 							}
+							break;
 						}
-						if (!found)
-							throw new Error(
-								`Command ${inlineCode(
-									commandInteraction.commandName
-								)} -> ${inlineCode(
-									commandInteraction.options.getSubcommandGroup(false)
-								)} -> ${inlineCode(
-									commandInteraction.options.getSubcommand(false)
-								)} is not being handled correctly`
-							);
-					} else if (typeof subcommandExecute === "function") {
-						await subcommandExecute(commandInteraction, translate);
-						return;
 					}
+					if (!found)
+						throw new Error(
+							`Command ${inlineCode(
+								commandInteraction.commandName
+							)} -> ${inlineCode(
+								commandInteraction.options.getSubcommandGroup(false)
+							)} -> ${inlineCode(
+								commandInteraction.options.getSubcommand(false)
+							)} is not being handled correctly`
+						);
+				} else if (typeof subcommandExecute === "function") {
+					await subcommandExecute(commandInteraction, translate);
+					return;
 				}
+			}
 
-				await searchAndRunCommand(
-					command.execute,
-					command.definition.toJSON().options
-				);
+			await searchAndRunCommand(
+				command.execute,
+				command.definition.toJSON().options
+			);
 			break;
 		}
 	}

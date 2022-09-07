@@ -1,4 +1,5 @@
-const propExp = /^(?<propName>[^.[]+)|\["(?<propNameDoubleQuotes>.+)"\]|\['(?<propNameSingleQuotes>.+)'\]|^\[(?<indexSelector>\d)\]/;
+const propExp =
+	/^(?<propName>[^.[]+)|\["(?<propNameDoubleQuotes>.+)"\]|\['(?<propNameSingleQuotes>.+)'\]|^\[(?<indexSelector>\d)\]/;
 const allowedReturnTypes = ["number", "string"];
 
 function jsonBodyExtractor(body: any, path: string) {
@@ -10,7 +11,7 @@ function jsonBodyExtractor(body: any, path: string) {
 	while (iterationsLeft) {
 		if (!--iterationsLeft) throw new Error("Path length exceeded");
 
-		let { groups: matchGroups } = pathLeft.match(propExp) ?? { groups: {} };
+		const { groups: matchGroups } = pathLeft.match(propExp) ?? { groups: {} };
 
 		let matched;
 		if (matchGroups?.propName) {
@@ -19,7 +20,11 @@ function jsonBodyExtractor(body: any, path: string) {
 			pathLeft = pathLeft.slice(matched.length);
 
 			if (!Object.prototype.hasOwnProperty.call(cwo, matched))
-				throw new Error(`"${matched}" doesn't exists in ${pathTraveled ? pathTraveled : "the response"}`);
+				throw new Error(
+					`"${matched}" doesn't exists in ${
+						pathTraveled ? pathTraveled : "the response"
+					}`
+				);
 
 			pathTraveled += (pathTraveled ? "." : "") + `${matched}`;
 		} else if (
@@ -32,8 +37,12 @@ function jsonBodyExtractor(body: any, path: string) {
 			pathLeft = pathLeft.slice(matched.length + 4);
 
 			if (!Object.prototype.hasOwnProperty.call(cwo, matched))
-				throw new Error(`"${matched}" doesn't exists in ${pathTraveled ? pathTraveled : "the response"}`);
-			
+				throw new Error(
+					`"${matched}" doesn't exists in ${
+						pathTraveled ? pathTraveled : "the response"
+					}`
+				);
+
 			pathTraveled += `["${matched}"]`;
 		} else if (matchGroups?.indexSelector) {
 			// if [bar]
@@ -45,7 +54,11 @@ function jsonBodyExtractor(body: any, path: string) {
 				);
 
 			if (!cwo.hasOwnProperty(matched))
-				throw new Error(`"${matched}" doesn't exists in ${pathTraveled ? pathTraveled : "the response"}`);
+				throw new Error(
+					`"${matched}" doesn't exists in ${
+						pathTraveled ? pathTraveled : "the response"
+					}`
+				);
 
 			pathTraveled += `[${matched}]`;
 		} else {

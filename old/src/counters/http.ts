@@ -31,7 +31,7 @@ const HTTPCounter: Counter = {
 			throw new Error("You can't make requests to this url!");
 
 		let result: number | string;
-		let cachedResponse = await redis.get(url);
+		const cachedResponse = await redis.get(url);
 
 		if (!cachedResponse) {
 			const controller = new AbortController();
@@ -56,7 +56,7 @@ const HTTPCounter: Counter = {
 				.set(url, result, "EX", lifetime ?? 1 * 60 * 60)
 				.catch(console.error);
 
-			let responseContentType = response.headers.get("Content-Type");
+			const responseContentType = response.headers.get("Content-Type");
 			if (responseContentType.includes("text/plain")) {
 				// do nothing, just allow it
 			} else if (responseContentType.includes("application/json")) {

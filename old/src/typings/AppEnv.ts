@@ -95,6 +95,6 @@ interface _AppEnv {
 }
 
 // set all properties to readonly
-interface AppEnv extends Readonly<_AppEnv> {}
+type AppEnv = Readonly<_AppEnv>;
 
 export default AppEnv;

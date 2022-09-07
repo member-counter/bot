@@ -13,7 +13,7 @@ export const neededBotPermissions: (keyof Eris.Constants["Permissions"])[] = [
 	"banMembers"
 ];
 
-export const neededBotPermissionsBitField: BigInt = neededBotPermissions.reduce(
+export const neededBotPermissionsBitField: bigint = neededBotPermissions.reduce(
 	(acc, cur) => acc | Eris.Constants.Permissions[cur],
 	0n
 );

@@ -7,8 +7,8 @@ import {
 	CategoryChannel
 } from "eris";
 
-const counterPattern: RegExp = /\{.+\}/;
-const disablePattern: RegExp = /\{disable\}/i;
+const counterPattern = /\{.+\}/;
+const disablePattern = /\{disable\}/i;
 
 const updateTemplateContent = async (channel: GuildChannel): Promise<void> => {
 	if (

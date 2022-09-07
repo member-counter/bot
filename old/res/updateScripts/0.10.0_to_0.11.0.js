@@ -67,7 +67,7 @@ const newDefaultDigits = [
 			newSettings["prefix"] = oldSettings.prefix;
 		}
 		if ("topicCounterCustomNumbers" in oldSettings) {
-			let newDigitsArray = [];
+			const newDigitsArray = [];
 			for (const [i, value] of Object.entries(
 				oldSettings.topicCounterCustomNumbers
 			)) {
@@ -103,7 +103,7 @@ const newDefaultDigits = [
 			Object.entries(oldSettings.channelNameCounters).forEach(
 				([channelId, channelConfig]) => {
 					let name = channelConfig.channelName;
-					let type = channelConfig.type;
+					let { type } = channelConfig;
 
 					if (channelConfig.type === "memberswithrole") {
 						type += ":" + channelConfig.otherConfig.roles.join(",");

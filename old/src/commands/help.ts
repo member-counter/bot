@@ -22,7 +22,7 @@ const help: Command = {
 
 		if (!desiredThing) {
 			// Main help page
-			let embed = embedBase(languagePack.commands.help.embedReply);
+			const embed = embedBase(languagePack.commands.help.embedReply);
 
 			const motd = getMotd();
 			embed.description =
@@ -124,11 +124,12 @@ const help: Command = {
 				}
 			} else {
 				// If nothing was found, suggest stuff
-				const searchIgnoredWords = languagePack.commands.help.misc.searchIgnoredWords
-					.normalize("NFD")
-					.toLowerCase()
-					.replace(/\p{Diacritic}/gu, "")
-					.split(/\s+/);
+				const searchIgnoredWords =
+					languagePack.commands.help.misc.searchIgnoredWords
+						.normalize("NFD")
+						.toLowerCase()
+						.replace(/\p{Diacritic}/gu, "")
+						.split(/\s+/);
 
 				const keywords = desiredThing
 					.normalize("NFD")
@@ -169,10 +170,11 @@ const help: Command = {
 						search(commandLP.helpDescription, bestCommandOccurrences, key);
 				}
 
-				let errorMessage = languagePack.commands.help.misc.errorNotFound.replace(
-					"{DESIRED_COMMAND}",
-					desiredThing
-				);
+				let errorMessage =
+					languagePack.commands.help.misc.errorNotFound.replace(
+						"{DESIRED_COMMAND}",
+						desiredThing
+					);
 
 				if (bestCounterOccurrences.size) {
 					errorMessage += "\n";

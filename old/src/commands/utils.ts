@@ -14,12 +14,8 @@ const lockChannel: Command = {
 	denyDm: true,
 	onlyAdmin: true,
 	run: async ({ message, languagePack, client }) => {
-		const {
-			success,
-			errorInvalidChannel,
-			errorNoPerms,
-			errorNotFound
-		} = languagePack.commands.lockChannel;
+		const { success, errorInvalidChannel, errorNoPerms, errorNotFound } =
+			languagePack.commands.lockChannel;
 		const { channel, content } = message;
 		const [command, channelId] = content.split(/\s+/);
 		const { guild } = channel;
@@ -120,7 +116,7 @@ const base64: Command = {
 
 		let action = "";
 		let string = "";
-		let parts = content.trimStart().split(" ");
+		const parts = content.trimStart().split(" ");
 		parts.shift(); // remove command ("base64" or any alias)
 
 		for (const part of parts) {
@@ -158,7 +154,7 @@ const setStatusCmd: Command = {
 	denyDm: false,
 	run: async ({ client, message, languagePack }) => {
 		if (!BOT_OWNERS.includes(message.author.id)) return;
-		let [, ...content] = message.content.split(" ");
+		const [, ...content] = message.content.split(" ");
 		await message.channel.sendTyping();
 		const { text, type, status } = setStatus(client, content.join(" "));
 		await message.channel.createMessage(`Now _${type}_ **${text}**`);

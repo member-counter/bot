@@ -36,7 +36,7 @@ class Bot {
 	static init() {
 		if (this._client) throw new Error("Client is already initialized");
 
-		const Intents = Eris.Constants.Intents;
+		const { Intents } = Eris.Constants;
 		const intents: number[] = [
 			Intents.guildMembers,
 			Intents.guilds,

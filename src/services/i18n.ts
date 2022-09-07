@@ -35,9 +35,10 @@ export async function i18n(interaction: string | Interaction) {
 	let locale: string;
 
 	if (typeof interaction === "string") {
-		if (!availableLocales.includes(interaction)) throw new Error('Given locale is not supported');
-		 	
-		locale = interaction; 
+		if (!availableLocales.includes(interaction))
+			throw new Error("Given locale is not supported");
+
+		locale = interaction;
 	} else {
 		if (interaction.inGuild()) {
 			const { locale: forcedGuildLocale } = await GuildSettings.init(
@@ -51,12 +52,12 @@ export async function i18n(interaction: string | Interaction) {
 			if (availableLocales.includes(forcedGuildLocale)) {
 				locale = forcedGuildLocale;
 			}
-		} 
+		}
 
 		const userLocale = interaction.locale;
 		if (availableLocales.includes(userLocale)) {
 			locale ??= userLocale;
-		} 
+		}
 
 		locale ??= config.i18n.defaultLocale;
 	}

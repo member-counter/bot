@@ -40,14 +40,8 @@ const seeSettings: Command = {
 			guildLogsText
 		} = languagePack.commands.seeSettings.settingsMessage;
 
-		const {
-			language,
-			locale,
-			shortNumber,
-			allowedRoles,
-			counters,
-			digits
-		} = guildService;
+		const { language, locale, shortNumber, allowedRoles, counters, digits } =
+			guildService;
 
 		let generalSection = "";
 		let countersSection = "";
@@ -173,16 +167,16 @@ const lang: Command = {
 		const { guild } = channel;
 		const availableLanguages = availableLanguagePacks.sort();
 		const [command, languageRequested]: any[] = content.split(/\s+/);
-		let { errorNotFound: listOfLangPacks } = languagePack.commands.lang;
+		const { errorNotFound: listOfLangPacks } = languagePack.commands.lang;
 
 		if (availableLanguages.includes(languageRequested)) {
 			await guildService.setLanguage(languageRequested);
 
 			languagePack = loadLanguagePack(languageRequested);
-			let { success } = languagePack.commands.lang;
+			const { success } = languagePack.commands.lang;
 			await channel.createMessage(success);
 		} else {
-			let langTable: string[][] = [];
+			const langTable: string[][] = [];
 
 			availableLanguages.forEach((availableLanguageCode, index) => {
 				const guildLanguagePack = languagePack;
@@ -197,7 +191,7 @@ const lang: Command = {
 					`${ilanguagePack.langName} (${ilanguagePack.langCode.split("_")[1]})`
 				];
 			});
-			let tableConfig = {
+			const tableConfig = {
 				border: {
 					topBody: ` `,
 					topJoin: ` `,
@@ -237,7 +231,7 @@ const role: Command = {
 		const { guild } = channel;
 		const [command, action] = content.toLowerCase().split(/\s+/);
 
-		let rolesMentioned: string[] = roleMentions;
+		const rolesMentioned: string[] = roleMentions;
 		let newAllowedRoles: string[] = guildService.allowedRoles;
 
 		switch (action) {
@@ -288,11 +282,8 @@ const upgradeServer: Command = {
 	onlyAdmin: false,
 	run: async ({ message, languagePack, guildService }) => {
 		const { author, channel } = message;
-		const {
-			success,
-			noServerUpgradesAvailable,
-			errorCannotUpgrade
-		} = languagePack.commands.upgradeServer;
+		const { success, noServerUpgradesAvailable, errorCannotUpgrade } =
+			languagePack.commands.upgradeServer;
 
 		try {
 			await guildService.upgradeServer(author.id);
@@ -334,7 +325,7 @@ const setDigit: Command = {
 			await channel.createMessage(languagePack.commands.setDigit.resetSuccess);
 		} else {
 			const digitsToSet = (() => {
-				let [command, ...args]: any = content.split(" ");
+				const [command, ...args]: any = content.split(" ");
 				return args
 					.join(" ")
 					.split(",")
@@ -451,11 +442,8 @@ const checkPerms: Command = {
 
 		messageBody += neededBotPermissions
 			.map((permission) => {
-				const {
-					optional,
-					name,
-					description
-				} = languagePackCheckPermissions.details[permission];
+				const { optional, name, description } =
+					languagePackCheckPermissions.details[permission];
 				let sectionBody = "";
 
 				if (botMemberPermissions.has(permission)) {

@@ -20,12 +20,10 @@ const setup: Command = {
 		// use default if type is invalid
 		if (type && !availableSetups.includes(type)) type = "default";
 
-		const {
-			categoryName: catergoryNameTemplate,
-			counters: countersToCreate
-		} = languagePack.commands.setup.counterTemplates[
-			(type as "youtube" | "twitch" | "twitter") ?? "default"
-		];
+		const { categoryName: catergoryNameTemplate, counters: countersToCreate } =
+			languagePack.commands.setup.counterTemplates[
+				(type as "youtube" | "twitch" | "twitter") ?? "default"
+			];
 
 		const { guild } = channel;
 		const countService = await CountService.init(guild);
@@ -183,8 +181,7 @@ const setup: Command = {
 								// TODO use constants when abalabahaha/eris#1271 is merged
 								type: 0,
 								allow: 0,
-								deny:
-									Eris.Constants.Permissions.voiceConnect
+								deny: Eris.Constants.Permissions.voiceConnect
 							}
 						],
 						parentID: discordCategory.id

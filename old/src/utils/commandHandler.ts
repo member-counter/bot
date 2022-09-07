@@ -86,7 +86,7 @@ export default async (message: Eris.Message) => {
 		if (commandRequested.startsWith(matchedPrefix)) {
 			commandsLoop: for (const command of commands) {
 				for (const alias of command.aliases) {
-					let commandAliasToCheck = matchedPrefix + alias.toLowerCase();
+					const commandAliasToCheck = matchedPrefix + alias.toLowerCase();
 					if (commandRequested === commandAliasToCheck) {
 						if (channel instanceof Eris.PrivateChannel && command.denyDm) {
 							channel

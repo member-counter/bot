@@ -13,7 +13,11 @@ export const inviteCommand = new Command({
 	execute: async (command, txt) => {
 		const embed = new BaseMessageEmbed();
 
-		embed.setDescription(await txt("COMMAND_INVITE_DESCRIPTION", { INVITE_URL: getBotInviteLink() }))
+		embed.setDescription(
+			await txt("COMMAND_INVITE_DESCRIPTION", {
+				INVITE_URL: getBotInviteLink()
+			})
+		);
 
 		embed.setThumbnail(twemojiURL("🤖"));
 

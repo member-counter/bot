@@ -71,7 +71,9 @@ export const interactionCreateEvent = new Event({
 						logger.error("Interaction error reply error:", error);
 					});
 			} else {
-				logger.error("Something went wrong while processing the interaction: " + error)
+				logger.error(
+					"Something went wrong while processing the interaction: " + error
+				);
 			}
 		}
 	}

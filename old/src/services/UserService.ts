@@ -36,9 +36,7 @@ class UserService {
 		return this.doc.availableServerUpgrades;
 	}
 
-	public async grantAvailableServerUpgrades(
-		amount: number = 1
-	): Promise<number> {
+	public async grantAvailableServerUpgrades(amount = 1): Promise<number> {
 		this.doc.availableServerUpgrades += amount;
 		this.doc.save();
 		return this.doc.availableServerUpgrades;
@@ -48,7 +46,7 @@ class UserService {
 		return this.doc.credits;
 	}
 
-	public async grantCredits(amount: number = 1): Promise<number> {
+	public async grantCredits(amount = 1): Promise<number> {
 		this.doc.credits += amount;
 		this.doc.save();
 		return this.doc.credits;

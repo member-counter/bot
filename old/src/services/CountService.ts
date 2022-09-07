@@ -65,7 +65,7 @@ class CountService {
 					discordChannel.type === Eris.Constants.ChannelTypes.GUILD_TEXT ||
 					discordChannel.type === Eris.Constants.ChannelTypes.GUILD_NEWS;
 
-				let processedContent = await this.processContent(
+				const processedContent = await this.processContent(
 					rawContent,
 					counterIsTopicType
 				);
@@ -100,7 +100,7 @@ class CountService {
 
 	public async processContent(
 		content: string,
-		canHaveCustomEmojis: boolean = false
+		canHaveCustomEmojis = false
 	): Promise<string> {
 		// Check if there are counters pending to be processed
 		while (/\{(.+?)\}/g.test(content)) {
@@ -138,7 +138,7 @@ class CountService {
 
 	public async processCounter(
 		counterRequested: string,
-		canHaveCustomEmojis: boolean = false
+		canHaveCustomEmojis = false
 	): Promise<string> {
 		const counterSections = counterRequested
 			.split(/(?<!\\):/)
@@ -168,8 +168,8 @@ class CountService {
 			}
 		})();
 
-		let counterName = CountService.safeCounterName(counterSections.shift());
-		let resource = counterSections.join(":");
+		const counterName = CountService.safeCounterName(counterSections.shift());
+		const resource = counterSections.join(":");
 		let lifetime = 0;
 		let result: string | number;
 
@@ -247,7 +247,7 @@ class CountService {
 
 				for (const key in returnedValue) {
 					if (returnedValue.hasOwnProperty(key)) {
-						let extKey = CountService.safeCounterName(key);
+						const extKey = CountService.safeCounterName(key);
 						let extValue = returnedValue[key];
 
 						if (typeof extValue === "string") {

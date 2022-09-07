@@ -56,7 +56,11 @@ const envVarsSchema = Joi.object()
 			)
 			.default("auto"),
 		DISCORD_BOT_SHARDS_COUNT: Joi.number().default(1),
-		DISCORD_BOT_AUTO_DEPLOY_COMMANDS: Joi.boolean().default(false).description("Deploy slash commands automatically when the bot is started"),
+		DISCORD_BOT_AUTO_DEPLOY_COMMANDS: Joi.boolean()
+			.default(false)
+			.description(
+				"Deploy slash commands automatically when the bot is started"
+			),
 		DISCORD_OFFICIAL_SERVER_URL: Joi.string().uri().allow("").optional(),
 		DB_URI: Joi.string().required().description("MongoDB connection URI"),
 		TEST_DEPLOY_INTERACTION_COMMAND_GUILD_ID: Joi.string().description(

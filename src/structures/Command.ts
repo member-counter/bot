@@ -2,7 +2,7 @@ import {
 	CommandInteraction,
 	PermissionResolvable,
 	Permissions,
-	Intents,
+	Intents
 } from "discord.js";
 import { i18n } from "../services/i18n";
 import { Unwrap } from "../utils/Unwrap";

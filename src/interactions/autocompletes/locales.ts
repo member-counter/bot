@@ -3,22 +3,26 @@ import GuildSettings from "../../services/GuildSettings";
 import { availableLocales, i18n } from "../../services/i18n";
 import searchInTexts from "../../utils/search";
 
-export const locales = async (autocompleteInteraction: AutocompleteInteraction) => {
+export const locales = async (
+	autocompleteInteraction: AutocompleteInteraction
+) => {
 	const focusedOption = autocompleteInteraction.options.getFocused(true);
 
 	if (!autocompleteInteraction.inGuild()) return;
 	if (autocompleteInteraction.commandName !== "settings") return;
 	if (focusedOption.name !== "language") return;
 
-	const guildSettings = await GuildSettings.init(autocompleteInteraction.guildId);
+	const guildSettings = await GuildSettings.init(
+		autocompleteInteraction.guildId
+	);
 
 	const allLocales = await Promise.all(
 		["server", ...availableLocales].map(async (locale) => {
 			if (locale === "server") {
 				return {
-					name: await(await i18n(autocompleteInteraction))(
-						"AUTOCOMPLETE_DEFAULT_SERVER_LOCALE"
-					),
+					name: await (
+						await i18n(autocompleteInteraction)
+					)("AUTOCOMPLETE_DEFAULT_SERVER_LOCALE"),
 					value: locale
 				};
 			} else {

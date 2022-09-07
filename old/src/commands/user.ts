@@ -42,14 +42,10 @@ const user: Command = {
 	denyDm: false,
 	run: async ({ message, languagePack, client }) => {
 		const { author, channel, mentions, content } = message;
-		const [
-			_command,
-			userRequested,
-			actionRequested,
-			...actionParams
-		] = content.split(/\s+/);
+		const [_command, userRequested, actionRequested, ...actionParams] =
+			content.split(/\s+/);
 
-		let targetUser: Eris.User =
+		const targetUser: Eris.User =
 			mentions[0] ||
 			client.users.get(userRequested) ||
 			(userRequested &&
