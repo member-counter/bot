@@ -10,6 +10,7 @@ import { i18n } from "../../services/i18n";
 import { Command } from "../../structures";
 import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
 import { UserError } from "../../utils/UserError";
+import { buttonId as deleteGuildSettingsButtonId } from "../buttons/deleteGuildSettings";
 
 export const settingsCommand = new Command({
 	definition: new SlashCommandBuilder()
@@ -67,7 +68,7 @@ export const settingsCommand = new Command({
 				new ButtonBuilder({
 					style: ButtonStyle.Danger,
 					label: await txt("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
-					customId: "dgs",
+					customId: deleteGuildSettingsButtonId,
 					emoji: "🗑"
 				})
 			);
