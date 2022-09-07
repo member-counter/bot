@@ -1,10 +1,9 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { Constants, MessageActionRow, MessageButton } from "discord.js";
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import { Command } from "../../structures";
 import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
 import getBotInviteLink from "../../utils/getBotInviteLink";
 import { twemojiURL } from "../../utils/twemojiURL";
-import { UserError } from "../../utils/UserError";
 
 export const inviteCommand = new Command({
 	definition: new SlashCommandBuilder()
@@ -21,10 +20,10 @@ export const inviteCommand = new Command({
 
 		embed.setThumbnail(twemojiURL("🤖"));
 
-		const componentRow = new MessageActionRow();
+		const componentRow = new ActionRowBuilder<ButtonBuilder>();
 		componentRow.addComponents(
-			new MessageButton({
-				style: Constants.MessageButtonStyles.LINK,
+			new ButtonBuilder({
+				style: ButtonStyle.Link,
 				url: getBotInviteLink(),
 				label: await txt("COMMAND_INVITE_ADD_TO_SERVER")
 			})
@@ -32,8 +31,8 @@ export const inviteCommand = new Command({
 
 		if (command.inGuild()) {
 			componentRow.addComponents(
-				new MessageButton({
-					style: Constants.MessageButtonStyles.LINK,
+				new ButtonBuilder({
+					style: ButtonStyle.Link,
 					url: getBotInviteLink(command.guildId),
 					label: await txt("COMMAND_INVITE_ADD_TO_SERVER_AGAIN")
 				})
