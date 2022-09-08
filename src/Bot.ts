@@ -15,6 +15,11 @@ export default class Bot {
 			shardCount: config.discord.bot.shardCount
 		});
 
+
+
+
+
+		
 		this.setupEvents();
 	}
 
