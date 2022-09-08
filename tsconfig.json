@@ -7,6 +7,9 @@
 		"esModuleInterop": true,
 		"sourceMap": true,
 		"outDir": "./dist",
+		"strict": true,
+		"noErrorTruncation": true,
+		"noUncheckedIndexedAccess": true,
 		"allowJs": true,
 		"skipLibCheck": true
 	},
