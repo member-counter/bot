@@ -62,14 +62,7 @@ const envVarsSchema = Joi.object()
 				"Deploy slash commands automatically when the bot is started"
 			),
 		DISCORD_OFFICIAL_SERVER_URL: Joi.string().uri().allow("").optional(),
-		MONGODB_HOST: Joi.string()
-			.default("member-counter-bot-db")
-			.required()
-			.description("MongoDB host"),
-		MONGODB_PORT: Joi.string()
-			.default("27017")
-			.required()
-			.description("MongoDB port"),
+		DB_URI: Joi.string().required().description("MongoDB connection URI"),
 		TEST_DEPLOY_INTERACTION_COMMAND_GUILD_ID: Joi.string().description(
 			"Guild ID to deploy commands quickly for testing purposes"
 		),
@@ -102,7 +95,7 @@ const config = {
 		suportServer: { url: envVars.DISCORD_OFFICIAL_SERVER_URL as string },
 		autoDeployCommands: envVars.DISCORD_BOT_AUTO_DEPLOY_COMMANDS as boolean
 	},
-	db: { uri: `mongodb://${envVars.MONGODB_HOST}:${envVars.MONGODB_PORT}/bot` },
+	db: { uri: envVars.DB_URI as string },
 	test: {
 		deployInteractonCommandGuildId:
 			envVars.TEST_DEPLOY_INTERACTION_COMMAND_GUILD_ID as string

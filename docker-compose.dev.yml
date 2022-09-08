@@ -10,9 +10,8 @@ services:
     ports:
       - "9229:9229"
   member-counter-bot-db:
-    command: mongod --port ${MONGODB_PORT}
     ports:
-      - "${MONGODB_PORT}:${MONGODB_PORT}"
+      - "27017:27017"
     networks:
       - default
 
@@ -28,7 +27,7 @@ services:
     environment:
       - ME_CONFIG_OPTIONS_EDITORTHEME=monokai
       - ME_CONFIG_MONGODB_SERVER=member-counter-bot-db
-      - ME_CONFIG_MONGODB_PORT=${MONGODB_PORT}
+      - ME_CONFIG_MONGODB_PORT=27017
     ports:
       - "8081:8081"
     depends_on:
