@@ -14,3 +14,4 @@ dist/
 storage/
 
 logs/
+docker-compose.override.yml
