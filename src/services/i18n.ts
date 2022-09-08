@@ -1,4 +1,4 @@
-import { Interaction } from "discord.js";
+import { CommandInteraction, Interaction } from "discord.js";
 import Redis from "ioredis";
 
 import config from "../config";
@@ -32,7 +32,9 @@ export const availableLocales = [
 	"tr-TR"
 ];
 
-export async function i18n(interaction: string | Interaction) {
+export async function i18n(
+	interaction: string | Interaction | CommandInteraction
+) {
 	let locale: string;
 
 	if (typeof interaction === "string") {

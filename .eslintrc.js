@@ -21,6 +21,7 @@ module.exports = {
 		"@typescript-eslint/no-unused-vars": ["error"],
 		"@typescript-eslint/no-explicit-any": "off",
 		"prettier/prettier": ["error"],
+		"no-inner-declarations": "off",
 		quotes: [
 			"error",
 			"double",

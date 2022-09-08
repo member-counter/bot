@@ -5,7 +5,6 @@ import {
 	CommandInteractionOption,
 	CommandInteractionOptionResolver,
 	IntentsBitField,
-	Interaction,
 	PermissionsBitField
 } from "discord.js";
 
@@ -27,11 +26,10 @@ export const allCommandsNeededIntents: IntentsBitField = new IntentsBitField(
 export default async function handleCommand(
 	commandInteraction: CommandInteraction
 ): Promise<void> {
-	const translate = await i18n(commandInteraction as Interaction);
+	const translate = await i18n(commandInteraction);
 
 	for (const command of allCommands) {
 		if (command.definition.name === commandInteraction.commandName) {
-			// eslint-disable-next-line no-inner-declarations
 			async function searchAndRunCommand(
 				subcommandExecute: typeof command.execute,
 				rawOptions: CommandInteractionOption[]
