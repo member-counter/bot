@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  discord-bot:
+  member-counter-bot:
     build:
       context: ./
       dockerfile: Dockerfile.dev
@@ -9,27 +9,27 @@ services:
       - .:/app
     ports:
       - "9229:9229"
-  bot-db:
+  member-counter-bot-db:
     ports:
       - "27017:27017"
     networks:
       - default
 
-  bot-redis:
+  member-counter-bot-redis:
     ports:
       - "6379:6379"
 
-  db-mongoex:
+  member-counter-bot-db-mongoex:
     image: mongo-express
-    container_name: DB-MongoEX
+    container_name: Member-Counter-Bot-DB-MongoEX
     logging:
       driver: "none"
     environment:
       - ME_CONFIG_OPTIONS_EDITORTHEME=monokai
-      - ME_CONFIG_MONGODB_SERVER=bot-db
+      - ME_CONFIG_MONGODB_SERVER=member-counter-bot-db
       - ME_CONFIG_MONGODB_PORT=27017
     ports:
       - "8081:8081"
     depends_on:
-      - bot-db
+      - member-counter-bot-db
     restart: unless-stopped
