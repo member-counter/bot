@@ -1,6 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder } from "@discordjs/builders";
-import { ButtonStyle } from "discord-api-types/payloads";
-import { ButtonInteraction } from "discord.js";
+import { ButtonInteraction, ButtonStyle } from "discord.js";
 
 import GuildSettings from "../../services/GuildSettings";
 import { i18n } from "../../services/i18n";
@@ -25,9 +24,9 @@ export const deleteGuildSettings = async (
 			content: await txt("BUTTON_DELETE_SETTINGS_DONE")
 		});
 	} else {
-		const compoenentRow = new ActionRowBuilder<ButtonBuilder>();
+		const componentRow = new ActionRowBuilder<ButtonBuilder>();
 
-		compoenentRow.addComponents(
+		componentRow.addComponents(
 			new ButtonBuilder({
 				style: ButtonStyle.Danger,
 				label: await txt("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
@@ -37,7 +36,7 @@ export const deleteGuildSettings = async (
 		);
 
 		await buttonInteraction.reply({
-			components: [compoenentRow],
+			components: [componentRow],
 			content: await txt("BUTTON_DELETE_SETTINGS_CONFIRM")
 		});
 	}

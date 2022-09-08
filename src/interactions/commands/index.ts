@@ -2,6 +2,7 @@ import { inlineCode } from "@discordjs/builders";
 import {
 	ApplicationCommandOptionType,
 	CommandInteraction,
+	CommandInteractionOption,
 	CommandInteractionOptionResolver,
 	IntentsBitField,
 	Interaction,
@@ -13,6 +14,7 @@ import { inviteCommand } from "./invite";
 import { settingsCommand } from "./settings";
 
 import type { Command } from "../../structures";
+import logger from "../../logger";
 export const allCommands: Command[] = [inviteCommand, settingsCommand];
 
 export const allCommandsNeededPermissions: PermissionsBitField =
@@ -32,13 +34,14 @@ export default async function handleCommand(
 			// eslint-disable-next-line no-inner-declarations
 			async function searchAndRunCommand(
 				subcommandExecute: typeof command.execute,
-				rawOptions: any[]
+				rawOptions: CommandInteractionOption[]
 			) {
 				const OptionTypes = ApplicationCommandOptionType;
+
 				if (
 					Array.isArray(rawOptions) &&
 					rawOptions.some((rawOption) =>
-						[OptionTypes.SubcommandGroup, OptionTypes.SubcommandGroup].includes(
+						[OptionTypes.SubcommandGroup, OptionTypes.Subcommand].includes(
 							rawOption.type
 						)
 					)
@@ -78,6 +81,7 @@ export default async function handleCommand(
 							)} is not being handled correctly`
 						);
 				} else if (typeof subcommandExecute === "function") {
+					logger.info(`Executing command ${commandInteraction.commandName}`);
 					await subcommandExecute(commandInteraction, translate);
 					return;
 				}

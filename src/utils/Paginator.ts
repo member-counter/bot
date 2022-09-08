@@ -3,11 +3,11 @@ import {
 	ButtonBuilder,
 	SelectMenuBuilder
 } from "@discordjs/builders";
-import { APIEmbed } from "discord-api-types/payloads/v10/channel";
 import {
 	ButtonStyle,
 	CommandInteraction,
-	InteractionCollector
+	InteractionCollector,
+	APIEmbed
 } from "discord.js";
 import _ from "lodash";
 

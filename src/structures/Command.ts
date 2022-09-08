@@ -6,7 +6,10 @@ import {
 	PermissionResolvable,
 	PermissionsBitField
 } from "discord.js";
-
+import {
+	SlashCommandBuilder,
+	SlashCommandSubcommandsOnlyBuilder
+} from "@discordjs/builders";
 import { i18n } from "../services/i18n";
 import { Unwrap } from "../utils/Unwrap";
 
@@ -20,7 +23,7 @@ interface SubCommandsExecute {
 }
 
 interface CommandOptions {
-	definition: any;
+	definition: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;
 	execute: CommandExecute | SubCommandsExecute;
 	/**
 	 * @description Add intents here that might be needed by your code, like intents for awaiting reactions
@@ -33,7 +36,7 @@ interface CommandOptions {
 }
 
 export class Command {
-	definition: any;
+	definition: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;
 	execute: CommandExecute | SubCommandsExecute;
 	neededIntents: IntentsBitField;
 	neededPermissions: PermissionsBitField;

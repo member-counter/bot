@@ -65,9 +65,9 @@ export const settingsCommand = new Command({
 				]
 			});
 
-			const compoenentRow = new ActionRowBuilder<ButtonBuilder>();
+			const componentRow = new ActionRowBuilder<ButtonBuilder>();
 
-			compoenentRow.addComponents(
+			componentRow.addComponents(
 				new ButtonBuilder({
 					style: ButtonStyle.Danger,
 					label: await txt("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
@@ -78,8 +78,7 @@ export const settingsCommand = new Command({
 
 			await command.reply({
 				embeds: [embed],
-				components: [compoenentRow],
-				ephemeral: true
+				components: [componentRow]
 			});
 		},
 		set: async (command, txt) => {
