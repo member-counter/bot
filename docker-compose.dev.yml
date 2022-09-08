@@ -10,14 +10,15 @@ services:
     ports:
       - "9229:9229"
   member-counter-bot-db:
+    command: mongod --port ${MONGODB_PORT}
     ports:
-      - "27017:27017"
+      - "${MONGODB_PORT}:${MONGODB_PORT}"
     networks:
       - default
 
   member-counter-bot-redis:
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT}:${REDIS_PORT}"
 
   member-counter-bot-db-mongoex:
     image: mongo-express
@@ -27,7 +28,7 @@ services:
     environment:
       - ME_CONFIG_OPTIONS_EDITORTHEME=monokai
       - ME_CONFIG_MONGODB_SERVER=member-counter-bot-db
-      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_PORT=${MONGODB_PORT}
     ports:
       - "8081:8081"
     depends_on:
