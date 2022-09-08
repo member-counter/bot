@@ -102,5 +102,5 @@ export async function i18n(
 		return translation;
 	}
 
-	return translate;
+	return { txt: translate, locale };
 }

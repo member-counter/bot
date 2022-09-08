@@ -14,7 +14,7 @@ export const deleteGuildSettings = async (
 	if (name !== buttonId) return;
 	if (!buttonInteraction.inGuild()) return;
 
-	const txt = await i18n(buttonInteraction);
+	const { txt } = await i18n(buttonInteraction);
 
 	if (confirm) {
 		const guildSettings = await GuildSettings.init(buttonInteraction.guildId);

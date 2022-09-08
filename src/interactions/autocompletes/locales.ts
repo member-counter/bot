@@ -11,18 +11,20 @@ export const locales = async (
 	if (!autocompleteInteraction.inGuild()) return;
 	if (autocompleteInteraction.commandName !== "settings") return;
 	if (focusedOption.name !== "language") return;
-
 	const allLocales = await Promise.all(
 		["server", ...availableLocales].map(async (locale) => {
 			if (locale === "server") {
 				return {
 					name: await (
 						await i18n(autocompleteInteraction)
-					)("AUTOCOMPLETE_DEFAULT_SERVER_LOCALE"),
+					).txt("AUTOCOMPLETE_DEFAULT_SERVER_LOCALE"),
 					value: locale
 				};
 			} else {
-				return { name: await (await i18n(locale))("LANG_NAME"), value: locale };
+				return {
+					name: await (await i18n(locale)).txt("LANG_NAME"),
+					value: locale
+				};
 			}
 		})
 	);

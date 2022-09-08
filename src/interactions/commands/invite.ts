@@ -14,7 +14,7 @@ export const inviteCommand = new Command({
 	definition: new SlashCommandBuilder()
 		.setName("invite")
 		.setDescription("Gives you an invite link to add the bot"),
-	execute: async (command, txt) => {
+	execute: async (command, { txt }) => {
 		const embed = new BaseMessageEmbed();
 
 		embed.setDescription(

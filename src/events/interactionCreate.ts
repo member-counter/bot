@@ -24,7 +24,7 @@ export const interactionCreateEvent = new Event({
 			}
 		} catch (error) {
 			if (interaction.isCommand() || interaction.isMessageComponent()) {
-				const translate = await i18n(interaction);
+				const { txt: translate } = await i18n(interaction);
 				const embed = new BaseMessageEmbed();
 				const id = uuid();
 

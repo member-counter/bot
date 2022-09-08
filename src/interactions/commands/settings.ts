@@ -45,7 +45,7 @@ export const settingsCommand = new Command({
 				.setDescription("See the bot logs for more information")
 		),
 	execute: {
-		see: async (command, txt) => {
+		see: async (command, { txt }) => {
 			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
@@ -88,7 +88,7 @@ export const settingsCommand = new Command({
 				components: [componentRow]
 			});
 		},
-		set: async (command, txt) => {
+		set: async (command, { txt }) => {
 			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
@@ -104,8 +104,10 @@ export const settingsCommand = new Command({
 				const error = await guildSettings
 					.setLocale(command.options.get("language", false).value.toString())
 					.catch((e) => e);
-
-				txt = await i18n(guildSettings.locale ?? command.guildLocale);
+				const { txt: i18nTxt } = await i18n(
+					guildSettings.locale ?? command.guildLocale
+				);
+				txt = i18nTxt;
 
 				embed.addFields([
 					{
@@ -140,7 +142,7 @@ export const settingsCommand = new Command({
 				ephemeral: true
 			});
 		},
-		logs: async (command, txt) => {
+		logs: async (command, { txt, locale }) => {
 			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
@@ -158,9 +160,7 @@ export const settingsCommand = new Command({
 				const formatedLatestLogs = latestLogs
 					.map(
 						({ timestamp, text }) =>
-							`[${timestamp.toLocaleString(
-								guildSettings.locale ?? "en-US"
-							)}] ${text}\n`
+							`[${timestamp.toLocaleString(locale ?? "en-US")}] ${text}\n`
 					)
 					.join("");
 
