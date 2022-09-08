@@ -1,3 +1,4 @@
+import GuildLogModel, { GuildLogDocument } from "../models/GuildLogModel";
 import GuildSettingsModel, {
 	GuildSettingsDocument
 } from "../models/GuildSettingsModel";
@@ -33,7 +34,16 @@ class GuildSettings {
 
 		await this.doc.save();
 	}
+	public async log(text: string): Promise<void> {
+		await GuildLogModel.create({ id: this.id, text });
+	}
 
+	public async getLatestLogs(amount = 20): Promise<GuildLogDocument[]> {
+		const latestLogs = await GuildLogModel.find({ id: this.id })
+			.limit(amount)
+			.sort({ timestamp: 1 });
+		return latestLogs;
+	}
 	public async delete() {
 		await this.doc.delete();
 	}

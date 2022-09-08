@@ -12,6 +12,7 @@ import {
 import _ from "lodash";
 
 import logger from "../logger";
+import BaseEmbed from "./BaseMessageEmbed";
 
 /**
  * @author VampireChicken12
@@ -19,13 +20,13 @@ import logger from "../logger";
  */
 class Paginator {
 	private currentPage: number;
-	private pages: APIEmbed[];
+	private pages: APIEmbed[] | BaseEmbed[];
 	private ephemeral: boolean;
 	private commandInteraction: CommandInteraction;
 
 	public constructor(
 		commandInteraction: CommandInteraction,
-		pages: APIEmbed[],
+		pages: APIEmbed[] | BaseEmbed[],
 		ephemeral = false
 	) {
 		this.commandInteraction = commandInteraction;
@@ -79,7 +80,7 @@ class Paginator {
 	async displayPage(page: number) {
 		this.currentPage = page;
 		// Clone the embed and modify it by adding a page indicator
-		const embedToSend: APIEmbed = _.cloneDeep(this.pages[page]);
+		const embedToSend: APIEmbed = _.cloneDeep(this.pages[page]) as APIEmbed;
 
 		if (this.pages.length > 1) this.appendPageCounter(embedToSend);
 

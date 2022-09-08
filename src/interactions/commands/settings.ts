@@ -10,6 +10,8 @@ import GuildSettings from "../../services/GuildSettings";
 import { i18n } from "../../services/i18n";
 import { Command } from "../../structures";
 import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
+import Paginator from "../../utils/Paginator";
+import safeDiscordString from "../../utils/safeDiscordString";
 import { UserError } from "../../utils/UserError";
 import { buttonId as deleteGuildSettingsButtonId } from "../buttons/deleteGuildSettings";
 
@@ -36,6 +38,11 @@ export const settingsCommand = new Command({
 						.setDescription("Changes the language of this bot")
 						.setAutocomplete(true)
 				)
+		)
+		.addSubcommand((subCommand) =>
+			subCommand
+				.setName("logs")
+				.setDescription("See the bot logs for more information")
 		),
 	execute: {
 		see: async (command, txt) => {
@@ -132,6 +139,60 @@ export const settingsCommand = new Command({
 				embeds: [embed],
 				ephemeral: true
 			});
+		},
+		logs: async (command, txt) => {
+			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
+			if (
+				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
+			)
+				throw new UserError("COMMON_ERROR_NO_PERMISSIONS");
+
+			const guildSettings = await GuildSettings.init(command.guildId);
+			await command.guild.fetch();
+			// const { language, locale, shortNumber, allowedRoles, counters, digits } =
+			// 	guildSettings;
+			let logsSection: string[] | [] = [];
+			const latestLogs = await guildSettings.getLatestLogs(100);
+
+			if (latestLogs.length > 0) {
+				const formatedLatestLogs = latestLogs
+					.map(
+						({ timestamp, text }) =>
+							`[${timestamp.toLocaleString(
+								guildSettings.locale ?? "en-US"
+							)}] ${text}\n`
+					)
+					.join("");
+
+				logsSection = safeDiscordString(formatedLatestLogs).map(
+					(portion) => "```" + portion + "```"
+				);
+			}
+			if (logsSection.length > 0) {
+				const guildLogsText = await txt(
+					"COMMAND_SETTINGS_LOGS_GUILD_LOGS_TEXT",
+					{
+						SERVER_NAME: command.guild.name,
+						SERVER_ID: inlineCode(command.guild.id)
+					}
+				);
+				const embedPages = [
+					...(logsSection as string[]).map((text) => {
+						return new BaseMessageEmbed()
+							.setTitle(`**${guildLogsText}**`)
+							.setDescription(text);
+					})
+				];
+				new Paginator(command, embedPages).displayPage(0);
+			} else {
+				const embed = new BaseMessageEmbed().setTitle(
+					await txt("COMMAND_SETTINGS_LOGS_NO_LOGS", {
+						SERVER_NAME: command.guild.name,
+						SERVER_ID: inlineCode(command.guild.id)
+					})
+				);
+				command.reply({ embeds: [embed] });
+			}
 		}
 	}
 });
