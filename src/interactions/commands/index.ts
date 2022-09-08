@@ -1,15 +1,18 @@
 import { inlineCode } from "@discordjs/builders";
 import {
+	ApplicationCommandOptionType,
 	CommandInteraction,
-	PermissionsBitField,
+	CommandInteractionOptionResolver,
 	IntentsBitField,
-	ApplicationCommandOptionType
+	Interaction,
+	PermissionsBitField
 } from "discord.js";
+
 import { i18n } from "../../services/i18n";
-import type { Command } from "../../structures";
 import { inviteCommand } from "./invite";
 import { settingsCommand } from "./settings";
 
+import type { Command } from "../../structures";
 export const allCommands: Command[] = [inviteCommand, settingsCommand];
 
 export const allCommandsNeededPermissions: PermissionsBitField =
@@ -22,7 +25,7 @@ export const allCommandsNeededIntents: IntentsBitField = new IntentsBitField(
 export default async function handleCommand(
 	commandInteraction: CommandInteraction
 ): Promise<void> {
-	const translate = await i18n(commandInteraction);
+	const translate = await i18n(commandInteraction as Interaction);
 
 	for (const command of allCommands) {
 		if (command.definition.name === commandInteraction.commandName) {
@@ -43,9 +46,12 @@ export default async function handleCommand(
 					let found = false;
 					for (const rawOption of rawOptions) {
 						if (
-							commandInteraction.options.getSubcommandGroup(false) ===
-								rawOption.name ||
-							commandInteraction.options.getSubcommand(false) === rawOption.name
+							(
+								commandInteraction.options as CommandInteractionOptionResolver
+							).getSubcommandGroup(false) === rawOption.name ||
+							(
+								commandInteraction.options as CommandInteractionOptionResolver
+							).getSubcommand(false) === rawOption.name
 						) {
 							if (typeof subcommandExecute === "object") {
 								found = true;
@@ -62,9 +68,13 @@ export default async function handleCommand(
 							`Command ${inlineCode(
 								commandInteraction.commandName
 							)} -> ${inlineCode(
-								commandInteraction.options.getSubcommandGroup(false)
+								(
+									commandInteraction.options as CommandInteractionOptionResolver
+								).getSubcommandGroup(false)
 							)} -> ${inlineCode(
-								commandInteraction.options.getSubcommand(false)
+								(
+									commandInteraction.options as CommandInteractionOptionResolver
+								).getSubcommand(false)
 							)} is not being handled correctly`
 						);
 				} else if (typeof subcommandExecute === "function") {

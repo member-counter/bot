@@ -71,7 +71,7 @@ export const settingsCommand = new Command({
 				new ButtonBuilder({
 					style: ButtonStyle.Danger,
 					label: await txt("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
-					custom_id: "dgs",
+					custom_id: deleteGuildSettingsButtonId,
 					emoji: { name: "🗑" }
 				})
 			);

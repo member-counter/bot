@@ -1,4 +1,5 @@
 import { AutocompleteInteraction } from "discord.js";
+
 import { availableLocales, i18n } from "../../services/i18n";
 import searchInTexts from "../../utils/search";
 

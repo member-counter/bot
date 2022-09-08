@@ -1,11 +1,10 @@
 import {
+	BitFieldResolvable,
 	CommandInteraction,
+	GatewayIntentsString,
 	IntentsBitField,
 	PermissionResolvable,
-	PermissionsBitField,
-	IntentsBitField,
-	BitFieldResolvable,
-	GatewayIntentsString
+	PermissionsBitField
 } from "discord.js";
 
 import { i18n } from "../services/i18n";

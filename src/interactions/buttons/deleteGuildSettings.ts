@@ -1,6 +1,7 @@
-import { ButtonInteraction } from "discord.js";
 import { ActionRowBuilder, ButtonBuilder } from "@discordjs/builders";
 import { ButtonStyle } from "discord-api-types/payloads";
+import { ButtonInteraction } from "discord.js";
+
 import GuildSettings from "../../services/GuildSettings";
 import { i18n } from "../../services/i18n";
 
