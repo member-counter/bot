@@ -5,6 +5,7 @@
 	"main": "./dist/index.js",
 	"scripts": {
 		"start": "node .",
+		"cm": "cz",
 		"start:docker": "docker compose -f docker-compose.yml up --force-recreate --build",
 		"build": "tsc",
 		"build:docker": "docker build . -t member-counter-bot:latest",
@@ -52,16 +53,27 @@
 		"@types/winston": "^2.4.4",
 		"@typescript-eslint/eslint-plugin": "^5.36.2",
 		"@typescript-eslint/parser": "^5.36.2",
+		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.23.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"prettier": "^2.5.1",
 		"lint-staged": "^13.0.3",
+		"prettier": "^2.5.1",
 		"ts-node-dev": "^1.1.8",
 		"typescript": "^4.8.2"
 	},
 	"lint-staged": {
 		"*.{js,ts}": "eslint --cache --fix",
 		"*.{js,ts,css,html,md,json}": "prettier --write --ignore-path .gitignore"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"husky": {
+		"hooks": {
+			"prepare-commit-msg": "exec < /dev/tty && node_modules/.bin/cz --hook || true"
+		}
 	}
 }
