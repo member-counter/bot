@@ -15,3 +15,5 @@ storage/
 
 logs/
 docker-compose.override.yml
+
+.eslintcache
