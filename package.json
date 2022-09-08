@@ -1,5 +1,5 @@
 {
-	"name": "discord-bot-template",
+	"name": "member-counter-bot",
 	"version": "1.0.0",
 	"description": "",
 	"main": "./dist/index.js",
@@ -7,15 +7,15 @@
 		"start": "node .",
 		"start:docker": "docker compose -f docker-compose.yml up --force-recreate --build",
 		"build": "tsc",
-		"build:docker": "docker build . -t discord-bot:latest",
+		"build:docker": "docker build . -t member-counter-bot:latest",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
 		"dev:docker": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --force-recreate --build",
 		"lint": "eslint --fix .",
 		"deployInteractions": "node ./dist/deployCommands.js",
-		"deployInteractions:docker": "docker run --env-file .env --entrypoint node discord-bot:latest /app/dist/deployCommands.js",
+		"deployInteractions:docker": "docker run --env-file .env --entrypoint node member-counter-bot:latest /app/dist/deployCommands.js",
 		"i18nToRedis": "node ./dist/i18nToRedis.js",
-		"i18nToRedis:docker": "docker compose run --rm --name discord-bot-i18n-to-redis --entrypoint node discord-bot '/app/dist/i18nToRedis.js'",
-		"debug:docker": "docker run -ti --entrypoint sh discord-bot:latest",
+		"i18nToRedis:docker": "docker compose run --rm --name member-counter-bot-i18n-to-redis --entrypoint node member-counter-bot '/app/dist/i18nToRedis.js'",
+		"debug:docker": "docker run -ti --entrypoint sh member-counter-bot:latest",
 		"prepare": "husky install"
 	},
 	"keywords": [
