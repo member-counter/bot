@@ -7,6 +7,7 @@
 	"COMMAND_INVITE_DESCRIPTION": "Beep boop! Your invite link is ready:\n{INVITE_URL}",
 	"COMMAND_INVITE_ADD_TO_SERVER": "Add to server",
 	"COMMAND_INVITE_ADD_TO_SERVER_AGAIN": "Add to this server again",
+	"COMMAND_INVITE_JOIN_SUPPORT_SERVER": "Join support server",
 	"COMMAND_SETTINGS_SEE_TITLE": "Settings for {SERVER_NAME} ({SERVER_ID})",
 	"COMMAND_SETTINGS_SEE_LANGUAGE": "Language",
 	"COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE": "{CURRENT_LANGUAGE} (Server language)",

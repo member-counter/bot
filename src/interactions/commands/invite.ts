@@ -4,6 +4,7 @@ import {
 	SlashCommandBuilder
 } from "@discordjs/builders";
 import { ButtonStyle } from "discord.js";
+import config from "../../config";
 
 import { Command } from "../../structures";
 import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
@@ -43,6 +44,14 @@ export const inviteCommand = new Command({
 				})
 			);
 		}
+
+		componentRow.addComponents(
+			new ButtonBuilder({
+				style: ButtonStyle.Link,
+				url: config.discord.suportServer.url,
+				label: await txt("COMMAND_INVITE_JOIN_SUPPORT_SERVER")
+			})
+		);
 
 		await command.reply({
 			embeds: [embed],
