@@ -2,7 +2,8 @@ import { REST } from "@discordjs/rest";
 
 import config from "../config";
 
-export const discordRest = new REST({ version: "9" }).setToken(
+export const apiVersion = "10";
+export const discordRest = new REST({ version: apiVersion }).setToken(
 	config.discord.bot.token
 );
 
