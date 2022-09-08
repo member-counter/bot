@@ -13,16 +13,16 @@ export const locales = async (
 	if (focusedOption.name !== "language") return;
 	const allLocales = await Promise.all(
 		["server", ...availableLocales].map(async (locale) => {
+			const { txt } = await i18n(autocompleteInteraction);
+
 			if (locale === "server") {
 				return {
-					name: await (
-						await i18n(autocompleteInteraction)
-					).txt("AUTOCOMPLETE_DEFAULT_SERVER_LOCALE"),
+					name: await txt("AUTOCOMPLETE_DEFAULT_SERVER_LOCALE"),
 					value: locale
 				};
 			} else {
 				return {
-					name: await (await i18n(locale)).txt("LANG_NAME"),
+					name: await txt("LANG_NAME"),
 					value: locale
 				};
 			}
