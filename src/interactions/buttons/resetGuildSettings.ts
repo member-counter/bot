@@ -4,9 +4,9 @@ import { ButtonInteraction, ButtonStyle } from "discord.js";
 import GuildSettings from "../../services/GuildSettings";
 import { i18n } from "../../services/i18n";
 
-export const buttonId = "delete_guild_settings";
+export const buttonId = "reset_guild_settings";
 
-export const deleteGuildSettings = async (
+export const resetGuildSettings = async (
 	buttonInteraction: ButtonInteraction
 ) => {
 	const [name, confirm] = buttonInteraction.customId.split(":");
@@ -18,10 +18,10 @@ export const deleteGuildSettings = async (
 
 	if (confirm) {
 		const guildSettings = await GuildSettings.init(buttonInteraction.guildId);
-		await guildSettings.delete();
+		await guildSettings.resetSettings();
 
 		await buttonInteraction.reply({
-			content: await txt("BUTTON_DELETE_SETTINGS_DONE"),
+			content: await txt("BUTTON_RESET_SETTINGS_DONE"),
 			ephemeral: true
 		});
 	} else {
@@ -38,7 +38,7 @@ export const deleteGuildSettings = async (
 
 		await buttonInteraction.reply({
 			components: [componentRow],
-			content: await txt("BUTTON_DELETE_SETTINGS_CONFIRM"),
+			content: await txt("BUTTON_RESET_SETTINGS_CONFIRM"),
 			ephemeral: true
 		});
 	}

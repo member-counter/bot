@@ -1,10 +1,10 @@
 import { ButtonInteraction } from "discord.js";
 
-import { deleteGuildSettings } from "./deleteGuildSettings";
+import { resetGuildSettings } from "./resetGuildSettings";
 
 export const allButtons: ((
 	buttonInteraction: ButtonInteraction
-) => Promise<void> | void)[] = [deleteGuildSettings];
+) => Promise<void> | void)[] = [resetGuildSettings];
 
 export default async function handleButton(
 	buttonInteraction: ButtonInteraction

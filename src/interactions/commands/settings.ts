@@ -15,7 +15,7 @@ import getBotInviteLink from "../../utils/getBotInviteLink";
 import Paginator from "../../utils/Paginator";
 import safeDiscordString from "../../utils/safeDiscordString";
 import { UserError } from "../../utils/UserError";
-import { buttonId as deleteGuildSettingsButtonId } from "../buttons/deleteGuildSettings";
+import { buttonId as resetGuildSettingsButtonId } from "../buttons/resetGuildSettings";
 
 export const settingsCommand = new Command({
 	definition: new SlashCommandBuilder()
@@ -105,7 +105,7 @@ export const settingsCommand = new Command({
 				new ButtonBuilder({
 					style: ButtonStyle.Danger,
 					label: await txt("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
-					custom_id: deleteGuildSettingsButtonId,
+					custom_id: resetGuildSettingsButtonId,
 					emoji: { name: "🗑" }
 				})
 			);

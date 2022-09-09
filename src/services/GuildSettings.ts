@@ -44,8 +44,21 @@ class GuildSettings {
 			.sort({ timestamp: 1 });
 		return latestLogs;
 	}
-	public async delete() {
-		await this.doc.delete();
+
+	public get blocked(): boolean {
+		return this.doc.blocked;
+	}
+
+	public async resetSettings(): Promise<void> {
+		const premiumStatus = this.premium;
+		const blockedStatus = this.blocked;
+		await GuildLogModel.deleteMany({ id: this.id });
+		await GuildSettingsModel.findOneAndRemove({ id: this.id });
+		this.doc = await GuildSettingsModel.create({
+			id: this.id,
+			premium: premiumStatus,
+			blocked: blockedStatus
+		});
 	}
 
 	public async setShortNumber(state: boolean): Promise<boolean> {
