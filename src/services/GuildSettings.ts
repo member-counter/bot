@@ -1,10 +1,10 @@
 import GuildLogModel, { GuildLogDocument } from "../models/GuildLogModel";
 import GuildSettingsModel, {
-	GuildSettingsDocument
+	GuildSettingsDocument,
+	shortNumber
 } from "../models/GuildSettingsModel";
 import { UserError } from "../utils/UserError";
 import { availableLocales } from "./i18n";
-
 class GuildSettings {
 	private constructor(public id: string, private doc: GuildSettingsDocument) {}
 
@@ -46,6 +46,15 @@ class GuildSettings {
 	}
 	public async delete() {
 		await this.doc.delete();
+	}
+	// -1 = disabled
+	public async setShortNumber(state: shortNumber): Promise<shortNumber> {
+		this.doc.shortNumber = state;
+		await this.doc.save();
+		return this.doc.shortNumber;
+	}
+	get shortNumber(): shortNumber {
+		return this.doc.shortNumber;
 	}
 }
 

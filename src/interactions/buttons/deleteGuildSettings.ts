@@ -21,7 +21,8 @@ export const deleteGuildSettings = async (
 		await guildSettings.delete();
 
 		await buttonInteraction.reply({
-			content: await txt("BUTTON_DELETE_SETTINGS_DONE")
+			content: await txt("BUTTON_DELETE_SETTINGS_DONE"),
+			ephemeral: true
 		});
 	} else {
 		const componentRow = new ActionRowBuilder<ButtonBuilder>();
@@ -37,7 +38,8 @@ export const deleteGuildSettings = async (
 
 		await buttonInteraction.reply({
 			components: [componentRow],
-			content: await txt("BUTTON_DELETE_SETTINGS_CONFIRM")
+			content: await txt("BUTTON_DELETE_SETTINGS_CONFIRM"),
+			ephemeral: true
 		});
 	}
 };

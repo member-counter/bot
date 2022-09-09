@@ -5,6 +5,7 @@ import {
 	SlashCommandBuilder
 } from "@discordjs/builders";
 import { ButtonStyle, PermissionsBitField } from "discord.js";
+import logger from "../../logger";
 
 import GuildSettings from "../../services/GuildSettings";
 import { i18n } from "../../services/i18n";
@@ -38,6 +39,13 @@ export const settingsCommand = new Command({
 						.setDescription("Changes the language of this bot")
 						.setAutocomplete(true)
 				)
+				.addBooleanOption((option) =>
+					option
+						.setName("short-number")
+						.setDescription(
+							"This command allows you to show a count in a compact form in counters"
+						)
+				)
 		)
 		.addSubcommand((subCommand) =>
 			subCommand
@@ -68,6 +76,17 @@ export const settingsCommand = new Command({
 							: await txt("COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE", {
 									CURRENT_LANGUAGE: await txt("LANG_NAME")
 							  })
+					},
+					{
+						name: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
+						value:
+							guildSettings.shortNumber === 1
+								? await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
+										CURRENT_SHORT_NUMBER: await txt("COMMON_YES")
+								  })
+								: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
+										CURRENT_SHORT_NUMBER: await txt("COMMON_NO")
+								  })
 					}
 				]
 			});
@@ -85,7 +104,8 @@ export const settingsCommand = new Command({
 
 			await command.reply({
 				embeds: [embed],
-				components: [componentRow]
+				components: [componentRow],
+				ephemeral: false
 			});
 		},
 		set: async (command, { txt }) => {
@@ -98,7 +118,10 @@ export const settingsCommand = new Command({
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
 			const embed = new BaseMessageEmbed();
-
+			logger.debug(JSON.stringify(command.options.get("language"), null, 2));
+			logger.debug(
+				JSON.stringify(command.options.get("short-number"), null, 2)
+			);
 			// Language (handle it ASAP before using txt)
 			if (command.options.get("language", false)) {
 				const error = await guildSettings
@@ -122,7 +145,31 @@ export const settingsCommand = new Command({
 					}
 				]);
 			}
-
+			if (command.options.get("short-number", false)) {
+				const error = await guildSettings
+					.setShortNumber(
+						command.options.get("short-number").value === true ? 1 : -1
+					)
+					.catch((e) => e);
+				const { txt: i18nTxt } = await i18n(
+					guildSettings.locale ?? command.guildLocale
+				);
+				txt = i18nTxt;
+				embed.addFields([
+					{
+						name: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
+						value: error?.message
+							? await txt(error?.message)
+							: guildSettings.shortNumber === 1
+							? await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
+									CURRENT_SHORT_NUMBER: await txt("COMMON_YES")
+							  })
+							: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
+									CURRENT_SHORT_NUMBER: await txt("COMMON_NO")
+							  })
+					}
+				]);
+			}
 			// Summary
 			embed.setTitle(
 				await txt("COMMAND_SETTINGS_SEE_TITLE", {
@@ -139,7 +186,7 @@ export const settingsCommand = new Command({
 
 			await command.reply({
 				embeds: [embed],
-				ephemeral: true
+				ephemeral: false
 			});
 		},
 		logs: async (command, { txt, locale }) => {
@@ -183,7 +230,7 @@ export const settingsCommand = new Command({
 							.setDescription(text);
 					})
 				];
-				new Paginator(command, embedPages).displayPage(0);
+				new Paginator(command, embedPages, true).displayPage(0);
 			} else {
 				const embed = new BaseMessageEmbed().setTitle(
 					await txt("COMMAND_SETTINGS_LOGS_NO_LOGS", {
@@ -191,7 +238,7 @@ export const settingsCommand = new Command({
 						SERVER_ID: inlineCode(command.guild.id)
 					})
 				);
-				command.reply({ embeds: [embed] });
+				command.reply({ embeds: [embed], ephemeral: false });
 			}
 		}
 	}
