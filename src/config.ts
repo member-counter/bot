@@ -61,7 +61,11 @@ const envVarsSchema = Joi.object()
 			.description(
 				"Deploy slash commands automatically when the bot is started"
 			),
+		DISCORD_OFFICIAL_SERVER_ID: Joi.string().optional(),
 		DISCORD_OFFICIAL_SERVER_URL: Joi.string().uri().allow("").optional(),
+		PREMIUM_BOT_ID: Joi.string().allow("").optional(),
+		PREMIUM_BOT_INVITE: Joi.string().uri().allow("").optional(),
+		PREMIUM_BOT: Joi.boolean().optional(),
 		DB_URI: Joi.string().required().description("MongoDB connection URI"),
 		TEST_DEPLOY_INTERACTION_COMMAND_GUILD_ID: Joi.string().description(
 			"Guild ID to deploy commands quickly for testing purposes"
@@ -112,7 +116,10 @@ const config = {
 	logs: {
 		save: envVars.LOGS_SAVE as boolean,
 		showDate: envVars.LOGS_SHOW_DATE as boolean
-	}
+	},
+	premiumBot: envVars.PREMIUM_BOT as boolean,
+	premiumBotId: envVars.PREMIUM_BOT_ID as string,
+	premiumBotInvite: envVars.PREMIUM_BOT_INVITE as string
 };
 
 export default config;

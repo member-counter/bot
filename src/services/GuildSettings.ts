@@ -3,6 +3,7 @@ import GuildSettingsModel, {
 	GuildSettingsDocument,
 	shortNumber
 } from "../models/GuildSettingsModel";
+import UserModel from "../models/UserModel";
 import { UserError } from "../utils/UserError";
 import { availableLocales } from "./i18n";
 class GuildSettings {
@@ -55,6 +56,29 @@ class GuildSettings {
 	}
 	get shortNumber(): shortNumber {
 		return this.doc.shortNumber;
+	}
+	get premium(): boolean {
+		return this.doc.premium;
+	}
+	public async upgradeServer(grantorId: string): Promise<void> {
+		if (this.premium) throw new Error("alreadyUpgraded");
+
+		const userDoc: any = await UserModel.findOneAndUpdate(
+			{ id: grantorId },
+			{},
+			{ new: true, upsert: true }
+		);
+
+		if (userDoc.availableServerUpgrades <= 0)
+			throw new Error("noUpgradesAvailable");
+
+		userDoc.availableServerUpgrades -= 1;
+		this.doc.premium = true;
+
+		await this.doc.save();
+		await userDoc.save();
+
+		return;
 	}
 }
 

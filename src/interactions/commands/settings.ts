@@ -5,8 +5,8 @@ import {
 	SlashCommandBuilder
 } from "@discordjs/builders";
 import { ButtonStyle, PermissionsBitField } from "discord.js";
-import logger from "../../logger";
 
+import config from "../../config";
 import GuildSettings from "../../services/GuildSettings";
 import { i18n } from "../../services/i18n";
 import { Command } from "../../structures";
@@ -51,6 +51,13 @@ export const settingsCommand = new Command({
 			subCommand
 				.setName("logs")
 				.setDescription("See the bot logs for more information")
+		)
+		.addSubcommand((subCommand) =>
+			subCommand
+				.setName("classic-premium-upgrade")
+				.setDescription(
+					"Used to upgrade the server to classic premium (Member Counter Premium)."
+				)
 		),
 	execute: {
 		see: async (command, { txt }) => {
@@ -118,10 +125,7 @@ export const settingsCommand = new Command({
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
 			const embed = new BaseMessageEmbed();
-			logger.debug(JSON.stringify(command.options.get("language"), null, 2));
-			logger.debug(
-				JSON.stringify(command.options.get("short-number"), null, 2)
-			);
+
 			// Language (handle it ASAP before using txt)
 			if (command.options.get("language", false)) {
 				const error = await guildSettings
@@ -239,6 +243,38 @@ export const settingsCommand = new Command({
 					})
 				);
 				command.reply({ embeds: [embed], ephemeral: false });
+			}
+		},
+		"classic-premium-upgrade": async (command, { txt }) => {
+			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
+
+			const guildSettings = await GuildSettings.init(command.guildId);
+			await command.guild.fetch();
+			const success = await txt(
+				"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCESS",
+				{
+					BOT_LINK: `${config.premiumBotInvite}&guild_id=${command.guildId}`
+				}
+			);
+			try {
+				await guildSettings.upgradeServer(command.member.user.id);
+				command.reply({ content: success, ephemeral: true });
+			} catch (error) {
+				switch (error.message) {
+					case "alreadyUpgraded": {
+						throw new UserError(
+							"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_ERROR_CANNOT_UPGRADE"
+						);
+					}
+					case "noUpgradesAvailable": {
+						throw new UserError(
+							"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_NO_SERVER_UPGRADES_AVAILABLE"
+						);
+					}
+					default:
+						throw error;
+						break;
+				}
 			}
 		}
 	}
