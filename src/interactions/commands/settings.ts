@@ -11,6 +11,7 @@ import GuildSettings from "../../services/GuildSettings";
 import { i18n } from "../../services/i18n";
 import { Command } from "../../structures";
 import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
+import getBotInviteLink from "../../utils/getBotInviteLink";
 import Paginator from "../../utils/Paginator";
 import safeDiscordString from "../../utils/safeDiscordString";
 import { UserError } from "../../utils/UserError";
@@ -253,7 +254,10 @@ export const settingsCommand = new Command({
 			const success = await txt(
 				"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCCESS",
 				{
-					BOT_LINK: `${config.premiumBotInvite}&guild_id=${command.guildId}`
+					BOT_LINK: getBotInviteLink(
+						command.guildId,
+						config.premium.premiumBotId
+					)
 				}
 			);
 			try {

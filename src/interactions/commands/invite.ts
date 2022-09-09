@@ -20,7 +20,7 @@ export const inviteCommand = new Command({
 
 		embed.setDescription(
 			await txt("COMMAND_INVITE_DESCRIPTION", {
-				INVITE_URL: getBotInviteLink()
+				INVITE_URL: getBotInviteLink(null, config.discord.bot.officialBotId)
 			})
 		);
 
@@ -30,12 +30,12 @@ export const inviteCommand = new Command({
 		componentRow.addComponents(
 			new ButtonBuilder({
 				style: ButtonStyle.Link,
-				url: getBotInviteLink(),
+				url: getBotInviteLink(null, config.discord.bot.officialBotId),
 				label: await txt("COMMAND_INVITE_ADD_TO_SERVER")
 			})
 		);
 
-		if (command.inGuild()) {
+		if (command.inGuild() && command.memberPermissions.has("ManageGuild")) {
 			componentRow.addComponents(
 				new ButtonBuilder({
 					style: ButtonStyle.Link,

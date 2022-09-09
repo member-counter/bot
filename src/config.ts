@@ -94,7 +94,8 @@ const config = {
 		bot: {
 			token: envVars.DISCORD_BOT_TOKEN as string,
 			shards: envVars.DISCORD_BOT_SHARDS as number | number[] | "auto",
-			shardCount: envVars.DISCORD_BOT_SHARDS_COUNT as number
+			shardCount: envVars.DISCORD_BOT_SHARDS_COUNT as number,
+			officialBotId: envVars.DISCORD_OFFICIAL_BOT_ID as string
 		},
 		supportServer: { url: envVars.DISCORD_OFFICIAL_SERVER_URL as string },
 		autoDeployCommands: envVars.DISCORD_BOT_AUTO_DEPLOY_COMMANDS as boolean
@@ -117,9 +118,10 @@ const config = {
 		save: envVars.LOGS_SAVE as boolean,
 		showDate: envVars.LOGS_SHOW_DATE as boolean
 	},
-	premiumBot: envVars.PREMIUM_BOT as boolean,
-	premiumBotId: envVars.PREMIUM_BOT_ID as string,
-	premiumBotInvite: envVars.PREMIUM_BOT_INVITE as string
+	premium: {
+		thisBotsIsPremium: envVars.PREMIUM_BOT as boolean,
+		premiumBotId: envVars.PREMIUM_BOT_ID as string
+	}
 };
 
 export default config;
