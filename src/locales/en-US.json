@@ -13,7 +13,7 @@
 	"COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE": "{CURRENT_LANGUAGE} (Server language)",
 	"COMMAND_SETTINGS_SEE_SHORT_NUMBER": "Short Number",
 	"COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE": "{CURRENT_SHORT_NUMBER} (Compact notation)",
-	"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCESS": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
+	"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCCESS": "Done! The next step is invite the premium bot:\n{BOT_LINK}",
 	"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_ERROR_CANNOT_UPGRADE": "You can't upgrade the server because it already has premium.",
 	"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_NO_SERVER_UPGRADES_AVAILABLE": "You can't do more server upgrades because you don't have more server upgrades available",
 	"COMMAND_SETTINGS_LOGS_GUILD_LOGS_TEXT": "Latest logs for {SERVER_NAME} ({SERVER_ID})",

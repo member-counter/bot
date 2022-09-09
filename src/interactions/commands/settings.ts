@@ -208,14 +208,14 @@ export const settingsCommand = new Command({
 			const latestLogs = await guildSettings.getLatestLogs(100);
 
 			if (latestLogs.length > 0) {
-				const formatedLatestLogs = latestLogs
+				const formattedLatestLogs = latestLogs
 					.map(
 						({ timestamp, text }) =>
 							`[${timestamp.toLocaleString(locale ?? "en-US")}] ${text}\n`
 					)
 					.join("");
 
-				logsSection = safeDiscordString(formatedLatestLogs).map(
+				logsSection = safeDiscordString(formattedLatestLogs).map(
 					(portion) => "```" + portion + "```"
 				);
 			}
@@ -251,7 +251,7 @@ export const settingsCommand = new Command({
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
 			const success = await txt(
-				"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCESS",
+				"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCCESS",
 				{
 					BOT_LINK: `${config.premiumBotInvite}&guild_id=${command.guildId}`
 				}
