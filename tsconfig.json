@@ -1,4 +1,6 @@
 {
+	"ts-node": { "swc": true },
+	"ts-node-dev": { "swc": true },
 	"compilerOptions": {
 		"module": "commonjs",
 		"target": "ES2021",
@@ -6,8 +8,8 @@
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"sourceMap": true,
+		"rootDir": "./src",
 		"outDir": "./dist",
-		"strict": true,
 		"noErrorTruncation": true,
 		"noUncheckedIndexedAccess": true,
 		"allowJs": true,

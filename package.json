@@ -7,7 +7,7 @@
 		"start": "node .",
 		"cm": "cz",
 		"start:docker": "docker compose -f docker-compose.yml up --force-recreate --build",
-		"build": "tsc",
+		"build": "tsc && tscp",
 		"build:docker": "docker build . -t member-counter-bot:latest",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
 		"dev:docker": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --force-recreate --build",
@@ -15,7 +15,7 @@
 		"deployInteractions": "node ./dist/deployCommands.js",
 		"deployInteractions:docker": "docker run --env-file .env --entrypoint node member-counter-bot:latest /app/dist/deployCommands.js",
 		"i18nToRedis": "node ./dist/i18nToRedis.js",
-		"i18nToRedis:docker": "docker compose run --rm --name member-counter-bot-i18n-to-redis --entrypoint node member-counter-bot '/app/dist/i18nToRedis.js'",
+		"i18nToRedis:docker": "docker compose run --rm --name member-counter-bot-i18n-to-redis --entrypoint node member-counter-bot /app/dist/i18nToRedis.js",
 		"debug:docker": "docker run -ti --entrypoint sh member-counter-bot:latest",
 		"prepare": "husky install"
 	},
@@ -42,11 +42,15 @@
 		"joi": "^17.5.0",
 		"lodash": "^4.17.21",
 		"mongoose": "^6.5.3",
+		"run-script-os": "^1.1.6",
+		"tscp": "^1.0.0",
 		"twemoji": "^13.1.0",
 		"uuid": "^8.3.2",
 		"winston": "^3.5.0"
 	},
 	"devDependencies": {
+		"@swc/cli": "^0.1.57",
+		"@swc/core": "^1.2.249",
 		"@types/ioredis": "^4.28.7",
 		"@types/lodash": "^4.14.178",
 		"@types/twemoji": "^12.1.2",
