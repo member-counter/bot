@@ -96,12 +96,12 @@ const config = {
 			shards: envVars.DISCORD_BOT_SHARDS as number | number[] | "auto",
 			shardCount: envVars.DISCORD_BOT_SHARDS_COUNT as number
 		},
-		suportServer: { url: envVars.DISCORD_OFFICIAL_SERVER_URL as string },
+		supportServer: { url: envVars.DISCORD_OFFICIAL_SERVER_URL as string },
 		autoDeployCommands: envVars.DISCORD_BOT_AUTO_DEPLOY_COMMANDS as boolean
 	},
 	db: { uri: envVars.DB_URI as string },
 	test: {
-		deployInteractonCommandGuildId:
+		deployInteractionCommandGuildId:
 			envVars.TEST_DEPLOY_INTERACTION_COMMAND_GUILD_ID as string
 	},
 	i18n: {

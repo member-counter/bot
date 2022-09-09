@@ -13,10 +13,10 @@ export async function deployCommands() {
 	try {
 		logger.info("Started refreshing application (/) commands.");
 		await discordRest.put(
-			config.test.deployInteractonCommandGuildId?.length
+			config.test.deployInteractionCommandGuildId?.length
 				? Routes.applicationGuildCommands(
 						clientId,
-						config.test.deployInteractonCommandGuildId
+						config.test.deployInteractionCommandGuildId
 				  )
 				: Routes.applicationCommands(clientId),
 			{

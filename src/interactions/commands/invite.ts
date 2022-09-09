@@ -48,7 +48,7 @@ export const inviteCommand = new Command({
 		componentRow.addComponents(
 			new ButtonBuilder({
 				style: ButtonStyle.Link,
-				url: config.discord.suportServer.url,
+				url: config.discord.supportServer.url,
 				label: await txt("COMMAND_INVITE_JOIN_SUPPORT_SERVER")
 			})
 		);
