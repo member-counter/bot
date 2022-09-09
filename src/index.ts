@@ -7,7 +7,7 @@ import logger from "./logger";
 import { deployCommands } from "./utils/deployCommands";
 
 // Bot
-const bot = new Bot();
+export const bot = new Bot();
 (async () => {
 	if (config.discord.autoDeployCommands) {
 		await deployCommands().catch(() => null);

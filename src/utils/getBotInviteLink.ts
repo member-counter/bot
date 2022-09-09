@@ -7,14 +7,14 @@ import { tokenToClientId } from "./tokenToClientId";
 
 const clientId = tokenToClientId(config.discord.bot.token);
 
-function getBotInviteLink(guildId?: string): string {
+function getBotInviteLink(guildId?: string, botId?: string): string {
 	const allNeededPermissions = new PermissionsBitField([
 		allCommandsNeededPermissions,
 		allEventsNeededPermissions
 	]);
 
 	const inviteLink = new URL("https://discord.com/oauth2/authorize");
-	inviteLink.searchParams.set("client_id", clientId);
+	inviteLink.searchParams.set("client_id", botId ?? clientId);
 	inviteLink.searchParams.set(
 		"permissions",
 		allNeededPermissions.bitfield.toString()

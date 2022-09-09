@@ -10,8 +10,9 @@ node_modules/
 # build output
 dist/
 
-# db data
+# db data and logs
 storage/
+logs/
 
 # Not included in .gitignore
 .git
