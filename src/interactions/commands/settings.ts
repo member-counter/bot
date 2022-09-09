@@ -87,14 +87,14 @@ export const settingsCommand = new Command({
 					},
 					{
 						name: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
-						value:
-							guildSettings.shortNumber === 1
-								? await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
-										CURRENT_SHORT_NUMBER: await txt("COMMON_YES")
-								  })
-								: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
-										CURRENT_SHORT_NUMBER: await txt("COMMON_NO")
-								  })
+						value: await txt(
+							"COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE",
+							{
+								CURRENT_SHORT_NUMBER: guildSettings.shortNumber
+									? await txt("COMMON_YES")
+									: await txt("COMMON_NO")
+							}
+						)
 					}
 				]
 			});
@@ -152,9 +152,7 @@ export const settingsCommand = new Command({
 			}
 			if (command.options.get("short-number", false)) {
 				const error = await guildSettings
-					.setShortNumber(
-						command.options.get("short-number").value === true ? 1 : -1
-					)
+					.setShortNumber(command.options.get("short-number").value as boolean)
 					.catch((e) => e);
 				const { txt: i18nTxt } = await i18n(
 					guildSettings.locale ?? command.guildLocale
@@ -165,12 +163,10 @@ export const settingsCommand = new Command({
 						name: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
 						value: error?.message
 							? await txt(error?.message)
-							: guildSettings.shortNumber === 1
-							? await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
-									CURRENT_SHORT_NUMBER: await txt("COMMON_YES")
-							  })
 							: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
-									CURRENT_SHORT_NUMBER: await txt("COMMON_NO")
+									CURRENT_SHORT_NUMBER: guildSettings.shortNumber
+										? await txt("COMMON_YES")
+										: await txt("COMMON_NO")
 							  })
 					}
 				]);

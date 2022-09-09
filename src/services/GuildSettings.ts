@@ -1,7 +1,6 @@
 import GuildLogModel, { GuildLogDocument } from "../models/GuildLogModel";
 import GuildSettingsModel, {
-	GuildSettingsDocument,
-	shortNumber
+	GuildSettingsDocument
 } from "../models/GuildSettingsModel";
 import UserModel from "../models/UserModel";
 import { UserError } from "../utils/UserError";
@@ -48,15 +47,17 @@ class GuildSettings {
 	public async delete() {
 		await this.doc.delete();
 	}
-	// -1 = disabled
-	public async setShortNumber(state: shortNumber): Promise<shortNumber> {
+
+	public async setShortNumber(state: boolean): Promise<boolean> {
 		this.doc.shortNumber = state;
 		await this.doc.save();
 		return this.doc.shortNumber;
 	}
-	get shortNumber(): shortNumber {
+
+	get shortNumber(): boolean {
 		return this.doc.shortNumber;
 	}
+
 	get premium(): boolean {
 		return this.doc.premium;
 	}

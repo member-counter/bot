@@ -1,21 +1,20 @@
 import { Document, model, Schema } from "mongoose";
 
-export type shortNumber = 1 | -1;
 interface GuildSettingsDocument extends Document {
 	id: string;
 	premium: boolean;
 	locale: string;
-	shortNumber: shortNumber;
+	shortNumber: boolean;
 }
 
 const GuildSchema = new Schema({
 	id: { type: String, require: true },
 	premium: { type: Boolean, default: false },
 	locale: { type: String },
-	shortNumber: { type: Number, default: 1 }
+	shortNumber: { type: Boolean, default: true }
 });
 
-const GuildModel = model<GuildSettingsDocument>("guildSettings", GuildSchema);
+const GuildModel = model<GuildSettingsDocument>("guilds", GuildSchema);
 
 export { GuildModel, GuildSettingsDocument };
 export default GuildModel;
