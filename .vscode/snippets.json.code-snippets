@@ -1,0 +1,13 @@
+{
+	"Conventional Commits": {
+		"prefix": "commit",
+		"body": [
+			"${1|build,ci,docs,feat,fix,perf,refactor,revert,style,test|}${2:scope (optional)}: ${3:description}",
+			"",
+			"${4:body (optional)}",
+			"",
+			"Refs #${5:ticket number}"
+		],
+		"description": "Conventional Commits"
+	}
+}
