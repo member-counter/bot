@@ -11,10 +11,14 @@ import {
 import { i18n } from "../../services/i18n";
 import { inviteCommand } from "./invite";
 import { settingsCommand } from "./settings";
-
+import { setupCommand } from "./setup";
 import type { Command } from "../../structures";
 import logger from "../../logger";
-export const allCommands: Command[] = [inviteCommand, settingsCommand];
+export const allCommands: Command[] = [
+	inviteCommand,
+	settingsCommand,
+	setupCommand
+];
 
 export const allCommandsNeededPermissions: PermissionsBitField =
 	new PermissionsBitField(allCommands.map((c) => c.neededPermissions.bitfield));

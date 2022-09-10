@@ -76,7 +76,14 @@ const envVarsSchema = Joi.object()
 		REDIS_PORT: Joi.number().required().description("Redis host port"),
 		REDIS_PASSWORD: Joi.string().required().description("Redis password"),
 		LOGS_SAVE: Joi.bool().default(false),
-		LOGS_SHOW_DATE: Joi.bool().default(false)
+		LOGS_SHOW_DATE: Joi.bool().default(false),
+		USE_CUSTOM_EMOJIS: Joi.boolean().optional().default(false),
+		CUSTOM_EMOJI_LOADING: Joi.string().optional(),
+		CUSTOM_EMOJI_CHECK_MARK: Joi.string().optional(),
+		CUSTOM_EMOJI_ERROR: Joi.string().optional(),
+		CUSTOM_EMOJI_CONFIRM: Joi.string().optional(),
+		CUSTOM_EMOJI_NEGATIVE: Joi.string().optional(),
+		CUSTOM_EMOJI_WARNING: Joi.string().optional()
 	})
 	.unknown();
 
@@ -121,6 +128,15 @@ const config = {
 	premium: {
 		thisBotsIsPremium: envVars.PREMIUM_BOT as boolean,
 		premiumBotId: envVars.PREMIUM_BOT_ID as string
+	},
+	customEmojis: {
+		useCustomEmojis: envVars.USE_CUSTOM_EMOJIS as boolean,
+		checkMark: envVars.CUSTOM_EMOJI_CHECK_MARK as string,
+		error: envVars.CUSTOM_EMOJI_ERROR as string,
+		confirm: envVars.CUSTOM_EMOJI_CONFIRM as string,
+		negative: envVars.CUSTOM_EMOJI_NEGATIVE as string,
+		warning: envVars.CUSTOM_EMOJI_WARNING as string,
+		loading: envVars.CUSTOM_EMOJI_LOADING as string
 	}
 };
 
