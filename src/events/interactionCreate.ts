@@ -28,7 +28,7 @@ export const interactionCreateEvent = new Event({
 				const embed = new BaseMessageEmbed();
 				const id = uuid();
 
-				let title, description, footer;
+				let title: string, description: string, footer: string;
 
 				try {
 					title = await translate("INTERACTION_COMMAND_HANDLER_ERROR_TITLE");

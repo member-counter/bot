@@ -94,6 +94,30 @@ class GuildSettings {
 
 		return;
 	}
+	public get digits(): string[] {
+		return this.doc.digits;
+	}
+
+	public async setDigit(number: number, value: string): Promise<void> {
+		this.doc.digits[number] = value;
+		this.doc.markModified("digits");
+		await this.doc.save();
+	}
+	public async resetDigits(): Promise<void> {
+		this.doc.digits = [
+			"<a:0G:701869754616512672>",
+			"<a:1G:701869754578894939>",
+			"<a:2G:701869754641547324>",
+			"<a:3G:701869754717175828>",
+			"<a:4G:701869754880753824>",
+			"<a:5G:701869754763182080>",
+			"<a:6G:701869754641809529>",
+			"<a:7G:701869754402734183>",
+			"<a:8G:701869754356596869>",
+			"<a:9G:701869754687815720>"
+		];
+		await this.doc.save();
+	}
 }
 
 export default GuildSettings;

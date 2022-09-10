@@ -47,6 +47,15 @@ export const settingsCommand = new Command({
 							"This command allows you to show a count in a compact form in counters"
 						)
 				)
+				.addStringOption((option) =>
+					option
+						.setName("digit")
+						.setDescription("Used to set or reset the digits")
+						.setDescriptionLocalizations({
+							"en-US": "Used to set or reset the digits",
+							de: "Wird verwendet, um die Ziffern einzustellen oder zurückzusetzen"
+						})
+				)
 		)
 		.addSubcommand((subCommand) =>
 			subCommand
@@ -95,6 +104,12 @@ export const settingsCommand = new Command({
 									: await txt("COMMON_NO")
 							}
 						)
+					},
+					{
+						name: await txt("COMMAND_SETTINGS_SEE_DIGIT"),
+						value: await txt("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
+							CURRENT_DIGIT: guildSettings.digits.join(" ")
+						})
 					}
 				]
 			});
@@ -126,7 +141,7 @@ export const settingsCommand = new Command({
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
 			const embed = new BaseMessageEmbed();
-
+			const descriptionParts: string[] = [];
 			// Language (handle it ASAP before using txt)
 			if (command.options.get("language", false)) {
 				const error = await guildSettings
@@ -171,6 +186,81 @@ export const settingsCommand = new Command({
 					}
 				]);
 			}
+			if (command.options.get("digit", false)) {
+				const { txt: i18nTxt } = await i18n(
+					guildSettings.locale ?? command.guildLocale
+				);
+				txt = i18nTxt;
+				const content = command.options.get("digit").value as string;
+				const userWantsToReset = content.split(/\s+/)[0] === "reset";
+				if (userWantsToReset) {
+					await guildSettings.resetDigits();
+					descriptionParts.push(
+						await txt("COMMAND_SETTINGS_SET_DIGIT_RESET_SUCCESS")
+					);
+
+					embed.addFields([
+						{
+							name: await txt("COMMAND_SETTINGS_SEE_DIGIT"),
+							value: await txt("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
+								CURRENT_DIGIT: guildSettings.digits.join(" ")
+							})
+						}
+					]);
+				} else {
+					const digitsToSet = (() => {
+						return content
+							.split(",")
+							.map((set) => set.trim())
+							.map((set) => set.split(/\s+/))
+							.map((set) => {
+								if (!isNaN(parseInt(set[0], 10)) && set[1]) {
+									return {
+										digit: parseInt(set[0], 10),
+										value: set[1]
+									};
+								} else {
+									return null;
+								}
+							})
+							.filter((digit) => digit !== null);
+					})();
+
+					if (digitsToSet.length > 0) {
+						const errors = [];
+						for (const digitToSet of digitsToSet) {
+							const error = await guildSettings
+								.setDigit(digitToSet.digit, digitToSet.value)
+								.catch((e) => e);
+							if (error?.message) errors.push(error?.message);
+						}
+						descriptionParts.push(
+							await txt("COMMAND_SETTINGS_SET_DIGIT_SUCCESS")
+						);
+						embed.addFields([
+							{
+								name: await txt("COMMAND_SETTINGS_SEE_DIGIT"),
+								value:
+									errors.length > 0
+										? (
+												await Promise.all(
+													errors.map(
+														async (errMessage) => await txt(errMessage)
+													)
+												)
+										  ).join("\n")
+										: await txt("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
+												CURRENT_DIGIT: guildSettings.digits.join(" ")
+										  })
+							}
+						]);
+					} else {
+						throw new UserError(
+							"COMMAND_SETTINGS_SET_DIGIT_ERROR_MISSING_PARAMS"
+						);
+					}
+				}
+			}
 			// Summary
 			embed.setTitle(
 				await txt("COMMAND_SETTINGS_SEE_TITLE", {
@@ -180,9 +270,13 @@ export const settingsCommand = new Command({
 			);
 
 			if (!embed.data.fields?.length) {
-				embed.setDescription(await txt("COMMAND_SETTINGS_SET_NO_CHANGES_MADE"));
+				descriptionParts.push(
+					await txt("COMMAND_SETTINGS_SET_NO_CHANGES_MADE")
+				);
+				embed.setDescription(descriptionParts.reverse().join("\n\n"));
 			} else {
-				embed.setDescription(await txt("COMMAND_SETTINGS_SET_CHANGES_MADE"));
+				descriptionParts.push(await txt("COMMAND_SETTINGS_SET_CHANGES_MADE"));
+				embed.setDescription(descriptionParts.reverse().join("\n\n"));
 			}
 
 			await command.reply({
