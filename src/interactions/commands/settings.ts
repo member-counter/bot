@@ -76,31 +76,32 @@ export const settingsCommand = new Command({
 			await command.guild.fetch();
 
 			const embed = new BaseMessageEmbed({
-				title: t("COMMAND_SETTINGS_SEE_TITLE", {
+				title: t("commands.settings.subcommands.see.title", {
 					SERVER_NAME: command.guild.name,
 					SERVER_ID: inlineCode(command.guild.id)
 				}),
 				fields: [
 					{
-						name: t("COMMAND_SETTINGS_SEE_LANGUAGE"),
+						name: t("commands.settings.subcommands.see.language.name"),
 						value: guildSettings.locale
-							? t("LANG_NAME")
-							: t("COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE", {
-									CURRENT_LANGUAGE: t("LANG_NAME")
+							? t("langName")
+							: t("commands.settings.subcommands.see.language.value", {
+									CURRENT_LANGUAGE: t("langName")
 							  })
 					},
 					{
-						name: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
-						value: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
+						name: t("commands.settings.subcommands.see.shortNumber.name"),
+						value: t("commands.settings.subcommands.see.shortNumber.value", {
 							CURRENT_SHORT_NUMBER: guildSettings.shortNumber
 								? t("common.yes")
 								: t("common.no")
 						})
 					},
 					{
-						name: t("COMMAND_SETTINGS_SEE_DIGIT"),
-						value: t("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
-							CURRENT_DIGIT: guildSettings.digits.join(" ")
+						name: t("commands.settings.subcommands.see.customDigits.name"),
+						value: t("commands.settings.subcommands.see.customDigits.value", {
+							CURRENT_DIGIT: guildSettings.digits.join(" "),
+							interpolation: { escapeValue: false }
 						})
 					}
 				]
@@ -111,7 +112,7 @@ export const settingsCommand = new Command({
 			componentRow.addComponents(
 				new ButtonBuilder({
 					style: ButtonStyle.Danger,
-					label: t("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
+					label: t("commands.settings.buttons.deleteSettings"),
 					custom_id: resetGuildSettingsButtonId,
 					emoji: { name: "🗑" }
 				})
@@ -153,13 +154,13 @@ export const settingsCommand = new Command({
 
 				embed.addFields([
 					{
-						name: t("COMMAND_SETTINGS_SEE_LANGUAGE"),
+						name: t("commands.settings.subcommands.see.language.name"),
 						value: error.message
 							? t(error.message)
 							: guildSettings.locale
-							? t("LANG_NAME")
-							: t("COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE", {
-									CURRENT_LANGUAGE: t("LANG_NAME")
+							? t("langName")
+							: t("commands.settings.subcommands.see.language.value", {
+									CURRENT_LANGUAGE: t("langName")
 							  })
 					}
 				]);
@@ -171,10 +172,10 @@ export const settingsCommand = new Command({
 
 				embed.addFields([
 					{
-						name: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
+						name: t("commands.settings.subcommands.see.shortNumber.name"),
 						value: error?.message
 							? t(error?.message)
-							: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
+							: t("commands.settings.subcommands.see.shortNumber.value", {
 									CURRENT_SHORT_NUMBER: guildSettings.shortNumber
 										? t("common.yes")
 										: t("common.no")
@@ -188,13 +189,16 @@ export const settingsCommand = new Command({
 
 				if (userWantsToReset) {
 					await guildSettings.resetDigits();
-					descriptionParts.push(t("COMMAND_SETTINGS_SET_DIGIT_RESET_SUCCESS"));
+					descriptionParts.push(
+						t("commands.settings.subcommands.set.resetSuccess")
+					);
 
 					embed.addFields([
 						{
-							name: t("COMMAND_SETTINGS_SEE_DIGIT"),
-							value: t("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
-								CURRENT_DIGIT: guildSettings.digits.join(" ")
+							name: t("commands.settings.subcommands.see.customDigits.name"),
+							value: t("commands.settings.subcommands.see.customDigits.value", {
+								CURRENT_DIGIT: guildSettings.digits.join(" "),
+								interpolation: { escapeValue: false }
 							})
 						}
 					]);
@@ -225,10 +229,14 @@ export const settingsCommand = new Command({
 								.catch((e) => e);
 							if (error?.message) errors.push(error?.message);
 						}
-						descriptionParts.push(t("COMMAND_SETTINGS_SET_DIGIT_SUCCESS"));
+						descriptionParts.push(
+							t(
+								"commands.settings.subcommands.set.options.customDigits.success"
+							)
+						);
 						embed.addFields([
 							{
-								name: t("COMMAND_SETTINGS_SEE_DIGIT"),
+								name: t("commands.settings.subcommands.see.customDigits.name"),
 								value:
 									errors.length > 0
 										? (
@@ -236,31 +244,39 @@ export const settingsCommand = new Command({
 													errors.map(async (errMessage) => t(errMessage))
 												)
 										  ).join("\n")
-										: t("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
-												CURRENT_DIGIT: guildSettings.digits.join(" ")
-										  })
+										: t(
+												"commands.settings.subcommands.see.customDigits.value",
+												{
+													CURRENT_DIGIT: guildSettings.digits.join(" "),
+													interpolation: { escapeValue: false }
+												}
+										  )
 							}
 						]);
 					} else {
 						throw new UserError(
-							"COMMAND_SETTINGS_SET_DIGIT_ERROR_MISSING_PARAMS"
+							"commands.settings.subcommands.set.options.customDigits.errorMissingParams"
 						);
 					}
 				}
 			}
 			// Summary
 			embed.setTitle(
-				t("COMMAND_SETTINGS_SEE_TITLE", {
+				t("commands.settings.subcommands.see.title", {
 					SERVER_NAME: command.guild.name,
 					SERVER_ID: inlineCode(command.guild.id)
 				})
 			);
 
 			if (!embed.data.fields?.length) {
-				descriptionParts.push(t("COMMAND_SETTINGS_SET_NO_CHANGES_MADE"));
+				descriptionParts.push(
+					t("commands.settings.subcommands.set.noChangesMade")
+				);
 				embed.setDescription(descriptionParts.reverse().join("\n\n"));
 			} else {
-				descriptionParts.push(t("COMMAND_SETTINGS_SET_CHANGES_MADE"));
+				descriptionParts.push(
+					t("commands.settings.subcommands.set.changesMade")
+				);
 				embed.setDescription(descriptionParts.reverse().join("\n\n"));
 			}
 
@@ -278,8 +294,7 @@ export const settingsCommand = new Command({
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
-			// const { language, locale, shortNumber, allowedRoles, counters, digits } =
-			// 	guildSettings;
+
 			let logsSection: string[] | [] = [];
 			const latestLogs = await guildSettings.getLatestLogs(100);
 
@@ -296,10 +311,13 @@ export const settingsCommand = new Command({
 				);
 			}
 			if (logsSection.length > 0) {
-				const guildLogsText = t("COMMAND_SETTINGS_LOGS_GUILD_LOGS_TEXT", {
-					SERVER_NAME: command.guild.name,
-					SERVER_ID: inlineCode(command.guild.id)
-				});
+				const guildLogsText = t(
+					"commands.settings.subcommands.logs.title.hasLogs",
+					{
+						SERVER_NAME: command.guild.name,
+						SERVER_ID: inlineCode(command.guild.id)
+					}
+				);
 				const embedPages = [
 					...(logsSection as string[]).map((text) => {
 						return new BaseMessageEmbed()
@@ -310,7 +328,7 @@ export const settingsCommand = new Command({
 				new Paginator(command, embedPages, true).displayPage(0);
 			} else {
 				const embed = new BaseMessageEmbed().setTitle(
-					t("COMMAND_SETTINGS_LOGS_NO_LOGS", {
+					t("commands.settings.subcommands.logs.title.noLogs", {
 						SERVER_NAME: command.guild.name,
 						SERVER_ID: inlineCode(command.guild.id)
 					})
@@ -323,9 +341,15 @@ export const settingsCommand = new Command({
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
-			const success = t("COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCCESS", {
-				BOT_LINK: getBotInviteLink(command.guildId, config.premium.premiumBotId)
-			});
+			const success = t(
+				"commands.settings.subcommands.classicPremiumUpgrade.success",
+				{
+					BOT_LINK: getBotInviteLink(
+						command.guildId,
+						config.premium.premiumBotId
+					)
+				}
+			);
 			try {
 				await guildSettings.upgradeServer(command.member.user.id);
 				command.reply({ content: success, ephemeral: true });
@@ -333,12 +357,12 @@ export const settingsCommand = new Command({
 				switch (error.message) {
 					case "alreadyUpgraded": {
 						throw new UserError(
-							"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_ERROR_CANNOT_UPGRADE"
+							"commands.settings.subcommands.classicPremiumUpgrade.errorCannotUpgrade"
 						);
 					}
 					case "noUpgradesAvailable": {
 						throw new UserError(
-							"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_NO_SERVER_UPGRADES_AVAILABLE"
+							"commands.settings.subcommands.classicPremiumUpgrade.noServerUpgradesAvailable"
 						);
 					}
 					default:

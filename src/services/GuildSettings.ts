@@ -25,7 +25,7 @@ class GuildSettings {
 		value: typeof availableLocales[number] | "server"
 	): Promise<void> {
 		if (!["server", ...availableLocales].includes(value)) {
-			throw new UserError("SERVICE_GUILD_SETTINGS_INVALID_LOCALE");
+			throw new UserError("service.guildSettings.invalidLocale");
 		}
 
 		if (value === "server") {

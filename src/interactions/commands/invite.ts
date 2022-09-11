@@ -19,7 +19,7 @@ export const inviteCommand = new Command({
 		const embed = new BaseMessageEmbed();
 
 		embed.setDescription(
-			t("COMMAND_INVITE_DESCRIPTION", {
+			t("commands.invite.description", {
 				INVITE_URL: getBotInviteLink(null, config.discord.bot.officialBotId)
 			})
 		);
@@ -31,7 +31,7 @@ export const inviteCommand = new Command({
 			new ButtonBuilder({
 				style: ButtonStyle.Link,
 				url: getBotInviteLink(null, config.discord.bot.officialBotId),
-				label: t("COMMAND_INVITE_ADD_TO_SERVER")
+				label: t("commands.invite.addToServer")
 			})
 		);
 
@@ -40,7 +40,7 @@ export const inviteCommand = new Command({
 				new ButtonBuilder({
 					style: ButtonStyle.Link,
 					url: getBotInviteLink(command.guildId),
-					label: t("COMMAND_INVITE_ADD_TO_SERVER_AGAIN")
+					label: t("commands.invite.addToServerAin")
 				})
 			);
 		}
@@ -49,7 +49,7 @@ export const inviteCommand = new Command({
 			new ButtonBuilder({
 				style: ButtonStyle.Link,
 				url: config.discord.supportServer.url,
-				label: t("COMMAND_INVITE_JOIN_SUPPORT_SERVER")
+				label: t("commands.invite.joinSupportServer")
 			})
 		);
 

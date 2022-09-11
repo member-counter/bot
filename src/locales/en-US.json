@@ -1,32 +1,68 @@
 {
-	"LANG_CODE": "en-US",
-	"LANG_NAME": "English (US)",
-	"INTERACTION_COMMAND_HANDLER_ERROR_TITLE": "ERROR!",
-	"INTERACTION_COMMAND_HANDLER_ERROR_DESCRIPTION": "Something went wrong, please, try again later\n\nSupport server: {{SUPPORT_SERVER_INVITE}}\n\nError ID: {{ERROR_ID}}",
-	"COMMAND_INVITE_DESCRIPTION": "Beep boop! Your invite link is ready:\n{{INVITE_URL}}",
-	"COMMAND_INVITE_ADD_TO_SERVER": "Add to server",
-	"COMMAND_INVITE_ADD_TO_SERVER_AGAIN": "Add to this server again",
-	"COMMAND_INVITE_JOIN_SUPPORT_SERVER": "Join support server",
-	"COMMAND_SETTINGS_SEE_TITLE": "Settings for {{SERVER_NAME}} ({{SERVER_ID}})",
-	"COMMAND_SETTINGS_SEE_LANGUAGE": "Language",
-	"COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE": "{{CURRENT_LANGUAGE}} (Server language)",
-	"COMMAND_SETTINGS_SEE_SHORT_NUMBER": "Short Number",
-	"COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE": "{{CURRENT_SHORT_NUMBER}} (Compact notation)",
-	"COMMAND_SETTINGS_SEE_DIGIT": "Custom Numbers",
-	"COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE": "{{CURRENT_DIGIT}} (Digits)",
-	"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCCESS": "Done! The next step is invite the premium bot:\n{{BOT_LINK}}",
-	"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_ERROR_CANNOT_UPGRADE": "You can't upgrade the server because it already has premium.",
-	"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_NO_SERVER_UPGRADES_AVAILABLE": "You can't do more server upgrades because you don't have more server upgrades available",
-	"COMMAND_SETTINGS_LOGS_GUILD_LOGS_TEXT": "Latest logs for {{SERVER_NAME}} ({{SERVER_ID}})",
-	"COMMAND_SETTINGS_LOGS_NO_LOGS": "No logs for {{SERVER_NAME}} ({{SERVER_ID}})",
-	"COMMAND_SETTINGS_SET_DIGIT_SUCCESS": "Digits customized.",
-	"COMMAND_SETTINGS_SET_DIGIT_RESET_SUCCESS": "Numbers restored to the default ones.",
-	"COMMAND_SETTINGS_SET_DIGIT_ERROR_MISSING_PARAMS": "Missing parameters, please see `/help settings digit`.",
-	"COMMAND_SETTINGS_SET_NO_CHANGES_MADE": "No changes were made",
-	"COMMAND_SETTINGS_SET_CHANGES_MADE": "The following changes were made",
-	"COMMAND_SETTINGS_BUTTON_DELETE_ALL": "Restore settings",
-	"BUTTON_RESET_SETTINGS_CONFIRM": "Are you sure? All the data related to this server will be restored to its defaults (except block and premium status)",
-	"BUTTON_RESET_SETTINGS_DONE": "All the data has been restored",
+	"langCode": "en-US",
+	"langName": "English (US)",
+	"interaction": {
+		"commandHandler": {
+			"error": {
+				"title": "ERROR!",
+				"description": "Something went wrong, please, try again later\n\nSupport server: {{SUPPORT_SERVER_INVITE}}\n\nError ID: {{ERROR_ID}}"
+			}
+		}
+	},
+	"commands": {
+		"invite": {
+			"description": "Beep boop! Your invite link is ready:\n{{INVITE_URL}}",
+			"addToServer": "Add to server",
+			"addToServerAgain": "Add to this server again",
+			"joinSupportServer": "Join support server"
+		},
+		"settings": {
+			"buttons": {
+				"deleteSettings": "Restore settings",
+				"deleteSettingsConfirm": "Are you sure? All the data related to this server will be restored to its defaults (except block and premium status)",
+				"deleteSettingsDone": "All the data has been restored"
+			},
+			"subcommands": {
+				"see": {
+					"title": "Settings for {{SERVER_NAME}} ({{SERVER_ID}})",
+					"language": {
+						"name": "Language",
+						"value": "{{CURRENT_LANGUAGE}} (Server language)"
+					},
+					"shortNumber": {
+						"name": "Short Number",
+						"value": "{{CURRENT_SHORT_NUMBER}} (Compact notation)"
+					},
+					"customDigits": {
+						"name": "Custom Numbers",
+						"value": "{{CURRENT_DIGIT}} (Digits)"
+					}
+				},
+				"set": {
+					"noChangesMade": "No changes were made",
+					"changesMade": "The following changes were made",
+					"options": {
+						"customDigits": {
+							"success": "Digits customized.",
+							"resetSuccess": "Numbers restored to the default ones.",
+							"errorMissingParams": "Missing parameters, please see `/help settings digit`"
+						}
+					}
+				},
+				"classicPremiumUpgrade": {
+					"success": "Done! The next step is invite the premium bot:\n{{BOT_LINK}}",
+					"errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
+					"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
+				},
+				"logs": {
+					"title": {
+						"hasLogs": "Latest logs for {{SERVER_NAME}} ({{SERVER_ID}})",
+						"noLogs": "No logs for {{SERVER_NAME}} ({{SERVER_ID}})"
+					}
+				}
+			}
+		}
+	},
 	"common": {
 		"error": {
 			"noDm": "This command can't be run in a DM channel",
@@ -37,6 +73,12 @@
 		"yes": "Yes",
 		"no": "No"
 	},
-	"SERVICE_GUILD_SETTINGS_INVALID_LOCALE": "The specified language is not available",
-	"AUTOCOMPLETE_DEFAULT_SERVER_LOCALE": "Server language"
+	"autocomplete": {
+		"defaultServerLocale": "Server language"
+	},
+	"service": {
+		"guildSettings": {
+			"invalidLocale": "The specified language is not available"
+		}
+	}
 }

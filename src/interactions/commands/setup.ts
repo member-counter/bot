@@ -28,7 +28,11 @@ export const setupCommand = new Command({
 					"Provide the following input: Twitch (channel name) Youtube (channel link) Twitter (account name)"
 				)
 		),
-	execute: async (command, { t }) => {
+
+	execute: async (
+		command, // eslint-disable-next-line
+		{ t }
+	) => {
 		if (!command.inGuild()) throw new UserError("common.error.noDm");
 		if (!command.memberPermissions.has(PermissionFlagsBits.Administrator))
 			throw new UserError("common.error.noPermissions");
@@ -47,6 +51,5 @@ export const setupCommand = new Command({
 		logger.debug(JSON.stringify(emojis, null, 2));
 
 		logger.debug(JSON.stringify(guildSettings, null, 2));
-		t("AUTOCOMPLETE_DEFAULT_SERVER_LOCALE");
 	}
 });

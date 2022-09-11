@@ -1,19 +1,17 @@
-import { model, Schema, HydratedDocument } from "mongoose";
+import { model, Schema, Document } from "mongoose";
 
-interface GuildLog {
+interface GuildLogDocument extends Document {
 	id: string;
 	text: string;
 	timestamp: Date;
 }
 
-type GuildLogDocument = HydratedDocument<GuildLog>;
-
-const GuildLogSchema = new Schema<GuildLog>({
+const GuildLogSchema = new Schema<GuildLogDocument>({
 	id: { type: String, require: true },
 	text: { type: String, require: true },
 	timestamp: { type: Date, default: Date.now, required: true }
 });
 
-const GuildLogModel = model<GuildLog>("guildLogs", GuildLogSchema);
+const GuildLogModel = model<GuildLogDocument>("guildLogs", GuildLogSchema);
 export { GuildLogModel, GuildLogDocument };
 export default GuildLogModel;

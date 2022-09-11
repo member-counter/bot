@@ -16,37 +16,10 @@ const maxLifetime = 1 * 60 * 1000;
 export const RedisBackend: {
 	redis: null | Redis.Redis;
 	cache: {
-		// TODO: Improve this, There is almost certainly a better way to do this
-		"ca-ES"?: typeof import("../../locales/ca-ES.json");
-		"cs-CZ"?: typeof import("../../locales/cs-CZ.json");
-		"de-DE"?: typeof import("../../locales/de-DE.json");
-		"en-US"?: typeof import("../../locales/en-US.json");
-		"es-ES"?: typeof import("../../locales/es-ES.json");
-		"fa-IR"?: typeof import("../../locales/fa-IR.json");
-		"fr-FR"?: typeof import("../../locales/fr-FR.json");
-		"he-IL"?: typeof import("../../locales/he-IL.json");
-		"hi-IN"?: typeof import("../../locales/hi-IN.json");
-		"it-IT"?: typeof import("../../locales/it-IT.json");
-		"pl-PL"?: typeof import("../../locales/pl-PL.json");
-		"pt-BR"?: typeof import("../../locales/pt-BR.json");
-		"ru-RU"?: typeof import("../../locales/ru-RU.json");
-		"tr-TR"?: typeof import("../../locales/tr-TR.json");
+		[K in typeof availableLocales[number]]?: typeof import("../../locales/en-US.json");
 	};
 	cacheTime: {
-		"ca-ES"?: NodeJS.Timeout;
-		"cs-CZ"?: NodeJS.Timeout;
-		"de-DE"?: NodeJS.Timeout;
-		"en-US"?: NodeJS.Timeout;
-		"es-ES"?: NodeJS.Timeout;
-		"fa-IR"?: NodeJS.Timeout;
-		"fr-FR"?: NodeJS.Timeout;
-		"he-IL"?: NodeJS.Timeout;
-		"hi-IN"?: NodeJS.Timeout;
-		"it-IT"?: NodeJS.Timeout;
-		"pl-PL"?: NodeJS.Timeout;
-		"pt-BR"?: NodeJS.Timeout;
-		"ru-RU"?: NodeJS.Timeout;
-		"tr-TR"?: NodeJS.Timeout;
+		[K in typeof availableLocales[number]]?: NodeJS.Timeout;
 	};
 	type: "backend";
 	read: (
@@ -99,9 +72,11 @@ export const uploadToRedis = () => {
 			logger.info(`uploadToRedis: Updating ${locale}`);
 			const translations = await import(`../../locales/${locale}`);
 			const pipeline = redis.pipeline();
-
+			logger.debug(JSON.stringify(translations, null, 2));
 			for (const translation of Object.values(translations)) {
 				pipeline.set(`i18n:${locale}`, JSON.stringify(translation));
+				logger.debug(`i18n:${locale}`);
+				logger.debug(JSON.stringify(translation, null, 2));
 			}
 
 			await pipeline.exec();

@@ -17,13 +17,13 @@ export const locales = async (
 			if (locale === "server") {
 				const i18nInstance = await i18n(autocompleteInteraction);
 				return {
-					name: await i18nInstance.t("AUTOCOMPLETE_DEFAULT_SERVER_LOCALE"),
+					name: await i18nInstance.t("autocomplete.defaultServerLocale"),
 					value: locale
 				};
 			} else {
 				const i18nInstance = await i18n(locale);
 				return {
-					name: await i18nInstance.t("LANG_NAME"),
+					name: await i18nInstance.t("langName"),
 					value: locale
 				};
 			}

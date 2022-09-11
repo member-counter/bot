@@ -32,8 +32,8 @@ export const interactionCreateEvent = new Event({
 
 				try {
 					const { t } = await i18n(interaction);
-					title = t("INTERACTION_COMMAND_HANDLER_ERROR_TITLE");
-					description = t("INTERACTION_COMMAND_HANDLER_ERROR_DESCRIPTION");
+					title = t("interaction.commandHandler.error.title");
+					description = t("interaction.commandHandler.error.description");
 				} catch (e) {
 					logger.error(e);
 				}
