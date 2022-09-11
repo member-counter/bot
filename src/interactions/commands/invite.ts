@@ -15,11 +15,11 @@ export const inviteCommand = new Command({
 	definition: new SlashCommandBuilder()
 		.setName("invite")
 		.setDescription("Gives you an invite link to add the bot"),
-	execute: async (command, { txt }) => {
+	execute: async (command, { t }) => {
 		const embed = new BaseMessageEmbed();
 
 		embed.setDescription(
-			await txt("COMMAND_INVITE_DESCRIPTION", {
+			t("COMMAND_INVITE_DESCRIPTION", {
 				INVITE_URL: getBotInviteLink(null, config.discord.bot.officialBotId)
 			})
 		);
@@ -31,7 +31,7 @@ export const inviteCommand = new Command({
 			new ButtonBuilder({
 				style: ButtonStyle.Link,
 				url: getBotInviteLink(null, config.discord.bot.officialBotId),
-				label: await txt("COMMAND_INVITE_ADD_TO_SERVER")
+				label: t("COMMAND_INVITE_ADD_TO_SERVER")
 			})
 		);
 
@@ -40,7 +40,7 @@ export const inviteCommand = new Command({
 				new ButtonBuilder({
 					style: ButtonStyle.Link,
 					url: getBotInviteLink(command.guildId),
-					label: await txt("COMMAND_INVITE_ADD_TO_SERVER_AGAIN")
+					label: t("COMMAND_INVITE_ADD_TO_SERVER_AGAIN")
 				})
 			);
 		}
@@ -49,7 +49,7 @@ export const inviteCommand = new Command({
 			new ButtonBuilder({
 				style: ButtonStyle.Link,
 				url: config.discord.supportServer.url,
-				label: await txt("COMMAND_INVITE_JOIN_SUPPORT_SERVER")
+				label: t("COMMAND_INVITE_JOIN_SUPPORT_SERVER")
 			})
 		);
 

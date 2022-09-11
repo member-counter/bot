@@ -30,7 +30,7 @@ Translations can be obtained with the `txt` function, which is available in any 
 Example from the invite command:
 
 ```ts
-await txt("COMMAND_INVITE_DESCRIPTION", { INVITE_URL: getBotInviteLink() });
+i18n.t("commands.inviteUrl", { INVITE_URL: getBotInviteLink() });
 ```
 
 The "COMMAND_INVITE_DESCRIPTION" looks like this in the `./src/locales/en_US.json` file:

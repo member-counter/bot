@@ -14,14 +14,14 @@ export const resetGuildSettings = async (
 	if (name !== buttonId) return;
 	if (!buttonInteraction.inGuild()) return;
 
-	const { txt } = await i18n(buttonInteraction);
+	const { t } = await i18n(buttonInteraction);
 
 	if (confirm) {
 		const guildSettings = await GuildSettings.init(buttonInteraction.guildId);
 		await guildSettings.resetSettings();
 
 		await buttonInteraction.reply({
-			content: await txt("BUTTON_RESET_SETTINGS_DONE"),
+			content: t("BUTTON_RESET_SETTINGS_DONE"),
 			ephemeral: true
 		});
 	} else {
@@ -30,7 +30,7 @@ export const resetGuildSettings = async (
 		componentRow.addComponents(
 			new ButtonBuilder({
 				style: ButtonStyle.Danger,
-				label: await txt("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
+				label: t("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
 				custom_id: `${buttonId}:true`,
 				emoji: { name: "🗑" }
 			})
@@ -38,7 +38,7 @@ export const resetGuildSettings = async (
 
 		await buttonInteraction.reply({
 			components: [componentRow],
-			content: await txt("BUTTON_RESET_SETTINGS_CONFIRM"),
+			content: t("BUTTON_RESET_SETTINGS_CONFIRM"),
 			ephemeral: true
 		});
 	}

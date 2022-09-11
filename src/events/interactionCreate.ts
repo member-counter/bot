@@ -1,3 +1,4 @@
+import { inlineCode } from "discord.js";
 import { v4 as uuid } from "uuid";
 
 import config from "../config";
@@ -24,18 +25,15 @@ export const interactionCreateEvent = new Event({
 			}
 		} catch (error) {
 			if (interaction.isCommand() || interaction.isMessageComponent()) {
-				const { txt: translate } = await i18n(interaction);
 				const embed = new BaseMessageEmbed();
 				const id = uuid();
 
-				let title: string, description: string, footer: string;
+				let title: string, description: string;
 
 				try {
-					title = await translate("INTERACTION_COMMAND_HANDLER_ERROR_TITLE");
-					description = await translate(
-						"INTERACTION_COMMAND_HANDLER_ERROR_DESCRIPTION"
-					);
-					footer = await translate("INTERACTION_COMMAND_HANDLER_ERROR_FOOTER");
+					const { t } = await i18n(interaction);
+					title = t("INTERACTION_COMMAND_HANDLER_ERROR_TITLE");
+					description = t("INTERACTION_COMMAND_HANDLER_ERROR_DESCRIPTION");
 				} catch (e) {
 					logger.error(e);
 				}
@@ -43,28 +41,24 @@ export const interactionCreateEvent = new Event({
 				// If we can't get translations because our provider is redis and it is probably down, let's use these hardcoded ones
 				title ??= "ERROR!";
 				description ??=
-					"Something went wrong, please, try again later\n\nSupport server: {SUPPORT_SERVER_INVITE}";
-				footer ??= `Error ID: {ERROR_ID}`;
+					"Something went wrong, please, try again later\n\nSupport server: {{SUPPORT_SERVER_INVITE}}\n\nError ID: {{ERROR_ID}}";
 
 				embed.setColor(Colors.RED);
 				embed.setTitle(title);
 
 				if (error instanceof UserError) {
-					embed.setDescription(
-						await translate(error.message, error.placeholderData).catch(
-							() => "Translation service not available"
-						)
-					);
+					embed.setDescription(error.message);
 				} else {
 					embed.setDescription(
-						description.replaceAll(
-							"{SUPPORT_SERVER_INVITE}",
-							config.discord.supportServer.url
-						)
+						description
+							.replaceAll(
+								"{{SUPPORT_SERVER_INVITE}}",
+								config.discord.supportServer.url
+							)
+							.replaceAll("{{ERROR_ID}}", inlineCode(id))
 					);
 				}
 
-				embed.setFooter({ text: footer.replaceAll("{ERROR_ID}", id) });
 				logger.error(`Interaction error ${id}:`, error);
 				interaction
 					.reply({ embeds: [embed], ephemeral: true })

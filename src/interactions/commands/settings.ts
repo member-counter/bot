@@ -5,10 +5,9 @@ import {
 	SlashCommandBuilder
 } from "@discordjs/builders";
 import { ButtonStyle, PermissionsBitField } from "discord.js";
-
 import config from "../../config";
 import GuildSettings from "../../services/GuildSettings";
-import { i18n } from "../../services/i18n";
+import { i18n as i18nService } from "../../services/i18n";
 import { Command } from "../../structures";
 import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
 import getBotInviteLink from "../../utils/getBotInviteLink";
@@ -70,7 +69,7 @@ export const settingsCommand = new Command({
 				)
 		),
 	execute: {
-		see: async (command, { txt }) => {
+		see: async (command, { t }) => {
 			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
@@ -81,33 +80,30 @@ export const settingsCommand = new Command({
 			await command.guild.fetch();
 
 			const embed = new BaseMessageEmbed({
-				title: await txt("COMMAND_SETTINGS_SEE_TITLE", {
+				title: t("COMMAND_SETTINGS_SEE_TITLE", {
 					SERVER_NAME: command.guild.name,
 					SERVER_ID: inlineCode(command.guild.id)
 				}),
 				fields: [
 					{
-						name: await txt("COMMAND_SETTINGS_SEE_LANGUAGE"),
+						name: t("COMMAND_SETTINGS_SEE_LANGUAGE"),
 						value: guildSettings.locale
-							? await txt("LANG_NAME")
-							: await txt("COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE", {
-									CURRENT_LANGUAGE: await txt("LANG_NAME")
+							? t("LANG_NAME")
+							: t("COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE", {
+									CURRENT_LANGUAGE: t("LANG_NAME")
 							  })
 					},
 					{
-						name: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
-						value: await txt(
-							"COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE",
-							{
-								CURRENT_SHORT_NUMBER: guildSettings.shortNumber
-									? await txt("COMMON_YES")
-									: await txt("COMMON_NO")
-							}
-						)
+						name: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
+						value: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
+							CURRENT_SHORT_NUMBER: guildSettings.shortNumber
+								? t("COMMON_YES")
+								: t("COMMON_NO")
+						})
 					},
 					{
-						name: await txt("COMMAND_SETTINGS_SEE_DIGIT"),
-						value: await txt("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
+						name: t("COMMAND_SETTINGS_SEE_DIGIT"),
+						value: t("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
 							CURRENT_DIGIT: guildSettings.digits.join(" ")
 						})
 					}
@@ -119,7 +115,7 @@ export const settingsCommand = new Command({
 			componentRow.addComponents(
 				new ButtonBuilder({
 					style: ButtonStyle.Danger,
-					label: await txt("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
+					label: t("COMMAND_SETTINGS_BUTTON_DELETE_ALL"),
 					custom_id: resetGuildSettingsButtonId,
 					emoji: { name: "🗑" }
 				})
@@ -131,7 +127,8 @@ export const settingsCommand = new Command({
 				ephemeral: false
 			});
 		},
-		set: async (command, { txt }) => {
+		set: async (command, i18n) => {
+			let { t } = i18n;
 			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
@@ -142,25 +139,27 @@ export const settingsCommand = new Command({
 			await command.guild.fetch();
 			const embed = new BaseMessageEmbed();
 			const descriptionParts: string[] = [];
-			// Language (handle it ASAP before using txt)
+
+			// Language (handle it ASAP before using t)
 			if (command.options.get("language", false)) {
 				const error = await guildSettings
 					.setLocale(command.options.get("language", false).value.toString())
 					.catch((e) => e);
-				const { txt: i18nTxt } = await i18n(
-					guildSettings.locale ?? command.guildLocale
-				);
-				txt = i18nTxt;
+
+				i18n = await i18nService(guildSettings.locale ?? command.guildLocale);
+
+				// eslint-disable-next-line prefer-destructuring
+				t = i18n.t;
 
 				embed.addFields([
 					{
-						name: await txt("COMMAND_SETTINGS_SEE_LANGUAGE"),
-						value: error?.message
-							? await txt(error?.message)
+						name: t("COMMAND_SETTINGS_SEE_LANGUAGE"),
+						value: error.message
+							? t(error.message)
 							: guildSettings.locale
-							? await txt("LANG_NAME")
-							: await txt("COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE", {
-									CURRENT_LANGUAGE: await txt("LANG_NAME")
+							? t("LANG_NAME")
+							: t("COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE", {
+									CURRENT_LANGUAGE: t("LANG_NAME")
 							  })
 					}
 				]);
@@ -169,40 +168,32 @@ export const settingsCommand = new Command({
 				const error = await guildSettings
 					.setShortNumber(command.options.get("short-number").value as boolean)
 					.catch((e) => e);
-				const { txt: i18nTxt } = await i18n(
-					guildSettings.locale ?? command.guildLocale
-				);
-				txt = i18nTxt;
+
 				embed.addFields([
 					{
-						name: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
+						name: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
 						value: error?.message
-							? await txt(error?.message)
-							: await txt("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
+							? t(error?.message)
+							: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
 									CURRENT_SHORT_NUMBER: guildSettings.shortNumber
-										? await txt("COMMON_YES")
-										: await txt("COMMON_NO")
+										? t("COMMON_YES")
+										: t("COMMON_NO")
 							  })
 					}
 				]);
 			}
 			if (command.options.get("digit", false)) {
-				const { txt: i18nTxt } = await i18n(
-					guildSettings.locale ?? command.guildLocale
-				);
-				txt = i18nTxt;
 				const content = command.options.get("digit").value as string;
 				const userWantsToReset = content.split(/\s+/)[0] === "reset";
+
 				if (userWantsToReset) {
 					await guildSettings.resetDigits();
-					descriptionParts.push(
-						await txt("COMMAND_SETTINGS_SET_DIGIT_RESET_SUCCESS")
-					);
+					descriptionParts.push(t("COMMAND_SETTINGS_SET_DIGIT_RESET_SUCCESS"));
 
 					embed.addFields([
 						{
-							name: await txt("COMMAND_SETTINGS_SEE_DIGIT"),
-							value: await txt("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
+							name: t("COMMAND_SETTINGS_SEE_DIGIT"),
+							value: t("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
 								CURRENT_DIGIT: guildSettings.digits.join(" ")
 							})
 						}
@@ -234,22 +225,18 @@ export const settingsCommand = new Command({
 								.catch((e) => e);
 							if (error?.message) errors.push(error?.message);
 						}
-						descriptionParts.push(
-							await txt("COMMAND_SETTINGS_SET_DIGIT_SUCCESS")
-						);
+						descriptionParts.push(t("COMMAND_SETTINGS_SET_DIGIT_SUCCESS"));
 						embed.addFields([
 							{
-								name: await txt("COMMAND_SETTINGS_SEE_DIGIT"),
+								name: t("COMMAND_SETTINGS_SEE_DIGIT"),
 								value:
 									errors.length > 0
 										? (
 												await Promise.all(
-													errors.map(
-														async (errMessage) => await txt(errMessage)
-													)
+													errors.map(async (errMessage) => t(errMessage))
 												)
 										  ).join("\n")
-										: await txt("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
+										: t("COMMAND_SETTINGS_SEE_DIGIT_DEFAULT_VALUE", {
 												CURRENT_DIGIT: guildSettings.digits.join(" ")
 										  })
 							}
@@ -263,19 +250,17 @@ export const settingsCommand = new Command({
 			}
 			// Summary
 			embed.setTitle(
-				await txt("COMMAND_SETTINGS_SEE_TITLE", {
+				t("COMMAND_SETTINGS_SEE_TITLE", {
 					SERVER_NAME: command.guild.name,
 					SERVER_ID: inlineCode(command.guild.id)
 				})
 			);
 
 			if (!embed.data.fields?.length) {
-				descriptionParts.push(
-					await txt("COMMAND_SETTINGS_SET_NO_CHANGES_MADE")
-				);
+				descriptionParts.push(t("COMMAND_SETTINGS_SET_NO_CHANGES_MADE"));
 				embed.setDescription(descriptionParts.reverse().join("\n\n"));
 			} else {
-				descriptionParts.push(await txt("COMMAND_SETTINGS_SET_CHANGES_MADE"));
+				descriptionParts.push(t("COMMAND_SETTINGS_SET_CHANGES_MADE"));
 				embed.setDescription(descriptionParts.reverse().join("\n\n"));
 			}
 
@@ -284,7 +269,7 @@ export const settingsCommand = new Command({
 				ephemeral: false
 			});
 		},
-		logs: async (command, { txt, locale }) => {
+		logs: async (command, { t, language }) => {
 			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
@@ -302,7 +287,7 @@ export const settingsCommand = new Command({
 				const formattedLatestLogs = latestLogs
 					.map(
 						({ timestamp, text }) =>
-							`[${timestamp.toLocaleString(locale ?? "en-US")}] ${text}\n`
+							`[${timestamp.toLocaleString(language ?? "en-US")}] ${text}\n`
 					)
 					.join("");
 
@@ -311,13 +296,10 @@ export const settingsCommand = new Command({
 				);
 			}
 			if (logsSection.length > 0) {
-				const guildLogsText = await txt(
-					"COMMAND_SETTINGS_LOGS_GUILD_LOGS_TEXT",
-					{
-						SERVER_NAME: command.guild.name,
-						SERVER_ID: inlineCode(command.guild.id)
-					}
-				);
+				const guildLogsText = t("COMMAND_SETTINGS_LOGS_GUILD_LOGS_TEXT", {
+					SERVER_NAME: command.guild.name,
+					SERVER_ID: inlineCode(command.guild.id)
+				});
 				const embedPages = [
 					...(logsSection as string[]).map((text) => {
 						return new BaseMessageEmbed()
@@ -328,7 +310,7 @@ export const settingsCommand = new Command({
 				new Paginator(command, embedPages, true).displayPage(0);
 			} else {
 				const embed = new BaseMessageEmbed().setTitle(
-					await txt("COMMAND_SETTINGS_LOGS_NO_LOGS", {
+					t("COMMAND_SETTINGS_LOGS_NO_LOGS", {
 						SERVER_NAME: command.guild.name,
 						SERVER_ID: inlineCode(command.guild.id)
 					})
@@ -336,20 +318,14 @@ export const settingsCommand = new Command({
 				command.reply({ embeds: [embed], ephemeral: false });
 			}
 		},
-		"classic-premium-upgrade": async (command, { txt }) => {
+		"classic-premium-upgrade": async (command, { t }) => {
 			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
-			const success = await txt(
-				"COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCCESS",
-				{
-					BOT_LINK: getBotInviteLink(
-						command.guildId,
-						config.premium.premiumBotId
-					)
-				}
-			);
+			const success = t("COMMAND_SETTINGS_CLASSIC_PREMIUM_UPGRADE_SUCCESS", {
+				BOT_LINK: getBotInviteLink(command.guildId, config.premium.premiumBotId)
+			});
 			try {
 				await guildSettings.upgradeServer(command.member.user.id);
 				command.reply({ content: success, ephemeral: true });

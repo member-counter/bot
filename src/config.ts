@@ -1,5 +1,5 @@
-import Bourne from "@hapi/bourne";
 import dotenv from "dotenv";
+import Bourne from "@hapi/bourne";
 import JoiBase from "joi";
 import path from "path";
 
