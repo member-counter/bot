@@ -72,11 +72,8 @@ export const uploadToRedis = () => {
 			logger.info(`uploadToRedis: Updating ${locale}`);
 			const translations = await import(`../../locales/${locale}`);
 			const pipeline = redis.pipeline();
-			logger.debug(JSON.stringify(translations, null, 2));
 			for (const translation of Object.values(translations)) {
 				pipeline.set(`i18n:${locale}`, JSON.stringify(translation));
-				logger.debug(`i18n:${locale}`);
-				logger.debug(JSON.stringify(translation, null, 2));
 			}
 
 			await pipeline.exec();
