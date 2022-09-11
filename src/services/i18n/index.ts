@@ -1,5 +1,7 @@
 import { CommandInteraction, Interaction } from "discord.js";
 import i18next from "i18next";
+
+import config from "../../config";
 import GuildSettings from "../GuildSettings";
 import { LocalBackend } from "./LocalBackend";
 import { RedisBackend } from "./RedisBackend";
@@ -19,9 +21,7 @@ export const availableLocales = [
 	"pt-BR",
 	"ru-RU",
 	"tr-TR"
-];
-
-import config from "../../config";
+] as const;
 
 export async function i18n(
 	interaction: string | Interaction | CommandInteraction
@@ -29,7 +29,9 @@ export async function i18n(
 	let locale: string;
 
 	if (typeof interaction === "string") {
-		if (!availableLocales.includes(interaction))
+		if (
+			!availableLocales.includes(interaction as typeof availableLocales[number])
+		)
 			throw new Error("Given locale is not supported");
 
 		locale = interaction;
@@ -39,7 +41,11 @@ export async function i18n(
 				interaction.guildId
 			);
 
-			if (availableLocales.includes(interaction.guildLocale)) {
+			if (
+				availableLocales.includes(
+					interaction.guildLocale as typeof availableLocales[number]
+				)
+			) {
 				locale = interaction.guildLocale;
 			}
 
@@ -48,7 +54,7 @@ export async function i18n(
 			}
 		}
 
-		const userLocale = interaction.locale;
+		const userLocale = interaction.locale as typeof availableLocales[number];
 		if (availableLocales.includes(userLocale)) {
 			locale ??= userLocale;
 		}

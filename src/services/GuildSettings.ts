@@ -17,11 +17,13 @@ class GuildSettings {
 		return new GuildSettings(id, doc);
 	}
 
-	public get locale(): string {
+	public get locale(): typeof availableLocales[number] {
 		return this.doc.locale;
 	}
 
-	public async setLocale(value: string): Promise<void> {
+	public async setLocale(
+		value: typeof availableLocales[number] | "server"
+	): Promise<void> {
 		if (!["server", ...availableLocales].includes(value)) {
 			throw new UserError("SERVICE_GUILD_SETTINGS_INVALID_LOCALE");
 		}

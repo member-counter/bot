@@ -7,7 +7,7 @@ import {
 import { ButtonStyle, PermissionsBitField } from "discord.js";
 import config from "../../config";
 import GuildSettings from "../../services/GuildSettings";
-import { i18n as i18nService } from "../../services/i18n";
+import { availableLocales, i18n as i18nService } from "../../services/i18n";
 import { Command } from "../../structures";
 import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
 import getBotInviteLink from "../../utils/getBotInviteLink";
@@ -50,10 +50,6 @@ export const settingsCommand = new Command({
 					option
 						.setName("digit")
 						.setDescription("Used to set or reset the digits")
-						.setDescriptionLocalizations({
-							"en-US": "Used to set or reset the digits",
-							de: "Wird verwendet, um die Ziffern einzustellen oder zurückzusetzen"
-						})
 				)
 		)
 		.addSubcommand((subCommand) =>
@@ -143,7 +139,11 @@ export const settingsCommand = new Command({
 			// Language (handle it ASAP before using t)
 			if (command.options.get("language", false)) {
 				const error = await guildSettings
-					.setLocale(command.options.get("language", false).value.toString())
+					.setLocale(
+						command.options
+							.get("language", false)
+							.value.toString() as typeof availableLocales[number]
+					)
 					.catch((e) => e);
 
 				i18n = await i18nService(guildSettings.locale ?? command.guildLocale);

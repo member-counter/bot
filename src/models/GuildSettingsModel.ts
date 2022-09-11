@@ -1,10 +1,11 @@
 import { Document, model, Schema } from "mongoose";
+import { availableLocales } from "../services/i18n/index";
 
 interface GuildSettingsDocument extends Document {
 	id: string;
 	premium: boolean;
 	blocked: boolean;
-	locale: string;
+	locale: typeof availableLocales[number];
 	shortNumber: boolean;
 	digits: string[];
 }
