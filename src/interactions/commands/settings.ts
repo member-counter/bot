@@ -1,6 +1,7 @@
 import {
 	ActionRowBuilder,
 	ButtonBuilder,
+	codeBlock,
 	inlineCode,
 	SlashCommandBuilder
 } from "@discordjs/builders";
@@ -48,8 +49,10 @@ export const settingsCommand = new Command({
 				)
 				.addStringOption((option) =>
 					option
-						.setName("digit")
-						.setDescription("Used to set or reset the digits")
+						.setName("digits")
+						.setDescription(
+							'Specify the digits separated by a comma (1 1, 2 2, 3 3) or use the word "reset" to reset them'
+						)
 				)
 		)
 		.addSubcommand((subCommand) =>
@@ -155,7 +158,7 @@ export const settingsCommand = new Command({
 				embed.addFields([
 					{
 						name: t("commands.settings.subcommands.see.language.name"),
-						value: error.message
+						value: error
 							? t(error.message)
 							: guildSettings.locale
 							? t("langName")
@@ -173,8 +176,8 @@ export const settingsCommand = new Command({
 				embed.addFields([
 					{
 						name: t("commands.settings.subcommands.see.shortNumber.name"),
-						value: error?.message
-							? t(error?.message)
+						value: error
+							? t(error.message)
 							: t("commands.settings.subcommands.see.shortNumber.value", {
 									CURRENT_SHORT_NUMBER: guildSettings.shortNumber
 										? t("common.yes")
@@ -183,8 +186,8 @@ export const settingsCommand = new Command({
 					}
 				]);
 			}
-			if (command.options.get("digit", false)) {
-				const content = command.options.get("digit").value as string;
+			if (command.options.get("digits", false)) {
+				const content = command.options.get("digits").value as string;
 				const userWantsToReset = content.split(/\s+/)[0] === "reset";
 
 				if (userWantsToReset) {
@@ -229,11 +232,7 @@ export const settingsCommand = new Command({
 								.catch((e) => e);
 							if (error?.message) errors.push(error?.message);
 						}
-						descriptionParts.push(
-							t(
-								"commands.settings.subcommands.set.options.customDigits.success"
-							)
-						);
+
 						embed.addFields([
 							{
 								name: t("commands.settings.subcommands.see.customDigits.name"),
@@ -244,13 +243,7 @@ export const settingsCommand = new Command({
 													errors.map(async (errMessage) => t(errMessage))
 												)
 										  ).join("\n")
-										: t(
-												"commands.settings.subcommands.see.customDigits.value",
-												{
-													CURRENT_DIGIT: guildSettings.digits.join(" "),
-													interpolation: { escapeValue: false }
-												}
-										  )
+										: guildSettings.digits.join(" ")
 							}
 						]);
 					} else {
@@ -293,6 +286,7 @@ export const settingsCommand = new Command({
 				throw new UserError("common.error.noPermissions");
 
 			const guildSettings = await GuildSettings.init(command.guildId);
+			guildSettings.log("Hello world!");
 			await command.guild.fetch();
 
 			let logsSection: string[] | [] = [];
@@ -306,22 +300,20 @@ export const settingsCommand = new Command({
 					)
 					.join("");
 
-				logsSection = safeDiscordString(formattedLatestLogs).map(
-					(portion) => "```" + portion + "```"
+				logsSection = safeDiscordString(formattedLatestLogs).map((portion) =>
+					codeBlock(portion)
 				);
 			}
 			if (logsSection.length > 0) {
-				const guildLogsText = t(
-					"commands.settings.subcommands.logs.title.hasLogs",
-					{
-						SERVER_NAME: command.guild.name,
-						SERVER_ID: inlineCode(command.guild.id)
-					}
-				);
 				const embedPages = [
 					...(logsSection as string[]).map((text) => {
 						return new BaseMessageEmbed()
-							.setTitle(`**${guildLogsText}**`)
+							.setTitle(
+								t("commands.settings.subcommands.logs.title.hasLogs", {
+									SERVER_NAME: command.guild.name,
+									SERVER_ID: inlineCode(command.guild.id)
+								})
+							)
 							.setDescription(text);
 					})
 				];
@@ -367,7 +359,6 @@ export const settingsCommand = new Command({
 					}
 					default:
 						throw error;
-						break;
 				}
 			}
 		}
