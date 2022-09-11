@@ -13,6 +13,7 @@ export const setupCommand = new Command({
 	definition: new SlashCommandBuilder()
 		.setName("setup")
 		.setDescription("Used to create some basic counter channels")
+		.setDMPermission(false)
 		.addStringOption((option) =>
 			option
 				.setName("type")

@@ -23,6 +23,7 @@ export const settingsCommand = new Command({
 		.setDescription(
 			"Configure and see different aspects about the bot in this server"
 		)
+		.setDMPermission(false)
 		.addSubcommand((subCommand) =>
 			subCommand
 				.setName("see")
