@@ -83,7 +83,15 @@ export default async function handleCommand(
 							)} is not being handled correctly`
 						);
 				} else if (typeof subcommandExecute === "function") {
-					logger.info(`Executing command ${commandInteraction.commandName}`);
+					logger.debug(
+						`${commandInteraction.user.username}#${
+							commandInteraction.user.discriminator
+						} (${
+							commandInteraction.user.id
+						}) is executing command ${commandInteraction} on channel ${
+							commandInteraction.channel ?? commandInteraction.channelId
+						}`
+					);
 					await subcommandExecute(commandInteraction, translate);
 					return;
 				}

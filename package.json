@@ -6,11 +6,11 @@
 	"scripts": {
 		"start": "node .",
 		"cm": "cz",
-		"start:docker": "docker compose -f docker-compose.yml up",
+		"start:docker": "docker compose -f docker-compose.yml up --build --force-recreate",
 		"build": "tsc && tscp",
 		"build:docker": "docker build . -t member-counter-bot:latest",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
-		"dev:docker": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up ",
+		"dev:docker": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build --force-recreate",
 		"lint": "eslint --fix .",
 		"deployInteractions": "node ./dist/deployCommands.js",
 		"deployInteractions:docker": "docker run --env-file .env --entrypoint node member-counter-bot:latest /app/dist/deployCommands.js",
