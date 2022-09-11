@@ -66,11 +66,11 @@ export const settingsCommand = new Command({
 		),
 	execute: {
 		see: async (command, { t }) => {
-			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
+			if (!command.inGuild()) throw new UserError("common.error.noDm");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
 			)
-				throw new UserError("COMMON_ERROR_NO_PERMISSIONS");
+				throw new UserError("common.error.noPermissions");
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
@@ -93,8 +93,8 @@ export const settingsCommand = new Command({
 						name: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER"),
 						value: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
 							CURRENT_SHORT_NUMBER: guildSettings.shortNumber
-								? t("COMMON_YES")
-								: t("COMMON_NO")
+								? t("common.yes")
+								: t("common.no")
 						})
 					},
 					{
@@ -125,11 +125,11 @@ export const settingsCommand = new Command({
 		},
 		set: async (command, i18n) => {
 			let { t } = i18n;
-			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
+			if (!command.inGuild()) throw new UserError("common.error.noDm");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
 			)
-				throw new UserError("COMMON_ERROR_NO_PERMISSIONS");
+				throw new UserError("common.error.noPermissions");
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
@@ -176,8 +176,8 @@ export const settingsCommand = new Command({
 							? t(error?.message)
 							: t("COMMAND_SETTINGS_SEE_SHORT_NUMBER_DEFAULT_VALUE", {
 									CURRENT_SHORT_NUMBER: guildSettings.shortNumber
-										? t("COMMON_YES")
-										: t("COMMON_NO")
+										? t("common.yes")
+										: t("common.no")
 							  })
 					}
 				]);
@@ -270,11 +270,11 @@ export const settingsCommand = new Command({
 			});
 		},
 		logs: async (command, { t, language }) => {
-			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
+			if (!command.inGuild()) throw new UserError("common.error.noDm");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
 			)
-				throw new UserError("COMMON_ERROR_NO_PERMISSIONS");
+				throw new UserError("common.error.noPermissions");
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
@@ -319,7 +319,7 @@ export const settingsCommand = new Command({
 			}
 		},
 		"classic-premium-upgrade": async (command, { t }) => {
-			if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
+			if (!command.inGuild()) throw new UserError("common.error.noDm");
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();

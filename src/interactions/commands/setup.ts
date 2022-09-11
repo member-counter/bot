@@ -29,9 +29,9 @@ export const setupCommand = new Command({
 				)
 		),
 	execute: async (command, { t }) => {
-		if (!command.inGuild()) throw new UserError("COMMON_ERROR_NO_DM");
+		if (!command.inGuild()) throw new UserError("common.error.noDm");
 		if (!command.memberPermissions.has(PermissionFlagsBits.Administrator))
-			throw new UserError("COMMON_ERROR_NO_PERMISSIONS");
+			throw new UserError("common.error.noPermissions");
 		const guildSettings = await GuildSettings.init(command.guildId);
 		await command.guild.fetch();
 
