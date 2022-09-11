@@ -16,6 +16,7 @@ const maxLifetime = 1 * 60 * 1000;
 export const RedisBackend: {
 	redis: null | Redis.Redis;
 	cache: {
+		// TODO: Improve this, There is almost certainly a better way to do this
 		"ca-ES"?: typeof import("../../locales/ca-ES.json");
 		"cs-CZ"?: typeof import("../../locales/cs-CZ.json");
 		"de-DE"?: typeof import("../../locales/de-DE.json");
