@@ -26,7 +26,7 @@ services:
 
   member-counter-bot-redis:
     image: redis
-    command: redis-server --requirepass ${REDIS_PASSWORD}
+    command: redis-server --requirepass ${REDIS_PASSWORD} --port ${REDIS_PORT}
     container_name: Member-Counter-Bot-Redis
     restart: always
     networks:
