@@ -5,7 +5,7 @@
 		"commandHandler": {
 			"error": {
 				"title": "ERROR!",
-				"description": "Something went wrong, please, try again later\n\nSupport server: {{SUPPORT_SERVER_INVITE}}\n\nError ID: {{ERROR_ID}}"
+				"description": "Something went wrong, please, try again later\n\nError ID: {{ERROR_ID}}"
 			}
 		}
 	},

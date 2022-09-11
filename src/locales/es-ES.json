@@ -1,26 +1,84 @@
 {
-	"LANG_CODE": "es-ES",
-	"LANG_NAME": "Español",
-	"INTERACTION_COMMAND_HANDLER_ERROR_TITLE": "ERROR!",
-	"INTERACTION_COMMAND_HANDLER_ERROR_DESCRIPTION": "Algo fue mal, vuelve a intentarlo más tarde\n\nServidor de soporte: {{SUPPORT_SERVER_INVITE}}\n\nID del error: {{ERROR_ID}}",
-
-	"COMMAND_INVITE_DESCRIPTION": "Bip bup! Tu enlace de invitación está listo:\n{{INVITE_URL}}",
-	"COMMAND_INVITE_ADD_TO_SERVER": "Añadir al servidor",
-	"COMMAND_INVITE_ADD_TO_SERVER_AGAIN": "Añadir a este servidor de nuevo",
-	"COMMAND_SETTINGS_SEE_TITLE": "Ajustes de {{SERVER_NAME}} ({{SERVER_ID}})",
-	"COMMAND_SETTINGS_SEE_LANGUAGE": "Idioma",
-	"COMMAND_SETTINGS_SEE_LANGUAGE_DEFAULT_VALUE": "{{CURRENT_LANGUAGE}} (Por defecto del servidor)",
-	"COMMAND_SETTINGS_SET_NO_CHANGES_MADE": "No se realizo ningún cambio",
-	"COMMAND_SETTINGS_SET_CHANGES_MADE": "Se realizaron los siguientes cambios",
-	"COMMAND_SETTINGS_BUTTON_DELETE_ALL": "Borrar ajustes",
-	"BUTTON_RESET_SETTINGS_CONFIRM": "¿Estás seguro? Todos los datos relacionados con este servidor serán eliminados para siempre",
-	"BUTTON_RESET_SETTINGS_DONE": "Los datos han sido eliminados",
-	"COMMON_ERROR_NO_DM": "Este comando no puede ser ejecutado en un canal privado",
-	"COMMON_ERROR_NO_PERMISSIONS": "No tienes los permisos necesarios para ejecutar este comando",
-	"COMMON_ACCEPT": "Aceptar",
-	"COMMON_CANCEL": "Cancelar",
-	"COMMON_YES": "Sí",
-	"COMMON_NO": "No",
-	"SERVICE_GUILD_SETTINGS_INVALID_LOCALE": "El idioma especificado no esta disponible",
-	"AUTOCOMPLETE_DEFAULT_SERVER_LOCALE": "Idioma del servidor"
+	"langCode": "es-ES",
+	"langName": "Español",
+	"interaction": {
+		"commandHandler": {
+			"error": {
+				"title": "ERROR!",
+				"description": "Algo fue mal, vuelve a intentarlo más tarde\n\nID del error: {{ERROR_ID}}"
+			}
+		}
+	},
+	"commands": {
+		"invite": {
+			"description": "Bip bup! Tu enlace de invitación está listo:\n{{INVITE_URL}}",
+			"addToServer": "Añadir al servidor",
+			"addToServerAgain": "Añadir a este servidor de nuevo",
+			"joinSupportServer": "Unierte al servidor de soporte"
+		},
+		"settings": {
+			"buttons": {
+				"deleteSettings": "Restaurar ajustes",
+				"deleteSettingsConfirm": "¿Estás seguro? Todos los ajustes se restauraran a por los defecto (excepto el estado premium y de bloqueo",
+				"deleteSettingsDone": "Los datos han sido restaurados"
+			},
+			"subcommands": {
+				"see": {
+					"title": "Settings for {{SERVER_NAME}} ({{SERVER_ID}})",
+					"language": {
+						"name": "Language",
+						"value": "{{CURRENT_LANGUAGE}} (Server language)"
+					},
+					"shortNumber": {
+						"name": "Short Number",
+						"value": "{{CURRENT_SHORT_NUMBER}} (Compact notation)"
+					},
+					"customDigits": {
+						"name": "Custom Numbers",
+						"value": "{{CURRENT_DIGIT}} (Digits)"
+					}
+				},
+				"set": {
+					"noChangesMade": "No changes were made",
+					"changesMade": "The following changes were made",
+					"options": {
+						"customDigits": {
+							"success": "Digits customized.",
+							"resetSuccess": "Numbers restored to the default ones.",
+							"errorMissingParams": "Missing parameters, please see `/help settings digit`"
+						}
+					}
+				},
+				"classicPremiumUpgrade": {
+					"success": "Done! The next step is invite the premium bot:\n{{BOT_LINK}}",
+					"errorCannotUpgrade": "You can't upgrade the server because it already has premium.",
+					"noServerUpgradesAvailable": "You can't do more server upgrades because you don't have more server upgrades available"
+				},
+				"logs": {
+					"title": {
+						"hasLogs": "Latest logs for {{SERVER_NAME}} ({{SERVER_ID}})",
+						"noLogs": "No logs for {{SERVER_NAME}} ({{SERVER_ID}})"
+					}
+				}
+			}
+		}
+	},
+	"common": {
+		"error": {
+			"noDm": "Este comando no puede ser ejecutado en un canal privado",
+			"noPermissions": "No tienes los permisos necesarios para ejecutar este comando"
+		},
+		"accept": "Aceptar",
+		"cancel": "Cancelar",
+		"yes": "Sí",
+		"no": "No"
+	},
+	"autocomplete": {
+		"defaultServerLocale": "Idioma del servidor"
+	},
+	"service": {
+		"guildSettings": {
+			"invalidLocale": "El idioma especificado no esta disponible"
+		}
+	}
 }
