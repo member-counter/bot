@@ -30,10 +30,11 @@ if (config.env === "production") {
 		})
 		.on("uncaughtException", (exception) => {
 			logger.error("Uncaught Exception ", exception);
-		})
-		.on("SIGTERM", async () => {
-			bot.client.destroy();
-			await mongoose.disconnect();
-			process.exit(0);
 		});
 }
+
+process.on("SIGTERM", async () => {
+	bot.client.destroy();
+	await mongoose.disconnect();
+	process.exit(0);
+});
