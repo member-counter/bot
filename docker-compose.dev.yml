@@ -34,3 +34,8 @@ services:
     depends_on:
       - member-counter-bot-db
     restart: unless-stopped
+
+  member-counter-bot-redisinsight: 
+    image: redislabs/redisinsight:latest
+    ports:
+      - '8082:8001'
