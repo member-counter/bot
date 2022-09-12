@@ -20,9 +20,7 @@ import { buttonId as resetGuildSettingsButtonId } from "../buttons/resetGuildSet
 export const settingsCommand = new Command({
 	definition: new SlashCommandBuilder()
 		.setName("settings")
-		.setDescription(
-			"Configure and see different aspects about the bot in this server"
-		)
+		.setDescription("untranslated")
 		.setDMPermission(false)
 		.addSubcommand((subCommand) =>
 			subCommand

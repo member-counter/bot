@@ -11,12 +11,20 @@
 	},
 	"commands": {
 		"invite": {
+			"definition": {
+				"name": "invite",
+				"description": "Gives you an invite link to add the bot"
+			},
 			"description": "Beep boop! Your invite link is ready:\n{{INVITE_URL}}",
 			"addToServer": "Add to server",
 			"addToServerAgain": "Add to this server again",
 			"joinSupportServer": "Join support server"
 		},
 		"settings": {
+			"definition": {
+				"name": "settings",
+				"description": "Configure and see different aspects about the bot in this server"
+			},
 			"buttons": {
 				"deleteSettings": "Restore settings",
 				"deleteSettingsConfirm": "Are you sure? All the data related to this server will be restored to its defaults (except block and premium status)",
@@ -60,6 +68,12 @@
 						"noLogs": "No logs for {{SERVER_NAME}} ({{SERVER_ID}})"
 					}
 				}
+			}
+		},
+		"setup": {
+			"definition": {
+				"name": "setup",
+				"description": "Used to create some basic counter channels"
 			}
 		}
 	},

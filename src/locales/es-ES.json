@@ -11,12 +11,20 @@
 	},
 	"commands": {
 		"invite": {
+			"definition": {
+				"name": "invitar",
+				"description": "Te da una invitación para añadir el bot"
+			},
 			"description": "Bip bup! Tu enlace de invitación está listo:\n{{INVITE_URL}}",
 			"addToServer": "Añadir al servidor",
 			"addToServerAgain": "Añadir a este servidor de nuevo",
 			"joinSupportServer": "Unierte al servidor de soporte"
 		},
 		"settings": {
+			"definition": {
+				"name": "ajustes",
+				"description": "Configura diferentes aspectos del bot en este servidor"
+			},
 			"buttons": {
 				"deleteSettings": "Restaurar ajustes",
 				"deleteSettingsConfirm": "¿Estás seguro? Todos los ajustes se restauraran a por los defecto (excepto el estado premium y de bloqueo",

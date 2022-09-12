@@ -14,7 +14,7 @@ import { twemojiURL } from "../../utils/twemojiURL";
 export const inviteCommand = new Command({
 	definition: new SlashCommandBuilder()
 		.setName("invite")
-		.setDescription("description"),
+		.setDescription("untranslated"),
 	execute: async (command, { t }) => {
 		const embed = new BaseMessageEmbed();
 
