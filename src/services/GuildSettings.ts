@@ -17,11 +17,11 @@ class GuildSettings {
 		return new GuildSettings(id, doc);
 	}
 
-	public get locale(): typeof availableLocales[number] {
-		return this.doc.locale;
+	public get language(): typeof availableLocales[number] {
+		return this.doc.language;
 	}
 
-	public async setLocale(
+	public async setLanguage(
 		value: typeof availableLocales[number] | "server"
 	): Promise<void> {
 		if (!["server", ...availableLocales].includes(value)) {
@@ -29,13 +29,24 @@ class GuildSettings {
 		}
 
 		if (value === "server") {
-			this.doc.locale = undefined;
+			this.doc.language = undefined;
 		} else {
-			this.doc.locale = value;
+			this.doc.language = value;
 		}
 
 		await this.doc.save();
 	}
+
+	public get locale(): string {
+		return this.doc.locale;
+	}
+
+	public async setLocale(value: string): Promise<string> {
+		this.doc.locale = value;
+		await this.doc.save();
+		return this.doc.locale;
+	}
+
 	public async log(text: string): Promise<void> {
 		await GuildLogModel.create({ id: this.id, text });
 	}

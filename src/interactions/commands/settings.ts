@@ -87,7 +87,7 @@ export const settingsCommand = new Command({
 				fields: [
 					{
 						name: t("commands.settings.subcommands.see.language.name"),
-						value: guildSettings.locale
+						value: guildSettings.language
 							? t("langName")
 							: t("commands.settings.subcommands.see.language.value", {
 									CURRENT_LANGUAGE: t("langName")
@@ -104,8 +104,7 @@ export const settingsCommand = new Command({
 					{
 						name: t("commands.settings.subcommands.see.customDigits.name"),
 						value: t("commands.settings.subcommands.see.customDigits.value", {
-							CURRENT_DIGIT: guildSettings.digits.join(" "),
-							interpolation: { escapeValue: false }
+							CURRENT_DIGIT: guildSettings.digits.join(" ")
 						})
 					}
 				]
@@ -144,14 +143,14 @@ export const settingsCommand = new Command({
 			// Language (handle it ASAP before using t)
 			if (command.options.get("language", false)) {
 				const error = await guildSettings
-					.setLocale(
+					.setLanguage(
 						command.options
 							.get("language", false)
 							.value.toString() as typeof availableLocales[number]
 					)
 					.catch((e) => e);
 
-				i18n = await i18nService(guildSettings.locale ?? command.guildLocale);
+				i18n = await i18nService(guildSettings.language ?? command.guildLocale);
 
 				// eslint-disable-next-line prefer-destructuring
 				t = i18n.t;
@@ -161,7 +160,7 @@ export const settingsCommand = new Command({
 						name: t("commands.settings.subcommands.see.language.name"),
 						value: error
 							? t(error.message)
-							: guildSettings.locale
+							: guildSettings.language
 							? t("langName")
 							: t("commands.settings.subcommands.see.language.value", {
 									CURRENT_LANGUAGE: t("langName")
@@ -201,8 +200,7 @@ export const settingsCommand = new Command({
 						{
 							name: t("commands.settings.subcommands.see.customDigits.name"),
 							value: t("commands.settings.subcommands.see.customDigits.value", {
-								CURRENT_DIGIT: guildSettings.digits.join(" "),
-								interpolation: { escapeValue: false }
+								CURRENT_DIGIT: guildSettings.digits.join(" ")
 							})
 						}
 					]);

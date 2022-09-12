@@ -37,7 +37,7 @@ export async function i18n(
 		locale = interaction;
 	} else {
 		if (interaction.inGuild()) {
-			const { locale: forcedGuildLocale } = await GuildSettings.init(
+			const { language: forcedGuildLocale } = await GuildSettings.init(
 				interaction.guildId
 			);
 
@@ -81,9 +81,11 @@ export async function i18n(
 
 			instance.init(
 				{
-					lng: locale,
-					fallbackLng: config.i18n.defaultLocale,
-					load: "currentOnly"
+					fallbackLng: [locale, config.i18n.defaultLocale],
+					load: "currentOnly",
+					interpolation: {
+						escapeValue: false
+					}
 				},
 				(err) => {
 					if (err) return reject(err);

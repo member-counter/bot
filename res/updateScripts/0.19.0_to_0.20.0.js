@@ -27,6 +27,10 @@ const { DB_URI } = process.env;
 			guildSettings.shortNumber = guildSettings.shortNumber > -1;
 		}
 
+		if ("language" in guildSettings) {
+			guildSettings.language = guildSettings.language.replace?.("_", "-");
+		}
+
 		delete guildSettings._id;
 		delete guildSettings.__v;
 

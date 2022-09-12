@@ -5,7 +5,8 @@ interface GuildSettingsDocument extends Document {
 	id: string;
 	premium: boolean;
 	blocked: boolean;
-	locale: typeof availableLocales[number];
+	language: typeof availableLocales[number];
+	locale: string;
 	shortNumber: boolean;
 	digits: string[];
 }
@@ -14,6 +15,7 @@ const GuildSchema = new Schema({
 	id: { type: String, require: true },
 	premium: { type: Boolean, default: false },
 	blocked: { type: Boolean, default: false },
+	language: { type: String },
 	locale: { type: String },
 	shortNumber: { type: Boolean, default: true },
 	digits: {
