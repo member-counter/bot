@@ -2,7 +2,7 @@ import { ActionRowBuilder, ButtonBuilder } from "@discordjs/builders";
 import { ButtonInteraction, ButtonStyle } from "discord.js";
 
 import GuildSettings from "../../services/GuildSettings";
-import { i18n } from "../../services/i18n";
+import { i18nService } from "../../services/i18n";
 
 export const buttonId = "reset_guild_settings";
 
@@ -14,7 +14,7 @@ export const resetGuildSettings = async (
 	if (name !== buttonId) return;
 	if (!buttonInteraction.inGuild()) return;
 
-	const { t } = await i18n(buttonInteraction);
+	const { t } = await i18nService(buttonInteraction);
 
 	if (confirm) {
 		const guildSettings = await GuildSettings.init(buttonInteraction.guildId);

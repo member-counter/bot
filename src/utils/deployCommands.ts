@@ -6,7 +6,7 @@ import config from "../config";
 import { allCommands } from "../interactions/commands";
 import logger from "../logger";
 import { discordRest } from "../services";
-import { availableLocales, i18n as i18nService } from "../services/i18n";
+import { availableLocales, i18nService } from "../services/i18n";
 import { tokenToClientId } from "../utils/tokenToClientId";
 
 const clientId = tokenToClientId(config.discord.bot.token);

@@ -12,7 +12,7 @@ import handleAutocomplete from "../interactions/autocompletes";
 import handleButton from "../interactions/buttons";
 import handleCommand from "../interactions/commands";
 import logger from "../logger";
-import { i18n } from "../services/i18n";
+import { i18nService } from "../services/i18n";
 import { Event } from "../structures";
 import BaseMessageEmbed from "../utils/BaseMessageEmbed";
 import { UserError } from "../utils/UserError";
@@ -36,7 +36,7 @@ export const interactionCreateEvent = new Event({
 				let title: string, description: string, supportServerBtn: string;
 
 				try {
-					const { t } = await i18n(interaction);
+					const { t } = await i18nService(interaction);
 					title = t("interaction.commandHandler.error.title");
 					description = t("interaction.commandHandler.error.description");
 					supportServerBtn = t("commands.invite.joinSupportServer");

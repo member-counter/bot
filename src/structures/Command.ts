@@ -10,12 +10,12 @@ import {
 	SlashCommandBuilder,
 	SlashCommandSubcommandsOnlyBuilder
 } from "@discordjs/builders";
-import { i18n } from "../services/i18n";
+import { i18nService } from "../services/i18n";
 import { Unwrap } from "../utils/Unwrap";
 
 type CommandExecute = (
 	command: CommandInteraction,
-	translate: Unwrap<typeof i18n>
+	translate: Unwrap<typeof i18nService>
 ) => void | Promise<void>;
 
 interface SubCommandsExecute {

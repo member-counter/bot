@@ -8,7 +8,7 @@ import {
 import { ButtonStyle, PermissionsBitField } from "discord.js";
 import config from "../../config";
 import GuildSettings from "../../services/GuildSettings";
-import { availableLocales, i18n as i18nService } from "../../services/i18n";
+import { availableLocales, i18nService } from "../../services/i18n";
 import { Command } from "../../structures";
 import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
 import getBotInviteLink from "../../utils/getBotInviteLink";
@@ -37,6 +37,14 @@ export const settingsCommand = new Command({
 					option
 						.setName("language")
 						.setDescription("Changes the language of this bot")
+						.setAutocomplete(true)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("locale")
+						.setDescription(
+							"Changes how counters are formatted, defaults to language"
+						)
 						.setAutocomplete(true)
 				)
 				.addBooleanOption((option) =>
@@ -142,9 +150,36 @@ export const settingsCommand = new Command({
 			if (command.options.get("language", false)) {
 				const error = await guildSettings
 					.setLanguage(
-						command.options
-							.get("language", false)
-							.value.toString() as typeof availableLocales[number]
+						command.options.get("language", false).value.toString() as
+							| typeof availableLocales[number]
+							| "server"
+					)
+					.catch((e) => e);
+
+				i18n = await i18nService(guildSettings.language ?? command.guildLocale);
+
+				// eslint-disable-next-line prefer-destructuring
+				t = i18n.t;
+
+				embed.addFields([
+					{
+						name: t("commands.settings.subcommands.see.language.name"),
+						value: error
+							? t(error.message)
+							: guildSettings.language
+							? t("langName")
+							: t("commands.settings.subcommands.see.language.value", {
+									CURRENT_LANGUAGE: t("langName")
+							  })
+					}
+				]);
+			}
+			if (command.options.get("locale", false)) {
+				const error = await guildSettings
+					.setLanguage(
+						command.options.get("locale", false).value.toString() as
+							| typeof availableLocales[number]
+							| "server"
 					)
 					.catch((e) => e);
 
@@ -295,7 +330,7 @@ export const settingsCommand = new Command({
 				const formattedLatestLogs = latestLogs
 					.map(
 						({ timestamp, text }) =>
-							`[${timestamp.toLocaleString(language ?? "en-US")}] ${text}\n`
+							`[${timestamp.toLocaleString(language)}] ${text}\n`
 					)
 					.join("");
 

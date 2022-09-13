@@ -23,7 +23,7 @@ export const availableLocales = [
 	"tr-TR"
 ] as const;
 
-export async function i18n(
+export async function i18nService(
 	interaction: string | Interaction | CommandInteraction
 ) {
 	let locale: string;

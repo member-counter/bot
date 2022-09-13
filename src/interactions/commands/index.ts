@@ -8,7 +8,7 @@ import {
 	PermissionsBitField
 } from "discord.js";
 
-import { i18n } from "../../services/i18n";
+import { i18nService } from "../../services/i18n";
 import { inviteCommand } from "./invite";
 import { settingsCommand } from "./settings";
 import { setupCommand } from "./setup";
@@ -30,7 +30,7 @@ export const allCommandsNeededIntents: IntentsBitField = new IntentsBitField(
 export default async function handleCommand(
 	commandInteraction: CommandInteraction
 ): Promise<void> {
-	const translate = await i18n(commandInteraction);
+	const translate = await i18nService(commandInteraction);
 
 	for (const command of allCommands) {
 		if (command.definition.name === commandInteraction.commandName) {
