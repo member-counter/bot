@@ -49,7 +49,7 @@ export async function i18nService(
 				locale = interaction.guildLocale;
 			}
 
-			if (availableLocales.includes(forcedGuildLocale)) {
+			if (availableLocales.includes(forcedGuildLocale as any)) {
 				locale = forcedGuildLocale;
 			}
 		}
@@ -94,6 +94,8 @@ export async function i18nService(
 			);
 		}
 	);
+
+	// TODO override locale for number and date formatting with guildSettings locale
 
 	return i18nextInstance;
 }

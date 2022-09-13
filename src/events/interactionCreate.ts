@@ -4,6 +4,7 @@ import {
 	ButtonStyle,
 	inlineCode
 } from "discord.js";
+import { i18n } from "i18next";
 import { v4 as uuid } from "uuid";
 
 import config from "../config";
@@ -32,14 +33,14 @@ export const interactionCreateEvent = new Event({
 			if (interaction.isCommand() || interaction.isMessageComponent()) {
 				const embed = new BaseMessageEmbed();
 				const id = uuid();
-
+				let i18n: i18n;
 				let title: string, description: string, supportServerBtn: string;
 
 				try {
-					const { t } = await i18nService(interaction);
-					title = t("interaction.commandHandler.error.title");
-					description = t("interaction.commandHandler.error.description");
-					supportServerBtn = t("commands.invite.joinSupportServer");
+					i18n = await i18nService(interaction);
+					title = i18n.t("interaction.commandHandler.error.title");
+					description = i18n.t("interaction.commandHandler.error.description");
+					supportServerBtn = i18n.t("commands.invite.joinSupportServer");
 				} catch (e) {
 					logger.error(e);
 				}
@@ -50,11 +51,8 @@ export const interactionCreateEvent = new Event({
 					"Something went wrong, please, try again later\n\nError ID: {{ERROR_ID}}";
 				supportServerBtn ??= "Join support server";
 
-				embed.setColor(Colors.RED);
-				embed.setTitle(title);
-
-				if (error instanceof UserError) {
-					embed.setDescription(error.message);
+				if (error instanceof UserError && i18n) {
+					embed.setDescription(i18n.t(error.message));
 				} else {
 					embed.setDescription(
 						description.replaceAll("{{ERROR_ID}}", inlineCode(id))
@@ -69,6 +67,9 @@ export const interactionCreateEvent = new Event({
 				);
 				// eslint-disable-next-line no-console
 				console.error(error);
+
+				embed.setColor(Colors.RED);
+				embed.setTitle(title);
 
 				const componentRow = new ActionRowBuilder<ButtonBuilder>();
 				componentRow.addComponents(

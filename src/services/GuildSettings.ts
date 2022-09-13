@@ -3,8 +3,7 @@ import GuildSettingsModel, {
 	GuildSettingsDocument
 } from "../models/GuildSettingsModel";
 import UserModel from "../models/UserModel";
-import { UserError } from "../utils/UserError";
-import { availableLocales } from "./i18n";
+
 class GuildSettings {
 	private constructor(public id: string, private doc: GuildSettingsDocument) {}
 
@@ -17,17 +16,11 @@ class GuildSettings {
 		return new GuildSettings(id, doc);
 	}
 
-	public get language(): typeof availableLocales[number] {
+	public get language(): string {
 		return this.doc.language;
 	}
 
-	public async setLanguage(
-		value: typeof availableLocales[number] | "server"
-	): Promise<void> {
-		if (!["server", ...availableLocales].includes(value)) {
-			throw new UserError("service.guildSettings.invalidLocale");
-		}
-
+	public async setLanguage(value: string): Promise<string> {
 		if (value === "server") {
 			this.doc.language = undefined;
 		} else {
@@ -35,6 +28,7 @@ class GuildSettings {
 		}
 
 		await this.doc.save();
+		return this.language;
 	}
 
 	public get locale(): string {
@@ -42,9 +36,14 @@ class GuildSettings {
 	}
 
 	public async setLocale(value: string): Promise<string> {
-		this.doc.locale = value;
+		if (value === "settingsLanguage") {
+			this.doc.locale = undefined;
+		} else {
+			this.doc.locale = value;
+		}
+
 		await this.doc.save();
-		return this.doc.locale;
+		return this.locale;
 	}
 
 	public async log(text: string): Promise<void> {

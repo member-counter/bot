@@ -1,6 +1,6 @@
 {
 	"langCode": "en-US",
-	"langName": "English (US)",
+	"langName": "English, US",
 	"interaction": {
 		"commandHandler": {
 			"error": {
@@ -35,15 +35,19 @@
 					"title": "Settings for {{SERVER_NAME}} ({{SERVER_ID}})",
 					"language": {
 						"name": "Language",
-						"value": "{{CURRENT_LANGUAGE}} (Server language)"
+						"fromServerLanguage": "{{CURRENT_DISCORD_LANGUAGE}} (Server language)"
+					},
+					"locale": {
+						"name": "Locale (Formatting for numbers, date, etc)",
+						"fromAvailableLanguages": "{{ LANG_NAME }} [{{ LANG_CODE }}]",
+						"fromSettingsLanguage": "{{CURRENT_SETTINGS_LANGUAGE}} (Settings language)",
+						"custom": "{{CURRENT}} (Custom)"
 					},
 					"shortNumber": {
-						"name": "Short Number",
-						"value": "{{CURRENT_SHORT_NUMBER}} (Compact notation)"
+						"name": "Short Number (Compact notation)"
 					},
 					"customDigits": {
-						"name": "Custom Numbers",
-						"value": "{{CURRENT_DIGIT}} (Digits)"
+						"name": "Custom Numbers (Digits)"
 					}
 				},
 				"set": {
@@ -52,8 +56,7 @@
 					"options": {
 						"customDigits": {
 							"success": "Digits customized.",
-							"resetSuccess": "Numbers restored to the default ones.",
-							"errorMissingParams": "Missing parameters, please see `/help settings digit`"
+							"resetSuccess": "Numbers restored to the default ones."
 						}
 					}
 				},
@@ -88,7 +91,15 @@
 		"no": "No"
 	},
 	"autocomplete": {
-		"defaultServerLocale": "Server language"
+		"settings": {
+			"language": {
+				"defaultServerLanguage": "Server language"
+			},
+			"locale": {
+				"defaultSettingsLanguage": "Settings language",
+				"localeFromAvailableLanguages": "{{ LANG_NAME }} [{{ LANG_CODE }}]"
+			}
+		}
 	},
 	"service": {
 		"guildSettings": {

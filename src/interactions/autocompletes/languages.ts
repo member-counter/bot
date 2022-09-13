@@ -3,51 +3,38 @@ import { AutocompleteInteraction } from "discord.js";
 import { availableLocales, i18nService } from "../../services/i18n";
 import searchInTexts from "../../utils/search";
 
-export const locales = async (
+export const languages = async (
 	autocompleteInteraction: AutocompleteInteraction
 ) => {
 	const focusedOption = autocompleteInteraction.options.getFocused(true);
 
 	if (!autocompleteInteraction.inGuild()) return;
 	if (autocompleteInteraction.commandName !== "settings") return;
-	if (focusedOption.name !== "locale") return;
-
-	const desiredLocale = focusedOption.value.toString();
-	const i18n = await i18nService(autocompleteInteraction);
+	if (focusedOption.name !== "language") return;
 
 	const allLocales = await Promise.all(
-		["settingsLanguage", ...availableLocales].map(async (locale) => {
-			if (locale === "settingsLanguage") {
+		["server", ...availableLocales].map(async (locale) => {
+			if (locale === "server") {
+				const i18nInstance = await i18nService(autocompleteInteraction);
 				return {
-					name: i18n.t("autocomplete.settings.locale.defaultSettingsLanguage"),
+					name: i18nInstance.t(
+						"autocomplete.settings.language.defaultServerLanguage"
+					),
 					value: locale
 				};
 			} else {
 				const i18nInstance = await i18nService(locale);
 				return {
-					name: i18nInstance.t(
-						"autocomplete.settings.locale.localeFromAvailableLanguages",
-						{
-							LANG_NAME: i18nInstance.t("langName"),
-							LANG_CODE: i18nInstance.t("langCode")
-						}
-					),
+					name: i18nInstance.t("langName"),
 					value: locale
 				};
 			}
 		})
 	);
 
-	if (desiredLocale.length) {
-		allLocales.push({
-			name: desiredLocale,
-			value: desiredLocale
-		});
-	}
-
 	const searchResults = searchInTexts(
 		allLocales.map((e) => e.name),
-		desiredLocale
+		focusedOption.value.toString()
 	);
 
 	const results = searchResults.map((i) => allLocales[i]).slice(0, 25);

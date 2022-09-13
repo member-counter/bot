@@ -95,23 +95,44 @@ export const settingsCommand = new Command({
 						name: t("commands.settings.subcommands.see.language.name"),
 						value: guildSettings.language
 							? t("langName")
-							: t("commands.settings.subcommands.see.language.value", {
-									CURRENT_LANGUAGE: t("langName")
-							  })
+							: t(
+									"commands.settings.subcommands.see.language.fromServerLanguage",
+									{
+										CURRENT_DISCORD_LANGUAGE: t("langName")
+									}
+							  )
+					},
+					{
+						name: t("commands.settings.subcommands.see.locale.name"),
+						value: guildSettings.locale
+							? availableLocales.includes(guildSettings.locale as any)
+								? await (async () => {
+										const i18nLocale = await i18nService(guildSettings.locale);
+										return t(
+											"commands.settings.subcommands.see.locale.fromAvailableLanguages",
+											{
+												LANG_NAME: i18nLocale.t("langName"),
+												LANG_CODE: i18nLocale.t("langCode")
+											}
+										);
+								  })()
+								: t("commands.settings.subcommands.see.locale.custom", {
+										CURRENT: guildSettings.locale
+								  })
+							: t(
+									"commands.settings.subcommands.see.locale.fromSettingsLanguage",
+									{
+										CURRENT_SETTINGS_LANGUAGE: t("langName")
+									}
+							  )
 					},
 					{
 						name: t("commands.settings.subcommands.see.shortNumber.name"),
-						value: t("commands.settings.subcommands.see.shortNumber.value", {
-							CURRENT_SHORT_NUMBER: guildSettings.shortNumber
-								? t("common.yes")
-								: t("common.no")
-						})
+						value: guildSettings.shortNumber ? t("common.yes") : t("common.no")
 					},
 					{
 						name: t("commands.settings.subcommands.see.customDigits.name"),
-						value: t("commands.settings.subcommands.see.customDigits.value", {
-							CURRENT_DIGIT: guildSettings.digits.join(" ")
-						})
+						value: guildSettings.digits.join(" ")
 					}
 				]
 			});
@@ -148,13 +169,9 @@ export const settingsCommand = new Command({
 
 			// Language (handle it ASAP before using t)
 			if (command.options.get("language", false)) {
-				const error = await guildSettings
-					.setLanguage(
-						command.options.get("language", false).value.toString() as
-							| typeof availableLocales[number]
-							| "server"
-					)
-					.catch((e) => e);
+				await guildSettings.setLanguage(
+					command.options.get("language", false).value.toString()
+				);
 
 				i18n = await i18nService(guildSettings.language ?? command.guildLocale);
 
@@ -164,58 +181,58 @@ export const settingsCommand = new Command({
 				embed.addFields([
 					{
 						name: t("commands.settings.subcommands.see.language.name"),
-						value: error
-							? t(error.message)
-							: guildSettings.language
+						value: guildSettings.language
 							? t("langName")
-							: t("commands.settings.subcommands.see.language.value", {
-									CURRENT_LANGUAGE: t("langName")
-							  })
+							: t(
+									"commands.settings.subcommands.see.language.fromServerLanguage",
+									{
+										CURRENT_DISCORD_LANGUAGE: t("langName")
+									}
+							  )
 					}
 				]);
 			}
 			if (command.options.get("locale", false)) {
-				const error = await guildSettings
-					.setLanguage(
-						command.options.get("locale", false).value.toString() as
-							| typeof availableLocales[number]
-							| "server"
-					)
-					.catch((e) => e);
-
-				i18n = await i18nService(guildSettings.language ?? command.guildLocale);
-
-				// eslint-disable-next-line prefer-destructuring
-				t = i18n.t;
+				await guildSettings.setLocale(
+					command.options.get("locale", false).value.toString()
+				);
 
 				embed.addFields([
 					{
-						name: t("commands.settings.subcommands.see.language.name"),
-						value: error
-							? t(error.message)
-							: guildSettings.language
-							? t("langName")
-							: t("commands.settings.subcommands.see.language.value", {
-									CURRENT_LANGUAGE: t("langName")
-							  })
+						name: t("commands.settings.subcommands.see.locale.name"),
+						value: guildSettings.locale
+							? await (async () => {
+									const i18nLocale = await i18nService(guildSettings.locale);
+									return t(
+										"commands.settings.subcommands.see.locale.fromAvailableLanguages",
+										{
+											LANG_NAME: i18nLocale.t("langName"),
+											LANG_CODE: i18nLocale.t("langCode")
+										}
+									);
+							  })()
+							: t(
+									"commands.settings.subcommands.see.locale.fromServerLanguage",
+									{
+										CURRENT_DISCORD_LANGUAGE: t("langName")
+									}
+							  )
 					}
 				]);
 			}
 			if (command.options.get("short-number", false)) {
-				const error = await guildSettings
-					.setShortNumber(command.options.get("short-number").value as boolean)
-					.catch((e) => e);
+				await guildSettings.setShortNumber(
+					command.options.get("short-number").value as boolean
+				);
 
 				embed.addFields([
 					{
 						name: t("commands.settings.subcommands.see.shortNumber.name"),
-						value: error
-							? t(error.message)
-							: t("commands.settings.subcommands.see.shortNumber.value", {
-									CURRENT_SHORT_NUMBER: guildSettings.shortNumber
-										? t("common.yes")
-										: t("common.no")
-							  })
+						value: t("commands.settings.subcommands.see.shortNumber.value", {
+							CURRENT_SHORT_NUMBER: guildSettings.shortNumber
+								? t("common.yes")
+								: t("common.no")
+						})
 					}
 				]);
 			}
@@ -244,6 +261,7 @@ export const settingsCommand = new Command({
 						return content
 							.split(",")
 							.map((set) => set.trim())
+							.filter((digit) => digit.length)
 							.map((set) => set.split(/\s+/))
 							.map((set) => {
 								if (!isNaN(parseInt(set[0], 10)) && set[1]) {
@@ -258,33 +276,16 @@ export const settingsCommand = new Command({
 							.filter((digit) => digit !== null);
 					})();
 
-					if (digitsToSet.length > 0) {
-						const errors = [];
-						for (const digitToSet of digitsToSet) {
-							const error = await guildSettings
-								.setDigit(digitToSet.digit, digitToSet.value)
-								.catch((e) => e);
-							if (error?.message) errors.push(error?.message);
-						}
-
-						embed.addFields([
-							{
-								name: t("commands.settings.subcommands.see.customDigits.name"),
-								value:
-									errors.length > 0
-										? (
-												await Promise.all(
-													errors.map(async (errMessage) => t(errMessage))
-												)
-										  ).join("\n")
-										: guildSettings.digits.join(" ")
-							}
-						]);
-					} else {
-						throw new UserError(
-							"commands.settings.subcommands.set.options.customDigits.errorMissingParams"
-						);
+					for (const digitToSet of digitsToSet) {
+						await guildSettings.setDigit(digitToSet.digit, digitToSet.value);
 					}
+
+					embed.addFields([
+						{
+							name: t("commands.settings.subcommands.see.customDigits.name"),
+							value: guildSettings.digits.join(" ")
+						}
+					]);
 				}
 			}
 			// Summary
