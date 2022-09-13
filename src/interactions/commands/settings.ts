@@ -191,7 +191,9 @@ export const settingsCommand = new Command({
 				if (userWantsToReset) {
 					await guildSettings.resetDigits();
 					descriptionParts.push(
-						t("commands.settings.subcommands.set.resetSuccess")
+						t(
+							"commands.settings.subcommands.set.options.customDigits.resetSuccess"
+						)
 					);
 
 					embed.addFields([
