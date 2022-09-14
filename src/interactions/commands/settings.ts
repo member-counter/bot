@@ -5,7 +5,7 @@ import {
 	inlineCode,
 	SlashCommandBuilder
 } from "@discordjs/builders";
-import { ButtonStyle, PermissionsBitField } from "discord.js";
+import { APIEmbedField, ButtonStyle, PermissionsBitField } from "discord.js";
 import config from "../../config";
 import GuildSettings from "../../services/GuildSettings";
 import { availableLocales, i18nService } from "../../services/i18n";
@@ -14,8 +14,64 @@ import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
 import getBotInviteLink from "../../utils/getBotInviteLink";
 import Paginator from "../../utils/Paginator";
 import safeDiscordString from "../../utils/safeDiscordString";
+import { Unwrap } from "../../utils/Unwrap";
 import { UserError } from "../../utils/UserError";
 import { buttonId as resetGuildSettingsButtonId } from "../buttons/resetGuildSettings";
+
+interface SeeFields {
+	[key: string]: (
+		guildSettings: GuildSettings,
+		i18n: Unwrap<typeof i18nService>
+	) => Promise<APIEmbedField>;
+}
+
+const seeFields: SeeFields = {
+	language: async (guildSettings, { t }) => {
+		return {
+			name: t("commands.settings.subcommands.see.language.name"),
+			value: guildSettings.language
+				? t("langName")
+				: t("commands.settings.subcommands.see.language.fromServerLanguage", {
+						CURRENT_DISCORD_LANGUAGE: t("langName")
+				  })
+		};
+	},
+	locale: async (guildSettings, { t }) => {
+		return {
+			name: t("commands.settings.subcommands.see.locale.name"),
+			value: guildSettings.locale
+				? availableLocales.includes(guildSettings.locale as any)
+					? await (async () => {
+							const i18nLocale = await i18nService(guildSettings.locale);
+							return t(
+								"commands.settings.subcommands.see.locale.fromAvailableLanguages",
+								{
+									LANG_NAME: i18nLocale.t("langName"),
+									LANG_CODE: i18nLocale.t("langCode")
+								}
+							);
+					  })()
+					: t("commands.settings.subcommands.see.locale.custom", {
+							CURRENT: guildSettings.locale
+					  })
+				: t("commands.settings.subcommands.see.locale.fromSettingsLanguage", {
+						CURRENT_SETTINGS_LANGUAGE: t("langName")
+				  })
+		};
+	},
+	shortNumber: async (guildSettings, { t }) => {
+		return {
+			name: t("commands.settings.subcommands.see.shortNumber.name"),
+			value: guildSettings.shortNumber ? t("common.yes") : t("common.no")
+		};
+	},
+	customDigits: async (guildSettings, { t }) => {
+		return {
+			name: t("commands.settings.subcommands.see.customDigits.name"),
+			value: guildSettings.digits.join(" ")
+		};
+	}
+};
 
 export const settingsCommand = new Command({
 	definition: new SlashCommandBuilder()
@@ -75,7 +131,8 @@ export const settingsCommand = new Command({
 				)
 		),
 	execute: {
-		see: async (command, { t }) => {
+		see: async (command, i18n) => {
+			const { t } = i18n;
 			if (!command.inGuild()) throw new UserError("common.error.noDm");
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
@@ -91,49 +148,10 @@ export const settingsCommand = new Command({
 					SERVER_ID: inlineCode(command.guild.id)
 				}),
 				fields: [
-					{
-						name: t("commands.settings.subcommands.see.language.name"),
-						value: guildSettings.language
-							? t("langName")
-							: t(
-									"commands.settings.subcommands.see.language.fromServerLanguage",
-									{
-										CURRENT_DISCORD_LANGUAGE: t("langName")
-									}
-							  )
-					},
-					{
-						name: t("commands.settings.subcommands.see.locale.name"),
-						value: guildSettings.locale
-							? availableLocales.includes(guildSettings.locale as any)
-								? await (async () => {
-										const i18nLocale = await i18nService(guildSettings.locale);
-										return t(
-											"commands.settings.subcommands.see.locale.fromAvailableLanguages",
-											{
-												LANG_NAME: i18nLocale.t("langName"),
-												LANG_CODE: i18nLocale.t("langCode")
-											}
-										);
-								  })()
-								: t("commands.settings.subcommands.see.locale.custom", {
-										CURRENT: guildSettings.locale
-								  })
-							: t(
-									"commands.settings.subcommands.see.locale.fromSettingsLanguage",
-									{
-										CURRENT_SETTINGS_LANGUAGE: t("langName")
-									}
-							  )
-					},
-					{
-						name: t("commands.settings.subcommands.see.shortNumber.name"),
-						value: guildSettings.shortNumber ? t("common.yes") : t("common.no")
-					},
-					{
-						name: t("commands.settings.subcommands.see.customDigits.name"),
-						value: guildSettings.digits.join(" ")
-					}
+					await seeFields.language(guildSettings, i18n),
+					await seeFields.locale(guildSettings, i18n),
+					await seeFields.shortNumber(guildSettings, i18n),
+					await seeFields.customDigits(guildSettings, i18n)
 				]
 			});
 
@@ -178,64 +196,25 @@ export const settingsCommand = new Command({
 				// eslint-disable-next-line prefer-destructuring
 				t = i18n.t;
 
-				embed.addFields([
-					{
-						name: t("commands.settings.subcommands.see.language.name"),
-						value: guildSettings.language
-							? t("langName")
-							: t(
-									"commands.settings.subcommands.see.language.fromServerLanguage",
-									{
-										CURRENT_DISCORD_LANGUAGE: t("langName")
-									}
-							  )
-					}
-				]);
+				embed.addFields(await seeFields.language(guildSettings, i18n));
 			}
+
 			if (command.options.get("locale", false)) {
 				await guildSettings.setLocale(
 					command.options.get("locale", false).value.toString()
 				);
 
-				embed.addFields([
-					{
-						name: t("commands.settings.subcommands.see.locale.name"),
-						value: guildSettings.locale
-							? await (async () => {
-									const i18nLocale = await i18nService(guildSettings.locale);
-									return t(
-										"commands.settings.subcommands.see.locale.fromAvailableLanguages",
-										{
-											LANG_NAME: i18nLocale.t("langName"),
-											LANG_CODE: i18nLocale.t("langCode")
-										}
-									);
-							  })()
-							: t(
-									"commands.settings.subcommands.see.locale.fromServerLanguage",
-									{
-										CURRENT_DISCORD_LANGUAGE: t("langName")
-									}
-							  )
-					}
-				]);
+				embed.addFields(await seeFields.locale(guildSettings, i18n));
 			}
+
 			if (command.options.get("short-number", false)) {
 				await guildSettings.setShortNumber(
 					command.options.get("short-number").value as boolean
 				);
 
-				embed.addFields([
-					{
-						name: t("commands.settings.subcommands.see.shortNumber.name"),
-						value: t("commands.settings.subcommands.see.shortNumber.value", {
-							CURRENT_SHORT_NUMBER: guildSettings.shortNumber
-								? t("common.yes")
-								: t("common.no")
-						})
-					}
-				]);
+				embed.addFields(await seeFields.shortNumber(guildSettings, i18n));
 			}
+
 			if (command.options.get("digits", false)) {
 				const content = command.options.get("digits").value as string;
 				const userWantsToReset = content.split(/\s+/)[0] === "reset";
@@ -280,12 +259,7 @@ export const settingsCommand = new Command({
 						await guildSettings.setDigit(digitToSet.digit, digitToSet.value);
 					}
 
-					embed.addFields([
-						{
-							name: t("commands.settings.subcommands.see.customDigits.name"),
-							value: guildSettings.digits.join(" ")
-						}
-					]);
+					embed.addFields(await seeFields.customDigits(guildSettings, i18n));
 				}
 			}
 			// Summary
