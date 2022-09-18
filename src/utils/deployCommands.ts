@@ -33,7 +33,6 @@ export async function deployCommands() {
 
 			allCommands.forEach(({ definition }, index) => {
 				if (definition instanceof SlashCommandBuilder) {
-					// TODO: Fix typing for definition name
 					definition.setDescription(
 						i18nDefault.t(
 							`commands.${allCommandNames[index]}.definition.description`
@@ -64,9 +63,10 @@ export async function deployCommands() {
 				body: allCommands.map((cmd) => cmd.definition.toJSON())
 			}
 		);
-
 		logger.info("deployCommands: Successfully reloaded application commands.");
 	} catch (error) {
-		logger.error(JSON.stringify(error));
+		logger.error(
+			`deployCommands: Failed to reload application commands.\n${error}`
+		);
 	}
 }
