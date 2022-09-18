@@ -229,9 +229,7 @@ export const settingsCommand = new Command({
 					embed.addFields([
 						{
 							name: t("commands.settings.subcommands.see.customDigits.name"),
-							value: t("commands.settings.subcommands.see.customDigits.value", {
-								CURRENT_DIGIT: guildSettings.digits.join(" ")
-							})
+							value: guildSettings.digits.join(" ")
 						}
 					]);
 				} else {
