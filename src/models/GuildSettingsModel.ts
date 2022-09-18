@@ -4,6 +4,7 @@ interface GuildSettingsDocument extends Document {
 	id: string;
 	premium: boolean;
 	blocked: boolean;
+	counters: Map<string, string>;
 	language: string;
 	locale: string;
 	shortNumber: boolean;
@@ -14,6 +15,7 @@ const GuildSchema = new Schema({
 	id: { type: String, require: true },
 	premium: { type: Boolean, default: false },
 	blocked: { type: Boolean, default: false },
+	counters: { type: Map, of: String, default: new Map() },
 	language: { type: String },
 	locale: { type: String },
 	shortNumber: { type: Boolean, default: true },

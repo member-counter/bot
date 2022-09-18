@@ -130,6 +130,23 @@ class GuildSettings {
 		];
 		await this.doc.save();
 	}
+	public get counters(): Map<string, string> {
+		return this.doc.counters;
+	}
+
+	public async setCounter(
+		channelId: string,
+		content: string
+	): Promise<Map<string, string>> {
+		this.doc.counters.set(channelId, content);
+		await this.doc.save();
+		return this.counters;
+	}
+
+	public async deleteCounter(channelId: string): Promise<void> {
+		this.doc.counters.delete(channelId);
+		await this.doc.save();
+	}
 }
 
 export default GuildSettings;
