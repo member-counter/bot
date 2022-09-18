@@ -1,4 +1,9 @@
 import {
+	SlashCommandBuilder,
+	SlashCommandOptionsOnlyBuilder,
+	SlashCommandSubcommandsOnlyBuilder
+} from "@discordjs/builders";
+import {
 	BitFieldResolvable,
 	CommandInteraction,
 	GatewayIntentsString,
@@ -6,10 +11,7 @@ import {
 	PermissionResolvable,
 	PermissionsBitField
 } from "discord.js";
-import {
-	SlashCommandBuilder,
-	SlashCommandSubcommandsOnlyBuilder
-} from "@discordjs/builders";
+
 import { i18nService } from "../services/i18n";
 import { Unwrap } from "../utils/Unwrap";
 
@@ -17,13 +19,18 @@ type CommandExecute = (
 	command: CommandInteraction,
 	translate: Unwrap<typeof i18nService>
 ) => void | Promise<void>;
-
+type SlashCommandUnion =
+	| SlashCommandBuilder
+	| SlashCommandSubcommandsOnlyBuilder
+	| SlashCommandOptionsOnlyBuilder
+	| Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">;
 interface SubCommandsExecute {
 	[key: string]: CommandExecute | SubCommandsExecute;
 }
 
 interface CommandOptions {
-	definition: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;
+	definition: SlashCommandUnion;
+
 	execute: CommandExecute | SubCommandsExecute;
 	/**
 	 * @description Add intents here that might be needed by your code, like intents for awaiting reactions
@@ -36,7 +43,7 @@ interface CommandOptions {
 }
 
 export class Command {
-	definition: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;
+	definition: SlashCommandUnion;
 	execute: CommandExecute | SubCommandsExecute;
 	neededIntents: IntentsBitField;
 	neededPermissions: PermissionsBitField;
