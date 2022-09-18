@@ -19,7 +19,9 @@ export const locales = async (
 		["settingsLanguage", ...availableLocales].map(async (locale) => {
 			if (locale === "settingsLanguage") {
 				return {
-					name: i18n.t("autocomplete.settings.locale.defaultSettingsLanguage"),
+					name: i18n.t(
+						"autocomplete.settings.locale.defaultSettingsLanguage"
+					) as string,
 					value: locale
 				};
 			} else {

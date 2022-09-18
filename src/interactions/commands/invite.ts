@@ -40,7 +40,7 @@ export const inviteCommand = new Command({
 				new ButtonBuilder({
 					style: ButtonStyle.Link,
 					url: getBotInviteLink(command.guildId),
-					label: t("commands.invite.addToServerAin")
+					label: t("commands.invite.addToServerAgain")
 				})
 			);
 		}

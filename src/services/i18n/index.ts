@@ -5,7 +5,7 @@ import config from "../../config";
 import GuildSettings from "../GuildSettings";
 import { LocalBackend } from "./LocalBackend";
 import { RedisBackend } from "./RedisBackend";
-
+import { TranslateFunction } from "./i18n";
 export const availableLocales = [
 	"ca-ES",
 	"cs-CZ",
@@ -63,37 +63,37 @@ export async function i18nService(
 	}
 
 	const { createInstance } = i18next;
-	const i18nextInstance = await new Promise<ReturnType<typeof createInstance>>(
-		(resolve, reject) => {
-			let backend;
-			switch (config.i18n.provider) {
-				case "redis":
-					backend = RedisBackend;
-					break;
+	const i18nextInstance = await new Promise<
+		Omit<ReturnType<typeof createInstance>, "t"> & { t: TranslateFunction }
+	>((resolve, reject) => {
+		let backend;
+		switch (config.i18n.provider) {
+			case "redis":
+				backend = RedisBackend;
+				break;
 
-				case "local":
-				default:
-					backend = LocalBackend;
-					break;
-			}
-
-			const instance = createInstance().use(backend);
-
-			instance.init(
-				{
-					fallbackLng: [locale, config.i18n.defaultLocale],
-					load: "currentOnly",
-					interpolation: {
-						escapeValue: false
-					}
-				},
-				(err) => {
-					if (err) return reject(err);
-					resolve(instance);
-				}
-			);
+			case "local":
+			default:
+				backend = LocalBackend;
+				break;
 		}
-	);
+
+		const instance = createInstance().use(backend);
+
+		instance.init(
+			{
+				fallbackLng: [locale, config.i18n.defaultLocale],
+				load: "currentOnly",
+				interpolation: {
+					escapeValue: false
+				}
+			},
+			(err) => {
+				if (err) return reject(err);
+				resolve(instance);
+			}
+		);
+	});
 
 	// TODO override locale for number and date formatting with guildSettings locale
 

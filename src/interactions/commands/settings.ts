@@ -226,7 +226,6 @@ export const settingsCommand = new Command({
 							"commands.settings.subcommands.set.options.customDigits.resetSuccess"
 						)
 					);
-
 					embed.addFields([
 						{
 							name: t("commands.settings.subcommands.see.customDigits.name"),
