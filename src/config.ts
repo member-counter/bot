@@ -47,6 +47,9 @@ const envVarsSchema = Joi.object()
 		NODE_ENV: Joi.string()
 			.allow("production", "development")
 			.default("production"),
+		DEBUG: Joi.boolean().optional().default(false),
+		UNRESTRICTED_MODE: Joi.boolean().optional().default(false),
+		GHOST_MODE: Joi.boolean().optional().default(false),
 		DISCORD_BOT_TOKEN: Joi.string().required().description("The bot token"),
 		DISCORD_BOT_SHARDS: Joi.alternatives()
 			.try(
@@ -137,7 +140,10 @@ const config = {
 		negative: envVars.CUSTOM_EMOJI_NEGATIVE as string,
 		warning: envVars.CUSTOM_EMOJI_WARNING as string,
 		loading: envVars.CUSTOM_EMOJI_LOADING as string
-	}
+	},
+	ghostMode: envVars.GHOST_MODE as boolean,
+	unrestrictedMode: envVars.UNRESTRICTED_MODE as boolean,
+	debug: envVars.DEBUG as boolean
 };
 
 export default config;
