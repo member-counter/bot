@@ -35,7 +35,8 @@ services:
       - member-counter-bot-db
     restart: unless-stopped
 
-  member-counter-bot-redisinsight: 
+  member-counter-bot-redisinsight:
+    container_name: Member-Counter-Bot-Redis-Insight
     image: redislabs/redisinsight:latest
     ports:
-      - '8082:8001'
+      - "8082:8001"
