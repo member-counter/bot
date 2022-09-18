@@ -33,6 +33,7 @@ export async function deployCommands() {
 
 			allCommands.forEach(({ definition }) => {
 				if (definition instanceof SlashCommandBuilder) {
+					// TODO: Fix typing for definition name
 					definition.setDescription(
 						i18nDefault.t(`commands.${definition.name}.definition.description`)
 					);
