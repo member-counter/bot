@@ -1,5 +1,5 @@
 import { CommandInteraction, Interaction } from "discord.js";
-import i18next from "i18next";
+import i18next, { createInstance } from "i18next";
 
 import config from "../../config";
 import GuildSettings from "../GuildSettings";
@@ -22,7 +22,9 @@ export const availableLocales = [
 	"ru-RU",
 	"tr-TR"
 ] as const;
-
+export type i18nInstanceType = Omit<ReturnType<typeof createInstance>, "t"> & {
+	t: TranslateFunction;
+};
 export async function i18nService(
 	interaction: string | Interaction | CommandInteraction
 ) {
@@ -63,37 +65,37 @@ export async function i18nService(
 	}
 
 	const { createInstance } = i18next;
-	const i18nextInstance = await new Promise<
-		Omit<ReturnType<typeof createInstance>, "t"> & { t: TranslateFunction }
-	>((resolve, reject) => {
-		let backend;
-		switch (config.i18n.provider) {
-			case "redis":
-				backend = RedisBackend;
-				break;
+	const i18nextInstance = await new Promise<i18nInstanceType>(
+		(resolve, reject) => {
+			let backend;
+			switch (config.i18n.provider) {
+				case "redis":
+					backend = RedisBackend;
+					break;
 
-			case "local":
-			default:
-				backend = LocalBackend;
-				break;
-		}
-
-		const instance = createInstance().use(backend);
-
-		instance.init(
-			{
-				fallbackLng: [locale, config.i18n.defaultLocale],
-				load: "currentOnly",
-				interpolation: {
-					escapeValue: false
-				}
-			},
-			(err) => {
-				if (err) return reject(err);
-				resolve(instance);
+				case "local":
+				default:
+					backend = LocalBackend;
+					break;
 			}
-		);
-	});
+
+			const instance = createInstance().use(backend);
+
+			instance.init(
+				{
+					fallbackLng: [locale, config.i18n.defaultLocale],
+					load: "currentOnly",
+					interpolation: {
+						escapeValue: false
+					}
+				},
+				(err) => {
+					if (err) return reject(err);
+					resolve(instance);
+				}
+			);
+		}
+	);
 
 	// TODO override locale for number and date formatting with guildSettings locale
 
