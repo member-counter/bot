@@ -41,7 +41,7 @@ export const setupCommand = new Command({
 		if (!command.inGuild()) throw new UserError("common.error.noDm");
 		if (!command.memberPermissions.has(PermissionFlagsBits.Administrator))
 			throw new UserError("common.error.noPermissions");
-		const guildService = await GuildSettings.init(command.guildId);
+		const guildSettings = await GuildSettings.init(command.guildId);
 		await command.guild.fetch();
 		const guild = command.client.guilds.cache.get(command.guildId);
 		const channel = guild.channels.cache.get(command.channelId) as TextChannel;
@@ -176,7 +176,7 @@ export const setupCommand = new Command({
 			]
 		});
 		counterStatus.set("category", "created");
-		await guildService.setCounter(discordCategory.id, categoryName);
+		await guildSettings.setCounter(discordCategory.id, categoryName);
 		updateStatusMessage();
 
 		for (const counter of countersToCreate) {
@@ -206,7 +206,7 @@ export const setupCommand = new Command({
 					parent: discordCategory.id
 				})
 				.then(async (channel) => {
-					await guildService.setCounter(channel.id, counter.template);
+					await guildSettings.setCounter(channel.id, counter.template);
 					counterStatus.set(counter.name, "created");
 					updateStatusMessage();
 				})
