@@ -1,5 +1,6 @@
-import config from "./config";
 import { Client } from "discord.js";
+
+import config from "./config";
 import { allEvents, allEventsNeededIntents } from "./events";
 import { allCommandsNeededIntents } from "./interactions/commands";
 import { apiVersion } from "./services";
