@@ -3,7 +3,7 @@ import { Routes, Locale } from "discord-api-types/v10";
 import { SlashCommandBuilder } from "discord.js";
 
 import config from "../config";
-import { allCommands } from "../interactions/commands";
+import { allCommands, allCommandNames } from "../interactions/commands";
 import logger from "../logger";
 import { discordRest } from "../services";
 import { availableLocales, i18nService } from "../services/i18n";
@@ -31,20 +31,22 @@ export async function deployCommands() {
 				return;
 			}
 
-			allCommands.forEach(({ definition }) => {
+			allCommands.forEach(({ definition }, index) => {
 				if (definition instanceof SlashCommandBuilder) {
 					// TODO: Fix typing for definition name
 					definition.setDescription(
-						i18nDefault.t(`commands.${definition.name}.definition.description`)
+						i18nDefault.t(
+							`commands.${allCommandNames[index]}.definition.description`
+						)
 					);
 
 					definition.setNameLocalization(
 						locale,
-						t(`commands.${definition.name}.definition.name`)
+						t(`commands.${allCommandNames[index]}.definition.name`)
 					);
 					definition.setDescriptionLocalization(
 						locale,
-						t(`commands.${definition.name}.definition.description`)
+						t(`commands.${allCommandNames[index]}.definition.description`)
 					);
 				}
 			});

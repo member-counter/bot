@@ -19,7 +19,7 @@ export const allCommands: Command[] = [
 	settingsCommand,
 	setupCommand
 ];
-
+export const allCommandNames = ["invite", "settings", "setup"] as const;
 export const allCommandsNeededPermissions: PermissionsBitField =
 	new PermissionsBitField(allCommands.map((c) => c.neededPermissions.bitfield));
 
