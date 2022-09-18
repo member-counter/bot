@@ -8,7 +8,7 @@ import {
 	CommandInteraction,
 	GatewayIntentsString,
 	IntentsBitField,
-	PermissionResolvable,
+	PermissionFlagsBits,
 	PermissionsBitField
 } from "discord.js";
 
@@ -39,7 +39,10 @@ interface CommandOptions {
 	/**
 	 * @description Add here the permissions needed, this will be used to create invite links with all the necessary permissions
 	 */
-	neededPermissions?: PermissionResolvable[];
+	neededPermissions?: BitFieldResolvable<
+		keyof typeof PermissionFlagsBits,
+		bigint
+	>[];
 }
 
 export class Command {
