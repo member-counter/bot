@@ -368,5 +368,12 @@ export const settingsCommand = new Command({
 				}
 			}
 		}
-	}
+	},
+	neededIntents: [
+		"GuildMessageTyping",
+		"GuildMembers",
+		"GuildEmojisAndStickers",
+		"Guilds"
+	],
+	neededPermissions: ["SendMessages", "ViewChannel"]
 });

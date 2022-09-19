@@ -58,5 +58,12 @@ export const inviteCommand = new Command({
 			components: [componentRow],
 			ephemeral: true
 		});
-	}
+	},
+	neededIntents: [
+		"GuildMessageTyping",
+		"GuildMembers",
+		"GuildEmojisAndStickers",
+		"Guilds"
+	],
+	neededPermissions: ["SendMessages", "ViewChannel"]
 });
