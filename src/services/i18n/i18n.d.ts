@@ -1,4 +1,4 @@
-import { TOptions } from "i18next";
+import { TOptions, TFunctionDetailedResult } from "i18next";
 import en from "../../locales/en-US.json";
 
 // T is the dictionary, S is the next string part of the object property path
@@ -70,7 +70,11 @@ export interface TranslateFunction {
 			returnDetails: true;
 			returnObjects: true;
 		}
-	): Interpolate<V, I>;
+	): TFunctionDetailedResult<
+		GetDictValue<K, Dict> extends object
+			? GetDictValue<K, Dict>
+			: Interpolate<V, I>
+	>;
 	<
 		K extends string,
 		I extends { [K in Keys<V>[number]]: string },
@@ -78,7 +82,11 @@ export interface TranslateFunction {
 	>(
 		key: DeepKeys<Dict, K>,
 		options: TOptions<I> & { returnDetails: true }
-	): Interpolate<V, I>;
+	): TFunctionDetailedResult<
+		GetDictValue<K, Dict> extends object
+			? GetDictValue<K, Dict>
+			: Interpolate<V, I>
+	>;
 	<
 		K extends string,
 		I extends { [K in Keys<V>[number]]: string },
@@ -86,7 +94,9 @@ export interface TranslateFunction {
 	>(
 		key: DeepKeys<Dict, K>,
 		options: TOptions<I> & { returnObjects: true }
-	): Interpolate<V, I>;
+	): GetDictValue<K, Dict> extends object
+		? GetDictValue<K, Dict>
+		: Interpolate<V, I>;
 	<
 		K extends string,
 		I extends { [K in Keys<V>[number]]: string },
