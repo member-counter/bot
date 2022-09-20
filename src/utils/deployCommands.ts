@@ -71,17 +71,9 @@ export async function deployCommands() {
 					})
 			);
 		} else {
-			await discordRest.put(
-				config.test.deployInteractionCommandGuildId?.length
-					? Routes.applicationGuildCommands(
-							clientId,
-							config.test.deployInteractionCommandGuildId
-					  )
-					: Routes.applicationCommands(clientId),
-				{
-					body: allCommands.map((cmd) => cmd.definition.toJSON())
-				}
-			);
+			await discordRest.put(Routes.applicationCommands(clientId), {
+				body: allCommands.map((cmd) => cmd.definition.toJSON())
+			});
 		}
 
 		logger.info("deployCommands: Successfully reloaded application commands.");
