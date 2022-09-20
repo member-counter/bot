@@ -19,6 +19,11 @@ import { BaseMessageEmbed, UserError } from "../utils";
 export const interactionCreateEvent = new Event({
 	name: "interactionCreate",
 	handler: async (interaction) => {
+		if (
+			config.ghostMode &&
+			!config.botOwners.includes(interaction.member.user.id)
+		)
+			return;
 		try {
 			if (interaction.isCommand()) {
 				await handleCommand(interaction);

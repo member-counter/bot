@@ -86,7 +86,8 @@ const envVarsSchema = Joi.object()
 		CUSTOM_EMOJI_ERROR: Joi.string().optional(),
 		CUSTOM_EMOJI_CONFIRM: Joi.string().optional(),
 		CUSTOM_EMOJI_NEGATIVE: Joi.string().optional(),
-		CUSTOM_EMOJI_WARNING: Joi.string().optional()
+		CUSTOM_EMOJI_WARNING: Joi.string().optional(),
+		BOT_OWNERS: Joi.array().optional()
 	})
 	.unknown();
 
@@ -143,7 +144,8 @@ const config = {
 	},
 	ghostMode: envVars.GHOST_MODE as boolean,
 	unrestrictedMode: envVars.UNRESTRICTED_MODE as boolean,
-	debug: envVars.DEBUG as boolean
+	debug: envVars.DEBUG as boolean,
+	botOwners: envVars.BOT_OWNERS as string[]
 };
 
 export default config;
