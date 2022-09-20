@@ -1,9 +1,19 @@
 import { TOptions, TFunctionDetailedResult } from "i18next";
 import en from "../../locales/en-US.json";
+type Separator = " ";
 
-// T is the dictionary, S is the next string part of the object property path
+type Trim<
+	T extends string,
+	Acc extends string = ""
+> = T extends `${infer Char}${infer Rest}`
+	? Char extends Separator
+		? Trim<Rest, Acc>
+		: Trim<Rest, `${Acc}${Char}`>
+	: T extends ""
+	? Acc
+	: never;
+// T is the dictionary, S ist the next string part of the object property path
 // If S does not match dict shape, return its next expected properties
-
 type DeepKeys<
 	T extends object,
 	S extends string
@@ -17,20 +27,18 @@ type DeepKeys<
 	: S extends keyof T
 	? `${S}`
 	: keyof T & string;
-
 // returns property value from object O given property path T, otherwise never
 type GetDictValue<T extends string, O> = T extends `${infer A}.${infer B}`
 	? A extends keyof O
-		? GetDictValue<B, O[A]>
+		? GetDictValue<Trim<B>, O[A]>
 		: never
 	: T extends keyof O
 	? O[T]
 	: never;
-
 // returns property value from object O given property path T if result is string
 type GetDictValueString<T, O> = T extends `${infer A}.${infer B}`
 	? A extends keyof O
-		? GetDictValue<B, O[A]>
+		? GetDictValueString<Trim<B>, O[A]>
 		: never
 	: T extends keyof O
 	? O[T] extends string
@@ -42,8 +50,8 @@ type GetDictValueString<T, O> = T extends `${infer A}.${infer B}`
 type Keys<S extends string> = S extends ""
 	? []
 	: // eslint-disable-next-line @typescript-eslint/no-unused-vars
-	S extends `${infer _}{{${Trim<infer B>}}}${infer C}`
-	? [B, ...Keys<C>]
+	S extends `${infer _}{{${infer B}}}${infer C}`
+	? [Trim<B>, ...Keys<C>]
 	: [];
 
 // substitutes placeholder variables with input values
@@ -53,8 +61,8 @@ type Interpolate<
 > = S extends ""
 	? ""
 	: S extends `${infer A}{{${infer B}}}${infer C}`
-	? `${A}${I[Extract<B, keyof I>]}${Interpolate<C, I>}`
-	: `${S}`;
+	? `${A}${I[Extract<Trim<B>, keyof I>]}${Interpolate<C, I>}`
+	: S;
 
 type Dict = typeof en;
 export interface TranslateFunction {
