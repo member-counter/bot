@@ -1,4 +1,4 @@
-import { Client } from "discord.js";
+import { Client, IntentsBitField } from "discord.js";
 
 import config from "./config";
 import { allEvents, allEventsNeededIntents } from "./events";
@@ -10,8 +10,12 @@ export default class Bot {
 	constructor() {
 		this.client = new Client({
 			rest: { version: apiVersion },
-			intents:
-				allEventsNeededIntents.bitfield | allCommandsNeededIntents.bitfield,
+			intents: config.premium.thisBotsIsPremium
+				? allEventsNeededIntents.bitfield |
+				  allCommandsNeededIntents.bitfield |
+				  IntentsBitField.Flags.GuildPresences |
+				  IntentsBitField.Flags.GuildVoiceStates
+				: allEventsNeededIntents.bitfield | allCommandsNeededIntents.bitfield,
 			shards: config.discord.bot.shards,
 			shardCount: config.discord.bot.shardCount
 		});
