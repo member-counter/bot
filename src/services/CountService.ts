@@ -22,7 +22,7 @@ import GuildService from "./GuildSettings";
 const counters: Counter[] = [];
 const {
 	debug: DEBUG,
-	ghostMode: GHOST_MODE,
+	ghostMode,
 	premium: { thisBotsIsPremium: PREMIUM_BOT },
 	unrestrictedMode: UNRESTRICTED_MODE
 } = config;
@@ -99,7 +99,7 @@ class CountService {
 						botHasPermsToEdit(discordChannel) &&
 						(discordChannel as TextChannel).topic !== topicToSet
 					) {
-						if (GHOST_MODE) return;
+						if (ghostMode) return;
 						await discordChannel.edit({ topic: topicToSet });
 					}
 				} else if (counterIsNameType) {
@@ -113,7 +113,7 @@ class CountService {
 						botHasPermsToEdit(discordChannel) &&
 						discordChannel.name !== nameToSet
 					) {
-						if (GHOST_MODE) return;
+						if (ghostMode) return;
 						await discordChannel.edit({ name: nameToSet });
 					}
 				}
