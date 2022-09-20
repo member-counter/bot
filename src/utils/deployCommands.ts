@@ -52,17 +52,38 @@ export async function deployCommands() {
 		});
 
 		logger.info("deployCommands: Started refreshing application commands.");
-		await discordRest.put(
-			config.test.deployInteractionCommandGuildId?.length
-				? Routes.applicationGuildCommands(
-						clientId,
-						config.test.deployInteractionCommandGuildId
-				  )
-				: Routes.applicationCommands(clientId),
-			{
-				body: allCommands.map((cmd) => cmd.definition.toJSON())
-			}
-		);
+		if (
+			config.test.deployInteractionCommandGuildId?.length &&
+			config.test.deployInteractionCommandGuildId?.split(",").length > 1
+		) {
+			await Promise.all(
+				config.test.deployInteractionCommandGuildId
+					?.split(",")
+					.map(async (id) => {
+						await discordRest.put(
+							config.test.deployInteractionCommandGuildId?.length
+								? Routes.applicationGuildCommands(clientId, id)
+								: Routes.applicationCommands(clientId),
+							{
+								body: allCommands.map((cmd) => cmd.definition.toJSON())
+							}
+						);
+					})
+			);
+		} else {
+			await discordRest.put(
+				config.test.deployInteractionCommandGuildId?.length
+					? Routes.applicationGuildCommands(
+							clientId,
+							config.test.deployInteractionCommandGuildId
+					  )
+					: Routes.applicationCommands(clientId),
+				{
+					body: allCommands.map((cmd) => cmd.definition.toJSON())
+				}
+			);
+		}
+
 		logger.info("deployCommands: Successfully reloaded application commands.");
 	} catch (error) {
 		logger.error(JSON.stringify(error, null, 2));
