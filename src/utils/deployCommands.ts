@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import { Routes, Locale } from "discord-api-types/v10";
-import { SlashCommandBuilder } from "discord.js";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { Locale, Routes } from "discord-api-types/v10";
 
 import config from "../config";
-import { allCommands, allCommandNames } from "../interactions/commands";
+import { allCommandNames, allCommands } from "../interactions/commands";
 import logger from "../logger";
 import { discordRest } from "../services";
 import { availableLocales, i18nService } from "../services/i18n";
