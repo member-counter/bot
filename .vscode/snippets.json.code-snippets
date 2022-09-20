@@ -24,6 +24,6 @@
 			"import { Event } from \"../../structures\";\n",
 			"export const ${1:name}Event = new Event({\n\tname: \"${1:name}\",\n\thandler: async (${2:args}) => {\n\n\t},\n\tneededPermissions: [],\n\tneededIntents: []\n});\n"
 		],
-		"description": "Generates a command"
+		"description": "Generates an event"
 	}
 }
