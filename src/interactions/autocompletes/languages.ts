@@ -1,7 +1,7 @@
 import { AutocompleteInteraction } from "discord.js";
 
 import { availableLocales, i18nService } from "../../services/i18n";
-import searchInTexts from "../../utils/search";
+import { searchInTexts } from "../../utils";
 
 export const languages = async (
 	autocompleteInteraction: AutocompleteInteraction

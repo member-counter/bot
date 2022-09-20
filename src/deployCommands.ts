@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { deployCommands } from "./utils/deployCommands";
+import { deployCommands } from "./utils";
 
 (async () => {
 	await deployCommands();

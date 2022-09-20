@@ -13,7 +13,7 @@ import {
 } from "discord.js";
 
 import { i18nService } from "../services/i18n";
-import { Unwrap } from "../utils/Unwrap";
+import { Unwrap } from "../utils";
 
 type CommandExecute = (
 	command: CommandInteraction,

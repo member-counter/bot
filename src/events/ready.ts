@@ -1,6 +1,6 @@
 import logger from "../logger";
 import { Event } from "../structures";
-import getBotInviteLink from "../utils/getBotInviteLink";
+import { getBotInviteLink } from "../utils";
 
 export const readyEvent = new Event({
 	name: "ready",

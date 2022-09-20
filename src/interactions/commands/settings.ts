@@ -6,16 +6,19 @@ import {
 	SlashCommandBuilder
 } from "@discordjs/builders";
 import { APIEmbedField, ButtonStyle, PermissionsBitField } from "discord.js";
+
 import config from "../../config";
 import GuildSettings from "../../services/GuildSettings";
 import { availableLocales, i18nService } from "../../services/i18n";
 import { Command } from "../../structures";
-import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
-import getBotInviteLink from "../../utils/getBotInviteLink";
-import Paginator from "../../utils/Paginator";
-import safeDiscordString from "../../utils/safeDiscordString";
-import { Unwrap } from "../../utils/Unwrap";
-import { UserError } from "../../utils/UserError";
+import {
+	BaseMessageEmbed,
+	getBotInviteLink,
+	Paginator,
+	safeDiscordString,
+	UserError
+} from "../../utils";
+import { Unwrap } from "../../utils";
 import { buttonId as resetGuildSettingsButtonId } from "../buttons/resetGuildSettings";
 
 interface SeeFields {

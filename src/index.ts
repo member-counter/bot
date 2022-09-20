@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import Bot from "./Bot";
 import config from "./config";
 import logger from "./logger";
-import { deployCommands } from "./utils/deployCommands";
+import { deployCommands } from "./utils";
 
 // Bot
 export const bot = new Bot();

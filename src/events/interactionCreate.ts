@@ -4,9 +4,8 @@ import {
 	ButtonStyle,
 	inlineCode
 } from "discord.js";
-import { i18n } from "i18next";
 import { v4 as uuid } from "uuid";
-
+import { i18n } from "i18next";
 import config from "../config";
 import { Colors } from "../Constants";
 import handleAutocomplete from "../interactions/autocompletes";
@@ -15,8 +14,7 @@ import handleCommand from "../interactions/commands";
 import logger from "../logger";
 import { i18nService } from "../services/i18n";
 import { Event } from "../structures";
-import BaseMessageEmbed from "../utils/BaseMessageEmbed";
-import { UserError } from "../utils/UserError";
+import { BaseMessageEmbed, UserError } from "../utils";
 
 export const interactionCreateEvent = new Event({
 	name: "interactionCreate",

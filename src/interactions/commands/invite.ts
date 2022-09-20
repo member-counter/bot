@@ -4,12 +4,11 @@ import {
 	SlashCommandBuilder
 } from "@discordjs/builders";
 import { ButtonStyle } from "discord.js";
-import config from "../../config";
 
+import config from "../../config";
 import { Command } from "../../structures";
-import BaseMessageEmbed from "../../utils/BaseMessageEmbed";
-import getBotInviteLink from "../../utils/getBotInviteLink";
-import { twemojiURL } from "../../utils/twemojiURL";
+import { BaseMessageEmbed, getBotInviteLink } from "../../utils";
+import { twemojiURL } from "../../utils";
 
 export const inviteCommand = new Command({
 	definition: new SlashCommandBuilder()
@@ -52,12 +51,21 @@ export const inviteCommand = new Command({
 				label: t("commands.invite.joinSupportServer")
 			})
 		);
-
-		await command.reply({
-			embeds: [embed],
-			components: [componentRow],
-			ephemeral: true
-		});
+		if (command.appPermissions.has("EmbedLinks")) {
+			await command.reply({
+				embeds: [embed],
+				components: [componentRow],
+				ephemeral: true
+			});
+		} else {
+			await command.reply({
+				content: t("commands.invite.description", {
+					INVITE_URL: getBotInviteLink(null, config.discord.bot.officialBotId)
+				}),
+				components: [componentRow],
+				ephemeral: true
+			});
+		}
 	},
 	neededIntents: [
 		"GuildMessageTyping",

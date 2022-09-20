@@ -8,16 +8,19 @@ import {
 	PermissionsBitField
 } from "discord.js";
 
+import logger from "../../logger";
 import { i18nService } from "../../services/i18n";
+import { checkPermissionsCommand } from "./checkPermissions";
 import { inviteCommand } from "./invite";
 import { settingsCommand } from "./settings";
 import { setupCommand } from "./setup";
+
 import type { Command } from "../../structures";
-import logger from "../../logger";
 export const allCommands: Command[] = [
 	inviteCommand,
 	settingsCommand,
-	setupCommand
+	setupCommand,
+	checkPermissionsCommand
 ];
 export const allCommandNames = ["invite", "settings", "setup"] as const;
 export const allCommandsNeededPermissions: PermissionsBitField =

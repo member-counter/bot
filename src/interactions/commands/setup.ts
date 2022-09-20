@@ -2,9 +2,9 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { ChannelType, OverwriteType } from "discord-api-types/v10";
 import {
 	CommandInteraction,
+	CommandInteractionOptionResolver,
 	PermissionFlagsBits,
-	PermissionsBitField,
-	CommandInteractionOptionResolver
+	PermissionsBitField
 } from "discord.js";
 
 import logger from "../../logger";
@@ -12,9 +12,7 @@ import CountService from "../../services/CountService";
 import GuildSettings from "../../services/GuildSettings";
 import { i18nService } from "../../services/i18n";
 import { Command } from "../../structures";
-import Emojis from "../../utils/emojis";
-import { UserError } from "../../utils/UserError";
-import { Unwrap } from "../../utils/Unwrap";
+import { Emojis, Unwrap, UserError } from "../../utils";
 
 async function execute(
 	command: CommandInteraction,

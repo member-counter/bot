@@ -14,7 +14,7 @@ import logger from "../logger";
 import { i18nInstanceType, i18nService } from "../services/i18n";
 import Counter from "../typings/Counter";
 import FormattingSettings from "../typings/FormattingSettings";
-import botHasPermsToEdit from "../utils/botHasPermsToEdit";
+import { botHasPermsToEdit } from "../utils";
 import GuildService from "./GuildSettings";
 
 // TODO: Uncomment when counters get implemented and remove temp fix
