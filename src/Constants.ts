@@ -7,7 +7,8 @@ export const Colors = {
 	WHITE: 0xffffff,
 	BLACK: 0x000000
 } as const;
-enum UserBadges {
+
+export enum UserBadges {
 	DONOR = 1,
 	PREMIUM = 1 << 1,
 	BETA_TESTER = 1 << 2,
@@ -19,7 +20,7 @@ enum UserBadges {
 	FOLDING_AT_HOME = 1 << 8
 }
 
-enum CounterResult {
+export enum CounterResult {
 	PREMIUM = -1,
 	ERROR = -2,
 	UNKNOWN = -3,
@@ -32,6 +33,5 @@ export const Constants = {
 	CounterResult,
 	UserBadges
 };
-export { UserBadges };
 
 export default Constants;
