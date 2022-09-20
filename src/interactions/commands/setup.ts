@@ -179,7 +179,10 @@ async function execute(
 
 	for (const counter of countersToCreate) {
 		if (type && resource) {
-			counter.template = counter.template.replace(/\{RESOURCE}/g, resource);
+			counter.template = counter.template.replace(
+				/\{RESOURCE}/g,
+				resource
+			) as typeof counter.template;
 		}
 
 		guild.channels
