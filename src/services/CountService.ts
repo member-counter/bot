@@ -1,6 +1,12 @@
 /* eslint-disable prefer-destructuring */
 import { ChannelType } from "discord-api-types/v10";
-import { Client, Guild, TextChannel } from "discord.js";
+import {
+	Client,
+	CommandInteraction,
+	Guild,
+	Interaction,
+	TextChannel
+} from "discord.js";
 
 import config from "../config";
 import Constants from "../Constants";
@@ -51,11 +57,13 @@ class CountService {
 		this.client = guild.client;
 	}
 
-	public static async init(guild: Guild): Promise<CountService> {
-		logger.info(guild.available);
+	public static async init(
+		guild: Guild,
+		interaction: Interaction | CommandInteraction
+	): Promise<CountService> {
 		if (!guild.available) throw new Error(`Guild ${guild.id} is unavailable`);
 		const guildSettings = await GuildService.init(guild.id);
-		const i18nInstance = await i18nService(guildSettings.language);
+		const i18nInstance = await i18nService(interaction);
 		return new CountService(guild, guildSettings, i18nInstance);
 	}
 

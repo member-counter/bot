@@ -78,12 +78,44 @@
 				"name": "setup",
 				"description": "Used to create some basic counter channels"
 			},
-			"errorInvalidUsage": "Invalid usage, please see /help",
 			"status": {
 				"creatingCounts": "Creating counters...",
 				"createdCounts": "Complete",
 				"creatingCategory": "{LOADING} Creating category",
 				"createdCategory": "{CHECK_MARK} Category created"
+			},
+			"subcommands": {
+				"server": {
+					"name": "server",
+					"description": "Used to setup server related counters"
+				},
+				"youtube": {
+					"name": "youtube",
+					"description": "Used to setup server related counters",
+					"options": {
+						"channel-url": {
+							"description": "Please provide the following input: YouTube channel link"
+						}
+					}
+				},
+				"twitch": {
+					"name": "twitch",
+					"description": "Used to setup twitch counters",
+					"options": {
+						"channel-name": {
+							"description": "Please provide the following input: Twitch channel name"
+						}
+					}
+				},
+				"twitter": {
+					"name": "twitter",
+					"description": "Used to setup twitter counters",
+					"options": {
+						"account-name": {
+							"description": "Please provide the following input: Twitter account name"
+						}
+					}
+				}
 			},
 			"counterTemplates": {
 				"default": {
