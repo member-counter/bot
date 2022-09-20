@@ -12,6 +12,11 @@ export const bot = new Bot();
 	if (config.discord.autoDeployCommands) {
 		await deployCommands().catch(() => null);
 	}
+	if (config.debug) {
+		bot.client.on("debug", (message) => {
+			logger.debug(message);
+		});
+	}
 	bot.client.login(config.discord.bot.token);
 })();
 
