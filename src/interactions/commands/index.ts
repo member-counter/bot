@@ -10,26 +10,29 @@ import {
 
 import logger from "../../logger";
 import { i18nService } from "../../services/i18n";
+import { base64Command } from "./base64";
 import { checkPermissionsCommand } from "./checkPermissions";
 import { inviteCommand } from "./invite";
+import { lockChannelCommand } from "./lockChannelCommand";
 import { settingsCommand } from "./settings";
 import { setupCommand } from "./setup";
 
 import type { Command } from "../../structures";
-import { lockChannelCommand } from "./lockChannelCommand";
 export const allCommands: Command[] = [
 	inviteCommand,
 	settingsCommand,
 	setupCommand,
 	checkPermissionsCommand,
-	lockChannelCommand
+	lockChannelCommand,
+	base64Command
 ];
 export const allCommandNames = [
 	"invite",
 	"settings",
 	"setup",
 	"checkPermissions",
-	"lockChannel"
+	"lockChannel",
+	"base64"
 ] as const;
 
 export const allCommandsNeededPermissions: PermissionsBitField =

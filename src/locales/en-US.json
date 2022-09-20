@@ -275,6 +275,12 @@
 			},
 			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
 			"errorNoPerms": "I can't edit the channel {CHANNEL} due to lack of permissions"
+		},
+		"base64": {
+			"definition": {
+				"name": "base64",
+				"description": "A base64 utility command"
+			}
 		}
 	},
 	"common": {
