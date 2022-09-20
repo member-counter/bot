@@ -7,7 +7,7 @@ import { allCommandNames, allCommands } from "../interactions/commands";
 import logger from "../logger";
 import { discordRest } from "../services";
 import { availableLocales, i18nService } from "../services/i18n";
-import { tokenToClientId } from "../utils";
+import { tokenToClientId } from "../utils/tokenToClientId";
 
 const clientId = tokenToClientId(config.discord.bot.token);
 
@@ -65,6 +65,7 @@ export async function deployCommands() {
 		);
 		logger.info("deployCommands: Successfully reloaded application commands.");
 	} catch (error) {
+		logger.error(JSON.stringify(error, null, 2));
 		logger.error(
 			`deployCommands: Failed to reload application commands.\n${error}`
 		);

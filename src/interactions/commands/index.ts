@@ -16,18 +16,29 @@ import { settingsCommand } from "./settings";
 import { setupCommand } from "./setup";
 
 import type { Command } from "../../structures";
+import { lockChannelCommand } from "./lockChannelCommand";
 export const allCommands: Command[] = [
 	inviteCommand,
 	settingsCommand,
 	setupCommand,
-	checkPermissionsCommand
+	checkPermissionsCommand,
+	lockChannelCommand
 ];
-export const allCommandNames = ["invite", "settings", "setup"] as const;
+export const allCommandNames = [
+	"invite",
+	"settings",
+	"setup",
+	"checkPermissions",
+	"lockChannel"
+] as const;
+
 export const allCommandsNeededPermissions: PermissionsBitField =
-	new PermissionsBitField(allCommands.map((c) => c.neededPermissions.bitfield));
+	new PermissionsBitField(
+		Array.from(new Set(allCommands.map((c) => c.neededPermissions).flat()))
+	);
 
 export const allCommandsNeededIntents: IntentsBitField = new IntentsBitField(
-	allCommands.map((c) => c.neededIntents.bitfield)
+	Array.from(new Set(allCommands.map((c) => c.neededIntents).flat()))
 );
 
 export default async function handleCommand(

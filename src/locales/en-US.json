@@ -205,6 +205,76 @@
 					]
 				}
 			}
+		},
+		"checkPermissions": {
+			"definition": {
+				"name": "check-permissions",
+				"description": "Checks if the bot has the correct permissions to work correctly."
+			},
+			"title": "Check permissions",
+			"optionalText": "(Optional)",
+			"adminWarning": "**This bot has administrator permission, please toggle off the administrator permission and setup the right permissions**",
+			"footer": "If you need to fix permissions problems, try inviting the bot again:",
+			"details": {
+				"ManageChannels": {
+					"name": "Manage channels",
+					"description": "Used to update the name/description of the channels to update the counters",
+					"optional": false
+				},
+				"ViewChannel": {
+					"name": "View channels",
+					"description": "Used to update the name/description of the channels to update the counters, also used to receive commands",
+					"optional": false
+				},
+				"Connect": {
+					"name": "Connect",
+					"description": "Used to update the name/description of the channels to update the counters",
+					"optional": false
+				},
+				"ReadMessageHistory": {
+					"name": "Read message history",
+					"description": "Used to update counters in messages/embeds",
+					"optional": false
+				},
+				"SendMessages": {
+					"name": "Send messages",
+					"description": "Used to reply to commands",
+					"optional": false
+				},
+				"EmbedLinks": {
+					"name": "Embed links",
+					"description": "Used to reply to commands",
+					"optional": false
+				},
+				"AddReactions": {
+					"name": "Add reactions",
+					"description": "Used to add reactions in commands to interact with it",
+					"optional": false
+				},
+				"ManageMessages": {
+					"name": "Manage messages",
+					"description": "Used to remove reactions in a command",
+					"optional": true
+				},
+				"ManageRoles": {
+					"name": "Manage roles",
+					"description": "Used by the setup command and to update channel permissions when you add a Premium bot",
+					"optional": false
+				},
+				"BanMembers": {
+					"name": "Ban members",
+					"description": "Used to display the amount of banned members in the `{bannedMembers}` counter",
+					"optional": true
+				}
+			}
+		},
+		"lockChannel": {
+			"definition": {
+				"name": "lock-channel",
+				"description": "You can use this commands to show a lock pad (🔒) instead of a speaker (🔊) in voice channels."
+			},
+			"success": "Done! Now, **for non admin users**, the channel will be displayed with a 🔒",
+			"errorNoPerms": "I can't edit the channel {CHANNEL} due to lack of permissions"
 		}
 	},
 	"common": {

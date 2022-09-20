@@ -4,12 +4,9 @@ import {
 	SlashCommandSubcommandsOnlyBuilder
 } from "@discordjs/builders";
 import {
-	BitFieldResolvable,
 	CommandInteraction,
 	GatewayIntentsString,
-	IntentsBitField,
-	PermissionFlagsBits,
-	PermissionsBitField
+	PermissionsString
 } from "discord.js";
 
 import { i18nService } from "../services/i18n";
@@ -35,26 +32,23 @@ interface CommandOptions {
 	/**
 	 * @description Add intents here that might be needed by your code, like intents for awaiting reactions
 	 */
-	neededIntents?: BitFieldResolvable<GatewayIntentsString, number>[];
+	neededIntents?: GatewayIntentsString[];
 	/**
 	 * @description Add here the permissions needed, this will be used to create invite links with all the necessary permissions
 	 */
-	neededPermissions?: BitFieldResolvable<
-		keyof typeof PermissionFlagsBits,
-		bigint
-	>[];
+	neededPermissions?: PermissionsString[];
 }
 
 export class Command {
 	definition: SlashCommandUnion;
 	execute: CommandExecute | SubCommandsExecute;
-	neededIntents: IntentsBitField;
-	neededPermissions: PermissionsBitField;
+	neededIntents: GatewayIntentsString[];
+	neededPermissions: PermissionsString[];
 
 	constructor(options: CommandOptions) {
 		this.definition = options.definition;
 		this.execute = options.execute;
-		this.neededIntents = new IntentsBitField(options.neededIntents);
-		this.neededPermissions = new PermissionsBitField(options.neededPermissions);
+		this.neededIntents = options.neededIntents;
+		this.neededPermissions = options.neededPermissions;
 	}
 }
