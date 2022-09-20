@@ -281,6 +281,43 @@
 				"name": "base64",
 				"description": "A base64 utility command"
 			}
+		},
+		"premium": {
+			"definition": {
+				"name": "premium",
+				"description": "Get information about Member Counter Premium."
+			},
+			"embedReply": {
+				"title": "Member Counter Premium",
+				"description": "[Get the premium bot]({{GET_PREMIUM_BOT_URL}}) and enjoy:",
+				"fields": [
+					{
+						"name": "**✅ ALL the counters**",
+						"value": "Get access to **all** the counters that exists in the bot, like `{twitchFollowers}` or `{youtubeSubscribers}`",
+						"inline": false
+					},
+					{
+						"name": "**✅ More accurate**",
+						"value": "Get more accurate counts in all members related counters",
+						"inline": false
+					},
+					{
+						"name": "**✅ Unlimited servers**",
+						"value": "Pay only for the members and servers you have. For €5 EUR per 50,000 members and 5 servers, quarterly",
+						"inline": false
+					},
+					{
+						"name": "**✅ Custom bot**",
+						"value": "Use your own bot account, with the profile picture and username of your choice",
+						"inline": false
+					},
+					{
+						"name": "**✅ Easy to setup**",
+						"value": "In a few clicks, you can create your own Member Counter bot, and we will take care of updating it. Guide with screenshots included! Isn't this easier than self-hosting?",
+						"inline": false
+					}
+				]
+			}
 		}
 	},
 	"common": {

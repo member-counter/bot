@@ -87,7 +87,8 @@ const envVarsSchema = Joi.object()
 		CUSTOM_EMOJI_CONFIRM: Joi.string().optional(),
 		CUSTOM_EMOJI_NEGATIVE: Joi.string().optional(),
 		CUSTOM_EMOJI_WARNING: Joi.string().optional(),
-		BOT_OWNERS: Joi.array().optional()
+		BOT_OWNERS: Joi.array().optional(),
+		GET_PREMIUM_BOT_URL: Joi.string().optional()
 	})
 	.unknown();
 
@@ -131,7 +132,8 @@ const config = {
 	},
 	premium: {
 		thisBotsIsPremium: envVars.PREMIUM_BOT as boolean,
-		premiumBotId: envVars.PREMIUM_BOT_ID as string
+		premiumBotId: envVars.PREMIUM_BOT_ID as string,
+		getPremiumBotUrl: envVars.GET_PREMIUM_BOT_URL as string
 	},
 	customEmojis: {
 		useCustomEmojis: envVars.USE_CUSTOM_EMOJIS as boolean,

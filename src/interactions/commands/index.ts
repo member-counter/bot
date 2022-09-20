@@ -13,7 +13,8 @@ import { i18nService } from "../../services/i18n";
 import { base64Command } from "./base64";
 import { checkPermissionsCommand } from "./checkPermissions";
 import { inviteCommand } from "./invite";
-import { lockChannelCommand } from "./lockChannelCommand";
+import { lockChannelCommand } from "./lockChannel";
+import { premiumCommand } from "./premium";
 import { settingsCommand } from "./settings";
 import { setupCommand } from "./setup";
 
@@ -24,7 +25,8 @@ export const allCommands: Command[] = [
 	setupCommand,
 	checkPermissionsCommand,
 	lockChannelCommand,
-	base64Command
+	base64Command,
+	premiumCommand
 ];
 export const allCommandNames = [
 	"invite",
@@ -32,7 +34,8 @@ export const allCommandNames = [
 	"setup",
 	"checkPermissions",
 	"lockChannel",
-	"base64"
+	"base64",
+	"premium"
 ] as const;
 
 export const allCommandsNeededPermissions: PermissionsBitField =
