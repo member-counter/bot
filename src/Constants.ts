@@ -51,7 +51,8 @@ export enum CounterResult {
 export const Constants = {
 	Colors,
 	CounterResult,
-	UserBadges
+	UserBadges,
+	emojiBadges
 };
 
 export default Constants;
