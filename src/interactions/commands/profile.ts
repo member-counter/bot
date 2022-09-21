@@ -116,6 +116,15 @@ export const profileCommand = new Command({
 					.setStyle(ButtonStyle.Danger)
 					.setCustomId("delete_user_profile")
 			);
+			embed.setDescription(
+				t("commands.profile.removeDataConfirmation", {
+					CANCEL_STRING: t("commands.profile.cancelString"),
+					CONFIRMATION_STRING: t(
+						"commands.profile.removeDataConfirmationString"
+					),
+					DELETE_DATA: t("commands.profile.buttons.deleteData.label")
+				})
+			);
 			await command.reply({
 				components: [Row],
 				embeds: [embed],

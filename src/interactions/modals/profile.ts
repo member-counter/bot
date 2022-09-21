@@ -1,4 +1,5 @@
 import { ModalSubmitInteraction } from "discord.js";
+import { i18nService } from "../../services/i18n";
 import UserService from "../../services/UserService";
 export const profileModel = async (
 	modalSubmitInteraction: ModalSubmitInteraction
@@ -6,6 +7,8 @@ export const profileModel = async (
 	const userSettings = await UserService.init(
 		modalSubmitInteraction.member.user.id
 	);
+	const { t } = await i18nService(modalSubmitInteraction);
+
 	switch (modalSubmitInteraction.customId) {
 		case "grant_credits_modal": {
 			const amount = modalSubmitInteraction.fields.getTextInputValue(
@@ -51,6 +54,35 @@ export const profileModel = async (
 				ephemeral: true
 			});
 			break;
+		}
+		case "delete_user_profile_modal": {
+			const confirmText = modalSubmitInteraction.fields.getTextInputValue(
+				"delete_user_profile_confirmation_text"
+			);
+			if (confirmText === t("commands.profile.cancelString")) {
+				modalSubmitInteraction.reply({
+					content: t("commands.profile.removeDataCanceled"),
+					ephemeral: true
+				});
+			} else if (
+				confirmText === t("commands.profile.removeDataConfirmationString")
+			) {
+				await userSettings.remove();
+				modalSubmitInteraction.reply({
+					content: t("commands.profile.removeDataSuccess"),
+					ephemeral: true
+				});
+			} else {
+				modalSubmitInteraction.reply({
+					content: t("commands.profile.invalidTextInputProvided", {
+						CANCEL_STRING: t("commands.profile.cancelString"),
+						CONFIRMATION_STRING: t(
+							"commands.profile.removeDataConfirmationString"
+						)
+					}),
+					ephemeral: true
+				});
+			}
 		}
 	}
 };

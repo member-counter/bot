@@ -327,14 +327,15 @@
 			"badges": "Badges",
 			"credits": "Credits",
 			"serverUpgradesAvailable": "Server upgrades left",
-			"removeDataConfirmation": "Please click the `{{DELETE_DATA}}` button to confirm\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or click the `{{CANCEL_DELETION}}` button to cancel)**",
+			"removeDataConfirmation": "If you click the {{DELETE_DATA}} button. Please type exactly this text if you want to delete all your data: ```{{CONFIRMATION_STRING}}```\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or type '{{CANCEL_STRING}}' to cancel)**",
+			"cancelString": "cancel",
+			"removeDataConfirmationString": "I want to delete all of my data",
 			"removeDataSuccess": "Your data has been removed successfully",
 			"removeDataCanceled": "Canceled deleting your data",
 			"userNotFound": "User not found in the DB",
+			"invalidTextInputProvided": "Please try again and provide a valid text input either `{{CANCEL_STRING}}` or `{{CONFIRMATION_STRING}}`",
 			"buttons": {
-				"deleteData": { "label": "Delete data" },
-				"confirmDataDeletion": { "label": "Confirm Deletion" },
-				"cancelDataDeletion": { "label": "Cancel Deletion" }
+				"deleteData": { "label": "Delete data" }
 			}
 		}
 	},

@@ -1,12 +1,9 @@
 import {
+	ActionRowBuilder,
 	ModalBuilder,
-	TextInputBuilder,
-	ActionRowBuilder
+	TextInputBuilder
 } from "@discordjs/builders";
 import { ButtonInteraction, TextInputStyle } from "discord.js";
-
-// import { i18nService } from "../../services/i18n";
-// import UserService from "../../services/UserService";
 
 type actionButtonIds =
 	| "grant_server_upgrade"
@@ -27,9 +24,6 @@ export const profileActions = async (buttonInteraction: ButtonInteraction) => {
 		return;
 	if (!buttonInteraction.inGuild()) return;
 
-	// const { t } = await i18nService(buttonInteraction);
-
-	// const userSettings = await UserService.init(buttonInteraction.member.user.id);
 	switch (name) {
 		case "grant_credits": {
 			buttonInteraction.showModal(
