@@ -8,7 +8,7 @@ export const messageCreateEvent = new Event({
 	name: "messageCreate",
 	handler: async (message: Message) => {
 		if (message.author.bot) return;
-		const [, command] = message.content.split(/ +/);
+		const [, command] = message.content.split(/\s+/);
 
 		if (command !== "patpat") {
 			return;
