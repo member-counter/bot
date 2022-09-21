@@ -31,7 +31,6 @@ export const allCommands: Command[] = [
 	profileCommand
 ];
 
-// TODO: use constants for customIds for all interactions
 // TODO: take them directly from command definitions
 export const allCommandNames = [
 	"invite",

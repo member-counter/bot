@@ -6,7 +6,7 @@ import {
 import { ButtonStyle, User } from "discord.js";
 
 import config from "../../config";
-import { emojiBadges } from "../../Constants";
+import { ButtonIds, emojiBadges } from "../../Constants";
 import UserService from "../../services/UserService";
 import { Command } from "../../structures";
 import { BaseMessageEmbed, UserError } from "../../utils";
@@ -60,19 +60,19 @@ export const profileCommand = new Command({
 				new ButtonBuilder()
 					.setLabel("Grant Server Upgrade")
 					.setStyle(ButtonStyle.Primary)
-					.setCustomId("grant_server_upgrade"),
+					.setCustomId(ButtonIds.profileActions.grantServerUpgrade),
 				new ButtonBuilder()
 					.setLabel("Grant Credits")
 					.setStyle(ButtonStyle.Primary)
-					.setCustomId("grant_credits"),
+					.setCustomId(ButtonIds.profileActions.grantCredits),
 				new ButtonBuilder()
 					.setLabel("Grant Badge")
 					.setStyle(ButtonStyle.Primary)
-					.setCustomId("grant_badge"),
+					.setCustomId(ButtonIds.profileActions.grantBadge),
 				new ButtonBuilder()
 					.setLabel("Revoke Badge")
 					.setStyle(ButtonStyle.Primary)
-					.setCustomId("revoke_badge")
+					.setCustomId(ButtonIds.profileActions.revokeBadge)
 			);
 		}
 
@@ -109,7 +109,7 @@ export const profileCommand = new Command({
 					.setEmoji({ name: "🗑️" })
 					.setLabel(t("commands.profile.buttons.deleteData.label"))
 					.setStyle(ButtonStyle.Danger)
-					.setCustomId("delete_user_profile")
+					.setCustomId(ButtonIds.deleteUserProfile)
 			);
 			embed.setDescription(
 				t("commands.profile.removeDataConfirmation", {

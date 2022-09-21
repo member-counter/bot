@@ -131,8 +131,7 @@ const config = {
 		showDate: envVars.LOGS_SHOW_DATE as boolean
 	},
 	premium: {
-		// TODO: fix typo (thisBotsIsPremium -> thisBotIsPremium)
-		thisBotsIsPremium: envVars.PREMIUM_BOT as boolean,
+		thisBotIsPremium: envVars.PREMIUM_BOT as boolean,
 		premiumBotId: envVars.PREMIUM_BOT_ID as string,
 		getPremiumBotUrl: envVars.GET_PREMIUM_BOT_URL as string
 	},

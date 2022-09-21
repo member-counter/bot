@@ -28,17 +28,20 @@ Under the `src/` folder, you will find different folders and files
 Translations can be obtained with the `txt` function, which is available in any command, or returned from the `i18n` function when you pass an (interaction)[https://discord.js.org/#/docs/discord.js/stable/class/Interaction] object, this `txt` function will translate the chosen string, and replace all the placeholders with the specified data (the priority order when choosing the language is: `explicitly set by a the settings command` > `guild locale` > `user locale`)
 
 Example from the invite command:
-// TODO: Update this for new translation file structure
 
 ```ts
-i18n.t("commands.inviteUrl", { INVITE_URL: getBotInviteLink() });
+i18n.t("commands.invite.description", { INVITE_URL: getBotInviteLink() });
 ```
 
 The "COMMAND_INVITE_DESCRIPTION" looks like this in the `./src/locales/en_US.json` file:
 
 ```json
 {
-	"COMMAND_INVITE_DESCRIPTION": "Beep boop! Your invite link is ready:\n{INVITE_URL}"
+	"commands": {
+		"invite": {
+			"description": "Beep boop! Your invite link is ready:\n{{INVITE_URL}}"
+		}
+	}
 }
 ```
 

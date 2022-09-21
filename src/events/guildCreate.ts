@@ -9,7 +9,7 @@ export const guildCreateEvent = new Event({
 	name: "guildCreate",
 	handler: async (guild: Guild) => {
 		const {
-			premium: { thisBotsIsPremium, premiumBotId },
+			premium: { thisBotIsPremium, premiumBotId },
 			unrestrictedMode
 		} = config;
 		const guildSettings = await GuildSettings.init(guild.id);
@@ -22,7 +22,7 @@ export const guildCreateEvent = new Event({
 		await guildSettings.setLocale(guild.preferredLocale);
 
 		// Self kick when premium bot is present and the guild is premium
-		if (!thisBotsIsPremium && !unrestrictedMode) {
+		if (!thisBotIsPremium && !unrestrictedMode) {
 			const premiumBotMember = await guild.members.fetch(premiumBotId);
 
 			if (guildSettings.premium && premiumBotMember) {

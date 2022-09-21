@@ -23,7 +23,7 @@ const counters: Counter[] = [];
 const {
 	debug: DEBUG,
 	ghostMode,
-	premium: { thisBotsIsPremium: PREMIUM_BOT },
+	premium: { thisBotIsPremium: PREMIUM_BOT },
 	unrestrictedMode: UNRESTRICTED_MODE
 } = config;
 class CountService {

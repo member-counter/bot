@@ -11,7 +11,7 @@ export default class Bot {
 		this.client = new Client({
 			rest: { version: apiVersion },
 			// TODO: improve
-			intents: config.premium.thisBotsIsPremium
+			intents: config.premium.thisBotIsPremium
 				? allEventsNeededIntents.bitfield |
 				  allCommandsNeededIntents.bitfield |
 				  IntentsBitField.Flags.GuildPresences |

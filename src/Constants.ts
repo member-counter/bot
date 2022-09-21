@@ -47,12 +47,46 @@ export enum CounterResult {
 	DISABLED = -4,
 	NOT_AVAILABLE = -5
 }
+export const ButtonIds = {
+	resetGuildSettings: "reset_guild_settings",
+	profileActions: {
+		grantServerUpgrade: "grant_server_upgrade",
+		grantCredits: "grant_credits",
+		grantBadge: "grant_badge",
+		revokeBadge: "revoke_badge"
+	},
+	deleteUserProfile: "delete_user_profile"
+} as const;
+export const ModalIds = {
+	// TODO: Add guild settings reset modal to settings command
+	resetGuildSettings: "reset_guild_settings_modal",
+	profileActions: {
+		grantServerUpgrade: "grant_server_upgrade_modal",
+		grantCredits: "grant_credits_modal",
+		grantBadge: "grant_badge_modal",
+		revokeBadge: "revoke_badge_modal"
+	},
+	deleteUserProfile: "delete_user_profile_modal"
+} as const;
+export const TextInputIds = {
+	resetGuildSettings: "reset_guild_settings_modal",
+	profileActions: {
+		grantServerUpgrade: "grant_server_upgrade_amount",
+		grantCredits: "grant_credits_amount",
+		grantBadge: "grant_badge_input",
+		revokeBadge: "revoke_badge_input"
+	},
+	deleteUserProfile: "delete_user_profile_confirmation_text"
+} as const;
 
 export const Constants = {
 	Colors,
 	CounterResult,
 	UserBadges,
-	emojiBadges
+	emojiBadges,
+	TextInputIds,
+	ModalIds,
+	ButtonIds
 };
 
 export default Constants;

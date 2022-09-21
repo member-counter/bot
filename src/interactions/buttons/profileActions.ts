@@ -5,24 +5,14 @@ import {
 } from "@discordjs/builders";
 import { ButtonInteraction, TextInputStyle } from "discord.js";
 
+import { ButtonIds, ModalIds, TextInputIds } from "../../Constants";
 // TODO: i18n
 type actionButtonIds =
-	| "grant_server_upgrade"
-	| "grant_credits"
-	| "grant_badge"
-	| "revoke_badge";
+	typeof ButtonIds.profileActions[keyof typeof ButtonIds.profileActions];
 export const profileActions = async (buttonInteraction: ButtonInteraction) => {
 	const name = buttonInteraction.customId as actionButtonIds;
 
-	if (
-		![
-			"grant_server_upgrade",
-			"grant_credits",
-			"grant_badge",
-			"revoke_badge"
-		].includes(name)
-	)
-		return;
+	if (!Object.values(ButtonIds.profileActions).includes(name)) return;
 	if (!buttonInteraction.inGuild()) return;
 
 	switch (name) {
@@ -30,12 +20,12 @@ export const profileActions = async (buttonInteraction: ButtonInteraction) => {
 			buttonInteraction.showModal(
 				new ModalBuilder()
 					.setTitle("Grant Credits")
-					.setCustomId("grant_credits_modal")
+					.setCustomId(ModalIds.profileActions.grantCredits)
 					.addComponents(
 						new ActionRowBuilder<TextInputBuilder>().addComponents(
 							new TextInputBuilder()
 								.setLabel("Amount of credits to grant")
-								.setCustomId("grant_credits_amount")
+								.setCustomId(TextInputIds.profileActions.grantCredits)
 								.setRequired(true)
 								.setValue("1")
 								.setStyle(TextInputStyle.Short)
@@ -48,12 +38,12 @@ export const profileActions = async (buttonInteraction: ButtonInteraction) => {
 			buttonInteraction.showModal(
 				new ModalBuilder()
 					.setTitle("Grant Server Upgrade")
-					.setCustomId("grant_server_upgrade_modal")
+					.setCustomId(ModalIds.profileActions.grantServerUpgrade)
 					.addComponents(
 						new ActionRowBuilder<TextInputBuilder>().addComponents(
 							new TextInputBuilder()
 								.setLabel("Amount of server upgrades to grant")
-								.setCustomId("grant_server_upgrade_amount")
+								.setCustomId(TextInputIds.profileActions.grantServerUpgrade)
 								.setRequired(true)
 								.setValue("1")
 								.setStyle(TextInputStyle.Short)
@@ -66,12 +56,12 @@ export const profileActions = async (buttonInteraction: ButtonInteraction) => {
 			buttonInteraction.showModal(
 				new ModalBuilder()
 					.setTitle("Grant Badge")
-					.setCustomId("grant_badge_modal")
+					.setCustomId(ModalIds.profileActions.grantBadge)
 					.addComponents(
 						new ActionRowBuilder<TextInputBuilder>().addComponents(
 							new TextInputBuilder()
 								.setLabel("Badge to grant")
-								.setCustomId("grant_badge_input")
+								.setCustomId(TextInputIds.profileActions.grantBadge)
 								.setRequired(true)
 								.setStyle(TextInputStyle.Short)
 						)
@@ -83,12 +73,12 @@ export const profileActions = async (buttonInteraction: ButtonInteraction) => {
 			buttonInteraction.showModal(
 				new ModalBuilder()
 					.setTitle("Revoke badge")
-					.setCustomId("revoke_badge_modal")
+					.setCustomId(ModalIds.profileActions.revokeBadge)
 					.addComponents(
 						new ActionRowBuilder<TextInputBuilder>().addComponents(
 							new TextInputBuilder()
 								.setLabel("Badge to revoke")
-								.setCustomId("revoke_badge_input")
+								.setCustomId(TextInputIds.profileActions.revokeBadge)
 								.setRequired(true)
 								.setStyle(TextInputStyle.Short)
 						)
