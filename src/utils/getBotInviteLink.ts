@@ -8,6 +8,7 @@ import { tokenToClientId } from "./tokenToClientId";
 const clientId = tokenToClientId(config.discord.bot.token);
 
 function getBotInviteLink(guildId?: string, botId?: string): string {
+	// TODO: get from neededPermissions
 	const allNeededPermissions = new PermissionsBitField([
 		allCommandsNeededPermissions,
 		allEventsNeededPermissions

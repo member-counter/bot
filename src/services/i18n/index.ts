@@ -97,7 +97,7 @@ export async function i18nService(
 		}
 	);
 
-	// TODO override locale for number and date formatting with guildSettings locale
+	// TODO: override locale for number and date formatting with guildSettings locale
 
 	return i18nextInstance;
 }

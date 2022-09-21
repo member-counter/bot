@@ -5,6 +5,7 @@ import {
 } from "@discordjs/builders";
 import { ButtonInteraction, TextInputStyle } from "discord.js";
 
+// TODO: i18n
 type actionButtonIds =
 	| "grant_server_upgrade"
 	| "grant_credits"

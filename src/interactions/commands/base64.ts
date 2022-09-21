@@ -44,6 +44,7 @@ export const base64Command = new Command({
 			});
 		}
 	},
+	// TODO: set the right intents and permissions
 	neededIntents: ["Guilds"],
 	neededPermissions: ["SendMessages", "ViewChannel"]
 });

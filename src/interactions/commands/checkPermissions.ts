@@ -34,6 +34,7 @@ export const checkPermissionsCommand = new Command({
 			messageBody += `${emojis.warning} ${emojis.warning} ${emojis.warning} ${languagePackCheckPermissions.adminWarning} ${emojis.warning} ${emojis.warning} ${emojis.warning}\n\n`;
 		}
 
+		// TODO: get needed permissions from neededPermissions.ts and display only those with available translations
 		messageBody += Array.from(
 			new Set(allCommands.map((c) => c.neededPermissions).flat())
 		)
@@ -94,6 +95,7 @@ export const checkPermissionsCommand = new Command({
 			);
 		}
 	},
+	// TODO: set the right intents and permissions
 	neededIntents: [
 		"GuildMembers",
 		"Guilds",

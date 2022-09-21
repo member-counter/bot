@@ -131,6 +131,7 @@ const config = {
 		showDate: envVars.LOGS_SHOW_DATE as boolean
 	},
 	premium: {
+		// TODO: fix typo (thisBotsIsPremium -> thisBotIsPremium)
 		thisBotsIsPremium: envVars.PREMIUM_BOT as boolean,
 		premiumBotId: envVars.PREMIUM_BOT_ID as string,
 		getPremiumBotUrl: envVars.GET_PREMIUM_BOT_URL as string
@@ -145,8 +146,12 @@ const config = {
 		loading: envVars.CUSTOM_EMOJI_LOADING as string
 	},
 	ghostMode: envVars.GHOST_MODE as boolean,
+
+	// TODO: considering merging this with premium.thisBotIsPremium or other alternatives
 	unrestrictedMode: envVars.UNRESTRICTED_MODE as boolean,
 	debug: envVars.DEBUG as boolean,
+
+	// TODO: we should store this config in the DB
 	botOwners: envVars.BOT_OWNERS as string[]
 };
 

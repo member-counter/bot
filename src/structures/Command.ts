@@ -39,10 +39,13 @@ interface CommandOptions {
 	neededPermissions?: PermissionsString[];
 }
 
+// TODO:: structure for Interactions, and extend this one from it
 export class Command {
 	definition: SlashCommandUnion;
 	execute: CommandExecute | SubCommandsExecute;
+	// TODO: return bitfields and default to 0
 	neededIntents: GatewayIntentsString[];
+	// TODO: return bitfields and default to 0n
 	neededPermissions: PermissionsString[];
 
 	constructor(options: CommandOptions) {

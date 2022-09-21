@@ -13,7 +13,7 @@ import Constants from "../Constants";
 import logger from "../logger";
 import { i18nInstanceType, i18nService } from "../services/i18n";
 import Counter from "../typings/Counter";
-import FormattingSettings from "../typings/FormattingSettings";
+import CounterFormattingSettings from "../typings/CounterFormattingSettings";
 import { botHasPermsToEdit } from "../utils";
 import GuildService from "./GuildSettings";
 
@@ -169,7 +169,7 @@ class CountService {
 			.split(/(?<!\\):/)
 			.map((section) => section.replace("\\:", ":"));
 		let formattingSettingsRaw: string;
-		const formattingSettings: FormattingSettings = (() => {
+		const formattingSettings: CounterFormattingSettings = (() => {
 			const settings = {
 				locale: this.guildSettings.locale,
 				digits: this.guildSettings.digits,

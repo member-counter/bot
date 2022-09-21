@@ -23,6 +23,7 @@ const logger = winston.createLogger({
 				`${config.logs.showDate && `${timestamp} - `}${level}: ${message}`
 		)
 	),
+	// TODO: consider a discord webhook transport
 	transports: [
 		new winston.transports.Console({
 			stderrLevels: ["error"]

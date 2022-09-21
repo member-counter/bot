@@ -60,6 +60,7 @@ class Emoji {
 }
 
 const Emojis = (canUseExternalEmojis: boolean) => {
+	// TODO: move canUseExternalEmojis logic here
 	return {
 		loading: new Emoji(canUseExternalEmojis, "🕓", loading),
 		checkMark: new Emoji(canUseExternalEmojis, "✅", checkMark),
