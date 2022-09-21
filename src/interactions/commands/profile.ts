@@ -47,15 +47,6 @@ export const profileCommand = new Command({
 			option
 				.setName("user")
 				.setDescription("Select the user you want to view profile of")
-		)
-		.addStringOption((option) =>
-			option
-				.setName("action")
-				.setDescription("Used to perform bot admin actions on users")
-				.setAutocomplete(true)
-		)
-		.addNumberOption((option) =>
-			option.setName("param").setDescription("Number")
 		),
 	execute: async (command, { t }) => {
 		const { botOwners } = config;
@@ -65,43 +56,29 @@ export const profileCommand = new Command({
 
 		const targetUser: User =
 			(command.options.get("user")?.user as User) || (user as User);
-		const actionRequested = command.options.get("action")?.value ?? null;
-		const actionParam = command.options.get("param")?.value ?? null;
-		if (!actionRequested && !(await UserService.exists(targetUser.id)))
+		if (!(await UserService.exists(targetUser.id)))
 			throw new UserError(t("commands.profile.userNotFound"));
 		const userSettings = await UserService.init(targetUser.id);
-
-		if (actionRequested && botOwners.includes(user.id)) {
-			switch (actionRequested as string) {
-				case "grantcredit": {
-					await userSettings.grantCredits(
-						parseInt(actionParam as string, 10) || 1
-					);
-					break;
-				}
-
-				case "grantserverupgrade": {
-					await userSettings.grantAvailableServerUpgrades(
-						parseInt(actionParam as string, 10) || 1
-					);
-					break;
-				}
-
-				case "grantbadge": {
-					await userSettings.grantBadge(parseInt(actionParam as string, 2));
-					break;
-				}
-
-				case "revokebadge": {
-					await userSettings.revokeBadge(parseInt(actionParam as string, 2));
-					break;
-				}
-
-				default: {
-					// TODO: await message.addReaction("❓");
-					break;
-				}
-			}
+		const Row = new ActionRowBuilder<ButtonBuilder>();
+		if (botOwners.includes(user.id)) {
+			Row.addComponents(
+				new ButtonBuilder()
+					.setLabel("Grant Server Upgrade")
+					.setStyle(ButtonStyle.Primary)
+					.setCustomId("grant_server_upgrade"),
+				new ButtonBuilder()
+					.setLabel("Grant Credits")
+					.setStyle(ButtonStyle.Primary)
+					.setCustomId("grant_credits"),
+				new ButtonBuilder()
+					.setLabel("Grant Badge")
+					.setStyle(ButtonStyle.Primary)
+					.setCustomId("grant_badge"),
+				new ButtonBuilder()
+					.setLabel("Revoke Badge")
+					.setStyle(ButtonStyle.Primary)
+					.setCustomId("revoke_badge")
+			);
 		}
 
 		const { badges, availableServerUpgrades, credits } = userSettings;
@@ -132,7 +109,7 @@ export const profileCommand = new Command({
 		]);
 
 		if (targetUser.id === user.id) {
-			const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+			Row.addComponents(
 				new ButtonBuilder()
 					.setEmoji({ name: "🗑️" })
 					.setLabel(t("commands.profile.buttons.deleteData.label"))
@@ -140,12 +117,13 @@ export const profileCommand = new Command({
 					.setCustomId("delete_user_profile")
 			);
 			await command.reply({
-				components: [row],
+				components: [Row],
 				embeds: [embed],
 				ephemeral: true
 			});
 		} else {
 			await command.reply({
+				components: [Row],
 				embeds: [embed],
 				ephemeral: true
 			});
