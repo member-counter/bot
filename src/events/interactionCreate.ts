@@ -2,12 +2,14 @@ import {
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
-	inlineCode
+	inlineCode,
+	InteractionType
 } from "discord.js";
 import { v4 as uuid } from "uuid";
 import { i18n } from "i18next";
 import config from "../config";
 import { Colors } from "../Constants";
+import handleModalSubmit from "../interactions/modals";
 import handleAutocomplete from "../interactions/autocompletes";
 import handleButton from "../interactions/buttons";
 import handleCommand from "../interactions/commands";
@@ -25,12 +27,27 @@ export const interactionCreateEvent = new Event({
 		)
 			return;
 		try {
-			if (interaction.isCommand()) {
-				await handleCommand(interaction);
-			} else if (interaction.isAutocomplete()) {
-				await handleAutocomplete(interaction);
-			} else if (interaction.isButton()) {
-				await handleButton(interaction);
+			switch (interaction.type) {
+				case InteractionType.ApplicationCommand: {
+					await handleCommand(interaction);
+					break;
+				}
+				case InteractionType.ApplicationCommandAutocomplete: {
+					await handleAutocomplete(interaction);
+					break;
+				}
+				case InteractionType.MessageComponent: {
+					if (interaction.isButton()) {
+						await handleButton(interaction);
+					} else {
+						// TODO: Handle select menu
+					}
+					break;
+				}
+				case InteractionType.ModalSubmit: {
+					await handleModalSubmit(interaction);
+					break;
+				}
 			}
 		} catch (error) {
 			if (interaction.isCommand() || interaction.isMessageComponent()) {
