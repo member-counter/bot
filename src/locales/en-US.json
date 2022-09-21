@@ -318,6 +318,24 @@
 					}
 				]
 			}
+		},
+		"profile": {
+			"definition": {
+				"name": "profile",
+				"description": "Shows related information between you and this bot."
+			},
+			"badges": "Badges",
+			"credits": "Credits",
+			"serverUpgradesAvailable": "Server upgrades left",
+			"removeDataConfirmation": "Please click the `{{DELETE_DATA}}` button to confirm\n:warning: **This action will remove all your data, your badges, server upgrades and credits will be lost forever, invoices will be kept for legal reasons, are you sure you want to continue? (Ignore or click the `{{CANCEL_DELETION}}` button to cancel)**",
+			"removeDataSuccess": "Your data has been removed successfully",
+			"removeDataCanceled": "Canceled deleting your data",
+			"userNotFound": "User not found in the DB",
+			"buttons": {
+				"deleteData": { "label": "Delete data" },
+				"confirmDataDeletion": { "label": "Confirm Deletion" },
+				"cancelDataDeletion": { "label": "Cancel Deletion" }
+			}
 		}
 	},
 	"common": {

@@ -1,3 +1,4 @@
+import { profileCommand } from "./profile";
 import { inlineCode } from "@discordjs/builders";
 import {
 	ApplicationCommandOptionType,
@@ -26,7 +27,8 @@ export const allCommands: Command[] = [
 	checkPermissionsCommand,
 	lockChannelCommand,
 	base64Command,
-	premiumCommand
+	premiumCommand,
+	profileCommand
 ];
 export const allCommandNames = [
 	"invite",
@@ -35,7 +37,8 @@ export const allCommandNames = [
 	"checkPermissions",
 	"lockChannel",
 	"base64",
-	"premium"
+	"premium",
+	"profile"
 ] as const;
 
 export const allCommandsNeededPermissions: PermissionsBitField =
