@@ -6,22 +6,11 @@ import {
 import { ButtonStyle, User } from "discord.js";
 
 import config from "../../config";
-import { UserBadges } from "../../Constants";
+import { emojiBadges } from "../../Constants";
 import UserService from "../../services/UserService";
 import { Command } from "../../structures";
 import { BaseMessageEmbed, UserError } from "../../utils";
-
-const emojiBadges = {
-	[UserBadges.DONOR]: "❤️",
-	[UserBadges.PREMIUM]: "💎",
-	[UserBadges.BETA_TESTER]: "🧪",
-	[UserBadges.TRANSLATOR]: "🌎",
-	[UserBadges.CONTRIBUTOR]: "💻",
-	[UserBadges.BIG_BRAIN]: "🧠",
-	[UserBadges.BUG_CATCHER]: "🐛",
-	[UserBadges.PATPAT]: "🐱",
-	[UserBadges.FOLDING_AT_HOME]: "🧬"
-};
+import { emojiRegex } from "../modals/profile";
 
 const generateBadgeList = (badges: number): string => {
 	const hasBadge = (badgeN: number): boolean => (badges & badgeN) === badgeN;
@@ -29,8 +18,10 @@ const generateBadgeList = (badges: number): string => {
 	const badgeList = [];
 
 	for (const [badge, emoji] of Object.entries(emojiBadges)) {
-		const badgeInt = Number(badge);
-		if (hasBadge(badgeInt)) badgeList.push(emoji);
+		if (emojiRegex.test(emoji as string)) {
+			const badgeInt = Number(badge);
+			if (hasBadge(badgeInt)) badgeList.push(emoji);
+		}
 	}
 
 	badgeList.map((item, i) => {

@@ -1,6 +1,11 @@
 import { ModalSubmitInteraction } from "discord.js";
+
+import { emojiBadges } from "../../Constants";
 import { i18nService } from "../../services/i18n";
 import UserService from "../../services/UserService";
+
+export const emojiRegex =
+	/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/gi;
 export const profileModel = async (
 	modalSubmitInteraction: ModalSubmitInteraction
 ) => {
@@ -36,9 +41,16 @@ export const profileModel = async (
 		}
 
 		case "grant_badge_modal": {
-			const input =
-				modalSubmitInteraction.fields.getTextInputValue("grant_badge_input");
-			await userSettings.grantBadge(parseInt(input, 2));
+			const input = modalSubmitInteraction.fields.getTextInputValue(
+				"grant_badge_input"
+			) as keyof typeof emojiBadges;
+
+			if (emojiRegex.test(input as string)) {
+				const amount = emojiBadges[input];
+				await userSettings.grantBadge(parseInt(amount as string, 10));
+			} else {
+				await userSettings.grantBadge(parseInt(input as string, 10));
+			}
 			modalSubmitInteraction.reply({
 				content: `Successfully granted badge to user`,
 				ephemeral: true
@@ -46,9 +58,15 @@ export const profileModel = async (
 			break;
 		}
 		case "revoke_badge_modal": {
-			const input =
-				modalSubmitInteraction.fields.getTextInputValue("revoke_badge_input");
-			await userSettings.revokeBadge(parseInt(input, 2));
+			const input = modalSubmitInteraction.fields.getTextInputValue(
+				"revoke_badge_input"
+			) as keyof typeof emojiBadges;
+			if (emojiRegex.test(input as string)) {
+				const amount = emojiBadges[input];
+				await userSettings.revokeBadge(parseInt(amount as string, 10));
+			} else {
+				await userSettings.revokeBadge(parseInt(input as string, 10));
+			}
 			modalSubmitInteraction.reply({
 				content: `Successfully revoke badge to user`,
 				ephemeral: true

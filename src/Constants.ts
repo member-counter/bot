@@ -10,16 +10,36 @@ export const Colors = {
 
 export enum UserBadges {
 	DONOR = 1,
-	PREMIUM = 1 << 1,
-	BETA_TESTER = 1 << 2,
-	TRANSLATOR = 1 << 3,
-	CONTRIBUTOR = 1 << 4,
-	BIG_BRAIN = 1 << 5,
-	BUG_CATCHER = 1 << 6,
-	PATPAT = 1 << 7,
-	FOLDING_AT_HOME = 1 << 8
+	PREMIUM = 2,
+	BETA_TESTER = 4,
+	TRANSLATOR = 8,
+	CONTRIBUTOR = 16,
+	BIG_BRAIN = 32,
+	BUG_CATCHER = 64,
+	PATPAT = 128,
+	FOLDING_AT_HOME = 256
 }
 
+export const emojiBadges = {
+	[UserBadges.DONOR]: "❤️",
+	[UserBadges.PREMIUM]: "💎",
+	[UserBadges.BETA_TESTER]: "🧪",
+	[UserBadges.TRANSLATOR]: "🌎",
+	[UserBadges.CONTRIBUTOR]: "💻",
+	[UserBadges.BIG_BRAIN]: "🧠",
+	[UserBadges.BUG_CATCHER]: "🐛",
+	[UserBadges.PATPAT]: "🐱",
+	[UserBadges.FOLDING_AT_HOME]: "🧬",
+	["❤️"]: UserBadges.DONOR,
+	["💎"]: UserBadges.PREMIUM,
+	["🧪"]: UserBadges.BETA_TESTER,
+	["🌎"]: UserBadges.TRANSLATOR,
+	["💻"]: UserBadges.CONTRIBUTOR,
+	["🧠"]: UserBadges.BIG_BRAIN,
+	["🐛"]: UserBadges.BUG_CATCHER,
+	["🐱"]: UserBadges.PATPAT,
+	["🧬"]: UserBadges.FOLDING_AT_HOME
+} as const;
 export enum CounterResult {
 	PREMIUM = -1,
 	ERROR = -2,
