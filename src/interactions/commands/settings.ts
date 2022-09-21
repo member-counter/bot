@@ -372,6 +372,7 @@ export const settingsCommand = new Command({
 			}
 		}
 	},
+	// TODO: set the right intents and permissions
 	neededIntents: [
 		"GuildMessageTyping",
 		"GuildMembers",

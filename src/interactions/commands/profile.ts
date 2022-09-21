@@ -11,6 +11,7 @@ import UserService from "../../services/UserService";
 import { Command } from "../../structures";
 import { BaseMessageEmbed, UserError } from "../../utils";
 
+// TODO: move to constants
 const emojiBadges = {
 	[UserBadges.DONOR]: "❤️",
 	[UserBadges.PREMIUM]: "💎",
@@ -39,6 +40,10 @@ const generateBadgeList = (badges: number): string => {
 
 	return "``` " + badgeList.join(" ") + " ```";
 };
+
+// TODO: remove warning for deleting
+// TODO: maybe autoupdate embed when actions are performed
+
 export const profileCommand = new Command({
 	definition: new SlashCommandBuilder()
 		.setName("profile")
@@ -138,6 +143,7 @@ export const profileCommand = new Command({
 			});
 		}
 	},
+	// TODO: set the right intents and permissions
 	neededPermissions: [],
 	neededIntents: []
 });

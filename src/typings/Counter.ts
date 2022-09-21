@@ -1,7 +1,7 @@
 import { Client, Guild } from "discord.js";
 
 import GuildService from "../services/GuildSettings";
-import FormattingSettings from "./FormattingSettings";
+import CounterFormattingSettings from "./CounterFormattingSettings";
 
 interface executeArgs {
 	client: Client;
@@ -19,7 +19,7 @@ interface executeArgs {
 	/**
 	 * @description Formatting settings for the counter
 	 */
-	formattingSettings: FormattingSettings;
+	formattingSettings: CounterFormattingSettings;
 
 	/**
 	 * @description Resource, like a list of role IDs, a piece of text, an URI, etc

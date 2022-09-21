@@ -273,6 +273,7 @@ export const setupCommand = new Command({
 		youtube: execute,
 		twitter: execute
 	},
+	// TODO: set the right intents and permissions
 	neededIntents: [
 		"GuildMessageTyping",
 		"GuildMembers",

@@ -31,6 +31,7 @@ export async function deployCommands() {
 				return;
 			}
 
+			// TODO: i18n
 			allCommands.forEach(({ definition }, index) => {
 				if (definition instanceof SlashCommandBuilder) {
 					definition.setDescription(

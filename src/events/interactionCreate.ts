@@ -18,6 +18,8 @@ import { i18nService } from "../services/i18n";
 import { Event } from "../structures";
 import { BaseMessageEmbed, UserError } from "../utils";
 
+// TODO: upsert user profile
+
 export const interactionCreateEvent = new Event({
 	name: "interactionCreate",
 	handler: async (interaction) => {

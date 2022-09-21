@@ -17,6 +17,7 @@ export const premiumCommand = new Command({
 		});
 		command.reply({ embeds: [embed], ephemeral: true });
 	},
+	// TODO: set the right intents and permissions
 	neededIntents: [],
 	neededPermissions: ["EmbedLinks"]
 });

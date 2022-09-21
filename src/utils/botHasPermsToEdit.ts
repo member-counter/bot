@@ -1,6 +1,7 @@
 import { GuildChannel, PermissionFlagsBits } from "discord.js";
 import { bot } from "..";
 import { ChannelType } from "discord-api-types/v10";
+
 const botHasPermsToEdit = (channel: GuildChannel): boolean => {
 	const botPermsInChannel = channel.permissionsFor(bot.client.user.id);
 

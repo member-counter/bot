@@ -14,6 +14,7 @@ import _ from "lodash";
 import logger from "../logger";
 import BaseEmbed from "./BaseMessageEmbed";
 
+// TODO: i18n
 /**
  * @author VampireChicken12
  * @author eduardozgz

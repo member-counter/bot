@@ -23,8 +23,10 @@ export class Event<E extends keyof ClientEvents> {
 	constructor(options: EventOptions<E>) {
 		this.name = options.name;
 		this.handler = options.handler;
-		this.neededIntents = new IntentsBitField(options.neededIntents);
-		this.neededPermissions = new PermissionsBitField(options.neededPermissions);
+		this.neededIntents = new IntentsBitField(options.neededIntents ?? 0);
+		this.neededPermissions = new PermissionsBitField(
+			options.neededPermissions ?? 0n
+		);
 	}
 }
 

@@ -67,6 +67,7 @@ export const inviteCommand = new Command({
 			});
 		}
 	},
+	// TODO: set the right intents and permissions
 	neededIntents: [
 		"GuildMessageTyping",
 		"GuildMembers",

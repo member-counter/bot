@@ -1,14 +1,15 @@
 import { ButtonInteraction } from "discord.js";
 
 import { resetGuildSettings } from "./resetGuildSettings";
-import { resetUserProfile } from "./resetUserProfile";
-import { profileActions } from "./profile";
+import { deleteUserProfile } from "./deleteUserProfile";
+import { profileActions } from "./profileActions";
 
+// TODO: use constants for customIds for all interactions
 export const allButtons: ((
 	buttonInteraction: ButtonInteraction
 ) => Promise<void> | void)[] = [
 	resetGuildSettings,
-	resetUserProfile,
+	deleteUserProfile,
 	profileActions
 ];
 

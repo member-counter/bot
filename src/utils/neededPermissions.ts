@@ -1,5 +1,7 @@
 import { PermissionsString, PermissionFlagsBits } from "discord.js";
 
+// TODO: recollect all from Interaction neededPermissions
+
 export const neededBotPermissions: PermissionsString[] = [
 	"ManageChannels",
 	"ViewChannel",

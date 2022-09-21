@@ -10,6 +10,7 @@ export default class Bot {
 	constructor() {
 		this.client = new Client({
 			rest: { version: apiVersion },
+			// TODO: improve
 			intents: config.premium.thisBotsIsPremium
 				? allEventsNeededIntents.bitfield |
 				  allCommandsNeededIntents.bitfield |

@@ -68,6 +68,7 @@ export const lockChannelCommand = new Command({
 
 		await command.reply({ content: success, ephemeral: true });
 	},
+	// TODO: set the right intents and permissions
 	neededIntents: [
 		"GuildMembers",
 		"Guilds",

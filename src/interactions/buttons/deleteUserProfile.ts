@@ -9,7 +9,7 @@ import { i18nService } from "../../services/i18n";
 
 export const buttonId = "delete_user_profile";
 
-export const resetUserProfile = async (
+export const deleteUserProfile = async (
 	buttonInteraction: ButtonInteraction
 ) => {
 	const name = buttonInteraction.customId;
