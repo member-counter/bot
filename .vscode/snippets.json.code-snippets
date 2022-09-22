@@ -14,7 +14,7 @@
 		"prefix": "slash",
 		"body": [
 			"import { SlashCommandBuilder } from \"@discordjs/builders\";\n\nimport { Command } from \"../../structures\";\n",
-			"export const ${1:name}Command = new Command({\n\tdefinition: new SlashCommandBuilder()\n\t\t.setName(\"${1:name}\")\n\t\t.setDescription(\"${2:description}\"),\n\texecute: async (command, { t }) => {\n\n\t},\n\tneededPermissions: [],\n\tneededIntents: []\n});\n"
+			"export const ${1:name}Command = new Command<\"${1:name}\">({\n\tname: \"${1:name}\"\n\tdefinition: new SlashCommandBuilder()\n\t\t.setName(\"${1:name}\")\n\t\t.setDescription(\"${2:description}\"),\n\texecute: async (command, { t }) => {\n\n\t},\n\tneededPermissions: [],\n\tneededIntents: []\n});\n"
 		],
 		"description": "Generates a command"
 	},
