@@ -20,6 +20,7 @@ import { premiumCommand } from "./premium";
 import { profileCommand } from "./profile";
 import { settingsCommand } from "./settings";
 import { setupCommand } from "./setup";
+import { statusCommand } from "./status";
 
 export const allCommands = [
 	inviteCommand,
@@ -31,7 +32,8 @@ export const allCommands = [
 	premiumCommand,
 	profileCommand,
 	infoCommand,
-	guideCommand
+	guideCommand,
+	statusCommand
 ];
 
 export const allCommandNames = allCommands.map((command) => command.name);

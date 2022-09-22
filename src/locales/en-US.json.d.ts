@@ -660,7 +660,8 @@ interface EnUS {
           example: ['10 % 2 = {modulus:10,2}']
         }
       }
-    }
+    },
+    status: {definition: {name: 'status', description: 'Shows status of the bot'}}
   },
   common: {
     error: {
