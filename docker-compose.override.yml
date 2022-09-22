@@ -1,0 +1,48 @@
+version: "3.7"
+
+services:
+  member-counter-bot:
+    extends:
+      file: docker-compose.yml
+      service: member-counter-bot
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    ports:
+      - "9229:9229"
+  member-counter-bot-db:
+    extends:
+      file: docker-compose.yml
+      service: member-counter-bot-db
+    command: mongod --port=27016
+    ports:
+      - "27016:27016"
+    networks:
+      - default
+
+  member-counter-bot-redis:
+    extends:
+      file: docker-compose.yml
+      service: member-counter-bot-redis
+    command: redis-server --requirepass ${REDIS_PASSWORD} --port ${REDIS_PORT}
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+
+  member-counter-bot-db-mongoex:
+    extends:
+      file: docker-compose.dev.yml
+      service: member-counter-bot-db-mongoex
+    environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME=monokai
+      - ME_CONFIG_MONGODB_SERVER=member-counter-bot-db
+      - ME_CONFIG_MONGODB_PORT=27016
+    ports:
+      - "8081:8081"
+  member-counter-bot-redisinsight:
+    extends:
+      file: docker-compose.dev.yml
+      service: member-counter-bot-redisinsight
+    ports:
+      - "8082:8001"

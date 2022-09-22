@@ -5,7 +5,7 @@
 		"module": "commonjs",
 		"target": "ES2021",
 		"moduleResolution": "node",
-		"resolveJsonModule": true,
+		"resolveJsonModule": false,
 		"esModuleInterop": true,
 		"sourceMap": true,
 		"rootDir": "./src",
