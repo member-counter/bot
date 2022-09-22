@@ -20,6 +20,7 @@ import { settingsCommand } from "./settings";
 import { setupCommand } from "./setup";
 
 import type { Command } from "../../structures";
+import { infoCommand } from "./info";
 export const allCommands: Command[] = [
 	inviteCommand,
 	settingsCommand,
@@ -28,7 +29,8 @@ export const allCommands: Command[] = [
 	lockChannelCommand,
 	base64Command,
 	premiumCommand,
-	profileCommand
+	profileCommand,
+	infoCommand
 ];
 
 // TODO: take them directly from command definitions
@@ -40,7 +42,8 @@ export const allCommandNames = [
 	"lockChannel",
 	"base64",
 	"premium",
-	"profile"
+	"profile",
+	"info"
 ] as const;
 
 export const allCommandsNeededPermissions: PermissionsBitField =

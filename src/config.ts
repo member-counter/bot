@@ -64,6 +64,10 @@ const envVarsSchema = Joi.object()
 			.description(
 				"Deploy slash commands automatically when the bot is started"
 			),
+		WEBSITE_URL: Joi.string()
+			.optional()
+			.description("The website url")
+			.default("https://member-counter.eduardozgz.com"),
 		DISCORD_OFFICIAL_SERVER_ID: Joi.string().optional(),
 		DISCORD_OFFICIAL_SERVER_URL: Joi.string().uri().allow("").optional(),
 		PREMIUM_BOT_ID: Joi.string().allow("").optional(),
@@ -107,7 +111,8 @@ const config = {
 			token: envVars.DISCORD_BOT_TOKEN as string,
 			shards: envVars.DISCORD_BOT_SHARDS as number | number[] | "auto",
 			shardCount: envVars.DISCORD_BOT_SHARDS_COUNT as number,
-			officialBotId: envVars.DISCORD_OFFICIAL_BOT_ID as string
+			officialBotId: envVars.DISCORD_OFFICIAL_BOT_ID as string,
+			websiteUrl: envVars.WEBSITE_URL as string
 		},
 		supportServer: { url: envVars.DISCORD_OFFICIAL_SERVER_URL as string },
 		autoDeployCommands: envVars.DISCORD_BOT_AUTO_DEPLOY_COMMANDS as boolean
