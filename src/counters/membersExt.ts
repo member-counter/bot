@@ -35,9 +35,10 @@ const MembersExtendedCounter: Counter<
 		};
 
 		for (const [, member] of guild.members.cache) {
-			const memberIsOffline =
-				member.presence.status === "offline" ||
-				member.presence.status === undefined;
+			const memberIsOffline = member.presence
+				? member.presence.status === "offline" ||
+				  member.presence.status === undefined
+				: false;
 
 			if (member.user.bot) {
 				counts.bots++;

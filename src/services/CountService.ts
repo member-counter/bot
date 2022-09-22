@@ -344,7 +344,7 @@ class CountService {
 		// format result if it's a number according to the formatting settings
 		if (typeof result === "number" && !isNaN(result)) {
 			const isShortNumberEnabled = formattingSettings.shortNumber > -1;
-			const isLocaleEnabled = !formattingSettings.locale.includes("disable");
+			const isLocaleEnabled = !formattingSettings.locale?.includes("disable");
 			if (isShortNumberEnabled || isLocaleEnabled) {
 				let locale = "en";
 				let options = {};
