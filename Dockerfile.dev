@@ -14,4 +14,4 @@ COPY . .
 # DevTools/Debugger
 EXPOSE 9229
 
-CMD ["./node_modules/.bin/concurrently", "'./node_modules/.bin/ts-node-dev", "--inspect=0.0.0.0:9229", "--poll", "--respawn", "--ignore-watch", "node_modules", "--transpile-only", "src/index.ts'", "'./node_modules/.bin/nodemon", "-L", "--watch", "./src/locales", "-e json", "--", "./node_modules/ts-json-as-const", "src/locales/en-US.json'"]
+CMD ["./node_modules/.bin/concurrently", "'./node_modules/.bin/ts-node-dev --inspect=0.0.0.0:9229 --poll --respawn --ignore-watch node_modules --transpile-only src/index.ts'", "'./node_modules/.bin/nodemon -L --watch ./src/locales -e json -- ./node_modules/ts-json-as-const src/locales/en-US.json'"]
