@@ -34,7 +34,8 @@ const generateBadgeList = (badges: number): string => {
 // TODO: remove warning for deleting
 // TODO: maybe autoupdate embed when actions are performed
 
-export const profileCommand = new Command({
+export const profileCommand = new Command<"profile">({
+	name: "profile",
 	definition: new SlashCommandBuilder()
 		.setName("profile")
 		.setDescription("untranslated")

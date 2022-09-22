@@ -4,7 +4,8 @@ import config from "../../config";
 import { Command } from "../../structures";
 import { BaseMessageEmbed, getBotInviteLink } from "../../utils";
 
-export const infoCommand = new Command({
+export const infoCommand = new Command<"info">({
+	name: "info",
 	definition: new SlashCommandBuilder()
 		.setName("info")
 		.setDescription("untranslated")

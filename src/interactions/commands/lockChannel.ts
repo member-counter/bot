@@ -11,7 +11,8 @@ import { Command } from "../../structures";
 import { botHasPermsToEdit, UserError } from "../../utils";
 
 // TODO: i18n
-export const lockChannelCommand = new Command({
+export const lockChannelCommand = new Command<"lock-channel">({
+	name: "lock-channel",
 	definition: new SlashCommandBuilder()
 		.setName("lock-channel")
 		.setDescription("untranslated")
@@ -23,7 +24,7 @@ export const lockChannelCommand = new Command({
 				.setRequired(true)
 		),
 	execute: async (command, { t }) => {
-		const { success, errorNoPerms } = t("commands.lockChannel", {
+		const { success, errorNoPerms } = t("commands.lock-channel", {
 			returnObjects: true
 		});
 		const channelId = command.options.get("channel", true).value as string;

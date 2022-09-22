@@ -218,7 +218,8 @@ async function execute(
 			});
 	}
 }
-export const setupCommand = new Command({
+export const setupCommand = new Command<"setup">({
+	name: "setup",
 	definition: new SlashCommandBuilder()
 		.setName("setup")
 		.setDescription("untranslated")

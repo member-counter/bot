@@ -1,4 +1,3 @@
-import { profileCommand } from "./profile";
 import { inlineCode } from "@discordjs/builders";
 import {
 	ApplicationCommandOptionType,
@@ -13,15 +12,14 @@ import logger from "../../logger";
 import { i18nService } from "../../services/i18n";
 import { base64Command } from "./base64";
 import { checkPermissionsCommand } from "./checkPermissions";
+import { infoCommand } from "./info";
 import { inviteCommand } from "./invite";
 import { lockChannelCommand } from "./lockChannel";
 import { premiumCommand } from "./premium";
+import { profileCommand } from "./profile";
 import { settingsCommand } from "./settings";
 import { setupCommand } from "./setup";
-
-import type { Command } from "../../structures";
-import { infoCommand } from "./info";
-export const allCommands: Command[] = [
+export const allCommands = [
 	inviteCommand,
 	settingsCommand,
 	setupCommand,
@@ -33,18 +31,7 @@ export const allCommands: Command[] = [
 	infoCommand
 ];
 
-// TODO: take them directly from command definitions
-export const allCommandNames = [
-	"invite",
-	"settings",
-	"setup",
-	"checkPermissions",
-	"lockChannel",
-	"base64",
-	"premium",
-	"profile",
-	"info"
-] as const;
+export const allCommandNames = allCommands.map((command) => command.name);
 
 export const allCommandsNeededPermissions: PermissionsBitField =
 	new PermissionsBitField(

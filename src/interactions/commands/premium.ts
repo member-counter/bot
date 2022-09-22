@@ -4,7 +4,8 @@ import config from "../../config";
 import { Command } from "../../structures";
 import { BaseMessageEmbed } from "../../utils";
 
-export const premiumCommand = new Command({
+export const premiumCommand = new Command<"premium">({
+	name: "premium",
 	definition: new SlashCommandBuilder()
 		.setName("premium")
 		.setDescription("untranslated"),

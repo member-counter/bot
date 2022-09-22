@@ -10,7 +10,8 @@ import { Command } from "../../structures";
 import { BaseMessageEmbed, getBotInviteLink } from "../../utils";
 import { twemojiURL } from "../../utils";
 
-export const inviteCommand = new Command({
+export const inviteCommand = new Command<"invite">({
+	name: "invite",
 	definition: new SlashCommandBuilder()
 		.setName("invite")
 		.setDescription("untranslated"),

@@ -11,13 +11,14 @@ import {
 } from "../../utils";
 
 // TODO: i18n
-export const checkPermissionsCommand = new Command({
+export const checkPermissionsCommand = new Command<"check-permissions">({
+	name: "check-permissions",
 	definition: new SlashCommandBuilder()
 		.setName("check-permissions")
 		.setDescription("untranslated"),
 	execute: async (command, { t }) => {
 		const { client, channel, guild } = command;
-		const languagePackCheckPermissions = t("commands.checkPermissions", {
+		const languagePackCheckPermissions = t("commands.check-permissions", {
 			returnObjects: true
 		});
 		const botMemberPermissions = guild.members.cache.get(

@@ -25,7 +25,8 @@ interface SubCommandsExecute {
 	[key: string]: CommandExecute | SubCommandsExecute;
 }
 
-interface CommandOptions {
+type CommandOptions<NAME> = {
+	name: NAME;
 	definition: SlashCommandUnion;
 
 	execute: CommandExecute | SubCommandsExecute;
@@ -37,10 +38,18 @@ interface CommandOptions {
 	 * @description Add here the permissions needed, this will be used to create invite links with all the necessary permissions
 	 */
 	neededPermissions?: PermissionsString[];
-}
+};
 
 // TODO:: structure for Interactions, and extend this one from it
-export class Command {
+export type CommandType<NAME> = {
+	name: NAME;
+	definition: SlashCommandUnion;
+	execute: CommandExecute | SubCommandsExecute;
+	neededIntents: GatewayIntentsString[];
+	neededPermissions: PermissionsString[];
+};
+export class Command<NAME> {
+	name: NAME;
 	definition: SlashCommandUnion;
 	execute: CommandExecute | SubCommandsExecute;
 	// TODO: return bitfields and default to 0
@@ -48,7 +57,8 @@ export class Command {
 	// TODO: return bitfields and default to 0n
 	neededPermissions: PermissionsString[];
 
-	constructor(options: CommandOptions) {
+	constructor(options: CommandOptions<NAME>) {
+		this.name = options.name;
 		this.definition = options.definition;
 		this.execute = options.execute;
 		this.neededIntents = options.neededIntents;

@@ -76,7 +76,8 @@ const seeFields: SeeFields = {
 	}
 };
 
-export const settingsCommand = new Command({
+export const settingsCommand = new Command<"settings">({
+	name: "settings",
 	definition: new SlashCommandBuilder()
 		.setName("settings")
 		.setDescription("untranslated")

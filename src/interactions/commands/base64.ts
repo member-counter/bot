@@ -2,7 +2,8 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 
 import { Command } from "../../structures";
 
-export const base64Command = new Command({
+export const base64Command = new Command<"base64">({
+	name: "base64",
 	definition: new SlashCommandBuilder()
 		.setName("base64")
 		.setDescription("untranslated")
