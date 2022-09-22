@@ -16,16 +16,16 @@ Or take reference from `.env.example` and pass the variables directly
 Under the `src/` folder, you will find different folders and files
 
 - `events/`: Used to store event handlers, and these should be added in `src/events/index.ts` in the `allEvents` variable
-- `interactions/`: Used to store all kind of interaction handlers in their respective folder (`buttons/`, `commands/`, etc)
+- `interactions/`: Used to store all kind of interaction handlers in their respective folder (`buttons/`, `commands/`, `autocompletes`, `modals` etc)
 - `locale/`: Used to store localization files
 - `models/`: Used to store DB models
-- `services/`: Used to store the classes the bussiness logic
-- `structures/`: Used for storing typings and other useful classes that aren't related specifically to the bussiness logic of the bot
+- `services/`: Used to store the classes the business logic
+- `structures/`: Used for storing typings and other useful classes that aren't related specifically to the business logic of the bot
 - `utils/`: Used to store more general function and classes
 
 # Translations
 
-Translations can be obtained with the `txt` function, which is available in any command, or returned from the `i18n` function when you pass an (interaction)[https://discord.js.org/#/docs/discord.js/stable/class/Interaction] object, this `txt` function will translate the chosen string, and replace all the placeholders with the specified data (the priority order when choosing the language is: `explicitly set by a the settings command` > `guild locale` > `user locale`)
+Translations can be obtained t the `t` function, which is available in any command, or returned from the `i18n` function when you pass an (interaction)[https://discord.js.org/#/docs/discord.js/stable/class/Interaction] object, this `txt` function will translate the chosen string, and replace all the placeholders with the specified data (the priority order when choosing the language is: `explicitly set by a the settings command` > `guild locale` > `user locale`)
 
 Example from the invite command:
 
@@ -58,7 +58,7 @@ Rebuild the bot when you get new translations, and load them with `npm i18nToRed
 
 # Logging
 
-Logs are printed to `stdout` and `stderr`, and saved to log files under the `./logs` folder, you can change this behaviour by customizing `./src/logger.ts`
+Logs are printed to `stdout` and `stderr`, and saved to log files under the `./logs` folder, you can change this behavior by customizing `./src/logger.ts`
 
 # Sharding
 
