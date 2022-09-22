@@ -12,6 +12,7 @@ import logger from "../../logger";
 import { i18nService } from "../../services/i18n";
 import { base64Command } from "./base64";
 import { checkPermissionsCommand } from "./checkPermissions";
+import { guideCommand } from "./guide";
 import { infoCommand } from "./info";
 import { inviteCommand } from "./invite";
 import { lockChannelCommand } from "./lockChannel";
@@ -19,6 +20,7 @@ import { premiumCommand } from "./premium";
 import { profileCommand } from "./profile";
 import { settingsCommand } from "./settings";
 import { setupCommand } from "./setup";
+
 export const allCommands = [
 	inviteCommand,
 	settingsCommand,
@@ -28,7 +30,8 @@ export const allCommands = [
 	base64Command,
 	premiumCommand,
 	profileCommand,
-	infoCommand
+	infoCommand,
+	guideCommand
 ];
 
 export const allCommandNames = allCommands.map((command) => command.name);
