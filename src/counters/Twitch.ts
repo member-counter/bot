@@ -14,10 +14,8 @@ const authProvider = new ClientCredentialsAuthProvider(
 
 const client = new ApiClient({ authProvider });
 
-const TwitchCounter: Counter<
-	"twitchFollowers" | "twitchViews" | "twitchChannelName"
-> = {
-	aliases: ["twitchFollowers", "twitchViews", "twitchChannelName"],
+const TwitchCounter: Counter<"twitchFollowers" | "twitchChannelName"> = {
+	aliases: ["twitchFollowers", "twitchChannelName"],
 	isPremium: true,
 	isEnabled: true,
 	lifetime: 60 * 60 * 1000,
@@ -28,14 +26,13 @@ const TwitchCounter: Counter<
 				throw new Error("TWITCH_CLIENT_SECRET not provided");
 
 			const user = await client.users.getUserByName(userName);
-			const { views, displayName } = user;
+			const { displayName } = user;
 			const followers = await client.users
 				.getFollowsPaginated({ followedUser: user })
 				.getTotalCount();
 
 			return {
 				twitchFollowers: followers,
-				twitchViews: views,
 				twitchChannelName: displayName
 			};
 		} catch (e) {
