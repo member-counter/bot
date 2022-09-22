@@ -92,7 +92,16 @@ const envVarsSchema = Joi.object()
 		CUSTOM_EMOJI_NEGATIVE: Joi.string().optional(),
 		CUSTOM_EMOJI_WARNING: Joi.string().optional(),
 		BOT_OWNERS: Joi.array().optional(),
-		GET_PREMIUM_BOT_URL: Joi.string().optional()
+		GET_PREMIUM_BOT_URL: Joi.string().optional(),
+		COUNTER_HTTP_DENY_LIST: Joi.array().optional(),
+		MEMERATOR_API_KEY: Joi.string().optional(),
+		YOUTUBE_API_KEY: Joi.string().optional(),
+		TWITCH_CLIENT_ID: Joi.string().optional(),
+		TWITCH_CLIENT_SECRET: Joi.string().optional(),
+		TWITTER_CONSUMER_KEY: Joi.string().optional(),
+		TWITTER_CONSUMER_SECRET: Joi.string().optional(),
+		TWITTER_ACCESS_TOKEN: Joi.string().optional(),
+		TWITTER_ACCESS_TOKEN_SECRET: Joi.string().optional()
 	})
 	.unknown();
 
@@ -150,11 +159,18 @@ const config = {
 		loading: envVars.CUSTOM_EMOJI_LOADING as string
 	},
 	ghostMode: envVars.GHOST_MODE as boolean,
-
+	counterHTTPDenyList: envVars.COUNTER_HTTP_DENY_LIST as string[],
 	// TODO: considering merging this with premium.thisBotIsPremium or other alternatives
 	unrestrictedMode: envVars.UNRESTRICTED_MODE as boolean,
 	debug: envVars.DEBUG as boolean,
-
+	memeratorApiKey: envVars.MEMERATOR_API_KEY as string,
+	youtubeApiKey: envVars.YOUTUBE_API_KEY as string,
+	twitchClientId: envVars.TWITCH_CLIENT_ID as string,
+	twitchClientSecret: envVars.TWITCH_CLIENT_SECRET as string,
+	twitterConsumerKey: envVars.TWITTER_CONSUMER_KEY as string,
+	twitterConsumerSecret: envVars.TWITTER_CONSUMER_SECRET as string,
+	twitterAccessToken: envVars.TWITTER_ACCESS_TOKEN as string,
+	twitterAccessTokenSecret: envVars.TWITTER_ACCESS_TOKEN_SECRET as string,
 	// TODO: we should store this config in the DB
 	botOwners: envVars.BOT_OWNERS as string[]
 };

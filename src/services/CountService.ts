@@ -10,6 +10,7 @@ import {
 
 import config from "../config";
 import Constants from "../Constants";
+import counters from "../counters/all";
 import logger from "../logger";
 import { i18nInstanceType, i18nService } from "../services/i18n";
 import Counter from "../typings/Counter";
@@ -17,9 +18,6 @@ import CounterFormattingSettings from "../typings/CounterFormattingSettings";
 import { botHasPermsToEdit } from "../utils";
 import GuildService from "./GuildSettings";
 
-// TODO: Uncomment when counters get implemented and remove temp fix
-// import counters from "../counters/all";
-const counters: Counter[] = [];
 const {
 	debug: DEBUG,
 	ghostMode,
@@ -28,10 +26,12 @@ const {
 } = config;
 class CountService {
 	private static counters = counters.map((counter) => {
-		counter.aliases = counter.aliases.map((alias) =>
-			CountService.safeCounterName(alias)
-		);
-		return counter;
+		return {
+			...counter,
+			aliases: counter.aliases.map((alias) =>
+				CountService.safeCounterName(alias)
+			)
+		};
 	});
 
 	public static globalCache = new Map<
@@ -167,7 +167,9 @@ class CountService {
 	): Promise<string> {
 		const counterSections = counterRequested
 			.split(/(?<!\\):/)
-			.map((section) => section.replace("\\:", ":"));
+			.map((section) =>
+				section.replace("\\:", ":")
+			) as typeof counters[number]["aliases"][number][];
 		let formattingSettingsRaw: string;
 		const formattingSettings: CounterFormattingSettings = (() => {
 			const settings = {
@@ -219,7 +221,7 @@ class CountService {
 
 		// else, process the counter
 		if (result === undefined) {
-			const counter = CountService.getCounterByAlias(counterName);
+			const counter = CountService.getCounterByAlias(counterName, true);
 
 			if (!counter) {
 				result = Constants.CounterResult.UNKNOWN;
@@ -272,7 +274,9 @@ class CountService {
 
 				for (const key in returnedValue) {
 					if (Object.prototype.hasOwnProperty.call(returnedValue, key)) {
-						const extKey = CountService.safeCounterName(key);
+						const extKey = CountService.safeCounterName(
+							key as typeof counters[number]["aliases"][number]
+						);
 						let extValue = returnedValue[key];
 
 						if (typeof extValue === "string") {
@@ -379,8 +383,14 @@ class CountService {
 	 * @param name
 	 * @returns
 	 */
-	public static safeCounterName(name: string) {
-		return name.replace(/-|_|\s/g, "").toLowerCase();
+	public static safeCounterName(
+		name: typeof counters[number]["aliases"][number]
+	) {
+		return name
+			.replace(/-|_|\s/g, "")
+			.toLowerCase() as convertCounterNameToSafe<
+			typeof counters[number]["aliases"][number]
+		>;
 	}
 
 	/**
@@ -391,24 +401,77 @@ class CountService {
 	 * @returns
 	 */
 	private counterToKey(
-		counterName: string,
+		counterName: convertCounterNameToSafe<
+			typeof counters[number]["aliases"][number]
+		>,
 		resource: string,
 		formattingSettingsRaw: string
 	): string {
-		return [
-			formattingSettingsRaw,
-			CountService.safeCounterName(counterName),
-			resource
-		]
+		return [formattingSettingsRaw, counterName, resource]
 			.filter((x) => x) // remove undefined stuff
 			.join(":"); // the final thing will look like "base64Settings:counterName:ExtraParamsAkaResource", like a normal counter but without the curly braces {}
 	}
 
-	public static getCounterByAlias(alias: string): Counter {
+	public static getCounterByAlias(
+		alias:
+			| convertCounterNameToSafe<typeof counters[number]["aliases"][number]>
+			| typeof counters[number]["aliases"][number],
+		isSafe: boolean
+	): Counter<any> {
 		for (const counter of this.counters) {
-			if (counter.aliases.includes(this.safeCounterName(alias))) return counter;
+			if (isSafe) {
+				if (
+					counter.aliases.includes(
+						alias as convertCounterNameToSafe<
+							typeof counters[number]["aliases"][number]
+						>
+					)
+				)
+					return counter;
+			} else {
+				if (
+					counter.aliases.includes(
+						this.safeCounterName(
+							alias as typeof counters[number]["aliases"][number]
+						)
+					)
+				)
+					return counter;
+			}
 		}
 	}
 }
 
 export default CountService;
+type HasTail<Items extends string[]> = Items extends [any, any, ...any[]]
+	? true
+	: false;
+type Tail<Items extends string[]> = Items extends [string, ...infer Tail]
+	? Tail
+	: never;
+type JoinCounterParts<Parts, Delimiter extends string = ""> = Parts extends [
+	any,
+	...any[]
+]
+	? `${Parts[0]}${HasTail<Parts> extends true
+			? `${Delimiter}${JoinCounterParts<Tail<Parts>, Delimiter>}`
+			: ``}`
+	: string[] extends Parts
+	? string
+	: ``;
+type removeCharacter<
+	T,
+	Delimiter extends string = "-"
+> = T extends `${infer first}${Delimiter}${infer last}`
+	? [first, ...removeCharacter<last>]
+	: [T];
+type convertCounterNameToSafe<T> = Lowercase<
+	JoinCounterParts<
+		removeCharacter<
+			JoinCounterParts<
+				removeCharacter<JoinCounterParts<removeCharacter<T>>, "_">
+			>,
+			" "
+		>
+	>
+>;
