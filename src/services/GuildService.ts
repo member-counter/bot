@@ -23,16 +23,6 @@ class GuildService {
 		await this.doc.save();
 	}
 
-	public get prefix(): string {
-		return this.doc.prefix;
-	}
-
-	public async setPrefix(newPrefix: string): Promise<string> {
-		this.doc.prefix = newPrefix;
-		await this.doc.save();
-		return this.doc.prefix;
-	}
-
 	public get allowedRoles(): string[] {
 		return this.doc.allowedRoles;
 	}
