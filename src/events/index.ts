@@ -3,9 +3,11 @@ import type { Event } from "../structures";
 import { interactionCreateEvent } from "./interactionCreate";
 import { readyEvent } from "./ready";
 import { messageCreateEvent } from "./messageCreate";
+import { guildCreateEvent } from "./guildCreate";
 
 const allEvents: Event<any>[] = [
 	readyEvent,
+	guildCreateEvent,
 	interactionCreateEvent,
 	messageCreateEvent
 ];
