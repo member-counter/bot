@@ -6,7 +6,6 @@ import { v4 as uuid } from "uuid";
 const commandErrorHandler = async (
 	channel: Eris.TextableChannel,
 	languagePack: LanguagePack,
-	prefix: string,
 	error: any
 ): Promise<void> => {
 	const { errorDb, errorDiscordAPI, errorUnknown } = languagePack.common;
@@ -20,7 +19,7 @@ const commandErrorHandler = async (
 
 	switch (error.constructor.name) {
 		case "UserError":
-			errorEmbed.description = error.message.replace("{PREFIX}", prefix);
+			errorEmbed.description = error.message;
 			break;
 
 		case "MongooseError":

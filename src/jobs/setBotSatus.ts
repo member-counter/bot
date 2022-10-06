@@ -11,7 +11,7 @@ const setBotStatus: Job = {
 	run: async ({ client }) => {
 		if (DISCORD_STATUS?.some((status) => status.match(/\{disable\}/gi))) return;
 
-		let statusToSet = DISCORD_STATUS?.[0] ?? "{online;watching} {prefix}help";
+		let statusToSet = DISCORD_STATUS?.[0] ?? "{online;watching} help";
 
 		if (Math.random() * 100 < 1) {
 			statusToSet =
