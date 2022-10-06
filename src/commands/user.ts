@@ -137,38 +137,7 @@ const user: Command = {
 				emoji: "🗑️",
 				callback: async (reactorId, destroyListener) => {
 					if (author.id === reactorId) {
-						destroyListener();
-						const profileLP = languagePack.commands.profile;
-						const confirmationPrompt = await channel.createMessage(
-							profileLP.removeDataConfirmation
-								.replace(
-									"{CONFIRMATION_STRING}",
-									profileLP.removeDataConfirmationString
-								)
-								.replace("{CANCEL_STRING}", profileLP.cancelText)
-						);
-						const filter = (m) =>
-							(["cancel", cancelText].includes(m.content) &&
-								reactorId === author.id) ||
-							reactorId === author.id;
-						const collector = new MessageCollector(client, channel, filter, {
-							time: 60000,
-							max: 1
-						});
-						collector.on("collect", async (m) => {
-							if (m.content === profileLP.removeDataConfirmationString) {
-								await userSettings.remove();
-								confirmationPrompt.delete();
-								await channel.createMessage(profileLP.removeDataSuccess);
-							}
-							if (["cancel", cancelText].includes(m.content)) {
-								collector.stop();
-								confirmationPrompt.delete();
-							}
-						});
-						collector.on("end", () => {
-							confirmationPrompt.delete();
-						});
+						await userSettings.remove();
 					}
 				}
 			});

@@ -44,5 +44,5 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            ${{ github.repository }}:beta
-            ghcr.io/${{ github.repository }}:beta
+            eduardozgz/bot:beta
+            ghcr.io/member-counter/bot:beta

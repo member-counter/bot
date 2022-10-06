@@ -50,7 +50,6 @@ interface Commands {
 	setDigit: SetDigit;
 	shortNumber: ShortNumber;
 	locale: Locale;
-	prefix: Prefix;
 	role: Role;
 	seeSettings: SeeSettings;
 	resetSettings: ResetSettings;
@@ -198,7 +197,6 @@ interface SeeSettings {
 }
 interface SettingsMessage {
 	headerText: string;
-	prefixText: string;
 	langText: string;
 	localeText: string;
 	shortNumberText: string;
@@ -217,13 +215,6 @@ interface Role {
 	rolesUpdated: string;
 	errorNoRolesToUpdate: string;
 	invalidParams: string;
-}
-interface Prefix {
-	helpDescription: string;
-	helpUsage: string[];
-	helpExample: string[];
-	success: string;
-	noPrefixProvided: string;
 }
 interface Locale {
 	helpDescription: string;

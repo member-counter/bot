@@ -5,7 +5,6 @@ const {
 	DISCORD_CLIENT_TOKEN,
 	UNRESTRICTED_MODE,
 	GHOST_MODE,
-	DISCORD_PREFIX,
 	DISCORD_DEFAULT_LANG,
 	BOT_COLOR,
 	PREMIUM_BOT,
@@ -81,13 +80,6 @@ function checkConfig() {
 		console.warn(
 			"[ENV WARN] GHOST_MODE is set to true, counters won't be updated and commands won't work!"
 		);
-
-	if (typeof DISCORD_PREFIX !== "string") {
-		console.error(
-			`[ENV ERROR] The current prefix "${DISCORD_PREFIX}" is invalid`
-		);
-		fail = true;
-	}
 
 	if (BOT_COLOR?.toString().length && typeof BOT_COLOR !== "number") {
 		console.error(

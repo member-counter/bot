@@ -7,7 +7,7 @@
 
 [Add this bot](https://discord.com/oauth2/authorize?client_id=478567255198662656&permissions=269577300&scope=bot%20applications.commands) **|** [Website](https://member-counter.eduardozgz.com/) **|** [Translation Project](https://crowdin.com/project/member-counter-bot) **|** [Documentation](https://docs.member-counter.eduardozgz.com/)
 
-Member Counter is a Discord bot which lets you easily display counts and other dynamic information in a channel name or topic, to get started, [add this bot](https://discord.com/oauth2/authorize?client_id=478567255198662656&permissions=269577300&scope=bot%20applications.commands) to your Discord server and type `mc!setup`, and then read `mc!guide` to learn how to make more cool stuff with the bot.
+Member Counter is a Discord bot which lets you easily display counts and other dynamic information in a channel name or topic, to get started, [add this bot](https://discord.com/oauth2/authorize?client_id=478567255198662656&permissions=269577300&scope=bot%20applications.commands) to your Discord server and type `@Member Counter setup`, and then read `@Member Counter guide` to learn how to make more cool stuff with the bot.
 
 See also the [documentation](https://docs.member-counter.eduardozgz.com/) to learn about every feature of the bot
 
@@ -54,9 +54,11 @@ Now you can start editing the code, when you save a file the bot will be reloade
 ## Adding/editing text
 
 In English:
- - To add or edit a string, you must do it in the [./src/lang/en_US.json](./src/lang/en_US.json) file, after that, you may want to run `npm run generateLPTypings` to avoid compilation errors
+
+- To add or edit a string, you must do it in the [./src/lang/en_US.json](./src/lang/en_US.json) file, after that, you may want to run `npm run generateLPTypings` to avoid compilation errors
 
 In other language:
+
 - To add a string: First add it in english in the [./src/lang/en_US.json](./src/lang/en_US.json) file, then commit the file to the `dev` branch and it will be available in the [translation project](https://crowdin.com/project/member-counter-bot) in the next 10 minutes
 - To edit a string: You must do it trought the [translation project](https://crowdin.com/project/member-counter-bot), if your language isn't there, contact me and I will add it
 
