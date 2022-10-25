@@ -132,7 +132,7 @@ export const statusCommand = new Command<"status">({
 
 		const RESTLatencyCheck = Date.now();
 		await command.reply({ embeds: [embed] }).then(async () => {
-			embed.spliceFields(5, 1, {
+			embed.spliceFields(6, 1, {
 				name: "**REST latency:**",
 				value: `${Date.now() - RESTLatencyCheck}ms`,
 				inline: true
