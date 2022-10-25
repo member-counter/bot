@@ -1,6 +1,6 @@
 import { inlineCode } from "@discordjs/builders";
 import {
-	ApplicationCommandOptionType,
+	ApplicationCommandOptionType as OptionTypes,
 	CommandInteraction,
 	CommandInteractionOption,
 	CommandInteractionOptionResolver,
@@ -52,76 +52,71 @@ export default async function handleCommand(
 ): Promise<void> {
 	const translate = await i18nService(commandInteraction);
 
-	for (const command of allCommands) {
-		if (command.definition.name === commandInteraction.commandName) {
-			async function searchAndRunCommand(
-				subcommandExecute: typeof command.execute,
-				rawOptions: CommandInteractionOption[]
-			) {
-				const OptionTypes = ApplicationCommandOptionType;
-
+	const command = allCommands.find(
+		(c) => c.definition.name === commandInteraction.commandName
+	);
+	async function searchAndRunCommand(
+		subcommandExecute: typeof command.execute,
+		rawOptions: CommandInteractionOption[]
+	) {
+		if (
+			Array.isArray(rawOptions) &&
+			rawOptions.some((rawOption) =>
+				[OptionTypes.SubcommandGroup, OptionTypes.Subcommand].includes(
+					rawOption.type
+				)
+			)
+		) {
+			let found = false;
+			for (const rawOption of rawOptions) {
 				if (
-					Array.isArray(rawOptions) &&
-					rawOptions.some((rawOption) =>
-						[OptionTypes.SubcommandGroup, OptionTypes.Subcommand].includes(
-							rawOption.type
-						)
-					)
+					(
+						commandInteraction.options as CommandInteractionOptionResolver
+					).getSubcommandGroup(false) === rawOption.name ||
+					(
+						commandInteraction.options as CommandInteractionOptionResolver
+					).getSubcommand(false) === rawOption.name
 				) {
-					let found = false;
-					for (const rawOption of rawOptions) {
-						if (
-							(
-								commandInteraction.options as CommandInteractionOptionResolver
-							).getSubcommandGroup(false) === rawOption.name ||
-							(
-								commandInteraction.options as CommandInteractionOptionResolver
-							).getSubcommand(false) === rawOption.name
-						) {
-							if (typeof subcommandExecute === "object") {
-								found = true;
-								await searchAndRunCommand(
-									subcommandExecute[rawOption.name],
-									rawOption.options
-								);
-							}
-							break;
-						}
-					}
-					if (!found)
-						throw new Error(
-							`Command ${inlineCode(
-								commandInteraction.commandName
-							)} -> ${inlineCode(
-								(
-									commandInteraction.options as CommandInteractionOptionResolver
-								).getSubcommandGroup(false)
-							)} -> ${inlineCode(
-								(
-									commandInteraction.options as CommandInteractionOptionResolver
-								).getSubcommand(false)
-							)} is not being handled correctly`
+					if (typeof subcommandExecute === "object") {
+						found = true;
+						await searchAndRunCommand(
+							subcommandExecute[rawOption.name],
+							rawOption.options
 						);
-				} else if (typeof subcommandExecute === "function") {
-					logger.debug(
-						`${commandInteraction.user.username}#${
-							commandInteraction.user.discriminator
-						} (${
-							commandInteraction.user.id
-						}) is executing command ${commandInteraction} on channel ${
-							commandInteraction.channel ?? commandInteraction.channelId
-						}`
-					);
-					await subcommandExecute(commandInteraction, translate);
-					return;
+					}
+					break;
 				}
 			}
-
-			await searchAndRunCommand(
-				command.execute,
-				command.definition.toJSON().options
+			if (!found)
+				throw new Error(
+					`Command ${inlineCode(
+						commandInteraction.commandName
+					)} -> ${inlineCode(
+						(
+							commandInteraction.options as CommandInteractionOptionResolver
+						).getSubcommandGroup(false)
+					)} -> ${inlineCode(
+						(
+							commandInteraction.options as CommandInteractionOptionResolver
+						).getSubcommand(false)
+					)} is not being handled correctly`
+				);
+		} else if (typeof subcommandExecute === "function") {
+			logger.debug(
+				`${commandInteraction.user.username}#${
+					commandInteraction.user.discriminator
+				} (${
+					commandInteraction.user.id
+				}) is executing command ${commandInteraction} on channel ${
+					commandInteraction.channel ?? commandInteraction.channelId
+				}`
 			);
-			break;
+			await subcommandExecute(commandInteraction, translate);
+			return;
 		}
 	}
+	await searchAndRunCommand(
+		command.execute,
+		command.definition.toJSON().options
+	);
 }
