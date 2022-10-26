@@ -64,12 +64,17 @@ const envVarsSchema = Joi.object()
 			.description(
 				"Deploy slash commands automatically when the bot is started"
 			),
+		DISCORD_STATUS: Joi.array().optional().description("The bot status"),
 		WEBSITE_URL: Joi.string()
 			.optional()
 			.description("The website url")
 			.default("https://member-counter.eduardozgz.com"),
 		DISCORD_OFFICIAL_SERVER_ID: Joi.string().optional(),
 		DISCORD_OFFICIAL_SERVER_URL: Joi.string().uri().allow("").optional(),
+		UPDATE_COUNTER_INTERVAL: Joi.string()
+			.optional()
+			.default("0 */5 * * * *")
+			.description("CRON formatted interval string for updating counters"),
 		PREMIUM_BOT_ID: Joi.string().allow("").optional(),
 		PREMIUM_BOT_INVITE: Joi.string().uri().allow("").optional(),
 		PREMIUM_BOT: Joi.boolean().optional(),
@@ -121,7 +126,9 @@ const config = {
 			shards: envVars.DISCORD_BOT_SHARDS as number | number[] | "auto",
 			shardCount: envVars.DISCORD_BOT_SHARDS_COUNT as number,
 			officialBotId: envVars.DISCORD_OFFICIAL_BOT_ID as string,
-			websiteUrl: envVars.WEBSITE_URL as string
+			websiteUrl: envVars.WEBSITE_URL as string,
+			status: envVars.DISCORD_STATUS as string[],
+			counterUpdateInterval: envVars.UPDATE_COUNTER_INTERVAL as string
 		},
 		supportServer: { url: envVars.DISCORD_OFFICIAL_SERVER_URL as string },
 		autoDeployCommands: envVars.DISCORD_BOT_AUTO_DEPLOY_COMMANDS as boolean

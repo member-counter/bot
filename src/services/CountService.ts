@@ -59,7 +59,7 @@ class CountService {
 
 	public static async init(
 		guild: Guild,
-		interaction: Interaction | CommandInteraction
+		interaction: string | Interaction | CommandInteraction
 	): Promise<CountService> {
 		if (!guild.available) throw new Error(`Guild ${guild.id} is unavailable`);
 		const guildSettings = await GuildService.init(guild.id);
