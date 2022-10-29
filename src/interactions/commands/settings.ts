@@ -137,11 +137,11 @@ export const settingsCommand = new Command<"settings">({
 	execute: {
 		see: async (command, i18n) => {
 			const { t } = i18n;
-			if (!command.inGuild()) throw new UserError("common.error.noDm");
+			if (!command.inGuild()) throw new UserError(t("common.error.noDm"));
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
 			)
-				throw new UserError("common.error.noPermissions");
+				throw new UserError(t("common.error.noPermissions"));
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
@@ -178,11 +178,11 @@ export const settingsCommand = new Command<"settings">({
 		},
 		set: async (command, i18n) => {
 			let { t } = i18n;
-			if (!command.inGuild()) throw new UserError("common.error.noDm");
+			if (!command.inGuild()) throw new UserError(t("common.error.noDm"));
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
 			)
-				throw new UserError("common.error.noPermissions");
+				throw new UserError(t("common.error.noPermissions"));
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();
@@ -289,11 +289,11 @@ export const settingsCommand = new Command<"settings">({
 			});
 		},
 		logs: async (command, { t, language }) => {
-			if (!command.inGuild()) throw new UserError("common.error.noDm");
+			if (!command.inGuild()) throw new UserError(t("common.error.noDm"));
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
 			)
-				throw new UserError("common.error.noPermissions");
+				throw new UserError(t("common.error.noPermissions"));
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			guildSettings.log("Hello world!");
@@ -339,7 +339,7 @@ export const settingsCommand = new Command<"settings">({
 			}
 		},
 		"classic-premium-upgrade": async (command, { t }) => {
-			if (!command.inGuild()) throw new UserError("common.error.noDm");
+			if (!command.inGuild()) throw new UserError(t("common.error.noDm"));
 
 			const guildSettings = await GuildSettings.init(command.guildId);
 			await command.guild.fetch();

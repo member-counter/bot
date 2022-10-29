@@ -18,9 +18,9 @@ async function execute(
 	command: CommandInteraction,
 	{ t }: Unwrap<typeof i18nService>
 ) {
-	if (!command.inGuild()) throw new UserError("common.error.noDm");
+	if (!command.inGuild()) throw new UserError(t("common.error.noDm"));
 	if (!command.memberPermissions.has(PermissionFlagsBits.Administrator))
-		throw new UserError("common.error.noPermissions");
+		throw new UserError(t("common.error.noPermissions"));
 	const guildSettings = await GuildSettings.init(command.guildId);
 	await command.guild.fetch();
 	await command.channel.fetch();
