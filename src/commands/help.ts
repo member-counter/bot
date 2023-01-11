@@ -2,14 +2,11 @@ import Command from "../typings/Command";
 import getEnv from "../utils/getEnv";
 import embedBase from "../utils/embedBase";
 import UserError from "../utils/UserError";
-import GuildService from "../services/GuildService";
 import CountService from "../services/CountService";
-import { GuildChannel } from "eris";
 import getMotd from "../utils/getMOTD";
 import commands from "../commands/all";
-import escapeRegex from "../utils/escapeRegex";
 
-const { WEBSITE_URL, DISCORD_PREFIX, DISCORD_BOT_INVITE } = getEnv();
+const { WEBSITE_URL, DISCORD_BOT_INVITE } = getEnv();
 
 const help: Command = {
 	aliases: ["help"],
@@ -17,35 +14,22 @@ const help: Command = {
 	run: async ({ message, languagePack }) => {
 		const { channel, content } = message;
 
-		let prefix = DISCORD_PREFIX;
-
-		if (channel instanceof GuildChannel) {
-			prefix = (await GuildService.init(message.guildID)).prefix;
-		}
-
 		const desiredThing = content
 			.replace(/\w+/, "")
 			.trim()
 			.toLowerCase()
-			.replace(/\{|\}/g, "")
+			.replace(/\{|\}/g, "");
 
 		if (!desiredThing) {
 			// Main help page
 			let embed = embedBase(languagePack.commands.help.embedReply);
 
-			embed.title = embed.title.replace(/\{PREFIX\}/g, prefix);
 			const motd = getMotd();
 			embed.description =
 				(motd.length ? motd + "\n\n" : "") +
 				embed.description
 					.replace(/\{DISCORD_BOT_INVITE\}/g, DISCORD_BOT_INVITE)
-					.replace(/\{PREFIX\}/g, prefix)
 					.replace(/\{WEBSITE\}/g, WEBSITE_URL);
-
-			embed.fields.map((field) => {
-				field.value = field.value.replace(/\{PREFIX\}/g, prefix);
-				return field;
-			});
 
 			await channel.createMessage({ embeds: [embed] });
 		} else {
@@ -65,10 +49,7 @@ const help: Command = {
 					) {
 						const embed = embedBase({
 							title: languagePack.commands.help.misc.command + ` \`${key}\``,
-							description: content.helpDescription.replace(
-								/\{PREFIX\}/gi,
-								prefix
-							)
+							description: content.helpDescription
 						});
 
 						embed.description += "\n";
@@ -78,7 +59,7 @@ const help: Command = {
 							content.helpUsage.forEach((i) => {
 								usages += "```" + i + "```";
 							});
-							embed.description += usages.replace(/\{PREFIX\}/gi, prefix);
+							embed.description += usages;
 						}
 
 						if (content.helpExample?.length) {
@@ -86,7 +67,7 @@ const help: Command = {
 							content.helpExample.forEach((i) => {
 								examples += "```" + i + "```";
 							});
-							embed.description += examples.replace(/\{PREFIX\}/gi, prefix);
+							embed.description += examples;
 						}
 
 						if (content.helpImage) {
@@ -112,10 +93,7 @@ const help: Command = {
 					) {
 						const embed = embedBase({
 							title: languagePack.commands.help.misc.counter + ` \`{${key}}\``,
-							description: content.detailedDescription.replace(
-								/\{PREFIX\}/gi,
-								prefix
-							)
+							description: content.detailedDescription
 						});
 
 						embed.description += "\n";
@@ -137,11 +115,7 @@ const help: Command = {
 						}
 
 						embed.description +=
-							"\n> " +
-							languagePack.commands.guide.footerText.replace(
-								/\{PREFIX\}/gi,
-								prefix
-							);
+							"\n> " + languagePack.commands.guide.footerText;
 
 						await channel.createMessage({ embeds: [embed] });
 
@@ -233,7 +207,7 @@ const help: Command = {
 						.forEach(([key]) => {
 							const command = languagePack.commands[key];
 
-							errorMessage += `- \`${prefix}${key}\` ${
+							errorMessage += `- \`${key}\` ${
 								command?.helpDescription?.slice(0, 50) ?? ""
 							}...`;
 							errorMessage += "\n";

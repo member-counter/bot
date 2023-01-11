@@ -42,34 +42,6 @@ const GameCounter: Counter = {
 				break;
 			}
 
-			case "fivem-alt": {
-				let hostname = host;
-				if (!Number.isNaN(port)) hostname += ":" + port;
-
-				const controller = new AbortController();
-				const response = await timeoutFetch(
-					10000,
-					fetch(`http://${hostname}/players.json`, {
-						signal: controller.signal,
-						headers: {
-							"User-Agent": `Member Counter Discord Bot/${packageJSON.version}`
-						}
-					}),
-					controller
-				);
-
-				if (response.status === 200) {
-					const result = await response.json();
-					return result.length;
-				} else {
-					controller.abort();
-					throw new Error(
-						`[GTA5 FIVEM-ALT] Invalid status code (not 200) in: ${hostname}`
-					);
-				}
-				break;
-			}
-
 			case "minecraft-alt": {
 				let hostname = host;
 				if (!Number.isNaN(port)) hostname += ":" + port;
