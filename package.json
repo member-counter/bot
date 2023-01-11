@@ -8,11 +8,11 @@
 	"main": "./dist/src/index.js",
 	"scripts": {
 		"start": "node .",
-		"start:docker": "docker-compose -f docker-compose.yml up --force-recreate --build",
+		"start:docker": "docker compose -f docker-compose.yml up --force-recreate --build",
 		"build": "tsc",
 		"build:docker": "docker build .",
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
-		"dev:docker": "docker-compose -f docker-compose.dev.yml up --force-recreate --build",
+		"dev:docker": "docker compose -f docker-compose.dev.yml up --force-recreate --build",
 		"generateLPTypings": "node ./res/generateLanguagePackTypings",
 		"preversion": "npm run build && npm run build:docker",
 		"postversion": "git push && git push --tags"
@@ -39,7 +39,7 @@
 		"dotenv-parse-variables": "^0.2.3",
 		"eris": "github:eduardozgz/eris#filter-guilds",
 		"eris-collector": "github:eduardozgz/eris-collector",
-		"gamedig": "^3.0.5",
+		"gamedig": "^4.0.6",
 		"ioredis": "^4.27.9",
 		"json-to-ts": "^1.7.0",
 		"lodash.clonedeep": "^4.5.0",

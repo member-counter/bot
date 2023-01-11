@@ -1,10 +1,5 @@
 import Command from "../typings/Command";
-import {
-	CategoryChannel,
-	TextChannel,
-	NewsChannel,
-	VoiceChannel,
-} from "eris";
+import { CategoryChannel, TextChannel, NewsChannel, VoiceChannel } from "eris";
 import { table } from "table";
 import embedBase from "../utils/embedBase";
 import GuildService from "../services/GuildService";
@@ -33,7 +28,6 @@ const seeSettings: Command = {
 		const { guild } = channel;
 		const {
 			headerText,
-			prefixText,
 			langText,
 			localeText,
 			shortNumberText,
@@ -47,7 +41,6 @@ const seeSettings: Command = {
 		} = languagePack.commands.seeSettings.settingsMessage;
 
 		const {
-			prefix,
 			language,
 			locale,
 			shortNumber,
@@ -61,7 +54,6 @@ const seeSettings: Command = {
 		let logsSection: string[] = [];
 
 		// format general settings
-		generalSection += `${prefixText} \`${prefix}\`\n`;
 		generalSection += `${langText} \`${language}\`\n`;
 		generalSection += `${localeText} \`${locale}\`\n`;
 		generalSection += `${shortNumberText} \`${
@@ -235,28 +227,6 @@ const lang: Command = {
 	}
 };
 
-const prefix: Command = {
-	aliases: ["prefix"],
-	denyDm: true,
-	onlyAdmin: true,
-	run: async ({ message, languagePack, guildService }) => {
-		const { channel, content } = message;
-		const [command, newPrefix] = content.split(/\s+/g);
-
-		if (newPrefix) {
-			await guildService.setPrefix(newPrefix);
-			await channel.createMessage(
-				languagePack.commands.prefix.success.replace(
-					"{NEW_PREFIX}",
-					guildService.prefix
-				)
-			);
-		} else {
-			throw new UserError(languagePack.commands.prefix.noPrefixProvided);
-		}
-	}
-};
-
 const role: Command = {
 	aliases: ["role", "roles"],
 	denyDm: true,
@@ -341,9 +311,7 @@ const upgradeServer: Command = {
 					);
 				}
 				case "noUpgradesAvailable": {
-					throw new UserError(
-						noServerUpgradesAvailable.replace("{PREFIX}", guildService.prefix)
-					);
+					throw new UserError(noServerUpgradesAvailable);
 				}
 				default:
 					throw error;
@@ -503,8 +471,6 @@ const checkPerms: Command = {
 				}\n`;
 				sectionBody += `${description}\n`;
 
-				sectionBody = sectionBody.replace(/\{PREFIX\}/gi, guildService.prefix);
-
 				return sectionBody;
 			})
 			.join("\n");
@@ -542,7 +508,6 @@ const checkPerms: Command = {
 const settingsCommands = [
 	seeSettings,
 	resetSettings,
-	prefix,
 	lang,
 	role,
 	upgradeServer,

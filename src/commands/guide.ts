@@ -4,22 +4,11 @@ import getEnv from "../utils/getEnv";
 import CountService from "../services/CountService";
 import Paginator from "../utils/paginator";
 import safeDiscordString from "../utils/safeDiscordString";
-import { GuildChannel } from "eris";
-import GuildService from "../services/GuildService";
-const { DISCORD_PREFIX } = getEnv();
 
 const guide: Command = {
 	aliases: ["guide", "intro"],
 	denyDm: false,
 	run: async ({ message, languagePack }) => {
-		const { channel } = message;
-
-		let prefix = DISCORD_PREFIX;
-
-		if (channel instanceof GuildChannel) {
-			prefix = (await GuildService.init(message.guildID)).prefix;
-		}
-
 		const {
 			explanation,
 			countersHeader,
@@ -43,7 +32,7 @@ const guide: Command = {
 						})
 						.join("\n")
 			)
-		].map((page) => page.replace(/\{PREFIX\}/g, prefix));
+		];
 
 		const embedPages = [];
 		pages.forEach((page) =>
