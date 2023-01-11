@@ -39,7 +39,7 @@
 		"dotenv-parse-variables": "^0.2.3",
 		"eris": "github:eduardozgz/eris#filter-guilds",
 		"eris-collector": "github:eduardozgz/eris-collector",
-		"gamedig": "^3.0.5",
+		"gamedig": "^4.0.6",
 		"ioredis": "^4.27.9",
 		"json-to-ts": "^1.7.0",
 		"lodash.clonedeep": "^4.5.0",
