@@ -1,20 +1,18 @@
-import getEnv from "./getEnv";
 import Eris, { GuildTextableChannel, Message } from "eris";
+
+import Bot from "../bot";
+import commands from "../commands/all";
 import GuildService from "../services/GuildService";
+import UserService from "../services/UserService";
+import { AnyChannelCommand, GuildChannelCommand } from "../typings/Command";
+import LanguagePack from "../typings/LanguagePack";
+import commandErrorHandler from "./commandErrorHandler";
+import getEnv from "./getEnv";
 import { loadLanguagePack } from "./languagePack";
 import memberHasAdminPermission from "./memberHasAdminPermission";
-import commandErrorHandler from "./commandErrorHandler";
-import commands from "../commands/all";
-import Bot from "../bot";
-import LanguagePack from "../typings/LanguagePack";
-import { GuildChannelCommand, AnyChannelCommand } from "../typings/Command";
-import UserService from "../services/UserService";
-import escapeRegex from "./escapeRegex";
 
 const {
 	PREMIUM_BOT,
-	DISCORD_PREFIX,
-	DISCORD_PREFIX_MENTION_DISABLE,
 	DISCORD_DEFAULT_LANG,
 	DISCORD_OFFICIAL_SERVER_ID,
 	GHOST_MODE,
@@ -45,7 +43,6 @@ export default async (message: Eris.Message) => {
 			({ channel } = message);
 		}
 
-		let prefixToCheck: string;
 		let languagePack: LanguagePack;
 		let clientIntegrationRoleId: string;
 		let guildService: GuildService;
@@ -59,7 +56,6 @@ export default async (message: Eris.Message) => {
 			guildService = await GuildService.init(guild.id);
 
 			languagePack = loadLanguagePack(guildService.language);
-			prefixToCheck = guildService.prefix;
 
 			clientIntegrationRoleId = guild.members
 				.get(client.user.id)
@@ -68,23 +64,17 @@ export default async (message: Eris.Message) => {
 				)[0];
 		} else {
 			languagePack = loadLanguagePack(DISCORD_DEFAULT_LANG);
-			prefixToCheck = DISCORD_PREFIX;
 		}
-		prefixToCheck = prefixToCheck.toLowerCase();
 
 		let prefixRegexStr = "^(";
 
-		if (!DISCORD_PREFIX_MENTION_DISABLE) {
-			// mention of integration role as prefix
-			if (clientIntegrationRoleId) {
-				prefixRegexStr += `<@&${clientIntegrationRoleId}>|`;
-			}
-			// mention as prefix
-			prefixRegexStr += `<@!?${client.user.id}>|`;
+		// mention of integration role as prefix
+		if (clientIntegrationRoleId) {
+			prefixRegexStr += `<@&${clientIntegrationRoleId}>|`;
 		}
+		// mention as prefix
+		prefixRegexStr += `<@!?${client.user.id}>|`;
 
-		// normal prefix
-		prefixRegexStr += escapeRegex(prefixToCheck);
 		prefixRegexStr += `)\\s*`;
 
 		const prefixRegex = new RegExp(prefixRegexStr, "i");
@@ -97,8 +87,7 @@ export default async (message: Eris.Message) => {
 			commandsLoop: for (const command of commands) {
 				for (const alias of command.aliases) {
 					let commandAliasToCheck = matchedPrefix + alias.toLowerCase();
-
-					if (commandRequested.startsWith(commandAliasToCheck)) {
+					if (commandRequested === commandAliasToCheck) {
 						if (channel instanceof Eris.PrivateChannel && command.denyDm) {
 							channel
 								.createMessage(languagePack.functions.commandHandler.noDm)
@@ -149,7 +138,7 @@ export default async (message: Eris.Message) => {
 								});
 							}
 						} catch (error) {
-							commandErrorHandler(channel, languagePack, prefixToCheck, error);
+							commandErrorHandler(channel, languagePack, error);
 						}
 						break commandsLoop;
 					}

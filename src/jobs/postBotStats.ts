@@ -57,41 +57,6 @@ const postBotStatus: Job = {
 				)
 				.catch(console.error);
 
-			//https://discord.boats/
-			fetch(`https://discord.boats/api/v2/bot/${DISCORD_CLIENT_ID}`, {
-				method: "post",
-				headers: {
-					Authorization: DBOATS_TOKEN,
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({ server_count: guildCount })
-			})
-				.then((response) =>
-					console.log(
-						`[STATS SENDER] [discord.boats] Stats sent, response: ${response.status}`
-					)
-				)
-				.catch(console.error);
-
-			//https://bots.ondiscord.xyz/
-			fetch(
-				`https://bots.ondiscord.xyz/bot-api/bots/${DISCORD_CLIENT_ID}/guilds`,
-				{
-					method: "post",
-					headers: {
-						Authorization: BOND_TOKEN,
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify({ guildCount })
-				}
-			)
-				.then((response) =>
-					console.log(
-						`[STATS SENDER] [bots.ondiscord.xyz] Stats sent, response: ${response.status}`
-					)
-				)
-				.catch(console.error);
-
 			//https://botsfordiscord.com
 			fetch(`https://botsfordiscord.com/api/bot/${DISCORD_CLIENT_ID}`, {
 				method: "post",
