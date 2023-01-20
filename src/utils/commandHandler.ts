@@ -88,9 +88,6 @@ export default async (message: Eris.Message) => {
 			.trim();
 		const [commandNameRequested] = commandRequestedWithoutPrefix.split(" ");
 
-		console.log(commandNameRequested);
-		
-
 		for (const command of commands) {
 			// stop current iteration if there is no matching alias with requested command
 			if (!command.aliases.some(alias => alias.toLowerCase() === commandNameRequested)) continue;
