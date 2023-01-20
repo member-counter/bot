@@ -14,7 +14,6 @@
 		"dev": "ts-node-dev --inspect --poll --respawn --ignore-watch node_modules src/index.ts",
 		"dev:docker": "docker compose -f docker-compose.dev.yml up --force-recreate --build",
 		"generateLPTypings": "node ./res/generateLanguagePackTypings",
-		"preversion": "npm run build && npm run build:docker",
 		"postversion": "git push && git push --tags"
 	},
 	"repository": {
