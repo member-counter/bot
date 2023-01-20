@@ -86,66 +86,68 @@ export default async (message: Eris.Message) => {
 		const commandRequestedWithoutPrefix = commandRequested
 			.replace(matchedPrefix, "")
 			.trim();
-		const [commandName] = commandRequestedWithoutPrefix.split(" ");
+		const [commandNameRequested] = commandRequestedWithoutPrefix.split(" ");
 
-		commandsLoop: for (const command of commands) {
-			for (const alias of command.aliases) {
-				if (commandName !== alias.toLowerCase()) return;
-				
-				if (channel instanceof Eris.PrivateChannel && command.denyDm) {
-					channel
-						.createMessage(languagePack.functions.commandHandler.noDm)
-						.catch(console.error);
-					break commandsLoop;
-				}
+		console.log(commandNameRequested);
+		
 
-				if (
-					channel instanceof Eris.GuildChannel &&
-					(command as GuildChannelCommand).onlyAdmin &&
-					!(await memberHasAdminPermission(message.member))
-				) {
-					channel
-						.createMessage(languagePack.common.errorNoAdmin)
-						.catch(console.error);
-					break commandsLoop;
-				}
+		for (const command of commands) {
+			// stop current iteration if there is no matching alias with requested command
+			if (!command.aliases.some(alias => alias.toLowerCase() === commandNameRequested)) continue;
 
-				try {
-					const guild =
-						channel instanceof Eris.GuildChannel ? channel.guild : false;
-					console.log(
-						`${author.username}#${author.discriminator} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``
-						}Channel: ${channel.id}]: ${content}`
-					);
-
-					message.content = message.content.replace(prefixRegex, "");
-
-					if (matchedPrefix.startsWith("<@&")) {
-						message.roleMentions.shift();
-					} else if (matchedPrefix.startsWith("<@")) {
-						message.mentions.shift();
-					}
-
-					if (channel instanceof Eris.GuildChannel) {
-						await (command as GuildChannelCommand).run({
-							client,
-							message: message as Message<GuildTextableChannel>,
-							languagePack,
-							guildService
-						});
-					} else {
-						await (command as AnyChannelCommand).run({
-							client,
-							message,
-							languagePack
-						});
-					}
-				} catch (error) {
-					commandErrorHandler(channel, languagePack, error);
-				}
-				break commandsLoop;
-
+			if (channel instanceof Eris.PrivateChannel && command.denyDm) {
+				channel
+					.createMessage(languagePack.functions.commandHandler.noDm)
+					.catch(console.error);
+				break;
 			}
+
+			if (
+				channel instanceof Eris.GuildChannel &&
+				(command as GuildChannelCommand).onlyAdmin &&
+				!(await memberHasAdminPermission(message.member))
+			) {
+				channel
+					.createMessage(languagePack.common.errorNoAdmin)
+					.catch(console.error);
+				break;
+			}
+
+			try {
+				const guild =
+					channel instanceof Eris.GuildChannel ? channel.guild : false;
+				console.log(
+					`${author.username}#${author.discriminator} (${author.id}) [${guild ? `Server: ${guild.name} (${guild.id}), ` : ``
+					}Channel: ${channel.id}]: ${content}`
+				);
+
+				message.content = message.content.replace(prefixRegex, "");
+
+				if (matchedPrefix.startsWith("<@&")) {
+					message.roleMentions.shift();
+				} else if (matchedPrefix.startsWith("<@")) {
+					message.mentions.shift();
+				}
+
+				if (channel instanceof Eris.GuildChannel) {
+					await (command as GuildChannelCommand).run({
+						client,
+						message: message as Message<GuildTextableChannel>,
+						languagePack,
+						guildService
+					});
+				} else {
+					await (command as AnyChannelCommand).run({
+						client,
+						message,
+						languagePack
+					});
+				}
+			} catch (error) {
+				commandErrorHandler(channel, languagePack, error);
+			}
+			break;
+
 		}
 	}
 };
