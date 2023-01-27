@@ -81,8 +81,9 @@ export default async (message: Eris.Message) => {
 
 		const commandRequested = content.toLowerCase(); // Case insensitive match
 		const matchedPrefix = commandRequested.match(prefixRegex)?.[0];
-		if (matchedPrefix == null) return;
-		if (!commandRequested.startsWith(matchedPrefix)) return;
+		
+		if (!matchedPrefix) return;
+
 		const commandRequestedWithoutPrefix = commandRequested
 			.replace(matchedPrefix, "")
 			.trim();
