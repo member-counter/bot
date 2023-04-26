@@ -4,7 +4,7 @@ import {
 	SlashCommandSubcommandsOnlyBuilder
 } from "@discordjs/builders";
 import {
-	CommandInteraction,
+	ChatInputCommandInteraction,
 	GatewayIntentsString,
 	PermissionsString
 } from "discord.js";
@@ -12,8 +12,8 @@ import {
 import { i18nService } from "../services/i18n";
 import { Unwrap } from "../utils";
 
-type CommandExecute = (
-	command: CommandInteraction,
+export type CommandExecute = (
+	command: ChatInputCommandInteraction,
 	translate: Unwrap<typeof i18nService>
 ) => void | Promise<void>;
 type SlashCommandUnion =

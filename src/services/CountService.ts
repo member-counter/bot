@@ -2,7 +2,7 @@
 import { ChannelType } from "discord-api-types/v10";
 import {
 	Client,
-	CommandInteraction,
+	ChatInputCommandInteraction,
 	Guild,
 	Interaction,
 	TextChannel
@@ -59,7 +59,7 @@ class CountService {
 
 	public static async init(
 		guild: Guild,
-		interaction: string | Interaction | CommandInteraction
+		interaction: string | Interaction | ChatInputCommandInteraction
 	): Promise<CountService> {
 		if (!guild.available) throw new Error(`Guild ${guild.id} is unavailable`);
 		const guildSettings = await GuildService.init(guild.id);

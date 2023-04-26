@@ -27,7 +27,7 @@ export const lockChannelCommand = new Command<"lock-channel">({
 		const { success, errorNoPerms } = t("commands.lock-channel", {
 			returnObjects: true
 		});
-		const channelId = command.options.get("channel", true).value as string;
+		const channelId = command.options.getChannel("channel", true).id;
 
 		const { channel, client } = command;
 

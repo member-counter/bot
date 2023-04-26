@@ -1,7 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { ChannelType, OverwriteType } from "discord-api-types/v10";
 import {
-	CommandInteraction,
 	CommandInteractionOptionResolver,
 	PermissionFlagsBits,
 	PermissionsBitField
@@ -10,13 +9,13 @@ import {
 import logger from "../../logger";
 import CountService from "../../services/CountService";
 import GuildSettings from "../../services/GuildSettings";
-import { i18nService } from "../../services/i18n";
 import { Command } from "../../structures";
-import { Emojis, Unwrap, UserError } from "../../utils";
-
+import { Emojis, UserError } from "../../utils";
+import { CommandExecute } from "../../structures/Command";
+type CommandExecuteParameters = Parameters<CommandExecute>;
 async function execute(
-	command: CommandInteraction,
-	{ t }: Unwrap<typeof i18nService>
+	command: CommandExecuteParameters[0],
+	{ t }: CommandExecuteParameters[1]
 ) {
 	if (!command.inGuild()) throw new UserError(t("common.error.noDm"));
 	if (!command.memberPermissions.has(PermissionFlagsBits.Administrator))
@@ -44,9 +43,7 @@ async function execute(
 		}
 	}
 	const resource =
-		type !== "default"
-			? (command.options.get(getOptionName(type)).value as string)
-			: null;
+		type !== "default" ? command.options.getString(getOptionName(type)) : null;
 	const emojis = Emojis(
 		command.appPermissions.has(PermissionFlagsBits.UseExternalEmojis)
 	);

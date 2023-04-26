@@ -2,6 +2,7 @@ import {
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
+	ChatInputCommandInteraction,
 	inlineCode,
 	InteractionType
 } from "discord.js";
@@ -31,7 +32,7 @@ export const interactionCreateEvent = new Event({
 		try {
 			switch (interaction.type) {
 				case InteractionType.ApplicationCommand: {
-					await handleCommand(interaction);
+					await handleCommand(interaction as ChatInputCommandInteraction);
 					break;
 				}
 				case InteractionType.ApplicationCommandAutocomplete: {

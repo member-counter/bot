@@ -31,14 +31,14 @@ export const base64Command = new Command<"base64">({
 		),
 	execute: {
 		encode: async (command) => {
-			const input = command.options.get("text").value as string;
+			const input = command.options.getString("text", true);
 			command.reply({
 				content: Buffer.from(input).toString("base64"),
 				ephemeral: true
 			});
 		},
 		decode: async (command) => {
-			const input = command.options.get("text").value as string;
+			const input = command.options.getString("text", true);
 			command.reply({
 				content: Buffer.from(input, "base64").toString(),
 				ephemeral: true

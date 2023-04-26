@@ -188,40 +188,35 @@ export const settingsCommand = new Command<"settings">({
 			await command.guild.fetch();
 			const embed = new BaseMessageEmbed();
 			const descriptionParts: string[] = [];
-
+			const language = command.options.getString("language", false);
+			const locale = command.options.getString("locale", false);
+			const shortNumber = command.options.getBoolean("short-number", false);
+			const digits = command.options.getString("digits", false);
 			// Language (handle it ASAP before using t)
-			if (command.options.get("language", false)) {
-				await guildSettings.setLanguage(
-					command.options.get("language", false).value.toString()
-				);
+			if (language) {
+				await guildSettings.setLanguage(language);
 
 				i18n = await i18nService(guildSettings.language ?? command.guildLocale);
 
-				// eslint-disable-next-line prefer-destructuring
-				t = i18n.t;
+				({ t } = i18n);
 
 				embed.addFields(await seeFields.language(guildSettings, i18n));
 			}
 
-			if (command.options.get("locale", false)) {
-				await guildSettings.setLocale(
-					command.options.get("locale", false).value.toString()
-				);
+			if (locale) {
+				await guildSettings.setLocale(locale);
 
 				embed.addFields(await seeFields.locale(guildSettings, i18n));
 			}
 
-			if (command.options.get("short-number", false)) {
-				await guildSettings.setShortNumber(
-					command.options.get("short-number").value as boolean
-				);
+			if (shortNumber) {
+				await guildSettings.setShortNumber(shortNumber);
 
 				embed.addFields(await seeFields.shortNumber(guildSettings, i18n));
 			}
 
-			if (command.options.get("digits", false)) {
-				const content = command.options.get("digits").value as string;
-				const userWantsToReset = content.split(/\s+/)[0] === "reset";
+			if (digits) {
+				const userWantsToReset = digits.split(/\s+/)[0] === "reset";
 
 				if (userWantsToReset) {
 					await guildSettings.resetDigits();
@@ -238,7 +233,7 @@ export const settingsCommand = new Command<"settings">({
 					]);
 				} else {
 					const digitsToSet = (() => {
-						return content
+						return digits
 							.split(",")
 							.map((set) => set.trim())
 							.filter((digit) => digit.length)

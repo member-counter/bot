@@ -1,4 +1,4 @@
-import { CommandInteraction, Interaction } from "discord.js";
+import { ChatInputCommandInteraction, Interaction } from "discord.js";
 import i18next, { createInstance } from "i18next";
 
 import config from "../../config";
@@ -26,7 +26,7 @@ export type i18nInstanceType = Omit<ReturnType<typeof createInstance>, "t"> & {
 	t: TranslateFunction;
 };
 export async function i18nService(
-	interaction: string | Interaction | CommandInteraction
+	interaction: string | Interaction | ChatInputCommandInteraction
 ) {
 	let locale: string;
 

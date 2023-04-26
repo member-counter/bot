@@ -1,7 +1,7 @@
 import { inlineCode } from "@discordjs/builders";
 import {
 	ApplicationCommandOptionType as OptionTypes,
-	CommandInteraction,
+	ChatInputCommandInteraction,
 	CommandInteractionOption,
 	CommandInteractionOptionResolver,
 	IntentsBitField,
@@ -48,7 +48,7 @@ export const allCommandsNeededIntents: IntentsBitField = new IntentsBitField(
 );
 
 export default async function handleCommand(
-	commandInteraction: CommandInteraction
+	commandInteraction: ChatInputCommandInteraction
 ): Promise<void> {
 	const translate = await i18nService(commandInteraction);
 

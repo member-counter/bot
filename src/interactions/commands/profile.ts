@@ -50,8 +50,7 @@ export const profileCommand = new Command<"profile">({
 			member: { user }
 		} = command;
 
-		const targetUser: User =
-			(command.options.get("user")?.user as User) || (user as User);
+		const targetUser: User = command.options.getUser("user") || (user as User);
 		if (!(await UserService.exists(targetUser.id)))
 			throw new UserError(t("commands.profile.userNotFound"));
 		const userSettings = await UserService.init(targetUser.id);

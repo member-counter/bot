@@ -5,7 +5,7 @@ import {
 } from "@discordjs/builders";
 import {
 	ButtonStyle,
-	CommandInteraction,
+	ChatInputCommandInteraction,
 	InteractionCollector,
 	APIEmbed
 } from "discord.js";
@@ -23,10 +23,10 @@ class Paginator {
 	private currentPage: number;
 	private pages: APIEmbed[] | BaseEmbed[];
 	private ephemeral: boolean;
-	private commandInteraction: CommandInteraction;
+	private commandInteraction: ChatInputCommandInteraction;
 
 	public constructor(
-		commandInteraction: CommandInteraction,
+		commandInteraction: ChatInputCommandInteraction,
 		pages: APIEmbed[] | BaseEmbed[],
 		ephemeral = false
 	) {

@@ -2,5 +2,6 @@
 	"files.exclude": {
 		"**/.git": false
 	},
-	"typescript.tsdk": "node_modules/typescript/lib"
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"i18n-ally.localesPaths": ["src/locales", "old/src/lang", "src/services/i18n"]
 }
