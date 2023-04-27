@@ -135,8 +135,7 @@ export const settingsCommand = new Command<"settings">({
 				)
 		),
 	execute: {
-		see: async (command, i18n) => {
-			const { t } = i18n;
+		see: async (command, { t, ...rest }) => {
 			if (!command.inGuild()) throw new UserError(t("common.error.noDm"));
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
@@ -152,10 +151,10 @@ export const settingsCommand = new Command<"settings">({
 					SERVER_ID: inlineCode(command.guild.id)
 				}),
 				fields: [
-					await seeFields.language(guildSettings, i18n),
-					await seeFields.locale(guildSettings, i18n),
-					await seeFields.shortNumber(guildSettings, i18n),
-					await seeFields.customDigits(guildSettings, i18n)
+					await seeFields.language(guildSettings, { t, ...rest }),
+					await seeFields.locale(guildSettings, { t, ...rest }),
+					await seeFields.shortNumber(guildSettings, { t, ...rest }),
+					await seeFields.customDigits(guildSettings, { t, ...rest })
 				]
 			});
 
@@ -176,8 +175,7 @@ export const settingsCommand = new Command<"settings">({
 				ephemeral: false
 			});
 		},
-		set: async (command, i18n) => {
-			let { t } = i18n;
+		set: async (command, { t, ...rest }) => {
 			if (!command.inGuild()) throw new UserError(t("common.error.noDm"));
 			if (
 				!command.memberPermissions.has(PermissionsBitField.Flags.Administrator)
@@ -196,23 +194,27 @@ export const settingsCommand = new Command<"settings">({
 			if (language) {
 				await guildSettings.setLanguage(language);
 
-				i18n = await i18nService(guildSettings.language ?? command.guildLocale);
+				({ t } = await i18nService(
+					guildSettings.language ?? command.guildLocale
+				));
 
-				({ t } = i18n);
-
-				embed.addFields(await seeFields.language(guildSettings, i18n));
+				embed.addFields(
+					await seeFields.language(guildSettings, { t, ...rest })
+				);
 			}
 
 			if (locale) {
 				await guildSettings.setLocale(locale);
 
-				embed.addFields(await seeFields.locale(guildSettings, i18n));
+				embed.addFields(await seeFields.locale(guildSettings, { t, ...rest }));
 			}
 
 			if (shortNumber) {
 				await guildSettings.setShortNumber(shortNumber);
 
-				embed.addFields(await seeFields.shortNumber(guildSettings, i18n));
+				embed.addFields(
+					await seeFields.shortNumber(guildSettings, { t, ...rest })
+				);
 			}
 
 			if (digits) {
@@ -255,7 +257,9 @@ export const settingsCommand = new Command<"settings">({
 						await guildSettings.setDigit(digitToSet.digit, digitToSet.value);
 					}
 
-					embed.addFields(await seeFields.customDigits(guildSettings, i18n));
+					embed.addFields(
+						await seeFields.customDigits(guildSettings, { t, ...rest })
+					);
 				}
 			}
 			// Summary
