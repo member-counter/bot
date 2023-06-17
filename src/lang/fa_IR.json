@@ -4,8 +4,14 @@
 	"commands": {
 		"help": {
 			"helpDescription": "دریافت راهنمایی استفاده از دستورات و شمارنده ها.",
-			"helpUsage": ["help [دستور یا شمارنده]"],
-			"helpExample": ["help lockChannel", "help {members}", "help members"],
+			"helpUsage": [
+				"help [دستور یا شمارنده]"
+			],
+			"helpExample": [
+				"help lockChannel",
+				"help {members}",
+				"help members"
+			],
 			"helpFooterText": "**اطلاعات استفاده:** `()` به معنای یک پارامتر اختیاری و `[]` به معنای یک پارامتر الزامی می باشد",
 			"embedReply": {
 				"title": "پیشوند",
@@ -41,7 +47,9 @@
 		},
 		"guide": {
 			"helpDescription": "به شما یک راهنمایی درباره چگونگی استفاده از بات و شمارنده های دردسترس، ارائه می‌دهد.",
-			"helpExample": ["guide"],
+			"helpExample": [
+				"guide"
+			],
 			"pagesText": "صفحه {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"explanation": "**بابت افزودن Member Counter به سرورتان صمیمانه سپاسگذاریم!**\n__**افزودن/ویرایش یک شمارنده**__\nبرای این مثال ما میایم از `{members}` استفاده کنیم که باعث می شود تعداد کل اعضاء سرور دیسکورد شما را حساب می کند. با اینحال شما خودتان می توانید شمارنده های بیشتر را در صفحات بعد مشاهده کنید.\nشما می توانید شمارنده را در یکی از مکان های زیر قرار دهید:\n\n- در **نام** یک چنل **صوتی**\n- در **نام** یک **دسته‌بندی**\n- در**توضیحات** یک چنل **متنی**\n- در **توضیحات** یک چنل **اخبار**\n\nحال یک چنل جدید بسازید و با ویرایش آن، در قسمت نام یا توضیحات آن چنل `{members}` را بنویسید و سپس 'تغییرات را ذخیره' کنید\n\nشما همچنین می توانید از ترکیب دلخواه چند نوع شمارنده در نام/توضیحات یک چنل، استفاده کنید. اینم یک نمونه:\n```\n‎اعضاء آنلاین {onlineMembers}/{members}\n‎!مشترکان یوتیوب {youtubeSubscribers:https://www.youtube.com/user/enyay}\n‎!ادمین ها و مدراتور ها آنلاین هستند {onlineMembersWithRole:614777997291028519,614816383053856769}\n```\n\nاگر شما به محدودیت تعداد کاراکتر هنگام ویرایش نام/توضیحات یک چنل رسیدید، لطفا `help editChannel` را امتحان کنید\nشما می توانید با استفاده از `seeSettings` پیکربندی فعلی یک شمارنده را مشاهده کنید. این مورد برای افزودن شمارنده ها بدون غیرفعال کردن شمارنده های قبلی می تواند کاربردی باشد\n\n__**حذف یک شمارنده**__ \nبه قسمت ویرایش چنل رفته و {disable} را در نام یا توضیحات آن چنل بنویسید. پس از ذخیره تغییرات، Member Counter آن را با یک \\✅ جایگذین خواهد کرد، بدان معنی که شما تمام شمارنده ها را از آن چنل با موفقیت حذف نموده‌اید\n\nشما همچنین می توانید به طور مستقیم آن چنل را حذف کنید",
 			"countersHeader": "__**شمارنده ها**__\nشما باید حالت توسعه دهنده دیسکورد خودتان را فعال کنید (User Settings \\> Appearance \\> Advanced \\> Developer Mode)\nبرای گرفتن ID، روی نقش/چنل مورد نظر راست کلیک کرده و روی \"Copy ID\" بزنید\n\nشمارنده هایی که کنارشان (+\\) دارند، شمارنده های پریمیوم هستند. برای اطلاعات بیشتر از `premium` استفاده کنید\n\nاگر می خواهید فرمت عدد ها را در یک شمارنده جدا از تنظیمات سرور تغییر دهید، این [صفحه](https://member-counter.eduardozgz.com/utils/overwrite-settings) را نگاه کنید یا اینکه به طور دستی این [راهنما](https://github.com/eduardozgz/member-counter-bot/issues/98) را دنبال کنید\n\n",
@@ -51,84 +59,131 @@
 					"name": "members",
 					"description": "اعضاء سرور شما",
 					"detailedDescription": "تعداد اعضاء را در یک سرور می شمارد",
-					"usage": ["{members}"],
-					"example": ["{members} عضو سرور"]
+					"usage": [
+						"{members}"
+					],
+					"example": [
+						"{members} عضو سرور"
+					]
 				},
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
 					"description": "تعداد تقریبی اعضاء آنلاین در سرور شما",
 					"detailedDescription": "تعداد تقریبی اعضاء آنلاین در سرور شما را می شمارد",
-					"usage": ["{approximatedOnlineMembers}"],
-					"example": ["{approximatedOnlineMembers} آنلاین"]
+					"usage": [
+						"{approximatedOnlineMembers}"
+					],
+					"example": [
+						"{approximatedOnlineMembers} آنلاین"
+					]
 				},
 				"onlineMembers": {
 					"name": "onlineMembers",
 					"description": "اعضاء آنلاین در سرور شما",
 					"detailedDescription": "تعداد اعضایی که در سرور شما آنلاین هستند را می شمارد",
-					"usage": ["{onlineMembers}"],
-					"example": ["{onlineMembers} آنلاین"]
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} آنلاین"
+					]
 				},
 				"offlineMembers": {
 					"name": "offlineMembers",
 					"description": "اعضاء آفلاین در سرور شما",
 					"detailedDescription": "تعداد اعضایی که در سرور آفلاین هستند را می شمارد",
-					"usage": ["{onlineMembers}"],
-					"example": ["{onlineMembers} آفلاین"]
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} آفلاین"
+					]
 				},
 				"users": {
 					"name": "users",
 					"description": "کاربران سرور شما (با استثناء گرفتن بات ها)",
 					"detailedDescription": "تعداد کاربرانی که در سرور شما هستند را (به استثناء بات ها) می شمارد",
-					"usage": ["{users}"],
-					"example": ["{users} کاربر"]
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} کاربر"
+					]
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
 					"description": "کاربران آنلاین در سرور شما (با استثناء گرفتن بات ها)",
 					"detailedDescription": "تعداد کاربرانی که آنلاین در سرور هستند را (به استثناء بات ها) می شمارد",
-					"usage": ["{users}"],
-					"example": ["{users} کاربر آنلاین"]
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} کاربر آنلاین"
+					]
 				},
 				"offlineUsers": {
 					"name": "offlineUsers",
 					"description": "کاربران آفلاین در سرور شما (با استثناء گرفتن بات ها)",
 					"detailedDescription": "تعداد کاربرانی که در سرور آفلاین هستند را (به استثناء بات ها) می شمارد",
-					"usage": ["{users}"],
-					"example": ["{users} آفلاین"]
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} آفلاین"
+					]
 				},
 				"bots": {
 					"name": "bots",
 					"description": "تعداد بات های سرور شما (با استثناء گرفتن کاربران عادی)",
 					"detailedDescription": "تعداد بات هایی که در سرور شما هستند را (با مستثنئ گرفتن کاربران عادی) می شمارد",
-					"usage": ["{bots}"],
-					"example": ["{bots} بات"]
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} بات"
+					]
 				},
 				"onlineBots": {
 					"name": "onlineBots",
 					"description": "تعداد بات های آنلاین در سرور شما (با استثناء گرفتن کاربران عادی)",
 					"detailedDescription": "تعداد بات هایی که در سرور شما آنلاین هستند را (با مستثنئ گرفتن کاربران عادی) می شمارد",
-					"usage": ["{bots}"],
-					"example": ["{bots} بات آنلاین"]
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} بات آنلاین"
+					]
 				},
 				"offlineBots": {
 					"name": "offlineBots",
 					"description": "تعداد بات های آفلاین در سرور شما (با استثناء گرفتن کاربران عادی)",
 					"detailedDescription": "تعداد بات هایی که در سرور شما آفلاین هستند را (با مستثنئ گرفتن کاربران عادی) می شمارد",
-					"usage": ["{bots}"],
-					"example": ["{bots} بات آفلاین"]
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} بات آفلاین"
+					]
 				},
 				"roles": {
 					"name": "roles",
 					"description": "نقش های سرور شما",
 					"detailedDescription": "تعداد نقش های سرور را می شمارد",
-					"usage": ["{roles}"],
-					"example": ["{roles} نقش"]
+					"usage": [
+						"{roles}"
+					],
+					"example": [
+						"{roles} نقش"
+					]
 				},
 				"channels": {
 					"name": "channels",
 					"description": "چنل های سرور (به استثناء دسته‌بندی ها) یا چنل های زیر دسته بندی",
 					"detailedDescription": "تعداد چنل های سرور را (با مستثنئ کردن دسته‌بندی ها) می شمارد. اگر شما یک یا چند ID دسته‌بندی را بعد از `:` وارد کنید، که با کاما , جدا می شوند، فقط چنل های زیر مجموعه آن دسته بندی ها شمارش می شوند",
-					"usage": ["{channels}", "{channels:categoryID1,categoryID2}"],
+					"usage": [
+						"{channels}",
+						"{channels:categoryID1,categoryID2}"
+					],
 					"example": [
 						"{channels} کانال",
 						"{channels:6509281904766437,5823659271648290} تیکت باز"
@@ -138,7 +193,9 @@
 					"name": "membersWithRole:role1ID,role2ID",
 					"description": "اعضای یک یا چند نقش",
 					"detailedDescription": "تعداد اعضایی که یک یا چند نقش مشخص را دارند را می شمارد. بعد از `:`، ID نقش هایی که می خواهید شمرده شوند را بنویسید. همچنین ID ها را با , می توانید جدا کنید",
-					"usage": ["{membersWithRole:role1ID,role2ID}"],
+					"usage": [
+						"{membersWithRole:role1ID,role2ID}"
+					],
 					"example": [
 						"{membersWithRole:6509281904766437,5823659271648290} ادمین و مدراتور"
 					]
@@ -147,7 +204,9 @@
 					"name": "onlineMembersWithRole:role1ID,role2ID",
 					"description": "اعضای آنلاین یک یا چند نقش",
 					"detailedDescription": "تعداد اعضای آنلاینی که یک یا چند نقش مشخص را دارند را می شمارد. بعد از `:`، ID نقش هایی که می خواهید شمرده شوند را بنویسید. همچنین ID ها را با , می توانید جدا کنید",
-					"usage": ["{onlineMembersWithRole:role1ID,role2ID}"],
+					"usage": [
+						"{onlineMembersWithRole:role1ID,role2ID}"
+					],
 					"example": [
 						"{onlineMembersWithRole:6509281904766437,5823659271648290} ادمین و مدراتور آنلاین",
 						"{onlineMembersWithRole:5823659271648290} از {membersWithRole:5823659271648290} ادمین ها آنلاین هستند"
@@ -157,7 +216,9 @@
 					"name": "offlineMembersWithRole:role1ID,role2ID",
 					"description": "اعضای آفلاین یک یا چند نقش",
 					"detailedDescription": "تعداد اعضای آفلاین که یک یا چند نقش مشخص را دارند را می شمارد. بعد از `:`، ID نقش هایی که می خواهید شمرده شوند را بنویسید. همچنین ID ها را با , می توانید جدا کنید",
-					"usage": ["{offlineMembersWithRole:role1ID,role2ID}"],
+					"usage": [
+						"{offlineMembersWithRole:role1ID,role2ID}"
+					],
 					"example": [
 						"{offlineMembersWithRole:6509281904766437,5823659271648290} ادمین و مدراتور های آفلاین",
 						"{offlineMembersWithRole:5823659271648290} از {membersWithRole:5823659271648290} ادمین آفلاین"
@@ -180,7 +241,9 @@
 					"name": "bannedMembers",
 					"description": "تعداد اعضاء بن شده از سرور شما",
 					"detailedDescription": "تعداد اعضایی که بن شده‌اند را می شمارد. بات باید دسترسی بن را برای این کار داشته باشد",
-					"usage": ["{bannedMembers}"],
+					"usage": [
+						"{bannedMembers}"
+					],
 					"example": [
 						"{bannedMembers} بن شده",
 						"{bannedMembers} طعم چکش بن رو چشیده‌اند"
@@ -203,14 +266,20 @@
 					"name": "nitro-boosters",
 					"description": "تعداد کل اعضایی که این سرور را بوست کرده‌اند را می شمارد",
 					"detailedDescription": "تعداد کل اعضایی که این سرور را بوست کرده‌اند را می شمارد",
-					"usage": ["{nitro-boosters}"],
-					"example": ["بوستر های ارجمند: {nitro-boosters}"]
+					"usage": [
+						"{nitro-boosters}"
+					],
+					"example": [
+						"بوستر های ارجمند: {nitro-boosters}"
+					]
 				},
 				"youtubeSubscribers": {
 					"name": "youtubeSubscribers:channelUrl",
 					"description": "تعداد سابسکرایب های یک چنل یوتیوب",
 					"detailedDescription": "تعداد سابسکرایبر های یک چنل یوتیوب را می شمارد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
-					"usage": ["{youtubeSubscribers:channelUrl}"],
+					"usage": [
+						"{youtubeSubscribers:channelUrl}"
+					],
 					"example": [
 						"سابسکرایب ها: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
@@ -219,7 +288,9 @@
 					"name": "youtubeViews:channelUrl",
 					"description": "تعداد بازدید های یک چنل یوتیوب",
 					"detailedDescription": "تعداد بازدید های یک چنل یوتیوب را می شمارد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
-					"usage": ["{youtubeViews:channelUrl}"],
+					"usage": [
+						"{youtubeViews:channelUrl}"
+					],
 					"example": [
 						"تعداد بازدید ها: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
@@ -228,7 +299,9 @@
 					"name": "youtubeVideos:channelUrl",
 					"description": "تعداد ویدیو های یک چنل یوتیوب",
 					"detailedDescription": "تعداد ویدیو های یک چنل یوتیوب را می شمارد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
-					"usage": ["{youtubeVideos:channelUrl}"],
+					"usage": [
+						"{youtubeVideos:channelUrl}"
+					],
 					"example": [
 						"تعداد ویدیو های آپلود شده: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
@@ -237,84 +310,130 @@
 					"name": "youtubeChannelName:channelUrl",
 					"description": "نام یک چنل یوتیوب را نمایش می دهد",
 					"detailedDescription": "نام یک چنل یوتیوب را نمایش می دهد. قسمت `channelUrl` را با آدرس چنل یوتیوب دلخواه تغییر دهید",
-					"usage": ["{youtubeChannelName:channelUrl}"],
-					"example": ["{youtubeChannelName:https://www.youtube.com/user/enyay}"]
+					"usage": [
+						"{youtubeChannelName:channelUrl}"
+					],
+					"example": [
+						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
+					]
 				},
 				"twitchFollowers": {
 					"name": "twitchFollowers:nickname",
 					"description": "تعداد دنبال کننده های یک چنل توییچ",
 					"detailedDescription": "تعداد دنبال کننده های یک چنل توییچ را می شمارد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
-					"usage": ["{twitchFollowers:nickname}"],
-					"example": ["{twitchFollowers:ninja} دنبال کننده ها"]
+					"usage": [
+						"{twitchFollowers:nickname}"
+					],
+					"example": [
+						"{twitchFollowers:ninja} دنبال کننده ها"
+					]
 				},
 				"twitchViews": {
 					"name": "twitchViews:nickname",
 					"description": "تعداد بازدید های یک چنل توییچ",
 					"detailedDescription": "تعداد بازدید های یک چنل توییچ را می شمارد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
-					"usage": ["{twitchViews:nickname}"],
-					"example": ["{twitchViews:ninja} بازدید ها"]
+					"usage": [
+						"{twitchViews:nickname}"
+					],
+					"example": [
+						"{twitchViews:ninja} بازدید ها"
+					]
 				},
 				"twitchChannelName": {
 					"name": "twitchChannelName:nickname",
 					"description": "نام یک چنل توییچ را نمایش می دهد",
 					"detailedDescription": "نام یک چنل توییچ را نمایش می دهد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
-					"usage": ["{twitchChannelName:nickname}"],
-					"example": ["{twitchChannelName:ninja}"]
+					"usage": [
+						"{twitchChannelName:nickname}"
+					],
+					"example": [
+						"{twitchChannelName:ninja}"
+					]
 				},
 				"memeratorMemes": {
 					"name": "memeratorMemes:username",
 					"description": "یک کاربر را نمایش می دهد [Memerator](https://memerator.me) تعداد میم های",
 					"detailedDescription": "تعداد میم های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد. قسمت `username` را با نام پروفایل دلخواه تغییر دهید",
-					"usage": ["{memeratorMemes:username}"],
-					"example": ["تعداد میم ها: {memeratorMemes:eduardozgz}"]
+					"usage": [
+						"{memeratorMemes:username}"
+					],
+					"example": [
+						"تعداد میم ها: {memeratorMemes:eduardozgz}"
+					]
 				},
 				"memeratorFollowers": {
 					"name": "memeratorFollowers:username",
 					"description": "یک کاربر را نمایش می دهد [Memerator](https://memerator.me) تعداد دنبال کننده های",
 					"detailedDescription": "تعداد دنبال کننده های [Memerator](https://memerator.me) یک کاربر را نمایش می دهد. قسمت `username` را با نام پروفایل دلخواه تغییر دهید",
-					"usage": ["{memeratorFollowers:username}"],
-					"example": ["دنبال کننده ها: {memeratorFollowers:eduardozgz}"]
+					"usage": [
+						"{memeratorFollowers:username}"
+					],
+					"example": [
+						"دنبال کننده ها: {memeratorFollowers:eduardozgz}"
+					]
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:username",
 					"description": "تعداد دنبال کننده های توییتر یک کاربر",
 					"detailedDescription": "تعداد دنبال کننده های توییتر کاربری را می شمارد. قسمت `username` را با نام پروفایل توییتر دلخواه تغییر دهید",
-					"usage": ["{twitterFollowers:username}"],
-					"example": ["دنبال کننده ها: {twitterFollowers:0xEduardozgz}"]
+					"usage": [
+						"{twitterFollowers:username}"
+					],
+					"example": [
+						"دنبال کننده ها: {twitterFollowers:0xEduardozgz}"
+					]
 				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
 					"description": "تعداد کل اعضاء یک ساب رددیت را می شمارد",
 					"detailedDescription": "تعداد کل اعضاء یک ساب رددیت را می شمارد. قسمت `subreddit` را با ساب رددیت دلخواه تغییر دهید",
-					"usage": ["{redditMembers:subreddit}"],
-					"example": ["ردیتور ها: {redditMembers:science}"]
+					"usage": [
+						"{redditMembers:subreddit}"
+					],
+					"example": [
+						"ردیتور ها: {redditMembers:science}"
+					]
 				},
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
 					"description": "تعداد اعضاء آنلاین یک ساب رددیت را می شمارد",
 					"detailedDescription": "تعداد کل اعضاء یک ساب رددیت را می شمارد. قسمت `subreddit` را با ساب رددیت دلخواه تغییر دهید",
-					"usage": ["{redditMembersOnline:subreddit}"],
-					"example": ["ردیتور های آنلاین: {redditMembersOnline:science}"]
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"ردیتور های آنلاین: {redditMembersOnline:science}"
+					]
 				},
 				"redditTitle": {
 					"name": "redditTitle:subreddit",
 					"description": "عنوان یک ساب رددیت را نمایش می دهد",
 					"detailedDescription": "عنوان یک ساب رددیت را نمایش می دهد. قسمت `subreddit` را با ساب رددیت دلخواه تغییر دهید",
-					"usage": ["{redditMembersOnline:subreddit}"],
-					"example": ["{redditMembersOnline:science}"]
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"{redditMembersOnline:science}"
+					]
 				},
 				"instagramFollowers": {
 					"name": "instagramFollowers:username",
 					"description": "تعداد دنبال کننده های یک حساب اینستاگرام را می شمارد",
 					"detailedDescription": "عنوان یک ساب رددیت را نمایش می دهد. قسمت `username` را با نام کاربری واقعی یک حساب ایسنتاگرام جایگذین کنید",
-					"usage": ["{instagramFollowers:username}"],
-					"example": ["دنبال کننده ها: {instagramFollowers:eduardozgz}"]
+					"usage": [
+						"{instagramFollowers:username}"
+					],
+					"example": [
+						"دنبال کننده ها: {instagramFollowers:eduardozgz}"
+					]
 				},
 				"countdown": {
 					"name": "countdown:targetDate:format",
 					"description": "یک شمارش معکوس که با نزدیک شدن به تاریخ مشخص شده، شمارنده کاهش پیدا می کند",
 					"detailedDescription": "یک شمارش معکوس که با نزدیک شدن به تاریخ مشخص شده، شمارنده کاهش پیدا می کند. شما می توانید به راحتی [از اینجا این نوع شمارنده را درست کنید](https://member-counter.eduardozgz.com/utils/countdown) یا اینکه به طور دستی قسمت `targetDate` را با تاریخی از گاه‌شمار UNIX جایگذین کنید و به طور دلخواه قسمت `format` را با یک فرمت سفارشی جایگذین کنید: از `%d` برای نمایش روز های باقی مانده، از `%h` برای نمایش ساعات باقی مانده، از `%m` برای نمایش دقایق باقی مانده و از `%s` برای نمایش ثانیه های باقی مانده استفاده کنید",
-					"usage": ["{countdown:targetDate:format}"],
+					"usage": [
+						"{countdown:targetDate:format}"
+					],
 					"example": [
 						"تا سال جدید: {countdown:1640991600:%d روز، %h ساعت ، %m دقیقه باقی مانده}"
 					]
@@ -323,7 +442,9 @@
 					"name": "game:gameId:address",
 					"description": "بازیکنان آنلاین در سرور یک بازی (Minecraft، Counter Strike، Rust، Ark، Team Fortress 2، GMOD، دیگر...)",
 					"detailedDescription": "تعداد بازیکنان آنلاین در سرور یک بازی را (Minecraft، Counter Strike، Rust، Ark، Team Fortress 2، GMOD، دیگر...) می شمارد. در قسمت `gameId` یکی از ID های لیست شده در [اینجا](https://github.com/gamedig/node-gamedig/#games-list) را بگذارید و قسمت `address` را با آدرس واقعی سرور جایگذین کنید",
-					"usage": ["{game:gameId:address}"],
+					"usage": [
+						"{game:gameId:address}"
+					],
 					"example": [
 						"{game:minecraft:mc.hypixel.net} درحال بازی کردن در هایپیکسل"
 					]
@@ -332,14 +453,20 @@
 					"name": "clock:timeZone",
 					"description": "زمان ساعتی را با موقعیت زمانی مشخص شده نمایش می دهد",
 					"detailedDescription": "زمان ساعتی را با موقعیت زمانی مشخص شده نمایش می دهد. شما می توانید به آسانی [این شمارنده را از اینجا بسازید](https://member-counter.eduardozgz.com/utils/clock) و یا اینکه دستی قسمت `timeZone` را با یک موقعیت زمانی IANA معتبر جایگذین کنید",
-					"usage": ["{clock:timeZone}"],
-					"example": ["اسپانیا: {clock:Europe/Madrid}"]
+					"usage": [
+						"{clock:timeZone}"
+					],
+					"example": [
+						"اسپانیا: {clock:Europe/Madrid}"
+					]
 				},
 				"http": {
 					"name": "http:options",
 					"description": "را نمایش می دهد http نتایج یک درخواست",
 					"detailedDescription": "نتایج یک درخواست `GET` http را نشان می دهد. شما می توانید با استفاده از `options` [از اینجا](https://member-counter.eduardozgz.com/utils/http) راه‌اندازی را انجام دهید. یا اینکه به صورت دستی آن را ایجاد کنید: قسمت `options` یک شیء JSON کدگزاری شده به صورت base64 می باشد (شما می توانید با استفاده از دستور base64 به این مورد برسید). این شیء می تواند کلید های رو به رو را دارا باشد: `url`: یک string، با آدرس url منبع. `parseNumber`: یک boolean، اگر نتیجه عددی معتبر باشد، آن parse خواهد شد و بر اساس تنظیمات سرور شما شخصی سازی می شود. `dataPath`: یک string، اگر پاسخ یک شیء JSON باشد، شما باید یک مسیری را به کلید مشخص کنید که مقدار آن به طور الزامی یک string یا number باشد. نوع syntax که برای مسیر استفاده می شود با نوعی که در JS برای دسترسی به خواص و آرایه های آیتم ها استفاده می شود، مشابه است. `lifetime`: یک number، مشخص می کند چقدر ثانیه پاسخ بازگشتی کش و استفاده خواهد شد، پیشفرض 1 ساعت می باشد",
-					"usage": ["{http:options}"],
+					"usage": [
+						"{http:options}"
+					],
 					"example": [
 						"آخرین دنبال‌کننده: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
 					]
@@ -361,56 +488,87 @@
 					"name": "escape:stringToEscape",
 					"description": "Member Counter خروج از تعیین کننده های معمول مورد استفاده توسط",
 					"detailedDescription": "خروج از تعیین کننده های معمول مورد استفاده توسط Member Counter وقتی که به یک شمارنده درحال پردازش است. مثل `:`، `;` یا `,`. شما ممکن است برای گذشتن از آرگومان هایی که به تعیین کننده های آن اشاره شد بدون اینکه آنها parse شوند، به این نیاز داشته باشید. این مخصوصا برای زمانی کاربردی است که شما نمی توانید محتوای string را در شمارنده `{http}` کنترل کنید",
-					"usage": ["{escape:stringToEscape}"],
-					"example": ["{escape:Hello, world!}"]
+					"usage": [
+						"{escape:stringToEscape}"
+					],
+					"example": [
+						"{escape:Hello, world!}"
+					]
 				},
 				"static": {
 					"name": "static:data",
 					"description": "مقدار `data` داده شده را نمایش می دهد",
 					"detailedDescription": "مقدار `data` داده شده را با فرمت های شخصی سازی شده بر اساس تنظیمات سرور نمایش میدهد اگر این یک عدد باشد. متن نیز همینطور قابل قبول است",
-					"usage": ["{static:data}"],
-					"example": ["{static:420}", "{static:Hello world!}"]
+					"usage": [
+						"{static:data}"
+					],
+					"example": [
+						"{static:420}",
+						"{static:Hello world!}"
+					]
 				},
 				"sum": {
 					"name": "sum:value1,value2,more values",
 					"description": "جمع کردن مقادیر مشخص",
 					"detailedDescription": "مقادیر مشخصی را جمع می کند. این کار از چپ به راست انجام می شود",
-					"usage": ["{sum:value1,value2,more values}"],
-					"example": ["2 + 2 = {sum:2,2}"]
+					"usage": [
+						"{sum:value1,value2,more values}"
+					],
+					"example": [
+						"2 + 2 = {sum:2,2}"
+					]
 				},
 				"subtract": {
 					"name": "subtract:value1,value2,more values",
 					"description": "کم کردن مقادیر مشخص از هم",
 					"detailedDescription": "مقادیر مشخصی را از هم کم می کند. این کار از چپ به راست انجام می شود",
-					"usage": ["{subtract:value1,value2,more values}"],
-					"example": ["2 - 2 = {subtract:2,2}"]
+					"usage": [
+						"{subtract:value1,value2,more values}"
+					],
+					"example": [
+						"2 - 2 = {subtract:2,2}"
+					]
 				},
 				"multiply": {
 					"name": "multiply:value1,value2,more values",
 					"description": "ضرب کردن مقادیر مشخص",
 					"detailedDescription": "مقادیر مشخصی را در هم ضرب می کند. این کار از چپ به راست انجام می شود",
-					"usage": ["{multiply:value1,value2,more values}"],
-					"example": ["2 × 2 = {multiply:2,2}"]
+					"usage": [
+						"{multiply:value1,value2,more values}"
+					],
+					"example": [
+						"2 × 2 = {multiply:2,2}"
+					]
 				},
 				"divide": {
 					"name": "divide:value1,value2,more values",
 					"description": "تقسیم کردن مقادیر مشخص بر هم",
 					"detailedDescription": "مقادیر مشخصی را بر همدیگر تقسیم می کند. این کار از چپ به راست انجام می شود",
-					"usage": ["{divide:value1,value2,more values}"],
-					"example": ["10 ÷ 2 = {divide:10,2}"]
+					"usage": [
+						"{divide:value1,value2,more values}"
+					],
+					"example": [
+						"10 ÷ 2 = {divide:10,2}"
+					]
 				},
 				"modulus": {
 					"name": "modulus:value1,value2,more values",
 					"description": "ضریب گرفتن مقادیر مشخص",
 					"detailedDescription": "ضریب مقادیر مشخصی را می گیرد. این کار از چپ به راست انجام می شود",
-					"usage": ["{modulus:value1,value2,more values}"],
-					"example": ["10 % 2 = {modulus:10,2}"]
+					"usage": [
+						"{modulus:value1,value2,more values}"
+					],
+					"example": [
+						"10 % 2 = {modulus:10,2}"
+					]
 				}
 			}
 		},
 		"premium": {
 			"helpDescription": "دریافت اطلاعاتی درباره Member Counter نسخه پریمیوم.",
-			"helpExample": ["premium"],
+			"helpExample": [
+				"premium"
+			],
 			"embedReply": {
 				"title": "Member Counter پریمیوم",
 				"description": "[نسخه پریمیوم بات را بگیرید]({GET_PREMIUM_BOT_URL}) و از آن لذت ببرید:",
@@ -445,8 +603,12 @@
 		},
 		"lockChannel": {
 			"helpDescription": "شما می توانید از این دستور برای نمایش شکل قفل (🔒) به جای نمایش شکل بلندگو (🔊) در چنل های صوتی، استفاده کنید.",
-			"helpUsage": ["lockChannel [channel id]"],
-			"helpExample": ["lockChannel 700336568099143710"],
+			"helpUsage": [
+				"lockChannel [channel id]"
+			],
+			"helpExample": [
+				"lockChannel 700336568099143710"
+			],
 			"success": "انجام شد. **برای کاربرانی که ادمین نیستند**، این چنل با شکل یک 🔒 نمایش داده خواهد شد",
 			"errorInvalidChannel": "شما فقط میتوانید چنل های صوتی را قفل کنید!",
 			"errorNoPerms": "من به علت کمبود دسترسی های لازم، نمی توانم چنل`{CHANNEL}` را ویرایش کنم",
@@ -454,7 +616,9 @@
 		},
 		"editChannel": {
 			"helpDescription": "اگر سعی دارید که یک سری شمارنده تنظیم کنید اما دیسکورد به شما می گوید که به محدودیت تعداد کاراکتر در نام/توضیحات چنل رسیدید، شما می توانید از این دستور برای \"گذشتن\" از آن محدودیت استفاده کنید.",
-			"helpUsage": ["editChannel [channel ID] [content and counters]"],
+			"helpUsage": [
+				"editChannel [channel ID] [content and counters]"
+			],
 			"helpExample": [
 				"editChannel 701396983843127366 اعضاء آنلاین هستند {members} از {onlineMembers}"
 			],
@@ -464,15 +628,23 @@
 		},
 		"setDigit": {
 			"helpDescription": "عددی که قرار است به نمایش در بیاید را سفارشی سازی می کند. نوع آرگومان عدد باید عدد عادی باشد. آرگومان دوم می تواند هر چیزی که خواستید باشد، مثل یه ایموجی یا یک عدد عادی دیگر. شما می توانید چند تا عدد را یکجا باهم شخصی سازی کنید با جدا کردن آرگومان ها با (`,`)\nاگر آرگومان اول کلمه \"reset\" باشد، اعداد به پیشفرض خود بازخواهند گشت.",
-			"helpUsage": ["setDigit reset", "setDigit [عدد] [عدد یا متن دلخواه]"],
-			"helpExample": ["setDigit 3 3", "setDigit 3 :emoji3:, 4 :emoji4:"],
+			"helpUsage": [
+				"setDigit reset",
+				"setDigit [عدد] [عدد یا متن دلخواه]"
+			],
+			"helpExample": [
+				"setDigit 3 3",
+				"setDigit 3 :emoji3:, 4 :emoji4:"
+			],
 			"success": "اعداد شخصی سازی شدند.",
 			"resetSuccess": "اعداد به حالت پیشفرض بازگشتند.",
 			"errorMissingParams": "پارامتر هایی وجود ندارند، لطفا `help setDigit` را نگاه بیاندازید."
 		},
 		"shortNumber": {
 			"helpDescription": "این دستور به شما این اجازه را می دهد که اعداد به حالت فشرده ای نمایش داده شوند.",
-			"helpUsage": ["shortNumber [enable|on/disable|off]"],
+			"helpUsage": [
+				"shortNumber [enable|on/disable|off]"
+			],
 			"helpExample": [
 				"shortNumber enable",
 				"shortNumber disable",
@@ -485,13 +657,21 @@
 		},
 		"locale": {
 			"helpDescription": "اعداد و ساعت ها را برای مشخص کردن موقعیت مکانی (فرمت های 12h/24h) فرمت می کند.",
-			"helpUsage": ["locale [locale/disable]"],
-			"helpExample": ["locale en", "locale fa", "locale disable"],
+			"helpUsage": [
+				"locale [locale/disable]"
+			],
+			"helpExample": [
+				"locale en",
+				"locale fa",
+				"locale disable"
+			],
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"role": {
 			"helpDescription": "شما می توانید نقش هایی را برای استفاده دستورات ادمین، مجاز یا مستثناء کنید.\nهمچنین از کلیدواژه``all`` برای مجاز یا غیرمجاز کردن همه نقش ها استفاده کنید\nبرای دیدن اینکه چه نقش هایی در حال حاضر مجاز به استفاده از دستورات هستند، عبارت `seeSettings` را بفرستید.",
-			"helpUsage": ["role [allow/deny] [@roles/all]"],
+			"helpUsage": [
+				"role [allow/deny] [@roles/all]"
+			],
 			"helpExample": [
 				"role allow @Mod",
 				"role allow @Mod @OtherRole",
@@ -504,7 +684,9 @@
 		},
 		"seeSettings": {
 			"helpDescription": "تمامی تنظیمات بات را در این سرور نشان می‌دهد.",
-			"helpExample": ["seeSettings"],
+			"helpExample": [
+				"seeSettings"
+			],
 			"settingsMessage": {
 				"headerText": "تنظیمات اعمال شده برای این سرور:",
 				"langText": "زبان:",
@@ -521,34 +703,50 @@
 		},
 		"resetSettings": {
 			"helpDescription": "تمامی شمارنده ها را حذف می کند و تنظیمات شخصی سازی شده این سرور را به موارد پیشفرض بازمیگرداند.",
-			"helpExample": ["resetSettings"],
+			"helpExample": [
+				"resetSettings"
+			],
 			"done": "تنظیمات به پیشفرض بازگردانی شدند"
 		},
 		"upgradeServer": {
 			"helpDescription": "این دستور اجازه می دهد تا بات قدیمی Member Counter پریمیوم را به سروری دعوت کنید، با استفاده از ارتقاء سرور های باقی مانده در حساب شما.",
-			"helpExample": ["upgradeServer"],
+			"helpExample": [
+				"upgradeServer"
+			],
 			"success": "انجام شد! قدم بعدی دعوت کردن بات پریمیوم هست:\n{BOT_LINK}",
 			"errorCannotUpgrade": "شما نمی توانید این سرور را پریمیوم کنید زیرا این سرور از قبل پریمیوم دارد.",
 			"noServerUpgradesAvailable": "شما نمی توانید سرور های بیشتری را پریمیوم کنید چون هیچ ارتقاء سرور بیشتری برایتان باقی نمانده"
 		},
 		"info": {
 			"helpDescription": "لیست لینک های کاربردی.",
-			"helpExample": ["info"],
+			"helpExample": [
+				"info"
+			],
 			"embedReply": {
 				"description": "[من را به سرور خود اضافه کنید]({BOT_INVITE_URL})\n[وبسایت]({WEBSITE})\n[گرفتن پریمیوم]({GET_PREMIUM_BOT_URL})\n[سرور پشتیبانی]({BOT_SERVER_URL})\n[گیت هاب](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
 			"helpDescription": "زبان بات را برای این سرور تغییر می دهد، توجه داشته باشید که شما برای اجرای این دستور، نیازمند به دسترسی ادمین هستید.",
-			"helpUsage": ["lang (کد زبان)"],
-			"helpExample": ["lang", "lang fa_IR"],
+			"helpUsage": [
+				"lang (کد زبان)"
+			],
+			"helpExample": [
+				"lang",
+				"lang fa_IR"
+			],
 			"success": "زبان با موفقیت تغییر یافت.",
 			"errorNotFound": "لیست زبان‌های در دسترس:"
 		},
 		"profile": {
 			"helpDescription": "ارتباط بین شما و این بات را نمایش می دهد.",
-			"helpUsage": ["profile (@user)"],
-			"helpExample": ["profile", "profile @eduardozgz"],
+			"helpUsage": [
+				"profile (@user)"
+			],
+			"helpExample": [
+				"profile",
+				"profile @eduardozgz"
+			],
 			"badges": "نماد ها",
 			"credits": "اعتبارات",
 			"serverUpgradesAvailable": "ارتقاء دادن سرور باقی مانده",
@@ -560,7 +758,9 @@
 		},
 		"counts": {
 			"helpDescription": "مقادیری از شمارش را نشان می دهد.",
-			"helpExample": ["counts"],
+			"helpExample": [
+				"counts"
+			],
 			"members": "اعضاء:",
 			"onlineMembers": "اعضای آنلاین:",
 			"offlineMembers": "اعضای آفلاین:",
@@ -573,8 +773,12 @@
 		},
 		"preview": {
 			"helpDescription": "یک پیش نمایش از اینکه چگونه یک شمارنده و شمارنده های دیگر در یک چنل به نظر می آیند، نشان می دهد.",
-			"helpUsage": ["preview [محتوا و شمارنده]"],
-			"helpExample": ["preview {members} عضو سرور"],
+			"helpUsage": [
+				"preview [محتوا و شمارنده]"
+			],
+			"helpExample": [
+				"preview {members} عضو سرور"
+			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "پیش‌نمایش نام چنل",
 			"channelTopic": "پیش‌نمایش توضیحات چنل"
@@ -689,13 +893,20 @@
 		},
 		"base64": {
 			"helpDescription": "یک دستور base64 کاربردی برای شخصی سازی دستوراتی خاص یا ساخت شمارنده های پیچیده مثل `{http}`.",
-			"helpUsage": ["base64 [encode/decode] [data]"],
-			"helpExample": ["base64 encode test", "base64 decode dGVzdA=="],
+			"helpUsage": [
+				"base64 [encode/decode] [data]"
+			],
+			"helpExample": [
+				"base64 encode test",
+				"base64 decode dGVzdA=="
+			],
 			"invalidAction": "عملیات نامعتبر، این باید `encode` یا `decode` باشد"
 		},
 		"checkPermissions": {
 			"helpDescription": "بررسی می کند که بات آیا دسترسی های مورد نیاز را به درستی دارد تا به خوبی کار کند یا نه.",
-			"helpExample": ["checkPermissions"],
+			"helpExample": [
+				"checkPermissions"
+			],
 			"title": "بررسی دسترسی ها",
 			"optionalText": "(دلخواه)",
 			"adminWarning": "**این بات دسترسی Administrator را دارد. لطفا آن را بردارید و دسترسی های درست را راه‌اندازی کنید**",
