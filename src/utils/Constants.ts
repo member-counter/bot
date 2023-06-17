@@ -1,4 +1,4 @@
-enum UserBadges {
+export enum UserBadges {
 	DONOR = 1,
 	PREMIUM = 1 << 1,
 	BETA_TESTER = 1 << 2,
@@ -10,7 +10,7 @@ enum UserBadges {
 	FOLDING_AT_HOME = 1 << 8
 }
 
-enum CounterResult {
+export enum CounterError {
 	PREMIUM = -1,
 	ERROR = -2,
 	UNKNOWN = -3,
@@ -18,10 +18,7 @@ enum CounterResult {
 	NOT_AVAILABLE = -5
 }
 
-const Constants = {
-	CounterResult,
+export default {
+	CounterError,
 	UserBadges
 };
-
-export default Constants;
-export { Constants, UserBadges };
