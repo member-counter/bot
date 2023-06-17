@@ -4,8 +4,14 @@
 	"commands": {
 		"help": {
 			"helpDescription": "Obtén ayuda acerca de comandos y contadores.",
-			"helpUsage": ["help [comando o contador]"],
-			"helpExample": ["help lockChannel", "help {members}", "help members"],
+			"helpUsage": [
+				"help [comando o contador]"
+			],
+			"helpExample": [
+				"help lockChannel",
+				"help {members}",
+				"help members"
+			],
 			"helpFooterText": "**Info. sobre el uso:** `()` es un parámetro opcional mientras que `[]` es uno obligatorio",
 			"embedReply": {
 				"title": "Lista de comandos",
@@ -41,7 +47,9 @@
 		},
 		"guide": {
 			"helpDescription": "Te muestra una guía sobre como usar el bot y un listado de contadores.",
-			"helpExample": ["guide"],
+			"helpExample": [
+				"guide"
+			],
 			"pagesText": "Página {CURRENT_PAGE} de {TOTAL_PAGES}",
 			"explanation": "**¡Gracias por añadir Member Counter a tu servidor!**\n__**Crear-editar un contador**__\nPara este ejemplo vamos a usar el contador `{members}`, el cual muestra la cantidad de miembros que tiene tu servidor, pero puedes encontrar mas contadores en las siguientes páginas\nPuedes colocar este contador en uno de los siguientes lugares:\n\n- En el **nombre** de un canal de **voz**\n- En el **nombre** de una **categoría**\n- En el **tema** de un canal de **texto**\n- En el **tema** de un canal de **noticias**\n\nAhora crea un canal, editalo, y escribe `{members}` en nombre o tema, y haz click en 'Guardar cambios'\n\nTambien puedes añadir varios contadores en un mismo nombre o tema, y combinarlos con tu propio contenido, aquí hay un ejemplo:\n```\n{onlineMembers}/{members} Miembros online, {youtubeSubscribers:https://www.youtube.com/user/enyay} Suscriptores!\n{onlineMembersWithRole:614777997291028519,614816383053856769} Admins y mods están online!\n```\n\n> Si alcanzas el limite de caracteres mientras editas un nombre/tema, consulta `help editChannel`\n> Puedes ver las configuraciones actuales con `seeSettings`, esto es útil si quieres añadir mas contadores sin borrar los anteriores accidentalmente\n\n__**Borrar un contador**__\nEn el nombre de una categoría/canal de voz:\nEdita el canal y escribe `{disable}` en el nombre, Member Counter reemplazará el nombre con un `✔`, eso quiere decir que los contadores han sido borrados correctamente\n\nEn el tema de un canal de texto/noticias:\nSimplemente borra el tema entero.\n\nTambién puedes eliminar el canal directamente",
 			"countersHeader": "__**Contadores**__\n> Debe habilitar el modo de desarrollador en Discord (Ajustes de usuario> Apariencia> Avanzado> Modo de desarrollador)\n> Para obtener una ID, haga clic derecho en un canal/rol y haga clic en \"Copiar ID\"\n\n> Aquellos contadores con un símbolo de más (\\+) son contadores premium, obtenga más información en `help premium`\n\n>Si desea cambiar el formato del número en un contador independientemente de la configuración del servidor, visite [esta página web(https://member-counter.eduardozgz.com/utils/overwrite-settings), o puedo hacerlo manualmente siguiendo estas [instrucciones](https://github.com/eduardozgz/member-counter-bot/issues/98)\n\n",
@@ -51,84 +59,131 @@
 					"name": "members",
 					"description": "Cantidad de miembros que hay en tu servidor",
 					"detailedDescription": "Cuenta cuantos miembros tiene el servidor",
-					"usage": ["{members}"],
-					"example": ["{members} Miembros"]
+					"usage": [
+						"{members}"
+					],
+					"example": [
+						"{members} Miembros"
+					]
 				},
 				"approximatedOnlineMembers": {
 					"name": "approximatedOnlineMembers",
 					"description": "Miembros online aproximados en tu servidor",
 					"detailedDescription": "Cuenta de forma aproximada cuantos miembros tiene el servidor",
-					"usage": ["{approximatedOnlineMembers}"],
-					"example": ["{approximatedOnlineMembers} En línea"]
+					"usage": [
+						"{approximatedOnlineMembers}"
+					],
+					"example": [
+						"{approximatedOnlineMembers} En línea"
+					]
 				},
 				"onlineMembers": {
 					"name": "onlineMembers",
 					"description": "Miembros en línea en tu servidor",
 					"detailedDescription": "Cuanta cuantos miembros en línea tiene el servidor",
-					"usage": ["{onlineMembers}"],
-					"example": ["{onlineMembers} En línea"]
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} En línea"
+					]
 				},
 				"offlineMembers": {
 					"name": "offlineMembers",
 					"description": "Miembros desconectados en tu servidor",
 					"detailedDescription": "Cuenta cuantos miembros fuera de línea tiene el servidor",
-					"usage": ["{onlineMembers}"],
-					"example": ["{onlineMembers} Fuera de línea"]
+					"usage": [
+						"{onlineMembers}"
+					],
+					"example": [
+						"{onlineMembers} Fuera de línea"
+					]
 				},
 				"users": {
 					"name": "users",
 					"description": "Usuarios en tu servidor (excluye bots)",
 					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bots) hay en el servidor",
-					"usage": ["{users}"],
-					"example": ["{users} Usuarios"]
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Usuarios"
+					]
 				},
 				"onlineUsers": {
 					"name": "onlineUsers",
 					"description": "Usuarios online en tu servidor (excluye bots)",
 					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bots) hay en línea en el servidor",
-					"usage": ["{users}"],
-					"example": ["{users} Usuario en línea"]
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Usuario en línea"
+					]
 				},
 				"offlineUsers": {
 					"name": "offlineUsers",
 					"description": "Usuarios offline en tu servidor (excluye bots)",
 					"detailedDescription": "Cuenta cuantos usuarios (excluyendo cuentas de bots) hay fuera de línea en el servidor",
-					"usage": ["{users}"],
-					"example": ["{users} Fuera de línea"]
+					"usage": [
+						"{users}"
+					],
+					"example": [
+						"{users} Fuera de línea"
+					]
 				},
 				"bots": {
 					"name": "bots",
 					"description": "Bots en tu servidor (excluye usuarios normales)",
 					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) hay en el servidor",
-					"usage": ["{bots}"],
-					"example": ["{bots} Bots"]
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Bots"
+					]
 				},
 				"onlineBots": {
 					"name": "onlineBots",
 					"description": "Bots online en tu servidor (excluye usuarios normales)",
 					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) hay en línea en el servidor",
-					"usage": ["{bots}"],
-					"example": ["{bots} Bots en línea"]
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Bots en línea"
+					]
 				},
 				"offlineBots": {
 					"name": "offlineBots",
 					"description": "Bots offline en tu servidor (excluye usuarios normales)",
 					"detailedDescription": "Cuenta cuantos bots (excluyendo cuentas normales) hay fuera de línea en el servidor",
-					"usage": ["{bots}"],
-					"example": ["{bots} Bots fuera de línea"]
+					"usage": [
+						"{bots}"
+					],
+					"example": [
+						"{bots} Bots fuera de línea"
+					]
 				},
 				"roles": {
 					"name": "roles",
 					"description": "Roles en tu servidor",
 					"detailedDescription": "Cuenta cuantos roles hay en el servidor",
-					"usage": ["{roles}"],
-					"example": ["{roles} Roles"]
+					"usage": [
+						"{roles}"
+					],
+					"example": [
+						"{roles} Roles"
+					]
 				},
 				"channels": {
 					"name": "channels",
 					"description": "Channels in your server (excludes categories) or under a category",
 					"detailedDescription": "Counts how many channels (excluding category channels) are in the server, if you specify one or more category IDs after the `:`, separated by commas, only the channels under those specified categories will be counted",
-					"usage": ["{channels}", "{channels:categoryID1,categoryID2}"],
+					"usage": [
+						"{channels}",
+						"{channels:categoryID1,categoryID2}"
+					],
 					"example": [
 						"{channels} Canales",
 						"{channels:6509281904766437,5823659271648290} Tickets open"
@@ -138,7 +193,9 @@
 					"name": "membersWithRole:IDdelRol1,IDdelRol2",
 					"description": "Miembros con un rol o roles",
 					"detailedDescription": "Cuenta cuentos miembros tienen un rol o roles, escribe el ID de los roles que quieras contar después de `:`, y separa los IDs con comas `,`",
-					"usage": ["{membersWithRole:IDdelRol1,IDdelRol2}"],
+					"usage": [
+						"{membersWithRole:IDdelRol1,IDdelRol2}"
+					],
 					"example": [
 						"{membersWithRole:6509281904766437,5823659271648290} Admins y mods"
 					]
@@ -147,7 +204,9 @@
 					"name": "onlineMembersWithRole:IDdelRol1,IDdelRol2",
 					"description": "Miembros en línea con un rol o roles",
 					"detailedDescription": "Cuenta cuentos miembros en línea tienen un rol o roles, escribe el ID de los roles que quieras contar después de `:`, y separa los IDs con comas `,`",
-					"usage": ["{onlineMembersWithRole:IDdelRol1,IDdelRol2}"],
+					"usage": [
+						"{onlineMembersWithRole:IDdelRol1,IDdelRol2}"
+					],
 					"example": [
 						"{onlineMembersWithRole:6509281904766437,5823659271648290} Admins y mods en línea",
 						"{onlineMembersWithRole:5823659271648290} de {membersWithRole:5823659271648290} Admins están en línea"
@@ -157,7 +216,9 @@
 					"name": "offlineMembersWithRole:IDdelRol1,IDdelRol2",
 					"description": "Miembros fuera de línea con un rol o roles",
 					"detailedDescription": "Cuenta cuentos miembros fuera de línea tienen un rol o roles, escribe el ID de los roles que quieras contar después de `:`, y separa los IDs con comas `,`",
-					"usage": ["{offlineMembersWithRole:IDdelRol1,IDdelRol2}"],
+					"usage": [
+						"{offlineMembersWithRole:IDdelRol1,IDdelRol2}"
+					],
 					"example": [
 						"{offlineMembersWithRole:6509281904766437,5823659271648290} Admins y mods fuera de línea",
 						"{offlineMembersWithRole:5823659271648290} de {membersWithRole:5823659271648290} Admins están fuera de línea"
@@ -180,7 +241,9 @@
 					"name": "bannedMembers",
 					"description": "Cantidad de miembros baneados en el servidor",
 					"detailedDescription": "Cuenta cuantos miembros hay baneados, el bot debe tener permisos de banear para poder obtener esta cuenta",
-					"usage": ["{bannedMembers}"],
+					"usage": [
+						"{bannedMembers}"
+					],
 					"example": [
 						"{bannedMembers} Baneados",
 						"{bannedMembers} han sido golpeados con el martillo del ban"
@@ -203,14 +266,20 @@
 					"name": "nitro-boosters",
 					"description": "Cuenta la cantidad total de miembros que está boosteando este servidor",
 					"detailedDescription": "Cuenta la cantidad total de miembros que está boosteando este servidor",
-					"usage": ["{nitro-boosters}"],
-					"example": ["{nitro-boosters} Boosteando"]
+					"usage": [
+						"{nitro-boosters}"
+					],
+					"example": [
+						"{nitro-boosters} Boosteando"
+					]
 				},
 				"youtubeSubscribers": {
 					"name": "youtubeSubscribers:url del canal",
 					"description": "Cantidad de suscriptores de un canal de YouTube",
 					"detailedDescription": "Cuenta cuantos suscriptores tiene un canal de YouTube, reemplaza `url del canal` con el enlace del canal deseado",
-					"usage": ["{youtubeSubscribers:url del canal}"],
+					"usage": [
+						"{youtubeSubscribers:url del canal}"
+					],
 					"example": [
 						"Suscriptores: {youtubeSubscribers:https://www.youtube.com/user/enyay}"
 					]
@@ -219,7 +288,9 @@
 					"name": "youtubeViews:url del canal",
 					"description": "Cantidad de visualizaciones de un canal de YouTube",
 					"detailedDescription": "Cuenta cuantas visualizaciones tiene un canal de YouTube, reemplaza `url del canal` por el enlace del canal deseado",
-					"usage": ["{youtubeViews:url del canal}"],
+					"usage": [
+						"{youtubeViews:url del canal}"
+					],
 					"example": [
 						"Visualizaciones: {youtubeViews:https://www.youtube.com/user/enyay}"
 					]
@@ -228,7 +299,9 @@
 					"name": "youtubeVideos:url del canal",
 					"description": "Cantidad de videos de un canal de YouTube",
 					"detailedDescription": "Cuenta cuantos videos tiene un canal de YouTube, reemplaza `url del canal` con el enlace del canal deseado",
-					"usage": ["{youtubeVideos:url del canal}"],
+					"usage": [
+						"{youtubeVideos:url del canal}"
+					],
 					"example": [
 						"Videos: {youtubeVideos:https://www.youtube.com/user/enyay}"
 					]
@@ -237,84 +310,130 @@
 					"name": "youtubeChannelName:url del canal",
 					"description": "Muestra el nombre de un canal de YouTube",
 					"detailedDescription": "Muestra el nombre de un canal de YouTube, reemplaza `url del canal` con el enlace del canal deseado",
-					"usage": ["{youtubeChannelName:url del canal}"],
-					"example": ["{youtubeChannelName:https://www.youtube.com/user/enyay}"]
+					"usage": [
+						"{youtubeChannelName:url del canal}"
+					],
+					"example": [
+						"{youtubeChannelName:https://www.youtube.com/user/enyay}"
+					]
 				},
 				"twitchFollowers": {
 					"name": "twitchFollowers:nombre",
 					"description": "Cantidad de seguidores de un canal de Twitch",
 					"detailedDescription": "Cuenta cuantos seguidores tiene un canal de Twitch, reemplaza `nombre` con el nombre del canal deseado",
-					"usage": ["{twitchFollowers:nombre}"],
-					"example": ["{twitchFollowers:ninja} Seguidores"]
+					"usage": [
+						"{twitchFollowers:nombre}"
+					],
+					"example": [
+						"{twitchFollowers:ninja} Seguidores"
+					]
 				},
 				"twitchViews": {
 					"name": "twitchViews:nombre",
 					"description": "Cantidad de vistas de un canal de Twitch",
 					"detailedDescription": "Cuenta cuántas visualizaciones tiene un canal de Twitch, reemplaza `nombre` con el nombre del canal deseado",
-					"usage": ["{twitchViews:nombre}"],
-					"example": ["{twitchViews:ninja} Visualizaciones"]
+					"usage": [
+						"{twitchViews:nombre}"
+					],
+					"example": [
+						"{twitchViews:ninja} Visualizaciones"
+					]
 				},
 				"twitchChannelName": {
 					"name": "twitchChannelName:nombre",
 					"description": "Muestra el nombre de un canal de Twitch",
 					"detailedDescription": "Muestra el nombre de un canal de Twitch, reemplaza `nombre` con el nombre del canal deseado",
-					"usage": ["{twitchChannelName:nombre}"],
-					"example": ["{twitchChannelName:ninja}"]
+					"usage": [
+						"{twitchChannelName:nombre}"
+					],
+					"example": [
+						"{twitchChannelName:ninja}"
+					]
 				},
 				"memeratorMemes": {
 					"name": "memeratorMemes:usuario",
 					"description": "Muestra cantidad de memes de un usuario de [Memerator](https://memerator.me)",
 					"detailedDescription": "Muestra cantidad de memes de un usuario de [Memerator](https://memerator.me), reemplaza `usuario` con el nombre de perfil deseado",
-					"usage": ["{memeratorMemes:usuario}"],
-					"example": ["Memes: {memeratorMemes:eduardozgz}"]
+					"usage": [
+						"{memeratorMemes:usuario}"
+					],
+					"example": [
+						"Memes: {memeratorMemes:eduardozgz}"
+					]
 				},
 				"memeratorFollowers": {
 					"name": "memeratorFollowers:usuario",
 					"description": "Muestra la cantidad de seguidores de un usuario de [Memerator](https://memerator.me)",
 					"detailedDescription": "Muestra la cantidad de seguidores de un usuario de [Memerator](https://memerator.me), reemplaza `usuario` con el nombre de perfil deseado",
-					"usage": ["{memeratorFollowers:usuario}"],
-					"example": ["Seguidores: {memeratorFollowers:eduardozgz}"]
+					"usage": [
+						"{memeratorFollowers:usuario}"
+					],
+					"example": [
+						"Seguidores: {memeratorFollowers:eduardozgz}"
+					]
 				},
 				"twitterFollowers": {
 					"name": "twitterFollowers:usuario",
 					"description": "Cantidad de seguidores de un usuario de Twitter",
 					"detailedDescription": "Cuenta cuantos seguidores tienen un usuario de Twitter, reemplaza `usuario` con el nombre de perfil deseado",
-					"usage": ["{twitterFollowers:usuario}"],
-					"example": ["Seguidores: {twitterFollowers:0xEduardozgz}"]
+					"usage": [
+						"{twitterFollowers:usuario}"
+					],
+					"example": [
+						"Seguidores: {twitterFollowers:0xEduardozgz}"
+					]
 				},
 				"redditMembers": {
 					"name": "redditMembers:subreddit",
 					"description": "Cuenta la cantidad de miembros de un subreddit",
 					"detailedDescription": "Cuenta la cantidad de miembros de un subreddit, reemplaza `subreddit` con el subreddit deseado",
-					"usage": ["{redditMembers:subreddit}"],
-					"example": ["Redditors: {redditMembers:science}"]
+					"usage": [
+						"{redditMembers:subreddit}"
+					],
+					"example": [
+						"Redditors: {redditMembers:science}"
+					]
 				},
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
 					"description": "Cuenta la cantidad de miembros en línea de un subreddit",
 					"detailedDescription": "Cuenta la cantidad de miembros de un subreddit, reemplaza `subreddit` con el subreddit deseado",
-					"usage": ["{redditMembersOnline:subreddit}"],
-					"example": ["Redditors en línea: {redditMembersOnline:science}"]
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"Redditors en línea: {redditMembersOnline:science}"
+					]
 				},
 				"redditTitle": {
 					"name": "redditTitle:subreddit",
 					"description": "Muestra el título de un subreddit",
 					"detailedDescription": "Muestra el título de un subreddit, reemplaza `subreddit` con el subreddit deseado",
-					"usage": ["{redditMembersOnline:subreddit}"],
-					"example": ["{redditMembersOnline:science}"]
+					"usage": [
+						"{redditMembersOnline:subreddit}"
+					],
+					"example": [
+						"{redditMembersOnline:science}"
+					]
 				},
 				"instagramFollowers": {
 					"name": "instagramFollowers:usuario",
 					"description": "Cuenta la cantidad de seguidores de cuenta de Instagram",
 					"detailedDescription": "Cuenta la cantidad de seguidores de una cuenta de Instagram, reemplaza `usuario` con el nombre de usuario de Instagram",
-					"usage": ["{instagramFollowers:usuario}"],
-					"example": ["Seguidores: {instagramFollowers:eduardozgz}"]
+					"usage": [
+						"{instagramFollowers:usuario}"
+					],
+					"example": [
+						"Seguidores: {instagramFollowers:eduardozgz}"
+					]
 				},
 				"countdown": {
 					"name": "{countdown:fecha:formato}",
 					"description": "Muestra una cuenta regresiva que disminuirá a la fecha especificada",
 					"detailedDescription": "Muestra una cuenta atras que bajara hasta la fecha especificada, puedes [generar este contador fácilmente aquí](https://member-counter.eduardozgz.com/utils/countdown) o crearlo manualmente reemplazando `fecha` por una marca de tiempo de UNIX, y opcionalmente darle un formato personalizando reemplazando `format`: Usa `%d` para mostrar los días restantes, `%h` para las horas restantes, `%m` para los minutos restantes y `%s` para mostrar los segundos restantes",
-					"usage": ["{countdown:fecha:formato}"],
+					"usage": [
+						"{countdown:fecha:formato}"
+					],
 					"example": [
 						"Año nuevo: {countdown:1640991600:%d días, %h horas, %m minutos}"
 					]
@@ -323,21 +442,31 @@
 					"name": "game:gameId:dirección",
 					"description": "Jugadores en línea en un servidor de juegos (Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc.)",
 					"detailedDescription": "Cuenta cuántos jugadores en línea hay en un servidor de juegos (como Minecraft, Counter Strike, Rust, Ark, Team Fortress 2, GMOD, etc), reemplace `gameId` por uno de los listados [aquí](https://github. om/gamedig/node-gamedig/#games-list) y `dirección` por la dirección del servidor",
-					"usage": ["{game:gameId:dirección}"],
-					"example": ["{game:minecraft:mc.hypixel.net} Mineando y crafteando"]
+					"usage": [
+						"{game:gameId:dirección}"
+					],
+					"example": [
+						"{game:minecraft:mc.hypixel.net} Mineando y crafteando"
+					]
 				},
 				"clock": {
 					"name": "clock:zona horaria",
 					"description": "Muestra un reloj con la hora de la zona horaria especificada",
 					"detailedDescription": "Muestra un reloj con la hora de la zona horaria especificada, puedes [generar este contador aquí](https://member-counter.eduardozgz.com/utils/clock) o reemplazar `zona horaria` con una zona horaria IANA válida",
-					"usage": ["{clock:zona horaria}"],
-					"example": ["España: {clock:Europe/Madrid}"]
+					"usage": [
+						"{clock:zona horaria}"
+					],
+					"example": [
+						"España: {clock:Europe/Madrid}"
+					]
 				},
 				"http": {
 					"name": "http:opciones",
 					"description": "Muestra el resultado de una solicitud http",
-					"detailedDescription": "Shows the result returned by a http `GET` request. You can setup the `options` [here](https://member-counter.eduardozgz.com/utils/http), or create it manually: `options` is a JSON object encoded in base64 (you can use base64 command to achieve this), this object can have the following keys: `url`: A string; with the url of the resource, `parseNumber`: A boolean; if the result is a valid number, it will be parsed and customized according to your server's settings, `dataPath`: A string; if the response is a JSON object, you must specify the path to a key with a value that must be a string or number, the syntax of this path is similar to the syntax that JS uses to access properties and array items, `lifetime`: A number; specifies in seconds for how long the returned response will be cached and used, the default is 1 hour",
-					"usage": ["{http:opciones}"],
+					"detailedDescription": "Muestra el resultado de una petición http `GET`. Puedes configurar las `opciones` de este contador [aquí](https://member-counter.eduardozgz.com/utils/http), o crearlo manualmente: `opciones` es un objeto JSON codificado en base64 (puedes usar el comando base64 para hacer esto), este objeto puede tener las siguientes claves: `url`: Una cadena de texto; con la url del recurso, `parseNumber`: Un boolean; si el resultado es numérico, este sera personalizado con los ajustes del servidor, `dataPath`: Una cadena de texto; si la respuesta al recurso es un objeto JSON, debes especificar la ruta a un campo con un valor que debe ser un numero o una cadena de texto, la sintaxis es similar a la que JS usa para acceder propiedades e ítems de un array. `lifetime`: Un número; especifica en segundos por cuanto tiempo la respuesta va a ser guardada en caché, por defecto es 1 hora",
+					"usage": [
+						"{http:opciones}"
+					],
 					"example": [
 						"Último suscriptor: {http:eyJ1cmwiOiJodHRwczovL215YXBpLmNvbS92MS9zdWJzY3JpYmVycz9nZXQ9bGFzdCIsImRhdGFQYXRoIjoidXNlci5uYW1lIn0=}"
 					]
@@ -359,56 +488,87 @@
 					"name": "escape:stringToEscape",
 					"description": "Escapes common delimiters used by Member Counter",
 					"detailedDescription": "Escapes automatically all the delimiters used by Member Counter when processing a counter. Like `:`,`;` or `,`. You may need this if you want to pass arguments with the mentioned delimiters without getting them parsed. This is specially useful when you can't control well the content of the string like in the `{http}` counter",
-					"usage": ["{escape:stringToEscape}"],
-					"example": ["{escape:Hello, world!}"]
+					"usage": [
+						"{escape:stringToEscape}"
+					],
+					"example": [
+						"{escape:Hello, world!}"
+					]
 				},
 				"static": {
 					"name": "static:datos",
 					"description": "Muestra los `datos` dados",
 					"detailedDescription": "Muestra los `datos` dados, con un formato personalizado basado en la configuración del servidor si es un número, también se puede introducir texto",
-					"usage": ["{static:datos}"],
-					"example": ["{static:420}", "{static:Hola mundo!}"]
+					"usage": [
+						"{static:datos}"
+					],
+					"example": [
+						"{static:420}",
+						"{static:Hola mundo!}"
+					]
 				},
 				"sum": {
 					"name": "sum:valor 1, valor 2, más valores",
 					"description": "Suma los valores especificados",
 					"detailedDescription": "Suma de los valores especificados, calculado desde la izquierda a la derecha",
-					"usage": ["{sum:valor 1, valor 2, más valores}"],
-					"example": ["2 + 2 = {sum:2,2}"]
+					"usage": [
+						"{sum:valor 1, valor 2, más valores}"
+					],
+					"example": [
+						"2 + 2 = {sum:2,2}"
+					]
 				},
 				"subtract": {
 					"name": "subtract:valor 1, valor 2, más valores",
 					"description": "Resta los valores especificados",
 					"detailedDescription": "Resta los valores especificados, calculado desde la izquierda a la derecha",
-					"usage": ["{subtract:valor 1, valor 2, más valores}"],
-					"example": ["2 - 2 = {subtract:2,2}"]
+					"usage": [
+						"{subtract:valor 1, valor 2, más valores}"
+					],
+					"example": [
+						"2 - 2 = {subtract:2,2}"
+					]
 				},
 				"multiply": {
 					"name": "multiply:valor 1,valor 2, más valores",
 					"description": "Multiplica los valores especificados",
 					"detailedDescription": "Multiplica los valores especificados, calculado desde la izquierda a la derecha",
-					"usage": ["{multiply:valor 1,valor 2, más valores}"],
-					"example": ["2 * 2 = {multiply:2,2}"]
+					"usage": [
+						"{multiply:valor 1,valor 2, más valores}"
+					],
+					"example": [
+						"2 * 2 = {multiply:2,2}"
+					]
 				},
 				"divide": {
 					"name": "divide:valor 1,valor 2, más valores",
 					"description": "Divide los valores especificados",
 					"detailedDescription": "Divide los valores especificados, calculado desde la izquierda a la derecha",
-					"usage": ["{divide:valor 1,valor 2, más valores}"],
-					"example": ["10 / 2 = {divide:10,2}"]
+					"usage": [
+						"{divide:valor 1,valor 2, más valores}"
+					],
+					"example": [
+						"10 / 2 = {divide:10,2}"
+					]
 				},
 				"modulus": {
 					"name": "modulus:valor 1,valor 2, más valores",
 					"description": "Obtiene el modulo (tambien conocido como resto de la division) de los valores especificados",
 					"detailedDescription": "Obtiene el modulo (tambien conocido como resto de la division) de los valores especificados, calculado desde la izquierda a la derecha",
-					"usage": ["{modulus:valor 1,valor 2, más valores}"],
-					"example": ["10 % 2 = {modulus:10,2}"]
+					"usage": [
+						"{modulus:valor 1,valor 2, más valores}"
+					],
+					"example": [
+						"10 % 2 = {modulus:10,2}"
+					]
 				}
 			}
 		},
 		"premium": {
 			"helpDescription": "Obtén información acerca de Member Counter Premium.",
-			"helpExample": ["premium"],
+			"helpExample": [
+				"premium"
+			],
 			"embedReply": {
 				"title": "Member Counter Premium",
 				"description": "[Obtén el bot premium]({GET_PREMIUM_BOT_URL}) y disfruta:",
@@ -443,8 +603,12 @@
 		},
 		"lockChannel": {
 			"helpDescription": "Puedes usar esta comando para mostrar un candado (🔒) en ved de un altavoz (🔊) en canales de voz.",
-			"helpUsage": ["lockChannel [id del canal]"],
-			"helpExample": ["lockChannel 700336568099143710"],
+			"helpUsage": [
+				"lockChannel [id del canal]"
+			],
+			"helpExample": [
+				"lockChannel 700336568099143710"
+			],
 			"success": "Hecho! Ahora, **para usuarios no administradores**, el canal sera mostrado con un 🔒",
 			"errorInvalidChannel": "Solo puedes bloquear canales de voz!",
 			"errorNoPerms": "No puedo editar el canal `{CHANNEL}` debido a falta de permisos",
@@ -452,7 +616,9 @@
 		},
 		"editChannel": {
 			"helpDescription": "Si estas intentando establecer un contador pero Discord te dice que has alcanzado el limite de caracteres en el nombre/tema, puedes \"ignorar\" este limite usando este comando.",
-			"helpUsage": ["editChannel [ID del canal] [contenido y contadores]"],
+			"helpUsage": [
+				"editChannel [ID del canal] [contenido y contadores]"
+			],
 			"helpExample": [
 				"editChannel 701396983843127366 {onlineMembers} de {members} En línea"
 			],
@@ -466,14 +632,19 @@
 				"setDigit reset",
 				"setDigit [número] [tu número personalizado]"
 			],
-			"helpExample": ["setDigit 3 3", "setDigit 3 :emoji3:, 4 :emoji4:"],
+			"helpExample": [
+				"setDigit 3 3",
+				"setDigit 3 :emoji3:, 4 :emoji4:"
+			],
 			"success": "Dígitos personalizados correctamente.",
 			"resetSuccess": "Todos los dígitos han sido reestablecidos.",
 			"errorMissingParams": "Faltan parámetros, por favor, consulta `help setDigit`."
 		},
 		"shortNumber": {
 			"helpDescription": "Este comando te permite mostrar cuentas de forma compacta",
-			"helpUsage": ["shortNumber [enable|on/disable|off]"],
+			"helpUsage": [
+				"shortNumber [enable|on/disable|off]"
+			],
 			"helpExample": [
 				"shortNumber enable",
 				"shortNumber disable",
@@ -486,13 +657,21 @@
 		},
 		"locale": {
 			"helpDescription": "Formatea los números y relojes (formato 12h/24h) a la configuración local especificada.",
-			"helpUsage": ["locale [lugar/disable]"],
-			"helpExample": ["locale en", "locale es", "locale disable"],
+			"helpUsage": [
+				"locale [lugar/disable]"
+			],
+			"helpExample": [
+				"locale en",
+				"locale es",
+				"locale disable"
+			],
 			"helpImage": "https://i.imgur.com/gnje0YB.png"
 		},
 		"role": {
 			"helpDescription": "Puedes permitir o denegar el uso de comandos administrativos a roles que concretes\nTambién puedes referirte a todos con la palabra ``all``\nPara ver los roles permitidos usa ``seeSettings`.",
-			"helpUsage": ["role [allow/deny] [@roles/all]"],
+			"helpUsage": [
+				"role [allow/deny] [@roles/all]"
+			],
 			"helpExample": [
 				"role allow @Moderador",
 				"role allow @Moderador @OtroRol",
@@ -505,7 +684,9 @@
 		},
 		"seeSettings": {
 			"helpDescription": "Muestra todos los ajustes del bot para este servidor.",
-			"helpExample": ["seeSettings"],
+			"helpExample": [
+				"seeSettings"
+			],
 			"settingsMessage": {
 				"headerText": "Ajustes para el servidor:",
 				"langText": "Idioma:",
@@ -522,34 +703,50 @@
 		},
 		"resetSettings": {
 			"helpDescription": "Elimina todos los contadores y establece los ajustes del bot para este servidor a los de por defecto.",
-			"helpExample": ["resetSettings"],
+			"helpExample": [
+				"resetSettings"
+			],
 			"done": "Restablecido a los ajustes por defecto"
 		},
 		"upgradeServer": {
 			"helpDescription": "Este comando te permite invitar a al antiguo bot Member Counter Premium, usando mejoras del servidor disponibles.",
-			"helpExample": ["upgradeServer"],
+			"helpExample": [
+				"upgradeServer"
+			],
 			"success": "Hecho! El siguiente paso es invitar al bot premium:\n{BOT_LINK}",
 			"errorCannotUpgrade": "No puedes mejorar el servidor porque ya tiene premium.",
 			"noServerUpgradesAvailable": "No puedes mejorar este servidor porque no te quedan mejoras disponibles"
 		},
 		"info": {
 			"helpDescription": "Lista de enlaces útiles.",
-			"helpExample": ["info"],
+			"helpExample": [
+				"info"
+			],
 			"embedReply": {
 				"description": "[Añádeme a tu servidor]({BOT_INVITE_URL})\n[Sitio web]({WEBSITE})\n[Obtén premium]({GET_PREMIUM_BOT_URL})\n[Servidor de ayuda]({BOT_SERVER_URL})\n[Repositorio de GitHub](https://github.com/eduardozgz/member-counter-bot)"
 			}
 		},
 		"lang": {
 			"helpDescription": "Cambia el idioma de este servidor, debes ser administrador para ejecutar este comando.",
-			"helpUsage": ["lang (código del idioma)"],
-			"helpExample": ["lang", "lang es_ES"],
+			"helpUsage": [
+				"lang (código del idioma)"
+			],
+			"helpExample": [
+				"lang",
+				"lang es_ES"
+			],
 			"success": "El idioma se cambio correctamente.",
 			"errorNotFound": "Lista de idiomas disponibles:"
 		},
 		"profile": {
 			"helpDescription": "Muestra información relacionada entre tu y el bot.",
-			"helpUsage": ["profile (@usuario)"],
-			"helpExample": ["profile", "profile @eduardozgz"],
+			"helpUsage": [
+				"profile (@usuario)"
+			],
+			"helpExample": [
+				"profile",
+				"profile @eduardozgz"
+			],
 			"badges": "Insignias",
 			"credits": "Créditos",
 			"serverUpgradesAvailable": "Mejoras de servidor restantes",
@@ -561,7 +758,9 @@
 		},
 		"counts": {
 			"helpDescription": "Muestra algunos contadores.",
-			"helpExample": ["counts"],
+			"helpExample": [
+				"counts"
+			],
 			"members": "Miembros:",
 			"onlineMembers": "Miembros en línea:",
 			"offlineMembers": "Miembros fuera de línea:",
@@ -574,8 +773,12 @@
 		},
 		"preview": {
 			"helpDescription": "Muestra una vista previa de como se verá un contador o varios contadores en un canal.",
-			"helpUsage": ["preview [contenido y contadores]"],
-			"helpExample": ["preview {members} Miembros"],
+			"helpUsage": [
+				"preview [contenido y contadores]"
+			],
+			"helpExample": [
+				"preview {members} Miembros"
+			],
 			"helpImage": "https://i.imgur.com/3JP3u0Y.png",
 			"channelName": "Vista previa en el nombre de un canal",
 			"channelTopic": "Vista previa en el tema de un canal"
@@ -690,13 +893,20 @@
 		},
 		"base64": {
 			"helpDescription": "Este comando codifica o descodifica en base64 el contenido que pases, útil para crear contadores avanzados como `{http}`.",
-			"helpUsage": ["base64 [encode/decode] [datos]"],
-			"helpExample": ["base64 encode test", "base64 decode dGVzdA=="],
+			"helpUsage": [
+				"base64 [encode/decode] [datos]"
+			],
+			"helpExample": [
+				"base64 encode test",
+				"base64 decode dGVzdA=="
+			],
 			"invalidAction": "Acción inválida, debe ser `encode` o `decode`"
 		},
 		"checkPermissions": {
 			"helpDescription": "Comprueba si el bot tiene los permisos correctos para funcionar correctamente.",
-			"helpExample": ["checkPermissions"],
+			"helpExample": [
+				"checkPermissions"
+			],
 			"title": "Comprobar permisos",
 			"optionalText": "(Opcional)",
 			"adminWarning": "**Este bot tiene permisos de administrador, por favor desactiva el permiso de administrador y configura los permisos correctamente**",
@@ -760,7 +970,7 @@
 			"notAvailable": "No disponible, espere por favor"
 		},
 		"paginator": {
-			"pageCounter": "Página {CURRENT_PAGE} de {TOTAL_PAGES}",
+			"pageCounter": "Página {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"jumpPrompt": "¿A qué página te gustaría ir? Escribe `{CANCEL_STRING}` o `0` para cancelarlo. Tienes 15 segundos para responder.",
 			"cancelText": "cancelar",
 			"errorPageLengthExceeded": "La página debe ser menor o igual que {TOTAL_PAGES}. Por favor, inténtalo de nuevo.",
