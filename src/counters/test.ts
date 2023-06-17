@@ -12,7 +12,7 @@ const TestCounter: Counter = {
 		return 1234567890;
 		// return "Working!";
 		// return { myCounter: Date.now(), myRandomCounter: "Working!" };
-		// return Constants.CounterResult.ERROR;
+		// throw CounterError.UNKNOWN ;
 		// return 1337;
 	}
 };
