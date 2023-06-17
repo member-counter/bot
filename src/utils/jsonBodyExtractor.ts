@@ -10,7 +10,7 @@ function jsonBodyExtractor(body: any, path: string) {
 	while (iterationsLeft) {
 		if (!--iterationsLeft) throw new Error("Path length exceeded");
 
-		let { groups: matchGroups } = pathLeft.match(propExp) ?? { groups: {} };
+		let matchGroups = pathLeft.match(propExp)?.groups ?? {};
 
 		let matched;
 		if (matchGroups?.propName) {
