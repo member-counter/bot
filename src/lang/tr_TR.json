@@ -397,7 +397,7 @@
 				"redditMembersOnline": {
 					"name": "redditMembersOnline:subreddit",
 					"description": "Bir subredditin aktif üye sayısını gösterir",
-					"detailedDescription": "Bir subredditin üye sayısını gösterir, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
+					"detailedDescription": "Bir subredditin üye sayısını sayar, `subreddit` bölümünü istediğiniz subreddit ile değiştirin",
 					"usage": [
 						"{redditMembersOnline:subreddit}"
 					],
