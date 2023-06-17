@@ -3,7 +3,7 @@ import GuildService from "./GuildService";
 import { loadLanguagePack } from "../utils/languagePack";
 import getEnv from "../utils/getEnv";
 import botHasPermsToEdit from "../utils/botHasPermsToEdit";
-import Constants from "../utils/Constants";
+import { CounterError } from "../utils/Constants";
 import Counter from "../typings/Counter";
 import FormattingSettings from "../typings/FormattingSettings";
 import counters from "../counters/all";
@@ -172,6 +172,7 @@ class CountService {
 		let resource = counterSections.join(":");
 		let lifetime = 0;
 		let result: string | number;
+		let error: CounterError | null;
 
 		// Try to get the value from the cache
 		if (
@@ -197,11 +198,11 @@ class CountService {
 			const counter = CountService.getCounterByAlias(counterName);
 
 			if (!counter) {
-				result = Constants.CounterResult.UNKNOWN;
+				error = CounterError.UNKNOWN;
 			} else if (!counter.isEnabled) {
-				result = Constants.CounterResult.DISABLED;
+				error = CounterError.DISABLED;
 			} else if (counter.isPremium && !(PREMIUM_BOT || UNRESTRICTED_MODE)) {
-				result = Constants.CounterResult.PREMIUM;
+				error = CounterError.PREMIUM;
 			} else {
 				lifetime = counter.lifetime;
 
@@ -220,16 +221,17 @@ class CountService {
 						unparsedArgs,
 						args
 					})
-					.catch((error) => {
-						if (DEBUG) console.error(error);
+					.catch((executionError) => {
+						if (DEBUG) console.error(executionError);
 						this.guildSettings
-							.log(`{${counterRequested}}: ${error}`)
+							.log(`{${counterRequested}}: ${executionError}`)
 							.catch(console.error);
-						return (
-							CountService.globalCache.get(
-								this.counterToKey(counterName, resource, formattingSettingsRaw)
-							)?.value ?? Constants.CounterResult.ERROR
-						);
+
+						error = executionError;
+
+						return CountService.globalCache.get(
+							this.counterToKey(counterName, resource, formattingSettingsRaw)
+						)?.value;
 					});
 
 				if (
@@ -239,10 +241,8 @@ class CountService {
 					returnedValue = {
 						[counterName]: returnedValue
 					};
-				} else if (typeof returnedValue === "undefined") {
-					returnedValue = {
-						[counterName]: Constants.CounterResult.ERROR
-					};
+				} else if (typeof returnedValue === "undefined" && !error) {
+					error = CounterError.ERROR;
 				}
 
 				for (const key in returnedValue) {
@@ -253,9 +253,9 @@ class CountService {
 						if (typeof extValue === "string") {
 							// nothing, just don't convert it to an error
 						} else if (typeof extValue === "number") {
-							if (isNaN(extValue)) extValue = Constants.CounterResult.ERROR;
+							if (isNaN(extValue)) extValue = CounterError.ERROR;
 						} else {
-							extValue = Constants.CounterResult.ERROR;
+							extValue = CounterError.ERROR;
 						}
 
 						if (lifetime > 0)
@@ -284,28 +284,18 @@ class CountService {
 			}
 		}
 
-		// If the result is some error, display it
-		switch (result) {
-			case Constants.CounterResult.PREMIUM:
-				result = this.languagePack.functions.getCounts.onlyPremium;
-				break;
+		if (error) {
+			const errorMessageKey = {
+				[CounterError.PREMIUM]: "onlyPremium",
+				[CounterError.UNKNOWN]: "unknownCounter",
+				[CounterError.DISABLED]: "disabled",
+				[CounterError.NOT_AVAILABLE]: "notAvailable"
+			};
 
-			case Constants.CounterResult.ERROR:
-				result = this.languagePack.common.error;
-				break;
-
-			case Constants.CounterResult.UNKNOWN:
-				result = this.languagePack.functions.getCounts.unknownCounter;
-				break;
-
-			case Constants.CounterResult.DISABLED:
-				result = this.languagePack.functions.getCounts.disabled;
-				break;
-
-			case Constants.CounterResult.NOT_AVAILABLE:
-				result = this.languagePack.functions.getCounts.notAvailable;
-				break;
+			result = this.languagePack.functions.getCounts[errorMessageKey[error]];
+			result ??= this.languagePack.common.error;
 		}
+
 		// format result if it's a number according to the formatting settings
 		if (typeof result === "number" && !isNaN(result)) {
 			const isShortNumberEnabled = formattingSettings.shortNumber > -1;

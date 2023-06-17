@@ -26,7 +26,7 @@ const guide: Command = {
 						.filter(([key]) => CountService.getCounterByAlias(key).isEnabled)
 						.map(([key, guideCounter]) => {
 							const counter = CountService.getCounterByAlias(key);
-							return `${counter.isPremium ? "+" : "-"} \`{${
+							return `- ${counter.isPremium ? "*" : ""}\`{${
 								guideCounter.name
 							}}\` ${guideCounter.description}`;
 						})
