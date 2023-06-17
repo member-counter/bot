@@ -265,7 +265,7 @@
 				"nitro-boosters": {
 					"name": "nitro-boosters",
 					"description": "Sunucuyu boostlayan toplam üye sayısını gösterir",
-					"detailedDescription": "Sunucuyu boostlayan toplam üye sayısını sayar",
+					"detailedDescription": "Sunucuyu boostlayan toplam üye sayısını gösterir",
 					"usage": [
 						"{nitro-boosters}"
 					],
