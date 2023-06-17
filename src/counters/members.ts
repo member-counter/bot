@@ -1,6 +1,6 @@
 import GuildCountCacheModel from "../models/GuildCountCache";
 import Counter from "../typings/Counter";
-import Constants from "../utils/Constants";
+import { CounterError } from "../utils/Constants";
 
 const MemberCounter: Counter = {
 	aliases: [
@@ -28,7 +28,7 @@ const MemberCounter: Counter = {
 				approximatedOnlineMembers: onlineMembers
 			};
 		} else {
-			return Constants.CounterResult.NOT_AVAILABLE;
+			throw CounterError.NOT_AVAILABLE;
 		}
 	}
 };
