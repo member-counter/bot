@@ -1,5 +1,4 @@
 import fetch from "node-fetch";
-import AbortController from "abort-controller";
 import * as packageJSON from "../../package.json";
 import timeoutFetch from "../utils/timeoutFetch";
 import Counter from "../typings/Counter";

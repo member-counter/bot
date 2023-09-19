@@ -30,7 +30,6 @@
     "@arcanebot/redis-sharder": "github:eduardozgz/redis-sharder",
     "@twurple/api": "^5.0.1",
     "@twurple/auth": "^5.0.1",
-    "abort-controller": "^3.0.0",
     "bufferutil": "^4.0.1",
     "colorthief": "2.3.2",
     "cron": "^1.8.2",
