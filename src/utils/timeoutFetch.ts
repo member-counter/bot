@@ -1,5 +1,4 @@
 import { Response } from "node-fetch";
-import AbortController from "abort-controller";
 
 // https://github.com/github/fetch/issues/175#issuecomment-216791333
 function timeoutFetch(
