@@ -44,5 +44,5 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            eduardozgz/bot:beta
+            eduardozgz/member-counter-bot:beta
             ghcr.io/member-counter/bot:beta
