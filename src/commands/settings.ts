@@ -82,12 +82,11 @@ const seeSettings: Command = {
 
 			for (const [counter, content] of counters) {
 				const discordChannel = guild.channels.get(counter);
-				const { type, id } = discordChannel;
-				const icon = ["\\#️⃣", " ", "\\🔊", " ", "\\📚", "\\📢", " "];
+				const { id } = discordChannel;
 
-				countersSection += `${
-					botHasPermsToEdit(discordChannel) ? "     " : " \\⚠️ "
-				}\\- ${icon[type]} <#${id}> \`${id}\`: \`\`\`${content}\`\`\`\n`;
+				countersSection += `\\- ${
+					botHasPermsToEdit(discordChannel) ? "" : "\\⚠️ "
+				} <#${id}> \`${id}\`: \`\`\`${content}\`\`\`\n`;
 			}
 		}
 
