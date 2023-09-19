@@ -84,9 +84,9 @@ const seeSettings: Command = {
 				const discordChannel = guild.channels.get(counter);
 				const { id } = discordChannel;
 
-				countersSection += `${
-					botHasPermsToEdit(discordChannel) ? "     " : " \\⚠️ "
-				}\\- <#${id}> \`${id}\`: \`\`\`${content}\`\`\`\n`;
+				countersSection += `\\- ${
+					botHasPermsToEdit(discordChannel) ? "" : "\\⚠️ "
+				} <#${id}> \`${id}\`: \`\`\`${content}\`\`\`\n`;
 			}
 		}
 
