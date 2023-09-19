@@ -82,22 +82,22 @@ const seeSettings: Command = {
 
 			for (const [counter, content] of counters) {
 				const discordChannel = guild.channels.get(counter);
-				const { name, type } = discordChannel;
+				const { type, id } = discordChannel;
 				const icon = ["\\#️⃣", " ", "\\🔊", " ", "\\📚", "\\📢", " "];
 
 				countersSection += `${
 					botHasPermsToEdit(discordChannel) ? "     " : " \\⚠️ "
-				}- ${icon[type]} ${name} \`${counter}\`: \`\`\`${content}\`\`\`\n`;
+				}\\- ${icon[type]} <#${id}> \`${id}\`: \`\`\`${content}\`\`\`\n`;
 			}
 		}
 
 		const latestLogs = await guildService.getLatestLogs(100);
 		if (latestLogs.length) {
-			const formatedLatestLogs = latestLogs
+			const formattedLatestLogs = latestLogs
 				.map(({ timestamp, text }) => `[${timestamp.toISOString()}] ${text}\n`)
 				.join("");
 
-			logsSection = safeDiscordString(formatedLatestLogs).map(
+			logsSection = safeDiscordString(formattedLatestLogs).map(
 				(portion) => "```" + portion + "```"
 			);
 		}
