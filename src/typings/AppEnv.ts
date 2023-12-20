@@ -37,7 +37,6 @@ interface _AppEnv {
 
 	MEMBER_COUNTS_CACHE_LIFETIME: number;
 	MEMBER_COUNTS_CACHE_CHECK_SLEEP: number;
-	MEMBER_COUNTS_CACHE_CHECK: number;
 
 	PREMIUM_BOT: boolean;
 	PREMIUM_BOT_ID: string;

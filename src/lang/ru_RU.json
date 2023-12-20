@@ -922,7 +922,7 @@
 				},
 				"voiceConnect": {
 					"name": "Подключаться",
-					"description": "Используется для доступа к имени/описанию каналов для обновления счетчиков"
+					"description": "Используется для обновления имени/описания каналов для обновления счетчиков"
 				},
 				"readMessageHistory": {
 					"name": "Прочитать историю сообщений",
@@ -970,7 +970,7 @@
 			"notAvailable": "Не доступно, пожалуйста подождите"
 		},
 		"paginator": {
-			"pageCounter": "Стр. {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"pageCounter": "Страница {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
 			"cancelText": "cancel",
 			"errorPageLengthExceeded": "Номер страницы должен быть меньше или равен {TOTAL_PAGES}. Пожалуйста, попробуйте ещё раз.",

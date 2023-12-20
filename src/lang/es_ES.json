@@ -970,7 +970,7 @@
 			"notAvailable": "No disponible, espere por favor"
 		},
 		"paginator": {
-			"pageCounter": "Página {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"pageCounter": "Página {CURRENT_PAGE} de {TOTAL_PAGES}",
 			"jumpPrompt": "¿A qué página te gustaría ir? Escribe `{CANCEL_STRING}` o `0` para cancelarlo. Tienes 15 segundos para responder.",
 			"cancelText": "cancelar",
 			"errorPageLengthExceeded": "La página debe ser menor o igual que {TOTAL_PAGES}. Por favor, inténtalo de nuevo.",

@@ -39,16 +39,6 @@ const counts: Command = {
 					inline: true
 				},
 				{
-					name: languagePack.commands.counts.bots,
-					value: await counts.processCounter("bots"),
-					inline: true
-				},
-				{
-					name: languagePack.commands.counts.connectedUsers,
-					value: await counts.processCounter("connectedmembers"),
-					inline: true
-				},
-				{
 					name: languagePack.commands.counts.channels,
 					value: await counts.processCounter("channels"),
 					inline: true
