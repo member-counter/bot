@@ -35,6 +35,19 @@ const { DB_URI } = process.env;
 		`[${userResult.modifiedCount} of ${usersCollectionSize}] Documents Processed (User settings)`
 	);
 
+	// Guild Count cache
+	const cacheCollection = db.collection("guildcountcaches");
+	const cacheCollectionSize = await cacheCollection.countDocuments();
+	const cacheResult = await cacheCollection.updateMany(
+		{},
+		{ $rename: { guild: "id" } }
+	);
+
+	console.log(
+		`[${cacheResult.modifiedCount} of ${cacheCollectionSize}] Documents Processed (Guild Count cache)`
+	);
+
+
 	process.stdout.write("\nDone\n");
 	process.exit(0);
 })();

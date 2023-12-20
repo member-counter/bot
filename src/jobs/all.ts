@@ -7,6 +7,7 @@ import freeMemory from "./freeMemory";
 import postBotStatus from "./postBotStats";
 import setBotStatus from "./setBotSatus";
 import updateCounters from "./updateCounters";
+import fetchMemberCounts from "./fetchMemberCounts";
 
 const jobs: Job[] = [
 	checkBlockedGuilds,
@@ -15,7 +16,8 @@ const jobs: Job[] = [
 	freeMemory,
 	setBotStatus,
 	postBotStatus,
-	updateCounters
+	updateCounters,
+	fetchMemberCounts
 ];
 
 export default jobs;
