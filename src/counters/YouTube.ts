@@ -4,8 +4,8 @@ const { YOUTUBE_API_KEY } = getEnv();
 
 import Counter from "../typings/Counter";
 
-const anyChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(channel|user|c)\//;
-const usernameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(user|c)\//;
+const legacyUsernameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(user|c)\//;
+const handleUsernameChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/\@/;
 const idChannelMatch = /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/channel\//;
 
 const YouTubeCounter: Counter = {
@@ -20,13 +20,20 @@ const YouTubeCounter: Counter = {
 	lifetime: 60 * 60 * 1000,
 	execute: async ({ unparsedArgs: channelUrl }) => {
 		if (!YOUTUBE_API_KEY) throw new Error("YOUTUBE_API_KEY not provided");
-		let channel = channelUrl.replace(anyChannelMatch, "");
-		let searchChannelBy = "";
 
-		if (usernameChannelMatch.test(channelUrl)) {
+		let channel = "";
+		let searchChannelBy = "id";
+	
+		if (legacyUsernameChannelMatch.test(channelUrl)) {
 			searchChannelBy = "forUsername";
+			channel = channelUrl.replace(legacyUsernameChannelMatch, "");
+		} else if (handleUsernameChannelMatch.test(channelUrl)) {
+			const getId = await fetch(
+				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${channelUrl.replace(handleUsernameChannelMatch, "")}&type=channel&key=${YOUTUBE_API_KEY}`
+			).then((response) => response.json());
+			channel = getId.items?.[0]?.id.channelId;
 		} else if (idChannelMatch.test(channelUrl)) {
-			searchChannelBy = "id";
+			channel = channelUrl.replace(idChannelMatch, "")
 		} else {
 			throw new Error(`Invalid youtube channel url: ${channelUrl}`);
 		}
