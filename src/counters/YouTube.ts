@@ -27,12 +27,12 @@ const YouTubeCounter: Counter = {
 		if (legacyUsernameChannelMatch.test(channelUrl)) {
 			searchChannelBy = "forUsername";
 			channel = channelUrl.replace(legacyUsernameChannelMatch, "");
-		} if (handleUsernameChannelMatch.test(channelUrl)) {
+		} else if (handleUsernameChannelMatch.test(channelUrl)) {
 			const getId = await fetch(
 				`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${channelUrl.replace(handleUsernameChannelMatch, "")}&type=channel&key=${YOUTUBE_API_KEY}`
 			).then((response) => response.json());
 			channel = getId.items?.[0]?.id.channelId;
-		} if (idChannelMatch.test(channelUrl)) {
+		} else if (idChannelMatch.test(channelUrl)) {
 			channel = channelUrl.replace(idChannelMatch, "")
 		} else {
 			throw new Error(`Invalid youtube channel url: ${channelUrl}`);
