@@ -7,7 +7,7 @@ const MembersWithRoleCounter: Counter = {
 		"offlineMembersWithRole"
 	],
 	isPremium: true,
-	isEnabled: true,
+	isEnabled: false,
 	lifetime: 0,
 	execute: async ({ client, guild, args }) => {
 		const targetRoles: string[] = args[0];

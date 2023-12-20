@@ -4,15 +4,13 @@ const MembersExtendedCounter: Counter = {
 	aliases: [
 		"bots",
 		"users",
-		"onlinemembers",
-		"offlinemembers",
 		"onlineusers",
 		"offlineusers",
 		"onlinebots",
 		"offlinebots"
 	],
 	isPremium: true,
-	isEnabled: true,
+	isEnabled: false,
 	lifetime: 0,
 	execute: async ({ guild }) => {
 		const counts = {

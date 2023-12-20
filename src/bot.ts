@@ -38,7 +38,6 @@ class Bot {
 
 		const Intents = Eris.Constants.Intents;
 		const intents: number[] = [
-			Intents.guildMembers,
 			Intents.guilds,
 			Intents.guildBans,
 			Intents.guildMessages,
@@ -47,11 +46,8 @@ class Bot {
 			Intents.directMessageReactions
 		];
 
-		if (PREMIUM_BOT)
-			intents.push(Intents.guildPresences, Intents.guildVoiceStates);
-
 		const erisOptions: Eris.ClientOptions = {
-			getAllUsers: PREMIUM_BOT,
+			getAllUsers: false,
 			guildCreateTimeout: 15000,
 			intents: intents.reduce((acc, cur) => acc | cur, 0),
 			maxShards: DISTRIBUTED ? TOTAL_SHARDS : 1,

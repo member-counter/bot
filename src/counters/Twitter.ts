@@ -20,7 +20,7 @@ const twitterClient = new Twitter({
 const TwitterCounter: Counter = {
 	aliases: ["twitterFollowers", "twitterName"],
 	isPremium: true,
-	isEnabled: true,
+	isEnabled: false,
 	lifetime: 5 * 60 * 1000,
 	execute: async ({ unparsedArgs: resource }) => {
 		if (!TWITTER_ACCESS_TOKEN)

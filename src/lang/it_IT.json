@@ -623,7 +623,7 @@
 				"editChannel 701396983843127366 {onlineMembers} of {members} Online"
 			],
 			"success": "Done! You may have to wait a few minutes to see the new changes",
-			"errorNotFound": "Canale non trovato",
+			"errorNotFound": "Channel not found",
 			"errorNoContent": "Devi fornire del contenuto"
 		},
 		"setDigit": {
