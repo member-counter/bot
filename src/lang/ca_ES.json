@@ -970,7 +970,7 @@
 			"notAvailable": "No està disponible, per favor esperi"
 		},
 		"paginator": {
-			"pageCounter": "Pàgina {CURRENT_PAGE}/{TOTAL_PAGES}",
+			"pageCounter": "Page {CURRENT_PAGE}/{TOTAL_PAGES}",
 			"jumpPrompt": "Which page would you like to go to? Type `{CANCEL_STRING}` or `0` to cancel the prompt. You have 15 seconds to reply.",
 			"cancelText": "cancel",
 			"errorPageLengthExceeded": "La pàgina ha de ser menor o igual que {TOTAL_PAGES}. Per favor, intenteu de nou.",

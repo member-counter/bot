@@ -3,7 +3,7 @@ import Counter from "../typings/Counter";
 const MembersPlayingCounter: Counter = {
 	aliases: ["membersplaying"],
 	isPremium: true,
-	isEnabled: true,
+	isEnabled: false,
 	lifetime: 0,
 	execute: async ({ client, guild, args }) => {
 		let count = 0;
