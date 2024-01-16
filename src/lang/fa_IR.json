@@ -328,15 +328,15 @@
 						"{twitchFollowers:ninja} دنبال کننده ها"
 					]
 				},
-				"twitchViews": {
-					"name": "twitchViews:nickname",
-					"description": "تعداد بازدید های یک چنل توییچ",
-					"detailedDescription": "تعداد بازدید های یک چنل توییچ را می شمارد. قسمت `nickname` را با نام چنل توییچ دلخواه تغییر دهید",
+				"twitchViewers": {
+					"name": "twitchViewers:nickname",
+					"description": "Amount of stream viewers",
+					"detailedDescription": "Counts how many viewers are there on an active stream, replace `nickname` with the desired channel name",
 					"usage": [
-						"{twitchViews:nickname}"
+						"{twitchViewers:nickname}"
 					],
 					"example": [
-						"{twitchViews:ninja} بازدید ها"
+						"{twitchViewers:ninja} Views"
 					]
 				},
 				"twitchChannelName": {
@@ -848,10 +848,10 @@
 							"statusCreated": "{CHECK_MARK} شمارنده دنبال‌کننده ساخته شد"
 						},
 						{
-							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} بازدید ها",
-							"statusCreating": "{LOADING} درحال ساخت شمارنده میزان بازدید ها",
-							"statusCreated": "{CHECK_MARK} شمارنده میزان بازدید ها ساخته شد"
+							"name": "twitchViewers",
+							"template": "Viewers {twitchViewers:{RESOURCE}}",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
 						}
 					]
 				},

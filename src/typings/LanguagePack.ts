@@ -294,7 +294,7 @@ interface Counters {
 	youtubeVideos: Members;
 	youtubeChannelName: Members;
 	twitchFollowers: Members;
-	twitchViews: Members;
+	twitchViewers: Members;
 	twitchChannelName: Members;
 	memeratorMemes: Members;
 	memeratorFollowers: Members;
