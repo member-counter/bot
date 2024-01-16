@@ -247,12 +247,16 @@
 					"usage": ["{twitchFollowers:nickname}"],
 					"example": ["{twitchFollowers:ninja} Followers"]
 				},
-				"twitchViews": {
-					"name": "twitchViews:nickname",
-					"description": "Amount of views of a Twitch channel",
-					"detailedDescription": "Counts how many views has a Twitch channel, replace `nickname` with the desired channel name",
-					"usage": ["{twitchViews:nickname}"],
-					"example": ["{twitchViews:ninja} Views"]
+				"twitchViewers": {
+					"name": "twitchViewers:nickname",
+					"description": "Amount of stream viewers",
+					"detailedDescription": "Counts how many viewers are there on an active stream, replace `nickname` with the desired channel name",
+					"usage": [
+						"{twitchViewers:nickname}"
+					],
+					"example": [
+						"{twitchViewers:ninja} Views"
+					]
 				},
 				"twitchChannelName": {
 					"name": "twitchChannelName:nickname",
@@ -642,8 +646,8 @@
 							"statusCreated": "{CHECK_MARK} Follower counter created"
 						},
 						{
-							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Views",
+							"name": "twitchViewers",
+							"template": "Viewers {twitchViewers:{RESOURCE}}",
 							"statusCreating": "{LOADING} Creating views counter",
 							"statusCreated": "{CHECK_MARK} Views counter created"
 						}
