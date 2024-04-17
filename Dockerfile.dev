@@ -1,4 +1,4 @@
-FROM node:16-alpine as node_modules_cache
+FROM node:18-alpine as node_modules_cache
 
 WORKDIR /cache/
 RUN apk add --no-cache make gcc g++ python3 git   
@@ -7,7 +7,7 @@ RUN npm install -g pnpm
 RUN pnpm install --strict-peer-dependencies=false
 
 
-FROM node:16-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 RUN apk add --no-cache git

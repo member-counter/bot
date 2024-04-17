@@ -2,7 +2,7 @@
   "name": "member-counter-bot",
   "version": "0.0.0-dev",
   "engines": {
-    "node": ">=16.0"
+    "node": ">=18.0"
   },
   "description": "",
   "main": "./dist/src/index.js",
