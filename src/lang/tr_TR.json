@@ -328,15 +328,15 @@
 						"{twitchFollowers:ninja} Takipçi"
 					]
 				},
-				"twitchViews": {
-					"name": "twitchViews:kullanıcıAdı",
-					"description": "Bir Twitch kanalının izlenme sayısını gösterir",
-					"detailedDescription": "Bir Twitch kanalının kaç kez görüntülendiğini sayar, `kullanıcıAdı` bölümünü istediğiniz kanal adıyla değiştirin",
+				"twitchViewers": {
+					"name": "twitchViewers:nickname",
+					"description": "Amount of stream viewers",
+					"detailedDescription": "Counts how many viewers are there on an active stream, replace `nickname` with the desired channel name",
 					"usage": [
-						"{twitchViews:kullanıcıAdı}"
+						"{twitchViewers:nickname}"
 					],
 					"example": [
-						"{twitchViews:ninja} Görüntüleme"
+						"{twitchViewers:ninja} Views"
 					]
 				},
 				"twitchChannelName": {
@@ -848,10 +848,10 @@
 							"statusCreated": "{CHECK_MARK} Takipçi sayacı oluşturuldu"
 						},
 						{
-							"name": "twitchViews",
-							"template": "{twitchViews:{RESOURCE}} Görüntüleme",
-							"statusCreating": "{LOADING} Görüntüleme sayacı oluşturuluyor",
-							"statusCreated": "{CHECK_MARK} Görüntüleme sayacı oluşturuldu"
+							"name": "twitchViewers",
+							"template": "Viewers {twitchViewers:{RESOURCE}}",
+							"statusCreating": "{LOADING} Creating views counter",
+							"statusCreated": "{CHECK_MARK} Views counter created"
 						}
 					]
 				},
