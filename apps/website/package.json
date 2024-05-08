@@ -1,0 +1,52 @@
+{
+  "name": "@mc/website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm with-env next build",
+    "clean": "git clean -xdf .next .turbo node_modules",
+    "dev": "pnpm with-env next dev",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "start": "pnpm with-env next start",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^2.3.0",
+    "@mc/ui": "workspace:*",
+    "@mc/validators": "workspace:*",
+    "@prisma/client": "^5.10.2",
+    "@t3-oss/env-nextjs": "^0.10.1",
+    "@tanstack/react-query": "^5.25.0",
+    "@trpc/client": "next",
+    "@trpc/react-query": "next",
+    "@trpc/server": "next",
+    "discord-api-types": "^0.37.83",
+    "iron-session": "^8.0.1",
+    "next": "^14.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "server-only": "^0.0.1",
+    "superjson": "^2.2.1",
+    "zod": "^3.23.3"
+  },
+  "devDependencies": {
+    "@mc/eslint-config": "workspace:*",
+    "@mc/prettier-config": "workspace:*",
+    "@mc/tailwind-config": "workspace:*",
+    "@mc/tsconfig": "workspace:*",
+    "@total-typescript/ts-reset": "^0.5.1",
+    "@types/node": "^20.12.9",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "dotenv-cli": "^7.4.1",
+    "eslint": "^9.2.0",
+    "jiti": "^1.21.0",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.3"
+  },
+  "prettier": "@mc/prettier-config"
+}

@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  mongo:
+    image: mongo:7
+    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    ports:
+      - 27017:27017
+    volumes:
+      - ./storage/db:/data/db
+    expose:
+      - 27017
+
+  mongoex:
+    image: mongo-express
+    container_name: MongoEX
+    logging:
+      driver: "none"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+networks:
+  default:
