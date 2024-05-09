@@ -25,6 +25,9 @@ export class UserHttpError extends Error {
 }
 
 function errorHandler(err: unknown): NextResponse {
+  // We aren't supposed to catch this, throw it back!
+  if (err instanceof Error && err.message === "NEXT_REDIRECT") throw err;
+
   if (err instanceof UserHttpError) {
     return NextResponse.json(
       { message: err.message },
