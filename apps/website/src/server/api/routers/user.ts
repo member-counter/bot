@@ -3,16 +3,16 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
-import { userGuilds } from "~/server/auth";
+import { identify, userGuilds } from "~/server/auth";
 
 export const userRouter = createTRPCRouter({
   isAuthenticated: publicProcedure.query(({ ctx }) => {
-    return ctx.sessionTokens != null;
+    return ctx.session != null;
   }),
-  identify: publicProcedure.query(({ ctx }) => {
-    return ctx.authUser;
+  identify: protectedProcedure.query(({ ctx }) => {
+    return identify(ctx.session.accessToken);
   }),
   guilds: protectedProcedure.query(({ ctx }) => {
-    return userGuilds(ctx.sessionTokens.accessToken);
+    return userGuilds(ctx.session.accessToken);
   }),
 });

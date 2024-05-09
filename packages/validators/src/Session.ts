@@ -1,12 +1,14 @@
 import { z } from "zod";
 
-export interface SessionTokens {
+export interface Session {
+  userId: string;
   accessToken: string;
   refreshToken: string;
   expiresAt: number;
 }
 
-export const SessionAuthSchema = z.object({
+export const SessionSchema = z.object({
+  userId: z.string(),
   accessToken: z.string(),
   refreshToken: z.string(),
   expiresAt: z.number(),

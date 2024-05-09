@@ -13,7 +13,7 @@ import { ZodError } from "zod";
 
 import { getSession } from "~/app/api/sessionCookie";
 import { db } from "~/server/db";
-import { authenticateSession } from "../auth";
+import { refreshToken } from "../auth";
 
 /**
  * 1. CONTEXT
@@ -28,13 +28,11 @@ import { authenticateSession } from "../auth";
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-  const sessionTokens = await getSession();
-  const authUser = await authenticateSession(sessionTokens);
+  const session = await refreshToken(await getSession());
 
   return {
     db,
-    authUser,
-    sessionTokens,
+    session,
     ...opts,
   };
 };
@@ -99,14 +97,13 @@ export const publicProcedure = t.procedure;
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
-  if (!ctx.authUser || !ctx.sessionTokens) {
+  if (!ctx.session) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
 
   return next({
     ctx: {
-      authUser: { ...ctx.authUser },
-      sessionTokens: { ...ctx.sessionTokens },
+      session: { ...ctx.session },
     },
   });
 });

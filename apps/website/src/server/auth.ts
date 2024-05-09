@@ -1,9 +1,9 @@
-import type { AuthUser, SessionTokens, UserGuilds } from "@mc/validators";
+import type { AuthenticatedUser, Session, UserGuilds } from "@mc/validators";
 import { REST } from "@discordjs/rest";
 import { OAuth2Routes, Routes } from "discord-api-types/v10";
 
 import {
-  AuthUserSchema,
+  AuthenticatedUserSchema,
   DiscordOAuth2TokenExchangeResponseSchema,
   UserGuildsSchema,
 } from "@mc/validators";
@@ -37,7 +37,7 @@ export async function exchangeTokens(
     | {
         refreshToken: string;
       },
-): Promise<SessionTokens> {
+): Promise<Session> {
   let body = {};
   if ("code" in exchangeMethod) {
     body = {
@@ -72,10 +72,15 @@ export async function exchangeTokens(
   if (!requiredScopes.every((s) => tokenExchangeResponse.scope.includes(s)))
     throw new Error("Inssuficient scope");
 
-  return tokenExchangeResponse;
+  const identifiedUser = await identify(tokenExchangeResponse.accessToken);
+
+  return {
+    userId: identifiedUser.id,
+    ...tokenExchangeResponse,
+  };
 }
 
-export async function identify(token: string): Promise<AuthUser> {
+export async function identify(token: string): Promise<AuthenticatedUser> {
   const discordRESTClient = new REST({
     version: "10",
     authPrefix: "Bearer",
@@ -83,7 +88,7 @@ export async function identify(token: string): Promise<AuthUser> {
 
   const user = await discordRESTClient.get(Routes.user());
 
-  return AuthUserSchema.parse(user);
+  return AuthenticatedUserSchema.parse(user);
 }
 
 export async function userGuilds(token: string): Promise<UserGuilds> {
@@ -99,18 +104,18 @@ export async function userGuilds(token: string): Promise<UserGuilds> {
   return UserGuildsSchema.parse(guilds);
 }
 
-export async function authenticateSession(
-  sessionTokens: SessionTokens | null,
-): Promise<AuthUser | null> {
-  if (!sessionTokens) return null;
+export async function refreshToken(
+  session: Session | null,
+): Promise<Session | null> {
+  if (!session) return null;
 
-  if (sessionTokens.expiresAt < Date.now()) {
-    sessionTokens = await exchangeTokens({
-      refreshToken: sessionTokens.refreshToken,
+  if (session.expiresAt < Date.now()) {
+    session = await exchangeTokens({
+      refreshToken: session.refreshToken,
     });
 
-    await setSession(sessionTokens);
+    await setSession(session);
   }
 
-  return await identify(sessionTokens.accessToken);
+  return session;
 }

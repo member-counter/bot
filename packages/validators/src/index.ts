@@ -1,4 +1,4 @@
-export * from "./AuthUser";
+export * from "./AuthenticatedUser";
 export * from "./DiscordOAuth2TokenExchangeResponse";
-export * from "./SessionAuth";
+export * from "./Session";
 export * from "./UserGuilds";
