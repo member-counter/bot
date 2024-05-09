@@ -22,8 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiasing`}
-        style={{ backgroundColor: "#27272a" }}
+        className={`${inter.className} antialiasing flex flex-col`}
+        style={{ backgroundColor: "#0c0a09" }}
       >
         <TRPCReactProvider>
           <NavBar />
