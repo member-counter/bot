@@ -6,6 +6,9 @@ import {
 import { userGuilds } from "~/server/auth";
 
 export const userRouter = createTRPCRouter({
+  isAuthenticated: publicProcedure.query(({ ctx }) => {
+    return ctx.sessionTokens != null;
+  }),
   identify: publicProcedure.query(({ ctx }) => {
     return ctx.authUser;
   }),

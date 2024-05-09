@@ -3,15 +3,17 @@ import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
 export const env = createEnv({
+  shared: {
+    NODE_ENV: z
+      .enum(["development", "test", "production"])
+      .default("development"),
+  },
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
    * isn't built with invalid env vars.
    */
   server: {
     DATABASE_URL: z.string().url(),
-    NODE_ENV: z
-      .enum(["development", "test", "production"])
-      .default("development"),
     COOKIE_SECRET: z.string().min(32),
     DISCORD_CLIENT_ID: z.string(),
     DISCORD_CLIENT_SECRET: z.string(),
@@ -25,6 +27,8 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_SUPPORT_URL: z.string(),
+    NEXT_PUBLIC_BOT_DOCS_URL: z.string(),
+    NEXT_PUBLIC_BOT_REPO_URL: z.string(),
   },
 
   /**
@@ -39,6 +43,8 @@ export const env = createEnv({
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     DISCORD_OAUTH2_REDIRECT_URI: process.env.DISCORD_OAUTH2_REDIRECT_URI,
     NEXT_PUBLIC_SUPPORT_URL: process.env.NEXT_PUBLIC_SUPPORT_URL,
+    NEXT_PUBLIC_BOT_DOCS_URL: process.env.NEXT_PUBLIC_BOT_DOCS_URL,
+    NEXT_PUBLIC_BOT_REPO_URL: process.env.NEXT_PUBLIC_BOT_REPO_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

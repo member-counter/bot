@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.className} antialiasing`}
-        style={{ backgroundColor: "#070707" }}
+        style={{ backgroundColor: "#27272a" }}
       >
         <TRPCReactProvider>
           <NavBar />
