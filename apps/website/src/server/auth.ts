@@ -1,13 +1,14 @@
-import type { AuthUser, SessionTokens } from "@mc/validators";
+import type { AuthUser, SessionTokens, UserGuilds } from "@mc/validators";
 import { REST } from "@discordjs/rest";
 import { OAuth2Routes, Routes } from "discord-api-types/v10";
 
 import {
   AuthUserSchema,
   DiscordOAuth2TokenExchangeResponseSchema,
+  UserGuildsSchema,
 } from "@mc/validators";
 
-import { getSession, setSession } from "~/app/api/sessionCookie";
+import { setSession } from "~/app/api/sessionCookie";
 import { env } from "~/env";
 
 const requiredScopes = ["identify", "guilds"];
@@ -85,8 +86,22 @@ export async function identify(token: string): Promise<AuthUser> {
   return AuthUserSchema.parse(user);
 }
 
-export async function authenticateSession(): Promise<AuthUser | null> {
-  let sessionTokens = await getSession();
+export async function userGuilds(token: string): Promise<UserGuilds> {
+  const discordRESTClient = new REST({
+    version: "10",
+    authPrefix: "Bearer",
+  }).setToken(token);
+
+  const guilds = await discordRESTClient.get(Routes.userGuilds(), {
+    query: new URLSearchParams({ with_counts: "true" }),
+  });
+
+  return UserGuildsSchema.parse(guilds);
+}
+
+export async function authenticateSession(
+  sessionTokens: SessionTokens | null,
+): Promise<AuthUser | null> {
   if (!sessionTokens) return null;
 
   if (sessionTokens.expiresAt < Date.now()) {
