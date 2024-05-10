@@ -30,11 +30,3 @@ export async function userGuilds(token: string): Promise<DiscordUserGuilds> {
 
   return DiscordUserGuildsSchema.parse(guilds);
 }
-
-export async function getUser(token: string, userId: string): Promise<""> {
-  const client = createClient(token);
-
-  const user = await client.get(Routes.user(userId));
-
-  return "";
-}

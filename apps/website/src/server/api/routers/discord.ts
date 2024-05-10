@@ -12,5 +12,8 @@ export const discordRouter = createTRPCRouter({
   }),
   getUser: protectedProcedure
     .input(z.object({ id: z.string() }))
-    .query(({ ctx, input: { id } }) => {}),
+    .query(({ ctx, input: { id } }) => {
+      // TODO
+      throw new Error("Not implemented");
+    }),
 });
