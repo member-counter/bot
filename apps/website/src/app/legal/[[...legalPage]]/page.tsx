@@ -1201,8 +1201,6 @@ export default function Page({ params }: Props) {
 
   if (!requestedSlug) redirect("/legal/terms-of-service", RedirectType.replace);
 
-  const legalPage = legalPages[requestedSlug];
-
   return (
     <>
       <Tabs
