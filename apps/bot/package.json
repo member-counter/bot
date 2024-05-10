@@ -1,0 +1,45 @@
+{
+  "name": "@mc/botz",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "clean": "git clean -xdf .next .turbo node_modules",
+    "build": "tsup-node",
+    "dev": "pnpm with-env concurrently \"pnpm build --watch\" \"nodemon ./dist/index.js\"",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "start": "pnpm with-env node ./dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "devDependencies": {
+    "@mc/eslint-config": "workspace:*",
+    "@mc/prettier-config": "workspace:*",
+    "@mc/tsconfig": "workspace:*",
+    "@total-typescript/ts-reset": "^0.5.1",
+    "@types/node": "^20.12.9",
+    "concurrently": "^8.2.2",
+    "dotenv-cli": "^7.4.1",
+    "eslint": "^9.2.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3"
+  },
+  "prettier": "@mc/prettier-config",
+  "dependencies": {
+    "@discordjs/builders": "^1.8.1",
+    "@discordjs/rest": "^2.3.0",
+    "@mc/db": "workspace:*",
+    "@mc/redis": "workspace:*",
+    "@t3-oss/env-core": "^0.10.1",
+    "bufferutil": "^4.0.8",
+    "discord-api-types": "^0.37.83",
+    "discord.js": "^14.15.2",
+    "gamedig": "^5.0.0-beta.2",
+    "utf-8-validate": "^6.0.3",
+    "zlib-sync": "^0.1.9",
+    "zod": "^3.23.3"
+  }
+}
