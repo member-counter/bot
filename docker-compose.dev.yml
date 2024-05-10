@@ -37,5 +37,15 @@ services:
         restart: true
     restart: unless-stopped
 
+  redis:
+    image: redis
+    command: redis-server
+    container_name: Redis
+    restart: always
+    networks:
+      - default
+    ports:
+      - "6379:6379"
+
 networks:
   default:
