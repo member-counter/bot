@@ -1,9 +1,14 @@
-version: "3.7"
-
 services:
   mongo:
     image: mongo:7
+    container_name: MongoDB
     command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    healthcheck:
+      test: echo 'db.runCommand({serverStatus:1}).ok' | mongosh --quiet | grep 1
+      interval: 5s
+      timeout: 10s
+      retries: 30
+      start_period: 20s
     ports:
       - 27017:27017
     volumes:
@@ -11,15 +16,25 @@ services:
     expose:
       - 27017
 
+  mongo_rs_setup:
+    image: mongo:7
+    container_name: MongoDB-ReplicaSet-Setup
+    command: 'mongosh mongodb://mongo:27017/memberCounter --eval=''rs.initiate({ _id: "rs0", members: [{_id: 0, host:"mongo:27017"}] }).ok'' --quiet | grep 1'
+    depends_on:
+      mongo:
+        condition: service_healthy
+        restart: true
+    restart: "no"
+
   mongoex:
     image: mongo-express
     container_name: MongoEX
-    logging:
-      driver: "none"
     ports:
       - "8081:8081"
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
+        restart: true
     restart: unless-stopped
 
 networks:
