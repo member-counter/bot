@@ -1,15 +1,11 @@
-import type { AuthenticatedUser, Session, UserGuilds } from "@mc/validators";
-import { REST } from "@discordjs/rest";
-import { OAuth2Routes, Routes } from "discord-api-types/v10";
+import type { Session } from "@mc/validators/Session";
+import { OAuth2Routes } from "discord-api-types/v10";
 
-import {
-  AuthenticatedUserSchema,
-  DiscordOAuth2TokenExchangeResponseSchema,
-  UserGuildsSchema,
-} from "@mc/validators";
+import { DiscordOAuth2TokenExchangeResponseSchema } from "@mc/validators/DiscordOAuth2TokenExchangeResponse";
 
 import { setSession } from "~/app/api/sessionCookie";
 import { env } from "~/env";
+import { identify } from "./api/services/discord";
 
 const requiredScopes = ["identify", "guilds"];
 
@@ -78,30 +74,6 @@ export async function exchangeTokens(
     userId: identifiedUser.id,
     ...tokenExchangeResponse,
   };
-}
-
-export async function identify(token: string): Promise<AuthenticatedUser> {
-  const discordRESTClient = new REST({
-    version: "10",
-    authPrefix: "Bearer",
-  }).setToken(token);
-
-  const user = await discordRESTClient.get(Routes.user());
-
-  return AuthenticatedUserSchema.parse(user);
-}
-
-export async function userGuilds(token: string): Promise<UserGuilds> {
-  const discordRESTClient = new REST({
-    version: "10",
-    authPrefix: "Bearer",
-  }).setToken(token);
-
-  const guilds = await discordRESTClient.get(Routes.userGuilds(), {
-    query: new URLSearchParams({ with_counts: "true" }),
-  });
-
-  return UserGuildsSchema.parse(guilds);
 }
 
 export async function refreshToken(

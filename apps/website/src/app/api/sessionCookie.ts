@@ -1,8 +1,8 @@
-import type { Session } from "@mc/validators";
+import type { Session } from "@mc/validators/Session";
 import { cookies } from "next/headers";
 import { sealData, unsealData } from "iron-session";
 
-import { SessionSchema } from "@mc/validators";
+import { SessionSchema } from "@mc/validators/Session";
 
 import { env } from "~/env";
 
