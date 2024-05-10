@@ -19,7 +19,7 @@
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
     "@types/node": "^20.12.9",
-    "eslint": "^8.57.0",
+    "eslint": "^9.2.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.3"
   },
