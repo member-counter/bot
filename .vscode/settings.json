@@ -15,6 +15,12 @@
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#ea580c",
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.inactiveBackground": "#b4531f",
+    "titleBar.inactiveForeground": "#bbbbbb"
+  },
   "tailwindCSS.experimental.configFile": "./tooling/tailwind/web.ts",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
