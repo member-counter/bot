@@ -1,33 +1,25 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import Link from "next/link";
-import { redirect, RedirectType } from "next/navigation";
-import { z } from "zod";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@mc/ui/card";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@mc/ui/tabs";
-import { TypographyH1 } from "@mc/ui/TypographyH1";
 import { TypographyH2 } from "@mc/ui/TypographyH2";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 import { TypographyOList, TypographyUList } from "@mc/ui/TypographyList";
 import { TypographyP } from "@mc/ui/TypographyP";
 
-import Footer from "~/app/components/Footer";
-
-const legalPageSlugs = [
+export const legalPagesSlugs = [
   "terms-of-service",
   "privacy-policy",
   "cookie-policy",
   "acceptable-use-policy",
 ] as const;
-interface LegalPage {
+
+export interface LegalPage {
   title: string;
   page: ReactNode;
 }
-type LegalPageSlugs = (typeof legalPageSlugs)[number];
+export type LegalPagesSlugs = (typeof legalPagesSlugs)[number];
 
-const legalPages: Record<LegalPageSlugs, LegalPage> = {
+export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
   "terms-of-service": {
     title: "Terms of Service",
     page: (
@@ -1169,89 +1161,3 @@ const legalPages: Record<LegalPageSlugs, LegalPage> = {
     ),
   },
 };
-
-interface Props {
-  params: { legalPage: [string] | undefined };
-}
-
-export function generateMetadata({ params }: Props): Metadata {
-  let requestedSlug: LegalPageSlugs | null = null;
-
-  try {
-    requestedSlug = z.enum(legalPageSlugs).parse(params.legalPage?.[0]);
-  } catch {
-    requestedSlug = "terms-of-service";
-  }
-
-  const legalPage = legalPages[requestedSlug];
-
-  return {
-    title: legalPage.title + " - Member Counter",
-  };
-}
-
-export default function Page({ params }: Props) {
-  let requestedSlug: LegalPageSlugs | null = null;
-
-  try {
-    requestedSlug = z.enum(legalPageSlugs).parse(params.legalPage?.[0]);
-  } catch {
-    /* empty */
-  }
-
-  if (!requestedSlug) redirect("/legal/terms-of-service", RedirectType.replace);
-
-  return (
-    <>
-      <Tabs
-        defaultValue={requestedSlug}
-        className="m-auto my-2 w-[750px] break-words"
-      >
-        <div className="flex flex-col gap-2">
-          <TabListWrapper />
-          {Object.entries(legalPages).map(([slug, { title, page }]) => (
-            <TabsContent value={slug}>
-              <Card className="rounded-md">
-                <CardHeader>
-                  <CardTitle>
-                    <TypographyH1>{title}</TypographyH1>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>{page}</CardContent>
-              </Card>
-            </TabsContent>
-          ))}
-          <TabListWrapper />
-        </div>
-      </Tabs>
-      <Footer />
-    </>
-  );
-}
-
-function TabListWrapper() {
-  return (
-    <TabsList className="grid w-full grid-cols-4">
-      <Link href="./terms-of-service">
-        <TabsTrigger value="terms-of-service" className="w-full">
-          Terms of Service
-        </TabsTrigger>
-      </Link>
-      <Link href="./privacy-policy">
-        <TabsTrigger value="privacy-policy" className="w-full">
-          Privacy Policy
-        </TabsTrigger>
-      </Link>
-      <Link href="./cookie-policy">
-        <TabsTrigger value="cookie-policy" className="w-full">
-          Cookie Policy
-        </TabsTrigger>
-      </Link>
-      <Link href="./acceptable-use-policy">
-        <TabsTrigger value="acceptable-use-policy" className="w-full">
-          Acceptable Use Policy
-        </TabsTrigger>
-      </Link>
-    </TabsList>
-  );
-}
