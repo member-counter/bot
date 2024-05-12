@@ -50,7 +50,7 @@ export default function Footer() {
               </LinkUnderlined>
               .
               <br />
-              Made possible thanks to{" "}
+              Made possible thanks to Alex,{" "}
               <LinkUnderlined
                 target="_blank"
                 rel="noreferrer"
