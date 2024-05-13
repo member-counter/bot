@@ -12,8 +12,18 @@ const config = {
     "@mc/ui",
     "@mc/validators",
     "@mc/redis",
+    "@mc/common",
     "@mc/bot-data-exchange",
   ],
+
+  webpack: (config, { isServer }) => {
+    config.module.rules.push({
+      test: /\.node$/,
+      loader: "node-loader",
+    });
+
+    return config;
+  },
 
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
