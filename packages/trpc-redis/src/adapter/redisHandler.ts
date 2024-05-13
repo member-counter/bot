@@ -20,8 +20,13 @@ import type { RequestMessage, ResponseMessage } from "../schemas";
 import { REQ_CHANNEL, RES_CHANNEL } from "../Constants";
 import { requestMessageSchema } from "../schemas";
 
-export type CreateRedisContextFn<TRouter extends AnyTRPCRouter> =
-  () => MaybePromise<inferRouterContext<TRouter>>;
+interface CreateRedisContextFnOpts {
+  requestId: string;
+}
+
+export type CreateRedisContextFn<TRouter extends AnyTRPCRouter> = (
+  opts: CreateRedisContextFnOpts,
+) => MaybePromise<inferRouterContext<TRouter>>;
 
 export type RedisHandlerOptions<TRouter extends AnyTRPCRouter> = {
   redisPubClient: Redis;
@@ -84,11 +89,14 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
   };
 
   const handleRequest = async (message: string) => {
-    const ctx = await createContext?.();
+    let ctx = await createContext?.({ requestId: "unknown" });
 
     let requestMessage: RequestMessage;
     try {
       requestMessage = requestMessageSchema.parse(JSON.parse(message));
+      ctx = await createContext?.({
+        requestId: requestMessage.id,
+      });
     } catch (err) {
       onError?.({
         error: new TRPCError({ code: "PARSE_ERROR" }),
