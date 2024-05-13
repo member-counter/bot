@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 
 import { api } from "~/trpc/server";
@@ -18,7 +19,7 @@ export default async function Page() {
 
   return (
     <>
-      <div className="mt-20 flex flex-row gap-5">
+      <div className="mt-10 flex flex-row justify-center gap-5">
         <img
           src={discordUser.avatar}
           alt={`${discordUser.username}'s avatar`}
@@ -35,7 +36,9 @@ export default async function Page() {
               </span>
             )}
           </p>
-          <DisplayUserBadges badges={user.badges} />
+          <Suspense>
+            <DisplayUserBadges badges={user.badges} />
+          </Suspense>
         </div>
       </div>
       <Footer />

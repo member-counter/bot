@@ -1,11 +1,16 @@
-import type { UserBadgesString } from "@mc/common";
+"use client";
 
-import { UserBadges } from "@mc/common";
-
-import { InfoToolip } from "~/app/components/InfoTooltip";
+import { BitField } from "@mc/common/BitField";
+import { UserPermission } from "@mc/common/UserBadges";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@mc/ui/tooltip";
 
 const displayableBadges: Record<
-  UserBadgesString,
+  keyof typeof UserPermission,
   { emoji: string; description: string }
 > = {
   Donor: {
@@ -41,19 +46,26 @@ const displayableBadges: Record<
 export function DisplayUserBadges({ badges: unparsed }: { badges: number }) {
   if (unparsed === 0) return;
 
-  const badges = new UserBadges(unparsed);
-  
+  const badges = new BitField(unparsed);
 
-  const badgesToDisplay = Object.entries(displayableBadges)
-  .filter(([badge]) => badges.has(badge as UserBadgesString));
+  const badgesToDisplay = Object.entries(displayableBadges).filter(([badge]) =>
+    badges.has(UserPermission[badge as keyof typeof UserPermission]),
+  );
 
   return (
-    <div className="text-1lg gap-2">
-      {badgesToDisplay.map(([badge, data]) => (
-          <InfoToolip text={data.description} key={badge}>
-            {data.emoji}
-          </InfoToolip>
-        ))}
+    <div className="text-1lg flex flex-row gap-2">
+      {badgesToDisplay.map(([_badge, data]) => (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="select-none">{data.emoji}</div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <span>{data.description}</span>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      ))}
     </div>
   );
 }

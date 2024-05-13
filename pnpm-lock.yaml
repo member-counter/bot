@@ -279,6 +279,9 @@ importers:
       '@mc/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
+      '@total-typescript/ts-reset':
+        specifier: ^0.5.1
+        version: 0.5.1
       eslint:
         specifier: ^9.2.0
         version: 9.2.0
@@ -538,7 +541,7 @@ importers:
         version: 7.34.1(eslint@9.2.0)
       eslint-plugin-react-hooks:
         specifier: beta
-        version: 5.1.0-beta-04b058868c-20240508(eslint@9.2.0)
+        version: 5.1.0-beta-9d76c954cf-20240510(eslint@9.2.0)
       typescript-eslint:
         specifier: ^7.8.0
         version: 7.8.0(eslint@9.2.0)(typescript@5.4.5)
@@ -2430,8 +2433,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-beta-04b058868c-20240508:
-    resolution: {integrity: sha512-5SjQe94ffH/jLSXhjE076pGNfM0O5oDVYFvisPfGuC/Lez2E/mpEzKEMESK//yuQGNtSsPgA/7WyQu+qO7bYSA==}
+  eslint-plugin-react-hooks@5.1.0-beta-9d76c954cf-20240510:
+    resolution: {integrity: sha512-FDTJhAMcDpWRmTy/VFkobePTyJQ4O3oJQNPMunfx1r8f+iU0jf92I3thf/5aYOpNhDxK8ZrKdeA5vlqBMPfjbQ==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -6358,7 +6361,7 @@ snapshots:
       object.entries: 1.1.8
       object.fromentries: 2.0.8
 
-  eslint-plugin-react-hooks@5.1.0-beta-04b058868c-20240508(eslint@9.2.0):
+  eslint-plugin-react-hooks@5.1.0-beta-9d76c954cf-20240510(eslint@9.2.0):
     dependencies:
       eslint: 9.2.0
 

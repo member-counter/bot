@@ -1,6 +1,7 @@
 import { redirect, RedirectType } from "next/navigation";
 
-import { botPermissions, generateInviteLink } from "@mc/common";
+import { botPermissions } from "@mc/common/botPermissions";
+import { generateInviteLink } from "@mc/common/generateInviteLink";
 
 import { env } from "~/env";
 

@@ -1,7 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import { UserPermissions } from "@mc/common";
+import { BitField } from "@mc/common/BitField";
+import { UserPermissions } from "@mc/common/UserPermissions";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
@@ -11,7 +12,7 @@ export const userRouter = createTRPCRouter({
     .query(({ ctx: { db, authUser }, input }) => {
       const hasPermission =
         authUser.discordUserId === input.id ||
-        new UserPermissions(authUser.permissions).has("SeeUsers");
+        new BitField(authUser.permissions).has(UserPermissions.SeeGuilds);
 
       if (!hasPermission) throw new TRPCError({ code: "UNAUTHORIZED" });
 
@@ -29,8 +30,8 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .mutation(({ ctx: { db, authUser }, input }) => {
-      const hasPermission = new UserPermissions(authUser.permissions).has(
-        "ManageUsers",
+      const hasPermission = new BitField(authUser.permissions).has(
+        UserPermissions.ManageUsers,
       );
 
       if (!hasPermission) throw new TRPCError({ code: "UNAUTHORIZED" });
@@ -48,9 +49,9 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .mutation(({ ctx: { db, authUser }, input }) => {
-      const hasPermission =
-        authUser.discordUserId === input.id ||
-        new UserPermissions(authUser.permissions).has("ManageUsers");
+      const hasPermission = new BitField(authUser.permissions).has(
+        UserPermissions.ManageUsers,
+      );
 
       if (!hasPermission) throw new TRPCError({ code: "UNAUTHORIZED" });
 

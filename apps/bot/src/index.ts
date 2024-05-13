@@ -1,11 +1,9 @@
 import { Client } from "discord.js";
 
 import { setupBotDataExchangeProvider } from "@mc/bot-data-exchange";
-import {
-  botPermissions,
-  generateBotIntents,
-  generateInviteLink,
-} from "@mc/common";
+import { generateBotIntents } from "@mc/common/botIntents";
+import { botPermissions } from "@mc/common/botPermissions";
+import { generateInviteLink } from "@mc/common/generateInviteLink";
 import { db } from "@mc/db";
 import { redis } from "@mc/redis";
 

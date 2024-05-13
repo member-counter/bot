@@ -1,6 +1,4 @@
-import { BitField } from "discord.js";
-
-const UserPermissionFlagsBits = {
+export const UserPermission = {
   Donor: 1 << 0,
   Premium: 1 << 1,
   BetaTester: 1 << 2,
@@ -11,9 +9,3 @@ const UserPermissionFlagsBits = {
   PatPat: 1 << 7,
   FoldingAtHome: 1 << 8,
 } as const;
-
-export type UserBadgesString = keyof typeof UserPermissionFlagsBits;
-
-export class UserBadges extends BitField<UserBadgesString, number> {
-  static Flags = UserPermissionFlagsBits;
-}

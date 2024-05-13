@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    "./*": "./src/*.ts"
   },
   "license": "MIT",
   "scripts": {
@@ -21,6 +21,7 @@
     "@mc/eslint-config": "workspace:*",
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
+    "@total-typescript/ts-reset": "^0.5.1",
     "eslint": "^9.2.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.3"
