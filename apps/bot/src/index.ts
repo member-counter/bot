@@ -1,5 +1,6 @@
 import { Client, IntentsBitField } from "discord.js";
 
+import { setupBotDataExchangeProvider } from "@mc/bot-data-exchange";
 import { db } from "@mc/db";
 import { redis } from "@mc/redis";
 
@@ -33,8 +34,23 @@ async function main() {
   console.log("Bot starting...");
   await bot.login(env.DISCORD_BOT_TOKEN);
 
+  const BDERedisPubClient = redis.duplicate();
+  const BDERedisSubClient = redis.duplicate();
+  await setupBotDataExchangeProvider({
+    redisClient: redis,
+    redisPubClient: BDERedisPubClient,
+    redisSubClient: BDERedisSubClient,
+    botClient: bot,
+  });
+
   process.on("SIGTERM", () => {
-    Promise.all([bot.destroy(), redis.quit(), db.$disconnect()])
+    Promise.all([
+      bot.destroy(),
+      redis.quit(),
+      BDERedisPubClient.quit(),
+      BDERedisSubClient.quit(),
+      db.$disconnect(),
+    ])
       .catch((err) => {
         console.error("Error while trying to gracefully shutdown:", err);
       })

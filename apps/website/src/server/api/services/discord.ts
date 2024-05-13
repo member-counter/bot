@@ -1,7 +1,7 @@
 import type { DiscordUser } from "@mc/validators/DiscordUser";
 import type { DiscordUserGuilds } from "@mc/validators/DiscordUserGuilds";
 import { REST } from "@discordjs/rest";
-import { OAuth2Routes, Routes } from "discord-api-types/v10";
+import { Routes } from "discord-api-types/v10";
 
 import { DiscordUserSchema } from "@mc/validators/DiscordUser";
 import { DiscordUserGuildsSchema } from "@mc/validators/DiscordUserGuilds";
