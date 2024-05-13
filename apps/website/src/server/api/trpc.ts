@@ -29,11 +29,19 @@ import { refreshToken } from "../auth";
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   const session = await refreshToken(await getSession());
+  const authUser = session?.userId
+    ? await db.user.upsert({
+        where: { discordUserId: session.userId },
+        update: {},
+        create: { discordUserId: session.userId },
+      })
+    : null;
 
   return {
+    ...opts,
     db,
     session,
-    ...opts,
+    authUser,
   };
 };
 
@@ -97,13 +105,14 @@ export const publicProcedure = t.procedure;
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
-  if (!ctx.session) {
+  if (!ctx.session || !ctx.authUser) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
 
   return next({
     ctx: {
       session: { ...ctx.session },
+      authUser: { ...ctx.authUser },
     },
   });
 });

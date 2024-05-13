@@ -1,6 +1,7 @@
-import { userRouter } from "~/server/api/routers/user";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { discordRouter } from "./routers/discord";
+import { sessionRouter } from "./routers/session";
+import { userRouter } from "./routers/user";
 
 /**
  * This is the primary router for your server.
@@ -8,6 +9,7 @@ import { discordRouter } from "./routers/discord";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
+  session: sessionRouter,
   user: userRouter,
   discord: discordRouter,
 });
