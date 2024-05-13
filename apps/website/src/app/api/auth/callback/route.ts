@@ -6,6 +6,8 @@ import { exchangeTokens } from "~/server/auth";
 import { catchErrors, UserHttpError } from "../../catchErrors";
 import { setSession } from "../../sessionCookie";
 
+export const dynamic = "force-dynamic";
+
 export const GET = catchErrors(async (req: NextRequest) => {
   const code = req.nextUrl.searchParams.get("code");
 

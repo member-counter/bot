@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { z } from "zod";
 
 import Footer from "~/app/components/Footer";
@@ -24,7 +25,9 @@ export function generateMetadata({ searchParams }: Props): Metadata {
 export default function Page() {
   return (
     <>
-      <PageSwitcher />
+      <Suspense>
+        <PageSwitcher />
+      </Suspense>
       <Footer />
     </>
   );

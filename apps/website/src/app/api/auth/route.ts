@@ -5,6 +5,8 @@ import { redirect, RedirectType } from "next/navigation";
 import { getOAuth2Url } from "~/server/auth";
 import { catchErrors } from "../catchErrors";
 
+export const dynamic = "force-dynamic";
+
 export const GET = catchErrors((req: NextRequest) => {
   const redirectTo = req.nextUrl.searchParams.get("redirect_to");
 
