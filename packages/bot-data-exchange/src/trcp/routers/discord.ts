@@ -20,6 +20,8 @@ export const discordRouter = createTRPCRouter({
   getGuild: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
+      if (!ctx.botClient.guilds.cache.has(input.id)) await ctx.dropRequest();
+
       await ctx.lockRequest();
 
       const guild = await ctx.botClient.guilds.fetch({
