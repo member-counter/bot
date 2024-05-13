@@ -25,7 +25,6 @@
   },
   "prettier": "@mc/prettier-config",
   "dependencies": {
-    "@sesamecare-oss/redlock": "^1.2.1",
     "@t3-oss/env-core": "^0.10.1",
     "ioredis": "^5.4.1"
   }
