@@ -7,7 +7,7 @@ import { env } from "~/env";
 import { api } from "~/trpc/react";
 
 export default function Footer() {
-  const isAuthenticated = api.user.isAuthenticated.useQuery();
+  const isAuthenticated = api.session.isAuthenticated.useQuery();
   return (
     <>
       <footer className="mt-auto flex flex-col border-t border-border/40">

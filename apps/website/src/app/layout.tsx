@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiasing flex flex-col`}
+        className={`${inter.className} antialiasing flex min-h-screen flex-col`}
         style={{ backgroundColor: "#0c0a09" }}
       >
         <TRPCReactProvider>
