@@ -1,34 +1,34 @@
-import { Client, IntentsBitField } from "discord.js";
+import { Client } from "discord.js";
 
 import { setupBotDataExchangeProvider } from "@mc/bot-data-exchange";
+import {
+  botPermissions,
+  generateBotIntents,
+  generateInviteLink,
+} from "@mc/common";
 import { db } from "@mc/db";
 import { redis } from "@mc/redis";
 
 import { env } from "~/env";
 
 async function main() {
-  const intents = new IntentsBitField();
-
-  intents.add("Guilds");
-
-  // TODO check how cache works
-  intents.add("GuildModeration");
-
-  if (env.DISCORD_BOT_IS_PREMIUM && env.DISCORD_BOT_IS_PRIVILEGED) {
-    intents.add("GuildMembers");
-    intents.add("GuildPresences");
-  }
-
-  if (env.DISCORD_BOT_IS_PREMIUM) {
-    intents.add("GuildVoiceStates");
-  }
-
   // TODO manage sharding
-  const bot = new Client({ intents });
+  const bot = new Client({
+    intents: generateBotIntents(
+      env.DISCORD_BOT_IS_PREMIUM,
+      env.DISCORD_BOT_IS_PRIVILEGED,
+    ),
+  });
 
   bot.on("ready", () => {
-    console.log("Bot started");
-    console.log(`Logged in as ${bot.user?.tag}`);
+    console.log("Bot ready");
+
+    if (bot.user) {
+      console.log(`Logged in as ${bot.user.tag}`);
+      console.log(
+        `Invite link: ${generateInviteLink({ clientId: bot.user.id, permissions: botPermissions })}`,
+      );
+    }
   });
 
   console.log("Bot starting...");

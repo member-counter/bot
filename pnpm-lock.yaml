@@ -35,6 +35,9 @@ importers:
       '@mc/bot-data-exchange':
         specifier: workspace:*
         version: link:../../packages/bot-data-exchange
+      '@mc/common':
+        specifier: workspace:*
+        version: link:../../packages/common
       '@mc/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -217,12 +220,18 @@ importers:
       '@mc/validators':
         specifier: workspace:*
         version: link:../validators
+      '@sesamecare-oss/redlock':
+        specifier: ^1.2.1
+        version: 1.2.1(ioredis@5.4.1)
       '@trpc/server':
         specifier: next
         version: 11.0.0-rc.366
       discord.js:
         specifier: ^14.15.2
         version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      ioredis:
+        specifier: ^5.4.1
+        version: 5.4.1
       zod:
         specifier: ^3.23.3
         version: 3.23.6
@@ -239,9 +248,6 @@ importers:
       eslint:
         specifier: ^9.2.0
         version: 9.2.0
-      ioredis:
-        specifier: ^5.4.1
-        version: 5.4.1
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -250,6 +256,13 @@ importers:
         version: 5.4.5
 
   packages/common:
+    dependencies:
+      discord-api-types:
+        specifier: ^0.37.83
+        version: 0.37.83
+      discord.js:
+        specifier: ^14.15.2
+        version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -306,9 +319,6 @@ importers:
 
   packages/redis:
     dependencies:
-      '@sesamecare-oss/redlock':
-        specifier: ^1.2.1
-        version: 1.2.1(ioredis@5.4.1)
       '@t3-oss/env-core':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.6)
