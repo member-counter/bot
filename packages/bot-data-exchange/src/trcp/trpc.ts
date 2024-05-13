@@ -36,6 +36,12 @@ export const createTRPCContext = (opts: {
 }) => {
   const redLock = new Redlock([opts.redisClient], { retryCount: 0 });
 
+  const dropRequest = () => {
+    return new Promise((_resolve, reject) =>
+      setTimeout(reject, opts.clientTimeout + 1000),
+    );
+  };
+
   /**
    * Some procedures will need this to lock a request.
    * If it has been locked already, let's wait at least the client's timeout
@@ -47,18 +53,14 @@ export const createTRPCContext = (opts: {
       .acquire([lockKey], opts.clientTimeout, {
         retryCount: 0,
       })
-      .catch(
-        () =>
-          new Promise((_resolve, reject) =>
-            setTimeout(reject, opts.clientTimeout + 1000),
-          ),
-      );
+      .catch(dropRequest);
   };
 
   return {
     ...opts,
     redLock,
     lockRequest,
+    dropRequest,
   };
 };
 
