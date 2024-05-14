@@ -49,9 +49,9 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .mutation(({ ctx: { db, authUser }, input }) => {
-      const hasPermission = new BitField(authUser.permissions).has(
-        UserPermissions.ManageUsers,
-      );
+      const hasPermission =
+        authUser.discordUserId === input.id ||
+        new BitField(authUser.permissions).has(UserPermissions.ManageUsers);
 
       if (!hasPermission) throw new TRPCError({ code: "UNAUTHORIZED" });
 
