@@ -11,24 +11,17 @@ datasource db {
 }
 
 model User {
-  id                       String @id @default(auto()) @map("_id") @db.ObjectId
-  discordUserId            String @unique
-  badges                   Int    @default(0)
-  legacyPremiumBotUpgrades Int    @default(0)
-  credit                   Int    @default(0)
-  permissions              Int    @default(0)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  discordUserId String @unique
+  badges        Int    @default(0)
+  permissions   Int    @default(0)
 }
 
 model Guild {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
   discordGuildId String         @unique
-  language       String         @default("en_US")
   formatSettings FormatSettings
   blocked        Boolean        @default(false)
-  legacyUpgraded Boolean        @default(false)
 }
 
 type FormatSettings {
