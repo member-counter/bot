@@ -1,7 +1,7 @@
 "use client";
 
 import { BitField } from "@mc/common/BitField";
-import { UserPermission } from "@mc/common/UserBadges";
+import { UserBadges } from "@mc/common/UserBadges";
 import {
   Tooltip,
   TooltipContent,
@@ -10,7 +10,7 @@ import {
 } from "@mc/ui/tooltip";
 
 const displayableBadges: Record<
-  keyof typeof UserPermission,
+  keyof typeof UserBadges,
   { emoji: string; description: string }
 > = {
   Donor: {
@@ -49,7 +49,7 @@ export function DisplayUserBadges({ badges: unparsed }: { badges: number }) {
   const badges = new BitField(unparsed);
 
   const badgesToDisplay = Object.entries(displayableBadges).filter(([badge]) =>
-    badges.has(UserPermission[badge as keyof typeof UserPermission]),
+    badges.has(UserBadges[badge as keyof typeof UserBadges]),
   );
 
   return (

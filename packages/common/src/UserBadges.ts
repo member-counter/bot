@@ -1,4 +1,4 @@
-export const UserPermission = {
+export const UserBadges = {
   Donor: 1 << 0,
   Premium: 1 << 1,
   BetaTester: 1 << 2,
