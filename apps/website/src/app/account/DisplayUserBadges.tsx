@@ -53,9 +53,9 @@ export function DisplayUserBadges({ badges: unparsed }: { badges: number }) {
   );
 
   return (
-    <div className="text-1lg flex flex-row gap-2">
-      {badgesToDisplay.map(([_badge, data]) => (
-        <TooltipProvider>
+    <div className="text-md flex flex-row gap-2">
+      {badgesToDisplay.map(([badge, data]) => (
+        <TooltipProvider key={badge}>
           <Tooltip>
             <TooltipTrigger asChild>
               <div className="select-none">{data.emoji}</div>
