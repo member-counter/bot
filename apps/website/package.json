@@ -29,6 +29,7 @@
     "discord-api-types": "^0.37.83",
     "ioredis": "^5.4.1",
     "iron-session": "^8.0.1",
+    "lucide-react": "^0.314.0",
     "next": "^14.2.1",
     "node-loader": "^2.0.0",
     "react": "^18.3.1",
