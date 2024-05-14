@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+import type { ElementType } from "react";
 
 import { SelectItem } from "./select";
 
@@ -11,7 +11,7 @@ export function SelectItemWithIcon({
 }: {
   label: string;
   value: string;
-  icon?: LucideIcon;
+  icon?: ElementType;
   rightElement?: JSX.Element;
   disabled?: boolean;
 }): JSX.Element {
