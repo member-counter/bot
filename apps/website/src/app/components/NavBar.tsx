@@ -23,7 +23,7 @@ export default function NavBar() {
             <h1
               className={cn(
                 major.className,
-                "ml-3 text-xl transition-all group-hover:drop-shadow-[0_0_2px_#fff]",
+                "ml-3 hidden py-3 text-xl transition-all group-hover:drop-shadow-[0_0_2px_#fff] sm:block",
               )}
             >
               Member counteR
