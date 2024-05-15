@@ -19,7 +19,7 @@ import {
 export function LoadUser() {
   const router = useRouter();
   const [userId, setUserId] = useState("");
-  const [recentUsers, setRecentUsers] = useLocalStorage(
+  const [recentUsers] = useLocalStorage(
     recentUsersKey,
     recentUsersSchema,
     defaultRecentUsers,
@@ -27,12 +27,11 @@ export function LoadUser() {
 
   const loadUser = (userId: string) => {
     if (!userId) return;
-    setRecentUsers([...new Set([userId, ...recentUsers])]);
     router.push(`/admin/users/${userId}`);
   };
 
   return (
-    <div className="container my-6 flex max-w-[500px] flex-col gap-2">
+    <div className="max-w-[4 00px] flex w-[400px] flex-col gap-2">
       <div className="flex flex-row gap-2">
         <Input
           value={userId}

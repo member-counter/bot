@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
 import { Button } from "@mc/ui/button";
 
 import { api } from "~/trpc/react";
+import { DisplayUser } from "./DisplayUser";
 
 interface Props {
   onClick: () => void;
@@ -15,37 +15,9 @@ export const RecentUser = ({ userId, onClick }: Props) => {
 
   return (
     <Button onClick={onClick} className="py-8  text-start" variant="ghost">
-      <div className="flex w-full flex-row items-center gap-2 py-8">
-        {discordUser.data ? (
-          <UserTag {...discordUser.data} />
-        ) : (
-          <span className="text-muted-foreground">Uknown user {userId}</span>
-        )}
+      <div className="w-full py-8">
+        <DisplayUser {...{ id: userId, ...discordUser.data }} />
       </div>
     </Button>
   );
 };
-
-const UserTag = ({
-  username,
-  discriminator,
-  avatar,
-}: {
-  username: string;
-  discriminator: string;
-  avatar: string;
-}) => (
-  <>
-    <img
-      src={avatar}
-      alt={`${username}'s avatar`}
-      className="h-8 w-8 rounded-full"
-    />
-    <div>
-      {username}
-      {discriminator !== "0" && (
-        <span className="text-muted-foreground">#{discriminator}</span>
-      )}
-    </div>
-  </>
-);
