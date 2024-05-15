@@ -30,7 +30,7 @@ export default function PageSwitcher() {
         defaultValue={selectedPage}
         value={selectedPage}
         onValueChange={(page) => setSelectedPage(page)}
-        className="m-auto my-2 w-[750px] break-words"
+        className="m-auto max-w-[750px] break-words p-2"
       >
         <div className="flex flex-col gap-2">
           <TabListWrapper />
@@ -53,7 +53,7 @@ export default function PageSwitcher() {
 
 function TabListWrapper() {
   return (
-    <TabsList className="grid w-full grid-cols-4">
+    <TabsList className="grid h-full w-full grid-cols-2 sm:grid-cols-4">
       <TabsTrigger value="terms-of-service" className="w-full">
         Terms of Service
       </TabsTrigger>
