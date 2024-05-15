@@ -7,5 +7,5 @@ export const dynamic = "force-dynamic";
 
 export const GET = catchErrors(() => {
   destroySession();
-  redirect("/.", RedirectType.replace);
+  redirect("/", RedirectType.replace);
 });
