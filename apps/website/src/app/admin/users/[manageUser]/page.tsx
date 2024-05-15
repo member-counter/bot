@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
 import { Errors } from "~/app/errors";
 import { api } from "~/trpc/server";
+import ManageUser from "./ManageUser";
 
-export const metadata: Metadata = { title: "Manage Guilds - Member Counter" };
-export default async function Page() {
+interface Props {
+  params: { manageUser: string };
+}
+
+export const metadata: Metadata = { title: "Manage user - Member Counter" };
+export default async function Page({ params }: Props) {
   const authUser = await api.session.user();
   const userPerms = new BitField(authUser.permissions);
 
@@ -16,5 +22,9 @@ export default async function Page() {
   )
     throw new Error(Errors.NotAuthorized);
 
-  // TODO
+  return (
+    <Suspense>
+      <ManageUser userId={params.manageUser} />
+    </Suspense>
+  );
 }

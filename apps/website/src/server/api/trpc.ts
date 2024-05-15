@@ -12,6 +12,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { getSession } from "~/app/api/sessionCookie";
+import { Errors } from "~/app/errors";
 import { db } from "~/server/db";
 import { refreshToken } from "../auth";
 
@@ -106,7 +107,10 @@ export const publicProcedure = t.procedure;
  */
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
   if (!ctx.session || !ctx.authUser) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: Errors.NotAuthenticated,
+    });
   }
 
   return next({

@@ -14,4 +14,8 @@ export class BitField {
   remove(flag: number) {
     this.bitfield &= ~flag;
   }
+
+  missing(flag: number) {
+    return (this.bitfield & flag) === 0;
+  }
 }

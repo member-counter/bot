@@ -4,6 +4,7 @@ import { z } from "zod";
 import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
+import { Errors } from "~/app/errors";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
 export const userRouter = createTRPCRouter({
@@ -14,7 +15,11 @@ export const userRouter = createTRPCRouter({
         authUser.discordUserId === input.id ||
         new BitField(authUser.permissions).has(UserPermissions.SeeGuilds);
 
-      if (!hasPermission) throw new TRPCError({ code: "UNAUTHORIZED" });
+      if (!hasPermission)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: Errors.NotAuthorized,
+        });
 
       return db.user.findUnique({ where: { discordUserId: input.id } });
     }),
@@ -34,7 +39,11 @@ export const userRouter = createTRPCRouter({
         UserPermissions.ManageUsers,
       );
 
-      if (!hasPermission) throw new TRPCError({ code: "UNAUTHORIZED" });
+      if (!hasPermission)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: Errors.NotAuthorized,
+        });
 
       return db.user.update({
         where: { discordUserId: input.id },
@@ -53,7 +62,11 @@ export const userRouter = createTRPCRouter({
         authUser.discordUserId === input.id ||
         new BitField(authUser.permissions).has(UserPermissions.ManageUsers);
 
-      if (!hasPermission) throw new TRPCError({ code: "UNAUTHORIZED" });
+      if (!hasPermission)
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: Errors.NotAuthorized,
+        });
 
       return db.user.delete({
         where: { discordUserId: input.id },

@@ -1,5 +1,7 @@
 "use client";
 
+import { useMemo } from "react";
+
 import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { cn } from "@mc/ui";
@@ -13,7 +15,10 @@ export default function Footer() {
   const isAuthenticated = api.session.isAuthenticated.useQuery();
   const user = api.session.user.useQuery(undefined);
 
-  const userPermissions = new BitField(user.data?.permissions ?? 0);
+  const userPermissions = useMemo(
+    () => new BitField(user.data?.permissions ?? 0),
+    [user.data],
+  );
 
   return (
     <>
@@ -82,7 +87,6 @@ export default function Footer() {
               © 2024 Member Counter. All rights reserved. Created by{" "}
               <LinkUnderlined
                 target="_blank"
-                rel="noreferrer"
                 href="https://github.com/eduardozgz"
               >
                 eduardozgz
@@ -92,7 +96,6 @@ export default function Footer() {
               Made possible thanks to Alex,{" "}
               <LinkUnderlined
                 target="_blank"
-                rel="noreferrer"
                 href="https://github.com/VampireChicken12/"
               >
                 VampireChicken
@@ -100,7 +103,6 @@ export default function Footer() {
               ,{" "}
               <LinkUnderlined
                 target="_blank"
-                rel="noreferrer"
                 href="https://github.com/livingflore"
               >
                 livingflore
