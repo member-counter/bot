@@ -1,5 +1,8 @@
 "use client";
 
+import { BitField } from "@mc/common/BitField";
+import { UserPermissions } from "@mc/common/UserPermissions";
+import { cn } from "@mc/ui";
 import { Link } from "@mc/ui/Link";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
@@ -8,6 +11,10 @@ import { api } from "~/trpc/react";
 
 export default function Footer() {
   const isAuthenticated = api.session.isAuthenticated.useQuery();
+  const user = api.session.user.useQuery(undefined);
+
+  const userPermissions = new BitField(user.data?.permissions ?? 0);
+
   return (
     <>
       <footer className="mt-auto flex flex-col border-t border-border/40">
@@ -33,6 +40,38 @@ export default function Footer() {
               <Link href="/legal/cookie-policy">Cookie Policy</Link>
               <Link href="/legal/acceptable-use-policy">
                 Acceptable Use Policy
+              </Link>
+            </div>
+            <div
+              className={cn("flex  flex-col", {
+                hidden: !userPermissions.has(
+                  UserPermissions.SeeUsers |
+                    UserPermissions.ManageUsers |
+                    UserPermissions.SeeGuilds |
+                    UserPermissions.ManageGuilds,
+                ),
+              })}
+            >
+              <h3 className="pb-5 text-xl font-bold tracking-tight">Admin</h3>
+              <Link
+                href="/admin/users"
+                className={cn("flex flex-col", {
+                  hidden: !userPermissions.has(
+                    UserPermissions.SeeUsers | UserPermissions.ManageUsers,
+                  ),
+                })}
+              >
+                Manage users
+              </Link>
+              <Link
+                href="/admin/guilds"
+                className={cn("flex flex-col", {
+                  hidden: !userPermissions.has(
+                    UserPermissions.SeeGuilds | UserPermissions.ManageGuilds,
+                  ),
+                })}
+              >
+                Manage servers
               </Link>
             </div>
           </div>
