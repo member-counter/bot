@@ -47,36 +47,38 @@ export default function Error({
   }
 
   return (
-    <main className="my-auto flex flex-col items-center justify-center gap-5">
-      <h1 className="text-center text-9xl font-extrabold">
-        <a href={`https://http.cat/${code}`} target="_blank" rel="noreferrer">
-          {code}
-        </a>
-      </h1>
-      <h2 className="text-center text-2xl">{message}</h2>
-      <div className="flex w-full flex-col justify-center gap-2 p-2 sm:flex-row">
-        <Link href="/">
-          <Button variant={"secondary"} className="w-full">
-            Go home
+    <>
+      <main className="my-auto flex flex-col items-center justify-center gap-5">
+        <h1 className="text-center text-9xl font-extrabold">
+          <a href={`https://http.cat/${code}`} target="_blank" rel="noreferrer">
+            {code}
+          </a>
+        </h1>
+        <h2 className="text-center text-2xl">{message}</h2>
+        <div className="flex w-full flex-col justify-center gap-2 p-2 sm:flex-row">
+          <Link href="/">
+            <Button variant={"secondary"} className="w-full">
+              Go home
+            </Button>
+          </Link>
+          <Link className="inline-block" href="/support" target="_blank">
+            <Button variant={"secondary"} className="w-full">
+              Get support
+            </Button>
+          </Link>
+          <Button onClick={() => reset()} variant={"secondary"}>
+            Try again
           </Button>
-        </Link>
-        <Link className="inline-block" href="/support" target="_blank">
-          <Button variant={"secondary"} className="w-full">
-            Get support
+          <Button onClick={() => router.back()} variant={"secondary"}>
+            Go back
           </Button>
-        </Link>
-        <Button onClick={() => reset()} variant={"secondary"}>
-          Try again
-        </Button>
-        <Button onClick={() => router.back()} variant={"secondary"}>
-          Go back
-        </Button>
-      </div>
+        </div>
+      </main>
       {digest && (
-        <h3 className="mt-auto text-center text-muted-foreground">
+        <span className="my-1 text-center text-muted-foreground">
           digest: {digest}
-        </h3>
+        </span>
       )}
-    </main>
+    </>
   );
 }
