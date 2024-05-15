@@ -6,14 +6,14 @@ import type { LegalPagesSlugs } from "../legalPages";
 import { legalPages, legalPagesSlugs } from "../legalPages";
 
 interface Props {
-  params: { oldSlug: [string] | undefined };
+  params: { oldSlug: string | undefined };
 }
 
 export function generateMetadata({ params }: Props): Metadata {
   let requestedSlug: LegalPagesSlugs;
 
   try {
-    requestedSlug = z.enum(legalPagesSlugs).parse(params.oldSlug?.[0]);
+    requestedSlug = z.enum(legalPagesSlugs).parse(params.oldSlug);
   } catch {
     requestedSlug = "terms-of-service";
   }
@@ -27,7 +27,7 @@ export function generateMetadata({ params }: Props): Metadata {
 
 export default function Page({ params }: Props) {
   const requestedSlug =
-    z.enum(legalPagesSlugs).safeParse(params.oldSlug?.[0]).data ??
+    z.enum(legalPagesSlugs).safeParse(params.oldSlug).data ??
     "terms-of-service";
 
   redirect("/legal?page=" + requestedSlug, RedirectType.replace);
