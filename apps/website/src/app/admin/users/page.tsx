@@ -1,7 +1,7 @@
 "use client";
 
-import { LoadUser } from "./LoadUser";
+import { RecentUsers } from "./RecentUsers";
 
 export default function Page() {
-  return <LoadUser />;
+  return <RecentUsers className="w-[400px] " />;
 }

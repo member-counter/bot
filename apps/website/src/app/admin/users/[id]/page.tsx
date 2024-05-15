@@ -28,12 +28,10 @@ export default function Page({ params: { id: userId } }: Props) {
 
   useEffect(() => {
     setRecentUsers([...new Set([userId, ...recentUsers])]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  const discordUser = api.discord.getUser.useQuery(
-    { id: userId },
-    { throwOnError: true },
-  );
+  const discordUser = api.discord.getUser.useQuery({ id: userId });
 
   const user = api.user.get.useQuery({ id: userId }, { throwOnError: true });
 
