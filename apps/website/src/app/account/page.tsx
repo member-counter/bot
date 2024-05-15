@@ -1,50 +1,62 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
-import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { LogOutIcon } from "lucide-react";
 
 import { Button } from "@mc/ui/button";
+import { Skeleton } from "@mc/ui/skeleton";
 
-import { api } from "~/trpc/server";
+import { api } from "~/trpc/react";
 import Footer from "../components/Footer";
 import { DeleteButton } from "./DeleteButton";
 import { DisplayUserBadges } from "./DisplayUserBadges";
 
-export const metadata: Metadata = { title: "Account - Member Counter" };
-export default async function Page() {
-  const isAuthenticated = await api.session.isAuthenticated();
-  if (!isAuthenticated) redirect("/login");
+export default function Page() {
+  const isAuthenticated = api.session.isAuthenticated.useQuery();
+  if (isAuthenticated.data === false) redirect("/login");
 
-  const discordUser = await api.discord.identify();
-  const user = await api.user.get({ id: discordUser.id });
+  const user = api.session.user.useQuery(undefined, {
+    throwOnError: true,
+    enabled: isAuthenticated.isSuccess,
+  });
 
-  if (!user) throw new Error("User not found");
+  const discordUser = api.discord.identify.useQuery(undefined, {
+    throwOnError: true,
+    enabled: isAuthenticated.isSuccess,
+  });
 
   return (
     <>
       <div className="my-8 flex flex-col gap-8">
         <div className="flex flex-row items-center justify-center gap-5">
-          <img
-            src={discordUser.avatar}
-            alt={`${discordUser.username}'s avatar`}
-            className="h-[128px] w-[128px] rounded-full"
-          />
+          {discordUser.isSuccess ? (
+            <img
+              src={discordUser.data.avatar}
+              alt={`${discordUser.data.username}'s avatar`}
+              className="background-forground h-[128px] w-[128px] rounded-full text-transparent"
+            />
+          ) : (
+            <Skeleton className="h-[128px] w-[128px] rounded-full"></Skeleton>
+          )}
           <div className="i flex flex-col justify-center gap-3">
-            <p>
-              <span className="text-3xl text-foreground">
-                {discordUser.username}
-              </span>{" "}
-              {discordUser.discriminator !== "0" && (
-                <span className="text-1xl text-muted-foreground">
-                  #{discordUser.discriminator}
-                </span>
-              )}
-            </p>
-            <Suspense>
-              <DisplayUserBadges badges={user.badges} />
-            </Suspense>
+            {discordUser.isSuccess ? (
+              <p>
+                <span className="text-3xl text-foreground">
+                  {discordUser.data.username}
+                </span>{" "}
+                {discordUser.data.discriminator !== "0" && (
+                  <span className="text-1xl text-muted-foreground">
+                    #{discordUser.data.discriminator}
+                  </span>
+                )}
+              </p>
+            ) : (
+              <Skeleton className="w-50 h-9" />
+            )}
+            {user.isSuccess && <DisplayUserBadges badges={user.data.badges} />}
             <div className="flex flex-row gap-2">
               <DeleteButton />
               <Link href="/logout">
@@ -55,7 +67,6 @@ export default async function Page() {
             </div>
           </div>
         </div>
-        <div className="container"></div>
       </div>
 
       <Footer />
