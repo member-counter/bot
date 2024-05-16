@@ -18,6 +18,7 @@ export const LoadUserInput = () => {
       <Input
         value={userId}
         onChange={(e) => setUserId(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && loadUser(userId)}
         placeholder="Paste user ID"
       />
       <Button
