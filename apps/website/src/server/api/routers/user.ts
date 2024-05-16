@@ -46,8 +46,12 @@ export const userRouter = createTRPCRouter({
         });
 
       return db.user.update({
-        where: { discordUserId: input.id },
-        data: input,
+        where: { id: input.id },
+        data: {
+          discordUserId: input.discordUserId,
+          badges: input.badges,
+          permissions: input.permissions,
+        },
       });
     }),
 

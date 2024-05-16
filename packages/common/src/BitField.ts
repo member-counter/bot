@@ -9,10 +9,12 @@ export class BitField {
 
   add(flag: number) {
     this.bitfield |= flag;
+    return this;
   }
 
   remove(flag: number) {
     this.bitfield &= ~flag;
+    return this;
   }
 
   missing(flag: number) {

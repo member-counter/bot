@@ -43,16 +43,12 @@ export default function Page({ params: { id: userId } }: Props) {
           <LoaderIcon className="ml-auto h-5 w-5 animate-spin" />
         )}
       </CardHeader>
-      {!user.data && (
+      {!user.data && !user.isLoading && (
         <CardContent className="flex h-full w-full flex-col items-center justify-center">
           <span>This user isn't registered.</span>
         </CardContent>
       )}
-      {user.data && (
-        <CardContent>
-          <ManageUser {...{ userId }} />
-        </CardContent>
-      )}
+      {user.data && <ManageUser {...{ userId }} />}
     </Card>
   );
 }
