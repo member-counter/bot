@@ -29,12 +29,12 @@ const Item = (props: ItemProps) => {
 
   return (
     <>
-      <div {...props} className={cn("")}>
+      <div {...props} className={cn("relative")}>
         <div
           className={cn(
-            "duration-[200ms] absolute ml-[-27px] mt-[4px] h-[40px] w-[4px] rounded-r-[12px]  bg-white transition-all ease-linear",
+            "duration-[200ms] absolute mt-[4px] h-[40px] w-[4px] rounded-r-[12px]  bg-white transition-all ease-linear",
             {
-              ["translate-x-[15px]"]: isSelected,
+              ["translate-x-[-15px]"]: !isSelected,
             },
           )}
         />
@@ -44,7 +44,7 @@ const Item = (props: ItemProps) => {
               <div
                 className={cn(
                   "bg-[#424242]",
-                  "background flex h-[48px] w-[48px] cursor-pointer select-none overflow-hidden bg-contain bg-center",
+                  "background mx-3 flex h-[48px] w-[48px] cursor-pointer select-none overflow-hidden bg-contain bg-center",
                   "duration-[120px] transition-all",
                   "rounded-[100%] focus-within:rounded-[15px] hover:rounded-[15px]",
                   {
@@ -94,7 +94,7 @@ const DSelector = (props: Props) => {
   return (
     <nav
       {...props}
-      className={cn("m-3 flex w-[48px] flex-col gap-3", props.className)}
+      className={cn("my-3 flex w-[72px] flex-col gap-3", props.className)}
     >
       {pre.map((item, i) => (
         <Item {...item} key={i} itemClassName={itemClassName} />
@@ -102,7 +102,7 @@ const DSelector = (props: Props) => {
       {!!pre.length && (
         <Separator
           orientation="horizontal"
-          className="h-0 border-t border-border/40 bg-inherit"
+          className="m-auto h-0 w-10 border-t border-border/90 bg-inherit"
         />
       )}
       {guilds.map((item, i) => (

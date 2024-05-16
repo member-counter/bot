@@ -39,9 +39,9 @@ export default function NavBar() {
           Support
         </a>
         <Link
-          href="/dashboard/servers"
+          href="/dashboard"
           className={cn(
-            { "text-muted-foreground": pathname !== "/dashboard/servers" },
+            { "text-muted-foreground": pathname !== "/dashboard" },
             "hover:text-foreground",
           )}
         >
