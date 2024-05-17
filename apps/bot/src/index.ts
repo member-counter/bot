@@ -16,6 +16,7 @@ async function main() {
       env.DISCORD_BOT_IS_PREMIUM,
       env.DISCORD_BOT_IS_PRIVILEGED,
     ),
+    waitGuildTimeout: 30000,
   });
 
   bot.on("ready", () => {

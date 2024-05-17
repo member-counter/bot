@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
@@ -29,12 +30,29 @@ export const discordRouter = createTRPCRouter({
         withCounts: true,
       });
 
+      const guildMember = guild.members.me;
+
+      if (!guildMember) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
+
       return {
         id: guild.id,
         name: guild.name,
         icon: guild.iconURL(),
         memberCount: guild.memberCount,
         approximateMemberCount: guild.approximateMemberCount,
+        roles: guild.roles.cache.map((role) => ({
+          id: role.id,
+          name: role.name,
+          color: role.color,
+        })),
+        channels: guild.channels.cache.map((channel) => ({
+          id: channel.id,
+          name: channel.name,
+          type: channel.type,
+          botPermissions: channel
+            .permissionsFor(guildMember)
+            .bitfield.toString(),
+        })),
       };
     }),
 });

@@ -52,6 +52,7 @@ export const guildRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       return !!(await ctx.db.guild.findUnique({
         where: { discordGuildId: input.discordGuildId },
+        select: { id: true },
       }));
     }),
 
@@ -160,7 +161,7 @@ export const guildRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return await ctx.db.blockedGuilds.findUnique({
+      return await ctx.db.blockedGuild.findUnique({
         where: { discordGuildId: input.discordGuildId },
       });
     }),
@@ -185,14 +186,14 @@ export const guildRouter = createTRPCRouter({
         });
 
       if (input.state) {
-        await ctx.db.blockedGuilds.create({
+        await ctx.db.blockedGuild.create({
           data: {
             discordGuildId: input.discordGuildId,
             reason: input.reason ?? "",
           },
         });
       } else {
-        await ctx.db.blockedGuilds.delete({
+        await ctx.db.blockedGuild.delete({
           where: { discordGuildId: input.discordGuildId },
         });
       }

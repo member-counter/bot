@@ -21,7 +21,6 @@ model Guild {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
   discordGuildId String         @unique
   formatSettings FormatSettings
-  blocked        Boolean        @default(false)
 }
 
 type FormatSettings {
@@ -30,7 +29,7 @@ type FormatSettings {
   digits          String[] @default(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
 }
 
-model BlockedGuilds {
+model BlockedGuild {
   id             String @id @default(auto()) @map("_id") @db.ObjectId
   discordGuildId String @unique
   reason         String
