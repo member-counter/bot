@@ -6,6 +6,8 @@ import { TypographyH4 } from "@mc/ui/TypographyH4";
 import { TypographyOList, TypographyUList } from "@mc/ui/TypographyList";
 import { TypographyP } from "@mc/ui/TypographyP";
 
+import { Routes } from "~/other/routes";
+
 export const legalPagesSlugs = [
   "terms-of-service",
   "privacy-policy",
@@ -26,14 +28,14 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
       <>
         <TypographyP>
           These Terms of Service govern your use of the website located at{" "}
-          <LinkUnderlined href="./">
+          <LinkUnderlined href={Routes.Home}>
             https://member-counter.eduardozgz.com
           </LinkUnderlined>{" "}
           and any related services provided by Member Counter.{" "}
         </TypographyP>
         <TypographyP>
           By accessing{" "}
-          <LinkUnderlined href="./">
+          <LinkUnderlined href={Routes.Home}>
             https://member-counter.eduardozgz.com
           </LinkUnderlined>
           , you agree to abide by these Terms of Service and to comply with all
@@ -233,7 +235,7 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
           respect your privacy and comply with any applicable law and regulation
           regarding any personal information we may collect about you, including
           across our website,{" "}
-          <LinkUnderlined href="/">
+          <LinkUnderlined href={Routes.Home}>
             https://member-counter.eduardozgz.com
           </LinkUnderlined>
           , and other sites we own and operate.{" "}
@@ -827,7 +829,7 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
       <>
         <TypographyP>
           We use cookies to help improve your experience of our website at{" "}
-          <LinkUnderlined href="https://member-counter.eduardozgz.com">
+          <LinkUnderlined href={Routes.Home}>
             https://member-counter.eduardozgz.com
           </LinkUnderlined>
           . This cookie policy is part of Member Counter&#39;s privacy policy.
@@ -855,7 +857,7 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
         <TypographyP>
           If you don’t wish to accept cookies from us, you should instruct your
           browser to refuse cookies from{" "}
-          <LinkUnderlined href="https://member-counter.eduardozgz.com">
+          <LinkUnderlined href={Routes.Home}>
             https://member-counter.eduardozgz.com
           </LinkUnderlined>
           . In such a case, we may be unable to provide you with some of your

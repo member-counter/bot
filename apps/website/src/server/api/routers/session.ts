@@ -9,6 +9,9 @@ export const sessionRouter = createTRPCRouter({
     return ctx.session != null;
   }),
   user: protectedProcedure.query(({ ctx }) => {
-    return ctx.authUser;
+    return {
+      ...ctx.authUser,
+      permissions: ctx.authUser.permissions.bitfield,
+    };
   }),
 });

@@ -62,7 +62,7 @@ export const userRouter = createTRPCRouter({
         discordUserId: z.string(),
       }),
     )
-    .mutation(({ ctx: { db, authUser }, input }) => {
+    .mutation(async ({ ctx: { db, authUser }, input }) => {
       const hasPermission =
         authUser.discordUserId === input.discordUserId ||
         authUser.permissions.has(UserPermissions.ManageUsers);
@@ -73,7 +73,7 @@ export const userRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return db.user.delete({
+      await db.user.delete({
         where: { discordUserId: input.discordUserId },
       });
     }),

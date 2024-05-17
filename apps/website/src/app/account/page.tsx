@@ -8,6 +8,7 @@ import { LogOutIcon } from "lucide-react";
 import { Button } from "@mc/ui/button";
 import { Skeleton } from "@mc/ui/skeleton";
 
+import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import Footer from "../components/Footer";
 import { DeleteButton } from "./DeleteButton";
@@ -15,7 +16,7 @@ import { DisplayUserBadges } from "./DisplayUserBadges";
 
 export default function Page() {
   const isAuthenticated = api.session.isAuthenticated.useQuery();
-  if (isAuthenticated.data === false) redirect("/login");
+  if (isAuthenticated.data === false) redirect(Routes.Login);
 
   const user = api.session.user.useQuery(undefined, {
     throwOnError: true,
@@ -58,7 +59,7 @@ export default function Page() {
             {user.isSuccess && <DisplayUserBadges badges={user.data.badges} />}
             <div className="flex flex-row gap-2">
               <DeleteButton />
-              <Link href="/logout">
+              <Link href={Routes.LogOut}>
                 <Button className="grow" size={"sm"} icon={LogOutIcon}>
                   Logout
                 </Button>

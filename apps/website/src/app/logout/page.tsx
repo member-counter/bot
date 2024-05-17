@@ -1,5 +1,7 @@
 import { redirect, RedirectType } from "next/navigation";
 
+import { Routes } from "~/other/routes";
+
 export default function Page() {
-  redirect("/api/auth/logout", RedirectType.push);
+  redirect(Routes.ApiLogout, RedirectType.push);
 }

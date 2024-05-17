@@ -1,17 +1,10 @@
 import { headers } from "next/headers";
 import { redirect, RedirectType } from "next/navigation";
 
+import { Routes } from "~/other/routes";
+
 export default function Page() {
-  let authPath = "/api/auth";
-
-  const referer = headers().get("referer");
-
-  if (referer) {
-    const searchParams = new URLSearchParams();
-    searchParams.set("redirect_to", referer);
-
-    authPath += `?${searchParams.toString()}`;
-  }
-
+  const referer = headers().get("referer") ?? undefined;
+  const authPath = Routes.ApiLogin(referer);
   redirect(authPath, RedirectType.push);
 }

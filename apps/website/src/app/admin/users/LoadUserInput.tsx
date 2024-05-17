@@ -4,13 +4,15 @@ import { useRouter } from "next/navigation";
 import { Button } from "@mc/ui/button";
 import { Input } from "@mc/ui/input";
 
+import { Routes } from "~/other/routes";
+
 export const LoadUserInput = () => {
   const router = useRouter();
   const [userId, setUserId] = useState("");
 
   const loadUser = (userId: string) => {
     if (!userId) return;
-    router.push(`/admin/users/${userId}`);
+    router.push(Routes.ManageUsers(userId));
   };
 
   return (

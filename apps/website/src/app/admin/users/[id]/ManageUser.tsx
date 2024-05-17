@@ -11,6 +11,7 @@ import { Checkbox } from "@mc/ui/checkbox";
 import { Input } from "@mc/ui/input";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
+import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { DeleteButton } from "./DeleteButton";
 
@@ -62,7 +63,7 @@ export default function ManageUser({ userId }: { userId: string }) {
     setIsDirty(false);
 
     if (enableTransfer)
-      router.replace(`/admin/users/${mutableUser.discordUserId}`);
+      router.replace(Routes.ManageUsers(mutableUser.discordUserId));
   };
 
   return (

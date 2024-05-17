@@ -1,5 +1,6 @@
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { discordRouter } from "./routers/discord";
+import { guildRouter } from "./routers/guild";
 import { sessionRouter } from "./routers/session";
 import { userRouter } from "./routers/user";
 
@@ -11,6 +12,7 @@ import { userRouter } from "./routers/user";
 export const appRouter = createTRPCRouter({
   session: sessionRouter,
   user: userRouter,
+  guild: guildRouter,
   discord: discordRouter,
 });
 

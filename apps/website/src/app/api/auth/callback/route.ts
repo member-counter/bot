@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+import { Routes } from "~/other/routes";
 import { exchangeTokens } from "~/server/auth";
 import { catchErrors, UserHttpError } from "../../catchErrors";
 import { setSession } from "../../sessionCookie";
@@ -21,6 +22,6 @@ export const GET = catchErrors(async (req: NextRequest) => {
     cookies().delete("redirect_to");
     redirect(redirectTo.value);
   } else {
-    redirect("/");
+    redirect(Routes.Home);
   }
 });

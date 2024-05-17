@@ -8,7 +8,7 @@ import { cn } from "@mc/ui";
 import { Link } from "@mc/ui/Link";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
-import { env } from "~/env";
+import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 
 export default function Footer() {
@@ -29,21 +29,23 @@ export default function Footer() {
               <h3 className="pb-5 text-xl font-bold tracking-tight">
                 Useful Links
               </h3>
-              <Link href={env.NEXT_PUBLIC_SUPPORT_URL}>Support server</Link>
-              <Link href={env.NEXT_PUBLIC_BOT_DOCS_URL}>Documentation</Link>
-              <Link href={env.NEXT_PUBLIC_BOT_REPO_URL}>Repository</Link>
+              <Link href={Routes.Support}>Support server</Link>
+              <Link href={Routes.Documentation}>Documentation</Link>
+              <Link href={Routes.BotRepository}>Repository</Link>
               {!isAuthenticated.data ? (
-                <Link href="/login">Login with Discord</Link>
+                <Link href={Routes.Login}>Login with Discord</Link>
               ) : (
-                <Link href="/logout">Logout</Link>
+                <Link href={Routes.LogOut}>Logout</Link>
               )}
             </div>
             <div className="flex  flex-col">
               <h3 className="pb-5 text-xl font-bold tracking-tight">Legal</h3>
-              <Link href="/legal/terms-of-service">Terms of Service</Link>
-              <Link href="/legal/privacy-policy">Privacy Policy</Link>
-              <Link href="/legal/cookie-policy">Cookie Policy</Link>
-              <Link href="/legal/acceptable-use-policy">
+              <Link href={Routes.Legal("terms-of-service")}>
+                Terms of Service
+              </Link>
+              <Link href={Routes.Legal("cookie-policy")}>Cookie Policy</Link>
+              <Link href={Routes.Legal("privacy-policy")}>Privacy Policy</Link>
+              <Link href={Routes.Legal("acceptable-use-policy")}>
                 Acceptable Use Policy
               </Link>
             </div>
@@ -59,7 +61,7 @@ export default function Footer() {
             >
               <h3 className="pb-5 text-xl font-bold tracking-tight">Admin</h3>
               <Link
-                href="/admin/users"
+                href={Routes.ManageUsers()}
                 className={cn("flex flex-col", {
                   hidden: !userPermissions.has(
                     UserPermissions.SeeUsers | UserPermissions.ManageUsers,
@@ -69,7 +71,7 @@ export default function Footer() {
                 Manage users
               </Link>
               <Link
-                href="/admin/guilds"
+                href={Routes.ManageGuilds}
                 className={cn("flex flex-col", {
                   hidden: !userPermissions.has(
                     UserPermissions.SeeGuilds | UserPermissions.ManageGuilds,
@@ -108,7 +110,7 @@ export default function Footer() {
                 livingflore
               </LinkUnderlined>
               , Frosty and{" "}
-              <LinkUnderlined href="/donors">many more</LinkUnderlined>.
+              <LinkUnderlined href={Routes.Donors}>many more</LinkUnderlined>.
             </span>
           </div>
         </div>

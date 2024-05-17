@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@mc/ui";
 
-import { env } from "~/env";
+import { Routes } from "~/other/routes";
 import { BotIcon } from "./BotIcon";
 
 const major = Major_Mono_Display({ subsets: ["latin"], weight: "400" });
@@ -17,7 +17,7 @@ export default function NavBar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container flex h-14 items-center gap-4 text-sm lg:gap-6">
-        <Link href="/" className="mr-auto">
+        <Link href={Routes.Home} className="mr-auto">
           <div className="group flex flex-row items-center">
             <BotIcon className="h-9 w-9" />
             <h1
@@ -31,7 +31,7 @@ export default function NavBar() {
           </div>
         </Link>
         <a
-          href={env.NEXT_PUBLIC_SUPPORT_URL}
+          href={Routes.Support}
           target="_blank"
           rel="noreferer"
           className="text-muted-foreground hover:text-foreground"
@@ -39,18 +39,18 @@ export default function NavBar() {
           Support
         </a>
         <Link
-          href="/dashboard"
+          href={Routes.Dashboard}
           className={cn(
-            { "text-muted-foreground": pathname !== "/dashboard" },
+            { "text-muted-foreground": !pathname.startsWith(Routes.Dashboard) },
             "hover:text-foreground",
           )}
         >
           Dashboard
         </Link>
         <Link
-          href="/account"
+          href={Routes.Account}
           className={cn(
-            { "text-muted-foreground": pathname !== "/account" },
+            { "text-muted-foreground": !pathname.startsWith(Routes.Account) },
             "hover:text-foreground",
           )}
         >

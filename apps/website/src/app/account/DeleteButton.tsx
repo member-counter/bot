@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "@mc/ui/dialog";
 
+import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 
 export function DeleteButton() {
@@ -27,7 +28,7 @@ export function DeleteButton() {
 
     await deleteUser.mutateAsync({ discordUserId: user.data.discordUserId });
 
-    router.push("/logout");
+    router.push(Routes.LogOut);
   };
 
   return (

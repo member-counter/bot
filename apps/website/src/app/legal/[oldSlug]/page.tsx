@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import type { LegalPagesSlugs } from "../legalPages";
 import { pageTitle } from "~/other/pageTitle";
+import { Routes } from "~/other/routes";
 import { legalPages, legalPagesSlugs } from "../legalPages";
 
 interface Props {
@@ -31,5 +32,5 @@ export default function Page({ params }: Props) {
     z.enum(legalPagesSlugs).safeParse(params.oldSlug).data ??
     "terms-of-service";
 
-  redirect("/legal?page=" + requestedSlug, RedirectType.replace);
+  redirect(Routes.Legal(requestedSlug), RedirectType.replace);
 }

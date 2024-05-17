@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@mc/ui/button";
 
+import { Routes } from "~/other/routes";
 import { Errors } from "./errors";
 
 const errorCodes = {
@@ -56,12 +57,12 @@ export default function Error({
         </h1>
         <h2 className="text-center text-2xl">{message}</h2>
         <div className="flex w-full flex-col justify-center gap-2 p-2 sm:flex-row">
-          <Link href="/">
+          <Link href={Routes.Home}>
             <Button variant={"secondary"} className="w-full">
               Go home
             </Button>
           </Link>
-          <Link className="inline-block" href="/support" target="_blank">
+          <Link className="inline-block" href={Routes.Support} target="_blank">
             <Button variant={"secondary"} className="w-full">
               Get support
             </Button>

@@ -1,27 +1,26 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
 
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@mc/ui/tabs";
 import { TypographyH1 } from "@mc/ui/TypographyH1";
 
+import type { LegalPagesSlugs } from "./legalPages";
+import { Routes } from "~/other/routes";
 import { legalPages, legalPagesSlugs } from "./legalPages";
 
 export default function PageSwitcher() {
   const searchParams = useSearchParams();
-  const pathname = usePathname();
   const router = useRouter();
 
   const selectedPage =
     z.enum(legalPagesSlugs).safeParse(searchParams.get("page")).data ??
     "terms-of-service";
 
-  const setSelectedPage = (page: string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", page);
-    router.replace(`${pathname}?${params.toString()}`);
+  const setSelectedPage = (page: LegalPagesSlugs) => {
+    router.replace(Routes.Legal(page));
   };
 
   return (
@@ -29,7 +28,7 @@ export default function PageSwitcher() {
       <Tabs
         defaultValue={selectedPage}
         value={selectedPage}
-        onValueChange={(page) => setSelectedPage(page)}
+        onValueChange={(page) => setSelectedPage(page as LegalPagesSlugs)}
         className="m-auto max-w-[750px] break-words p-2"
       >
         <div className="flex flex-col gap-2">

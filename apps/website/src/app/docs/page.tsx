@@ -1,7 +1,7 @@
 import { redirect, RedirectType } from "next/navigation";
 
-import { env } from "~/env";
+import { Routes } from "~/other/routes";
 
 export default function Page() {
-  redirect(env.NEXT_PUBLIC_BOT_DOCS_URL, RedirectType.replace);
+  redirect(Routes.Documentation, RedirectType.replace);
 }

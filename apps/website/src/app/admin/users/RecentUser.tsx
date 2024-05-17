@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@mc/ui/button";
 
+import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { DisplayUser } from "./DisplayUser";
 
@@ -16,7 +17,7 @@ export const RecentUser = ({ userId }: Props) => {
 
   return (
     <Button
-      onClick={() => router.push(`/admin/users/${userId}`)}
+      onClick={() => router.push(Routes.ManageUsers(userId))}
       className="py-8 text-start"
       variant="ghost"
     >

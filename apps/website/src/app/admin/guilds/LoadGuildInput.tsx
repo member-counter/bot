@@ -4,13 +4,15 @@ import { useRouter } from "next/navigation";
 import { Button } from "@mc/ui/button";
 import { Input } from "@mc/ui/input";
 
+import { Routes } from "~/other/routes";
+
 export const LoadGuildInput = () => {
   const router = useRouter();
   const [guildId, setGuildId] = useState("");
 
-  const loadGuild = (userId: string) => {
-    if (!userId) return;
-    router.push(`/dashboard/servers/${userId}`);
+  const loadGuild = (guildId: string) => {
+    if (!guildId) return;
+    router.push(Routes.DashboardServers(guildId));
   };
 
   return (
