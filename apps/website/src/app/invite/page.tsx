@@ -5,11 +5,17 @@ import { generateInviteLink } from "@mc/common/generateInviteLink";
 
 import { env } from "~/env";
 
-export default function Page() {
+interface Props {
+  searchParams: { guildId?: string };
+}
+
+export default function Page(props: Props) {
+  const guildId = props.searchParams.guildId;
   redirect(
     generateInviteLink({
       clientId: env.DISCORD_CLIENT_ID,
       permissions: botPermissions,
+      ...(guildId && { selectedGuild: guildId }),
     }),
     RedirectType.replace,
   );

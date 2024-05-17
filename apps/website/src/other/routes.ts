@@ -18,7 +18,8 @@ export const Routes = {
   Documentation: env.NEXT_PUBLIC_BOT_DOCS_URL,
   BotRepository: env.NEXT_PUBLIC_BOT_REPO_URL,
   Donors: "/donors",
-  Invite: "/invite",
+  Invite: (guildId?: string) =>
+    formatURL("/invite", { ...(guildId && { guildId }) }),
   Legal: (page: LegalPagesSlugs) => formatURL("/legal", { page }),
   ManageUsers: (userId?: string) =>
     "/admin/users" + (userId ? `/${userId}` : ""),

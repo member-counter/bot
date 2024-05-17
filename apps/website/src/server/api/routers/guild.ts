@@ -46,6 +46,15 @@ export const guildRouter = createTRPCRouter({
         where: { discordGuildId: input.discordGuildId },
       });
     }),
+
+  has: protectedProcedure
+    .input(z.object({ discordGuildId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      return !!(await ctx.db.guild.findUnique({
+        where: { discordGuildId: input.discordGuildId },
+      }));
+    }),
+
   update: protectedProcedure
     .input(
       z.object({
@@ -151,11 +160,9 @@ export const guildRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return await ctx.db.blockedGuilds
-        .findUnique({
-          where: { discordGuildId: input.discordGuildId },
-        })
-        .then((blockedGuild) => !!blockedGuild);
+      return await ctx.db.blockedGuilds.findUnique({
+        where: { discordGuildId: input.discordGuildId },
+      });
     }),
 
   updateBlockState: protectedProcedure

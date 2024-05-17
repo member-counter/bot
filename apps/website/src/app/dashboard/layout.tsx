@@ -9,6 +9,7 @@ import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildPageProps } from "./servers/[guildId]/layout";
 import { pageTitle } from "~/other/pageTitle";
+import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import DSelector from "../components/DSelector";
 
@@ -38,7 +39,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         guilds={userGuilds.data.map((guild) => ({
           ...guild,
           run: () => {
-            router.push("/dashboard/servers/" + guild.id);
+            router.push(Routes.DashboardServers(guild.id));
           },
           isSelected: params.guildId === guild.id,
         }))}

@@ -94,7 +94,10 @@ const DSelector = (props: Props) => {
   return (
     <nav
       {...props}
-      className={cn("my-3 flex w-[72px] flex-col gap-3", props.className)}
+      className={cn(
+        "my-3 flex w-[72px] min-w-[72px] flex-col gap-3",
+        props.className,
+      )}
     >
       {pre.map((item, i) => (
         <Item {...item} key={i} itemClassName={itemClassName} />
