@@ -1,20 +1,31 @@
 "use client";
 
 import type React from "react";
+import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import { cn } from "@mc/ui";
 import { Separator } from "@mc/ui/separator";
 
+import type { DashboardGuildPageProps } from "./servers/[guildId]/page";
+import { pageTitle } from "~/other/pageTitle";
 import { api } from "~/trpc/react";
 import DSelector from "../components/DSelector";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const params = useParams<{ guildId: string }>();
+  const params = useParams<DashboardGuildPageProps["params"]>();
   const userGuilds = api.discord.userGuilds.useQuery(undefined, {
     initialData: [],
   });
+
+  useEffect(() => {
+    if (!params.guildId) return;
+
+    const selectedGuild = userGuilds.data.find((g) => g.id === params.guildId);
+
+    document.title = pageTitle(selectedGuild?.name ?? "Unknown server");
+  }, [params.guildId, userGuilds.data]);
 
   const overflowClass = "mt-[-57px] pt-[57px] max-h-screen overflow-auto";
 

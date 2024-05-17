@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Donors - Member Counter" };
+import { pageTitle } from "~/other/pageTitle";
+
+export const metadata: Metadata = { title: pageTitle("Donors") };
 export default function Page() {
   // TODO
 }

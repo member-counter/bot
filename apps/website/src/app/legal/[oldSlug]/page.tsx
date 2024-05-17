@@ -3,6 +3,7 @@ import { redirect, RedirectType } from "next/navigation";
 import { z } from "zod";
 
 import type { LegalPagesSlugs } from "../legalPages";
+import { pageTitle } from "~/other/pageTitle";
 import { legalPages, legalPagesSlugs } from "../legalPages";
 
 interface Props {
@@ -21,7 +22,7 @@ export function generateMetadata({ params }: Props): Metadata {
   const legalPage = legalPages[requestedSlug];
 
   return {
-    title: legalPage.title + " - Member Counter",
+    title: pageTitle(legalPage.title),
   };
 }
 

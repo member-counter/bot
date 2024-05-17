@@ -4,9 +4,10 @@ import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
 import { Errors } from "~/app/errors";
+import { pageTitle } from "~/other/pageTitle";
 import { api } from "~/trpc/server";
 
-export const metadata: Metadata = { title: "Manage guilds - Member Counter" };
+export const metadata: Metadata = { title: pageTitle("Load server") };
 
 export default async function Layout({
   children,

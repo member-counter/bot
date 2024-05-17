@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Dashboard - Member Counter" };
+import { pageTitle } from "~/other/pageTitle";
+
+export const metadata: Metadata = { title: pageTitle("Dashboard") };
 export default function Page() {
   // TODO explain how the bot works
 }

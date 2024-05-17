@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { z } from "zod";
 
 import Footer from "~/app/components/Footer";
+import { pageTitle } from "~/other/pageTitle";
 import { legalPages, legalPagesSlugs } from "./legalPages";
 import PageSwitcher from "./PageSwitcher";
 
@@ -18,7 +19,7 @@ export function generateMetadata({ searchParams }: Props): Metadata {
   const legalPage = legalPages[requestedSlug];
 
   return {
-    title: legalPage.title + " - Member Counter",
+    title: pageTitle(legalPage.title),
   };
 }
 
