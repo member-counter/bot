@@ -7,6 +7,10 @@ export class BitField {
     return (this.bitfield & flag) === flag;
   }
 
+  any(flag: number) {
+    return (this.bitfield & flag) !== 0;
+  }
+
   add(flag: number) {
     this.bitfield |= flag;
     return this;
