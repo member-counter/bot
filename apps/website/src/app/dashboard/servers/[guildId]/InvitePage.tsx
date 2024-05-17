@@ -26,7 +26,7 @@ export function InvitePage({ guildId }: Props) {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setCopySuccess(false);
-    }, 3000);
+    }, 5000);
     return () => clearTimeout(timeoutId);
   }, [copySuccess]);
 
