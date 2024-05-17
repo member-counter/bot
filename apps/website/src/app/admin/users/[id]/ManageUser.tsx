@@ -39,7 +39,7 @@ export default function ManageUser({ userId }: { userId: string }) {
   const [enableTransfer, setEnableTransfer] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
   const authUser = api.session.user.useQuery().data;
-  const authUserPerms = new BitField(authUser?.permissions ?? 0);
+  const authUserPerms = new BitField(authUser?.permissions);
   const canModify = authUserPerms.has(UserPermissions.ManageUsers);
   const user = api.user.get.useQuery({ discordUserId: userId });
   const userMutation = api.user.update.useMutation();
@@ -91,7 +91,7 @@ export default function ManageUser({ userId }: { userId: string }) {
                     ...mutableUser,
                     permissions: new BitField(mutableUser.permissions)[
                       checked ? "add" : "remove"
-                    ](Number(permissionValue)).bitfield,
+                    ](permissionValue).bitfield,
                   });
                 }}
               >
@@ -117,7 +117,7 @@ export default function ManageUser({ userId }: { userId: string }) {
                     ...mutableUser,
                     badges: new BitField(mutableUser.badges)[
                       checked ? "add" : "remove"
-                    ](Number(badgeValue)).bitfield,
+                    ](badgeValue).bitfield,
                   });
                 }}
               >

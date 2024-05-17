@@ -13,8 +13,8 @@ datasource db {
 model User {
   id            String @id @default(auto()) @map("_id") @db.ObjectId
   discordUserId String @unique
-  badges        Int    @default(0)
-  permissions   Int    @default(0)
+  badges        BigInt @default(0)
+  permissions   BigInt @default(0)
 }
 
 model Guild {
@@ -28,4 +28,10 @@ type FormatSettings {
   locale          String   @default("en_US")
   compactNotation Boolean  @default(true)
   digits          String[] @default(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
+}
+
+model BlockedGuilds {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  discordGuildId String @unique
+  reason         String
 }

@@ -43,8 +43,8 @@ const displayableBadges: Record<
   },
 } as const;
 
-export function DisplayUserBadges({ badges: unparsed }: { badges: number }) {
-  if (unparsed === 0) return;
+export function DisplayUserBadges({ badges: unparsed }: { badges: bigint }) {
+  if (unparsed === 0n) return;
 
   const badges = new BitField(unparsed);
 

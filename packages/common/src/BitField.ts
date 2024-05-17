@@ -1,27 +1,31 @@
 // I would reuse discord.js' BitField, but it can't be bundled for frontend
 
 export class BitField {
-  constructor(public bitfield: number) {}
+  public bitfield: bigint;
+  constructor(bitfield: bigint | undefined | null | string) {
+    if (typeof bitfield === "string") this.bitfield = BigInt(bitfield);
+    else this.bitfield = bitfield ?? 0n;
+  }
 
-  has(flag: number) {
+  has(flag: bigint) {
     return (this.bitfield & flag) === flag;
   }
 
-  any(flag: number) {
-    return (this.bitfield & flag) !== 0;
+  any(flag: bigint) {
+    return (this.bitfield & flag) !== 0n;
   }
 
-  add(flag: number) {
+  add(flag: bigint) {
     this.bitfield |= flag;
     return this;
   }
 
-  remove(flag: number) {
+  remove(flag: bigint) {
     this.bitfield &= ~flag;
     return this;
   }
 
-  missing(flag: number) {
-    return (this.bitfield & flag) === 0;
+  missing(flag: bigint) {
+    return (this.bitfield & flag) === 0n;
   }
 }

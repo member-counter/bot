@@ -1,6 +1,6 @@
 export const UserPermissions = {
-  SeeUsers: 1 << 0,
-  ManageUsers: 1 << 1,
-  SeeGuilds: 1 << 2,
-  ManageGuilds: 1 << 3,
+  SeeUsers: 1n << 0n,
+  ManageUsers: 1n << 1n,
+  SeeGuilds: 1n << 2n,
+  ManageGuilds: 1n << 3n,
 } as const;

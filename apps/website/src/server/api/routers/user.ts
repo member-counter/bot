@@ -29,10 +29,8 @@ export const userRouter = createTRPCRouter({
       z.object({
         id: z.string(),
         discordUserId: z.string().optional(),
-        badges: z.number().optional(),
-        legacyPremiumBotUpgrades: z.number().optional(),
-        credit: z.number().optional(),
-        permissions: z.number().optional(),
+        badges: z.bigint().optional(),
+        permissions: z.bigint().optional(),
       }),
     )
     .mutation(({ ctx: { db, authUser }, input }) => {

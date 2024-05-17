@@ -16,7 +16,7 @@ export default function Footer() {
   const user = api.session.user.useQuery(undefined);
 
   const userPermissions = useMemo(
-    () => new BitField(user.data?.permissions ?? 0),
+    () => new BitField(user.data?.permissions),
     [user.data],
   );
 
