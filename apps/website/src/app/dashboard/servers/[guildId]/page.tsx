@@ -1,10 +1,10 @@
 "use client";
 
-export interface DashboardGuildPageProps {
-  params: { guildId: string };
-}
+import type { DashboardGuildPageProps } from "./layout";
 
-export default function Page(props: DashboardGuildPageProps) {
+type Props = DashboardGuildPageProps;
+
+export default function Page(props: Props) {
   return (
     <div>
       <h1>Current selected server: {props.params.guildId} </h1>

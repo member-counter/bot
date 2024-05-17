@@ -33,7 +33,10 @@ export default function Page({ params: { id: userId } }: Props) {
 
   const discordUser = api.discord.getUser.useQuery({ id: userId });
 
-  const user = api.user.get.useQuery({ id: userId }, { throwOnError: true });
+  const user = api.user.get.useQuery(
+    { discordUserId: userId },
+    { throwOnError: true },
+  );
 
   return (
     <Card className="flex w-full flex-col">

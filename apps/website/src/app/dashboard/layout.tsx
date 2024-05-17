@@ -7,7 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 import { cn } from "@mc/ui";
 import { Separator } from "@mc/ui/separator";
 
-import type { DashboardGuildPageProps } from "./servers/[guildId]/page";
+import type { DashboardGuildPageProps } from "./servers/[guildId]/layout";
 import { pageTitle } from "~/other/pageTitle";
 import { api } from "~/trpc/react";
 import DSelector from "../components/DSelector";

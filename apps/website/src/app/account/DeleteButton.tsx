@@ -25,7 +25,7 @@ export function DeleteButton() {
   const deleteAccount = async () => {
     if (!user.data) return;
 
-    await deleteUser.mutateAsync({ id: user.data.discordUserId });
+    await deleteUser.mutateAsync({ discordUserId: user.data.discordUserId });
 
     router.push("/logout");
   };

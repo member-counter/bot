@@ -40,7 +40,7 @@ export default function ManageUser({ userId }: { userId: string }) {
   const authUser = api.session.user.useQuery().data;
   const authUserPerms = new BitField(authUser?.permissions ?? 0);
   const canModify = authUserPerms.has(UserPermissions.ManageUsers);
-  const user = api.user.get.useQuery({ id: userId });
+  const user = api.user.get.useQuery({ discordUserId: userId });
   const userMutation = api.user.update.useMutation();
   const [mutableUser, setMutableUser] = useState<typeof user.data>(null);
 

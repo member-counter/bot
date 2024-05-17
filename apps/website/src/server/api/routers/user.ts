@@ -9,10 +9,10 @@ import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
 export const userRouter = createTRPCRouter({
   get: protectedProcedure
-    .input(z.object({ id: z.string() }))
+    .input(z.object({ discordUserId: z.string() }))
     .query(({ ctx: { db, authUser }, input }) => {
       const hasPermission =
-        authUser.discordUserId === input.id ||
+        authUser.discordUserId === input.discordUserId ||
         new BitField(authUser.permissions).has(UserPermissions.SeeGuilds);
 
       if (!hasPermission)
@@ -21,7 +21,9 @@ export const userRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return db.user.findUnique({ where: { discordUserId: input.id } });
+      return db.user.findUnique({
+        where: { discordUserId: input.discordUserId },
+      });
     }),
   update: protectedProcedure
     .input(
@@ -58,12 +60,12 @@ export const userRouter = createTRPCRouter({
   delete: protectedProcedure
     .input(
       z.object({
-        id: z.string(),
+        discordUserId: z.string(),
       }),
     )
     .mutation(({ ctx: { db, authUser }, input }) => {
       const hasPermission =
-        authUser.discordUserId === input.id ||
+        authUser.discordUserId === input.discordUserId ||
         new BitField(authUser.permissions).has(UserPermissions.ManageUsers);
 
       if (!hasPermission)
@@ -73,7 +75,7 @@ export const userRouter = createTRPCRouter({
         });
 
       return db.user.delete({
-        where: { discordUserId: input.id },
+        where: { discordUserId: input.discordUserId },
       });
     }),
 });

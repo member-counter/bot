@@ -28,7 +28,7 @@ export function DeleteButton({
   const deleteUser = api.user.delete.useMutation();
 
   const deleteAccount = async () => {
-    await deleteUser.mutateAsync({ id: userId });
+    await deleteUser.mutateAsync({ discordUserId: userId });
     router.refresh();
   };
 
