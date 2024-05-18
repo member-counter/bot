@@ -53,6 +53,11 @@ export const discordRouter = createTRPCRouter({
             .permissionsFor(guildMember)
             .bitfield.toString(),
         })),
+        emojis: guild.emojis.cache.map((emoji) => ({
+          id: emoji.id,
+          name: emoji.name,
+          animated: emoji.animated,
+        })),
       };
     }),
 });

@@ -34,7 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="flex grow flex-row">
       <DSelector
         className={cn(overflowClass, "mb-0 pb-3 pt-[68px]")}
-        itemClassName="bg-card hover:bg-primary"
+        classNameForItem={"bg-card hover:bg-primary"}
         pre={[]}
         guilds={userGuilds.data.map((guild) => ({
           ...guild,
