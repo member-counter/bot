@@ -1,7 +1,13 @@
 "use client";
 
+import type { DashboardGuildParams } from "../layout";
+
+export type DashboardGuildChannelParams = {
+  channelId: string;
+} & DashboardGuildParams;
+
 interface Props {
-  params: { channelId: string };
+  params: DashboardGuildChannelParams;
 }
 
 export default function Page(props: Props) {
