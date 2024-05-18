@@ -9,17 +9,17 @@ import {
   TooltipTrigger,
 } from "@mc/ui/tooltip";
 
-type ItemProps = {
-  itemClassName?: string;
+interface ItemProps {
+  classNameForItem?: string;
   icon?: string | React.ReactNode;
   run: () => void;
   name: string;
   isSelected?: boolean;
   notSelectable?: boolean;
-} & React.HTMLAttributes<HTMLDivElement>;
+}
 
 const Item = (props: ItemProps) => {
-  const { icon: icon, run, name, notSelectable, itemClassName } = props;
+  const { icon: icon, run, name, notSelectable, classNameForItem } = props;
   let { isSelected } = props;
 
   if (notSelectable) isSelected = false;
@@ -29,7 +29,7 @@ const Item = (props: ItemProps) => {
 
   return (
     <>
-      <div {...props} className={cn("relative")}>
+      <div className={cn("relative")}>
         <TooltipProvider>
           <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
@@ -42,7 +42,7 @@ const Item = (props: ItemProps) => {
                   {
                     ["rounded-[15px]"]: isSelected,
                   },
-                  itemClassName,
+                  classNameForItem,
                 )}
                 style={itemImageStyle}
                 onClick={run}
@@ -89,25 +89,25 @@ const Item = (props: ItemProps) => {
   );
 };
 
-type Props = {
-  itemClassName?: string;
+interface Props {
+  className: string;
+  classNameForItem?: string;
   pre: ItemProps[];
   guilds: ItemProps[];
-} & React.HTMLAttributes<HTMLElement>;
+}
 
 const DSelector = (props: Props) => {
-  const { guilds, pre, itemClassName } = props;
+  const { guilds, pre, classNameForItem } = props;
 
   return (
     <nav
-      {...props}
       className={cn(
         "my-3 flex w-[72px] min-w-[72px] flex-col gap-3",
         props.className,
       )}
     >
       {pre.map((item, i) => (
-        <Item {...item} key={i} itemClassName={itemClassName} />
+        <Item {...item} key={i} classNameForItem={classNameForItem} />
       ))}
       {!!pre.length && (
         <Separator
@@ -116,7 +116,7 @@ const DSelector = (props: Props) => {
         />
       )}
       {guilds.map((item, i) => (
-        <Item {...item} key={i} itemClassName={itemClassName} />
+        <Item {...item} key={i} classNameForItem={classNameForItem} />
       ))}
     </nav>
   );
