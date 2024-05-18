@@ -1,27 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { CheckIcon, CopyIcon } from "lucide-react";
 
-import { BitField } from "@mc/common/BitField";
-import { DiscordPermissions } from "@mc/common/DiscordPermissions";
 import { Button } from "@mc/ui/button";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
+import type { DashboardGuildParams } from "./layout";
 import { BotIcon } from "~/app/components/BotIcon";
 import { DiscordIcon } from "~/app/components/DiscordIcon";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
+import { UserPermissionsContext } from "./UserPermissionsContext";
 
-interface Props {
-  guildId: string;
-}
-
-export function InvitePage({ guildId }: Props) {
+export function InviteBotPage() {
+  const { guildId } = useParams<DashboardGuildParams>();
   const [clipboardFailed, setClipboardFailed] = useState(
     !window.isSecureContext,
   );
   const [copySuccess, setCopySuccess] = useState(false);
-  const userGuilds = api.discord.userGuilds.useQuery();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -30,18 +27,7 @@ export function InvitePage({ guildId }: Props) {
     return () => clearTimeout(timeoutId);
   }, [copySuccess]);
 
-  if (!userGuilds.isSuccess) return;
-
-  const guild = userGuilds.data.find((g) => g.id === guildId);
-
-  const userPermissionsInGuild = new BitField(guild?.permissions);
-
-  const userCanInviteTheBot = userPermissionsInGuild.any(
-    DiscordPermissions.Administrator | DiscordPermissions.ManageGuild,
-  );
-
   const inviteLink = Routes.Invite(guildId);
-
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(
@@ -52,6 +38,10 @@ export function InvitePage({ guildId }: Props) {
       setClipboardFailed(true);
     }
   };
+
+  const userPermissions = useContext(UserPermissionsContext);
+  const userGuilds = api.discord.userGuilds.useQuery();
+  const guild = userGuilds.data?.get(guildId);
 
   return (
     <div className="flex grow items-center justify-center p-4">
@@ -65,7 +55,7 @@ export function InvitePage({ guildId }: Props) {
           realtime counters.
         </h2>
         <div className="mt-5">
-          {userCanInviteTheBot ? (
+          {userPermissions.canInviteBot ? (
             <Link href={inviteLink} target="_blank">
               <Button className="w-full">
                 <DiscordIcon className="mr-2 h-4 w-4" />

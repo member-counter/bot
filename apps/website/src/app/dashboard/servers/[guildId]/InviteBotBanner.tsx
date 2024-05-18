@@ -1,15 +1,14 @@
+import { useParams } from "next/navigation";
 import { BotIcon } from "lucide-react";
 
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
+import type { DashboardGuildParams } from "./layout";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 
-interface Props {
-  guildId: string;
-}
-
-export function InviteBotBanner({ guildId }: Props) {
+export function InviteBotBanner() {
+  const { guildId } = useParams<DashboardGuildParams>();
   const authenticatedUser = api.session.user.useQuery();
 
   const discordGuild = api.discord.getGuild.useQuery(

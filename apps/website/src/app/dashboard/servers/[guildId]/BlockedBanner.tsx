@@ -4,12 +4,11 @@ import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
+import type { DashboardGuildParams } from "./layout";
+import { useParams } from "next/navigation";
 
-interface Props {
-  guildId: string;
-}
-
-export function BlockedBanner({ guildId }: Props) {
+export function BlockedBanner() {
+  const { guildId } = useParams<DashboardGuildParams>();
   const blockedState = api.guild.isBlocked.useQuery({
     discordGuildId: guildId,
   });
