@@ -147,9 +147,6 @@ importers:
       discord-api-types:
         specifier: ^0.37.83
         version: 0.37.83
-      discord.js:
-        specifier: ^14.15.2
-        version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1

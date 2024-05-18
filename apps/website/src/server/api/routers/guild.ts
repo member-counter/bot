@@ -1,7 +1,8 @@
 import { TRPCError } from "@trpc/server";
-import { PermissionFlagsBits, PermissionsBitField } from "discord.js";
+import { PermissionFlagsBits } from "discord-api-types/v10";
 import { z } from "zod";
 
+import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
 import { Errors } from "~/app/errors";
@@ -16,7 +17,7 @@ async function getAuthUserGuildPermissions(
 
   const guild = guilds.get(guildId);
 
-  return new PermissionsBitField(BigInt(guild?.permissions ?? "0"));
+  return new BitField(BigInt(guild?.permissions ?? "0"));
 }
 
 export const guildRouter = createTRPCRouter({

@@ -1,8 +1,8 @@
 import { createContext, useMemo } from "react";
 import { useParams } from "next/navigation";
+import { PermissionFlagsBits } from "discord-api-types/v10";
 
 import { BitField } from "@mc/common/BitField";
-import { DiscordPermissions } from "@mc/common/DiscordPermissions";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
 import type { DashboardGuildParams } from "./layout";
@@ -39,14 +39,14 @@ export const UserPermissionsContextProvider = ({
     return {
       canRead:
         userGuildPermissions.any(
-          DiscordPermissions.Administrator | DiscordPermissions.ManageGuild,
+          PermissionFlagsBits.Administrator | PermissionFlagsBits.ManageGuild,
         ) || userPermissions.has(UserPermissions.SeeGuilds),
       canModify:
         userGuildPermissions.any(
-          DiscordPermissions.Administrator | DiscordPermissions.ManageGuild,
+          PermissionFlagsBits.Administrator | PermissionFlagsBits.ManageGuild,
         ) || userPermissions.has(UserPermissions.ManageGuilds),
       canInviteBot: userGuildPermissions.any(
-        DiscordPermissions.Administrator | DiscordPermissions.ManageGuild,
+        PermissionFlagsBits.Administrator | PermissionFlagsBits.ManageGuild,
       ),
     };
   }, [authUser.data?.permissions, guild?.permissions]);

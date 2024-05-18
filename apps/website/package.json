@@ -27,7 +27,6 @@
     "@trpc/react-query": "next",
     "@trpc/server": "next",
     "discord-api-types": "^0.37.83",
-    "discord.js": "^14.15.2",
     "ioredis": "^5.4.1",
     "iron-session": "^8.0.1",
     "lucide-react": "^0.314.0",
