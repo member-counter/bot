@@ -56,7 +56,7 @@ export function InviteBotPage() {
         </h2>
         <div className="mt-5">
           {userPermissions.canInviteBot ? (
-            <Link href={inviteLink} target="_blank">
+            <Link href={inviteLink} target="_blank" className="block">
               <Button className="w-full">
                 <DiscordIcon className="mr-2 h-4 w-4" />
                 Add to {guild?.name ?? "Unknown server"}
