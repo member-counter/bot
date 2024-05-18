@@ -36,7 +36,7 @@ export function InvitePage({ guildId }: Props) {
 
   const userPermissionsInGuild = new BitField(guild?.permissions);
 
-  const userCanInviteTheBot = userPermissionsInGuild.has(
+  const userCanInviteTheBot = userPermissionsInGuild.any(
     DiscordPermissions.Administrator | DiscordPermissions.ManageGuild,
   );
 
@@ -78,11 +78,11 @@ export function InvitePage({ guildId }: Props) {
                 You don't have enough permissions to add the bot.
                 <br />
                 Please ask an administrator or someone with Manage Server
-                permission to add the bot.
+                permission to add this bot.
               </div>
               {clipboardFailed ? (
                 <LinkUnderlined href={inviteLink} target="_blank">
-                  Use this link to add the bot
+                  Use this link to add this bot
                 </LinkUnderlined>
               ) : (
                 <Button
