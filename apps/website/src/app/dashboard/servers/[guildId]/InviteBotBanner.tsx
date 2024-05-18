@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { BotIcon } from "lucide-react";
+import { BotIcon, XIcon } from "lucide-react";
 
+import { Button } from "@mc/ui/button";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
 import type { DashboardGuildParams } from "./layout";
@@ -8,6 +10,7 @@ import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 
 export function InviteBotBanner() {
+  const [closed, setClosed] = useState(false);
   const { guildId } = useParams<DashboardGuildParams>();
   const authenticatedUser = api.session.user.useQuery();
 
@@ -16,10 +19,17 @@ export function InviteBotBanner() {
     { enabled: !authenticatedUser.data },
   );
 
+  useEffect(() => {
+    setClosed(false);
+  }, [discordGuild.data]);
+
   if (discordGuild.isPending || discordGuild.data) return;
+  if (closed) return;
+
+  // TODO make it responsive
 
   return (
-    <div className="flex w-full bg-primary p-2">
+    <div className="flex w-full flex-row bg-primary p-2">
       <div className="flex items-center pl-1 pr-2">
         <BotIcon className="h-6 w-6" />
       </div>
@@ -30,6 +40,16 @@ export function InviteBotBanner() {
           add it
         </LinkUnderlined>
         ?
+      </div>
+      <div className="flex grow items-center">
+        <Button
+          className="ml-auto"
+          size={"icon"}
+          variant={"none"}
+          onClick={() => setClosed(true)}
+        >
+          <XIcon />
+        </Button>
       </div>
     </div>
   );
