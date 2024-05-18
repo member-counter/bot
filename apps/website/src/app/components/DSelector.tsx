@@ -30,20 +30,12 @@ const Item = (props: ItemProps) => {
   return (
     <>
       <div {...props} className={cn("relative")}>
-        <div
-          className={cn(
-            "duration-[200ms] absolute mt-[4px] h-[40px] w-[4px] rounded-r-[12px]  bg-white transition-all ease-linear",
-            {
-              ["translate-x-[-15px]"]: !isSelected,
-            },
-          )}
-        />
         <TooltipProvider>
           <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
               <div
                 className={cn(
-                  "bg-[#424242]",
+                  "group bg-[#424242]",
                   "background mx-3 flex h-[48px] w-[48px] cursor-pointer select-none overflow-hidden bg-contain bg-center",
                   "duration-[120px] transition-all",
                   "rounded-[100%] focus-within:rounded-[15px] hover:rounded-[15px]",
@@ -59,6 +51,21 @@ const Item = (props: ItemProps) => {
                 tabIndex={0}
                 aria-label={name}
               >
+                <div className="absolute ml-[-12px] flex h-[48px] w-[8px] items-center justify-start">
+                  <div
+                    className={cn(
+                      "duration-[150ms] transition-all ease-out",
+                      "ml-[-4px] h-[10px] w-[8px] rounded-r-[4px] bg-white",
+                      "transform-x-[4px] opacity-0",
+                      {
+                        "group-hover:transform-x-[0px] group-hover:h-[20px] group-hover:opacity-100":
+                          !isSelected,
+                        "group-hover:transform-x-[0px] h-[40px] opacity-100":
+                          isSelected,
+                      },
+                    )}
+                  />
+                </div>
                 {icon == null ? (
                   <div
                     aria-hidden="true"
