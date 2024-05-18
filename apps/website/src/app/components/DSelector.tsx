@@ -112,7 +112,7 @@ const DSelector = (props: Props) => {
       {!!pre.length && (
         <Separator
           orientation="horizontal"
-          className="m-auto h-0 w-10 border-t border-border/90 bg-inherit"
+          className="mx-auto h-0 w-10 border-t border-border/90 bg-inherit"
         />
       )}
       {guilds.map((item, i) => (
