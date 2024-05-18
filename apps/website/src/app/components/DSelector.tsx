@@ -55,13 +55,12 @@ const Item = (props: ItemProps) => {
                   <div
                     className={cn(
                       "duration-[150ms] transition-all ease-out",
-                      "ml-[-4px] h-[10px] w-[8px] rounded-r-[4px] bg-white",
-                      "transform-x-[4px] opacity-0",
+                      "ml-[-4px] h-[8px] w-[8px] rounded-r-[4px] bg-white",
+                      "translate-x-[-3px] opacity-0",
                       {
-                        "group-hover:transform-x-[0px] group-hover:h-[20px] group-hover:opacity-100":
+                        "group-hover:h-[20px] group-hover:translate-x-[0px] group-hover:opacity-100":
                           !isSelected,
-                        "group-hover:transform-x-[0px] h-[40px] opacity-100":
-                          isSelected,
+                        "h-[40px] translate-x-[0px] opacity-100": isSelected,
                       },
                     )}
                   />
