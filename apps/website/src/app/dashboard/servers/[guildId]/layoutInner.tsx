@@ -27,22 +27,24 @@ export default function LayoutInner({
   if (!has.isSuccess) return;
 
   return (
-    <div className="flex h-full max-h-full">
-      {has.data ? (
-        <>
-          <BlockedBanner />
-          <InviteBotBanner />
-          <div className="grow">
-            {userPermissions.canRead ? (
-              <ManageServer>{children}</ManageServer>
-            ) : (
-              <ForbiddenPage />
-            )}
+    <>
+      <div className="flex h-full max-h-full flex-col">
+        <BlockedBanner />
+        <InviteBotBanner />
+        {has.data ? (
+          <div className="max-h-full grow overflow-hidden">
+            <div className="h-full">
+              {userPermissions.canRead ? (
+                <ManageServer>{children}</ManageServer>
+              ) : (
+                <ForbiddenPage />
+              )}
+            </div>
           </div>
-        </>
-      ) : (
-        <InviteBotPage />
-      )}
-    </div>
+        ) : (
+          <InviteBotPage />
+        )}
+      </div>
+    </>
   );
 }
