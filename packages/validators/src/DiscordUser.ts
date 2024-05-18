@@ -8,7 +8,7 @@ export const DiscordUserSchema = z
     id: z.string(),
     username: z.string(),
     discriminator: z.string(),
-    avatar: z.string().optional(),
+    avatar: z.string().nullable().optional(),
   })
   .transform((user) => {
     const defaultAvatarIndex = (
