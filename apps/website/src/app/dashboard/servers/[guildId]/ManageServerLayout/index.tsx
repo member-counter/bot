@@ -3,7 +3,7 @@ import React, { createContext, useMemo, useState } from "react";
 import { cn } from "@mc/ui";
 import { Separator } from "@mc/ui/separator";
 
-import { ServerNav } from "./ServerNav";
+import { ServerNavMenu } from "./ServerNavMenu";
 
 interface Props {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ export const ServerNavMenuContext = createContext<{
   setIsOpen: () => void 0,
 });
 
-export function ManageServer({ children }: Props) {
+export function ManageServerLayout({ children }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuContextValue = useMemo(
@@ -31,7 +31,7 @@ export function ManageServer({ children }: Props) {
   return (
     <ServerNavMenuContext.Provider value={menuContextValue}>
       <div className="flex h-full max-h-full">
-        <ServerNav
+        <ServerNavMenu
           className={cn("w-full sm:w-[240px]", {
             "hidden sm:block": !isMenuOpen,
           })}

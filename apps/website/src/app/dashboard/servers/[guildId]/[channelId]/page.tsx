@@ -11,7 +11,7 @@ import { Separator } from "@mc/ui/separator";
 import type { DashboardGuildParams } from "../layout";
 import { api } from "~/trpc/react";
 import { ChannelIconMap } from "../ChannelIconMap";
-import { ServerNavMenuContext } from "../ManageServer";
+import { ServerNavMenuContext } from "../ManageServerLayout";
 
 export type DashboardGuildChannelParams = {
   channelId: string;

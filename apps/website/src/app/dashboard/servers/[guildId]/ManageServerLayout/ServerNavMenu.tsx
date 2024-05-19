@@ -14,7 +14,7 @@ import { ServerNavMenuContext } from ".";
 import { ChannelNavItem } from "./ChannelNavItem";
 import { sortChannels } from "./sortChannels";
 
-export function ServerNav({ className }: { className?: string }) {
+export function ServerNavMenu({ className }: { className?: string }) {
   const menuContext = useContext(ServerNavMenuContext);
   const { guildId } = useParams<DashboardGuildChannelParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });

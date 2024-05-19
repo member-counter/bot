@@ -9,7 +9,7 @@ import { BlockedBanner } from "./BlockedBanner";
 import { ForbiddenPage } from "./ForbiddenPage";
 import { InviteBotBanner } from "./InviteBotBanner";
 import { InviteBotPage } from "./InviteBotPage";
-import { ManageServer } from "./ManageServer";
+import { ManageServerLayout } from "./ManageServerLayout";
 import { UserPermissionsContext } from "./UserPermissionsContext";
 
 export default function LayoutInner({
@@ -35,7 +35,7 @@ export default function LayoutInner({
           <div className="max-h-full grow overflow-hidden">
             <div className="h-full">
               {userPermissions.canRead ? (
-                <ManageServer>{children}</ManageServer>
+                <ManageServerLayout>{children}</ManageServerLayout>
               ) : (
                 <ForbiddenPage />
               )}
