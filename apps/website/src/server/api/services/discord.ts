@@ -23,14 +23,16 @@ export async function identify(token: string): Promise<DiscordUser> {
 
 export async function userGuilds(
   token: string,
-): Promise<Map<string, DiscordUserGuild>> {
+): Promise<{ userGuilds: Map<string, DiscordUserGuild> }> {
   const client = createClient(token);
 
   const guilds = await client.get(Routes.userGuilds(), {
     query: new URLSearchParams({ with_counts: "true" }),
   });
 
-  return new Map(
-    DiscordUserGuildsSchema.parse(guilds).map((guild) => [guild.id, guild]),
-  );
+  return {
+    userGuilds: new Map(
+      DiscordUserGuildsSchema.parse(guilds).map((guild) => [guild.id, guild]),
+    ),
+  };
 }

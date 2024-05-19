@@ -1,3 +1,4 @@
+import type { DiscordUserGuild } from "@mc/validators/DiscordUserGuilds";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -40,8 +41,12 @@ export function InviteBotPage() {
   };
 
   const userPermissions = useContext(UserPermissionsContext);
-  const userGuilds = api.discord.userGuilds.useQuery();
-  const guild = userGuilds.data?.get(guildId);
+  const {
+    data: { userGuilds },
+  } = api.discord.userGuilds.useQuery(undefined, {
+    initialData: { userGuilds: new Map<string, DiscordUserGuild>() },
+  });
+  const guild = userGuilds.get(guildId);
 
   return (
     <div className="flex grow items-center justify-center p-4">

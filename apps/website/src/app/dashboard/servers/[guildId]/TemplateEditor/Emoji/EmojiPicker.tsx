@@ -28,7 +28,7 @@ export function EmojiPicker({ className }: { className?: string } = {}) {
   const [showPopover, setShowPopover] = useState(false);
   const userGuildsQuery = api.discord.userGuilds.useQuery();
   const userGuilds = useMemo(
-    () => [...(userGuildsQuery.data?.values() ?? [])],
+    () => [...(userGuildsQuery.data?.userGuilds.values() ?? [])],
     [userGuildsQuery.data],
   );
   const guildsQuery = api.useQueries((api) =>

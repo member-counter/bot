@@ -16,17 +16,19 @@ import DSelector from "../components/DSelector";
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const params = useParams<DashboardGuildParams>();
-  const userGuilds = api.discord.userGuilds.useQuery(undefined, {
-    initialData: new Map<string, DiscordUserGuild>(),
+  const {
+    data: { userGuilds },
+  } = api.discord.userGuilds.useQuery(undefined, {
+    initialData: { userGuilds: new Map<string, DiscordUserGuild>() },
   });
 
   useEffect(() => {
     if (!params.guildId) return;
 
-    const selectedGuild = userGuilds.data.get(params.guildId);
+    const selectedGuild = userGuilds.get(params.guildId);
 
     document.title = pageTitle(selectedGuild?.name ?? "Unknown server");
-  }, [params.guildId, userGuilds.data]);
+  }, [params.guildId, userGuilds]);
 
   // margin-top/padding-top to leave space for the nav bar but keeping the actual box under it
   const overflowClass = "mt-[-57px] pt-[57px] max-h-screen overflow-auto";
@@ -37,7 +39,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         className={cn(overflowClass, "mb-0 bg-black pb-3 pt-[68px]")}
         classNameForItem={"bg-card hover:bg-primary"}
         pre={[]}
-        guilds={[...userGuilds.data.values()].map((guild) => ({
+        guilds={[...userGuilds.values()].map((guild) => ({
           ...guild,
           run: () => {
             router.push(Routes.DashboardServers(guild.id));
