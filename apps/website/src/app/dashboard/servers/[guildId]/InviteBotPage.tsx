@@ -45,57 +45,56 @@ export function InviteBotPage() {
 
   return (
     <div className="flex grow items-center justify-center p-4">
-      <div className="text-left sm:text-center">
-        <h1 className="text-4xl">
+      <div className="flex flex-col gap-5 text-left sm:text-center">
+        <BotIcon className="mx-auto h-32 w-32 sm:hidden" />
+        <h1 className="sm:text-4x2 text-3xl">
           Let's setup the bot!
-          <BotIcon className="ml-1 mt-[-5px] inline-block h-16 w-11" />
+          <BotIcon className="ml-1 mt-[-5px] hidden h-16 w-11 sm:inline-block" />
         </h1>
         <h2>
           Add Member counter to {guild?.name ?? "Unknown server"} and enjoy
           realtime counters.
         </h2>
-        <div className="mt-5">
-          {userPermissions.canInviteBot ? (
-            <Link href={inviteLink} target="_blank" className="block">
-              <Button className="w-full">
-                <DiscordIcon className="mr-2 h-4 w-4" />
-                Add to {guild?.name ?? "Unknown server"}
+        {userPermissions.canInviteBot ? (
+          <Link href={inviteLink} target="_blank" className="block">
+            <Button className="w-full">
+              <DiscordIcon className="mr-2 h-4 w-4" />
+              Add to {guild?.name ?? "Unknown server"}
+            </Button>
+          </Link>
+        ) : (
+          <>
+            <div className="text-sm text-muted-foreground">
+              You don't have enough permissions to add the bot.
+              <br />
+              Please ask an administrator or someone with Manage Server
+              permission to add this bot.
+            </div>
+            {clipboardFailed ? (
+              <LinkUnderlined href={inviteLink} target="_blank">
+                Use this link to add this bot
+              </LinkUnderlined>
+            ) : (
+              <Button
+                className="w-full"
+                onClick={copyLink}
+                disabled={copySuccess}
+              >
+                {copySuccess ? (
+                  <>
+                    <CheckIcon className="mr-2 h-4 w-4" />
+                    The link has been copied to your clipboard
+                  </>
+                ) : (
+                  <>
+                    <CopyIcon className="mr-2 h-4 w-4" />
+                    Copy invite link
+                  </>
+                )}
               </Button>
-            </Link>
-          ) : (
-            <>
-              <div className="mb-5 text-sm text-muted-foreground">
-                You don't have enough permissions to add the bot.
-                <br />
-                Please ask an administrator or someone with Manage Server
-                permission to add this bot.
-              </div>
-              {clipboardFailed ? (
-                <LinkUnderlined href={inviteLink} target="_blank">
-                  Use this link to add this bot
-                </LinkUnderlined>
-              ) : (
-                <Button
-                  className="w-full"
-                  onClick={copyLink}
-                  disabled={copySuccess}
-                >
-                  {copySuccess ? (
-                    <>
-                      <CheckIcon className="mr-2 h-4 w-4" />
-                      The link has been copied to your clipboard
-                    </>
-                  ) : (
-                    <>
-                      <CopyIcon className="mr-2 h-4 w-4" />
-                      Copy invite link
-                    </>
-                  )}
-                </Button>
-              )}
-            </>
-          )}
-        </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
