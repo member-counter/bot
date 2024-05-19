@@ -23,12 +23,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
+    userGuilds.forEach((guild) =>
+      router.prefetch(Routes.DashboardServers(guild.id)),
+    );
+
     if (!params.guildId) return;
 
     const selectedGuild = userGuilds.get(params.guildId);
 
     document.title = pageTitle(selectedGuild?.name ?? "Unknown server");
-  }, [params.guildId, userGuilds]);
+  }, [params.guildId, userGuilds, router]);
 
   // margin-top/padding-top to leave space for the nav bar but keeping the actual box under it
   const overflowClass = "mt-[-57px] pt-[57px] max-h-screen overflow-auto";
@@ -41,7 +45,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         pre={[]}
         guilds={[...userGuilds.values()].map((guild) => ({
           ...guild,
-          run: () => {
+          onClick: () => {
             router.push(Routes.DashboardServers(guild.id));
           },
           isSelected: params.guildId === guild.id,
