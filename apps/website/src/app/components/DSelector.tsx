@@ -12,14 +12,14 @@ import {
 interface ItemProps {
   classNameForItem?: string;
   icon?: string | React.ReactNode;
-  run: () => void;
+  onClick: () => void;
   name: string;
   isSelected?: boolean;
   notSelectable?: boolean;
 }
 
 const Item = (props: ItemProps) => {
-  const { icon: icon, run, name, notSelectable, classNameForItem } = props;
+  const { icon: icon, onClick, name, notSelectable, classNameForItem } = props;
   let { isSelected } = props;
 
   if (notSelectable) isSelected = false;
@@ -45,8 +45,10 @@ const Item = (props: ItemProps) => {
                   classNameForItem,
                 )}
                 style={itemImageStyle}
-                onClick={run}
-                onKeyDown={(e) => ["Enter", "Space"].includes(e.key) && run()}
+                onClick={onClick}
+                onKeyDown={(e) =>
+                  ["Enter", "Space"].includes(e.key) && onClick()
+                }
                 role="link"
                 tabIndex={0}
                 aria-label={name}
