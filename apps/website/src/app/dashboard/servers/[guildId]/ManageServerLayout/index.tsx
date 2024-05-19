@@ -32,7 +32,7 @@ export function ManageServerLayout({ children }: Props) {
     <ServerNavMenuContext.Provider value={menuContextValue}>
       <div className="flex h-full max-h-full">
         <ServerNavMenu
-          className={cn("w-full sm:w-[240px]", {
+          className={cn("w-full sm:w-[240px] sm:min-w-[240px]", {
             "hidden sm:block": !isMenuOpen,
           })}
         />

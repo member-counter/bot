@@ -32,7 +32,7 @@ export function ServerNavMenu({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="flex h-[48px] min-w-0  items-center font-semibold">
+      <div className="flex h-[48px] min-h-[48px] min-w-0 items-center font-semibold">
         <p className="flex-shrink overflow-hidden  text-ellipsis whitespace-nowrap pl-4">
           {guild.data?.name}
         </p>

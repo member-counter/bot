@@ -25,7 +25,7 @@ export default function Error({
   reset,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
+  reset?: () => void;
 }) {
   const router = useRouter();
 
@@ -67,9 +67,11 @@ export default function Error({
               Get support
             </Button>
           </Link>
-          <Button onClick={() => reset()} variant={"secondary"}>
-            Try again
-          </Button>
+          {reset && (
+            <Button onClick={() => reset()} variant={"secondary"}>
+              Try again
+            </Button>
+          )}
           <Button onClick={() => router.back()} variant={"secondary"}>
             Go back
           </Button>
