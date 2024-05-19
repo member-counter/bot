@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import { useContext } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ChannelType, PermissionFlagsBits } from "discord-api-types/v10";
@@ -16,6 +17,7 @@ import {
 import type { DashboardGuildParams } from "../layout";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
+import { ServerNavMenuContext } from ".";
 import { ChannelIconMap } from "../ChannelIconMap";
 
 export function ChannelNavItem(channel: {
@@ -24,6 +26,7 @@ export function ChannelNavItem(channel: {
   name: string;
   everyonePermissions: string;
 }) {
+  const menuContext = useContext(ServerNavMenuContext);
   const { guildId, channelId } = useParams<DashboardGuildParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
 
@@ -60,9 +63,10 @@ export function ChannelNavItem(channel: {
               guildId,
               isSupported ? channel.id : undefined,
             )}
+            onClick={() => menuContext.setIsOpen(false)}
             className={cn(
               "group block cursor-pointer",
-              "max-w-[240px] overflow-clip text-ellipsis whitespace-nowrap",
+              "overflow-clip text-ellipsis whitespace-nowrap",
               {
                 "mb-1 mt-4 text-xs uppercase text-muted-foreground hover:text-foreground":
                   isCategory,
@@ -83,6 +87,8 @@ export function ChannelNavItem(channel: {
                 },
               )}
             />
+            {channel.name}
+            {channel.name}
             {channel.name}
           </Link>
         </TooltipTrigger>
