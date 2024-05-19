@@ -33,9 +33,6 @@ export function ServerNav({ className }: { className?: string }) {
       <div className="flex h-[48px] min-w-0  items-center font-semibold">
         <p className="flex-shrink overflow-hidden  text-ellipsis whitespace-nowrap pl-4">
           {guild.data?.name}
-          {guild.data?.name}
-          {guild.data?.name}
-          {guild.data?.name}
         </p>
         <Button
           className="ml-auto mr-1"

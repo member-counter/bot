@@ -88,8 +88,6 @@ export function ChannelNavItem(channel: {
               )}
             />
             {channel.name}
-            {channel.name}
-            {channel.name}
           </Link>
         </TooltipTrigger>
         {!isSupported && (
