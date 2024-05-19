@@ -1,6 +1,5 @@
 "use client";
 
-import type { DiscordUserGuild } from "@mc/validators/DiscordUserGuilds";
 import type React from "react";
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -16,23 +15,19 @@ import DSelector from "../components/DSelector";
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const params = useParams<DashboardGuildParams>();
-  const {
-    data: { userGuilds },
-  } = api.discord.userGuilds.useQuery(undefined, {
-    initialData: { userGuilds: new Map<string, DiscordUserGuild>() },
-  });
+  const userGuildsQuery = api.discord.userGuilds.useQuery();
 
   useEffect(() => {
-    userGuilds.forEach((guild) =>
+    userGuildsQuery.data?.userGuilds.forEach((guild) =>
       router.prefetch(Routes.DashboardServers(guild.id)),
     );
 
     if (!params.guildId) return;
 
-    const selectedGuild = userGuilds.get(params.guildId);
+    const selectedGuild = userGuildsQuery.data?.userGuilds.get(params.guildId);
 
     document.title = pageTitle(selectedGuild?.name ?? "Unknown server");
-  }, [params.guildId, userGuilds, router]);
+  }, [params.guildId, userGuildsQuery, router]);
 
   // margin-top/padding-top to leave space for the nav bar but keeping the actual box under it
   const overflowClass = "mt-[-57px] pt-[57px] max-h-screen overflow-auto";
@@ -40,16 +35,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex grow flex-row bg-black ">
       <DSelector
+        isPending={!userGuildsQuery.data}
         className={cn(overflowClass, "mb-0 bg-black pb-3 pt-[68px]")}
         classNameForItem={"bg-card hover:bg-primary"}
         pre={[]}
-        guilds={[...userGuilds.values()].map((guild) => ({
-          ...guild,
-          onClick: () => {
-            router.push(Routes.DashboardServers(guild.id));
-          },
-          isSelected: params.guildId === guild.id,
-        }))}
+        guilds={[...(userGuildsQuery.data?.userGuilds.values() ?? [])].map(
+          (guild) => ({
+            ...guild,
+            onClick: () => {
+              router.push(Routes.DashboardServers(guild.id));
+            },
+            isSelected: params.guildId === guild.id,
+          }),
+        )}
       />
       <div
         className={cn(

@@ -1,4 +1,3 @@
-import type { DiscordUserGuild } from "@mc/validators/DiscordUserGuilds";
 import { useParams } from "next/navigation";
 import { BanIcon } from "lucide-react";
 
@@ -7,13 +6,9 @@ import { api } from "~/trpc/react";
 
 export function ForbiddenPage() {
   const { guildId } = useParams<DashboardGuildParams>();
-  const {
-    data: { userGuilds },
-  } = api.discord.userGuilds.useQuery(undefined, {
-    initialData: { userGuilds: new Map<string, DiscordUserGuild>() },
-  });
+  const userGuildsQuery = api.discord.userGuilds.useQuery();
 
-  const guild = userGuilds.get(guildId);
+  const guild = userGuildsQuery.data?.userGuilds.get(guildId);
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center p-4">

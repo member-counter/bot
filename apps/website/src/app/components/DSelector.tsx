@@ -2,6 +2,7 @@ import React from "react";
 
 import { cn } from "@mc/ui";
 import { Separator } from "@mc/ui/separator";
+import { Skeleton } from "@mc/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
@@ -95,10 +96,11 @@ interface Props {
   classNameForItem?: string;
   pre: ItemProps[];
   guilds: ItemProps[];
+  isPending?: boolean;
 }
 
 const DSelector = (props: Props) => {
-  const { guilds, pre, classNameForItem } = props;
+  const { guilds, pre, classNameForItem, isPending } = props;
 
   return (
     <nav
@@ -107,6 +109,12 @@ const DSelector = (props: Props) => {
         props.className,
       )}
     >
+      {isPending &&
+        new Array(6)
+          .fill(null)
+          .map((_) => (
+            <Skeleton className="mx-3 h-[48px] w-[48px] flex-shrink-0 rounded-full" />
+          ))}
       {pre.map((item, i) => (
         <Item {...item} key={i} classNameForItem={classNameForItem} />
       ))}

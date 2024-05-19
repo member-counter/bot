@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ChannelType, PermissionFlagsBits } from "discord-api-types/v10";
@@ -7,6 +7,7 @@ import { BookTextIcon, HelpCircleIcon, LockKeyholeIcon } from "lucide-react";
 
 import { BitField } from "@mc/common/BitField";
 import { cn } from "@mc/ui";
+import { Skeleton } from "@mc/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
@@ -99,3 +100,18 @@ export function ChannelNavItem(channel: {
     </TooltipProvider>
   );
 }
+
+export const ChannelNavItemSkeleton = () => {
+  const random = useMemo(() => Math.floor(Math.random() * 100), []);
+  return (
+    <div className="flex h-[32px] w-full flex-shrink-0 items-center">
+      <Skeleton
+        className="ml-2 h-[20px] rounded-full"
+        style={{
+          width: 100 + random + "px",
+          animationDelay: random * random + "ms",
+        }}
+      />
+    </div>
+  );
+};
