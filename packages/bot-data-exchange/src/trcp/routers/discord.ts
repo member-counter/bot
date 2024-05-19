@@ -38,29 +38,35 @@ export const discordRouter = createTRPCRouter({
         memberCount: guild.memberCount,
         approximateMemberCount: guild.approximateMemberCount,
         rulesChannelId: guild.rulesChannelId,
-        roles: guild.roles.cache.mapValues((role) => ({
-          id: role.id,
-          name: role.name,
-          color: role.color,
-        })),
-        channels: guild.channels.cache.mapValues((channel) => ({
-          id: channel.id,
-          name: channel.name,
-          type: channel.type,
-          botPermissions: channel
-            .permissionsFor(guildMember)
-            .bitfield.toString(),
-          everyonePermissions: channel
-            .permissionsFor(guild.roles.everyone)
-            .bitfield.toString(),
-          position: "position" in channel && channel.position,
-          parentId: channel.parentId,
-        })),
-        emojis: guild.emojis.cache.mapValues((emoji) => ({
-          id: emoji.id,
-          name: emoji.name,
-          animated: emoji.animated,
-        })),
+        roles: new Map(
+          guild.roles.cache.mapValues((role) => ({
+            id: role.id,
+            name: role.name,
+            color: role.color,
+          })),
+        ),
+        channels: new Map(
+          guild.channels.cache.mapValues((channel) => ({
+            id: channel.id,
+            name: channel.name,
+            type: channel.type,
+            botPermissions: channel
+              .permissionsFor(guildMember)
+              .bitfield.toString(),
+            everyonePermissions: channel
+              .permissionsFor(guild.roles.everyone)
+              .bitfield.toString(),
+            position: "position" in channel && channel.position,
+            parentId: channel.parentId,
+          })),
+        ),
+        emojis: new Map(
+          guild.emojis.cache.mapValues((emoji) => ({
+            id: emoji.id,
+            name: emoji.name ?? "",
+            animated: emoji.animated,
+          })),
+        ),
       };
     }),
 });
