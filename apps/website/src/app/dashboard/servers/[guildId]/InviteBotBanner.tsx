@@ -26,20 +26,20 @@ export function InviteBotBanner() {
   if (discordGuild.isPending || discordGuild.data) return;
   if (closed) return;
 
-  // TODO make it responsive
-
   return (
-    <div className="flex w-full flex-row bg-primary p-2">
+    <div className="flex w-full flex-row bg-primary p-1 text-xs">
       <div className="flex items-center pl-1 pr-2">
-        <BotIcon className="h-6 w-6" />
+        <BotIcon className="h-5 w-5" />
       </div>
       <div className="flex items-center">
-        Seems like Member Counter Bot isn't in this server. Would you like
-        to&nbsp;
-        <LinkUnderlined href={Routes.Invite(guildId)} target="_blank">
-          add it
-        </LinkUnderlined>
-        ?
+        <p>
+          Seems like Member Counter Bot isn't in this server. Would you like
+          to&nbsp;
+          <LinkUnderlined href={Routes.Invite(guildId)} target="_blank">
+            add it
+          </LinkUnderlined>
+          ?
+        </p>
       </div>
       <div className="flex grow items-center">
         <Button

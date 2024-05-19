@@ -24,29 +24,29 @@ export function BlockedBanner() {
   if (!blockedState.data) return;
   if (closed) return;
 
-  // TODO make it responsive
-
   const reason = blockedState.data.reason;
   return (
-    <div className="flex w-full flex-row bg-destructive p-2">
-      <div className="flex items-center pl-2 pr-4">
-        <BanIcon className="h-10 w-10" />
+    <div className="flex w-full flex-row items-center bg-destructive p-1 text-xs">
+      <div className="hidden items-center pl-2 pr-3 sm:flex">
+        <BanIcon className="h-8 w-8" />
       </div>
-      <div className="block">
-        This server has been blocked for violating our{" "}
-        <LinkUnderlined href={Routes.Legal("terms-of-service")}>
-          Terms of conditions
-        </LinkUnderlined>{" "}
-        or{" "}
-        <LinkUnderlined href={Routes.Legal("acceptable-use-policy")}>
-          Acceptable Use Policy
-        </LinkUnderlined>
-        .
-        <br />
-        Reason given: {reason.trim().length ? reason : "No reason given"}
-        <br />
-        If you think this is a mistake, please contact our{" "}
-        <LinkUnderlined href={Routes.Support}>support team</LinkUnderlined>.
+      <div className="block pl-1">
+        <p>
+          This server has been blocked for violating our{" "}
+          <LinkUnderlined href={Routes.Legal("terms-of-service")}>
+            Terms of conditions
+          </LinkUnderlined>{" "}
+          or{" "}
+          <LinkUnderlined href={Routes.Legal("acceptable-use-policy")}>
+            Acceptable Use Policy
+          </LinkUnderlined>
+          .
+          <br />
+          Reason given: {reason.trim().length ? reason : "No reason given"}
+          <br />
+          If you think this is a mistake, please contact our{" "}
+          <LinkUnderlined href={Routes.Support}>support team</LinkUnderlined>.
+        </p>
       </div>
 
       <div className="flex grow items-center">
