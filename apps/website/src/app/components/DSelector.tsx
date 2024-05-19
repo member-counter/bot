@@ -108,12 +108,7 @@ const DSelector = (props: Props) => {
       {pre.map((item, i) => (
         <Item {...item} key={i} classNameForItem={classNameForItem} />
       ))}
-      {!!pre.length && (
-        <Separator
-          orientation="horizontal"
-          className="mx-auto h-0 w-10 border-t border-border/90 bg-inherit"
-        />
-      )}
+      {!!pre.length && <Separator orientation="horizontal" />}
       {guilds.map((item, i) => (
         <Item {...item} key={i} classNameForItem={classNameForItem} />
       ))}

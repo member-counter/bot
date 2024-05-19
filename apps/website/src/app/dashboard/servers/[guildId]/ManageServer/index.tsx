@@ -12,10 +12,7 @@ export function ManageServer({ children }: Props) {
   return (
     <div className="flex h-full max-h-full">
       <ServerNav />
-      <Separator
-        orientation="vertical"
-        className="h-auto w-0 border-r border-border/90 bg-inherit"
-      />
+      <Separator orientation="vertical" />
       <div className="grow">{children}</div>
     </div>
   );

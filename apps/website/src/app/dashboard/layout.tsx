@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import { cn } from "@mc/ui";
-import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildParams } from "./servers/[guildId]/layout";
 import { pageTitle } from "~/other/pageTitle";
@@ -33,9 +32,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const overflowClass = "mt-[-57px] pt-[57px] max-h-screen overflow-auto";
 
   return (
-    <div className="flex grow flex-row">
+    <div className="flex grow flex-row bg-black ">
       <DSelector
-        className={cn(overflowClass, "mb-0 pb-3 pt-[68px]")}
+        className={cn(overflowClass, "mb-0 bg-black pb-3 pt-[68px]")}
         classNameForItem={"bg-card hover:bg-primary"}
         pre={[]}
         guilds={[...userGuilds.data.values()].map((guild) => ({
@@ -46,14 +45,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           isSelected: params.guildId === guild.id,
         }))}
       />
-      <Separator
-        orientation="vertical"
+      <div
         className={cn(
-          "h-auto w-0 border-r border-border/90 bg-inherit",
           overflowClass,
+          "flex grow flex-col bg-black pb-[10px] pr-[10px] pt-[67px]",
         )}
-      />
-      <div className={cn(overflowClass, "grow")}>{children}</div>
+      >
+        <div className="h-full max-h-full rounded border border-border bg-background">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }

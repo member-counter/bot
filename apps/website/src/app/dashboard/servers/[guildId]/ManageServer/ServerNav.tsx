@@ -1,32 +1,37 @@
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
-import { ChannelType } from "discord-api-types/v10";
+
+import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildChannelParams } from "../[channelId]/page";
-import type { DashboardGuildParams } from "../layout";
 import { api } from "~/trpc/react";
+import { ChannelNavItem } from "./ChannelNavItem";
+import { sortChannels } from "./sortChannels";
 
 export function ServerNav() {
-  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  const { guildId } = useParams<DashboardGuildChannelParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channels = useMemo(
-    () => [...(guild.data?.channels.values() ?? [])],
+    () => sortChannels([...(guild.data?.channels.values() ?? [])]),
     [guild.data?.channels],
   );
-  // TODO display saved channels when the discord channels are not loaded yet
-  return (
-    <div className="max-h-full w-[224px] flex-shrink-0 gap-0.5 overflow-auto p-[8px]">
-      {channels.map((channel) => (
-        <ChannelItem {...channel} />
-      ))}
-    </div>
-  );
-}
 
-function ChannelItem(channel: { id: string; type: ChannelType; name: string }) {
-  const isSupported = true;
-  const isCategory = channel.type === ChannelType.GuildCategory;
+  // TODO display saved channels if the discord channels are unable to load
+
   return (
-    <div className="rounded-sm px-2 py-1.5 hover:bg-accent">{channel.name}</div>
+    <div className="flex max-h-full w-[240px] flex-col overflow-hidden">
+      <div className="ml-[16px] flex h-[48px] flex-shrink-0 items-center">
+        <div className="max-w-[210px] overflow-clip text-ellipsis whitespace-nowrap font-semibold">
+          {guild.data?.name}
+        </div>
+      </div>
+      <Separator />
+      <div className="flex max-h-full grow flex-col gap-1 overflow-auto p-[8px]">
+        {channels.map((channel) => (
+          <ChannelNavItem {...channel} key={channel.id} />
+        ))}
+        <div className="h-[1200px] flex-shrink-0"></div>
+      </div>
+    </div>
   );
 }

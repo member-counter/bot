@@ -1,4 +1,3 @@
-import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
@@ -30,9 +29,7 @@ export const discordRouter = createTRPCRouter({
         withCounts: true,
       });
 
-      const guildMember = guild.members.me;
-
-      if (!guildMember) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
+      const guildMember = await guild.members.fetchMe();
 
       return {
         id: guild.id,
@@ -40,20 +37,26 @@ export const discordRouter = createTRPCRouter({
         icon: guild.iconURL(),
         memberCount: guild.memberCount,
         approximateMemberCount: guild.approximateMemberCount,
-        roles: guild.roles.cache.map((role) => ({
+        rulesChannelId: guild.rulesChannelId,
+        roles: guild.roles.cache.mapValues((role) => ({
           id: role.id,
           name: role.name,
           color: role.color,
         })),
-        channels: guild.channels.cache.map((channel) => ({
+        channels: guild.channels.cache.mapValues((channel) => ({
           id: channel.id,
           name: channel.name,
           type: channel.type,
           botPermissions: channel
             .permissionsFor(guildMember)
             .bitfield.toString(),
+          everyonePermissions: channel
+            .permissionsFor(guild.roles.everyone)
+            .bitfield.toString(),
+          position: "position" in channel && channel.position,
+          parentId: channel.parentId,
         })),
-        emojis: guild.emojis.cache.map((emoji) => ({
+        emojis: guild.emojis.cache.mapValues((emoji) => ({
           id: emoji.id,
           name: emoji.name,
           animated: emoji.animated,

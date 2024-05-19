@@ -26,6 +26,8 @@ export const Routes = {
   ManageGuilds: "/admin/guilds",
   Account: "/account",
   Dashboard: "/dashboard",
-  DashboardServers: (guildId?: string) =>
-    "/dashboard/servers" + (guildId ? `/${guildId}` : ""),
+  DashboardServers: (guildId?: string, channelId?: string) =>
+    "/dashboard/servers" +
+    (guildId ? `/${guildId}` : "") +
+    (channelId ? `/${channelId}` : ""),
 };
