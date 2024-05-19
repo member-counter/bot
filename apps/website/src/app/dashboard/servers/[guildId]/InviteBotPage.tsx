@@ -72,7 +72,7 @@ export function InviteBotPage() {
             </div>
             {clipboardFailed ? (
               <LinkUnderlined href={inviteLink} target="_blank">
-                Use this link to add this bot
+                Use or share this link to add the bot
               </LinkUnderlined>
             ) : (
               <Button
