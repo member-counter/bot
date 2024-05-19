@@ -1,12 +1,14 @@
 import { useContext, useMemo } from "react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
-import { CogIcon, XIcon } from "lucide-react";
+import { CogIcon, SettingsIcon, XIcon } from "lucide-react";
 
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildChannelParams } from "../[channelId]/page";
+import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { ServerNavMenuContext } from ".";
 import { ChannelNavItem } from "./ChannelNavItem";
@@ -34,14 +36,14 @@ export function ServerNav({ className }: { className?: string }) {
         <p className="flex-shrink overflow-hidden  text-ellipsis whitespace-nowrap pl-4">
           {guild.data?.name}
         </p>
-        <Button
+        <Link
+          href={Routes.DashboardServers(guildId, "settings")}
           className="ml-auto mr-1"
-          size={"icon"}
-          variant={"ghost"}
-          onClick={() => alert("// TODO not implemented")}
         >
-          <CogIcon className="h-5 w-5" />
-        </Button>
+          <Button size={"icon"} variant={"ghost"}>
+            <SettingsIcon className="h-5 w-5" />
+          </Button>
+        </Link>
         <Button
           className="mr-1 flex-shrink-0 sm:hidden"
           size={"icon"}
