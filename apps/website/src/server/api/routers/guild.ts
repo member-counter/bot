@@ -104,7 +104,7 @@ export const guildRouter = createTRPCRouter({
 
       return ctx.db.guild.update({
         where: { discordGuildId: input.discordGuildId },
-        data: {},
+        data: { formatSettings: input.formatSettings },
       });
     }),
 
