@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const params = useParams<DashboardGuildParams>();
   const userGuildsQuery = api.discord.userGuilds.useQuery();
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   const menuContextValue = useMemo(
     () => ({
