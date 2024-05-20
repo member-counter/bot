@@ -35,14 +35,16 @@ export default function Page(props: Props) {
   Icon ??= HelpCircleIcon;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex h-full flex-col">
       <div className="flex h-[48px] w-full flex-shrink-0 flex-row items-center pl-3 pr-1 font-semibold">
         <Icon className="mr-3 h-5 w-5" />
         <div>{channel.name}</div>
         <MenuButton />
       </div>
       <Separator orientation="horizontal" />
-      <h1>Current selected channel: {props.params.channelId} </h1>
+      <div className="grow overflow-hidden">
+        <div className="h-full overflow-auto p-3"></div>
+      </div>
     </div>
   );
 }
