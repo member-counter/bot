@@ -13,6 +13,9 @@ export function InviteBotBanner() {
   const [closed, setClosed] = useState(false);
   const { guildId } = useParams<DashboardGuildParams>();
   const authenticatedUser = api.session.user.useQuery();
+  const has = api.guild.has.useQuery({
+    discordGuildId: guildId,
+  });
 
   const discordGuild = api.discord.getGuild.useQuery(
     { id: guildId },
@@ -25,6 +28,7 @@ export function InviteBotBanner() {
 
   if (discordGuild.isPending || discordGuild.data) return;
   if (closed) return;
+  if (!has.data) return;
 
   return (
     <div className="flex w-full flex-row bg-primary p-1 text-xs">
