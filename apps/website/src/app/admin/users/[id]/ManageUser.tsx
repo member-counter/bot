@@ -67,7 +67,7 @@ export default function ManageUser({ userId }: { userId: string }) {
   };
 
   return (
-    <>
+    <form action={saveUser}>
       <CardContent className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <TypographyH4 className="mt-0">Permissions</TypographyH4>
@@ -153,12 +153,12 @@ export default function ManageUser({ userId }: { userId: string }) {
         <DeleteButton userId={userId} disabled={!canModify} />
         <Button
           icon={SaveIcon}
-          onClick={saveUser}
+          type="submit"
           disabled={!canModify || !isDirty || userMutation.isPending}
         >
           {userMutation.isSuccess && !isDirty ? "Saved" : "Save"}
         </Button>
       </CardFooter>
-    </>
+    </form>
   );
 }
