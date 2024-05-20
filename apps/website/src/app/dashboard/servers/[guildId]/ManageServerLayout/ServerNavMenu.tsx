@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { SettingsIcon, XIcon } from "lucide-react";
 
 import { cn } from "@mc/ui";
@@ -16,6 +16,7 @@ import { ChannelNavItem, ChannelNavItemSkeleton } from "./ChannelNavItem";
 import { sortChannels } from "./sortChannels";
 
 export function ServerNavMenu({ className }: { className?: string }) {
+  const pathname = usePathname();
   const menuContext = useContext(MenuContext);
   const { guildId } = useParams<DashboardGuildChannelParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
@@ -45,7 +46,11 @@ export function ServerNavMenu({ className }: { className?: string }) {
           onClick={() => menuContext.setIsOpen(false)}
           className="ml-auto mr-1"
         >
-          <Button size={"icon"} variant={"ghost"}>
+          <Button
+            size={"icon"}
+            variant={"ghost"}
+            className={cn({ hidden: pathname.endsWith("settings") })}
+          >
             <SettingsIcon className="h-5 w-5" />
           </Button>
         </Link>
