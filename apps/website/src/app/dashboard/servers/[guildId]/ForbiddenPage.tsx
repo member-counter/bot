@@ -12,9 +12,9 @@ export function ForbiddenPage() {
   const guild = userGuildsQuery.data?.userGuilds.get(guildId);
 
   return (
-    <div className="flex grow flex-col p-1">
+    <div className="flex h-full grow flex-col p-1">
       <MenuButton />
-      <div className="flex flex-col gap-2 p-3 sm:flex-row">
+      <div className="m-auto flex flex-col gap-2 p-3 sm:flex-row">
         <BanIcon className="mx-auto my-4 h-20 w-20 sm:mx-0 sm:my-0 sm:mr-2 sm:h-12 sm:w-12" />
         You don't have permission to manage this server. <br />
         Ask an admin at {guild?.name ?? "Unknown server"} to give you
