@@ -30,6 +30,14 @@ async function main() {
     }
   });
 
+  bot.on("guildAvailable", (guild) => {
+    void db.guild.upsert({
+      create: { discordGuildId: guild.id, formatSettings: {} },
+      where: { discordGuildId: guild.id },
+      update: {},
+    });
+  });
+
   console.log("Bot starting...");
   await bot.login(env.DISCORD_BOT_TOKEN);
 
