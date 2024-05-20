@@ -9,14 +9,14 @@ import { Separator } from "@mc/ui/separator";
 import { Skeleton } from "@mc/ui/skeleton";
 
 import type { DashboardGuildChannelParams } from "../[channelId]/page";
+import { MenuContext } from "~/app/dashboard/layout";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
-import { ServerNavMenuContext } from ".";
 import { ChannelNavItem, ChannelNavItemSkeleton } from "./ChannelNavItem";
 import { sortChannels } from "./sortChannels";
 
 export function ServerNavMenu({ className }: { className?: string }) {
-  const menuContext = useContext(ServerNavMenuContext);
+  const menuContext = useContext(MenuContext);
   const { guildId } = useParams<DashboardGuildChannelParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channels = useMemo(
@@ -34,12 +34,12 @@ export function ServerNavMenu({ className }: { className?: string }) {
       )}
     >
       <div className="flex h-[48px] min-h-[48px] min-w-0 items-center font-semibold">
-        <p className="flex-shrink overflow-hidden  text-ellipsis whitespace-nowrap pl-4">
+        <div className="flex-shrink overflow-hidden  text-ellipsis whitespace-nowrap pl-4">
           {!guild.data && (
             <Skeleton className="h-[20px] w-[120px] rounded-full" />
           )}
           {guild.data?.name}
-        </p>
+        </div>
         <Link
           href={Routes.DashboardServers(guildId, "settings")}
           onClick={() => menuContext.setIsOpen(false)}

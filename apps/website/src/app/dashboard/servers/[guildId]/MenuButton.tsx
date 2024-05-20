@@ -3,10 +3,10 @@ import { MenuIcon } from "lucide-react";
 
 import { Button } from "@mc/ui/button";
 
-import { ServerNavMenuContext } from "./ManageServerLayout";
+import { MenuContext } from "../../layout";
 
 export function MenuButton() {
-  const menuContext = useContext(ServerNavMenuContext);
+  const menuContext = useContext(MenuContext);
   return (
     <Button
       className="ml-auto sm:hidden"

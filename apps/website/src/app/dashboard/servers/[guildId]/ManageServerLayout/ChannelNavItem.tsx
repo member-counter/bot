@@ -16,9 +16,9 @@ import {
 } from "@mc/ui/tooltip";
 
 import type { DashboardGuildParams } from "../layout";
+import { MenuContext } from "~/app/dashboard/layout";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
-import { ServerNavMenuContext } from ".";
 import { ChannelIconMap } from "../ChannelIconMap";
 
 export function ChannelNavItem(channel: {
@@ -27,7 +27,7 @@ export function ChannelNavItem(channel: {
   name: string;
   everyonePermissions: string;
 }) {
-  const menuContext = useContext(ServerNavMenuContext);
+  const menuContext = useContext(MenuContext);
   const { guildId, channelId } = useParams<DashboardGuildParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
 

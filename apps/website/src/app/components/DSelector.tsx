@@ -112,8 +112,11 @@ const DSelector = (props: Props) => {
       {isPending &&
         new Array(6)
           .fill(null)
-          .map((_) => (
-            <Skeleton className="mx-3 h-[48px] w-[48px] flex-shrink-0 rounded-full" />
+          .map((_, i) => (
+            <Skeleton
+              className="mx-3 h-[48px] w-[48px] flex-shrink-0 rounded-full"
+              key={i}
+            />
           ))}
       {pre.map((item, i) => (
         <Item {...item} key={i} classNameForItem={classNameForItem} />
