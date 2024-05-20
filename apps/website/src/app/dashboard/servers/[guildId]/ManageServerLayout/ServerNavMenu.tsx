@@ -42,6 +42,7 @@ export function ServerNavMenu({ className }: { className?: string }) {
         </p>
         <Link
           href={Routes.DashboardServers(guildId, "settings")}
+          onClick={() => menuContext.setIsOpen(false)}
           className="ml-auto mr-1"
         >
           <Button size={"icon"} variant={"ghost"}>

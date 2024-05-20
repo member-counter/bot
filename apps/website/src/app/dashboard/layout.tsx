@@ -55,7 +55,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           "flex grow flex-col bg-black pb-[10px] pr-[10px] pt-[67px]",
         )}
       >
-        <div className="h-full max-h-full rounded border border-border bg-card">
+        <div className="h-full max-h-full rounded border border-border bg-[#181514]">
           {children}
         </div>
       </div>

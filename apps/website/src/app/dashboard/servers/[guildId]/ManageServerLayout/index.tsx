@@ -33,7 +33,7 @@ export function ManageServerLayout({ children }: Props) {
       <div className="flex h-full max-h-full">
         <ServerNavMenu
           className={cn("w-full sm:w-[240px] sm:min-w-[240px]", {
-            "hidden sm:block": !isMenuOpen,
+            "hidden sm:flex": !isMenuOpen,
           })}
         />
         <Separator orientation="vertical" className="hidden sm:block" />

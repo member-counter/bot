@@ -2,7 +2,7 @@
 
 import type { LucideIcon } from "lucide-react";
 import { ChannelType } from "discord-api-types/v10";
-import { FolderIcon, HelpCircleIcon } from "lucide-react";
+import { BookTextIcon, FolderIcon, HelpCircleIcon } from "lucide-react";
 
 import { Separator } from "@mc/ui/separator";
 
@@ -31,6 +31,7 @@ export default function Page(props: Props) {
 
   let Icon: LucideIcon | undefined = ChannelIconMap[channel.type];
   if (channel.type === ChannelType.GuildCategory) Icon = FolderIcon;
+  if (channel.id === guild.data.rulesChannelId) Icon = BookTextIcon;
   Icon ??= HelpCircleIcon;
 
   return (
