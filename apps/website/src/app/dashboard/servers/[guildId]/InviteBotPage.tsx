@@ -1,4 +1,3 @@
-import type { DiscordUserGuild } from "@mc/validators/DiscordUserGuilds";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
