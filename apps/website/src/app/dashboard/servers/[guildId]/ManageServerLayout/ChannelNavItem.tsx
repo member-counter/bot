@@ -67,7 +67,7 @@ export function ChannelNavItem(channel: {
             onClick={() => menuContext.setIsOpen(false)}
             className={cn(
               "group block cursor-pointer",
-              "overflow-clip text-ellipsis whitespace-nowrap",
+              "flex-shrink-0 overflow-clip text-ellipsis whitespace-nowrap",
               {
                 "mb-1 mt-4 text-xs uppercase text-muted-foreground hover:text-foreground":
                   isCategory,

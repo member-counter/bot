@@ -12,6 +12,7 @@ import { BotIcon } from "~/app/components/BotIcon";
 import { DiscordIcon } from "~/app/components/DiscordIcon";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
+import { MenuButton } from "../../MenuButton";
 import { UserPermissionsContext } from "./UserPermissionsContext";
 
 export function InviteBotPage() {
@@ -41,16 +42,13 @@ export function InviteBotPage() {
   };
 
   const userPermissions = useContext(UserPermissionsContext);
-  const {
-    data: { userGuilds },
-  } = api.discord.userGuilds.useQuery(undefined, {
-    initialData: { userGuilds: new Map<string, DiscordUserGuild>() },
-  });
-  const guild = userGuilds.get(guildId);
+  const userGuildsQuery = api.discord.userGuilds.useQuery();
+  const guild = userGuildsQuery.data?.userGuilds.get(guildId);
 
   return (
-    <div className="flex grow items-center justify-center p-4">
-      <div className="flex flex-col gap-5 text-left sm:text-center">
+    <div className="flex grow flex-col p-1">
+      <MenuButton />
+      <div className="m-auto flex max-w-full flex-col gap-5 p-3 text-left sm:text-center">
         <BotIcon className="mx-auto h-32 w-32 sm:hidden" />
         <h1 className="sm:text-4x2 text-3xl">
           Let's setup the bot!
@@ -62,8 +60,7 @@ export function InviteBotPage() {
         </h2>
         {userPermissions.canInviteBot ? (
           <Link href={inviteLink} target="_blank" className="block">
-            <Button className="w-full">
-              <DiscordIcon className="mr-2 h-4 w-4" />
+            <Button className="h-auto w-full text-wrap py-3" icon={DiscordIcon}>
               Add to {guild?.name ?? "Unknown server"}
             </Button>
           </Link>
@@ -81,21 +78,14 @@ export function InviteBotPage() {
               </LinkUnderlined>
             ) : (
               <Button
-                className="w-full"
+                className="h-auto w-full text-wrap py-3"
+                icon={copySuccess ? CheckIcon : CopyIcon}
                 onClick={copyLink}
                 disabled={copySuccess}
               >
-                {copySuccess ? (
-                  <>
-                    <CheckIcon className="mr-2 h-4 w-4" />
-                    The link has been copied to your clipboard
-                  </>
-                ) : (
-                  <>
-                    <CopyIcon className="mr-2 h-4 w-4" />
-                    Copy invite link
-                  </>
-                )}
+                {copySuccess
+                  ? "The link has been copied to your clipboard"
+                  : "Copy invite link"}
               </Button>
             )}
           </>

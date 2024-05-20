@@ -46,7 +46,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, icon, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     const Icon = icon;
-    const renderedIcon = Icon ? <Icon className="mr-2 inline h-4 w-4" /> : null;
+    const renderedIcon = Icon ? (
+      <Icon className="mr-2 inline h-4 min-h-4 w-4 min-w-4" />
+    ) : null;
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
