@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
+"use client";
 
-import { pageTitle } from "~/other/pageTitle";
+import { MenuButton } from "./MenuButton";
 
-export const metadata: Metadata = { title: pageTitle("Dashboard") };
 export default function Page() {
-  return <>{"// TODO exlpain how the bot works"}</>;
+  return (
+    <div className="flex flex-col p-1">
+      <MenuButton />
+      {"// TODO exlpain how the bot works"}
+    </div>
+  );
 }
