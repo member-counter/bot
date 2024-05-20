@@ -45,7 +45,7 @@ export function InviteBotPage() {
   const guild = userGuildsQuery.data?.userGuilds.get(guildId);
 
   return (
-    <div className="flex grow flex-col p-1">
+    <div className="flex h-full flex-col p-1">
       <MenuButton />
       <div className="m-auto flex max-w-full flex-col gap-5 p-3 text-left sm:text-center">
         <BotIcon className="mx-auto h-32 w-32 sm:hidden" />

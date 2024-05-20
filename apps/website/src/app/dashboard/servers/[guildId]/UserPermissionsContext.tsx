@@ -12,6 +12,9 @@ export interface UserPermissionsContextValue {
   canRead: boolean;
   canModify: boolean;
   canInviteBot: boolean;
+  user: BitField;
+  guild: BitField;
+  fetched: boolean;
 }
 
 export const UserPermissionsContext =
@@ -19,6 +22,9 @@ export const UserPermissionsContext =
     canRead: false,
     canModify: false,
     canInviteBot: false,
+    user: new BitField(0n),
+    guild: new BitField(0n),
+    fetched: false,
   });
 
 export const UserPermissionsContextProvider = ({
@@ -48,8 +54,16 @@ export const UserPermissionsContextProvider = ({
       canInviteBot: userGuildPermissions.any(
         PermissionFlagsBits.Administrator | PermissionFlagsBits.ManageGuild,
       ),
+      user: userPermissions,
+      guild: userGuildPermissions,
+      fetched: userGuildsQuery.isSuccess && authUser.isSuccess,
     };
-  }, [authUser.data?.permissions, guild?.permissions]);
+  }, [
+    authUser.data?.permissions,
+    authUser.isSuccess,
+    guild?.permissions,
+    userGuildsQuery.isSuccess,
+  ]);
   return (
     <UserPermissionsContext.Provider value={contextValue} children={children} />
   );
