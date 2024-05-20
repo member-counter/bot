@@ -13,9 +13,9 @@ async function getAuthUserGuildPermissions(
   caller: ReturnType<typeof createCaller>,
   guildId: string,
 ) {
-  const guilds = await caller.discord.userGuilds();
+  const { userGuilds } = await caller.discord.userGuilds();
 
-  const guild = guilds.get(guildId);
+  const guild = userGuilds.get(guildId);
 
   return new BitField(BigInt(guild?.permissions ?? "0"));
 }

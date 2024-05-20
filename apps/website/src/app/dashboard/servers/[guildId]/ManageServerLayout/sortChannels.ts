@@ -15,12 +15,16 @@ export const sortChannels = <
   channels.sort((a, b) =>
     Number(
       [ChannelType.GuildVoice, ChannelType.GuildStageVoice].includes(b.type),
-    ),
+    )
+      ? 1
+      : -1,
   );
   channels.sort((a) =>
     Number(
       [ChannelType.GuildVoice, ChannelType.GuildStageVoice].includes(a.type),
-    ),
+    )
+      ? 1
+      : -1,
   );
 
   const orphanChannels = channels.filter(
