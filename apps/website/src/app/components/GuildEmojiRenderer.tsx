@@ -15,7 +15,7 @@ export const GuildEmojiRenderer = ({
   emoji: GuildEmoji;
 }) => {
   Routes;
-  const url = `${RouteBases.cdn}${CDNRoutes.emoji(emoji.id, emoji.animated ? ImageFormat.GIF : ImageFormat.JPEG)}?size=48`;
+  const url = `${RouteBases.cdn}${CDNRoutes.emoji(emoji.id, emoji.animated ? ImageFormat.GIF : ImageFormat.PNG)}?size=48`;
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
