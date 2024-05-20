@@ -1,22 +1,25 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useContext, useEffect, useId, useState } from "react";
 import { useParams } from "next/navigation";
-import { ServerCogIcon } from "lucide-react";
+import { SaveIcon, ServerCogIcon } from "lucide-react";
 
+import { Button } from "@mc/ui/button";
 import { Checkbox } from "@mc/ui/checkbox";
 import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildParams } from "../layout";
 import { api } from "~/trpc/react";
 import { MenuButton } from "../../../MenuButton";
+import { LoadingPage } from "../LoadingPage";
+import { UserPermissionsContext } from "../UserPermissionsContext";
 
 export default function Page() {
   const compactNotationCheckbox = useId();
-
+  const userPermissions = useContext(UserPermissionsContext);
   const { guildId } = useParams<DashboardGuildParams>();
   const guildSettingsMutation = api.guild.update.useMutation();
-  const [guildSettings, guildSettingsQuery] = api.guild.get.useSuspenseQuery({
+  const [guildSettings] = api.guild.get.useSuspenseQuery({
     discordGuildId: guildId,
   });
   const [isDirty, setIsDirty] = useState(false);
@@ -27,13 +30,14 @@ export default function Page() {
     if (!guildSettings) return;
     if (isDirty) return;
     setMutableGuildSettings(structuredClone(guildSettings));
-  }, [guildSettings, isDirty]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [guildSettings]);
 
   useEffect(() => {
     setIsDirty(true);
   }, [mutableGuildSettings]);
 
-  if (!mutableGuildSettings) return; // TODO skeleton
+  if (!mutableGuildSettings) return <LoadingPage />;
 
   const save = async () => {
     await guildSettingsMutation.mutateAsync({
@@ -52,11 +56,35 @@ export default function Page() {
       <Separator orientation="horizontal" />
       <div className="grow overflow-hidden">
         <div className="h-full overflow-auto p-3">
-          <div className="max-w-[400px] space-y-4">
-            <Checkbox id={compactNotationCheckbox}>
+          <form action={save} className="max-w-[400px] space-y-4">
+            <Checkbox
+              id={compactNotationCheckbox}
+              checked={mutableGuildSettings.formatSettings.compactNotation}
+              onCheckedChange={(checked) =>
+                setMutableGuildSettings({
+                  ...mutableGuildSettings,
+                  formatSettings: {
+                    ...mutableGuildSettings.formatSettings,
+                    compactNotation: !!checked,
+                  },
+                })
+              }
+              disabled={!userPermissions.canModify}
+            >
               Use compact notation for numbers
             </Checkbox>
-          </div>
+            <Button
+              icon={SaveIcon}
+              type="submit"
+              disabled={
+                !userPermissions.canModify ||
+                !isDirty ||
+                guildSettingsMutation.isPending
+              }
+            >
+              {guildSettingsMutation.isSuccess && !isDirty ? "Saved" : "Save"}
+            </Button>
+          </form>
         </div>
       </div>
     </div>
