@@ -164,7 +164,7 @@ function EmojiList({
       hoveredEmoji
     )
   ) : (
-    <GuildEmojiRenderer emoji={hoveredEmoji} />
+    <GuildEmojiRenderer className="w-[32px]" emoji={hoveredEmoji} />
   );
 
   return (
@@ -222,7 +222,7 @@ function EmojiList({
         </div>
       </div>
       <Separator orientation="horizontal" />
-      <div className="flex flex-row items-center gap-2 p-4">
+      <div className="flex min-h-[64px] flex-row items-center gap-2 p-4">
         <div className="text-2xl">{hoveredEmojiDisplay}</div>
         <div className="text-md font-medium capitalize">{hoveredEmojiName}</div>
       </div>

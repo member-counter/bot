@@ -46,11 +46,13 @@ export default function DataSourceFormatDigitInput({
   placeholder,
   initialValue,
   onChange,
+  readAgainInitialValue,
 }: {
   className?: string;
   placeholder?: string;
   initialValue: string;
   onChange: (digit: string) => void;
+  readAgainInitialValue?: number;
 }) {
   const [value, setValue] = useState<Descendant[]>([]);
   const deseriaizedInitialValue = useMemo(
@@ -62,6 +64,7 @@ export default function DataSourceFormatDigitInput({
     <TemplateEditor
       features={features}
       initialValue={deseriaizedInitialValue}
+      readAgainInitialValue={readAgainInitialValue}
       onChange={(nodes) => setValue(nodes)}
     >
       <DataSourceFormatDigitInputInner

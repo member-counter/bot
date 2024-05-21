@@ -3,7 +3,7 @@
 import type { Grammar } from "prismjs";
 import type { ReactNode } from "react";
 import type { Descendant } from "slate";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Slate } from "slate-react";
 import { v4 } from "uuid";
 
@@ -12,6 +12,7 @@ import { TemplateEditorContext } from "./TemplateEditorContext";
 import {
   buildEditor,
   defaultInitialEditorValue,
+  setNodesValue,
   useDataSourceReducer,
 } from "./utils";
 
@@ -21,11 +22,13 @@ export default function TemplateEditor({
     dataSourceRefs: new Map(),
   },
   onChange,
+  readAgainInitialValue,
   features,
   children,
 }: {
   initialValue?: { nodes: Descendant[]; dataSourceRefs: DataSourceRefs };
   onChange?: (nodes: Descendant[], dataSourceRefs: DataSourceRefs) => void;
+  readAgainInitialValue?: number;
   features: Grammar;
   children: ReactNode;
 }): JSX.Element {
@@ -35,6 +38,16 @@ export default function TemplateEditor({
   const [dataSourceRefs, setDataSourceRef] = useDataSourceReducer(
     initialValue.dataSourceRefs,
   );
+
+  useEffect(() => {
+    console.log(readAgainInitialValue);
+    setNodesValue(editor, initialValue.nodes);
+    dataSourceRefs.clear();
+    initialValue.dataSourceRefs.forEach((dataSourceRef, dataSourceRefId) =>
+      setDataSourceRef([dataSourceRefId, dataSourceRef]),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [readAgainInitialValue]);
 
   const [editingDataSourceRefId, setEditingDataSourceRefId] =
     useState<DataSourceRefId | null>(null);
