@@ -5,11 +5,13 @@ import {
   Routes,
 } from "discord-api-types/v10";
 
+import { cn } from "@mc/ui";
+
 import type { GuildEmoji } from "../dashboard/servers/[guildId]/TemplateEditor/d-types";
 
 export const GuildEmojiRenderer = ({
   emoji,
-  className = "",
+  className,
 }: {
   className?: string;
   emoji: GuildEmoji;
@@ -19,6 +21,11 @@ export const GuildEmojiRenderer = ({
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img className={className} alt={emoji.name} src={url} draggable="false" />
+    <img
+      className={cn("w-[32px]", className)}
+      alt={emoji.name}
+      src={url}
+      draggable="false"
+    />
   );
 };

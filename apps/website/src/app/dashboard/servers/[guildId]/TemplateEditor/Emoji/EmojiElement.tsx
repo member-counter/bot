@@ -6,7 +6,7 @@ import { TwemojiRenderer } from "~/app/components/TwemojiRenderer";
 
 export default function EmojiElement(props: RenderElementProps): JSX.Element {
   const element = props.element as EmojiElementType;
-  const className = "inline-block h-[20px] mb-[3px]";
+  const className = "inline-block max-h-[20px] w-[20px] mb-[3px]";
   return (
     <span {...props.attributes} contentEditable={false}>
       {typeof element.emoji === "string" ? (

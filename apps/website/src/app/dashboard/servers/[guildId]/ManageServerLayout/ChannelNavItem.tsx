@@ -71,12 +71,13 @@ export function ChannelNavItem(channel: {
               {
                 "mb-1 mt-4 text-xs uppercase text-muted-foreground hover:text-foreground":
                   isCategory,
-                "rounded-sm px-2 py-1.5 text-sm hover:bg-accent": !isCategory,
-                "hover:text-muted-accent-foreground cursor-not-allowed text-muted-foreground hover:bg-background":
+                "rounded-sm px-2 py-1.5 text-sm": !isCategory,
+                "hover:text-muted-accent-foreground cursor-not-allowed text-muted-foreground":
                   !isSupported,
                 "text-foreground": isCategory && isSelected,
                 "bg-accent text-foreground": !isCategory && isSelected,
                 "underline-offset-3 underline decoration-primary": hasCounter,
+                "hover:bg-accent": isSupported && !isCategory,
               },
             )}
           >

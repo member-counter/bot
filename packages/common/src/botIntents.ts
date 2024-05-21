@@ -4,6 +4,7 @@ export function generateBotIntents(isPremium: boolean, isPrivileged: boolean) {
   const intents = new IntentsBitField();
 
   intents.add("Guilds");
+  intents.add("GuildEmojisAndStickers");
 
   // TODO check how cache works
   intents.add("GuildModeration");

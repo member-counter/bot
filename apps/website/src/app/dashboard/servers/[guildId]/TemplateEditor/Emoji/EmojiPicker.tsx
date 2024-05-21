@@ -164,7 +164,7 @@ function EmojiList({
       hoveredEmoji
     )
   ) : (
-    <GuildEmojiRenderer className="w-[32px]" emoji={hoveredEmoji} />
+    <GuildEmojiRenderer emoji={hoveredEmoji} />
   );
 
   return (
