@@ -43,18 +43,19 @@ export default function ManageUser({ userId }: { userId: string }) {
   const canModify = authUserPerms.has(UserPermissions.ManageUsers);
   const user = api.user.get.useQuery({ discordUserId: userId });
   const userMutation = api.user.update.useMutation();
-  const [mutableUser, setMutableUser] = useState<typeof user.data>(null);
+  const [mutableUser, _setMutableUser] = useState<typeof user.data>(null);
 
   useEffect(() => {
     if (!user.data) return;
-    setMutableUser(user.data);
+    _setMutableUser(user.data);
   }, [user.data]);
 
-  useEffect(() => {
-    setIsDirty(true);
-  }, [mutableUser]);
-
   if (!mutableUser) return;
+
+  const setMutableUser = (value: typeof user.data) => {
+    _setMutableUser(value);
+    setIsDirty(true);
+  };
 
   const saveUser = async () => {
     await userMutation.mutateAsync({

@@ -108,7 +108,7 @@ export const guildRouter = createTRPCRouter({
       });
     }),
 
-  delete: protectedProcedure
+  reset: protectedProcedure
     .input(
       z.object({
         discordGuildId: z.string(),
@@ -133,6 +133,10 @@ export const guildRouter = createTRPCRouter({
 
       await ctx.db.guild.delete({
         where: { discordGuildId: input.discordGuildId },
+      });
+
+      await ctx.db.guild.create({
+        data: { discordGuildId: input.discordGuildId, formatSettings: {} },
       });
     }),
 
