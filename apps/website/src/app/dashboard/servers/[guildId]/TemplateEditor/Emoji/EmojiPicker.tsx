@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { SmileIcon } from "lucide-react";
 import { ReactEditor, useSlateStatic } from "slate-react";
 
@@ -248,6 +248,10 @@ function SkinToneSelector({
     ),
   ];
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [value]);
+
   return (
     <div
       className="z-[5000] w-[50px]"
@@ -256,6 +260,12 @@ function SkinToneSelector({
     >
       <div className="fixed">
         <div
+          role="button"
+          onClick={() => setIsOpen(true)}
+          onKeyDown={(e) =>
+            ["Enter", "Space"].includes(e.key) && setIsOpen(true)
+          }
+          tabIndex={isOpen ? -1 : 0}
           className={cn([
             {
               "h-[40px]": !isOpen,
@@ -263,18 +273,18 @@ function SkinToneSelector({
             "select-none overflow-hidden rounded-md border border-border",
             blurredBackground,
           ])}
-          // TODO use listbox
         >
           {skinTonesToRender.map((skinTone) => {
             return (
               <div
                 key={skinTone}
                 role="button"
-                className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center text-[25px] hover:bg-accent/60"
-                onClick={() => {
-                  onChange(skinTone);
-                  setIsOpen(false);
-                }}
+                className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center text-[25px] outline-none focus-within:bg-accent/60 hover:bg-accent/60"
+                onClick={() => onChange(skinTone)}
+                onKeyDown={(e) =>
+                  ["Enter", "Space"].includes(e.key) && onChange(skinTone)
+                }
+                tabIndex={isOpen ? 1 : -1}
               >
                 <div>{`👏${skinTone}`}</div>
               </div>

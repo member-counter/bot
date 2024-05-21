@@ -93,14 +93,14 @@ export default function DataSourceFormat({
           <>
             {format.locale &&
               [format.locale].map(
-                timezoneItemRenderer({
+                localeItemRenderer({
                   remove: () => setFormat({ locale: "" }),
                   update: (locale) => setFormat({ locale }),
                 }),
               )}
             {!format.locale && (
               <AutocompleteInput
-                itemRenderer={AutocompleteTimezoneItemRenderer}
+                itemRenderer={AutocompleteLocaleItemRenderer}
                 placeholder="Search locale..."
                 onAdd={(locale) => {
                   setFormat({ locale });
@@ -148,7 +148,7 @@ export default function DataSourceFormat({
   );
 }
 
-export const timezoneItemRenderer =
+export const localeItemRenderer =
   ({
     remove,
     update,
@@ -184,7 +184,7 @@ export const timezoneItemRenderer =
     }
   };
 
-export const AutocompleteTimezoneItemRenderer = (
+export const AutocompleteLocaleItemRenderer = (
   item: string,
   index: number,
   isSelected: boolean,

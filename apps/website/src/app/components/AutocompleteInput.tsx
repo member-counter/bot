@@ -140,10 +140,9 @@ export default function AutocompleteInput<T>({
         onFocusOutside={(e) => e.preventDefault()}
         onInteractOutside={(e) => e.preventDefault()}
         style={{ width: "calc(var(--radix-popover-trigger-width) + 5px)" }}
-        className="flex flex-col gap-1 p-1"
+        className="mt-1 flex flex-col gap-1 p-1"
         onMouseEnter={() => setPopoverMouseEnter(true)}
         onMouseLeave={() => setPopoverMouseEnter(false)}
-        side="left"
       >
         {filteredSuggestedItems.map((item, i) =>
           itemRenderer(item, i, i === selectedIndex, () => add(i)),
