@@ -21,9 +21,9 @@ export function ManageServerLayout({ children }: Props) {
         })}
       />
       <Separator orientation="vertical" className="hidden sm:block" />
-      <div className={cn("grow", { "hidden sm:block": menuContext.isOpen })}>
+      <main className={cn("grow", { "hidden sm:block": menuContext.isOpen })}>
         {children}
-      </div>
+      </main>
     </div>
   );
 }

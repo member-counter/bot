@@ -28,14 +28,18 @@ export function ServerNavMenu({ className }: { className?: string }) {
   // TODO display saved channels if the discord channels are unable to load
 
   return (
-    <div
+    <nav
       className={cn(
         "flex max-h-full flex-col overflow-hidden bg-card",
         className,
       )}
+      aria-label={`${guild.data?.name ?? ""} channel list`}
     >
       <div className="flex h-[48px] min-h-[48px] min-w-0 items-center font-semibold">
-        <div className="flex-shrink overflow-hidden  text-ellipsis whitespace-nowrap pl-4">
+        <div
+          className="flex-shrink overflow-hidden  text-ellipsis whitespace-nowrap pl-4"
+          aria-hidden
+        >
           {!guild.data && (
             <Skeleton className="h-[20px] w-[120px] rounded-full" />
           )}
@@ -45,13 +49,16 @@ export function ServerNavMenu({ className }: { className?: string }) {
           href={Routes.DashboardServers(guildId, "settings")}
           onClick={() => menuContext.setIsOpen(false)}
           className="ml-auto mr-1"
+          aria-hidden
+          tabIndex={-1}
         >
           <Button
+            aria-label="Server settings"
             size={"icon"}
             variant={"ghost"}
             className={cn({ hidden: pathname.endsWith("settings") })}
           >
-            <SettingsIcon className="h-5 w-5" />
+            <SettingsIcon className="h-5 w-5" aria-hidden />
           </Button>
         </Link>
         <Button
@@ -64,7 +71,7 @@ export function ServerNavMenu({ className }: { className?: string }) {
         </Button>
       </div>
 
-      <Separator />
+      <Separator tabIndex={-1} />
       <div className="flex max-h-full grow flex-col gap-1 overflow-auto p-[8px]">
         {channels.map((channel) => (
           <ChannelNavItem {...channel} key={channel.id} />
@@ -74,6 +81,6 @@ export function ServerNavMenu({ className }: { className?: string }) {
             .fill(null)
             .map((_, i) => <ChannelNavItemSkeleton key={i} />)}
       </div>
-    </div>
+    </nav>
   );
 }

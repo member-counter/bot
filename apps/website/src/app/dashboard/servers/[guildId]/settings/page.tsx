@@ -26,7 +26,6 @@ import { ResetSettings } from "./ResetButton";
 
 export default function Page() {
   const compactNotationCheckbox = useId();
-  const localeInput = useId();
   const [guildSettingsDataId, setGuildSettingsDataId] = useState(0);
   const userPermissions = useContext(UserPermissionsContext);
   const { guildId } = useParams<DashboardGuildParams>();
@@ -65,8 +64,8 @@ export default function Page() {
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-[48px] w-full flex-shrink-0 flex-row items-center justify-center pl-3 pr-1 font-semibold">
-        <ServerCogIcon className="mr-3 h-5 w-5 sm:hidden" />
-        <div>Server Settings</div>
+        <ServerCogIcon className="mr-3 h-5 w-5 sm:hidden" aria-hidden />
+        <h1>Server Settings</h1>
         <MenuButton />
       </div>
       <Separator orientation="horizontal" />
@@ -92,8 +91,8 @@ export default function Page() {
           >
             Use compact notation for numbers
           </Checkbox>
-          <div className="flex flex-col gap-3">
-            <Label htmlFor={localeInput}>Locale</Label>
+          <Label className="flex flex-col gap-3">
+            Locale
             {mutableGuildSettings.formatSettings.locale &&
               [mutableGuildSettings.formatSettings.locale].map(
                 localeItemRenderer({
@@ -133,7 +132,7 @@ export default function Page() {
                 allowSearchedItem={true}
               />
             )}
-          </div>
+          </Label>
           <div className="flex flex-col gap-3">
             <Label>Custom digits</Label>
             <div className="grid grid-cols-3 gap-1.5">

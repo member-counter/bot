@@ -19,3 +19,13 @@ export const ChannelIconMap: Record<ChannelType | number, LucideIcon> = {
   [ChannelType.GuildForum]: MessagesSquareIcon,
   [ChannelType.GuildMedia]: ImageIcon,
 };
+
+export const ChannelLabelMap: Record<ChannelType | number, string> = {
+  [ChannelType.GuildText]: "Text channel",
+  [ChannelType.GuildCategory]: "Category",
+  [ChannelType.GuildVoice]: "Voice channel",
+  [ChannelType.GuildAnnouncement]: "Announcement channel",
+  [ChannelType.GuildStageVoice]: "Stage channel",
+  [ChannelType.GuildForum]: "Forum channel",
+  [ChannelType.GuildMedia]: "Media channel",
+};

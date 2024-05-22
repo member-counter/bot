@@ -9,7 +9,7 @@ import { Separator } from "@mc/ui/separator";
 import type { DashboardGuildParams } from "../layout";
 import { api } from "~/trpc/react";
 import { MenuButton } from "../../../MenuButton";
-import { ChannelIconMap } from "../ChannelIconMap";
+import { ChannelIconMap, ChannelLabelMap } from "../ChannelMaps";
 
 export type DashboardGuildChannelParams = {
   channelId: string;
@@ -37,8 +37,13 @@ export default function Page(props: Props) {
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-[48px] w-full flex-shrink-0 flex-row items-center pl-3 pr-1 font-semibold">
-        <Icon className="mr-3 h-5 w-5" />
-        <div>{channel.name}</div>
+        <Icon
+          className="mr-3 h-5 w-5"
+          aria-label={ChannelLabelMap[channel.type]}
+        />
+        <h1 aria-label={`${guild.data.name}: ${channel.name}`}>
+          {channel.name}
+        </h1>
         <MenuButton />
       </div>
       <Separator orientation="horizontal" />

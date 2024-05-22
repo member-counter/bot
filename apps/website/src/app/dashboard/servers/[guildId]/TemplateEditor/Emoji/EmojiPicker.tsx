@@ -85,7 +85,7 @@ export function EmojiPicker({ className }: { className?: string } = {}) {
     <Popover open={showPopover} onOpenChange={setShowPopover}>
       <PopoverTrigger asChild>
         <Button variant={"ghost"} className={cn(["h-10 px-3", className])}>
-          <SmileIcon className="inline h-4 w-4" />
+          <SmileIcon className="inline h-4 w-4" aria-label="Emoji picker" />
         </Button>
       </PopoverTrigger>
       <PopoverContent asChild>

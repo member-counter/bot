@@ -19,7 +19,7 @@ import type { DashboardGuildParams } from "../layout";
 import { MenuContext } from "~/app/dashboard/layout";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
-import { ChannelIconMap } from "../ChannelIconMap";
+import { ChannelIconMap } from "../ChannelMaps";
 
 export function ChannelNavItem(channel: {
   id: string;
@@ -88,6 +88,7 @@ export function ChannelNavItem(channel: {
                   "mr-1 h-4 w-4": isCategory,
                 },
               )}
+              aria-hidden
             />
             {channel.name}
           </Link>

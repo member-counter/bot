@@ -6,6 +6,7 @@ export function BotIcon({ className }: { className: string }) {
       height="512"
       viewBox="0 0 135.46666 135.46667"
       version="1.1"
+      aria-hidden
     >
       <g transform="translate(0,-161.53332)" id="layer1"></g>
       <g style={{ display: "inline" }} id="layer2">

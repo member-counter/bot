@@ -64,13 +64,17 @@ export default function Page() {
         </span>
         <div className="mb-auto mt-4 flex flex-row flex-wrap justify-center gap-2 p-2">
           {suggestedTopics.map((topic, i) => (
-            <article className="group" key={i}>
+            <article
+              className="group"
+              key={i}
+              tabIndex={topic.disabled ? -1 : 0}
+              role="button"
+            >
               <Card
                 className={cn(
                   "relative h-full w-full max-w-[400px] flex-shrink grow  cursor-pointer overflow-hidden",
                   topic.disabled && "cursor-not-allowed",
                 )}
-                tabIndex={topic.disabled ? -1 : 0}
               >
                 <div className="absolute z-10 h-[30px] w-full overflow-clip bg-primary transition-all duration-500 group-hover:scale-y-[25]"></div>
                 <div className="relative z-10 w-full py-1 text-sm font-black uppercase leading-relaxed transition-all duration-300 group-hover:bg-black/30">
@@ -81,6 +85,7 @@ export default function Page() {
                     <topic.icon
                       strokeWidth={0.8}
                       className="mr-2 inline-block h-8 w-8"
+                      aria-hidden
                     />
                     {topic.title}
                   </h1>
