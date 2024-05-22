@@ -35,11 +35,30 @@ export const HoveringToolbar = () => {
 
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
+
+    let top = rect.top + window.pageYOffset - el.offsetHeight;
+    let left =
+      rect.left + window.pageXOffset - el.offsetWidth / 2 + rect.width / 2;
+
+    if (left < 0) {
+      left = 5;
+    }
+
+    if (left + el.offsetWidth > window.innerWidth) {
+      left = window.innerWidth - el.offsetWidth - 5;
+    }
+
+    if (top < 0) {
+      top = 5;
+    }
+
+    if (top + el.offsetHeight > window.innerHeight) {
+      top = window.innerHeight - el.offsetHeight - 5;
+    }
+
     el.style.opacity = "1";
-    el.style.top = `${rect.top + window.pageYOffset - el.offsetHeight}px`;
-    el.style.left = `${
-      rect.left + window.pageXOffset - el.offsetWidth / 2 + rect.width / 2
-    }px`;
+    el.style.top = `${top}px`;
+    el.style.left = `${left}px`;
   });
 
   const formatOptions = Object.entries(FORMAT_ICONS).filter(
