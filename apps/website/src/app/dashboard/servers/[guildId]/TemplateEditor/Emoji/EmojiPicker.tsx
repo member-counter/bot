@@ -262,9 +262,7 @@ function SkinToneSelector({
         <div
           role="button"
           onClick={() => setIsOpen(true)}
-          onKeyDown={(e) =>
-            ["Enter", "Space"].includes(e.key) && setIsOpen(true)
-          }
+          onKeyDown={(e) => ["Enter", " "].includes(e.key) && setIsOpen(true)}
           tabIndex={isOpen ? -1 : 0}
           className={cn([
             {
@@ -282,7 +280,7 @@ function SkinToneSelector({
                 className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center text-[25px] outline-none focus-within:bg-accent/60 hover:bg-accent/60"
                 onClick={() => onChange(skinTone)}
                 onKeyDown={(e) =>
-                  ["Enter", "Space"].includes(e.key) && onChange(skinTone)
+                  ["Enter", " "].includes(e.key) && onChange(skinTone)
                 }
                 tabIndex={isOpen ? 1 : -1}
               >

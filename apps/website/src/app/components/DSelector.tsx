@@ -47,9 +47,7 @@ const Item = (props: ItemProps) => {
                 )}
                 style={itemImageStyle}
                 onClick={onClick}
-                onKeyDown={(e) =>
-                  ["Enter", "Space"].includes(e.key) && onClick()
-                }
+                onKeyDown={(e) => ["Enter", " "].includes(e.key) && onClick()}
                 role="link"
                 tabIndex={0}
                 aria-label={name}
