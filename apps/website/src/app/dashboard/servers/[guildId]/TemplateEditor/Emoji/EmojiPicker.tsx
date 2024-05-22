@@ -6,6 +6,7 @@ import { searchInTexts } from "@mc/common/searchInTexts";
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
 import { Card } from "@mc/ui/card";
+import { Drawer, DrawerContent, DrawerTrigger } from "@mc/ui/drawer";
 import { Input } from "@mc/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 import { Separator } from "@mc/ui/separator";
@@ -13,6 +14,7 @@ import { Separator } from "@mc/ui/separator";
 import type { Searchable } from "../../../../../components/AutocompleteInput";
 import type { EmojiElement } from "../custom-types";
 import type { Guild, GuildEmoji } from "../d-types";
+import { useBreakpoint } from "~/hooks/useBreakpoint";
 import { removeFrom } from "~/other/array";
 import { blurredBackground } from "~/other/common-styles";
 import { emojis, emojisByGroup, searchableEmojis } from "~/other/emojis";
@@ -23,11 +25,12 @@ import { TemplateEditorContext } from "../TemplateEditorContext";
 export const EmojiPicker = memo(function EmojiPicker({
   className,
 }: { className?: string } = {}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const isDesktop = useBreakpoint("md");
   const editor = useSlateStatic();
   const { features } = useContext(TemplateEditorContext);
   const [skinTone, setSkinTone] = useState("");
   const [search, setSearch] = useState("");
-  const [showPopover, setShowPopover] = useState(false);
   const userGuildsQuery = api.discord.userGuilds.useQuery();
   const userGuilds = useMemo(
     () => [...(userGuildsQuery.data?.userGuilds.values() ?? [])],
@@ -83,48 +86,65 @@ export const EmojiPicker = memo(function EmojiPicker({
     ReactEditor.focus(editor);
   };
 
+  const openButton = (
+    <Button variant={"ghost"} className={cn(["h-10 px-3", className])}>
+      <SmileIcon className="inline h-4 w-4" aria-label="Emoji picker" />
+    </Button>
+  );
+
+  const emojiPicker = (
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className={"flex h-[400px] flex-col md:w-[400px]"}
+    >
+      <div
+        className={cn([
+          blurredBackground,
+          "fixed left-0 right-0 z-50 rounded-t-2xl border-b md:rounded-t-md md:border-x",
+        ])}
+      >
+        <div className="flex flex-row gap-2 p-2">
+          <Input
+            className={blurredBackground}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search emoji"
+          />
+          <SkinToneSelector value={skinTone} onChange={setSkinTone} />
+        </div>
+      </div>
+      <div className="flex flex-grow flex-row">
+        <EmojiList
+          onSelect={(emoji) => {
+            onSelect(emoji);
+            setIsOpen(false);
+          }}
+          matchingEmojis={matchingEmojis}
+          skinTone={skinTone}
+          guilds={guilds}
+        />
+      </div>
+    </div>
+  );
+
+  if (isDesktop) {
+    return (
+      <Popover open={isOpen} onOpenChange={setIsOpen}>
+        <PopoverTrigger asChild>{openButton}</PopoverTrigger>
+        <PopoverContent asChild className="p-0">
+          {emojiPicker}
+        </PopoverContent>
+      </Popover>
+    );
+  }
+
   return (
-    <Popover open={showPopover} onOpenChange={setShowPopover}>
-      <PopoverTrigger asChild>
-        <Button variant={"ghost"} className={cn(["h-10 px-3", className])}>
-          <SmileIcon className="inline h-4 w-4" aria-label="Emoji picker" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent asChild>
-        <Card
-          onClick={(e) => e.stopPropagation()}
-          className="flex h-[400px] w-[400px] flex-col p-0"
-        >
-          <div
-            className={cn([
-              blurredBackground,
-              "fixed left-0 right-0 z-50 rounded-t-md border border-border",
-            ])}
-          >
-            <div className="flex flex-row gap-2 p-2">
-              <Input
-                className={blurredBackground}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search emoji"
-              />
-              <SkinToneSelector value={skinTone} onChange={setSkinTone} />
-            </div>
-          </div>
-          <div className="flex flex-grow flex-row">
-            <EmojiList
-              onSelect={(emoji) => {
-                onSelect(emoji);
-                setShowPopover(false);
-              }}
-              matchingEmojis={matchingEmojis}
-              skinTone={skinTone}
-              guilds={guilds}
-            />
-          </div>
-        </Card>
-      </PopoverContent>
-    </Popover>
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
+      <DrawerTrigger asChild>{openButton}</DrawerTrigger>
+      <DrawerContent hideDragger className="rounded-t-2xl">
+        {emojiPicker}
+      </DrawerContent>
+    </Drawer>
   );
 });
 
@@ -223,8 +243,7 @@ function EmojiList({
           })}
         </div>
       </div>
-      <Separator orientation="horizontal" />
-      <div className="flex min-h-[64px] flex-row items-center gap-2 p-4">
+      <div className="hidden min-h-[64px] flex-row items-center gap-2 border-t border-border p-4 md:flex">
         <div className="text-2xl">{hoveredEmojiDisplay}</div>
         <div className="text-md font-medium capitalize">{hoveredEmojiName}</div>
       </div>

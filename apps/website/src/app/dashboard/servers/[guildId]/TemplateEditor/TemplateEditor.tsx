@@ -40,7 +40,6 @@ export default function TemplateEditor({
   );
 
   useEffect(() => {
-    console.log(readAgainInitialValue);
     setNodesValue(editor, initialValue.nodes);
     dataSourceRefs.clear();
     initialValue.dataSourceRefs.forEach((dataSourceRef, dataSourceRefId) =>
