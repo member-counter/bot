@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { memo, useContext, useEffect, useMemo, useState } from "react";
 import { SmileIcon } from "lucide-react";
 import { ReactEditor, useSlateStatic } from "slate-react";
 
@@ -20,7 +20,9 @@ import { api } from "~/trpc/react";
 import { GuildEmojiRenderer } from "../../../../../components/GuildEmojiRenderer";
 import { TemplateEditorContext } from "../TemplateEditorContext";
 
-export function EmojiPicker({ className }: { className?: string } = {}) {
+export const EmojiPicker = memo(function EmojiPicker({
+  className,
+}: { className?: string } = {}) {
   const editor = useSlateStatic();
   const { features } = useContext(TemplateEditorContext);
   const [skinTone, setSkinTone] = useState("");
@@ -124,7 +126,7 @@ export function EmojiPicker({ className }: { className?: string } = {}) {
       </PopoverContent>
     </Popover>
   );
-}
+});
 
 function EmojiList({
   skinTone,
