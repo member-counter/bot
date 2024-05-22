@@ -5,11 +5,9 @@ import { ReactEditor, useSlateStatic } from "slate-react";
 import { searchInTexts } from "@mc/common/searchInTexts";
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
-import { Card } from "@mc/ui/card";
 import { Drawer, DrawerContent, DrawerTrigger } from "@mc/ui/drawer";
 import { Input } from "@mc/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
-import { Separator } from "@mc/ui/separator";
 
 import type { Searchable } from "../../../../../components/AutocompleteInput";
 import type { EmojiElement } from "../custom-types";
