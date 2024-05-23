@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { BanIcon, XIcon } from "lucide-react";
+import { ShieldBanIcon, XIcon } from "lucide-react";
 
 import { Button } from "@mc/ui/button";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
@@ -28,7 +28,7 @@ export function BlockedBanner() {
   return (
     <div className="flex w-full flex-row items-center bg-destructive p-1 text-xs">
       <div className="hidden items-center pl-2 pr-3 sm:flex">
-        <BanIcon className="h-8 w-8" />
+        <ShieldBanIcon className="h-8 w-8" />
       </div>
       <div className="block pl-1">
         <p>

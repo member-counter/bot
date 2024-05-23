@@ -4,6 +4,7 @@ import { useContext, useEffect, useId, useState } from "react";
 import { useParams } from "next/navigation";
 import { SaveIcon, ServerCogIcon } from "lucide-react";
 
+import { UserPermissions } from "@mc/common/UserPermissions";
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
 import { Checkbox } from "@mc/ui/checkbox";
@@ -22,6 +23,7 @@ import { MenuButton } from "../../../MenuButton";
 import { LoadingPage } from "../LoadingPage";
 import DataSourceFormatDigitInput from "../TemplateEditor/DataSource/Format/DataSourceFormatDigitInput";
 import { UserPermissionsContext } from "../UserPermissionsContext";
+import { BlockButton } from "./BlockButton";
 import { ResetSettings } from "./ResetButton";
 
 export default function Page() {
@@ -152,6 +154,15 @@ export default function Page() {
             >
               {isDirty ? "Save" : "Saved"}
             </Button>
+            {userPermissions.user.has(UserPermissions.SeeGuilds) && (
+              <BlockButton
+                className="w-auto sm:mr-auto"
+                guildId={guildId}
+                disabled={
+                  !userPermissions.user.has(UserPermissions.ManageGuilds)
+                }
+              />
+            )}
             <ResetSettings
               className="w-auto sm:mr-auto"
               guildId={guildId}
