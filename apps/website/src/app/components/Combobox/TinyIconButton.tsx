@@ -11,9 +11,16 @@ export const TinyIconButton = ({
 }) => {
   return (
     <Button
-      variant={"ghost"}
-      className="h-5 w-5"
+      variant={"none"}
+      className="h-5 w-5 text-muted-foreground hover:text-foreground"
       size={"icon"}
+      aria-label="Remove item"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.stopPropagation();
+          onClick();
+        }
+      }}
       onClick={(e) => {
         e.stopPropagation();
         onClick();

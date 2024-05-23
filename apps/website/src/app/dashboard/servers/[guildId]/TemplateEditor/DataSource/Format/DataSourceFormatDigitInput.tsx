@@ -36,7 +36,7 @@ function DataSourceFormatDigitInputInner({
         placeholder={placeholder}
         className="flex-grow overflow-hidden [&>*]:whitespace-nowrap"
       />
-      <EmojiPicker className="relative right-[-10px] top-[-5px] h-[33px] rounded-[4px] px-[9px] text-muted hover:bg-transparent" />
+      <EmojiPicker className="relative right-[-10px] top-[-5px] h-[33px] rounded-[4px] px-[9px] text-muted-foreground hover:bg-transparent" />
     </InputWrapper>
   );
 }

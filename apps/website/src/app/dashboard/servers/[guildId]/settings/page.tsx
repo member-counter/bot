@@ -91,9 +91,10 @@ export default function Page() {
           >
             Use compact notation for numbers
           </Checkbox>
-          <Label className="flex flex-col gap-3">
-            Locale
+          <div className="flex flex-col gap-3">
+            <Label aria-hidden>Locale</Label>
             <Combobox
+              ariaLabel="Locale"
               allowSearchedItem
               items={searchableLocales}
               placeholder="Search locale..."
@@ -110,7 +111,7 @@ export default function Page() {
               onItemRender={renderLocaleItem}
               onSelectedItemRender={renderSelectedLocaleItem}
             />
-          </Label>
+          </div>
           <div className="flex flex-col gap-3">
             <Label>Custom digits</Label>
             <div className="grid grid-cols-3 gap-1.5">
