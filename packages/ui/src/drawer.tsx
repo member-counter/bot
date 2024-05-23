@@ -51,7 +51,9 @@ const DrawerContent = React.forwardRef<
       {...props}
     >
       {!hideDragger && (
-        <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
+        <div className="fixed z-[1000] w-full">
+          <div className="mx-auto mt-1.5 h-1 w-[100px] rounded-full bg-muted" />
+        </div>
       )}
       {children}
     </DrawerPrimitive.Content>

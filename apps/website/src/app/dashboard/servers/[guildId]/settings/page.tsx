@@ -11,15 +11,15 @@ import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildParams } from "../layout";
-import AutocompleteInput from "~/app/components/AutocompleteInput";
+import { Combobox } from "~/app/components/Combobox";
+import {
+  renderLocaleItem,
+  renderSelectedLocaleItem,
+} from "~/app/components/Combobox/renderers/localeItemRenderer";
 import { searchableLocales } from "~/other/locales";
 import { api } from "~/trpc/react";
 import { MenuButton } from "../../../MenuButton";
 import { LoadingPage } from "../LoadingPage";
-import {
-  AutocompleteLocaleItemRenderer,
-  localeItemRenderer,
-} from "../TemplateEditor/DataSource/Format/DataSourceFormat";
 import DataSourceFormatDigitInput from "../TemplateEditor/DataSource/Format/DataSourceFormatDigitInput";
 import { UserPermissionsContext } from "../UserPermissionsContext";
 import { ResetSettings } from "./ResetButton";
@@ -93,45 +93,23 @@ export default function Page() {
           </Checkbox>
           <Label className="flex flex-col gap-3">
             Locale
-            {mutableGuildSettings.formatSettings.locale &&
-              [mutableGuildSettings.formatSettings.locale].map(
-                localeItemRenderer({
-                  remove: () =>
-                    setMutableGuildSettings({
-                      ...mutableGuildSettings,
-                      formatSettings: {
-                        ...mutableGuildSettings.formatSettings,
-                        locale: "",
-                      },
-                    }),
-                  update: (locale) =>
-                    setMutableGuildSettings({
-                      ...mutableGuildSettings,
-                      formatSettings: {
-                        ...mutableGuildSettings.formatSettings,
-                        locale,
-                      },
-                    }),
-                }),
-              )}
-            {!mutableGuildSettings.formatSettings.locale && (
-              <AutocompleteInput
-                itemRenderer={AutocompleteLocaleItemRenderer}
-                placeholder="Search locale..."
-                onAdd={(locale) => {
-                  setMutableGuildSettings({
-                    ...mutableGuildSettings,
-                    formatSettings: {
-                      ...mutableGuildSettings.formatSettings,
-                      locale,
-                    },
-                  });
-                }}
-                suggestLimit={10}
-                suggestableItems={searchableLocales}
-                allowSearchedItem={true}
-              />
-            )}
+            <Combobox
+              allowSearchedItem
+              items={searchableLocales}
+              placeholder="Search locale..."
+              onItemSelect={(locale) => {
+                setMutableGuildSettings({
+                  ...mutableGuildSettings,
+                  formatSettings: {
+                    ...mutableGuildSettings.formatSettings,
+                    locale,
+                  },
+                });
+              }}
+              selectedItem={mutableGuildSettings.formatSettings.locale}
+              onItemRender={renderLocaleItem}
+              onSelectedItemRender={renderSelectedLocaleItem}
+            />
           </Label>
           <div className="flex flex-col gap-3">
             <Label>Custom digits</Label>
