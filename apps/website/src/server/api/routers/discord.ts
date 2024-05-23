@@ -22,9 +22,12 @@ export const discordRouter = createTRPCRouter({
       return botDataExchangeConsumer.discord.getGuild.query({ id });
     }),
 
-  lockChannel: protectedProcedure
-    .input(z.object({ id: z.string() }))
-    .query(async ({ input: { id } }) => {
-      return botDataExchangeConsumer.discord.getGuild.query({ id });
+  getGuildMember: protectedProcedure
+    .input(z.object({ guildId: z.string(), memberId: z.string() }))
+    .query(async ({ input: { guildId, memberId } }) => {
+      return botDataExchangeConsumer.discord.getGuildMember.query({
+        guildId,
+        memberId,
+      });
     }),
 });

@@ -17,6 +17,7 @@ export const discordRouter = createTRPCRouter({
         avatar: user.displayAvatarURL(),
       };
     }),
+
   getGuild: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
@@ -67,6 +68,26 @@ export const discordRouter = createTRPCRouter({
             animated: emoji.animated,
           })),
         ),
+      };
+    }),
+
+  getGuildMember: publicProcedure
+    .input(z.object({ guildId: z.string(), memberId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      if (!ctx.botClient.guilds.cache.has(input.guildId))
+        await ctx.dropRequest();
+
+      await ctx.lockRequest();
+
+      const guild = await ctx.botClient.guilds.fetch({
+        guild: input.guildId,
+      });
+
+      const guildMember = await guild.members.fetch({ user: input.memberId });
+
+      return {
+        id: guildMember.id,
+        permissions: guildMember.permissions.bitfield.toString(),
       };
     }),
 });

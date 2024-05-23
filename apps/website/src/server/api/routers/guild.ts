@@ -12,12 +12,20 @@ import { createCaller } from "../root";
 async function getAuthUserGuildPermissions(
   caller: ReturnType<typeof createCaller>,
   guildId: string,
+  memberId: string,
 ) {
-  const { userGuilds } = await caller.discord.userGuilds();
+  const permissions = await caller.discord
+    .getGuildMember({ guildId, memberId })
+    .then((member) => member.permissions)
+    .catch(async () => {
+      const { userGuilds } = await caller.discord.userGuilds();
 
-  const guild = userGuilds.get(guildId);
+      const guild = userGuilds.get(guildId);
 
-  return new BitField(BigInt(guild?.permissions ?? "0"));
+      return guild?.permissions;
+    });
+
+  return new BitField(BigInt(permissions ?? "0"));
 }
 
 export const guildRouter = createTRPCRouter({
@@ -28,6 +36,7 @@ export const guildRouter = createTRPCRouter({
       const userGuildpermissions = await getAuthUserGuildPermissions(
         createCaller(ctx),
         input.discordGuildId,
+        ctx.authUser.discordUserId,
       );
 
       const hasPermission =
@@ -77,6 +86,7 @@ export const guildRouter = createTRPCRouter({
       const userGuildpermissions = await getAuthUserGuildPermissions(
         createCaller(ctx),
         input.discordGuildId,
+        ctx.authUser.discordUserId,
       );
 
       const hasPermission =
@@ -119,6 +129,7 @@ export const guildRouter = createTRPCRouter({
       const userGuildpermissions = await getAuthUserGuildPermissions(
         createCaller(ctx),
         input.discordGuildId,
+        ctx.authUser.discordUserId,
       );
 
       const hasPermission =
@@ -151,6 +162,7 @@ export const guildRouter = createTRPCRouter({
       const userGuildpermissions = await getAuthUserGuildPermissions(
         createCaller(ctx),
         input.discordGuildId,
+        ctx.authUser.discordUserId,
       );
 
       const hasPermission =
