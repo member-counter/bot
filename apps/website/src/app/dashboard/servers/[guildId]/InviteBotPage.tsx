@@ -41,8 +41,10 @@ export function InviteBotPage() {
   };
 
   const userPermissions = useContext(UserPermissionsContext);
-  const userGuildsQuery = api.discord.userGuilds.useQuery();
-  const guild = userGuildsQuery.data?.userGuilds.get(guildId);
+  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
+    initialData: () => ({ userGuilds: new Map() }),
+  });
+  const guild = userGuildsQuery.data.userGuilds.get(guildId);
 
   return (
     <div className="flex h-full flex-col p-1">

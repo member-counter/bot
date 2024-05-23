@@ -23,7 +23,9 @@ export const MenuContext = createContext<{
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const params = useParams<DashboardGuildParams>();
-  const userGuildsQuery = api.discord.userGuilds.useQuery();
+  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
+    initialData: () => ({ userGuilds: new Map() }),
+  });
 
   const [isMenuOpen, setIsMenuOpen] = useState(true);
 
@@ -36,13 +38,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   );
 
   useEffect(() => {
-    userGuildsQuery.data?.userGuilds.forEach((guild) =>
+    userGuildsQuery.data.userGuilds.forEach((guild) =>
       router.prefetch(Routes.DashboardServers(guild.id)),
     );
 
     if (!params.guildId) return;
 
-    const selectedGuild = userGuildsQuery.data?.userGuilds.get(params.guildId);
+    const selectedGuild = userGuildsQuery.data.userGuilds.get(params.guildId);
 
     document.title = pageTitle(selectedGuild?.name ?? "Unknown server");
   }, [params.guildId, userGuildsQuery, router]);
@@ -54,7 +56,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <MenuContext.Provider value={menuContextValue}>
       <div className="flex grow flex-row bg-black ">
         <DSelector
-          isPending={!userGuildsQuery.data}
+          isPending={!userGuildsQuery.isFetched}
           className={cn(
             overflowClass,
             "mb-0 bg-black pb-3 pt-[68px] transition-all duration-100",
@@ -64,7 +66,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           )}
           classNameForItem={"bg-card hover:bg-primary"}
           pre={[]}
-          guilds={[...(userGuildsQuery.data?.userGuilds.values() ?? [])].map(
+          guilds={[...userGuildsQuery.data.userGuilds.values()].map(
             (guild) => ({
               ...guild,
               onClick: () => {

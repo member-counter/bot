@@ -7,9 +7,11 @@ import { MenuButton } from "../../MenuButton";
 
 export function ForbiddenPage() {
   const { guildId } = useParams<DashboardGuildParams>();
-  const userGuildsQuery = api.discord.userGuilds.useQuery();
+  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
+    initialData: () => ({ userGuilds: new Map() }),
+  });
 
-  const guild = userGuildsQuery.data?.userGuilds.get(guildId);
+  const guild = userGuildsQuery.data.userGuilds.get(guildId);
 
   return (
     <div className="flex h-full grow flex-col p-1">

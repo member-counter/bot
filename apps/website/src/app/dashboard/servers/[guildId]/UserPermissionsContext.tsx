@@ -35,8 +35,10 @@ export const UserPermissionsContextProvider = ({
   const { guildId } = useParams<DashboardGuildParams>();
   const authUser = api.session.user.useQuery();
 
-  const userGuildsQuery = api.discord.userGuilds.useQuery();
-  const guild = userGuildsQuery.data?.userGuilds.get(guildId);
+  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
+    initialData: () => ({ userGuilds: new Map() }),
+  });
+  const guild = userGuildsQuery.data.userGuilds.get(guildId);
 
   const contextValue: UserPermissionsContextValue = useMemo(() => {
     const userPermissions = new BitField(authUser.data?.permissions);

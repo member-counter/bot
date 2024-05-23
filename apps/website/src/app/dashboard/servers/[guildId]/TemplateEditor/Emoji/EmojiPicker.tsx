@@ -29,9 +29,11 @@ export const EmojiPicker = memo(function EmojiPicker({
   const { features } = useContext(TemplateEditorContext);
   const [skinTone, setSkinTone] = useState("");
   const [search, setSearch] = useState("");
-  const userGuildsQuery = api.discord.userGuilds.useQuery();
+  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
+    initialData: () => ({ userGuilds: new Map() }),
+  });
   const userGuilds = useMemo(
-    () => [...(userGuildsQuery.data?.userGuilds.values() ?? [])],
+    () => [...userGuildsQuery.data.userGuilds.values()],
     [userGuildsQuery.data],
   );
   const guildsQuery = api.useQueries((api) =>
