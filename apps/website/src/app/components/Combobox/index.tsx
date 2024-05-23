@@ -123,7 +123,7 @@ export function Combobox({
 
   const cmdRendered = useMemo(
     () => (
-      <Command filter={filter}>
+      <Command filter={filter} className={cn(!isDesktop && "rounded-xl")}>
         <CommandInput
           placeholder={placeholder}
           value={search}
@@ -182,6 +182,7 @@ export function Combobox({
     [
       allowSearchedItem,
       filter,
+      isDesktop,
       items,
       onItemRender,
       onItemSelect,
