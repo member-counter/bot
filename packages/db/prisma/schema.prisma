@@ -20,6 +20,7 @@ model User {
 model Guild {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
   discordGuildId String         @unique
+  language       String         @default("en-US")
   formatSettings FormatSettings
 }
 
