@@ -149,16 +149,18 @@ export function Combobox({
             })}
             {allowSearchedItem && (
               <>
-                <CommandItem
-                  key={searchId}
-                  value={search}
-                  onSelect={() => {
-                    onItemSelect(search);
-                    setOpen(false);
-                  }}
-                >
-                  {onItemRender(search, selectedItem === search)}
-                </CommandItem>
+                {!!search.length && (
+                  <CommandItem
+                    key={searchId}
+                    value={search}
+                    onSelect={() => {
+                      onItemSelect(search);
+                      setOpen(false);
+                    }}
+                  >
+                    {onItemRender(search, selectedItem === search)}
+                  </CommandItem>
+                )}
                 {selectedItem && selectedItem !== search && (
                   <CommandItem
                     key={selfId}
