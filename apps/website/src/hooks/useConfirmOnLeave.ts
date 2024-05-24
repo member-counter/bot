@@ -10,7 +10,7 @@ function useConfirmOnLeave(shouldConfirm: boolean) {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (!shouldConfirm) return;
       e.preventDefault();
-      //   return (e.returnValue = warningText);
+      return (e.returnValue = warningText);
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
