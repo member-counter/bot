@@ -11,6 +11,7 @@ import { Checkbox } from "@mc/ui/checkbox";
 import { Input } from "@mc/ui/input";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
+import useConfirmOnLeave from "~/hooks/useConfirmOnLeave";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { DeleteButton } from "./DeleteButton";
@@ -44,6 +45,8 @@ export default function ManageUser({ userId }: { userId: string }) {
   const user = api.user.get.useQuery({ discordUserId: userId });
   const userMutation = api.user.update.useMutation();
   const [mutableUser, _setMutableUser] = useState<typeof user.data>(null);
+
+  useConfirmOnLeave(isDirty);
 
   useEffect(() => {
     if (!user.data) return;

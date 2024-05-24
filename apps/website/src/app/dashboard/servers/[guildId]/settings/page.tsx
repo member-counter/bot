@@ -17,6 +17,7 @@ import {
   renderLocaleItem,
   renderSelectedLocaleItem,
 } from "~/app/components/Combobox/renderers/localeItemRenderer";
+import useConfirmOnLeave from "~/hooks/useConfirmOnLeave";
 import { searchableLocales } from "~/other/locales";
 import { api } from "~/trpc/react";
 import { MenuButton } from "../../../MenuButton";
@@ -38,6 +39,8 @@ export default function Page() {
   const [isDirty, setIsDirty] = useState(false);
   const [mutableGuildSettings, _setMutableGuildSettings] =
     useState<typeof guildSettings>(null);
+
+  useConfirmOnLeave(isDirty);
 
   useEffect(() => {
     if (!guildSettings) return;
