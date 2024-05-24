@@ -144,9 +144,8 @@ export default function Page() {
               })}
             </div>
           </div>
-          <div className="mt-auto flex flex-col gap-3 sm:flex-row-reverse">
+          <div className="mt-auto flex flex-col justify-between gap-3 sm:flex-row-reverse">
             <Button
-              className="w-auto"
               icon={SaveIcon}
               type="submit"
               disabled={
@@ -159,7 +158,6 @@ export default function Page() {
             </Button>
             {userPermissions.user.has(UserPermissions.SeeGuilds) && (
               <BlockButton
-                className="w-auto sm:mr-auto"
                 guildId={guildId}
                 disabled={
                   !userPermissions.user.has(UserPermissions.ManageGuilds)
@@ -167,7 +165,6 @@ export default function Page() {
               />
             )}
             <ResetSettings
-              className="w-auto sm:mr-auto"
               guildId={guildId}
               disabled={
                 !userPermissions.canModify || guildSettingsMutation.isPending
