@@ -137,7 +137,7 @@ export default function DataSourceFormat({
                     digits[i] = digit || null;
                     setFormat({ digits });
                   }}
-                  placeholder={i.toString()}
+                  digitNumber={i}
                 />
               );
             })}

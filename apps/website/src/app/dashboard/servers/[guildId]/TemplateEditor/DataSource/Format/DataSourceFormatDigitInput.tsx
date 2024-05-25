@@ -16,24 +16,24 @@ const features = discordChannelTopicMarkdown;
 
 function DataSourceFormatDigitInputInner({
   className,
-  placeholder,
+  digitNumber,
   onBlur,
 }: {
-  placeholder?: string;
+  digitNumber: number;
   className?: string;
   onBlur: () => void;
 }) {
   const editor = useSlateStatic();
 
   return (
-    <InputWrapper
-      className={className}
-      onClick={() => ReactEditor.focus(editor)}
-      onBlur={onBlur}
-    >
+    <InputWrapper className={className}>
       <HoveringToolbar />
       <TemplateEditorInput
-        placeholder={placeholder}
+        placeholder={digitNumber.toString()}
+        aria-label={`Custom digit ${digitNumber}`}
+        onClick={() => ReactEditor.focus(editor)}
+        onBlur={onBlur}
+        tabIndex={0}
         className="flex-grow overflow-hidden [&>*]:whitespace-nowrap"
       />
       <EmojiPicker className="relative right-[-10px] top-[-5px] h-[33px] rounded-[4px] px-[9px] text-muted-foreground hover:bg-transparent" />
@@ -43,13 +43,13 @@ function DataSourceFormatDigitInputInner({
 
 export default function DataSourceFormatDigitInput({
   className,
-  placeholder,
+  digitNumber,
   initialValue,
   onChange,
   readAgainInitialValue,
 }: {
   className?: string;
-  placeholder?: string;
+  digitNumber: number;
   initialValue: string;
   onChange: (digit: string) => void;
   readAgainInitialValue?: number;
@@ -69,7 +69,7 @@ export default function DataSourceFormatDigitInput({
     >
       <DataSourceFormatDigitInputInner
         className={className}
-        placeholder={placeholder}
+        digitNumber={digitNumber}
         onBlur={() => onChange(serialize(value, features))}
       />
     </TemplateEditor>

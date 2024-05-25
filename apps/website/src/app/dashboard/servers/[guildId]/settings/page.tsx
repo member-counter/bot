@@ -29,6 +29,7 @@ import { ResetSettings } from "./ResetButton";
 
 export default function Page() {
   const compactNotationCheckbox = useId();
+  const localeInput = useId();
   const [guildSettingsDataId, setGuildSettingsDataId] = useState(0);
   const userPermissions = useContext(UserPermissionsContext);
   const { guildId } = useParams<DashboardGuildParams>();
@@ -98,9 +99,9 @@ export default function Page() {
             Use compact notation for numbers
           </Checkbox>
           <div className="flex flex-col gap-3">
-            <Label aria-hidden>Locale</Label>
+            <Label htmlFor={localeInput}>Locale</Label>
             <Combobox
-              ariaLabel="Locale"
+              id={localeInput}
               allowSearchedItem
               items={searchableLocales}
               placeholder="Search locale..."
@@ -139,7 +140,7 @@ export default function Page() {
                         ...mutableGuildSettings,
                       });
                     }}
-                    placeholder={i.toString()}
+                    digitNumber={i}
                   />
                 );
               })}
