@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "git clean -xdf .next .turbo node_modules",
     "build": "tsup-node",
-    "dev": "pnpm with-env concurrently \"pnpm build --watch\" \"nodemon ./dist/index.js\"",
+    "dev": "pnpm with-env pnpm build --watch . --watch ../../packages --onSuccess \"node dist/index.js\"",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "start": "pnpm with-env node ./dist/index.js",
@@ -19,10 +19,8 @@
     "@mc/tsconfig": "workspace:*",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^20.12.9",
-    "concurrently": "^8.2.2",
     "dotenv-cli": "^7.4.1",
     "eslint": "^9.2.0",
-    "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
     "typescript": "^5.4.3"
