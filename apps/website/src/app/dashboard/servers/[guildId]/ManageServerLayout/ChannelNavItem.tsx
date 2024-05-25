@@ -16,6 +16,7 @@ import {
 } from "@mc/ui/tooltip";
 
 import type { DashboardGuildParams } from "../layout";
+import { InfoToolip } from "~/app/components/InfoTooltip";
 import { MenuContext } from "~/app/dashboard/layout";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
@@ -54,6 +55,7 @@ export function ChannelNavItem(channel: {
 
   // TODO underline the channel name if it has a counter
   const hasCounter = false;
+  const hasCounterIssue = false;
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -67,30 +69,53 @@ export function ChannelNavItem(channel: {
             onClick={() => menuContext.setIsOpen(false)}
             className={cn(
               "group block cursor-pointer",
-              "flex-shrink-0 overflow-clip text-ellipsis whitespace-nowrap",
+              "flex flex-row items-center",
               {
-                "mb-1 mt-4 text-xs uppercase text-muted-foreground hover:text-foreground":
+                "mb-1 mt-4 pr-2 text-xs text-muted-foreground hover:text-foreground":
                   isCategory,
                 "rounded-sm px-2 py-1.5 text-sm": !isCategory,
                 "hover:text-muted-accent-foreground cursor-not-allowed text-muted-foreground":
                   !isSupported,
                 "text-foreground": isCategory && isSelected,
                 "bg-accent text-foreground": !isCategory && isSelected,
-                "underline-offset-3 underline decoration-primary": hasCounter,
                 "hover:bg-accent": isSupported && !isCategory,
               },
             )}
           >
-            <Icon
+            <span
               className={cn(
-                "mr-2 mt-[-2px] inline h-5 w-5 text-muted-foreground",
-                {
-                  "mr-1 h-4 w-4": isCategory,
-                },
+                isCategory && "uppercase",
+                "flex-shrink overflow-hidden text-ellipsis whitespace-nowrap",
               )}
-              aria-hidden
-            />
-            {channel.name}
+            >
+              <Icon
+                className={cn(
+                  "mr-2 mt-[-2px] inline h-5 w-5 text-muted-foreground",
+                  {
+                    "mr-1 h-4 w-4": isCategory,
+                  },
+                )}
+                aria-hidden
+              />
+              {channel.name}
+            </span>
+            {hasCounter && (
+              <InfoToolip
+                text={
+                  hasCounterIssue
+                    ? "A couner in this channel requires your attention"
+                    : "Counters are enabled in this channel"
+                }
+              >
+                <div className="ml-auto">
+                  <div className="ml-2 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-primary">
+                    {hasCounterIssue && (
+                      <div className="absolute ml-auto inline-block h-2 w-2 animate-ping rounded-full bg-primary"></div>
+                    )}
+                  </div>
+                </div>
+              </InfoToolip>
+            )}
           </Link>
         </TooltipTrigger>
         {!isSupported && (
