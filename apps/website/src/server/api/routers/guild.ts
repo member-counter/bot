@@ -5,52 +5,70 @@ import { z } from "zod";
 import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
+import type { createTRPCContext } from "~/server/api/trpc";
 import { Errors } from "~/app/errors";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { createCaller } from "../root";
 
-async function getAuthUserGuildPermissions(
-  caller: ReturnType<typeof createCaller>,
-  guildId: string,
-  memberId: string,
+async function checkUserPermissions(
+  ctx: Awaited<ReturnType<typeof createTRPCContext>>,
+  input: { discordGuildId: string },
+  check: (perms: {
+    userPermissions: BitField;
+    userPermissionsInGuild: BitField;
+  }) => boolean,
 ) {
-  const permissions = await caller.discord
-    .getGuildMember({ guildId, memberId })
-    .then((member) => member.permissions)
+  if (!ctx.authUser)
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: Errors.NotAuthenticated,
+    });
+
+  const caller = createCaller(ctx);
+
+  const discordGuildId: string = input.discordGuildId;
+
+  const userPermissionsInGuild = await caller.discord
+    .getGuildMember({
+      guildId: discordGuildId,
+      memberId: ctx.authUser.discordUserId,
+    })
+    .then((member) => new BitField(member.permissions))
     .catch(async () => {
       const { userGuilds } = await caller.discord.userGuilds();
 
-      const guild = userGuilds.get(guildId);
+      const guild = userGuilds.get(discordGuildId);
 
-      return guild?.permissions;
+      return new BitField(guild?.permissions);
     });
 
-  return new BitField(BigInt(permissions ?? "0"));
+  const hasPermission = check({
+    userPermissions: ctx.authUser.permissions,
+    userPermissionsInGuild,
+  });
+
+  if (!hasPermission) {
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: Errors.NotAuthorized,
+    });
+  }
 }
 
 export const guildRouter = createTRPCRouter({
   get: protectedProcedure
     .input(z.object({ discordGuildId: z.string() }))
     .query(async ({ ctx, input }) => {
-      const userPermissions = ctx.authUser.permissions;
-      const userGuildpermissions = await getAuthUserGuildPermissions(
-        createCaller(ctx),
-        input.discordGuildId,
-        ctx.authUser.discordUserId,
+      await checkUserPermissions(
+        ctx,
+        input,
+        ({ userPermissions, userPermissionsInGuild }) =>
+          userPermissions.has(UserPermissions.SeeGuilds) ||
+          userPermissionsInGuild.any(
+            PermissionFlagsBits.Administrator |
+              PermissionFlagsBits.ManageChannels,
+          ),
       );
-
-      const hasPermission =
-        userPermissions.has(UserPermissions.SeeGuilds) ||
-        userGuildpermissions.any(
-          PermissionFlagsBits.Administrator |
-            PermissionFlagsBits.ManageChannels,
-        );
-
-      if (!hasPermission)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-          message: Errors.NotAuthorized,
-        });
 
       return await ctx.db.guild.findUnique({
         where: { discordGuildId: input.discordGuildId },
@@ -78,43 +96,24 @@ export const guildRouter = createTRPCRouter({
             digits: z.array(z.string()).min(10).max(10).optional(),
           })
           .optional(),
-        blocked: z.boolean().optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const userPermissions = ctx.authUser.permissions;
-      const userGuildpermissions = await getAuthUserGuildPermissions(
-        createCaller(ctx),
-        input.discordGuildId,
-        ctx.authUser.discordUserId,
+      await checkUserPermissions(
+        ctx,
+        input,
+        ({ userPermissions, userPermissionsInGuild }) =>
+          userPermissions.has(UserPermissions.ManageGuilds) ||
+          userPermissionsInGuild.any(
+            PermissionFlagsBits.Administrator |
+              PermissionFlagsBits.ManageChannels,
+          ),
       );
-
-      const hasPermission =
-        userPermissions.has(UserPermissions.ManageGuilds) ||
-        userGuildpermissions.any(
-          PermissionFlagsBits.Administrator |
-            PermissionFlagsBits.ManageChannels,
-        );
-
-      if (!hasPermission)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-          message: Errors.NotAuthorized,
-        });
-
-      const hasPermissionToBlock = userPermissions.has(
-        UserPermissions.ManageGuilds,
-      );
-
-      if (!hasPermissionToBlock && "blocked" in input)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-          message: Errors.NotAuthorized,
-        });
 
       return ctx.db.guild.update({
         where: { discordGuildId: input.discordGuildId },
         data: { formatSettings: input.formatSettings },
+        include: { channels: true },
       });
     }),
 
@@ -125,25 +124,17 @@ export const guildRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const userPermissions = ctx.authUser.permissions;
-      const userGuildpermissions = await getAuthUserGuildPermissions(
-        createCaller(ctx),
-        input.discordGuildId,
-        ctx.authUser.discordUserId,
+      await checkUserPermissions(
+        ctx,
+        input,
+        ({ userPermissions, userPermissionsInGuild }) =>
+          userPermissions.has(UserPermissions.ManageGuilds) ||
+          userPermissionsInGuild.any(PermissionFlagsBits.Administrator),
       );
-
-      const hasPermission =
-        userPermissions.has(UserPermissions.ManageGuilds) ||
-        userGuildpermissions.any(PermissionFlagsBits.Administrator);
-
-      if (!hasPermission)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-          message: Errors.NotAuthorized,
-        });
 
       await ctx.db.guild.delete({
         where: { discordGuildId: input.discordGuildId },
+        include: { channels: true },
       });
 
       await ctx.db.guild.create({
@@ -158,25 +149,16 @@ export const guildRouter = createTRPCRouter({
       }),
     )
     .query(async ({ ctx, input }) => {
-      const userPermissions = ctx.authUser.permissions;
-      const userGuildpermissions = await getAuthUserGuildPermissions(
-        createCaller(ctx),
-        input.discordGuildId,
-        ctx.authUser.discordUserId,
+      await checkUserPermissions(
+        ctx,
+        input,
+        ({ userPermissions, userPermissionsInGuild }) =>
+          userPermissions.has(UserPermissions.SeeGuilds) ||
+          userPermissionsInGuild.any(
+            PermissionFlagsBits.Administrator |
+              PermissionFlagsBits.ManageChannels,
+          ),
       );
-
-      const hasPermission =
-        userPermissions.has(UserPermissions.SeeGuilds) ||
-        userGuildpermissions.any(
-          PermissionFlagsBits.Administrator |
-            PermissionFlagsBits.ManageChannels,
-        );
-
-      if (!hasPermission)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-          message: Errors.NotAuthorized,
-        });
 
       return await ctx.db.blockedGuild.findUnique({
         where: { discordGuildId: input.discordGuildId },
@@ -192,15 +174,9 @@ export const guildRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const userPermissions = ctx.authUser.permissions;
-
-      const hasPermission = userPermissions.has(UserPermissions.ManageGuilds);
-
-      if (!hasPermission)
-        throw new TRPCError({
-          code: "UNAUTHORIZED",
-          message: Errors.NotAuthorized,
-        });
+      await checkUserPermissions(ctx, input, ({ userPermissions }) =>
+        userPermissions.has(UserPermissions.ManageGuilds),
+      );
 
       if (input.state) {
         await ctx.db.blockedGuild.create({
