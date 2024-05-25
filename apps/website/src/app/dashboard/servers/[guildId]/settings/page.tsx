@@ -36,10 +36,10 @@ export default function Page() {
   const { data: guildSettings } = api.guild.get.useQuery({
     discordGuildId: guildId,
   });
-
   const [isDirty, setIsDirty] = useState(false);
-  const [mutableGuildSettings, _setMutableGuildSettings] =
-    useState<typeof guildSettings>(guildSettings);
+  const [mutableGuildSettings, _setMutableGuildSettings] = useState<
+    typeof guildSettings
+  >(structuredClone(guildSettings));
 
   useConfirmOnLeave(isDirty);
 
