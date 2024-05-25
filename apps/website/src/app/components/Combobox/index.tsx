@@ -25,7 +25,7 @@ export interface Searchable {
 }
 
 export type ComboboxProps = {
-  ariaLabel?: string;
+  id?: string;
   className?: string;
   placeholder?: string;
   items: Searchable[];
@@ -49,7 +49,7 @@ export type ComboboxProps = {
 );
 
 export function Combobox({
-  ariaLabel,
+  id,
   className,
   placeholder = "Add...",
   allowSearchedItem = false,
@@ -95,8 +95,8 @@ export function Combobox({
     () => (
       <InputWrapper
         className={cn("justify-start px-3", "text-muted-foreground", className)}
-        role="combobox"
-        aria-label={ariaLabel}
+        role="button"
+        id={id}
         onClick={() => setOpen(true)}
         onKeyDown={(e) => ["Enter", " "].includes(e.key) && setOpen(true)}
         tabIndex={0}
@@ -115,7 +115,7 @@ export function Combobox({
       </InputWrapper>
     ),
     [
-      ariaLabel,
+      id,
       className,
       selectedItem,
       onSelectedItemRender,

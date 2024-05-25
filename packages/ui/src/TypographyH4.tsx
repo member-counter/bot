@@ -6,7 +6,7 @@ const TypographyH4 = React.forwardRef<
   HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h3
+  <h4
     ref={ref}
     className={cn(
       "mt-6 scroll-m-20 text-xl font-semibold tracking-tight",

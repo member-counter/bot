@@ -59,7 +59,7 @@ const Item = (props: ItemProps) => {
                       "ml-[-4px] h-[8px] w-[8px] rounded-r-[4px] bg-white",
                       "translate-x-[-3px] opacity-0",
                       {
-                        "group-hover:h-[20px] group-hover:translate-x-[0px] group-hover:opacity-100":
+                        "group-focus-within:h-[20px] group-focus-within:translate-x-[0px] group-focus-within:opacity-100 group-hover:h-[20px] group-hover:translate-x-[0px] group-hover:opacity-100":
                           !isSelected,
                         "h-[40px] translate-x-[0px] opacity-100": isSelected,
                       },
