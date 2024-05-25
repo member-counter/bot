@@ -21,8 +21,18 @@ export default function LayoutInner({
   const { guildId } = useParams<DashboardGuildParams>();
   const userPermissions = useContext(UserPermissionsContext);
 
+  // Fetch and prefetch some data
   const has = api.guild.has.useQuery({
     discordGuildId: guildId,
+  });
+  api.guild.get.useQuery({
+    discordGuildId: guildId,
+  });
+  api.guild.isBlocked.useQuery({
+    discordGuildId: guildId,
+  });
+  api.discord.getGuild.useQuery({
+    id: guildId,
   });
 
   return (

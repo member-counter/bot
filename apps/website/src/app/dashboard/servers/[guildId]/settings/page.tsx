@@ -33,12 +33,13 @@ export default function Page() {
   const userPermissions = useContext(UserPermissionsContext);
   const { guildId } = useParams<DashboardGuildParams>();
   const guildSettingsMutation = api.guild.update.useMutation();
-  const [guildSettings] = api.guild.get.useSuspenseQuery({
+  const { data: guildSettings } = api.guild.get.useQuery({
     discordGuildId: guildId,
   });
+
   const [isDirty, setIsDirty] = useState(false);
   const [mutableGuildSettings, _setMutableGuildSettings] =
-    useState<typeof guildSettings>(null);
+    useState<typeof guildSettings>(guildSettings);
 
   useConfirmOnLeave(isDirty);
 

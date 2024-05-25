@@ -3,7 +3,12 @@
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { loggerLink, unstable_httpBatchStreamLink } from "@trpc/client";
+import {
+  httpLink,
+  loggerLink,
+  splitLink,
+  unstable_httpBatchStreamLink,
+} from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import SuperJSON from "superjson";
 
@@ -41,6 +46,14 @@ export type RouterOutputs = inferRouterOutputs<AppRouter>;
 export function TRPCReactProvider(props: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
+  const url = getBaseUrl() + "/api/trpc";
+  const headers = () => {
+    const headers = new Headers();
+    headers.set("x-trpc-source", "nextjs-react");
+    return headers;
+  };
+  const transformer = SuperJSON;
+
   const [trpcClient] = useState(() =>
     api.createClient({
       links: [
@@ -49,14 +62,24 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
             env.NODE_ENV === "development" ||
             (op.direction === "down" && op.result instanceof Error),
         }),
-        unstable_httpBatchStreamLink({
-          transformer: SuperJSON,
-          url: getBaseUrl() + "/api/trpc",
-          headers: () => {
-            const headers = new Headers();
-            headers.set("x-trpc-source", "nextjs-react");
-            return headers;
+        splitLink({
+          condition(op) {
+            // Well known slow paths that will block other requests
+            if (["discord.userGuilds", "discord.getGuild"].includes(op.path))
+              return true;
+
+            return op.context.skipBatch === true;
           },
+          true: httpLink({
+            transformer,
+            url,
+            headers,
+          }),
+          false: unstable_httpBatchStreamLink({
+            transformer,
+            url,
+            headers,
+          }),
         }),
       ],
     }),
