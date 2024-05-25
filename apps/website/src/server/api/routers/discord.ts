@@ -13,18 +13,18 @@ export const discordRouter = createTRPCRouter({
   }),
   getUser: protectedProcedure
     .input(z.object({ id: z.string() }))
-    .query(async ({ input: { id } }) => {
+    .query(({ input: { id } }) => {
       return botDataExchangeConsumer.discord.getUser.query({ id });
     }),
   getGuild: protectedProcedure
     .input(z.object({ id: z.string() }))
-    .query(async ({ input: { id } }) => {
+    .query(({ input: { id } }) => {
       return botDataExchangeConsumer.discord.getGuild.query({ id });
     }),
 
   getGuildMember: protectedProcedure
     .input(z.object({ guildId: z.string(), memberId: z.string() }))
-    .query(async ({ input: { guildId, memberId } }) => {
+    .query(({ input: { guildId, memberId } }) => {
       return botDataExchangeConsumer.discord.getGuildMember.query({
         guildId,
         memberId,
