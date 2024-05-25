@@ -109,7 +109,7 @@ export default function AddDataSourcePanel({
         {suggestedItems.map(
           ({ icon: Icon, displayName, dataSource, description }, index) => (
             <Card
-              // TODO reconsider using combobox or focus when selected
+              // TODO use combobox for all this
               key={dataSource.id}
               className={cn([
                 "flex flex-row gap-3 p-3 hover:bg-foreground/10 focus:bg-foreground/10 focus:outline-none",

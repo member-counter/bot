@@ -10,7 +10,6 @@ export interface Searchable<T> {
   keywords: string[];
 }
 
-// TODO use combobox
 interface AutocompleteInputProps<T> {
   allowSearchedItem?: boolean;
   onAdd: (item: T | string) => void;
@@ -50,7 +49,6 @@ export default function AutocompleteInput<T>({
 
     const rankedItems = ranking
       .slice(0, suggestLimit)
-      // TODO limit them visually, and "scroll" them wiht arrow keys
       .map((index) => suggestableItems[index])
       .filter(Boolean);
 

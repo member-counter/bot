@@ -64,7 +64,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               "ml-[-72px] mr-[8px] sm:ml-[0] sm:mr-[0]": !isMenuOpen,
             },
           )}
-          classNameForItem={"bg-card hover:bg-primary"}
+          classNameForItem={"bg-card hover:bg-primary focus-within:bg-primary"}
           pre={[]}
           guilds={[...userGuildsQuery.data.userGuilds.values()].map(
             (guild) => ({
