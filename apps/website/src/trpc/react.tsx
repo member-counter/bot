@@ -4,7 +4,6 @@ import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  httpLink,
   loggerLink,
   splitLink,
   unstable_httpBatchStreamLink,
@@ -68,9 +67,9 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
             if (["discord.userGuilds", "discord.getGuild"].includes(op.path))
               return true;
 
-            return op.context.skipBatch === true;
+            return op.context.useSlowLink === true;
           },
-          true: httpLink({
+          true: unstable_httpBatchStreamLink({
             transformer,
             url,
             headers,

@@ -81,6 +81,7 @@ export function ChannelNavItem(channel: {
                 "hover:bg-accent": isSupported && !isCategory,
               },
             )}
+            prefetch={true}
           >
             <span
               className={cn(

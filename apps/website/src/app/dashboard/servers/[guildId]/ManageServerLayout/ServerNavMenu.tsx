@@ -25,7 +25,7 @@ export function ServerNavMenu({ className }: { className?: string }) {
     [guild.data?.channels],
   );
 
-  // TODO display saved channels if the discord channels are unable to load
+  // TODO show a Uknown channels link to visit saved channels if the discord channels are unable to load
 
   return (
     <nav
@@ -51,6 +51,7 @@ export function ServerNavMenu({ className }: { className?: string }) {
           className="ml-auto mr-1"
           aria-hidden
           tabIndex={-1}
+          prefetch={true}
         >
           <Button
             aria-label="Server settings"
