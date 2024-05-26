@@ -3,7 +3,7 @@
 import type { Grammar } from "prismjs";
 import type { ReactNode } from "react";
 import type { Descendant } from "slate";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Slate } from "slate-react";
 import { v4 } from "uuid";
 
@@ -12,12 +12,11 @@ import { TemplateEditorContext } from "./TemplateEditorContext";
 import {
   buildEditor,
   defaultInitialEditorValue,
-  setNodesValue,
   useDataSourceReducer,
 } from "./utils";
 
 export default function TemplateEditor({
-  value = {
+  initialValue = {
     nodes: defaultInitialEditorValue,
     dataSourceRefs: new Map(),
   },
@@ -25,7 +24,7 @@ export default function TemplateEditor({
   features,
   children,
 }: {
-  value?: { nodes: Descendant[]; dataSourceRefs: DataSourceRefs };
+  initialValue?: { nodes: Descendant[]; dataSourceRefs: DataSourceRefs };
   onChange?: (nodes: Descendant[], dataSourceRefs: DataSourceRefs) => void;
   readAgainInitialValue?: number;
   features: Grammar;
@@ -33,18 +32,10 @@ export default function TemplateEditor({
 }): JSX.Element {
   const [editor] = useState(buildEditor(features));
 
-  // Data source handling
+  // // Data source handling
   const [dataSourceRefs, setDataSourceRef] = useDataSourceReducer(
-    value.dataSourceRefs,
+    initialValue.dataSourceRefs,
   );
-
-  useEffect(() => {
-    setNodesValue(editor, value.nodes);
-    dataSourceRefs.clear();
-    value.dataSourceRefs.forEach((dataSourceRef, dataSourceRefId) =>
-      setDataSourceRef([dataSourceRefId, dataSourceRef]),
-    );
-  }, [dataSourceRefs, editor, setDataSourceRef, value]);
 
   const [editingDataSourceRefId, setEditingDataSourceRefId] =
     useState<DataSourceRefId | null>(null);
@@ -96,7 +87,7 @@ export default function TemplateEditor({
   return (
     <Slate
       editor={editor}
-      initialValue={value.nodes}
+      initialValue={initialValue.nodes}
       onChange={(value) => onChange?.(value, dataSourceRefs)}
     >
       <TemplateEditorContext.Provider value={contextValue}>
