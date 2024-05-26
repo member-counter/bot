@@ -3,6 +3,7 @@ import { PermissionFlagsBits } from "discord-api-types/v10";
 import { z } from "zod";
 
 import { BitField } from "@mc/common/BitField";
+import { getChannelLogs } from "@mc/common/redis/ChannelLogs";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
 import type { createTRPCContext } from "~/server/api/trpc";
@@ -25,8 +26,7 @@ async function checkUserPermissions(
     });
 
   const caller = createCaller(ctx);
-
-  const discordGuildId: string = input.discordGuildId;
+  const { discordGuildId } = input;
 
   const userPermissionsInGuild = await caller.discord
     .getGuildMember({
@@ -87,7 +87,6 @@ export const guildRouter = createTRPCRouter({
   update: protectedProcedure
     .input(
       z.object({
-        id: z.string(),
         discordGuildId: z.string(),
         formatSettings: z
           .object({
@@ -191,4 +190,162 @@ export const guildRouter = createTRPCRouter({
         });
       }
     }),
+
+  channels: createTRPCRouter({
+    get: protectedProcedure
+      .input(
+        z.object({ discordChannelId: z.string(), discordGuildId: z.string() }),
+      )
+      .query(async ({ ctx, input: { discordChannelId, discordGuildId } }) => {
+        await checkUserPermissions(
+          ctx,
+          { discordGuildId },
+          ({ userPermissions, userPermissionsInGuild }) =>
+            userPermissions.has(UserPermissions.SeeGuilds) ||
+            userPermissionsInGuild.any(
+              PermissionFlagsBits.Administrator |
+                PermissionFlagsBits.ManageChannels,
+            ),
+        );
+
+        return await ctx.db.channel.upsert({
+          create: { discordChannelId, discordGuildId },
+          update: {},
+          where: { discordChannelId, discordGuildId },
+        });
+      }),
+
+    getAll: protectedProcedure
+      .input(z.object({ discordGuildId: z.string() }))
+      .query(async ({ ctx, input: { discordGuildId } }) => {
+        await checkUserPermissions(
+          ctx,
+          { discordGuildId },
+          ({ userPermissions, userPermissionsInGuild }) =>
+            userPermissions.has(UserPermissions.SeeGuilds) ||
+            userPermissionsInGuild.any(
+              PermissionFlagsBits.Administrator |
+                PermissionFlagsBits.ManageChannels,
+            ),
+        );
+
+        return await ctx.db.channel
+          .findMany({
+            where: { discordGuildId },
+          })
+          .then((channels) => ({
+            channels: new Map(
+              channels.map((channel) => [channel.discordChannelId, channel]),
+            ),
+          }));
+      }),
+
+    update: protectedProcedure
+      .input(
+        z.object({
+          discordChannelId: z.string(),
+          discordGuildId: z.string(),
+          template: z.string().optional(),
+          isTemplateEnabled: z.boolean().optional(),
+        }),
+      )
+      .mutation(async ({ ctx, input }) => {
+        await checkUserPermissions(
+          ctx,
+          input,
+          ({ userPermissions, userPermissionsInGuild }) =>
+            userPermissions.has(UserPermissions.ManageGuilds) ||
+            userPermissionsInGuild.any(
+              PermissionFlagsBits.Administrator |
+                PermissionFlagsBits.ManageChannels,
+            ),
+        );
+
+        const { discordChannelId, discordGuildId } = input;
+
+        return await ctx.db.channel.upsert({
+          create: input,
+          update: input,
+          where: { discordChannelId, discordGuildId },
+        });
+      }),
+
+    delete: protectedProcedure
+      .input(
+        z.object({
+          discordChannelId: z.string(),
+          discordGuildId: z.string(),
+        }),
+      )
+      .mutation(
+        async ({ ctx, input: { discordChannelId, discordGuildId } }) => {
+          await checkUserPermissions(
+            ctx,
+            { discordGuildId },
+            ({ userPermissions, userPermissionsInGuild }) =>
+              userPermissions.has(UserPermissions.ManageGuilds) ||
+              userPermissionsInGuild.any(PermissionFlagsBits.Administrator),
+          );
+
+          await ctx.db.channel.delete({
+            where: { discordChannelId },
+          });
+        },
+      ),
+
+    getLogs: protectedProcedure
+      .input(
+        z.object({ discordChannelId: z.string(), discordGuildId: z.string() }),
+      )
+      .query(async ({ ctx, input: { discordChannelId, discordGuildId } }) => {
+        await checkUserPermissions(
+          ctx,
+          { discordGuildId },
+          ({ userPermissions, userPermissionsInGuild }) =>
+            userPermissions.has(UserPermissions.SeeGuilds) ||
+            userPermissionsInGuild.any(
+              PermissionFlagsBits.Administrator |
+                PermissionFlagsBits.ManageChannels,
+            ),
+        );
+
+        return await getChannelLogs(ctx.redis, discordChannelId);
+      }),
+
+    getAllLogs: protectedProcedure
+      .input(z.object({ discordGuildId: z.string() }))
+      .query(async ({ ctx, input: { discordGuildId } }) => {
+        await checkUserPermissions(
+          ctx,
+          { discordGuildId },
+          ({ userPermissions, userPermissionsInGuild }) =>
+            userPermissions.has(UserPermissions.SeeGuilds) ||
+            userPermissionsInGuild.any(
+              PermissionFlagsBits.Administrator |
+                PermissionFlagsBits.ManageChannels,
+            ),
+        );
+
+        const { channels } = await ctx.db.guild.findUniqueOrThrow({
+          where: { discordGuildId },
+          select: { channels: { select: { discordChannelId: true } } },
+        });
+
+        const channelLogs = await Promise.all(
+          channels.map(async ({ discordChannelId }) => ({
+            discordChannelId,
+            logs: await getChannelLogs(ctx.redis, discordChannelId),
+          })),
+        );
+
+        const channelLogsMap = new Map(
+          channelLogs.map(({ discordChannelId, logs }) => [
+            discordChannelId,
+            logs,
+          ]),
+        );
+
+        return { channelLogs: channelLogsMap };
+      }),
+  }),
 });

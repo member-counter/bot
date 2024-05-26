@@ -12,6 +12,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { BitField } from "@mc/common/BitField";
+import { redis } from "@mc/redis";
 
 import { getSession } from "~/app/api/sessionCookie";
 import { Errors } from "~/app/errors";
@@ -48,6 +49,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
 
   return {
     ...opts,
+    redis,
     db,
     session,
     authUser,

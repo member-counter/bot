@@ -21,6 +21,7 @@ model Guild {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
   discordGuildId String         @unique
   language       String         @default("en-US")
+  channels       Channel[]
   formatSettings FormatSettings
 }
 
@@ -34,4 +35,15 @@ model BlockedGuild {
   id             String @id @default(auto()) @map("_id") @db.ObjectId
   discordGuildId String @unique
   reason         String
+}
+
+model Channel {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  discordChannelId  String  @unique
+  template          String  @default("")
+  isTemplateEnabled Boolean @default(false)
+  discordGuildId    String
+  guild             Guild   @relation(fields: [discordGuildId], references: [discordGuildId], onDelete: Cascade)
+
+  @@unique([discordChannelId, discordGuildId])
 }

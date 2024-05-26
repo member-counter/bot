@@ -8,7 +8,7 @@ import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
 import { Skeleton } from "@mc/ui/skeleton";
 
-import type { DashboardGuildChannelParams } from "../[channelId]/page";
+import type { DashboardGuildChannelParams } from "../[channelId]/layout";
 import { MenuContext } from "~/app/dashboard/layout";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";

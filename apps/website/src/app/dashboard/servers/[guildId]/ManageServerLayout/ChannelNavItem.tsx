@@ -15,7 +15,7 @@ import {
   TooltipTrigger,
 } from "@mc/ui/tooltip";
 
-import type { DashboardGuildParams } from "../layout";
+import type { DashboardGuildChannelParams } from "../[channelId]/layout";
 import { InfoToolip } from "~/app/components/InfoTooltip";
 import { MenuContext } from "~/app/dashboard/layout";
 import { Routes } from "~/other/routes";
@@ -29,8 +29,14 @@ export function ChannelNavItem(channel: {
   everyonePermissions: string;
 }) {
   const menuContext = useContext(MenuContext);
-  const { guildId, channelId } = useParams<DashboardGuildParams>();
+  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
+  const guildSettingsChannels = api.guild.channels.getAll.useQuery({
+    discordGuildId: guildId,
+  });
+  const channelsLogs = api.guild.channels.getAllLogs.useQuery({
+    discordGuildId: guildId,
+  });
 
   const isSelected = channelId === channel.id;
   const isSupported = [
@@ -53,9 +59,12 @@ export function ChannelNavItem(channel: {
   Icon ??= ChannelIconMap[channel.type];
   Icon ??= HelpCircleIcon;
 
-  // TODO underline the channel name if it has a counter
-  const hasCounter = false;
-  const hasCounterIssue = false;
+  const hasCounter = guildSettingsChannels.data?.channels.get(
+    channel.id,
+  )?.isTemplateEnabled;
+
+  const hasCounterIssue = !!channelsLogs.data?.channelLogs.get(channel.id)
+    ?.lastTemplateComputeError;
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -104,15 +113,21 @@ export function ChannelNavItem(channel: {
               <InfoToolip
                 text={
                   hasCounterIssue
-                    ? "A couner in this channel requires your attention"
+                    ? "A counter in this channel requires your attention"
                     : "Counters are enabled in this channel"
                 }
               >
                 <div className="ml-auto">
-                  <div className="ml-2 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-primary">
-                    {hasCounterIssue && (
-                      <div className="absolute ml-auto inline-block h-2 w-2 animate-ping rounded-full bg-primary"></div>
-                    )}
+                  <div
+                    className="relative ml-2  h-2 w-2 flex-shrink-0 rounded-full bg-primary"
+                    tabIndex={0}
+                  >
+                    <div
+                      className={cn(
+                        "absolute h-full w-full rounded-full bg-primary",
+                        hasCounterIssue && "animate-ping",
+                      )}
+                    ></div>
                   </div>
                 </div>
               </InfoToolip>

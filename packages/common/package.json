@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "discord-api-types": "^0.37.83",
-    "discord.js": "^14.15.2"
+    "discord.js": "^14.15.2",
+    "ioredis": "^5.4.1"
   },
   "devDependencies": {
     "@mc/eslint-config": "workspace:*",

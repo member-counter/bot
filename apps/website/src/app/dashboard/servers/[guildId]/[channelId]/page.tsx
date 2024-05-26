@@ -1,55 +1,103 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
-import { ChannelType } from "discord-api-types/v10";
-import { BookTextIcon, FolderIcon, HelpCircleIcon } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { SaveIcon } from "lucide-react";
 
+import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
 
-import type { DashboardGuildParams } from "../layout";
+import type { DashboardGuildChannelParams } from "./layout";
+import useConfirmOnLeave from "~/hooks/useConfirmOnLeave";
 import { api } from "~/trpc/react";
-import { MenuButton } from "../../../MenuButton";
-import { ChannelIconMap, ChannelLabelMap } from "../ChannelMaps";
+import { LoadingPage } from "../LoadingPage";
+import { UserPermissionsContext } from "../UserPermissionsContext";
+import { EditTemplate } from "./sections/EditTemplate";
+import { EnableTemplate } from "./sections/EnableTemplate";
 
-export type DashboardGuildChannelParams = {
-  channelId: string;
-} & DashboardGuildParams;
+export default function Page() {
+  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  const trpcUtils = api.useUtils();
+  const userPermissions = useContext(UserPermissionsContext);
+  const [isDirty, setIsDirty] = useState(false);
 
-interface Props {
-  params: DashboardGuildChannelParams;
-}
+  const { data: channelSettings } = api.guild.channels.get.useQuery({
+    discordGuildId: guildId,
+    discordChannelId: channelId,
+  });
+  const [mutableChannelSettings, _setMutableChannelSettings] = useState(
+    structuredClone(channelSettings),
+  );
+  const channelSettingsMutation = api.guild.channels.update.useMutation({
+    onSuccess() {
+      void trpcUtils.guild.invalidate();
+    },
+  });
 
-export default function Page(props: Props) {
-  const { channelId, guildId } = props.params;
-  const guild = api.discord.getGuild.useQuery({ id: guildId });
+  useConfirmOnLeave(isDirty);
 
-  if (!guild.data) return;
+  useEffect(() => {
+    if (!channelSettings) return;
+    if (isDirty) return;
+    _setMutableChannelSettings(structuredClone(channelSettings));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channelSettings]);
 
-  const channel = guild.data.channels.get(channelId);
+  if (!mutableChannelSettings) return <LoadingPage />;
 
-  if (!channel) return; // TODO handle the case where the channel doesn't exist but we still have data about it
+  const setMutableGuildSettings = (value: typeof channelSettings) => {
+    _setMutableChannelSettings(value);
+    setIsDirty(true);
+  };
 
-  let Icon: LucideIcon | undefined = ChannelIconMap[channel.type];
-  if (channel.type === ChannelType.GuildCategory) Icon = FolderIcon;
-  if (channel.id === guild.data.rulesChannelId) Icon = BookTextIcon;
-  Icon ??= HelpCircleIcon;
+  const save = async () => {
+    _setMutableChannelSettings(
+      await channelSettingsMutation.mutateAsync({
+        ...mutableChannelSettings,
+      }),
+    );
+    setIsDirty(false);
+  };
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex h-[48px] w-full flex-shrink-0 flex-row items-center pl-3 pr-1 font-semibold">
-        <Icon
-          className="mr-3 h-5 w-5"
-          aria-label={ChannelLabelMap[channel.type]}
-        />
-        <h1 aria-label={`${guild.data.name}: ${channel.name}`}>
-          {channel.name}
-        </h1>
-        <MenuButton />
+    <form
+      action={save}
+      className="m-auto flex h-full max-w-[600px] flex-col gap-3"
+    >
+      <EnableTemplate
+        disabled={!userPermissions.canModify}
+        value={mutableChannelSettings.isTemplateEnabled}
+        onChange={(value) =>
+          setMutableGuildSettings({
+            ...mutableChannelSettings,
+            isTemplateEnabled: value,
+          })
+        }
+      />
+      <Separator />
+      <EditTemplate
+        disabled={!userPermissions.canModify}
+        value={mutableChannelSettings.template}
+        onChange={(value) =>
+          setMutableGuildSettings({
+            ...mutableChannelSettings,
+            template: value,
+          })
+        }
+      />
+      <div className="mt-auto flex flex-col justify-between gap-3 sm:flex-row-reverse">
+        <Button
+          icon={SaveIcon}
+          type="submit"
+          disabled={
+            !userPermissions.canModify ||
+            !isDirty ||
+            channelSettingsMutation.isPending
+          }
+        >
+          {isDirty ? "Save" : "Saved"}
+        </Button>
       </div>
-      <Separator orientation="horizontal" />
-      <div className="grow overflow-hidden">
-        <div className="h-full overflow-auto p-3"></div>
-      </div>
-    </div>
+    </form>
   );
 }
