@@ -6,12 +6,18 @@ import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 import DataSourceFormatDigitInput from "../../TemplateEditor/DataSource/Format/DataSourceFormatDigitInput";
 
 interface Props {
+  readyToInitiate: boolean;
   value: string[];
   onChange: (value: string[]) => void;
   disabled: boolean;
 }
 
-export function CustomDigits({ value, onChange, disabled }: Props) {
+export function CustomDigits({
+  value,
+  onChange,
+  disabled,
+  readyToInitiate,
+}: Props) {
   return (
     <div className="flex flex-col gap-3">
       <Label>Custom digits</Label>{" "}
@@ -39,21 +45,22 @@ export function CustomDigits({ value, onChange, disabled }: Props) {
         nobody using a screen reader will have access to any counter.
       </p>
       <div className="grid grid-cols-3 gap-1.5">
-        {new Array(10).fill("").map((_, i) => {
-          return (
-            <DataSourceFormatDigitInput
-              key={i}
-              className={cn({ "col-span-3": i === 0 })}
-              value={value[i] || i.toString()}
-              onChange={(digit) => {
-                value[i] = digit || i.toString();
-                onChange(value);
-              }}
-              digitNumber={i}
-              disabled={disabled}
-            />
-          );
-        })}
+        {readyToInitiate &&
+          new Array(10).fill("").map((_, i) => {
+            return (
+              <DataSourceFormatDigitInput
+                key={i}
+                className={cn({ "col-span-3": i === 0 })}
+                value={value[i] || i.toString()}
+                onChange={(digit) => {
+                  value[i] = digit || i.toString();
+                  onChange(value);
+                }}
+                digitNumber={i}
+                disabled={disabled}
+              />
+            );
+          })}
       </div>
     </div>
   );

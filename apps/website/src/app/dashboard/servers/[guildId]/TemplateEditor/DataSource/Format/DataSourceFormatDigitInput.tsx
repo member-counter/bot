@@ -1,5 +1,4 @@
-import type { Descendant } from "slate";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { ReactEditor, useSlateStatic } from "slate-react";
 
 import { InputWrapper } from "@mc/ui/InputWrapper";
@@ -17,12 +16,10 @@ const features = discordChannelTopic;
 function DataSourceFormatDigitInputInner({
   className,
   digitNumber,
-  onBlur,
   disabled,
 }: {
   digitNumber: number;
   className?: string;
-  onBlur: () => void;
   disabled?: boolean;
 }) {
   const editor = useSlateStatic();
@@ -37,7 +34,6 @@ function DataSourceFormatDigitInputInner({
         disabled={disabled}
         placeholder={digitNumber.toString()}
         aria-label={`Custom digit ${digitNumber}`}
-        onBlur={onBlur}
         tabIndex={0}
         className="flex-grow overflow-hidden [&>*]:whitespace-pre"
       />
@@ -59,23 +55,17 @@ export default function DataSourceFormatDigitInput({
   onChange: (digit: string) => void;
   disabled?: boolean;
 }) {
-  const [nodes, setNodes] = useState<Descendant[]>([]);
   const deseriaizedValue = useMemo(() => deserialize(value, features), [value]);
 
   return (
     <TemplateEditor
       features={features}
-      value={deseriaizedValue}
-      onChange={(nodes) => setNodes(nodes)}
+      initialValue={deseriaizedValue}
+      onChange={(nodes) => onChange(serialize(nodes, features))}
     >
       <DataSourceFormatDigitInputInner
         className={className}
         digitNumber={digitNumber}
-        onBlur={() => {
-          const serialized = serialize(nodes, features);
-          if (serialized === value) return;
-          onChange(serialized);
-        }}
         disabled={disabled}
       />
     </TemplateEditor>

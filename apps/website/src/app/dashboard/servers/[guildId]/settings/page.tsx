@@ -23,7 +23,7 @@ export default function Page() {
   const userPermissions = useContext(UserPermissionsContext);
   const { guildId } = useParams<DashboardGuildParams>();
   const guildSettingsMutation = api.guild.update.useMutation();
-  const { data: guildSettings } = api.guild.get.useQuery({
+  const [guildSettings, guildSettingsQuery] = api.guild.get.useSuspenseQuery({
     discordGuildId: guildId,
   });
   const [isDirty, setIsDirty] = useState(false);
@@ -91,6 +91,7 @@ export default function Page() {
       />
       <Separator />
       <CustomDigits
+        readyToInitiate={guildSettingsQuery.isSuccess}
         value={mutableGuildSettings.formatSettings.digits}
         onChange={(digits) =>
           setMutableGuildSettings({
