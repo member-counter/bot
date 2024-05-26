@@ -35,6 +35,7 @@ export type ComboboxProps = {
     item: string;
     onRemoveRequest?: () => void;
   }) => ReactNode;
+  disabled?: boolean;
 } & (
   | {
       allowEmpty: true;
@@ -59,6 +60,7 @@ export function Combobox({
   onItemSelect,
   onItemRender,
   onSelectedItemRender,
+  disabled,
 }: ComboboxProps) {
   const [open, setOpen] = useState(false);
   const isDesktop = useBreakpoint("md");
@@ -97,9 +99,13 @@ export function Combobox({
         className={cn("justify-start px-3", "text-muted-foreground", className)}
         role="button"
         id={id}
-        onClick={() => setOpen(true)}
-        onKeyDown={(e) => ["Enter", " "].includes(e.key) && setOpen(true)}
-        tabIndex={0}
+        onClick={() => !disabled && setOpen(true)}
+        onKeyDown={(e) =>
+          ["Enter", " "].includes(e.key) && !disabled && setOpen(true)
+        }
+        tabIndex={disabled ? -1 : 0}
+        aria-disabled={disabled}
+        disabled={disabled}
       >
         {selectedItem ? (
           onSelectedItemRender({
@@ -122,6 +128,7 @@ export function Combobox({
       allowEmpty,
       placeholder,
       onItemSelect,
+      disabled,
     ],
   );
 
@@ -203,7 +210,7 @@ export function Combobox({
 
   if (isDesktop) {
     return (
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={!disabled && open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>{selectedItemRendered}</PopoverTrigger>
         <PopoverContent
           className="mt-[-48px] p-0"
@@ -216,7 +223,7 @@ export function Combobox({
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={!disabled && open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>{selectedItemRendered}</DrawerTrigger>
       <DrawerContent className="bg-popover">{cmdRendered}</DrawerContent>
     </Drawer>
