@@ -6,9 +6,9 @@ import { InputWrapper } from "@mc/ui/InputWrapper";
 
 import { EmojiPicker } from "../../Emoji/EmojiPicker";
 import { HoveringToolbar } from "../../Marks/HoveringToolbar";
-import { discordChannelTopic } from "../../serialization/deserialization/grammar/sets/discordChannelTopic";
-import { deserialize } from "../../serialization/deserialize";
-import { serialize } from "../../serialization/serialize";
+import { discordChannelTopic } from "../../serde/deserialization/grammar/sets/discordChannelTopic";
+import { deserialize } from "../../serde/deserialize";
+import { serialize } from "../../serde/serialize";
 import TemplateEditor from "../../TemplateEditor";
 import TemplateEditorInput from "../../TemplateEditorInput";
 

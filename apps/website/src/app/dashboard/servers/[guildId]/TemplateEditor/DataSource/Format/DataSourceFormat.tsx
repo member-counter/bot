@@ -131,7 +131,7 @@ export default function DataSourceFormat({
                 <DataSourceFormatDigitInput
                   key={i}
                   className={cn({ "col-span-3": i === 0 })}
-                  initialValue={format.digits?.[i] ?? ""}
+                  value={format.digits?.[i] ?? ""}
                   onChange={(digit) => {
                     const digits: (string | null)[] = format.digits ?? [];
                     digits[i] = digit || null;
