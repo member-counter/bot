@@ -28,6 +28,8 @@ export enum TemplateEditorPanel {
   EDIT,
 }
 
+// TODO remove this file
+
 export default function ChannelTopicEditorDesktopLayout(): JSX.Element {
   const editor = useSlateStatic();
   const {
