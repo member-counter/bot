@@ -10,7 +10,7 @@ import { spoilerGrammar } from "../spoiler";
 import { strikeGrammar } from "../strike";
 import { underlineGrammar } from "../underline";
 
-export const discordChannelTopicMarkdown: Grammar = applyRecursivePatterns({
+export const discordChannelTopic: Grammar = applyRecursivePatterns({
   ...boldGrammar,
   ...italicGrammar,
   ...strikeGrammar,

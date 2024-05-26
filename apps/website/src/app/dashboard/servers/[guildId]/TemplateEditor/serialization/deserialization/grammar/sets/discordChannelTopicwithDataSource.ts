@@ -2,10 +2,10 @@ import type { Grammar } from "prismjs";
 
 import { applyRecursivePatterns } from "../../applyRecursivePatterns";
 import { dataSourceGrammar } from "../dataSource";
-import { discordChannelTopicMarkdown } from "./discordChannelTopicMarkdown";
+import { discordChannelTopic } from "./discordChannelTopic";
 
-export const discordChannelTopicMarkdownWithDataSource: Grammar =
+export const discordChannelTopicWithDataSource: Grammar =
   applyRecursivePatterns({
-    ...discordChannelTopicMarkdown,
+    ...discordChannelTopic,
     ...dataSourceGrammar,
   });

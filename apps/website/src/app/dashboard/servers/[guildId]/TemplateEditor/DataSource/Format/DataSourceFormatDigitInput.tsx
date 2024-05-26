@@ -6,32 +6,37 @@ import { InputWrapper } from "@mc/ui/InputWrapper";
 
 import { EmojiPicker } from "../../Emoji/EmojiPicker";
 import { HoveringToolbar } from "../../Marks/HoveringToolbar";
-import { discordChannelTopicMarkdown } from "../../serialization/deserialization/grammar/sets/discordChannelTopicMarkdown";
+import { discordChannelTopic } from "../../serialization/deserialization/grammar/sets/discordChannelTopic";
 import { deserialize } from "../../serialization/deserialize";
 import { serialize } from "../../serialization/serialize";
 import TemplateEditor from "../../TemplateEditor";
 import TemplateEditorInput from "../../TemplateEditorInput";
 
-const features = discordChannelTopicMarkdown;
+const features = discordChannelTopic;
 
 function DataSourceFormatDigitInputInner({
   className,
   digitNumber,
   onBlur,
+  disabled,
 }: {
   digitNumber: number;
   className?: string;
   onBlur: () => void;
+  disabled?: boolean;
 }) {
   const editor = useSlateStatic();
 
   return (
-    <InputWrapper className={className}>
+    <InputWrapper
+      className={className}
+      onClick={() => ReactEditor.focus(editor)}
+    >
       <HoveringToolbar />
       <TemplateEditorInput
+        disabled={disabled}
         placeholder={digitNumber.toString()}
         aria-label={`Custom digit ${digitNumber}`}
-        onClick={() => ReactEditor.focus(editor)}
         onBlur={onBlur}
         tabIndex={0}
         className="flex-grow overflow-hidden [&>*]:whitespace-nowrap"
@@ -44,33 +49,34 @@ function DataSourceFormatDigitInputInner({
 export default function DataSourceFormatDigitInput({
   className,
   digitNumber,
-  initialValue,
+  value,
   onChange,
-  readAgainInitialValue,
+  disabled,
 }: {
   className?: string;
   digitNumber: number;
-  initialValue: string;
+  value: string;
   onChange: (digit: string) => void;
-  readAgainInitialValue?: number;
+  disabled?: boolean;
 }) {
-  const [value, setValue] = useState<Descendant[]>([]);
-  const deseriaizedInitialValue = useMemo(
-    () => deserialize(initialValue, features),
-    [initialValue],
-  );
+  const [nodes, setNodes] = useState<Descendant[]>([]);
+  const deseriaizedValue = useMemo(() => deserialize(value, features), [value]);
 
   return (
     <TemplateEditor
       features={features}
-      initialValue={deseriaizedInitialValue}
-      readAgainInitialValue={readAgainInitialValue}
-      onChange={(nodes) => setValue(nodes)}
+      value={deseriaizedValue}
+      onChange={(nodes) => setNodes(nodes)}
     >
       <DataSourceFormatDigitInputInner
         className={className}
         digitNumber={digitNumber}
-        onBlur={() => onChange(serialize(value, features))}
+        onBlur={() => {
+          const serialized = serialize(nodes, features);
+          if (serialized === value) return;
+          onChange(serialized);
+        }}
+        disabled={disabled}
       />
     </TemplateEditor>
   );

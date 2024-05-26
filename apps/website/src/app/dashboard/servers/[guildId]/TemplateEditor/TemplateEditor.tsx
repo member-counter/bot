@@ -17,16 +17,15 @@ import {
 } from "./utils";
 
 export default function TemplateEditor({
-  initialValue = {
+  value = {
     nodes: defaultInitialEditorValue,
     dataSourceRefs: new Map(),
   },
   onChange,
-  readAgainInitialValue,
   features,
   children,
 }: {
-  initialValue?: { nodes: Descendant[]; dataSourceRefs: DataSourceRefs };
+  value?: { nodes: Descendant[]; dataSourceRefs: DataSourceRefs };
   onChange?: (nodes: Descendant[], dataSourceRefs: DataSourceRefs) => void;
   readAgainInitialValue?: number;
   features: Grammar;
@@ -36,17 +35,16 @@ export default function TemplateEditor({
 
   // Data source handling
   const [dataSourceRefs, setDataSourceRef] = useDataSourceReducer(
-    initialValue.dataSourceRefs,
+    value.dataSourceRefs,
   );
 
   useEffect(() => {
-    setNodesValue(editor, initialValue.nodes);
+    setNodesValue(editor, value.nodes);
     dataSourceRefs.clear();
-    initialValue.dataSourceRefs.forEach((dataSourceRef, dataSourceRefId) =>
+    value.dataSourceRefs.forEach((dataSourceRef, dataSourceRefId) =>
       setDataSourceRef([dataSourceRefId, dataSourceRef]),
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [readAgainInitialValue]);
+  }, [dataSourceRefs, editor, setDataSourceRef, value]);
 
   const [editingDataSourceRefId, setEditingDataSourceRefId] =
     useState<DataSourceRefId | null>(null);
@@ -98,7 +96,7 @@ export default function TemplateEditor({
   return (
     <Slate
       editor={editor}
-      initialValue={initialValue.nodes}
+      initialValue={value.nodes}
       onChange={(value) => onChange?.(value, dataSourceRefs)}
     >
       <TemplateEditorContext.Provider value={contextValue}>
