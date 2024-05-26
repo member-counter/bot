@@ -26,7 +26,6 @@ export default function TemplateEditor({
 }: {
   initialValue?: { nodes: Descendant[]; dataSourceRefs: DataSourceRefs };
   onChange?: (nodes: Descendant[], dataSourceRefs: DataSourceRefs) => void;
-  readAgainInitialValue?: number;
   features: Grammar;
   children: ReactNode;
 }): JSX.Element {
