@@ -72,7 +72,7 @@ export const HoveringToolbar = () => {
       <div
         ref={ref}
         className={cn(
-          "absolute left-[-10000px] top-[-10000px] z-50 mt-[-6px] flex flex-row rounded-md border bg-background opacity-0 transition-opacity",
+          "absolute left-[-10000px] top-[-10000px] z-50 mt-[-6px] flex flex-row overflow-hidden rounded-md border bg-background opacity-0 transition-opacity",
         )}
         onMouseDown={(e) => {
           // prevent toolbar from taking focus away from editor
