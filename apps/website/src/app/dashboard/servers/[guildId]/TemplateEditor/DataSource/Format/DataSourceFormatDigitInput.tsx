@@ -39,7 +39,7 @@ function DataSourceFormatDigitInputInner({
         aria-label={`Custom digit ${digitNumber}`}
         onBlur={onBlur}
         tabIndex={0}
-        className="flex-grow overflow-hidden [&>*]:whitespace-nowrap"
+        className="flex-grow overflow-hidden [&>*]:whitespace-pre"
       />
       <EmojiPicker className="relative right-[-10px] top-[-5px] h-[33px] rounded-[4px] px-[9px] text-muted-foreground hover:bg-transparent" />
     </InputWrapper>
