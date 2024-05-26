@@ -1,4 +1,3 @@
-import type { PropsWithChildren } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { HashIcon } from "lucide-react";
@@ -20,7 +19,10 @@ enum SearchType {
   Channel,
 }
 
-export function MentionSuggestions(props: PropsWithChildren) {
+export function MentionSuggestions(props: {
+  enabled: boolean;
+  children: React.ReactNode;
+}) {
   const { guildId } = useParams<DashboardGuildParams>();
   const suggestionBoxRef = useRef<HTMLDivElement>(null);
   const editor = useSlate();
@@ -141,6 +143,7 @@ export function MentionSuggestions(props: PropsWithChildren) {
     }
   }, [suggestedItems.length, editor, selectedItemIndex, search, range]);
 
+  if (!props.enabled) return <>{props.children}</>;
   return (
     <div onKeyDown={onKeyDown}>
       {props.children}
@@ -148,7 +151,7 @@ export function MentionSuggestions(props: PropsWithChildren) {
         <div
           ref={suggestionBoxRef}
           className={
-            "absolute left-[-10000px] top-[-10000px] z-50 m-1 flex flex-col rounded-md border bg-background opacity-0 transition-opacity"
+            "absolute left-[-10000px] top-[-10000px] z-50 m-1 flex flex-col gap-1 overflow-hidden rounded-md border bg-popover p-1 opacity-0 transition-opacity"
           }
         >
           {suggestedItems.map((item, index) => (
@@ -192,7 +195,7 @@ function SuggestedItem({
     <div
       onClick={onClick}
       className={cn([
-        "flex cursor-pointer select-none flex-row items-center gap-1 p-1 px-2 hover:bg-accent",
+        "flex cursor-pointer select-none flex-row items-center gap-1 rounded-sm p-1 px-2 hover:bg-accent",
         {
           "bg-accent": isSelected,
         },
