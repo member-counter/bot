@@ -55,16 +55,27 @@ export const buildEditor = (features: Grammar, textarea?: boolean) => {
 export type DataSourceRefId = string;
 export type DataSourceRefs = Map<DataSourceRefId, DataSource>;
 
-const dataSourceReducer = (
-  dataSources: DataSourceRefs,
-  [refId, dataSource]: [DataSourceRefId, DataSource],
-) => {
-  return new Map(dataSources.set(refId, structuredClone(dataSource)));
-};
+const dataSourceReducer =
+  (onChange: (dataSourcesRefs: DataSourceRefs) => void) =>
+  (
+    dataSources: DataSourceRefs,
+    [refId, dataSource]: [DataSourceRefId, DataSource],
+  ) => {
+    const newDataSourcesRefs = new Map(
+      dataSources.set(refId, structuredClone(dataSource)),
+    );
+    onChange(newDataSourcesRefs);
+    return newDataSourcesRefs;
+  };
 
-export const useDataSourceReducer = (
-  initialDataSourceRefs: DataSourceRefs = new Map(),
-) => useReducer(dataSourceReducer, initialDataSourceRefs);
+export const useDataSourceReducer = (opts: {
+  initialDataSourceRefs?: DataSourceRefs;
+  onChange: (dataSourcesRefs: DataSourceRefs) => void;
+}) =>
+  useReducer(
+    dataSourceReducer(opts.onChange),
+    opts.initialDataSourceRefs ?? new Map<DataSourceRefId, DataSource>(),
+  );
 
 export const defaultInitialEditorValue: Descendant[] = [
   {
