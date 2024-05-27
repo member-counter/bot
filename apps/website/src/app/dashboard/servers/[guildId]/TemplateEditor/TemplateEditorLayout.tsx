@@ -53,6 +53,12 @@ function InnerTemplateEditorLayout({
           <EmojiPicker className="h-6 w-6 px-0  py-0" />
         </div>
         <div className="flex flex-row gap-2 [&_*]:rounded-sm">
+          <AddDataSourceCombobox
+            onAdd={(dataSourceId) =>
+              insertDataSource(editor, dataSourceId, setDataSourceRef)
+            }
+            disabled={disabled}
+          >
           <Button
             icon={CurlyBracesIcon}
             type="button"
