@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useId, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 
 import { cn } from "@mc/ui";
@@ -33,6 +33,9 @@ export default function LayoutInner({
   const isDesktop = useBreakpoint("md");
   const menuContext = useContext(MenuContext);
   const [sidePanelNode, setSidePanelNode] = useState<ReactNode | null>(null);
+
+  const mainId = useId();
+  const asideId = useId();
 
   // Fetch and prefetch some data
   const has = api.guild.has.useQuery({
@@ -79,7 +82,7 @@ export default function LayoutInner({
         direction="horizontal"
         style={{ ...(menuContext.isOpen && !isDesktop && { width: 0 }) }}
       >
-        <ResizablePanel minSize={40} order={1} collapsedSize={0}>
+        <ResizablePanel id={mainId} minSize={40} order={1} collapsedSize={0}>
           <main
             className={cn("h-full grow overflow-hidden", {
               "hidden sm:block": menuContext.isOpen,
@@ -93,7 +96,12 @@ export default function LayoutInner({
         {sidePanelNode && isDesktop && (
           <>
             <ResizableHandle />
-            <ResizablePanel minSize={30} defaultSize={30} order={1}>
+            <ResizablePanel
+              id={asideId}
+              minSize={30}
+              defaultSize={30}
+              order={1}
+            >
               <aside className={cn("h-full flex-shrink-0")}>
                 {sidePanelNode}
               </aside>
