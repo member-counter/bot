@@ -38,7 +38,7 @@ const Item = (props: ItemProps) => {
                 className={cn(
                   "group bg-[#424242]",
                   "background mx-3 flex h-[48px] w-[48px] cursor-pointer select-none overflow-hidden bg-contain bg-center",
-                  "duration-[120px] transition-all",
+                  "transition-all",
                   "rounded-[100%] focus-within:rounded-[15px] hover:rounded-[15px]",
                   {
                     ["rounded-[15px]"]: isSelected,
