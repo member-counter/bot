@@ -66,6 +66,8 @@ export function ChannelNavItem(channel: {
   const hasCounterIssue = !!channelsLogs.data?.channelLogs.get(channel.id)
     ?.lastTemplateComputeError;
 
+  console.log(hasCounterIssue);
+
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
@@ -119,13 +121,16 @@ export function ChannelNavItem(channel: {
               >
                 <div className="ml-auto">
                   <div
-                    className="relative ml-2  h-2 w-2 flex-shrink-0 rounded-full bg-primary"
+                    className={cn(
+                      "relative ml-2  h-2 w-2 flex-shrink-0 rounded-full bg-primary",
+                      { "bg-destructive": hasCounterIssue },
+                    )}
                     tabIndex={0}
                   >
                     <div
                       className={cn(
-                        "absolute h-full w-full rounded-full bg-primary",
-                        hasCounterIssue && "animate-ping",
+                        "bg-primarye absolute h-full w-full rounded-full",
+                        { "animate-ping bg-destructive": hasCounterIssue },
                       )}
                     ></div>
                   </div>
