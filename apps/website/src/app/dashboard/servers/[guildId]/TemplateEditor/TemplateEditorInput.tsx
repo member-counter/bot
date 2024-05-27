@@ -39,7 +39,7 @@ export default function TemplateEditorInput(props: EditableProps) {
   return (
     <Editable
       {...props}
-      className={cn("text-[16px] leading-[25px]", className)}
+      className={cn("text-[16px] leading-[22px]", className)}
       renderElement={renderElement}
       renderLeaf={renderLeaf}
       onKeyDown={hotkeyHandlerCB}

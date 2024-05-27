@@ -38,8 +38,6 @@ export default function DataSourceElement(
   );
 
   const style: React.CSSProperties = {
-    verticalAlign: "baseline",
-    display: "inline-block",
     boxShadow:
       (selected && focused) ||
       editingDataSourceRefId === element.dataSourceRefId
@@ -73,10 +71,15 @@ export default function DataSourceElement(
     <span
       {...props.attributes}
       contentEditable={false}
-      className="m-0 rounded-md bg-primary px-[5px] py-[1px] align-baseline"
+      className="m-0 rounded-md bg-primary px-[4px] py-[2px] align-baseline"
       style={style}
       role="button"
-      // TODO fix: accessibility
+      tabIndex={0}
+      onKeyDown={(e) =>
+        ["Enter", " "].includes(e.key)
+          ? setEditingDataSourceRefId(element.dataSourceRefId)
+          : ""
+      }
       onClick={() => setEditingDataSourceRefId(element.dataSourceRefId)}
     >
       <InlineChromiumBugfix />

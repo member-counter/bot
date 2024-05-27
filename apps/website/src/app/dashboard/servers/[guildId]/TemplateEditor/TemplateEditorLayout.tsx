@@ -36,7 +36,7 @@ function InnerTemplateEditorLayout({
         "flex-col gap-2 px-2",
         {
           "h-auto min-h-40": target === "channelTopic",
-          "h-20": target === "channelName",
+          "h-[81px]": target === "channelName",
         },
         className,
       )}
