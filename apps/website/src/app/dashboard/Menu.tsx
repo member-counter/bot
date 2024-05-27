@@ -1,10 +1,18 @@
-import { useContext } from "react";
+"use client";
+
+import { createContext, useContext } from "react";
 import { MenuIcon } from "lucide-react";
 
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
 
-import { MenuContext } from "./layout";
+export const MenuContext = createContext<{
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+}>({
+  isOpen: false,
+  setIsOpen: () => void 0,
+});
 
 export function MenuButton({ className }: { className?: string }) {
   const menuContext = useContext(MenuContext);

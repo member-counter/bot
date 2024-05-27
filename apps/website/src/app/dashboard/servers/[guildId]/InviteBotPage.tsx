@@ -11,7 +11,7 @@ import { BotIcon } from "~/app/components/BotIcon";
 import { DiscordIcon } from "~/app/components/DiscordIcon";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
-import { MenuButton } from "../../MenuButton";
+import { MenuButton } from "../../Menu";
 import { UserPermissionsContext } from "./UserPermissionsContext";
 
 export function InviteBotPage() {

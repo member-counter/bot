@@ -11,7 +11,7 @@ import {
 import { cn } from "@mc/ui";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 
-import { MenuButton } from "../../MenuButton";
+import { MenuButton } from "../../Menu";
 
 // TODO actually implement the guides
 const suggestedTopics: {

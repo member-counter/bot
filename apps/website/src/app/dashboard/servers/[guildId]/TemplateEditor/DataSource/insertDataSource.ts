@@ -14,6 +14,8 @@ export const insertDataSource = (
   const refId = v4();
   const { dataSource } = getDataSourceMetadata(dataSourceId);
 
+  upsertFn([refId, dataSource]);
+
   const node: DataSourceElement = {
     type: "dataSource",
     dataSourceRefId: refId,
@@ -21,6 +23,5 @@ export const insertDataSource = (
   };
 
   editor.insertNode(node);
-  upsertFn([refId, dataSource]);
   return refId;
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import { BotIcon } from "~/app/components/BotIcon";
-import { MenuButton } from "../../MenuButton";
+import { MenuButton } from "../../Menu";
 
 export function LoadingPage() {
   return (

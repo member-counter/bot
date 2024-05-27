@@ -17,7 +17,7 @@ import {
 
 import type { DashboardGuildChannelParams } from "../[channelId]/layout";
 import { InfoToolip } from "~/app/components/InfoTooltip";
-import { MenuContext } from "~/app/dashboard/layout";
+import { MenuContext } from "~/app/dashboard/Menu";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { ChannelIconMap } from "../ChannelMaps";

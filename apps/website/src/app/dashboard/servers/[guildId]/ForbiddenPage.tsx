@@ -3,7 +3,7 @@ import { BanIcon } from "lucide-react";
 
 import type { DashboardGuildParams } from "./layout";
 import { api } from "~/trpc/react";
-import { MenuButton } from "../../MenuButton";
+import { MenuButton } from "../../Menu";
 
 export function ForbiddenPage() {
   const { guildId } = useParams<DashboardGuildParams>();

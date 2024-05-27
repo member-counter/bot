@@ -4,7 +4,7 @@ import { ServerCogIcon } from "lucide-react";
 
 import { Separator } from "@mc/ui/separator";
 
-import { MenuButton } from "../../../MenuButton";
+import { MenuButton } from "../../../Menu";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

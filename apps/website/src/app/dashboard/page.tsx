@@ -1,6 +1,6 @@
 "use client";
 
-import { MenuButton } from "./MenuButton";
+import { MenuButton } from "./Menu";
 
 export default function Page() {
   return (

@@ -8,7 +8,7 @@ import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildParams } from "../layout";
 import { api } from "~/trpc/react";
-import { MenuButton } from "../../../MenuButton";
+import { MenuButton } from "../../../Menu";
 import { ChannelIconMap, ChannelLabelMap } from "../ChannelMaps";
 
 export type DashboardGuildChannelParams = {

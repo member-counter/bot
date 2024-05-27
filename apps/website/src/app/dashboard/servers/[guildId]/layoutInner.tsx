@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 
 import type { DashboardGuildParams } from "./layout";
 import { api } from "~/trpc/react";
+import { MenuContext } from "../../Menu";
 import { BlockedBanner } from "./BlockedBanner";
 import { ForbiddenPage } from "./ForbiddenPage";
 import { InviteBotBanner } from "./InviteBotBanner";

@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { createContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import { cn } from "@mc/ui";
@@ -11,14 +11,7 @@ import { pageTitle } from "~/other/pageTitle";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import DSelector from "../components/DSelector";
-
-export const MenuContext = createContext<{
-  isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
-}>({
-  isOpen: false,
-  setIsOpen: () => void 0,
-});
+import { MenuContext } from "./Menu";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
