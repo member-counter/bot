@@ -48,7 +48,7 @@ export default function Layout(props: Props) {
       </div>
       <Separator orientation="horizontal" />
       <div className="grow overflow-hidden">
-        <div className="h-full overflow-auto p-3">{props.children}</div>
+        <div className="h-full overflow-auto">{props.children}</div>
       </div>
     </div>
   );

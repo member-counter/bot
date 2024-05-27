@@ -10,6 +10,7 @@ import { withReact } from "slate-react";
 import withDataSource from "./DataSource/withDataSource";
 import withEmoji from "./Emoji/withEmoji";
 import withMention from "./Mention/withMention";
+import { withSingleLine } from "./SingleLine/withSingleLine";
 
 export const setNodesValue = (
   editor: BaseEditor & ReactEditor,
@@ -29,7 +30,7 @@ export const setNodesValue = (
   Transforms.insertNodes(editor, nodes);
 };
 
-export const buildEditor = (features: Grammar) => {
+export const buildEditor = (features: Grammar, textarea?: boolean) => {
   let editor = withReact(withHistory(createEditor()));
 
   if ("dataSource" in features) {
@@ -42,6 +43,10 @@ export const buildEditor = (features: Grammar) => {
 
   if ("role" in features || "channel" in features) {
     editor = withMention(editor);
+  }
+
+  if (!textarea) {
+    editor = withSingleLine(editor);
   }
 
   return editor;

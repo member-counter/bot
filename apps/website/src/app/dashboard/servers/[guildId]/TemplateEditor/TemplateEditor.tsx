@@ -22,14 +22,16 @@ export default function TemplateEditor({
   },
   onChange,
   features,
+  textarea,
   children,
 }: {
+  textarea?: boolean;
   initialValue?: { nodes: Descendant[]; dataSourceRefs: DataSourceRefs };
   onChange?: (nodes: Descendant[], dataSourceRefs: DataSourceRefs) => void;
   features: Grammar;
   children: ReactNode;
 }): JSX.Element {
-  const [editor] = useState(buildEditor(features));
+  const [editor] = useState(buildEditor(features, textarea));
 
   // // Data source handling
   const [dataSourceRefs, setDataSourceRef] = useDataSourceReducer(
