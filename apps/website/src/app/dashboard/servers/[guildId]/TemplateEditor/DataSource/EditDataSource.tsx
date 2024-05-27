@@ -1,6 +1,7 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 
 import { Drawer, DrawerContent } from "@mc/ui/drawer";
+import { Portal } from "@mc/ui/portal";
 
 import { useBreakpoint } from "~/hooks/useBreakpoint";
 import { SidePanelContext } from "../../SidePanelContext";
@@ -49,18 +50,24 @@ export default function EditDataSource() {
     ],
   );
 
-  sidePanel.setNode(editDataSourceRendered);
-
-  if (!isDesktop) {
+  if (isDesktop) {
+    if (!sidePanel.current) {
+      throw new Error(
+        "EditDataSourcePanel cannot be mounted, no side panel found. Are you providing SidePanelContext with a ref to the side panel?",
+      );
+    }
     return (
-      <Drawer
-        open={!disabled && open}
-        onClose={() => setEditingDataSourceRefId(null)}
-      >
-        <DrawerContent className="max-h-screen bg-popover">
-          {editDataSourceRendered}
-        </DrawerContent>
-      </Drawer>
+      <Portal container={sidePanel.current}>{editDataSourceRendered}</Portal>
     );
   }
+  return (
+    <Drawer
+      open={!disabled && open}
+      onClose={() => setEditingDataSourceRefId(null)}
+    >
+      <DrawerContent className="max-h-screen bg-popover">
+        {editDataSourceRendered}
+      </DrawerContent>
+    </Drawer>
+  );
 }

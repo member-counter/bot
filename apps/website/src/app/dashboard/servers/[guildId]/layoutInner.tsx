@@ -1,7 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { useContext, useId, useMemo, useState } from "react";
+import { useContext, useId, useRef } from "react";
 import { useParams } from "next/navigation";
 
 import { cn } from "@mc/ui";
@@ -32,7 +31,7 @@ export default function LayoutInner({
   const userPermissions = useContext(UserPermissionsContext);
   const isDesktop = useBreakpoint("md");
   const menuContext = useContext(MenuContext);
-  const [sidePanelNode, setSidePanelNode] = useState<ReactNode | null>(null);
+  const sidePanelRef = useRef(null);
 
   const mainId = useId();
   const asideId = useId();
@@ -50,13 +49,6 @@ export default function LayoutInner({
   api.discord.getGuild.useQuery({
     id: guildId,
   });
-
-  const sidePanelContextValue = useMemo(
-    () => ({
-      setNode: setSidePanelNode,
-    }),
-    [],
-  );
 
   if (!has.isSuccess || !userPermissions.fetched) {
     return <LoadingPage />;
@@ -88,12 +80,12 @@ export default function LayoutInner({
               "hidden sm:block": menuContext.isOpen,
             })}
           >
-            <SidePanelContext.Provider value={sidePanelContextValue}>
+            <SidePanelContext.Provider value={sidePanelRef}>
               {children}
             </SidePanelContext.Provider>
           </main>
         </ResizablePanel>
-        {sidePanelNode && isDesktop && (
+        {isDesktop && (
           <>
             <ResizableHandle />
             <ResizablePanel
@@ -102,9 +94,10 @@ export default function LayoutInner({
               defaultSize={30}
               order={1}
             >
-              <aside className={cn("h-full flex-shrink-0")}>
-                {sidePanelNode}
-              </aside>
+              <aside
+                ref={sidePanelRef}
+                className={cn("h-full flex-shrink-0")}
+              ></aside>
             </ResizablePanel>
           </>
         )}

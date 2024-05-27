@@ -1,10 +1,7 @@
-import type React from "react";
-import { createContext } from "react";
+import React, { createContext } from "react";
 
-export interface SidePanelContextValue {
-  setNode: (node: React.ReactNode) => void;
-}
+export type SidePanelContextValue = React.RefObject<HTMLElement>;
 
-export const SidePanelContext = createContext<SidePanelContextValue>({
-  setNode: () => void 0,
-});
+export const SidePanelContext = createContext<SidePanelContextValue>(
+  React.createRef(),
+);
