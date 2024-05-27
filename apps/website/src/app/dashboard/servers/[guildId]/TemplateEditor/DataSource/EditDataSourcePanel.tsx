@@ -1,5 +1,5 @@
 import type { DataSource } from "@mc/common/DataSource";
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeftIcon,
   ChevronDownIcon,
@@ -33,9 +33,6 @@ export default function EditDataSourcePanel({
   onChangeDataSource,
   dataSourceRefId,
 }: Props): JSX.Element {
-  const id = useId();
-  console.log(id);
-
   const [editStack, setEditStack] = useState<EditDataSourceProps[]>([]);
   const [formattingSettingsCollapsed, setFormattingSettingsCollapsed] =
     useState(true);
