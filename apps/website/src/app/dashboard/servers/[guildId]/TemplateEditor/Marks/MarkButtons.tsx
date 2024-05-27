@@ -23,10 +23,12 @@ export const MarkButtons = ({
   iconClassName = "h-4 w-4",
   buttonClassName,
   noPopoverLabel,
+  disabled,
 }: {
   iconClassName?: string;
   buttonClassName?: string;
   noPopoverLabel?: boolean;
+  disabled?: boolean;
 }) => {
   const { features } = useContext(TemplateEditorContext);
   return (
@@ -39,6 +41,7 @@ export const MarkButtons = ({
             key={formatKey}
             className={buttonClassName}
             noPopoverLabel={noPopoverLabel}
+            disabled={disabled}
           >
             <Icon className={iconClassName} />
           </MarkButton>

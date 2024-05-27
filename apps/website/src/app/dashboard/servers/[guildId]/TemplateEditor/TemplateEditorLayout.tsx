@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { CurlyBracesIcon } from "lucide-react";
 import { ReactEditor, useSlateStatic } from "slate-react";
 
@@ -7,6 +7,8 @@ import { Button } from "@mc/ui/button";
 import { InputWrapper } from "@mc/ui/InputWrapper";
 import { Separator } from "@mc/ui/separator";
 
+import AddDataSourceCombobox from "./DataSource/AddDataSourceCombobox";
+import { insertDataSource } from "./DataSource/insertDataSource";
 import { EmojiPicker } from "./Emoji/EmojiPicker";
 import { MarkButtons } from "./Marks/MarkButtons";
 import { MentionSuggestions } from "./Mention/MentionSuggestions";
@@ -15,6 +17,7 @@ import { discordChannelTopicWithDataSource } from "./serde/deserialization/gramm
 import { deserialize } from "./serde/deserialize";
 import { serialize } from "./serde/serialize";
 import TemplateEditor from "./TemplateEditor";
+import { TemplateEditorContext } from "./TemplateEditorContext";
 import TemplateEditorInput from "./TemplateEditorInput";
 
 function InnerTemplateEditorLayout({
@@ -29,6 +32,7 @@ function InnerTemplateEditorLayout({
   target: "channelName" | "channelTopic";
 }) {
   const editor = useSlateStatic();
+  const { setDataSourceRef } = useContext(TemplateEditorContext);
 
   return (
     <InputWrapper
@@ -40,17 +44,19 @@ function InnerTemplateEditorLayout({
         },
         className,
       )}
-      onClick={() => {
+      onClick={(e) => {
+        if (disabled) return e.preventDefault();
         ReactEditor.focus(editor);
       }}
     >
       <div className="flex flex-row justify-between">
         <div className="flex flex-row gap-2 [&_*]:rounded-sm">
           <MarkButtons
+            disabled={disabled}
             buttonClassName={"h-6 w-6 px-0"}
             iconClassName="h-4 w-4"
           />
-          <EmojiPicker className="h-6 w-6 px-0  py-0" />
+          <EmojiPicker disabled={disabled} className="h-6 w-6 px-0  py-0" />
         </div>
         <div className="flex flex-row gap-2 [&_*]:rounded-sm">
           <AddDataSourceCombobox
@@ -59,19 +65,21 @@ function InnerTemplateEditorLayout({
             }
             disabled={disabled}
           >
-          <Button
-            icon={CurlyBracesIcon}
-            type="button"
-            className="h-6 px-2 py-0 text-xs [&>svg]:mr-1"
-          >
-            Add counter
-          </Button>
+            <Button
+              icon={CurlyBracesIcon}
+              type="button"
+              className="h-6 px-2 py-0 text-xs [&>svg]:mr-1"
+              disabled={disabled}
+            >
+              Add counter
+            </Button>
+          </AddDataSourceCombobox>
         </div>
       </div>
       <Separator />
       <MentionSuggestions enabled={target === "channelTopic"}>
         <TemplateEditorInput
-          disabled={disabled}
+          readOnly={disabled}
           aria-labelledby={id}
           tabIndex={0}
           className={cn({

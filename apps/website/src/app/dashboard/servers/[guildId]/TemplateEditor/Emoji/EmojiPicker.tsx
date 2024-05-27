@@ -22,7 +22,8 @@ import { TemplateEditorContext } from "../TemplateEditorContext";
 
 export const EmojiPicker = memo(function EmojiPicker({
   className,
-}: { className?: string } = {}) {
+  disabled,
+}: { className?: string; disabled?: boolean } = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const isDesktop = useBreakpoint("md");
   const editor = useSlateStatic();
@@ -87,7 +88,11 @@ export const EmojiPicker = memo(function EmojiPicker({
   };
 
   const openButton = (
-    <Button variant={"ghost"} className={cn(["h-10 px-3", className])}>
+    <Button
+      variant={"ghost"}
+      className={cn(["h-10 px-3", className])}
+      disabled={disabled}
+    >
       <SmileIcon className="inline h-4 w-4" aria-label="Emoji picker" />
     </Button>
   );
@@ -129,7 +134,7 @@ export const EmojiPicker = memo(function EmojiPicker({
 
   if (isDesktop) {
     return (
-      <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <Popover open={!disabled && isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>{openButton}</PopoverTrigger>
         <PopoverContent asChild className="p-0">
           {emojiPicker}
@@ -139,7 +144,7 @@ export const EmojiPicker = memo(function EmojiPicker({
   }
 
   return (
-    <Drawer open={isOpen} onOpenChange={setIsOpen}>
+    <Drawer open={!disabled && isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>{openButton}</DrawerTrigger>
       <DrawerContent hideDragger className="rounded-t-2xl">
         {emojiPicker}

@@ -19,11 +19,13 @@ export const MarkButton = ({
   format,
   noPopoverLabel = false,
   children,
+  disabled,
 }: {
   className?: string;
   format: Marks;
   noPopoverLabel?: boolean;
   children: ReactNode;
+  disabled?: boolean;
 }) => {
   const { features } = useContext(TemplateEditorContext);
   const editor = useSlate();
@@ -34,6 +36,7 @@ export const MarkButton = ({
       pressed={isMarkActive(editor, format)}
       onPressedChange={() => toggleMark(editor, format, features)}
       className={className}
+      disabled={disabled}
     >
       {children}
     </Toggle>
