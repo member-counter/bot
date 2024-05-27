@@ -57,7 +57,7 @@ export default function EditDataSource() {
         open={!disabled && open}
         onClose={() => setEditingDataSourceRefId(null)}
       >
-        <DrawerContent className="overflow-hidden bg-popover">
+        <DrawerContent className="max-h-screen bg-popover">
           {editDataSourceRendered}
         </DrawerContent>
       </Drawer>
