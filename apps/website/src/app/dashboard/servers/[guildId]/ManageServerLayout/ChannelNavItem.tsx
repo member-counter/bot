@@ -66,8 +66,6 @@ export function ChannelNavItem(channel: {
   const hasCounterIssue = !!channelsLogs.data?.channelLogs.get(channel.id)
     ?.lastTemplateComputeError;
 
-  console.log(hasCounterIssue);
-
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
