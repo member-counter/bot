@@ -29,7 +29,7 @@ export default function LayoutInner({
 }) {
   const { guildId } = useParams<DashboardGuildParams>();
   const userPermissions = useContext(UserPermissionsContext);
-  const isDesktop = useBreakpoint("md");
+  const isDesktop = useBreakpoint("sm");
   const menuContext = useContext(MenuContext);
 
   const [sidePanelRef, setSidePanelRef] = useState<HTMLElement | null>(null);
@@ -44,7 +44,7 @@ export default function LayoutInner({
     mo.observe(sidePanelRef, { childList: true });
 
     return () => mo.disconnect();
-  }, [sidePanelRef]);
+  }, [sidePanelRef, isDesktop]);
 
   const mainId = useId();
   const asideId = useId();
