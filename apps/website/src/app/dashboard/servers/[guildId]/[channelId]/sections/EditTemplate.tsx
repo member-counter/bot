@@ -44,7 +44,7 @@ export function EditTemplate({ value, onChange, disabled }: Props) {
       <div className="flex flex-row items-center justify-between">
         <Label htmlFor={templateInput}>Template</Label>
         <span className="text-xs leading-none text-muted-foreground">
-          Last update: {lastTemplateComputeDate}
+          Last processed: {lastTemplateComputeDate}
         </span>
       </div>
       <TemplateEditorLayout

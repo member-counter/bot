@@ -14,6 +14,7 @@ import { LoadingPage } from "../LoadingPage";
 import { UserPermissionsContext } from "../UserPermissionsContext";
 import { EditTemplate } from "./sections/EditTemplate";
 import { EnableTemplate } from "./sections/EnableTemplate";
+import { TemplateError } from "./sections/TemplateError";
 
 export default function Page() {
   const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
@@ -85,6 +86,7 @@ export default function Page() {
           })
         }
       />
+      <TemplateError />
       <div className="mt-auto flex flex-col justify-between gap-3 sm:flex-row-reverse">
         <Button
           icon={SaveIcon}
