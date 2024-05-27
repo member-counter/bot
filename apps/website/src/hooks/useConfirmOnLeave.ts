@@ -1,8 +1,11 @@
 import { useCallback, useEffect } from "react";
 
+import { env } from "~/env";
 import { useInterceptAppRouter } from "./useInterceptAppRouter";
 
 function useConfirmOnLeave(shouldConfirm: boolean) {
+  if (env.NODE_ENV === "development") shouldConfirm = false;
+
   const warningText =
     "You have unsaved changes - are you sure you wish to leave this page?";
 
