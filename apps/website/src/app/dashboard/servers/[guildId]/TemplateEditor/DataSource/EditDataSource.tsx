@@ -51,14 +51,8 @@ export default function EditDataSource() {
   );
 
   if (isDesktop) {
-    if (!sidePanel.current) {
-      throw new Error(
-        "EditDataSourcePanel cannot be mounted, no side panel found. Are you providing SidePanelContext with a ref to the side panel?",
-      );
-    }
-    return (
-      <Portal container={sidePanel.current}>{editDataSourceRendered}</Portal>
-    );
+    if (!sidePanel) return;
+    return <Portal container={sidePanel}>{editDataSourceRendered}</Portal>;
   }
   return (
     <Drawer

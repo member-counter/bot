@@ -1,7 +1,5 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 
-export type SidePanelContextValue = React.RefObject<HTMLElement>;
+export type SidePanelContextValue = HTMLElement | null;
 
-export const SidePanelContext = createContext<SidePanelContextValue>(
-  React.createRef(),
-);
+export const SidePanelContext = createContext<SidePanelContextValue>(null);

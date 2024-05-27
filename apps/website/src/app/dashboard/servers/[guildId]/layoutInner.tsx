@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useId, useRef } from "react";
+import { useContext, useEffect, useId, useState } from "react";
 import { useParams } from "next/navigation";
 
 import { cn } from "@mc/ui";
@@ -31,7 +31,20 @@ export default function LayoutInner({
   const userPermissions = useContext(UserPermissionsContext);
   const isDesktop = useBreakpoint("md");
   const menuContext = useContext(MenuContext);
-  const sidePanelRef = useRef(null);
+
+  const [sidePanelRef, setSidePanelRef] = useState<HTMLElement | null>(null);
+  const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
+  useEffect(() => {
+    if (!sidePanelRef) return;
+
+    const mo = new MutationObserver(() =>
+      setIsSidePanelOpen(sidePanelRef.hasChildNodes()),
+    );
+
+    mo.observe(sidePanelRef, { childList: true });
+
+    return () => mo.disconnect();
+  }, [sidePanelRef]);
 
   const mainId = useId();
   const asideId = useId();
@@ -87,15 +100,16 @@ export default function LayoutInner({
         </ResizablePanel>
         {isDesktop && (
           <>
-            <ResizableHandle />
+            {isSidePanelOpen && <ResizableHandle />}
             <ResizablePanel
               id={asideId}
               minSize={30}
               defaultSize={30}
               order={1}
+              className={cn({ hidden: !isSidePanelOpen })}
             >
               <aside
-                ref={sidePanelRef}
+                ref={setSidePanelRef}
                 className={cn("h-full flex-shrink-0")}
               ></aside>
             </ResizablePanel>
