@@ -26,7 +26,7 @@ export function EnableTemplate({ value, onChange, disabled }: Props) {
   const templateTarget = isTemplateForName ? "name" : "topic";
 
   return (
-    <div className="flex flex-row items-center justify-between">
+    <div className="flex flex-row items-center justify-between gap-2">
       <div>
         <Label htmlFor={enableTemplateSwitch}>Enable template</Label>
         <p className="text-sm text-muted-foreground">

@@ -27,7 +27,7 @@ export function UseCompactNotation({
   );
 
   return (
-    <div className="mt-auto flex items-center justify-between">
+    <div className="mt-auto flex items-center justify-between gap-2">
       <div>
         <Label htmlFor={compactNotationSwitch}>
           Use compact notation for numbers

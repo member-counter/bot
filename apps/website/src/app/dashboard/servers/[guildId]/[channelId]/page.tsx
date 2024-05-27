@@ -62,7 +62,7 @@ export default function Page() {
   return (
     <form
       action={save}
-      className="m-auto flex flex-col gap-5 p-3 sm:max-w-[600px]"
+      className="m-auto flex min-h-full flex-col gap-5 p-3 sm:max-w-[600px]"
     >
       <EnableTemplate
         disabled={!userPermissions.canModify}
