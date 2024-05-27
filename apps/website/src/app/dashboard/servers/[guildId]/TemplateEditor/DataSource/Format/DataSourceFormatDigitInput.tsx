@@ -56,7 +56,6 @@ export default function DataSourceFormatDigitInput({
   disabled?: boolean;
 }) {
   const deseriaizedValue = useMemo(() => deserialize(value, features), [value]);
-
   return (
     <TemplateEditor
       features={features}

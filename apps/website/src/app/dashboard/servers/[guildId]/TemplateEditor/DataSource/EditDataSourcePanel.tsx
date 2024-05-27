@@ -1,5 +1,5 @@
 import type { DataSource } from "@mc/common/DataSource";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import {
   ArrowLeftIcon,
   ChevronDownIcon,
@@ -33,6 +33,9 @@ export default function EditDataSourcePanel({
   onChangeDataSource,
   dataSourceRefId,
 }: Props): JSX.Element {
+  const id = useId();
+  console.log(id);
+
   const [editStack, setEditStack] = useState<EditDataSourceProps[]>([]);
   const [formattingSettingsCollapsed, setFormattingSettingsCollapsed] =
     useState(true);
@@ -67,8 +70,8 @@ export default function EditDataSourcePanel({
 
   return (
     <EditDataSourcePanelContext.Provider value={editDataSourceContext}>
-      <div className="h-full overflow-auto">
-        <div className="sticky top-0 z-50 flex w-full flex-row items-center gap-1 border-b border-border/40 bg-background/95 p-1 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="flex h-full flex-col overflow-hidden">
+        <div className={"flex w-full flex-row items-center gap-1 border-b p-1"}>
           <div className="flex h-10 w-10 items-center justify-center">
             {editStack.length > 1 ? (
               <Button
@@ -95,67 +98,67 @@ export default function EditDataSourcePanel({
             <XIcon className="h-4 w-4" />
           </Button>
         </div>
-        {editStack.map((editItem, i) => {
-          const isLastItem = editStack.length - 1 === i;
-          return (
-            <div
-              className={
-                isLastItem ? "mb-[48px] flex flex-col gap-1 p-3" : "hidden"
+        <div className="grow overflow-auto">
+          {editStack.map((editItem, i) => {
+            const isLastItem = editStack.length - 1 === i;
+            return (
+              <div
+                className={isLastItem ? " flex flex-col gap-1 p-3" : "hidden"}
+                key={i}
+              >
+                <EditDataSourceOptions
+                  dataSource={editItem.dataSource}
+                  onChangeDataSource={(dataSource) => {
+                    editItem.dataSource = dataSource;
+                    editItem.onChangeDataSource(editItem.dataSource);
+                    setEditStack([...editStack]);
+                  }}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <div
+          className={cn([
+            blurredBackground,
+            "sticky bottom-0 z-50 flex w-full flex-col gap-1 border-t p-1",
+          ])}
+        >
+          <div className="flex w-full flex-row items-center">
+            <div className="flex h-10 w-10 items-center justify-center">
+              <WrenchIcon className="my-auto h-4 w-4" />
+            </div>
+            <div className="flex-grow font-normal text-foreground">
+              Format settings
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() =>
+                setFormattingSettingsCollapsed(!formattingSettingsCollapsed)
               }
-              key={i}
             >
-              <EditDataSourceOptions
-                dataSource={editItem.dataSource}
-                onChangeDataSource={(dataSource) => {
-                  editItem.dataSource = dataSource;
-                  editItem.onChangeDataSource(editItem.dataSource);
+              {formattingSettingsCollapsed ? (
+                <ChevronUpIcon className="h-4 w-4" />
+              ) : (
+                <ChevronDownIcon className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
+          {!formattingSettingsCollapsed && editStack[0] && (
+            <div className="flex flex-col gap-1 p-3">
+              <DataSourceFormat
+                format={editStack[0].dataSource.format ?? {}}
+                onChangeFormat={(format) => {
+                  if (!editStack[0]) return;
+                  editStack[0].dataSource.format = format;
+                  editStack[0].onChangeDataSource(editStack[0].dataSource);
                   setEditStack([...editStack]);
                 }}
               />
             </div>
-          );
-        })}
-      </div>
-      <div
-        className={cn([
-          blurredBackground,
-          "sticky bottom-0 z-50 flex w-full flex-col gap-1 border-t border-border/40 p-1",
-        ])}
-      >
-        <div className="flex w-full flex-row items-center">
-          <div className="flex h-10 w-10 items-center justify-center">
-            <WrenchIcon className="my-auto h-4 w-4" />
-          </div>
-          <div className="flex-grow font-normal text-foreground">
-            Format settings
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() =>
-              setFormattingSettingsCollapsed(!formattingSettingsCollapsed)
-            }
-          >
-            {formattingSettingsCollapsed ? (
-              <ChevronUpIcon className="h-4 w-4" />
-            ) : (
-              <ChevronDownIcon className="h-4 w-4" />
-            )}
-          </Button>
+          )}
         </div>
-        {!formattingSettingsCollapsed && editStack[0] && (
-          <div className="flex flex-col gap-1 p-3">
-            <DataSourceFormat
-              format={editStack[0].dataSource.format ?? {}}
-              onChangeFormat={(format) => {
-                if (!editStack[0]) return;
-                editStack[0].dataSource.format = format;
-                editStack[0].onChangeDataSource(editStack[0].dataSource);
-                setEditStack([...editStack]);
-              }}
-            />
-          </div>
-        )}
       </div>
     </EditDataSourcePanelContext.Provider>
   );

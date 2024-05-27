@@ -1,5 +1,7 @@
 "use client";
 
+import { BlockedBanner } from "./BlockedBanner";
+import { InviteBotBanner } from "./InviteBotBanner";
 import LayoutInner from "./layoutInner";
 import { UserPermissionsContextProvider } from "./UserPermissionsContext";
 
@@ -16,7 +18,13 @@ export interface DashboardGuildPageProps {
 export default function Layout({ children }: DashboardGuildPageProps) {
   return (
     <UserPermissionsContextProvider>
-      <LayoutInner>{children}</LayoutInner>
+      <div className="flex h-full max-h-full flex-col overflow-hidden rounded">
+        <BlockedBanner />
+        <InviteBotBanner />
+        <div className="grow overflow-hidden">
+          <LayoutInner>{children}</LayoutInner>
+        </div>
+      </div>
     </UserPermissionsContextProvider>
   );
 }

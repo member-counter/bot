@@ -13,12 +13,12 @@ export const TemplateEditorContext = createContext<{
   ]) => void;
   editingDataSourceRefId: DataSourceRefId | null;
   setEditingDataSourceRefId: (refId: DataSourceRefId | null) => void;
-  editingDataSourceRef: DataSource | null;
+  disabled: boolean;
 }>({
   features: {},
   dataSourceRefs: new Map(),
   setDataSourceRef: () => void 0,
   editingDataSourceRefId: null,
   setEditingDataSourceRefId: () => void 0,
-  editingDataSourceRef: null,
+  disabled: false,
 });

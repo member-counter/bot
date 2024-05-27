@@ -8,6 +8,7 @@ import { InputWrapper } from "@mc/ui/InputWrapper";
 import { Separator } from "@mc/ui/separator";
 
 import AddDataSourceCombobox from "./DataSource/AddDataSourceCombobox";
+import EditDataSource from "./DataSource/EditDataSource";
 import { insertDataSource } from "./DataSource/insertDataSource";
 import { EmojiPicker } from "./Emoji/EmojiPicker";
 import { MarkButtons } from "./Marks/MarkButtons";
@@ -89,6 +90,7 @@ function InnerTemplateEditorLayout({
           })}
         />
       </MentionSuggestions>
+      <EditDataSource />
     </InputWrapper>
   );
 }
@@ -124,6 +126,7 @@ export default function TemplateEditorLayout({
 
   return (
     <TemplateEditor
+      disabled={disabled}
       textarea={target === "channelTopic"}
       features={features}
       initialValue={deseriaizedValue}

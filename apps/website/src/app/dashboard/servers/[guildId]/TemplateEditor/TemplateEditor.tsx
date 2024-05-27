@@ -3,7 +3,7 @@
 import type { Grammar } from "prismjs";
 import type { ReactNode } from "react";
 import type { Descendant } from "slate";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Slate } from "slate-react";
 import { v4 } from "uuid";
 
@@ -24,27 +24,28 @@ export default function TemplateEditor({
   features,
   textarea,
   children,
+  disabled,
 }: {
   textarea?: boolean;
   initialValue?: { nodes: Descendant[]; dataSourceRefs: DataSourceRefs };
   onChange?: (nodes: Descendant[], dataSourceRefs: DataSourceRefs) => void;
   features: Grammar;
   children: ReactNode;
+  disabled?: boolean;
 }): JSX.Element {
   const [editor] = useState(buildEditor(features, textarea));
 
-  // // Data source handling
   const [dataSourceRefs, setDataSourceRef] = useDataSourceReducer(
     initialValue.dataSourceRefs,
   );
 
+  useEffect(() => {
+    onChange?.(editor.children, dataSourceRefs);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editor.children, dataSourceRefs]);
+
   const [editingDataSourceRefId, setEditingDataSourceRefId] =
     useState<DataSourceRefId | null>(null);
-
-  const editingDataSourceRef = useMemo(
-    () => dataSourceRefs.get(editingDataSourceRefId ?? "") ?? null,
-    [dataSourceRefs, editingDataSourceRefId],
-  );
 
   // Handle data source paste
   const [defaultInsertFragment] = useState(() => editor.insertFragment);
@@ -75,14 +76,14 @@ export default function TemplateEditor({
       setDataSourceRef,
       editingDataSourceRefId,
       setEditingDataSourceRefId,
-      editingDataSourceRef,
+      disabled: !!disabled,
     }),
     [
       features,
       dataSourceRefs,
       setDataSourceRef,
       editingDataSourceRefId,
-      editingDataSourceRef,
+      disabled,
     ],
   );
   return (

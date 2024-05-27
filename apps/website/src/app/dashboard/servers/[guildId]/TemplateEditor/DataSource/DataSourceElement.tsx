@@ -16,8 +16,12 @@ export default function DataSourceElement(
   const element = props.element as DataSourceElementType;
   const selected = useSelected();
   const focused = useFocused();
-  const { setEditingDataSourceRefId, editingDataSourceRefId, dataSourceRefs } =
-    useContext(TemplateEditorContext);
+  const {
+    setEditingDataSourceRefId,
+    editingDataSourceRefId,
+    dataSourceRefs,
+    disabled,
+  } = useContext(TemplateEditorContext);
 
   const dataSource = useMemo(
     () =>
@@ -76,11 +80,13 @@ export default function DataSourceElement(
       role="button"
       tabIndex={0}
       onKeyDown={(e) =>
-        ["Enter", " "].includes(e.key)
-          ? setEditingDataSourceRefId(element.dataSourceRefId)
-          : ""
+        ["Enter", " "].includes(e.key) &&
+        !disabled &&
+        setEditingDataSourceRefId(element.dataSourceRefId)
       }
-      onClick={() => setEditingDataSourceRefId(element.dataSourceRefId)}
+      onClick={() =>
+        !disabled && setEditingDataSourceRefId(element.dataSourceRefId)
+      }
     >
       <InlineChromiumBugfix />
       {icon}
