@@ -76,7 +76,7 @@ export default function AddDataSourceCombobox({
                 >
                   <div
                     key={item.dataSource.id}
-                    className={cn(["flex flex-row gap-3 p-3"])}
+                    className={cn(["flex flex-row gap-3 p-1"])}
                   >
                     <item.icon className="mt-[4px] h-5 w-5 flex-none" />
                     <div>
@@ -100,7 +100,7 @@ export default function AddDataSourceCombobox({
     return (
       <Popover open={!disabled && open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>{children}</PopoverTrigger>
-        <PopoverContent className="mt-[-39px] p-0">
+        <PopoverContent className="mt-[-39px] w-[400px] p-0">
           {cmdRendered}
         </PopoverContent>
       </Popover>
