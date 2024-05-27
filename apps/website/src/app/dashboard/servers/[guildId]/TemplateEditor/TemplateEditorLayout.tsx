@@ -90,7 +90,19 @@ function InnerTemplateEditorLayout({
           })}
         />
       </MentionSuggestions>
-      <EditDataSource />
+      <div
+        /**
+         * Prevent the editor from being focused when clicking anywhere
+         * in the EditDataSource panel
+         * (it's actually being mounted somewhere else in the app)
+         */
+        className="hidden"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <EditDataSource />
+      </div>
     </InputWrapper>
   );
 }
