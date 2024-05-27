@@ -13,7 +13,6 @@ import { Button } from "@mc/ui/button";
 
 import type { DataSourceRefId } from "../utils";
 import type { EditDataSourceProps } from "./Options/EditDataSourceOptions";
-import { blurredBackground } from "~/other/common-styles";
 import { getDataSourceMetadata } from "./dataSourcesMetadata";
 import { NestedDataSourceBreadcrumb } from "./EditDataSourcePanelBreadcrumb";
 import { EditDataSourcePanelContext } from "./EditDataSourcePanelContext";
@@ -117,8 +116,7 @@ export default function EditDataSourcePanel({
         </div>
         <div
           className={cn([
-            blurredBackground,
-            "sticky bottom-0 z-50 flex w-full flex-col gap-1 border-t p-1",
+            "sticky bottom-0 z-50 flex w-full flex-col gap-1 border-t bg-background p-1",
           ])}
         >
           <div className="flex w-full flex-row items-center">
