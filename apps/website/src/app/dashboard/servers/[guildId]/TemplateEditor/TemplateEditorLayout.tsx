@@ -55,6 +55,7 @@ function InnerTemplateEditorLayout({
         <div className="flex flex-row gap-2 [&_*]:rounded-sm">
           <Button
             icon={CurlyBracesIcon}
+            type="button"
             className="h-6 px-2 py-0 text-xs [&>svg]:mr-1"
           >
             Add counter
