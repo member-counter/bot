@@ -17,8 +17,12 @@ import {
 } from "@mc/ui/select";
 import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
 
+import { Combobox } from "~/app/components/Combobox";
+import {
+  renderLocaleItem,
+  renderSelectedLocaleItem,
+} from "~/app/components/Combobox/renderers/localeItemRenderer";
 import { locales, searchableLocales } from "~/other/locales";
-import AutocompleteInput from "../../../../../../components/AutocompleteInput";
 import { TextItem } from "../Options/Pages/components/TextItem";
 import useDataSourceOptions from "../Options/useDataSourceOptions";
 import DataSourceFormatDigitInput from "./DataSourceFormatDigitInput";
@@ -47,7 +51,7 @@ export default function DataSourceFormat({
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Use compact notation</Label>
         <Select
           value={
@@ -78,7 +82,7 @@ export default function DataSourceFormat({
           </SelectContent>
         </Select>
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <div className="flex items-center space-x-2">
           <Checkbox
             id={defaultLocaleCheckbox}
@@ -90,30 +94,20 @@ export default function DataSourceFormat({
           <Label htmlFor={defaultLocaleCheckbox}>Override default locale</Label>
         </div>
         {typeof format.locale === "string" && (
-          <>
-            {format.locale &&
-              [format.locale].map(
-                localeItemRenderer({
-                  remove: () => setFormat({ locale: "" }),
-                  update: (locale) => setFormat({ locale }),
-                }),
-              )}
-            {!format.locale && (
-              <AutocompleteInput
-                itemRenderer={AutocompleteLocaleItemRenderer}
-                placeholder="Search locale..."
-                onAdd={(locale) => {
-                  setFormat({ locale });
-                }}
-                suggestLimit={10}
-                suggestableItems={searchableLocales}
-                allowSearchedItem={true}
-              />
-            )}
-          </>
+          <Combobox
+            allowSearchedItem
+            items={searchableLocales}
+            placeholder="Search locale..."
+            onItemSelect={(locale) => {
+              setFormat({ locale });
+            }}
+            selectedItem={format.locale}
+            onItemRender={renderLocaleItem}
+            onSelectedItemRender={renderSelectedLocaleItem}
+          />
         )}
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <div className="flex items-center space-x-2">
           <Checkbox
             id={defaultDigitsCheckbox}
@@ -125,7 +119,7 @@ export default function DataSourceFormat({
           <Label htmlFor={defaultDigitsCheckbox}>Override default digits</Label>
         </div>
         {format.digits != null && (
-          <div className="grid grid-cols-3 gap-1.5">
+          <div className="grid grid-cols-3 gap-3">
             {new Array(10).fill("").map((_, i) => {
               return (
                 <DataSourceFormatDigitInput

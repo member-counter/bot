@@ -44,7 +44,7 @@ export function CustomDigits({
         We do not recommend customizing any digit unless you are certain that
         nobody using a screen reader will have access to any counter.
       </p>
-      <div className="grid grid-cols-3 gap-1.5">
+      <div className="grid grid-cols-3 gap-3">
         {readyToInitiate &&
           new Array(10).fill("").map((_, i) => {
             return (

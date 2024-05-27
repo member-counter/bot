@@ -84,7 +84,7 @@ export function HttpOptions({
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>URL (GET)</Label>
         {options.url &&
           [options.url].map(
@@ -106,7 +106,7 @@ export function HttpOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Lifetime (in seconds)</Label>
         <span className="text-sm font-light italic">
           Specifies for how long the response of the specified URL will be
@@ -136,7 +136,7 @@ export function HttpOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Data path</Label>
         <span className="text-sm font-light italic">
           A path to get the desired value when the response's content type is
@@ -173,7 +173,7 @@ export function HttpOptions({
         </span>
       ) : (
         <>
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-3">
             <Label>Test response</Label>
             <pre className="overflow-auto rounded-md border border-input bg-background p-4">
               {testResponse}
@@ -192,7 +192,7 @@ export function HttpOptions({
             </Button>
           </div>
 
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-3">
             <Label>Preview</Label>
             <Input readOnly value={displayPreview} />
           </div>

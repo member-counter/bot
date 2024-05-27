@@ -113,7 +113,7 @@ export function MembersOptions({
         </div>
         {!options.bannedMembers && (
           <>
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-3">
               <Label>Filter by status</Label>
               <Select
                 value={options.statusFilter.toString()}
@@ -156,7 +156,7 @@ export function MembersOptions({
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-3">
               <Label>Filter by account type</Label>
               <Select
                 value={options.accountTypeFilter.toString()}
@@ -188,7 +188,7 @@ export function MembersOptions({
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-3">
               <Label>Filter by role</Label>
               <Select
                 value={options.roleFilterMode.toString()}
@@ -236,7 +236,7 @@ export function MembersOptions({
                 suggestableItems={searcheableRolesDataSources}
               />
             </div>
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-3">
               <Label>Filter by playing a game</Label>
               {options.playing.map(
                 textItemRendererFactory({

@@ -35,7 +35,7 @@ export function ClockOptions({
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Timezone</Label>
         {options.timezone &&
           [options.timezone].map(

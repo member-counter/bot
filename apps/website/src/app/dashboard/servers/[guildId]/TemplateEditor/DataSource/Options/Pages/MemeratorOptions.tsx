@@ -41,7 +41,7 @@ export function MemeratorOptions({
   return (
     <div className="flex flex-col gap-5">
       {" "}
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Display</Label>
         <Select
           value={options.return.toString()}
@@ -66,7 +66,7 @@ export function MemeratorOptions({
           </SelectContent>
         </Select>
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Username</Label>
         {options.username &&
           [options.username].map(

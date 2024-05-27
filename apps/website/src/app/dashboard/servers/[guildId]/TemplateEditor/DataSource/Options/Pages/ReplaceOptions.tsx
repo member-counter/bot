@@ -37,7 +37,7 @@ export function ReplaceOptions({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Input text</Label>
         {options.text &&
           [options.text].map(
@@ -67,7 +67,7 @@ export function ReplaceOptions({
               className="flex flex-col gap-5 bg-[#29252459] p-3"
               key={index}
             >
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-3">
                 <Label>Search for</Label>
                 {replacement.search &&
                   [replacement.search].map(
@@ -122,7 +122,7 @@ export function ReplaceOptions({
                   />
                 )}
               </div>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-3">
                 <Label>Replace with</Label>
                 {replacement.replacement &&
                   [replacement.replacement].map(

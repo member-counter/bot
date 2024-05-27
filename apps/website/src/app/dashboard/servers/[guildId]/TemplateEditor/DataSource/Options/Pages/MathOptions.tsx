@@ -49,7 +49,7 @@ export function MathOptions({
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Operation type</Label>
         <Select
           value={options.operation.toString()}
@@ -89,7 +89,7 @@ export function MathOptions({
           </SelectContent>
         </Select>
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Number list</Label>
         {options.numbers.map(
           numberItemRendererFactory({

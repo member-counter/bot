@@ -76,7 +76,7 @@ export function GameOptions({
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Game ID</Label>
         {options.game &&
           [options.game].map(
@@ -99,7 +99,7 @@ export function GameOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Address</Label>
         {options.address &&
           [options.address].map(
@@ -121,7 +121,7 @@ export function GameOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Port (or query port)</Label>
         {options.port &&
           [options.port].map(

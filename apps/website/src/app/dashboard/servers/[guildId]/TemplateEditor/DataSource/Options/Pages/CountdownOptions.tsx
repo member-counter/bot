@@ -65,7 +65,7 @@ export function CountdownOptions({
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Target date</Label>
         {typeof options.date === "number" && (
           <Input
@@ -109,7 +109,7 @@ export function CountdownOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Format</Label>
         <p className="text-sm font-light italic">
           Use <code>%d</code> to show the days left, <code>%h</code> for the
@@ -135,7 +135,7 @@ export function CountdownOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-3">
         <Label>Live preview</Label>
         {!options.date || !options.format ? (
           <span className="text-sm font-light italic">
