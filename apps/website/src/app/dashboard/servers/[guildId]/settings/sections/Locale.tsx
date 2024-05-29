@@ -1,13 +1,11 @@
-import { useId, useMemo } from "react";
+import { useId } from "react";
 
 import { Label } from "@mc/ui/label";
 
 import { Combobox } from "~/app/components/Combobox";
-import {
-  renderLocaleItem,
-  renderSelectedLocaleItem,
-} from "~/app/components/Combobox/renderers/localeItemRenderer";
+import { LocaleItem } from "~/app/components/Combobox/items/LocaleItem";
 import { searchableLocales } from "~/other/locales";
+import { useDemoFormatters } from "../DemoFormatters";
 
 interface Props {
   value: string;
@@ -17,23 +15,8 @@ interface Props {
 
 export function Locale({ value, onChange, disabled }: Props) {
   const localeInput = useId();
+  const demoFormatters = useDemoFormatters();
 
-  const numberFormatter = useMemo(
-    () =>
-      new Intl.NumberFormat(value as Intl.LocalesArgument, {
-        notation: "compact",
-      }),
-    [value],
-  );
-
-  const timeFormatter = useMemo(
-    () =>
-      new Intl.DateTimeFormat(value as Intl.LocalesArgument, {
-        hour: "numeric",
-        minute: "numeric",
-      }),
-    [value],
-  );
   return (
     <div className="flex flex-col gap-3">
       <Label htmlFor={localeInput}>Locale</Label>
@@ -42,20 +25,22 @@ export function Locale({ value, onChange, disabled }: Props) {
         <ul className="ml-4 mt-1 list-disc">
           <li>
             15:30h (or 3:30 PM) will be displayed as{" "}
-            {timeFormatter.format(new Date("2024 15:30"))}
+            {demoFormatters.date.format(new Date("2024 15:30"))}
           </li>
-          <li>439212 will be displayed as {numberFormatter.format(439212)}</li>
+          <li>
+            439212 will be displayed as {demoFormatters.number.format(439212)}
+          </li>
         </ul>
       </div>
       <Combobox
         id={localeInput}
-        allowSearchedItem
         items={searchableLocales}
+        allowSearchedTerm
         placeholder="Search locale..."
-        onItemSelect={onChange}
         selectedItem={value}
-        onItemRender={renderLocaleItem}
-        onSelectedItemRender={renderSelectedLocaleItem}
+        onItemSelect={onChange}
+        onItemRender={LocaleItem}
+        onSelectedItemRender={LocaleItem}
         disabled={disabled}
       />
     </div>
