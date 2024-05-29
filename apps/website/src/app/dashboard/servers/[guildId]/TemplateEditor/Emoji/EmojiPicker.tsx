@@ -17,7 +17,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@mc/ui/drawer";
 import { Input } from "@mc/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
-import type { Searchable } from "../../../../../components/AutocompleteInput";
+import type { Searchable } from "../../../../../components/Combobox";
 import type { EmojiElement } from "../custom-types";
 import type { Guild, GuildEmoji } from "../d-types";
 import { useBreakpoint } from "~/hooks/useBreakpoint";

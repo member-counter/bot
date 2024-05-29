@@ -3,14 +3,13 @@ import { useMemo } from "react";
 
 import { Label } from "@mc/ui/label";
 
-import type { Searchable } from "../../../../../../../components/AutocompleteInput";
+import type { Searchable } from "../../../../../../../components/Combobox";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import { searchableTimezones, timezones } from "~/other/timezones";
-import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
+import { timezoneWithDataSourceItem } from "~/app/components/Combobox/renderers/timezoneWithDataSourceItem";
+import { searchableTimezones } from "~/other/timezones";
+import { Combobox } from "../../../../../../../components/Combobox";
 import { searcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { DataSourceItem } from "./components/DataSourceItem";
-import { TextItem } from "./components/TextItem";
 
 type DataSourceType = DataSourceClock;
 
@@ -31,93 +30,38 @@ export function ClockOptions({
   });
 
   const searchableTimezonesAndDataSources: Searchable<string | DataSource>[] =
-    useMemo(() => [...searcheableDataSources, ...searchableTimezones], []);
+    useMemo(() => [...searchableTimezones, ...searcheableDataSources], []);
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>Timezone</Label>
-        {options.timezone &&
-          [options.timezone].map(
-            timezoneItemRenderer({
-              remove: () => setOptions({ timezone: undefined }),
-              update: (timezone) => setOptions({ timezone }),
-              dataSourceConfigWarning:
-                "Remember to return a valid IANA timezone",
-            }),
-          )}
-        {!options.timezone && (
-          <AutocompleteInput
-            itemRenderer={AutocompleteTimezoneItemRenderer}
-            placeholder="Search timezone..."
-            onAdd={(timezone) => {
-              setOptions({ timezone });
-            }}
-            suggestableItems={searchableTimezonesAndDataSources}
-          />
-        )}
+        <Combobox
+          items={searchableTimezonesAndDataSources}
+          placeholder="Search timezone..."
+          selectedItem={options.timezone}
+          onItemSelect={(item) => {
+            setOptions({
+              timezone: item,
+            });
+          }}
+          onItemRender={timezoneWithDataSourceItem()}
+          onSelectedItemRender={timezoneWithDataSourceItem({
+            onUpdate: (item) => {
+              setOptions({
+                timezone: item,
+              });
+            },
+            onRemove: () => {
+              setOptions({
+                timezone: undefined,
+              });
+            },
+            dataSourceConfigWarning:
+              "Remember to return a valid timezone indentifier",
+          })}
+        />
       </div>
     </div>
   );
 }
-
-export const timezoneItemRenderer =
-  ({
-    remove,
-    update,
-    dataSourceConfigWarning,
-  }: {
-    update?: (value: string | DataSource, index: number) => void;
-    remove?: (index: number) => void;
-    dataSourceConfigWarning?: string;
-  }) =>
-  (item: string | DataSource, index: number) => {
-    if (typeof item === "string") {
-      return (
-        <TextItem
-          key={index}
-          label={timezones[item]?.label ?? item}
-          onClickDelete={remove && (() => remove(index))}
-        />
-      );
-    } else {
-      return (
-        <DataSourceItem
-          key={index}
-          dataSource={item}
-          configWarning={dataSourceConfigWarning}
-          onClickDelete={remove && (() => remove(index))}
-          onChangeDataSource={
-            update && ((dataSource) => update(dataSource, index))
-          }
-        />
-      );
-    }
-  };
-
-export const AutocompleteTimezoneItemRenderer = (
-  item: string | DataSource,
-  index: number,
-  isSelected: boolean,
-  onClick: () => void,
-) => {
-  if (typeof item === "string") {
-    return (
-      <TextItem
-        key={index}
-        label={timezones[item]?.label ?? item}
-        isSelected={isSelected}
-        onClick={onClick}
-      />
-    );
-  } else {
-    return (
-      <DataSourceItem
-        key={index}
-        dataSource={item}
-        isSelected={isSelected}
-        onClick={onClick}
-      />
-    );
-  }
-};

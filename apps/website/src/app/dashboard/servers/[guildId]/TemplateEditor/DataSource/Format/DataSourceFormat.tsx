@@ -20,7 +20,6 @@ import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
 import { Combobox } from "~/app/components/Combobox";
 import { LocaleItem } from "~/app/components/Combobox/items/LocaleItem";
 import { locales, searchableLocales } from "~/other/locales";
-import { TextItem } from "../Options/Pages/components/TextItem";
 import useDataSourceOptions from "../Options/useDataSourceOptions";
 import DataSourceFormatDigitInput from "./DataSourceFormatDigitInput";
 

@@ -1,6 +1,6 @@
 import codes from "iso-lang-codes";
 
-import type { Searchable } from "~/app/components/AutocompleteInput";
+import type { Searchable } from "~/app/components/Combobox";
 
 export const locales = codes.locales();
 export const searchableLocales: Searchable<string>[] = Object.entries(

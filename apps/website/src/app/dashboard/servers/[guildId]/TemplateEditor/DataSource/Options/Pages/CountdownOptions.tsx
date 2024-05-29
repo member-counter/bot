@@ -3,13 +3,11 @@ import { useCallback, useEffect, useState } from "react";
 
 import { Input } from "@mc/ui/input";
 import { Label } from "@mc/ui/label";
+import { Separator } from "@mc/ui/separator";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
 import { searcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { textItemRendererFactory } from "./components/itemRenderers/text";
-import { AutocompleteTextReadonlyItemRenderer } from "./components/itemRenderers/textReadonly";
 
 function formatCountdown(date: unknown, format: unknown) {
   if (typeof date !== "number" || typeof format !== "string") return;
@@ -32,6 +30,7 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
   };
 };
 
+// TODO use new combobox
 export function CountdownOptions({
   options: unmergedOptions,
   onOptionsChange,
@@ -64,8 +63,8 @@ export function CountdownOptions({
   }, [displayPreview, options.format]);
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>Target date</Label>
         {typeof options.date === "number" && (
           <Input
@@ -99,7 +98,7 @@ export function CountdownOptions({
             }),
           )}
         {typeof options.date === "number" && (
-          <AutocompleteInput
+          <Combobox
             itemRenderer={AutocompleteTextReadonlyItemRenderer}
             placeholder="Or set a counter..."
             onAdd={(date) => {
@@ -109,7 +108,8 @@ export function CountdownOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-3">
+      <Separator />
+      <div>
         <Label>Format</Label>
         <p className="text-sm font-light italic">
           Use <code>%d</code> to show the days left, <code>%h</code> for the
@@ -124,7 +124,7 @@ export function CountdownOptions({
             }),
           )}
         {!options.format && (
-          <AutocompleteInput
+          <Combobox
             itemRenderer={AutocompleteTextReadonlyItemRenderer}
             placeholder=""
             onAdd={(format) => {
@@ -135,7 +135,8 @@ export function CountdownOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-3">
+      <Separator />
+      <div>
         <Label>Live preview</Label>
         {!options.date || !options.format ? (
           <span className="text-sm font-light italic">

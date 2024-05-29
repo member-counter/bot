@@ -3,11 +3,10 @@ import type { DataSourceNumber } from "@mc/common/DataSource";
 import { Label } from "@mc/ui/label";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import { Combobox } from "~/app/components/Combobox";
+import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
+import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { textItemRendererFactory } from "./components/itemRenderers/text";
-import { AutocompleteTextReadonlyItemRenderer } from "./components/itemRenderers/textReadonly";
 
 type DataSourceType = DataSourceNumber;
 
@@ -28,27 +27,29 @@ export function NumberOptions({
   });
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>Number</Label>
-        {options.number &&
-          [options.number].map(
-            textItemRendererFactory({
-              remove: () => setOptions({ number: undefined }),
-              update: (number) => setOptions({ number }),
-            }),
-          )}
-        {!options.number && (
-          <AutocompleteInput
-            itemRenderer={AutocompleteTextReadonlyItemRenderer}
-            placeholder="Enter a number or search a counter..."
-            onAdd={(number) => {
+        <Combobox
+          items={knownSearcheableDataSources}
+          selectedItem={options.number}
+          allowSearchedTerm
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate(number) {
               setOptions({ number });
-            }}
-            allowSearchedItem={true}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+            },
+            onRemove() {
+              setOptions({ number: undefined });
+            },
+            dataSourceConfigWarning: "Remember to return a valid number",
+          })}
+          onItemSelect={(number) => {
+            setOptions({ number });
+          }}
+          prefillSelectedItemOnSearchOnFocus
+          placeholder="Enter a number or search a counter"
+        />
       </div>
     </div>
   );

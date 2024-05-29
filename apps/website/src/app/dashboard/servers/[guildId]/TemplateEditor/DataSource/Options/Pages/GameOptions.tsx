@@ -2,19 +2,12 @@ import type { DataSource, DataSourceGame } from "@mc/common/DataSource";
 import { useEffect, useMemo } from "react";
 
 import { Label } from "@mc/ui/label";
+import { Separator } from "@mc/ui/separator";
 
-import type { Searchable } from "../../../../../../../components/AutocompleteInput";
+import type { Searchable } from "../../../../../../../components/Combobox";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
 import { searcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { DataSourceItem } from "./components/DataSourceItem";
-import { numberItemRendererFactory } from "./components/itemRenderers/numbers";
-import {
-  AutocompleteTextItemRenderer,
-  textItemRendererFactory,
-} from "./components/itemRenderers/text";
-import { TextItem } from "./components/TextItem";
 
 type DataSourceType = DataSourceGame;
 
@@ -38,6 +31,7 @@ interface GameSpec {
   };
 }
 
+// TODO use new combobox
 export function GameOptions({
   options: unmergedOptions,
   onOptionsChange,
@@ -75,8 +69,8 @@ export function GameOptions({
   }, [games, options.game, options.port, setOptions]);
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>Game ID</Label>
         {options.game &&
           [options.game].map(
@@ -89,7 +83,7 @@ export function GameOptions({
             }),
           )}
         {!options.game && (
-          <AutocompleteInput
+          <Combobox
             itemRenderer={AutocompleteGameItemRenderer}
             placeholder="Search game..."
             onAdd={(game) => {
@@ -99,7 +93,8 @@ export function GameOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-3">
+      <Separator />
+      <div>
         <Label>Address</Label>
         {options.address &&
           [options.address].map(
@@ -110,7 +105,7 @@ export function GameOptions({
             }),
           )}
         {!options.address && (
-          <AutocompleteInput
+          <Combobox
             itemRenderer={AutocompleteTextItemRenderer}
             placeholder=""
             onAdd={(address) => {
@@ -121,7 +116,8 @@ export function GameOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-3">
+      <Separator />
+      <div>
         <Label>Port (or query port)</Label>
         {options.port &&
           [options.port].map(
@@ -131,7 +127,7 @@ export function GameOptions({
             }),
           )}
         {!options.port && (
-          <AutocompleteInput
+          <Combobox
             itemRenderer={AutocompleteTextItemRenderer}
             placeholder=""
             onAdd={(port) => {

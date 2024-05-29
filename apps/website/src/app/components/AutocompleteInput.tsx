@@ -25,7 +25,7 @@ interface AutocompleteInputProps<T> {
   suggestOnFocus?: boolean;
 }
 
-export default function AutocompleteInput<T>({
+export default function Combobox<T>({
   suggestableItems = [],
   placeholder = "Add...",
   suggestLimit = 5,

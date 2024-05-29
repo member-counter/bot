@@ -11,13 +11,13 @@ import {
   SelectValue,
 } from "@mc/ui/select";
 import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
+import { Separator } from "@mc/ui/separator";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import { Combobox } from "~/app/components/Combobox";
+import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
+import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { textItemRendererFactory } from "./components/itemRenderers/text";
-import { AutocompleteTextReadonlyItemRenderer } from "./components/itemRenderers/textReadonly";
 
 type DataSourceType = DataSourceYoutube;
 
@@ -39,8 +39,8 @@ export function YouTubeOptions({
   });
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1.5">
+    <div>
+      <div>
         <Label>Display</Label>
         <Select
           value={options.return.toString()}
@@ -75,27 +75,29 @@ export function YouTubeOptions({
           </SelectContent>
         </Select>
       </div>
-      <div className="flex flex-col gap-1.5">
+      <Separator />
+      <div>
         <Label>Channel URL</Label>
-        {options.channelUrl &&
-          [options.channelUrl].map(
-            textItemRendererFactory({
-              remove: () => setOptions({ channelUrl: undefined }),
-              update: (channelUrl) => setOptions({ channelUrl }),
-              dataSourceConfigWarning: "Remember to return a valid channel URL",
-            }),
-          )}
-        {!options.channelUrl && (
-          <AutocompleteInput
-            itemRenderer={AutocompleteTextReadonlyItemRenderer}
-            placeholder=""
-            onAdd={(channelUrl) => {
+        <Combobox
+          items={knownSearcheableDataSources}
+          allowSearchedTerm
+          selectedItem={options.channelUrl}
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate(channelUrl) {
               setOptions({ channelUrl });
-            }}
-            allowSearchedItem={true}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+            },
+            onRemove() {
+              setOptions({ channelUrl: undefined });
+            },
+            dataSourceConfigWarning: "Remember to return a valid channel URL",
+          })}
+          onItemSelect={(channelUrl) => {
+            setOptions({ channelUrl });
+          }}
+          prefillSelectedItemOnSearchOnFocus
+          placeholder=""
+        />
       </div>
     </div>
   );

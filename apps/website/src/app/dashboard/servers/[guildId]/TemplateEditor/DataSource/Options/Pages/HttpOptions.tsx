@@ -9,14 +9,8 @@ import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
 import { searcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { numberItemRendererFactory } from "./components/itemRenderers/numbers";
-import {
-  AutocompleteTextItemRenderer,
-  textItemRendererFactory,
-} from "./components/itemRenderers/text";
 
 type DataSourceType = DataSourceHTTP;
 
@@ -28,6 +22,7 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
   };
 };
 
+// TODO use new combobox
 export function HttpOptions({
   options: unmergedOptions,
   onOptionsChange,
@@ -38,11 +33,7 @@ export function HttpOptions({
     onOptionsChange,
   });
   const [testResponse, setTestResponse] = useState(
-    JSON.stringify(
-      { example: [{ sub: 123 }, { subnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn: 789 }] },
-      null,
-      " ",
-    ),
+    JSON.stringify({ example: [{ sub: 123 }, { sub: 789 }] }, null, " "),
   );
   const [testLoading, setTestLoading] = useState(false);
   const [displayPreview, setDisplayPreview] = useState("");
@@ -83,8 +74,8 @@ export function HttpOptions({
   };
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>URL (GET)</Label>
         {options.url &&
           [options.url].map(
@@ -95,7 +86,7 @@ export function HttpOptions({
             }),
           )}
         {!options.url && (
-          <AutocompleteInput
+          <Combobox
             itemRenderer={AutocompleteTextItemRenderer}
             placeholder=""
             onAdd={(url) => {
@@ -106,7 +97,8 @@ export function HttpOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-3">
+      <Separator />
+      <div>
         <Label>Lifetime (in seconds)</Label>
         <span className="text-sm font-light italic">
           Specifies for how long the response of the specified URL will be
@@ -120,7 +112,7 @@ export function HttpOptions({
             }),
           )}
         {!options.lifetime && (
-          <AutocompleteInput
+          <Combobox
             itemRenderer={AutocompleteTextItemRenderer}
             placeholder=""
             onAdd={(lifetime) => {
@@ -136,7 +128,8 @@ export function HttpOptions({
           />
         )}
       </div>
-      <div className="flex flex-col gap-3">
+      <Separator />
+      <div>
         <Label>Data path</Label>
         <span className="text-sm font-light italic">
           A path to get the desired value when the response's content type is
@@ -152,7 +145,7 @@ export function HttpOptions({
             }),
           )}
         {!options.dataPath && (
-          <AutocompleteInput
+          <Combobox
             itemRenderer={AutocompleteTextItemRenderer}
             placeholder=""
             onAdd={(dataPath) => {
@@ -173,7 +166,7 @@ export function HttpOptions({
         </span>
       ) : (
         <>
-          <div className="flex flex-col gap-3">
+          <div>
             <Label>Test response</Label>
             <pre className="overflow-auto rounded-md border border-input bg-background p-4">
               {testResponse}
@@ -191,8 +184,8 @@ export function HttpOptions({
               )}
             </Button>
           </div>
-
-          <div className="flex flex-col gap-3">
+          <Separator />
+          <div>
             <Label>Preview</Label>
             <Input readOnly value={displayPreview} />
           </div>

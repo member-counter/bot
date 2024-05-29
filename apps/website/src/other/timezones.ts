@@ -1,4 +1,4 @@
-import type { Searchable } from "~/app/components/AutocompleteInput";
+import type { Searchable } from "~/app/components/Combobox";
 
 export const timezones: Record<string, { label: string; keywords: string[] }> =
   {

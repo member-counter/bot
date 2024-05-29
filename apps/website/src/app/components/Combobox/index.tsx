@@ -34,7 +34,7 @@ export interface ComboboxProps<
   id?: string;
   className?: string;
   placeholder?: string;
-  prefillSellectedItemOnSearchOnFocus?: boolean;
+  prefillSelectedItemOnSearchOnFocus?: boolean;
   items: Searchable<RequestedType>[];
   allowSearchedTerm?: AllowSearchedTerm;
   selectedItem?: ActualType;
@@ -51,7 +51,7 @@ export function Combobox<T, A extends boolean = false>({
   id,
   className,
   placeholder = "Add...",
-  prefillSellectedItemOnSearchOnFocus,
+  prefillSelectedItemOnSearchOnFocus,
   allowSearchedTerm,
   items,
   selectedItem,
@@ -144,7 +144,7 @@ export function Combobox<T, A extends boolean = false>({
           value={search}
           onValueChange={setSearch}
           onFocus={(e) => {
-            if (!prefillSellectedItemOnSearchOnFocus) return;
+            if (!prefillSelectedItemOnSearchOnFocus) return;
             if (typeof selectedItem !== "string") return;
             setSearch(selectedItem);
             e.target.selectionStart = 0;
@@ -210,7 +210,7 @@ export function Combobox<T, A extends boolean = false>({
       onItemRender,
       onItemSelect,
       placeholder,
-      prefillSellectedItemOnSearchOnFocus,
+      prefillSelectedItemOnSearchOnFocus,
       search,
       searchId,
       selectedItem,

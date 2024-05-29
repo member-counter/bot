@@ -17,16 +17,12 @@ import {
   SelectValue,
 } from "@mc/ui/select";
 import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
+import { Separator } from "@mc/ui/separator";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { addTo, removeFrom, updateIn } from "~/other/array";
-import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
 import { searcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import {
-  AutocompleteNumberItemRenderer,
-  numberItemRendererFactory,
-} from "./components/itemRenderers/numbers";
 
 type DataSourceType = DataSourceMath;
 
@@ -37,6 +33,7 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
   };
 };
 
+// TODO use new combobox
 export function MathOptions({
   options: unmergedOptions,
   onOptionsChange,
@@ -48,8 +45,8 @@ export function MathOptions({
   });
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>Operation type</Label>
         <Select
           value={options.operation.toString()}
@@ -89,7 +86,8 @@ export function MathOptions({
           </SelectContent>
         </Select>
       </div>
-      <div className="flex flex-col gap-3">
+      <Separator />
+      <div>
         <Label>Number list</Label>
         {options.numbers.map(
           numberItemRendererFactory({
@@ -101,7 +99,7 @@ export function MathOptions({
               }),
           }),
         )}
-        <AutocompleteInput
+        <Combobox
           itemRenderer={AutocompleteNumberItemRenderer}
           allowSearchedItem={true}
           placeholder="Add number..."

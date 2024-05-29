@@ -9,12 +9,11 @@ import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import AutocompleteInput from "~/app/components/AutocompleteInput";
+import { Combobox } from "~/app/components/Combobox";
+import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { addTo, removeFrom, updateIn } from "~/other/array";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { textItemRendererFactory } from "./components/itemRenderers/text";
-import { AutocompleteTextReadonlyItemRenderer } from "./components/itemRenderers/textReadonly";
 
 type DataSourceType = DataSourceReplace;
 
@@ -36,31 +35,31 @@ export function ReplaceOptions({
   });
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>Input text</Label>
-        {options.text &&
-          [options.text].map(
-            textItemRendererFactory({
-              remove: () => setOptions({ text: undefined }),
-              update: (text) => setOptions({ text }),
-              dataSourceConfigWarning: "Remember to return a valid channel URL",
-            }),
-          )}
-        {!options.text && (
-          <AutocompleteInput
-            itemRenderer={AutocompleteTextReadonlyItemRenderer}
-            placeholder=""
-            onAdd={(text) => {
+        <Combobox
+          items={knownSearcheableDataSources}
+          selectedItem={options.text}
+          allowSearchedTerm
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate(text) {
               setOptions({ text });
-            }}
-            allowSearchedItem={true}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+            },
+            onRemove() {
+              setOptions({ text: undefined });
+            },
+          })}
+          onItemSelect={(text) => {
+            setOptions({ text });
+          }}
+          prefillSelectedItemOnSearchOnFocus
+          placeholder=""
+        />
       </div>
       <Separator />
-      <div className="flex flex-col gap-3">
+      <div>
         {options.replacements.map((replacement, index) => {
           return (
             <Card
@@ -69,42 +68,13 @@ export function ReplaceOptions({
             >
               <div className="flex flex-col gap-3">
                 <Label>Search for</Label>
-                {replacement.search &&
-                  [replacement.search].map(
-                    textItemRendererFactory({
-                      remove: () => {
-                        const newReplacement: ReplaceReplacement = {
-                          ...replacement,
-                          search: undefined,
-                        };
-                        setOptions({
-                          replacements: updateIn(
-                            options.replacements,
-                            newReplacement,
-                            index,
-                          ),
-                        });
-                      },
-                      update: (text) => {
-                        const newReplacement: ReplaceReplacement = {
-                          ...replacement,
-                          search: text,
-                        };
-                        setOptions({
-                          replacements: updateIn(
-                            options.replacements,
-                            newReplacement,
-                            index,
-                          ),
-                        });
-                      },
-                    }),
-                  )}
-                {!replacement.search && (
-                  <AutocompleteInput
-                    itemRenderer={AutocompleteTextReadonlyItemRenderer}
-                    placeholder=""
-                    onAdd={(text) => {
+                <Combobox
+                  items={knownSearcheableDataSources}
+                  selectedItem={replacement.search}
+                  allowSearchedTerm
+                  onItemRender={textWithDataSourceItemRendererFactory()}
+                  onSelectedItemRender={textWithDataSourceItemRendererFactory({
+                    onUpdate(text) {
                       const newReplacement: ReplaceReplacement = {
                         ...replacement,
                         search: text,
@@ -116,50 +86,47 @@ export function ReplaceOptions({
                           index,
                         ),
                       });
-                    }}
-                    allowSearchedItem={true}
-                    suggestableItems={searcheableDataSources}
-                  />
-                )}
+                    },
+                    onRemove() {
+                      const newReplacement: ReplaceReplacement = {
+                        ...replacement,
+                        search: undefined,
+                      };
+                      setOptions({
+                        replacements: updateIn(
+                          options.replacements,
+                          newReplacement,
+                          index,
+                        ),
+                      });
+                    },
+                  })}
+                  onItemSelect={(text) => {
+                    const newReplacement: ReplaceReplacement = {
+                      ...replacement,
+                      search: text,
+                    };
+                    setOptions({
+                      replacements: updateIn(
+                        options.replacements,
+                        newReplacement,
+                        index,
+                      ),
+                    });
+                  }}
+                  prefillSelectedItemOnSearchOnFocus
+                  placeholder=""
+                />
               </div>
               <div className="flex flex-col gap-3">
                 <Label>Replace with</Label>
-                {replacement.replacement &&
-                  [replacement.replacement].map(
-                    textItemRendererFactory({
-                      remove: () => {
-                        const newReplacement: ReplaceReplacement = {
-                          ...replacement,
-                          replacement: undefined,
-                        };
-                        setOptions({
-                          replacements: updateIn(
-                            options.replacements,
-                            newReplacement,
-                            index,
-                          ),
-                        });
-                      },
-                      update: (text) => {
-                        const newReplacement: ReplaceReplacement = {
-                          ...replacement,
-                          replacement: text,
-                        };
-                        setOptions({
-                          replacements: updateIn(
-                            options.replacements,
-                            newReplacement,
-                            index,
-                          ),
-                        });
-                      },
-                    }),
-                  )}
-                {!replacement.replacement && (
-                  <AutocompleteInput
-                    itemRenderer={AutocompleteTextReadonlyItemRenderer}
-                    placeholder=""
-                    onAdd={(text) => {
+                <Combobox
+                  items={knownSearcheableDataSources}
+                  selectedItem={replacement.replacement}
+                  allowSearchedTerm
+                  onItemRender={textWithDataSourceItemRendererFactory()}
+                  onSelectedItemRender={textWithDataSourceItemRendererFactory({
+                    onUpdate(text) {
                       const newReplacement: ReplaceReplacement = {
                         ...replacement,
                         replacement: text,
@@ -171,11 +138,37 @@ export function ReplaceOptions({
                           index,
                         ),
                       });
-                    }}
-                    allowSearchedItem={true}
-                    suggestableItems={searcheableDataSources}
-                  />
-                )}
+                    },
+                    onRemove() {
+                      const newReplacement: ReplaceReplacement = {
+                        ...replacement,
+                        replacement: undefined,
+                      };
+                      setOptions({
+                        replacements: updateIn(
+                          options.replacements,
+                          newReplacement,
+                          index,
+                        ),
+                      });
+                    },
+                  })}
+                  onItemSelect={(text) => {
+                    const newReplacement: ReplaceReplacement = {
+                      ...replacement,
+                      replacement: text,
+                    };
+                    setOptions({
+                      replacements: updateIn(
+                        options.replacements,
+                        newReplacement,
+                        index,
+                      ),
+                    });
+                  }}
+                  prefillSelectedItemOnSearchOnFocus
+                  placeholder=""
+                />
               </div>
               <Button
                 variant={"destructive"}

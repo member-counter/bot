@@ -23,7 +23,7 @@ export function FilterPlayingGame({
           key={index}
           items={knownSearcheableDataSources}
           allowSearchedTerm
-          prefillSellectedItemOnSearchOnFocus
+          prefillSelectedItemOnSearchOnFocus
           placeholder=""
           selectedItem={item}
           onItemSelect={(item) => {

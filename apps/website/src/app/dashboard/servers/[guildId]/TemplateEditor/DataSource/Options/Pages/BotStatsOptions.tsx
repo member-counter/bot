@@ -34,8 +34,8 @@ export function BotStatsOptions({
   });
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>Display</Label>
         <Select
           value={options.return.toString()}

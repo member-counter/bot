@@ -23,7 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import type { Searchable } from "~/app/components/AutocompleteInput";
+import type { Searchable } from "~/app/components/Combobox";
 
 export const emojis = {
   "😀": {

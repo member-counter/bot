@@ -3,11 +3,10 @@ import type { DataSourceTwitter } from "@mc/common/DataSource";
 import { Label } from "@mc/ui/label";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import { Combobox } from "~/app/components/Combobox";
+import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
+import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { textItemRendererFactory } from "./components/itemRenderers/text";
-import { AutocompleteTextReadonlyItemRenderer } from "./components/itemRenderers/textReadonly";
 
 type DataSourceType = DataSourceTwitter;
 
@@ -28,28 +27,29 @@ export function TwitterOptions({
   });
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>Username</Label>
-        {options.username &&
-          [options.username].map(
-            textItemRendererFactory({
-              remove: () => setOptions({ username: undefined }),
-              update: (username) => setOptions({ username }),
-              dataSourceConfigWarning: "Remember to return a valid username",
-            }),
-          )}
-        {!options.username && (
-          <AutocompleteInput
-            itemRenderer={AutocompleteTextReadonlyItemRenderer}
-            placeholder=""
-            onAdd={(username) => {
+        <Combobox
+          items={knownSearcheableDataSources}
+          selectedItem={options.username}
+          allowSearchedTerm
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate(username) {
               setOptions({ username });
-            }}
-            allowSearchedItem={true}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+            },
+            onRemove() {
+              setOptions({ username: undefined });
+            },
+            dataSourceConfigWarning: "Remember to return a valid username",
+          })}
+          onItemSelect={(username) => {
+            setOptions({ username });
+          }}
+          prefillSelectedItemOnSearchOnFocus
+          placeholder=""
+        />
       </div>
     </div>
   );

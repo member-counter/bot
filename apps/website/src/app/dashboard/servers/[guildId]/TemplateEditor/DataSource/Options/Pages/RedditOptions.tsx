@@ -11,13 +11,13 @@ import {
   SelectValue,
 } from "@mc/ui/select";
 import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
+import { Separator } from "@mc/ui/separator";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import { Combobox } from "~/app/components/Combobox";
+import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
+import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { textItemRendererFactory } from "./components/itemRenderers/text";
-import { AutocompleteTextReadonlyItemRenderer } from "./components/itemRenderers/textReadonly";
 
 type DataSourceType = DataSourceReddit;
 
@@ -39,8 +39,8 @@ export function RedditOptions({
   });
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3">
+    <div>
+      <div>
         <Label>Display</Label>
         <Select
           value={options.return.toString()}
@@ -70,27 +70,29 @@ export function RedditOptions({
           </SelectContent>
         </Select>
       </div>
-      <div className="flex flex-col gap-3">
+      <Separator />
+      <div>
         <Label>Subreddit name</Label>
-        {options.subreddit &&
-          [options.subreddit].map(
-            textItemRendererFactory({
-              remove: () => setOptions({ subreddit: undefined }),
-              update: (subreddit) => setOptions({ subreddit }),
-              dataSourceConfigWarning: "Remember to return a valid username",
-            }),
-          )}
-        {!options.subreddit && (
-          <AutocompleteInput
-            itemRenderer={AutocompleteTextReadonlyItemRenderer}
-            placeholder=""
-            onAdd={(subreddit) => {
+        <Combobox
+          items={knownSearcheableDataSources}
+          selectedItem={options.subreddit}
+          allowSearchedTerm
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate(subreddit) {
               setOptions({ subreddit });
-            }}
-            allowSearchedItem={true}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+            },
+            onRemove() {
+              setOptions({ subreddit: undefined });
+            },
+            dataSourceConfigWarning: "Remember to return a valid subreddit",
+          })}
+          onItemSelect={(subreddit) => {
+            setOptions({ subreddit });
+          }}
+          prefillSelectedItemOnSearchOnFocus
+          placeholder=""
+        />
       </div>
     </div>
   );
