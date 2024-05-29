@@ -171,7 +171,7 @@ const EmojiPickerContent = memo(function EmojiPickerContent({
   );
 });
 
-function EmojiList({
+const EmojiList = memo(function EmojiList({
   skinTone,
   onSelect,
   matchingEmojis,
@@ -272,7 +272,7 @@ function EmojiList({
       </div>
     </div>
   );
-}
+});
 
 function SkinToneSelector({
   value,
