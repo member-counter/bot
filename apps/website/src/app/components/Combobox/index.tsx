@@ -67,7 +67,6 @@ export function Combobox<T, A extends boolean = false>({
   const filter = useCallback(
     (value: string, search: string, keywords: string[] | undefined) => {
       value = value.toLowerCase();
-      search = search.toLowerCase();
 
       if (
         allowSearchedTerm &&
@@ -77,12 +76,15 @@ export function Combobox<T, A extends boolean = false>({
       )
         return Number.MAX_VALUE;
 
-      if (!keywords) return value.startsWith(search) ? 1 : 0;
+      const terms = search.toLowerCase().split(/\s+/);
+
+      if (!keywords)
+        return terms.some((term) => value.startsWith(term)) ? 1 : 0;
 
       keywords = keywords.map((keyword) => keyword.toLowerCase());
 
       const score = keywords.reduce((acc, keyword) => {
-        if (keyword.startsWith(search)) return acc + 1;
+        if (terms.some((term) => keyword.startsWith(term))) return acc + 1;
         return acc;
       }, 0);
 
