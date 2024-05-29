@@ -29,6 +29,7 @@ export function FilterByRole({
     <>
       {value.map((item, index) => (
         <Combobox
+          key={index}
           items={searchableRoles}
           placeholder=""
           selectedItem={item}

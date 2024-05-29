@@ -20,6 +20,7 @@ export function FilterPlayingGame({
       <Label>Filter by playing a game</Label>
       {value.map((item, index) => (
         <Combobox
+          key={index}
           items={knownSearcheableDataSources}
           allowSearchedTerm
           prefillSellectedItemOnSearchOnFocus
