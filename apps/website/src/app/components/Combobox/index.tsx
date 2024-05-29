@@ -34,6 +34,7 @@ export interface ComboboxProps<
   id?: string;
   className?: string;
   placeholder?: string;
+  prefillSellectedItemOnSearchOnFocus?: boolean;
   items: Searchable<RequestedType>[];
   allowSearchedTerm?: AllowSearchedTerm;
   selectedItem?: ActualType;
@@ -50,12 +51,13 @@ export function Combobox<T, A extends boolean = false>({
   id,
   className,
   placeholder = "Add...",
+  prefillSellectedItemOnSearchOnFocus,
   allowSearchedTerm,
   items,
   selectedItem,
   onSelectedItemRender,
   onItemRender,
-  onItemSelect,
+  onItemSelect: fireOnItemSelect,
   disabled,
 }: ComboboxProps<T, A>) {
   const [open, setOpen] = useState(false);
@@ -118,6 +120,16 @@ export function Combobox<T, A extends boolean = false>({
     [className, disabled, id, onSelectedItemRender, placeholder, selectedItem],
   );
 
+  const onItemSelect = useCallback(
+    (value: string | T) => {
+      // haaaaaaaaaaaa https://github.com/Microsoft/TypeScript/issues/13995#issuecomment-363265172
+      fireOnItemSelect(structuredClone(value as never));
+      setOpen(false);
+      setSearch("");
+    },
+    [fireOnItemSelect],
+  );
+
   const selfId = useId();
   const searchId = useId();
 
@@ -128,6 +140,13 @@ export function Combobox<T, A extends boolean = false>({
           placeholder={placeholder}
           value={search}
           onValueChange={setSearch}
+          onFocus={(e) => {
+            if (!prefillSellectedItemOnSearchOnFocus) return;
+            if (typeof selectedItem !== "string") return;
+            setSearch(selectedItem);
+            e.target.selectionStart = 0;
+            e.target.selectionEnd = selectedItem.length;
+          }}
         />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
@@ -138,10 +157,7 @@ export function Combobox<T, A extends boolean = false>({
                   className={cn(selectedItem === value && "bg-accent")}
                   key={i}
                   keywords={keywords}
-                  onSelect={() => {
-                    onItemSelect(structuredClone(value));
-                    setOpen(false);
-                  }}
+                  onSelect={() => onItemSelect(value)}
                 >
                   {onItemRender({
                     item: value,
@@ -156,14 +172,7 @@ export function Combobox<T, A extends boolean = false>({
                   <CommandItem
                     className={cn(selectedItem === search && "bg-accent")}
                     key={searchId}
-                    onSelect={() => {
-                      onItemSelect(
-                        structuredClone(
-                          search as A extends true ? T | string : T,
-                        ),
-                      );
-                      setOpen(false);
-                    }}
+                    onSelect={onItemSelect}
                   >
                     {onItemRender({
                       item: search as A extends true ? T | string : T,
@@ -175,10 +184,7 @@ export function Combobox<T, A extends boolean = false>({
                   <CommandItem
                     className={cn("bg-accent")}
                     key={selfId}
-                    onSelect={() => {
-                      onItemSelect(structuredClone(selectedItem));
-                      setOpen(false);
-                    }}
+                    onSelect={onItemSelect}
                   >
                     {onItemRender({
                       item: selectedItem,
@@ -200,6 +206,7 @@ export function Combobox<T, A extends boolean = false>({
       onItemRender,
       onItemSelect,
       placeholder,
+      prefillSellectedItemOnSearchOnFocus,
       search,
       searchId,
       selectedItem,
