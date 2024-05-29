@@ -6,19 +6,20 @@ import { Portal } from "@mc/ui/portal";
 import { useBreakpoint } from "~/hooks/useBreakpoint";
 import { SidePanelContext } from "../../SidePanelContext";
 import { TemplateEditorContext } from "../TemplateEditorContext";
+import { useDataSourceRefs } from "./DataSourceRefs";
 import EditDataSourcePanel from "./EditDataSourcePanel";
 
 export default function EditDataSource() {
   const isDesktop = useBreakpoint("md");
   const [open, setOpen] = useState(false);
   const sidePanel = useContext(SidePanelContext);
+  const { disabled } = useContext(TemplateEditorContext);
   const {
     dataSourceRefs,
     setDataSourceRef,
     editingDataSourceRefId,
     setEditingDataSourceRefId,
-    disabled,
-  } = useContext(TemplateEditorContext);
+  } = useDataSourceRefs();
 
   useEffect(() => {
     setOpen(!!editingDataSourceRefId);

@@ -8,6 +8,7 @@ import { DataSourceId } from "@mc/common/DataSource";
 import type { DataSourceElement as DataSourceElementType } from "../custom-types";
 import { InlineChromiumBugfix } from "../EditorElements/ChromiumBugFix";
 import { TemplateEditorContext } from "../TemplateEditorContext";
+import { useDataSourceRefs } from "./DataSourceRefs";
 import { getDataSourceMetadata } from "./dataSourcesMetadata";
 
 export default function DataSourceElement(
@@ -16,12 +17,9 @@ export default function DataSourceElement(
   const element = props.element as DataSourceElementType;
   const selected = useSelected();
   const focused = useFocused();
-  const {
-    setEditingDataSourceRefId,
-    editingDataSourceRefId,
-    dataSourceRefs,
-    disabled,
-  } = useContext(TemplateEditorContext);
+  const { disabled } = useContext(TemplateEditorContext);
+  const { setEditingDataSourceRefId, editingDataSourceRefId, dataSourceRefs } =
+    useDataSourceRefs();
 
   const dataSource = useMemo(
     () =>

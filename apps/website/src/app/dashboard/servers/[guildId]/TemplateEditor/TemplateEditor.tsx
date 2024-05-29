@@ -8,6 +8,7 @@ import { Slate } from "slate-react";
 import { v4 } from "uuid";
 
 import type { DataSourceRefId, DataSourceRefs } from "./utils";
+import { DataSourceRefsContext } from "./DataSource/DataSourceRefs";
 import { TemplateEditorContext } from "./TemplateEditorContext";
 import {
   buildEditor,
@@ -67,22 +68,22 @@ export default function TemplateEditor({
     defaultInsertFragment(fragments);
   };
 
-  const contextValue = useMemo(
+  const templateEditorContextValue = useMemo(
     () => ({
       features,
+      disabled: !!disabled,
+    }),
+    [features, disabled],
+  );
+
+  const dataSourceRefsContextValue = useMemo(
+    () => ({
       dataSourceRefs,
       setDataSourceRef,
       editingDataSourceRefId,
       setEditingDataSourceRefId,
-      disabled: !!disabled,
     }),
-    [
-      features,
-      dataSourceRefs,
-      setDataSourceRef,
-      editingDataSourceRefId,
-      disabled,
-    ],
+    [dataSourceRefs, setDataSourceRef, editingDataSourceRefId],
   );
   return (
     <Slate
@@ -90,8 +91,10 @@ export default function TemplateEditor({
       initialValue={initialValue.nodes}
       onChange={(value) => onChange?.(value, dataSourceRefs)}
     >
-      <TemplateEditorContext.Provider value={contextValue}>
-        {children}
+      <TemplateEditorContext.Provider value={templateEditorContextValue}>
+        <DataSourceRefsContext.Provider value={dataSourceRefsContextValue}>
+          {children}
+        </DataSourceRefsContext.Provider>
       </TemplateEditorContext.Provider>
     </Slate>
   );

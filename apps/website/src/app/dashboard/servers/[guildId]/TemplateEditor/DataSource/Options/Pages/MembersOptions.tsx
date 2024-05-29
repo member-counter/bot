@@ -1,5 +1,5 @@
 import type { DataSource, DataSourceMembers } from "@mc/common/DataSource";
-import { useId, useMemo } from "react";
+import { useCallback, useId, useMemo } from "react";
 import { useParams } from "next/navigation";
 import {
   AsteriskIcon,
@@ -18,6 +18,7 @@ import {
   MembersFilterStatus,
 } from "@mc/common/DataSource";
 import { Checkbox } from "@mc/ui/checkbox";
+import { Input } from "@mc/ui/input";
 import { Label } from "@mc/ui/label";
 import {
   Select,
@@ -34,10 +35,17 @@ import type { Searchable } from "../../../../../../../components/AutocompleteInp
 import type { DashboardGuildParams } from "../../../../layout";
 import type { GuildRole } from "../../../d-types";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
+import { Combobox } from "~/app/components/Combobox";
+import { DataSourceItem } from "~/app/components/Combobox/items/DataSourceItem";
+import { TextItem } from "~/app/components/Combobox/items/TextItem";
+import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { addTo, removeFrom, updateIn } from "~/other/array";
 import { api } from "~/trpc/react";
 import AutocompleteInput from "../../../../../../../components/AutocompleteInput";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import {
+  knownSearcheableDataSources,
+  searcheableDataSources,
+} from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 import {
   AutocompleteRoleItemRenderer,
@@ -78,18 +86,6 @@ export function MembersOptions({
     () => guild.data?.roles ?? new Map<string, GuildRole>(),
     [guild.data?.roles],
   );
-
-  const searcheableRolesDataSources: Searchable<string | DataSource>[] =
-    useMemo(
-      () => [
-        ...searcheableDataSources,
-        ...Array.from(roles.values()).map((role) => ({
-          value: role.id,
-          keywords: [role.name],
-        })),
-      ],
-      [roles],
-    );
 
   const bannedCheckboxId = useId();
 
@@ -216,7 +212,7 @@ export function MembersOptions({
                 </SelectContent>
               </Select>
               <Separator className="my-1" />
-              {options.roles.map(
+              {/* {options.roles.map(
                 roleItemRendererFactory({
                   remove: (index) =>
                     setOptions({ roles: removeFrom(options.roles, index) }),
@@ -234,29 +230,47 @@ export function MembersOptions({
                 }}
                 allowSearchedItem={false}
                 suggestableItems={searcheableRolesDataSources}
-              />
+              /> */}
             </div>
             <div className="flex flex-col gap-3">
               <Label>Filter by playing a game</Label>
-              {options.playing.map(
-                textItemRendererFactory({
-                  remove: (index) =>
-                    setOptions({ playing: removeFrom(options.playing, index) }),
-                  update: (item, index: number) =>
+              {options.playing.map((item, index) => (
+                <Combobox
+                  items={knownSearcheableDataSources}
+                  allowSearchedTerm
+                  placeholder=""
+                  selectedItem={item}
+                  onItemSelect={(item) => {
                     setOptions({
                       playing: updateIn(options.playing, item, index),
-                    }),
-                }),
-              )}
-              <AutocompleteInput
-                itemRenderer={AutocompleteTextItemRenderer}
-                allowSearchedItem={true}
+                    });
+                  }}
+                  onItemRender={textWithDataSourceItemRendererFactory()}
+                  onSelectedItemRender={textWithDataSourceItemRendererFactory({
+                    onUpdate: (item) => {
+                      // TODO: on update it seems to reset the edit stack
+                      setOptions({
+                        playing: updateIn(options.playing, item, index),
+                      });
+                    },
+                    onRemove: () => {
+                      setOptions({
+                        playing: removeFrom(options.playing, index),
+                      });
+                    },
+                  })}
+                />
+              ))}
+              <Combobox
+                items={knownSearcheableDataSources}
+                allowSearchedTerm
                 placeholder="Add game..."
-                onAdd={(game) => {
-                  setOptions({ playing: addTo(options.playing, game) });
+                onItemSelect={(item) => {
+                  setOptions({
+                    playing: addTo(options.playing, item),
+                  });
                 }}
-                suggestOnFocus={false}
-                suggestableItems={searcheableDataSources}
+                onItemRender={textWithDataSourceItemRendererFactory()}
               />
             </div>
           </>

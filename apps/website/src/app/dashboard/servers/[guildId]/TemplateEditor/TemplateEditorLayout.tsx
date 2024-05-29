@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { CurlyBracesIcon } from "lucide-react";
 import { ReactEditor, useSlateStatic } from "slate-react";
 
@@ -8,6 +8,7 @@ import { InputWrapper } from "@mc/ui/InputWrapper";
 import { Separator } from "@mc/ui/separator";
 
 import AddDataSourceCombobox from "./DataSource/AddDataSourceCombobox";
+import { useDataSourceRefs } from "./DataSource/DataSourceRefs";
 import EditDataSource from "./DataSource/EditDataSource";
 import { insertDataSource } from "./DataSource/insertDataSource";
 import { EmojiPicker } from "./Emoji/EmojiPicker";
@@ -18,7 +19,6 @@ import { discordChannelTopicWithDataSource } from "./serde/deserialization/gramm
 import { deserialize } from "./serde/deserialize";
 import { serialize } from "./serde/serialize";
 import TemplateEditor from "./TemplateEditor";
-import { TemplateEditorContext } from "./TemplateEditorContext";
 import TemplateEditorInput from "./TemplateEditorInput";
 
 function InnerTemplateEditorLayout({
@@ -33,7 +33,7 @@ function InnerTemplateEditorLayout({
   target: "channelName" | "channelTopic";
 }) {
   const editor = useSlateStatic();
-  const { setDataSourceRef } = useContext(TemplateEditorContext);
+  const { setDataSourceRef } = useDataSourceRefs();
 
   return (
     <InputWrapper
