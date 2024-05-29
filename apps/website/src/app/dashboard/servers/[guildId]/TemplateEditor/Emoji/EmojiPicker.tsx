@@ -1,10 +1,18 @@
-import { memo, useContext, useEffect, useMemo, useState } from "react";
+import {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { SmileIcon } from "lucide-react";
 import { ReactEditor, useSlateStatic } from "slate-react";
 
 import { searchInTexts } from "@mc/common/searchInTexts";
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
+import { Card } from "@mc/ui/card";
 import { Drawer, DrawerContent, DrawerTrigger } from "@mc/ui/drawer";
 import { Input } from "@mc/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
@@ -20,12 +28,51 @@ import { api } from "~/trpc/react";
 import { GuildEmojiRenderer } from "../../../../../components/GuildEmojiRenderer";
 import { TemplateEditorContext } from "../TemplateEditorContext";
 
-export const EmojiPicker = memo(function EmojiPicker({
+export function EmojiPicker({
   className,
   disabled,
 }: { className?: string; disabled?: boolean } = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const isDesktop = useBreakpoint("md");
+
+  const openButton = (
+    <Button
+      variant={"ghost"}
+      className={cn(["h-10 px-3", className])}
+      disabled={disabled}
+    >
+      <SmileIcon className="inline h-4 w-4" aria-label="Emoji picker" />
+    </Button>
+  );
+
+  const emojiPickerContent = <EmojiPickerContent setIsOpen={setIsOpen} />;
+
+  if (isDesktop) {
+    return (
+      <Popover open={!disabled && isOpen} onOpenChange={setIsOpen}>
+        <PopoverTrigger asChild>{openButton}</PopoverTrigger>
+        <PopoverContent asChild>
+          <Card className=" w-[400px] p-0 ">{emojiPickerContent}</Card>
+        </PopoverContent>
+      </Popover>
+    );
+  }
+
+  return (
+    <Drawer open={!disabled && isOpen} onOpenChange={setIsOpen}>
+      <DrawerTrigger asChild>{openButton}</DrawerTrigger>
+      <DrawerContent hideDragger className="rounded-t-2xl">
+        {emojiPickerContent}
+      </DrawerContent>
+    </Drawer>
+  );
+}
+
+const EmojiPickerContent = memo(function EmojiPickerContent({
+  setIsOpen,
+}: {
+  setIsOpen: (value: boolean) => void;
+}) {
   const editor = useSlateStatic();
   const { features } = useContext(TemplateEditorContext);
   const [skinTone, setSkinTone] = useState("");
@@ -64,7 +111,7 @@ export const EmojiPicker = memo(function EmojiPicker({
     [guildEmojis],
   );
 
-  const matchingEmojis: (string | GuildEmoji)[] = useMemo(() => {
+  const matchingEmojis: (string | GuildEmoji)[] = (() => {
     const ranking = searchInTexts(
       allSearchableEmojis.map((emojis) => emojis.keywords),
       search,
@@ -75,32 +122,26 @@ export const EmojiPicker = memo(function EmojiPicker({
       .filter(Boolean);
 
     return rankedItems.map((item) => item.value);
-  }, [allSearchableEmojis, search]);
+  })();
 
-  const onSelect = (emoji: string | GuildEmoji) => {
-    const node: EmojiElement = {
-      type: "emoji",
-      emoji,
-      children: [{ text: "" }],
-    };
-    editor.insertNode(node);
-    ReactEditor.focus(editor);
-  };
-
-  const openButton = (
-    <Button
-      variant={"ghost"}
-      className={cn(["h-10 px-3", className])}
-      disabled={disabled}
-    >
-      <SmileIcon className="inline h-4 w-4" aria-label="Emoji picker" />
-    </Button>
+  const onSelect = useCallback(
+    (emoji: string | GuildEmoji) => {
+      const node: EmojiElement = {
+        type: "emoji",
+        emoji,
+        children: [{ text: "" }],
+      };
+      editor.insertNode(node);
+      ReactEditor.focus(editor);
+      setIsOpen(false);
+    },
+    [editor, setIsOpen],
   );
 
-  const emojiPicker = (
+  return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className={"flex h-[400px] flex-col md:w-[400px]"}
+      className={"flex h-[400px] w-full flex-col"}
     >
       <div
         className={cn([
@@ -120,36 +161,13 @@ export const EmojiPicker = memo(function EmojiPicker({
       </div>
       <div className="flex flex-grow flex-row">
         <EmojiList
-          onSelect={(emoji) => {
-            onSelect(emoji);
-            setIsOpen(false);
-          }}
+          onSelect={onSelect}
           matchingEmojis={matchingEmojis}
           skinTone={skinTone}
           guilds={guilds}
         />
       </div>
     </div>
-  );
-
-  if (isDesktop) {
-    return (
-      <Popover open={!disabled && isOpen} onOpenChange={setIsOpen}>
-        <PopoverTrigger asChild>{openButton}</PopoverTrigger>
-        <PopoverContent asChild className="p-0">
-          {emojiPicker}
-        </PopoverContent>
-      </Popover>
-    );
-  }
-
-  return (
-    <Drawer open={!disabled && isOpen} onOpenChange={setIsOpen}>
-      <DrawerTrigger asChild>{openButton}</DrawerTrigger>
-      <DrawerContent hideDragger className="rounded-t-2xl">
-        {emojiPicker}
-      </DrawerContent>
-    </Drawer>
   );
 });
 
