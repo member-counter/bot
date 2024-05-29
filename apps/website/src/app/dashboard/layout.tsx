@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useEffect, useMemo, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { redirect, useParams, useRouter } from "next/navigation";
 
 import { cn } from "@mc/ui";
 
@@ -14,6 +14,7 @@ import DSelector from "../components/DSelector";
 import { MenuContext } from "./Menu";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const isAuthenticated = api.session.isAuthenticated.useQuery();
   const router = useRouter();
   const params = useParams<DashboardGuildParams>();
   const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
@@ -44,6 +45,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   // margin-top/padding-top to leave space for the nav bar but keeping the actual box under it
   const overflowClass = "mt-[-57px] pt-[57px] max-h-screen overflow-auto";
+
+  if (isAuthenticated.data != null && !isAuthenticated.data)
+    redirect(Routes.Login);
 
   return (
     <MenuContext.Provider value={menuContextValue}>
