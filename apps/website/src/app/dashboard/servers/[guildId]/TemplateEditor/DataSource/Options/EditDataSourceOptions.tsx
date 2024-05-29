@@ -20,6 +20,24 @@ import { TwitchOptions } from "./Pages/TwitchOptions";
 import { TwitterOptions } from "./Pages/TwitterOptions";
 import { YouTubeOptions } from "./Pages/YouTubeOptions";
 
+const optionsMap = {
+  [DataSourceId.MEMBERS.toString()]: MembersOptions,
+  [DataSourceId.MATH.toString()]: MathOptions,
+  [DataSourceId.GAME.toString()]: GameOptions,
+  [DataSourceId.CLOCK.toString()]: ClockOptions,
+  [DataSourceId.COUNTDOWN.toString()]: CountdownOptions,
+  [DataSourceId.TWITCH.toString()]: TwitchOptions,
+  [DataSourceId.YOUTUBE.toString()]: YouTubeOptions,
+  [DataSourceId.REDDIT.toString()]: RedditOptions,
+  [DataSourceId.HTTP.toString()]: HttpOptions,
+  [DataSourceId.TWITTER.toString()]: TwitterOptions,
+  [DataSourceId.NUMBER.toString()]: NumberOptions,
+  [DataSourceId.REPLACE.toString()]: ReplaceOptions,
+  [DataSourceId.MEMERATOR.toString()]: MemeratorOptions,
+  [DataSourceId.BOT_STATS.toString()]: BotStatsOptions,
+  [DataSourceId.CHANNELS.toString()]: ChannelOptions,
+} as const;
+
 export interface EditDataSourceProps {
   dataSource: DataSource;
   onChangeDataSource: (dataSource: DataSource) => void;
@@ -34,112 +52,20 @@ export function EditDataSourceOptions({
     [dataSource.id],
   );
 
-  return dataSource.id === DataSourceId.MEMBERS ? (
-    <MembersOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.MATH ? (
-    <MathOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.GAME ? (
-    <GameOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.YOUTUBE ? (
-    <YouTubeOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.TWITCH ? (
-    <TwitchOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.TWITTER ? (
-    <TwitterOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.MEMERATOR ? (
-    <MemeratorOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.COUNTDOWN ? (
-    <CountdownOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.CLOCK ? (
-    <ClockOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.NUMBER ? (
-    <NumberOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.REDDIT ? (
-    <RedditOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.HTTP ? (
-    <HttpOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.CHANNELS ? (
-    <ChannelOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.BOT_STATS ? (
-    <BotStatsOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : dataSource.id === DataSourceId.REPLACE ? (
-    <ReplaceOptions
-      options={dataSource.options}
-      onOptionsChange={(options) => {
-        onChangeDataSource({ ...dataSource, options });
-      }}
-    />
-  ) : (
-    <p className="p-2 text-sm">{metadata.description}</p>
+  const Options = optionsMap[dataSource.id.toString()];
+
+  if (!Options) return <p className="p-2 text-sm">{metadata.description}</p>;
+
+  return (
+    <div className="[&>*>*]:flex [&>*>*]:flex-col [&>*>*]:gap-3 [&>*]:flex [&>*]:flex-col [&>*]:gap-5">
+      {
+        <Options
+          options={dataSource.options as never}
+          onOptionsChange={(options) => {
+            onChangeDataSource({ ...dataSource, options });
+          }}
+        />
+      }
+    </div>
   );
 }
