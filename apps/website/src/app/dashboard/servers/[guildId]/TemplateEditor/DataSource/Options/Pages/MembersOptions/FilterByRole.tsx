@@ -43,6 +43,7 @@ export function FilterByRole({
             onRemove: () => {
               onChange(removeFrom(value, index));
             },
+            dataSourceConfigWarning: "Remember to return a valid role ID",
           })}
         />
       ))}
