@@ -38,7 +38,8 @@ export default function EditDataSourcePanel({
 
   useEffect(() => {
     setEditStack([{ dataSource, onChangeDataSource }]);
-  }, [dataSource, dataSourceRefId, onChangeDataSource]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataSourceRefId]);
 
   const rootMetadata = useMemo(
     () => getDataSourceMetadata(dataSource.id),
