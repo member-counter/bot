@@ -33,14 +33,12 @@ export const ChannelItem = ({ item, isSelected, onRemove }: Props) => {
           />
         )}
         <div
-          className="mr-auto text-sm"
+          className="mr-auto overflow-hidden text-ellipsis whitespace-nowrap text-sm"
           style={{
             color: color.text,
           }}
         >
-          <span className="overflow-hidden text-ellipsis whitespace-nowrap">
-            {channel ? "# " + channel.name : "Unknown channel"}
-          </span>
+          {channel ? "# " + channel.name : "Unknown channel"}
         </div>
       </div>
       {onRemove && (

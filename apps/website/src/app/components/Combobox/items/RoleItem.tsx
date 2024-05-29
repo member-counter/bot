@@ -21,7 +21,13 @@ type Props = Parameters<ComboboxProps<string>["onItemRender"]>[0] & {
 export const RoleItem = ({ item, isSelected, onRemove }: Props) => {
   const role = useRoleId(item);
 
-  const color = mentionColor(role?.color ?? parseInt("ffffff", 16));
+  const color = mentionColor(role?.color ?? 0xffffff);
+
+  let name = role?.name;
+
+  name ??= "Unknown role";
+
+  if (name === "@everyone") name = "everyone";
 
   return (
     <div className="flex w-full items-center justify-between">
@@ -33,14 +39,12 @@ export const RoleItem = ({ item, isSelected, onRemove }: Props) => {
           />
         )}
         <div
-          className="mr-auto text-sm"
+          className="mr-auto overflow-hidden text-ellipsis whitespace-nowrap text-sm"
           style={{
             color: color.text,
           }}
         >
-          <span className="overflow-hidden text-ellipsis whitespace-nowrap">
-            {role ? "@ " + role.name : "Unknown role"}
-          </span>
+          {name ? "@ " + name : "Unknown role"}
         </div>
       </div>
       {onRemove && (

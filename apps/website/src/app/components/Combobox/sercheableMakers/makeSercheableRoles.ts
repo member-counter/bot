@@ -7,6 +7,6 @@ export function makeSercheableRoles(
   const arrayRoles = [...(roles?.values() ?? [])];
   return arrayRoles.map((role) => ({
     value: role.id,
-    keywords: role.name.split(/\s+/),
+    keywords: role.name === "@everyone" ? ["everyone"] : role.name.split(/\s+/),
   }));
 }
