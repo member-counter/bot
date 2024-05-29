@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { memo, useContext, useMemo } from "react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { SettingsIcon, XIcon } from "lucide-react";
@@ -15,7 +15,11 @@ import { api } from "~/trpc/react";
 import { ChannelNavItem, ChannelNavItemSkeleton } from "./ChannelNavItem";
 import { sortChannels } from "./sortChannels";
 
-export function ServerNavMenu({ className }: { className?: string }) {
+export const ServerNavMenu = memo(function ServerNavMenu({
+  className,
+}: {
+  className?: string;
+}) {
   const pathname = usePathname();
   const menuContext = useContext(MenuContext);
   const { guildId } = useParams<DashboardGuildChannelParams>();
@@ -84,4 +88,4 @@ export function ServerNavMenu({ className }: { className?: string }) {
       </div>
     </nav>
   );
-}
+});
