@@ -84,7 +84,7 @@ function InnerTemplateEditorLayout({
           aria-labelledby={id}
           tabIndex={0}
           className={cn({
-            "no-scrollbar flex-grow overflow-y-hidden overflow-x-scroll [&>*]:whitespace-pre":
+            "no-scrollbar flex-grow overflow-y-hidden overflow-x-scroll px-[1px] [&>*]:whitespace-pre":
               target === "channelName",
             "break-all": target === "channelTopic",
           })}
