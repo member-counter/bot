@@ -22,7 +22,9 @@ export function TemplateError() {
       <div className="flex flex-col gap-3">
         <Label>The template had an error when was last processed</Label>
         <Card className="border border-destructive p-3">
-          <pre>{channelLog.data.lastTemplateComputeError}</pre>
+          <pre className="w-full whitespace-pre-wrap">
+            {channelLog.data.lastTemplateComputeError}
+          </pre>
         </Card>
       </div>
     </>
