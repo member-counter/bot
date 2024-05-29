@@ -39,7 +39,6 @@ function useConfirmOnLeave(shouldConfirm: boolean) {
 
   useInterceptAppRouter("back", handleRouterChange);
   useInterceptAppRouter("forward", handleRouterChange);
-  useInterceptAppRouter("prefetch", handleRouterChange);
   useInterceptAppRouter("push", handleRouterChange);
   useInterceptAppRouter("refresh", handleRouterChange);
   useInterceptAppRouter("replace", handleRouterChange);
