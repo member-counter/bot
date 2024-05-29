@@ -22,23 +22,18 @@ export const MentionElement = (props: RenderElementProps) => {
   const selected = useSelected();
   const focused = useFocused();
   const [hovered, setHovered] = useState(false);
+
   const isRole = "role" in element;
 
-  let name = "";
-  let textColor = "#c0c4f2";
-  let backgroundColor = "#3c4270";
-  let hoverBackgroundColor = "#5865f2";
+  let name = "Unknown";
+  let computedMentionColors = mentionColor(0x9d9eff);
 
   if (isRole) {
     const role = roles.get(element.role);
-    name = "Unknown role";
+    name = role?.name ?? "Unknown role";
 
-    if (role) {
-      name = role.name;
-      const { background, backgroundHover, text } = mentionColor(role.color);
-      textColor = text;
-      backgroundColor = background;
-      hoverBackgroundColor = backgroundHover;
+    if (role?.color) {
+      computedMentionColors = mentionColor(role.color);
     }
   } else {
     const channel = channels.get(element.channel);
@@ -46,9 +41,11 @@ export const MentionElement = (props: RenderElementProps) => {
   }
 
   const style: React.CSSProperties = {
-    color: textColor,
+    color: computedMentionColors.text,
     backgroundColor:
-      hovered || (selected && focused) ? hoverBackgroundColor : backgroundColor,
+      hovered || (selected && focused)
+        ? computedMentionColors.backgroundHover
+        : computedMentionColors.background,
   };
 
   if (element.children[0].bold) {
