@@ -72,11 +72,12 @@ export function Combobox<T, A extends boolean = false>({
         allowSearchedTerm &&
         !keywords?.length &&
         search.length &&
-        value.startsWith(search)
-      )
+        search.startsWith(value)
+      ) {
         return Number.MAX_VALUE;
+      }
 
-      const terms = search.toLowerCase().split(/\s+/);
+      const terms = search.toLowerCase().split(" ");
 
       if (!keywords)
         return terms.some((term) => value.startsWith(term)) ? 1 : 0;
@@ -172,12 +173,13 @@ export function Combobox<T, A extends boolean = false>({
               <>
                 {!!search.length && allowSearchedTerm && (
                   <CommandItem
+                    value={search}
                     className={cn(selectedItem === search && "bg-accent")}
                     key={searchId}
                     onSelect={onItemSelect}
                   >
                     {onItemRender({
-                      item: search as A extends true ? T | string : T,
+                      item: search as never,
                       isSelected: selectedItem === search,
                     })}
                   </CommandItem>
