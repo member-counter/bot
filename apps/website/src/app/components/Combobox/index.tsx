@@ -19,49 +19,45 @@ import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
 import { useBreakpoint } from "~/hooks/useBreakpoint";
 
-export interface Searchable {
-  value: string;
+export interface Searchable<T> {
+  value: T;
   keywords: string[];
 }
 
-export type ComboboxProps = {
+export interface ComboboxProps<
+  RequestedType,
+  AllowSearchedTerm extends boolean = false,
+  ActualType = AllowSearchedTerm extends true
+    ? string | RequestedType
+    : RequestedType,
+> {
   id?: string;
   className?: string;
   placeholder?: string;
-  items: Searchable[];
-  allowSearchedItem?: boolean;
-  onItemRender: (item: string, isSelected: boolean) => ReactNode;
-  onSelectedItemRender: (args: {
-    item: string;
-    onRemoveRequest?: () => void;
+  items: Searchable<RequestedType>[];
+  allowSearchedTerm?: AllowSearchedTerm;
+  selectedItem?: ActualType;
+  onItemSelect: (item: ActualType) => void;
+  onSelectedItemRender?: (props: { item: ActualType }) => ReactNode;
+  onItemRender: (props: {
+    item: ActualType;
+    isSelected?: boolean;
   }) => ReactNode;
   disabled?: boolean;
-} & (
-  | {
-      allowEmpty: true;
-      selectedItem: string | null;
-      onItemSelect: (item: string | null) => void;
-    }
-  | {
-      allowEmpty?: false;
-      selectedItem: string;
-      onItemSelect: (item: string) => void;
-    }
-);
+}
 
-export function Combobox({
+export function Combobox<T, A extends boolean = false>({
   id,
   className,
   placeholder = "Add...",
-  allowSearchedItem = false,
-  allowEmpty,
+  allowSearchedTerm,
   items,
   selectedItem,
-  onItemSelect,
-  onItemRender,
   onSelectedItemRender,
+  onItemRender,
+  onItemSelect,
   disabled,
-}: ComboboxProps) {
+}: ComboboxProps<T, A>) {
   const [open, setOpen] = useState(false);
   const isDesktop = useBreakpoint("md");
   const [search, setSearch] = useState("");
@@ -72,7 +68,7 @@ export function Combobox({
       search = search.toLowerCase();
 
       if (
-        allowSearchedItem &&
+        allowSearchedTerm &&
         !keywords?.length &&
         search.length &&
         value.startsWith(search)
@@ -90,7 +86,7 @@ export function Combobox({
 
       return score;
     },
-    [allowSearchedItem],
+    [allowSearchedTerm],
   );
 
   const selectedItemRendered = useMemo(
@@ -107,10 +103,9 @@ export function Combobox({
         aria-disabled={disabled}
         disabled={disabled}
       >
-        {selectedItem ? (
+        {selectedItem && onSelectedItemRender ? (
           onSelectedItemRender({
             item: selectedItem,
-            ...(allowEmpty && { onRemoveRequest: () => onItemSelect(null) }),
           })
         ) : (
           <div className="flex items-center">
@@ -120,16 +115,7 @@ export function Combobox({
         )}
       </InputWrapper>
     ),
-    [
-      id,
-      className,
-      selectedItem,
-      onSelectedItemRender,
-      allowEmpty,
-      placeholder,
-      onItemSelect,
-      disabled,
-    ],
+    [className, disabled, id, onSelectedItemRender, placeholder, selectedItem],
   );
 
   const selfId = useId();
@@ -146,45 +132,58 @@ export function Combobox({
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup>
-            {items.map(({ value, keywords }) => {
+            {items.map(({ value, keywords }, i) => {
               return (
                 <CommandItem
-                  key={value}
-                  value={value}
+                  className={cn(selectedItem === value && "bg-accent")}
+                  key={i}
                   keywords={keywords}
                   onSelect={() => {
-                    onItemSelect(value);
+                    onItemSelect(structuredClone(value));
                     setOpen(false);
                   }}
                 >
-                  {onItemRender(value, selectedItem === value)}
+                  {onItemRender({
+                    item: value,
+                    isSelected: selectedItem === value,
+                  })}
                 </CommandItem>
               );
             })}
-            {allowSearchedItem && (
+            {allowSearchedTerm && (
               <>
-                {!!search.length && (
+                {!!search.length && allowSearchedTerm && (
                   <CommandItem
+                    className={cn(selectedItem === search && "bg-accent")}
                     key={searchId}
-                    value={search}
                     onSelect={() => {
-                      onItemSelect(search);
+                      onItemSelect(
+                        structuredClone(
+                          search as A extends true ? T | string : T,
+                        ),
+                      );
                       setOpen(false);
                     }}
                   >
-                    {onItemRender(search, selectedItem === search)}
+                    {onItemRender({
+                      item: search as A extends true ? T | string : T,
+                      isSelected: selectedItem === search,
+                    })}
                   </CommandItem>
                 )}
                 {selectedItem && selectedItem !== search && (
                   <CommandItem
+                    className={cn("bg-accent")}
                     key={selfId}
-                    value={selectedItem}
                     onSelect={() => {
-                      onItemSelect(selectedItem);
+                      onItemSelect(structuredClone(selectedItem));
                       setOpen(false);
                     }}
                   >
-                    {onItemRender(selectedItem, true)}
+                    {onItemRender({
+                      item: selectedItem,
+                      isSelected: true,
+                    })}
                   </CommandItem>
                 )}
               </>
@@ -194,7 +193,7 @@ export function Combobox({
       </Command>
     ),
     [
-      allowSearchedItem,
+      allowSearchedTerm,
       filter,
       isDesktop,
       items,

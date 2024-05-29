@@ -18,10 +18,7 @@ import {
 import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
 
 import { Combobox } from "~/app/components/Combobox";
-import {
-  renderLocaleItem,
-  renderSelectedLocaleItem,
-} from "~/app/components/Combobox/renderers/localeItemRenderer";
+import { LocaleItem } from "~/app/components/Combobox/items/LocaleItem";
 import { locales, searchableLocales } from "~/other/locales";
 import { TextItem } from "../Options/Pages/components/TextItem";
 import useDataSourceOptions from "../Options/useDataSourceOptions";
@@ -95,15 +92,15 @@ export default function DataSourceFormat({
         </div>
         {typeof format.locale === "string" && (
           <Combobox
-            allowSearchedItem
+            allowSearchedTerm
             items={searchableLocales}
             placeholder="Search locale..."
             onItemSelect={(locale) => {
               setFormat({ locale });
             }}
             selectedItem={format.locale}
-            onItemRender={renderLocaleItem}
-            onSelectedItemRender={renderSelectedLocaleItem}
+            onItemRender={LocaleItem}
+            onSelectedItemRender={LocaleItem}
           />
         )}
       </div>

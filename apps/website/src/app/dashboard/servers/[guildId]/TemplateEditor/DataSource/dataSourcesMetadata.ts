@@ -54,7 +54,7 @@ import {
   YouTubeDataSourceReturn,
 } from "@mc/common/DataSource";
 
-import type { Searchable } from "~/app/components/AutocompleteInput";
+import type { Searchable } from "~/app/components/Combobox";
 
 export interface DataSourceMetadata<D extends DataSource = DataSourceBase> {
   description: string;
@@ -495,7 +495,12 @@ export const dataSourcesMetadata: Record<string, DataSourceMetadata> =
       roleDataSourceMetadata,
       botStatsDataSourceMetadata,
       unknownDataSourceMetadata,
-    ].map((metatdata) => [metatdata.dataSource.id, metatdata]),
+    ]
+      .map((metadata) => {
+        metadata.dataSource = Object.freeze(metadata.dataSource);
+        return metadata;
+      })
+      .map((metatdata) => [metatdata.dataSource.id, metatdata]),
   );
 
 export function getDataSourceMetadata(id: DataSourceId): DataSourceMetadata {
@@ -504,11 +509,13 @@ export function getDataSourceMetadata(id: DataSourceId): DataSourceMetadata {
   return metadata;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
 export const searcheableDataSources: Searchable<DataSource>[] = Object.values(
   dataSourcesMetadata,
 ).map((i) => ({
-  value: i.dataSource.id,
+  value: i.dataSource,
   keywords: i.keywords,
 }));
+
+export const knownSearcheableDataSources = searcheableDataSources.filter(
+  (d) => d.value.id !== DataSourceId.UNKNOWN,
+);
