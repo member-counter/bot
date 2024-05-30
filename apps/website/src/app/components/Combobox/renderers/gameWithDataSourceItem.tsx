@@ -2,7 +2,7 @@ import type { DataSource } from "@mc/common/DataSource";
 
 import type { ComboboxProps } from "..";
 import { DataSourceItem } from "../items/DataSourceItem";
-import { TimezoneItem } from "../items/TimezoneItem";
+import { GamedigItem } from "../items/GamedigItem";
 
 type T = string | DataSource;
 type ItemProps = Parameters<ComboboxProps<T>["onItemRender"]>[0];
@@ -13,10 +13,10 @@ interface FactoryOpts {
   dataSourceConfigWarning?: string;
 }
 
-export const gameWithDataSourceItem =
+export const gamedigWithDataSourceItem =
   (factoryOpts?: FactoryOpts) => (props: ItemProps) =>
     typeof props.item === "string" ? (
-      <TimezoneItem {...props} {...factoryOpts} item={props.item} />
+      <GamedigItem {...props} {...factoryOpts} item={props.item} />
     ) : (
       <DataSourceItem {...props} {...factoryOpts} item={props.item} />
     );

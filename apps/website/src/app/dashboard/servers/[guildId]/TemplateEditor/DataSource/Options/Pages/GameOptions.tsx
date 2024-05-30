@@ -7,8 +7,9 @@ import { Separator } from "@mc/ui/separator";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import type { Searchable } from "~/app/components/Combobox";
 import { Combobox } from "~/app/components/Combobox";
-import { gameWithDataSourceItem } from "~/app/components/Combobox/renderers/gameWithDataSourceItem";
+import { gamedigWithDataSourceItem } from "~/app/components/Combobox/renderers/gameWithDataSourceItem";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
+import { api } from "~/trpc/react";
 import {
   knownSearcheableDataSources,
   searcheableDataSources,
@@ -25,18 +26,6 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
   };
 };
 
-// TODO
-interface GameSpec {
-  name: string;
-  release_year?: number;
-  options: {
-    protocol: string;
-    port?: number;
-    port_query?: number;
-    port_query_offset?: number | number[];
-  };
-}
-
 export function GameOptions({
   options: unmergedOptions,
   onOptionsChange,
@@ -47,14 +36,13 @@ export function GameOptions({
     onOptionsChange,
   });
 
-  // TODO fetch games
-  const games: Record<string, GameSpec> = useMemo(() => ({}), []);
+  const { data: games } = api.bot.gamedigGames.useQuery();
 
   const searchableGames = useMemo<Searchable<string | DataSource>[]>(
     () => [
-      ...Object.entries(games).map(([key, gameSpec]) => ({
-        value: key,
-        keywords: gameSpec.name.split(" "),
+      ...Object.entries(games ?? {}).map(([id, game]) => ({
+        value: id,
+        keywords: game.name.split(/\s+/),
       })),
       ...searcheableDataSources,
     ],
@@ -63,15 +51,13 @@ export function GameOptions({
 
   useEffect(() => {
     if (typeof options.game !== "string") return;
-    const selectedGame = games[options.game];
+    const selectedGame = games?.[options.game];
     if (!selectedGame) return;
     setOptions({
-      port:
-        options.port ??
-        selectedGame.options.port ??
-        selectedGame.options.port_query,
+      port: options.port ?? selectedGame.port,
     });
-  }, [games, options.game, options.port, setOptions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options.game]);
 
   return (
     <div>
@@ -87,8 +73,8 @@ export function GameOptions({
               game,
             });
           }}
-          onItemRender={gameWithDataSourceItem()}
-          onSelectedItemRender={gameWithDataSourceItem({
+          onItemRender={gamedigWithDataSourceItem()}
+          onSelectedItemRender={gamedigWithDataSourceItem({
             onUpdate: (game) => {
               setOptions({
                 game,
