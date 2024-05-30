@@ -1,4 +1,4 @@
-import type { DataSourceCountdown } from "@mc/common/DataSource";
+import type { DataSource, DataSourceCountdown } from "@mc/common/DataSource";
 import { useCallback, useEffect, useState } from "react";
 
 import { Input } from "@mc/ui/input";
@@ -6,7 +6,9 @@ import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import { Combobox } from "~/app/components/Combobox";
+import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
+import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
 function formatCountdown(date: unknown, format: unknown) {
@@ -30,7 +32,6 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
   };
 };
 
-// TODO use new combobox
 export function CountdownOptions({
   options: unmergedOptions,
   onOptionsChange,
@@ -87,26 +88,33 @@ export function CountdownOptions({
             }
           />
         )}
-        {typeof options.date !== "number" &&
-          [options.date].map(
-            textItemRendererFactory({
-              remove: () => setOptions({ date: Date.now() + 60 * 60 * 1000 }),
-              update: (date) =>
-                typeof date !== "string" && setOptions({ date }),
-              dataSourceConfigWarning:
-                "Remember to return a valid UNIX timestamp",
-            }),
-          )}
-        {typeof options.date === "number" && (
-          <Combobox
-            itemRenderer={AutocompleteTextReadonlyItemRenderer}
-            placeholder="Or set a counter..."
-            onAdd={(date) => {
-              typeof date !== "string" && setOptions({ date });
-            }}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+        <Combobox<number | DataSource>
+          items={knownSearcheableDataSources}
+          placeholder="Or take date from a counter..."
+          selectedItem={
+            typeof options.date === "number" ? undefined : options.date
+          }
+          onItemSelect={(date) => {
+            setOptions({
+              date,
+            });
+          }}
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate: (date) => {
+              setOptions({
+                date,
+              });
+            },
+            onRemove: () => {
+              setOptions({
+                date: undefined,
+              });
+            },
+            dataSourceConfigWarning:
+              "Remember to return a valid UNIX timestamp",
+          })}
+        />
       </div>
       <Separator />
       <div>
@@ -115,25 +123,33 @@ export function CountdownOptions({
           Use <code>%d</code> to show the days left, <code>%h</code> for the
           hours left, and <code>%m</code> for the minutes left.
         </p>
-        {options.format &&
-          [options.format].map(
-            textItemRendererFactory({
-              remove: () => setOptions({ format: undefined }),
-              update: (format) => setOptions({ format }),
-              dataSourceConfigWarning: "Remember to return a valid format",
-            }),
-          )}
-        {!options.format && (
-          <Combobox
-            itemRenderer={AutocompleteTextReadonlyItemRenderer}
-            placeholder=""
-            onAdd={(format) => {
-              setOptions({ format });
-            }}
-            allowSearchedItem={true}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+        <Combobox
+          items={knownSearcheableDataSources}
+          allowSearchedTerm
+          placeholder=""
+          prefillSelectedItemOnSearchOnFocus
+          selectedItem={options.format}
+          onItemSelect={(format) => {
+            setOptions({
+              format,
+            });
+          }}
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate: (format) => {
+              setOptions({
+                format,
+              });
+            },
+            onRemove: () => {
+              setOptions({
+                format: undefined,
+              });
+            },
+            dataSourceConfigWarning:
+              "Remember to return a valid formatting string",
+          })}
+        />
       </div>
       <Separator />
       <div>

@@ -6,7 +6,6 @@ import { useId } from "react";
 
 import { cn } from "@mc/ui";
 import { Checkbox } from "@mc/ui/checkbox";
-import { Input } from "@mc/ui/input";
 import { Label } from "@mc/ui/label";
 import {
   Select,
@@ -19,7 +18,7 @@ import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
 
 import { Combobox } from "~/app/components/Combobox";
 import { LocaleItem } from "~/app/components/Combobox/items/LocaleItem";
-import { locales, searchableLocales } from "~/other/locales";
+import { searchableLocales } from "~/other/locales";
 import useDataSourceOptions from "../Options/useDataSourceOptions";
 import DataSourceFormatDigitInput from "./DataSourceFormatDigitInput";
 
@@ -137,55 +136,3 @@ export default function DataSourceFormat({
     </div>
   );
 }
-
-export const localeItemRenderer =
-  ({
-    remove,
-    update,
-  }: {
-    update?: (value: string, index: number) => void;
-    remove?: (index: number) => void;
-  }) =>
-  (item: string, index: number) => {
-    if (locales[item]) {
-      return (
-        <TextItem
-          key={index}
-          label={locales[item] ?? item}
-          onClickDelete={remove && (() => remove(index))}
-        />
-      );
-    } else {
-      return (
-        <Input
-          key={index}
-          value={item}
-          onKeyDown={(event) => {
-            event.currentTarget.value.length === 1 &&
-              ["Delete", "Backspace"].includes(event.key) &&
-              remove &&
-              (() => remove(index));
-          }}
-          onChange={({ target: { value } }) => {
-            update && update(value, index);
-          }}
-        />
-      );
-    }
-  };
-
-export const AutocompleteLocaleItemRenderer = (
-  item: string,
-  index: number,
-  isSelected: boolean,
-  onClick: () => void,
-) => {
-  return (
-    <TextItem
-      key={index}
-      label={locales[item] ?? item}
-      isSelected={isSelected}
-      onClick={onClick}
-    />
-  );
-};

@@ -4,19 +4,20 @@ import type { ComboboxProps } from "..";
 import { DataSourceItem } from "../items/DataSourceItem";
 import { TextItem } from "../items/TextItem";
 
-type T = string | DataSource;
-type ItemProps = Parameters<ComboboxProps<T>["onItemRender"]>[0];
+type Type<T> = T | DataSource;
+type ItemProps<T> = Parameters<ComboboxProps<Type<T>>["onItemRender"]>[0];
 
-interface FactoryOpts {
-  onUpdate?: (value: T) => void;
+interface FactoryOpts<T> {
+  onUpdate?: (value: Type<T>) => void;
   onRemove?: () => void;
   dataSourceConfigWarning?: string;
 }
 
 export const textWithDataSourceItemRendererFactory =
-  (factoryOpts?: FactoryOpts) => (props: ItemProps) =>
-    typeof props.item === "string" ? (
-      <TextItem {...props} {...factoryOpts} item={props.item} />
-    ) : (
+  <T extends { toString(): string }>(factoryOpts?: FactoryOpts<T>) =>
+  (props: ItemProps<T>) =>
+    typeof props.item === "object" && "id" in props.item ? (
       <DataSourceItem {...props} {...factoryOpts} item={props.item} />
+    ) : (
+      <TextItem {...props} {...factoryOpts} item={props.item.toString()} />
     );

@@ -114,7 +114,7 @@ export function Combobox<T, A extends boolean = false>({
           })
         ) : (
           <div className="flex items-center">
-            <SearchIcon className="mr-2 h-4 w-4" />
+            {!!placeholder.length && <SearchIcon className="mr-2 h-4 w-4" />}
             {placeholder}
           </div>
         )}

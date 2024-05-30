@@ -17,7 +17,7 @@ export function InfoToolip({
   if (!text) return children;
   return (
     <>
-      <TooltipProvider>
+      <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
             {children ?? <InfoIcon className="ml-1 inline h-3 w-3" />}

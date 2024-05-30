@@ -20,8 +20,10 @@ import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
 import { Separator } from "@mc/ui/separator";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
+import { Combobox } from "~/app/components/Combobox";
+import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { addTo, removeFrom, updateIn } from "~/other/array";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
 type DataSourceType = DataSourceMath;
@@ -33,7 +35,6 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
   };
 };
 
-// TODO use new combobox
 export function MathOptions({
   options: unmergedOptions,
   onOptionsChange,
@@ -89,30 +90,60 @@ export function MathOptions({
       <Separator />
       <div>
         <Label>Number list</Label>
-        {options.numbers.map(
-          numberItemRendererFactory({
-            remove: (index) =>
-              setOptions({ numbers: removeFrom(options.numbers, index) }),
-            update: (item, index: number) =>
-              setOptions({
-                numbers: updateIn(options.numbers, item, index),
-              }),
-          }),
-        )}
+        {options.numbers.map((number, index) => (
+          <Combobox
+            items={knownSearcheableDataSources}
+            placeholder=""
+            allowSearchedTerm
+            prefillSelectedItemOnSearchOnFocus
+            selectedItem={
+              typeof number === "number" ? number.toString() : number
+            }
+            onItemSelect={(item) => {
+              if (typeof item === "string") {
+                if (!isNaN(Number(item)))
+                  setOptions({
+                    numbers: updateIn(options.numbers, Number(item), index),
+                  });
+              } else {
+                setOptions({
+                  numbers: updateIn(options.numbers, item, index),
+                });
+              }
+            }}
+            onItemRender={textWithDataSourceItemRendererFactory()}
+            onSelectedItemRender={textWithDataSourceItemRendererFactory({
+              onUpdate: (item) => {
+                if (typeof item === "string") {
+                  if (!isNaN(Number(item)))
+                    setOptions({
+                      numbers: updateIn(options.numbers, Number(item), index),
+                    });
+                } else {
+                  setOptions({
+                    numbers: updateIn(options.numbers, item, index),
+                  });
+                }
+              },
+              onRemove: () => {
+                setOptions({ numbers: removeFrom(options.numbers, index) });
+              },
+              dataSourceConfigWarning: "Remember to return a valid number",
+            })}
+          />
+        ))}
         <Combobox
-          itemRenderer={AutocompleteNumberItemRenderer}
-          allowSearchedItem={true}
+          items={knownSearcheableDataSources}
           placeholder="Add number..."
-          onAdd={(item) => {
+          allowSearchedTerm
+          onItemSelect={(item) => {
             if (typeof item === "string") {
-              if (!isNaN(Number(item)))
-                setOptions({ numbers: addTo(options.numbers, Number(item)) });
+              setOptions({ numbers: addTo(options.numbers, Number(item)) });
             } else {
               setOptions({ numbers: addTo(options.numbers, item) });
             }
           }}
-          suggestOnFocus={false}
-          suggestableItems={searcheableDataSources}
+          onItemRender={textWithDataSourceItemRendererFactory()}
         />
       </div>
     </div>

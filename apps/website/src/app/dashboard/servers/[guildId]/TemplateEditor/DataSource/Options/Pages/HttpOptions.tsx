@@ -9,7 +9,9 @@ import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import { Combobox } from "~/app/components/Combobox";
+import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
+import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
 type DataSourceType = DataSourceHTTP;
@@ -22,7 +24,6 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
   };
 };
 
-// TODO use new combobox
 export function HttpOptions({
   options: unmergedOptions,
   onOptionsChange,
@@ -77,25 +78,26 @@ export function HttpOptions({
     <div>
       <div>
         <Label>URL (GET)</Label>
-        {options.url &&
-          [options.url].map(
-            textItemRendererFactory({
-              remove: () => setOptions({ url: undefined }),
-              update: (url) => setOptions({ url }),
-              dataSourceConfigWarning: "Remember to return a valid URL",
-            }),
-          )}
-        {!options.url && (
-          <Combobox
-            itemRenderer={AutocompleteTextItemRenderer}
-            placeholder=""
-            onAdd={(url) => {
+        <Combobox
+          items={knownSearcheableDataSources}
+          selectedItem={options.url}
+          allowSearchedTerm
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate(url) {
               setOptions({ url });
-            }}
-            allowSearchedItem={true}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+            },
+            onRemove() {
+              setOptions({ url: undefined });
+            },
+            dataSourceConfigWarning: "Remember to return a valid URL",
+          })}
+          onItemSelect={(url) => {
+            setOptions({ url });
+          }}
+          prefillSelectedItemOnSearchOnFocus
+          placeholder=""
+        />
       </div>
       <Separator />
       <div>
@@ -104,29 +106,48 @@ export function HttpOptions({
           Specifies for how long the response of the specified URL will be
           cached.
         </span>
-        {options.lifetime &&
-          [options.lifetime].map(
-            numberItemRendererFactory({
-              remove: () => setOptions({ lifetime: undefined }),
-              update: (lifetime) => setOptions({ lifetime }),
-            }),
-          )}
-        {!options.lifetime && (
-          <Combobox
-            itemRenderer={AutocompleteTextItemRenderer}
-            placeholder=""
-            onAdd={(lifetime) => {
-              if (typeof lifetime === "string") {
-                if (!isNaN(Number(lifetime)))
-                  setOptions({ lifetime: Number(lifetime) });
+        <Combobox
+          items={knownSearcheableDataSources}
+          placeholder=""
+          allowSearchedTerm
+          prefillSelectedItemOnSearchOnFocus
+          selectedItem={
+            typeof options.lifetime === "number"
+              ? options.lifetime.toString()
+              : options.lifetime
+          }
+          onItemSelect={(item) => {
+            if (typeof item === "string") {
+              if (!isNaN(Number(item)))
+                setOptions({
+                  lifetime: Number(item),
+                });
+            } else {
+              setOptions({
+                lifetime: item,
+              });
+            }
+          }}
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate: (item) => {
+              if (typeof item === "string") {
+                if (!isNaN(Number(item)))
+                  setOptions({
+                    lifetime: Number(item),
+                  });
               } else {
-                setOptions({ lifetime });
+                setOptions({
+                  lifetime: item,
+                });
               }
-            }}
-            allowSearchedItem={true}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+            },
+            onRemove: () => {
+              setOptions({ lifetime: undefined });
+            },
+            dataSourceConfigWarning: "Remember to return a valid number",
+          })}
+        />
       </div>
       <Separator />
       <div>
@@ -136,25 +157,26 @@ export function HttpOptions({
           JSON, the syntax similar to the one used by JS to access properties
           and array items.
         </span>
-        {options.dataPath &&
-          [options.dataPath].map(
-            textItemRendererFactory({
-              remove: () => setOptions({ dataPath: undefined }),
-              update: (dataPath) => setOptions({ dataPath }),
-              dataSourceConfigWarning: "Remember to return a data path",
-            }),
-          )}
-        {!options.dataPath && (
-          <Combobox
-            itemRenderer={AutocompleteTextItemRenderer}
-            placeholder=""
-            onAdd={(dataPath) => {
+        <Combobox
+          items={knownSearcheableDataSources}
+          selectedItem={options.dataPath}
+          allowSearchedTerm
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate(dataPath) {
               setOptions({ dataPath });
-            }}
-            allowSearchedItem={true}
-            suggestableItems={searcheableDataSources}
-          />
-        )}
+            },
+            onRemove() {
+              setOptions({ dataPath: undefined });
+            },
+            dataSourceConfigWarning: "Remember to return a data path",
+          })}
+          onItemSelect={(dataPath) => {
+            setOptions({ dataPath });
+          }}
+          prefillSelectedItemOnSearchOnFocus
+          placeholder=""
+        />
       </div>
 
       <Separator />
