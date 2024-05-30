@@ -92,6 +92,7 @@ export function MathOptions({
         <Label>Number list</Label>
         {options.numbers.map((number, index) => (
           <Combobox
+            key={index}
             items={knownSearcheableDataSources}
             placeholder=""
             allowSearchedTerm
