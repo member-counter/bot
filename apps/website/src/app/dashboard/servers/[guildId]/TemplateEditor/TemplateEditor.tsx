@@ -3,7 +3,7 @@
 import type { Grammar } from "prismjs";
 import type { ReactNode } from "react";
 import type { Descendant } from "slate";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Slate } from "slate-react";
 import { v4 } from "uuid";
 
@@ -38,10 +38,13 @@ export default function TemplateEditor({
 
   const [dataSourceRefs, setDataSourceRef] = useDataSourceReducer({
     initialDataSourceRefs: initialValue.dataSourceRefs,
-    onChange(dataSourceRefs) {
-      onChange?.(editor.children, dataSourceRefs);
-    },
   });
+
+  const onChangeRef = useRef(onChange);
+
+  useEffect(() => {
+    onChangeRef.current?.(editor.children, dataSourceRefs);
+  }, [dataSourceRefs, editor.children]);
 
   const [editingDataSourceRefId, setEditingDataSourceRefId] =
     useState<DataSourceRefId | null>(null);
