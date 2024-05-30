@@ -1,5 +1,6 @@
 import type { DataSourceId } from "@mc/common/DataSource";
 import { useCallback, useMemo, useState } from "react";
+import { useSlateStatic } from "slate-react";
 
 import { cn } from "@mc/ui";
 import {
@@ -14,23 +15,32 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@mc/ui/drawer";
 import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
 import { useBreakpoint } from "~/hooks/useBreakpoint";
+import { useDataSourceRefs } from "./DataSourceRefs";
 import { dataSourcesMetadata } from "./dataSourcesMetadata";
+import { insertDataSource } from "./insertDataSource";
 
 export default function AddDataSourceCombobox({
-  onAdd,
   children,
   disabled,
 }: {
-  onAdd: (dataSource: DataSourceId) => void;
   children: React.ReactNode;
   disabled?: boolean;
 }) {
+  const editor = useSlateStatic();
+  const { setDataSourceRef } = useDataSourceRefs();
   const isDesktop = useBreakpoint("md");
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const items = useMemo(
     () => Object.values(dataSourcesMetadata).filter((item) => !item.hidden),
     [],
+  );
+
+  const onAdd = useCallback(
+    (id: DataSourceId) => {
+      insertDataSource(editor, id, setDataSourceRef);
+    },
+    [editor, setDataSourceRef],
   );
 
   const filter = useCallback(

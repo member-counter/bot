@@ -8,9 +8,7 @@ import { InputWrapper } from "@mc/ui/InputWrapper";
 import { Separator } from "@mc/ui/separator";
 
 import AddDataSourceCombobox from "./DataSource/AddDataSourceCombobox";
-import { useDataSourceRefs } from "./DataSource/DataSourceRefs";
 import EditDataSource from "./DataSource/EditDataSource";
-import { insertDataSource } from "./DataSource/insertDataSource";
 import { EmojiPicker } from "./Emoji/EmojiPicker";
 import { MarkButtons } from "./Marks/MarkButtons";
 import { MentionSuggestions } from "./Mention/MentionSuggestions";
@@ -33,7 +31,6 @@ function InnerTemplateEditorLayout({
   target: "channelName" | "channelTopic";
 }) {
   const editor = useSlateStatic();
-  const { setDataSourceRef } = useDataSourceRefs();
 
   return (
     <InputWrapper
@@ -60,12 +57,7 @@ function InnerTemplateEditorLayout({
           <EmojiPicker disabled={disabled} className="h-6 w-6 px-0  py-0" />
         </div>
         <div className="flex flex-row gap-2 [&_*]:rounded-sm">
-          <AddDataSourceCombobox
-            onAdd={(dataSourceId) =>
-              insertDataSource(editor, dataSourceId, setDataSourceRef)
-            }
-            disabled={disabled}
-          >
+          <AddDataSourceCombobox disabled={disabled}>
             <Button
               icon={CurlyBracesIcon}
               type="button"
