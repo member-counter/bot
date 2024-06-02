@@ -1,6 +1,10 @@
 MIT License
 
+<<<<<<< HEAD:LICENSE
 Copyright (c) 2024 eduardozgz
+=======
+Copyright (c) 2022 eduardozgz
+>>>>>>> discord.js-v14-rewrite:apps/old-bot-discord.js-v14-rewrite/LICENSE
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

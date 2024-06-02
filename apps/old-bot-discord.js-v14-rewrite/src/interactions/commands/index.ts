@@ -1,0 +1,122 @@
+import { inlineCode } from "@discordjs/builders";
+import {
+	ApplicationCommandOptionType as OptionTypes,
+	ChatInputCommandInteraction,
+	CommandInteractionOption,
+	CommandInteractionOptionResolver,
+	IntentsBitField,
+	PermissionsBitField
+} from "discord.js";
+
+import logger from "../../logger";
+import { i18nService } from "../../services/i18n";
+import { base64Command } from "./base64";
+import { checkPermissionsCommand } from "./checkPermissions";
+import { guideCommand } from "./guide";
+import { infoCommand } from "./info";
+import { inviteCommand } from "./invite";
+import { lockChannelCommand } from "./lockChannel";
+import { premiumCommand } from "./premium";
+import { profileCommand } from "./profile";
+import { settingsCommand } from "./settings";
+import { setupCommand } from "./setup";
+import { statusCommand } from "./status";
+
+export const allCommands = [
+	inviteCommand,
+	settingsCommand,
+	setupCommand,
+	checkPermissionsCommand,
+	lockChannelCommand,
+	base64Command,
+	premiumCommand,
+	profileCommand,
+	infoCommand,
+	guideCommand,
+	statusCommand
+];
+
+export const allCommandNames = allCommands.map((command) => command.name);
+
+export const allCommandsNeededPermissions: PermissionsBitField =
+	new PermissionsBitField(
+		Array.from(new Set(allCommands.map((c) => c.neededPermissions).flat()))
+	);
+
+export const allCommandsNeededIntents: IntentsBitField = new IntentsBitField(
+	Array.from(new Set(allCommands.map((c) => c.neededIntents).flat()))
+);
+
+export default async function handleCommand(
+	commandInteraction: ChatInputCommandInteraction
+): Promise<void> {
+	const translate = await i18nService(commandInteraction);
+
+	const command = allCommands.find(
+		(c) => c.definition.name === commandInteraction.commandName
+	);
+	async function searchAndRunCommand(
+		subcommandExecute: typeof command.execute,
+		rawOptions: CommandInteractionOption[]
+	) {
+		if (
+			Array.isArray(rawOptions) &&
+			rawOptions.some((rawOption) =>
+				[OptionTypes.SubcommandGroup, OptionTypes.Subcommand].includes(
+					rawOption.type
+				)
+			)
+		) {
+			let found = false;
+			for (const rawOption of rawOptions) {
+				if (
+					(
+						commandInteraction.options as CommandInteractionOptionResolver
+					).getSubcommandGroup(false) === rawOption.name ||
+					(
+						commandInteraction.options as CommandInteractionOptionResolver
+					).getSubcommand(false) === rawOption.name
+				) {
+					if (typeof subcommandExecute === "object") {
+						found = true;
+						await searchAndRunCommand(
+							subcommandExecute[rawOption.name],
+							rawOption.options
+						);
+					}
+					break;
+				}
+			}
+			if (!found)
+				throw new Error(
+					`Command ${inlineCode(
+						commandInteraction.commandName
+					)} -> ${inlineCode(
+						(
+							commandInteraction.options as CommandInteractionOptionResolver
+						).getSubcommandGroup(false)
+					)} -> ${inlineCode(
+						(
+							commandInteraction.options as CommandInteractionOptionResolver
+						).getSubcommand(false)
+					)} is not being handled correctly`
+				);
+		} else if (typeof subcommandExecute === "function") {
+			logger.debug(
+				`${commandInteraction.user.username}#${
+					commandInteraction.user.discriminator
+				} (${
+					commandInteraction.user.id
+				}) is executing command ${commandInteraction} on channel ${
+					commandInteraction.channel ?? commandInteraction.channelId
+				}`
+			);
+			await subcommandExecute(commandInteraction, translate);
+			return;
+		}
+	}
+	await searchAndRunCommand(
+		command.execute,
+		command.definition.toJSON().options
+	);
+}
