@@ -9,5 +9,5 @@ export const DiscordBrandingColors = {
 } as const;
 
 export const BrandingColors = {
-  Primary: 0x0, // TODO set this
+  Primary: 0xea580c,
 };
