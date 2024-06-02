@@ -20,12 +20,12 @@ interface SubCommandsExecute {
   [key: string]: CommandCtx | SubCommandsExecute;
 }
 
-export class Command<NAME> {
-  name: NAME;
+export class CommandHandler<N> {
+  name: N;
   definition: SlashCommandUnion;
   execute: CommandCtx | SubCommandsExecute;
 
-  constructor(options: Command<NAME>) {
+  constructor(options: CommandHandler<N>) {
     this.name = options.name;
     this.definition = options.definition;
     this.execute = options.execute;

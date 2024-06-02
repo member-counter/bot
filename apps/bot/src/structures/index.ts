@@ -1,2 +1,2 @@
-export * from "./Command";
-export * from "./Event";
+export * from "./CommandHandler";
+export * from "./EventHandler";
