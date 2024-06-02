@@ -14,6 +14,7 @@ export const metadata = {
   title: "Member Counter",
 };
 
+// TODO setup i18next
 export default function RootLayout({
   children,
 }: {
