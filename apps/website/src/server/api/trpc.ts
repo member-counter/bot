@@ -12,6 +12,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { BitField } from "@mc/common/BitField";
+import { User } from "@mc/common/User";
 import { redis } from "@mc/redis";
 
 import { getSession } from "~/app/api/sessionCookie";
@@ -35,16 +36,10 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
   const session = await refreshToken(await getSession());
 
   const authUser = session?.userId
-    ? await db.user
-        .upsert({
-          where: { discordUserId: session.userId },
-          update: {},
-          create: { discordUserId: session.userId },
-        })
-        .then((user) => ({
-          ...user,
-          permissions: new BitField(user.permissions),
-        }))
+    ? await User.upsert(session.userId).then((user) => ({
+        ...user.data,
+        permissions: new BitField(user.data.permissions),
+      }))
     : null;
 
   return {

@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
+import { User } from "@mc/common/User";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
 import { Errors } from "~/app/errors";
@@ -9,7 +10,7 @@ import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 export const userRouter = createTRPCRouter({
   get: protectedProcedure
     .input(z.object({ discordUserId: z.string() }))
-    .query(({ ctx: { db, authUser }, input }) => {
+    .query(({ ctx: { authUser }, input }) => {
       const hasPermission =
         authUser.discordUserId === input.discordUserId ||
         authUser.permissions.has(UserPermissions.SeeUsers);
@@ -20,9 +21,7 @@ export const userRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return db.user.findUnique({
-        where: { discordUserId: input.discordUserId },
-      });
+      return User.load(input.discordUserId);
     }),
   update: protectedProcedure
     .input(
@@ -60,7 +59,7 @@ export const userRouter = createTRPCRouter({
         discordUserId: z.string(),
       }),
     )
-    .mutation(async ({ ctx: { db, authUser }, input }) => {
+    .mutation(async ({ ctx: { authUser }, input }) => {
       const hasPermission =
         authUser.discordUserId === input.discordUserId ||
         authUser.permissions.has(UserPermissions.ManageUsers);
@@ -71,8 +70,6 @@ export const userRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      await db.user.delete({
-        where: { discordUserId: input.discordUserId },
-      });
+      await User.remove(input.discordUserId);
     }),
 });
