@@ -63,7 +63,7 @@ export function ChannelNavItem(channel: {
     channel.id,
   )?.isTemplateEnabled;
 
-  const hasCounterIssue = !!channelsLogs.data?.channelLogs.get(channel.id)
+  const hasIssue = !!channelsLogs.data?.channelLogs.get(channel.id)
     ?.lastTemplateComputeError;
 
   return (
@@ -112,8 +112,8 @@ export function ChannelNavItem(channel: {
             {hasCounter && (
               <InfoToolip
                 text={
-                  hasCounterIssue
-                    ? "A counter in this channel requires your attention"
+                  hasIssue
+                    ? "There is an issue in this channel that requires your attention"
                     : "Counters are enabled in this channel"
                 }
               >
@@ -121,14 +121,14 @@ export function ChannelNavItem(channel: {
                   <div
                     className={cn(
                       "relative ml-2  h-2 w-2 flex-shrink-0 rounded-full bg-primary",
-                      { "bg-destructive": hasCounterIssue },
+                      { "bg-destructive": hasIssue },
                     )}
                     tabIndex={0}
                   >
                     <div
                       className={cn(
                         "bg-primarye absolute h-full w-full rounded-full",
-                        { "animate-ping bg-destructive": hasCounterIssue },
+                        { "animate-ping bg-destructive": hasIssue },
                       )}
                     ></div>
                   </div>
