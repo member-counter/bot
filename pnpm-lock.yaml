@@ -62,6 +62,12 @@ importers:
       gamedig:
         specifier: ^5.0.0-beta.2
         version: 5.0.0-beta.2
+      i18next:
+        specifier: ^23.11.5
+        version: 23.11.5
+      i18next-resources-for-ts:
+        specifier: ^1.5.0
+        version: 1.5.0
       utf-8-validate:
         specifier: ^6.0.3
         version: 6.0.3
@@ -2924,6 +2930,13 @@ packages:
   human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+
+  i18next-resources-for-ts@1.5.0:
+    resolution: {integrity: sha512-gzVYct/sMeeOzomK0+8nl7YSr61xiDzf4Kg51g7StBaXAaKE/Vb1CLNHZ8dY56sYz6qmbwHRYHqMPanGi0go4w==}
+    hasBin: true
+
+  i18next@23.11.5:
+    resolution: {integrity: sha512-41pvpVbW9rhZPk5xjCX2TPJi2861LEig/YRhUkY+1FQ2IQPS0bKUDYnEqY8XPPbB48h1uIwLnP9iiEfuSl20CA==}
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -7123,6 +7136,15 @@ snapshots:
       - supports-color
 
   human-signals@2.1.0: {}
+
+  i18next-resources-for-ts@1.5.0:
+    dependencies:
+      '@babel/runtime': 7.24.5
+      yaml: 2.4.2
+
+  i18next@23.11.5:
+    dependencies:
+      '@babel/runtime': 7.24.5
 
   iconv-lite@0.4.24:
     dependencies:

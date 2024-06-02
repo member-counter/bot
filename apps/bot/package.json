@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "clean": "git clean -xdf .next .turbo node_modules",
-    "build": "tsup-node",
+    "build": "pnpm run generate-i18next-res; tsup-node",
     "dev": "pnpm with-env pnpm build --watch . --watch ../../packages --onSuccess \"node dist/index.js\"",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "start": "pnpm with-env node ./dist/index.js",
     "typecheck": "tsc --noEmit",
-    "with-env": "dotenv -e ../../.env --"
+    "with-env": "dotenv -e ../../.env --",
+    "generate-i18next-res": "i18next-resources-for-ts interface -i ./src/locales/en-US -o ./src/@types/resources.d.ts"
   },
   "devDependencies": {
     "@mc/eslint-config": "workspace:*",
@@ -29,16 +30,18 @@
   "dependencies": {
     "@discordjs/builders": "^1.8.1",
     "@discordjs/rest": "^2.3.0",
-    "@mc/db": "workspace:*",
-    "@mc/redis": "workspace:*",
-    "@mc/common": "workspace:*",
-    "@mc/logger": "workspace:*",
     "@mc/bot-data-exchange": "workspace:*",
+    "@mc/common": "workspace:*",
+    "@mc/db": "workspace:*",
+    "@mc/logger": "workspace:*",
+    "@mc/redis": "workspace:*",
     "@t3-oss/env-core": "^0.10.1",
     "bufferutil": "^4.0.8",
     "discord-api-types": "^0.37.83",
     "discord.js": "^14.15.2",
     "gamedig": "^5.0.0-beta.2",
+    "i18next": "^23.11.5",
+    "i18next-resources-for-ts": "^1.5.0",
     "utf-8-validate": "^6.0.3",
     "zlib-sync": "^0.1.9",
     "zod": "^3.23.3"
