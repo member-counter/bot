@@ -5,6 +5,7 @@ import { generateBotIntents } from "@mc/common/botIntents";
 import { botPermissions } from "@mc/common/botPermissions";
 import { generateInviteLink } from "@mc/common/generateInviteLink";
 import { db } from "@mc/db";
+import logger from "@mc/logger";
 import { redis } from "@mc/redis";
 
 import { env } from "./env";
@@ -20,11 +21,11 @@ export async function initBot() {
   });
 
   bot.on("ready", () => {
-    console.log("Bot ready");
+    logger.info("Bot ready");
 
     if (bot.user) {
-      console.log(`Logged in as ${bot.user.tag}`);
-      console.log(
+      logger.info(`Logged in as ${bot.user.tag}`);
+      logger.info(
         `Invite link: ${generateInviteLink({ clientId: bot.user.id, permissions: botPermissions })}`,
       );
     }
@@ -38,7 +39,7 @@ export async function initBot() {
     });
   });
 
-  console.log("Bot starting...");
+  logger.info("Bot starting...");
   await bot.login(env.DISCORD_BOT_TOKEN);
 
   const BDERedisPubClient = redis.duplicate();

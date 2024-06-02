@@ -32,6 +32,7 @@
     "@mc/db": "workspace:*",
     "@mc/redis": "workspace:*",
     "@mc/common": "workspace:*",
+    "@mc/logger": "workspace:*",
     "@mc/bot-data-exchange": "workspace:*",
     "@t3-oss/env-core": "^0.10.1",
     "bufferutil": "^4.0.8",

@@ -1,4 +1,5 @@
 import { db } from "@mc/db";
+import logger from "@mc/logger";
 import { redis } from "@mc/redis";
 
 import { initBot } from "./bot";
@@ -6,8 +7,8 @@ import { initBot } from "./bot";
 async function main() {
   const { bot, BDERedisPubClient, BDERedisSubClient } = await initBot().catch(
     (err) => {
-      console.error("Failed to start the bot");
-      console.error(err);
+      logger.error("Failed to start the bot");
+      logger.error(err);
       process.exit(1);
     },
   );
