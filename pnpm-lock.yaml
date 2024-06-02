@@ -305,6 +305,9 @@ importers:
 
   packages/common:
     dependencies:
+      '@mc/db':
+        specifier: workspace:*
+        version: link:../db
       discord-api-types:
         specifier: ^0.37.83
         version: 0.37.83

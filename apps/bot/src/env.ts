@@ -7,6 +7,7 @@ export const env = createEnv({
     DISCORD_BOT_TOKEN: z.string(),
     DISCORD_BOT_IS_PREMIUM: z.coerce.boolean(),
     DISCORD_BOT_IS_PRIVILEGED: z.coerce.boolean(),
+    WEBSITE_URL: z.string(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
