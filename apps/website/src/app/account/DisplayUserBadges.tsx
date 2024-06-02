@@ -1,7 +1,11 @@
 "use client";
 
 import { BitField } from "@mc/common/BitField";
-import { UserBadges } from "@mc/common/UserBadges";
+import {
+  UserBadges,
+  UserBadgesBitfield,
+  UserBadgesEmoji,
+} from "@mc/common/UserBadges";
 import {
   Tooltip,
   TooltipContent,
@@ -9,38 +13,17 @@ import {
   TooltipTrigger,
 } from "@mc/ui/tooltip";
 
-const displayableBadges: Record<
-  keyof typeof UserBadges,
-  { emoji: string; description: string }
-> = {
-  Donor: {
-    emoji: "❤️",
-    description:
-      "You donated to support the development and maintenance of Member Counter",
-  },
-  Premium: { emoji: "💎", description: "You are a premium user" },
-  BetaTester: {
-    emoji: "🧪",
-    description: "You participated in a beta program",
-  },
-  Translator: {
-    emoji: "🌎",
-    description: "You helped to translate the bot",
-  },
-  Contributor: {
-    emoji: "💻",
-    description: "You implemented a feature or fixed a bug",
-  },
-  BigBrain: {
-    emoji: "🧠",
-    description: "You suggested an idea and it was implemented",
-  },
-  BugCatcher: { emoji: "🐛", description: "You found and reported a bug" },
-  PatPat: { emoji: "🐱", description: "You found a secret" },
-  FoldingAtHome: {
-    emoji: "🧬",
-    description: "You contributed a WU in folding@home",
-  },
+const UserBadgesDescription: Record<(typeof UserBadges)[number], string> = {
+  Donor:
+    "You donated to support the development and maintenance of Member Counter",
+  Premium: "You are a premium user",
+  BetaTester: "You participated in a beta program",
+  Translator: "You helped to translate the bot",
+  Contributor: "You implemented a feature or fixed a bug",
+  BigBrain: "You suggested an idea and it was implemented",
+  BugCatcher: "You found and reported a bug",
+  PatPat: "You found a secret",
+  FoldingAtHome: "You contributed a WU in folding@home",
 } as const;
 
 export function DisplayUserBadges({ badges: unparsed }: { badges: bigint }) {
@@ -48,20 +31,28 @@ export function DisplayUserBadges({ badges: unparsed }: { badges: bigint }) {
 
   const badges = new BitField(unparsed);
 
-  const badgesToDisplay = Object.entries(displayableBadges).filter(([badge]) =>
-    badges.has(UserBadges[badge as keyof typeof UserBadges]),
+  const badgesToDisplay: {
+    badge: (typeof UserBadges)[number];
+    emoji: string;
+    description: string;
+  }[] = UserBadges.filter((badge) => badges.has(UserBadgesBitfield[badge])).map(
+    (badge) => ({
+      badge,
+      emoji: UserBadgesEmoji[badge],
+      description: UserBadgesDescription[badge],
+    }),
   );
 
   return (
     <div className="text-md flex flex-row gap-2">
-      {badgesToDisplay.map(([badge, data]) => (
+      {badgesToDisplay.map(({ badge, emoji, description }) => (
         <TooltipProvider key={badge}>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="select-none">{data.emoji}</div>
+              <div className="select-none">{emoji}</div>
             </TooltipTrigger>
             <TooltipContent>
-              <span>{data.description}</span>
+              <span>{description}</span>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

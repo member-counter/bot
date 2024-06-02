@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { SaveIcon } from "lucide-react";
 
 import { BitField } from "@mc/common/BitField";
-import { UserBadges } from "@mc/common/UserBadges";
+import { UserBadgesBitfield } from "@mc/common/UserBadges";
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { Button } from "@mc/ui/button";
 import { CardContent, CardFooter } from "@mc/ui/card";
@@ -23,7 +23,7 @@ const permissionsLabels: Record<keyof typeof UserPermissions, string> = {
   ManageGuilds: "Manage Servers",
 } as const;
 
-const badgesLabels: Record<keyof typeof UserBadges, string> = {
+const badgesLabels: Record<keyof typeof UserBadgesBitfield, string> = {
   Donor: "Donor",
   Premium: "Premium",
   BetaTester: "Beta Tester",
@@ -109,7 +109,7 @@ export default function ManageUser({ userId }: { userId: string }) {
           {Object.entries(badgesLabels).map((entry) => {
             const [badge, label] = entry as [keyof typeof badgesLabels, string];
 
-            const badgeValue = UserBadges[badge];
+            const badgeValue = UserBadgesBitfield[badge];
 
             return (
               <Checkbox
