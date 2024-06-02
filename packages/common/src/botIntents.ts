@@ -6,6 +6,8 @@ export function generateBotIntents(isPremium: boolean, isPrivileged: boolean) {
   intents.add("Guilds");
   intents.add("GuildEmojisAndStickers");
 
+  intents.add("GuildMessages");
+
   // TODO check how cache works
   intents.add("GuildModeration");
 

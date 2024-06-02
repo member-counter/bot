@@ -37,12 +37,15 @@ export class UserSettings {
   }
 
   public async update(data?: Partial<UserData>) {
+    const dataToUpdate = {
+      ...(this.data as Partial<UserData>),
+      ...data,
+    };
+    delete dataToUpdate.id;
+
     const { data: newData } = await UserSettings.upsert(
       this.data.discordUserId,
-      {
-        ...this.data,
-        ...data,
-      },
+      dataToUpdate,
     );
 
     this.data = newData;
