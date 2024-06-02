@@ -17,6 +17,7 @@ export const Routes = {
   Support: env.NEXT_PUBLIC_SUPPORT_URL,
   Documentation: env.NEXT_PUBLIC_BOT_DOCS_URL,
   BotRepository: env.NEXT_PUBLIC_BOT_REPO_URL,
+  Translate: env.NEXT_PUBLIC_TRANSLATION_PLATFORM_URL,
   Donors: "/donors",
   Invite: (guildId?: string) =>
     formatURL("/invite", { ...(guildId && { guildId }) }),
@@ -24,6 +25,7 @@ export const Routes = {
   ManageUsers: (userId?: string) =>
     "/admin/users" + (userId ? `/${userId}` : ""),
   ManageGuilds: "/admin/guilds",
+  Sentry: env.NEXT_PUBLIC_SENTRY_ADMIN_URL,
   Account: "/account",
   Dashboard: "/dashboard",
   DashboardServers: (guildId?: string, channelId?: string) =>

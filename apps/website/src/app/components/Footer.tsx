@@ -31,7 +31,6 @@ export default function Footer() {
               </h3>
               <Link href={Routes.Support}>Support server</Link>
               <Link href={Routes.Documentation}>Documentation</Link>
-              <Link href={Routes.BotRepository}>Repository</Link>
               {!isAuthenticated.data ? (
                 <Link href={Routes.Login}>Login with Discord</Link>
               ) : (
@@ -48,6 +47,14 @@ export default function Footer() {
               <Link href={Routes.Legal("acceptable-use-policy")}>
                 Acceptable Use Policy
               </Link>
+            </div>
+            <div className="flex  flex-col">
+              <h3 className="pb-5 text-xl font-bold tracking-tight">
+                Improve Member Counter
+              </h3>
+              <Link href={Routes.BotRepository}>Code Repository</Link>
+              <Link href={Routes.Translate}>Translate the bot</Link>
+              <Link href={Routes.Donors}>Donate</Link>
             </div>
             <div
               className={cn("flex  flex-col", {
@@ -80,6 +87,7 @@ export default function Footer() {
               >
                 Manage servers
               </Link>
+              <Link href={Routes.Sentry}>Sentry</Link>
             </div>
           </div>
         </div>
