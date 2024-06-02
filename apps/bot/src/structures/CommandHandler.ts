@@ -5,9 +5,11 @@ import type {
 } from "@discordjs/builders";
 import type { ChatInputCommandInteraction } from "discord.js";
 
+import type { initT } from "~/i18n";
+
 export type CommandCtx = (
   command: ChatInputCommandInteraction,
-  translate: Awaited<Promise<() => string>>, // TODO
+  translate: Awaited<typeof initT>,
 ) => void | Promise<void>;
 
 type SlashCommandUnion =
