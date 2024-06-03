@@ -1,9 +1,12 @@
-import type { ChatInputCommandInteraction, Interaction } from "discord.js";
+import type { BaseInteraction, LocaleString } from "discord.js";
 import { createInstance } from "i18next";
 
-const availableLanguages = ["en-US", "es-ES", "ru-RU"] as const;
-type AvailableLanguage = (typeof availableLanguages)[number];
-const defaultLanguage: AvailableLanguage = "en-US";
+export const availableLanguages: LocaleString[] = [
+  "en-US",
+  "es-ES",
+  "ru",
+] as const;
+export const defaultLanguage: LocaleString = "en-US";
 
 const LocalBackend: {
   cache: {
@@ -11,7 +14,7 @@ const LocalBackend: {
   };
   type: "backend";
   read: (
-    language: AvailableLanguage,
+    language: LocaleString,
     namespace: string,
     callback: (err: unknown, translations: unknown) => void,
   ) => Promise<void>;
@@ -48,9 +51,7 @@ const LocalBackend: {
   },
 };
 
-export async function initT(
-  interaction: string | Interaction | ChatInputCommandInteraction,
-) {
+export async function initI18n(interaction: string | BaseInteraction) {
   let requestedLanguage: string;
 
   if (typeof interaction === "string") {
@@ -68,5 +69,11 @@ export async function initT(
     load: "currentOnly",
   });
 
-  return i18nextInstance.t;
+  return i18nextInstance;
 }
+
+export const tKey = <
+  K extends Parameters<Awaited<ReturnType<typeof initI18n>>["t"]>,
+>(
+  ...key: K
+): K[0] => key[0];
