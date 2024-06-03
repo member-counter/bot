@@ -4,7 +4,7 @@ import { EmbedBuilder } from "@discordjs/builders";
 import { BrandingColors as Colors } from "../Constants";
 import { env } from "../env";
 
-class BaseEmbed extends EmbedBuilder {
+export class BaseEmbed extends EmbedBuilder {
   constructor(
     client: Client<true>,
     options?: ConstructorParameters<typeof EmbedBuilder>[0],
@@ -20,5 +20,3 @@ class BaseEmbed extends EmbedBuilder {
     });
   }
 }
-
-export default BaseEmbed;

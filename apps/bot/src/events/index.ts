@@ -3,10 +3,16 @@ import type { Client } from "discord.js";
 import logger from "@mc/logger";
 
 import { guildCreateEvent } from "./guildCreate";
+import { interactionCreateEvent } from "./interactionCreate";
 import { messageCreateEvent } from "./messageCreate";
 import { readyEvent } from "./ready";
 
-const allEvents = [readyEvent, guildCreateEvent, messageCreateEvent] as const;
+const allEvents = [
+  readyEvent,
+  guildCreateEvent,
+  messageCreateEvent,
+  interactionCreateEvent,
+] as const;
 
 export function setupEvents(client: Client) {
   allEvents.forEach((event) => {
