@@ -7,8 +7,13 @@ import { redis } from "@mc/redis";
 
 import { env } from "./env";
 import { setupEvents } from "./events";
+import { deployCommands } from "./utils/deployCommands";
 
 export async function initBot() {
+  if (env.AUTO_DEPLOY_COMMANDS) {
+    await deployCommands();
+  }
+
   // TODO manage sharding
   const bot = new Client({
     intents: generateBotIntents(
