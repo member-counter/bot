@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { db } from "@mc/db";
 import logger from "@mc/logger";
 import { redis } from "@mc/redis";
