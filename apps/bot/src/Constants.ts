@@ -1,3 +1,5 @@
+import { enforcePathAsValue } from "./utils/enforcePathAsValue";
+
 export const DiscordBrandingColors = {
   Red: 0xed4245,
   Green: 0x57f287,
@@ -11,3 +13,15 @@ export const DiscordBrandingColors = {
 export const BrandingColors = {
   Primary: 0xea580c,
 };
+
+export const InteractionId = enforcePathAsValue({
+  Profile: {
+    DeleteUserProfile: {
+      Button: null,
+      Modal: null,
+      ModalConfirmationText: null,
+    },
+  },
+});
+
+InteractionId.Profile.DeleteUserProfile.ModalConfirmationText === "ab";
