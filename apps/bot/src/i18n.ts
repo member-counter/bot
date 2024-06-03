@@ -1,55 +1,18 @@
 import type { BaseInteraction, LocaleString } from "discord.js";
 import { createInstance } from "i18next";
 
+import mainUS from "./locales/en-US/main.json";
+import mainES from "./locales/es-ES/main.json";
+import mainRU from "./locales/ru/main.json";
+
 export const availableLanguages: LocaleString[] = [
   "en-US",
+  "en-GB",
   "es-ES",
+  "es-419",
   "ru",
 ] as const;
 export const defaultLanguage: LocaleString = "en-US";
-
-const LocalBackend: {
-  cache: {
-    [K in string]?: unknown;
-  };
-  type: "backend";
-  read: (
-    language: LocaleString,
-    namespace: string,
-    callback: (err: unknown, translations: unknown) => void,
-  ) => Promise<void>;
-} = {
-  cache: {},
-  type: "backend",
-  read: async function (requestedLanguage, namespace, callback) {
-    try {
-      let resources: unknown;
-
-      try {
-        resources = await import(
-          `./locales/${requestedLanguage}/${namespace}.json`
-        );
-      } catch {
-        const partialRequestedLanguage = requestedLanguage.split("-")[0];
-        const bestNextMatch = partialRequestedLanguage
-          ? availableLanguages.find((language) => {
-              return language.startsWith(partialRequestedLanguage);
-            })
-          : defaultLanguage;
-
-        resources ??= await import(
-          `./locales/${bestNextMatch}/${namespace}.json`
-        );
-      }
-
-      callback(null, (LocalBackend.cache[requestedLanguage] ??= resources));
-    } catch (err) {
-      console.log(err);
-
-      callback(err, null);
-    }
-  },
-};
 
 export async function initI18n(interaction: string | BaseInteraction) {
   let requestedLanguage: string;
@@ -61,13 +24,32 @@ export async function initI18n(interaction: string | BaseInteraction) {
   }
 
   const i18nextInstance = createInstance({
-    ns: "main",
-  }).use(LocalBackend);
-
-  await i18nextInstance.init({
+    lng: requestedLanguage,
     fallbackLng: [requestedLanguage, defaultLanguage],
-    load: "currentOnly",
+    defaultNS: "main",
+    resources: {
+      "en-US": {
+        main: mainUS,
+      },
+      "en-GB": {
+        main: mainUS,
+      },
+      "es-ES": {
+        main: mainES,
+      },
+      "es-419": {
+        main: mainES,
+      },
+      ru: {
+        main: mainRU,
+      },
+    },
+    interpolation: {
+      escapeValue: false,
+    },
   });
+
+  await i18nextInstance.init();
 
   return i18nextInstance;
 }
