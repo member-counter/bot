@@ -79,11 +79,13 @@ export function Combobox<T, A extends boolean = false>({
 
       const terms = search.toLowerCase().split(" ");
 
+      // TODO try with .includes
       if (!keywords)
         return terms.some((term) => value.startsWith(term)) ? 1 : 0;
 
       keywords = keywords.map((keyword) => keyword.toLowerCase());
 
+      // TODO try with .includes
       const score = keywords.reduce((acc, keyword) => {
         if (terms.some((term) => keyword.startsWith(term))) return acc + 1;
         return acc;
