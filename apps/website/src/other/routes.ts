@@ -1,3 +1,3 @@
 import { Routes as RoutesFn } from "@mc/common/Routes";
 
-export const Routes = RoutesFn();
+export const Routes = RoutesFn("");

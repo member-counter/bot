@@ -15,7 +15,7 @@ function formatURL(url: string, unparsedParams: Record<string, string>) {
   return [url, searchParams].filter(Boolean).join("?");
 }
 
-export const Routes = (baseUrl = "") => ({
+export const Routes = (baseUrl: string) => ({
   Home: baseUrl + "/",
   Login: baseUrl + "/login",
   LogOut: baseUrl + "/logout",
