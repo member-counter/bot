@@ -5,9 +5,10 @@ import logger from "@mc/logger";
 import { defaultLanguage, initI18n } from "~/i18n";
 import { commandDefinitionTKeyMap } from "~/utils/prepareLocalization";
 import { infoCommand } from "./info";
+import { inviteCommand } from "./invite";
 import { profileCommand } from "./profile";
 
-export const allCommands = [infoCommand, profileCommand];
+export const allCommands = [infoCommand, profileCommand, inviteCommand];
 
 export function throwUnsupported(command: CommandInteraction) {
   throw new Error(`Unsupported command type ${command.commandType}`);

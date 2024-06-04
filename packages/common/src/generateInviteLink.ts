@@ -1,5 +1,5 @@
 import type { PermissionsBitField } from "discord.js";
-import { RouteBases, Routes } from "discord-api-types/v10";
+import { Routes } from "discord-api-types/v10";
 
 interface GenerateLinkOptions {
   clientId: string;
@@ -13,7 +13,7 @@ export function generateInviteLink({
   selectedGuild,
 }: GenerateLinkOptions) {
   const inviteLink = new URL(
-    `${RouteBases.api}${Routes.oauth2Authorization()}`,
+    `https://discord.com${Routes.oauth2Authorization()}`,
   );
 
   inviteLink.searchParams.set("client_id", clientId);
