@@ -1,3 +1,4 @@
+import type { LegalPagesSlugs } from "@mc/common/Routes";
 import type { ReactNode } from "react";
 
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
@@ -8,18 +9,10 @@ import { TypographyP } from "@mc/ui/TypographyP";
 
 import { Routes } from "~/other/routes";
 
-export const legalPagesSlugs = [
-  "terms-of-service",
-  "privacy-policy",
-  "cookie-policy",
-  "acceptable-use-policy",
-] as const;
-
 export interface LegalPage {
   title: string;
   page: ReactNode;
 }
-export type LegalPagesSlugs = (typeof legalPagesSlugs)[number];
 
 export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
   "terms-of-service": {

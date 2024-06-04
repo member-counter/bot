@@ -25,7 +25,13 @@ export const env = createEnv({
    * isn't built with invalid env vars. To expose them to the client, prefix them with
    * `NEXT_PUBLIC_`.
    */
-  client: {},
+  client: {
+    NEXT_PUBLIC_SUPPORT_URL: z.string(),
+    NEXT_PUBLIC_BOT_DOCS_URL: z.string(),
+    NEXT_PUBLIC_BOT_REPO_URL: z.string(),
+    NEXT_PUBLIC_TRANSLATION_PLATFORM_URL: z.string(),
+    NEXT_PUBLIC_SENTRY_ADMIN_URL: z.string(),
+  },
 
   /**
    * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.
@@ -38,6 +44,12 @@ export const env = createEnv({
     DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     DISCORD_OAUTH2_REDIRECT_URI: process.env.DISCORD_OAUTH2_REDIRECT_URI,
+    NEXT_PUBLIC_SUPPORT_URL: process.env.NEXT_PUBLIC_SUPPORT_URL,
+    NEXT_PUBLIC_BOT_DOCS_URL: process.env.NEXT_PUBLIC_BOT_DOCS_URL,
+    NEXT_PUBLIC_BOT_REPO_URL: process.env.NEXT_PUBLIC_BOT_REPO_URL,
+    NEXT_PUBLIC_TRANSLATION_PLATFORM_URL:
+      process.env.NEXT_PUBLIC_TRANSLATION_PLATFORM_URL,
+    NEXT_PUBLIC_SENTRY_ADMIN_URL: process.env.NEXT_PUBLIC_SENTRY_ADMIN_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
