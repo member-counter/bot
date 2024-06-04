@@ -9,10 +9,14 @@ import { BaseEmbed } from "~/utils/BaseMessageEmbed";
 import { prepareLocalization } from "~/utils/prepareLocalization";
 
 export const infoCommand = new Command({
-  definition: new SlashCommandBuilder()
-    .setName(prepareLocalization("interaction.commands.info.definition.name"))
+  commandDefinition: new SlashCommandBuilder()
+    .setName(
+      prepareLocalization("interaction.commands.info.definition.slash.name"),
+    )
     .setDescription(
-      prepareLocalization("interaction.commands.info.definition.description"),
+      prepareLocalization(
+        "interaction.commands.info.definition.slash.description",
+      ),
     )
     .setDMPermission(true),
   handle: async (command, { t }) => {

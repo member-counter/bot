@@ -11,8 +11,10 @@
     "commands": {
       "invite": {
         "definition": {
-          "name": "invite",
-          "description": "Gives you an invite link to add the bot"
+          "slash": {
+            "name": "invite",
+            "description": "Gives you an invite link to add the bot"
+          }
         },
         "description": "Your invite link is ready:\n{{INVITE_URL}}",
         "addToServer": "Add to server",
@@ -21,8 +23,10 @@
       },
       "info": {
         "definition": {
-          "name": "info",
-          "description": "List of useful links."
+          "slash": {
+            "name": "info",
+            "description": "List of useful links."
+          }
         },
         "embedReply": {
           "description": "[Add me to your server]({{BOT_INVITE_URL}})\n[Website]({{WEBSITE_URL}})\n[Support server]({{BOT_SUPPORT_URL}})\n[GitHub Repository]({{BOT_REPO_URL}})"
@@ -30,18 +34,31 @@
       },
       "profile": {
         "definition": {
-          "name": "profile",
-          "description": "Shows related information between you and this bot."
+          "context": {
+            "name": "Profile"
+          },
+          "slash": {
+            "name": "profile",
+            "description": "Shows related information between you and this bot.",
+            "options": {
+              "user": {
+                "name": "user",
+                "description": "The user whose profile you want to view."
+              }
+            }
+          }
         },
         "badges": "Badges",
-        "deleteProfileModal": {
-          "modalTitle": "Confirm data deletion",
-          "removeDataConfirmation": "Please type exactly this text if you want to delete all your data: ```{{CONFIRMATION_STRING}}```\n:warning: **This action will remove all your data, are you sure you want to continue?",
-          "removeDataConfirmationString": "I want to delete all of my data",
-          "removeDataSuccess": "Your data has been removed successfully",
-          "invalidTextInputProvided": "Please try again and provide a valid text"
+        "deleteProfileButton": "Delete data",
+        "moreOptionsButton": "More options",
+        "deleteProfilePrompt": {
+          "title": "Are you sure you want to delete the data?",
+          "description": "This action cannot be undone",
+          "confirmButton": "Yes",
+          "cancelButton": "Cancel",
+          "removeDataSuccess": "The data has been removed successfully"
         },
-        "userNotFound": "User not found in the DB"
+        "userNotFound": "User not found"
       }
     }
   }

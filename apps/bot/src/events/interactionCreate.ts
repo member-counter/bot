@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import type { i18n } from "i18next";
 import {
   ActionRowBuilder,
@@ -6,16 +7,13 @@ import {
   inlineCode,
   InteractionType,
 } from "discord.js";
-import { v4 as uuid } from "uuid";
 
 import logger from "@mc/logger";
 
 import { env } from "~/env";
 import { DiscordBrandingColors as Colors } from "../Constants";
 import { initI18n } from "../i18n";
-import handleButton from "../interactions/buttons";
-import handleChatInputCommand from "../interactions/chatInputCommands.ts";
-import handleModalSubmit from "../interactions/modals";
+import handleCommand from "../interactions/commands";
 import { EventHandler } from "../structures";
 import { BaseEmbed } from "../utils/BaseMessageEmbed";
 import { UserError } from "../utils/UserError";
@@ -26,26 +24,16 @@ export const interactionCreateEvent = new EventHandler({
     try {
       switch (interaction.type) {
         case InteractionType.ApplicationCommand: {
-          if (interaction.isChatInputCommand()) {
-            await handleChatInputCommand(interaction);
+          if (interaction.isCommand()) {
+            await handleCommand(interaction);
           }
-          break;
-        }
-        case InteractionType.MessageComponent: {
-          if (interaction.isButton()) {
-            await handleButton(interaction);
-          }
-          break;
-        }
-        case InteractionType.ModalSubmit: {
-          await handleModalSubmit(interaction);
           break;
         }
       }
     } catch (error) {
-      if (interaction.isCommand() || interaction.isMessageComponent()) {
+      if (interaction.isRepliable()) {
         const embed = new BaseEmbed(interaction.client);
-        const id = uuid();
+        const id = randomUUID();
         let i18n: i18n;
         let title: string, description: string, supportServerBtn: string;
 
@@ -90,10 +78,9 @@ export const interactionCreateEvent = new EventHandler({
         );
 
         interaction
-          .reply({
+          .editReply({
             embeds: [embed],
             components: [componentRow],
-            ephemeral: true,
           })
           .catch((error) => {
             logger.error("Interaction error reply error:", error);

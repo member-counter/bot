@@ -1,19 +1,32 @@
-import type { SlashCommandBuilder } from "@discordjs/builders";
-import type { ChatInputCommandInteraction } from "discord.js";
+import type {
+  ContextMenuCommandBuilder,
+  SlashCommandBuilder,
+  SlashCommandOptionsOnlyBuilder,
+  SlashCommandSubcommandsOnlyBuilder,
+} from "@discordjs/builders";
+import type { CommandInteraction } from "discord.js";
 
 import type { initI18n } from "~/i18n";
 
 export type CommandHandle = (
-  command: ChatInputCommandInteraction,
+  command: CommandInteraction,
   i18n: Awaited<ReturnType<typeof initI18n>>,
 ) => void | Promise<void>;
 
+type SlashCommandUnion =
+  | SlashCommandBuilder
+  | SlashCommandSubcommandsOnlyBuilder
+  | SlashCommandOptionsOnlyBuilder
+  | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">;
+
 export class Command {
-  definition: SlashCommandBuilder;
+  commandDefinition?: SlashCommandUnion;
+  contextCommandDefinition?: ContextMenuCommandBuilder;
   handle: CommandHandle;
 
   constructor(options: Command) {
-    this.definition = options.definition;
+    this.commandDefinition = options.commandDefinition;
+    this.contextCommandDefinition = options.contextCommandDefinition;
     this.handle = options.handle;
   }
 }

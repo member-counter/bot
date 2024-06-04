@@ -1,6 +1,15 @@
-import { db } from "@mc/db";
+import { db, KnownError } from "@mc/db";
 
 export type UserData = Awaited<ReturnType<typeof db.user.upsert>>;
+
+export class UserNotFoundError extends Error {}
+
+const throwOrThrowNotFound = (error: unknown) => {
+  if (error instanceof KnownError && error.code === "P2025") {
+    throw new UserNotFoundError();
+  }
+  throw error;
+};
 
 export class UserSettings {
   private constructor(public data: UserData) {}
@@ -12,20 +21,23 @@ export class UserSettings {
     });
     return new UserSettings(userData);
   }
-  public static async load(discordUserId: string) {
-    const userData = await db.user.findUnique({
-      where: { discordUserId },
-    });
 
-    if (!userData) return null;
+  public static async load(discordUserId: string) {
+    const userData = await db.user
+      .findUniqueOrThrow({
+        where: { discordUserId },
+      })
+      .catch(throwOrThrowNotFound);
 
     return new UserSettings(userData);
   }
 
   public static async loadById(id: string) {
-    const userData = await db.user.findUniqueOrThrow({
-      where: { id },
-    });
+    const userData = await db.user
+      .findUniqueOrThrow({
+        where: { id },
+      })
+      .catch(throwOrThrowNotFound);
 
     return new UserSettings(userData);
   }

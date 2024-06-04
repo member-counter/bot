@@ -5,7 +5,7 @@ import logger from "@mc/logger";
 
 import { env } from "~/env";
 import { availableLanguages, defaultLanguage, initI18n } from "~/i18n";
-import { allCommands } from "~/interactions/chatInputCommands.ts";
+import { allCommands } from "~/interactions/commands";
 import { localizeCommand } from "./localizeCommands";
 
 export async function deployCommands() {
@@ -23,16 +23,29 @@ export async function deployCommands() {
 
   logger.info("deployCommands: Localizing application commands.");
 
-  const allDefinitions = allCommands.map(({ definition }) => {
-    return definition.toJSON();
-  });
+  const allDefinitions = allCommands.map(
+    ({ commandDefinition, contextCommandDefinition }) => {
+      return {
+        commandDefinition: commandDefinition?.toJSON(),
+        contextCommandDefinition: contextCommandDefinition?.toJSON(),
+      };
+    },
+  );
 
-  allDefinitions.forEach((definition) => {
+  allDefinitions.forEach((defs) => {
     i18nInstances.forEach((i18nInstance) => {
-      localizeCommand(i18nInstance, definition, true);
+      if (defs.commandDefinition)
+        localizeCommand(i18nInstance, defs.commandDefinition, true);
+
+      if (defs.contextCommandDefinition)
+        localizeCommand(i18nInstance, defs.contextCommandDefinition, true);
     });
 
-    localizeCommand(i18nDefault, definition);
+    if (defs.commandDefinition)
+      localizeCommand(i18nDefault, defs.commandDefinition);
+
+    if (defs.contextCommandDefinition)
+      localizeCommand(i18nDefault, defs.contextCommandDefinition);
   });
 
   logger.info("deployCommands: Reloading application commands...");
@@ -45,8 +58,12 @@ export async function deployCommands() {
     );
   }
 
+  const flattedDefs = allDefinitions
+    .flatMap((defs) => Object.values(defs))
+    .filter(Boolean);
+
   await discordRest.put(route, {
-    body: allDefinitions,
+    body: flattedDefs,
   });
 
   logger.info("deployCommands: Successfully reloaded application commands.");

@@ -314,6 +314,9 @@ importers:
       '@mc/db':
         specifier: workspace:*
         version: link:../db
+      '@t3-oss/env-nextjs':
+        specifier: ^0.10.1
+        version: 0.10.1(typescript@5.4.5)(zod@3.23.6)
       discord-api-types:
         specifier: ^0.37.83
         version: 0.37.83
@@ -323,6 +326,9 @@ importers:
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
+      zod:
+        specifier: ^3.23.3
+        version: 3.23.6
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
