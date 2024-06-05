@@ -54,8 +54,7 @@ export async function initI18n(interaction: string | BaseInteraction) {
   return i18nextInstance;
 }
 
-export const tKey = <
-  K extends Parameters<Awaited<ReturnType<typeof initI18n>>["t"]>,
->(
-  ...key: K
-): K[0] => key[0];
+export type TFunction = Awaited<ReturnType<typeof initI18n>>["t"];
+
+export const tKey = <K extends Parameters<TFunction>>(...key: K): K[0] =>
+  key[0];
