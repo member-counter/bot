@@ -14,7 +14,7 @@ import { prepareLocalization } from "~/utils/prepareLocalization";
 import { Command } from "../../structures";
 
 export const inviteCommand = new Command({
-  commandDefinition: new SlashCommandBuilder()
+  slashDefinition: new SlashCommandBuilder()
     .setName(
       prepareLocalization("interaction.commands.invite.definition.slash.name"),
     )

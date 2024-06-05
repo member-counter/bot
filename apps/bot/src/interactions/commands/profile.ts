@@ -39,7 +39,7 @@ const generateBadgeList = (badges: bigint): string => {
 };
 
 export const profileCommand = new Command({
-  commandDefinition: new SlashCommandBuilder()
+  slashDefinition: new SlashCommandBuilder()
     .setName(
       prepareLocalization("interaction.commands.profile.definition.slash.name"),
     )
@@ -62,7 +62,7 @@ export const profileCommand = new Command({
         ),
     )
     .setDMPermission(true),
-  contextCommandDefinition: new ContextMenuCommandBuilder()
+  contextDefinition: new ContextMenuCommandBuilder()
     .setName(
       prepareLocalization(
         "interaction.commands.profile.definition.context.name",

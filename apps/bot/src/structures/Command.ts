@@ -20,13 +20,13 @@ type SlashCommandUnion =
   | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">;
 
 export class Command {
-  commandDefinition?: SlashCommandUnion;
-  contextCommandDefinition?: ContextMenuCommandBuilder;
+  slashDefinition?: SlashCommandUnion;
+  contextDefinition?: ContextMenuCommandBuilder;
   handle: CommandHandle;
 
   constructor(options: Command) {
-    this.commandDefinition = options.commandDefinition;
-    this.contextCommandDefinition = options.contextCommandDefinition;
+    this.slashDefinition = options.slashDefinition;
+    this.contextDefinition = options.contextDefinition;
     this.handle = options.handle;
   }
 }

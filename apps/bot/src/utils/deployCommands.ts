@@ -24,28 +24,24 @@ export async function deployCommands() {
   logger.info("deployCommands: Localizing application commands.");
 
   const allDefinitions = allCommands.map(
-    ({ commandDefinition, contextCommandDefinition }) => {
+    ({ slashDefinition, contextDefinition }) => {
       return {
-        commandDefinition: commandDefinition?.toJSON(),
-        contextCommandDefinition: contextCommandDefinition?.toJSON(),
+        slash: slashDefinition?.toJSON(),
+        context: contextDefinition?.toJSON(),
       };
     },
   );
 
   allDefinitions.forEach((defs) => {
     i18nInstances.forEach((i18nInstance) => {
-      if (defs.commandDefinition)
-        localizeCommand(i18nInstance, defs.commandDefinition, true);
+      if (defs.slash) localizeCommand(i18nInstance, defs.slash, true);
 
-      if (defs.contextCommandDefinition)
-        localizeCommand(i18nInstance, defs.contextCommandDefinition, true);
+      if (defs.context) localizeCommand(i18nInstance, defs.context, true);
     });
 
-    if (defs.commandDefinition)
-      localizeCommand(i18nDefault, defs.commandDefinition);
+    if (defs.slash) localizeCommand(i18nDefault, defs.slash);
 
-    if (defs.contextCommandDefinition)
-      localizeCommand(i18nDefault, defs.contextCommandDefinition);
+    if (defs.context) localizeCommand(i18nDefault, defs.context);
   });
 
   logger.info("deployCommands: Reloading application commands...");

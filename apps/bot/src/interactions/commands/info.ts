@@ -10,7 +10,7 @@ import { BaseEmbed } from "~/utils/BaseMessageEmbed";
 import { prepareLocalization } from "~/utils/prepareLocalization";
 
 export const infoCommand = new Command({
-  commandDefinition: new SlashCommandBuilder()
+  slashDefinition: new SlashCommandBuilder()
     .setName(
       prepareLocalization("interaction.commands.info.definition.slash.name"),
     )

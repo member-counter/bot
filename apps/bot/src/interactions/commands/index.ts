@@ -21,10 +21,7 @@ export default async function handleCommand(
   const i18nDefaultLanguage = await initI18n(defaultLanguage);
 
   const command = allCommands.find((c) => {
-    const commandNames = [
-      c.commandDefinition?.name,
-      c.contextCommandDefinition?.name,
-    ]
+    const commandNames = [c.slashDefinition?.name, c.contextDefinition?.name]
       .filter(Boolean)
       .map((commandName) => commandDefinitionTKeyMap.get(commandName))
       .map(
