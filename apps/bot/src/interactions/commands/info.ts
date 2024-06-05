@@ -1,8 +1,9 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { inlineCode, SlashCommandBuilder } from "@discordjs/builders";
 
 import { botPermissions } from "@mc/common/botPermissions";
 import { generateInviteLink } from "@mc/common/generateInviteLink";
 
+import { version } from "~/../../../../package.json";
 import { env } from "~/env";
 import { Command } from "~/structures";
 import { BaseEmbed } from "~/utils/BaseMessageEmbed";
@@ -30,9 +31,11 @@ export const infoCommand = new Command({
           BOT_REPO_URL: env.NEXT_PUBLIC_BOT_REPO_URL,
           BOT_SUPPORT_URL: env.NEXT_PUBLIC_SUPPORT_URL,
           WEBSITE_URL: env.WEBSITE_URL,
+          VERSION: inlineCode("v" + version),
+          VERSION_URL: `${env.NEXT_PUBLIC_BOT_REPO_URL}/releases/tag/v${version}`,
         }),
       )
       .setThumbnail(command.client.user.displayAvatarURL());
-    await command.reply({ embeds: [embed], ephemeral: true });
+    await command.editReply({ embeds: [embed] });
   },
 });

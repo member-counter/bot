@@ -26,11 +26,11 @@ interface Resources {
           "definition": {
             "slash": {
               "name": "info",
-              "description": "List of useful links."
+              "description": "List of useful links and other information."
             }
           },
           "embedReply": {
-            "description": "[Add me to your server]({{BOT_INVITE_URL}})\n[Website]({{WEBSITE_URL}})\n[Support server]({{BOT_SUPPORT_URL}})\n[GitHub Repository]({{BOT_REPO_URL}})"
+            "description": "[Add me to your server]({{BOT_INVITE_URL}})\n[Website]({{WEBSITE_URL}})\n[Support server]({{BOT_SUPPORT_URL}})\n[GitHub Repository]({{BOT_REPO_URL}})\n[Bot version: {{VERSION}}]({{VERSION_URL}})"
           }
         },
         "profile": {
