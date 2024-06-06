@@ -4,7 +4,7 @@ import { REST } from "discord.js";
 import logger from "@mc/logger";
 
 import { env } from "~/env";
-import { availableLanguages, defaultLanguage, initI18n } from "~/i18n";
+import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE, initI18n } from "~/i18n";
 import { allCommands } from "~/interactions/commands";
 import { localizeCommand } from "./localizeCommands";
 
@@ -14,9 +14,9 @@ export async function deployCommands() {
   }).setToken(env.DISCORD_BOT_TOKEN);
 
   logger.info("deployCommands: Loading i18n instances for all languages.");
-  const i18nInstances = await Promise.all(availableLanguages.map(initI18n));
+  const i18nInstances = await Promise.all(AVAILABLE_LANGUAGES.map(initI18n));
   const i18nDefault = i18nInstances.find(
-    (instance) => instance.language === defaultLanguage,
+    (instance) => instance.language === DEFAULT_LANGUAGE,
   );
 
   if (!i18nDefault) throw new Error("Failed to get the default i18n instance");

@@ -1,7 +1,7 @@
-import type { tKey } from "~/i18n";
+import type { TKey } from "~/i18n";
 
 let TKeyMapCounter = 0;
-export const commandDefinitionTKeyMap = new Map<string, string>();
+export const commandDefinitionTKeyMap = new Map<string, TKey>();
 
 /**
  * Due to length and other regex limits imposed by the Discord.js slash command builder,
@@ -10,8 +10,8 @@ export const commandDefinitionTKeyMap = new Map<string, string>();
  * This will return an allowed ID that we can use later to retrive the actual translation keys when
  * translations are done in deployCommands()
  */
-export function prepareLocalization(...key: Parameters<typeof tKey>): string {
+export function prepareLocalization(key: TKey): string {
   const keyId = (TKeyMapCounter++).toString();
-  commandDefinitionTKeyMap.set(keyId, key[0] as never);
+  commandDefinitionTKeyMap.set(keyId, key);
   return keyId;
 }

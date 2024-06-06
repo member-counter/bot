@@ -2,7 +2,7 @@ import type { CommandInteraction } from "discord.js";
 
 import logger from "@mc/logger";
 
-import { defaultLanguage, initI18n } from "~/i18n";
+import { DEFAULT_LANGUAGE, initI18n } from "~/i18n";
 import { commandDefinitionTKeyMap } from "~/utils/prepareLocalization";
 import { infoCommand } from "./info";
 import { inviteCommand } from "./invite";
@@ -18,7 +18,7 @@ export default async function handleCommand(
   commandInteraction: CommandInteraction,
 ): Promise<void> {
   await commandInteraction.deferReply({ ephemeral: true });
-  const i18nDefaultLanguage = await initI18n(defaultLanguage);
+  const i18nDefaultLanguage = await initI18n(DEFAULT_LANGUAGE);
 
   const command = allCommands.find((c) => {
     const commandNames = [c.slashDefinition?.name, c.contextDefinition?.name]

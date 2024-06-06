@@ -5,16 +5,16 @@ import mainUS from "./locales/en-US/main.json";
 import mainES from "./locales/es-ES/main.json";
 import mainRU from "./locales/ru/main.json";
 
-export const availableLanguages: LocaleString[] = [
+export const AVAILABLE_LANGUAGES: LocaleString[] = [
   "en-US",
   "en-GB",
   "es-ES",
   "es-419",
   "ru",
 ] as const;
-export const defaultLanguage: LocaleString = "en-US";
+export const DEFAULT_LANGUAGE: LocaleString = "en-US";
 
-export async function initI18n(interaction: string | BaseInteraction) {
+export async function initI18n(interaction: LocaleString | BaseInteraction) {
   let requestedLanguage: string;
 
   if (typeof interaction === "string") {
@@ -25,7 +25,8 @@ export async function initI18n(interaction: string | BaseInteraction) {
 
   const i18nextInstance = createInstance({
     lng: requestedLanguage,
-    fallbackLng: [requestedLanguage, defaultLanguage],
+    supportedLngs: AVAILABLE_LANGUAGES,
+    fallbackLng: [requestedLanguage, DEFAULT_LANGUAGE],
     defaultNS: "main",
     resources: {
       "en-US": {
@@ -56,5 +57,12 @@ export async function initI18n(interaction: string | BaseInteraction) {
 
 export type TFunction = Awaited<ReturnType<typeof initI18n>>["t"];
 
-export const tKey = <K extends Parameters<TFunction>>(...key: K): K[0] =>
-  key[0];
+type Unpacked<T> = T extends (infer U)[] ? U : T;
+export type TKey<K = Parameters<TFunction>[0]> = K extends
+  | string
+  | string[]
+  | TemplateStringsArray
+  ? never
+  : Exclude<Unpacked<K>, TemplateStringsArray>;
+
+export const tKey = <K extends TKey>(key: K): K => key;
