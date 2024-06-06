@@ -1,15 +1,8 @@
-import { db, KnownError } from "@mc/db";
+import { db } from "@mc/db";
+
+import { throwOrThrowNotFound } from "./throwOrThrowNotFound";
 
 export type UserData = Awaited<ReturnType<typeof db.user.upsert>>;
-
-export class UserNotFoundError extends Error {}
-
-const throwOrThrowNotFound = (error: unknown) => {
-  if (error instanceof KnownError && error.code === "P2025") {
-    throw new UserNotFoundError();
-  }
-  throw error;
-};
 
 export class UserSettings {
   private constructor(public data: UserData) {}

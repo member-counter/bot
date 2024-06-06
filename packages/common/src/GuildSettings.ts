@@ -1,5 +1,7 @@
 import { db } from "@mc/db";
 
+import { throwOrThrowNotFound } from "./throwOrThrowNotFound";
+
 export type GuildData = Awaited<ReturnType<typeof db.guild.upsert>>;
 
 export class GuildSettings {
@@ -18,11 +20,11 @@ export class GuildSettings {
   }
 
   public static async load(discordGuildId: string) {
-    const guildData = await db.guild.findUnique({
-      where: { discordGuildId },
-    });
-
-    if (!guildData) return null;
+    const guildData = await db.guild
+      .findUniqueOrThrow({
+        where: { discordGuildId },
+      })
+      .catch(throwOrThrowNotFound);
 
     return new GuildSettings(guildData);
   }
