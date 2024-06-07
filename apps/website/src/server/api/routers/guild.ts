@@ -3,7 +3,7 @@ import { PermissionFlagsBits } from "discord-api-types/v10";
 import { z } from "zod";
 
 import { BitField } from "@mc/common/BitField";
-import { getChannelLogs } from "@mc/common/redis/ChannelLogs";
+import { GuildSettings } from "@mc/common/GuildSettings";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
 import type { createTRPCContext } from "~/server/api/trpc";
@@ -70,18 +70,13 @@ export const guildRouter = createTRPCRouter({
           ),
       );
 
-      return await ctx.db.guild.findUnique({
-        where: { discordGuildId: input.discordGuildId },
-      });
+      return await GuildSettings.get(input.discordGuildId);
     }),
 
   has: protectedProcedure
     .input(z.object({ discordGuildId: z.string() }))
-    .query(async ({ ctx, input }) => {
-      return !!(await ctx.db.guild.findUnique({
-        where: { discordGuildId: input.discordGuildId },
-        select: { id: true },
-      }));
+    .query(async ({ input }) => {
+      return await GuildSettings.has(input.discordGuildId);
     }),
 
   update: protectedProcedure
@@ -109,10 +104,8 @@ export const guildRouter = createTRPCRouter({
           ),
       );
 
-      return ctx.db.guild.update({
-        where: { discordGuildId: input.discordGuildId },
-        data: { formatSettings: input.formatSettings },
-        include: { channels: true },
+      return await GuildSettings.upsert(input.discordGuildId, {
+        formatSettings: input.formatSettings,
       });
     }),
 
@@ -131,14 +124,7 @@ export const guildRouter = createTRPCRouter({
           userPermissionsInGuild.any(PermissionFlagsBits.Administrator),
       );
 
-      await ctx.db.guild.delete({
-        where: { discordGuildId: input.discordGuildId },
-        include: { channels: true },
-      });
-
-      await ctx.db.guild.create({
-        data: { discordGuildId: input.discordGuildId, formatSettings: {} },
-      });
+      await GuildSettings.reset(input.discordGuildId);
     }),
 
   isBlocked: protectedProcedure
@@ -159,9 +145,7 @@ export const guildRouter = createTRPCRouter({
           ),
       );
 
-      return await ctx.db.blockedGuild.findUnique({
-        where: { discordGuildId: input.discordGuildId },
-      });
+      return await GuildSettings.isBlocked(input.discordGuildId);
     }),
 
   updateBlockState: protectedProcedure
@@ -172,23 +156,15 @@ export const guildRouter = createTRPCRouter({
         reason: z.string().optional(),
       }),
     )
-    .mutation(async ({ ctx, input }) => {
-      await checkUserPermissions(ctx, input, ({ userPermissions }) =>
-        userPermissions.has(UserPermissions.ManageGuilds),
+    .mutation(async ({ ctx, input: { discordGuildId, state, reason } }) => {
+      await checkUserPermissions(
+        ctx,
+        { discordGuildId },
+        ({ userPermissions }) =>
+          userPermissions.has(UserPermissions.ManageGuilds),
       );
 
-      if (input.state) {
-        await ctx.db.blockedGuild.create({
-          data: {
-            discordGuildId: input.discordGuildId,
-            reason: input.reason ?? "",
-          },
-        });
-      } else {
-        await ctx.db.blockedGuild.delete({
-          where: { discordGuildId: input.discordGuildId },
-        });
-      }
+      await GuildSettings.updateBlock(discordGuildId, state, reason);
     }),
 
   channels: createTRPCRouter({
@@ -208,11 +184,10 @@ export const guildRouter = createTRPCRouter({
             ),
         );
 
-        return await ctx.db.channel.upsert({
-          create: { discordChannelId, discordGuildId },
-          update: {},
-          where: { discordChannelId, discordGuildId },
-        });
+        return await GuildSettings.channels.get(
+          discordChannelId,
+          discordChannelId,
+        );
       }),
 
     getAll: protectedProcedure
@@ -229,15 +204,7 @@ export const guildRouter = createTRPCRouter({
             ),
         );
 
-        return await ctx.db.channel
-          .findMany({
-            where: { discordGuildId },
-          })
-          .then((channels) => ({
-            channels: new Map(
-              channels.map((channel) => [channel.discordChannelId, channel]),
-            ),
-          }));
+        return await GuildSettings.channels.getAll(discordGuildId);
       }),
 
     update: protectedProcedure
@@ -261,13 +228,7 @@ export const guildRouter = createTRPCRouter({
             ),
         );
 
-        const { discordChannelId, discordGuildId } = input;
-
-        return await ctx.db.channel.upsert({
-          create: input,
-          update: input,
-          where: { discordChannelId, discordGuildId },
-        });
+        return await GuildSettings.channels.update(input);
       }),
 
     delete: protectedProcedure
@@ -287,65 +248,57 @@ export const guildRouter = createTRPCRouter({
               userPermissionsInGuild.any(PermissionFlagsBits.Administrator),
           );
 
-          await ctx.db.channel.delete({
-            where: { discordChannelId },
-          });
+          await GuildSettings.channels.delete(discordChannelId);
         },
       ),
 
-    getLogs: protectedProcedure
-      .input(
-        z.object({ discordChannelId: z.string(), discordGuildId: z.string() }),
-      )
-      .query(async ({ ctx, input: { discordChannelId, discordGuildId } }) => {
-        await checkUserPermissions(
-          ctx,
-          { discordGuildId },
-          ({ userPermissions, userPermissionsInGuild }) =>
-            userPermissions.has(UserPermissions.SeeGuilds) ||
-            userPermissionsInGuild.any(
-              PermissionFlagsBits.Administrator |
-                PermissionFlagsBits.ManageChannels,
-            ),
-        );
+    logs: createTRPCRouter({
+      get: protectedProcedure
+        .input(
+          z.object({
+            discordChannelId: z.string(),
+            discordGuildId: z.string(),
+          }),
+        )
+        .query(async ({ ctx, input: { discordChannelId, discordGuildId } }) => {
+          await checkUserPermissions(
+            ctx,
+            { discordGuildId },
+            ({ userPermissions, userPermissionsInGuild }) =>
+              userPermissions.has(UserPermissions.SeeGuilds) ||
+              userPermissionsInGuild.any(
+                PermissionFlagsBits.Administrator |
+                  PermissionFlagsBits.ManageChannels,
+              ),
+          );
 
-        return await getChannelLogs(ctx.redis, discordChannelId);
-      }),
-
-    getAllLogs: protectedProcedure
-      .input(z.object({ discordGuildId: z.string() }))
-      .query(async ({ ctx, input: { discordGuildId } }) => {
-        await checkUserPermissions(
-          ctx,
-          { discordGuildId },
-          ({ userPermissions, userPermissionsInGuild }) =>
-            userPermissions.has(UserPermissions.SeeGuilds) ||
-            userPermissionsInGuild.any(
-              PermissionFlagsBits.Administrator |
-                PermissionFlagsBits.ManageChannels,
-            ),
-        );
-
-        const { channels } = await ctx.db.guild.findUniqueOrThrow({
-          where: { discordGuildId },
-          select: { channels: { select: { discordChannelId: true } } },
-        });
-
-        const channelLogs = await Promise.all(
-          channels.map(async ({ discordChannelId }) => ({
+          return await GuildSettings.channels.logs.get(
+            ctx.redis,
             discordChannelId,
-            logs: await getChannelLogs(ctx.redis, discordChannelId),
-          })),
-        );
+          );
+        }),
 
-        const channelLogsMap = new Map(
-          channelLogs.map(({ discordChannelId, logs }) => [
-            discordChannelId,
-            logs,
-          ]),
-        );
+      getAll: protectedProcedure
+        .input(z.object({ discordGuildId: z.string() }))
+        .query(async ({ ctx, input: { discordGuildId } }) => {
+          await checkUserPermissions(
+            ctx,
+            { discordGuildId },
+            ({ userPermissions, userPermissionsInGuild }) =>
+              userPermissions.has(UserPermissions.SeeGuilds) ||
+              userPermissionsInGuild.any(
+                PermissionFlagsBits.Administrator |
+                  PermissionFlagsBits.ManageChannels,
+              ),
+          );
 
-        return { channelLogs: channelLogsMap };
-      }),
+          return {
+            channelLogs: await GuildSettings.channels.logs.getAll(
+              ctx.redis,
+              discordGuildId,
+            ),
+          };
+        }),
+    }),
   }),
 });
