@@ -127,23 +127,23 @@
             "categoryName": "📊 Server Stats 📊",
             "counters": [
               {
-                "name": "online members",
+                "name": "Online members",
                 "template": "Online: {{COUNTER}}"
               },
               {
-                "name": "members",
+                "name": "Members",
                 "template": "Members: {{COUNTER}}"
               },
               {
-                "name": "nitro boosters",
+                "name": "Nitro boosters",
                 "template": "Boosters: {{COUNTER}}"
               },
               {
-                "name": "roles",
+                "name": "Roles",
                 "template": "Roles: {{COUNTER}}"
               },
               {
-                "name": "channels",
+                "name": "Channels",
                 "template": "Channels: {{COUNTER}}"
               }
             ]
@@ -152,11 +152,11 @@
             "categoryName": "📊 {{COUNTER}} Twitch Stats 📊",
             "counters": [
               {
-                "name": "twitch followers",
+                "name": "Twitch followers",
                 "template": "{{COUNTER}} Followers"
               },
               {
-                "name": "twitch views",
+                "name": "Twitch views",
                 "template": "{{COUNTER}} Views"
               }
             ]
@@ -165,15 +165,15 @@
             "categoryName": "📊 {{COUNTER}} Youtube Stats 📊",
             "counters": [
               {
-                "name": "youtube subscribers",
+                "name": "Youtube subscribers",
                 "template": "{{COUNTER}} Subscribers"
               },
               {
-                "name": "youtube videos",
+                "name": "Youtube videos",
                 "template": "{{COUNTER}} Videos"
               },
               {
-                "name": "youtube views",
+                "name": "Youtube views",
                 "template": "{{COUNTER}} Views"
               }
             ]
@@ -182,7 +182,7 @@
             "categoryName": "📊 {{COUNTER}} Twitter Stats 📊",
             "counters": [
               {
-                "name": "twitter followers",
+                "name": "Twitter followers",
                 "template": "{{COUNTER}} Followers"
               }
             ]
