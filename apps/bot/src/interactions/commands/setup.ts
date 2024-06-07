@@ -431,7 +431,12 @@ export const setupCommand = new Command({
       })
       .then(async (categoryChannel) => {
         categoryStatus = TemplateStatus.READY;
-        // TODO save to DB the template
+        await GuildSettings.channels.update({
+          discordChannelId: categoryChannel.id,
+          discordGuildId: categoryChannel.guildId,
+          isTemplateEnabled: true,
+          template: configuredTemplate.categoryName,
+        });
         await updateStatusMessage();
 
         return await Promise.all(
@@ -445,9 +450,14 @@ export const setupCommand = new Command({
                     counter.template,
                   ),
                 })
-                .then(async () => {
+                .then(async (channel) => {
                   countersStatus[i] = TemplateStatus.READY;
-                  // TODO save to DB the template
+                  await GuildSettings.channels.update({
+                    discordChannelId: channel.id,
+                    discordGuildId: channel.guildId,
+                    isTemplateEnabled: true,
+                    template: counter.template,
+                  });
                   await updateStatusMessage();
                 }),
           ),
