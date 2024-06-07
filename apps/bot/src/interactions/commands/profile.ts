@@ -10,13 +10,14 @@ import { ApplicationCommandType, ButtonStyle, ComponentType } from "discord.js";
 
 import { BitField } from "@mc/common/BitField";
 import { Routes } from "@mc/common/Routes";
+import { NotFoundError } from "@mc/common/throwOrThrowNotFound";
 import {
   UserBadges,
   UserBadgesBitfield,
   UserBadgesEmoji,
 } from "@mc/common/UserBadges";
 import { UserPermissions } from "@mc/common/UserPermissions";
-import { UserNotFoundError, UserSettings } from "@mc/common/UserSettings";
+import { UserSettings } from "@mc/common/UserSettings";
 
 import { env } from "~/env";
 import { BaseEmbed } from "~/utils/BaseMessageEmbed";
@@ -86,7 +87,7 @@ export const profileCommand = new Command({
 
     const requestedUserSettings = await UserSettings.load(targetUser.id).catch(
       (error) => {
-        if (error instanceof UserNotFoundError) {
+        if (error instanceof NotFoundError) {
           throw new UserError(t("interaction.commands.profile.userNotFound"));
         }
         throw error;

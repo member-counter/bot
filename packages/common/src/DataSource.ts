@@ -1,5 +1,9 @@
 export const DATA_SOURCE_DELIMITER = "\u001F";
 
+export function stringifyDataSoure(dataSource: DataSource): string {
+  return `${DATA_SOURCE_DELIMITER}${JSON.stringify(dataSource)}${DATA_SOURCE_DELIMITER}`;
+}
+
 export interface DataSourceFormatSettings {
   locale?: string | null;
   compactNotation?: boolean | null;
