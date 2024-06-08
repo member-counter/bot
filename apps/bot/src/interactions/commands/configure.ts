@@ -43,9 +43,6 @@ export const configureCommand = new Command({
       await fetchCommandId(command.client, setupCommandNameTKey),
     );
 
-    console.log(setupCommandMention);
-    console.log(1);
-
     await command.editReply({
       content: t("interaction.commands.configure.reply", {
         SETUP_COMMAND: setupCommandMention,
