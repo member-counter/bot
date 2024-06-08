@@ -116,35 +116,35 @@ interface Resources {
           },
           "status": {
             "creating": "Creating counters...",
-            "completed": "Complete",
+            "completed": "Creation completed",
             "creatingCategory": "{{ICON}} Creating category",
             "createdCategory": "{{ICON}} Category created",
             "creatingChannel": "{{ICON}} Creating {{NAME}} counter",
             "createdChannel": "{{ICON}} {{NAME}} created",
-            "configureSuggestion": "You should check out {{CONFIGURE_COMMAND}} for fully customizing the bot."
+            "configureSuggestion": "You should check out {{CONFIGURE_COMMAND}} for a more customized setup."
           },
           "templates": {
             "server": {
               "categoryName": "📊 Server Stats 📊",
               "counters": [
                 {
-                  "name": "online members",
+                  "name": "Online members",
                   "template": "Online: {{COUNTER}}"
                 },
                 {
-                  "name": "members",
+                  "name": "Members",
                   "template": "Members: {{COUNTER}}"
                 },
                 {
-                  "name": "nitro boosters",
+                  "name": "Nitro boosters",
                   "template": "Boosters: {{COUNTER}}"
                 },
                 {
-                  "name": "roles",
+                  "name": "Roles",
                   "template": "Roles: {{COUNTER}}"
                 },
                 {
-                  "name": "channels",
+                  "name": "Channels",
                   "template": "Channels: {{COUNTER}}"
                 }
               ]
@@ -153,11 +153,11 @@ interface Resources {
               "categoryName": "📊 {{COUNTER}} Twitch Stats 📊",
               "counters": [
                 {
-                  "name": "twitch followers",
+                  "name": "Twitch followers",
                   "template": "{{COUNTER}} Followers"
                 },
                 {
-                  "name": "twitch views",
+                  "name": "Twitch views",
                   "template": "{{COUNTER}} Views"
                 }
               ]
@@ -166,15 +166,15 @@ interface Resources {
               "categoryName": "📊 {{COUNTER}} Youtube Stats 📊",
               "counters": [
                 {
-                  "name": "youtube subscribers",
+                  "name": "Youtube subscribers",
                   "template": "{{COUNTER}} Subscribers"
                 },
                 {
-                  "name": "youtube videos",
+                  "name": "Youtube videos",
                   "template": "{{COUNTER}} Videos"
                 },
                 {
-                  "name": "youtube views",
+                  "name": "Youtube views",
                   "template": "{{COUNTER}} Views"
                 }
               ]
@@ -183,7 +183,7 @@ interface Resources {
               "categoryName": "📊 {{COUNTER}} Twitter Stats 📊",
               "counters": [
                 {
-                  "name": "twitter followers",
+                  "name": "Twitter followers",
                   "template": "{{COUNTER}} Followers"
                 }
               ]
