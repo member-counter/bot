@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { z } from "zod";
 
+import { legalPagesSlugs } from "@mc/common/Routes";
+
 import Footer from "~/app/components/Footer";
 import { pageTitle } from "~/other/pageTitle";
-import { legalPages, legalPagesSlugs } from "./legalPages";
+import { legalPages } from "./legalPages";
 import PageSwitcher from "./PageSwitcher";
 
 interface Props {

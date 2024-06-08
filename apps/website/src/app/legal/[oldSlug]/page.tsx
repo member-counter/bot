@@ -1,11 +1,13 @@
+import type { LegalPagesSlugs } from "@mc/common/Routes";
 import type { Metadata } from "next";
 import { redirect, RedirectType } from "next/navigation";
 import { z } from "zod";
 
-import type { LegalPagesSlugs } from "../legalPages";
+import { legalPagesSlugs } from "@mc/common/Routes";
+
 import { pageTitle } from "~/other/pageTitle";
 import { Routes } from "~/other/routes";
-import { legalPages, legalPagesSlugs } from "../legalPages";
+import { legalPages } from "../legalPages";
 
 interface Props {
   params: { oldSlug: string | undefined };

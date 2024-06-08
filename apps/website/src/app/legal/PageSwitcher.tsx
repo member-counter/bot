@@ -1,15 +1,16 @@
 "use client";
 
+import type { LegalPagesSlugs } from "@mc/common/Routes";
 import { useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
 
+import { legalPagesSlugs } from "@mc/common/Routes";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@mc/ui/tabs";
 import { TypographyH1 } from "@mc/ui/TypographyH1";
 
-import type { LegalPagesSlugs } from "./legalPages";
 import { Routes } from "~/other/routes";
-import { legalPages, legalPagesSlugs } from "./legalPages";
+import { legalPages } from "./legalPages";
 
 export default function PageSwitcher() {
   const searchParams = useSearchParams();
