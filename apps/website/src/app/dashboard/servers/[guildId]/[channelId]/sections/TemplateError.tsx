@@ -14,7 +14,7 @@ export function TemplateError() {
     discordGuildId: guildId,
   });
 
-  if (!channelLog.data?.lastTemplateComputeError) return;
+  if (!channelLog.data?.LastTemplateComputeError) return;
 
   return (
     <>
@@ -23,7 +23,7 @@ export function TemplateError() {
         <Label>The template had an error when was last processed</Label>
         <Card className="border border-destructive p-3">
           <pre className="w-full whitespace-pre-wrap">
-            {channelLog.data.lastTemplateComputeError}
+            {channelLog.data.LastTemplateComputeError}
           </pre>
         </Card>
       </div>

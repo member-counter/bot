@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@mc/db": "workspace:*",
+    "@mc/redis": "workspace:*",
     "discord-api-types": "^0.37.83",
     "discord.js": "^14.15.2",
-    "ioredis": "^5.4.1",
     "@t3-oss/env-nextjs": "^0.10.1",
     "zod": "^3.23.3"
   },

@@ -64,7 +64,7 @@ export function ChannelNavItem(channel: {
   )?.isTemplateEnabled;
 
   const hasIssue = !!channelsLogs.data?.channelLogs.get(channel.id)
-    ?.lastTemplateComputeError;
+    ?.LastTemplateComputeError;
 
   return (
     <TooltipProvider delayDuration={0}>

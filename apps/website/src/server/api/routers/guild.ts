@@ -186,7 +186,7 @@ export const guildRouter = createTRPCRouter({
 
         return await GuildSettings.channels.get(
           discordChannelId,
-          discordChannelId,
+          discordGuildId,
         );
       }),
 
@@ -272,10 +272,7 @@ export const guildRouter = createTRPCRouter({
               ),
           );
 
-          return await GuildSettings.channels.logs.get(
-            ctx.redis,
-            discordChannelId,
-          );
+          return await GuildSettings.channels.logs.get(discordChannelId);
         }),
 
       getAll: protectedProcedure
@@ -293,10 +290,8 @@ export const guildRouter = createTRPCRouter({
           );
 
           return {
-            channelLogs: await GuildSettings.channels.logs.getAll(
-              ctx.redis,
-              discordGuildId,
-            ),
+            channelLogs:
+              await GuildSettings.channels.logs.getAll(discordGuildId),
           };
         }),
     }),

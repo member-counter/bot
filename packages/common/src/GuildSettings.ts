@@ -1,8 +1,6 @@
-import type { Redis } from "ioredis";
-
 import { db } from "@mc/db";
 
-import { getChannelLogs } from "./redis/ChannelLogs";
+import { getChannelLogs, setChannelLog } from "./redis/ChannelLogs";
 import { throwOrThrowNotFound } from "./throwOrThrowNotFound";
 
 export const GuildSettings = {
@@ -109,11 +107,14 @@ export const GuildSettings = {
     },
 
     logs: {
-      get: async (redis: Redis, discordChannelId: string) => {
-        return await getChannelLogs(redis, discordChannelId);
+      set: async (...args: Parameters<typeof setChannelLog>) => {
+        return await setChannelLog(...args);
+      },
+      get: async (...args: Parameters<typeof getChannelLogs>) => {
+        return await getChannelLogs(...args);
       },
 
-      getAll: async (redis: Redis, discordGuildId: string) => {
+      getAll: async (discordGuildId: string) => {
         const { channels } = await db.guild.findUniqueOrThrow({
           where: { discordGuildId },
           select: { channels: { select: { discordChannelId: true } } },
@@ -122,7 +123,7 @@ export const GuildSettings = {
         const channelLogs = await Promise.all(
           channels.map(async ({ discordChannelId }) => ({
             discordChannelId,
-            logs: await getChannelLogs(redis, discordChannelId),
+            logs: await getChannelLogs(discordChannelId),
           })),
         );
 

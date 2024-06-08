@@ -35,8 +35,8 @@ export function EditTemplate({ value, onChange, disabled }: Props) {
     ChannelType.GuildAnnouncement,
   ].includes(channelType);
 
-  const lastTemplateComputeDate = channelLog.data?.lastTemplateComputeDate
-    ? formatRelativeTime("en-US", channelLog.data.lastTemplateComputeDate)
+  const lastTemplateComputeDate = channelLog.data?.LastTemplateComputeDate
+    ? formatRelativeTime("en-US", channelLog.data.LastTemplateComputeDate)
     : "Unknown";
 
   return (
