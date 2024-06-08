@@ -6,7 +6,7 @@ export const CHANNEL_LOG_BASE_KEY = "cl";
 
 export const KindKeyMap = {
   LastTemplateComputeError: "e",
-  LastTemplateComputeTimestamp: "t",
+  LastTemplateComputeDate: "t",
 } as const;
 
 function toChannelLogKey(
@@ -35,8 +35,10 @@ export async function getChannelLogs(channelId: string) {
 
   return {
     LastTemplateComputeError:
-      z.coerce.string().optional().parse(logs[0]) ?? null,
-    LastTemplateComputeDate: z.coerce.date().optional().parse(logs[1]) ?? null,
+      z.string().optional().safeParse(logs[0]).data ?? null,
+    LastTemplateComputeDate: logs[1]
+      ? z.coerce.date().optional().safeParse(Number(logs[1])).data
+      : null,
   };
 }
 
@@ -52,7 +54,7 @@ export async function setChannelLog(
       )
       .map(async ([kind, value]) => {
         const key = toChannelLogKey(channelId, KindKeyMap[kind]);
-        if (value === null) {
+        if (value == null) {
           await redis.del(key);
         } else {
           await redis.set(key, value);
