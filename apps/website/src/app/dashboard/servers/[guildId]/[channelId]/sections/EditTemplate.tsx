@@ -25,7 +25,7 @@ export function EditTemplate({ value, onChange, disabled }: Props) {
   const channelType =
     guild.channels.get(channelId)?.type ?? ChannelType.GuildText;
   const templateInput = useId();
-  const channelLog = api.guild.channels.getLogs.useQuery({
+  const channelLog = api.guild.channels.logs.get.useQuery({
     discordChannelId: channelId,
     discordGuildId: guildId,
   });

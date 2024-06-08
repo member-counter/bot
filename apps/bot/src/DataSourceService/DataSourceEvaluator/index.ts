@@ -5,7 +5,7 @@ import type {
 import type { GuildSettings } from "@mc/common/GuildSettings";
 
 export interface DataSourceCtx {
-  guildSettings: GuildSettings;
+  guildSettings: Awaited<ReturnType<typeof GuildSettings.get>>;
 }
 
 export interface DataSourceExecuteArgs<EO> {

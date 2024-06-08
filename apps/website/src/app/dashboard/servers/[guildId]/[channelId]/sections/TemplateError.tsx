@@ -9,7 +9,7 @@ import { api } from "~/trpc/react";
 
 export function TemplateError() {
   const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
-  const channelLog = api.guild.channels.getLogs.useQuery({
+  const channelLog = api.guild.channels.logs.get.useQuery({
     discordChannelId: channelId,
     discordGuildId: guildId,
   });

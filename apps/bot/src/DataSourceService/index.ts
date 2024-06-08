@@ -58,7 +58,7 @@ class DataSourceService {
   ): Promise<string> {
     const dataSource = this.parseRawDataSource(unparsedRawDataSource);
 
-    const guildFormatSettings = this.ctx.guildSettings.data.formatSettings;
+    const guildFormatSettings = this.ctx.guildSettings.formatSettings;
     const formatSettings = dataSource.format ?? {};
     formatSettings.compactNotation ??= guildFormatSettings.compactNotation;
     formatSettings.digits ??= guildFormatSettings.digits;

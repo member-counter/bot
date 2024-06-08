@@ -34,7 +34,7 @@ export function ChannelNavItem(channel: {
   const guildSettingsChannels = api.guild.channels.getAll.useQuery({
     discordGuildId: guildId,
   });
-  const channelsLogs = api.guild.channels.getAllLogs.useQuery({
+  const channelsLogs = api.guild.channels.logs.getAll.useQuery({
     discordGuildId: guildId,
   });
 

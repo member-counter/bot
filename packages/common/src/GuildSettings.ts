@@ -5,8 +5,6 @@ import { db } from "@mc/db";
 import { getChannelLogs } from "./redis/ChannelLogs";
 import { throwOrThrowNotFound } from "./throwOrThrowNotFound";
 
-export type GuildData = Awaited<ReturnType<typeof db.guild.upsert>>;
-
 export const GuildSettings = {
   upsert: async (
     discordGuildId: string,
@@ -43,10 +41,9 @@ export const GuildSettings = {
   },
 
   isBlocked: async (discordGuildId: string) => {
-    return !!(await db.blockedGuild.findUnique({
+    return await db.blockedGuild.findUnique({
       where: { discordGuildId },
-      select: { id: true },
-    }));
+    });
   },
 
   updateBlock: async (

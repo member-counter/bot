@@ -1,3 +1,4 @@
+import { BitField } from "@mc/common/BitField";
 import { UserBadgesBitfield } from "@mc/common/UserBadges";
 import { UserSettings } from "@mc/common/UserSettings";
 
@@ -9,16 +10,23 @@ export const messageCreateEvent = new EventHandler({
     if (message.author.bot) return;
     const [, command] = message.content.split(/\s+/);
 
-    if (command !== "patpat") {
+    if (command?.toLowerCase() !== "patpat") {
       return;
     }
 
     const userSettings = await UserSettings.upsert(message.author.id);
-    await userSettings.grantBadge(UserBadgesBitfield.PatPat);
+
+    const userBadges = new BitField(userSettings.badges);
+    userBadges.add(UserBadgesBitfield.PatPat);
+
+    await UserSettings.update(userSettings.id, {
+      ...userSettings,
+      badges: userBadges.bitfield,
+    });
 
     // Huevo de pascua:
     await message.channel.send(
-      "https://eduardozgz.com/max?discord_cache_fix=" + Math.random(),
+      "https://eduardozgz.com/max?nocache=" + Math.random(),
     );
     // i never thought i will ever been coding with a very cute guy -alex
   },

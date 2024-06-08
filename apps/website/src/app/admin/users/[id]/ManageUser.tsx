@@ -44,7 +44,9 @@ export default function ManageUser({ userId }: { userId: string }) {
   const canModify = authUserPerms.has(UserPermissions.ManageUsers);
   const user = api.user.get.useQuery({ discordUserId: userId });
   const userMutation = api.user.update.useMutation();
-  const [mutableUser, _setMutableUser] = useState<typeof user.data>(null);
+  const [mutableUser, _setMutableUser] = useState<typeof user.data | null>(
+    null,
+  );
 
   useConfirmOnLeave(isDirty);
 

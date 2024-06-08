@@ -10,7 +10,7 @@ import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 export const userRouter = createTRPCRouter({
   get: protectedProcedure
     .input(z.object({ discordUserId: z.string() }))
-    .query(({ ctx: { authUser }, input }) => {
+    .query(async ({ ctx: { authUser }, input }) => {
       const hasPermission =
         authUser.discordUserId === input.discordUserId ||
         authUser.permissions.has(UserPermissions.SeeUsers);
@@ -21,7 +21,7 @@ export const userRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return UserSettings.load(input.discordUserId);
+      return await UserSettings.get(input.discordUserId);
     }),
   update: protectedProcedure
     .input(
@@ -43,9 +43,7 @@ export const userRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      const user = await UserSettings.loadById(input.id);
-
-      return user.update(input);
+      return UserSettings.update(input.id, input);
     }),
 
   delete: protectedProcedure

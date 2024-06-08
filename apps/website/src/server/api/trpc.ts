@@ -37,8 +37,8 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
 
   const authUser = session?.userId
     ? await UserSettings.upsert(session.userId).then((user) => ({
-        ...user.data,
-        permissions: new BitField(user.data.permissions),
+        ...user,
+        permissions: new BitField(user.permissions),
       }))
     : null;
 

@@ -83,9 +83,9 @@ export const profileCommand = new Command({
     }
 
     const userSettings = await UserSettings.upsert(command.user.id);
-    const userPermissions = new BitField(userSettings.data.permissions);
+    const userPermissions = new BitField(userSettings.permissions);
 
-    const requestedUserSettings = await UserSettings.load(targetUser.id).catch(
+    const requestedUserSettings = await UserSettings.get(targetUser.id).catch(
       (error) => {
         if (error instanceof NotFoundError) {
           throw new UserError(t("interaction.commands.profile.userNotFound"));
@@ -108,14 +108,12 @@ export const profileCommand = new Command({
     }
 
     function renderProfileView(): InteractionEditReplyOptions {
-      const { badges } = requestedUserSettings.data;
-
       const embed = renderBaseEmbed();
 
       embed.addFields([
         {
           name: t("interaction.commands.profile.badges"),
-          value: generateBadgeList(badges),
+          value: generateBadgeList(requestedUserSettings.badges),
           inline: false,
         },
       ]);
@@ -218,7 +216,7 @@ export const profileCommand = new Command({
               break;
 
             case deleteProfilePromptConfirm:
-              await requestedUserSettings.delete();
+              await UserSettings.delete(requestedUserSettings.discordUserId);
               await editReply(renderProfileDeletionSuccess());
               break;
           }
