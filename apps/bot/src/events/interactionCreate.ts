@@ -60,10 +60,7 @@ export const interactionCreateEvent = new EventHandler({
           );
         }
 
-        if (error instanceof Error) {
-          logger.error(`Interaction error ${id}`);
-          logger.error(error);
-        }
+        logger.error(`Interaction error`, { error, interaction });
 
         embed.setColor(Colors.Red);
         embed.setTitle(title);

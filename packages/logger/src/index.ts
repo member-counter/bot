@@ -6,6 +6,11 @@ const enumerateErrorFormat = winston.format((info) => {
   if (info instanceof Error) {
     Object.assign(info, { message: info.stack });
   }
+
+  if (info.error instanceof Error) {
+    Object.assign(info, { message: info.error.stack });
+  }
+
   return info;
 });
 
@@ -18,9 +23,18 @@ const logger = winston.createLogger({
       : winston.format.uncolorize(),
     winston.format.splat(),
     winston.format.timestamp(),
-    winston.format.printf(
-      ({ level, message, timestamp }) => `${timestamp} - ${level}: ${message}`,
-    ),
+    winston.format.printf(({ level, message, timestamp, ...metadata }) => {
+      const metadataSerialized =
+        Object.keys(metadata).length &&
+        JSON.stringify(metadata, (_, v: unknown) =>
+          typeof v === "bigint" ? v.toString() : v,
+        );
+      const metadataStr = metadataSerialized
+        ? "- metadata: " + metadataSerialized
+        : "";
+
+      return `${timestamp} - ${level}: ${message} ${metadataStr}`;
+    }),
   ),
   transports: [
     new winston.transports.Console({

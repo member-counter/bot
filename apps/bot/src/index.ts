@@ -8,8 +8,7 @@ import { initBot } from "./bot";
 async function main() {
   const { bot, BDERedisPubClient, BDERedisSubClient } = await initBot().catch(
     (err) => {
-      logger.error("Failed to start the bot");
-      logger.error(err);
+      logger.error("Failed to start the bot", err);
       process.exit(1);
     },
   );
