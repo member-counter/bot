@@ -3,13 +3,18 @@ import type {
   DataSourceId,
 } from "@mc/common/DataSource";
 import type { GuildSettings } from "@mc/common/GuildSettings";
+import type { Guild } from "discord.js";
 
-export interface DataSourceCtx {
+import type { initI18n } from "~/i18n";
+
+export interface DataSourceContext {
+  guild: Guild;
   guildSettings: Awaited<ReturnType<typeof GuildSettings.get>>;
+  i18n: Awaited<ReturnType<typeof initI18n>>;
 }
 
 export interface DataSourceExecuteArgs<EO> {
-  ctx: DataSourceCtx;
+  ctx: DataSourceContext;
   format: DataSourceFormatSettings;
   options?: EO;
 }

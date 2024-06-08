@@ -11,7 +11,7 @@ import { z } from "zod";
 import { DATA_SOURCE_DELIMITER } from "@mc/common/DataSource";
 
 import type {
-  DataSourceCtx,
+  DataSourceContext,
   DataSourceEvaluator,
   DataSourceExecuteResult,
 } from "./DataSourceEvaluator";
@@ -27,7 +27,7 @@ class DataSourceService {
     dataSourceEvaluators.map((counter) => [counter.id, counter]),
   );
 
-  constructor(private ctx: DataSourceCtx) {}
+  constructor(private ctx: DataSourceContext) {}
 
   public async evaluateTemplate(template: string): Promise<string> {
     try {
@@ -46,10 +46,7 @@ class DataSourceService {
 
       return result;
     } catch (error) {
-      console.log(error);
-
-      // TODO catch and translate
-      return "unknown error";
+      throw error;
     }
   }
 
@@ -149,7 +146,9 @@ class DataSourceService {
     }
 
     if (!interationsLeft) {
-      // TODO report this and given input for debugging
+      throw new Error(
+        `Max iterations (${interationsLeft}) reached for ${JSON.stringify(rawDataSource)}`,
+      );
     }
 
     return rootItem.node as unknown;
