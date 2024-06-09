@@ -37,6 +37,7 @@
     "@mc/redis": "workspace:*",
     "@t3-oss/env-core": "^0.10.1",
     "bufferutil": "^4.0.8",
+    "cron": "^3.1.7",
     "discord-api-types": "^0.37.83",
     "discord.js": "^14.15.2",
     "gamedig": "^5.0.0-beta.2",

@@ -7,6 +7,7 @@ import { redis } from "@mc/redis";
 
 import { env } from "./env";
 import { setupEvents } from "./events";
+import { setupJobs } from "./jobs";
 import { deployCommands } from "./utils/deployCommands";
 
 export async function initBot() {
@@ -24,11 +25,6 @@ export async function initBot() {
     waitGuildTimeout: 30000,
   });
 
-  logger.info("Bot starting...");
-  await bot.login(env.DISCORD_BOT_TOKEN);
-
-  setupEvents(bot);
-
   const BDERedisPubClient = redis.duplicate();
   const BDERedisSubClient = redis.duplicate();
   await setupBotDataExchangeProvider({
@@ -37,6 +33,12 @@ export async function initBot() {
     redisSubClient: BDERedisSubClient,
     botClient: bot,
   });
+
+  setupEvents(bot);
+  setupJobs(bot);
+
+  logger.info("Bot starting...");
+  await bot.login(env.DISCORD_BOT_TOKEN);
 
   return { bot, BDERedisPubClient, BDERedisSubClient };
 }
