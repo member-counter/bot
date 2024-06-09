@@ -6,7 +6,7 @@ export const CHANNEL_LOG_BASE_KEY = "cl";
 
 export const KindKeyMap = {
   LastTemplateComputeError: "e",
-  LastTemplateComputeDate: "t",
+  LastTemplateUpdateDate: "t",
 } as const;
 
 function toChannelLogKey(
@@ -36,7 +36,7 @@ export async function getChannelLogs(channelId: string) {
   return {
     LastTemplateComputeError:
       z.string().optional().safeParse(logs[0]).data ?? null,
-    LastTemplateComputeDate: logs[1]
+    LastTemplateUpdateDate: logs[1]
       ? z.coerce.date().optional().safeParse(Number(logs[1])).data
       : null,
   };

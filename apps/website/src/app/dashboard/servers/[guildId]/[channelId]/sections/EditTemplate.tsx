@@ -35,8 +35,8 @@ export function EditTemplate({ value, onChange, disabled }: Props) {
     ChannelType.GuildAnnouncement,
   ].includes(channelType);
 
-  const lastTemplateComputeDate = channelLog.data?.LastTemplateComputeDate
-    ? formatRelativeTime("en-US", channelLog.data.LastTemplateComputeDate)
+  const lastTemplateUpdateDate = channelLog.data?.LastTemplateUpdateDate
+    ? formatRelativeTime("en-US", channelLog.data.LastTemplateUpdateDate)
     : "Unknown";
 
   return (
@@ -44,7 +44,7 @@ export function EditTemplate({ value, onChange, disabled }: Props) {
       <div className="flex flex-row items-center justify-between">
         <Label htmlFor={templateInput}>Template</Label>
         <span className="text-xs leading-none text-muted-foreground">
-          Last updated: {lastTemplateComputeDate}
+          Last updated: {lastTemplateUpdateDate}
         </span>
       </div>
       <TemplateEditorLayout
