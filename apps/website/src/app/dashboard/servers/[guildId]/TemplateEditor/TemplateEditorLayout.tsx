@@ -99,6 +99,8 @@ function InnerTemplateEditorLayout({
   );
 }
 
+// TODO preview processed template
+
 export default function TemplateEditorLayout({
   id,
   className,
