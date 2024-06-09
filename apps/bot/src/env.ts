@@ -25,6 +25,18 @@ export const env = createEnv({
       .transform((x) => x === "true")
       .pipe(z.boolean()),
     DEPLOY_COMMANDS_TO_GUILD_ID: z.string().optional(),
+    BOT_PRESENCE_ACTIVITY: z.string().transform((s) => {
+      return z
+        .array(
+          z.object({
+            name: z.string(),
+            type: z.number().min(0).max(5),
+            state: z.string().optional(),
+            url: z.string().optional(),
+          }),
+        )
+        .parse(JSON.parse(s));
+    }),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
