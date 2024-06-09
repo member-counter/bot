@@ -28,6 +28,8 @@ import { api } from "~/trpc/react";
 import { GuildEmojiRenderer } from "../../../../../components/GuildEmojiRenderer";
 import { TemplateEditorContext } from "../TemplateEditorContext";
 
+// TODO fix emojis not being inserted on channel name editors
+
 export function EmojiPicker({
   className,
   disabled,
