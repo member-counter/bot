@@ -12,6 +12,8 @@ import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
 async function updateGuildChannels(guild: Guild) {
   if (!guild.available) return;
 
+  // TODO handle bot priority
+
   const guildSettings = await GuildSettings.upsert(guild.id);
   const guildChannelsSettings = await GuildSettings.channels.getAll(guild.id);
   const i18n = await initI18n(guild.preferredLocale);
