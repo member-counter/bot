@@ -274,7 +274,7 @@ export const setupCommand = new Command({
 
       GuildSettings.channels.logs
         .set(channel.id, {
-          LastTemplateComputeDate: new Date(),
+          LastTemplateUpdateDate: new Date(),
         })
         .catch(noop);
 
