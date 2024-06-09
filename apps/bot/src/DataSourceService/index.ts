@@ -25,7 +25,10 @@ class DataSourceService {
     DataSourceId,
     DataSourceEvaluator
   > = Object.fromEntries(
-    dataSourceEvaluators.map((counter) => [counter.id, counter]),
+    dataSourceEvaluators.map((dataSourceEvaluator) => [
+      dataSourceEvaluator.id,
+      dataSourceEvaluator,
+    ]),
   );
 
   constructor(private ctx: DataSourceContext) {}

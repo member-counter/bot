@@ -82,7 +82,7 @@ export const updateChannels = new Job({
       updateGuildChannels(guild)
         .catch((error: unknown) => {
           logger.error(
-            `Error while trying to update counters for ${guild.toString()}`,
+            `Error while trying to update channels for ${guild.toString()}`,
             { error, guild },
           );
         })

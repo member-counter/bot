@@ -125,10 +125,10 @@ interface Resources {
             "failedChannel": "{{ICON}} {{NAME}} failed",
             "configureSuggestion": "You should check out {{CONFIGURE_COMMAND}} for a more customized setup."
           },
-          "templates": {
+          "templateCollection": {
             "server": {
               "categoryName": "📊 Server Stats 📊",
-              "counters": [
+              "templates": [
                 {
                   "name": "Online members",
                   "template": "Online: {{COUNTER}}"
@@ -153,7 +153,7 @@ interface Resources {
             },
             "twitch": {
               "categoryName": "📊 {{COUNTER}} Twitch Stats 📊",
-              "counters": [
+              "templates": [
                 {
                   "name": "Twitch followers",
                   "template": "{{COUNTER}} Followers"
@@ -166,7 +166,7 @@ interface Resources {
             },
             "youtube": {
               "categoryName": "📊 {{COUNTER}} Youtube Stats 📊",
-              "counters": [
+              "templates": [
                 {
                   "name": "Youtube subscribers",
                   "template": "{{COUNTER}} Subscribers"
@@ -183,7 +183,7 @@ interface Resources {
             },
             "x-twitter": {
               "categoryName": "📊 {{COUNTER}} Twitter Stats 📊",
-              "counters": [
+              "templates": [
                 {
                   "name": "Twitter followers",
                   "template": "{{COUNTER}} Followers"

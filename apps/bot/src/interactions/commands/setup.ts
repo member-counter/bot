@@ -47,7 +47,7 @@ const CategoryStatusTKey = {
   [TemplateStatus.FAILED]: "failedCategory",
 } as const;
 
-const CounterStatusTKey = {
+const TemplateStatusTKey = {
   [TemplateStatus.PENDING]: "creatingChannel",
   [TemplateStatus.READY]: "createdChannel",
   [TemplateStatus.FAILED]: "failedChannel",
@@ -165,30 +165,33 @@ export const setupCommand = new Command({
     const { t } = i18n;
     const i18nDefault = await initI18n(DEFAULT_LANGUAGE);
     const type = command.options.getSubcommand(true);
-    const templates = t(`interaction.commands.setup.templates`, {
-      returnObjects: true,
-    });
+    const templateCollection = t(
+      `interaction.commands.setup.templateCollection`,
+      {
+        returnObjects: true,
+      },
+    );
 
     function assertValidType(
       type: string,
-    ): asserts type is keyof typeof templates {
-      if (!Object.keys(templates).includes(type))
+    ): asserts type is keyof typeof templateCollection {
+      if (!Object.keys(templateCollection).includes(type))
         throw Error("Type is missing on translation files");
     }
 
     assertValidType(type);
 
-    const requestedTemplate = templates[type];
+    const requestedTemplateCollection = templateCollection[type];
 
     let categoryStatus: TemplateStatus = TemplateStatus.PENDING;
     const channelsStatus = new Array<TemplateStatus>(
-      requestedTemplate.counters.length,
+      requestedTemplateCollection.templates.length,
     ).fill(TemplateStatus.PENDING);
 
     async function updateStatusMessage() {
       const isEverythingReady =
         categoryStatus !== TemplateStatus.PENDING &&
-        channelsStatus.every((counter) => counter !== TemplateStatus.PENDING);
+        channelsStatus.every((status) => status !== TemplateStatus.PENDING);
 
       // General status
       let content: string = t(
@@ -196,7 +199,7 @@ export const setupCommand = new Command({
       );
       content += "\n\n";
 
-      // Category status
+      // Category counter status
       content += t(
         `interaction.commands.setup.status.${CategoryStatusTKey[categoryStatus]}`,
         {
@@ -205,13 +208,13 @@ export const setupCommand = new Command({
       );
       content += "\n";
 
-      // Counters status
-      channelsStatus.forEach((counterStatus, index) => {
+      // Channel counters status
+      channelsStatus.forEach((templateStatus, index) => {
         content += t(
-          `interaction.commands.setup.status.${CounterStatusTKey[counterStatus]}`,
+          `interaction.commands.setup.status.${TemplateStatusTKey[templateStatus]}`,
           {
-            ICON: TemplateStatusEmojis[counterStatus],
-            NAME: requestedTemplate.counters[index]?.name,
+            ICON: TemplateStatusEmojis[templateStatus],
+            NAME: requestedTemplateCollection.templates[index]?.name,
           },
         );
         content += "\n";
@@ -285,7 +288,7 @@ export const setupCommand = new Command({
       if (!command.inGuild() || !command.isChatInputCommand()) throw null;
 
       assertValidType(type);
-      const template = structuredClone(requestedTemplate);
+      const templateCollection = structuredClone(requestedTemplateCollection);
 
       switch (type) {
         case "youtube": {
@@ -318,8 +321,8 @@ export const setupCommand = new Command({
           youtubeVideosDataSource.options.return =
             YouTubeDataSourceReturn.VIDEOS;
 
-          template.categoryName = t(
-            `interaction.commands.setup.templates.${type}.categoryName`,
+          templateCollection.categoryName = t(
+            `interaction.commands.setup.templateCollection.${type}.categoryName`,
             { COUNTER: stringifyDataSoure(youtubeNameDataSource) },
           );
 
@@ -328,10 +331,10 @@ export const setupCommand = new Command({
             youtubeVideosDataSource,
             youtubeViewsDataSource,
           ].forEach((dataSource, i) => {
-            const counter = template.counters[i];
-            if (!counter) return;
-            counter.template = t(
-              `interaction.commands.setup.templates.${type}.counters.${i as 0 | 1 | 2}.template`,
+            const template = templateCollection.templates[i];
+            if (!template) return;
+            template.template = t(
+              `interaction.commands.setup.templateCollection.${type}.templates.${i as 0 | 1 | 2}.template`,
               { COUNTER: stringifyDataSoure(dataSource) },
             );
           });
@@ -363,17 +366,17 @@ export const setupCommand = new Command({
           const twitchViewsDataSource = structuredClone(twitchNameDataSource);
           twitchViewsDataSource.options.return = TwitchDataSourceReturn.VIEWS;
 
-          template.categoryName = t(
-            `interaction.commands.setup.templates.${type}.categoryName`,
+          templateCollection.categoryName = t(
+            `interaction.commands.setup.templateCollection.${type}.categoryName`,
             { COUNTER: stringifyDataSoure(twitchNameDataSource) },
           );
 
           [twitchFollowersDataSource, twitchViewsDataSource].forEach(
             (dataSource, i) => {
-              const counter = template.counters[i];
-              if (!counter) return;
-              counter.template = t(
-                `interaction.commands.setup.templates.${type}.counters.${i as 0 | 1}.template`,
+              const template = templateCollection.templates[i];
+              if (!template) return;
+              template.template = t(
+                `interaction.commands.setup.templateCollection.${type}.templates.${i as 0 | 1}.template`,
                 { COUNTER: stringifyDataSoure(dataSource) },
               );
             },
@@ -397,13 +400,13 @@ export const setupCommand = new Command({
             },
           };
 
-          template.categoryName = t(
-            `interaction.commands.setup.templates.${type}.categoryName`,
+          templateCollection.categoryName = t(
+            `interaction.commands.setup.templateCollection.${type}.categoryName`,
             { COUNTER: username },
           );
 
-          template.counters[0].template = t(
-            `interaction.commands.setup.templates.${type}.counters.${0}.template`,
+          templateCollection.templates[0].template = t(
+            `interaction.commands.setup.templateCollection.${type}.templates.${0}.template`,
             { COUNTER: stringifyDataSoure(twitterFollowersDataSource) },
           );
 
@@ -433,10 +436,10 @@ export const setupCommand = new Command({
               },
             ] satisfies DataSource[]
           ).forEach((dataSource, i) => {
-            const counter = template.counters[i];
-            if (!counter) return;
-            counter.template = t(
-              `interaction.commands.setup.templates.${type}.counters.${i as 0 | 1 | 2}.template`,
+            const template = templateCollection.templates[i];
+            if (!template) return;
+            template.template = t(
+              `interaction.commands.setup.templateCollection.${type}.templates.${i as 0 | 1 | 2}.template`,
               { COUNTER: stringifyDataSoure(dataSource) },
             );
           });
@@ -445,7 +448,7 @@ export const setupCommand = new Command({
         }
       }
 
-      return template;
+      return templateCollection;
     }
 
     const guild = await command.client.guilds.fetch(command.guildId);
@@ -470,8 +473,8 @@ export const setupCommand = new Command({
       });
 
     await Promise.all(
-      configuredTemplate.counters.map(async (counter, i) => {
-        await createChannel(counter.template, categoryChannel)
+      configuredTemplate.templates.map(async ({ template }, i) => {
+        await createChannel(template, categoryChannel)
           .then(() => {
             categoryStatus = TemplateStatus.READY;
           })
