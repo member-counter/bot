@@ -1,13 +1,16 @@
 import type { DataSource } from "@mc/common/DataSource";
+import type { Channel } from "discord.js";
 import {
   chatInputApplicationCommandMention,
   SlashCommandBuilder,
 } from "@discordjs/builders";
 import {
+  CategoryChannel,
   ChannelType,
   OverwriteType,
   PermissionFlagsBits,
   PermissionsBitField,
+  Snowflake,
 } from "discord.js";
 
 import {
@@ -18,6 +21,7 @@ import {
   YouTubeDataSourceReturn,
 } from "@mc/common/DataSource";
 import { GuildSettings } from "@mc/common/GuildSettings";
+import { noop } from "@mc/common/noop";
 import logger from "@mc/logger";
 
 import DataSourceService from "~/DataSourceService";
@@ -157,13 +161,11 @@ export const setupCommand = new Command({
         ),
     ),
   handle: async (command, i18n) => {
-    const { t } = i18n;
     if (!command.inGuild() || !command.isChatInputCommand()) throw null;
 
+    const { t } = i18n;
     const i18nDefault = await initI18n(DEFAULT_LANGUAGE);
-
     const type = command.options.getSubcommand(true);
-
     const templates = t(`interaction.commands.setup.templates`, {
       returnObjects: true,
     });
@@ -183,8 +185,6 @@ export const setupCommand = new Command({
     const channelsStatus = new Array<TemplateStatus>(
       requestedTemplate.counters.length,
     ).fill(TemplateStatus.PENDING);
-
-    type;
 
     async function updateStatusMessage() {
       const isEverythingReady =
@@ -233,6 +233,53 @@ export const setupCommand = new Command({
       });
 
       await command.editReply({ content });
+    }
+
+    async function createChannel(template: string, parent?: Channel) {
+      const type = parent ? ChannelType.GuildVoice : ChannelType.GuildCategory;
+      const dataSourceService = new DataSourceService({
+        i18n,
+        guildSettings,
+        channelType: type,
+      });
+
+      const name = await dataSourceService.evaluateTemplate(template);
+
+      const channel = await guild.channels.create({
+        parent: parent instanceof CategoryChannel ? parent : undefined,
+        type,
+        name,
+        permissionOverwrites: [
+          {
+            id: command.client.user.id,
+            type: OverwriteType.Member,
+            allow: new PermissionsBitField().add([
+              PermissionFlagsBits.Connect,
+              PermissionFlagsBits.ViewChannel,
+            ]),
+          },
+          {
+            id: guild.id,
+            type: OverwriteType.Role,
+            deny: new PermissionsBitField().add([PermissionFlagsBits.Connect]),
+          },
+        ],
+      });
+
+      await GuildSettings.channels.update({
+        discordChannelId: channel.id,
+        discordGuildId: channel.guildId,
+        isTemplateEnabled: true,
+        template: template,
+      });
+
+      GuildSettings.channels.logs
+        .set(channel.id, {
+          LastTemplateComputeDate: new Date(),
+        })
+        .catch(noop);
+
+      return channel;
     }
 
     function configureTemplate() {
@@ -402,95 +449,39 @@ export const setupCommand = new Command({
       return template;
     }
 
+    const guild = await command.client.guilds.fetch(command.guildId);
     const guildSettings = await GuildSettings.upsert(command.guildId);
     const configuredTemplate = configureTemplate();
-
     await updateStatusMessage();
-    await command.client.guilds
-      .fetch(command.guildId)
-      .then(async (guild) => {
-        const dataSourceService = new DataSourceService({
-          i18n,
-          guildSettings,
-          channelType: ChannelType.GuildCategory,
-        });
 
-        return await guild.channels.create({
-          type: ChannelType.GuildCategory,
-          name: await dataSourceService.evaluateTemplate(
-            configuredTemplate.categoryName,
-          ),
-          permissionOverwrites: [
-            {
-              id: command.client.user.id,
-              type: OverwriteType.Member,
-              allow: new PermissionsBitField().add([
-                PermissionFlagsBits.Connect,
-                PermissionFlagsBits.ViewChannel,
-              ]),
-            },
-            {
-              id: guild.id,
-              type: OverwriteType.Role,
-              deny: new PermissionsBitField().add([
-                PermissionFlagsBits.Connect,
-              ]),
-            },
-          ],
-        });
-      })
-      .then(async (categoryChannel) => {
-        await GuildSettings.channels.update({
-          discordChannelId: categoryChannel.id,
-          discordGuildId: categoryChannel.guildId,
-          isTemplateEnabled: true,
-          template: configuredTemplate.categoryName,
-        });
+    const categoryChannel = await createChannel(configuredTemplate.categoryName)
+      .then(async (channel) => {
         categoryStatus = TemplateStatus.READY;
         await updateStatusMessage();
-
-        await Promise.all(
-          configuredTemplate.counters.map(async (counter, i) => {
-            const dataSourceService = new DataSourceService({
-              i18n,
-              guildSettings,
-              channelType: ChannelType.GuildVoice,
-            });
-
-            await categoryChannel.guild.channels
-              .create({
-                parent: categoryChannel,
-                type: ChannelType.GuildVoice,
-                name: await dataSourceService.evaluateTemplate(
-                  counter.template,
-                ),
-              })
-              .then((channel) =>
-                GuildSettings.channels.update({
-                  discordChannelId: channel.id,
-                  discordGuildId: channel.guildId,
-                  isTemplateEnabled: true,
-                  template: counter.template,
-                }),
-              )
-              .then(() => {
-                channelsStatus[i] = TemplateStatus.READY;
-              })
-              .catch((error) => {
-                logger.error(error);
-                channelsStatus[i] = TemplateStatus.FAILED;
-              })
-              .then(updateStatusMessage);
-          }),
-        );
+        return channel;
       })
-      .catch((error) => {
+      .catch(async (error) => {
         logger.error(error);
         categoryStatus = TemplateStatus.FAILED;
         channelsStatus.forEach(
           (_, i) => (channelsStatus[i] = TemplateStatus.FAILED),
         );
-      })
-      .then(updateStatusMessage);
+        await updateStatusMessage();
+        throw error;
+      });
+
+    await Promise.all(
+      configuredTemplate.counters.map(async (counter, i) => {
+        await createChannel(counter.template, categoryChannel)
+          .then(() => {
+            categoryStatus = TemplateStatus.READY;
+          })
+          .catch((error) => {
+            logger.error(error);
+            channelsStatus[i] = TemplateStatus.FAILED;
+          })
+          .then(updateStatusMessage);
+      }),
+    );
   },
 });
