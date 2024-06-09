@@ -21,8 +21,8 @@ async function main() {
       BDERedisSubClient.quit(),
       db.$disconnect(),
     ])
-      .catch((err) => {
-        console.error("Error while trying to gracefully shutdown:", err);
+      .catch((error: unknown) => {
+        logger.error("Error while trying to gracefully shutdown:", { error });
       })
       .finally(() => {
         process.exit(0);
