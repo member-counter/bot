@@ -43,28 +43,9 @@ export default function AddDataSourceCombobox({
     [editor, setDataSourceRef],
   );
 
-  const filter = useCallback(
-    (value: string, search: string, keywords: string[] | undefined) => {
-      value = value.toLowerCase();
-      search = search.toLowerCase();
-
-      if (!keywords) return value.startsWith(search) ? 1 : 0;
-
-      keywords = keywords.map((keyword) => keyword.toLowerCase());
-
-      const score = keywords.reduce((acc, keyword) => {
-        if (keyword.startsWith(search)) return acc + 1;
-        return acc;
-      }, 0);
-
-      return score;
-    },
-    [],
-  );
-
   const cmdRendered = useMemo(
     () => (
-      <Command filter={filter} className={cn(!isDesktop && "rounded-xl")}>
+      <Command className={cn(!isDesktop && "rounded-xl")}>
         <CommandInput
           placeholder={"Search counter..."}
           value={search}
@@ -103,7 +84,7 @@ export default function AddDataSourceCombobox({
         </CommandList>
       </Command>
     ),
-    [filter, isDesktop, items, onAdd, search],
+    [isDesktop, items, onAdd, search],
   );
 
   if (isDesktop) {

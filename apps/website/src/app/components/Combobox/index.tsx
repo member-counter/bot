@@ -64,38 +64,6 @@ export function Combobox<T, A extends boolean = false>({
   const isDesktop = useBreakpoint("md");
   const [search, setSearch] = useState("");
 
-  const filter = useCallback(
-    (value: string, search: string, keywords: string[] | undefined) => {
-      value = value.toLowerCase();
-
-      if (
-        allowSearchedTerm &&
-        !keywords?.length &&
-        search.length &&
-        search.startsWith(value)
-      ) {
-        return Number.MAX_VALUE;
-      }
-
-      const terms = search.toLowerCase().split(" ");
-
-      // TODO try with .includes
-      if (!keywords)
-        return terms.some((term) => value.startsWith(term)) ? 1 : 0;
-
-      keywords = keywords.map((keyword) => keyword.toLowerCase());
-
-      // TODO try with .includes
-      const score = keywords.reduce((acc, keyword) => {
-        if (terms.some((term) => keyword.startsWith(term))) return acc + 1;
-        return acc;
-      }, 0);
-
-      return score;
-    },
-    [allowSearchedTerm],
-  );
-
   const selectedItemRendered = useMemo(
     () => (
       <InputWrapper
@@ -142,7 +110,7 @@ export function Combobox<T, A extends boolean = false>({
 
   const cmdRendered = useMemo(
     () => (
-      <Command filter={filter} className={cn(!isDesktop && "rounded-xl")}>
+      <Command className={cn(!isDesktop && "rounded-xl")}>
         <CommandInput
           placeholder={placeholder}
           value={search}
@@ -208,7 +176,6 @@ export function Combobox<T, A extends boolean = false>({
     ),
     [
       allowSearchedTerm,
-      filter,
       isDesktop,
       items,
       onItemRender,
