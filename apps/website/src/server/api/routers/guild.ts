@@ -204,7 +204,13 @@ export const guildRouter = createTRPCRouter({
             ),
         );
 
-        return await GuildSettings.channels.getAll(discordGuildId);
+        return {
+          channels: new Map(
+            (await GuildSettings.channels.getAll(discordGuildId)).map(
+              (channel) => [channel.discordChannelId, channel],
+            ),
+          ),
+        };
       }),
 
     update: protectedProcedure

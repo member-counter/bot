@@ -73,15 +73,9 @@ export const GuildSettings = {
     },
 
     getAll: async (discordGuildId: string) => {
-      return await db.channel
-        .findMany({
-          where: { discordGuildId },
-        })
-        .then((channels) => ({
-          channels: new Map(
-            channels.map((channel) => [channel.discordChannelId, channel]),
-          ),
-        }));
+      return await db.channel.findMany({
+        where: { discordGuildId },
+      });
     },
 
     update: async (
