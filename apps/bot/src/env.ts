@@ -37,6 +37,9 @@ export const env = createEnv({
         )
         .parse(JSON.parse(s));
     }),
+    DBGG_TOKEN: z.string().optional(),
+    DBL_TOKEN: z.string().optional(),
+    BFD_TOKEN: z.string().optional(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
