@@ -10,7 +10,6 @@ import {
   OverwriteType,
   PermissionFlagsBits,
   PermissionsBitField,
-  Snowflake,
 } from "discord.js";
 
 import {
