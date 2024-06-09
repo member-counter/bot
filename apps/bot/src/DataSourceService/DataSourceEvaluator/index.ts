@@ -3,12 +3,12 @@ import type {
   DataSourceId,
 } from "@mc/common/DataSource";
 import type { GuildSettings } from "@mc/common/GuildSettings";
-import type { Guild } from "discord.js";
+import type { ChannelType } from "discord.js";
 
 import type { initI18n } from "~/i18n";
 
 export interface DataSourceContext {
-  guild: Guild;
+  channelType: ChannelType;
   guildSettings: Awaited<ReturnType<typeof GuildSettings.get>>;
   i18n: Awaited<ReturnType<typeof initI18n>>;
 }

@@ -151,7 +151,8 @@ export const setupCommand = new Command({
             .setRequired(true),
         ),
     ),
-  handle: async (command, { t }) => {
+  handle: async (command, i18n) => {
+    const { t } = i18n;
     if (!command.inGuild() || !command.isChatInputCommand()) throw null;
 
     const i18nDefault = await initI18n(DEFAULT_LANGUAGE);
@@ -397,14 +398,18 @@ export const setupCommand = new Command({
     }
 
     const guildSettings = await GuildSettings.upsert(command.guildId);
-    const dataSourceService = new DataSourceService({ guildSettings });
-
     const configuredTemplate = configureTemplate();
 
     await updateStatusMessage();
     await command.client.guilds
       .fetch(command.guildId)
       .then(async (guild) => {
+        const dataSourceService = new DataSourceService({
+          i18n,
+          guildSettings,
+          channelType: ChannelType.GuildCategory,
+        });
+
         return await guild.channels.create({
           type: ChannelType.GuildCategory,
           name: await dataSourceService.evaluateTemplate(
@@ -440,27 +445,32 @@ export const setupCommand = new Command({
         await updateStatusMessage();
 
         return await Promise.all(
-          configuredTemplate.counters.map(
-            async (counter, i) =>
-              await categoryChannel.guild.channels
-                .create({
-                  parent: categoryChannel,
-                  type: ChannelType.GuildVoice,
-                  name: await dataSourceService.evaluateTemplate(
-                    counter.template,
-                  ),
-                })
-                .then(async (channel) => {
-                  countersStatus[i] = TemplateStatus.READY;
-                  await GuildSettings.channels.update({
-                    discordChannelId: channel.id,
-                    discordGuildId: channel.guildId,
-                    isTemplateEnabled: true,
-                    template: counter.template,
-                  });
-                  await updateStatusMessage();
-                }),
-          ),
+          configuredTemplate.counters.map(async (counter, i) => {
+            const dataSourceService = new DataSourceService({
+              i18n,
+              guildSettings,
+              channelType: ChannelType.GuildVoice,
+            });
+
+            return await categoryChannel.guild.channels
+              .create({
+                parent: categoryChannel,
+                type: ChannelType.GuildVoice,
+                name: await dataSourceService.evaluateTemplate(
+                  counter.template,
+                ),
+              })
+              .then(async (channel) => {
+                countersStatus[i] = TemplateStatus.READY;
+                await GuildSettings.channels.update({
+                  discordChannelId: channel.id,
+                  discordGuildId: channel.guildId,
+                  isTemplateEnabled: true,
+                  template: counter.template,
+                });
+                await updateStatusMessage();
+              });
+          }),
         );
       })
       .then(updateStatusMessage);

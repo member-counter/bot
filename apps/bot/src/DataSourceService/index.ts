@@ -6,6 +6,7 @@ import type {
   DataSourceFormatSettings,
   DataSourceId,
 } from "@mc/common/DataSource";
+import { ChannelType } from "discord.js";
 import { z } from "zod";
 
 import { DATA_SOURCE_DELIMITER } from "@mc/common/DataSource";
@@ -30,24 +31,20 @@ class DataSourceService {
   constructor(private ctx: DataSourceContext) {}
 
   public async evaluateTemplate(template: string): Promise<string> {
-    try {
-      const parts = template.split(DATA_SOURCE_DELIMITER);
-      let result = "";
+    const parts = template.split(DATA_SOURCE_DELIMITER);
+    let result = "";
 
-      for (let i = 0; i < parts.length; i++) {
-        if (i % 2 === 0) {
-          result += parts[i];
-        } else {
-          const dataSourcePart = parts[i];
-          assert(typeof dataSourcePart === "string", "expected string");
-          result += await this.evaluateDataSource(dataSourcePart);
-        }
+    for (let i = 0; i < parts.length; i++) {
+      if (i % 2 === 0) {
+        result += parts[i];
+      } else {
+        const dataSourcePart = parts[i];
+        assert(typeof dataSourcePart === "string", "expected string");
+        result += await this.evaluateDataSource(dataSourcePart);
       }
-
-      return result;
-    } catch (error) {
-      throw error;
     }
+
+    return result;
   }
 
   private async evaluateDataSource(
@@ -76,22 +73,23 @@ class DataSourceService {
     if (typeof result === "number" && !isNaN(result)) {
       let numericResult: string | number = result;
 
-      const isLocaleEnabled = !locale.includes("disable");
-      if (compactNotation || isLocaleEnabled) {
-        const options: Intl.NumberFormatOptions = {};
-
-        if (compactNotation) {
-          options.notation = "compact";
-        }
-
-        numericResult = new Intl.NumberFormat(locale, options).format(result);
+      if (compactNotation) {
+        numericResult = new Intl.NumberFormat(locale, {
+          notation: "compact",
+        }).format(result);
       }
 
-      result = numericResult
-        .toString()
-        .split("")
-        .map((digit) => (typeof digit === "number" ? digits[digit] : digit))
-        .join("");
+      if (
+        [ChannelType.GuildAnnouncement, ChannelType.GuildText].includes(
+          this.ctx.channelType,
+        )
+      ) {
+        result = numericResult
+          .toString()
+          .split("")
+          .map((digit) => (typeof digit === "number" ? digits[digit] : digit))
+          .join("");
+      }
     }
 
     if (typeof result !== "string") {
