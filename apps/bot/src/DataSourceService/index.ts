@@ -55,7 +55,7 @@ class DataSourceService {
     ) {
       result = result.slice(0, 1023);
     } else {
-      if (result.length > 2)
+      if (result.length < 2)
         throw new DataSourceEvaluationError(
           "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS",
         );

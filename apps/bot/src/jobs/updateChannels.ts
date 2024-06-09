@@ -37,10 +37,21 @@ async function updateGuildChannels(guild: Guild) {
 
       const computedTemplate = await dataSourceService
         .evaluateTemplate(channelSettings.template)
+        .then((computed) => {
+          GuildSettings.channels.logs
+            .set(channel.id, {
+              LastTemplateUpdateDate: new Date(),
+              LastTemplateComputeError: null,
+            })
+            .catch(logger.error);
+
+          return computed;
+        })
         .catch((error) => {
           if (error instanceof Error) {
             GuildSettings.channels.logs
               .set(channel.id, {
+                LastTemplateUpdateDate: new Date(),
                 LastTemplateComputeError: error.message,
               })
               .catch(logger.error);
@@ -48,12 +59,6 @@ async function updateGuildChannels(guild: Guild) {
 
           return i18n.t("jobs.updateChannels.computeError");
         });
-
-      GuildSettings.channels.logs
-        .set(channel.id, {
-          LastTemplateUpdateDate: new Date(),
-        })
-        .catch(logger.error);
 
       if (
         channel.type === ChannelType.GuildText ||
