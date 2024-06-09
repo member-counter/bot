@@ -18,6 +18,7 @@ import {
   YouTubeDataSourceReturn,
 } from "@mc/common/DataSource";
 import { GuildSettings } from "@mc/common/GuildSettings";
+import logger from "@mc/logger";
 
 import DataSourceService from "~/DataSourceService";
 import { DEFAULT_LANGUAGE, initI18n, tKey } from "~/i18n";
@@ -28,21 +29,25 @@ import { prepareLocalization } from "~/utils/prepareLocalization";
 enum TemplateStatus {
   PENDING,
   READY,
+  FAILED,
 }
 
 const TemplateStatusEmojis: Record<TemplateStatus, string> = {
   [TemplateStatus.PENDING]: "💭",
   [TemplateStatus.READY]: "☑️",
+  [TemplateStatus.FAILED]: "❌",
 } as const;
 
 const CategoryStatusTKey = {
   [TemplateStatus.PENDING]: "creatingCategory",
   [TemplateStatus.READY]: "createdCategory",
+  [TemplateStatus.FAILED]: "failedCategory",
 } as const;
 
 const CounterStatusTKey = {
   [TemplateStatus.PENDING]: "creatingChannel",
   [TemplateStatus.READY]: "createdChannel",
+  [TemplateStatus.FAILED]: "failedChannel",
 } as const;
 
 export const setupCommand = new Command({
@@ -175,7 +180,7 @@ export const setupCommand = new Command({
     const requestedTemplate = templates[type];
 
     let categoryStatus: TemplateStatus = TemplateStatus.PENDING;
-    const countersStatus = new Array<TemplateStatus>(
+    const channelsStatus = new Array<TemplateStatus>(
       requestedTemplate.counters.length,
     ).fill(TemplateStatus.PENDING);
 
@@ -184,7 +189,7 @@ export const setupCommand = new Command({
     async function updateStatusMessage() {
       const isEverythingReady =
         categoryStatus !== TemplateStatus.PENDING &&
-        countersStatus.every((counter) => counter !== TemplateStatus.PENDING);
+        channelsStatus.every((counter) => counter !== TemplateStatus.PENDING);
 
       // General status
       let content: string = t(
@@ -202,7 +207,7 @@ export const setupCommand = new Command({
       content += "\n";
 
       // Counters status
-      countersStatus.forEach((counterStatus, index) => {
+      channelsStatus.forEach((counterStatus, index) => {
         content += t(
           `interaction.commands.setup.status.${CounterStatusTKey[counterStatus]}`,
           {
@@ -435,16 +440,16 @@ export const setupCommand = new Command({
         });
       })
       .then(async (categoryChannel) => {
-        categoryStatus = TemplateStatus.READY;
         await GuildSettings.channels.update({
           discordChannelId: categoryChannel.id,
           discordGuildId: categoryChannel.guildId,
           isTemplateEnabled: true,
           template: configuredTemplate.categoryName,
         });
+        categoryStatus = TemplateStatus.READY;
         await updateStatusMessage();
 
-        return await Promise.all(
+        await Promise.all(
           configuredTemplate.counters.map(async (counter, i) => {
             const dataSourceService = new DataSourceService({
               i18n,
@@ -452,7 +457,7 @@ export const setupCommand = new Command({
               channelType: ChannelType.GuildVoice,
             });
 
-            return await categoryChannel.guild.channels
+            await categoryChannel.guild.channels
               .create({
                 parent: categoryChannel,
                 type: ChannelType.GuildVoice,
@@ -460,17 +465,30 @@ export const setupCommand = new Command({
                   counter.template,
                 ),
               })
-              .then(async (channel) => {
-                countersStatus[i] = TemplateStatus.READY;
-                await GuildSettings.channels.update({
+              .then((channel) =>
+                GuildSettings.channels.update({
                   discordChannelId: channel.id,
                   discordGuildId: channel.guildId,
                   isTemplateEnabled: true,
                   template: counter.template,
-                });
-                await updateStatusMessage();
-              });
+                }),
+              )
+              .then(() => {
+                channelsStatus[i] = TemplateStatus.READY;
+              })
+              .catch((error) => {
+                logger.error(error);
+                channelsStatus[i] = TemplateStatus.FAILED;
+              })
+              .then(updateStatusMessage);
           }),
+        );
+      })
+      .catch((error) => {
+        logger.error(error);
+        categoryStatus = TemplateStatus.FAILED;
+        channelsStatus.forEach(
+          (_, i) => (channelsStatus[i] = TemplateStatus.FAILED),
         );
       })
       .then(updateStatusMessage);

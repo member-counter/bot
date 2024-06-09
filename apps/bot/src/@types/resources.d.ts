@@ -119,8 +119,10 @@ interface Resources {
             "completed": "Creation completed",
             "creatingCategory": "{{ICON}} Creating category",
             "createdCategory": "{{ICON}} Category created",
+            "failedCategory": "{{ICON}} Category failed",
             "creatingChannel": "{{ICON}} Creating {{NAME}} counter",
             "createdChannel": "{{ICON}} {{NAME}} created",
+            "failedChannel": "{{ICON}} {{NAME}} failed",
             "configureSuggestion": "You should check out {{CONFIGURE_COMMAND}} for a more customized setup."
           },
           "templates": {
