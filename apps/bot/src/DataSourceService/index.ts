@@ -44,6 +44,21 @@ class DataSourceService {
       }
     }
 
+    result = result.trim();
+
+    if (
+      this.ctx.channelType === ChannelType.GuildAnnouncement ||
+      this.ctx.channelType === ChannelType.GuildText
+    ) {
+      result = result.slice(0, 1023);
+    } else {
+      if (result.length > 2)
+        throw new DataSourceEvaluationError(
+          "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS",
+        );
+      result = result.slice(0, 99);
+    }
+
     return result;
   }
 

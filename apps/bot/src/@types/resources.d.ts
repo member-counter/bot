@@ -193,6 +193,11 @@ interface Resources {
           }
         }
       }
+    },
+    "jobs": {
+      "updateChannels": {
+        "computeError": "ERROR!"
+      }
     }
   }
 }

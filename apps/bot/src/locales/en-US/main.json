@@ -192,5 +192,10 @@
         }
       }
     }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "ERROR!"
+    }
   }
 }
