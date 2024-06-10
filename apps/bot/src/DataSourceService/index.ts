@@ -7,7 +7,6 @@ import type {
   DataSourceId,
 } from "@mc/common/DataSource";
 import { ChannelType } from "discord.js";
-import { z } from "zod";
 
 import { DATA_SOURCE_DELIMITER } from "@mc/common/DataSource";
 
@@ -174,7 +173,7 @@ class DataSourceService {
     return rootItem.node as unknown;
   }
 
-  private executeDataSource({
+  private async executeDataSource({
     id,
     format,
     options = {},
@@ -192,7 +191,7 @@ class DataSourceService {
       new DataSourceEvaluationError("UNKNOWN_DATA_SOURCE"),
     );
 
-    return dataSourceEvaluator.execute({
+    return await dataSourceEvaluator.execute({
       format,
       options,
       ctx: this.ctx,
