@@ -56,7 +56,7 @@ export function MembersOptions({
           />
           <Separator />
           <FilterByAccountType
-            value={options.statusFilter}
+            value={options.accountTypeFilter}
             onChange={(value) => setOptions({ accountTypeFilter: value })}
           />
           <Separator />

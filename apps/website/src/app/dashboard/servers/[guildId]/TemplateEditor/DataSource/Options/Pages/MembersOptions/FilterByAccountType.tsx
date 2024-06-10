@@ -1,4 +1,4 @@
-import { AsteriskIcon, UserIcon } from "lucide-react";
+import { AsteriskIcon, BotIcon, UserIcon } from "lucide-react";
 
 import { MembersFilterAccountType } from "@mc/common/DataSource";
 import { Label } from "@mc/ui/label";
@@ -10,8 +10,6 @@ import {
   SelectValue,
 } from "@mc/ui/select";
 import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
-
-import { BotIcon } from "~/app/components/BotIcon";
 
 type Type = number;
 export function FilterByAccountType({
