@@ -240,6 +240,7 @@ export const setupCommand = new Command({
     async function createChannel(template: string, parent?: Channel) {
       const type = parent ? ChannelType.GuildVoice : ChannelType.GuildCategory;
       const dataSourceService = new DataSourceService({
+        guild: guild,
         i18n,
         guildSettings,
         channelType: type,

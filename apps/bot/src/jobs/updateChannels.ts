@@ -30,6 +30,7 @@ async function updateGuildChannels(guild: Guild) {
       if (!botHasPermsToEdit(channel)) return;
 
       const dataSourceService = new DataSourceService({
+        guild: channel.guild,
         guildSettings,
         channelType: channel.type,
         i18n,

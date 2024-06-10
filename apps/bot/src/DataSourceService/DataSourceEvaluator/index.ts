@@ -1,39 +1,39 @@
 import type {
+  DataSource,
   DataSourceFormatSettings,
   DataSourceId,
 } from "@mc/common/DataSource";
 import type { GuildSettings } from "@mc/common/GuildSettings";
-import type { ChannelType } from "discord.js";
+import type { ChannelType, Guild } from "discord.js";
 
 import type { initI18n } from "~/i18n";
 
 export interface DataSourceContext {
   channelType: ChannelType;
+  guild: Guild;
   guildSettings: Awaited<ReturnType<typeof GuildSettings.get>>;
   i18n: Awaited<ReturnType<typeof initI18n>>;
 }
 
-export interface DataSourceExecuteArgs<EO> {
+export interface DataSourceExecuteArgs<O> {
   ctx: DataSourceContext;
   format: DataSourceFormatSettings;
-  options?: EO;
+  options: O;
 }
 
 export type DataSourceExecuteResult = number | string;
 
-export type DataSourceExecuteFunction<EO> = (
-  executeArgs: DataSourceExecuteArgs<EO>,
+export type DataSourceExecuteFunction<O> = (
+  executeArgs: DataSourceExecuteArgs<O>,
 ) => Promise<DataSourceExecuteResult>;
 
-export interface DataSourceConstructorArgs<EO> {
-  id: DataSourceId;
-  execute: DataSourceExecuteFunction<EO>;
-}
-
-export class DataSourceEvaluator<ExecuteOptions = Record<string, unknown>> {
-  public id: DataSourceId;
-  public execute: DataSourceExecuteFunction<ExecuteOptions>;
-  constructor(args: DataSourceEvaluator<ExecuteOptions>) {
+export class DataSourceEvaluator<
+  Id extends DataSourceId = DataSourceId,
+  DataSourceOptions = NonNullable<(DataSource & { id: Id })["options"]>,
+> {
+  public id: Id;
+  public execute: DataSourceExecuteFunction<DataSourceOptions>;
+  constructor(args: DataSourceEvaluator<Id, DataSourceOptions>) {
     this.id = args.id;
     this.execute = args.execute;
   }

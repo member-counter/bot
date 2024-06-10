@@ -107,6 +107,8 @@ class DataSourceService {
           .split("")
           .map((digit) => (typeof digit === "number" ? digits[digit] : digit))
           .join("");
+      } else {
+        result = numericResult.toString();
       }
     }
 
@@ -173,7 +175,7 @@ class DataSourceService {
   private executeDataSource({
     id,
     format,
-    options,
+    options = {},
   }: {
     id: number;
     format: DataSourceFormatSettings;
@@ -188,7 +190,6 @@ class DataSourceService {
       new DataSourceEvaluationError("UNKNOWN_DATA_SOURCE"),
     );
 
-    // TODO validate options with zod
     return dataSourceEvaluator.execute({
       format,
       options,
@@ -196,9 +197,7 @@ class DataSourceService {
     });
   }
 
-  private parseRawDataSource(
-    unparsedRawDataSource: string,
-  ): Omit<DataSource, "id"> & { id: number } {
+  private parseRawDataSource(unparsedRawDataSource: string): DataSource {
     let parsed: { id: number };
 
     try {
