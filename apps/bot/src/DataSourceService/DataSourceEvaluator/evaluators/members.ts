@@ -1,5 +1,4 @@
 import type { PresenceStatus } from "discord.js";
-import { ActivityType } from "discord.js";
 
 import {
   DataSourceId,
@@ -38,21 +37,21 @@ export const memberDataSourceEvaluator = new DataSourceEvaluator({
     if (options.accountTypeFilter)
       for (const [id, member] of filteredMembers) {
         if (
-          member.user.bot &&
-          options.accountTypeFilter === MembersFilterAccountType.BOT
+          (!member.user.bot &&
+            options.accountTypeFilter === MembersFilterAccountType.BOT) ||
+          (member.user.bot &&
+            options.accountTypeFilter === MembersFilterAccountType.USER)
         )
           filteredMembers.delete(id);
       }
 
-    if (options.roles) {
-      if (options.roleFilterMode /* mode is AND */) {
+    if (options.roles?.length) {
+      if (/* mode is AND */ options.roleFilterMode) {
         for (const [id, member] of filteredMembers) {
-          root: for (const roleId of options.roles) {
-            for (const [memberRoleId] of member.roles.cache) {
-              if (memberRoleId !== roleId) {
-                filteredMembers.delete(id);
-                break root;
-              }
+          for (const roleId of options.roles) {
+            if (!member.roles.cache.has(roleId as string)) {
+              filteredMembers.delete(id);
+              break;
             }
           }
         }
@@ -60,12 +59,10 @@ export const memberDataSourceEvaluator = new DataSourceEvaluator({
         for (const [id, member] of filteredMembers) {
           let hasSome = false;
 
-          root: for (const roleId of options.roles) {
-            for (const [memberRoleId] of member.roles.cache) {
-              if (memberRoleId === roleId) {
-                hasSome = true;
-                break root;
-              }
+          for (const roleId of options.roles) {
+            if (member.roles.cache.has(roleId as string)) {
+              hasSome = true;
+              break;
             }
           }
 
@@ -74,7 +71,7 @@ export const memberDataSourceEvaluator = new DataSourceEvaluator({
       }
     }
 
-    if (options.playing) {
+    if (options.playing?.length) {
       const games = (options.playing as string[]).map((game) =>
         game.trim().toLowerCase(),
       );
@@ -84,10 +81,7 @@ export const memberDataSourceEvaluator = new DataSourceEvaluator({
 
         root: for (const game of games) {
           for (const activity of member.presence?.activities ?? []) {
-            if (
-              activity.type === ActivityType.Playing &&
-              activity.name.toLowerCase().includes(game)
-            ) {
+            if (activity.name.toLowerCase().includes(game)) {
               hasSome = true;
               break root;
             }
