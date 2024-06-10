@@ -67,7 +67,7 @@
             "description": "Get the link to configure the bot on the website."
           }
         },
-        "reply": "Click below to configure the bot at the dashbaord.\nYou can also setup some basic counters using the {{SETUP_COMMAND}} command without leaving Discord.",
+        "reply": "Click below to configure the bot at the dashboard.\nYou can also setup some basic counters using the {{SETUP_COMMAND}} command without leaving Discord.",
         "dashboardButton": "Go to dashboard"
       },
       "setup": {

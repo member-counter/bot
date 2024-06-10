@@ -476,14 +476,15 @@ export const setupCommand = new Command({
     await Promise.all(
       configuredTemplate.templates.map(async ({ template }, i) => {
         await createChannel(template, categoryChannel)
-          .then(() => {
-            categoryStatus = TemplateStatus.READY;
+          .then(async () => {
+            channelsStatus[i] = TemplateStatus.READY;
+            await updateStatusMessage()
           })
-          .catch((error) => {
+          .catch(async (error) => {
             logger.error(error);
             channelsStatus[i] = TemplateStatus.FAILED;
+            await updateStatusMessage()
           })
-          .then(updateStatusMessage);
       }),
     );
   },

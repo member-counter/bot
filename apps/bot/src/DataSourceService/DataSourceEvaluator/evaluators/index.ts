@@ -1,5 +1,5 @@
-import type { DataSourceEvaluator } from "..";
+import { memberDataSourceEvaluator } from "./members";
 
-const dataSourceEvaluators: DataSourceEvaluator[] = [];
+const dataSourceEvaluators = [memberDataSourceEvaluator];
 
 export default dataSourceEvaluators;
