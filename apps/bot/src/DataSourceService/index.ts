@@ -84,9 +84,10 @@ class DataSourceService {
       locale,
     });
 
-    if (!(typeof result === "number" || typeof result === "string")) {
-      throw new DataSourceEvaluationError("UNKNOWN_EVALUATION_RETURN_TYPE");
-    }
+    assert(
+      typeof result === "number" || typeof result === "string",
+      new DataSourceEvaluationError("UNKNOWN_EVALUATION_RETURN_TYPE"),
+    );
 
     if (typeof result === "number" && !isNaN(result)) {
       let numericResult: string | number = result;
@@ -112,9 +113,10 @@ class DataSourceService {
       }
     }
 
-    if (typeof result !== "string") {
-      throw new DataSourceEvaluationError("FAILED_TO_RETURN_A_FINAL_STRING");
-    }
+    assert(
+      typeof result === "string",
+      new DataSourceEvaluationError("FAILED_TO_RETURN_A_FINAL_STRING"),
+    );
 
     return result;
   }
@@ -198,12 +200,10 @@ class DataSourceService {
   }
 
   private parseRawDataSource(unparsedRawDataSource: string): DataSource {
-    let parsed: { id: number };
+    let parsed: DataSource;
 
     try {
-      parsed = z
-        .object({ id: z.number() })
-        .parse(JSON.parse(unparsedRawDataSource));
+      parsed = JSON.parse(unparsedRawDataSource) as DataSource;
     } catch {
       throw new DataSourceEvaluationError(
         "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON",
