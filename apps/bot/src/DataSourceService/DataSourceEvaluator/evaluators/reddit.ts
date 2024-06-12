@@ -33,12 +33,12 @@ async function fetchData(
     }
   }
 
-  const abortSignal = new AbortController();
-  setTimeout(() => abortSignal.abort(), 5000);
+  const abortController = new AbortController();
+  setTimeout(() => abortController.abort(), 5000);
   const response = await fetch(
     `https://www.reddit.com/r/${subreddit}/about.json`,
     {
-      signal: abortSignal.signal,
+      signal: abortController.signal,
     },
   )
     .then((response) => response.json())

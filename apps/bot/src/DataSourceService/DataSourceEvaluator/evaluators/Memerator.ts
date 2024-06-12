@@ -27,13 +27,13 @@ async function fetchData(
   const cachedValue = await redis.get(toCacheKey(username, returnType));
   if (cachedValue) return Number(cachedValue);
 
-  const abortSignal = new AbortController();
-  setTimeout(() => abortSignal.abort(), 5000);
+  const abortController = new AbortController();
+  setTimeout(() => abortController.abort(), 5000);
   const response = await fetch(
     `https://api.memerator.me/v1/profile/${username}`,
     {
       headers: { Authorization: env.MEMERATOR_API_KEY },
-      signal: abortSignal.signal,
+      signal: abortController.signal,
     },
   )
     .then((response) => response.json())
