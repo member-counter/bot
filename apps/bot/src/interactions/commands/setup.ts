@@ -109,33 +109,6 @@ export const setupCommand = new Command({
       subCommand
         .setName(
           prepareLocalization(
-            "interaction.commands.setup.definition.slash.subcommands.x-twitter.name",
-          ),
-        )
-        .setDescription(
-          prepareLocalization(
-            "interaction.commands.setup.definition.slash.subcommands.x-twitter.description",
-          ),
-        )
-        .addStringOption((option) =>
-          option
-            .setName(
-              prepareLocalization(
-                "interaction.commands.setup.definition.slash.subcommands.x-twitter.options.username.name",
-              ),
-            )
-            .setDescription(
-              prepareLocalization(
-                "interaction.commands.setup.definition.slash.subcommands.x-twitter.options.username.description",
-              ),
-            )
-            .setRequired(true),
-        ),
-    )
-    .addSubcommand((subCommand) =>
-      subCommand
-        .setName(
-          prepareLocalization(
             "interaction.commands.setup.definition.slash.subcommands.youtube.name",
           ),
         )
@@ -386,34 +359,6 @@ export const setupCommand = new Command({
           break;
         }
 
-        case "x-twitter": {
-          const username = command.options.getString(
-            i18nDefault.t(
-              "interaction.commands.setup.definition.slash.subcommands.x-twitter.options.username.name",
-            ),
-            true,
-          );
-
-          const twitterFollowersDataSource = {
-            id: DataSourceId.TWITTER,
-            options: {
-              username,
-            },
-          };
-
-          templateCollection.categoryName = t(
-            `interaction.commands.setup.templateCollection.${type}.categoryName`,
-            { COUNTER: username },
-          );
-
-          templateCollection.templates[0].template = t(
-            `interaction.commands.setup.templateCollection.${type}.templates.${0}.template`,
-            { COUNTER: stringifyDataSoure(twitterFollowersDataSource) },
-          );
-
-          break;
-        }
-
         case "server": {
           (
             [
@@ -478,13 +423,13 @@ export const setupCommand = new Command({
         await createChannel(template, categoryChannel)
           .then(async () => {
             channelsStatus[i] = TemplateStatus.READY;
-            await updateStatusMessage()
+            await updateStatusMessage();
           })
           .catch(async (error) => {
             logger.error(error);
             channelsStatus[i] = TemplateStatus.FAILED;
-            await updateStatusMessage()
-          })
+            await updateStatusMessage();
+          });
       }),
     );
   },

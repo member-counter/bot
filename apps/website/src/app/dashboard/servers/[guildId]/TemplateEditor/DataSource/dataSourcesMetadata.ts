@@ -16,7 +16,6 @@ import type {
   DataSourceReplace,
   DataSourceRoles,
   DataSourceTwitch,
-  DataSourceTwitter,
   DataSourceUnknown,
   DataSourceYoutube,
 } from "@mc/common/DataSource";
@@ -37,7 +36,6 @@ import {
   TagsIcon,
   Tally5Icon,
   TwitchIcon,
-  TwitterIcon,
   UsersIcon,
   YoutubeIcon,
 } from "lucide-react";
@@ -278,13 +276,6 @@ const twitchDataSourceMetadata: DataSourceMetadata<DataSourceTwitch> = {
   dataSource: { id: DataSourceId.TWITCH },
   keywords: ["Twitch", "follower", "view", "channel"],
 };
-const twitterDataSourceMetadata: DataSourceMetadata<DataSourceTwitter> = {
-  icon: TwitterIcon,
-  description: "Fetch the follower count for a X (Twitter) account.",
-  displayName: () => "X (Twitter) followers",
-  dataSource: { id: DataSourceId.TWITTER },
-  keywords: ["x", "Twitter", "follower"],
-};
 const memeratorDataSourceMetadata: DataSourceMetadata<DataSourceMemerator> = {
   icon: FerrisWheelIcon,
   description:
@@ -482,7 +473,6 @@ export const dataSourcesMetadata: Record<string, DataSourceMetadata> =
       gameDataSourceMetadata,
       youtubeDataSourceMetadata,
       twitchDataSourceMetadata,
-      twitterDataSourceMetadata,
       memeratorDataSourceMetadata,
       countdownDataSourceMetadata,
       clockDataSourceMetadata,

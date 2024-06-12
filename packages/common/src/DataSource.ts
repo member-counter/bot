@@ -27,7 +27,6 @@ export type DataSource =
   | DataSourceRoles
   | DataSourceBotStats
   | DataSourceTwitch
-  | DataSourceTwitter
   | DataSourceYoutube
   | DataSourceNumber
   | DataSourceUnknown;
@@ -137,14 +136,6 @@ export interface DataSourceTwitch extends DataSourceBase {
   };
 }
 
-export interface DataSourceTwitter extends DataSourceBase {
-  id: DataSourceId.TWITTER;
-  options?: {
-    username?: DataSource | string;
-    return?: TwitterDataSourceReturn;
-  };
-}
-
 export interface DataSourceYoutube extends DataSourceBase {
   id: DataSourceId.YOUTUBE;
   options?: {
@@ -179,8 +170,7 @@ export enum DataSourceId {
   ROLES,
   BOT_STATS,
   TWITCH,
-  TWITTER,
-  YOUTUBE,
+  YOUTUBE = 15,
   NUMBER,
   UNKNOWN,
 }
@@ -204,11 +194,6 @@ export enum TwitchDataSourceReturn {
   FOLLOWERS,
   VIEWS,
   CHANNEL_NAME,
-}
-
-export enum TwitterDataSourceReturn {
-  FOLLOWERS,
-  NAME,
 }
 
 export enum BotStatsDataSourceReturn {

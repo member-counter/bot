@@ -17,7 +17,6 @@ import { NumberOptions } from "./Pages/NumberOptions";
 import { RedditOptions } from "./Pages/RedditOptions";
 import { ReplaceOptions } from "./Pages/ReplaceOptions";
 import { TwitchOptions } from "./Pages/TwitchOptions";
-import { TwitterOptions } from "./Pages/TwitterOptions";
 import { YouTubeOptions } from "./Pages/YouTubeOptions";
 
 const optionsMap = {
@@ -30,7 +29,6 @@ const optionsMap = {
   [DataSourceId.YOUTUBE.toString()]: YouTubeOptions,
   [DataSourceId.REDDIT.toString()]: RedditOptions,
   [DataSourceId.HTTP.toString()]: HttpOptions,
-  [DataSourceId.TWITTER.toString()]: TwitterOptions,
   [DataSourceId.NUMBER.toString()]: NumberOptions,
   [DataSourceId.REPLACE.toString()]: ReplaceOptions,
   [DataSourceId.MEMERATOR.toString()]: MemeratorOptions,

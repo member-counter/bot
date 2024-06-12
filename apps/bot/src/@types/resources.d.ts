@@ -100,16 +100,6 @@ interface Resources {
                       "description": "The channel uusername"
                     }
                   }
-                },
-                "x-twitter": {
-                  "name": "x-twitter",
-                  "description": "Setup X (formerly known as Twitter) related counters.",
-                  "options": {
-                    "username": {
-                      "name": "username",
-                      "description": "The account @username"
-                    }
-                  }
                 }
               }
             }
@@ -178,15 +168,6 @@ interface Resources {
                 {
                   "name": "Youtube views",
                   "template": "{{COUNTER}} Views"
-                }
-              ]
-            },
-            "x-twitter": {
-              "categoryName": "📊 {{COUNTER}} Twitter Stats 📊",
-              "templates": [
-                {
-                  "name": "Twitter followers",
-                  "template": "{{COUNTER}} Followers"
                 }
               ]
             }

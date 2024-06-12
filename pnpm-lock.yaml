@@ -71,9 +71,6 @@ importers:
       i18next-resources-for-ts:
         specifier: ^1.5.0
         version: 1.5.0
-      twitter-api-v2:
-        specifier: ^1.17.1
-        version: 1.17.1
       utf-8-validate:
         specifier: ^6.0.3
         version: 6.0.3
@@ -4394,9 +4391,6 @@ packages:
     resolution: {integrity: sha512-n17HJv4F4CpsYTvKzUJhLbyewbXjq1oLCi90i5tW1TiWDz16ML1eDG7wi5dHaKxzh5efIM56SITnuVbMq5dk4g==}
     hasBin: true
 
-  twitter-api-v2@1.17.1:
-    resolution: {integrity: sha512-eLVetUOGiKalx/7NlF8+heMmtEXBhObP0mS9RFgcgjh5KTVq7SOWaIMIe1IrsAAV9DFCjd6O7fL+FMp6sibQYg==}
-
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
@@ -8654,8 +8648,6 @@ snapshots:
       turbo-linux-arm64: 1.13.3
       turbo-windows-64: 1.13.3
       turbo-windows-arm64: 1.13.3
-
-  twitter-api-v2@1.17.1: {}
 
   type-check@0.4.0:
     dependencies:
