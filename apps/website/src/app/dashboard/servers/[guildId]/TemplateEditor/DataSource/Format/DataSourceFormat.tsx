@@ -19,8 +19,8 @@ import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
 import { Combobox } from "~/app/components/Combobox";
 import { LocaleItem } from "~/app/components/Combobox/items/LocaleItem";
 import { searchableLocales } from "~/other/locales";
-import useDataSourceOptions from "../Options/useDataSourceOptions";
 import DataSourceFormatDigitInput from "./DataSourceFormatDigitInput";
+import useDataSourceFormat from "./useDataSourceFormat";
 
 const defaultOptionsMerger = (
   options: Partial<DataSourceFormatSettings> = {},
@@ -35,7 +35,7 @@ export default function DataSourceFormat({
   format: Partial<DataSourceFormatSettings>;
   onChangeFormat: (formatting: DataSource["format"]) => void;
 }) {
-  const [format, setFormat] = useDataSourceOptions({
+  const [format, setFormat] = useDataSourceFormat({
     unmergedOptions: unmergedFormat,
     defaultOptionsMerger,
     onOptionsChange: onChangeFormat,

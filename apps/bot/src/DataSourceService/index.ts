@@ -8,7 +8,6 @@ import { DATA_SOURCE_DELIMITER } from "@mc/common/DataSource";
 
 import type {
   DataSourceContext,
-  DataSourceEvaluator,
   DataSourceExecuteResult,
   PreparedDataSourceFormatSettings,
 } from "./DataSourceEvaluator";
@@ -17,10 +16,7 @@ import { DataSourceEvaluationError } from "./DataSourceEvaluator/DataSourceEvalu
 import dataSourceEvaluators from "./DataSourceEvaluator/evaluators";
 
 class DataSourceService {
-  private static dataSourceEvaluators: Record<
-    DataSourceId,
-    DataSourceEvaluator
-  > = Object.fromEntries(
+  private static dataSourceEvaluators = Object.fromEntries(
     dataSourceEvaluators.map((dataSourceEvaluator) => [
       dataSourceEvaluator.id,
       dataSourceEvaluator,
@@ -183,13 +179,11 @@ class DataSourceService {
     format,
     options = {},
   }: {
-    id: number;
+    id: DataSourceId;
     format: PreparedDataSourceFormatSettings;
-    options: Record<string, unknown>;
+    options: unknown;
   }): Promise<DataSourceExecuteResult> {
-    const dataSourceEvaluator = DataSourceService.dataSourceEvaluators[
-      id as DataSourceId
-    ] as DataSourceEvaluator | undefined;
+    const dataSourceEvaluator = DataSourceService.dataSourceEvaluators[id];
 
     assert(
       dataSourceEvaluator,
@@ -198,7 +192,7 @@ class DataSourceService {
 
     return await dataSourceEvaluator.execute({
       format,
-      options,
+      options: options as never,
       ctx: this.ctx,
     });
   }
