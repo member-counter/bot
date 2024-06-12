@@ -20,8 +20,6 @@ enum SearchType {
   Channel,
 }
 
-// TODO fix results bugged when searching a different mentionable type after searching other type (@ -> # or # -> @)
-
 export function MentionSuggestions(props: {
   enabled: boolean;
   children: React.ReactNode;
