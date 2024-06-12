@@ -10,6 +10,7 @@ import { redditEvaluator } from "./reddit";
 import { replaceEvaluator } from "./replace";
 import { rolesEvaluator } from "./roles";
 import { twitchEvaluator } from "./Twitch";
+import { youTubeEvaluator } from "./YouTube";
 
 // TODO test everything
 const dataSourceEvaluators = [
@@ -25,6 +26,7 @@ const dataSourceEvaluators = [
   replaceEvaluator,
   rolesEvaluator,
   twitchEvaluator,
+  youTubeEvaluator,
 ];
 
 export default dataSourceEvaluators;
