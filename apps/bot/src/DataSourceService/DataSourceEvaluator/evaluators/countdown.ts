@@ -5,8 +5,8 @@ import { DataSourceEvaluator } from "..";
 export const countdownEvaluator = new DataSourceEvaluator({
   id: DataSourceId.COUNTDOWN,
   execute: ({ options }) => {
-    const format = (options.format as string) || "%d:%h:%m";
-    const date = (options.date as number) || 0;
+    const format = options.format ?? "%d:%h:%m";
+    const date = options.date ?? 0;
 
     let timeLeft = new Date(date - Date.now());
     if (date - Date.now() < 0) timeLeft = new Date(0);

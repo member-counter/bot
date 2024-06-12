@@ -7,7 +7,7 @@ import { DataSourceEvaluator } from "..";
 export const channelEvaluator = new DataSourceEvaluator({
   id: DataSourceId.CHANNELS,
   execute({ ctx, options }) {
-    const targetCategories = (options.categories ?? []) as string[];
+    const targetCategories = options.categories ?? [];
 
     if (targetCategories.length) {
       return ctx.guild.channels.cache.filter((channel) =>

@@ -6,6 +6,7 @@ import type {
 import type { GuildSettings } from "@mc/common/GuildSettings";
 import type { ChannelType, Guild } from "discord.js";
 
+import type { DeepExclude, DeepNonNullable } from "~/@types/utils";
 import type { initI18n } from "~/i18n";
 
 export interface DataSourceContext {
@@ -17,15 +18,15 @@ export interface DataSourceContext {
 
 export interface DataSourceExecuteArgs<O> {
   ctx: DataSourceContext;
-  format: DataSourceFormatSettings;
-  options: O;
+  format: DeepNonNullable<Required<DataSourceFormatSettings>>;
+  options: DeepExclude<O, DataSource>;
 }
 
 export type DataSourceExecuteResult = number | string;
 
 export type DataSourceExecuteFunction<O> = (
   executeArgs: DataSourceExecuteArgs<O>,
-) => Promise<DataSourceExecuteResult>;
+) => Promise<DataSourceExecuteResult> | DataSourceExecuteResult;
 
 export class DataSourceEvaluator<
   Id extends DataSourceId = DataSourceId,

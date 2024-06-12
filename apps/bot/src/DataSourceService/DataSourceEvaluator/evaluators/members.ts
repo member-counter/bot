@@ -1,4 +1,10 @@
-import type { PresenceStatus } from "discord.js";
+import type {
+  Collection,
+  PresenceStatus,
+  TextBasedChannel,
+  VoiceBasedChannel,
+} from "discord.js";
+import { ChannelType } from "discord.js";
 
 import {
   DataSourceId,
@@ -49,7 +55,7 @@ export const memberDataSourceEvaluator = new DataSourceEvaluator({
       if (/* mode is AND */ options.roleFilterMode) {
         for (const [id, member] of filteredMembers) {
           for (const roleId of options.roles) {
-            if (!member.roles.cache.has(roleId as string)) {
+            if (!member.roles.cache.has(roleId)) {
               filteredMembers.delete(id);
               break;
             }
@@ -60,7 +66,7 @@ export const memberDataSourceEvaluator = new DataSourceEvaluator({
           let hasSome = false;
 
           for (const roleId of options.roles) {
-            if (member.roles.cache.has(roleId as string)) {
+            if (member.roles.cache.has(roleId)) {
               hasSome = true;
               break;
             }
@@ -72,18 +78,16 @@ export const memberDataSourceEvaluator = new DataSourceEvaluator({
     }
 
     if (options.playing?.length) {
-      const games = (options.playing as string[]).map((game) =>
-        game.trim().toLowerCase(),
-      );
+      const games = options.playing.map((game) => game.trim().toLowerCase());
 
       for (const [id, member] of filteredMembers) {
         let hasSome = false;
 
-        root: for (const game of games) {
+        games: for (const game of games) {
           for (const activity of member.presence?.activities ?? []) {
             if (activity.name.toLowerCase().includes(game)) {
               hasSome = true;
-              break root;
+              break games;
             }
           }
         }
@@ -91,6 +95,27 @@ export const memberDataSourceEvaluator = new DataSourceEvaluator({
         if (!hasSome) filteredMembers.delete(id);
       }
     }
+
+    // TODO add members conneced
+    // if (options.connectedTo) {
+    //   const channels = ctx.guild.channels.cache.filter((channel) =>
+    //     options.connectedTo.includes(channel.id),
+    //   );
+
+    //   for (const [id] of filteredMembers) {
+    //     let hasSome = false;
+
+    //     channels: for (const [id, channel] of channels) {
+    //       if (channel.isVoiceBased()) {
+    //         channel.members.has(id);
+    //         hasSome = true;
+    //         break channels;
+    //       }
+    //     }
+
+    //     if (!hasSome) filteredMembers.delete(id);
+    //   }
+    // }
 
     return filteredMembers.size;
   },
