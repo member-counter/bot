@@ -12,6 +12,7 @@ import type { SetupOptionsInterface } from "../../SetupOptionsInterface";
 import useDataSourceOptions from "../../useDataSourceOptions";
 import { CountOnlyBanned } from "./CountOnlyBanned";
 import { FilterByAccountType } from "./FilterByAccountType";
+import { FilterByConnectedTo } from "./FilterByConnectedTo";
 import { FilterByRole } from "./FilterByRole";
 import { FilterByRoleFilterMode } from "./FilterByRoleFilterType";
 import { FilterByStatus } from "./FilterByStatus";
@@ -27,6 +28,7 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
     bannedMembers: options.bannedMembers ?? false,
     playing: options.playing ?? [],
     roles: options.roles ?? [],
+    connectedTo: options.connectedTo ?? [],
     roleFilterMode: options.roleFilterMode ?? FilterMode.OR,
   };
 };
@@ -75,6 +77,11 @@ export function MembersOptions({
           <FilterPlayingGame
             value={options.playing}
             onChange={(value) => setOptions({ playing: value })}
+          />
+          <Separator />
+          <FilterByConnectedTo
+            value={options.connectedTo}
+            onChange={(value) => setOptions({ connectedTo: value })}
           />
         </>
       )}

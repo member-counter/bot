@@ -44,6 +44,7 @@ export interface DataSourceMembers extends DataSourceBase {
     playing?: (DataSource | string)[];
     roles?: (DataSource | string)[];
     roleFilterMode?: FilterMode;
+    connectedTo?: (DataSource | string)[];
     bannedMembers?: boolean;
   };
 }

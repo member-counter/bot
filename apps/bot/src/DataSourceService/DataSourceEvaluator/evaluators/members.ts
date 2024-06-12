@@ -1,10 +1,4 @@
-import type {
-  Collection,
-  PresenceStatus,
-  TextBasedChannel,
-  VoiceBasedChannel,
-} from "discord.js";
-import { ChannelType } from "discord.js";
+import type { PresenceStatus } from "discord.js";
 
 import {
   DataSourceId,
@@ -24,37 +18,48 @@ const PresenceStatusMap: Record<PresenceStatus, MembersFilterStatus> = {
 
 export const membersDataSourceEvaluator = new DataSourceEvaluator({
   id: DataSourceId.MEMBERS,
-  async execute({ ctx, options }) {
-    if (options.bannedMembers) {
+  async execute({
+    ctx,
+    options: {
+      accountTypeFilter,
+      bannedMembers,
+      connectedTo,
+      playing,
+      roleFilterMode,
+      roles,
+      statusFilter,
+    },
+  }) {
+    if (bannedMembers) {
       return (await ctx.guild.bans.fetch()).size;
     }
 
     const filteredMembers = (await ctx.guild.members.fetch()).clone();
 
-    if (options.statusFilter)
+    if (statusFilter)
       for (const [id, member] of filteredMembers) {
         if (
           PresenceStatusMap[member.presence?.status ?? "offline"] !=
-          options.statusFilter
+          statusFilter
         )
           filteredMembers.delete(id);
       }
 
-    if (options.accountTypeFilter)
+    if (accountTypeFilter)
       for (const [id, member] of filteredMembers) {
         if (
           (!member.user.bot &&
-            options.accountTypeFilter === MembersFilterAccountType.BOT) ||
+            accountTypeFilter === MembersFilterAccountType.BOT) ||
           (member.user.bot &&
-            options.accountTypeFilter === MembersFilterAccountType.USER)
+            accountTypeFilter === MembersFilterAccountType.USER)
         )
           filteredMembers.delete(id);
       }
 
-    if (options.roles?.length) {
-      if (/* mode is AND */ options.roleFilterMode) {
+    if (roles?.length) {
+      if (/* mode is AND */ roleFilterMode) {
         for (const [id, member] of filteredMembers) {
-          for (const roleId of options.roles) {
+          for (const roleId of roles) {
             if (!member.roles.cache.has(roleId)) {
               filteredMembers.delete(id);
               break;
@@ -65,7 +70,7 @@ export const membersDataSourceEvaluator = new DataSourceEvaluator({
         for (const [id, member] of filteredMembers) {
           let hasSome = false;
 
-          for (const roleId of options.roles) {
+          for (const roleId of roles) {
             if (member.roles.cache.has(roleId)) {
               hasSome = true;
               break;
@@ -77,8 +82,8 @@ export const membersDataSourceEvaluator = new DataSourceEvaluator({
       }
     }
 
-    if (options.playing?.length) {
-      const games = options.playing.map((game) => game.trim().toLowerCase());
+    if (playing?.length) {
+      const games = playing.map((game) => game.trim().toLowerCase());
 
       for (const [id, member] of filteredMembers) {
         let hasSome = false;
@@ -96,26 +101,25 @@ export const membersDataSourceEvaluator = new DataSourceEvaluator({
       }
     }
 
-    // TODO add members conneced
-    // if (options.connectedTo) {
-    //   const channels = ctx.guild.channels.cache.filter((channel) =>
-    //     options.connectedTo.includes(channel.id),
-    //   );
+    if (connectedTo?.length) {
+      const channels = ctx.guild.channels.cache.filter((channel) =>
+        connectedTo.includes(channel.id),
+      );
 
-    //   for (const [id] of filteredMembers) {
-    //     let hasSome = false;
+      for (const [id] of filteredMembers) {
+        let hasSome = false;
 
-    //     channels: for (const [id, channel] of channels) {
-    //       if (channel.isVoiceBased()) {
-    //         channel.members.has(id);
-    //         hasSome = true;
-    //         break channels;
-    //       }
-    //     }
+        channels: for (const [id, channel] of channels) {
+          if (channel.isVoiceBased()) {
+            channel.members.has(id);
+            hasSome = true;
+            break channels;
+          }
+        }
 
-    //     if (!hasSome) filteredMembers.delete(id);
-    //   }
-    // }
+        if (!hasSome) filteredMembers.delete(id);
+      }
+    }
 
     return filteredMembers.size;
   },
