@@ -13,22 +13,22 @@ export default function useDataSourceOptions<
   defaultOptionsMerger: (options: T) => MO;
   onOptionsChange: (newOptions: T) => void;
 }): [MO, (newOptions: T) => void] {
-  const [options, setMemberOptions] = useState(
+  const [options, privateSetOptions] = useState(
     defaultOptionsMerger(unmergedOptions),
   );
 
   useEffect(
-    () => setMemberOptions(defaultOptionsMerger(unmergedOptions)),
+    () => privateSetOptions(defaultOptionsMerger(unmergedOptions)),
     [defaultOptionsMerger, unmergedOptions],
   );
 
-  const setOptions = useCallback(
+  const publicSetOptions = useCallback(
     (newOptions: T) => {
-      setMemberOptions({ ...options, ...newOptions });
+      privateSetOptions({ ...options, ...newOptions });
       onOptionsChange({ ...options, ...newOptions });
     },
     [onOptionsChange, options],
   );
 
-  return [options, setOptions];
+  return [options, publicSetOptions];
 }
