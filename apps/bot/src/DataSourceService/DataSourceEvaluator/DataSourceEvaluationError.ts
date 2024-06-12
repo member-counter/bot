@@ -1,4 +1,4 @@
-export const DataSourceEvaluationErrorTypes = [
+const DataSourceEvaluationErrorTypes = [
   "UNKNOWN",
   "UNKNOWN_DATA_SOURCE",
   "UNKNOWN_EVALUATION_RETURN_TYPE",
@@ -12,6 +12,10 @@ export const DataSourceEvaluationErrorTypes = [
   "TWITCH_CHANNEL_NOT_FOUND",
   "YOUTUBE_MISSING_CHANNEL_URL",
   "YOUTUBE_INVALID_CHANNEL_URL",
+  "HTTP_MISSING_URL",
+  "HTTP_INVALID_RESPONSE_CONTENT_TYPE",
+  "HTTP_INVALID_RESPONSE_STATUS_CODE",
+  "HTTP_DATA_PATH_MANDATORY",
 ] as const;
 
 export class DataSourceEvaluationError extends Error {
