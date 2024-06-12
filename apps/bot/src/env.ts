@@ -36,6 +36,7 @@ export const env = createEnv({
     DBL_TOKEN: z.string().optional(),
     BFD_TOKEN: z.string().optional(),
     MEMERATOR_API_KEY: z.string().optional(),
+    TWITTER_BEARER_TOKEN: z.string().optional(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

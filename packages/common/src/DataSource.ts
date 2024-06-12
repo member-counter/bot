@@ -139,7 +139,10 @@ export interface DataSourceTwitch extends DataSourceBase {
 
 export interface DataSourceTwitter extends DataSourceBase {
   id: DataSourceId.TWITTER;
-  options?: { username?: DataSource | string };
+  options?: {
+    username?: DataSource | string;
+    return?: TwitterDataSourceReturn;
+  };
 }
 
 export interface DataSourceYoutube extends DataSourceBase {
@@ -201,6 +204,11 @@ export enum TwitchDataSourceReturn {
   FOLLOWERS,
   VIEWS,
   CHANNEL_NAME,
+}
+
+export enum TwitterDataSourceReturn {
+  FOLLOWERS,
+  NAME,
 }
 
 export enum BotStatsDataSourceReturn {

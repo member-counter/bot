@@ -43,6 +43,7 @@
     "gamedig": "^5.0.0-beta.2",
     "i18next": "^23.11.5",
     "i18next-resources-for-ts": "^1.5.0",
+    "twitter-api-v2": "^1.17.1",
     "utf-8-validate": "^6.0.3",
     "zlib-sync": "^0.1.9",
     "zod": "^3.23.3"

@@ -7,6 +7,9 @@ export const DataSourceEvaluationErrorTypes = [
   "DELIMITED_DATA_SOURCE_IS_INVALID",
   "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS",
   "MEMERATOR_MISSING_USERNAME",
+  "REDDIT_MISSING_SUBREDDIT",
+  "TWITTER_MISSING_USERNAME",
+  "TWITTER_PRIVATE_ACCOUNT",
 ] as const;
 
 export class DataSourceEvaluationError extends Error {

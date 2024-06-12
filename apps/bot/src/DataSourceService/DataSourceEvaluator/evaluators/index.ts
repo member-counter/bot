@@ -9,7 +9,9 @@ import { numberEvaluator } from "./number";
 import { redditEvaluator } from "./reddit";
 import { replaceEvaluator } from "./replace";
 import { rolesEvaluator } from "./roles";
+import { twitterEvaluator } from "./Twitter";
 
+// TODO test everything
 const dataSourceEvaluators = [
   channelEvaluator,
   clockEvaluator,
@@ -22,6 +24,7 @@ const dataSourceEvaluators = [
   redditEvaluator,
   replaceEvaluator,
   rolesEvaluator,
+  twitterEvaluator,
 ];
 
 export default dataSourceEvaluators;
