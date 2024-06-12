@@ -14,6 +14,7 @@ import type {
   DataSourceContext,
   DataSourceEvaluator,
   DataSourceExecuteResult,
+  PreparedDataSourceFormatSettings,
 } from "./DataSourceEvaluator";
 import { ExplorerStackItem } from "~/utils/ExplorerStackItem";
 import { DataSourceEvaluationError } from "./DataSourceEvaluator/DataSourceEvaluationError";
@@ -70,10 +71,18 @@ class DataSourceService {
     const dataSource = this.parseRawDataSource(unparsedRawDataSource);
 
     const guildFormatSettings = this.ctx.guildSettings.formatSettings;
-    const formatSettings = dataSource.format ?? {};
-    formatSettings.compactNotation ??= guildFormatSettings.compactNotation;
-    formatSettings.digits ??= guildFormatSettings.digits;
-    formatSettings.locale ??= guildFormatSettings.locale;
+
+    const formatSettings: PreparedDataSourceFormatSettings = {
+      locale: dataSource.format?.locale ?? guildFormatSettings.locale,
+      compactNotation:
+        dataSource.format?.compactNotation ??
+        guildFormatSettings.compactNotation,
+      digits: dataSource.format?.digits
+        ? new Array(10)
+            .fill(null)
+            .map((_, i) => formatSettings.digits[i] ?? i.toString())
+        : guildFormatSettings.digits,
+    };
 
     const { compactNotation, digits, locale } = formatSettings;
 
@@ -122,7 +131,7 @@ class DataSourceService {
 
   private async exploreAndExecute(
     rawDataSource: DataSource,
-    formatSettings: DataSourceFormatSettings,
+    formatSettings: PreparedDataSourceFormatSettings,
   ): Promise<unknown> {
     const rootItem = new ExplorerStackItem({ root: rawDataSource }, "root");
     const queue: ExplorerStackItem[] = [rootItem];
@@ -179,7 +188,7 @@ class DataSourceService {
     options = {},
   }: {
     id: number;
-    format: DataSourceFormatSettings;
+    format: PreparedDataSourceFormatSettings;
     options: Record<string, unknown>;
   }): Promise<DataSourceExecuteResult> {
     const dataSourceEvaluator = DataSourceService.dataSourceEvaluators[

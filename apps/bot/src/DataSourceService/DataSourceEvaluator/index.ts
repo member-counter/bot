@@ -16,9 +16,11 @@ export interface DataSourceContext {
   i18n: Awaited<ReturnType<typeof initI18n>>;
 }
 
+export type PreparedDataSourceFormatSettings = DeepNonNullable<Required<DataSourceFormatSettings>>;
+
 export interface DataSourceExecuteArgs<O> {
   ctx: DataSourceContext;
-  format: DeepNonNullable<Required<DataSourceFormatSettings>>;
+  format: PreparedDataSourceFormatSettings;
   options: DeepExclude<O, DataSource>;
 }
 
