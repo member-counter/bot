@@ -1,5 +1,5 @@
 import { useParams } from "next/navigation";
-import { CheckIcon, XIcon } from "lucide-react";
+import { AtSignIcon, CheckIcon, XIcon } from "lucide-react";
 
 import type { ComboboxProps } from "..";
 import type { DashboardGuildParams } from "~/app/dashboard/servers/[guildId]/layout";
@@ -44,7 +44,8 @@ export const RoleItem = ({ item, isSelected, onRemove }: Props) => {
             color: color.text,
           }}
         >
-          {name ? "@ " + name : "Unknown role"}
+          <AtSignIcon className="mr-1 inline-block h-4 w-4" />
+          {name}
         </div>
       </div>
       {onRemove && (

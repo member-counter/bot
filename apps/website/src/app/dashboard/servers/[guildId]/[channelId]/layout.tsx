@@ -1,15 +1,11 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
-import { ChannelType } from "discord-api-types/v10";
-import { BookTextIcon, FolderIcon, HelpCircleIcon } from "lucide-react";
-
 import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildParams } from "../layout";
 import { api } from "~/trpc/react";
 import { MenuButton } from "../../../Menu";
-import { ChannelIconMap, ChannelLabelMap } from "../ChannelMaps";
+import { ChannelLabelMap, useChannelIcon } from "../ChannelMaps";
 
 export type DashboardGuildChannelParams = {
   channelId: string;
@@ -25,11 +21,7 @@ export default function Layout(props: Props) {
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
 
-  let Icon: LucideIcon | undefined;
-  if (channel) Icon = ChannelIconMap[channel.type];
-  if (channel?.type === ChannelType.GuildCategory) Icon = FolderIcon;
-  if (channel?.id === guild.data?.rulesChannelId) Icon = BookTextIcon;
-  Icon ??= HelpCircleIcon;
+  const Icon = useChannelIcon(channelId);
 
   let label: string | undefined;
   if (channel) label = ChannelLabelMap[channel.type];

@@ -1,11 +1,8 @@
-import type { LucideIcon } from "lucide-react";
 import { useContext, useMemo } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ChannelType, PermissionFlagsBits } from "discord-api-types/v10";
-import { BookTextIcon, HelpCircleIcon, LockKeyholeIcon } from "lucide-react";
+import { ChannelType } from "discord-api-types/v10";
 
-import { BitField } from "@mc/common/BitField";
 import { cn } from "@mc/ui";
 import { Skeleton } from "@mc/ui/skeleton";
 import {
@@ -20,7 +17,7 @@ import { InfoToolip } from "~/app/components/InfoTooltip";
 import { MenuContext } from "~/app/dashboard/Menu";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
-import { ChannelIconMap } from "../ChannelMaps";
+import { useChannelIcon } from "../ChannelMaps";
 
 export function ChannelNavItem(channel: {
   id: string;
@@ -30,7 +27,6 @@ export function ChannelNavItem(channel: {
 }) {
   const menuContext = useContext(MenuContext);
   const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
-  const guild = api.discord.getGuild.useQuery({ id: guildId });
   const guildSettingsChannels = api.guild.channels.getAll.useQuery({
     discordGuildId: guildId,
   });
@@ -46,18 +42,8 @@ export function ChannelNavItem(channel: {
     ChannelType.GuildAnnouncement,
   ].includes(channel.type);
   const isCategory = channel.type === ChannelType.GuildCategory;
-  const isRulesChannel = guild.data?.rulesChannelId === channel.id;
-  const isShowingLockpad =
-    channel.type === ChannelType.GuildVoice &&
-    new BitField(channel.everyonePermissions).missing(
-      PermissionFlagsBits.Connect,
-    );
 
-  let Icon: LucideIcon | undefined;
-  if (isRulesChannel) Icon = BookTextIcon;
-  if (isShowingLockpad) Icon = LockKeyholeIcon;
-  Icon ??= ChannelIconMap[channel.type];
-  Icon ??= HelpCircleIcon;
+  const Icon = useChannelIcon(channel.id);
 
   const hasCounter = guildSettingsChannels.data?.channels.get(
     channel.id,

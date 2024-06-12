@@ -143,6 +143,7 @@ const membersDataSourceMetadata: DataSourceMetadata<DataSourceMembers> = {
       roleFilterMode,
       roles,
       statusFilter,
+      connectedTo,
     } = dataSource.options;
 
     if (bannedMembers) return "Banned members";
@@ -176,8 +177,12 @@ const membersDataSourceMetadata: DataSourceMetadata<DataSourceMembers> = {
       displayName.push("roles");
     }
 
+    if (connectedTo?.length) {
+      displayName.push("connected to a channel");
+    }
+
     if (playing?.length) {
-      displayName.push("playing a game");
+      displayName.push("while playing a game");
     }
 
     const displayNameString = displayName.join(" ");
@@ -203,6 +208,7 @@ const membersDataSourceMetadata: DataSourceMetadata<DataSourceMembers> = {
     "afk",
     "user",
     "bot",
+    "connected",
   ],
 };
 const gameDataSourceMetadata: DataSourceMetadata<DataSourceGame> = {

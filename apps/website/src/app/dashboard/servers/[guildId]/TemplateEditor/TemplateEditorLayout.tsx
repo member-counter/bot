@@ -100,6 +100,7 @@ function InnerTemplateEditorLayout({
 }
 
 // TODO preview processed template
+// TODO onfocus outside contenteditable should move cursor to end, maybe?
 
 export default function TemplateEditorLayout({
   id,

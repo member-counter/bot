@@ -1,5 +1,3 @@
-"use client";
-
 import type { ReactNode } from "react";
 import { useCallback, useId, useMemo, useState } from "react";
 import { SearchIcon } from "lucide-react";
@@ -129,6 +127,7 @@ export function Combobox<T, A extends boolean = false>({
             {items.map(({ value, keywords }, i) => {
               return (
                 <CommandItem
+                  value={JSON.stringify(value)}
                   className={cn(selectedItem === value && "bg-accent")}
                   key={i}
                   keywords={keywords}

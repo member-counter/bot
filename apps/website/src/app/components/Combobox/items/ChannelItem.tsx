@@ -3,6 +3,7 @@ import { CheckIcon, XIcon } from "lucide-react";
 
 import type { ComboboxProps } from "..";
 import type { DashboardGuildParams } from "~/app/dashboard/servers/[guildId]/layout";
+import { useChannelIcon } from "~/app/dashboard/servers/[guildId]/ChannelMaps";
 import { mentionColor } from "~/other/mentionColor";
 import { api } from "~/trpc/react";
 import { TinyIconButton } from "../TinyIconButton";
@@ -22,7 +23,7 @@ export const ChannelItem = ({ item, isSelected, onRemove }: Props) => {
   const channel = useChannelId(item);
 
   const color = mentionColor(0xffffff);
-
+  const Icon = useChannelIcon(item);
   return (
     <div className="flex w-full items-center justify-between">
       <div className="flex w-full overflow-auto">
@@ -38,7 +39,8 @@ export const ChannelItem = ({ item, isSelected, onRemove }: Props) => {
             color: color.text,
           }}
         >
-          {channel ? "# " + channel.name : "Unknown channel"}
+          <Icon className="mr-2 inline-block h-4 w-4" />
+          {channel?.name ?? "Unknown channel"}
         </div>
       </div>
       {onRemove && (

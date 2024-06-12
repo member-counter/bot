@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
-import { HashIcon } from "lucide-react";
+import { AtSignIcon } from "lucide-react";
 import { Editor, Range, Transforms } from "slate";
 import { ReactEditor, useSlate } from "slate-react";
 
@@ -12,12 +12,15 @@ import type { DashboardGuildParams } from "../../layout";
 import type { GuildChannel, GuildRole } from "../d-types";
 import { mentionColor } from "~/other/mentionColor";
 import { api } from "~/trpc/react";
+import { useChannelIcon } from "../../ChannelMaps";
 import { insertMention } from "./insertMention";
 
 enum SearchType {
   Role,
   Channel,
 }
+
+// TODO fix results bugged when searching a different mentionable type after searching other type (@ -> # or # -> @)
 
 export function MentionSuggestions(props: {
   enabled: boolean;
@@ -183,6 +186,8 @@ function SuggestedItem({
   isSelected: boolean;
 }) {
   const isRole = "color" in item;
+  const ChannelIcon = useChannelIcon(isRole ? "" : item.id);
+  const Icon = isRole ? AtSignIcon : ChannelIcon;
 
   const style: React.CSSProperties = {};
 
@@ -202,7 +207,7 @@ function SuggestedItem({
       ])}
       style={style}
     >
-      {isRole ? "@" : <HashIcon className="h-4 w-4" />}
+      <Icon className={cn("mr-2 inline-block h-4 w-4", { "mr-0": isRole })} />
       {item.name}
     </div>
   );
