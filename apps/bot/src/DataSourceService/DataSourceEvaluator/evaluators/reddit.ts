@@ -22,7 +22,16 @@ async function fetchData(
   returnType: RedditDataSourceReturn = RedditDataSourceReturn.MEMBERS,
 ) {
   const cachedValue = await redis.get(toCacheKey(subreddit, returnType));
-  if (cachedValue) return cachedValue;
+  if (cachedValue) {
+    switch (returnType) {
+      case RedditDataSourceReturn.TITLE:
+        return cachedValue;
+
+      case RedditDataSourceReturn.MEMBERS:
+      case RedditDataSourceReturn.MEMBERS_ONLINE:
+        return Number(cachedValue);
+    }
+  }
 
   const abortSignal = new AbortController();
   setTimeout(() => abortSignal.abort(), 5000);

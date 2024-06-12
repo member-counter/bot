@@ -25,7 +25,7 @@ async function fetchData(
   assert(env.MEMERATOR_API_KEY, new Error("MEMERATOR_API_KEY not provided"));
 
   const cachedValue = await redis.get(toCacheKey(username, returnType));
-  if (cachedValue) return cachedValue;
+  if (cachedValue) return Number(cachedValue);
 
   const abortSignal = new AbortController();
   setTimeout(() => abortSignal.abort(), 5000);
