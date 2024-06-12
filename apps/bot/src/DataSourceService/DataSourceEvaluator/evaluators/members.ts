@@ -22,7 +22,7 @@ const PresenceStatusMap: Record<PresenceStatus, MembersFilterStatus> = {
   online: MembersFilterStatus.ONLINE,
 };
 
-export const memberDataSourceEvaluator = new DataSourceEvaluator({
+export const membersDataSourceEvaluator = new DataSourceEvaluator({
   id: DataSourceId.MEMBERS,
   async execute({ ctx, options }) {
     if (options.bannedMembers) {

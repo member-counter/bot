@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import assert from "assert";
-import type {
-  DataSource,
-  DataSourceFormatSettings,
-  DataSourceId,
-} from "@mc/common/DataSource";
+import type { DataSource, DataSourceId } from "@mc/common/DataSource";
 import { ChannelType } from "discord.js";
 
 import { DATA_SOURCE_DELIMITER } from "@mc/common/DataSource";
