@@ -16,6 +16,9 @@ const DataSourceEvaluationErrorTypes = [
   "HTTP_INVALID_RESPONSE_CONTENT_TYPE",
   "HTTP_INVALID_RESPONSE_STATUS_CODE",
   "HTTP_DATA_PATH_MANDATORY",
+  "GAME_MISSING_ADDRESS",
+  "GAME_MISSING_PORT",
+  "GAME_MISSING_GAME_ID",
 ] as const;
 
 export class DataSourceEvaluationError extends Error {

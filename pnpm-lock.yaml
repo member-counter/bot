@@ -99,6 +99,9 @@ importers:
       '@total-typescript/ts-reset':
         specifier: ^0.5.1
         version: 0.5.1
+      '@types/gamedig':
+        specifier: ^5.0.2
+        version: 5.0.2
       '@types/node':
         specifier: ^20.12.9
         version: 20.12.13
@@ -1834,6 +1837,9 @@ packages:
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+
+  '@types/gamedig@5.0.2':
+    resolution: {integrity: sha512-hQMU3TMvY25dA+EN+leAcxAloA8+iyM2XAMXeMJUIQFU2Ta8XcWYCd232xAOzOwINF+UTiT2MXCoZE08CnuQuQ==}
 
   '@types/glob@7.2.0':
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
@@ -5853,6 +5859,8 @@ snapshots:
       '@types/json-schema': 7.0.15
 
   '@types/estree@1.0.5': {}
+
+  '@types/gamedig@5.0.2': {}
 
   '@types/glob@7.2.0':
     dependencies:
