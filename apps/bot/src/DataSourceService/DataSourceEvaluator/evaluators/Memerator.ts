@@ -22,7 +22,7 @@ async function fetchData(
   username: string,
   returnType: MemeratorDataSourceReturn = MemeratorDataSourceReturn.FOLLOWERS,
 ) {
-  if (!env.MEMERATOR_API_KEY) throw new Error("MEMERATOR_API_KEY not provided");
+  assert(env.MEMERATOR_API_KEY, new Error("MEMERATOR_API_KEY not provided"));
 
   const cachedValue = await redis.get(toCacheKey(username, returnType));
   if (cachedValue) return cachedValue;
