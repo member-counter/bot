@@ -2,10 +2,7 @@ import type { DataSource } from "@mc/common/DataSource";
 import { useContext } from "react";
 import { CheckIcon, Settings2Icon, XIcon } from "lucide-react";
 
-import { DataSourceId } from "@mc/common/DataSource";
-
 import type { ComboboxProps } from "..";
-import type { DataSourceMetadata } from "~/app/dashboard/servers/[guildId]/TemplateEditor/DataSource/dataSourcesMetadata";
 import { getDataSourceMetadata } from "~/app/dashboard/servers/[guildId]/TemplateEditor/DataSource/dataSourcesMetadata";
 import { EditDataSourcePanelContext } from "~/app/dashboard/servers/[guildId]/TemplateEditor/DataSource/EditDataSourcePanelContext";
 import { InfoToolip } from "../../InfoTooltip";
@@ -26,13 +23,7 @@ export const DataSourceItem = ({
 }: Props) => {
   const { pushEditStack } = useContext(EditDataSourcePanelContext);
 
-  let dataSourceMetadata: DataSourceMetadata;
-
-  try {
-    dataSourceMetadata = getDataSourceMetadata(item.id);
-  } catch {
-    dataSourceMetadata = getDataSourceMetadata(DataSourceId.UNKNOWN);
-  }
+  const dataSourceMetadata = getDataSourceMetadata(item.id);
 
   const displayName = dataSourceMetadata.displayName(item);
 

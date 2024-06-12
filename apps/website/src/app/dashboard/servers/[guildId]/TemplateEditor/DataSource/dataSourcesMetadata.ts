@@ -1,6 +1,5 @@
 import type {
   DataSource,
-  DataSourceBase,
   DataSourceBotStats,
   DataSourceChannels,
   DataSourceClock,
@@ -54,7 +53,7 @@ import {
 
 import type { Searchable } from "~/app/components/Combobox";
 
-export interface DataSourceMetadata<D extends DataSource = DataSourceBase> {
+export interface DataSourceMetadata<D extends DataSource = DataSource> {
   description: string;
   icon: LucideIcon;
   displayName: (dataSource: D) => string;
@@ -336,9 +335,17 @@ const numberDataSourceMetadata: DataSourceMetadata<DataSourceNumber> = {
   icon: Tally5Icon,
   description: "Apply number formatting to the given number.",
   displayName: (dataSource: DataSourceNumber) => {
-    if (!dataSource.options || typeof dataSource.options.number === "object")
-      return "Number";
-    return "Number (" + dataSource.options.number + ")";
+    if (!dataSource.options) return "Number";
+    else if (
+      typeof dataSource.options.number === "object" &&
+      "id" in dataSource.options.number
+    )
+      return (
+        getDataSourceMetadata(dataSource.options.number.id).displayName(
+          dataSource.options.number,
+        ) + " as number"
+      );
+    else return "Number (" + dataSource.options.number + ")";
   },
   dataSource: { id: DataSourceId.NUMBER },
   keywords: ["number", "formatting"],
@@ -391,7 +398,7 @@ const httpDataSourceMetadata: DataSourceMetadata<DataSourceHTTP> = {
     );
   },
   dataSource: { id: DataSourceId.HTTP },
-  keywords: ["HTTP", "GET", "request", "endpoint", "API"],
+  keywords: ["HTTP", "GET", "request", "endpoint", "API", "fetch"],
 };
 const channelDataSourceMetadata: DataSourceMetadata<DataSourceChannels> = {
   icon: HashIcon,
@@ -495,7 +502,7 @@ export const dataSourcesMetadata: Record<string, DataSourceMetadata> =
 
 export function getDataSourceMetadata(id: DataSourceId): DataSourceMetadata {
   const metadata = dataSourcesMetadata[id];
-  if (!metadata) throw new Error("invalid data source id");
+  if (!metadata) return getDataSourceMetadata(DataSourceId.UNKNOWN);
   return metadata;
 }
 

@@ -60,7 +60,7 @@ export function EditDataSourceOptions({
         <Options
           options={dataSource.options as never}
           onOptionsChange={(options) => {
-            onChangeDataSource({ ...dataSource, options });
+            onChangeDataSource({ ...dataSource, options } as never);
           }}
         />
       }
