@@ -1,3 +1,4 @@
+import { botStatsEvaluator } from "./bot-stats";
 import { channelEvaluator } from "./channels";
 import { clockEvaluator } from "./clock";
 import { countdownEvaluator } from "./countdown";
@@ -16,6 +17,7 @@ import { youTubeEvaluator } from "./YouTube";
 
 // TODO test everything
 const dataSourceEvaluators = [
+  botStatsEvaluator,
   channelEvaluator,
   clockEvaluator,
   countdownEvaluator,
