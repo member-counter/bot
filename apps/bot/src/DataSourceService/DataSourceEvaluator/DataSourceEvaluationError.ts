@@ -10,6 +10,8 @@ export const DataSourceEvaluationErrorTypes = [
   "REDDIT_MISSING_SUBREDDIT",
   "TWITCH_MISSING_USERNAME",
   "TWITCH_CHANNEL_NOT_FOUND",
+  "YOUTUBE_MISSING_CHANNEL_URL",
+  "YOUTUBE_INVALID_CHANNEL_URL",
 ] as const;
 
 export class DataSourceEvaluationError extends Error {

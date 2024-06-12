@@ -38,6 +38,7 @@ export const env = createEnv({
     MEMERATOR_API_KEY: z.string().optional(),
     TWITCH_CLIENT_ID: z.string().optional(),
     TWITCH_CLIENT_SECRET: z.string().optional(),
+    YOUTUBE_API_KEY: z.string().optional(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
