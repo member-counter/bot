@@ -6,11 +6,6 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "production", "test"]),
     DISCORD_CLIENT_ID: z.string(),
     DISCORD_BOT_TOKEN: z.string(),
-    DISCORD_BOT_IS_PREMIUM: z
-      .string()
-      .toLowerCase()
-      .transform((x) => x === "true")
-      .pipe(z.boolean()),
     DISCORD_BOT_IS_PRIVILEGED: z
       .string()
       .toLowerCase()

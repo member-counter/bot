@@ -18,10 +18,7 @@ export async function initBot() {
   // TODO manage sharding
   // TODO makeCache and sweepers
   const bot = new Client({
-    intents: generateBotIntents(
-      env.DISCORD_BOT_IS_PREMIUM,
-      env.DISCORD_BOT_IS_PRIVILEGED,
-    ),
+    intents: generateBotIntents(env.DISCORD_BOT_IS_PRIVILEGED),
     waitGuildTimeout: 30000,
   });
 
