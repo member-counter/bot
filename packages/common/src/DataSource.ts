@@ -192,7 +192,7 @@ export enum YouTubeDataSourceReturn {
 
 export enum TwitchDataSourceReturn {
   FOLLOWERS,
-  VIEWS,
+  VIEWERS,
   CHANNEL_NAME,
 }
 

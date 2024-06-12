@@ -8,6 +8,8 @@ export const DataSourceEvaluationErrorTypes = [
   "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS",
   "MEMERATOR_MISSING_USERNAME",
   "REDDIT_MISSING_SUBREDDIT",
+  "TWITCH_MISSING_USERNAME",
+  "TWITCH_CHANNEL_NOT_FOUND",
 ] as const;
 
 export class DataSourceEvaluationError extends Error {

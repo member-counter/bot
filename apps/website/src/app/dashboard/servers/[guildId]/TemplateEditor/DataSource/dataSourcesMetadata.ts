@@ -262,7 +262,7 @@ const twitchDataSourceMetadata: DataSourceMetadata<DataSourceTwitch> = {
     const display = {
       [TwitchDataSourceReturn.CHANNEL_NAME]: "channel name",
       [TwitchDataSourceReturn.FOLLOWERS]: "followers",
-      [TwitchDataSourceReturn.VIEWS]: "views",
+      [TwitchDataSourceReturn.VIEWERS]: "views",
     };
 
     displayName.push(display[dataSource.options.return]);

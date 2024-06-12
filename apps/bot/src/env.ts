@@ -36,6 +36,8 @@ export const env = createEnv({
     DBL_TOKEN: z.string().optional(),
     BFD_TOKEN: z.string().optional(),
     MEMERATOR_API_KEY: z.string().optional(),
+    TWITCH_CLIENT_ID: z.string().optional(),
+    TWITCH_CLIENT_SECRET: z.string().optional(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

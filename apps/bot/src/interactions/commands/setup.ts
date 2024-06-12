@@ -338,7 +338,7 @@ export const setupCommand = new Command({
             TwitchDataSourceReturn.FOLLOWERS;
 
           const twitchViewsDataSource = structuredClone(twitchNameDataSource);
-          twitchViewsDataSource.options.return = TwitchDataSourceReturn.VIEWS;
+          twitchViewsDataSource.options.return = TwitchDataSourceReturn.VIEWERS;
 
           templateCollection.categoryName = t(
             `interaction.commands.setup.templateCollection.${type}.categoryName`,

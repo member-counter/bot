@@ -57,8 +57,8 @@ export function TwitchOptions({
                 icon={UserRoundPlusIcon}
               />
               <SelectItemWithIcon
-                value={TwitchDataSourceReturn.VIEWS.toString()}
-                label={"Views"}
+                value={TwitchDataSourceReturn.VIEWERS.toString()}
+                label={"Viewers"}
                 icon={EyeIcon}
               />
               <SelectItemWithIcon
