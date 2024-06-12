@@ -58,12 +58,9 @@ async function resolveToChannelId(handleUsername: string) {
   );
   if (cachedValue) return cachedValue;
 
-  const abortController = new AbortController();
-  setTimeout(() => abortController.abort(), 5000);
-
   const channelId = await fetch(
     `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${handleUsername}&type=channel&key=${env.YOUTUBE_API_KEY}`,
-    { signal: abortController.signal },
+    { signal: AbortSignal.timeout(5000) },
   )
     .then((response) => response.json())
     .then((o) => resolveToChannelIdValidator.parse(o))
@@ -98,10 +95,9 @@ async function fetchData(
     }
   }
 
-  const abortController = new AbortController();
-  setTimeout(() => abortController.abort(), 5000);
   const channel = await fetch(
     `https://www.googleapis.com/youtube/v3/channels?part=statistics,snippet&key=${env.YOUTUBE_API_KEY}&${searchChannelBy}=${searchChannel}`,
+    { signal: AbortSignal.timeout(5000) },
   )
     .then((response) => response.json())
     .then((o) => channelValidator.parse(o))
