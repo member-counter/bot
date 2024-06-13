@@ -61,17 +61,15 @@ async function updateGuildChannels(guild: Guild) {
           return i18n.t("jobs.updateChannels.computeError");
         });
 
-      console.log(computedTemplate);
-
       if (
         channel.type === ChannelType.GuildText ||
         channel.type === ChannelType.GuildAnnouncement
       ) {
         if (channel.topic === computedTemplate) return;
-        // await channel.edit({ topic: computedTemplate });
+        await channel.edit({ topic: computedTemplate });
       } else {
         if (channel.name === computedTemplate) return;
-        // await channel.edit({ name: computedTemplate });
+        await channel.edit({ name: computedTemplate });
       }
     }),
   );
@@ -81,7 +79,7 @@ const guildsBeingUpdated = new Set<Snowflake>();
 
 export const updateChannels = new Job({
   name: "Update channels",
-  time: "* * * * * *",
+  time: "0 */5 * * * *",
   execute: async (client) => {
     client.guilds.cache.forEach((guild) => {
       if (guildsBeingUpdated.has(guild.id)) return;
