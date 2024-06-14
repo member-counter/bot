@@ -1,5 +1,4 @@
 import { Client } from "discord.js";
-import { ProxyAgent } from "undici";
 
 import { setupBotDataExchangeProvider } from "@mc/bot-data-exchange";
 import { generateBotIntents } from "@mc/common/botIntents";
@@ -25,20 +24,6 @@ export async function initBot() {
       env.DISCORD_BOT_IS_PREMIUM,
     ),
     waitGuildTimeout: 30_000,
-    rest: {
-      agent: new ProxyAgent({
-        uri: "https://localhost:8080",
-        connect: {
-          rejectUnauthorized: false,
-        },
-        proxyTls: {
-          rejectUnauthorized: false,
-        },
-        requestTls: {
-          rejectUnauthorized: false,
-        },
-      }),
-    },
     makeCache,
     sweepers,
   });
