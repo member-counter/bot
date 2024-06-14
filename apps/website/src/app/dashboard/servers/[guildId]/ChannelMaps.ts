@@ -40,7 +40,10 @@ export const ChannelLabelMap: Record<ChannelType | number, string> = {
   [ChannelType.GuildMedia]: "Media channel",
 };
 
-export function useChannelIcon(channelId: string): LucideIcon {
+export function useChannelIcon(
+  channelId: string,
+  channelListView = false,
+): LucideIcon {
   const { guildId } = useParams<DashboardGuildParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
@@ -56,7 +59,7 @@ export function useChannelIcon(channelId: string): LucideIcon {
   let icon: LucideIcon | undefined;
   if (isRulesChannel) icon = BookTextIcon;
   else if (isShowingLockpad) icon = LockKeyholeIcon;
-  else if (isCategory) icon = FolderIcon;
+  else if (isCategory && !channelListView) icon = FolderIcon;
   else if (channel) icon = ChannelIconMap[channel.type];
   icon ??= HelpCircleIcon;
 
