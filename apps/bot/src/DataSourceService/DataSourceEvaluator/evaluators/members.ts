@@ -16,6 +16,8 @@ const PresenceStatusMap: Record<PresenceStatus, MembersFilterStatus> = {
   online: MembersFilterStatus.ONLINE,
 };
 
+const fetchedGuildsBans = new Set();
+
 export const membersDataSourceEvaluator = new DataSourceEvaluator({
   id: DataSourceId.MEMBERS,
   async execute({
@@ -31,7 +33,11 @@ export const membersDataSourceEvaluator = new DataSourceEvaluator({
     },
   }) {
     if (bannedMembers) {
-      return (await ctx.guild.bans.fetch()).size;
+      if (!fetchedGuildsBans.has(ctx.guild.id)) {
+        await ctx.guild.bans.fetch();
+        fetchedGuildsBans.add(ctx.guild.id);
+      }
+      return ctx.guild.bans.cache.size;
     }
 
     const filteredMembers = (await ctx.guild.members.fetch()).clone();
