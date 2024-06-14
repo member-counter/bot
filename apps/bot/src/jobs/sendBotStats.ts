@@ -1,25 +1,25 @@
-import logger from "@mc/logger";
-
 import { Job } from "~/structures/Job";
-
-async function sendStats(url: string, payload: unknown, auth?: string) {
-  if (!auth) return;
-
-  await fetch(url, {
-    method: "post",
-    headers: {
-      Authorization: auth,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  }).catch(logger.error);
-}
 
 export const sendBotStats = new Job({
   name: "Send bot stats",
   time: "0 0 */1 * * *",
   runOnClientReady: true,
   execute: async (client) => {
+    const { logger } = client.botInstanceOptions;
+
+    async function sendStats(url: string, payload: unknown, auth?: string) {
+      if (!auth) return;
+
+      await fetch(url, {
+        method: "post",
+        headers: {
+          Authorization: auth,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }).catch(logger.error);
+    }
+
     // TODO
     const guildCount = 0;
 

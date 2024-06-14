@@ -1,7 +1,5 @@
 import type { CommandInteraction } from "discord.js";
 
-import logger from "@mc/logger";
-
 import { DEFAULT_LANGUAGE, initI18n } from "~/i18n";
 import { commandDefinitionTKeyMap } from "~/utils/prepareLocalization";
 import { configureCommand } from "./configure";
@@ -25,6 +23,8 @@ export function throwUnsupported(command: CommandInteraction) {
 export default async function handleCommand(
   commandInteraction: CommandInteraction,
 ): Promise<void> {
+  const { logger } = commandInteraction.client.botInstanceOptions;
+
   await commandInteraction.deferReply({ ephemeral: true });
   const i18nDefaultLanguage = await initI18n(DEFAULT_LANGUAGE);
 

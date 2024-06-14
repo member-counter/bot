@@ -1,8 +1,6 @@
 import type { Client } from "discord.js";
 import { CronJob } from "cron";
 
-import logger from "@mc/logger";
-
 import type { Job } from "../structures/Job";
 import { sendBotStats } from "./sendBotStats";
 import { setBotStatus } from "./setBotSatus";
@@ -11,6 +9,7 @@ import { updateChannels } from "./updateChannels";
 const jobs: Job[] = [sendBotStats, setBotStatus, updateChannels];
 
 export function setupJobs(client: Client) {
+  const { logger } = client.botInstanceOptions;
   jobs.forEach((job) => {
     let isLocked = false;
 

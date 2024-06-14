@@ -21,7 +21,6 @@ import {
 } from "@mc/common/DataSource";
 import { GuildSettings } from "@mc/common/GuildSettings";
 import { noop } from "@mc/common/noop";
-import logger from "@mc/logger";
 
 import DataSourceService from "~/DataSourceService";
 import { DEFAULT_LANGUAGE, initI18n, tKey } from "~/i18n";
@@ -135,6 +134,7 @@ export const setupCommand = new Command({
   handle: async (command, i18n) => {
     if (!command.inGuild() || !command.isChatInputCommand()) throw null;
 
+    const { logger } = command.client.botInstanceOptions;
     const { t } = i18n;
     const i18nDefault = await initI18n(DEFAULT_LANGUAGE);
     const type = command.options.getSubcommand(true);

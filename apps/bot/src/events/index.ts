@@ -1,7 +1,5 @@
 import type { Client } from "discord.js";
 
-import logger from "@mc/logger";
-
 import { guildCreateEvent } from "./guildCreate";
 import { interactionCreateEvent } from "./interactionCreate";
 import { messageCreateEvent } from "./messageCreate";
@@ -15,6 +13,7 @@ const allEvents = [
 ] as const;
 
 export function setupEvents(client: Client) {
+  const { logger } = client.botInstanceOptions;
   allEvents.forEach((event) => {
     client.on(event.name, (...args) => {
       void (async () => {

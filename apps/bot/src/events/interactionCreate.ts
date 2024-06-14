@@ -8,8 +8,6 @@ import {
   InteractionType,
 } from "discord.js";
 
-import logger from "@mc/logger";
-
 import { env } from "~/env";
 import { DiscordBrandingColors as Colors } from "../Constants";
 import { initI18n } from "../i18n";
@@ -21,6 +19,7 @@ import { UserError } from "../utils/UserError";
 export const interactionCreateEvent = new EventHandler({
   name: "interactionCreate",
   handler: async (interaction) => {
+    const { logger } = interaction.client.botInstanceOptions;
     try {
       switch (interaction.type) {
         case InteractionType.ApplicationCommand: {

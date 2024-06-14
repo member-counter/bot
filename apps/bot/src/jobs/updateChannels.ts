@@ -2,7 +2,6 @@ import type { Guild, Snowflake } from "discord.js";
 import { ChannelType } from "discord.js";
 
 import { GuildSettings } from "@mc/common/GuildSettings";
-import logger from "@mc/logger";
 
 import DataSourceService from "~/DataSourceService";
 import { DataSourceError } from "~/DataSourceService/DataSourceEvaluator/DataSourceError";
@@ -14,6 +13,8 @@ async function updateGuildChannels(guild: Guild) {
   if (!guild.available) return;
 
   // TODO handle bot priority
+
+  const { logger } = guild.client.botInstanceOptions;
 
   const guildSettings = await GuildSettings.upsert(guild.id);
   const guildChannelsSettings = await GuildSettings.channels.getAll(guild.id);
@@ -93,6 +94,8 @@ export const updateChannels = new Job({
   name: "Update channels",
   time: "0 */5 * * * *",
   execute: async (client) => {
+    const { logger } = client.botInstanceOptions;
+
     client.guilds.cache.forEach((guild) => {
       if (guildsBeingUpdated.has(guild.id)) return;
       guildsBeingUpdated.add(guild.id);

@@ -1,9 +1,9 @@
+import type baseLogger from "@mc/logger";
 import type { ActivitiesOptions } from "discord.js";
 import { Client } from "discord.js";
 
 import { setupBotDataExchangeProvider } from "@mc/bot-data-exchange";
 import { generateBotIntents } from "@mc/common/botIntents";
-import logger from "@mc/logger";
 import { redis } from "@mc/redis";
 
 import { setupEvents } from "./events";
@@ -32,13 +32,15 @@ export interface BotInstanceOptions {
     DBLToken?: string;
     BFDToken?: string;
   };
-  logger: typeof logger;
+  logger: typeof baseLogger;
   isPremium: boolean;
   isPrivileged: boolean;
 }
 
 export async function startBot(options: BotInstanceOptions) {
   await deployCommands(options);
+
+  const { logger } = options;
 
   const bot = new Client({
     intents: generateBotIntents(options.isPrivileged, options.isPremium),
