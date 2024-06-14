@@ -109,9 +109,8 @@ export const membersDataSourceEvaluator = new DataSourceEvaluator({
       for (const [id] of filteredMembers) {
         let hasSome = false;
 
-        channels: for (const [id, channel] of channels) {
-          if (channel.isVoiceBased()) {
-            channel.members.has(id);
+        channels: for (const [_, channel] of channels) {
+          if (channel.isVoiceBased() && channel.members.has(id)) {
             hasSome = true;
             break channels;
           }
