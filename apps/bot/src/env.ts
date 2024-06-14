@@ -29,9 +29,12 @@ export const env = createEnv({
     DISCORD_BOT_INSTANCE_DEPLOY_COMMANDS: z
       .string()
       .toLowerCase()
-      .transform((x) => x === "true")
-      .pipe(z.boolean())
-      .or(z.string()),
+      .transform((x) => {
+        const parsed = JSON.parse(x);
+        if (typeof parsed === "boolean") return parsed;
+        else return x;
+      })
+      .pipe(z.string().or(z.boolean())),
     DISCORD_BOT_INSTANCE_BOT_PRESENCE_ACTIVITY: z.string().transform((s) => {
       return z
         .array(
