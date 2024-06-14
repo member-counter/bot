@@ -43,7 +43,7 @@ export function ChannelNavItem(channel: {
   ].includes(channel.type);
   const isCategory = channel.type === ChannelType.GuildCategory;
 
-  const Icon = useChannelIcon(channel.id);
+  const Icon = useChannelIcon(channel.id, true);
 
   const hasCounter = guildSettingsChannels.data?.channels.get(
     channel.id,
