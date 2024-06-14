@@ -15,13 +15,13 @@ export const env = createEnv({
     }),
     DISCORD_BOT_INSTANCE_SHARDING_SHARD_COUNT: z.coerce.number(),
     DISCORD_BOT_INSTANCE_SHARDING_SHARD_MAX_CONCURRENCY: z.coerce.number(),
-    DISCORD_BOT_COMPUTE_PRIORITY: z.coerce.number(),
-    DISCORD_BOT_IS_PRIVILEGED: z
+    DISCORD_BOT_INSTANCE_COMPUTE_PRIORITY: z.coerce.number(),
+    DISCORD_BOT_INSTANCE_IS_PRIVILEGED: z
       .string()
       .toLowerCase()
       .transform((x) => x === "true")
       .pipe(z.boolean()),
-    DISCORD_BOT_IS_PREMIUM: z
+    DISCORD_BOT_INSTANCE_IS_PREMIUM: z
       .string()
       .toLowerCase()
       .transform((x) => x === "true")
