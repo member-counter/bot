@@ -5,7 +5,7 @@ import { countdownEvaluator } from "./countdown";
 import { gameEvaluator } from "./game";
 import { HTTPEvaluator } from "./http";
 import { mathEvaluator } from "./Math";
-import { membersDataSourceEvaluator } from "./members";
+import { membersEvaluator } from "./members";
 import { memeratorEvaluator } from "./Memerator";
 import { nitroBoostersEvaluator } from "./nitroBoosters";
 import { numberEvaluator } from "./number";
@@ -24,7 +24,7 @@ const dataSourceEvaluators = [
   gameEvaluator,
   HTTPEvaluator,
   mathEvaluator,
-  membersDataSourceEvaluator,
+  membersEvaluator,
   memeratorEvaluator,
   nitroBoostersEvaluator,
   numberEvaluator,

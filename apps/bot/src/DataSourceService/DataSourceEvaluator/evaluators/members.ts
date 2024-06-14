@@ -18,7 +18,9 @@ const PresenceStatusMap: Record<PresenceStatus, MembersFilterStatus> = {
 
 const fetchedGuildsBans = new Set();
 
-export const membersDataSourceEvaluator = new DataSourceEvaluator({
+// TODO fetch from REST if !isPriviliged and check isPremium
+
+export const membersEvaluator = new DataSourceEvaluator({
   id: DataSourceId.MEMBERS,
   async execute({
     ctx,
