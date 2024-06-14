@@ -1,17 +1,39 @@
 #!/usr/bin/env node
 import { db } from "@mc/db";
-import logger from "@mc/logger";
+import baseLogger from "@mc/logger";
 import { redis } from "@mc/redis";
 
-import { initBot } from "./bot";
+import type { BotInstanceOptions } from "./bot";
+import { startBot } from "./bot";
+import { env } from "./env";
 
 async function main() {
-  const { bot, BDERedisPubClient, BDERedisSubClient } = await initBot().catch(
-    (err) => {
-      logger.error("Failed to start the bot", err);
-      process.exit(1);
+  const logger = baseLogger.child({ botId: env.DISCORD_BOT_INSTANCE_ID });
+
+  const botOptions: BotInstanceOptions = {
+    id: env.DISCORD_BOT_INSTANCE_ID,
+    token: env.DISCORD_BOT_INSTANCE_TOKEN,
+    deployCommands: env.DISCORD_BOT_INSTANCE_DEPLOY_COMMANDS,
+    isPremium: env.DISCORD_BOT_IS_PREMIUM,
+    isPrivileged: env.DISCORD_BOT_IS_PRIVILEGED,
+    logger,
+    shards: env.DISCORD_BOT_INSTANCE_SHARDING_SHARDS,
+    shardCount: env.DISCORD_BOT_INSTANCE_SHARDING_SHARD_COUNT,
+    maxConcurrency: env.DISCORD_BOT_INSTANCE_SHARDING_SHARD_MAX_CONCURRENCY,
+    presenceActivity: env.DISCORD_BOT_INSTANCE_BOT_PRESENCE_ACTIVITY,
+    stats: {
+      BFDToken: env.DISCORD_BOT_INSTANCE_STATS_BFD_TOKEN,
+      DBGGToken: env.DISCORD_BOT_INSTANCE_STATS_DBGG_TOKEN,
+      DBLToken: env.DISCORD_BOT_INSTANCE_STATS_DBL_TOKEN,
     },
-  );
+  };
+
+  const { bot, BDERedisPubClient, BDERedisSubClient } = await startBot(
+    botOptions,
+  ).catch((err) => {
+    logger.error("Failed to start the bot", err);
+    process.exit(1);
+  });
 
   process.on("SIGTERM", () => {
     Promise.all([

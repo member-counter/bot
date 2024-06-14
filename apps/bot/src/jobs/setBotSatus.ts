@@ -1,4 +1,3 @@
-import { env } from "~/env";
 import { Job } from "~/structures/Job";
 
 export const setBotStatus = new Job({
@@ -6,13 +5,11 @@ export const setBotStatus = new Job({
   time: "0 */5 * * * *",
   runOnClientReady: true,
   execute: (client) => {
-    let activity = env.BOT_PRESENCE_ACTIVITY[0];
+    const activities = client.botInstanceOptions.presenceActivity;
+    let activity = activities[0];
 
     if (Math.random() < 0.1) {
-      activity =
-        env.BOT_PRESENCE_ACTIVITY[
-          Math.floor(Math.random() * env.BOT_PRESENCE_ACTIVITY.length)
-        ];
+      activity = activities[Math.floor(Math.random() * activities.length)];
     }
 
     if (!activity) return Promise.resolve();

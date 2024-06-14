@@ -1,6 +1,5 @@
 import logger from "@mc/logger";
 
-import { env } from "~/env";
 import { Job } from "~/structures/Job";
 
 async function sendStats(url: string, payload: unknown, auth?: string) {
@@ -30,19 +29,19 @@ export const sendBotStats = new Job({
       sendStats(
         `https://discord.bots.gg/api/v1/bots/${client.user.id}/stats`,
         { guildCount },
-        env.DBGG_TOKEN,
+        client.botInstanceOptions.stats.DBGGToken,
       ),
       sendStats(
         `https://top.gg/api/bots/${client.user.id}/stats`,
         {
           server_count: guildCount,
         },
-        env.DBL_TOKEN,
+        client.botInstanceOptions.stats.DBLToken,
       ),
       sendStats(
         `https://botsfordiscord.com/api/bot/${client.user.id}`,
         { server_count: guildCount },
-        env.BFD_TOKEN,
+        client.botInstanceOptions.stats.BFDToken,
       ),
     ]);
 

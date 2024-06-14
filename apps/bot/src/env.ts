@@ -4,8 +4,18 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "production", "test"]),
+    WEBSITE_URL: z.string(),
+    NEXT_PUBLIC_BOT_REPO_URL: z.string(),
+    NEXT_PUBLIC_SUPPORT_URL: z.string(),
     DISCORD_CLIENT_ID: z.string(),
-    DISCORD_BOT_TOKEN: z.string(),
+    DISCORD_BOT_INSTANCE_TOKEN: z.string(),
+    DISCORD_BOT_INSTANCE_ID: z.string(),
+    DISCORD_BOT_INSTANCE_SHARDING_SHARDS: z.string().transform((s) => {
+      return z.array(z.number().min(0)).min(1).parse(JSON.parse(s));
+    }),
+    DISCORD_BOT_INSTANCE_SHARDING_SHARD_COUNT: z.coerce.number(),
+    DISCORD_BOT_INSTANCE_SHARDING_SHARD_MAX_CONCURRENCY: z.coerce.number(),
+    DISCORD_BOT_COMPUTE_PRIORITY: z.coerce.number(),
     DISCORD_BOT_IS_PRIVILEGED: z
       .string()
       .toLowerCase()
@@ -16,17 +26,13 @@ export const env = createEnv({
       .toLowerCase()
       .transform((x) => x === "true")
       .pipe(z.boolean()),
-    DISCORD_BOT_COMPUTE_PRIORITY: z.coerce.number(),
-    WEBSITE_URL: z.string(),
-    NEXT_PUBLIC_BOT_REPO_URL: z.string(),
-    NEXT_PUBLIC_SUPPORT_URL: z.string(),
-    AUTO_DEPLOY_COMMANDS: z
+    DISCORD_BOT_INSTANCE_DEPLOY_COMMANDS: z
       .string()
       .toLowerCase()
       .transform((x) => x === "true")
-      .pipe(z.boolean()),
-    DEPLOY_COMMANDS_TO_GUILD_ID: z.string().optional(),
-    BOT_PRESENCE_ACTIVITY: z.string().transform((s) => {
+      .pipe(z.boolean())
+      .or(z.string()),
+    DISCORD_BOT_INSTANCE_BOT_PRESENCE_ACTIVITY: z.string().transform((s) => {
       return z
         .array(
           z.object({
@@ -38,9 +44,9 @@ export const env = createEnv({
         )
         .parse(JSON.parse(s));
     }),
-    DBGG_TOKEN: z.string().optional(),
-    DBL_TOKEN: z.string().optional(),
-    BFD_TOKEN: z.string().optional(),
+    DISCORD_BOT_INSTANCE_STATS_DBGG_TOKEN: z.string().optional(),
+    DISCORD_BOT_INSTANCE_STATS_DBL_TOKEN: z.string().optional(),
+    DISCORD_BOT_INSTANCE_STATS_BFD_TOKEN: z.string().optional(),
     MEMERATOR_API_KEY: z.string().optional(),
     TWITCH_CLIENT_ID: z.string().optional(),
     TWITCH_CLIENT_SECRET: z.string().optional(),

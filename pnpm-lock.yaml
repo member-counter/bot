@@ -47,6 +47,9 @@ importers:
       '@mc/redis':
         specifier: workspace:*
         version: link:../../packages/redis
+      '@sesamecare-oss/redlock':
+        specifier: ^1.2.1
+        version: 1.2.1(ioredis@5.4.1)
       '@t3-oss/env-core':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.6)

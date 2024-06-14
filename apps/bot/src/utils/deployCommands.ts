@@ -1,17 +1,28 @@
+import type logger from "@mc/logger";
 import { Routes } from "discord-api-types/v10";
 import { REST } from "discord.js";
 
-import logger from "@mc/logger";
-
-import { env } from "~/env";
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE, initI18n } from "~/i18n";
 import { allCommands } from "~/interactions/commands";
 import { localizeCommand } from "./localizeCommands";
 
-export async function deployCommands() {
+interface DeployCommandsOptions {
+  token: string;
+  deployCommands: boolean | string;
+  logger: typeof logger;
+}
+
+export async function deployCommands({
+  deployCommands,
+  token,
+  logger,
+}: DeployCommandsOptions) {
+  if (!deployCommands) return;
+
+  const clientId = Buffer.from(token.split(".")[0] ?? "", "base64").toString();
   const discordRest = new REST({
     version: "10",
-  }).setToken(env.DISCORD_BOT_TOKEN);
+  }).setToken(token);
 
   logger.info("deployCommands: Loading i18n instances for all languages.");
   const i18nInstances = await Promise.all(AVAILABLE_LANGUAGES.map(initI18n));
@@ -45,13 +56,10 @@ export async function deployCommands() {
   });
 
   logger.info("deployCommands: Reloading application commands...");
-  let route = Routes.applicationCommands(env.DISCORD_CLIENT_ID);
+  let route = Routes.applicationCommands(clientId);
 
-  if (env.DEPLOY_COMMANDS_TO_GUILD_ID) {
-    route = Routes.applicationGuildCommands(
-      env.DISCORD_CLIENT_ID,
-      env.DEPLOY_COMMANDS_TO_GUILD_ID,
-    );
+  if (typeof deployCommands === "string") {
+    route = Routes.applicationGuildCommands(clientId, deployCommands);
   }
 
   const flattedDefs = allDefinitions

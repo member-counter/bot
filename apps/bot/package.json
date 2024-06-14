@@ -36,6 +36,7 @@
     "@mc/db": "workspace:*",
     "@mc/logger": "workspace:*",
     "@mc/redis": "workspace:*",
+    "@sesamecare-oss/redlock": "^1.2.1",
     "@t3-oss/env-core": "^0.10.1",
     "@twurple/api": "^7.1.0",
     "@twurple/auth": "^7.1.0",
