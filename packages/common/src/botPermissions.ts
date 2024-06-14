@@ -2,8 +2,6 @@ import { PermissionsBitField } from "discord.js";
 
 export const botPermissions = new PermissionsBitField();
 
-// TODO check needed permissions
-
 // Used to update the name/description of the channels to update the counters
 botPermissions.add("ViewChannel");
 botPermissions.add("ManageChannels");
