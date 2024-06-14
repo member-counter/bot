@@ -1,4 +1,5 @@
 import { Client } from "discord.js";
+import { ProxyAgent } from "undici";
 
 import { setupBotDataExchangeProvider } from "@mc/bot-data-exchange";
 import { generateBotIntents } from "@mc/common/botIntents";
@@ -9,6 +10,8 @@ import { env } from "./env";
 import { setupEvents } from "./events";
 import { setupJobs } from "./jobs";
 import { deployCommands } from "./utils/deployCommands";
+import { makeCache } from "./utils/makeCache";
+import { sweepers } from "./utils/sweepers";
 
 export async function initBot() {
   if (env.AUTO_DEPLOY_COMMANDS) {
@@ -16,10 +19,28 @@ export async function initBot() {
   }
 
   // TODO manage sharding
-  // TODO makeCache and sweepers
   const bot = new Client({
-    intents: generateBotIntents(env.DISCORD_BOT_IS_PRIVILEGED),
-    waitGuildTimeout: 30000,
+    intents: generateBotIntents(
+      env.DISCORD_BOT_IS_PRIVILEGED,
+      env.DISCORD_BOT_IS_PREMIUM,
+    ),
+    waitGuildTimeout: 30_000,
+    rest: {
+      agent: new ProxyAgent({
+        uri: "https://localhost:8080",
+        connect: {
+          rejectUnauthorized: false,
+        },
+        proxyTls: {
+          rejectUnauthorized: false,
+        },
+        requestTls: {
+          rejectUnauthorized: false,
+        },
+      }),
+    },
+    makeCache,
+    sweepers,
   });
 
   const BDERedisPubClient = redis.duplicate();

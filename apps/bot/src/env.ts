@@ -11,6 +11,12 @@ export const env = createEnv({
       .toLowerCase()
       .transform((x) => x === "true")
       .pipe(z.boolean()),
+    DISCORD_BOT_IS_PREMIUM: z
+      .string()
+      .toLowerCase()
+      .transform((x) => x === "true")
+      .pipe(z.boolean()),
+    DISCORD_BOT_COMPUTE_PRIORITY: z.coerce.number(),
     WEBSITE_URL: z.string(),
     NEXT_PUBLIC_BOT_REPO_URL: z.string(),
     NEXT_PUBLIC_SUPPORT_URL: z.string(),

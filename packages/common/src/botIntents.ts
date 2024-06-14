@@ -1,6 +1,6 @@
 import { IntentsBitField } from "discord.js";
 
-export function generateBotIntents(isPrivileged: boolean) {
+export function generateBotIntents(isPrivileged: boolean, isPremium: boolean) {
   const intents = new IntentsBitField();
 
   intents.add("Guilds");
@@ -8,15 +8,16 @@ export function generateBotIntents(isPrivileged: boolean) {
 
   intents.add("GuildMessages");
 
-  // TODO check how cache works
   intents.add("GuildModeration");
 
-  if (isPrivileged) {
+  if (isPrivileged && isPremium) {
     intents.add("GuildMembers");
     intents.add("GuildPresences");
   }
 
-  intents.add("GuildVoiceStates");
+  if (isPremium) {
+    intents.add("GuildVoiceStates");
+  }
 
   return intents;
 }

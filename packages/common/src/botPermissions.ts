@@ -14,7 +14,7 @@ botPermissions.add("SendMessages");
 botPermissions.add("ReadMessageHistory");
 botPermissions.add("EmbedLinks");
 
-// Used by the setup command and to update channel permissions when you add a Premium bot
+// Used by the setup command
 botPermissions.add("ManageRoles");
 
 // Used to display the amount of banned members in the banned members counter
