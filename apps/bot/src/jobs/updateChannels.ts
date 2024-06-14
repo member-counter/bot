@@ -5,6 +5,7 @@ import { GuildSettings } from "@mc/common/GuildSettings";
 import logger from "@mc/logger";
 
 import DataSourceService from "~/DataSourceService";
+import { DataSourceEvaluationError } from "~/DataSourceService/DataSourceEvaluator/DataSourceEvaluationError";
 import { initI18n } from "~/i18n";
 import { Job } from "~/structures/Job";
 import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
@@ -27,7 +28,18 @@ async function updateGuildChannels(guild: Guild) {
       );
 
       if (!channel) return;
-      if (!botHasPermsToEdit(channel)) return;
+      if (!botHasPermsToEdit(channel)) {
+        await GuildSettings.channels.logs
+          .set(channel.id, {
+            LastTemplateUpdateDate: new Date(),
+            LastTemplateComputeError: new DataSourceEvaluationError(
+              "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL",
+            ).message,
+          })
+          .catch(logger.error);
+
+        return;
+      }
 
       const dataSourceService = new DataSourceService({
         guild: channel.guild,
