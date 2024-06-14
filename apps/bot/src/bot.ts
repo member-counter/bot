@@ -44,10 +44,11 @@ export async function startBot(options: BotInstanceOptions) {
 
   const bot = new Client({
     intents: generateBotIntents(options.isPrivileged, options.isPremium),
+    shards: options.shards,
+    shardCount: options.shardCount,
     ws: {
       buildIdentifyThrottler: () => new RedisIdentifyThrottler(options),
     },
-
     waitGuildTimeout: 30_000,
     makeCache,
     sweepers,
