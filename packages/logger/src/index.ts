@@ -23,18 +23,24 @@ const logger = winston.createLogger({
       : winston.format.uncolorize(),
     winston.format.splat(),
     winston.format.timestamp(),
-    winston.format.printf(({ level, message, timestamp, ...metadata }) => {
-      const metadataSerialized =
-        Object.keys(metadata).length &&
-        JSON.stringify(metadata, (_, v: unknown) =>
-          typeof v === "bigint" ? v.toString() : v,
-        );
-      const metadataStr = metadataSerialized
-        ? "- metadata: " + metadataSerialized
-        : "";
+    winston.format.printf(
+      ({ level, message, timestamp, botId, ...metadata }) => {
+        const metadataSerialized =
+          Object.keys(metadata).length &&
+          JSON.stringify(metadata, (_, v: unknown) =>
+            typeof v === "bigint" ? v.toString() : v,
+          );
+        const metadataStr = metadataSerialized
+          ? "metadata: " + metadataSerialized
+          : null;
+        const messageStr = `${level}: ${message}`;
+        const botIdStr = botId ? `bot: ${botId}` : null;
 
-      return `${timestamp} - ${level}: ${message} ${metadataStr}`;
-    }),
+        return [timestamp, botIdStr, messageStr, metadataStr]
+          .filter(Boolean)
+          .join(" - ");
+      },
+    ),
   ),
   transports: [
     new winston.transports.Console({
