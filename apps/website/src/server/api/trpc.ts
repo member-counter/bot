@@ -13,11 +13,11 @@ import { ZodError } from "zod";
 
 import { BitField } from "@mc/common/BitField";
 import { UserSettings } from "@mc/common/UserSettings";
+import { db } from "@mc/db";
 import { redis } from "@mc/redis";
 
 import { getSession } from "~/app/api/sessionCookie";
 import { Errors } from "~/app/errors";
-import { db } from "~/server/db";
 import { refreshToken } from "../auth";
 
 /**
