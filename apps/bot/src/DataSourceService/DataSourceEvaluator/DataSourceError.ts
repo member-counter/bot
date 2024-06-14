@@ -1,4 +1,4 @@
-const DataSourceEvaluationErrorTypes = [
+const DataSourceErrorTypes = [
   "UNKNOWN",
   "UNKNOWN_DATA_SOURCE",
   "UNKNOWN_EVALUATION_RETURN_TYPE",
@@ -22,8 +22,8 @@ const DataSourceEvaluationErrorTypes = [
   "GAME_MISSING_GAME_ID",
 ] as const;
 
-export class DataSourceEvaluationError extends Error {
-  constructor(message: (typeof DataSourceEvaluationErrorTypes)[number]) {
+export class DataSourceError extends Error {
+  constructor(message: (typeof DataSourceErrorTypes)[number]) {
     super(message);
   }
 }

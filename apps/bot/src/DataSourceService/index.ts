@@ -12,7 +12,7 @@ import type {
   PreparedDataSourceFormatSettings,
 } from "./DataSourceEvaluator";
 import { ExplorerStackItem } from "~/utils/ExplorerStackItem";
-import { DataSourceEvaluationError } from "./DataSourceEvaluator/DataSourceEvaluationError";
+import { DataSourceError } from "./DataSourceEvaluator/DataSourceError";
 import dataSourceEvaluators from "./DataSourceEvaluator/evaluators";
 
 class DataSourceService {
@@ -48,7 +48,7 @@ class DataSourceService {
       result = result.slice(0, 1023);
     } else {
       if (result.length < 2)
-        throw new DataSourceEvaluationError(
+        throw new DataSourceError(
           "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS",
         );
       result = result.slice(0, 99);
@@ -86,7 +86,7 @@ class DataSourceService {
 
     assert(
       typeof result === "number" || typeof result === "string",
-      new DataSourceEvaluationError("UNKNOWN_EVALUATION_RETURN_TYPE"),
+      new DataSourceError("UNKNOWN_EVALUATION_RETURN_TYPE"),
     );
 
     if (typeof result === "number" && !isNaN(result)) {
@@ -115,7 +115,7 @@ class DataSourceService {
 
     assert(
       typeof result === "string",
-      new DataSourceEvaluationError("FAILED_TO_RETURN_A_FINAL_STRING"),
+      new DataSourceError("FAILED_TO_RETURN_A_FINAL_STRING"),
     );
 
     return result;
@@ -185,10 +185,7 @@ class DataSourceService {
   }): Promise<DataSourceExecuteResult> {
     const dataSourceEvaluator = DataSourceService.dataSourceEvaluators[id];
 
-    assert(
-      dataSourceEvaluator,
-      new DataSourceEvaluationError("UNKNOWN_DATA_SOURCE"),
-    );
+    assert(dataSourceEvaluator, new DataSourceError("UNKNOWN_DATA_SOURCE"));
 
     return await dataSourceEvaluator.execute({
       format,
@@ -203,13 +200,11 @@ class DataSourceService {
     try {
       parsed = JSON.parse(unparsedRawDataSource) as DataSource;
     } catch {
-      throw new DataSourceEvaluationError(
-        "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON",
-      );
+      throw new DataSourceError("DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON");
     }
 
     if (!Object.prototype.hasOwnProperty.call(parsed, "id"))
-      throw new DataSourceEvaluationError("DELIMITED_DATA_SOURCE_IS_INVALID");
+      throw new DataSourceError("DELIMITED_DATA_SOURCE_IS_INVALID");
 
     return parsed;
   }

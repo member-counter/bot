@@ -7,7 +7,7 @@ import { redis } from "@mc/redis";
 
 import { env } from "~/env";
 import { DataSourceEvaluator } from "..";
-import { DataSourceEvaluationError } from "../DataSourceEvaluationError";
+import { DataSourceError } from "../DataSourceError";
 
 const CACHE_LIFETIME = 30 * 60;
 
@@ -70,10 +70,7 @@ async function fetchData(
 export const memeratorEvaluator = new DataSourceEvaluator({
   id: DataSourceId.MEMERATOR,
   execute: async ({ options }) => {
-    assert(
-      options.username,
-      new DataSourceEvaluationError("MEMERATOR_MISSING_USERNAME"),
-    );
+    assert(options.username, new DataSourceError("MEMERATOR_MISSING_USERNAME"));
 
     return Number(await fetchData(options.username, options.return));
   },

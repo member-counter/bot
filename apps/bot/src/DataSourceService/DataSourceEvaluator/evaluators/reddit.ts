@@ -6,7 +6,7 @@ import { toDataSourceCacheKey } from "@mc/common/redis/dataSourceCache";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
-import { DataSourceEvaluationError } from "../DataSourceEvaluationError";
+import { DataSourceError } from "../DataSourceError";
 
 const CACHE_LIFETIME = 15 * 60;
 
@@ -86,10 +86,7 @@ async function fetchData(
 export const redditEvaluator = new DataSourceEvaluator({
   id: DataSourceId.REDDIT,
   execute: async ({ options }) => {
-    assert(
-      options.subreddit,
-      new DataSourceEvaluationError("REDDIT_MISSING_SUBREDDIT"),
-    );
+    assert(options.subreddit, new DataSourceError("REDDIT_MISSING_SUBREDDIT"));
 
     return await fetchData(options.subreddit, options.return);
   },

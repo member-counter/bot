@@ -7,7 +7,7 @@ import { redis } from "@mc/redis";
 
 import { env } from "~/env";
 import { DataSourceEvaluator } from "..";
-import { DataSourceEvaluationError } from "../DataSourceEvaluationError";
+import { DataSourceError } from "../DataSourceError";
 
 const resolveToChannelIdValidator = z.object({
   items: z.array(
@@ -165,7 +165,7 @@ export const youTubeEvaluator = new DataSourceEvaluator({
     assert(env.YOUTUBE_API_KEY, new Error("YOUTUBE_API_KEY not provided"));
     assert(
       options.channelUrl,
-      new DataSourceEvaluationError("YOUTUBE_MISSING_CHANNEL_URL"),
+      new DataSourceError("YOUTUBE_MISSING_CHANNEL_URL"),
     );
 
     const legacyUsername = options.channelUrl.replace(
@@ -194,7 +194,7 @@ export const youTubeEvaluator = new DataSourceEvaluator({
 
     assert(
       searchChannel && searchChannelBy,
-      new DataSourceEvaluationError("YOUTUBE_INVALID_CHANNEL_URL"),
+      new DataSourceError("YOUTUBE_INVALID_CHANNEL_URL"),
     );
 
     return await fetchData(searchChannel, searchChannelBy, options.return);

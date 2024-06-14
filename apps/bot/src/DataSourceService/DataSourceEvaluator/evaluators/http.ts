@@ -8,7 +8,7 @@ import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
 import * as packageJSON from "../../../../../../package.json";
-import { DataSourceEvaluationError } from "../DataSourceEvaluationError";
+import { DataSourceError } from "../DataSourceError";
 
 const cachedValueValidator = z.object({
   body: z.string(),
@@ -34,13 +34,13 @@ async function fetchData(url: string, lifetime?: number) {
 
   assert(
     response.status === 200,
-    new DataSourceEvaluationError("HTTP_INVALID_RESPONSE_STATUS_CODE"),
+    new DataSourceError("HTTP_INVALID_RESPONSE_STATUS_CODE"),
   );
 
   const contentType = response.headers.get("Content-Type") ?? "";
   assert(
     ["text/plain", "application/json"].includes(contentType),
-    new DataSourceEvaluationError("HTTP_INVALID_RESPONSE_CONTENT_TYPE"),
+    new DataSourceError("HTTP_INVALID_RESPONSE_CONTENT_TYPE"),
   );
 
   const body = await response.text();
@@ -57,7 +57,7 @@ async function fetchData(url: string, lifetime?: number) {
 export const HTTPEvaluator = new DataSourceEvaluator({
   id: DataSourceId.HTTP,
   execute: async ({ options }) => {
-    assert(options.url, new DataSourceEvaluationError("HTTP_MISSING_URL"));
+    assert(options.url, new DataSourceError("HTTP_MISSING_URL"));
 
     const { body, contentType } = await fetchData(
       options.url,
@@ -65,10 +65,7 @@ export const HTTPEvaluator = new DataSourceEvaluator({
     );
 
     if (contentType === "application/json") {
-      assert(
-        options.dataPath,
-        new DataSourceEvaluationError("HTTP_DATA_PATH_MANDATORY"),
-      );
+      assert(options.dataPath, new DataSourceError("HTTP_DATA_PATH_MANDATORY"));
 
       return jsonBodyExtractor(JSON.parse(body), options.dataPath);
     } else {

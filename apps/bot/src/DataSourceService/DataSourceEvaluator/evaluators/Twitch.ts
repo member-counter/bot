@@ -8,7 +8,7 @@ import { redis } from "@mc/redis";
 
 import { env } from "~/env";
 import { DataSourceEvaluator } from "..";
-import { DataSourceEvaluationError } from "../DataSourceEvaluationError";
+import { DataSourceError } from "../DataSourceError";
 
 function createClient() {
   if (env.TWITCH_CLIENT_ID == null || env.TWITCH_CLIENT_SECRET == null) return;
@@ -58,7 +58,7 @@ async function fetchData(
   const channel = await client.users.getUserByName(username);
 
   if (!channel) {
-    throw new DataSourceEvaluationError("TWITCH_CHANNEL_NOT_FOUND");
+    throw new DataSourceError("TWITCH_CHANNEL_NOT_FOUND");
   }
 
   const stream = await client.streams.getStreamByUserName(username);
@@ -103,10 +103,7 @@ async function fetchData(
 export const twitchEvaluator = new DataSourceEvaluator({
   id: DataSourceId.TWITCH,
   execute: ({ options }) => {
-    assert(
-      options.username,
-      new DataSourceEvaluationError("TWITCH_MISSING_USERNAME"),
-    );
+    assert(options.username, new DataSourceError("TWITCH_MISSING_USERNAME"));
 
     return fetchData(options.username, options.return);
   },
