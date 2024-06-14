@@ -1,4 +1,4 @@
-import type { Guild, Snowflake } from "discord.js";
+import type { Client, Guild, Snowflake } from "discord.js";
 import { ChannelType } from "discord.js";
 
 import { GuildSettings } from "@mc/common/GuildSettings";
@@ -90,28 +90,31 @@ async function updateGuildChannels(guild: Guild) {
 
 const guildsBeingUpdated = new Set<Snowflake>();
 
-export const updateChannels = new Job({
-  name: "Update channels",
-  time: "0 */5 * * * *",
-  execute: async (client) => {
-    const { logger } = client.botInstanceOptions;
+export const updateChannels = (client: Client) =>
+  new Job({
+    name: "Update channels",
+    time: client.botInstanceOptions.isPremium
+      ? "0 */5 * * * *"
+      : "0 */10 * * * *",
+    execute: async (client) => {
+      const { logger } = client.botInstanceOptions;
 
-    client.guilds.cache.forEach((guild) => {
-      if (guildsBeingUpdated.has(guild.id)) return;
-      guildsBeingUpdated.add(guild.id);
+      client.guilds.cache.forEach((guild) => {
+        if (guildsBeingUpdated.has(guild.id)) return;
+        guildsBeingUpdated.add(guild.id);
 
-      updateGuildChannels(guild)
-        .catch((error: unknown) => {
-          logger.error(
-            `Error while trying to update channels for ${guild.toString()}`,
-            { error, guild },
-          );
-        })
-        .finally(() => {
-          guildsBeingUpdated.delete(guild.id);
-        });
-    });
+        updateGuildChannels(guild)
+          .catch((error: unknown) => {
+            logger.error(
+              `Error while trying to update channels for ${guild.toString()}`,
+              { error, guild },
+            );
+          })
+          .finally(() => {
+            guildsBeingUpdated.delete(guild.id);
+          });
+      });
 
-    return Promise.resolve();
-  },
-});
+      return Promise.resolve();
+    },
+  });

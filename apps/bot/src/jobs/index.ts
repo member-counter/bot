@@ -6,11 +6,19 @@ import { sendBotStats } from "./sendBotStats";
 import { setBotStatus } from "./setBotSatus";
 import { updateChannels } from "./updateChannels";
 
-const jobs: Job[] = [sendBotStats, setBotStatus, updateChannels];
+const jobs: (Job | ((client: Client) => Job))[] = [
+  sendBotStats,
+  setBotStatus,
+  updateChannels,
+];
 
 export function setupJobs(client: Client) {
   const { logger } = client.botInstanceOptions;
   jobs.forEach((job) => {
+    if (typeof job === "function") {
+      job = job(client);
+    }
+
     let isLocked = false;
 
     const run = async () => {
