@@ -17,7 +17,13 @@ export async function getSession(): Promise<Session | null> {
     password: env.COOKIE_SECRET,
   });
 
-  return SessionSchema.parse(unsealed);
+  try {
+    return SessionSchema.parse(unsealed);
+  } catch (err) {
+    console.error(err);
+    destroySession();
+    return null;
+  }
 }
 
 export async function setSession(sessionTokens: Session) {
