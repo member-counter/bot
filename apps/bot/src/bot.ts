@@ -36,6 +36,7 @@ export interface BotInstanceOptions {
   logger: typeof baseLogger;
   isPremium: boolean;
   isPrivileged: boolean;
+  discordAPIRequestsPerSecond: number;
 }
 
 export async function startBot(options: BotInstanceOptions) {
@@ -47,6 +48,9 @@ export async function startBot(options: BotInstanceOptions) {
     intents: generateBotIntents(options),
     shards: options.shards,
     shardCount: options.shardCount,
+    rest: {
+      globalRequestsPerSecond: options.discordAPIRequestsPerSecond,
+    },
     ws: {
       buildIdentifyThrottler: () => new RedisIdentifyThrottler(options),
     },

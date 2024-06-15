@@ -1,4 +1,5 @@
-import type { Client, Guild, Snowflake } from "discord.js";
+import type { Client, Guild } from "discord.js";
+import { Redlock } from "@sesamecare-oss/redlock";
 import { ChannelType } from "discord.js";
 
 import { GuildSettings } from "@mc/common/GuildSettings";
@@ -11,7 +12,10 @@ import { Job } from "~/structures/Job";
 import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
 import { advertiseEvaluatorPrioritykey } from "./advertise";
 
-async function updateGuildChannels(guild: Guild) {
+async function updateGuildChannels(
+  guild: Guild,
+  extendLock: () => Promise<void>,
+) {
   if (!guild.available) return;
 
   const { logger } = guild.client.botInstanceOptions;
@@ -84,13 +88,13 @@ async function updateGuildChannels(guild: Guild) {
         if (channel.name === computedTemplate) return;
         await channel.edit({ name: computedTemplate });
       }
+
+      await extendLock();
     }),
   );
 }
 
 export const updateChannels = (client: Client) => {
-  const guildsBeingUpdated = new Set<Snowflake>();
-
   return new Job({
     name: "Update channels",
     time: client.botInstanceOptions.isPremium
@@ -99,31 +103,40 @@ export const updateChannels = (client: Client) => {
     execute: async (client) => {
       const { logger, dataSourceComputePriority } = client.botInstanceOptions;
 
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      client.guilds.cache.forEach(async (guild) => {
-        if (guildsBeingUpdated.has(guild.id)) return;
-
-        const handledPriority = Number(
-          await redis.get(advertiseEvaluatorPrioritykey(guild.id)),
-        );
-
-        if (handledPriority > dataSourceComputePriority) return;
-
-        guildsBeingUpdated.add(guild.id);
-
-        updateGuildChannels(guild)
-          .catch((error: unknown) => {
-            logger.error(
-              `Error while trying to update channels for ${guild.toString()}`,
-              { error, guild },
-            );
-          })
-          .finally(() => {
-            guildsBeingUpdated.delete(guild.id);
-          });
+      const redlock = new Redlock([redis], {
+        retryCount: Infinity,
+        retryDelay: 15_000,
       });
 
-      return Promise.resolve();
+      let lock = await redlock.acquire(
+        [`api-intensive-operation-lock:${client.botInstanceOptions.id}`],
+        15_000,
+      );
+
+      const extendLock = async () => {
+        lock = await lock.extend(15_000);
+      };
+
+      await Promise.all(
+        client.guilds.cache.map(async (guild) => {
+          const handledPriority = Number(
+            await redis.get(advertiseEvaluatorPrioritykey(guild.id)),
+          );
+
+          if (handledPriority > dataSourceComputePriority) return;
+
+          await updateGuildChannels(guild, extendLock).catch(
+            (error: unknown) => {
+              logger.error(
+                `Error while trying to update channels for ${guild.toString()}`,
+                { error, guild },
+              );
+            },
+          );
+        }),
+      );
+
+      await lock.release();
     },
   });
 };
