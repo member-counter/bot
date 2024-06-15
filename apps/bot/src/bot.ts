@@ -53,7 +53,7 @@ export async function startBot(options: BotInstanceOptions) {
       buildIdentifyThrottler: () => new RedisIdentifyThrottler(options),
     },
     waitGuildTimeout: 30_000,
-    makeCache,
+    makeCache: makeCache(options),
     sweepers,
   });
 
