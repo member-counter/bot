@@ -15,6 +15,7 @@ services:
       - ./storage/db:/data/db
     expose:
       - 27017
+    restart: unless-stopped
 
   setup-mongo-rs:
     image: mongo:7
@@ -41,7 +42,7 @@ services:
     image: redis
     command: redis-server
     container_name: Redis
-    restart: always
+    restart: unless-stopped
     networks:
       - default
     ports:
@@ -60,6 +61,7 @@ services:
       start_period: 20s
     ports:
       - "3002:5540"
+    restart: unless-stopped
 
   setup-redis-insight:
     container_name: Setup-Redis-Insight
