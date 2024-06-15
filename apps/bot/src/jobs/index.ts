@@ -4,6 +4,7 @@ import { CronJob } from "cron";
 import type { Job } from "../structures/Job";
 import { advertise } from "./advertise";
 import { checkBlockedGuilds } from "./checkBlockedGuilds";
+import { fetchApproximateMemberCount } from "./fetchApproximateMemberCount";
 import { sendBotStats } from "./sendBotStats";
 import { setBotStatus } from "./setBotSatus";
 import { updateChannels } from "./updateChannels";
@@ -12,12 +13,14 @@ const jobs: (Job | ((client: Client) => Job))[] = [
   sendBotStats,
   setBotStatus,
   updateChannels,
+  fetchApproximateMemberCount,
   checkBlockedGuilds,
   advertise,
 ];
 
 export function setupJobs(client: Client) {
   const { logger } = client.botInstanceOptions;
+
   jobs.forEach((job) => {
     if (typeof job === "function") {
       job = job(client);

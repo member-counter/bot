@@ -4,6 +4,7 @@ export class Job {
   name: string;
   time: string;
   runOnClientReady?: boolean;
+  disabled?: boolean;
   execute: (client: Client<true>) => Promise<void>;
 
   constructor(options: Job) {

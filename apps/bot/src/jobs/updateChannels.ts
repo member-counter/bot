@@ -103,7 +103,7 @@ export const updateChannels = (client: Client) => {
   return new Job({
     name: "Update channels",
     time: client.botInstanceOptions.isPremium
-      ? "*/5 * * * * *"
+      ? "0 */5 * * * *"
       : "0 */10 * * * *",
     execute: async (client) => {
       const { logger, dataSourceComputePriority, id, childId } =
