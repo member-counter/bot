@@ -1,6 +1,12 @@
 import { IntentsBitField } from "discord.js";
 
-export function generateBotIntents(isPrivileged: boolean, isPremium: boolean) {
+export function generateBotIntents({
+  isPrivileged,
+  isPremium,
+}: {
+  isPrivileged: boolean;
+  isPremium: boolean;
+}) {
   const intents = new IntentsBitField();
 
   intents.add("Guilds");

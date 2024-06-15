@@ -46,7 +46,7 @@ export async function startBot(options: BotInstanceOptions) {
   // TODO filter guilds
 
   const bot = new Client({
-    intents: generateBotIntents(options.isPrivileged, options.isPremium),
+    intents: generateBotIntents(options),
     shards: options.shards,
     shardCount: options.shardCount,
     ws: {
