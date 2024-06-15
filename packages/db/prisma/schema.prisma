@@ -46,4 +46,5 @@ model Channel {
   guild             Guild   @relation(fields: [discordGuildId], references: [discordGuildId], onDelete: Cascade)
 
   @@unique([discordChannelId, discordGuildId])
+  @@index([discordGuildId])
 }
