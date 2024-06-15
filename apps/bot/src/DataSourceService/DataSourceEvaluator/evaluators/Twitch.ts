@@ -3,7 +3,7 @@ import { ApiClient } from "@twurple/api";
 import { AppTokenAuthProvider } from "@twurple/auth";
 
 import { DataSourceId, TwitchDataSourceReturn } from "@mc/common/DataSource";
-import { toDataSourceCacheKey } from "@mc/common/redis/dataSourceCache";
+import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { env } from "~/env";
@@ -26,7 +26,7 @@ const client = createClient();
 const CACHE_LIFETIME = 15 * 60;
 
 function toCacheKey(username: string, returnType: TwitchDataSourceReturn) {
-  return toDataSourceCacheKey(
+  return dataSourceCacheKey(
     DataSourceId.TWITCH,
     [username, returnType].join(":"),
   );

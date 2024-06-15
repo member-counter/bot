@@ -2,7 +2,7 @@ import assert from "assert";
 import { z } from "zod";
 
 import { DataSourceId, RedditDataSourceReturn } from "@mc/common/DataSource";
-import { toDataSourceCacheKey } from "@mc/common/redis/dataSourceCache";
+import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
@@ -11,7 +11,7 @@ import { DataSourceError } from "../DataSourceError";
 const CACHE_LIFETIME = 15 * 60;
 
 function toCacheKey(subreddit: string, returnType: RedditDataSourceReturn) {
-  return toDataSourceCacheKey(
+  return dataSourceCacheKey(
     DataSourceId.REDDIT,
     [subreddit, returnType].join(":"),
   );

@@ -2,7 +2,7 @@ import assert from "assert";
 import { z } from "zod";
 
 import { DataSourceId, YouTubeDataSourceReturn } from "@mc/common/DataSource";
-import { toDataSourceCacheKey } from "@mc/common/redis/dataSourceCache";
+import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { env } from "~/env";
@@ -46,7 +46,7 @@ function toCacheKey(
   channel: string,
   returnType: YouTubeDataSourceReturn | "resolved@username",
 ) {
-  return toDataSourceCacheKey(
+  return dataSourceCacheKey(
     DataSourceId.REDDIT,
     [channel, returnType].join(":"),
   );

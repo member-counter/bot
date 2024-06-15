@@ -2,7 +2,7 @@ import assert from "assert";
 import { z } from "zod";
 
 import { DataSourceId, MemeratorDataSourceReturn } from "@mc/common/DataSource";
-import { toDataSourceCacheKey } from "@mc/common/redis/dataSourceCache";
+import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { env } from "~/env";
@@ -12,7 +12,7 @@ import { DataSourceError } from "../DataSourceError";
 const CACHE_LIFETIME = 30 * 60;
 
 function toCacheKey(username: string, returnType: MemeratorDataSourceReturn) {
-  return toDataSourceCacheKey(
+  return dataSourceCacheKey(
     DataSourceId.MEMERATOR,
     [username, returnType].join(":"),
   );

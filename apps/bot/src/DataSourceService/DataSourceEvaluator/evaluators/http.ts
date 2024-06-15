@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { DataSourceId } from "@mc/common/DataSource";
 import jsonBodyExtractor from "@mc/common/jsonBodyExtractor";
-import { toDataSourceCacheKey } from "@mc/common/redis/dataSourceCache";
+import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
@@ -16,7 +16,7 @@ const cachedValueValidator = z.object({
 });
 
 function toCacheKey(url: string) {
-  return toDataSourceCacheKey(DataSourceId.HTTP, url);
+  return dataSourceCacheKey(DataSourceId.HTTP, url);
 }
 
 async function fetchData(url: string, lifetime?: number) {

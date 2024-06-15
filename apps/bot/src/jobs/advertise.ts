@@ -1,11 +1,9 @@
 import type { Callback, Result } from "ioredis";
 
+import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { Job } from "~/structures/Job";
-
-export const advertiseEvaluatorPrioritykey = (guildId: string) =>
-  `aep:${guildId}`;
 
 declare module "ioredis" {
   interface RedisCommander<Context> {
@@ -40,7 +38,7 @@ export const advertise = new Job({
 
     for (const id of client.guilds.cache.keys()) {
       multi.advertiseEvaluatorPriority(
-        advertiseEvaluatorPrioritykey(id),
+        advertiseEvaluatorPriorityKey(id),
         computePriority,
       );
     }

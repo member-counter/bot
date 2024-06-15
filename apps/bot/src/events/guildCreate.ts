@@ -1,7 +1,7 @@
 import { GuildSettings } from "@mc/common/GuildSettings";
+import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
-import { advertiseEvaluatorPrioritykey } from "~/jobs/advertise";
 import { EventHandler } from "../structures";
 
 export const guildCreateEvent = new EventHandler({
@@ -14,7 +14,7 @@ export const guildCreateEvent = new EventHandler({
     }
 
     await redis.advertiseEvaluatorPriority(
-      advertiseEvaluatorPrioritykey(guild.id),
+      advertiseEvaluatorPriorityKey(guild.id),
       guild.client.botInstanceOptions.dataSourceComputePriority.toString(),
     );
   },

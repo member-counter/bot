@@ -3,6 +3,7 @@ import { Redlock } from "@sesamecare-oss/redlock";
 import { ChannelType } from "discord.js";
 
 import { GuildSettings } from "@mc/common/GuildSettings";
+import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import DataSourceService from "~/DataSourceService";
@@ -10,7 +11,6 @@ import { DataSourceError } from "~/DataSourceService/DataSourceEvaluator/DataSou
 import { initI18n } from "~/i18n";
 import { Job } from "~/structures/Job";
 import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
-import { advertiseEvaluatorPrioritykey } from "./advertise";
 
 async function updateGuildChannels(
   guild: Guild,
@@ -120,7 +120,7 @@ export const updateChannels = (client: Client) => {
       await Promise.all(
         client.guilds.cache.map(async (guild) => {
           const handledPriority = Number(
-            await redis.get(advertiseEvaluatorPrioritykey(guild.id)),
+            await redis.get(advertiseEvaluatorPriorityKey(guild.id)),
           );
 
           if (handledPriority > dataSourceComputePriority) return;
