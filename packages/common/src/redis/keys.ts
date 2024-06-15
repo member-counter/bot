@@ -7,6 +7,7 @@ enum BaseKeys {
   AdvertiseEvaluatorPriority,
   DiscordIdentifyLock,
   DiscordAPIIntensiveOperation,
+  UpdateChannelsQueue,
 }
 
 export const channelLogKey = (
@@ -30,3 +31,6 @@ export const discordIdentifyLockKey = (
 
 export const discordAPIIntensiveOperationLockKey = (botId: string) =>
   `${BaseKeys.DiscordAPIIntensiveOperation}:${botId}`;
+
+export const updateChannelsQueueKey = (botId: string) =>
+  `${BaseKeys.UpdateChannelsQueue}:${botId}`;

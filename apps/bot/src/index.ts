@@ -8,10 +8,14 @@ import { startBot } from "./bot";
 import { env } from "./env";
 
 async function main() {
-  const logger = baseLogger.child({ botId: env.DISCORD_BOT_INSTANCE_ID });
+  const logger = baseLogger.child({
+    botId: env.DISCORD_BOT_INSTANCE_ID,
+    botChildId: env.DISCORD_BOT_INSTANCE_CHILD_ID,
+  });
 
   const botOptions: BotInstanceOptions = {
     id: env.DISCORD_BOT_INSTANCE_ID,
+    childId: env.DISCORD_BOT_INSTANCE_CHILD_ID,
     token: env.DISCORD_BOT_INSTANCE_TOKEN,
     deployCommands: env.DISCORD_BOT_INSTANCE_DEPLOY_COMMANDS,
     isPremium: env.DISCORD_BOT_INSTANCE_IS_PREMIUM,

@@ -21,6 +21,7 @@ declare module "discord.js" {
 
 export interface BotInstanceOptions {
   id: string;
+  childId: string;
   token: string;
   shards: number[];
   shardCount: number;

@@ -1,9 +1,14 @@
+import { setTimeout as sleep } from "timers/promises";
 import type { Client, Guild } from "discord.js";
 import { Redlock } from "@sesamecare-oss/redlock";
 import { ChannelType } from "discord.js";
 
 import { GuildSettings } from "@mc/common/GuildSettings";
-import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
+import {
+  advertiseEvaluatorPriorityKey,
+  discordAPIIntensiveOperationLockKey,
+  updateChannelsQueueKey,
+} from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import DataSourceService from "~/DataSourceService";
@@ -83,10 +88,10 @@ async function updateGuildChannels(
         channel.type === ChannelType.GuildAnnouncement
       ) {
         if (channel.topic === computedTemplate) return;
-        await channel.edit({ topic: computedTemplate });
+        // await channel.edit({ topic: computedTemplate });
       } else {
         if (channel.name === computedTemplate) return;
-        await channel.edit({ name: computedTemplate });
+        // await channel.edit({ name: computedTemplate });
       }
 
       await extendLock();
@@ -98,10 +103,28 @@ export const updateChannels = (client: Client) => {
   return new Job({
     name: "Update channels",
     time: client.botInstanceOptions.isPremium
-      ? "0 */5 * * * *"
+      ? "*/5 * * * * *"
       : "0 */10 * * * *",
     execute: async (client) => {
-      const { logger, dataSourceComputePriority } = client.botInstanceOptions;
+      const { logger, dataSourceComputePriority, id, childId } =
+        client.botInstanceOptions;
+
+      const queueKey = updateChannelsQueueKey(id);
+      const queue = await redis.lrange(queueKey, 0, -1);
+
+      if (!queue.includes(childId)) {
+        await redis.lpush(queueKey, childId);
+      }
+
+      while (true) {
+        const [nextTurn] = await redis.lrange(queueKey, -1, -1);
+
+        if (nextTurn === childId) {
+          break;
+        } else {
+          await sleep(5_000);
+        }
+      }
 
       const redlock = new Redlock([redis], {
         retryCount: Infinity,
@@ -109,7 +132,7 @@ export const updateChannels = (client: Client) => {
       });
 
       let lock = await redlock.acquire(
-        [`api-intensive-operation-lock:${client.botInstanceOptions.id}`],
+        [discordAPIIntensiveOperationLockKey(id)],
         15_000,
       );
 
@@ -137,6 +160,7 @@ export const updateChannels = (client: Client) => {
       );
 
       await lock.release();
+      await redis.rpop(queueKey);
     },
   });
 };

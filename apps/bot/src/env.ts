@@ -10,6 +10,7 @@ export const env = createEnv({
     DISCORD_CLIENT_ID: z.string(),
     DISCORD_BOT_INSTANCE_TOKEN: z.string(),
     DISCORD_BOT_INSTANCE_ID: z.string(),
+    DISCORD_BOT_INSTANCE_CHILD_ID: z.string(),
     DISCORD_BOT_INSTANCE_SHARDING_SHARDS: z.string().transform((s) => {
       return z.array(z.number().min(0)).min(1).parse(JSON.parse(s));
     }),
