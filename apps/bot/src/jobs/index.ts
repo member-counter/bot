@@ -2,6 +2,7 @@ import type { Client } from "discord.js";
 import { CronJob } from "cron";
 
 import type { Job } from "../structures/Job";
+import { advertise } from "./advertise";
 import { sendBotStats } from "./sendBotStats";
 import { setBotStatus } from "./setBotSatus";
 import { updateChannels } from "./updateChannels";
@@ -10,6 +11,7 @@ const jobs: (Job | ((client: Client) => Job))[] = [
   sendBotStats,
   setBotStatus,
   updateChannels,
+  advertise,
 ];
 
 export function setupJobs(client: Client) {

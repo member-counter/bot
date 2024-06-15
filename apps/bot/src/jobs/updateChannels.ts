@@ -2,17 +2,17 @@ import type { Client, Guild, Snowflake } from "discord.js";
 import { ChannelType } from "discord.js";
 
 import { GuildSettings } from "@mc/common/GuildSettings";
+import { redis } from "@mc/redis";
 
 import DataSourceService from "~/DataSourceService";
 import { DataSourceError } from "~/DataSourceService/DataSourceEvaluator/DataSourceError";
 import { initI18n } from "~/i18n";
 import { Job } from "~/structures/Job";
 import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
+import { advertiseEvaluatorPrioritykey } from "./advertise";
 
 async function updateGuildChannels(guild: Guild) {
   if (!guild.available) return;
-
-  // TODO handle bot priority
 
   const { logger } = guild.client.botInstanceOptions;
 
@@ -88,19 +88,27 @@ async function updateGuildChannels(guild: Guild) {
   );
 }
 
-const guildsBeingUpdated = new Set<Snowflake>();
+export const updateChannels = (client: Client) => {
+  const guildsBeingUpdated = new Set<Snowflake>();
 
-export const updateChannels = (client: Client) =>
-  new Job({
+  return new Job({
     name: "Update channels",
     time: client.botInstanceOptions.isPremium
       ? "0 */5 * * * *"
       : "0 */10 * * * *",
     execute: async (client) => {
-      const { logger } = client.botInstanceOptions;
+      const { logger, dataSourceComputePriority } = client.botInstanceOptions;
 
-      client.guilds.cache.forEach((guild) => {
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      client.guilds.cache.forEach(async (guild) => {
         if (guildsBeingUpdated.has(guild.id)) return;
+
+        const handledPriority = Number(
+          await redis.get(advertiseEvaluatorPrioritykey(guild.id)),
+        );
+
+        if (handledPriority > dataSourceComputePriority) return;
+
         guildsBeingUpdated.add(guild.id);
 
         updateGuildChannels(guild)
@@ -118,3 +126,4 @@ export const updateChannels = (client: Client) =>
       return Promise.resolve();
     },
   });
+};

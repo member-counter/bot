@@ -32,6 +32,7 @@ export interface BotInstanceOptions {
     DBLToken?: string;
     BFDToken?: string;
   };
+  dataSourceComputePriority: number;
   logger: typeof baseLogger;
   isPremium: boolean;
   isPrivileged: boolean;
@@ -41,6 +42,8 @@ export async function startBot(options: BotInstanceOptions) {
   await deployCommands(options);
 
   const { logger } = options;
+
+  // TODO filter guilds
 
   const bot = new Client({
     intents: generateBotIntents(options.isPrivileged, options.isPremium),
