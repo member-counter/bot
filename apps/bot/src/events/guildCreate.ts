@@ -8,6 +8,11 @@ export const guildCreateEvent = new EventHandler({
   name: "guildCreate",
   handler: async (guild) => {
     await GuildSettings.upsert(guild.id);
+
+    if (await GuildSettings.isBlocked(guild.id)) {
+      await guild.leave();
+    }
+
     await redis.advertiseEvaluatorPriority(
       advertiseEvaluatorPrioritykey(guild.id),
       guild.client.botInstanceOptions.dataSourceComputePriority.toString(),

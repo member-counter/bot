@@ -44,6 +44,12 @@ export const GuildSettings = {
     });
   },
 
+  areBlocked: async (discordGuildIds: string[]) => {
+    return await db.blockedGuild.findMany({
+      where: { discordGuildId: { in: discordGuildIds } },
+    });
+  },
+
   updateBlock: async (
     discordGuildId: string,
     isBlocked: boolean,
