@@ -332,6 +332,9 @@ importers:
       '@mc/db':
         specifier: workspace:*
         version: link:../db
+      '@mc/logger':
+        specifier: workspace:*
+        version: link:../logger
       '@mc/redis':
         specifier: workspace:*
         version: link:../redis
@@ -344,6 +347,9 @@ importers:
       discord.js:
         specifier: ^14.15.2
         version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      ioredis:
+        specifier: ^5.4.1
+        version: 5.4.1
       zod:
         specifier: ^3.23.3
         version: 3.23.6

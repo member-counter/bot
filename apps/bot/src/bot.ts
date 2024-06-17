@@ -1,9 +1,12 @@
-import type baseLogger from "@mc/logger";
-import type { ActivitiesOptions } from "discord.js";
+import type { BotInstanceOptions } from "@mc/common/BotInstanceOptions";
 import { Client } from "discord.js";
 
 import { setupBotDataExchangeProvider } from "@mc/bot-data-exchange";
 import { generateBotIntents } from "@mc/common/botIntents";
+import {
+  setupBotStatsConsumer,
+  setupBotStatsProvider,
+} from "@mc/common/redis/BotStats";
 import { redis } from "@mc/redis";
 
 import { setupEvents } from "./events";
@@ -16,28 +19,8 @@ import { sweepers } from "./utils/sweepers";
 declare module "discord.js" {
   interface Client {
     botInstanceOptions: BotInstanceOptions;
+    fetchBotStats: ReturnType<typeof setupBotStatsConsumer>;
   }
-}
-
-export interface BotInstanceOptions {
-  id: string;
-  childId: string;
-  token: string;
-  shards: number[];
-  shardCount: number;
-  maxConcurrency: number;
-  deployCommands: boolean | string;
-  presenceActivity: ActivitiesOptions[];
-  stats: {
-    DBGGToken?: string;
-    DBLToken?: string;
-    BFDToken?: string;
-  };
-  dataSourceComputePriority: number;
-  logger: typeof baseLogger;
-  isPremium: boolean;
-  isPrivileged: boolean;
-  discordAPIRequestsPerSecond: number;
 }
 
 export async function startBot(options: BotInstanceOptions) {
@@ -45,7 +28,7 @@ export async function startBot(options: BotInstanceOptions) {
 
   const { logger } = options;
 
-  const bot = new Client({
+  const botClient = new Client({
     intents: generateBotIntents(options),
     shards: options.shards,
     shardCount: options.shardCount,
@@ -59,22 +42,49 @@ export async function startBot(options: BotInstanceOptions) {
     sweepers,
   });
 
-  bot.botInstanceOptions = options;
-
   const BDERedisPubClient = redis.duplicate();
   const BDERedisSubClient = redis.duplicate();
   await setupBotDataExchangeProvider({
     redisClient: redis,
     redisPubClient: BDERedisPubClient,
     redisSubClient: BDERedisSubClient,
-    botClient: bot,
+    botClient: botClient,
   });
 
-  setupEvents(bot);
-  setupJobs(bot);
+  const BSPRedisPubClient = redis.duplicate();
+  const BSPRedisSubClient = redis.duplicate();
+  await setupBotStatsProvider({
+    botClient,
+    redisPubClient: BSPRedisPubClient,
+    redisSubClient: BSPRedisSubClient,
+    botInstanceOptions: options,
+  });
+
+  const BSCRedisPubClient = redis.duplicate();
+  const BSCRedisSubClient = redis.duplicate();
+  const fetchBotStatsFn = setupBotStatsConsumer({
+    redisPubClient: BSCRedisPubClient,
+    redisSubClient: BSCRedisSubClient,
+  });
+
+  botClient.botInstanceOptions = options;
+  botClient.fetchBotStats = () => fetchBotStatsFn(options.id);
+
+  setupEvents(botClient);
+  setupJobs(botClient);
 
   logger.info("Bot starting...");
-  await bot.login(options.token);
+  await botClient.login(options.token);
 
-  return { bot, BDERedisPubClient, BDERedisSubClient };
+  return {
+    botClient: botClient,
+    redisClients: [
+      BDERedisPubClient,
+      BDERedisSubClient,
+      BSPRedisPubClient,
+      BSPRedisSubClient,
+      BSCRedisPubClient,
+      BSCRedisSubClient,
+    ],
+  };
 }

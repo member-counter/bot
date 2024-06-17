@@ -1,9 +1,10 @@
 #!/usr/bin/env node
+import type { BotInstanceOptions } from "@mc/common/BotInstanceOptions";
+
 import { db } from "@mc/db";
 import baseLogger from "@mc/logger";
 import { redis } from "@mc/redis";
 
-import type { BotInstanceOptions } from "./bot";
 import { startBot } from "./bot";
 import { env } from "./env";
 
@@ -34,19 +35,18 @@ async function main() {
     },
   };
 
-  const { bot, BDERedisPubClient, BDERedisSubClient } = await startBot(
-    botOptions,
-  ).catch((err) => {
-    logger.error("Failed to start the bot", err);
-    process.exit(1);
-  });
+  const { botClient, redisClients } = await startBot(botOptions).catch(
+    (err) => {
+      logger.error("Failed to start the bot", err);
+      process.exit(1);
+    },
+  );
 
   process.on("SIGTERM", () => {
     Promise.all([
-      bot.destroy(),
+      botClient.destroy(),
       redis.quit(),
-      BDERedisPubClient.quit(),
-      BDERedisSubClient.quit(),
+      Promise.all(redisClients.map((c) => c.quit())),
       db.$disconnect(),
     ])
       .catch((error: unknown) => {
