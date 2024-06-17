@@ -60,7 +60,7 @@ const generateStats = (
       .size,
     memory: {
       rss: memoryUsage.rss,
-      maxrss: resourceUsage.maxRSS,
+      maxrss: resourceUsage.maxRSS * 1024,
     },
     host: {
       name: os.hostname(),

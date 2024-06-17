@@ -19,7 +19,7 @@ import { sweepers } from "./utils/sweepers";
 declare module "discord.js" {
   interface Client {
     botInstanceOptions: BotInstanceOptions;
-    fetchBotStats: ReturnType<typeof setupBotStatsConsumer>;
+    fetchBotStats: () => ReturnType<ReturnType<typeof setupBotStatsConsumer>>;
   }
 }
 

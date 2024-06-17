@@ -9,6 +9,7 @@ enum BaseKeys {
   DiscordAPIIntensiveOperation,
   UpdateChannelsQueue,
   FetchApproximateMembersQueue,
+  SendBotStatsLock,
 }
 
 export const channelLogKey = (
@@ -38,3 +39,6 @@ export const updateChannelsQueueKey = (botId: string) =>
 
 export const fetchMemembersQueueKey = (botId: string) =>
   `${BaseKeys.FetchApproximateMembersQueue}:${botId}`;
+
+export const sendBotStatsLockKey = (botId: string) =>
+  `${BaseKeys.SendBotStatsLock}:${botId}`;
