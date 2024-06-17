@@ -37,7 +37,8 @@ async function fetchData(url: string, lifetime?: number) {
     new DataSourceError("HTTP_INVALID_RESPONSE_STATUS_CODE"),
   );
 
-  const contentType = response.headers.get("Content-Type") ?? "";
+  const contentType = response.headers.get("Content-Type")?.split(";")[0] ?? "";
+
   assert(
     ["text/plain", "application/json"].includes(contentType),
     new DataSourceError("HTTP_INVALID_RESPONSE_CONTENT_TYPE"),
