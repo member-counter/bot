@@ -1,3 +1,4 @@
+import { inspect } from "util";
 import winston from "winston";
 
 import { env } from "./env";
@@ -25,18 +26,23 @@ const logger = winston.createLogger({
     winston.format.timestamp(),
     winston.format.printf(
       ({ level, message, timestamp, botId, botChildId, ...metadata }) => {
+        const metadataStr = Object.keys(metadata).length
+          ? "metadata: " + inspect(metadata)
+          : null;
+
         const metadataSerialized =
           Object.keys(metadata).length &&
           JSON.stringify(metadata, (_, v: unknown) =>
             typeof v === "bigint" ? v.toString() : v,
           );
-        const metadataStr = metadataSerialized
-          ? "metadata: " + metadataSerialized
+        const metadataJSONStr = Object.keys(metadata).length
+          ? "metadata as JSON: " + JSON.stringify(metadataSerialized)
           : null;
+
         const messageStr = `${level}: ${message}`;
         const botIdStr = botId ? `bot: ${botId} (${botChildId})` : null;
 
-        return [timestamp, botIdStr, messageStr, metadataStr]
+        return [timestamp, botIdStr, messageStr, metadataStr, metadataJSONStr]
           .filter(Boolean)
           .join(" - ");
       },
