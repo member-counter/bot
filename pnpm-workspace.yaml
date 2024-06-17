@@ -1,5 +1,4 @@
 packages:
-  - apps/bot
-  - apps/website
+  - apps/*
   - packages/*
   - tooling/*
