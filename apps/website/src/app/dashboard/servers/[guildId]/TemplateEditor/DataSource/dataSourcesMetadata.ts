@@ -432,7 +432,7 @@ const replaceDataSourceMetadata: DataSourceMetadata<DataSourceReplace> = {
           if (!replacement || !search) return;
           if (typeof replacement !== "string" || typeof search !== "string")
             return;
-          return search + " by " + replacement;
+          return `"${search}" by "${replacement}"`;
         })
         .filter(Boolean)
         .join(", "),
