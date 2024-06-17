@@ -102,7 +102,9 @@ async function fetchData(
 
 export const twitchEvaluator = new DataSourceEvaluator({
   id: DataSourceId.TWITCH,
-  execute: ({ options }) => {
+  execute: ({ ctx, options }) => {
+    const { isPremium } = ctx.guild.client.botInstanceOptions;
+    assert(isPremium, new DataSourceError("BOT_IS_NOT_PREMIUM"));
     assert(options.username, new DataSourceError("TWITCH_MISSING_USERNAME"));
 
     return fetchData(options.username, options.return);

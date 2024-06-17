@@ -20,6 +20,9 @@ const DataSourceErrorTypes = [
   "GAME_MISSING_ADDRESS",
   "GAME_MISSING_PORT",
   "GAME_MISSING_GAME_ID",
+  "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS",
+  "BOT_IS_NOT_PREMIUM",
+  "MEMBER_COUNT_NOT_AVAILABLE",
 ] as const;
 
 export class DataSourceError extends Error {

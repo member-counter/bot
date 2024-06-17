@@ -161,7 +161,9 @@ async function fetchData(
 
 export const youTubeEvaluator = new DataSourceEvaluator({
   id: DataSourceId.YOUTUBE,
-  execute: async ({ options }) => {
+  execute: async ({ ctx, options }) => {
+    const { isPremium } = ctx.guild.client.botInstanceOptions;
+    assert(isPremium, new DataSourceError("BOT_IS_NOT_PREMIUM"));
     assert(env.YOUTUBE_API_KEY, new Error("YOUTUBE_API_KEY not provided"));
     assert(
       options.channelUrl,

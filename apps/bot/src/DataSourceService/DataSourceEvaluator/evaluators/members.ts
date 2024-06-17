@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import type { PresenceStatus } from "discord.js";
 
 import {
@@ -6,8 +7,11 @@ import {
   MembersFilterStatus,
 } from "@mc/common/DataSource";
 
+import type { DataSourceContext } from "..";
 import { DataSourceEvaluator } from "..";
+import { DataSourceError } from "../DataSourceError";
 
+const fetchedGuildsBans = new Set();
 const PresenceStatusMap: Record<PresenceStatus, MembersFilterStatus> = {
   offline: MembersFilterStatus.OFFLINE,
   invisible: MembersFilterStatus.OFFLINE,
@@ -16,35 +20,77 @@ const PresenceStatusMap: Record<PresenceStatus, MembersFilterStatus> = {
   online: MembersFilterStatus.ONLINE,
 };
 
-const fetchedGuildsBans = new Set();
+const throwAvailabiltyIssue = (ctx: DataSourceContext) => {
+  const { isPremium } = ctx.guild.client.botInstanceOptions;
 
-// TODO fetch from REST if !isPriviliged and check isPremium
+  if (isPremium)
+    throw new DataSourceError("BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS");
+  else throw new DataSourceError("BOT_IS_NOT_PREMIUM");
+};
 
-export const membersEvaluator = new DataSourceEvaluator({
-  id: DataSourceId.MEMBERS,
-  async execute({
+const executeUnprivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["execute"] =
+  ({
+    ctx,
+    options: { accountTypeFilter, connectedTo, playing, roles, statusFilter },
+  }) => {
+    let count: number | null = ctx.guild.approximateMemberCount;
+
+    if (statusFilter) {
+      if (statusFilter === MembersFilterStatus.ONLINE) {
+        count = ctx.guild.approximatePresenceCount;
+      } else {
+        throwAvailabiltyIssue(ctx);
+      }
+    }
+
+    if (
+      connectedTo?.length ||
+      accountTypeFilter ||
+      roles?.length ||
+      playing?.length
+    ) {
+      throwAvailabiltyIssue(ctx);
+    }
+
+    if (!count) throw new DataSourceError("MEMBER_COUNT_NOT_AVAILABLE");
+
+    return count;
+  };
+
+const executePrivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["execute"] =
+  async ({
     ctx,
     options: {
       accountTypeFilter,
-      bannedMembers,
       connectedTo,
       playing,
       roleFilterMode,
       roles,
       statusFilter,
     },
-  }) {
-    if (bannedMembers) {
-      if (!fetchedGuildsBans.has(ctx.guild.id)) {
-        await ctx.guild.bans.fetch();
-        fetchedGuildsBans.add(ctx.guild.id);
-      }
-      return ctx.guild.bans.cache.size;
-    }
-
+  }) => {
     const filteredMembers = (await ctx.guild.members.fetch()).clone();
 
-    if (statusFilter)
+    if (connectedTo?.length) {
+      const channels = ctx.guild.channels.cache.filter((channel) =>
+        connectedTo.includes(channel.id),
+      );
+
+      for (const [id] of filteredMembers) {
+        let hasSome = false;
+
+        channels: for (const [_, channel] of channels) {
+          if (channel.isVoiceBased() && channel.members.has(id)) {
+            hasSome = true;
+            break channels;
+          }
+        }
+
+        if (!hasSome) filteredMembers.delete(id);
+      }
+    }
+
+    if (statusFilter) {
       for (const [id, member] of filteredMembers) {
         if (
           PresenceStatusMap[member.presence?.status ?? "offline"] !=
@@ -52,8 +98,9 @@ export const membersEvaluator = new DataSourceEvaluator({
         )
           filteredMembers.delete(id);
       }
+    }
 
-    if (accountTypeFilter)
+    if (accountTypeFilter) {
       for (const [id, member] of filteredMembers) {
         if (
           (!member.user.bot &&
@@ -63,6 +110,7 @@ export const membersEvaluator = new DataSourceEvaluator({
         )
           filteredMembers.delete(id);
       }
+    }
 
     if (roles?.length) {
       if (/* mode is AND */ roleFilterMode) {
@@ -109,25 +157,31 @@ export const membersEvaluator = new DataSourceEvaluator({
       }
     }
 
-    if (connectedTo?.length) {
-      const channels = ctx.guild.channels.cache.filter((channel) =>
-        connectedTo.includes(channel.id),
-      );
+    return filteredMembers.size;
+  };
 
-      for (const [id] of filteredMembers) {
-        let hasSome = false;
+export const membersEvaluator = new DataSourceEvaluator({
+  id: DataSourceId.MEMBERS,
+  async execute(execOpts) {
+    const {
+      ctx: { guild },
+      options: { bannedMembers },
+    } = execOpts;
 
-        channels: for (const [_, channel] of channels) {
-          if (channel.isVoiceBased() && channel.members.has(id)) {
-            hasSome = true;
-            break channels;
-          }
-        }
+    const { isPrivileged } = guild.client.botInstanceOptions;
 
-        if (!hasSome) filteredMembers.delete(id);
+    if (bannedMembers) {
+      if (!fetchedGuildsBans.has(guild.id)) {
+        await guild.bans.fetch();
+        fetchedGuildsBans.add(guild.id);
       }
+      return guild.bans.cache.size;
     }
 
-    return filteredMembers.size;
+    if (isPrivileged) {
+      return await executePrivilegedSearch(execOpts);
+    } else {
+      return await executeUnprivilegedSearch(execOpts);
+    }
   },
 });
