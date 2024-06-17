@@ -30,7 +30,9 @@ export const setupRedisRequester = async ({
 
   await redisSubClient.subscribe(RES_CHANNEL);
 
-  redisSubClient.on("message", (_channel, message) => {
+  redisSubClient.on("message", (channel, message) => {
+    if (channel !== RES_CHANNEL) return;
+
     try {
       let responseMessage = responseMessageSchema.parse(JSON.parse(message));
 
