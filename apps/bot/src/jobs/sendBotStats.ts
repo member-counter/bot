@@ -1,3 +1,8 @@
+import { Redlock } from "@sesamecare-oss/redlock";
+
+import { sendBotStatsLockKey } from "@mc/common/redis/keys";
+import { redis } from "@mc/redis";
+
 import { Job } from "~/structures/Job";
 
 export const sendBotStats = new Job({
@@ -20,8 +25,15 @@ export const sendBotStats = new Job({
       }).catch(logger.error);
     }
 
-    // TODO
-    const guildCount = 0;
+    const botStats = await client.fetchBotStats();
+    const guildCount = botStats.reduce((acc, s) => acc + s.guildCount, 0);
+
+    const lock = new Redlock([redis]);
+
+    await lock.acquire(
+      [sendBotStatsLockKey(client.botInstanceOptions.id)],
+      60 * 60 * 1000,
+    );
 
     logger.info("Sending bot stats...");
 
