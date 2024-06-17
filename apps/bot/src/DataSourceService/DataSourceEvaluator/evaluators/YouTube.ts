@@ -22,9 +22,9 @@ const channelValidator = z.object({
   items: z.array(
     z.object({
       statistics: z.object({
-        videoCount: z.number(),
-        subscriberCount: z.number(),
-        viewCount: z.number(),
+        videoCount: z.string(),
+        subscriberCount: z.string(),
+        viewCount: z.string(),
       }),
       snippet: z.object({
         title: z.string(),
@@ -149,49 +149,38 @@ async function fetchData(
       return channel.snippet.title;
 
     case YouTubeDataSourceReturn.VIDEOS:
-      return channel.statistics.videoCount;
+      return Number(channel.statistics.videoCount);
 
     case YouTubeDataSourceReturn.SUBSCRIBERS:
-      return channel.statistics.subscriberCount;
+      return Number(channel.statistics.subscriberCount);
 
     case YouTubeDataSourceReturn.VIEWS:
-      return channel.statistics.viewCount;
+      return Number(channel.statistics.viewCount);
   }
 }
 
 export const youTubeEvaluator = new DataSourceEvaluator({
   id: DataSourceId.YOUTUBE,
-  execute: async ({ ctx, options }) => {
+  execute: async ({ ctx, options: { channelUrl, return: returnType } }) => {
     const { isPremium } = ctx.guild.client.botInstanceOptions;
     assert(isPremium, new DataSourceError("BOT_IS_NOT_PREMIUM"));
     assert(env.YOUTUBE_API_KEY, new Error("YOUTUBE_API_KEY not provided"));
-    assert(
-      options.channelUrl,
-      new DataSourceError("YOUTUBE_MISSING_CHANNEL_URL"),
-    );
-
-    const legacyUsername = options.channelUrl.replace(
-      legacyUsernameChannelMatch,
-      "",
-    );
-    const handleUsernameUsername = options.channelUrl.replace(
-      handleUsernameChannelMatch,
-      "",
-    );
-    const channelId = options.channelUrl.replace(idChannelMatch, "");
+    assert(channelUrl, new DataSourceError("YOUTUBE_MISSING_CHANNEL_URL"));
 
     let searchChannel: string | undefined = "";
     let searchChannelBy: "id" | "forUsername" | undefined;
 
-    if (legacyUsername) {
+    if (legacyUsernameChannelMatch.test(channelUrl)) {
       searchChannelBy = "forUsername";
-      searchChannel = legacyUsername;
-    } else if (handleUsernameUsername) {
+      searchChannel = channelUrl.replace(legacyUsernameChannelMatch, "");
+    } else if (handleUsernameChannelMatch.test(channelUrl)) {
       searchChannelBy = "id";
-      searchChannel = await resolveToChannelId(handleUsernameUsername);
-    } else if (channelId) {
+      searchChannel = await resolveToChannelId(
+        channelUrl.replace(handleUsernameChannelMatch, ""),
+      );
+    } else if (idChannelMatch.test(channelUrl)) {
       searchChannelBy = "id";
-      searchChannel = channelId;
+      searchChannel = channelUrl.replace(idChannelMatch, "");
     }
 
     assert(
@@ -199,6 +188,6 @@ export const youTubeEvaluator = new DataSourceEvaluator({
       new DataSourceError("YOUTUBE_INVALID_CHANNEL_URL"),
     );
 
-    return await fetchData(searchChannel, searchChannelBy, options.return);
+    return await fetchData(searchChannel, searchChannelBy, returnType);
   },
 });
