@@ -62,10 +62,10 @@ export function GameOptions({
   return (
     <div>
       <div>
-        <Label>Game ID</Label>
+        <Label>Game</Label>
         <Combobox
           items={searchableGames}
-          placeholder=""
+          placeholder="Search..."
           prefillSelectedItemOnSearchOnFocus
           selectedItem={options.game}
           onItemSelect={(game) => {

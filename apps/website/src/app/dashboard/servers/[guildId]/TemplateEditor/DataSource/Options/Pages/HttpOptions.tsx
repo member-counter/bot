@@ -154,7 +154,7 @@ export function HttpOptions({
         <Label>Data path</Label>
         <span className="text-sm font-light italic">
           A path to get the desired value when the response's content type is
-          JSON, the syntax similar to the one used by JS to access properties
+          JSON, the syntax is similar to the one used by JS to access properties
           and array items.
         </span>
         <Combobox
