@@ -1,5 +1,6 @@
 import { Redlock } from "@sesamecare-oss/redlock";
 
+import { noop } from "@mc/common/noop";
 import { sendBotStatsLockKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
@@ -12,7 +13,7 @@ export const sendBotStats = new Job({
   execute: async (client) => {
     const { logger } = client.botInstanceOptions;
 
-    async function sendStats(url: string, payload: unknown, auth?: string) {
+    async function sendStatsTo(url: string, payload: unknown, auth?: string) {
       if (!auth) return;
 
       await fetch(url, {
@@ -25,38 +26,41 @@ export const sendBotStats = new Job({
       }).catch(logger.error);
     }
 
-    const botStats = await client.fetchBotStats();
-    const guildCount = botStats.reduce((acc, s) => acc + s.guildCount, 0);
+    const lock = new Redlock([redis], { retryCount: 0 });
 
-    const lock = new Redlock([redis]);
+    await lock
+      .acquire(
+        [sendBotStatsLockKey(client.botInstanceOptions.id)],
+        60 * 60 * 1000,
+      )
+      .then(async () => {
+        const botStats = await client.fetchBotStats();
+        const guildCount = botStats.reduce((acc, s) => acc + s.guildCount, 0);
 
-    await lock.acquire(
-      [sendBotStatsLockKey(client.botInstanceOptions.id)],
-      60 * 60 * 1000,
-    );
+        logger.info("Sending bot stats...");
 
-    logger.info("Sending bot stats...");
+        await Promise.all([
+          sendStatsTo(
+            `https://discord.bots.gg/api/v1/bots/${client.user.id}/stats`,
+            { guildCount },
+            client.botInstanceOptions.stats.DBGGToken,
+          ),
+          sendStatsTo(
+            `https://top.gg/api/bots/${client.user.id}/stats`,
+            {
+              server_count: guildCount,
+            },
+            client.botInstanceOptions.stats.DBLToken,
+          ),
+          sendStatsTo(
+            `https://botsfordiscord.com/api/bot/${client.user.id}`,
+            { server_count: guildCount },
+            client.botInstanceOptions.stats.BFDToken,
+          ),
+        ]);
 
-    await Promise.all([
-      sendStats(
-        `https://discord.bots.gg/api/v1/bots/${client.user.id}/stats`,
-        { guildCount },
-        client.botInstanceOptions.stats.DBGGToken,
-      ),
-      sendStats(
-        `https://top.gg/api/bots/${client.user.id}/stats`,
-        {
-          server_count: guildCount,
-        },
-        client.botInstanceOptions.stats.DBLToken,
-      ),
-      sendStats(
-        `https://botsfordiscord.com/api/bot/${client.user.id}`,
-        { server_count: guildCount },
-        client.botInstanceOptions.stats.BFDToken,
-      ),
-    ]);
-
-    logger.info("Bot stats has been sent");
+        logger.info("Bot stats has been sent");
+      })
+      .catch(noop);
   },
 });
