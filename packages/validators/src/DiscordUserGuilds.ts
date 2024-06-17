@@ -19,7 +19,7 @@ export const DiscordUserGuildSchema = z
         CDNRoutes.guildIcon(
           guild.id,
           guild.icon,
-          guild.icon.startsWith("a_") ? ImageFormat.GIF : ImageFormat.JPEG,
+          guild.icon.startsWith("a_") ? ImageFormat.GIF : ImageFormat.PNG,
         ) +
         "?size=64";
     return {
