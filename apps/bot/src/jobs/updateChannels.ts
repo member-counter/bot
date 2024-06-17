@@ -88,10 +88,10 @@ async function updateGuildChannels(
         channel.type === ChannelType.GuildAnnouncement
       ) {
         if (channel.topic === computedTemplate) return;
-        // await channel.edit({ topic: computedTemplate });
+        await channel.edit({ topic: computedTemplate });
       } else {
         if (channel.name === computedTemplate) return;
-        // await channel.edit({ name: computedTemplate });
+        await channel.edit({ name: computedTemplate });
       }
 
       await extendLock();
