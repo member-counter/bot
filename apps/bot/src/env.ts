@@ -8,6 +8,7 @@ export const env = createEnv({
     NEXT_PUBLIC_BOT_REPO_URL: z.string(),
     NEXT_PUBLIC_SUPPORT_URL: z.string(),
     DISCORD_CLIENT_ID: z.string(),
+    MAIN_DISCORD_CLIENT_ID: z.string(),
     DISCORD_BOT_INSTANCE_TOKEN: z.string(),
     DISCORD_BOT_INSTANCE_ID: z.string(),
     DISCORD_BOT_INSTANCE_CHILD_ID: z.string(),

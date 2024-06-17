@@ -30,7 +30,7 @@ export const inviteCommand = new Command({
     embed.setDescription(
       t("interaction.commands.invite.description", {
         INVITE_URL: generateInviteLink({
-          clientId: command.client.user.id,
+          clientId: env.MAIN_DISCORD_CLIENT_ID,
           permissions: botPermissions,
         }),
       }),
@@ -41,7 +41,7 @@ export const inviteCommand = new Command({
       new ButtonBuilder({
         style: ButtonStyle.Link,
         url: generateInviteLink({
-          clientId: command.client.user.id,
+          clientId: env.MAIN_DISCORD_CLIENT_ID,
           permissions: botPermissions,
         }),
         label: t("interaction.commands.invite.addToServer"),
@@ -53,7 +53,7 @@ export const inviteCommand = new Command({
         new ButtonBuilder({
           style: ButtonStyle.Link,
           url: generateInviteLink({
-            clientId: command.client.user.id,
+            clientId: env.MAIN_DISCORD_CLIENT_ID,
             permissions: botPermissions,
             selectedGuild: command.guildId,
           }),
