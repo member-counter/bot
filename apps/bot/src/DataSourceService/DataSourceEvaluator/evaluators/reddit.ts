@@ -43,10 +43,13 @@ async function fetchData(
     .then((o) =>
       z
         .object({
-          subscribers: z.number(),
-          active_user_count: z.number(),
-          title: z.string(),
+          data: z.object({
+            subscribers: z.number(),
+            active_user_count: z.number(),
+            title: z.string(),
+          }),
         })
+        .transform(({ data: { ...data } }) => data)
         .parse(o),
     );
 
