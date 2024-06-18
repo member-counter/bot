@@ -3,7 +3,13 @@
 import type { Grammar } from "prismjs";
 import type { ReactNode } from "react";
 import type { Descendant } from "slate";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Slate } from "slate-react";
 import { v4 } from "uuid";
 
@@ -21,7 +27,7 @@ export default function TemplateEditor({
     nodes: defaultInitialEditorValue,
     dataSourceRefs: new Map(),
   },
-  onChange,
+  onChange: unrefedOnChange,
   features,
   textarea,
   children,
@@ -34,16 +40,18 @@ export default function TemplateEditor({
   children: ReactNode;
   disabled?: boolean;
 }): JSX.Element {
+  // A dirty way to fix the dirty forms
+  const [dirtyFix, setDirtyFix] = useState(3);
   const [editor] = useState(buildEditor(features, textarea));
-
+  const onChangeRef = useRef(unrefedOnChange);
   const [dataSourceRefs, setDataSourceRef] = useDataSourceReducer({
     initialDataSourceRefs: initialValue.dataSourceRefs,
   });
 
-  const onChangeRef = useRef(onChange);
-
   useEffect(() => {
+    if (dirtyFix) return setDirtyFix(dirtyFix - 1);
     onChangeRef.current?.(editor.children, dataSourceRefs);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataSourceRefs, editor.children]);
 
   const [editingDataSourceRefId, setEditingDataSourceRefId] =
@@ -88,11 +96,19 @@ export default function TemplateEditor({
     }),
     [dataSourceRefs, setDataSourceRef, editingDataSourceRefId],
   );
+
+  const slateOnChangeCallback = useCallback(
+    (value: Descendant[]) => {
+      onChangeRef.current?.(value, dataSourceRefs);
+    },
+    [dataSourceRefs],
+  );
+
   return (
     <Slate
       editor={editor}
       initialValue={initialValue.nodes}
-      onChange={(value) => onChange?.(value, dataSourceRefs)}
+      onChange={slateOnChangeCallback}
     >
       <TemplateEditorContext.Provider value={templateEditorContextValue}>
         <DataSourceRefsContext.Provider value={dataSourceRefsContextValue}>
