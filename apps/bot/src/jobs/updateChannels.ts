@@ -3,6 +3,8 @@ import type { Client, Guild } from "discord.js";
 import { Redlock } from "@sesamecare-oss/redlock";
 import { ChannelType } from "discord.js";
 
+import { DataSourceError } from "@mc/common/DataSourceService/DataSourceEvaluator/DataSourceError";
+import DataSourceService from "@mc/common/DataSourceService/index";
 import { GuildSettings } from "@mc/common/GuildSettings";
 import {
   advertiseEvaluatorPriorityKey,
@@ -11,8 +13,6 @@ import {
 } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
-import DataSourceService from "~/DataSourceService";
-import { DataSourceError } from "~/DataSourceService/DataSourceEvaluator/DataSourceError";
 import { initI18n } from "~/i18n";
 import { Job } from "~/structures/Job";
 import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
@@ -55,7 +55,6 @@ async function updateGuildChannels(
         guild: channel.guild,
         guildSettings,
         channelType: channel.type,
-        i18n,
       });
 
       const computedTemplate = await dataSourceService

@@ -7,7 +7,6 @@ import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
-import * as packageJSON from "../../../../../../package.json";
 import { DataSourceError } from "../DataSourceError";
 
 const cachedValueValidator = z.object({
@@ -28,7 +27,7 @@ async function fetchData(url: string, lifetime?: number) {
   const response = await fetch(url, {
     signal: AbortSignal.timeout(5000),
     headers: {
-      "User-Agent": `Member Counter Discord Bot/${packageJSON.default.version}`,
+      "User-Agent": `Member Counter Discord Bot`,
     },
   });
 

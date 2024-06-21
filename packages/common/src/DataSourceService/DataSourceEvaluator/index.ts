@@ -1,3 +1,4 @@
+import type { DeepExclude, DeepNonNullable } from "@mc/common/@types/utils";
 import type {
   DataSource,
   DataSourceFormatSettings,
@@ -6,14 +7,10 @@ import type {
 import type { GuildSettings } from "@mc/common/GuildSettings";
 import type { ChannelType, Guild } from "discord.js";
 
-import type { DeepExclude, DeepNonNullable } from "~/@types/utils";
-import type { initI18n } from "~/i18n";
-
 export interface DataSourceContext {
   channelType: ChannelType;
   guild: Guild;
   guildSettings: Awaited<ReturnType<typeof GuildSettings.get>>;
-  i18n: Awaited<ReturnType<typeof initI18n>>;
 }
 
 export type PreparedDataSourceFormatSettings = DeepNonNullable<

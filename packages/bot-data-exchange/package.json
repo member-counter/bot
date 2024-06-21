@@ -16,6 +16,7 @@
   "dependencies": {
     "@mc/trpc-redis": "workspace:*",
     "@mc/validators": "workspace:*",
+    "@mc/common": "workspace:*",
     "@sesamecare-oss/redlock": "^1.2.1",
     "@trpc/server": "next",
     "discord.js": "^14.15.2",

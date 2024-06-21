@@ -1,10 +1,9 @@
+import type { BotInstanceOptions } from "@mc/common/BotInstanceOptions";
 import type { IIdentifyThrottler } from "discord.js";
 import { Redlock } from "@sesamecare-oss/redlock";
 
 import { discordIdentifyLockKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
-
-import type { BotInstanceOptions } from "~/bot";
 
 const redlock = new Redlock([redis]);
 

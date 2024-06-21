@@ -11,9 +11,9 @@ import type {
   DataSourceExecuteResult,
   PreparedDataSourceFormatSettings,
 } from "./DataSourceEvaluator";
-import { ExplorerStackItem } from "~/utils/ExplorerStackItem";
 import { DataSourceError } from "./DataSourceEvaluator/DataSourceError";
 import dataSourceEvaluators from "./DataSourceEvaluator/evaluators";
+import { ExplorerStackItem } from "./ExplorerStackItem";
 
 class DataSourceService {
   private static dataSourceEvaluators = Object.fromEntries(

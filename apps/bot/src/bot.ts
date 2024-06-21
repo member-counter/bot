@@ -16,13 +16,6 @@ import { makeCache } from "./utils/makeCache";
 import { RedisIdentifyThrottler } from "./utils/RedisIdentifyThrottler";
 import { sweepers } from "./utils/sweepers";
 
-declare module "discord.js" {
-  interface Client {
-    botInstanceOptions: BotInstanceOptions;
-    fetchBotStats: () => ReturnType<ReturnType<typeof setupBotStatsConsumer>>;
-  }
-}
-
 export async function startBot(options: BotInstanceOptions) {
   await deployCommands(options);
 

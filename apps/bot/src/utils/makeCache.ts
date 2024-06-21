@@ -1,6 +1,5 @@
+import type { BotInstanceOptions } from "@mc/common/BotInstanceOptions";
 import { Options } from "discord.js";
-
-import type { BotInstanceOptions } from "~/bot";
 
 export const makeCache = (options: BotInstanceOptions) =>
   Options.cacheWithLimits({

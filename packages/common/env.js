@@ -18,6 +18,10 @@ export const env = createEnv({
     DISCORD_CLIENT_ID: z.string(),
     DISCORD_CLIENT_SECRET: z.string(),
     DISCORD_OAUTH2_REDIRECT_URI: z.string(),
+    MEMERATOR_API_KEY: z.string().optional(),
+    TWITCH_CLIENT_ID: z.string().optional(),
+    TWITCH_CLIENT_SECRET: z.string().optional(),
+    YOUTUBE_API_KEY: z.string().optional(),
   },
 
   /**
@@ -44,6 +48,10 @@ export const env = createEnv({
     DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     DISCORD_OAUTH2_REDIRECT_URI: process.env.DISCORD_OAUTH2_REDIRECT_URI,
+    MEMERATOR_API_KEY: process.env.MEMERATOR_API_KEY,
+    TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID,
+    TWITCH_CLIENT_SECRET: process.env.TWITCH_CLIENT_SECRET,
+    YOUTUBE_API_KEY: process.env.YOUTUBE_API_KEY,
     NEXT_PUBLIC_SUPPORT_URL: process.env.NEXT_PUBLIC_SUPPORT_URL,
     NEXT_PUBLIC_BOT_DOCS_URL: process.env.NEXT_PUBLIC_BOT_DOCS_URL,
     NEXT_PUBLIC_BOT_REPO_URL: process.env.NEXT_PUBLIC_BOT_REPO_URL,

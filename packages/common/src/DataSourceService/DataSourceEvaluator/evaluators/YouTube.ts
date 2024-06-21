@@ -5,8 +5,8 @@ import { DataSourceId, YouTubeDataSourceReturn } from "@mc/common/DataSource";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
-import { env } from "~/env";
 import { DataSourceEvaluator } from "..";
+import { env } from "../../../../env";
 import { DataSourceError } from "../DataSourceError";
 
 const resolveToChannelIdValidator = z.object({

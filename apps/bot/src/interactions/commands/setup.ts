@@ -19,10 +19,10 @@ import {
   TwitchDataSourceReturn,
   YouTubeDataSourceReturn,
 } from "@mc/common/DataSource";
+import DataSourceService from "@mc/common/DataSourceService/index";
 import { GuildSettings } from "@mc/common/GuildSettings";
 import { noop } from "@mc/common/noop";
 
-import DataSourceService from "~/DataSourceService";
 import { DEFAULT_LANGUAGE, initI18n, tKey } from "~/i18n";
 import { Command } from "~/structures";
 import { fetchCommandId } from "~/utils/fetchCommandId";
@@ -214,7 +214,6 @@ export const setupCommand = new Command({
       const type = parent ? ChannelType.GuildVoice : ChannelType.GuildCategory;
       const dataSourceService = new DataSourceService({
         guild: guild,
-        i18n,
         guildSettings,
         channelType: type,
       });
