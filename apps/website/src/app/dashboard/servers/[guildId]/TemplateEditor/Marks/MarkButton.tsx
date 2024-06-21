@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { useSlate } from "slate-react";
 
 import { Toggle } from "@mc/ui/toggle";
@@ -14,7 +14,7 @@ import type { Marks } from "../custom-types";
 import { TemplateEditorContext } from "../TemplateEditorContext";
 import toggleMark, { isMarkActive } from "./marks";
 
-export const MarkButton = ({
+export const MarkButton = memo(function MarkButton({
   className,
   format,
   noPopoverLabel = false,
@@ -26,7 +26,7 @@ export const MarkButton = ({
   noPopoverLabel?: boolean;
   children: ReactNode;
   disabled?: boolean;
-}) => {
+}) {
   const { features } = useContext(TemplateEditorContext);
   const editor = useSlate();
 
@@ -47,13 +47,11 @@ export const MarkButton = ({
     return (
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger asChild>
-            <div>{toggleButton}</div>
-          </TooltipTrigger>
+          <TooltipTrigger asChild>{toggleButton}</TooltipTrigger>
           <TooltipContent>
             {format.charAt(0).toUpperCase() + format.slice(1)}
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
     );
-};
+});

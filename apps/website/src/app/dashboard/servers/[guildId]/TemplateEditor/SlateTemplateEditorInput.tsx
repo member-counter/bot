@@ -10,7 +10,7 @@ import Leaf from "./EditorElements/Leaf";
 import marksHotkeyHandler from "./Marks/hotkeyHandler";
 import { TemplateEditorContext } from "./TemplateEditorContext";
 
-export default function TemplateEditorInput(props: EditableProps) {
+export default function SlateTemplateEditorInput(props: EditableProps) {
   const editor = useSlateStatic();
   const { features } = useContext(TemplateEditorContext);
 

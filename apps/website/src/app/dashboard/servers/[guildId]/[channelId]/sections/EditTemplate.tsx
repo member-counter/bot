@@ -7,7 +7,7 @@ import { Label } from "@mc/ui/label";
 import type { DashboardGuildChannelParams } from "../layout";
 import formatRelativeTime from "~/other/formatRelativeTime";
 import { api } from "~/trpc/react";
-import TemplateEditorLayout from "../../TemplateEditor/TemplateEditorLayout";
+import TemplateEditor from "../../TemplateEditor/TemplateEditor";
 
 interface Props {
   value: string;
@@ -47,10 +47,10 @@ export function EditTemplate({ value, onChange, disabled }: Props) {
           Last updated: {lastTemplateUpdateDate}
         </span>
       </div>
-      <TemplateEditorLayout
+      <TemplateEditor
         id={templateInput}
         initiate={channelQuery.isSuccess}
-        initialValue={value}
+        value={value}
         onChange={onChange}
         disabled={disabled}
         target={channelIsTextLike ? "channelTopic" : "channelName"}

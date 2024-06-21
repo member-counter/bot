@@ -8,8 +8,8 @@ import { HoveringToolbar } from "../../Marks/HoveringToolbar";
 import { discordChannelTopic } from "../../serde/deserialization/grammar/sets/discordChannelTopic";
 import { deserialize } from "../../serde/deserialize";
 import { serialize } from "../../serde/serialize";
-import TemplateEditor from "../../TemplateEditor";
-import TemplateEditorInput from "../../TemplateEditorInput";
+import SlateTemplateEditor from "../../SlateTemplateEditor";
+import SlateTemplateEditorInput from "../../SlateTemplateEditorInput";
 
 const features = discordChannelTopic;
 
@@ -30,7 +30,7 @@ function DataSourceFormatDigitInputInner({
       onClick={() => ReactEditor.focus(editor)}
     >
       <HoveringToolbar />
-      <TemplateEditorInput
+      <SlateTemplateEditorInput
         disabled={disabled}
         placeholder={digitNumber.toString()}
         aria-label={`Custom digit ${digitNumber}`}
@@ -57,7 +57,7 @@ export default function DataSourceFormatDigitInput({
 }) {
   const deseriaizedValue = useMemo(() => deserialize(value, features), [value]);
   return (
-    <TemplateEditor
+    <SlateTemplateEditor
       features={features}
       initialValue={deseriaizedValue}
       onChange={(nodes) => onChange(serialize(nodes, features))}
@@ -67,6 +67,6 @@ export default function DataSourceFormatDigitInput({
         digitNumber={digitNumber}
         disabled={disabled}
       />
-    </TemplateEditor>
+    </SlateTemplateEditor>
   );
 }
