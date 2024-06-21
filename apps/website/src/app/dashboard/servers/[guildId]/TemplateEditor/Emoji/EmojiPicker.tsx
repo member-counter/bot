@@ -18,7 +18,7 @@ import { Input } from "@mc/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
 import type { Searchable } from "../../../../../components/Combobox";
-import type { EmojiElement } from "../custom-types";
+import type { CustomText, EmojiElement } from "../custom-types";
 import type { Guild, GuildEmoji } from "../d-types";
 import { useBreakpoint } from "~/hooks/useBreakpoint";
 import { removeFrom } from "~/other/array";
@@ -27,8 +27,6 @@ import { emojis, emojisByGroup, searchableEmojis } from "~/other/emojis";
 import { api } from "~/trpc/react";
 import { GuildEmojiRenderer } from "../../../../../components/GuildEmojiRenderer";
 import { TemplateEditorContext } from "../TemplateEditorContext";
-
-// TODO fix emojis not being inserted on channel name editors
 
 export function EmojiPicker({
   className,
@@ -128,16 +126,21 @@ const EmojiPickerContent = memo(function EmojiPickerContent({
 
   const onSelect = useCallback(
     (emoji: string | GuildEmoji) => {
-      const node: EmojiElement = {
+      const emojiNode: EmojiElement = {
         type: "emoji",
         emoji,
         children: [{ text: "" }],
       };
-      editor.insertNode(node);
+
+      const plainNode: CustomText = {
+        text: typeof emoji === "string" ? emoji : "",
+      };
+
+      editor.insertNode("emoji" in features ? emojiNode : plainNode);
       ReactEditor.focus(editor);
       setIsOpen(false);
     },
-    [editor, setIsOpen],
+    [editor, features, setIsOpen],
   );
 
   return (
