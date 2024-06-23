@@ -5,6 +5,7 @@ import DataSourceService from "@mc/common/DataSourceService/index";
 import { GuildSettings } from "@mc/common/GuildSettings";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
+import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 
 export const dataSourceRouter = createTRPCRouter({
   computeTemplate: publicProcedure
@@ -16,8 +17,16 @@ export const dataSourceRouter = createTRPCRouter({
       }),
     )
     .query(async ({ ctx, input }) => {
-      const guild = ctx.botClient.guilds.cache.get(input.guildId);
+      const { botClient, redisClient } = ctx;
+      const guild = botClient.guilds.cache.get(input.guildId);
       if (!guild) return;
+
+      const handledPriority = Number(
+        await redisClient.get(advertiseEvaluatorPriorityKey(guild.id)),
+      );
+
+      if (handledPriority > botClient.botInstanceOptions.dataSourceComputePriority) return;
+
       await ctx.lockRequest();
 
       const guildSettings = await GuildSettings.upsert(guild.id);
