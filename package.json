@@ -24,9 +24,9 @@
   },
   "devDependencies": {
     "@mc/prettier-config": "workspace:*",
-    "@turbo/gen": "^1.13.3",
+    "@turbo/gen": "^2.0.6",
     "prettier": "^3.2.5",
-    "turbo": "^1.13.3",
+    "turbo": "^2.0.6",
     "typescript": "^5.4.5"
   },
   "prettier": "@mc/prettier-config"
