@@ -1,8 +1,8 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "experimentalUI": true,
   "globalDependencies": ["**/.env"],
-  "pipeline": {
+  "globalEnv": ["NODE_ENV"],
+  "tasks": {
     "topo": {
       "dependsOn": ["^topo"]
     },
@@ -28,7 +28,7 @@
     },
     "format": {
       "outputs": ["node_modules/.cache/.prettiercache"],
-      "outputMode": "new-only"
+      "outputLogs": "new-only"
     },
     "lint": {
       "dependsOn": ["^topo"],
@@ -44,12 +44,5 @@
     "//#clean": {
       "cache": false
     }
-  },
-  "globalEnv": [
-    "DATABASE_URL",
-    "AUTH_DISCORD_ID",
-    "AUTH_DISCORD_SECRET",
-    "AUTH_REDIRECT_PROXY_URL",
-    "AUTH_SECRET"
-  ]
+  }
 }
