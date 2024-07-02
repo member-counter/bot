@@ -53,12 +53,6 @@ importers:
       '@t3-oss/env-core':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.6)
-      '@twurple/api':
-        specifier: ^7.1.0
-        version: 7.1.0(@twurple/auth@7.1.0)
-      '@twurple/auth':
-        specifier: ^7.1.0
-        version: 7.1.0
       bufferutil:
         specifier: ^4.0.8
         version: 4.0.8
@@ -289,6 +283,9 @@ importers:
       '@sesamecare-oss/redlock':
         specifier: ^1.2.1
         version: 1.2.1(ioredis@5.4.1)
+      '@trpc/client':
+        specifier: next
+        version: 11.0.0-rc.433(@trpc/server@11.0.0-rc.433)
       '@trpc/server':
         specifier: next
         version: 11.0.0-rc.433
@@ -301,6 +298,9 @@ importers:
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
+      superjson:
+        specifier: ^2.2.1
+        version: 2.2.1
       zod:
         specifier: ^3.23.3
         version: 3.23.6
@@ -338,6 +338,12 @@ importers:
       '@t3-oss/env-nextjs':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.6)
+      '@twurple/api':
+        specifier: ^7.1.0
+        version: 7.1.0(@twurple/auth@7.1.0)
+      '@twurple/auth':
+        specifier: ^7.1.0
+        version: 7.1.0
       discord-api-types:
         specifier: ^0.37.83
         version: 0.37.83
@@ -350,6 +356,12 @@ importers:
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
+      utf-8-validate:
+        specifier: ^6.0.3
+        version: 6.0.3
+      zlib-sync:
+        specifier: ^0.1.9
+        version: 0.1.9
       zod:
         specifier: ^3.23.3
         version: 3.23.6
@@ -1086,6 +1098,7 @@ packages:
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -1093,6 +1106,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.3':
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+    deprecated: Use @eslint/object-schema instead
 
   '@humanwhocodes/retry@0.2.4':
     resolution: {integrity: sha512-Ttl/jHpxfS3st5sxwICYfk4pOH0WrLI1SpW283GgQL7sCWU7EHIOhX4b4fkIxr3tkfzwg8+FNojtzsIEE7Ecgg==}

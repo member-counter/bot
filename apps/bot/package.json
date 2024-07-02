@@ -37,8 +37,6 @@
     "@mc/redis": "workspace:*",
     "@sesamecare-oss/redlock": "^1.2.1",
     "@t3-oss/env-core": "^0.10.1",
-    "@twurple/api": "^7.1.0",
-    "@twurple/auth": "^7.1.0",
     "bufferutil": "^4.0.8",
     "cron": "^3.1.7",
     "discord-api-types": "^0.37.83",

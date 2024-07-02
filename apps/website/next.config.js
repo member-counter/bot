@@ -6,6 +6,10 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 
 /** @type {import("next").NextConfig} */
 const config = {
+  output: "standalone",
+  experimental: {
+    outputFileTracingRoot: "../../",
+  },
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@mc/db",
