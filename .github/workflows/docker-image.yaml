@@ -38,7 +38,7 @@ jobs:
           cache-to: type=gha,mode=max
           tags: |
             ghcr.io/member-counter/website:new-beta
-  build-backend:
+  build-bot:
     runs-on: ubuntu-latest
     permissions:
       contents: read
