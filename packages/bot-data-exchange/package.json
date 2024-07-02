@@ -14,14 +14,16 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
+    "@mc/common": "workspace:*",
     "@mc/trpc-redis": "workspace:*",
     "@mc/validators": "workspace:*",
-    "@mc/common": "workspace:*",
     "@sesamecare-oss/redlock": "^1.2.1",
+    "@trpc/client": "next",
     "@trpc/server": "next",
     "discord.js": "^14.15.2",
     "gamedig": "^5.0.0-beta.2",
     "ioredis": "^5.4.1",
+    "superjson": "^2.2.1",
     "zod": "^3.23.3"
   },
   "devDependencies": {

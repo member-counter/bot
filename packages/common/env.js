@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
@@ -14,7 +13,6 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
-    COOKIE_SECRET: z.string().min(32),
     DISCORD_CLIENT_ID: z.string(),
     DISCORD_CLIENT_SECRET: z.string(),
     DISCORD_OAUTH2_REDIRECT_URI: z.string(),
@@ -44,7 +42,6 @@ export const env = createEnv({
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
-    COOKIE_SECRET: process.env.COOKIE_SECRET,
     DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     DISCORD_OAUTH2_REDIRECT_URI: process.env.DISCORD_OAUTH2_REDIRECT_URI,
