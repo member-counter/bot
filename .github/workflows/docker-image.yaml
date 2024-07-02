@@ -5,7 +5,7 @@ on:
     branches: [new]
 
 jobs:
-  build-backend:
+  build-website:
     runs-on: ubuntu-latest
     permissions:
       contents: read
