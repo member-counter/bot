@@ -146,13 +146,13 @@ importers:
         version: 5.40.0(react@18.3.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.433(@trpc/server@11.0.0-rc.433)
+        version: 11.0.0-rc.460(@trpc/server@11.0.0-rc.460)
       '@trpc/react-query':
         specifier: next
-        version: 11.0.0-rc.433(@tanstack/react-query@5.40.0(react@18.3.1))(@trpc/client@11.0.0-rc.433(@trpc/server@11.0.0-rc.433))(@trpc/server@11.0.0-rc.433)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+        version: 11.0.0-rc.460(@tanstack/react-query@5.40.0(react@18.3.1))(@trpc/client@11.0.0-rc.460(@trpc/server@11.0.0-rc.460))(@trpc/server@11.0.0-rc.460)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.433
+        version: 11.0.0-rc.460
       '@twemoji/api':
         specifier: ^15.1.0
         version: 15.1.0
@@ -285,16 +285,16 @@ importers:
         version: 1.2.1(ioredis@5.4.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.433(@trpc/server@11.0.0-rc.433)
+        version: 11.0.0-rc.460(@trpc/server@11.0.0-rc.460)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.433
+        version: 11.0.0-rc.460
       discord.js:
         specifier: ^14.15.2
         version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       gamedig:
-        specifier: ^5.0.0-beta.2
-        version: 5.0.0-beta.2
+        specifier: ^5.0.1
+        version: 5.0.1
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
@@ -314,6 +314,9 @@ importers:
       '@mc/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
+      '@types/gamedig':
+        specifier: ^5.0.3
+        version: 5.0.3
       eslint:
         specifier: ^9.2.0
         version: 9.2.0
@@ -351,8 +354,8 @@ importers:
         specifier: ^14.15.2
         version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       gamedig:
-        specifier: ^5.0.0-beta.2
-        version: 5.0.0-beta.2
+        specifier: ^5.0.1
+        version: 5.0.1
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
@@ -379,8 +382,8 @@ importers:
         specifier: ^0.5.1
         version: 0.5.1
       '@types/gamedig':
-        specifier: ^5.0.2
-        version: 5.0.2
+        specifier: ^5.0.3
+        version: 5.0.3
       eslint:
         specifier: ^9.2.0
         version: 9.2.0
@@ -500,7 +503,7 @@ importers:
         version: 11.0.0-next-beta.216
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.433
+        version: 11.0.0-rc.460
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
@@ -1798,25 +1801,25 @@ packages:
   '@total-typescript/ts-reset@0.5.1':
     resolution: {integrity: sha512-AqlrT8YA1o7Ff5wPfMOL0pvL+1X+sw60NN6CcOCqs658emD6RfiXhF7Gu9QcfKBH7ELY2nInLhKSCWVoNL70MQ==}
 
-  '@trpc/client@11.0.0-rc.433':
-    resolution: {integrity: sha512-QEPk14HGP4GK/88v7ORChN2GYbaP+LlCJMQHPRFogaVzapSbiE6C6PN+vNTn8soD28SuPOu+lRzuJszLIuhIPA==}
+  '@trpc/client@11.0.0-rc.460':
+    resolution: {integrity: sha512-d5NIxO1cTRcVTsDka0O0kg85agJuyexpGZJu/lO6pI8wtN6+8rIBM+4c1R3COXvBAd73DE+q+mnIUhgOS4BhmQ==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.433+014d1c839
+      '@trpc/server': 11.0.0-rc.460+ab0de4748
 
   '@trpc/core@11.0.0-next-beta.216':
     resolution: {integrity: sha512-dmdSFeSzArkmdZvnymoQwAju0QBODC3PhLgBKTYgVIj0HATE/OJsPAKOxiqdcgm3YyN/zABm+ntiYmjLBJzTCA==}
 
-  '@trpc/react-query@11.0.0-rc.433':
-    resolution: {integrity: sha512-MXe9C7gq5eId6Uz30M24D11D1zc/As91WVhKZS8i3yb+VERxvRmhfWyGRn7BJvhCApZ/8eKlsKbWq48SrATlhg==}
+  '@trpc/react-query@11.0.0-rc.460':
+    resolution: {integrity: sha512-ELw6zKIsp4oN6E4YEVt+l6cyP6FyGP/6TZWOCpf+LLhR6swZuLWpkmmfIgqRPHosAxs4utkN51v9ykfyrWtkNg==}
     peerDependencies:
-      '@tanstack/react-query': ^5.40.0
-      '@trpc/client': 11.0.0-rc.433+014d1c839
-      '@trpc/server': 11.0.0-rc.433+014d1c839
+      '@tanstack/react-query': ^5.49.2
+      '@trpc/client': 11.0.0-rc.460+ab0de4748
+      '@trpc/server': 11.0.0-rc.460+ab0de4748
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
 
-  '@trpc/server@11.0.0-rc.433':
-    resolution: {integrity: sha512-Zfafmbcv9HS/MBhW4O1JSw0b5Dnvm5PkwPviy64hyG9vRoCDPOLYyxRQD7TBdcWecITvjcQjmcdIGjQyNBVNJw==}
+  '@trpc/server@11.0.0-rc.460':
+    resolution: {integrity: sha512-BLApP+f54rQx11Mb7riRojPQt4se/V7le7ad/EBDCqzFN7hCVml2aH4enEcePjxsX6z0aWOftm/OriZ7ZYZ5sg==}
 
   '@tsconfig/node10@1.0.11':
     resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}
@@ -1867,8 +1870,8 @@ packages:
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
-  '@types/gamedig@5.0.2':
-    resolution: {integrity: sha512-hQMU3TMvY25dA+EN+leAcxAloA8+iyM2XAMXeMJUIQFU2Ta8XcWYCd232xAOzOwINF+UTiT2MXCoZE08CnuQuQ==}
+  '@types/gamedig@5.0.3':
+    resolution: {integrity: sha512-VLrOVRf72wVE6P0DhFtRVodiONwL51uojn6dNpP/Ks/Vdm3CDH6dZTAw74WmCDLuyvpytNy8auKzlTKfBlO8jg==}
 
   '@types/glob@7.2.0':
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
@@ -2878,8 +2881,8 @@ packages:
   functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
 
-  gamedig@5.0.0-beta.2:
-    resolution: {integrity: sha512-YsHoGdb6rXyzdErakd9eSJvUAZCa8Hy+nQpiWZMps158wOovsH35Yrr/Y9wCvn1FDm6NJnHhQYkvtk3zhlmKWQ==}
+  gamedig@5.0.1:
+    resolution: {integrity: sha512-iCjgMbpYxUof+4bdACZzQrDuhBHcn72nnxNReoEljc2aNWr/tPgYjqKeoj9TFtlXkh2+PMIod/5w52fwzvf1Jg==}
     engines: {node: '>=16.20.0'}
     hasBin: true
 
@@ -5765,21 +5768,21 @@ snapshots:
 
   '@total-typescript/ts-reset@0.5.1': {}
 
-  '@trpc/client@11.0.0-rc.433(@trpc/server@11.0.0-rc.433)':
+  '@trpc/client@11.0.0-rc.460(@trpc/server@11.0.0-rc.460)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.433
+      '@trpc/server': 11.0.0-rc.460
 
   '@trpc/core@11.0.0-next-beta.216': {}
 
-  '@trpc/react-query@11.0.0-rc.433(@tanstack/react-query@5.40.0(react@18.3.1))(@trpc/client@11.0.0-rc.433(@trpc/server@11.0.0-rc.433))(@trpc/server@11.0.0-rc.433)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
+  '@trpc/react-query@11.0.0-rc.460(@tanstack/react-query@5.40.0(react@18.3.1))(@trpc/client@11.0.0-rc.460(@trpc/server@11.0.0-rc.460))(@trpc/server@11.0.0-rc.460)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/react-query': 5.40.0(react@18.3.1)
-      '@trpc/client': 11.0.0-rc.433(@trpc/server@11.0.0-rc.433)
-      '@trpc/server': 11.0.0-rc.433
+      '@trpc/client': 11.0.0-rc.460(@trpc/server@11.0.0-rc.460)
+      '@trpc/server': 11.0.0-rc.460
       react: 18.3.1
       react-dom: 18.2.0(react@18.3.1)
 
-  '@trpc/server@11.0.0-rc.433': {}
+  '@trpc/server@11.0.0-rc.460': {}
 
   '@tsconfig/node10@1.0.11': {}
 
@@ -5889,7 +5892,7 @@ snapshots:
 
   '@types/estree@1.0.5': {}
 
-  '@types/gamedig@5.0.2': {}
+  '@types/gamedig@5.0.3': {}
 
   '@types/glob@7.2.0':
     dependencies:
@@ -7159,7 +7162,7 @@ snapshots:
 
   functions-have-names@1.2.3: {}
 
-  gamedig@5.0.0-beta.2:
+  gamedig@5.0.1:
     dependencies:
       cheerio: 1.0.0-rc.12
       gbxremote: 0.2.1
