@@ -22,14 +22,14 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
         <TypographyP>
           These Terms of Service govern your use of the website located at{" "}
           <LinkUnderlined href={Routes.Home}>
-            https://member-counter.eduardozgz.com
+            https://membercounter.app
           </LinkUnderlined>{" "}
           and any related services provided by Member Counter.{" "}
         </TypographyP>
         <TypographyP>
           By accessing{" "}
           <LinkUnderlined href={Routes.Home}>
-            https://member-counter.eduardozgz.com
+            https://membercounter.app
           </LinkUnderlined>
           , you agree to abide by these Terms of Service and to comply with all
           applicable laws and regulations. If you do not agree with these Terms
@@ -229,7 +229,7 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
           regarding any personal information we may collect about you, including
           across our website,{" "}
           <LinkUnderlined href={Routes.Home}>
-            https://member-counter.eduardozgz.com
+            https://membercounter.app
           </LinkUnderlined>
           , and other sites we own and operate.{" "}
         </TypographyP>
@@ -823,7 +823,7 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
         <TypographyP>
           We use cookies to help improve your experience of our website at{" "}
           <LinkUnderlined href={Routes.Home}>
-            https://member-counter.eduardozgz.com
+            https://membercounter.app
           </LinkUnderlined>
           . This cookie policy is part of Member Counter&#39;s privacy policy.
           It covers the use of cookies between your device and our site{" "}
@@ -851,7 +851,7 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
           If you don’t wish to accept cookies from us, you should instruct your
           browser to refuse cookies from{" "}
           <LinkUnderlined href={Routes.Home}>
-            https://member-counter.eduardozgz.com
+            https://membercounter.app
           </LinkUnderlined>
           . In such a case, we may be unable to provide you with some of your
           desired content and services.{" "}
