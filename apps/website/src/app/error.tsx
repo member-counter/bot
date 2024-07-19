@@ -5,20 +5,21 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@mc/ui/button";
 
+import { useTranslation } from "~/i18n/client";
 import { Routes } from "~/other/routes";
 import { Errors } from "./errors";
 
-const errorCodes = {
+const errorCodes: Record<string, string> = {
   [Errors.NotAuthenticated]: "401",
   [Errors.NotAuthorized]: "403",
   [Errors.NotFound]: "404",
 };
 
 const errorMessages = {
-  [Errors.NotAuthenticated]: "You are not logged in.",
-  [Errors.NotAuthorized]: "You are not authorized to access this page.",
-  [Errors.NotFound]: "The page you were looking for could not be found.",
-};
+  [Errors.NotAuthenticated]: "pages.error.errors.NotAuthenticated",
+  [Errors.NotAuthorized]: "pages.error.errors.NotAuthorized",
+  [Errors.NotFound]: "pages.error.errors.NotFound",
+} as const;
 
 export default function Error({
   error,
@@ -28,23 +29,22 @@ export default function Error({
   reset?: () => void;
 }) {
   const router = useRouter();
+  const [t] = useTranslation();
 
-  let code = "500";
-  let message = "An unexpected error occurred.";
+  const code = errorCodes[error.message] ?? "500";
+  let message = t("pages.error.errors.InternalServerError");
+
   const digest = error.digest;
 
-  for (const [errorKey, errorMessage] of Object.entries(errorMessages)) {
-    if (error.message === errorKey) {
-      message = errorMessage;
-      break;
-    }
-  }
-
-  for (const [errorKey, errorCode] of Object.entries(errorCodes)) {
-    if (error.message === errorKey) {
-      code = errorCode;
-      break;
-    }
+  if (error.message in errorMessages) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const tKey = errorMessages[error.message];
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    message = t(tKey);
   }
 
   return (
@@ -59,21 +59,21 @@ export default function Error({
         <div className="flex w-full flex-col justify-center gap-2 p-2 sm:flex-row">
           <Link className="inline-block" href={Routes.Home}>
             <Button variant={"secondary"} className="w-full">
-              Go home
+              {t("pages.error.nav.homeBtn")}
             </Button>
           </Link>
           <Link className="inline-block" href={Routes.Support} target="_blank">
             <Button variant={"secondary"} className="w-full">
-              Get support
+              {t("pages.error.nav.supportBtn")}
             </Button>
           </Link>
           {reset && (
             <Button onClick={() => reset()} variant={"secondary"}>
-              Try again
+              {t("pages.error.nav.tryAgainBtn")}
             </Button>
           )}
           <Button onClick={() => router.back()} variant={"secondary"}>
-            Go back
+            {t("pages.error.nav.backBtn")}
           </Button>
         </div>
       </main>

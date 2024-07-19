@@ -6,14 +6,16 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@mc/ui";
 
+import { useTranslation } from "~/i18n/client";
 import { Routes } from "~/other/routes";
 import { BotIcon } from "./BotIcon";
+import { LanguageSelector } from "./LanguageSelector";
 
 const major = Major_Mono_Display({ subsets: ["latin"], weight: "400" });
 
 export default function NavBar() {
   const pathname = usePathname();
-
+  const [t] = useTranslation();
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container flex h-14 items-center gap-4 text-sm lg:gap-6">
@@ -36,7 +38,7 @@ export default function NavBar() {
           rel="noreferer"
           className="text-muted-foreground hover:text-foreground"
         >
-          Support
+          {t("components.NavBar.supportEntry")}
         </a>
         <Link
           href={Routes.Dashboard}
@@ -45,7 +47,7 @@ export default function NavBar() {
             "hover:text-foreground",
           )}
         >
-          Dashboard
+          {t("components.NavBar.dashboardEntry")}
         </Link>
         <Link
           href={Routes.Account}
@@ -54,8 +56,9 @@ export default function NavBar() {
             "hover:text-foreground",
           )}
         >
-          Account
+          {t("components.NavBar.accountEntry")}
         </Link>
+        <LanguageSelector />
       </nav>
     </header>
   );
