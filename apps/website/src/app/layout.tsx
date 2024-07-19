@@ -14,14 +14,13 @@ export const metadata = {
   title: "Member Counter",
 };
 
-// TODO setup i18next
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html>
       <body
         className={`${inter.className} antialiasing dark flex min-h-screen flex-col`}
         style={{ backgroundColor: "#0c0a09" }}

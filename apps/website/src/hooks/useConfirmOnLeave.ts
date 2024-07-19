@@ -1,13 +1,14 @@
 import { useCallback, useEffect } from "react";
 
 import { env } from "~/env";
+import { useTranslation } from "~/i18n/client";
 import { useInterceptAppRouter } from "./useInterceptAppRouter";
 
 function useConfirmOnLeave(shouldConfirm: boolean) {
   if (env.NODE_ENV === "development") shouldConfirm = false;
+  const [t] = useTranslation();
 
-  const warningText =
-    "You have unsaved changes - are you sure you wish to leave this page?";
+  const warningText = t("hooks.useConfirmOnLeave");
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -34,7 +35,7 @@ function useConfirmOnLeave(shouldConfirm: boolean) {
         proceed();
       }
     },
-    [shouldConfirm],
+    [shouldConfirm, warningText],
   );
 
   useInterceptAppRouter("back", handleRouterChange);
