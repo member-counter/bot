@@ -42,7 +42,7 @@ Remember that you can't hot-reload this file, you must fully restart the app to 
 ## Starting the bot and website
 
 ```
-docker compose -f docker-compose.dev.yml up -d
+npm run dev:docker:up
 npm run dev
 ```
 
