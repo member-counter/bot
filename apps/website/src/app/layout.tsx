@@ -2,6 +2,7 @@ import "~/globals.css";
 
 import { Inter } from "next/font/google";
 
+import { I18nProvider } from "~/i18n/client";
 import { TRPCReactProvider } from "~/trpc/react";
 import NavBar from "./components/NavBar";
 
@@ -25,10 +26,12 @@ export default function RootLayout({
         className={`${inter.className} antialiasing dark flex min-h-screen flex-col`}
         style={{ backgroundColor: "#0c0a09" }}
       >
-        <TRPCReactProvider>
-          <NavBar />
-          {children}
-        </TRPCReactProvider>
+        <I18nProvider>
+          <TRPCReactProvider>
+            <NavBar />
+            {children}
+          </TRPCReactProvider>
+        </I18nProvider>
       </body>
     </html>
   );

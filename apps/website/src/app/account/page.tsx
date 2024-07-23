@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { LogOutIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import { Skeleton } from "@mc/ui/skeleton";
@@ -15,6 +16,7 @@ import { DeleteButton } from "./DeleteButton";
 import { DisplayUserBadges } from "./DisplayUserBadges";
 
 export default function Page() {
+  const { t } = useTranslation();
   const isAuthenticated = api.session.isAuthenticated.useQuery();
   if (isAuthenticated.data === false) redirect(Routes.Login);
 
@@ -35,11 +37,13 @@ export default function Page() {
           {discordUser.isSuccess ? (
             <img
               src={discordUser.data.avatar}
-              alt={`${discordUser.data.username}'s avatar`}
+              alt={t("pages.account.page.avatarAlt", {
+                username: discordUser.data.username,
+              })}
               className="background-forground h-[128px] w-[128px] rounded-full text-transparent"
             />
           ) : (
-            <Skeleton className="h-[128px] w-[128px] rounded-full"></Skeleton>
+            <Skeleton className="h-[128px] w-[128px] rounded-full" />
           )}
           <div className="i flex flex-col justify-center gap-3">
             {discordUser.isSuccess ? (
@@ -61,7 +65,7 @@ export default function Page() {
               <DeleteButton />
               <Link href={Routes.LogOut}>
                 <Button className="grow" size={"sm"} icon={LogOutIcon}>
-                  Logout
+                  {t("pages.account.page.logoutButton")}
                 </Button>
               </Link>
             </div>

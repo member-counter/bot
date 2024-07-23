@@ -9,6 +9,7 @@ import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 import type { DashboardGuildParams } from "./layout";
 import { BotIcon } from "~/app/components/BotIcon";
 import { DiscordIcon } from "~/app/components/DiscordIcon";
+import { useTranslation } from "~/i18n/client";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { MenuButton } from "../../Menu";
@@ -27,6 +28,8 @@ export function InviteBotPage() {
     }, 5000);
     return () => clearTimeout(timeoutId);
   }, [copySuccess]);
+
+  const [t] = useTranslation();
 
   const inviteLink = Routes.Invite(guildId);
   const copyLink = async () => {
@@ -52,30 +55,30 @@ export function InviteBotPage() {
       <div className="m-auto flex max-w-full flex-col gap-5 p-3 text-left sm:text-center">
         <BotIcon className="mx-auto h-32 w-32 sm:hidden" />
         <h1 className="sm:text-4x2 text-3xl">
-          Let's setup the bot!
+          {t("pages.dashboard.servers.inviteBotPage.title")}
           <BotIcon className="ml-1 mt-[-5px] hidden h-16 w-11 sm:inline-block" />
         </h1>
         <h2>
-          Add Member counter to {guild?.name ?? "Unknown server"} and enjoy
-          realtime counters.
+          {t("pages.dashboard.servers.inviteBotPage.subtitle", {
+            serverName: guild?.name ?? t("common.unknownServer"),
+          })}
         </h2>
         {userPermissions.canInviteBot ? (
           <Link href={inviteLink} target="_blank" className="block">
             <Button className="h-auto w-full text-wrap py-3" icon={DiscordIcon}>
-              Add to {guild?.name ?? "Unknown server"}
+              {t("pages.dashboard.servers.inviteBotPage.addToServer", {
+                serverName: guild?.name ?? t("common.unknownServer"),
+              })}
             </Button>
           </Link>
         ) : (
           <>
             <div className="text-sm text-muted-foreground">
-              You don't have enough permissions to add the bot.
-              <br />
-              Please ask an administrator or someone with Manage Server
-              permission to add this bot.
+              {t("pages.dashboard.servers.inviteBotPage.noPermission")}
             </div>
             {clipboardFailed ? (
               <LinkUnderlined href={inviteLink} target="_blank">
-                Use or share this link to add the bot
+                {t("pages.dashboard.servers.inviteBotPage.useOrShareLink")}
               </LinkUnderlined>
             ) : (
               <Button
@@ -85,8 +88,8 @@ export function InviteBotPage() {
                 disabled={copySuccess}
               >
                 {copySuccess
-                  ? "The link has been copied to your clipboard"
-                  : "Copy invite link"}
+                  ? t("pages.dashboard.servers.inviteBotPage.linkCopied")
+                  : t("pages.dashboard.servers.inviteBotPage.copyLink")}
               </Button>
             )}
           </>

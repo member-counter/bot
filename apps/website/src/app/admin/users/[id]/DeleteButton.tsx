@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { TrashIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import {
@@ -24,6 +25,7 @@ export function DeleteButton({
   userId: string;
   disabled?: boolean;
 }) {
+  const { t } = useTranslation();
   const router = useRouter();
   const deleteUser = api.user.delete.useMutation();
 
@@ -36,23 +38,27 @@ export function DeleteButton({
     <Dialog>
       <DialogTrigger asChild>
         <Button variant={"destructive"} icon={TrashIcon} disabled={disabled}>
-          Delete account
+          {t("pages.admin.users.delete.button")}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>This action cannot be undone.</DialogDescription>
+          <DialogTitle>{t("pages.admin.users.delete.dialogTitle")}</DialogTitle>
+          <DialogDescription>
+            {t("pages.admin.users.delete.dialogDescription")}
+          </DialogDescription>
           <DialogFooter className="sm:justify-between">
             <Button
               icon={TrashIcon}
               variant="destructive"
               onClick={deleteAccount}
             >
-              Delete account
+              {t("pages.admin.users.delete.button")}
             </Button>
             <DialogClose asChild>
-              <Button variant="secondary">Close</Button>
+              <Button variant="secondary">
+                {t("pages.admin.users.delete.closeButton")}
+              </Button>
             </DialogClose>
           </DialogFooter>
         </DialogHeader>

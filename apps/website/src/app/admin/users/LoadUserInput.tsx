@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import { Input } from "@mc/ui/input";
@@ -7,6 +10,7 @@ import { Input } from "@mc/ui/input";
 import { Routes } from "~/other/routes";
 
 export const LoadUserInput = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const [userId, setUserId] = useState("");
 
@@ -28,7 +32,7 @@ export const LoadUserInput = () => {
         onClick={() => loadUser(userId)}
         disabled={!userId}
       >
-        Load user
+        {t("pages.admin.users.loadUser")}
       </Button>
     </div>
   );

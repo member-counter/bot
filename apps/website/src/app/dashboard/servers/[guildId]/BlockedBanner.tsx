@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { ShieldBanIcon, XIcon } from "lucide-react";
+import { Trans } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
@@ -20,33 +21,31 @@ export function BlockedBanner() {
     setClosed(false);
   }, [blockedState.data]);
 
-  if (!blockedState.isSuccess) return;
-  if (!blockedState.data) return;
-  if (closed) return;
+  if (!blockedState.isSuccess) return null;
+  if (!blockedState.data) return null;
+  if (closed) return null;
 
   const reason = blockedState.data.reason;
+
   return (
     <div className="flex w-full flex-row items-center bg-destructive p-1 text-xs">
       <div className="hidden items-center pl-2 pr-3 sm:flex">
         <ShieldBanIcon className="h-8 w-8" />
       </div>
       <div className="block pl-1">
-        <p>
-          This server has been blocked for violating our{" "}
-          <LinkUnderlined href={Routes.Legal("terms-of-service")}>
-            Terms of conditions
-          </LinkUnderlined>{" "}
-          or{" "}
-          <LinkUnderlined href={Routes.Legal("acceptable-use-policy")}>
-            Acceptable Use Policy
-          </LinkUnderlined>
-          .
-          <br />
-          Reason given: {reason.trim().length ? reason : "No reason given"}
-          <br />
-          If you think this is a mistake, please contact our{" "}
-          <LinkUnderlined href={Routes.Support}>support team</LinkUnderlined>.
-        </p>
+        <Trans
+          i18nKey="pages.dashboard.servers.blockedBanner.text"
+          components={{
+            LinkTerms: (
+              <LinkUnderlined href={Routes.Legal("terms-of-service")} />
+            ),
+            LinkPolicy: (
+              <LinkUnderlined href={Routes.Legal("acceptable-use-policy")} />
+            ),
+            SupportLink: <LinkUnderlined href={Routes.Support} />,
+          }}
+          values={{ reason: reason.trim().length ? reason : undefined }}
+        />
       </div>
 
       <div className="flex grow items-center">

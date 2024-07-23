@@ -1,5 +1,6 @@
 "use client";
 
+import type { TFunction } from "i18next";
 import type { LucideIcon } from "lucide-react";
 import {
   BlocksIcon,
@@ -11,59 +12,75 @@ import {
 import { cn } from "@mc/ui";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 
+import { useTranslation } from "~/i18n/client";
 import { MenuButton } from "../../Menu";
 
 // TODO actually implement the guides
-const suggestedTopics: {
+const suggestedTopics = (
+  t: TFunction,
+): {
   title: string;
   description: string;
   icon: LucideIcon;
   label?: string;
   disabled?: boolean;
-}[] = [
+}[] => [
   {
     icon: ZapIcon,
-    title: "Quick-setup",
-    description:
-      "Quickly create the most common counters in a few clicks. No imagintion or brain required!",
-    label: "Hasle free!",
+    title: t("pages.dashboard.servers.suggestedTopics.quickSetup.title"),
+    description: t(
+      "pages.dashboard.servers.suggestedTopics.quickSetup.description",
+    ),
+    label: t("pages.dashboard.servers.suggestedTopics.quickSetup.label"),
   },
   {
     icon: LandPlotIcon,
-    title: "Create from scratch",
-    description:
-      "Learn how to create your first custom counter in a few minutes",
-    label: "Be unique!",
+    title: t("pages.dashboard.servers.suggestedTopics.createFromScratch.title"),
+    description: t(
+      "pages.dashboard.servers.suggestedTopics.createFromScratch.description",
+    ),
+    label: t("pages.dashboard.servers.suggestedTopics.createFromScratch.label"),
   },
   {
     icon: BlocksIcon,
-    title: "Advanced counters",
-    description: "Get the most out of your counters, tailored to your needs",
-    label: "Like a pro",
+    title: t("pages.dashboard.servers.suggestedTopics.advancedCounters.title"),
+    description: t(
+      "pages.dashboard.servers.suggestedTopics.advancedCounters.description",
+    ),
+    label: t("pages.dashboard.servers.suggestedTopics.advancedCounters.label"),
   },
   {
     icon: CandlestickChartIcon,
-    title: "Query historical statistics",
-    description:
-      "See how your counters and other common stats have evolved over time",
-    label: "Coming Soon™",
+    title: t(
+      "pages.dashboard.servers.suggestedTopics.queryHistoricalStatistics.title",
+    ),
+    description: t(
+      "pages.dashboard.servers.suggestedTopics.queryHistoricalStatistics.description",
+    ),
+    label: t(
+      "pages.dashboard.servers.suggestedTopics.queryHistoricalStatistics.label",
+    ),
     disabled: true,
   },
 ];
 
 export default function Page() {
+  const [t] = useTranslation();
+
   return (
-    <div className=" flex h-full select-none flex-col">
+    <div className="flex h-full select-none flex-col">
       <MenuButton className="my-1 mr-1" />
       <div className="flex h-full w-full grow flex-col items-center overflow-auto pt-4 text-center">
         <span className="mt-auto w-full">
-          <h1 className="text-4xl font-semibold">Welcome back!</h1>
+          <h1 className="text-4xl font-semibold">
+            {t("pages.dashboard.servers.suggestedTopics.title")}
+          </h1>
           <h2 className="text-md font-light">
-            Here are some suggestions for you
+            {t("pages.dashboard.servers.suggestedTopics.subTitle")}
           </h2>
         </span>
         <div className="mb-auto mt-4 flex flex-row flex-wrap justify-center gap-2 p-2">
-          {suggestedTopics.map((topic, i) => (
+          {suggestedTopics(t).map((topic, i) => (
             <article
               className="group"
               key={i}
@@ -72,7 +89,7 @@ export default function Page() {
             >
               <Card
                 className={cn(
-                  "relative h-full w-full max-w-[400px] flex-shrink grow  cursor-pointer overflow-hidden",
+                  "relative h-full w-full max-w-[400px] flex-shrink grow cursor-pointer overflow-hidden",
                   topic.disabled && "cursor-not-allowed",
                 )}
               >

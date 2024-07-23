@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { LoaderIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 
@@ -31,8 +32,8 @@ export default function Page({ params: { id: userId } }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
+  const { t } = useTranslation();
   const discordUser = api.discord.getUser.useQuery({ id: userId });
-
   const user = api.user.get.useQuery(
     { discordUserId: userId },
     { throwOnError: true },
@@ -48,7 +49,7 @@ export default function Page({ params: { id: userId } }: Props) {
       </CardHeader>
       {!user.data && !user.isLoading && (
         <CardContent className="flex h-full w-full flex-col items-center justify-center">
-          <span>This user isn't registered.</span>
+          <span>{t("pages.admin.users.userNotRegistered")}</span>
         </CardContent>
       )}
       {user.data && <ManageUser {...{ userId }} />}

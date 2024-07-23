@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { BotIcon, XIcon } from "lucide-react";
+import { Trans } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
@@ -37,12 +38,14 @@ export function InviteBotBanner() {
       </div>
       <div className="flex items-center">
         <p>
-          Seems like Member Counter Bot isn't in this server. Would you like
-          to&nbsp;
-          <LinkUnderlined href={Routes.Invite(guildId)} target="_blank">
-            add it
-          </LinkUnderlined>
-          ?
+          <Trans
+            i18nKey="pages.dashboard.servers.inviteBotBanner.message"
+            components={{
+              LinkURL: (
+                <LinkUnderlined href={Routes.Invite(guildId)} target="_blank" />
+              ),
+            }}
+          />
         </p>
       </div>
       <div className="flex grow items-center">

@@ -13,6 +13,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import resourcesToBackend from "i18next-resources-to-backend";
 import { useCookies } from "react-cookie";
 import {
+  I18nextProvider,
   initReactI18next,
   useTranslation as useTranslationOrg,
 } from "react-i18next";
@@ -49,6 +50,7 @@ void i18next
     preload: runsOnServerSide ? languages : [],
   });
 
+// TODO remove this and move this logic to the provider
 function useTranslation<
   Ns extends keyof Resources = "main",
   KPrefix extends KeyPrefix<FallbackNs<Ns>> = undefined,
@@ -82,5 +84,9 @@ function useTranslation(ns = defaultNS, options = {}) {
 
   return isClient ? ret : retDef;
 }
+function I18nProvider({ children }: { children: React.ReactNode }) {
+  const [_, i18n] = useTranslation();
+  return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
+}
 
-export { useTranslation };
+export { useTranslation, I18nProvider };
