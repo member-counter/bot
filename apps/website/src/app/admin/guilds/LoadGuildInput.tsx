@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import { Input } from "@mc/ui/input";
@@ -7,6 +10,7 @@ import { Input } from "@mc/ui/input";
 import { Routes } from "~/other/routes";
 
 export const LoadGuildInput = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const [guildId, setGuildId] = useState("");
 
@@ -21,14 +25,14 @@ export const LoadGuildInput = () => {
         value={guildId}
         onChange={(e) => setGuildId(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && loadGuild(guildId)}
-        placeholder="Paste server ID"
+        placeholder={t("pages.admin.guilds.loadGuildInput.placeholder")}
       />
       <Button
         variant={"secondary"}
         onClick={() => loadGuild(guildId)}
         disabled={!guildId}
       >
-        Load server
+        {t("pages.admin.guilds.loadGuildInput.loadButton")}
       </Button>
     </div>
   );

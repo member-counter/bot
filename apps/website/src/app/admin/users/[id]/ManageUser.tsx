@@ -1,6 +1,8 @@
+import type { TFunction } from "i18next";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SaveIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { BitField } from "@mc/common/BitField";
 import { UserBadgesBitfield } from "@mc/common/UserBadges";
@@ -16,26 +18,27 @@ import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { DeleteButton } from "./DeleteButton";
 
-const permissionsLabels: Record<keyof typeof UserPermissions, string> = {
-  SeeUsers: "See Users",
-  ManageUsers: "Manage Users",
-  SeeGuilds: "See Servers",
-  ManageGuilds: "Manage Servers",
-} as const;
+const getPermissionsLabels = (t: TFunction) => ({
+  SeeUsers: t("pages.admin.users.manage.permissions.seeUsers"),
+  ManageUsers: t("pages.admin.users.manage.permissions.manageUsers"),
+  SeeGuilds: t("pages.admin.users.manage.permissions.seeGuilds"),
+  ManageGuilds: t("pages.admin.users.manage.permissions.manageGuilds"),
+});
 
-const badgesLabels: Record<keyof typeof UserBadgesBitfield, string> = {
-  Donor: "Donor",
-  Premium: "Premium",
-  BetaTester: "Beta Tester",
-  Translator: "Translator",
-  Contributor: "Contributor",
-  BigBrain: "Big Brain",
-  BugCatcher: "Bug Catcher",
-  PatPat: "Pat Pat",
-  FoldingAtHome: "Folding@Home",
-} as const;
+const getBadgesLabels = (t: TFunction) => ({
+  Donor: t("pages.admin.users.manage.badges.donor"),
+  Premium: t("pages.admin.users.manage.badges.premium"),
+  BetaTester: t("pages.admin.users.manage.badges.betaTester"),
+  Translator: t("pages.admin.users.manage.badges.translator"),
+  Contributor: t("pages.admin.users.manage.badges.contributor"),
+  BigBrain: t("pages.admin.users.manage.badges.bigBrain"),
+  BugCatcher: t("pages.admin.users.manage.badges.bugCatcher"),
+  PatPat: t("pages.admin.users.manage.badges.patPat"),
+  FoldingAtHome: t("pages.admin.users.manage.badges.foldingAtHome"),
+});
 
 export default function ManageUser({ userId }: { userId: string }) {
+  const { t } = useTranslation();
   const router = useRouter();
   const [enableTransfer, setEnableTransfer] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
@@ -72,11 +75,16 @@ export default function ManageUser({ userId }: { userId: string }) {
       router.replace(Routes.ManageUsers(mutableUser.discordUserId));
   };
 
+  const permissionsLabels = getPermissionsLabels(t);
+  const badgesLabels = getBadgesLabels(t);
+
   return (
     <form action={saveUser}>
       <CardContent className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <TypographyH4 className="mt-0">Permissions</TypographyH4>
+          <TypographyH4 className="mt-0">
+            {t("pages.admin.users.manage.permissions.title")}
+          </TypographyH4>
           {Object.entries(permissionsLabels).map((entry) => {
             const [permission, label] = entry as [
               keyof typeof permissionsLabels,
@@ -107,7 +115,9 @@ export default function ManageUser({ userId }: { userId: string }) {
           })}
         </div>
         <div className="flex flex-col gap-2">
-          <TypographyH4 className="mt-0">Badges</TypographyH4>
+          <TypographyH4 className="mt-0">
+            {t("pages.admin.users.manage.badges.title")}
+          </TypographyH4>
           {Object.entries(badgesLabels).map((entry) => {
             const [badge, label] = entry as [keyof typeof badgesLabels, string];
 
@@ -139,11 +149,13 @@ export default function ManageUser({ userId }: { userId: string }) {
             checked={enableTransfer}
             onCheckedChange={(v) => setEnableTransfer(!!v)}
           >
-            <TypographyH4 className="mt-0">Transfer account</TypographyH4>
+            <TypographyH4 className="mt-0">
+              {t("pages.admin.users.manage.transferAccount")}
+            </TypographyH4>
           </Checkbox>
           {enableTransfer && (
             <Input
-              placeholder="Paste user ID"
+              placeholder={t("pages.admin.users.manage.pasteUserId")}
               value={mutableUser.discordUserId}
               onChange={(e) =>
                 setMutableUser({
@@ -162,7 +174,9 @@ export default function ManageUser({ userId }: { userId: string }) {
           type="submit"
           disabled={!canModify || !isDirty || userMutation.isPending}
         >
-          {userMutation.isSuccess && !isDirty ? "Saved" : "Save"}
+          {userMutation.isSuccess && !isDirty
+            ? t("pages.admin.users.manage.saved")
+            : t("pages.admin.users.manage.save")}
         </Button>
       </CardFooter>
     </form>

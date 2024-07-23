@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
+
 import { cn } from "@mc/ui";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
@@ -14,6 +16,7 @@ import {
 } from "./recentUsers";
 
 export function RecentUsers({ className }: { className?: string }) {
+  const { t } = useTranslation();
   const [recentUsers] = useLocalStorage(
     recentUsersKey,
     recentUsersSchema,
@@ -26,7 +29,9 @@ export function RecentUsers({ className }: { className?: string }) {
       {!!recentUsers.length && (
         <Card>
           <CardHeader>
-            <TypographyH4 className="mt-0">Recent users</TypographyH4>
+            <TypographyH4 className="mt-0">
+              {t("pages.admin.users.recentUsers")}
+            </TypographyH4>
           </CardHeader>
           <CardContent className="flex flex-col">
             {recentUsers.map((userId) => (

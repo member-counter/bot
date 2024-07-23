@@ -1,3 +1,4 @@
+import type { TFunction } from "i18next";
 import type { LucideIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { ChannelType, PermissionFlagsBits } from "discord-api-types/v10";
@@ -30,15 +31,21 @@ export const ChannelIconMap: Record<ChannelType | number, LucideIcon> = {
   [ChannelType.GuildMedia]: ImageIcon,
 };
 
-export const ChannelLabelMap: Record<ChannelType | number, string> = {
-  [ChannelType.GuildText]: "Text channel",
-  [ChannelType.GuildCategory]: "Category",
-  [ChannelType.GuildVoice]: "Voice channel",
-  [ChannelType.GuildAnnouncement]: "Announcement channel",
-  [ChannelType.GuildStageVoice]: "Stage channel",
-  [ChannelType.GuildForum]: "Forum channel",
-  [ChannelType.GuildMedia]: "Media channel",
-};
+export function ChannelLabelMap(
+  t: TFunction,
+): Record<ChannelType | number, string> {
+  return {
+    [ChannelType.GuildText]: t("common.channelLabels.textChannel"),
+    [ChannelType.GuildCategory]: t("common.channelLabels.category"),
+    [ChannelType.GuildVoice]: t("common.channelLabels.voiceChannel"),
+    [ChannelType.GuildAnnouncement]: t(
+      "common.channelLabels.announcementChannel",
+    ),
+    [ChannelType.GuildStageVoice]: t("common.channelLabels.stageChannel"),
+    [ChannelType.GuildForum]: t("common.channelLabels.forumChannel"),
+    [ChannelType.GuildMedia]: t("common.channelLabels.mediaChannel"),
+  };
+}
 
 export function useChannelIcon(
   channelId: string,

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { TrashIcon } from "lucide-react";
+import { Trans } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import {
@@ -40,16 +41,16 @@ export function DeleteButton() {
           variant={"destructive"}
           icon={TrashIcon}
         >
-          Delete account
+          <Trans i18nKey="pages.account.deleteButton.deleteAccountBtn" />
         </Button>
       </DialogTrigger>
-      {/* // Thank you shad for providing me exactly the text I wanted in your dialog example lol */}
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle>
+            <Trans i18nKey="pages.account.deleteButton.confirmTitle" />
+          </DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            <Trans i18nKey="pages.account.deleteButton.confirmDescription" />
           </DialogDescription>
           <DialogFooter className="sm:justify-between">
             <Button
@@ -57,10 +58,12 @@ export function DeleteButton() {
               variant="destructive"
               onClick={deleteAccount}
             >
-              Delete account
+              <Trans i18nKey="pages.account.deleteButton.deleteAccountBtn" />
             </Button>
             <DialogClose asChild>
-              <Button variant="secondary">Close</Button>
+              <Button variant="secondary">
+                <Trans i18nKey="pages.account.deleteButton.closeBtn" />
+              </Button>
             </DialogClose>
           </DialogFooter>
         </DialogHeader>
