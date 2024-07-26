@@ -1,12 +1,72 @@
 {
   "hooks": {
-    "useConfirmOnLeave": "You have unsaved changes - are you sure you wish to leave this page?"
+    "useConfirmOnLeave": "You have unsaved changes. Are you sure you want to leave this page?"
   },
   "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "selected": "Selected",
+          "removeChannel": "Remove channel"
+        },
+        "DataSourceItem": {
+          "selected": "Selected",
+          "notSelected": "Not selected",
+          "edit": "Edit counter",
+          "remove": "Remove counter"
+        },
+        "GamedigItem": {
+          "selected": "Selected",
+          "remove": "Remove game"
+        },
+        "LocaleItem": {
+          "selected": "Selected",
+          "remove": "Remove locale"
+        },
+        "RoleItem": {
+          "everyone": "Everyone",
+          "selected": "Selected",
+          "remove": "Remove role"
+        },
+        "TextItem": {
+          "selected": "Selected",
+          "remove": "Remove {{item}}"
+        },
+        "TimezoneItem": {
+          "selected": "Selected",
+          "remove": "Remove timezone"
+        }
+      },
+      "placeholder": "Add...",
+      "searchPlaceholder": "Search...",
+      "noResults": "No results found."
+    },
     "NavBar": {
       "supportEntry": "Support",
       "dashboardEntry": "Dashboard",
       "accountEntry": "Account"
+    },
+    "footer": {
+      "usefulLinks": "Useful Links",
+      "supportServer": "Support server",
+      "documentation": "Documentation",
+      "loginWithDiscord": "Login with Discord",
+      "logout": "Logout",
+      "legal": "Legal",
+      "termsOfService": "Terms of Service",
+      "cookiePolicy": "Cookie Policy",
+      "privacyPolicy": "Privacy Policy",
+      "acceptableUsePolicy": "Acceptable Use Policy",
+      "improveMemberCounter": "Improve Member Counter",
+      "codeRepository": "Code Repository",
+      "translateBot": "Translate the bot",
+      "donate": "Donate",
+      "admin": "Admin",
+      "manageUsers": "Manage users",
+      "manageServers": "Manage servers",
+      "sentry": "Sentry",
+      "copyright": "© {{year}} Member Counter. All rights reserved. Created by <eduardozgzLink />.",
+      "madePossibleThanksTo": "Made possible thanks to Alex, <vampireChickenLink />, <livingfloreLink />, Frosty and <donorsLink>many more</donorsLink>."
     }
   },
   "pages": {
@@ -28,35 +88,35 @@
       "servers": {
         "suggestedTopics": {
           "quickSetup": {
-            "title": "Quick-setup",
+            "title": "Quick setup",
             "description": "Quickly create the most common counters in a few clicks. No imagination or brain required!",
-            "label": "Hassle free!"
+            "label": "Hassle-free!"
           },
           "createFromScratch": {
             "title": "Create from scratch",
-            "description": "Learn how to create your first custom counter in a few minutes",
+            "description": "Learn how to create your first custom counter in a few minutes.",
             "label": "Be unique!"
           },
           "advancedCounters": {
             "title": "Advanced counters",
-            "description": "Get the most out of your counters, tailored to your needs",
+            "description": "Get the most out of your counters, tailored to your needs.",
             "label": "Like a pro"
           },
           "queryHistoricalStatistics": {
             "title": "Query historical statistics",
-            "description": "See how your counters and other common stats have evolved over time",
+            "description": "See how your counters and other common stats have evolved over time.",
             "label": "Coming Soon™"
           },
           "title": "Welcome back!",
-          "subTitle": "Here are some suggestions for you"
+          "subTitle": "Here are some suggestions for you:"
         },
         "inviteBotPage": {
           "title": "Let's set up the bot!",
-          "subtitle": "Add Member counter to {{serverName}} and enjoy realtime counters.",
+          "subtitle": "Add Member Counter to {{serverName}} and enjoy real-time counters.",
           "addToServer": "Add to {{serverName}}",
           "noPermission": "You don't have enough permissions to add the bot. Please ask an administrator or someone with Manage Server permission to add this bot.",
-          "useOrShareLink": "Use or share this link to add the bot",
-          "linkCopied": "The link has been copied to your clipboard",
+          "useOrShareLink": "Use or share this link to add the bot.",
+          "linkCopied": "The link has been copied to your clipboard.",
           "copyLink": "Copy invite link"
         },
         "inviteBotBanner": {
@@ -64,7 +124,7 @@
           "closeBtn": "Close"
         },
         "forbiddenPage": {
-          "message": "You don't have permission to manage this server.\nAsk an admin at {guildName} to give you Administrator or Manage Guild permissions.",
+          "message": "You don't have permission to manage this server.\nAsk an admin at {{guildName}} to give you Administrator or Manage Guild permissions.",
           "title": "Permission Denied"
         },
         "blockedBanner": {
@@ -72,7 +132,110 @@
           "termsOfService": "Terms of Service",
           "acceptableUsePolicy": "Acceptable Use Policy",
           "noReasonGiven": "No reason given",
-          "supportTeam": "support team"
+          "supportTeam": "Support team"
+        },
+        "settings": {
+          "title": "Server Settings",
+          "save": "Save",
+          "saved": "Saved",
+          "block": {
+            "blockButton": "Block server",
+            "unblockButton": "Unblock server",
+            "blockDialogTitle": "Do you really want to block this server?",
+            "unblockDialogTitle": "Do you really want to unblock this server?",
+            "blockDialogDescription": "The given reason will be displayed to the server administrators.",
+            "unblockDialogDescription": "This server was blocked due to the following reason: {{reason}}",
+            "reasonLabel": "Reason",
+            "reasonPlaceholder": "Please specify a reason",
+            "closeButton": "Close"
+          },
+          "reset": {
+            "resetButton": "Reset settings",
+            "dialogTitle": "Are you absolutely sure?",
+            "dialogDescription": "This action cannot be undone. All the settings will be reset to the defaults.",
+            "closeButton": "Close"
+          },
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Custom digits",
+              "customDigitsDescription": "In counters that return a number, Member Counter will replace each digit with the ones you provide. This is useful if you want to display custom emojis or something else, such as \"unicode style fonts.\"",
+              "screenReaderWarning": "Keep in mind that users using a screen reader (text-to-speech) may not be able to understand the customized digits and <demoLink>may hear something unintelligible</demoLink>. Screen readers are often used by people with visual disabilities.",
+              "customizationRecommendation": "We do not recommend customizing any digit unless you are certain that nobody using a screen reader will have access to any counter."
+            },
+            "Locale": {
+              "locale": "Locale",
+              "description": "Changing this will affect how some counters are displayed.",
+              "timeExample": "15:30h (or 3:30 PM) will be displayed as {{time}}",
+              "numberExample": "439212 will be displayed as {{number}}",
+              "searchPlaceholder": "Search locale..."
+            },
+            "UseCompactNotation": {
+              "label": "Use compact notation for numbers",
+              "description": "Counters that return numbers will be displayed in a more compact way.",
+              "example1": "12300 will be displayed as {{number}}",
+              "example2": "439212 will be displayed as {{number}}",
+              "example3": "1500000 will be displayed as {{number}}"
+            }
+          }
+        },
+        "channels": {
+          "sections": {
+            "EditTemplate": {
+              "template": "Template",
+              "lastUpdated": "Last updated: {{lastTemplateUpdateDate}}"
+            },
+            "EnableTemplate": {
+              "enableTemplate": "Enable template",
+              "description": "When enabled, Member Counter will automatically update this channel's {{templateTarget}} to show the processed template.",
+              "nameTarget": "name",
+              "topicTarget": "topic"
+            },
+            "TemplateError": {
+              "errorTitle": "The template had an error when it was last processed",
+              "errorDescription": "An error occurred during the last template processing. Details are shown below.",
+              "errors": {
+                "UNKNOWN": "An unknown error occurred.",
+                "UNKNOWN_DATA_SOURCE": "The counter provided is unknown or not recognized.",
+                "UNKNOWN_EVALUATION_RETURN_TYPE": "The type of value returned from evaluation is unknown.",
+                "FAILED_TO_RETURN_A_FINAL_STRING": "Failed to generate a final string from the evaluation.",
+                "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "The counter is in a unrecognized format",
+                "DELIMITED_DATA_SOURCE_IS_INVALID": "The counter is invalid.",
+                "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "The result for the channel name is less than 2 characters long.",
+                "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "The bot does not have sufficient permissions to edit the channel.",
+                "MEMERATOR_MISSING_USERNAME": "The Memerator counter requires a username, which is missing.",
+                "REDDIT_MISSING_SUBREDDIT": "A subreddit must be provided for the Reddit coutner.",
+                "TWITCH_MISSING_USERNAME": "The Twitch counter requires a username to be set.",
+                "TWITCH_CHANNEL_NOT_FOUND": "The specified Twitch channel could not be found.",
+                "YOUTUBE_MISSING_CHANNEL_URL": "The YouTube counter requires a channel URL to be set.",
+                "YOUTUBE_INVALID_CHANNEL_URL": "The provided YouTube channel URL is invalid.",
+                "HTTP_MISSING_URL": "The HTTP counter requires a URL, which is missing.",
+                "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "The content type of the HTTP response is invalid (not text/plain or application/json).",
+                "HTTP_INVALID_RESPONSE_STATUS_CODE": "The HTTP response status code is invalid (not 200).",
+                "HTTP_DATA_PATH_MANDATORY": "A data path must be specified for HTTP requests whose content type is application/json.",
+                "GAME_MISSING_ADDRESS": "The game counter requires a server address.",
+                "GAME_MISSING_PORT": "The game counter requires a server port.",
+                "GAME_MISSING_GAME_ID": "A game ID must be provided for the game counter.",
+                "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "The bot does not have enough privileged intents to use this counter.",
+                "BOT_IS_NOT_PREMIUM": "The bot is not a premium version and lacks certain features needed for this counter.",
+                "MEMBER_COUNT_NOT_AVAILABLE": "The member counts are not available at this moment."
+              }
+            }
+          },
+          "saved": "Saved",
+          "save": "Save"
+        },
+        "ChannelNavItem": {
+          "unsupportedChannelType": "This channel type is not supported yet.",
+          "infoTooltip": {
+            "enabled": "Counters are enabled in this channel",
+            "issue": "There is an issue in this channel that requires your attention"
+          }
+        },
+        "ServerNavMenu": {
+          "channelList": "Channel list",
+          "serverSettings": "Server settings",
+          "loading": "Loading server data...",
+          "unknownChannels": "Visit saved channels if the Discord channels are unable to load"
         }
       }
     },
@@ -84,15 +247,15 @@
         "closeBtn": "Close"
       },
       "userBadges": {
-        "donor": "You donated to support the development and maintenance of Member Counter",
-        "premium": "You are a premium user",
-        "betaTester": "You participated in a beta program",
-        "translator": "You helped to translate the bot",
-        "contributor": "You implemented a feature or fixed a bug",
-        "bigBrain": "You suggested an idea and it was implemented",
-        "bugCatcher": "You found and reported a bug",
-        "patPat": "You found a secret",
-        "foldingAtHome": "You contributed a WU in folding@home"
+        "donor": "You donated to support the development and maintenance of Member Counter.",
+        "premium": "You are a premium user.",
+        "betaTester": "You participated in a beta program.",
+        "translator": "You helped translate the bot.",
+        "contributor": "You implemented a feature or fixed a bug.",
+        "bigBrain": "You suggested an idea that was implemented.",
+        "bugCatcher": "You found and reported a bug.",
+        "patPat": "You found a secret.",
+        "foldingAtHome": "You contributed a WU in folding@home."
       },
       "page": {
         "avatarAlt": "{{username}}'s avatar",
@@ -116,10 +279,10 @@
         "manage": {
           "permissions": {
             "title": "Permissions",
-            "seeUsers": "See Users",
-            "manageUsers": "Manage Users",
-            "seeGuilds": "See Servers",
-            "manageGuilds": "Manage Servers"
+            "seeUsers": "See users",
+            "manageUsers": "Manage users",
+            "seeGuilds": "See servers",
+            "manageGuilds": "Manage servers"
           },
           "badges": {
             "title": "Badges",
@@ -131,7 +294,7 @@
             "bigBrain": "Big Brain",
             "bugCatcher": "Bug Catcher",
             "patPat": "Pat Pat",
-            "foldingAtHome": "Folding@Home"
+            "foldingAtHome": "folding@home"
           },
           "transferAccount": "Transfer account",
           "pasteUserId": "Paste user ID",
@@ -147,6 +310,11 @@
   "common": {
     "unknownServer": "Unknown server",
     "unknownUser": "Unknown user {{id}}",
+    "unknownChannel": "Unknown channel",
+    "unknownChannelType": "Unknown channel type",
+    "unknownRole": "Unknown role",
+    "unknownDate": "Unknown date",
+    "unknown": "Unknown",
     "channelLabels": {
       "textChannel": "Text channel",
       "category": "Category",

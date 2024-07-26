@@ -1,4 +1,5 @@
 import { CheckIcon, XIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import type { ComboboxProps } from "..";
 import { timezones } from "~/other/timezones";
@@ -9,14 +10,16 @@ type Props = Parameters<ComboboxProps<string>["onItemRender"]>[0] & {
 };
 
 export const TimezoneItem = ({ item, isSelected, onRemove }: Props) => {
+  const { t } = useTranslation();
   const timezoneName = timezones[item]?.label ?? item;
+
   return (
     <div className="flex w-full items-center justify-between">
       <div className="flex w-full overflow-auto">
         {isSelected && (
           <CheckIcon
             className="mr-2 inline-block h-5 w-5"
-            aria-label="selected"
+            aria-label={t("components.Combobox.items.TimezoneItem.selected")}
           />
         )}
 
@@ -28,7 +31,7 @@ export const TimezoneItem = ({ item, isSelected, onRemove }: Props) => {
         <TinyIconButton
           icon={XIcon}
           onClick={onRemove}
-          aria-label="Remove locale"
+          aria-label={t("components.Combobox.items.TimezoneItem.remove")}
         />
       )}
     </div>

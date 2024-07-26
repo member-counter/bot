@@ -2,6 +2,7 @@ import { memo, useContext, useMemo } from "react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { SettingsIcon, XIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
@@ -20,6 +21,7 @@ export const ServerNavMenu = memo(function ServerNavMenu({
 }: {
   className?: string;
 }) {
+  const { t } = useTranslation();
   const pathname = usePathname();
   const menuContext = useContext(MenuContext);
   const { guildId } = useParams<DashboardGuildChannelParams>();
@@ -37,7 +39,7 @@ export const ServerNavMenu = memo(function ServerNavMenu({
         "flex max-h-full flex-col overflow-hidden bg-card",
         className,
       )}
-      aria-label={`${guild.data?.name ?? ""} channel list`}
+      aria-label={`${guild.data?.name ?? ""} ${t("pages.dashboard.servers.ServerNavMenu.channelList")}`}
     >
       <div className="flex h-[48px] min-h-[48px] min-w-0 items-center font-semibold">
         <div
@@ -58,7 +60,9 @@ export const ServerNavMenu = memo(function ServerNavMenu({
           prefetch={true}
         >
           <Button
-            aria-label="Server settings"
+            aria-label={t(
+              "pages.dashboard.servers.ServerNavMenu.serverSettings",
+            )}
             size={"icon"}
             variant={"ghost"}
             className={cn({ hidden: pathname.endsWith("settings") })}

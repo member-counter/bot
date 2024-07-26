@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ShieldBanIcon, ShieldCheck } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import {
@@ -27,6 +28,7 @@ export function BlockButton({
   guildId: string;
   disabled?: boolean;
 }) {
+  const { t } = useTranslation();
   const [reason, setReason] = useState("");
   const updateBlockStateMutation = api.guild.updateBlockState.useMutation();
   const blockedState = api.guild.isBlocked.useQuery({
@@ -52,17 +54,21 @@ export function BlockButton({
             disabled={disabled}
             className={className}
           >
-            Unblock server
+            {t("pages.dashboard.servers.settings.block.unblockButton")}
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              Do you really want to unblock this server?
+              {t("pages.dashboard.servers.settings.block.unblockDialogTitle")}
             </DialogTitle>
             <DialogDescription>
-              This server was blocked due to the following reason:{" "}
-              {blockedState.data.reason}
+              {t(
+                "pages.dashboard.servers.settings.block.unblockDialogDescription",
+                {
+                  reason: blockedState.data.reason,
+                },
+              )}
             </DialogDescription>
             <DialogFooter className="sm:justify-between">
               <DialogClose asChild>
@@ -71,11 +77,13 @@ export function BlockButton({
                   variant="destructive"
                   onClick={() => updateBlockState(false)}
                 >
-                  Unblock server
+                  {t("pages.dashboard.servers.settings.block.unblockButton")}
                 </Button>
               </DialogClose>
               <DialogClose asChild>
-                <Button variant="secondary">Close</Button>
+                <Button variant="secondary">
+                  {t("pages.dashboard.servers.settings.block.closeButton")}
+                </Button>
               </DialogClose>
             </DialogFooter>
           </DialogHeader>
@@ -93,19 +101,27 @@ export function BlockButton({
           disabled={disabled}
           className={className}
         >
-          Block server
+          {t("pages.dashboard.servers.settings.block.blockButton")}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Do you really want to block this server?</DialogTitle>
+          <DialogTitle>
+            {t("pages.dashboard.servers.settings.block.blockDialogTitle")}
+          </DialogTitle>
           <DialogDescription className="space-y-2 pt-1">
             <p>
-              The given reason will be displayed to the server administrators.
+              {t(
+                "pages.dashboard.servers.settings.block.blockDialogDescription",
+              )}
             </p>
             <Input
-              aria-label="Reason"
-              placeholder="Please specify a reason"
+              aria-label={t(
+                "pages.dashboard.servers.settings.block.reasonLabel",
+              )}
+              placeholder={t(
+                "pages.dashboard.servers.settings.block.reasonPlaceholder",
+              )}
               value={reason}
               onChange={(e) => setReason(e.target.value)}
             />
@@ -117,11 +133,13 @@ export function BlockButton({
                 variant="destructive"
                 onClick={() => updateBlockState(true)}
               >
-                Block server
+                {t("pages.dashboard.servers.settings.block.blockButton")}
               </Button>
             </DialogClose>
             <DialogClose asChild>
-              <Button variant="secondary">Close</Button>
+              <Button variant="secondary">
+                {t("pages.dashboard.servers.settings.block.closeButton")}
+              </Button>
             </DialogClose>
           </DialogFooter>
         </DialogHeader>

@@ -1,10 +1,10 @@
 import { useId } from "react";
 import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
+import { useTranslation } from "react-i18next";
 
 import { Label } from "@mc/ui/label";
 
-import type { DashboardGuildChannelParams } from "../layout";
 import formatRelativeTime from "~/other/formatRelativeTime";
 import { api } from "~/trpc/react";
 import TemplateEditor from "../../TemplateEditor/TemplateEditor";
@@ -16,7 +16,11 @@ interface Props {
 }
 
 export function EditTemplate({ value, onChange, disabled }: Props) {
-  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  const { guildId, channelId } = useParams<{
+    guildId: string;
+    channelId: string;
+  }>();
+  const { t } = useTranslation();
   const channelQuery = api.guild.channels.get.useQuery({
     discordGuildId: guildId,
     discordChannelId: channelId,
@@ -37,14 +41,21 @@ export function EditTemplate({ value, onChange, disabled }: Props) {
 
   const lastTemplateUpdateDate = channelLog.data?.LastTemplateUpdateDate
     ? formatRelativeTime("en-US", channelLog.data.LastTemplateUpdateDate)
-    : "Unknown";
+    : t("common.unknownDate");
 
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-row items-center justify-between">
-        <Label htmlFor={templateInput}>Template</Label>
+        <Label htmlFor={templateInput}>
+          {t("pages.dashboard.servers.channels.sections.EditTemplate.template")}
+        </Label>
         <span className="text-xs leading-none text-muted-foreground">
-          Last updated: {lastTemplateUpdateDate}
+          {t(
+            "pages.dashboard.servers.channels.sections.EditTemplate.lastUpdated",
+            {
+              lastTemplateUpdateDate,
+            },
+          )}
         </span>
       </div>
       <TemplateEditor

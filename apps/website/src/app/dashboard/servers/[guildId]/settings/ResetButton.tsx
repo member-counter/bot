@@ -1,6 +1,7 @@
 "use client";
 
 import { TrashIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import {
@@ -25,6 +26,7 @@ export function ResetSettings({
   guildId: string;
   disabled?: boolean;
 }) {
+  const { t } = useTranslation();
   const resetSettingsMutation = api.guild.reset.useMutation();
   const settingsMutation = api.guild.get.useQuery({ discordGuildId: guildId });
 
@@ -42,15 +44,16 @@ export function ResetSettings({
           disabled={disabled}
           className={className}
         >
-          Reset settings
+          {t("pages.dashboard.servers.settings.reset.resetButton")}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle>
+            {t("pages.dashboard.servers.settings.reset.dialogTitle")}
+          </DialogTitle>
           <DialogDescription>
-            This action cannot be undone. All the settings will be reset to the
-            defaults
+            {t("pages.dashboard.servers.settings.reset.dialogDescription")}
           </DialogDescription>
           <DialogFooter className="sm:justify-between">
             <DialogClose asChild>
@@ -59,11 +62,13 @@ export function ResetSettings({
                 variant="destructive"
                 onClick={resetSettings}
               >
-                Reset settings
+                {t("pages.dashboard.servers.settings.reset.resetButton")}
               </Button>
             </DialogClose>
             <DialogClose asChild>
-              <Button variant="secondary">Close</Button>
+              <Button variant="secondary">
+                {t("pages.dashboard.servers.settings.reset.closeButton")}
+              </Button>
             </DialogClose>
           </DialogFooter>
         </DialogHeader>

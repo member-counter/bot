@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
+
 import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildParams } from "../layout";
@@ -18,22 +20,25 @@ interface Props {
 
 export default function Layout(props: Props) {
   const { channelId, guildId } = props.params;
+  const { t } = useTranslation();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
 
   const Icon = useChannelIcon(channelId);
 
   let label: string | undefined;
-  if (channel) label = ChannelLabelMap[channel.type];
-  label ??= "Uknown channel type";
+  if (channel) label = ChannelLabelMap(t)[channel.type];
+  label ??= t("common.unknownChannelType");
 
-  const name = channel?.name ?? "Unknown channel name";
+  const name = channel?.name ?? t("common.unknownChannel");
 
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-[48px] w-full flex-shrink-0 flex-row items-center pl-3 pr-1 font-semibold">
         <Icon className="mr-3 h-5 w-5" aria-label={label} />
-        <h1 aria-label={`${guild.data?.name ?? "Unknown server"}: ${name}`}>
+        <h1
+          aria-label={`${guild.data?.name ?? t("common.unknownChannel")}: ${name}`}
+        >
           {name}
         </h1>
         <MenuButton />

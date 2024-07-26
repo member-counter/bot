@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { Trans, useTranslation } from "react-i18next";
 
 import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
@@ -12,6 +13,7 @@ import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 
 export default function Footer() {
+  const { t } = useTranslation();
   const isAuthenticated = api.session.isAuthenticated.useQuery();
   const user = api.session.user.useQuery(undefined);
 
@@ -23,41 +25,59 @@ export default function Footer() {
   return (
     <>
       <footer className="mt-auto flex flex-col border-t border-border/40">
-        <div className=" bg-accent-background py-5">
-          <div className="container flex flex-row  gap-[60px] py-0">
-            <div className="flex  flex-col">
+        <div className="bg-accent-background py-5">
+          <div className="container flex flex-row gap-[60px] py-0">
+            <div className="flex flex-col">
               <h3 className="pb-5 text-xl font-bold tracking-tight">
-                Useful Links
+                {t("components.footer.usefulLinks")}
               </h3>
-              <Link href={Routes.Support}>Support server</Link>
-              <Link href={Routes.Documentation}>Documentation</Link>
+              <Link href={Routes.Support}>
+                {t("components.footer.supportServer")}
+              </Link>
+              <Link href={Routes.Documentation}>
+                {t("components.footer.documentation")}
+              </Link>
               {!isAuthenticated.data ? (
-                <Link href={Routes.Login}>Login with Discord</Link>
+                <Link href={Routes.Login}>
+                  {t("components.footer.loginWithDiscord")}
+                </Link>
               ) : (
-                <Link href={Routes.LogOut}>Logout</Link>
+                <Link href={Routes.LogOut}>
+                  {t("components.footer.logout")}
+                </Link>
               )}
             </div>
-            <div className="flex  flex-col">
-              <h3 className="pb-5 text-xl font-bold tracking-tight">Legal</h3>
+            <div className="flex flex-col">
+              <h3 className="pb-5 text-xl font-bold tracking-tight">
+                {t("components.footer.legal")}
+              </h3>
               <Link href={Routes.Legal("terms-of-service")}>
-                Terms of Service
+                {t("components.footer.termsOfService")}
               </Link>
-              <Link href={Routes.Legal("cookie-policy")}>Cookie Policy</Link>
-              <Link href={Routes.Legal("privacy-policy")}>Privacy Policy</Link>
+              <Link href={Routes.Legal("cookie-policy")}>
+                {t("components.footer.cookiePolicy")}
+              </Link>
+              <Link href={Routes.Legal("privacy-policy")}>
+                {t("components.footer.privacyPolicy")}
+              </Link>
               <Link href={Routes.Legal("acceptable-use-policy")}>
-                Acceptable Use Policy
+                {t("components.footer.acceptableUsePolicy")}
               </Link>
             </div>
-            <div className="flex  flex-col">
+            <div className="flex flex-col">
               <h3 className="pb-5 text-xl font-bold tracking-tight">
-                Improve Member Counter
+                {t("components.footer.improveMemberCounter")}
               </h3>
-              <Link href={Routes.BotRepository}>Code Repository</Link>
-              <Link href={Routes.Translate}>Translate the bot</Link>
-              <Link href={Routes.Donors}>Donate</Link>
+              <Link href={Routes.BotRepository}>
+                {t("components.footer.codeRepository")}
+              </Link>
+              <Link href={Routes.Translate}>
+                {t("components.footer.translateBot")}
+              </Link>
+              <Link href={Routes.Donors}>{t("components.footer.donate")}</Link>
             </div>
             <div
-              className={cn("flex  flex-col", {
+              className={cn("flex flex-col", {
                 hidden: !userPermissions.has(
                   UserPermissions.SeeUsers |
                     UserPermissions.ManageUsers |
@@ -66,7 +86,9 @@ export default function Footer() {
                 ),
               })}
             >
-              <h3 className="pb-5 text-xl font-bold tracking-tight">Admin</h3>
+              <h3 className="pb-5 text-xl font-bold tracking-tight">
+                {t("components.footer.admin")}
+              </h3>
               <Link
                 href={Routes.ManageUsers()}
                 className={cn("flex flex-col", {
@@ -75,7 +97,7 @@ export default function Footer() {
                   ),
                 })}
               >
-                Manage users
+                {t("components.footer.manageUsers")}
               </Link>
               <Link
                 href={Routes.ManageGuilds}
@@ -85,40 +107,52 @@ export default function Footer() {
                   ),
                 })}
               >
-                Manage servers
+                {t("components.footer.manageServers")}
               </Link>
-              <Link href={Routes.Sentry}>Sentry</Link>
+              <Link href={Routes.Sentry}>{t("components.footer.sentry")}</Link>
             </div>
           </div>
         </div>
-        <div className="border-t border-border/40 bg-[#090807] bg-background  py-4">
-          <div className="container flex flex-row  py-0">
+        <div className="border-t border-border/40 bg-[#090807] bg-background py-4">
+          <div className="container flex flex-row py-0">
             <span className="">
-              © 2024 Member Counter. All rights reserved. Created by{" "}
-              <LinkUnderlined
-                target="_blank"
-                href="https://github.com/eduardozgz"
-              >
-                eduardozgz
-              </LinkUnderlined>
-              .
+              <Trans
+                i18nKey="components.footer.copyright"
+                values={{ year: new Date().getFullYear() }}
+                components={{
+                  eduardozgzLink: (
+                    <LinkUnderlined
+                      target="_blank"
+                      href="https://eduardozgz.com/"
+                    >
+                      eduardozgz
+                    </LinkUnderlined>
+                  ),
+                }}
+              />
               <br />
-              Made possible thanks to Alex,{" "}
-              <LinkUnderlined
-                target="_blank"
-                href="https://github.com/VampireChicken12/"
-              >
-                VampireChicken
-              </LinkUnderlined>
-              ,{" "}
-              <LinkUnderlined
-                target="_blank"
-                href="https://github.com/livingflore"
-              >
-                livingflore
-              </LinkUnderlined>
-              , Frosty and{" "}
-              <LinkUnderlined href={Routes.Donors}>many more</LinkUnderlined>.
+              <Trans
+                i18nKey="components.footer.madePossibleThanksTo"
+                components={{
+                  vampireChickenLink: (
+                    <LinkUnderlined
+                      target="_blank"
+                      href="https://github.com/VampireChicken12/"
+                    >
+                      VampireChicken
+                    </LinkUnderlined>
+                  ),
+                  livingfloreLink: (
+                    <LinkUnderlined
+                      target="_blank"
+                      href="https://livingflo.re/"
+                    >
+                      livingflore
+                    </LinkUnderlined>
+                  ),
+                  donorsLink: <LinkUnderlined href={Routes.Donors} />,
+                }}
+              />
             </span>
           </div>
         </div>

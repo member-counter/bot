@@ -1,6 +1,7 @@
 import { useId } from "react";
 import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
+import { useTranslation } from "react-i18next";
 
 import { Label } from "@mc/ui/label";
 import { Switch } from "@mc/ui/switch";
@@ -16,6 +17,7 @@ interface Props {
 
 export function EnableTemplate({ value, onChange, disabled }: Props) {
   const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  const { t } = useTranslation();
   const enableTemplateSwitch = useId();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
@@ -23,15 +25,23 @@ export function EnableTemplate({ value, onChange, disabled }: Props) {
   const isTemplateForName =
     channel?.type === ChannelType.GuildVoice ||
     channel?.type === ChannelType.GuildCategory;
-  const templateTarget = isTemplateForName ? "name" : "topic";
+  const templateTarget = isTemplateForName
+    ? t("pages.dashboard.servers.channels.sections.EnableTemplate.nameTarget")
+    : t("pages.dashboard.servers.channels.sections.EnableTemplate.topicTarget");
 
   return (
     <div className="flex flex-row items-center justify-between gap-2">
       <div>
-        <Label htmlFor={enableTemplateSwitch}>Enable template</Label>
+        <Label htmlFor={enableTemplateSwitch}>
+          {t(
+            "pages.dashboard.servers.channels.sections.EnableTemplate.enableTemplate",
+          )}
+        </Label>
         <p className="text-sm text-muted-foreground">
-          When enabled, Member Counter will automatically update this channel's{" "}
-          {templateTarget} to show the proccessed template.
+          {t(
+            "pages.dashboard.servers.channels.sections.EnableTemplate.description",
+            { templateTarget },
+          )}
         </p>
       </div>
       <Switch

@@ -3,6 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { SaveIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { Button } from "@mc/ui/button";
@@ -21,6 +22,7 @@ import { Locale } from "./sections/Locale";
 import { UseCompactNotation } from "./sections/UseCompactNotation";
 
 export default function Page() {
+  const { t } = useTranslation();
   const userPermissions = useContext(UserPermissionsContext);
   const { guildId } = useParams<DashboardGuildParams>();
   const guildSettingsMutation = api.guild.update.useMutation();
@@ -116,7 +118,9 @@ export default function Page() {
               guildSettingsMutation.isPending
             }
           >
-            {isDirty ? "Save" : "Saved"}
+            {isDirty
+              ? t("pages.dashboard.servers.settings.save")
+              : t("pages.dashboard.servers.settings.saved")}
           </Button>
           {userPermissions.user.has(UserPermissions.SeeGuilds) && (
             <BlockButton
