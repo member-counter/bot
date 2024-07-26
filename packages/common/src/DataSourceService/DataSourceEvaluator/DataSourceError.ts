@@ -1,4 +1,4 @@
-const DataSourceErrorTypes = [
+export const DataSourceErrorTypes = [
   "UNKNOWN",
   "UNKNOWN_DATA_SOURCE",
   "UNKNOWN_EVALUATION_RETURN_TYPE",

@@ -1,9 +1,10 @@
 import { useId } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Label } from "@mc/ui/label";
 
 import { Combobox } from "~/app/components/Combobox";
-import { LocaleItem } from "~/app/components/Combobox/items/LocaleItem";
+import { localeItem } from "~/app/components/Combobox/renderers/localeItem";
 import { searchableLocales } from "~/other/locales";
 import { useDemoFormatters } from "../DemoFormatters";
 
@@ -16,19 +17,28 @@ interface Props {
 export function Locale({ value, onChange, disabled }: Props) {
   const localeInput = useId();
   const demoFormatters = useDemoFormatters();
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col gap-3">
-      <Label htmlFor={localeInput}>Locale</Label>
+      <Label htmlFor={localeInput}>
+        {t("pages.dashboard.servers.settings.sections.Locale.locale")}
+      </Label>
       <div className="text-sm text-muted-foreground">
-        <p>Changing this will affect how some counters are displayed.</p>
+        <p>
+          {t("pages.dashboard.servers.settings.sections.Locale.description")}
+        </p>
         <ul className="ml-4 mt-1 list-disc">
           <li>
-            15:30h (or 3:30 PM) will be displayed as{" "}
-            {demoFormatters.date.format(new Date("2024 15:30"))}
+            {t("pages.dashboard.servers.settings.sections.Locale.timeExample", {
+              time: demoFormatters.date.format(new Date("2024 15:30")),
+            })}
           </li>
           <li>
-            439212 will be displayed as {demoFormatters.number.format(439212)}
+            {t(
+              "pages.dashboard.servers.settings.sections.Locale.numberExample",
+              { number: demoFormatters.number.format(439212) },
+            )}
           </li>
         </ul>
       </div>
@@ -36,11 +46,13 @@ export function Locale({ value, onChange, disabled }: Props) {
         id={localeInput}
         items={searchableLocales}
         allowSearchedTerm
-        placeholder="Search locale..."
+        placeholder={t(
+          "pages.dashboard.servers.settings.sections.Locale.searchPlaceholder",
+        )}
         selectedItem={value}
         onItemSelect={onChange}
-        onItemRender={LocaleItem}
-        onSelectedItemRender={LocaleItem}
+        onItemRender={localeItem()}
+        onSelectedItemRender={localeItem()}
         disabled={disabled}
       />
     </div>

@@ -12,7 +12,7 @@ import { useTranslation } from "~/i18n/client";
 import { languageEntries } from "~/i18n/settings";
 
 export function LanguageSelector() {
-  const [_t, i18n] = useTranslation();
+  const { i18n } = useTranslation();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

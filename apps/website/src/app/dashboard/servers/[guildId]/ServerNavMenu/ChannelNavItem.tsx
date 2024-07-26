@@ -2,6 +2,7 @@ import { useContext, useMemo } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
 import { Skeleton } from "@mc/ui/skeleton";
@@ -25,6 +26,7 @@ export function ChannelNavItem(channel: {
   name: string;
   everyonePermissions: string;
 }) {
+  const { t } = useTranslation();
   const menuContext = useContext(MenuContext);
   const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
   const guildSettingsChannels = api.guild.channels.getAll.useQuery({
@@ -99,14 +101,18 @@ export function ChannelNavItem(channel: {
               <InfoToolip
                 text={
                   hasIssue
-                    ? "There is an issue in this channel that requires your attention"
-                    : "Counters are enabled in this channel"
+                    ? t(
+                        "pages.dashboard.servers.ChannelNavItem.infoTooltip.issue",
+                      )
+                    : t(
+                        "pages.dashboard.servers.ChannelNavItem.infoTooltip.enabled",
+                      )
                 }
               >
                 <div className="ml-auto">
                   <div
                     className={cn(
-                      "relative ml-2  h-2 w-2 flex-shrink-0 rounded-full bg-primary",
+                      "relative ml-2 h-2 w-2 flex-shrink-0 rounded-full bg-primary",
                       { "bg-destructive": hasIssue },
                     )}
                     tabIndex={0}
@@ -125,7 +131,7 @@ export function ChannelNavItem(channel: {
         </TooltipTrigger>
         {!isSupported && (
           <TooltipContent>
-            This channel type is not supported yet.
+            {t("pages.dashboard.servers.ChannelNavItem.unsupportedChannelType")}
           </TooltipContent>
         )}
       </Tooltip>

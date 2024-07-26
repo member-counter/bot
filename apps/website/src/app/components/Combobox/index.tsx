@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { useCallback, useId, useMemo, useState } from "react";
 import { SearchIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
 import {
@@ -48,7 +49,7 @@ export interface ComboboxProps<
 export function Combobox<T, A extends boolean = false>({
   id,
   className,
-  placeholder = "Add...",
+  placeholder,
   prefillSelectedItemOnSearchOnFocus,
   allowSearchedTerm,
   items,
@@ -58,6 +59,7 @@ export function Combobox<T, A extends boolean = false>({
   onItemSelect: fireOnItemSelect,
   disabled,
 }: ComboboxProps<T, A>) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const isDesktop = useBreakpoint("md");
   const [search, setSearch] = useState("");
@@ -82,20 +84,27 @@ export function Combobox<T, A extends boolean = false>({
           })
         ) : (
           <div className="flex items-center overflow-hidden text-ellipsis whitespace-nowrap ">
-            {!!placeholder.length && (
+            {!!placeholder?.length && (
               <SearchIcon className="mr-2 h-4 w-4 min-w-4" />
             )}
-            {placeholder}
+            {placeholder ?? t("components.Combobox.placeholder")}
           </div>
         )}
       </InputWrapper>
     ),
-    [className, disabled, id, onSelectedItemRender, placeholder, selectedItem],
+    [
+      className,
+      disabled,
+      id,
+      onSelectedItemRender,
+      placeholder,
+      selectedItem,
+      t,
+    ],
   );
 
   const onItemSelect = useCallback(
     (value: string | T) => {
-      // haaaaaaaaaaaa https://github.com/Microsoft/TypeScript/issues/13995#issuecomment-363265172
       fireOnItemSelect(structuredClone(value as never));
       setOpen(false);
       setSearch("");
@@ -110,7 +119,9 @@ export function Combobox<T, A extends boolean = false>({
     () => (
       <Command className={cn(!isDesktop && "rounded-xl")}>
         <CommandInput
-          placeholder={placeholder}
+          placeholder={
+            placeholder ?? t("components.Combobox.searchPlaceholder")
+          }
           value={search}
           onValueChange={setSearch}
           onFocus={(e) => {
@@ -122,7 +133,7 @@ export function Combobox<T, A extends boolean = false>({
           }}
         />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>{t("components.Combobox.noResults")}</CommandEmpty>
           <CommandGroup>
             {items.map(({ value, keywords }, i) => {
               return (
@@ -185,6 +196,7 @@ export function Combobox<T, A extends boolean = false>({
       searchId,
       selectedItem,
       selfId,
+      t,
     ],
   );
 

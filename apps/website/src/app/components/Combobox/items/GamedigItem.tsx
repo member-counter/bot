@@ -1,4 +1,5 @@
 import { CheckIcon, XIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import type { ComboboxProps } from "..";
 import { api } from "~/trpc/react";
@@ -9,6 +10,7 @@ type Props = Parameters<ComboboxProps<string>["onItemRender"]>[0] & {
 };
 
 export const GamedigItem = ({ item, isSelected, onRemove }: Props) => {
+  const { t } = useTranslation();
   const { data: games } = api.bot.gamedigGames.useQuery();
 
   const name = games?.[item]?.name ?? item;
@@ -18,7 +20,7 @@ export const GamedigItem = ({ item, isSelected, onRemove }: Props) => {
         {isSelected && (
           <CheckIcon
             className="mr-2 inline-block h-5 w-5"
-            aria-label="selected"
+            aria-label={t("components.Combobox.items.GamedigItem.selected")}
           />
         )}
 
@@ -30,7 +32,7 @@ export const GamedigItem = ({ item, isSelected, onRemove }: Props) => {
         <TinyIconButton
           icon={XIcon}
           onClick={onRemove}
-          aria-label="Remove game"
+          aria-label={t("components.Combobox.items.GamedigItem.remove")}
         />
       )}
     </div>

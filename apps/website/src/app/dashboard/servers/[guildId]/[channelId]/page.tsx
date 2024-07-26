@@ -3,6 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { SaveIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
@@ -17,6 +18,7 @@ import { EnableTemplate } from "./sections/EnableTemplate";
 import { TemplateError } from "./sections/TemplateError";
 
 export default function Page() {
+  const { t } = useTranslation();
   const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
   const trpcUtils = api.useUtils();
   const userPermissions = useContext(UserPermissionsContext);
@@ -97,7 +99,9 @@ export default function Page() {
             channelSettingsMutation.isPending
           }
         >
-          {isDirty ? "Save" : "Saved"}
+          {isDirty
+            ? t("pages.dashboard.servers.channels.save")
+            : t("pages.dashboard.servers.channels.saved")}
         </Button>
       </div>
     </form>

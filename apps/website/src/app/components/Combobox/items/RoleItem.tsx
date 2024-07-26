@@ -1,5 +1,6 @@
 import { useParams } from "next/navigation";
 import { AtSignIcon, CheckIcon, XIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import type { ComboboxProps } from "..";
 import type { DashboardGuildParams } from "~/app/dashboard/servers/[guildId]/layout";
@@ -19,15 +20,17 @@ type Props = Parameters<ComboboxProps<string>["onItemRender"]>[0] & {
 };
 
 export const RoleItem = ({ item, isSelected, onRemove }: Props) => {
+  const { t } = useTranslation();
   const role = useRoleId(item);
 
   const color = mentionColor(role?.color ?? 0xffffff);
 
   let name = role?.name;
 
-  name ??= "Unknown role";
+  name ??= t("common.unknownRole");
 
-  if (name === "@everyone") name = "everyone";
+  if (name === "@everyone")
+    name = t("components.Combobox.items.RoleItem.everyone");
 
   return (
     <div className="flex w-full items-center justify-between">
@@ -35,7 +38,7 @@ export const RoleItem = ({ item, isSelected, onRemove }: Props) => {
         {isSelected && (
           <CheckIcon
             className="mr-2 inline-block h-5 w-5"
-            aria-label="selected"
+            aria-label={t("components.Combobox.items.RoleItem.selected")}
           />
         )}
         <div
@@ -52,7 +55,7 @@ export const RoleItem = ({ item, isSelected, onRemove }: Props) => {
         <TinyIconButton
           icon={XIcon}
           onClick={onRemove}
-          aria-label="Remove role"
+          aria-label={t("components.Combobox.items.RoleItem.remove")}
         />
       )}
     </div>

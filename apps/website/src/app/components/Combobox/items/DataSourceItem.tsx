@@ -1,6 +1,7 @@
 import type { DataSource } from "@mc/common/DataSource";
 import { useContext } from "react";
 import { CheckIcon, Settings2Icon, XIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import type { ComboboxProps } from "..";
 import { getDataSourceMetadata } from "~/app/dashboard/servers/[guildId]/TemplateEditor/DataSource/dataSourcesMetadata";
@@ -21,10 +22,10 @@ export const DataSourceItem = ({
   onRemove,
   dataSourceConfigWarning,
 }: Props) => {
+  const { t } = useTranslation();
   const { pushEditStack } = useContext(EditDataSourcePanelContext);
 
   const dataSourceMetadata = getDataSourceMetadata(item.id);
-
   const displayName = dataSourceMetadata.displayName(item);
 
   return (
@@ -33,12 +34,14 @@ export const DataSourceItem = ({
         {isSelected ? (
           <CheckIcon
             className="mr-2 inline-block h-5 w-5"
-            aria-label="selected"
+            aria-label={t("components.Combobox.items.DataSourceItem.selected")}
           />
         ) : (
           <dataSourceMetadata.icon
             className="mr-2 inline-block h-5 w-5 min-w-5"
-            aria-label="selected"
+            aria-label={t(
+              "components.Combobox.items.DataSourceItem.notSelected",
+            )}
           />
         )}
         <span className="overflow-hidden text-ellipsis whitespace-nowrap">
@@ -56,6 +59,7 @@ export const DataSourceItem = ({
                   onChangeDataSource: onUpdate,
                 });
               }}
+              aria-label={t("components.Combobox.items.DataSourceItem.edit")}
             />
           </InfoToolip>
         )}
@@ -63,7 +67,7 @@ export const DataSourceItem = ({
           <TinyIconButton
             icon={XIcon}
             onClick={onRemove}
-            aria-label="Remove counter"
+            aria-label={t("components.Combobox.items.DataSourceItem.remove")}
           />
         )}
       </div>

@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+import { Trans } from "react-i18next";
+
 import { cn } from "@mc/ui";
 import { Label } from "@mc/ui/label";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
@@ -20,29 +22,30 @@ export function CustomDigits({
 }: Props) {
   return (
     <div className="flex flex-col gap-3">
-      <Label>Custom digits</Label>{" "}
+      <Label>
+        <Trans i18nKey="pages.dashboard.servers.settings.sections.CustomDigits.customDigits" />
+      </Label>
       <p className="text-sm text-muted-foreground">
-        In counters that return a number, Member counter will replace each digit
-        with the ones you provide. This is useful if you want to display custom
-        emojis or something else, such as "unicode style fonts."
+        <Trans i18nKey="pages.dashboard.servers.settings.sections.CustomDigits.customDigitsDescription" />
       </p>
       <p className="text-sm text-muted-foreground">
         <b>
-          Keep in mind that users using a screen reader (text-to-speech) may not
-          be able to understand the customized digits and{" "}
-          <LinkUnderlined
-            href="https://x.com/kentcdodds/status/1083073242330361856"
-            target="_blank"
-            referrerPolicy="no-referrer"
-          >
-            may hear something unintelligible
-          </LinkUnderlined>
-          . Screen readers are often used by people with visual disabilities.{" "}
+          <Trans
+            i18nKey="pages.dashboard.servers.settings.sections.CustomDigits.screenReaderWarning"
+            components={{
+              demoLink: (
+                <LinkUnderlined
+                  href="https://x.com/kentcdodds/status/1083073242330361856"
+                  target="_blank"
+                  referrerPolicy="no-referrer"
+                />
+              ),
+            }}
+          />
         </b>
       </p>
       <p className="text-sm text-muted-foreground">
-        We do not recommend customizing any digit unless you are certain that
-        nobody using a screen reader will have access to any counter.
+        <Trans i18nKey="pages.dashboard.servers.settings.sections.CustomDigits.customizationRecommendation" />
       </p>
       <div className="grid grid-cols-3 gap-3">
         {readyToInitiate &&
