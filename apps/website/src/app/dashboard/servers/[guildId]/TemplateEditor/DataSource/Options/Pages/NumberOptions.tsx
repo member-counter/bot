@@ -7,6 +7,7 @@ import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
+import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceNumber;
 
@@ -20,6 +21,7 @@ export function NumberOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -29,7 +31,7 @@ export function NumberOptions({
   return (
     <div>
       <div>
-        <Label>Number</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.NumberOptions.number')}</Label>
         <Combobox
           items={knownSearcheableDataSources}
           selectedItem={options.number}
@@ -42,13 +44,13 @@ export function NumberOptions({
             onRemove() {
               setOptions({ number: undefined });
             },
-            dataSourceConfigWarning: "Remember to return a valid number",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.NumberOptions.numberWarning'),
           })}
           onItemSelect={(number) => {
             setOptions({ number });
           }}
           prefillSelectedItemOnSearchOnFocus
-          placeholder="Enter a number or search a counter"
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.NumberOptions.placeholder')}
         />
       </div>
     </div>
