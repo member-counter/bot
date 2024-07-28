@@ -1,5 +1,6 @@
 import type { DataSource, DataSourceClock } from "@mc/common/DataSource";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Label } from "@mc/ui/label";
 
@@ -23,6 +24,7 @@ export function ClockOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -35,10 +37,10 @@ export function ClockOptions({
   return (
     <div>
       <div>
-        <Label>Timezone</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.timezone')}</Label>
         <Combobox
           items={searchableTimezonesAndDataSources}
-          placeholder="Search timezone..."
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.searchTimezonePlaceholder')}
           selectedItem={options.timezone}
           onItemSelect={(item) => {
             setOptions({
@@ -57,8 +59,7 @@ export function ClockOptions({
                 timezone: undefined,
               });
             },
-            dataSourceConfigWarning:
-              "Remember to return a valid timezone indentifier",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.configWarning'),
           })}
         />
       </div>

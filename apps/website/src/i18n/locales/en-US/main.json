@@ -236,7 +236,189 @@
           "serverSettings": "Server settings",
           "loading": "Loading server data...",
           "unknownChannels": "Visit saved channels if the Discord channels are unable to load"
-        }
+        },
+        "TemplateEditor": {
+            "DataSource": {
+              "Format": {
+                "DataSourceFormat": {
+                  "useCompactNotation": "Use compact notation",
+                  "select": "Select",
+                  "defaultServerSettings": "Default to server settings",
+                  "yes": "Yes",
+                  "no": "No",
+                  "overrideDefaultLocale": "Override default locale",
+                  "searchLocale": "Search locale...",
+                  "overrideDefaultDigits": "Override default digits"
+                }
+              },
+              "Options": {
+                "Pages": {
+                  "MembersOptions": {
+                    "CountOnlyBanned": {
+                      "label": "Count only banned members"
+                    },
+                    "FilterByAccountType": {
+                      "label": "Filter by account type",
+                      "placeholder": "Select an account type",
+                      "any": "Any",
+                      "user": "User",
+                      "bot": "Bot"
+                    },
+                    "FilterByConnectedTo": {
+                    "label": "Filter by connected to a voice channel",
+                    "dataSourceConfigWarning": "Remember to return a valid voice channel ID",
+                    "addPlaceholder": "Add voice channel..."
+                  },
+                  "FilterByRole": {
+                    "label": "Filter by role",
+                    "dataSourceConfigWarning": "Remember to return a valid role ID",
+                    "addPlaceholder": "Add role..."
+                  },
+                  "FilterByRoleFilterMode": {
+                    "placeholder": "Select the filter mode",
+                    "label": "Filter mode",
+                    "anyMatch": "Any match",
+                    "overlap": "Overlap"
+                  },
+                  "FilterByStatus": {
+                    "label": "Filter by status",
+                    "placeholder": "Select a status",
+                    "any": "Any",
+                    "online": "Online",
+                    "idle": "Idle",
+                    "dnd": "Do not disturb",
+                    "offline": "Offline"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Filter by playing a game",
+                    "placeholder": "Add game..."
+                  }
+                  },
+                  "BotStatsOptions": {
+                  "display": "Display",
+                  "selectPlaceholder": "Select something to display",
+                  "servers": "Servers",
+                  "users": "Users"
+                },
+                "ChannelOptions": {
+                  "filterByCategory": "Filter by category",
+                  "addCategoryPlaceholder": "Add category...",
+                  "configWarning": "Remember to return a valid category ID"
+                },
+                "ClockOptions": {
+                  "timezone": "Timezone",
+                  "searchTimezonePlaceholder": "Search timezone...",
+                  "configWarning": "Remember to return a valid timezone identifier"
+                },
+                "CountdownOptions": {
+                  "defaultFormat": "%d days, %h hours and %m minutes left",
+                  "targetDate": "Target date",
+                  "datePlaceholder": "Or take date from a counter...",
+                  "dateConfigWarning": "Remember to return a valid UNIX timestamp",
+                  "format": "Format",
+                  "formatInstructions": "Use <code>%d</code> to show the days left, <code>%h</code> for the hours left, and <code>%m</code> for the minutes left.",
+                  "formatConfigWarning": "Remember to return a valid formatting string",
+                  "livePreview": "Live preview",
+                  "noPreview": "We can't show you a live preview when the target date or format is empty.",
+                  "counterPreview": "We can't show you a live preview when the target date or format is the result of a counter, you must preview the whole template to see how it will look like."
+                },
+                "GameOptions": {
+                  "game": "Game",
+                  "searchPlaceholder": "Search...",
+                  "gameWarning": "Remember to return a valid node-gamedig game type",
+                  "address": "Address",
+                  "addressWarning": "Remember to return a valid address",
+                  "port": "Port (or query port)",
+                  "portWarning": "Remember to return a valid port number"
+                },
+                "HttpOptions": {
+                  "url": "URL (GET)",
+                  "urlWarning": "Remember to return a valid URL",
+                  "lifetime": "Lifetime (in seconds)",
+                  "lifetimeDescription": "Specifies for how long the response of the specified URL will be cached.",
+                  "lifetimeWarning": "Remember to return a valid number",
+                  "dataPath": "Data path",
+                  "dataPathDescription": "A path to get the desired value when the response's content type is JSON, the syntax is similar to the one used by JS to access properties and array items.",
+                  "dataPathWarning": "Remember to return a data path",
+                  "noPreview": "We can't show you a preview when the URL or data path is the result of a counter, you must preview the whole template to see how it will look like.",
+                  "testResponse": "Test response",
+                  "fetching": "Fetching...",
+                  "fetch": "Fetch",
+                  "emptyUrl": "Can't fetch, URL is empty",
+                  "preview": "Preview"
+                },
+                "MathOptions": {
+                  "operation": "Operation type",
+                  "selectOperation": "Select a operation type",
+                  "addition": "Addition",
+                  "subtraction": "Substraction",
+                  "multiplication": "Multiplication",
+                  "division": "Division",
+                  "modulo": "Modulo (Reminder of a division)",
+                  "numberList": "Number list",
+                  "numberWarning": "Remember to return a valid number",
+                  "addNumber": "Add number..."
+                },
+                "MemeratorOptions": {
+                  "display": "Display",
+                  "selectDisplay": "Select something to display",
+                  "followers": "Followers",
+                  "memes": "Memes",
+                  "username": "Username",
+                  "usernameWarning": "Remember to return a valid username"
+                },
+                "NumberOptions": {
+                  "number": "Number",
+                  "numberWarning": "Remember to return a valid number",
+                  "placeholder": "Enter a number or search a counter"
+                },
+                "RedditOptions": {
+                  "display": "Display",
+                  "selectPlaceholder": "Select something to display",
+                  "members": "Members",
+                  "membersOnline": "Members online",
+                  "title": "Subreddit title",
+                  "subreddit": "Subreddit name",
+                  "subredditWarning": "Remember to return a valid subreddit",
+                  "subredditPlaceholder": "Enter a subreddit or search a counter"
+                },
+                "ReplaceOptions": {
+                  "inputText": "Input text",
+                  "textPlaceholder": "Enter the text to replace",
+                  "searchFor": "Search for",
+                  "searchPlaceholder": "Enter the search term",
+                  "replaceWith": "Replace with",
+                  "replacementPlaceholder": "Enter the replacement text",
+                  "removeReplacement": "Remove replacement",
+                  "addReplacement": "Add replacement"
+                },"TwitchOptions": {
+                  "display": "Display",
+                  "selectPlaceholder": "Select something to display",
+                  "followers": "Followers",
+                  "viewers": "Viewers",
+                  "channelName": "Channel name",
+                  "username": "Username",
+                  "usernamePlaceholder": "Enter a username",
+                  "usernameWarning": "Remember to return a valid username"
+                },"YouTubeOptions": {
+                  "display": "Display",
+                  "selectPlaceholder": "Select something to display",
+                  "subscribers": "Subscribers",
+                  "views": "Views",
+                  "videos": "Videos",
+                  "channelName": "Channel name",
+                  "channelUrl": "Channel URL",
+                  "channelUrlPlaceholder": "Enter a channel URL",
+                  "channelUrlWarning": "Remember to return a valid channel URL"
+                }
+                }
+              }
+            },
+            "AddDataSourceCombobox": {
+              "searchPlaceholder": "Search counter...",
+              "noItemsFound": "No counters found."
+            }
+          }
       }
     },
     "account": {
@@ -315,6 +497,7 @@
     "unknownRole": "Unknown role",
     "unknownDate": "Unknown date",
     "unknown": "Unknown",
+    "unknownError": "Unknown error",
     "channelLabels": {
       "textChannel": "Text channel",
       "category": "Category",

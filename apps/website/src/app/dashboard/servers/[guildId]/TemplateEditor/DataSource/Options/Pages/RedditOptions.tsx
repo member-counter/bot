@@ -18,6 +18,7 @@ import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
+import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceReddit;
 
@@ -32,6 +33,7 @@ export function RedditOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -41,29 +43,29 @@ export function RedditOptions({
   return (
     <div>
       <div>
-        <Label>Display</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.RedditOptions.display')}</Label>
         <Select
           value={options.return.toString()}
           onValueChange={(value) => setOptions({ return: Number(value) })}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select something to display" />
+            <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.RedditOptions.selectPlaceholder')} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectItemWithIcon
                 value={RedditDataSourceReturn.MEMBERS.toString()}
-                label={"Members"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.RedditOptions.members')}
                 icon={UsersIcon}
               />
               <SelectItemWithIcon
                 value={RedditDataSourceReturn.MEMBERS_ONLINE.toString()}
-                label={"Members online"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.RedditOptions.membersOnline')}
                 icon={CircleIcon}
               />
               <SelectItemWithIcon
                 value={RedditDataSourceReturn.TITLE.toString()}
-                label={"Subreddit title"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.RedditOptions.title')}
                 icon={TagIcon}
               />
             </SelectGroup>
@@ -72,7 +74,7 @@ export function RedditOptions({
       </div>
       <Separator />
       <div>
-        <Label>Subreddit name</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.RedditOptions.subreddit')}</Label>
         <Combobox
           items={knownSearcheableDataSources}
           selectedItem={options.subreddit}
@@ -85,13 +87,13 @@ export function RedditOptions({
             onRemove() {
               setOptions({ subreddit: undefined });
             },
-            dataSourceConfigWarning: "Remember to return a valid subreddit",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.RedditOptions.subredditWarning'),
           })}
           onItemSelect={(subreddit) => {
             setOptions({ subreddit });
           }}
           prefillSelectedItemOnSearchOnFocus
-          placeholder=""
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.RedditOptions.subredditPlaceholder')}
         />
       </div>
     </div>

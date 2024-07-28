@@ -2,9 +2,8 @@ import type { DataSource } from "@mc/common/DataSource";
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
-
+import { useTranslation } from "react-i18next";
 import { Label } from "@mc/ui/label";
-
 import type { Searchable } from "~/app/components/Combobox";
 import type { DashboardGuildParams } from "~/app/dashboard/servers/[guildId]/layout";
 import { Combobox } from "~/app/components/Combobox";
@@ -22,6 +21,7 @@ export function FilterByConnectedTo({
   value: Type;
   onChange: (value: Type) => void;
 }) {
+  const { t } = useTranslation();
   const { guildId } = useParams<DashboardGuildParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
 
@@ -42,7 +42,7 @@ export function FilterByConnectedTo({
 
   return (
     <div>
-      <Label>Filter by connected to a voice channel</Label>
+      <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByConnectedTo.label')}</Label>
       {value.map((item, index) => (
         <Combobox
           key={index}
@@ -60,14 +60,13 @@ export function FilterByConnectedTo({
             onRemove: () => {
               onChange(removeFrom(value, index));
             },
-            dataSourceConfigWarning:
-              "Remember to return a valid voice channel ID",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByConnectedTo.dataSourceConfigWarning')
           })}
         />
       ))}
       <Combobox
         items={searchableChannels}
-        placeholder="Add voice channel..."
+        placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByConnectedTo.addPlaceholder')}
         onItemSelect={(item) => {
           onChange(addTo(value, item));
         }}

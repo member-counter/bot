@@ -1,6 +1,6 @@
 import type { DataSource } from "@mc/common/DataSource";
 import { useParams } from "next/navigation";
-
+import { useTranslation } from "react-i18next";
 import type { Searchable } from "~/app/components/Combobox";
 import type { DashboardGuildParams } from "~/app/dashboard/servers/[guildId]/layout";
 import { Combobox } from "~/app/components/Combobox";
@@ -18,6 +18,7 @@ export function FilterByRole({
   value: Type;
   onChange: (value: Type) => void;
 }) {
+  const { t } = useTranslation();
   const { guildId } = useParams<DashboardGuildParams>();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const searchableRoles: Searchable<string | DataSource>[] = [
@@ -44,13 +45,13 @@ export function FilterByRole({
             onRemove: () => {
               onChange(removeFrom(value, index));
             },
-            dataSourceConfigWarning: "Remember to return a valid role ID",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByRole.dataSourceConfigWarning')
           })}
         />
       ))}
       <Combobox
         items={searchableRoles}
-        placeholder="Add role..."
+        placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByRole.addPlaceholder')}
         onItemSelect={(item) => {
           onChange(addTo(value, item));
         }}

@@ -1,6 +1,7 @@
 import type { DataSourceId } from "@mc/common/DataSource";
 import { useCallback, useMemo, useState } from "react";
 import { useSlateStatic } from "slate-react";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
 import {
@@ -26,6 +27,7 @@ export default function AddDataSourceCombobox({
   children: React.ReactNode;
   disabled?: boolean;
 }) {
+  const { t } = useTranslation();
   const editor = useSlateStatic();
   const { setDataSourceRef } = useDataSourceRefs();
   const isDesktop = useBreakpoint("md");
@@ -47,12 +49,12 @@ export default function AddDataSourceCombobox({
     () => (
       <Command className={cn(!isDesktop && "rounded-xl")}>
         <CommandInput
-          placeholder={"Search counter..."}
+          placeholder={t('pages.dashboard.servers.TemplateEditor.AddDataSourceCombobox.searchPlaceholder')}
           value={search}
           onValueChange={setSearch}
         />
         <CommandList>
-          <CommandEmpty>No counters found.</CommandEmpty>
+          <CommandEmpty>{t('pages.dashboard.servers.TemplateEditor.AddDataSourceCombobox.noItemsFound')}</CommandEmpty>
           <CommandGroup>
             {items.map((item) => {
               return (
@@ -84,7 +86,7 @@ export default function AddDataSourceCombobox({
         </CommandList>
       </Command>
     ),
-    [isDesktop, items, onAdd, search],
+    [isDesktop, items, onAdd, search, t],
   );
 
   if (isDesktop) {

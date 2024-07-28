@@ -1,5 +1,6 @@
 import type { DataSource, DataSourceGame } from "@mc/common/DataSource";
 import { useEffect, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
@@ -30,6 +31,7 @@ export function GameOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -62,10 +64,10 @@ export function GameOptions({
   return (
     <div>
       <div>
-        <Label>Game</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.game')}</Label>
         <Combobox
           items={searchableGames}
-          placeholder="Search..."
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.searchPlaceholder')}
           prefillSelectedItemOnSearchOnFocus
           selectedItem={options.game}
           onItemSelect={(game) => {
@@ -86,13 +88,13 @@ export function GameOptions({
               });
             },
             dataSourceConfigWarning:
-              "Remember to return a valid node-gamedig game type",
+              t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.gameWarning'),
           })}
         />
       </div>
       <Separator />
       <div>
-        <Label>Address</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.address')}</Label>
         <Combobox
           items={knownSearcheableDataSources}
           allowSearchedTerm
@@ -116,13 +118,13 @@ export function GameOptions({
                 address: undefined,
               });
             },
-            dataSourceConfigWarning: "Remember to return a valid address",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.addressWarning'),
           })}
         />
       </div>
       <Separator />
       <div>
-        <Label>Port (or query port)</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.port')}</Label>
         <Combobox
           items={knownSearcheableDataSources}
           placeholder=""
@@ -162,7 +164,7 @@ export function GameOptions({
             onRemove: () => {
               setOptions({ port: undefined });
             },
-            dataSourceConfigWarning: "Remember to return a valid port number",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.portWarning'),
           })}
         />
       </div>
