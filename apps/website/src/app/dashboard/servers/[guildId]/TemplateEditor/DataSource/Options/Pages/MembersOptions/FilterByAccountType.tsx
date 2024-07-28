@@ -1,5 +1,5 @@
 import { AsteriskIcon, BotIcon, UserIcon } from "lucide-react";
-
+import { useTranslation } from "react-i18next";
 import { MembersFilterAccountType } from "@mc/common/DataSource";
 import { Label } from "@mc/ui/label";
 import {
@@ -19,31 +19,33 @@ export function FilterByAccountType({
   value: Type;
   onChange: (value: Type) => void;
 }) {
+  const { t } = useTranslation();
+  
   return (
     <div>
-      <Label>Filter by account type</Label>
+      <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByAccountType.label')}</Label>
       <Select
         value={value.toString()}
         onValueChange={(value) => onChange(Number(value))}
       >
         <SelectTrigger>
-          <SelectValue placeholder="Select an account type" />
+          <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByAccountType.placeholder')} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectItemWithIcon
               value={MembersFilterAccountType.ANY.toString()}
-              label={"Any"}
+              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByAccountType.any')}
               icon={AsteriskIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterAccountType.USER.toString()}
-              label={"User"}
+              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByAccountType.user')}
               icon={UserIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterAccountType.BOT.toString()}
-              label={"Bot"}
+              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByAccountType.bot')}
               icon={BotIcon}
             />
           </SelectGroup>

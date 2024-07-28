@@ -1,7 +1,6 @@
 import type { DataSource } from "@mc/common/DataSource";
-
+import { useTranslation } from "react-i18next";
 import { Label } from "@mc/ui/label";
-
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { addTo, removeFrom, updateIn } from "~/other/array";
@@ -15,9 +14,11 @@ export function FilterPlayingGame({
   value: Type;
   onChange: (value: Type) => void;
 }) {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <Label>Filter by playing a game</Label>
+      <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterPlayingGame.label')}</Label>
       {value.map((item, index) => (
         <Combobox
           key={index}
@@ -43,7 +44,7 @@ export function FilterPlayingGame({
       <Combobox
         items={knownSearcheableDataSources}
         allowSearchedTerm
-        placeholder="Add game..."
+        placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterPlayingGame.placeholder')}
         onItemSelect={(item) => {
           onChange(addTo(value, item));
         }}

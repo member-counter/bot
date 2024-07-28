@@ -1,6 +1,7 @@
 import type { DataSourceHTTP } from "@mc/common/DataSource";
 import { useEffect, useState } from "react";
 import { Loader2Icon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import jsonBodyExtractor from "@mc/common/jsonBodyExtractor";
 import { Button } from "@mc/ui/button";
@@ -28,6 +29,7 @@ export function HttpOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -48,9 +50,9 @@ export function HttpOptions({
         ),
       );
     } catch (e) {
-      setDisplayPreview(e instanceof Error ? e.toString() : "Unknown error");
+      setDisplayPreview(e instanceof Error ? e.toString() : t("common.unknownError"));
     }
-  }, [testResponse, options.dataPath]);
+  }, [testResponse, options.dataPath, t]);
 
   const testHTTP = () => {
     if (typeof options.url !== "string") return;
@@ -67,7 +69,7 @@ export function HttpOptions({
         }
       })
       .catch((e) => {
-        setTestResponse(e instanceof Error ? e.toString() : "Unknown error");
+        setTestResponse(e instanceof Error ? e.toString() : t("common.unknownError"));
       })
       .finally(() => {
         setTestLoading(false);
@@ -77,7 +79,7 @@ export function HttpOptions({
   return (
     <div>
       <div>
-        <Label>URL (GET)</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.url')}</Label>
         <Combobox
           items={knownSearcheableDataSources}
           selectedItem={options.url}
@@ -90,7 +92,7 @@ export function HttpOptions({
             onRemove() {
               setOptions({ url: undefined });
             },
-            dataSourceConfigWarning: "Remember to return a valid URL",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.urlWarning'),
           })}
           onItemSelect={(url) => {
             setOptions({ url });
@@ -101,10 +103,9 @@ export function HttpOptions({
       </div>
       <Separator />
       <div>
-        <Label>Lifetime (in seconds)</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.lifetime')}</Label>
         <span className="text-sm font-light italic">
-          Specifies for how long the response of the specified URL will be
-          cached.
+          {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.lifetimeDescription')}
         </span>
         <Combobox
           items={knownSearcheableDataSources}
@@ -145,17 +146,15 @@ export function HttpOptions({
             onRemove: () => {
               setOptions({ lifetime: undefined });
             },
-            dataSourceConfigWarning: "Remember to return a valid number",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.lifetimeWarning'),
           })}
         />
       </div>
       <Separator />
       <div>
-        <Label>Data path</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.dataPath')}</Label>
         <span className="text-sm font-light italic">
-          A path to get the desired value when the response's content type is
-          JSON, the syntax is similar to the one used by JS to access properties
-          and array items.
+          {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.dataPathDescription')}
         </span>
         <Combobox
           items={knownSearcheableDataSources}
@@ -169,7 +168,7 @@ export function HttpOptions({
             onRemove() {
               setOptions({ dataPath: undefined });
             },
-            dataSourceConfigWarning: "Remember to return a data path",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.dataPathWarning'),
           })}
           onItemSelect={(dataPath) => {
             setOptions({ dataPath });
@@ -182,14 +181,12 @@ export function HttpOptions({
       <Separator />
       {typeof options.dataPath !== "string" ? (
         <span className="text-sm font-light italic">
-          We can't show you a preview when the URL or data path is the result of
-          a counter, you must preview the whole template to see how it will look
-          like.
+          {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.noPreview')}
         </span>
       ) : (
         <>
           <div>
-            <Label>Test response</Label>
+            <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.testResponse')}</Label>
             <pre className="overflow-auto rounded-md border border-input bg-background p-4">
               {testResponse}
             </pre>
@@ -197,18 +194,18 @@ export function HttpOptions({
               {testLoading ? (
                 <>
                   <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />{" "}
-                  Fetching...
+                  {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.fetching')}
                 </>
               ) : options.url ? (
-                "Fetch"
+                t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.fetch')
               ) : (
-                "Can't fetch, URL is empty"
+                t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.emptyUrl')
               )}
             </Button>
           </div>
           <Separator />
           <div>
-            <Label>Preview</Label>
+            <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.preview')}</Label>
             <Input readOnly value={displayPreview} />
           </div>
         </>

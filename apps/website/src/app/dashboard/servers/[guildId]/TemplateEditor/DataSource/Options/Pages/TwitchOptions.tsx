@@ -18,6 +18,7 @@ import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
+import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceTwitch;
 
@@ -32,6 +33,7 @@ export function TwitchOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -41,29 +43,29 @@ export function TwitchOptions({
   return (
     <div>
       <div>
-        <Label>Display</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.TwitchOptions.display')}</Label>
         <Select
           value={options.return.toString()}
           onValueChange={(value) => setOptions({ return: Number(value) })}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select something to display" />
+            <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.TwitchOptions.selectPlaceholder')} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectItemWithIcon
                 value={TwitchDataSourceReturn.FOLLOWERS.toString()}
-                label={"Followers"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.TwitchOptions.followers')}
                 icon={UserRoundPlusIcon}
               />
               <SelectItemWithIcon
                 value={TwitchDataSourceReturn.VIEWERS.toString()}
-                label={"Viewers"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.TwitchOptions.viewers')}
                 icon={EyeIcon}
               />
               <SelectItemWithIcon
                 value={TwitchDataSourceReturn.CHANNEL_NAME.toString()}
-                label={"Channel name"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.TwitchOptions.channelName')}
                 icon={TagIcon}
               />
             </SelectGroup>
@@ -72,7 +74,7 @@ export function TwitchOptions({
       </div>
       <Separator />
       <div>
-        <Label>Username</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.TwitchOptions.username')}</Label>
         <Combobox
           items={knownSearcheableDataSources}
           selectedItem={options.username}
@@ -85,13 +87,13 @@ export function TwitchOptions({
             onRemove() {
               setOptions({ username: undefined });
             },
-            dataSourceConfigWarning: "Remember to return a valid username",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.TwitchOptions.usernameWarning'),
           })}
           onItemSelect={(username) => {
             setOptions({ username });
           }}
           prefillSelectedItemOnSearchOnFocus
-          placeholder=""
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.TwitchOptions.usernamePlaceholder')}
         />
       </div>
     </div>

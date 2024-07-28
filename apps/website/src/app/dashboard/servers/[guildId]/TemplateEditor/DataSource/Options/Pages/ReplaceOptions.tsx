@@ -14,6 +14,7 @@ import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox
 import { addTo, removeFrom, updateIn } from "~/other/array";
 import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
+import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceReplace;
 
@@ -28,6 +29,7 @@ export function ReplaceOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -37,7 +39,7 @@ export function ReplaceOptions({
   return (
     <div>
       <div>
-        <Label>Input text</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.inputText')}</Label>
         <Combobox
           items={knownSearcheableDataSources}
           selectedItem={options.text}
@@ -55,53 +57,25 @@ export function ReplaceOptions({
             setOptions({ text });
           }}
           prefillSelectedItemOnSearchOnFocus
-          placeholder=""
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.textPlaceholder')}
         />
       </div>
       <Separator />
       <div>
-        {options.replacements.map((replacement, index) => {
-          return (
-            <Card
-              className="flex flex-col gap-5 bg-[#29252459] p-3"
-              key={index}
-            >
-              <div className="flex flex-col gap-3">
-                <Label>Search for</Label>
-                <Combobox
-                  items={knownSearcheableDataSources}
-                  selectedItem={replacement.search}
-                  allowSearchedTerm
-                  onItemRender={textWithDataSourceItemRendererFactory()}
-                  onSelectedItemRender={textWithDataSourceItemRendererFactory({
-                    onUpdate(text) {
-                      const newReplacement: ReplaceReplacement = {
-                        ...replacement,
-                        search: text,
-                      };
-                      setOptions({
-                        replacements: updateIn(
-                          options.replacements,
-                          newReplacement,
-                          index,
-                        ),
-                      });
-                    },
-                    onRemove() {
-                      const newReplacement: ReplaceReplacement = {
-                        ...replacement,
-                        search: undefined,
-                      };
-                      setOptions({
-                        replacements: updateIn(
-                          options.replacements,
-                          newReplacement,
-                          index,
-                        ),
-                      });
-                    },
-                  })}
-                  onItemSelect={(text) => {
+        {options.replacements.map((replacement, index) => (
+          <Card
+            className="flex flex-col gap-5 bg-[#29252459] p-3"
+            key={index}
+          >
+            <div className="flex flex-col gap-3">
+              <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.searchFor')}</Label>
+              <Combobox
+                items={knownSearcheableDataSources}
+                selectedItem={replacement.search}
+                allowSearchedTerm
+                onItemRender={textWithDataSourceItemRendererFactory()}
+                onSelectedItemRender={textWithDataSourceItemRendererFactory({
+                  onUpdate(text) {
                     const newReplacement: ReplaceReplacement = {
                       ...replacement,
                       search: text,
@@ -113,47 +87,47 @@ export function ReplaceOptions({
                         index,
                       ),
                     });
-                  }}
-                  prefillSelectedItemOnSearchOnFocus
-                  placeholder=""
-                />
-              </div>
-              <div className="flex flex-col gap-3">
-                <Label>Replace with</Label>
-                <Combobox
-                  items={knownSearcheableDataSources}
-                  selectedItem={replacement.replacement}
-                  allowSearchedTerm
-                  onItemRender={textWithDataSourceItemRendererFactory()}
-                  onSelectedItemRender={textWithDataSourceItemRendererFactory({
-                    onUpdate(text) {
-                      const newReplacement: ReplaceReplacement = {
-                        ...replacement,
-                        replacement: text,
-                      };
-                      setOptions({
-                        replacements: updateIn(
-                          options.replacements,
-                          newReplacement,
-                          index,
-                        ),
-                      });
-                    },
-                    onRemove() {
-                      const newReplacement: ReplaceReplacement = {
-                        ...replacement,
-                        replacement: undefined,
-                      };
-                      setOptions({
-                        replacements: updateIn(
-                          options.replacements,
-                          newReplacement,
-                          index,
-                        ),
-                      });
-                    },
-                  })}
-                  onItemSelect={(text) => {
+                  },
+                  onRemove() {
+                    const newReplacement: ReplaceReplacement = {
+                      ...replacement,
+                      search: undefined,
+                    };
+                    setOptions({
+                      replacements: updateIn(
+                        options.replacements,
+                        newReplacement,
+                        index,
+                      ),
+                    });
+                  },
+                })}
+                onItemSelect={(text) => {
+                  const newReplacement: ReplaceReplacement = {
+                    ...replacement,
+                    search: text,
+                  };
+                  setOptions({
+                    replacements: updateIn(
+                      options.replacements,
+                      newReplacement,
+                      index,
+                    ),
+                  });
+                }}
+                prefillSelectedItemOnSearchOnFocus
+                placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.searchPlaceholder')}
+              />
+            </div>
+            <div className="flex flex-col gap-3">
+              <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.replaceWith')}</Label>
+              <Combobox
+                items={knownSearcheableDataSources}
+                selectedItem={replacement.replacement}
+                allowSearchedTerm
+                onItemRender={textWithDataSourceItemRendererFactory()}
+                onSelectedItemRender={textWithDataSourceItemRendererFactory({
+                  onUpdate(text) {
                     const newReplacement: ReplaceReplacement = {
                       ...replacement,
                       replacement: text,
@@ -165,24 +139,50 @@ export function ReplaceOptions({
                         index,
                       ),
                     });
-                  }}
-                  prefillSelectedItemOnSearchOnFocus
-                  placeholder=""
-                />
-              </div>
-              <Button
-                variant={"destructive"}
-                onClick={() =>
+                  },
+                  onRemove() {
+                    const newReplacement: ReplaceReplacement = {
+                      ...replacement,
+                      replacement: undefined,
+                    };
+                    setOptions({
+                      replacements: updateIn(
+                        options.replacements,
+                        newReplacement,
+                        index,
+                      ),
+                    });
+                  },
+                })}
+                onItemSelect={(text) => {
+                  const newReplacement: ReplaceReplacement = {
+                    ...replacement,
+                    replacement: text,
+                  };
                   setOptions({
-                    replacements: removeFrom(options.replacements, index),
-                  })
-                }
-              >
-                Remove replacement
-              </Button>
-            </Card>
-          );
-        })}
+                    replacements: updateIn(
+                      options.replacements,
+                      newReplacement,
+                      index,
+                    ),
+                  });
+                }}
+                prefillSelectedItemOnSearchOnFocus
+                placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.replacementPlaceholder')}
+              />
+            </div>
+            <Button
+              variant={"destructive"}
+              onClick={() =>
+                setOptions({
+                  replacements: removeFrom(options.replacements, index),
+                })
+              }
+            >
+              {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.removeReplacement')}
+            </Button>
+          </Card>
+        ))}
         <Button
           variant={"secondary"}
           onClick={() =>
@@ -194,7 +194,7 @@ export function ReplaceOptions({
             })
           }
         >
-          Add replacement
+          {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.addReplacement')}
         </Button>
       </div>
     </div>

@@ -18,6 +18,7 @@ import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
+import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceYoutube;
 
@@ -32,6 +33,7 @@ export function YouTubeOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -41,34 +43,34 @@ export function YouTubeOptions({
   return (
     <div>
       <div>
-        <Label>Display</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.YouTubeOptions.display')}</Label>
         <Select
           value={options.return.toString()}
           onValueChange={(value) => setOptions({ return: Number(value) })}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select something to display" />
+            <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.YouTubeOptions.selectPlaceholder')} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectItemWithIcon
                 value={YouTubeDataSourceReturn.SUBSCRIBERS.toString()}
-                label={"Subscribers"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.YouTubeOptions.subscribers')}
                 icon={UserRoundPlusIcon}
               />
               <SelectItemWithIcon
                 value={YouTubeDataSourceReturn.VIEWS.toString()}
-                label={"Views"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.YouTubeOptions.views')}
                 icon={EyeIcon}
               />
               <SelectItemWithIcon
                 value={YouTubeDataSourceReturn.VIDEOS.toString()}
-                label={"Videos"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.YouTubeOptions.videos')}
                 icon={VideoIcon}
               />
               <SelectItemWithIcon
                 value={YouTubeDataSourceReturn.CHANNEL_NAME.toString()}
-                label={"Channel name"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.YouTubeOptions.channelName')}
                 icon={TagIcon}
               />
             </SelectGroup>
@@ -77,7 +79,7 @@ export function YouTubeOptions({
       </div>
       <Separator />
       <div>
-        <Label>Channel URL</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.YouTubeOptions.channelUrl')}</Label>
         <Combobox
           items={knownSearcheableDataSources}
           allowSearchedTerm
@@ -90,13 +92,13 @@ export function YouTubeOptions({
             onRemove() {
               setOptions({ channelUrl: undefined });
             },
-            dataSourceConfigWarning: "Remember to return a valid channel URL",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.YouTubeOptions.channelUrlWarning'),
           })}
           onItemSelect={(channelUrl) => {
             setOptions({ channelUrl });
           }}
           prefillSelectedItemOnSearchOnFocus
-          placeholder=""
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.YouTubeOptions.channelUrlPlaceholder')}
         />
       </div>
     </div>

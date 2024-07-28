@@ -52,7 +52,7 @@ import {
 } from "@mc/common/DataSource";
 
 import type { Searchable } from "~/app/components/Combobox";
-
+// TODO translate
 export interface DataSourceMetadata<D extends DataSource = DataSource> {
   description: string;
   icon: LucideIcon;
@@ -330,13 +330,13 @@ const clockDataSourceMetadata: DataSourceMetadata<DataSourceClock> = {
   keywords: ["clock", "timezone"],
 };
 const nitroBoostersDataSourceMetadata: DataSourceMetadata<DataSourceNitroBoosters> =
-  {
-    icon: PartyPopperIcon,
-    description: "Retrieve the count of Nitro boosters for the server.",
-    displayName: () => "Nitro Boosters",
-    dataSource: { id: DataSourceId.NITRO_BOOSTERS },
-    keywords: ["Nitro", "boosters", "server"],
-  };
+{
+  icon: PartyPopperIcon,
+  description: "Retrieve the count of Nitro boosters for the server.",
+  displayName: () => "Nitro Boosters",
+  dataSource: { id: DataSourceId.NITRO_BOOSTERS },
+  keywords: ["Nitro", "boosters", "server"],
+};
 const numberDataSourceMetadata: DataSourceMetadata<DataSourceNumber> = {
   icon: Tally5Icon,
   description: "Apply number formatting to the given number.",

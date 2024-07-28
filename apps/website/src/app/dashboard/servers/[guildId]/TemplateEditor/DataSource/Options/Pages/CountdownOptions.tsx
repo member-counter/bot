@@ -1,5 +1,6 @@
 import type { DataSource, DataSourceCountdown } from "@mc/common/DataSource";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
 
 import { Input } from "@mc/ui/input";
 import { Label } from "@mc/ui/label";
@@ -10,6 +11,7 @@ import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
+import type { TFunction } from "i18next";
 
 function formatCountdown(date: unknown, format: unknown) {
   if (typeof date !== "number" || typeof format !== "string") return;
@@ -25,10 +27,10 @@ function formatCountdown(date: unknown, format: unknown) {
 
 type DataSourceType = DataSourceCountdown;
 
-const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
+const defaultOptionsMerger = (t: TFunction) =>(options: DataSourceType["options"] = {}) => {
   return {
     date: options.date ?? Date.now() + 60 * 60 * 1000,
-    format: options.format ?? "%d days, %h hours and %m minutes left",
+    format: options.format ?? t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.defaultFormat'),
   };
 };
 
@@ -36,9 +38,12 @@ export function CountdownOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const defaultOptionsMergerT = useMemo(() => defaultOptionsMerger(t), [])
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
-    defaultOptionsMerger,
+    defaultOptionsMerger: defaultOptionsMergerT,
     onOptionsChange,
   });
 
@@ -66,7 +71,7 @@ export function CountdownOptions({
   return (
     <div>
       <div>
-        <Label>Target date</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.targetDate')}</Label>
         {typeof options.date === "number" && (
           <Input
             type="datetime-local"
@@ -90,7 +95,7 @@ export function CountdownOptions({
         )}
         <Combobox<number | DataSource>
           items={knownSearcheableDataSources}
-          placeholder="Or take date from a counter..."
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.datePlaceholder')}
           selectedItem={
             typeof options.date === "number" ? undefined : options.date
           }
@@ -111,17 +116,16 @@ export function CountdownOptions({
                 date: undefined,
               });
             },
-            dataSourceConfigWarning:
-              "Remember to return a valid UNIX timestamp",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.dateConfigWarning'),
           })}
         />
       </div>
       <Separator />
       <div>
-        <Label>Format</Label>
-        <p className="text-sm font-light italic">
-          Use <code>%d</code> to show the days left, <code>%h</code> for the
-          hours left, and <code>%m</code> for the minutes left.
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.format')}</Label>
+          <p className="text-sm font-light italic">
+            <Trans i18nKey="pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.formatInstructions" components={{ code: <code />}}/>
+  
         </p>
         <Combobox
           items={knownSearcheableDataSources}
@@ -146,25 +150,21 @@ export function CountdownOptions({
                 format: undefined,
               });
             },
-            dataSourceConfigWarning:
-              "Remember to return a valid formatting string",
+            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.formatConfigWarning'),
           })}
         />
       </div>
       <Separator />
       <div>
-        <Label>Live preview</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.livePreview')}</Label>
         {!options.date || !options.format ? (
           <span className="text-sm font-light italic">
-            We can't show you a live preview when the target date or format is
-            empty.
+            {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.noPreview')}
           </span>
         ) : typeof options.date !== "number" ||
           typeof options.format !== "string" ? (
           <span className="text-sm font-light italic">
-            We can't show you a live preview when the target date or format is
-            the result of a counter, you must preview the whole template to see
-            how it will look like.
+            {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.counterPreview')}
           </span>
         ) : (
           <Input readOnly value={preview} />

@@ -2,6 +2,7 @@ import type { DataSource, DataSourceChannels } from "@mc/common/DataSource";
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
+import { useTranslation } from "react-i18next";
 
 import { Label } from "@mc/ui/label";
 
@@ -29,6 +30,7 @@ export function ChannelOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -59,7 +61,7 @@ export function ChannelOptions({
   return (
     <div>
       <div>
-        <Label>Filter by category</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ChannelOptions.filterByCategory')}</Label>
         {options.categories.map((item, index) => (
           <Combobox
             key={index}
@@ -83,13 +85,13 @@ export function ChannelOptions({
                   categories: removeFrom(options.categories, index),
                 });
               },
-              dataSourceConfigWarning: "Remember to return a valid category ID",
+              dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ChannelOptions.configWarning'),
             })}
           />
         ))}
         <Combobox
           items={searchableCategories}
-          placeholder="Add category..."
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ChannelOptions.addCategoryPlaceholder')}
           onItemSelect={(item) => {
             setOptions({
               categories: addTo(options.categories, item),

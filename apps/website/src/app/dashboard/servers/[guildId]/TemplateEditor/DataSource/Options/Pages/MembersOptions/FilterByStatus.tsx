@@ -5,7 +5,7 @@ import {
   MinusCircleIcon,
   MoonIcon,
 } from "lucide-react";
-
+import { useTranslation } from "react-i18next";
 import { MembersFilterStatus } from "@mc/common/DataSource";
 import { Label } from "@mc/ui/label";
 import {
@@ -25,42 +25,43 @@ export function FilterByStatus({
   value: Type;
   onChange: (value: Type) => void;
 }) {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <Label>Filter by status</Label>
+      <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.label')}</Label>
       <Select
         value={value.toString()}
         onValueChange={(value) => onChange(Number(value))}
       >
         <SelectTrigger>
-          <SelectValue placeholder="Select a status" />
+          <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.placeholder')} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectItemWithIcon
               value={MembersFilterStatus.ANY.toString()}
-              label={"Any"}
+              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.any')}
               icon={AsteriskIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterStatus.ONLINE.toString()}
-              label={"Online"}
+              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.online')}
               icon={CircleIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterStatus.IDLE.toString()}
-              label={"Idle"}
+              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.idle')}
               icon={MoonIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterStatus.DND.toString()}
-              label={"Do not disturb"}
+              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.dnd')}
               icon={MinusCircleIcon}
             />
-
             <SelectItemWithIcon
               value={MembersFilterStatus.OFFLINE.toString()}
-              label={"Offline"}
+              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.offline')}
               icon={CircleDashedIcon}
             />
           </SelectGroup>

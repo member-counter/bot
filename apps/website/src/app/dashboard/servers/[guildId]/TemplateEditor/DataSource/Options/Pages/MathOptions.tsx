@@ -25,6 +25,7 @@ import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox
 import { addTo, removeFrom, updateIn } from "~/other/array";
 import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
 import useDataSourceOptions from "../useDataSourceOptions";
+import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceMath;
 
@@ -39,6 +40,7 @@ export function MathOptions({
   options: unmergedOptions,
   onOptionsChange,
 }: SetupOptionsInterface<DataSourceType>) {
+  const { t } = useTranslation();
   const [options, setOptions] = useDataSourceOptions({
     unmergedOptions,
     defaultOptionsMerger,
@@ -48,39 +50,39 @@ export function MathOptions({
   return (
     <div>
       <div>
-        <Label>Operation type</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.operation')}</Label>
         <Select
           value={options.operation.toString()}
           onValueChange={(value) => setOptions({ operation: Number(value) })}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select a operation type" />
+            <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.selectOperation')} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectItemWithIcon
                 value={MathDataSourceOperation.ADD.toString()}
-                label={"Addition"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.addition')}
                 icon={PlusIcon}
               />
               <SelectItemWithIcon
                 value={MathDataSourceOperation.SUBSTRACT.toString()}
-                label={"Substraction"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.subtraction')}
                 icon={MinusIcon}
               />
               <SelectItemWithIcon
                 value={MathDataSourceOperation.MULTIPLY.toString()}
-                label={"Multiplication"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.multiplication')}
                 icon={XIcon}
               />
               <SelectItemWithIcon
                 value={MathDataSourceOperation.DIVIDE.toString()}
-                label={"Division"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.division')}
                 icon={DivideIcon}
               />
               <SelectItemWithIcon
                 value={MathDataSourceOperation.MODULO.toString()}
-                label={"Modulo (Reminder of a division)"}
+                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.modulo')}
                 icon={PercentIcon}
               />
             </SelectGroup>
@@ -89,7 +91,7 @@ export function MathOptions({
       </div>
       <Separator />
       <div>
-        <Label>Number list</Label>
+        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.numberList')}</Label>
         {options.numbers.map((number, index) => (
           <Combobox
             key={index}
@@ -129,13 +131,13 @@ export function MathOptions({
               onRemove: () => {
                 setOptions({ numbers: removeFrom(options.numbers, index) });
               },
-              dataSourceConfigWarning: "Remember to return a valid number",
+              dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.numberWarning'),
             })}
           />
         ))}
         <Combobox
           items={knownSearcheableDataSources}
-          placeholder="Add number..."
+          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.addNumber')}
           allowSearchedTerm
           onItemSelect={(item) => {
             if (typeof item === "string") {
