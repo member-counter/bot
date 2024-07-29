@@ -18,7 +18,9 @@ import type {
   DataSourceUnknown,
   DataSourceYoutube,
 } from "@mc/common/DataSource";
+import type { TFunction } from "i18next";
 import type { LucideIcon } from "lucide-react";
+import { useMemo } from "react";
 import {
   BotIcon,
   CakeSliceIcon,
@@ -38,6 +40,7 @@ import {
   UsersIcon,
   YoutubeIcon,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import {
   DataSourceId,
@@ -51,84 +54,10 @@ import {
   YouTubeDataSourceReturn,
 } from "@mc/common/DataSource";
 
+import type { DataSourceMetadata } from "./DataSourceMetadata";
 import type { Searchable } from "~/app/components/Combobox";
-// TODO translate
-export interface DataSourceMetadata<D extends DataSource = DataSource> {
-  description: string;
-  icon: LucideIcon;
-  displayName: (dataSource: D) => string;
-  dataSource: D;
-  keywords: string[];
-  hidden?: boolean;
-}
+import { DataSourceMetadataMath } from "./DataSourceMetadataMath";
 
-const mathDataSourceMetadata: DataSourceMetadata<DataSourceMath> = {
-  icon: CalculatorIcon,
-  description:
-    "Perform math operations like addition, subtraction, multiplication, division, or modulus on a list of numbers.",
-
-  dataSource: { id: DataSourceId.MATH },
-  displayName: (dataSource) => {
-    if (!dataSource.options || typeof dataSource.options.operation !== "number")
-      return "Math";
-
-    const displayName: string[] = [];
-
-    const signs: Record<MathDataSourceOperation, [string, string]> = {
-      [MathDataSourceOperation.ADD]: ["add", "+"],
-      [MathDataSourceOperation.SUBSTRACT]: ["substract", "-"],
-      [MathDataSourceOperation.MULTIPLY]: ["multiply", "x"],
-      [MathDataSourceOperation.DIVIDE]: ["divide", "/"],
-      [MathDataSourceOperation.MODULO]: ["modulo", "%"],
-    };
-
-    displayName.push(signs[dataSource.options.operation][0]);
-
-    if (dataSource.options.numbers) {
-      const numbers = [...dataSource.options.numbers].sort((a) =>
-        typeof a === "number" ? -1 : 1,
-      );
-
-      const displayableNumbers: number[] = [];
-      let nonDisplayableNumbers = 0;
-
-      for (const number of numbers) {
-        if (typeof number === "number") displayableNumbers.push(number);
-        else nonDisplayableNumbers++;
-      }
-
-      if (displayableNumbers.length) {
-        displayName.push(
-          displayableNumbers.join(
-            " " + signs[dataSource.options.operation][1] + " ",
-          ),
-        );
-
-        if (nonDisplayableNumbers > 0) {
-          displayName.push("and " + nonDisplayableNumbers + " more");
-        }
-      }
-    }
-
-    const displayNameString = displayName.join(" ");
-
-    return (
-      displayNameString.charAt(0).toUpperCase() + displayNameString.slice(1)
-    );
-  },
-  keywords: [
-    "math",
-    "calculator",
-    "operations",
-    "numbers",
-    "arithmetic",
-    "addition",
-    "subtraction",
-    "multiplication",
-    "division",
-    "modulus",
-  ],
-};
 const membersDataSourceMetadata: DataSourceMetadata<DataSourceMembers> = {
   icon: UsersIcon,
   description:
@@ -330,13 +259,13 @@ const clockDataSourceMetadata: DataSourceMetadata<DataSourceClock> = {
   keywords: ["clock", "timezone"],
 };
 const nitroBoostersDataSourceMetadata: DataSourceMetadata<DataSourceNitroBoosters> =
-{
-  icon: PartyPopperIcon,
-  description: "Retrieve the count of Nitro boosters for the server.",
-  displayName: () => "Nitro Boosters",
-  dataSource: { id: DataSourceId.NITRO_BOOSTERS },
-  keywords: ["Nitro", "boosters", "server"],
-};
+  {
+    icon: PartyPopperIcon,
+    description: "Retrieve the count of Nitro boosters for the server.",
+    displayName: () => "Nitro Boosters",
+    dataSource: { id: DataSourceId.NITRO_BOOSTERS },
+    keywords: ["Nitro", "boosters", "server"],
+  };
 const numberDataSourceMetadata: DataSourceMetadata<DataSourceNumber> = {
   icon: Tally5Icon,
   description: "Apply number formatting to the given number.",
@@ -476,49 +405,51 @@ const unknownDataSourceMetadata: DataSourceMetadata<DataSourceUnknown> = {
   hidden: true,
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-export const dataSourcesMetadata: Record<string, DataSourceMetadata> =
-  Object.fromEntries(
-    [
-      mathDataSourceMetadata,
-      membersDataSourceMetadata,
-      gameDataSourceMetadata,
-      youtubeDataSourceMetadata,
-      twitchDataSourceMetadata,
-      memeratorDataSourceMetadata,
-      countdownDataSourceMetadata,
-      clockDataSourceMetadata,
-      nitroBoostersDataSourceMetadata,
-      numberDataSourceMetadata,
-      redditDataSourceMetadata,
-      httpDataSourceMetadata,
-      channelDataSourceMetadata,
-      replaceDataSourceMetadata,
-      roleDataSourceMetadata,
-      botStatsDataSourceMetadata,
-      unknownDataSourceMetadata,
-    ]
+export function dataSourcesMetadataFactory(
+  t: TFunction,
+): Record<string, DataSourceMetadata> {
+  return Object.fromEntries(
+    [new DataSourceMetadataMath(t)]
       .map((metadata) => {
         metadata.dataSource = Object.freeze(metadata.dataSource);
         return metadata;
       })
       .map((metatdata) => [metatdata.dataSource.id, metatdata]),
   );
+}
 
-export function getDataSourceMetadata(id: DataSourceId): DataSourceMetadata {
-  const metadata = dataSourcesMetadata[id];
-  if (!metadata) return getDataSourceMetadata(DataSourceId.UNKNOWN);
+export function getDataSourceMetadata(
+  id: DataSourceId,
+  t: TFunction,
+): DataSourceMetadata {
+  const metadata = dataSourcesMetadataFactory(t)[id];
+  if (!metadata) return getDataSourceMetadata(DataSourceId.UNKNOWN, t);
   return metadata;
 }
 
-export const searcheableDataSources: Searchable<DataSource>[] = Object.values(
-  dataSourcesMetadata,
-).map((i) => ({
-  value: i.dataSource,
-  keywords: i.keywords,
-}));
+export function useDataSourceMetadata(id: DataSourceId): DataSourceMetadata {
+  const { t } = useTranslation();
+  const metadata = useMemo(() => getDataSourceMetadata(id, t), [id, t]);
+  return metadata;
+}
 
-export const knownSearcheableDataSources = searcheableDataSources.filter(
-  (d) => d.value.id !== DataSourceId.UNKNOWN,
-);
+export function useSearcheableDataSources(): Searchable<DataSource>[] {
+  const { t } = useTranslation();
+  const searcheableDataSources = useMemo(
+    () =>
+      Object.values(dataSourcesMetadataFactory(t)).map((i) => ({
+        value: i.dataSource,
+        keywords: i.keywords,
+      })),
+    [t],
+  );
+
+  return searcheableDataSources;
+}
+
+export const useKnownSearcheableDataSources = () => {
+  const searcheableDataSources = useSearcheableDataSources();
+  return searcheableDataSources.filter(
+    (d) => d.value.id !== DataSourceId.UNKNOWN,
+  );
+};
