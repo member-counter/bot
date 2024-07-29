@@ -421,6 +421,75 @@ interface Resources {
               "searchPlaceholder": "Search counter...",
               "noItemsFound": "No counters found."
             }
+          },
+          "dataSourceMetadata": {
+            "math": {
+              "name": "Math",
+              "description": "Perform math operations like addition, subtraction, multiplication, division, or modulus on a list of numbers.",
+              "keywords": [
+                "math",
+                "calculator",
+                "operations",
+                "numbers",
+                "arithmetic",
+                "addition",
+                "subtraction",
+                "multiplication",
+                "division",
+                "modulus"
+              ],
+              "display": {
+                "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+                "undisplayableNumbers": "and {{amount}} more",
+                "operationType": {
+                  "add": "add",
+                  "substract": "substract",
+                  "multiply": "multiply",
+                  "divide": "divide",
+                  "modulo": "modulo"
+                }
+              }
+            },
+            "members": {
+              "name": "Members",
+              "description": "Count members, you can also filter them by their online status, specific roles and more.",
+              "keywords": [
+                "members",
+                "filter",
+                "roles",
+                "online",
+                "status",
+                "banned",
+                "playing",
+                "online",
+                "offline",
+                "dnd",
+                "disturb",
+                "idle",
+                "afk",
+                "user",
+                "bot",
+                "connected"
+              ],
+              "display": {
+                "bannedMembers": "banned members",
+                "syntax": "{{accountType}} {{accountStatus}} {{roleFilteringAny}} {{roleFilteringOverlapping}} {{connectedToAChannel}} {{playingAGame}}",
+                "accountType": {
+                  "any": "members",
+                  "user": "users",
+                  "bot": "bots"
+                },
+                "accountStatus": {
+                  "any": "",
+                  "online": "online",
+                  "idle": "idle",
+                  "dnd": "DND",
+                  "offline": "offline"
+                },
+                "connectedToAChannel": "connected to a channel",
+                "playingAGame": "while playing a game"
+              }
+            }
           }
         }
       },

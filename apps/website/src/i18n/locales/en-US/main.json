@@ -238,33 +238,33 @@
           "unknownChannels": "Visit saved channels if the Discord channels are unable to load"
         },
         "TemplateEditor": {
-            "DataSource": {
-              "Format": {
-                "DataSourceFormat": {
-                  "useCompactNotation": "Use compact notation",
-                  "select": "Select",
-                  "defaultServerSettings": "Default to server settings",
-                  "yes": "Yes",
-                  "no": "No",
-                  "overrideDefaultLocale": "Override default locale",
-                  "searchLocale": "Search locale...",
-                  "overrideDefaultDigits": "Override default digits"
-                }
-              },
-              "Options": {
-                "Pages": {
-                  "MembersOptions": {
-                    "CountOnlyBanned": {
-                      "label": "Count only banned members"
-                    },
-                    "FilterByAccountType": {
-                      "label": "Filter by account type",
-                      "placeholder": "Select an account type",
-                      "any": "Any",
-                      "user": "User",
-                      "bot": "Bot"
-                    },
-                    "FilterByConnectedTo": {
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "useCompactNotation": "Use compact notation",
+                "select": "Select",
+                "defaultServerSettings": "Default to server settings",
+                "yes": "Yes",
+                "no": "No",
+                "overrideDefaultLocale": "Override default locale",
+                "searchLocale": "Search locale...",
+                "overrideDefaultDigits": "Override default digits"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Count only banned members"
+                  },
+                  "FilterByAccountType": {
+                    "label": "Filter by account type",
+                    "placeholder": "Select an account type",
+                    "any": "Any",
+                    "user": "User",
+                    "bot": "Bot"
+                  },
+                  "FilterByConnectedTo": {
                     "label": "Filter by connected to a voice channel",
                     "dataSourceConfigWarning": "Remember to return a valid voice channel ID",
                     "addPlaceholder": "Add voice channel..."
@@ -293,8 +293,8 @@
                     "label": "Filter by playing a game",
                     "placeholder": "Add game..."
                   }
-                  },
-                  "BotStatsOptions": {
+                },
+                "BotStatsOptions": {
                   "display": "Display",
                   "selectPlaceholder": "Select something to display",
                   "servers": "Servers",
@@ -391,7 +391,8 @@
                   "replacementPlaceholder": "Enter the replacement text",
                   "removeReplacement": "Remove replacement",
                   "addReplacement": "Add replacement"
-                },"TwitchOptions": {
+                },
+                "TwitchOptions": {
                   "display": "Display",
                   "selectPlaceholder": "Select something to display",
                   "followers": "Followers",
@@ -400,7 +401,8 @@
                   "username": "Username",
                   "usernamePlaceholder": "Enter a username",
                   "usernameWarning": "Remember to return a valid username"
-                },"YouTubeOptions": {
+                },
+                "YouTubeOptions": {
                   "display": "Display",
                   "selectPlaceholder": "Select something to display",
                   "subscribers": "Subscribers",
@@ -411,14 +413,83 @@
                   "channelUrlPlaceholder": "Enter a channel URL",
                   "channelUrlWarning": "Remember to return a valid channel URL"
                 }
-                }
               }
-            },
-            "AddDataSourceCombobox": {
-              "searchPlaceholder": "Search counter...",
-              "noItemsFound": "No counters found."
+            }
+          },
+          "AddDataSourceCombobox": {
+            "searchPlaceholder": "Search counter...",
+            "noItemsFound": "No counters found."
+          }
+        },
+        "dataSourceMetadata": {
+          "math": {
+            "name": "Math",
+            "description": "Perform math operations like addition, subtraction, multiplication, division, or modulus on a list of numbers.",
+            "keywords": [
+              "math",
+              "calculator",
+              "operations",
+              "numbers",
+              "arithmetic",
+              "addition",
+              "subtraction",
+              "multiplication",
+              "division",
+              "modulus"
+            ],
+            "display": {
+              "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+              "undisplayableNumbers": "and {{amount}} more",
+              "operationType": {
+                "add": "add",
+                "substract": "substract",
+                "multiply": "multiply",
+                "divide": "divide",
+                "modulo": "modulo"
+              }
+            }
+          },
+          "members": {
+            "name": "Members",
+            "description": "Count members, you can also filter them by their online status, specific roles and more.",
+            "keywords": [
+              "members",
+              "filter",
+              "roles",
+              "online",
+              "status",
+              "banned",
+              "playing",
+              "online",
+              "offline",
+              "dnd",
+              "disturb",
+              "idle",
+              "afk",
+              "user",
+              "bot",
+              "connected"
+            ],
+            "display": {
+              "bannedMembers": "banned members",
+              "syntax": "{{accountType}} {{accountStatus}} {{roleFilteringAny}} {{roleFilteringOverlapping}} {{connectedToAChannel}} {{playingAGame}}",
+              "accountType": {
+                "any": "members",
+                "user": "users",
+                "bot": "bots"
+              },
+              "accountStatus": {
+                "any": "",
+                "online": "online",
+                "idle": "idle",
+                "dnd": "DND",
+                "offline": "offline"
+              },
+              "connectedToAChannel": "connected to a channel",
+              "playingAGame": "while playing a game"
             }
           }
+        }
       }
     },
     "account": {
