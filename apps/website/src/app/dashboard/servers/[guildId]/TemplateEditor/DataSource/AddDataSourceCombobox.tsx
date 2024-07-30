@@ -1,7 +1,7 @@
 import type { DataSourceId } from "@mc/common/DataSource";
 import { useCallback, useMemo, useState } from "react";
-import { useSlateStatic } from "slate-react";
 import { useTranslation } from "react-i18next";
+import { useSlateStatic } from "slate-react";
 
 import { cn } from "@mc/ui";
 import {
@@ -17,8 +17,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
 import { useBreakpoint } from "~/hooks/useBreakpoint";
 import { useDataSourceRefs } from "./DataSourceRefs";
-import { dataSourcesMetadata } from "./dataSourcesMetadata";
 import { insertDataSource } from "./insertDataSource";
+import { useKnownSearcheableDataSourceMetadata } from "./metadata";
 
 export default function AddDataSourceCombobox({
   children,
@@ -33,10 +33,7 @@ export default function AddDataSourceCombobox({
   const isDesktop = useBreakpoint("md");
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const items = useMemo(
-    () => Object.values(dataSourcesMetadata).filter((item) => !item.hidden),
-    [],
-  );
+  const searcheableDataSources = useKnownSearcheableDataSourceMetadata();
 
   const onAdd = useCallback(
     (id: DataSourceId) => {
@@ -49,14 +46,20 @@ export default function AddDataSourceCombobox({
     () => (
       <Command className={cn(!isDesktop && "rounded-xl")}>
         <CommandInput
-          placeholder={t('pages.dashboard.servers.TemplateEditor.AddDataSourceCombobox.searchPlaceholder')}
+          placeholder={t(
+            "pages.dashboard.servers.TemplateEditor.AddDataSourceCombobox.searchPlaceholder",
+          )}
           value={search}
           onValueChange={setSearch}
         />
         <CommandList>
-          <CommandEmpty>{t('pages.dashboard.servers.TemplateEditor.AddDataSourceCombobox.noItemsFound')}</CommandEmpty>
+          <CommandEmpty>
+            {t(
+              "pages.dashboard.servers.TemplateEditor.AddDataSourceCombobox.noItemsFound",
+            )}
+          </CommandEmpty>
           <CommandGroup>
-            {items.map((item) => {
+            {searcheableDataSources.map(({ value: item }) => {
               return (
                 <CommandItem
                   key={item.dataSource.id}
@@ -86,7 +89,7 @@ export default function AddDataSourceCombobox({
         </CommandList>
       </Command>
     ),
-    [isDesktop, items, onAdd, search, t],
+    [isDesktop, onAdd, search, searcheableDataSources, t],
   );
 
   if (isDesktop) {

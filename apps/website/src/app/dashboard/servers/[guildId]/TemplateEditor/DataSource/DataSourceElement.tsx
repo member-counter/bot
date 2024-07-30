@@ -9,7 +9,7 @@ import type { DataSourceElement as DataSourceElementType } from "../custom-types
 import { InlineChromiumBugfix } from "../EditorElements/ChromiumBugFix";
 import { TemplateEditorContext } from "../TemplateEditorContext";
 import { useDataSourceRefs } from "./DataSourceRefs";
-import { getDataSourceMetadata } from "./dataSourcesMetadata";
+import { useDataSourceMetadata } from "./metadata";
 
 export default function DataSourceElement(
   props: RenderElementProps,
@@ -29,10 +29,7 @@ export default function DataSourceElement(
     [dataSourceRefs, element.dataSourceRefId],
   );
 
-  const metadata = useMemo(
-    () => getDataSourceMetadata(dataSource.id),
-    [dataSource.id],
-  );
+  const metadata = useDataSourceMetadata(dataSource.id);
 
   const displayName = useMemo(
     () => metadata.displayName(dataSource),

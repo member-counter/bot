@@ -433,12 +433,12 @@ export function useDataSourceMetadata(id: DataSourceId): DataSourceMetadata {
   return metadata;
 }
 
-export function useSearcheableDataSources(): Searchable<DataSource>[] {
+export function useSearcheableDataSourceMetadata(): Searchable<DataSourceMetadata>[] {
   const { t } = useTranslation();
   const searcheableDataSources = useMemo(
     () =>
       Object.values(dataSourcesMetadataFactory(t)).map((i) => ({
-        value: i.dataSource,
+        value: i,
         keywords: i.keywords,
       })),
     [t],
@@ -447,9 +447,9 @@ export function useSearcheableDataSources(): Searchable<DataSource>[] {
   return searcheableDataSources;
 }
 
-export const useKnownSearcheableDataSources = () => {
-  const searcheableDataSources = useSearcheableDataSources();
+export const useKnownSearcheableDataSourceMetadata = () => {
+  const searcheableDataSources = useSearcheableDataSourceMetadata();
   return searcheableDataSources.filter(
-    (d) => d.value.id !== DataSourceId.UNKNOWN,
+    (d) => d.value.dataSource.id !== DataSourceId.UNKNOWN,
   );
 };

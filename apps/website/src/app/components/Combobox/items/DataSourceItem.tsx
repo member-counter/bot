@@ -4,8 +4,8 @@ import { CheckIcon, Settings2Icon, XIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import type { ComboboxProps } from "..";
-import { getDataSourceMetadata } from "~/app/dashboard/servers/[guildId]/TemplateEditor/DataSource/dataSourcesMetadata";
 import { EditDataSourcePanelContext } from "~/app/dashboard/servers/[guildId]/TemplateEditor/DataSource/EditDataSourcePanelContext";
+import { useDataSourceMetadata } from "~/app/dashboard/servers/[guildId]/TemplateEditor/DataSource/metadata";
 import { InfoToolip } from "../../InfoTooltip";
 import { TinyIconButton } from "../TinyIconButton";
 
@@ -25,7 +25,7 @@ export const DataSourceItem = ({
   const { t } = useTranslation();
   const { pushEditStack } = useContext(EditDataSourcePanelContext);
 
-  const dataSourceMetadata = getDataSourceMetadata(item.id);
+  const dataSourceMetadata = useDataSourceMetadata(item.id);
   const displayName = dataSourceMetadata.displayName(item);
 
   return (

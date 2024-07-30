@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 
 import { DataSourceId } from "@mc/common/DataSource";
 
-import { getDataSourceMetadata } from "../dataSourcesMetadata";
+import { useDataSourceMetadata } from "../metadata";
 import { BotStatsOptions } from "./Pages/BotStatsOptions";
 import { ChannelOptions } from "./Pages/ChannelsOptions";
 import { ClockOptions } from "./Pages/ClockOptions";
@@ -45,10 +45,7 @@ export function EditDataSourceOptions({
   dataSource,
   onChangeDataSource,
 }: EditDataSourceProps): JSX.Element {
-  const metadata = useMemo(
-    () => getDataSourceMetadata(dataSource.id),
-    [dataSource.id],
-  );
+  const metadata = useDataSourceMetadata(dataSource.id);
 
   const Options = optionsMap[dataSource.id.toString()];
 

@@ -13,10 +13,10 @@ import { Button } from "@mc/ui/button";
 
 import type { DataSourceRefId } from "../utils";
 import type { EditDataSourceProps } from "./Options/EditDataSourceOptions";
-import { getDataSourceMetadata } from "./dataSourcesMetadata";
 import { NestedDataSourceBreadcrumb } from "./EditDataSourcePanelBreadcrumb";
 import { EditDataSourcePanelContext } from "./EditDataSourcePanelContext";
 import DataSourceFormat from "./Format/DataSourceFormat";
+import { useDataSourceMetadata } from "./metadata";
 import { EditDataSourceOptions } from "./Options/EditDataSourceOptions";
 
 interface Props {
@@ -41,10 +41,7 @@ export default function EditDataSourcePanel({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataSourceRefId]);
 
-  const rootMetadata = useMemo(
-    () => getDataSourceMetadata(dataSource.id),
-    [dataSource.id],
-  );
+  const rootMetadata = useDataSourceMetadata(dataSource.id);
 
   const editDataSourceContext = {
     pushEditStack: (stackItem: EditDataSourceProps) => {
