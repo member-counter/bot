@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   Breadcrumb,
@@ -10,7 +11,7 @@ import {
 } from "@mc/ui/breadcrumb";
 
 import type { EditDataSourceProps } from "./Options/EditDataSourceOptions";
-import { getDataSourceMetadata } from "./dataSourcesMetadata";
+import { getDataSourceMetadata } from "../DataSource/metadata";
 
 export const NestedDataSourceBreadcrumb = ({
   editStack,
@@ -19,15 +20,17 @@ export const NestedDataSourceBreadcrumb = ({
   editStack: EditDataSourceProps[];
   navigateTo: (i: number) => void;
 }) => {
+  const { t } = useTranslation();
   const displayNames = useMemo(
     () =>
       editStack.map((editStack) => {
-        const metadata = getDataSourceMetadata(editStack.dataSource.id);
+        const metadata = getDataSourceMetadata(editStack.dataSource.id, t);
 
         return metadata.displayName({ ...editStack.dataSource });
       }),
-    [editStack],
+    [editStack, t],
   );
+
   return (
     <Breadcrumb>
       <BreadcrumbList>
