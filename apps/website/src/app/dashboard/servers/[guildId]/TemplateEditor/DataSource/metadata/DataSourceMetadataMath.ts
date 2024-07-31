@@ -1,81 +1,60 @@
 import type { DataSourceMath } from "@mc/common/DataSource";
-import type { TFunction } from "i18next";
+import type { i18n } from "i18next";
 import { CalculatorIcon } from "lucide-react";
 
 import { DataSourceId, MathDataSourceOperation } from "@mc/common/DataSource";
 
 import { capitalize } from "~/other/capitalize";
-import { DataSourceMetadata } from "./DataSourceMetadata";
+import { createDataSourceMetadata } from "./createDataSourceMetadata";
 
-export class DataSourceMetadataMath extends DataSourceMetadata<DataSourceMath> {
-  dataSource: DataSourceMath = { id: DataSourceId.MATH };
-  icon = CalculatorIcon;
-  signs: Record<MathDataSourceOperation, [string, string]>;
-  constructor(t: TFunction) {
-    super(t);
-    this.description = t(
-      "pages.dashboard.servers.dataSourceMetadata.math.description",
-    );
-    this.keywords = t(
-      "pages.dashboard.servers.dataSourceMetadata.math.keywords",
-      { returnObjects: true },
-    );
-    this.signs = {
-      [MathDataSourceOperation.ADD]: [
-        this.t(
-          "pages.dashboard.servers.dataSourceMetadata.math.display.operationType.add",
-        ),
-        "+",
-      ],
-      [MathDataSourceOperation.SUBSTRACT]: [
-        this.t(
-          "pages.dashboard.servers.dataSourceMetadata.math.display.operationType.substract",
-        ),
-        "-",
-      ],
-      [MathDataSourceOperation.MULTIPLY]: [
-        this.t(
-          "pages.dashboard.servers.dataSourceMetadata.math.display.operationType.multiply",
-        ),
-        "x",
-      ],
-      [MathDataSourceOperation.DIVIDE]: [
-        this.t(
-          "pages.dashboard.servers.dataSourceMetadata.math.display.operationType.divide",
-        ),
-        "/",
-      ],
-      [MathDataSourceOperation.MODULO]: [
-        this.t(
-          "pages.dashboard.servers.dataSourceMetadata.math.display.operationType.modulo",
-        ),
-        "%",
-      ],
-    };
-  }
-  displayName(dataSource: DataSourceMath) {
-    if (!dataSource.options || typeof dataSource.options.operation !== "number")
-      return this.t("pages.dashboard.servers.dataSourceMetadata.math.name");
+const MathOpSigns = {
+  [MathDataSourceOperation.ADD]: "+",
+  [MathDataSourceOperation.SUBTRACT]: "-",
+  [MathDataSourceOperation.MULTIPLY]: "x",
+  [MathDataSourceOperation.DIVIDE]: "/",
+  [MathDataSourceOperation.MODULO]: "%",
+};
 
-    const [signName, signSymbol] = this.signs[dataSource.options.operation];
-    const numbersJoined = dataSource.options.numbers?.join(signSymbol);
+const MathOpTKey = {
+  [MathDataSourceOperation.ADD]: "add",
+  [MathDataSourceOperation.SUBTRACT]: "subtract",
+  [MathDataSourceOperation.MULTIPLY]: "multiply",
+  [MathDataSourceOperation.DIVIDE]: "divide",
+  [MathDataSourceOperation.MODULO]: "modulo",
+} as const;
 
-    let nonDisplayableNumbers = 0;
-    for (const number of dataSource.options.numbers ?? []) {
-      if (typeof number !== "number") nonDisplayableNumbers++;
-    }
+export const createDataSourceMetadataMath = (i18n: i18n) =>
+  createDataSourceMetadata<"math", DataSourceMath>({
+    dataSource: { id: DataSourceId.MATH },
+    preTKey: "math",
+    icon: CalculatorIcon,
+    i18n,
+    displayName(dataSource, t) {
+      if (
+        !dataSource.options ||
+        typeof dataSource.options.operation !== "number"
+      )
+        return t("name");
 
-    return capitalize(
-      this.t("pages.dashboard.servers.dataSourceMetadata.math.display.syntax", {
+      const numbersJoined = dataSource.options.numbers
+        ?.filter((n) => typeof n === "number")
+        .join(MathOpSigns[dataSource.options.operation]);
+
+      let nonDisplayableNumbers = 0;
+      for (const number of dataSource.options.numbers ?? []) {
+        if (typeof number !== "number") nonDisplayableNumbers++;
+      }
+
+      return t("display.syntax", {
         numbers: numbersJoined,
-        operationType: signName,
+        operationType: t(
+          `display.operationType.${MathOpTKey[dataSource.options.operation]}`,
+        ),
         undisplayableNumbers: nonDisplayableNumbers
-          ? this.t(
-              "pages.dashboard.servers.dataSourceMetadata.math.display.undisplayableNumbers",
-              { amount: nonDisplayableNumbers },
-            )
+          ? t("display.undisplayableNumbers", {
+              amount: nonDisplayableNumbers,
+            })
           : "",
-      }),
-    );
-  }
-}
+      });
+    },
+  });
