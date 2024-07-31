@@ -178,7 +178,7 @@ export enum DataSourceId {
 
 export enum MathDataSourceOperation {
   ADD,
-  SUBSTRACT,
+  SUBTRACT,
   MULTIPLY,
   DIVIDE,
   MODULO,

@@ -9,14 +9,14 @@ import { getDataSourceMetadata } from "./metadata";
 
 export const useInsertDataSource = () => {
   const editor = useSlateStatic();
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     dataSourceId: DataSourceId,
     upsertFn: ([refId, dataSource]: [DataSourceRefId, DataSource]) => void,
   ) => {
     const refId = v4();
-    const { dataSource } = getDataSourceMetadata(dataSourceId, t);
+    const { dataSource } = getDataSourceMetadata(dataSourceId, i18n);
 
     upsertFn([refId, dataSource]);
 

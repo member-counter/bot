@@ -422,6 +422,27 @@
           }
         },
         "dataSourceMetadata": {
+          "botStats": {
+            "name": "Bot stats",
+            "description": "Return the total number of users and servers the bot is currently in. (You probably don't need this)",
+            "keywords": []
+          },
+          "channels": {
+            "name": "Channels",
+            "description": "Count the number of channels within specified categories or overall.",
+            "keywords": ["channels", "categories"],
+            "display": {
+              "channelsUnderACategory": "Channels under a category"
+            }
+          },
+          "game": {
+            "name": "Game",
+            "description": "Retrieve the current number of online players in your game server, compatible with more than 320 games.",
+            "keywords": ["game", "players", "online", "server"],
+            "display": {
+              "playerCountFor": "Player count for {{gameServerAddress}}"
+            }
+          },
           "math": {
             "name": "Math",
             "description": "Perform math operations like addition, subtraction, multiplication, division, or modulus on a list of numbers.",
@@ -442,7 +463,7 @@
               "undisplayableNumbers": "and {{amount}} more",
               "operationType": {
                 "add": "add",
-                "substract": "substract",
+                "subtract": "subtract",
                 "multiply": "multiply",
                 "divide": "divide",
                 "modulo": "modulo"
@@ -472,7 +493,7 @@
             ],
             "display": {
               "bannedMembers": "banned members",
-              "syntax": "{{accountType}} {{accountStatus}} {{roleFilteringAny}} {{roleFilteringOverlapping}} {{connectedToAChannel}} {{playingAGame}}",
+              "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}",
               "accountType": {
                 "any": "members",
                 "user": "users",
@@ -485,8 +506,61 @@
                 "dnd": "DND",
                 "offline": "offline"
               },
+              "roleFiltering": {
+                "any": "with roles",
+                "overlapping": "with roles overlapping"
+              },
               "connectedToAChannel": "connected to a channel",
               "playingAGame": "while playing a game"
+            }
+          },
+          "memerator": {
+            "name": "Memerator",
+            "description": "Fetch the follower count and meme count for a Memerator account.",
+            "keywords": ["Twitch", "follower", "view", "channel"],
+            "display": {
+              "syntax": "Memerator {{returnKind}}",
+              "returnKind": {
+                "memes": "memes",
+                "followers": "followers"
+              }
+            }
+          },
+          "roles": {
+            "name": "Roles",
+            "description": "Count all roles present in the server.",
+            "keywords": ["roles"]
+          },
+          "twitch": {
+            "name": "Twitch",
+            "description": "Retrieve follower count and total view count for a Twitch channel.",
+            "keywords": ["Twitch", "follower", "view", "channel"],
+            "display": {
+              "syntax": "Twitch {{returnKind}}",
+              "returnKind": {
+                "channelName": "channel name",
+                "followers": "followers",
+                "viewers": "viewers"
+              }
+            }
+          },
+          "unknown": {
+            "name": "Unknown",
+            "description": "Unkown counter. This is probably due to an error",
+            "keywords": []
+          },
+          "youtube": {
+            "name": "YouTube",
+            "description": "Fetch subscriber count, video count, and total views from a YouTube channel.",
+            "keywords": ["YouTube", "subscriber", "video", "views", "channel"],
+            "display": {
+              "syntax": "YouTube {{returnKind}}",
+              "returnKind": {
+                "channelName": "channel name",
+                "subscribers": "subscribers",
+                "videos": "videos",
+                "views": "views"
+              }
             }
           }
         }

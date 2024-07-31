@@ -12,7 +12,7 @@ export const mathEvaluator = new DataSourceEvaluator({
       case MathDataSourceOperation.ADD:
         return values.reduce((acc, curr) => acc + curr);
 
-      case MathDataSourceOperation.SUBSTRACT:
+      case MathDataSourceOperation.SUBTRACT:
         return values.reduce((acc, curr) => {
           return acc - curr;
         });

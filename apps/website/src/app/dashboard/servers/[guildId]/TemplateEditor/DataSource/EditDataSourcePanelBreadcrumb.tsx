@@ -20,15 +20,15 @@ export const NestedDataSourceBreadcrumb = ({
   editStack: EditDataSourceProps[];
   navigateTo: (i: number) => void;
 }) => {
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
   const displayNames = useMemo(
     () =>
       editStack.map((editStack) => {
-        const metadata = getDataSourceMetadata(editStack.dataSource.id, t);
+        const metadata = getDataSourceMetadata(editStack.dataSource.id, i18n);
 
         return metadata.displayName({ ...editStack.dataSource });
       }),
-    [editStack, t],
+    [editStack, i18n],
   );
 
   return (
