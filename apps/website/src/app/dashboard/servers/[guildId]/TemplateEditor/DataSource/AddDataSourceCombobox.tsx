@@ -1,7 +1,6 @@
 import type { DataSourceId } from "@mc/common/DataSource";
 import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSlateStatic } from "slate-react";
 
 import { cn } from "@mc/ui";
 import {
@@ -17,7 +16,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
 import { useBreakpoint } from "~/hooks/useBreakpoint";
 import { useDataSourceRefs } from "./DataSourceRefs";
-import { insertDataSource } from "./insertDataSource";
+import { useInsertDataSource } from "./insertDataSource";
 import { useKnownSearcheableDataSourceMetadata } from "./metadata";
 
 export default function AddDataSourceCombobox({
@@ -28,18 +27,18 @@ export default function AddDataSourceCombobox({
   disabled?: boolean;
 }) {
   const { t } = useTranslation();
-  const editor = useSlateStatic();
   const { setDataSourceRef } = useDataSourceRefs();
   const isDesktop = useBreakpoint("md");
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const searcheableDataSources = useKnownSearcheableDataSourceMetadata();
+  const insertDataSource = useInsertDataSource();
 
   const onAdd = useCallback(
     (id: DataSourceId) => {
-      insertDataSource(editor, id, setDataSourceRef);
+      insertDataSource(id, setDataSourceRef);
     },
-    [editor, setDataSourceRef],
+    [setDataSourceRef, insertDataSource],
   );
 
   const cmdRendered = useMemo(

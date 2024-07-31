@@ -12,7 +12,7 @@ import { Separator } from "@mc/ui/separator";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
-import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
+import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
 type DataSourceType = DataSourceHTTP;
@@ -41,6 +41,8 @@ export function HttpOptions({
   const [testLoading, setTestLoading] = useState(false);
   const [displayPreview, setDisplayPreview] = useState("");
 
+  const knownSearcheableDataSources = useKnownSearcheableDataSource();
+
   useEffect(() => {
     try {
       setDisplayPreview(
@@ -50,7 +52,9 @@ export function HttpOptions({
         ),
       );
     } catch (e) {
-      setDisplayPreview(e instanceof Error ? e.toString() : t("common.unknownError"));
+      setDisplayPreview(
+        e instanceof Error ? e.toString() : t("common.unknownError"),
+      );
     }
   }, [testResponse, options.dataPath, t]);
 
@@ -69,7 +73,9 @@ export function HttpOptions({
         }
       })
       .catch((e) => {
-        setTestResponse(e instanceof Error ? e.toString() : t("common.unknownError"));
+        setTestResponse(
+          e instanceof Error ? e.toString() : t("common.unknownError"),
+        );
       })
       .finally(() => {
         setTestLoading(false);
@@ -79,7 +85,11 @@ export function HttpOptions({
   return (
     <div>
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.url')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.url",
+          )}
+        </Label>
         <Combobox
           items={knownSearcheableDataSources}
           selectedItem={options.url}
@@ -92,7 +102,9 @@ export function HttpOptions({
             onRemove() {
               setOptions({ url: undefined });
             },
-            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.urlWarning'),
+            dataSourceConfigWarning: t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.urlWarning",
+            ),
           })}
           onItemSelect={(url) => {
             setOptions({ url });
@@ -103,9 +115,15 @@ export function HttpOptions({
       </div>
       <Separator />
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.lifetime')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.lifetime",
+          )}
+        </Label>
         <span className="text-sm font-light italic">
-          {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.lifetimeDescription')}
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.lifetimeDescription",
+          )}
         </span>
         <Combobox
           items={knownSearcheableDataSources}
@@ -146,15 +164,23 @@ export function HttpOptions({
             onRemove: () => {
               setOptions({ lifetime: undefined });
             },
-            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.lifetimeWarning'),
+            dataSourceConfigWarning: t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.lifetimeWarning",
+            ),
           })}
         />
       </div>
       <Separator />
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.dataPath')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.dataPath",
+          )}
+        </Label>
         <span className="text-sm font-light italic">
-          {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.dataPathDescription')}
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.dataPathDescription",
+          )}
         </span>
         <Combobox
           items={knownSearcheableDataSources}
@@ -168,7 +194,9 @@ export function HttpOptions({
             onRemove() {
               setOptions({ dataPath: undefined });
             },
-            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.dataPathWarning'),
+            dataSourceConfigWarning: t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.dataPathWarning",
+            ),
           })}
           onItemSelect={(dataPath) => {
             setOptions({ dataPath });
@@ -181,12 +209,18 @@ export function HttpOptions({
       <Separator />
       {typeof options.dataPath !== "string" ? (
         <span className="text-sm font-light italic">
-          {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.noPreview')}
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.noPreview",
+          )}
         </span>
       ) : (
         <>
           <div>
-            <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.testResponse')}</Label>
+            <Label>
+              {t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.testResponse",
+              )}
+            </Label>
             <pre className="overflow-auto rounded-md border border-input bg-background p-4">
               {testResponse}
             </pre>
@@ -194,18 +228,28 @@ export function HttpOptions({
               {testLoading ? (
                 <>
                   <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />{" "}
-                  {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.fetching')}
+                  {t(
+                    "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.fetching",
+                  )}
                 </>
               ) : options.url ? (
-                t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.fetch')
+                t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.fetch",
+                )
               ) : (
-                t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.emptyUrl')
+                t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.emptyUrl",
+                )
               )}
             </Button>
           </div>
           <Separator />
           <div>
-            <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.preview')}</Label>
+            <Label>
+              {t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.preview",
+              )}
+            </Label>
             <Input readOnly value={displayPreview} />
           </div>
         </>

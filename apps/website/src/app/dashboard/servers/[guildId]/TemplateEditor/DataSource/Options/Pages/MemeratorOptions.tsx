@@ -1,5 +1,6 @@
 import type { DataSourceMemerator } from "@mc/common/DataSource";
 import { FerrisWheelIcon, UserRoundPlusIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { MemeratorDataSourceReturn } from "@mc/common/DataSource";
 import { Label } from "@mc/ui/label";
@@ -16,9 +17,8 @@ import { Separator } from "@mc/ui/separator";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
-import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
+import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceMemerator;
 
@@ -40,27 +40,41 @@ export function MemeratorOptions({
     onOptionsChange,
   });
 
+  const knownSearcheableDataSources = useKnownSearcheableDataSource();
+
   return (
     <div>
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.display')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.display",
+          )}
+        </Label>
         <Select
           value={options.return.toString()}
           onValueChange={(value) => setOptions({ return: Number(value) })}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.selectDisplay')} />
+            <SelectValue
+              placeholder={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.selectDisplay",
+              )}
+            />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectItemWithIcon
                 value={MemeratorDataSourceReturn.FOLLOWERS.toString()}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.followers')}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.followers",
+                )}
                 icon={UserRoundPlusIcon}
               />
               <SelectItemWithIcon
                 value={MemeratorDataSourceReturn.MEMES.toString()}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.memes')}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.memes",
+                )}
                 icon={FerrisWheelIcon}
               />
             </SelectGroup>
@@ -69,7 +83,11 @@ export function MemeratorOptions({
       </div>
       <Separator />
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.username')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.username",
+          )}
+        </Label>
         <Combobox
           items={knownSearcheableDataSources}
           selectedItem={options.username}
@@ -82,7 +100,9 @@ export function MemeratorOptions({
             onRemove() {
               setOptions({ username: undefined });
             },
-            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.usernameWarning'),
+            dataSourceConfigWarning: t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MemeratorOptions.usernameWarning",
+            ),
           })}
           onItemSelect={(username) => {
             setOptions({ username });

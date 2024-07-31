@@ -1,27 +1,32 @@
 import type { DataSource, DataSourceId } from "@mc/common/DataSource";
-import type { Editor } from "slate";
+import { useTranslation } from "react-i18next";
+import { useSlateStatic } from "slate-react";
 import { v4 } from "uuid";
 
 import type { DataSourceElement } from "../custom-types";
 import type { DataSourceRefId } from "../utils";
-import { getDataSourceMetadata } from "./dataSourcesMetadata";
+import { getDataSourceMetadata } from "./metadata";
 
-export const insertDataSource = (
-  editor: Editor,
-  dataSourceId: DataSourceId,
-  upsertFn: ([refId, dataSource]: [DataSourceRefId, DataSource]) => void,
-) => {
-  const refId = v4();
-  const { dataSource } = getDataSourceMetadata(dataSourceId);
+export const useInsertDataSource = () => {
+  const editor = useSlateStatic();
+  const { t } = useTranslation();
 
-  upsertFn([refId, dataSource]);
+  return (
+    dataSourceId: DataSourceId,
+    upsertFn: ([refId, dataSource]: [DataSourceRefId, DataSource]) => void,
+  ) => {
+    const refId = v4();
+    const { dataSource } = getDataSourceMetadata(dataSourceId, t);
 
-  const node: DataSourceElement = {
-    type: "dataSource",
-    dataSourceRefId: refId,
-    children: [{ text: "" }],
+    upsertFn([refId, dataSource]);
+
+    const node: DataSourceElement = {
+      type: "dataSource",
+      dataSourceRefId: refId,
+      children: [{ text: "" }],
+    };
+
+    editor.insertNode(node);
+    return refId;
   };
-
-  editor.insertNode(node);
-  return refId;
 };
