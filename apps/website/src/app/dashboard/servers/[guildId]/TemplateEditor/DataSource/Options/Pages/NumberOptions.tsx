@@ -1,13 +1,13 @@
 import type { DataSourceNumber } from "@mc/common/DataSource";
+import { useTranslation } from "react-i18next";
 
 import { Label } from "@mc/ui/label";
 
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
-import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
+import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceNumber;
 
@@ -28,10 +28,16 @@ export function NumberOptions({
     onOptionsChange,
   });
 
+  const knownSearcheableDataSources = useKnownSearcheableDataSource();
+
   return (
     <div>
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.NumberOptions.number')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.NumberOptions.number",
+          )}
+        </Label>
         <Combobox
           items={knownSearcheableDataSources}
           selectedItem={options.number}
@@ -44,13 +50,17 @@ export function NumberOptions({
             onRemove() {
               setOptions({ number: undefined });
             },
-            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.NumberOptions.numberWarning'),
+            dataSourceConfigWarning: t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.NumberOptions.numberWarning",
+            ),
           })}
           onItemSelect={(number) => {
             setOptions({ number });
           }}
           prefillSelectedItemOnSearchOnFocus
-          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.NumberOptions.placeholder')}
+          placeholder={t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.NumberOptions.placeholder",
+          )}
         />
       </div>
     </div>

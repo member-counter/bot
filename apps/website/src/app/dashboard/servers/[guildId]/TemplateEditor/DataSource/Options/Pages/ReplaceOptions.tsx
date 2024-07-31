@@ -2,6 +2,7 @@ import type {
   DataSourceReplace,
   ReplaceReplacement,
 } from "@mc/common/DataSource";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import { Card } from "@mc/ui/card";
@@ -12,9 +13,8 @@ import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { addTo, removeFrom, updateIn } from "~/other/array";
-import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
+import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceReplace;
 
@@ -36,10 +36,16 @@ export function ReplaceOptions({
     onOptionsChange,
   });
 
+  const knownSearcheableDataSources = useKnownSearcheableDataSource();
+
   return (
     <div>
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.inputText')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.inputText",
+          )}
+        </Label>
         <Combobox
           items={knownSearcheableDataSources}
           selectedItem={options.text}
@@ -57,18 +63,21 @@ export function ReplaceOptions({
             setOptions({ text });
           }}
           prefillSelectedItemOnSearchOnFocus
-          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.textPlaceholder')}
+          placeholder={t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.textPlaceholder",
+          )}
         />
       </div>
       <Separator />
       <div>
         {options.replacements.map((replacement, index) => (
-          <Card
-            className="flex flex-col gap-5 bg-[#29252459] p-3"
-            key={index}
-          >
+          <Card className="flex flex-col gap-5 bg-[#29252459] p-3" key={index}>
             <div className="flex flex-col gap-3">
-              <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.searchFor')}</Label>
+              <Label>
+                {t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.searchFor",
+                )}
+              </Label>
               <Combobox
                 items={knownSearcheableDataSources}
                 selectedItem={replacement.search}
@@ -116,11 +125,17 @@ export function ReplaceOptions({
                   });
                 }}
                 prefillSelectedItemOnSearchOnFocus
-                placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.searchPlaceholder')}
+                placeholder={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.searchPlaceholder",
+                )}
               />
             </div>
             <div className="flex flex-col gap-3">
-              <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.replaceWith')}</Label>
+              <Label>
+                {t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.replaceWith",
+                )}
+              </Label>
               <Combobox
                 items={knownSearcheableDataSources}
                 selectedItem={replacement.replacement}
@@ -168,7 +183,9 @@ export function ReplaceOptions({
                   });
                 }}
                 prefillSelectedItemOnSearchOnFocus
-                placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.replacementPlaceholder')}
+                placeholder={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.replacementPlaceholder",
+                )}
               />
             </div>
             <Button
@@ -179,7 +196,9 @@ export function ReplaceOptions({
                 })
               }
             >
-              {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.removeReplacement')}
+              {t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.removeReplacement",
+              )}
             </Button>
           </Card>
         ))}
@@ -194,7 +213,9 @@ export function ReplaceOptions({
             })
           }
         >
-          {t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.addReplacement')}
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ReplaceOptions.addReplacement",
+          )}
         </Button>
       </div>
     </div>

@@ -9,7 +9,7 @@ import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { timezoneWithDataSourceItem } from "~/app/components/Combobox/renderers/timezoneWithDataSourceItem";
 import { searchableTimezones } from "~/other/timezones";
 import { Combobox } from "../../../../../../../components/Combobox";
-import { searcheableDataSources } from "../../dataSourcesMetadata";
+import { useSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
 type DataSourceType = DataSourceClock;
@@ -30,17 +30,27 @@ export function ClockOptions({
     defaultOptionsMerger,
     onOptionsChange,
   });
+  const searcheableDataSources = useSearcheableDataSource();
 
   const searchableTimezonesAndDataSources: Searchable<string | DataSource>[] =
-    useMemo(() => [...searchableTimezones, ...searcheableDataSources], []);
+    useMemo(
+      () => [...searchableTimezones, ...searcheableDataSources],
+      [searcheableDataSources],
+    );
 
   return (
     <div>
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.timezone')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.timezone",
+          )}
+        </Label>
         <Combobox
           items={searchableTimezonesAndDataSources}
-          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.searchTimezonePlaceholder')}
+          placeholder={t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.searchTimezonePlaceholder",
+          )}
           selectedItem={options.timezone}
           onItemSelect={(item) => {
             setOptions({
@@ -59,7 +69,9 @@ export function ClockOptions({
                 timezone: undefined,
               });
             },
-            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.configWarning'),
+            dataSourceConfigWarning: t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.configWarning",
+            ),
           })}
         />
       </div>

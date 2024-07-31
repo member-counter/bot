@@ -6,6 +6,7 @@ import {
   PlusIcon,
   XIcon,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { MathDataSourceOperation } from "@mc/common/DataSource";
 import { Label } from "@mc/ui/label";
@@ -23,9 +24,8 @@ import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { addTo, removeFrom, updateIn } from "~/other/array";
-import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
+import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
-import { useTranslation } from "react-i18next";
 
 type DataSourceType = DataSourceMath;
 
@@ -47,42 +47,62 @@ export function MathOptions({
     onOptionsChange,
   });
 
+  const knownSearcheableDataSources = useKnownSearcheableDataSource();
+
   return (
     <div>
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.operation')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.operation",
+          )}
+        </Label>
         <Select
           value={options.operation.toString()}
           onValueChange={(value) => setOptions({ operation: Number(value) })}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.selectOperation')} />
+            <SelectValue
+              placeholder={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.selectOperation",
+              )}
+            />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectItemWithIcon
                 value={MathDataSourceOperation.ADD.toString()}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.addition')}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.addition",
+                )}
                 icon={PlusIcon}
               />
               <SelectItemWithIcon
-                value={MathDataSourceOperation.SUBSTRACT.toString()}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.subtraction')}
+                value={MathDataSourceOperation.SUBTRACT.toString()}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.subtraction",
+                )}
                 icon={MinusIcon}
               />
               <SelectItemWithIcon
                 value={MathDataSourceOperation.MULTIPLY.toString()}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.multiplication')}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.multiplication",
+                )}
                 icon={XIcon}
               />
               <SelectItemWithIcon
                 value={MathDataSourceOperation.DIVIDE.toString()}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.division')}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.division",
+                )}
                 icon={DivideIcon}
               />
               <SelectItemWithIcon
                 value={MathDataSourceOperation.MODULO.toString()}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.modulo')}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.modulo",
+                )}
                 icon={PercentIcon}
               />
             </SelectGroup>
@@ -91,7 +111,11 @@ export function MathOptions({
       </div>
       <Separator />
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.numberList')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.numberList",
+          )}
+        </Label>
         {options.numbers.map((number, index) => (
           <Combobox
             key={index}
@@ -131,13 +155,17 @@ export function MathOptions({
               onRemove: () => {
                 setOptions({ numbers: removeFrom(options.numbers, index) });
               },
-              dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.numberWarning'),
+              dataSourceConfigWarning: t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.numberWarning",
+              ),
             })}
           />
         ))}
         <Combobox
           items={knownSearcheableDataSources}
-          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.addNumber')}
+          placeholder={t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.addNumber",
+          )}
           allowSearchedTerm
           onItemSelect={(item) => {
             if (typeof item === "string") {

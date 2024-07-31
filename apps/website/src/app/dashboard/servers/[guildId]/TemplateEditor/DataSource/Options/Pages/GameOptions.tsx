@@ -11,10 +11,7 @@ import { Combobox } from "~/app/components/Combobox";
 import { gamedigWithDataSourceItem } from "~/app/components/Combobox/renderers/gameWithDataSourceItem";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { api } from "~/trpc/react";
-import {
-  knownSearcheableDataSources,
-  searcheableDataSources,
-} from "../../dataSourcesMetadata";
+import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
 type DataSourceType = DataSourceGame;
@@ -40,15 +37,17 @@ export function GameOptions({
 
   const { data: games } = api.bot.gamedigGames.useQuery();
 
+  const knownSearcheableDataSources = useKnownSearcheableDataSource();
+
   const searchableGames = useMemo<Searchable<string | DataSource>[]>(
     () => [
       ...Object.entries(games ?? {}).map(([id, game]) => ({
         value: id,
         keywords: game.name.split(/\s+/),
       })),
-      ...searcheableDataSources,
+      ...knownSearcheableDataSources,
     ],
-    [games],
+    [games, knownSearcheableDataSources],
   );
 
   useEffect(() => {
@@ -64,10 +63,16 @@ export function GameOptions({
   return (
     <div>
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.game')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.game",
+          )}
+        </Label>
         <Combobox
           items={searchableGames}
-          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.searchPlaceholder')}
+          placeholder={t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.searchPlaceholder",
+          )}
           prefillSelectedItemOnSearchOnFocus
           selectedItem={options.game}
           onItemSelect={(game) => {
@@ -87,14 +92,19 @@ export function GameOptions({
                 game: undefined,
               });
             },
-            dataSourceConfigWarning:
-              t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.gameWarning'),
+            dataSourceConfigWarning: t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.gameWarning",
+            ),
           })}
         />
       </div>
       <Separator />
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.address')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.address",
+          )}
+        </Label>
         <Combobox
           items={knownSearcheableDataSources}
           allowSearchedTerm
@@ -118,13 +128,19 @@ export function GameOptions({
                 address: undefined,
               });
             },
-            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.addressWarning'),
+            dataSourceConfigWarning: t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.addressWarning",
+            ),
           })}
         />
       </div>
       <Separator />
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.port')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.port",
+          )}
+        </Label>
         <Combobox
           items={knownSearcheableDataSources}
           placeholder=""
@@ -164,7 +180,9 @@ export function GameOptions({
             onRemove: () => {
               setOptions({ port: undefined });
             },
-            dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.portWarning'),
+            dataSourceConfigWarning: t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.GameOptions.portWarning",
+            ),
           })}
         />
       </div>

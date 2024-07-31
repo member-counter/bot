@@ -15,7 +15,7 @@ import { channelWithDataSourceItemRendererFactory } from "~/app/components/Combo
 import { makeSercheableChannels } from "~/app/components/Combobox/sercheableMakers/makeSercheableChannels";
 import { addTo, removeFrom, updateIn } from "~/other/array";
 import { api } from "~/trpc/react";
-import { knownSearcheableDataSources } from "../../dataSourcesMetadata";
+import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
 type DataSourceType = DataSourceChannels;
@@ -44,6 +44,8 @@ export function ChannelOptions({
     [guild.data],
   );
 
+  const knownSearcheableDataSources = useKnownSearcheableDataSource();
+
   const searchableCategories: Searchable<string | DataSource>[] =
     useMemo(() => {
       const categories = new Map(
@@ -56,12 +58,16 @@ export function ChannelOptions({
         ...makeSercheableChannels(categories),
         ...knownSearcheableDataSources,
       ];
-    }, [channels]);
+    }, [channels, knownSearcheableDataSources]);
 
   return (
     <div>
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ChannelOptions.filterByCategory')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ChannelOptions.filterByCategory",
+          )}
+        </Label>
         {options.categories.map((item, index) => (
           <Combobox
             key={index}
@@ -85,13 +91,17 @@ export function ChannelOptions({
                   categories: removeFrom(options.categories, index),
                 });
               },
-              dataSourceConfigWarning: t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ChannelOptions.configWarning'),
+              dataSourceConfigWarning: t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ChannelOptions.configWarning",
+              ),
             })}
           />
         ))}
         <Combobox
           items={searchableCategories}
-          placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ChannelOptions.addCategoryPlaceholder')}
+          placeholder={t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ChannelOptions.addCategoryPlaceholder",
+          )}
           onItemSelect={(item) => {
             setOptions({
               categories: addTo(options.categories, item),

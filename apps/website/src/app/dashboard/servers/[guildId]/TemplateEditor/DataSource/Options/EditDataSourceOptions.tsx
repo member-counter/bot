@@ -1,5 +1,5 @@
 import type { DataSource } from "@mc/common/DataSource";
-import React, { useMemo } from "react";
+import React from "react";
 
 import { DataSourceId } from "@mc/common/DataSource";
 
