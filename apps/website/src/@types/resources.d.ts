@@ -525,6 +525,22 @@ interface Resources {
           channelsUnderACategory: "Channels under a category";
         };
       };
+      clock: {
+        name: "Clock";
+        description: "Display a clock adjusted to your preferred timezone.";
+        keywords: "clock,timezone";
+        display: {
+          syntax: "Clock ({{timezone}})";
+        };
+      };
+      countdown: {
+        name: "Countdown";
+        description: "Create a countdown timer with a format tailored to your needs.";
+        keywords: "countdown,timer";
+        display: {
+          syntax: "Countdown to {{datetime}}";
+        };
+      };
       game: {
         name: "Game";
         description: "Retrieve the current number of online players in your game server, compatible with more than 320 games.";
@@ -587,6 +603,20 @@ interface Resources {
             followers: "followers";
           };
         };
+      };
+      nitroboosters: {
+        name: "Nitro Boosters";
+        description: "Retrieve the count of Nitro boosters for the server.";
+        keywords: "nitro,boosters,server";
+      };
+      number: {
+        name: "Nitro Boosters";
+        description: "Apply number formatting to the given number.";
+        display: {
+          raw: "Number ({{number}})";
+          dataSource: "{{dataSourceDisplayName}} as number";
+        };
+        keywords: "number,formatting";
       };
       roles: {
         name: "Roles";
