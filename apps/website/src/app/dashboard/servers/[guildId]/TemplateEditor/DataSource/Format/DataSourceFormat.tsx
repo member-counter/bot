@@ -4,6 +4,7 @@ import type {
 } from "@mc/common/DataSource";
 import { useId } from "react";
 import { useTranslation } from "react-i18next";
+
 import { cn } from "@mc/ui";
 import { Checkbox } from "@mc/ui/checkbox";
 import { Label } from "@mc/ui/label";
@@ -17,10 +18,10 @@ import {
 import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
 
 import { Combobox } from "~/app/components/Combobox";
+import { localeItem } from "~/app/components/Combobox/renderers/localeItem";
 import { searchableLocales } from "~/other/locales";
 import DataSourceFormatDigitInput from "./DataSourceFormatDigitInput";
 import useDataSourceFormat from "./useDataSourceFormat";
-import { localeItem } from "~/app/components/Combobox/renderers/localeItem";
 
 const defaultOptionsMerger = (
   options: Partial<DataSourceFormatSettings> = {},
@@ -48,7 +49,11 @@ export default function DataSourceFormat({
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-3">
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.useCompactNotation')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.useCompactNotation",
+          )}
+        </Label>
         <Select
           value={
             format.compactNotation == null
@@ -64,16 +69,32 @@ export default function DataSourceFormat({
           }
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.select')} />
+            <SelectValue
+              placeholder={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.select",
+              )}
+            />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectItemWithIcon
                 value={"null"}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.defaultServerSettings')}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.defaultServerSettings",
+                )}
               />
-              <SelectItemWithIcon value={"true"} label={t('pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.yes')} />
-              <SelectItemWithIcon value={"false"} label={t('pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.no')} />
+              <SelectItemWithIcon
+                value={"true"}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.yes",
+                )}
+              />
+              <SelectItemWithIcon
+                value={"false"}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.no",
+                )}
+              />
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -87,13 +108,19 @@ export default function DataSourceFormat({
               setFormat({ locale: state ? "" : null })
             }
           />
-          <Label htmlFor={defaultLocaleCheckbox}>{t('pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.overrideDefaultLocale')}</Label>
+          <Label htmlFor={defaultLocaleCheckbox}>
+            {t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.overrideDefaultLocale",
+            )}
+          </Label>
         </div>
         {typeof format.locale === "string" && (
           <Combobox
             allowSearchedTerm
             items={searchableLocales}
-            placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.searchLocale')}
+            placeholder={t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.searchLocale",
+            )}
             onItemSelect={(locale) => {
               setFormat({ locale });
             }}
@@ -112,7 +139,11 @@ export default function DataSourceFormat({
               setFormat({ digits: state ? [] : null })
             }
           />
-          <Label htmlFor={defaultDigitsCheckbox}>{t('pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.overrideDefaultDigits')}</Label>
+          <Label htmlFor={defaultDigitsCheckbox}>
+            {t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Format.DataSourceFormat.overrideDefaultDigits",
+            )}
+          </Label>
         </div>
         {format.digits != null && (
           <div className="grid grid-cols-3 gap-3">
