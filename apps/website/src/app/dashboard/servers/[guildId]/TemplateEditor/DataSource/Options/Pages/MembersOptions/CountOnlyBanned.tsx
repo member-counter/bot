@@ -1,5 +1,6 @@
 import { useId } from "react";
 import { useTranslation } from "react-i18next";
+
 import { Checkbox } from "@mc/ui/checkbox";
 import { Label } from "@mc/ui/label";
 
@@ -22,7 +23,11 @@ export function CountOnlyBanned({
           checked={value}
           onCheckedChange={(state) => onChange(Boolean(state))}
         />
-        <Label htmlFor={bannedCheckboxId}>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.CountOnlyBanned.label')}</Label>
+        <Label htmlFor={bannedCheckboxId}>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.CountOnlyBanned.label",
+          )}
+        </Label>
       </div>
     </div>
   );

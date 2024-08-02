@@ -3,9 +3,9 @@ import { z } from "zod";
 
 import DataSourceService from "@mc/common/DataSourceService/index";
 import { GuildSettings } from "@mc/common/GuildSettings";
+import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
-import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 
 export const dataSourceRouter = createTRPCRouter({
   computeTemplate: publicProcedure
@@ -25,7 +25,10 @@ export const dataSourceRouter = createTRPCRouter({
         await redisClient.get(advertiseEvaluatorPriorityKey(guild.id)),
       );
 
-      if (handledPriority > botClient.botInstanceOptions.dataSourceComputePriority) return;
+      if (
+        handledPriority > botClient.botInstanceOptions.dataSourceComputePriority
+      )
+        return;
 
       await ctx.lockRequest();
 

@@ -1,4 +1,3 @@
-import type { DataSourceMembers } from "@mc/common/DataSource";
 import type { i18n } from "i18next";
 import { UsersIcon } from "lucide-react";
 
@@ -31,9 +30,9 @@ const MembersRoleFilteringTypeTKey = {
 } as const;
 
 export const createDataSourceMetadataMembers = (i18n: i18n) =>
-  createDataSourceMetadata<"members", DataSourceMembers>({
-    dataSource: { id: DataSourceId.MEMBERS },
-    preTKey: "members",
+  createDataSourceMetadata({
+    dataSourceId: DataSourceId.MEMBERS,
+    tKeyName: "members",
     icon: UsersIcon,
     i18n,
     displayName(dataSource, t) {

@@ -1,10 +1,5 @@
-import type {
-  DataSourceRoles,
-  DataSourceTwitch,
-  DataSourceYoutube,
-} from "@mc/common/DataSource";
-import type { i18n, TFunction } from "i18next";
-import { TagsIcon, TwitchIcon, YoutubeIcon } from "lucide-react";
+import type { i18n } from "i18next";
+import { TwitchIcon } from "lucide-react";
 
 import { DataSourceId, TwitchDataSourceReturn } from "@mc/common/DataSource";
 
@@ -18,10 +13,10 @@ const TwitchReturnTKey = {
 } as const;
 
 export const createDataSourceMetadataTwitch = (i18n: i18n) =>
-  createDataSourceMetadata<"twitch", DataSourceTwitch>({
+  createDataSourceMetadata({
     i18n,
-    preTKey: "twitch",
-    dataSource: { id: DataSourceId.TWITCH },
+    tKeyName: "twitch",
+    dataSourceId: DataSourceId.TWITCH,
     icon: TwitchIcon,
     displayName(dataSource, t) {
       if (!dataSource.options || typeof dataSource.options.return !== "number")

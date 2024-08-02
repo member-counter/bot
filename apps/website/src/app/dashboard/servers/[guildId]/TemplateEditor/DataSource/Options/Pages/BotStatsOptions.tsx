@@ -38,24 +38,36 @@ export function BotStatsOptions({
   return (
     <div>
       <div>
-        <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.BotStatsOptions.display')}</Label>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.BotStatsOptions.display",
+          )}
+        </Label>
         <Select
           value={options.return.toString()}
           onValueChange={(value) => setOptions({ return: Number(value) })}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.BotStatsOptions.selectPlaceholder')} />
+            <SelectValue
+              placeholder={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.BotStatsOptions.selectPlaceholder",
+              )}
+            />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectItemWithIcon
                 value={BotStatsDataSourceReturn.GUILDS.toString()}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.BotStatsOptions.servers')}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.BotStatsOptions.servers",
+                )}
                 icon={ServerIcon}
               />
               <SelectItemWithIcon
                 value={BotStatsDataSourceReturn.USERS.toString()}
-                label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.BotStatsOptions.users')}
+                label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.BotStatsOptions.users",
+                )}
                 icon={UsersIcon}
               />
             </SelectGroup>
