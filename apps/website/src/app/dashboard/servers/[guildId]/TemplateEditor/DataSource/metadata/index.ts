@@ -9,65 +9,19 @@ import type { DataSourceMetadata } from "./createDataSourceMetadata";
 import type { Searchable } from "~/app/components/Combobox";
 import { createDataSourceMetadataBotStats } from "./DataSourceMetadataBotStats";
 import { createDataSourceMetadataChannels } from "./DataSourceMetadataChannels";
-
+import { createDataSourceMetadataClock } from "./DataSourceMetadataClock";
+import { createDataSourceMetadataCountdown } from "./DataSourceMetadataCountdown";
 import { createDataSourceMetadataGame } from "./DataSourceMetadataGame";
 import { createDataSourceMetadataMath } from "./DataSourceMetadataMath";
 import { createDataSourceMetadataMembers } from "./DataSourceMetadataMembers";
 import { createDataSourceMetadataMemerator } from "./DataSourceMetadataMemerator";
+import { createDataSourceMetadataNitroboosters } from "./DataSourceMetadataNitroboosters";
 import { createDataSourceMetadataRoles } from "./DataSourceMetadataRoles";
 import { createDataSourceMetadataTwitch } from "./DataSourceMetadataTwitch";
 import { createDataSourceMetadataUnknown } from "./DataSourceMetadataUnknown";
 import { createDataSourceMetadataYoutube } from "./DataSourceMetadataYoutube";
+import { createDataSourceMetadataNumber } from "./DataSourceMetadataNumber";
 
-// const countdownDataSourceMetadata: DataSourceMetadata<DataSourceCountdown> = {
-//   icon: HourglassIcon,
-//   description: "Create a countdown timer with a format tailored to your needs.",
-//   displayName: (dataSource: DataSourceCountdown) => {
-//     if (!dataSource.options || typeof dataSource.options.date !== "number")
-//       return "Countdown";
-//     return "Countdown to " + new Date(dataSource.options.date).toLocaleString();
-//   },
-//   dataSource: { id: DataSourceId.COUNTDOWN },
-//   keywords: ["countdown", "timer", "format"],
-// };
-// const clockDataSourceMetadata: DataSourceMetadata<DataSourceClock> = {
-//   icon: ClockIcon,
-//   description: "Display a clock adjusted to your preferred timezone.",
-//   displayName: (dataSource: DataSourceClock) => {
-//     if (!dataSource.options || typeof dataSource.options.timezone !== "string")
-//       return "Clock";
-//     return "Clock (" + dataSource.options.timezone + ")";
-//   },
-//   dataSource: { id: DataSourceId.CLOCK },
-//   keywords: ["clock", "timezone"],
-// };
-// const nitroBoostersDataSourceMetadata: DataSourceMetadata<DataSourceNitroBoosters> =
-//   {
-//     icon: PartyPopperIcon,
-//     description: "Retrieve the count of Nitro boosters for the server.",
-//     displayName: () => "Nitro Boosters",
-//     dataSource: { id: DataSourceId.NITRO_BOOSTERS },
-//     keywords: ["Nitro", "boosters", "server"],
-//   };
-// const numberDataSourceMetadata: DataSourceMetadata<DataSourceNumber> = {
-//   icon: Tally5Icon,
-//   description: "Apply number formatting to the given number.",
-//   displayName: (dataSource: DataSourceNumber) => {
-//     if (!dataSource.options) return "Number";
-//     else if (
-//       typeof dataSource.options.number === "object" &&
-//       "id" in dataSource.options.number
-//     )
-//       return (
-//         getDataSourceMetadata(dataSource.options.number.id).displayName(
-//           dataSource.options.number,
-//         ) + " as number"
-//       );
-//     else return "Number (" + dataSource.options.number + ")";
-//   },
-//   dataSource: { id: DataSourceId.NUMBER },
-//   keywords: ["number", "formatting"],
-// };
 // const redditDataSourceMetadata: DataSourceMetadata<DataSourceReddit> = {
 //   icon: CakeSliceIcon,
 //   description:
@@ -157,6 +111,10 @@ export function dataSourcesMetadataFactory(
     [
       createDataSourceMetadataBotStats(i18n),
       createDataSourceMetadataChannels(i18n),
+      createDataSourceMetadataCountdown(i18n),
+      createDataSourceMetadataClock(i18n),
+      createDataSourceMetadataNitroboosters(i18n),
+      createDataSourceMetadataNumber(i18n),
       createDataSourceMetadataGame(i18n),
       createDataSourceMetadataMath(i18n),
       createDataSourceMetadataMembers(i18n),
