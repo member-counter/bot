@@ -1,9 +1,9 @@
 import type { DataSource, DataSourceId } from "@mc/common/DataSource";
 import type { i18n, TFunction } from "i18next";
 import type { LucideIcon } from "lucide-react";
-import { capitalize } from "lodash";
 
 import type Resources from "~/@types/resources";
+import { capitalize } from "~/other/capitalize";
 
 type TKeyName = keyof Resources["main"]["dataSourceMetadata"];
 

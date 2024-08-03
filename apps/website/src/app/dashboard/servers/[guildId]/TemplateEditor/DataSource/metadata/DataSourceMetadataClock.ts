@@ -1,5 +1,5 @@
 import type { i18n } from "i18next";
-import { HourglassIcon } from "lucide-react";
+import { ClockIcon } from "lucide-react";
 
 import { DataSourceId } from "@mc/common/DataSource";
 
@@ -9,7 +9,7 @@ export const createDataSourceMetadataClock = (i18n: i18n) =>
   createDataSourceMetadata({
     dataSourceId: DataSourceId.CLOCK,
     tKeyName: "clock",
-    icon: HourglassIcon,
+    icon: ClockIcon,
     i18n,
     displayName(dataSource, t) {
       if (

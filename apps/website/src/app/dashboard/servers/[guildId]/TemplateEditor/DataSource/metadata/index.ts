@@ -12,98 +12,19 @@ import { createDataSourceMetadataChannels } from "./DataSourceMetadataChannels";
 import { createDataSourceMetadataClock } from "./DataSourceMetadataClock";
 import { createDataSourceMetadataCountdown } from "./DataSourceMetadataCountdown";
 import { createDataSourceMetadataGame } from "./DataSourceMetadataGame";
+import { createDataSourceMetadataHTTP } from "./DataSourceMetadataHttp";
 import { createDataSourceMetadataMath } from "./DataSourceMetadataMath";
 import { createDataSourceMetadataMembers } from "./DataSourceMetadataMembers";
 import { createDataSourceMetadataMemerator } from "./DataSourceMetadataMemerator";
 import { createDataSourceMetadataNitroboosters } from "./DataSourceMetadataNitroboosters";
+import { createDataSourceMetadataNumber } from "./DataSourceMetadataNumber";
+import { createDataSourceMetadataReddit } from "./DataSourceMetadataReddit";
+import { createDataSourceMetadataReplace } from "./DataSourceMetadataReplace";
 import { createDataSourceMetadataRoles } from "./DataSourceMetadataRoles";
 import { createDataSourceMetadataTwitch } from "./DataSourceMetadataTwitch";
 import { createDataSourceMetadataUnknown } from "./DataSourceMetadataUnknown";
 import { createDataSourceMetadataYoutube } from "./DataSourceMetadataYoutube";
-import { createDataSourceMetadataNumber } from "./DataSourceMetadataNumber";
 
-// const redditDataSourceMetadata: DataSourceMetadata<DataSourceReddit> = {
-//   icon: CakeSliceIcon,
-//   description:
-//     "Retrieve the title of a subreddit along with the total number of members and the count of members currently online.",
-//   displayName: (dataSource: DataSourceReddit) => {
-//     if (!dataSource.options || typeof dataSource.options.return !== "number")
-//       return "Reddit";
-
-//     const displayName = ["subreddit"];
-
-//     const display = {
-//       [RedditDataSourceReturn.MEMBERS]: "members",
-//       [RedditDataSourceReturn.MEMBERS_ONLINE]: "members online",
-//       [RedditDataSourceReturn.TITLE]: "title",
-//     };
-
-//     displayName.push(display[dataSource.options.return]);
-
-//     const displayNameString = displayName.join(" ");
-
-//     return (
-//       displayNameString.charAt(0).toUpperCase() + displayNameString.slice(1)
-//     );
-//   },
-//   dataSource: { id: DataSourceId.REDDIT },
-//   keywords: ["Reddit", "subreddit", "members", "online"],
-// };
-// const httpDataSourceMetadata: DataSourceMetadata<DataSourceHTTP> = {
-//   icon: LinkIcon,
-//   description:
-//     "Send a GET request to an endpoint and provide the result to this bot.",
-//   displayName: (dataSource: DataSourceHTTP) => {
-//     const displayName = ["HTTP"];
-
-//     try {
-//       if (typeof dataSource.options?.url === "string")
-//         displayName.push(new URL(dataSource.options.url).hostname);
-//     } catch {
-//       /* empty */
-//     }
-
-//     const displayNameString = displayName.join(" ");
-
-//     return (
-//       displayNameString.charAt(0).toUpperCase() + displayNameString.slice(1)
-//     );
-//   },
-//   dataSource: { id: DataSourceId.HTTP },
-//   keywords: ["HTTP", "GET", "request", "endpoint", "API", "fetch"],
-// };
-// const replaceDataSourceMetadata: DataSourceMetadata<DataSourceReplace> = {
-//   icon: ReplaceIcon,
-//   description:
-//     "Text replacement, useful in conjunction with other nested counters for comprehensive text modification.",
-//   displayName: (dataSource: DataSourceReplace) => {
-//     if (!dataSource.options?.replacements?.length) return "Replace text";
-
-//     const displayName = ["replace"];
-
-//     displayName.push(
-//       dataSource.options.replacements
-//         .map(({ replacement, search }) => {
-//           if (!replacement || !search) return;
-//           if (typeof replacement !== "string" || typeof search !== "string")
-//             return;
-//           return `"${search}" by "${replacement}"`;
-//         })
-//         .filter(Boolean)
-//         .join(", "),
-//     );
-
-//     if (displayName.length === 1) displayName.push("text");
-
-//     const displayNameString = displayName.join(" ");
-
-//     return (
-//       displayNameString.charAt(0).toUpperCase() + displayNameString.slice(1)
-//     );
-//   },
-//   dataSource: { id: DataSourceId.REPLACE },
-//   keywords: ["text", "replacement", "modification", "string", "substring"],
-// };
 export function dataSourcesMetadataFactory(
   i18n: i18n,
 ): Record<string, DataSourceMetadata> {
@@ -115,7 +36,10 @@ export function dataSourcesMetadataFactory(
       createDataSourceMetadataClock(i18n),
       createDataSourceMetadataNitroboosters(i18n),
       createDataSourceMetadataNumber(i18n),
+      createDataSourceMetadataReddit(i18n),
+      createDataSourceMetadataReplace(i18n),
       createDataSourceMetadataGame(i18n),
+      createDataSourceMetadataHTTP(i18n),
       createDataSourceMetadataMath(i18n),
       createDataSourceMetadataMembers(i18n),
       createDataSourceMetadataMemerator(i18n),
