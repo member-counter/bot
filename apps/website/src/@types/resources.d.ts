@@ -421,6 +421,17 @@ interface Resources {
               searchPlaceholder: "Search counter...";
               noItemsFound: "No counters found.";
             };
+            emojiPicker: {
+              emojiPicker: "Emoji picker";
+              searchEmoji: "Search emoji";
+            };
+            markButtons: {
+              bold: "bold";
+              italic: "italic";
+              underline: "underline";
+              strike: "strike";
+              spoiler: "spoiler";
+            };
           };
         };
       };
@@ -549,6 +560,14 @@ interface Resources {
           playerCountFor: "Player count for {{gameServerAddress}}";
         };
       };
+      http: {
+        name: "HTTP";
+        description: "Send a GET request to an endpoint and provide the result to this bot.";
+        keywords: "HTTP,GET,request,endpoint,API,fetch";
+        display: {
+          syntax: "HTTP {{hostname}}";
+        };
+      };
       math: {
         name: "Math";
         description: "Perform math operations like addition, subtraction, multiplication, division, or modulus on a list of numbers.";
@@ -610,13 +629,35 @@ interface Resources {
         keywords: "nitro,boosters,server";
       };
       number: {
-        name: "Nitro Boosters";
+        name: "Number";
         description: "Apply number formatting to the given number.";
         display: {
           raw: "Number ({{number}})";
           dataSource: "{{dataSourceDisplayName}} as number";
         };
         keywords: "number,formatting";
+      };
+      reddit: {
+        name: "Reddit";
+        description: "Retrieve the title of a subreddit along with the total number of members and the count of members currently online.";
+        keywords: "reddit,subreddit,members,online";
+        display: {
+          syntax: "Reddit {{returnKind}}";
+          returnKind: {
+            members: "members";
+            membersOnline: "online members";
+            title: "title";
+          };
+        };
+      };
+      replace: {
+        name: "Replace";
+        description: "Text replacement, useful in conjunction with other nested counters for comprehensive text modification.";
+        keywords: "text,replacement,modification,string,substring";
+        display: {
+          syntax: "Replace {{replaceSyntax}}";
+          replaceSyntax: "“{{search}}” by “{{replacement}}”";
+        };
       };
       roles: {
         name: "Roles";

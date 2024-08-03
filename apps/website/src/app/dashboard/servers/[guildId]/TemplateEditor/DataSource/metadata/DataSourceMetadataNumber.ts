@@ -3,8 +3,8 @@ import { Tally5Icon } from "lucide-react";
 
 import { DataSourceId } from "@mc/common/DataSource";
 
-import { createDataSourceMetadata } from "./createDataSourceMetadata";
 import { getDataSourceMetadata } from ".";
+import { createDataSourceMetadata } from "./createDataSourceMetadata";
 
 export const createDataSourceMetadataNumber = (i18n: i18n) =>
   createDataSourceMetadata({
@@ -20,8 +20,9 @@ export const createDataSourceMetadataNumber = (i18n: i18n) =>
         "id" in dataSource.options.number
       ) {
         const nestedMetadata = getDataSourceMetadata(
-          dataSource.options.number.id, i18n,
-        )
+          dataSource.options.number.id,
+          i18n,
+        );
 
         return t("display.dataSource", {
           dataSourceDisplayName: nestedMetadata.displayName(
