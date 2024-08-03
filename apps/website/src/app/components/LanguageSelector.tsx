@@ -13,6 +13,8 @@ import { languageEntries } from "~/i18n/settings";
 
 export function LanguageSelector() {
   const { i18n } = useTranslation();
+  console.log(i18n);
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

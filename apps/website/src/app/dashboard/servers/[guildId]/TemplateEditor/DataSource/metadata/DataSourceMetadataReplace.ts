@@ -14,7 +14,7 @@ export const createDataSourceMetadataReplace = (i18n: i18n) =>
     displayName(dataSource, t) {
       if (!dataSource.options?.replacements?.length) return t("name");
 
-      const formatter = new Intl.ListFormat(i18n.resolvedLanguage, {
+      const formatter = new Intl.ListFormat(i18n.language, {
         style: "long",
         type: "conjunction",
       });
