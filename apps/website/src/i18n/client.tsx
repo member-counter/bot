@@ -14,7 +14,7 @@ import {
   useTranslation,
 } from "react-i18next";
 
-import { cookieName, fallbackLng, getOptions, languages } from "./settings";
+import { cookieName, getOptions, languages } from "./settings";
 
 acceptLanguage.languages([...languages]);
 
@@ -39,7 +39,7 @@ void i18next
 function I18nProvider({ children }: { children: React.ReactNode }) {
   const [_cookies, setCookie] = useCookies([cookieName]);
   const { i18n } = useTranslation();
-  const language = i18n.resolvedLanguage ?? fallbackLng;
+  const language = i18n.language;
 
   useEffect(() => {
     setCookie(cookieName, language, {
