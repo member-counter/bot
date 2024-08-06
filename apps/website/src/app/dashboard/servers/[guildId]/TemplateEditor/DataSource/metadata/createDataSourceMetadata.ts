@@ -33,7 +33,6 @@ export interface DataSourceMetadata<D extends DataSource = DataSource> {
   displayName: (dataSource: D) => string;
   hidden: boolean;
 }
-// TODO improve typings
 
 export function createDataSourceMetadata<
   T extends PreTKey,

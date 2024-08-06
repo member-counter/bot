@@ -24,7 +24,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="mt-auto flex flex-col border-t border-border/40">
+      <footer className="mt-auto flex flex-col border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="bg-accent-background py-5">
           <div className="container flex flex-row gap-[60px] py-0">
             <div className="flex flex-col">
