@@ -4,7 +4,7 @@ interface Resources {
       commandHandler: {
         error: {
           title: "ERROR!";
-          description: "Something went wrong, please, try again later\n\nError ID: {{ERROR_ID}}";
+          description: "Something went wrong, please try again later.\n\nError ID: {{ERROR_ID}}";
         };
       };
       commands: {
@@ -12,7 +12,7 @@ interface Resources {
           definition: {
             slash: {
               name: "invite";
-              description: "Gives you an invite link to add the bot";
+              description: "Provides an invite link to add the bot.";
             };
           };
           description: "Your invite link is ready:\n{{INVITE_URL}}";
@@ -52,10 +52,10 @@ interface Resources {
           moreOptionsButton: "More options";
           deleteProfilePrompt: {
             title: "Are you sure you want to delete the data?";
-            description: "This action cannot be undone";
+            description: "This action cannot be undone.";
             confirmButton: "Yes";
             cancelButton: "Cancel";
-            removeDataSuccess: "The data has been removed successfully";
+            removeDataSuccess: "The data has been removed successfully.";
           };
           userNotFound: "User not found";
         };
@@ -66,36 +66,36 @@ interface Resources {
               description: "Get the link to configure the bot on the website.";
             };
           };
-          reply: "Click below to configure the bot at the dashboard.\nYou can also setup some basic counters using the {{SETUP_COMMAND}} command without leaving Discord.";
+          reply: "Click below to configure the bot on the dashboard.\nYou can also set up some basic counters using the {{SETUP_COMMAND}} command without leaving Discord.";
           dashboardButton: "Go to dashboard";
         };
         setup: {
           definition: {
             slash: {
               name: "setup";
-              description: "Setup some basic counters.";
+              description: "Set up some basic counters.";
               subcommands: {
                 server: {
                   name: "server";
-                  description: "Setup server related counters";
+                  description: "Set up server-related counters.";
                 };
                 youtube: {
                   name: "youtube";
-                  description: "Setup YouTube related counters";
+                  description: "Set up YouTube-related counters.";
                   options: {
                     channelUrl: {
                       name: "url";
-                      description: "The channel URL";
+                      description: "The channel URL.";
                     };
                   };
                 };
                 twitch: {
                   name: "twitch";
-                  description: "Setup Twitch related counters";
+                  description: "Set up Twitch-related counters.";
                   options: {
                     username: {
                       name: "username";
-                      description: "The channel uusername";
+                      description: "The channel username.";
                     };
                   };
                 };
@@ -104,13 +104,13 @@ interface Resources {
           };
           status: {
             creating: "Creating counters...";
-            completed: "Creation completed";
-            creatingCategory: "{{ICON}} Creating category";
-            createdCategory: "{{ICON}} Category created";
-            failedCategory: "{{ICON}} Category failed";
-            creatingChannel: "{{ICON}} Creating {{NAME}} counter";
-            createdChannel: "{{ICON}} {{NAME}} created";
-            failedChannel: "{{ICON}} {{NAME}} failed";
+            completed: "Creation completed.";
+            creatingCategory: "{{ICON}} Creating category.";
+            createdCategory: "{{ICON}} Category created.";
+            failedCategory: "{{ICON}} Category failed.";
+            creatingChannel: "{{ICON}} Creating {{NAME}} counter.";
+            createdChannel: "{{ICON}} {{NAME}} created.";
+            failedChannel: "{{ICON}} {{NAME}} failed.";
             configureSuggestion: "You should check out {{CONFIGURE_COMMAND}} for a more customized setup.";
           };
           templateCollection: {
@@ -153,18 +153,18 @@ interface Resources {
               ];
             };
             youtube: {
-              categoryName: "📊 {{COUNTER}} Youtube Stats 📊";
+              categoryName: "📊 {{COUNTER}} YouTube Stats 📊";
               templates: [
                 {
-                  name: "Youtube subscribers";
+                  name: "YouTube subscribers";
                   template: "{{COUNTER}} Subscribers";
                 },
                 {
-                  name: "Youtube videos";
+                  name: "YouTube videos";
                   template: "{{COUNTER}} Videos";
                 },
                 {
-                  name: "Youtube views";
+                  name: "YouTube views";
                   template: "{{COUNTER}} Views";
                 },
               ];
