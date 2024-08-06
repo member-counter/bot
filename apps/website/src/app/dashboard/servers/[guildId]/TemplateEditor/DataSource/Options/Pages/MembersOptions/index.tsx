@@ -1,12 +1,14 @@
 import type { DataSourceMembers } from "@mc/common/DataSource";
+import { useTranslation } from "react-i18next";
+
 import {
   FilterMode,
   MembersFilterAccountType,
   MembersFilterStatus,
 } from "@mc/common/DataSource";
-import { useTranslation } from "react-i18next";
 import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
+
 import type { SetupOptionsInterface } from "../../SetupOptionsInterface";
 import useDataSourceOptions from "../../useDataSourceOptions";
 import { CountOnlyBanned } from "./CountOnlyBanned";
@@ -63,7 +65,11 @@ export function MembersOptions({
           />
           <Separator />
           <div>
-            <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByRole.label')}</Label>
+            <Label>
+              {t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByRole.label",
+              )}
+            </Label>
             <FilterByRoleFilterMode
               value={options.roleFilterMode}
               onChange={(value) => setOptions({ roleFilterMode: value })}

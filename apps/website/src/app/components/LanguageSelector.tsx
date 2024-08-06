@@ -1,4 +1,4 @@
-import { Globe2Icon } from "lucide-react";
+import { LanguagesIcon } from "lucide-react";
 
 import { Button } from "@mc/ui/button";
 import {
@@ -13,11 +13,12 @@ import { languageEntries } from "~/i18n/settings";
 
 export function LanguageSelector() {
   const { i18n } = useTranslation();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Globe2Icon className="h-4 w-4" />
+        <Button variant="ghost" size="icon">
+          <LanguagesIcon className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

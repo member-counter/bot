@@ -1,10 +1,8 @@
-import type { DataSourceMath } from "@mc/common/DataSource";
 import type { i18n } from "i18next";
 import { CalculatorIcon } from "lucide-react";
 
 import { DataSourceId, MathDataSourceOperation } from "@mc/common/DataSource";
 
-import { capitalize } from "~/other/capitalize";
 import { createDataSourceMetadata } from "./createDataSourceMetadata";
 
 const MathOpSigns = {
@@ -24,9 +22,9 @@ const MathOpTKey = {
 } as const;
 
 export const createDataSourceMetadataMath = (i18n: i18n) =>
-  createDataSourceMetadata<"math", DataSourceMath>({
-    dataSource: { id: DataSourceId.MATH },
-    preTKey: "math",
+  createDataSourceMetadata({
+    dataSourceId: DataSourceId.MATH,
+    tKeyName: "math",
     icon: CalculatorIcon,
     i18n,
     displayName(dataSource, t) {

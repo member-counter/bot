@@ -1,27 +1,26 @@
-import type { DataSource } from "@mc/common/DataSource";
+import type { DataSource, DataSourceId } from "@mc/common/DataSource";
 import type { i18n, TFunction } from "i18next";
 import type { LucideIcon } from "lucide-react";
-import { capitalize } from "lodash";
 
 import type Resources from "~/@types/resources";
+import { capitalize } from "~/other/capitalize";
 
-type PreTKey =
-  keyof Resources["main"]["pages"]["dashboard"]["servers"]["dataSourceMetadata"];
+type TKeyName = keyof Resources["main"]["dataSourceMetadata"];
 
-type PrefixedTFunction<T extends PreTKey> = TFunction<
+type PrefixedTFunction<T extends TKeyName> = TFunction<
   "main",
-  `pages.dashboard.servers.dataSourceMetadata.${T}`
+  `dataSourceMetadata.${T}`
 >;
 
-interface DataSourceMetadataOpts<
-  T extends PreTKey = PreTKey,
-  D extends DataSource = DataSource,
-> {
+interface DataSourceMetadataOpts<DI extends DataSourceId, T extends TKeyName> {
   i18n: i18n;
   icon: LucideIcon;
-  dataSource: D;
-  preTKey: T;
-  displayName?: (dataSource: D, t: PrefixedTFunction<T>) => string;
+  dataSourceId: DI;
+  tKeyName: T;
+  displayName?: (
+    dataSource: { id: DI } & DataSource,
+    t: PrefixedTFunction<T>,
+  ) => string;
   hidden?: boolean;
 }
 
@@ -35,23 +34,27 @@ export interface DataSourceMetadata<D extends DataSource = DataSource> {
 }
 
 export function createDataSourceMetadata<
-  T extends PreTKey,
-  D extends DataSource,
->(opts: DataSourceMetadataOpts<T, D>): DataSourceMetadata<DataSource> {
-  const t = opts.i18n.getFixedT(
+  DI extends DataSourceId,
+  T extends TKeyName,
+>(opts: DataSourceMetadataOpts<DI, T>): DataSourceMetadata<DataSource> {
+  const t: PrefixedTFunction<TKeyName> = opts.i18n.getFixedT(
     null,
     "main",
-    `pages.dashboard.servers.dataSourceMetadata.${opts.preTKey}`,
+    `dataSourceMetadata.${opts.tKeyName}`,
   );
 
-  const displayName: (dataSource: D, _t: PrefixedTFunction<T>) => string =
-    opts.displayName ?? (() => t("name"));
-
   return {
-    ...opts,
+    icon: opts.icon,
+    dataSource: { id: opts.dataSourceId },
     description: t("description"),
-    keywords: t("keywords", { returnObjects: true }),
-    displayName: (dataSource: D) => capitalize(displayName(dataSource, t)),
+    keywords: t("keywords").split(","),
+    displayName: (dataSource: DataSource) => {
+      if (opts.displayName) {
+        return capitalize(opts.displayName(dataSource as never, t));
+      } else {
+        return capitalize(t("name"));
+      }
+    },
     hidden: opts.hidden ?? false,
   };
 }
