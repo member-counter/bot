@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import React, { memo, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { useSlate } from "slate-react";
 
 import { Toggle } from "@mc/ui/toggle";
@@ -27,12 +28,15 @@ export const MarkButton = memo(function MarkButton({
   children: ReactNode;
   disabled?: boolean;
 }) {
+  const { t } = useTranslation();
   const { features } = useContext(TemplateEditorContext);
   const editor = useSlate();
 
   const toggleButton = (
     <Toggle
-      aria-label={`Toggle ${format}`}
+      aria-label={t(
+        `pages.dashboard.servers.TemplateEditor.markButtons.${format}`,
+      )}
       pressed={isMarkActive(editor, format)}
       onPressedChange={() => toggleMark(editor, format, features)}
       className={className}

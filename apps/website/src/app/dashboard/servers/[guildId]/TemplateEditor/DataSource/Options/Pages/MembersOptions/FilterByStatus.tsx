@@ -6,6 +6,7 @@ import {
   MoonIcon,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+
 import { MembersFilterStatus } from "@mc/common/DataSource";
 import { Label } from "@mc/ui/label";
 import {
@@ -29,39 +30,57 @@ export function FilterByStatus({
 
   return (
     <div>
-      <Label>{t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.label')}</Label>
+      <Label>
+        {t(
+          "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.label",
+        )}
+      </Label>
       <Select
         value={value.toString()}
         onValueChange={(value) => onChange(Number(value))}
       >
         <SelectTrigger>
-          <SelectValue placeholder={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.placeholder')} />
+          <SelectValue
+            placeholder={t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.placeholder",
+            )}
+          />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectItemWithIcon
               value={MembersFilterStatus.ANY.toString()}
-              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.any')}
+              label={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.any",
+              )}
               icon={AsteriskIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterStatus.ONLINE.toString()}
-              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.online')}
+              label={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.online",
+              )}
               icon={CircleIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterStatus.IDLE.toString()}
-              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.idle')}
+              label={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.idle",
+              )}
               icon={MoonIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterStatus.DND.toString()}
-              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.dnd')}
+              label={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.dnd",
+              )}
               icon={MinusCircleIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterStatus.OFFLINE.toString()}
-              label={t('pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.offline')}
+              label={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.offline",
+              )}
               icon={CircleDashedIcon}
             />
           </SelectGroup>

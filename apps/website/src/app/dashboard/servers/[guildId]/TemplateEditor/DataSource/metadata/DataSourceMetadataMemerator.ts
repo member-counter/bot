@@ -1,21 +1,9 @@
-import type {
-  DataSourceMath,
-  DataSourceMemerator,
-} from "@mc/common/DataSource";
-import type { i18n, TFunction } from "i18next";
-import { CalculatorIcon, FerrisWheelIcon } from "lucide-react";
+import type { i18n } from "i18next";
+import { FerrisWheelIcon } from "lucide-react";
 
-import {
-  DataSourceId,
-  MathDataSourceOperation,
-  MemeratorDataSourceReturn,
-} from "@mc/common/DataSource";
+import { DataSourceId, MemeratorDataSourceReturn } from "@mc/common/DataSource";
 
-import { capitalize } from "~/other/capitalize";
-import {
-  createDataSourceMetadata,
-  DataSourceMetadata,
-} from "./createDataSourceMetadata";
+import { createDataSourceMetadata } from "./createDataSourceMetadata";
 
 const MemeratorReturnTKey = {
   [MemeratorDataSourceReturn.FOLLOWERS]: "followers",
@@ -23,9 +11,9 @@ const MemeratorReturnTKey = {
 } as const;
 
 export const createDataSourceMetadataMemerator = (i18n: i18n) =>
-  createDataSourceMetadata<"memerator", DataSourceMemerator>({
-    dataSource: { id: DataSourceId.MEMERATOR },
-    preTKey: "memerator",
+  createDataSourceMetadata({
+    dataSourceId: DataSourceId.MEMERATOR,
+    tKeyName: "memerator",
     icon: FerrisWheelIcon,
     i18n,
     displayName(dataSource, t) {

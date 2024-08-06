@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { SmileIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { ReactEditor, useSlateStatic } from "slate-react";
 
 import { searchInTexts } from "@mc/common/searchInTexts";
@@ -32,6 +33,7 @@ export function EmojiPicker({
   className,
   disabled,
 }: { className?: string; disabled?: boolean } = {}) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const isDesktop = useBreakpoint("md");
 
@@ -41,7 +43,12 @@ export function EmojiPicker({
       className={cn(["h-10 px-3", className])}
       disabled={disabled}
     >
-      <SmileIcon className="inline h-4 w-4" aria-label="Emoji picker" />
+      <SmileIcon
+        className="inline h-4 w-4"
+        aria-label={t(
+          "pages.dashboard.servers.TemplateEditor.emojiPicker.emojiPicker",
+        )}
+      />
     </Button>
   );
 
@@ -73,6 +80,7 @@ const EmojiPickerContent = memo(function EmojiPickerContent({
 }: {
   setIsOpen: (value: boolean) => void;
 }) {
+  const { t } = useTranslation();
   const editor = useSlateStatic();
   const { features } = useContext(TemplateEditorContext);
   const [skinTone, setSkinTone] = useState("");
@@ -159,7 +167,9 @@ const EmojiPickerContent = memo(function EmojiPickerContent({
             className={blurredBackground}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search emoji"
+            placeholder={t(
+              "pages.dashboard.servers.TemplateEditor.emojiPicker.searchEmoji",
+            )}
           />
           <SkinToneSelector value={skinTone} onChange={setSkinTone} />
         </div>

@@ -1,4 +1,4 @@
-{
+{ 
   "hooks": {
     "useConfirmOnLeave": "You have unsaved changes. Are you sure you want to leave this page?"
   },
@@ -66,7 +66,7 @@
       "manageServers": "Manage servers",
       "sentry": "Sentry",
       "copyright": "© {{year}} Member Counter. All rights reserved. Created by <eduardozgzLink />.",
-      "madePossibleThanksTo": "Made possible thanks to Alex, <vampireChickenLink />, <livingfloreLink />, Frosty and <donorsLink>many more</donorsLink>."
+      "madePossibleThanksTo": "Made possible thanks to Alex, <vampireChickenLink />, <livingfloreLink />, Frosty, and <donorsLink>many more</donorsLink>."
     }
   },
   "pages": {
@@ -74,7 +74,7 @@
       "errors": {
         "NotAuthenticated": "You are not logged in.",
         "NotAuthorized": "You are not authorized to access this page.",
-        "NotFound": "The page you were looking for could not be found.",
+        "NotFound": "The page you are looking for could not be found.",
         "InternalServerError": "An unexpected error occurred."
       },
       "nav": {
@@ -419,149 +419,17 @@
           "AddDataSourceCombobox": {
             "searchPlaceholder": "Search counter...",
             "noItemsFound": "No counters found."
-          }
-        },
-        "dataSourceMetadata": {
-          "botStats": {
-            "name": "Bot stats",
-            "description": "Return the total number of users and servers the bot is currently in. (You probably don't need this)",
-            "keywords": []
           },
-          "channels": {
-            "name": "Channels",
-            "description": "Count the number of channels within specified categories or overall.",
-            "keywords": ["channels", "categories"],
-            "display": {
-              "channelsUnderACategory": "Channels under a category"
-            }
+          "emojiPicker": {
+            "emojiPicker": "Emoji picker",
+            "searchEmoji": "Search emoji"
           },
-          "game": {
-            "name": "Game",
-            "description": "Retrieve the current number of online players in your game server, compatible with more than 320 games.",
-            "keywords": ["game", "players", "online", "server"],
-            "display": {
-              "playerCountFor": "Player count for {{gameServerAddress}}"
-            }
-          },
-          "math": {
-            "name": "Math",
-            "description": "Perform math operations like addition, subtraction, multiplication, division, or modulus on a list of numbers.",
-            "keywords": [
-              "math",
-              "calculator",
-              "operations",
-              "numbers",
-              "arithmetic",
-              "addition",
-              "subtraction",
-              "multiplication",
-              "division",
-              "modulus"
-            ],
-            "display": {
-              "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
-              "undisplayableNumbers": "and {{amount}} more",
-              "operationType": {
-                "add": "add",
-                "subtract": "subtract",
-                "multiply": "multiply",
-                "divide": "divide",
-                "modulo": "modulo"
-              }
-            }
-          },
-          "members": {
-            "name": "Members",
-            "description": "Count members, you can also filter them by their online status, specific roles and more.",
-            "keywords": [
-              "members",
-              "filter",
-              "roles",
-              "online",
-              "status",
-              "banned",
-              "playing",
-              "online",
-              "offline",
-              "dnd",
-              "disturb",
-              "idle",
-              "afk",
-              "user",
-              "bot",
-              "connected"
-            ],
-            "display": {
-              "bannedMembers": "banned members",
-              "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}",
-              "accountType": {
-                "any": "members",
-                "user": "users",
-                "bot": "bots"
-              },
-              "accountStatus": {
-                "any": "",
-                "online": "online",
-                "idle": "idle",
-                "dnd": "DND",
-                "offline": "offline"
-              },
-              "roleFiltering": {
-                "any": "with roles",
-                "overlapping": "with roles overlapping"
-              },
-              "connectedToAChannel": "connected to a channel",
-              "playingAGame": "while playing a game"
-            }
-          },
-          "memerator": {
-            "name": "Memerator",
-            "description": "Fetch the follower count and meme count for a Memerator account.",
-            "keywords": ["Twitch", "follower", "view", "channel"],
-            "display": {
-              "syntax": "Memerator {{returnKind}}",
-              "returnKind": {
-                "memes": "memes",
-                "followers": "followers"
-              }
-            }
-          },
-          "roles": {
-            "name": "Roles",
-            "description": "Count all roles present in the server.",
-            "keywords": ["roles"]
-          },
-          "twitch": {
-            "name": "Twitch",
-            "description": "Retrieve follower count and total view count for a Twitch channel.",
-            "keywords": ["Twitch", "follower", "view", "channel"],
-            "display": {
-              "syntax": "Twitch {{returnKind}}",
-              "returnKind": {
-                "channelName": "channel name",
-                "followers": "followers",
-                "viewers": "viewers"
-              }
-            }
-          },
-          "unknown": {
-            "name": "Unknown",
-            "description": "Unkown counter. This is probably due to an error",
-            "keywords": []
-          },
-          "youtube": {
-            "name": "YouTube",
-            "description": "Fetch subscriber count, video count, and total views from a YouTube channel.",
-            "keywords": ["YouTube", "subscriber", "video", "views", "channel"],
-            "display": {
-              "syntax": "YouTube {{returnKind}}",
-              "returnKind": {
-                "channelName": "channel name",
-                "subscribers": "subscribers",
-                "videos": "videos",
-                "views": "views"
-              }
-            }
+          "markButtons": {
+            "bold": "bold",
+            "italic": "italic",
+            "underline": "underline",
+            "strike": "strike",
+            "spoiler": "spoiler"
           }
         }
       }
@@ -651,6 +519,181 @@
       "stageChannel": "Stage channel",
       "forumChannel": "Forum channel",
       "mediaChannel": "Media channel"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "name": "Bot stats",
+      "description": "Return the total number of users and servers the bot is currently in. (You probably don't need this)",
+      "keywords": ""
+    },
+    "channels": {
+      "name": "Channels",
+      "description": "Count the number of channels within specified categories or overall.",
+      "keywords": "channels,categories",
+      "display": {
+        "channelsUnderACategory": "Channels under a category"
+      }
+    },
+    "clock": {
+      "name": "Clock",
+      "description": "Display a clock adjusted to your preferred timezone.",
+      "keywords": "clock,timezone",
+      "display": {
+        "syntax": "Clock ({{timezone}})"
+      }
+    },
+    "countdown": {
+      "name": "Countdown",
+      "description": "Create a countdown timer with a format tailored to your needs.",
+      "keywords": "countdown,timer",
+      "display": {
+        "syntax": "Countdown to {{datetime}}"
+      }
+    },
+    "game": {
+      "name": "Game",
+      "description": "Retrieve the current number of online players in your game server, compatible with more than 320 games.",
+      "keywords": "game,players,online,server",
+      "display": {
+        "playerCountFor": "Player count for {{gameServerAddress}}"
+      }
+    },
+    "http": {
+      "name": "HTTP",
+      "description": "Send a GET request to an endpoint and provide the result to this bot.",
+      "keywords": "HTTP,GET,request,endpoint,API,fetch",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      }
+    },
+    "math": {
+      "name": "Math",
+      "description": "Perform math operations like addition, subtraction, multiplication, division, or modulus on a list of numbers.",
+      "keywords": "math,calculator,operations,numbers,arithmetic,addition,subtraction,multiplication,division,modulus",
+      "display": {
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "and {{amount}} more",
+        "operationType": {
+          "add": "add",
+          "subtract": "subtract",
+          "multiply": "multiply",
+          "divide": "divide",
+          "modulo": "modulo"
+        }
+      }
+    },
+    "members": {
+      "name": "Members",
+      "description": "Count members, you can also filter them by their online status, specific roles and more.",
+      "keywords": "members,filter,roles,online,status,banned,playing,offline,dnd,disturb,idle,afk,user,bot,connected",
+      "display": {
+        "bannedMembers": "banned members",
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}",
+        "accountType": {
+          "any": "members",
+          "user": "users",
+          "bot": "bots"
+        },
+        "accountStatus": {
+          "any": "",
+          "online": "online",
+          "idle": "idle",
+          "dnd": "DND",
+          "offline": "offline"
+        },
+        "roleFiltering": {
+          "any": "with roles",
+          "overlapping": "with roles overlapping"
+        },
+        "connectedToAChannel": "connected to a channel",
+        "playingAGame": "while playing a game"
+      }
+    },
+    "memerator": {
+      "name": "Memerator",
+      "description": "Fetch the follower count and meme count for a Memerator account.",
+      "keywords": "Twitch,follower,view,channel",
+      "display": {
+        "syntax": "Memerator {{returnKind}}",
+        "returnKind": {
+          "memes": "memes",
+          "followers": "followers"
+        }
+      }
+    },
+    "nitroboosters": {
+      "name": "Nitro Boosters",
+      "description": "Retrieve the count of Nitro boosters for the server.",
+      "keywords": "nitro,boosters,server"
+    },
+    "number": {
+      "name": "Number",
+      "description": "Apply number formatting to the given number.",
+      "display": {
+        "raw": "Number ({{number}})",
+        "dataSource": "{{dataSourceDisplayName}} as number"
+      },
+      "keywords": "number,formatting"
+    },
+    "reddit": {
+      "name": "Reddit",
+      "description": "Retrieve the title of a subreddit along with the total number of members and the count of members currently online.",
+      "keywords": "reddit,subreddit,members,online",
+      "display": {
+        "syntax": "Reddit {{returnKind}}",
+        "returnKind": {
+          "members": "members",
+          "membersOnline": "online members",
+          "title": "title"
+        }
+      }
+    },
+    "replace": {
+      "name": "Replace",
+      "description": "Text replacement, useful in conjunction with other nested counters for comprehensive text modification.",
+      "keywords": "text,replacement,modification,string,substring",
+      "display": {
+        "syntax": "Replace {{replaceSyntax}}",
+        "replaceSyntax": "“{{search}}” by “{{replacement}}”"
+      }
+    },
+    "roles": {
+      "name": "Roles",
+      "description": "Count all roles present in the server.",
+      "keywords": "roles"
+    },
+    "twitch": {
+      "name": "Twitch",
+      "description": "Retrieve follower count and total view count for a Twitch channel.",
+      "keywords": "Twitch,follower,view,channel",
+      "display": {
+        "syntax": "Twitch {{returnKind}}",
+        "returnKind": {
+          "channelName": "channel name",
+          "followers": "followers",
+          "viewers": "viewers"
+        }
+      }
+    },
+    "unknown": {
+      "name": "Unknown",
+      "description": "Unknown counter. This is probably due to an error",
+      "keywords": ""
+    },
+    "youtube": {
+      "name": "YouTube",
+      "description": "Fetch subscriber count, video count, and total views from a YouTube channel.",
+      "keywords": "YouTube,subscriber,video,views,channel",
+      "display": {
+        "syntax": "YouTube {{returnKind}}",
+        "returnKind": {
+          "channelName": "channel name",
+          "subscribers": "subscribers",
+          "videos": "videos",
+          "views": "views"
+        }
+      }
     }
   }
 }

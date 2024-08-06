@@ -1,4 +1,3 @@
-import type { DataSourceYoutube } from "@mc/common/DataSource";
 import type { i18n } from "i18next";
 import { YoutubeIcon } from "lucide-react";
 
@@ -14,10 +13,10 @@ const YoutubeReturnTKey = {
 } as const;
 
 export const createDataSourceMetadataYoutube = (i18n: i18n) =>
-  createDataSourceMetadata<"youtube", DataSourceYoutube>({
+  createDataSourceMetadata({
     i18n,
-    preTKey: "youtube",
-    dataSource: { id: DataSourceId.YOUTUBE },
+    tKeyName: "youtube",
+    dataSourceId: DataSourceId.YOUTUBE,
     icon: YoutubeIcon,
     displayName(dataSource, t) {
       if (!dataSource.options || typeof dataSource.options.return !== "number")
