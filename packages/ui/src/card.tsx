@@ -76,6 +76,47 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = "CardFooter";
 
+const CardBorderIlluminated = (({ className, children, ...props }: 
+  React.HTMLAttributes<HTMLDivElement>) => {
+    const divRef = React.useRef<HTMLDivElement>(null);
+  const spotlightRef = React.useRef<HTMLDivElement>(null);
+ 
+  React.useEffect(() => { 
+    const spotlightEl = spotlightRef.current;
+    const parentEl = divRef.current?.ownerDocument;
+    const divEl = divRef.current;
+
+    if (!spotlightEl || !parentEl || !divEl) return;
+
+    const onMouseMove = (event: MouseEvent) => {   
+      const rects = divEl.getBoundingClientRect();
+      spotlightEl.style.left = `${event.clientX - rects.x}px`;
+      spotlightEl.style.top = `${event.clientY - rects.y}px`;
+    }
+
+    parentEl.addEventListener('mousemove',onMouseMove);
+    
+      return () => { 
+        parentEl.removeEventListener('mousemove',onMouseMove);
+      }
+  }, [spotlightRef, divRef]);
+
+  return (
+    <div
+      ref={divRef}
+      className={cn(
+        "rounded-lg bg-[hsl(var(--border))] p-[1px] text-card-foreground shadow-sm relative overflow-hidden z-[0]",
+        className,
+      )}
+      {...props}
+    > 
+      <div ref={spotlightRef} className=" absolute  bg-gray-50 rounded-full shadow-[0_0_150px_90px_white] z-[-1] overflow-clip"></div>
+      <div className="rounded-[calc(var(--radius)-1px)] opacity-1 bg-card z-[2]">{children}</div>
+    </div>
+  );
+});
+Card.displayName = "CardBorderIlluminated";
+
 export {
   Card,
   CardHeader,
@@ -83,4 +124,5 @@ export {
   CardTitle,
   CardDescription,
   CardContent,
+  CardBorderIlluminated,
 };

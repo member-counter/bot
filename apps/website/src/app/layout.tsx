@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html className="scroll-smooth">
       <body
         className={`${inter.className} antialiasing dark flex min-h-screen flex-col`}
         style={{ backgroundColor: "#0c0a09" }}
