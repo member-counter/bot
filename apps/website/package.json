@@ -29,6 +29,7 @@
     "@trpc/react-query": "next",
     "@trpc/server": "next",
     "@twemoji/api": "^15.1.0",
+    "@uidotdev/usehooks": "^2.4.1",
     "accept-language": "^3.0.18",
     "discord-api-types": "^0.37.83",
     "i18next": "^23.11.5",
@@ -47,6 +48,7 @@
     "react-cookie": "^7.1.4",
     "react-dom": "18.2.0",
     "react-i18next": "^15.0.0",
+    "react-text-transition": "^3.1.0",
     "server-only": "^0.0.1",
     "slate": "^0.103.0",
     "slate-history": "^0.100.0",
@@ -74,7 +76,7 @@
     "jiti": "^1.21.0",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   },
   "prettier": "@mc/prettier-config"
 }

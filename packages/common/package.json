@@ -36,7 +36,7 @@
     "@types/gamedig": "^5.0.3",
     "eslint": "^9.2.0",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   },
   "prettier": "@mc/prettier-config"
 }
