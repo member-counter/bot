@@ -95,9 +95,12 @@ export default function LandingPage() {
         <div className="grow"></div>
         <a
           href="#supported-features"
-          className={cn("p-10 text-lg transition-opacity lg:hidden relative top-[-56px]", {
-            "opacity-0": supportedCountersEntry?.isIntersecting,
-          })}
+          className={cn(
+            "relative top-[-56px] p-10 text-lg transition-opacity lg:hidden",
+            {
+              "opacity-0": supportedCountersEntry?.isIntersecting,
+            },
+          )}
         >
           See more
           <ChevronDownIcon className="relative bottom-[1px] ml-2 inline" />
@@ -109,7 +112,7 @@ export default function LandingPage() {
           <DiscordDemo />
         </div>
       </div>
-      <div className="flex flex-col gap-3" ref={supportedCountersRef}>
+      <div className="mb-3 flex flex-col gap-3" ref={supportedCountersRef}>
         <h3
           className="pt-[64px] text-center text-xl font-bold"
           id="supported-features"
