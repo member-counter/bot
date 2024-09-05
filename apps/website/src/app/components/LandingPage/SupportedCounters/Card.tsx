@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
- 
-import { CardBorderIlluminated  } from "@mc/ui/card";
+
+import { CardBorderIlluminated } from "@mc/ui/card";
 
 interface Props {
   icon: LucideIcon;
