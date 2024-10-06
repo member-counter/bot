@@ -30,7 +30,8 @@ RUN pnpm install
 # Build the project
 COPY --from=builder /app/out/full/ .
 ENV SKIP_ENV_VALIDATION=true
-ENV NEXT_PUBLIC_SUPPORT_URL='https://discord.com/invite/g4MfV6N'\ 
+ENV NODE_ENV='production'\
+    NEXT_PUBLIC_SUPPORT_URL='https://discord.com/invite/g4MfV6N'\ 
     NEXT_PUBLIC_BOT_DOCS_URL='https://docs.membercounter.app/'\
     NEXT_PUBLIC_BOT_REPO_URL='https://github.com/member-counter/bot'\
     NEXT_PUBLIC_TRANSLATION_PLATFORM_URL='https://tolgee.membercounter.app/'\
@@ -56,7 +57,7 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/static ./app
 USER nextjs
 
 EXPOSE 3000
-ENV PORT 3000
-ENV HOSTNAME 0.0.0.0
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
 CMD ["node", "/app/apps/website/server.js"]
