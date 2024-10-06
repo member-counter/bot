@@ -15,7 +15,7 @@ import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { useTranslation } from "~/i18n/client";
 import { MenuButton } from "../../Menu";
 
-// TODO actually implement the guides
+// TODO link guides to docs
 const suggestedTopics = (
   t: TFunction,
 ): {

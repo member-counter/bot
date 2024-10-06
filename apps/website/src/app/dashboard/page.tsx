@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <div className="flex flex-col p-1">
       <MenuButton />
-      {"// TODO explain how the bot works"}
+      {"// TODO auto select first guild"}
     </div>
   );
 }
