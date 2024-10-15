@@ -26,7 +26,13 @@ const Item = (props: ItemProps) => {
   if (notSelectable) isSelected = false;
 
   const itemImageStyle: React.CSSProperties =
-    typeof icon === "string" ? { backgroundImage: `url('${icon}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' } : {};
+    typeof icon === "string"
+      ? {
+          backgroundImage: `url('${icon}')`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }
+      : {};
 
   return (
     <>
@@ -90,7 +96,7 @@ const Item = (props: ItemProps) => {
 };
 
 interface Props {
-  className: string;
+  className?: string;
   classNameForItem?: string;
   pre: ItemProps[];
   guilds: ItemProps[];
