@@ -66,14 +66,14 @@ export default function LandingPage() {
         src={bgImage}
         alt=""
       />
-      <div className=" flex min-h-screen w-full flex-col items-center justify-center gap-4">
+      <div className="flex min-h-screen w-full flex-col items-center justify-center gap-4">
         <div className="grow"></div>
         <div className="flex flex-row items-center">
-          <BotIcon className="relative top-[3px] ml-4 h-20 w-20 min-w-20" />
+          <BotIcon className="relative top-[3px] ml-4 hidden h-20 w-20 min-w-20 md:block " />
           <h1
             className={cn(
               major.className,
-              "ml-10 py-3 text-6xl font-extrabold ",
+              "py-3 text-center text-6xl font-extrabold md:ml-10 md:text-left",
             )}
           >
             Member counteR
@@ -87,7 +87,7 @@ export default function LandingPage() {
             {subheadings[currentSubheading]}
           </TextTransition>
         </h2>
-        <div className="mt-3 flex gap-2">
+        <div className="mt-6 flex w-full flex-col gap-2 px-2 sm:mt-3 sm:w-auto sm:flex-row">
           <Button icon={DiscordIcon}>Add to Discord</Button>
           <Button icon={LifeBuoyIcon}>Get Support</Button>
           <Button icon={SlidersHorizontalIcon}>Dashboard</Button>

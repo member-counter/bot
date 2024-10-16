@@ -26,11 +26,9 @@ export default function Footer() {
     <>
       <footer className="mt-auto flex flex-col border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="bg-accent-background py-5">
-          <div className="container flex flex-row gap-[60px] py-0">
-            <div className="flex flex-col">
-              <h3 className="pb-5 text-xl font-bold tracking-tight">
-                {t("components.footer.usefulLinks")}
-              </h3>
+          <div className="container flex flex-row flex-wrap gap-[60px] py-0 [&>*>h3]:pb-5 [&>*>h3]:text-xl [&>*>h3]:font-bold [&>*>h3]:tracking-tight [&>*]:flex [&>*]:max-w-[240px] [&>*]:flex-col">
+            <div>
+              <h3>{t("components.footer.usefulLinks")}</h3>
               <Link href={Routes.Support}>
                 {t("components.footer.supportServer")}
               </Link>
@@ -47,10 +45,8 @@ export default function Footer() {
                 </Link>
               )}
             </div>
-            <div className="flex flex-col">
-              <h3 className="pb-5 text-xl font-bold tracking-tight">
-                {t("components.footer.legal")}
-              </h3>
+            <div>
+              <h3>{t("components.footer.legal")}</h3>
               <Link href={Routes.Legal("terms-of-service")}>
                 {t("components.footer.termsOfService")}
               </Link>
@@ -64,10 +60,8 @@ export default function Footer() {
                 {t("components.footer.acceptableUsePolicy")}
               </Link>
             </div>
-            <div className="flex flex-col">
-              <h3 className="pb-5 text-xl font-bold tracking-tight">
-                {t("components.footer.improveMemberCounter")}
-              </h3>
+            <div>
+              <h3>{t("components.footer.improveMemberCounter")}</h3>
               <Link href={Routes.BotRepository}>
                 {t("components.footer.codeRepository")}
               </Link>
@@ -77,7 +71,7 @@ export default function Footer() {
               <Link href={Routes.Donors}>{t("components.footer.donate")}</Link>
             </div>
             <div
-              className={cn("flex flex-col", {
+              className={cn({
                 hidden: !userPermissions.has(
                   UserPermissions.SeeUsers |
                     UserPermissions.ManageUsers |
@@ -86,12 +80,10 @@ export default function Footer() {
                 ),
               })}
             >
-              <h3 className="pb-5 text-xl font-bold tracking-tight">
-                {t("components.footer.admin")}
-              </h3>
+              <h3>{t("components.footer.admin")}</h3>
               <Link
                 href={Routes.ManageUsers()}
-                className={cn("flex flex-col", {
+                className={cn({
                   hidden: !userPermissions.has(
                     UserPermissions.SeeUsers | UserPermissions.ManageUsers,
                   ),
@@ -101,7 +93,7 @@ export default function Footer() {
               </Link>
               <Link
                 href={Routes.ManageGuilds}
-                className={cn("flex flex-col", {
+                className={cn({
                   hidden: !userPermissions.has(
                     UserPermissions.SeeGuilds | UserPermissions.ManageGuilds,
                   ),
@@ -111,7 +103,7 @@ export default function Footer() {
               </Link>
               <Link
                 href={Routes.ManageHomePage}
-                className={cn("flex flex-col", {
+                className={cn({
                   hidden: !userPermissions.has(UserPermissions.ManageHomePage),
                 })}
               >
