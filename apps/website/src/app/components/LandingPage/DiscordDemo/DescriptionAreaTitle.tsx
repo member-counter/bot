@@ -1,3 +1,4 @@
+import type { DemoServerData } from "@mc/common/DemoServers";
 import type { LucideIcon } from "lucide-react";
 import { HelpCircleIcon } from "lucide-react";
 
@@ -8,7 +9,7 @@ export function DescriptionAreaTitle({
   demoServer,
   selectedChannelIndex,
 }: {
-  demoServer: DemoServer;
+  demoServer: DemoServerData;
   selectedChannelIndex: number;
 }) {
   const selectedChannel = demoServer.channels[selectedChannelIndex];

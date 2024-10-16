@@ -1,3 +1,4 @@
+import type { UserBadges } from "@mc/common/UserBadges";
 import type { TFunction } from "i18next";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -18,24 +19,27 @@ import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { DeleteButton } from "./DeleteButton";
 
-const getPermissionsLabels = (t: TFunction) => ({
-  SeeUsers: t("pages.admin.users.manage.permissions.seeUsers"),
-  ManageUsers: t("pages.admin.users.manage.permissions.manageUsers"),
-  SeeGuilds: t("pages.admin.users.manage.permissions.seeGuilds"),
-  ManageGuilds: t("pages.admin.users.manage.permissions.manageGuilds"),
-});
+const getPermissionsLabels = (t: TFunction) =>
+  ({
+    SeeUsers: t("pages.admin.users.manage.permissions.seeUsers"),
+    ManageUsers: t("pages.admin.users.manage.permissions.manageUsers"),
+    SeeGuilds: t("pages.admin.users.manage.permissions.seeGuilds"),
+    ManageGuilds: t("pages.admin.users.manage.permissions.manageGuilds"),
+    ManageHomePage: t("pages.admin.users.manage.permissions.manageHomePage"),
+  }) satisfies Record<keyof typeof UserPermissions, string>;
 
-const getBadgesLabels = (t: TFunction) => ({
-  Donor: t("pages.admin.users.manage.badges.donor"),
-  Premium: t("pages.admin.users.manage.badges.premium"),
-  BetaTester: t("pages.admin.users.manage.badges.betaTester"),
-  Translator: t("pages.admin.users.manage.badges.translator"),
-  Contributor: t("pages.admin.users.manage.badges.contributor"),
-  BigBrain: t("pages.admin.users.manage.badges.bigBrain"),
-  BugCatcher: t("pages.admin.users.manage.badges.bugCatcher"),
-  PatPat: t("pages.admin.users.manage.badges.patPat"),
-  FoldingAtHome: t("pages.admin.users.manage.badges.foldingAtHome"),
-});
+const getBadgesLabels = (t: TFunction) =>
+  ({
+    Donor: t("pages.admin.users.manage.badges.donor"),
+    Premium: t("pages.admin.users.manage.badges.premium"),
+    BetaTester: t("pages.admin.users.manage.badges.betaTester"),
+    Translator: t("pages.admin.users.manage.badges.translator"),
+    Contributor: t("pages.admin.users.manage.badges.contributor"),
+    BigBrain: t("pages.admin.users.manage.badges.bigBrain"),
+    BugCatcher: t("pages.admin.users.manage.badges.bugCatcher"),
+    PatPat: t("pages.admin.users.manage.badges.patPat"),
+    FoldingAtHome: t("pages.admin.users.manage.badges.foldingAtHome"),
+  }) satisfies Record<(typeof UserBadges)[number], string>;
 
 export default function ManageUser({ userId }: { userId: string }) {
   const { t } = useTranslation();

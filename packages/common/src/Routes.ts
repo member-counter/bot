@@ -34,6 +34,9 @@ export const Routes = (baseUrl: string) => ({
   ManageUsers: (userId?: string) =>
     baseUrl + "/admin/users" + (userId ? `/${userId}` : ""),
   ManageGuilds: baseUrl + "/admin/guilds",
+  ManageHomePage: baseUrl + "/admin/homepage",
+  ManageHomeDemoServer: (id: string) =>
+    baseUrl + "/admin/homepage/demo-servers/" + id,
   Sentry: env.NEXT_PUBLIC_SENTRY_ADMIN_URL,
   Account: baseUrl + "/account",
   Dashboard: baseUrl + "/dashboard",
