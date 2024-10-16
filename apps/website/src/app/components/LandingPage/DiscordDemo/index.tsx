@@ -33,11 +33,13 @@ export function DiscordDemo() {
   useEffect(() => {
     if (!selectedServer) return;
     setSelectedChannelIndex(
-      selectedServer.channels.findIndex((channel) =>
-        [ChannelType.GuildText, ChannelType.GuildAnnouncement].includes(
-          channel.type,
+      selectedServer.channels
+        .filter((channel) => !channel.showAsSkeleton)
+        .findIndex((channel) =>
+          [ChannelType.GuildText, ChannelType.GuildAnnouncement].includes(
+            channel.type,
+          ),
         ),
-      ),
     );
   }, [selectedServer]);
 
