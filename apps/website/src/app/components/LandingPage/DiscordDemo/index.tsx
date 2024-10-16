@@ -9,7 +9,6 @@ import { serverListColor } from "./colors";
 import { DescriptionArea } from "./DescriptionArea";
 import { ServerNavMenu } from "./ServerNavMenu";
 
-//  TODO fetch from backend
 export function DiscordDemo() {
   const [mouseIsHovering, setMouseIsHovering] = useState(false);
   const [selectedServerIndex, setSelectedServerIndex] = useState(0);
@@ -29,15 +28,15 @@ export function DiscordDemo() {
         clearInterval(serverSelection);
       };
     }
-  }, [mouseIsHovering, selectedServerIndex]);
+  }, [demoServers.length, mouseIsHovering, selectedServerIndex]);
 
   useEffect(() => {
     if (!selectedServer) return;
     setSelectedChannelIndex(
-      selectedServer.channels.findIndex(
-        (channel) =>
-          channel.type === ChannelType.GuildText ||
-          channel.type === ChannelType.GuildAnnouncement,
+      selectedServer.channels.findIndex((channel) =>
+        [ChannelType.GuildText, ChannelType.GuildAnnouncement].includes(
+          channel.type,
+        ),
       ),
     );
   }, [selectedServer]);
