@@ -47,13 +47,14 @@ export const demoServersRouter = createTRPCRouter({
         id: z.string(),
         name: z.string().optional(),
         description: z.string().optional(),
+        icon: z.string().nullable(),
         priority: z.number().optional(),
         channels: z
           .array(
             z.object({
               name: z.string(),
               type: z.number(),
-              topic: z.string(),
+              topic: z.string().nullable(),
               showAsSkeleton: z.boolean(),
             }),
           )
