@@ -48,3 +48,25 @@ model Channel {
   @@unique([discordChannelId, discordGuildId])
   @@index([discordGuildId])
 }
+
+model DemoServer {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  icon        String?
+  priority    Int           @default(0)
+  channels    DemoChannel[]
+  links       DemoLink[]
+}
+
+type DemoChannel {
+  name           String
+  type           Int
+  topic          String?
+  showAsSkeleton Boolean @default(false)
+}
+
+type DemoLink {
+  href  String
+  label String
+}

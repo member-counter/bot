@@ -1,3 +1,7 @@
+import type { DemoServerData } from "@mc/common/DemoServers";
+
+import { Button } from "@mc/ui/button";
+
 import type { DemoServer } from "./DemoServer";
 import { messageListColor } from "./colors";
 import { DescriptionAreaTitle } from "./DescriptionAreaTitle";
@@ -6,7 +10,7 @@ export function DescriptionArea({
   demoServer,
   selectedChannelIndex,
 }: {
-  demoServer: DemoServer;
+  demoServer: DemoServerData;
   selectedChannelIndex: number;
 }) {
   return (
@@ -18,13 +22,21 @@ export function DescriptionArea({
         demoServer={demoServer}
         selectedChannelIndex={selectedChannelIndex}
       />
-      <div className="grow overflow-hidden">
-        <div className="w-fulll flex h-full items-center justify-center">
+      <div className="flex  grow flex-col items-center justify-center overflow-hidden">
+        <div className=" w-[320px]">
           <div
-            className="w-[320px]"
+            className="w-full"
             dangerouslySetInnerHTML={{ __html: demoServer.description }}
           ></div>
-          {/* // TODO show links */}
+          <div className="mt-4 flex w-full flex-col gap-2">
+            {demoServer.links.map((link, i) => (
+              <Button key={i} asChild className="w-full">
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                </a>
+              </Button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

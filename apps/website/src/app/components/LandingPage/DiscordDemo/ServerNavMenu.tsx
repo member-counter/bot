@@ -1,3 +1,4 @@
+import type { DemoServerData } from "@mc/common/DemoServers";
 import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
@@ -16,7 +17,7 @@ export function ServerNavMenu({
   className?: string;
   selectedChannelIndex: number;
   setSelectedChannelIndex: (selectedChannelIndex: number) => void;
-  demoServer: DemoServer;
+  demoServer: DemoServerData;
 }) {
   const { t } = useTranslation();
 
@@ -41,14 +42,18 @@ export function ServerNavMenu({
 
       <Separator tabIndex={-1} />
       <div className="flex max-h-full grow flex-col gap-1  p-[8px]">
-        {demoServer.channels.map((channel, i) => (
-          <ChannelNavItem
-            isSelected={selectedChannelIndex === i}
-            onClick={() => setSelectedChannelIndex(i)}
-            {...channel}
-            key={channel.name}
-          />
-        ))}
+        {demoServer.channels.map((channel, i) =>
+          channel.showAsSkeleton ? (
+            <ChannelNavItemSkeleton key={i} />
+          ) : (
+            <ChannelNavItem
+              isSelected={selectedChannelIndex === i}
+              onClick={() => setSelectedChannelIndex(i)}
+              {...channel}
+              key={i}
+            />
+          ),
+        )}
         {new Array(15).fill(null).map((_, i) => (
           <ChannelNavItemSkeleton key={i} />
         ))}

@@ -109,6 +109,14 @@ export default function Footer() {
               >
                 {t("components.footer.manageServers")}
               </Link>
+              <Link
+                href={Routes.ManageHomePage}
+                className={cn("flex flex-col", {
+                  hidden: !userPermissions.has(UserPermissions.ManageHomePage),
+                })}
+              >
+                {t("components.footer.manageHomePage")}
+              </Link>
               <Link href={Routes.Sentry}>{t("components.footer.sentry")}</Link>
             </div>
           </div>

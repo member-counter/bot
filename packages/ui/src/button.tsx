@@ -44,22 +44,36 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, icon, ...props }, ref) => {
+  (
+    { className, variant, size, asChild = false, icon: Icon, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
-    const Icon = icon;
-    const renderedIcon = Icon ? (
-      <Icon className="mr-2 inline h-4 min-h-4 w-4 min-w-4" />
-    ) : null;
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      >
-        {renderedIcon}
-        {props.children}
-      </Comp>
-    );
+
+    if (asChild && Icon) throw new Error("Icon cannot be used with asChild");
+
+    if (Icon) {
+      return (
+        <Comp
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        >
+          <Icon className="mr-2 inline h-4 min-h-4 w-4 min-w-4" />
+          {props.children}
+        </Comp>
+      );
+    } else {
+      return (
+        <Comp
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        >
+          {props.children}
+        </Comp>
+      );
+    }
   },
 );
 Button.displayName = "Button";

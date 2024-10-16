@@ -65,6 +65,7 @@ interface Resources {
         "admin": "Admin",
         "manageUsers": "Manage users",
         "manageServers": "Manage servers",
+        "manageHomePage": "Manage homepage",
         "sentry": "Sentry",
         "copyright": "© {{year}} Member Counter. All rights reserved. Created by <eduardozgzLink />.",
         "madePossibleThanksTo": "Made possible thanks to Alex, <vampireChickenLink />, <livingfloreLink />, Frosty, and <donorsLink>many more</donorsLink>."
@@ -478,7 +479,8 @@ interface Resources {
               "seeUsers": "See users",
               "manageUsers": "Manage users",
               "seeGuilds": "See servers",
-              "manageGuilds": "Manage servers"
+              "manageGuilds": "Manage servers",
+              "manageHomePage": "Manage landing page"
             },
             "badges": {
               "title": "Badges",
@@ -500,6 +502,59 @@ interface Resources {
           "loadUser": "Load user",
           "recentUsers": "Recent users",
           "userNotRegistered": "This user isn't registered."
+        },
+        "homePage": {
+          "demoServers": {
+            "title": "Demo servers",
+            "createInputPlaceholder": "New demo server name",
+            "createBtn": "Create",
+            "list": {
+              "display": {
+                "priority": "Priority: {{priority}}"
+              }
+            },
+            "manage": {
+              "title": "Edit demo server",
+              "name": "Server name",
+              "description": "Description",
+              "priority": "Priority",
+              "icon": "Icon URL",
+              "channels": {
+                "title": "Channels",
+                "add": "Add channel",
+                "channel": {
+                  "name": "Name",
+                  "type": "Type",
+                  "types": {
+                    "announcementChannel": "Announcement channel",
+                    "voiceChannel": "Voice channel",
+                    "categoryChannel": "Category channel",
+                    "textChannel": "Text channel"
+                  },
+                  "topic": "Topic",
+                  "showAsSkeleton": "Show as skeleton",
+                  "remove": "Remove"
+                }
+              },
+              "links": {
+                "title": "Links",
+                "add": "Add link",
+                "link": {
+                  "label": "Label",
+                  "url": "URL",
+                  "remove": "Remove"
+                }
+              },
+              "saved": "Saved",
+              "save": "Save"
+            },
+            "delete": {
+              "button": "Delete demo server",
+              "dialogTitle": "Are you absolutely sure?",
+              "dialogDescription": "This action cannot be undone.",
+              "closeButton": "Close"
+            }
+          }
         }
       }
     },
