@@ -146,13 +146,19 @@ importers:
         version: 5.59.0(react@18.3.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.553(@trpc/server@11.0.0-rc.553)
+        version: 11.0.0-rc.580(@trpc/server@11.0.0-rc.580)
       '@trpc/react-query':
         specifier: next
-        version: 11.0.0-rc.553(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.553(@trpc/server@11.0.0-rc.553))(@trpc/server@11.0.0-rc.553)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+        version: 11.0.0-rc.580(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.580(@trpc/server@11.0.0-rc.580))(@trpc/server@11.0.0-rc.580)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.553
+        version: 11.0.0-rc.580
+      '@tsparticles/basic':
+        specifier: ^3.5.0
+        version: 3.5.0
+      '@tsparticles/react':
+        specifier: ^3.0.0
+        version: 3.0.0(@tsparticles/engine@3.5.0)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
       '@twemoji/api':
         specifier: ^15.1.0
         version: 15.1.0
@@ -315,10 +321,10 @@ importers:
         version: 1.2.1(ioredis@5.4.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.553(@trpc/server@11.0.0-rc.553)
+        version: 11.0.0-rc.580(@trpc/server@11.0.0-rc.580)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.553
+        version: 11.0.0-rc.580
       discord.js:
         specifier: ^14.15.2
         version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
@@ -533,7 +539,7 @@ importers:
         version: 11.0.0-next-beta.216
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.553
+        version: 11.0.0-rc.580
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
@@ -2230,25 +2236,25 @@ packages:
   '@total-typescript/ts-reset@0.5.1':
     resolution: {integrity: sha512-AqlrT8YA1o7Ff5wPfMOL0pvL+1X+sw60NN6CcOCqs658emD6RfiXhF7Gu9QcfKBH7ELY2nInLhKSCWVoNL70MQ==}
 
-  '@trpc/client@11.0.0-rc.553':
-    resolution: {integrity: sha512-ICgziilbuAslRgHIVJZ162KaHQRpHXA1C1LPRsNpxPa9aStPF7eThAjn4V3JmDyJsuDLQgAmqLVRImlLPMYR5Q==}
+  '@trpc/client@11.0.0-rc.580':
+    resolution: {integrity: sha512-lQ2iRZyUprtyrcIS9388ZIgxhPp/j9632FqDPcKO8LrFgPshT+hbQtS+vSJh7eGv8QlsNDyxLRSIgGhoR4NcDA==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.553+9b629cc67
+      '@trpc/server': 11.0.0-rc.580+26ac97c0e
 
   '@trpc/core@11.0.0-next-beta.216':
     resolution: {integrity: sha512-dmdSFeSzArkmdZvnymoQwAju0QBODC3PhLgBKTYgVIj0HATE/OJsPAKOxiqdcgm3YyN/zABm+ntiYmjLBJzTCA==}
 
-  '@trpc/react-query@11.0.0-rc.553':
-    resolution: {integrity: sha512-m88HBhpfIDJccJCXycHtkGS82RG2TVPsZUFIWswR8m6ip5eFNmqWASanu7DiiFbY6sufLT1S8ee28towrPUgoA==}
+  '@trpc/react-query@11.0.0-rc.580':
+    resolution: {integrity: sha512-dVUuQVzFWLLqjgvLtlqQ+gSnsdIdqvkR3/Fh0aV2mzTIKxIspqk9AQwcIyEy/0HlV7EV4S7xpvOSQ5SDD9qplw==}
     peerDependencies:
-      '@tanstack/react-query': ^5.54.1
-      '@trpc/client': 11.0.0-rc.553+9b629cc67
-      '@trpc/server': 11.0.0-rc.553+9b629cc67
+      '@tanstack/react-query': ^5.59.15
+      '@trpc/client': 11.0.0-rc.580+26ac97c0e
+      '@trpc/server': 11.0.0-rc.580+26ac97c0e
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
 
-  '@trpc/server@11.0.0-rc.553':
-    resolution: {integrity: sha512-pYUhxV3QU834jP1ugJk1uhtPwwaY1ymIuupb4DiWOhNCl68syuXPlUdD8IYsYKd3BjLkmnjlsOUMoyd/aoOF/Q==}
+  '@trpc/server@11.0.0-rc.580':
+    resolution: {integrity: sha512-2XYvKJlfWQqO8m20iWlUWuh/65HTPAo/r/zekCIt/uHGDXuUp7EQPxuyqzjcC8TG70W0Cw5cTZs1OK71E7Hbjg==}
 
   '@tsconfig/node10@1.0.11':
     resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}
@@ -2261,6 +2267,37 @@ packages:
 
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
+
+  '@tsparticles/basic@3.5.0':
+    resolution: {integrity: sha512-oty33TxM2aHWrzcwWRic1bQ04KBCdpnvzv8JXEkx5Uyp70vgVegUbtKmwGki3shqKZIt3v2qE4I8NsK6onhLrA==}
+
+  '@tsparticles/engine@3.5.0':
+    resolution: {integrity: sha512-RCwrJ2SvSYdhXJ24oUCjSUKEZQ9lXwObOWMvfMC9vS6/bk+Qo0N7Xx8AfumqzP/LebB1YJdlCvuoJMauAon0Pg==}
+
+  '@tsparticles/move-base@3.5.0':
+    resolution: {integrity: sha512-9oDk7zTxyhUCstj3lHTNTiWAgqIBzWa2o1tVQFK63Qwq+/WxzJCSwZOocC9PAHGM1IP6nA4zYJSfjbMBTrUocA==}
+
+  '@tsparticles/react@3.0.0':
+    resolution: {integrity: sha512-hjGEtTT1cwv6BcjL+GcVgH++KYs52bIuQGW3PWv7z3tMa8g0bd6RI/vWSLj7p//NZ3uTjEIeilYIUPBh7Jfq/Q==}
+    peerDependencies:
+      '@tsparticles/engine': ^3.0.2
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+
+  '@tsparticles/shape-circle@3.5.0':
+    resolution: {integrity: sha512-59TmXkeeI6Jzv5vt/D3TkclglabaoEXQi2kbDjSCBK68SXRHzlQu29mSAL41Y5S0Ft5ZJKkAQHX1IqEnm8Hyjg==}
+
+  '@tsparticles/updater-color@3.5.0':
+    resolution: {integrity: sha512-TGGgiLixIg37sst2Fj9IV4XbdMwkT6PYanM7qEqyfmv4hJ/RHMQlCznEe6b7OhChQVBg5ov5EMl/BT4/fIWEYw==}
+
+  '@tsparticles/updater-opacity@3.5.0':
+    resolution: {integrity: sha512-T2YfqdIFV/f5VOg1JQsXu6/owdi9g9K2wrJlBfgteo+IboVp6Lcuo4PGAfilWVkWrTdp1Nz4mz39NrLHfOce2g==}
+
+  '@tsparticles/updater-out-modes@3.5.0':
+    resolution: {integrity: sha512-y6NZe2OSk5SrYdaLwUIQnHICsNEDIdPPJHQ2nAWSvAuPJphlSKjUknc7OaGiFwle6l0OkhWoZZe1rV1ktbw/lA==}
+
+  '@tsparticles/updater-size@3.5.0':
+    resolution: {integrity: sha512-TnWlOChBsVZffT2uO0S4ALGSzxT6UAMIVlhGMGFgSeIlktKMqM+dxDGAPrYa1n8IS2dkVGisiXzsV0Ss6Ceu1A==}
 
   '@turbo/gen@2.0.6':
     resolution: {integrity: sha512-Epv3tt40mrNCzL6XKELdHvM1KSYvY7bg4uRZAjS0SuYYY5E0gGjpeZPqqUNZl7fwmTHZLEZH5qqoKxbGWZsKXQ==}
@@ -6638,21 +6675,21 @@ snapshots:
 
   '@total-typescript/ts-reset@0.5.1': {}
 
-  '@trpc/client@11.0.0-rc.553(@trpc/server@11.0.0-rc.553)':
+  '@trpc/client@11.0.0-rc.580(@trpc/server@11.0.0-rc.580)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.553
+      '@trpc/server': 11.0.0-rc.580
 
   '@trpc/core@11.0.0-next-beta.216': {}
 
-  '@trpc/react-query@11.0.0-rc.553(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.553(@trpc/server@11.0.0-rc.553))(@trpc/server@11.0.0-rc.553)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
+  '@trpc/react-query@11.0.0-rc.580(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.580(@trpc/server@11.0.0-rc.580))(@trpc/server@11.0.0-rc.580)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/react-query': 5.59.0(react@18.3.1)
-      '@trpc/client': 11.0.0-rc.553(@trpc/server@11.0.0-rc.553)
-      '@trpc/server': 11.0.0-rc.553
+      '@trpc/client': 11.0.0-rc.580(@trpc/server@11.0.0-rc.580)
+      '@trpc/server': 11.0.0-rc.580
       react: 18.3.1
       react-dom: 18.2.0(react@18.3.1)
 
-  '@trpc/server@11.0.0-rc.553': {}
+  '@trpc/server@11.0.0-rc.580': {}
 
   '@tsconfig/node10@1.0.11': {}
 
@@ -6661,6 +6698,48 @@ snapshots:
   '@tsconfig/node14@1.0.3': {}
 
   '@tsconfig/node16@1.0.4': {}
+
+  '@tsparticles/basic@3.5.0':
+    dependencies:
+      '@tsparticles/engine': 3.5.0
+      '@tsparticles/move-base': 3.5.0
+      '@tsparticles/shape-circle': 3.5.0
+      '@tsparticles/updater-color': 3.5.0
+      '@tsparticles/updater-opacity': 3.5.0
+      '@tsparticles/updater-out-modes': 3.5.0
+      '@tsparticles/updater-size': 3.5.0
+
+  '@tsparticles/engine@3.5.0': {}
+
+  '@tsparticles/move-base@3.5.0':
+    dependencies:
+      '@tsparticles/engine': 3.5.0
+
+  '@tsparticles/react@3.0.0(@tsparticles/engine@3.5.0)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@tsparticles/engine': 3.5.0
+      react: 18.3.1
+      react-dom: 18.2.0(react@18.3.1)
+
+  '@tsparticles/shape-circle@3.5.0':
+    dependencies:
+      '@tsparticles/engine': 3.5.0
+
+  '@tsparticles/updater-color@3.5.0':
+    dependencies:
+      '@tsparticles/engine': 3.5.0
+
+  '@tsparticles/updater-opacity@3.5.0':
+    dependencies:
+      '@tsparticles/engine': 3.5.0
+
+  '@tsparticles/updater-out-modes@3.5.0':
+    dependencies:
+      '@tsparticles/engine': 3.5.0
+
+  '@tsparticles/updater-size@3.5.0':
+    dependencies:
+      '@tsparticles/engine': 3.5.0
 
   '@turbo/gen@2.0.6(@types/node@20.12.13)(typescript@5.4.5)':
     dependencies:

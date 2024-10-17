@@ -28,6 +28,8 @@
     "@trpc/client": "next",
     "@trpc/react-query": "next",
     "@trpc/server": "next",
+    "@tsparticles/basic": "^3.5.0",
+    "@tsparticles/react": "^3.0.0",
     "@twemoji/api": "^15.1.0",
     "@uidotdev/usehooks": "^2.4.1",
     "accept-language": "^3.0.18",

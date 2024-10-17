@@ -16,7 +16,7 @@ import { Button } from "@mc/ui/button";
 
 import { BotIcon } from "../BotIcon";
 import { DiscordIcon } from "../DiscordIcon";
-import bgImage from "./bg.png";
+import { Background } from "./Background";
 import { DiscordDemo } from "./DiscordDemo";
 import { SupportedCounters } from "./SupportedCounters";
 
@@ -60,12 +60,7 @@ export default function LandingPage() {
   return (
     <div className="relative flex flex-col items-center justify-center gap-10 pb-10">
       <div className="fixed top-[0] z-[-1] h-[120px] w-full bg-gradient-to-b from-black"></div>
-      <Image
-        aria-hidden
-        className="fixed left-0 right-0 top-0 z-[-2] h-screen w-screen object-cover opacity-100"
-        src={bgImage}
-        alt=""
-      />
+      <Background className="fixed z-[-2]  " />
       <div className="flex min-h-screen w-full flex-col items-center justify-center gap-4">
         <div className="grow"></div>
         <div className="flex flex-row items-center">
