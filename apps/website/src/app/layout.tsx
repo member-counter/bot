@@ -30,9 +30,7 @@ export default function RootLayout({
         <I18nProvider>
           <TRPCReactProvider>
             <NavBar />
-            <ProgressBarProvider>
-              {children}
-            </ProgressBarProvider>
+            <ProgressBarProvider>{children}</ProgressBarProvider>
           </TRPCReactProvider>
         </I18nProvider>
       </body>

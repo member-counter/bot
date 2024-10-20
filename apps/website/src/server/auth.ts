@@ -28,11 +28,11 @@ export function getOAuth2Url() {
 export async function exchangeTokens(
   exchangeMethod:
     | {
-      code: string;
-    }
+        code: string;
+      }
     | {
-      refreshToken: string;
-    },
+        refreshToken: string;
+      },
 ): Promise<Session> {
   let body = {};
   if ("code" in exchangeMethod) {

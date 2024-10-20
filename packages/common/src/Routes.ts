@@ -45,4 +45,5 @@ export const Routes = (baseUrl: string) => ({
     "/dashboard/servers" +
     (guildId ? `/${guildId}` : "") +
     (channelId ? `/${channelId}` : ""),
+  CreateDiscordServer: "https://discord.com/channels/@me",
 });
