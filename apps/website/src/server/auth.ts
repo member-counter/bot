@@ -3,7 +3,7 @@ import { OAuth2Routes } from "discord-api-types/v10";
 
 import { DiscordOAuth2TokenExchangeResponseSchema } from "@mc/validators/DiscordOAuth2TokenExchangeResponse";
 
-import { setSession } from "~/app/api/sessionCookie";
+import { destroySession, setSession } from "~/app/api/sessionCookie";
 import { env } from "~/env";
 import { identify } from "./api/services/discord";
 
@@ -60,11 +60,11 @@ export async function exchangeTokens(
     body: new URLSearchParams(body),
   })
     .then((res) => res.json())
-    .then(json => {
-      console.debug(body, json);
-      return json;
-    })
     .then((res) => DiscordOAuth2TokenExchangeResponseSchema.parse(res));
+
+  if ("error" in tokenExchangeResponse) {
+    throw new Error(tokenExchangeResponse.error);
+  }
 
   if (tokenExchangeResponse.tokenType !== "Bearer")
     throw new Error("Unknown access token type");
@@ -86,11 +86,15 @@ export async function refreshToken(
   if (!session) return null;
 
   if (session.expiresAt < Date.now()) {
-    session = await exchangeTokens({
-      refreshToken: session.refreshToken,
-    });
+    try {
+      session = await exchangeTokens({
+        refreshToken: session.refreshToken,
+      });
 
-    await setSession(session);
+      await setSession(session);
+    } catch {
+      destroySession();
+    }
   }
 
   return session;
