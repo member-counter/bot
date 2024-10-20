@@ -28,11 +28,11 @@ export function getOAuth2Url() {
 export async function exchangeTokens(
   exchangeMethod:
     | {
-        code: string;
-      }
+      code: string;
+    }
     | {
-        refreshToken: string;
-      },
+      refreshToken: string;
+    },
 ): Promise<Session> {
   let body = {};
   if ("code" in exchangeMethod) {
@@ -60,6 +60,10 @@ export async function exchangeTokens(
     body: new URLSearchParams(body),
   })
     .then((res) => res.json())
+    .then(json => {
+      console.debug(body, json);
+      return json;
+    })
     .then((res) => DiscordOAuth2TokenExchangeResponseSchema.parse(res));
 
   if (tokenExchangeResponse.tokenType !== "Bearer")
