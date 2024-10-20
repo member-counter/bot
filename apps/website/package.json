@@ -44,6 +44,7 @@
     "lodash": "^4.17.21",
     "lucide-react": "^0.314.0",
     "next": "^14.2.1",
+    "next-nprogress-bar": "^2.3.14",
     "node-loader": "^2.0.0",
     "prismjs": "^1.29.0",
     "react": "^18.3.1",
