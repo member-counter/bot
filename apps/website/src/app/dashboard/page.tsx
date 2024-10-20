@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useParams,   useRouter } from "next/navigation";
+import { useParams  } from "next/navigation";
 import { Trans } from "react-i18next"; 
 
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
@@ -10,6 +10,7 @@ import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react"; 
 import { TypographyH3 } from "@mc/ui/TypographyH3";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
+import { useRouter } from "next-nprogress-bar";
 
 export default function Page() {
   const router = useRouter();
