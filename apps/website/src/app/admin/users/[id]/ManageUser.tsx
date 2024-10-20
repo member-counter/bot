@@ -1,7 +1,7 @@
 import type { UserBadges } from "@mc/common/UserBadges";
 import type { TFunction } from "i18next";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next-nprogress-bar';
 import { SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
