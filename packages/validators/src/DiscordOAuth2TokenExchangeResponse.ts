@@ -18,4 +18,5 @@ export const DiscordOAuth2TokenExchangeResponseSchema = z.union([
         expiresAt: Date.now() + expires_in * 1000,
         scope: scope,
       }),
-    )]);
+    ),
+]);

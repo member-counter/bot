@@ -86,6 +86,10 @@
       }
     },
     "dashboard": {
+      "noServers": {
+        "heading": "You aren't in any server. ",
+        "subheading": "Why you don't start by creating a <CreateServerLink>new one</CreateServerLink> or by <JoinSupportServerLink>joining us</JoinSupportServerLink>?"
+      },
       "servers": {
         "suggestedTopics": {
           "quickSetup": {
