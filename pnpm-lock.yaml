@@ -146,13 +146,13 @@ importers:
         version: 5.59.0(react@18.3.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.580(@trpc/server@11.0.0-rc.580)
+        version: 11.0.0-rc.590(@trpc/server@11.0.0-rc.590)
       '@trpc/react-query':
         specifier: next
-        version: 11.0.0-rc.580(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.580(@trpc/server@11.0.0-rc.580))(@trpc/server@11.0.0-rc.580)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+        version: 11.0.0-rc.590(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.590(@trpc/server@11.0.0-rc.590))(@trpc/server@11.0.0-rc.590)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.580
+        version: 11.0.0-rc.590
       '@tsparticles/basic':
         specifier: ^3.5.0
         version: 3.5.0
@@ -201,6 +201,9 @@ importers:
       next:
         specifier: ^14.2.1
         version: 14.2.3(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+      next-nprogress-bar:
+        specifier: ^2.3.14
+        version: 2.3.14
       node-loader:
         specifier: ^2.0.0
         version: 2.0.0(webpack@5.91.0)
@@ -321,10 +324,10 @@ importers:
         version: 1.2.1(ioredis@5.4.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.580(@trpc/server@11.0.0-rc.580)
+        version: 11.0.0-rc.590(@trpc/server@11.0.0-rc.590)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.580
+        version: 11.0.0-rc.590
       discord.js:
         specifier: ^14.15.2
         version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
@@ -539,7 +542,7 @@ importers:
         version: 11.0.0-next-beta.216
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.580
+        version: 11.0.0-rc.590
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
@@ -2236,25 +2239,25 @@ packages:
   '@total-typescript/ts-reset@0.5.1':
     resolution: {integrity: sha512-AqlrT8YA1o7Ff5wPfMOL0pvL+1X+sw60NN6CcOCqs658emD6RfiXhF7Gu9QcfKBH7ELY2nInLhKSCWVoNL70MQ==}
 
-  '@trpc/client@11.0.0-rc.580':
-    resolution: {integrity: sha512-lQ2iRZyUprtyrcIS9388ZIgxhPp/j9632FqDPcKO8LrFgPshT+hbQtS+vSJh7eGv8QlsNDyxLRSIgGhoR4NcDA==}
+  '@trpc/client@11.0.0-rc.590':
+    resolution: {integrity: sha512-K74iJv7LhSwr99ExYtJgmu3ZjDi1xqCAOX8hunXgP+xBqej17kYRFnYgsPdKtxKfkbLdY3rWGsGX16p9Y5Z8FQ==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.580+26ac97c0e
+      '@trpc/server': 11.0.0-rc.590+3621497e1
 
   '@trpc/core@11.0.0-next-beta.216':
     resolution: {integrity: sha512-dmdSFeSzArkmdZvnymoQwAju0QBODC3PhLgBKTYgVIj0HATE/OJsPAKOxiqdcgm3YyN/zABm+ntiYmjLBJzTCA==}
 
-  '@trpc/react-query@11.0.0-rc.580':
-    resolution: {integrity: sha512-dVUuQVzFWLLqjgvLtlqQ+gSnsdIdqvkR3/Fh0aV2mzTIKxIspqk9AQwcIyEy/0HlV7EV4S7xpvOSQ5SDD9qplw==}
+  '@trpc/react-query@11.0.0-rc.590':
+    resolution: {integrity: sha512-I94XfDnzkYze/T5+swewdWszjah/E0yaU7yowG1RzTta9KkERu/4gsHfH8+GtXPw/2tk5npW7TEjgN42KsKFUA==}
     peerDependencies:
       '@tanstack/react-query': ^5.59.15
-      '@trpc/client': 11.0.0-rc.580+26ac97c0e
-      '@trpc/server': 11.0.0-rc.580+26ac97c0e
+      '@trpc/client': 11.0.0-rc.590+3621497e1
+      '@trpc/server': 11.0.0-rc.590+3621497e1
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
 
-  '@trpc/server@11.0.0-rc.580':
-    resolution: {integrity: sha512-2XYvKJlfWQqO8m20iWlUWuh/65HTPAo/r/zekCIt/uHGDXuUp7EQPxuyqzjcC8TG70W0Cw5cTZs1OK71E7Hbjg==}
+  '@trpc/server@11.0.0-rc.590':
+    resolution: {integrity: sha512-kjmP1cZVvgL+kqD4D69doVnhV78y/7pofyQB5cAuTU57L+5dkxeddyPSUTWmvjeGr3daVSSld22LgsnlF1IX3A==}
 
   '@tsconfig/node10@1.0.11':
     resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}
@@ -4056,6 +4059,9 @@ packages:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
     engines: {node: '>= 0.4.0'}
 
+  next-nprogress-bar@2.3.14:
+    resolution: {integrity: sha512-r2zdo5SFakm1CSYLBo2/+9X2F5NRnbV/LI1b/Iu3mFLa9ln+Dlwx3vjJc3kVHI4i42jRC0an++obVHeWkYU6gA==}
+
   next@14.2.3:
     resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
     engines: {node: '>=18.17.0'}
@@ -4114,6 +4120,9 @@ packages:
   npm-run-path@4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
+
+  nprogress@0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -6675,21 +6684,21 @@ snapshots:
 
   '@total-typescript/ts-reset@0.5.1': {}
 
-  '@trpc/client@11.0.0-rc.580(@trpc/server@11.0.0-rc.580)':
+  '@trpc/client@11.0.0-rc.590(@trpc/server@11.0.0-rc.590)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.580
+      '@trpc/server': 11.0.0-rc.590
 
   '@trpc/core@11.0.0-next-beta.216': {}
 
-  '@trpc/react-query@11.0.0-rc.580(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.580(@trpc/server@11.0.0-rc.580))(@trpc/server@11.0.0-rc.580)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
+  '@trpc/react-query@11.0.0-rc.590(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.590(@trpc/server@11.0.0-rc.590))(@trpc/server@11.0.0-rc.590)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/react-query': 5.59.0(react@18.3.1)
-      '@trpc/client': 11.0.0-rc.580(@trpc/server@11.0.0-rc.580)
-      '@trpc/server': 11.0.0-rc.580
+      '@trpc/client': 11.0.0-rc.590(@trpc/server@11.0.0-rc.590)
+      '@trpc/server': 11.0.0-rc.590
       react: 18.3.1
       react-dom: 18.2.0(react@18.3.1)
 
-  '@trpc/server@11.0.0-rc.580': {}
+  '@trpc/server@11.0.0-rc.590': {}
 
   '@tsconfig/node10@1.0.11': {}
 
@@ -8842,6 +8851,10 @@ snapshots:
 
   netmask@2.0.2: {}
 
+  next-nprogress-bar@2.3.14:
+    dependencies:
+      nprogress: 0.2.0
+
   next@14.2.3(react-dom@18.2.0(react@18.3.1))(react@18.3.1):
     dependencies:
       '@next/env': 14.2.3
@@ -8905,6 +8918,8 @@ snapshots:
   npm-run-path@4.0.1:
     dependencies:
       path-key: 3.1.1
+
+  nprogress@0.2.0: {}
 
   nth-check@2.1.1:
     dependencies:

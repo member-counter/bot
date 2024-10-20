@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { I18nProvider } from "~/i18n/client";
 import { TRPCReactProvider } from "~/trpc/react";
 import NavBar from "./components/NavBar";
+import ProgressBarProvider from "./components/ProgressBarProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,7 +30,9 @@ export default function RootLayout({
         <I18nProvider>
           <TRPCReactProvider>
             <NavBar />
-            {children}
+            <ProgressBarProvider>
+              {children}
+            </ProgressBarProvider>
           </TRPCReactProvider>
         </I18nProvider>
       </body>
