@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from 'next-nprogress-bar';
 import { TrashIcon } from "lucide-react";
+import { useRouter } from "next-nprogress-bar";
 import { Trans } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
