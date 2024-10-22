@@ -49,14 +49,14 @@ export function Donors() {
           {
             amount: Math.floor(Math.random() * 15),
             currency: "USD",
-            note: "Thank you!",
+            note: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             anonymous: false,
             date: new Date(),
           },
           {
             amount: Math.floor(Math.random() * 15),
-            currency: "USD",
-            note: "Thank you!",
+            currency: "EUR",
+            note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             anonymous: false,
             date: new Date(),
           },
