@@ -1,7 +1,10 @@
 "use client";
 
 import assert from "assert";
+import type { DiscordUser } from "@mc/validators/DiscordUser";
 import React, { useEffect, useMemo, useState } from "react";
+
+import { Donor } from "./Donor";
 
 export function Donors() {
   const [screenSize, setScreenSize] = useState<[number, number]>([
@@ -16,45 +19,48 @@ export function Donors() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   interface Donor {
-    name: string;
-    amount: number;
-    date: Date;
+    user: DiscordUser;
+    donations: {
+      note: string;
+      amount: number;
+      currency: string;
+      anonymous: boolean;
+      date: Date;
+    }[];
     radius: number;
     x: number;
     y: number;
     childs: Donor[];
     childsIsFull: boolean;
   }
+
   const donors = useMemo<Donor[]>(() => {
-    const donors: Donor[] = [
-      {
-        name: "Donor ",
-        amount: Math.floor(250),
-        date: new Date(),
-        childs: [],
-        x: 0,
-        y: 0,
-        radius: 0,
-        childsIsFull: false,
-      },
+    const donors: Donor[] = [];
 
-      {
-        name: "Donor ",
-        amount: Math.floor(50),
-        date: new Date(),
-        childs: [],
-        x: 0,
-        y: 0,
-        radius: 0,
-        childsIsFull: false,
-      },
-    ];
-
-    for (let i = 0; i < 1400; i++) {
+    for (let i = 0; i < 25; i++) {
       donors.push({
-        name: "Donor " + (i + 1),
-        amount: Math.floor(15 * Math.random()),
-        date: new Date(),
+        user: {
+          id: `user-${i}`,
+          username: `User ${i}`,
+          discriminator: `${Math.floor(Math.random() * 10000)}`,
+          avatar: `https://picsum.photos/seed/${i}/200/300`,
+        },
+        donations: [
+          {
+            amount: Math.floor(Math.random() * 15),
+            currency: "USD",
+            note: "Thank you!",
+            anonymous: false,
+            date: new Date(),
+          },
+          {
+            amount: Math.floor(Math.random() * 15),
+            currency: "USD",
+            note: "Thank you!",
+            anonymous: false,
+            date: new Date(),
+          },
+        ],
         childs: [],
         x: 0,
         y: 0,
@@ -63,23 +69,19 @@ export function Donors() {
       });
     }
 
-    return donors
-      .sort((a, b) => b.amount - a.amount)
-      .map(
-        (donor) =>
-          ({
-            ...donor,
-            childs: [],
-            x: 0,
-            y: 0,
-            radius: 0,
-            childsIsFull: false,
-          }) satisfies Donor,
-      );
+    return donors.sort(
+      (a, b) =>
+        b.donations.reduce((a, c) => c.amount + a, 0) -
+        a.donations.reduce((a, c) => c.amount + a, 0),
+    );
   }, []);
 
   const totalDonated = useMemo(
-    () => donors.reduce((sum, donor) => sum + donor.amount, 0),
+    () =>
+      donors.reduce(
+        (sum, donor) => sum + donor.donations.reduce((a, c) => c.amount + a, 0),
+        0,
+      ),
     [donors],
   );
   const processedDonors = useMemo(() => {
@@ -98,7 +100,9 @@ export function Donors() {
     };
 
     processedDonors.forEach((donor) => {
-      donor.radius = donationBubbleRadius(donor.amount);
+      donor.radius = donationBubbleRadius(
+        donor.donations.reduce((a, c) => c.amount + a, 0),
+      );
     });
 
     function circlesIntersect(
@@ -192,8 +196,8 @@ export function Donors() {
         {processedDonors.map((donor) => {
           return (
             <div
-              key={donor.name}
-              className="absolute  p-1"
+              key={donor.user.id}
+              className="absolute p-1"
               style={{
                 width: `${donor.radius * 2}px`,
                 height: `${donor.radius * 2}px`,
@@ -203,15 +207,11 @@ export function Donors() {
                 transform: `translate(${donor.x}px, ${donor.y}px)`,
               }}
             >
-              <div
-                className="flex h-full w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full transition-transform hover:scale-[1.03]"
-                style={{
-                  backgroundColor: `hsl(${Math.random() * 360}, 100%, 50%)`,
-                }}
-              >
-                <div>{donor.name}</div>
-                <div>{donor.amount}€</div>
-              </div>
+              <Donor
+                className="flex h-full w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full bg-cover bg-center bg-no-repeat transition-transform hover:scale-[1.03]"
+                user={donor.user}
+                donations={donor.donations}
+              />
             </div>
           );
         })}

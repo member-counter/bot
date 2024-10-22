@@ -2,6 +2,8 @@
 
 import { useTranslation } from "react-i18next";
 
+import { DisplayUsername } from "~/app/components/DisplayUsername";
+
 /* eslint-disable @next/next/no-img-element */
 export const DisplayUser = ({
   id,
@@ -25,12 +27,7 @@ export const DisplayUser = ({
             alt={`${username}'s avatar`}
             className="h-8 w-8 rounded-full"
           />
-          <div>
-            {username}
-            {discriminator !== "0" && (
-              <span className="text-muted-foreground">#{discriminator}</span>
-            )}
-          </div>
+          <DisplayUsername username={username} discriminator={discriminator} />
         </>
       ) : (
         <span className="text-muted-foreground">

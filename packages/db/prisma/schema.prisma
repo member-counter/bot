@@ -70,3 +70,13 @@ type DemoLink {
   href  String
   label String
 }
+
+model Donation {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user      String
+  note      String
+  anonymous Boolean
+  date      DateTime
+  amount    Float
+  currency  String
+}
