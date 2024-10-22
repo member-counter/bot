@@ -2,7 +2,8 @@
 
 import type React from "react";
 import { useEffect, useMemo, useState } from "react";
-import { redirect, useParams  } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 
 import { cn } from "@mc/ui";
 
@@ -12,7 +13,6 @@ import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import DSelector from "../components/DSelector";
 import { MenuContext } from "./Menu";
-import { useRouter } from "next-nprogress-bar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const isAuthenticated = api.session.isAuthenticated.useQuery();

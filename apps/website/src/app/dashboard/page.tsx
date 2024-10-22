@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect } from "react";
-import { useParams  } from "next/navigation";
-import { Trans } from "react-i18next"; 
+import { useParams } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
+import { Trans } from "react-i18next";
 
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
-
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react"; 
 import { TypographyH3 } from "@mc/ui/TypographyH3";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
-import { useRouter } from "next-nprogress-bar";
+
+import { Routes } from "~/other/routes";
+import { api } from "~/trpc/react";
 
 export default function Page() {
   const router = useRouter();
@@ -33,7 +33,7 @@ export default function Page() {
   }, [hasAnythingSelected, router, userGuildsQuery.data]);
 
   return (
-    <div className="flex flex-col p-1 grow justify-center items-center  h-full "> 
+    <div className="flex h-full grow flex-col items-center justify-center  p-1 ">
       {!userGuildsQuery.isLoading && !userGuildsQuery.data?.userGuilds.size && (
         <>
           <TypographyH3>
@@ -50,7 +50,7 @@ export default function Page() {
               }}
             />
           </TypographyH4>
-        </ >
+        </>
       )}
     </div>
   );

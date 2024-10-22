@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from 'next-nprogress-bar';
+import { useRouter } from "next-nprogress-bar";
 
 import { Button } from "@mc/ui/button";
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRouter } from 'next-nprogress-bar';
+import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";

@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from 'next-nprogress-bar';
 import { ArrowLeftIcon, LoaderIcon } from "lucide-react";
+import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";

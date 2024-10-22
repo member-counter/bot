@@ -1,8 +1,8 @@
 import type { UserBadges } from "@mc/common/UserBadges";
 import type { TFunction } from "i18next";
 import { useEffect, useState } from "react";
-import { useRouter } from 'next-nprogress-bar';
 import { SaveIcon } from "lucide-react";
+import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
 
 import { BitField } from "@mc/common/BitField";
