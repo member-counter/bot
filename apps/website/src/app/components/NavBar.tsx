@@ -18,7 +18,7 @@ export default function NavBar() {
   const [t] = useTranslation();
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container flex h-14 items-center gap-4 text-sm lg:gap-6">
+      <nav className="flex h-14 items-center gap-4 px-[18px] text-sm lg:gap-6">
         <Link href={Routes.Home} className="mr-auto">
           <div className="group flex flex-row items-center">
             <BotIcon className="h-9 w-9" />

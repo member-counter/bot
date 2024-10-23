@@ -1,39 +1,35 @@
 "use client";
 
 import type { DiscordUser } from "@mc/validators/DiscordUser";
- 
+import { useTranslation } from "react-i18next";
+
 import {
   Dialog,
-  DialogContent, 
+  DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@mc/ui/dialog"; 
-
-import { DisplayUsername } from "../components/DisplayUsername";
-import { useTranslation } from "react-i18next";
+} from "@mc/ui/dialog";
 import { Separator } from "@mc/ui/separator";
+
+import type { RouterOutputs } from "~/trpc/react";
+import { DisplayUsername } from "../components/DisplayUsername";
 
 /* eslint-disable @next/next/no-img-element */
 export function Donor({
   className,
-  user,
-  donations,
+  donor: { user, donations },
 }: {
   className: string;
-  user: DiscordUser;
-  donations: {
-    note: string;
-    amount: number;
-    currency: string;
-    anonymous: boolean;
-    date: Date;
-  }[];
+  donor: RouterOutputs["donor"]["geAll"][number];
 }) {
-const { i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
-const dateFormatter = Intl.DateTimeFormat(i18n.language, {dateStyle: "short"  });
-const currencyFormatter = (currency: string) => Intl.NumberFormat(i18n.language, { currency, style: "currency" });
+  const dateFormatter = Intl.DateTimeFormat(i18n.language, {
+    dateStyle: "short",
+  });
+  const currencyFormatter = (currency: string) =>
+    Intl.NumberFormat(i18n.language, { currency, style: "currency" });
 
   return (
     <Dialog>
@@ -56,23 +52,23 @@ const currencyFormatter = (currency: string) => Intl.NumberFormat(i18n.language,
             <DisplayUsername {...user} />
           </DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col gap-2 mt-4">
-          {donations.map((donation,i) => (
-            <>  
-            <div className="">
+        <div className="mt-4 flex flex-col gap-2">
+          {donations.map((donation, i) => (
+            <>
+              <div className="">
                 <div className="flex justify-between text-muted-foreground">
-                    <div>
-                    {dateFormatter.format(donation.date)}
-                    </div>
-                    <div className="">
-                        {currencyFormatter(donation.currency).format(donation.amount)} 
-                    </div>
+                  <div>{dateFormatter.format(donation.date)}</div>
+                  <div className="">
+                    {currencyFormatter(donation.currency).format(
+                      donation.amount,
+                    )}
+                  </div>
                 </div>
-              <div className="my-2">
-                {donation.note}
+                <div className="my-2">{donation.note}</div>
               </div>
-            </div>
-            {i != donations.length - 1 && <Separator className="my-4 bg-accent-foreground" />}
+              {i != donations.length - 1 && (
+                <Separator className="my-4 bg-accent-foreground" />
+              )}
             </>
           ))}
         </div>
