@@ -377,9 +377,6 @@ importers:
       '@mc/redis':
         specifier: workspace:*
         version: link:../redis
-      '@mc/validators':
-        specifier: workspace:*
-        version: link:../validators
       '@t3-oss/env-nextjs':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.6)
