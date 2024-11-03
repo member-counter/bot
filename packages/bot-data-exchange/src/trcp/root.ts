@@ -1,3 +1,4 @@
+import { botRouter } from "./routers/bot";
 import { dataSourceRouter } from "./routers/dataSource";
 import { discordRouter } from "./routers/discord";
 import { gamedigRouter } from "./routers/gamedig";
@@ -12,6 +13,7 @@ export const appRouter = createTRPCRouter({
   discord: discordRouter,
   gamedig: gamedigRouter,
   dataSource: dataSourceRouter,
+  bot: botRouter,
 });
 
 // export type definition of API
