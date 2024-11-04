@@ -22,9 +22,11 @@ import highlight from "./assets/highlight.png";
 import hourglass from "./assets/hourglass.png";
 import map from "./assets/map.png";
 import nitroBoosters from "./assets/nitroboosters.png";
+import snoo from "./assets/snoo.png";
 import { SupportedCountersCard } from "./Card";
 
 // TODO add translations
+// TODO change backgrounds for discord, twitch and youtube
 
 export const SupportedCounters = () => (
   <div className="m-3 grid max-w-[1000px] grid-cols-1 gap-3 md:grid-cols-3 lg:m-0 lg:w-[1000px]">
@@ -71,7 +73,7 @@ export const SupportedCounters = () => (
       description="Track the number of Nitro boosters in your server to gauge community support and engagement."
     />
     <SupportedCountersCard
-      imgBgClassName="bg-[#ff4500]"
+      imgBgSrc={snoo}
       icon={CakeSliceIcon}
       title="Reddit"
       description="Get statistics on any subreddit, including title, member count, and online members."

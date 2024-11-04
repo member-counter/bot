@@ -8,7 +8,7 @@ import { CardBorderIlluminated } from "@mc/ui/card";
 interface Props {
   imgBgClassName?: string;
   imgBgSrc?: string | StaticImport;
-  icon: React.ComponentType<{ className: string }> | LucideIcon;
+  icon?: React.ComponentType<{ className: string }> | LucideIcon;
   title: string;
   description: string;
 }
@@ -32,8 +32,12 @@ export function SupportedCountersCard(props: Props) {
                 { "bg-black opacity-70": props.imgBgSrc },
                 props.imgBgClassName,
               )}
-            />
-            <props.icon className=" absolute h-12 w-12" />
+            /> {
+              props.icon && (
+                <props.icon className=" absolute h-12 w-12" />
+
+              )
+            }
           </div>
         </div>
         <div className="p-3">
