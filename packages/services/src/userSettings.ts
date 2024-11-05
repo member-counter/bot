@@ -1,10 +1,8 @@
-import { db } from "@mc/db";
-
-import { throwOrThrowNotFound } from "./throwOrThrowNotFound";
+import { db, throwNotFoundOrThrow } from "@mc/db";
 
 export type UserData = Awaited<ReturnType<typeof db.user.update>>;
 
-export const UserSettings = {
+export const UserSettingsService = {
   upsert: async (
     discordUserId: string,
     data?: Parameters<typeof db.user.upsert>[0]["update"],
@@ -21,7 +19,7 @@ export const UserSettings = {
       .findUniqueOrThrow({
         where: { discordUserId },
       })
-      .catch(throwOrThrowNotFound);
+      .catch(throwNotFoundOrThrow);
   },
 
   update: async (

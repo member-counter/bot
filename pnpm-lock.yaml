@@ -32,9 +32,6 @@ importers:
       '@discordjs/rest':
         specifier: ^2.3.0
         version: 2.3.0
-      '@mc/bot-data-exchange':
-        specifier: workspace:*
-        version: link:../../packages/bot-data-exchange
       '@mc/common':
         specifier: workspace:*
         version: link:../../packages/common
@@ -47,6 +44,9 @@ importers:
       '@mc/redis':
         specifier: workspace:*
         version: link:../../packages/redis
+      '@mc/services':
+        specifier: workspace:*
+        version: link:../../packages/services
       '@sesamecare-oss/redlock':
         specifier: ^1.2.1
         version: 1.2.1(ioredis@5.4.1)
@@ -117,9 +117,6 @@ importers:
       '@discordjs/rest':
         specifier: ^2.3.0
         version: 2.3.0
-      '@mc/bot-data-exchange':
-        specifier: workspace:*
-        version: link:../../packages/bot-data-exchange
       '@mc/common':
         specifier: workspace:*
         version: link:../../packages/common
@@ -129,6 +126,9 @@ importers:
       '@mc/redis':
         specifier: workspace:*
         version: link:../../packages/redis
+      '@mc/services':
+        specifier: workspace:*
+        version: link:../../packages/services
       '@mc/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -146,13 +146,13 @@ importers:
         version: 5.59.0(react@18.3.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.593(@trpc/server@11.0.0-rc.593)
+        version: 11.0.0-rc.608(@trpc/server@11.0.0-rc.608)
       '@trpc/react-query':
         specifier: next
-        version: 11.0.0-rc.593(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.593(@trpc/server@11.0.0-rc.593))(@trpc/server@11.0.0-rc.593)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+        version: 11.0.0-rc.608(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.608(@trpc/server@11.0.0-rc.608))(@trpc/server@11.0.0-rc.608)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.593
+        version: 11.0.0-rc.608
       '@tsparticles/basic':
         specifier: ^3.5.0
         version: 3.5.0
@@ -304,64 +304,6 @@ importers:
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3(ts-node@10.9.2(@types/node@20.12.13)(typescript@5.4.5))
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-
-  packages/bot-data-exchange:
-    dependencies:
-      '@mc/common':
-        specifier: workspace:*
-        version: link:../common
-      '@mc/trpc-redis':
-        specifier: workspace:*
-        version: link:../trpc-redis
-      '@mc/validators':
-        specifier: workspace:*
-        version: link:../validators
-      '@sesamecare-oss/redlock':
-        specifier: ^1.2.1
-        version: 1.2.1(ioredis@5.4.1)
-      '@trpc/client':
-        specifier: next
-        version: 11.0.0-rc.593(@trpc/server@11.0.0-rc.593)
-      '@trpc/server':
-        specifier: next
-        version: 11.0.0-rc.593
-      discord.js:
-        specifier: ^14.15.2
-        version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
-      gamedig:
-        specifier: ^5.0.1
-        version: 5.0.1
-      ioredis:
-        specifier: ^5.4.1
-        version: 5.4.1
-      superjson:
-        specifier: ^2.2.1
-        version: 2.2.1
-      zod:
-        specifier: ^3.23.3
-        version: 3.23.6
-    devDependencies:
-      '@mc/eslint-config':
-        specifier: workspace:*
-        version: link:../../tooling/eslint
-      '@mc/prettier-config':
-        specifier: workspace:*
-        version: link:../../tooling/prettier
-      '@mc/tsconfig':
-        specifier: workspace:*
-        version: link:../../tooling/typescript
-      '@types/gamedig':
-        specifier: ^5.0.3
-        version: 5.0.3
-      eslint:
-        specifier: ^9.2.0
-        version: 9.2.0
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -535,6 +477,70 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
+  packages/services:
+    dependencies:
+      '@mc/common':
+        specifier: workspace:*
+        version: link:../common
+      '@mc/db':
+        specifier: workspace:*
+        version: link:../db
+      '@mc/redis':
+        specifier: workspace:*
+        version: link:../redis
+      '@mc/services':
+        specifier: workspace:*
+        version: 'link:'
+      '@mc/trpc-redis':
+        specifier: workspace:*
+        version: link:../trpc-redis
+      '@mc/validators':
+        specifier: workspace:*
+        version: link:../validators
+      '@sesamecare-oss/redlock':
+        specifier: ^1.2.1
+        version: 1.2.1(ioredis@5.4.1)
+      '@trpc/client':
+        specifier: next
+        version: 11.0.0-rc.608(@trpc/server@11.0.0-rc.608)
+      '@trpc/server':
+        specifier: next
+        version: 11.0.0-rc.608
+      discord.js:
+        specifier: ^14.15.2
+        version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      gamedig:
+        specifier: ^5.0.1
+        version: 5.0.1
+      ioredis:
+        specifier: ^5.4.1
+        version: 5.4.1
+      superjson:
+        specifier: ^2.2.1
+        version: 2.2.1
+      zod:
+        specifier: ^3.23.3
+        version: 3.23.6
+    devDependencies:
+      '@mc/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@mc/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@mc/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      eslint:
+        specifier: ^9.2.0
+        version: 9.2.0
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
   packages/trpc-redis:
     dependencies:
       '@trpc/core':
@@ -542,7 +548,7 @@ importers:
         version: 11.0.0-next-beta.216
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.593
+        version: 11.0.0-rc.608
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
@@ -2239,25 +2245,25 @@ packages:
   '@total-typescript/ts-reset@0.5.1':
     resolution: {integrity: sha512-AqlrT8YA1o7Ff5wPfMOL0pvL+1X+sw60NN6CcOCqs658emD6RfiXhF7Gu9QcfKBH7ELY2nInLhKSCWVoNL70MQ==}
 
-  '@trpc/client@11.0.0-rc.593':
-    resolution: {integrity: sha512-uQORhYMwUeY4TluQmhl6N183BiLZz5mgIzBynkSWKxtQ7TIHt+3iRzTSiJH1jTl3SEOtCacRHS6b1yvFP2RJXw==}
+  '@trpc/client@11.0.0-rc.608':
+    resolution: {integrity: sha512-ZvhYhewiXXo3Kfy7JazVShsJUJTyqgkEV1rjhioJ6r3aIGw0ZS6zyyjcq1w99DTIzRP//FgB239NG5c66Ki9sw==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.593+f73cd3fd9
+      '@trpc/server': 11.0.0-rc.608+f75de97b3
 
   '@trpc/core@11.0.0-next-beta.216':
     resolution: {integrity: sha512-dmdSFeSzArkmdZvnymoQwAju0QBODC3PhLgBKTYgVIj0HATE/OJsPAKOxiqdcgm3YyN/zABm+ntiYmjLBJzTCA==}
 
-  '@trpc/react-query@11.0.0-rc.593':
-    resolution: {integrity: sha512-T5abZpWKW+Ndk3SAGwXqRLnIXTpdiQd0OF5TqTGbE1RuAWVf6rOZJWSjxp0M16aypkc0uEDAUia912VnKhrOqA==}
+  '@trpc/react-query@11.0.0-rc.608':
+    resolution: {integrity: sha512-V0UJltzCfdn3PqePqbB8TK64aNXVBpdoLEC4OdMtTYiZTsAnH1jTwrNOBji3Xwm8Q0n4jaUDrIz5M/5IPjYrGg==}
     peerDependencies:
       '@tanstack/react-query': ^5.59.15
-      '@trpc/client': 11.0.0-rc.593+f73cd3fd9
-      '@trpc/server': 11.0.0-rc.593+f73cd3fd9
+      '@trpc/client': 11.0.0-rc.608+f75de97b3
+      '@trpc/server': 11.0.0-rc.608+f75de97b3
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
 
-  '@trpc/server@11.0.0-rc.593':
-    resolution: {integrity: sha512-ihZNf7nM3OriZkkuOUFjuB51FJdtCXZUUj8FIXkq0VXF9VmMOD7j4QTl5YojIzMTJBMGUK9VADcO0shgELEmyw==}
+  '@trpc/server@11.0.0-rc.608':
+    resolution: {integrity: sha512-+qxeyWlS+1zlTbekG7C+khDGZn788kLJG+ufO8mH/kgbRC+/a0OZSk7tyQI2Pf+UWeKc6KzrTi7TRBOOEBBE1A==}
 
   '@tsconfig/node10@1.0.11':
     resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}
@@ -6684,21 +6690,21 @@ snapshots:
 
   '@total-typescript/ts-reset@0.5.1': {}
 
-  '@trpc/client@11.0.0-rc.593(@trpc/server@11.0.0-rc.593)':
+  '@trpc/client@11.0.0-rc.608(@trpc/server@11.0.0-rc.608)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.593
+      '@trpc/server': 11.0.0-rc.608
 
   '@trpc/core@11.0.0-next-beta.216': {}
 
-  '@trpc/react-query@11.0.0-rc.593(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.593(@trpc/server@11.0.0-rc.593))(@trpc/server@11.0.0-rc.593)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
+  '@trpc/react-query@11.0.0-rc.608(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.608(@trpc/server@11.0.0-rc.608))(@trpc/server@11.0.0-rc.608)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/react-query': 5.59.0(react@18.3.1)
-      '@trpc/client': 11.0.0-rc.593(@trpc/server@11.0.0-rc.593)
-      '@trpc/server': 11.0.0-rc.593
+      '@trpc/client': 11.0.0-rc.608(@trpc/server@11.0.0-rc.608)
+      '@trpc/server': 11.0.0-rc.608
       react: 18.3.1
       react-dom: 18.2.0(react@18.3.1)
 
-  '@trpc/server@11.0.0-rc.593': {}
+  '@trpc/server@11.0.0-rc.608': {}
 
   '@tsconfig/node10@1.0.11': {}
 

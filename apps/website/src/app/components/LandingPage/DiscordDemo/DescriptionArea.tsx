@@ -1,8 +1,7 @@
-import type { DemoServerData } from "@mc/common/DemoServers";
+import type { DemoServerData } from "@mc/services/demoServers";
 
 import { Button } from "@mc/ui/button";
 
-import type { DemoServer } from "./DemoServer";
 import { messageListColor } from "./colors";
 import { DescriptionAreaTitle } from "./DescriptionAreaTitle";
 

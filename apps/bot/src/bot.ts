@@ -1,13 +1,13 @@
 import type { BotInstanceOptions } from "@mc/common/BotInstanceOptions";
 import { Client } from "discord.js";
 
-import { setupBotDataExchangeProvider } from "@mc/bot-data-exchange";
 import { generateBotIntents } from "@mc/common/botIntents";
 import {
   setupBotStatsConsumer,
   setupBotStatsProvider,
 } from "@mc/common/redis/BotStats";
 import { redis } from "@mc/redis";
+import { setupBotDataExchangeProvider } from "@mc/services/botDataExchange/setupBotDataExchangeProvider";
 
 import { setupEvents } from "./events";
 import { setupJobs } from "./jobs";

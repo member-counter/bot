@@ -1,0 +1,17 @@
+{
+  "extends": "@mc/tsconfig/internal-package.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"],
+      "~/env": ["./env"]
+    }
+  },
+  "include": [
+    "*.ts",
+    "src",
+    "src/bot-data-exchange/src/botDataExchange.tssumerGlobal.ts"
+  ],
+  "exclude": ["node_modules"]
+}

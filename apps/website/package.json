@@ -16,10 +16,10 @@
   },
   "dependencies": {
     "@discordjs/rest": "^2.3.0",
-    "@mc/bot-data-exchange": "workspace:*",
     "@mc/common": "workspace:*",
     "@mc/db": "workspace:*",
     "@mc/redis": "workspace:*",
+    "@mc/services": "workspace:*",
     "@mc/ui": "workspace:*",
     "@mc/validators": "workspace:*",
     "@prisma/client": "^5.10.2",

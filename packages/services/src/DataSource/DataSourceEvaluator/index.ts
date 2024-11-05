@@ -4,13 +4,14 @@ import type {
   DataSourceFormatSettings,
   DataSourceId,
 } from "@mc/common/DataSource";
-import type { GuildSettings } from "@mc/common/GuildSettings";
 import type { ChannelType, Guild } from "discord.js";
+
+import type { GuildSettingsService } from "~/guildSettings";
 
 export interface DataSourceContext {
   channelType: ChannelType;
   guild: Guild;
-  guildSettings: Awaited<ReturnType<typeof GuildSettings.get>>;
+  guildSettings: Awaited<ReturnType<typeof GuildSettingsService.get>>;
 }
 
 export type PreparedDataSourceFormatSettings = DeepNonNullable<

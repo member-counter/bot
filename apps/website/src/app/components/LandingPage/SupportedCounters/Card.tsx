@@ -32,12 +32,8 @@ export function SupportedCountersCard(props: Props) {
                 { "bg-black opacity-70": props.imgBgSrc },
                 props.imgBgClassName,
               )}
-            /> {
-              props.icon && (
-                <props.icon className=" absolute h-12 w-12" />
-
-              )
-            }
+            />{" "}
+            {props.icon && <props.icon className=" absolute h-12 w-12" />}
           </div>
         </div>
         <div className="p-3">

@@ -1,4 +1,4 @@
-import type { DemoServerData } from "@mc/common/DemoServers";
+import type { DemoServerData } from "@mc/services/demoServers";
 import { useId } from "react";
 import { ChannelType } from "discord-api-types/v10";
 import { TrashIcon } from "lucide-react";

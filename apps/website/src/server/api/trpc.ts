@@ -12,9 +12,9 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { BitField } from "@mc/common/BitField";
-import { UserSettings } from "@mc/common/UserSettings";
 import { db } from "@mc/db";
 import { redis } from "@mc/redis";
+import { UserSettingsService } from "@mc/services/userSettings";
 
 import { getSession } from "~/app/api/sessionCookie";
 import { Errors } from "~/app/errors";
@@ -36,7 +36,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
   const session = await refreshToken(await getSession());
 
   const authUser = session?.userId
-    ? await UserSettings.upsert(session.userId).then((user) => ({
+    ? await UserSettingsService.upsert(session.userId).then((user) => ({
         ...user,
         permissions: new BitField(user.permissions),
       }))

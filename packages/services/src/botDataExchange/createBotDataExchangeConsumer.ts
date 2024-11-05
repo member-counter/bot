@@ -5,7 +5,7 @@ import SuperJSON from "superjson";
 import { redisLink } from "@mc/trpc-redis";
 
 import type { AppRouter } from "./trcp/root";
-import { env } from "./env";
+import { env } from "~/env";
 
 interface PubSubClients {
   redisSubClient: Redis;

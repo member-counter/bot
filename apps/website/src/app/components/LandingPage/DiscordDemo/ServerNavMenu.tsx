@@ -1,10 +1,9 @@
-import type { DemoServerData } from "@mc/common/DemoServers";
+import type { DemoServerData } from "@mc/services/demoServers";
 import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
 import { Separator } from "@mc/ui/separator";
 
-import type { DemoServer } from "./DemoServer";
 import { ChannelNavItem, ChannelNavItemSkeleton } from "./ChannelNavItem";
 import { channelListColor } from "./colors";
 

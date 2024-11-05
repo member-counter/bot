@@ -17,7 +17,7 @@ const config = {
     "@mc/validators",
     "@mc/redis",
     "@mc/common",
-    "@mc/bot-data-exchange",
+    "@mc/services",
   ],
 
   webpack: (config, { isServer }) => {

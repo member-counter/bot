@@ -1,11 +1,11 @@
 import type { Session } from "@mc/validators/Session";
 import { OAuth2Routes } from "discord-api-types/v10";
 
+import { DiscordService } from "@mc/services/discord";
 import { DiscordOAuth2TokenExchangeResponseSchema } from "@mc/validators/DiscordOAuth2TokenExchangeResponse";
 
 import { destroySession, setSession } from "~/app/api/sessionCookie";
 import { env } from "~/env";
-import { identify } from "./api/services/discord";
 
 const requiredScopes = ["identify", "guilds"];
 
@@ -72,7 +72,9 @@ export async function exchangeTokens(
   if (!requiredScopes.every((s) => tokenExchangeResponse.scope.includes(s)))
     throw new Error("Inssuficient scope");
 
-  const identifiedUser = await identify(tokenExchangeResponse.accessToken);
+  const identifiedUser = await DiscordService.identify(
+    tokenExchangeResponse.accessToken,
+  );
 
   return {
     userId: identifiedUser.id,

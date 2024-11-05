@@ -1,10 +1,10 @@
 {
-  "name": "@mc/bot-data-exchange",
+  "name": "@mc/services",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    "./*": "./src/*.ts"
   },
   "license": "MIT",
   "scripts": {
@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "@mc/common": "workspace:*",
+    "@mc/db": "workspace:*",
+    "@mc/redis": "workspace:*",
     "@mc/trpc-redis": "workspace:*",
     "@mc/validators": "workspace:*",
     "@sesamecare-oss/redlock": "^1.2.1",
@@ -30,7 +32,6 @@
     "@mc/eslint-config": "workspace:*",
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
-    "@types/gamedig": "^5.0.3",
     "eslint": "^9.2.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"

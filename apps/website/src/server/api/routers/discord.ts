@@ -1,15 +1,16 @@
 import { z } from "zod";
 
+import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
+import { DiscordService } from "@mc/services/discord";
+
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import { botDataExchangeConsumer } from "../services/botDataExchangeConsumer";
-import { identify, userGuilds } from "../services/discord";
 
 export const discordRouter = createTRPCRouter({
   identify: protectedProcedure.query(({ ctx }) => {
-    return identify(ctx.session.accessToken);
+    return DiscordService.identify(ctx.session.accessToken);
   }),
   userGuilds: protectedProcedure.query(({ ctx }) => {
-    return userGuilds(ctx.session.accessToken);
+    return DiscordService.userGuilds(ctx.session.accessToken);
   }),
   getUser: protectedProcedure
     .input(z.object({ id: z.string() }))

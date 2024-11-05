@@ -3,8 +3,8 @@ import { PermissionFlagsBits } from "discord-api-types/v10";
 import { z } from "zod";
 
 import { BitField } from "@mc/common/BitField";
-import { GuildSettings } from "@mc/common/GuildSettings";
 import { UserPermissions } from "@mc/common/UserPermissions";
+import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import type { createTRPCContext } from "~/server/api/trpc";
 import { Errors } from "~/app/errors";
@@ -70,13 +70,13 @@ export const guildRouter = createTRPCRouter({
           ),
       );
 
-      return await GuildSettings.get(input.discordGuildId);
+      return await GuildSettingsService.get(input.discordGuildId);
     }),
 
   has: protectedProcedure
     .input(z.object({ discordGuildId: z.string() }))
     .query(async ({ input }) => {
-      return await GuildSettings.has(input.discordGuildId);
+      return await GuildSettingsService.has(input.discordGuildId);
     }),
 
   update: protectedProcedure
@@ -104,7 +104,7 @@ export const guildRouter = createTRPCRouter({
           ),
       );
 
-      return await GuildSettings.upsert(input.discordGuildId, {
+      return await GuildSettingsService.upsert(input.discordGuildId, {
         formatSettings: input.formatSettings,
       });
     }),
@@ -124,7 +124,7 @@ export const guildRouter = createTRPCRouter({
           userPermissionsInGuild.any(PermissionFlagsBits.Administrator),
       );
 
-      await GuildSettings.reset(input.discordGuildId);
+      await GuildSettingsService.reset(input.discordGuildId);
     }),
 
   isBlocked: protectedProcedure
@@ -145,7 +145,7 @@ export const guildRouter = createTRPCRouter({
           ),
       );
 
-      return await GuildSettings.isBlocked(input.discordGuildId);
+      return await GuildSettingsService.isBlocked(input.discordGuildId);
     }),
 
   updateBlockState: protectedProcedure
@@ -164,7 +164,7 @@ export const guildRouter = createTRPCRouter({
           userPermissions.has(UserPermissions.ManageGuilds),
       );
 
-      await GuildSettings.updateBlock(discordGuildId, state, reason);
+      await GuildSettingsService.updateBlock(discordGuildId, state, reason);
     }),
 
   channels: createTRPCRouter({
@@ -184,7 +184,7 @@ export const guildRouter = createTRPCRouter({
             ),
         );
 
-        return await GuildSettings.channels.get(
+        return await GuildSettingsService.channels.get(
           discordChannelId,
           discordGuildId,
         );
@@ -206,7 +206,7 @@ export const guildRouter = createTRPCRouter({
 
         return {
           channels: new Map(
-            (await GuildSettings.channels.getAll(discordGuildId)).map(
+            (await GuildSettingsService.channels.getAll(discordGuildId)).map(
               (channel) => [channel.discordChannelId, channel],
             ),
           ),
@@ -234,7 +234,7 @@ export const guildRouter = createTRPCRouter({
             ),
         );
 
-        return await GuildSettings.channels.update(input);
+        return await GuildSettingsService.channels.update(input);
       }),
 
     delete: protectedProcedure
@@ -254,7 +254,7 @@ export const guildRouter = createTRPCRouter({
               userPermissionsInGuild.any(PermissionFlagsBits.Administrator),
           );
 
-          await GuildSettings.channels.delete(discordChannelId);
+          await GuildSettingsService.channels.delete(discordChannelId);
         },
       ),
 
@@ -278,7 +278,7 @@ export const guildRouter = createTRPCRouter({
               ),
           );
 
-          return await GuildSettings.channels.logs.get(discordChannelId);
+          return await GuildSettingsService.channels.logs.get(discordChannelId);
         }),
 
       getAll: protectedProcedure
@@ -297,7 +297,7 @@ export const guildRouter = createTRPCRouter({
 
           return {
             channelLogs:
-              await GuildSettings.channels.logs.getAll(discordGuildId),
+              await GuildSettingsService.channels.logs.getAll(discordGuildId),
           };
         }),
     }),

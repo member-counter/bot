@@ -3,15 +3,15 @@ import type { Client, Guild } from "discord.js";
 import { Redlock } from "@sesamecare-oss/redlock";
 import { ChannelType } from "discord.js";
 
-import { DataSourceError } from "@mc/common/DataSourceService/DataSourceEvaluator/DataSourceError";
-import DataSourceService from "@mc/common/DataSourceService/index";
-import { GuildSettings } from "@mc/common/GuildSettings";
 import {
   advertiseEvaluatorPriorityKey,
   discordAPIIntensiveOperationLockKey,
   updateChannelsQueueKey,
 } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
+import { DataSourceError } from "@mc/services/DataSource/DataSourceEvaluator/DataSourceError";
+import DataSourceService from "@mc/services/DataSource/index";
+import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import { initI18n } from "~/i18n";
 import { Job } from "~/structures/Job";
@@ -25,8 +25,10 @@ async function updateGuildChannels(
 
   const { logger } = guild.client.botInstanceOptions;
 
-  const guildSettings = await GuildSettings.upsert(guild.id);
-  const guildChannelsSettings = await GuildSettings.channels.getAll(guild.id);
+  const guildSettings = await GuildSettingsService.upsert(guild.id);
+  const guildChannelsSettings = await GuildSettingsService.channels.getAll(
+    guild.id,
+  );
   const i18n = await initI18n(guild.preferredLocale);
 
   await Promise.all(
@@ -39,7 +41,7 @@ async function updateGuildChannels(
 
       if (!channel) return;
       if (!botHasPermsToEdit(channel)) {
-        await GuildSettings.channels.logs
+        await GuildSettingsService.channels.logs
           .set(channel.id, {
             LastTemplateUpdateDate: new Date(),
             LastTemplateComputeError: new DataSourceError(
@@ -60,7 +62,7 @@ async function updateGuildChannels(
       const computedTemplate = await dataSourceService
         .evaluateTemplate(channelSettings.template)
         .then((computed) => {
-          GuildSettings.channels.logs
+          GuildSettingsService.channels.logs
             .set(channel.id, {
               LastTemplateUpdateDate: new Date(),
               LastTemplateComputeError: null,
@@ -71,7 +73,7 @@ async function updateGuildChannels(
         })
         .catch((error) => {
           if (error instanceof Error) {
-            GuildSettings.channels.logs
+            GuildSettingsService.channels.logs
               .set(channel.id, {
                 LastTemplateUpdateDate: new Date(),
                 LastTemplateComputeError: error.message,

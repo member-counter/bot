@@ -1,12 +1,12 @@
-import type { DonationData } from "@mc/common/Donations";
+import type { DonationData } from "@mc/services/donations";
 import type { DiscordUser } from "@mc/validators/DiscordUser";
 import type { DefaultUserAvatarAssets } from "discord-api-types/v10";
 import { CDNRoutes, RouteBases } from "discord-api-types/v10";
 
-import { Donations } from "@mc/common/Donations";
+import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
+import { DonationsService } from "@mc/services/donations";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { botDataExchangeConsumer } from "../services/botDataExchangeConsumer";
 
 function fetchUsers(users: string[]): Promise<DiscordUser[]> {
   return Promise.all(
@@ -30,7 +30,7 @@ function fetchUsers(users: string[]): Promise<DiscordUser[]> {
 
 export const donorRouter = createTRPCRouter({
   geAll: publicProcedure.query(async () => {
-    const donations = await Donations.getAll();
+    const donations = await DonationsService.getAll();
     const donationsGroupedByUsers = new Map<string, DonationData[]>(
       donations.map((donation) => [donation.user, []]),
     );

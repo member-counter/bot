@@ -1,9 +1,11 @@
-import { db } from "@mc/db";
+import { getChannelLogs, setChannelLog } from "@mc/common/redis/ChannelLogs";
+import { db, throwNotFoundOrThrow } from "@mc/db";
 
-import { getChannelLogs, setChannelLog } from "./redis/ChannelLogs";
-import { throwOrThrowNotFound } from "./throwOrThrowNotFound";
+export type GuildSettingsData = Awaited<
+  ReturnType<typeof GuildSettingsService.get>
+>;
 
-export const GuildSettings = {
+export const GuildSettingsService = {
   upsert: async (
     discordGuildId: string,
     data?: Parameters<typeof db.guild.upsert>[0]["update"],
@@ -20,7 +22,7 @@ export const GuildSettings = {
       .findUniqueOrThrow({
         where: { discordGuildId },
       })
-      .catch(throwOrThrowNotFound);
+      .catch(throwNotFoundOrThrow);
   },
 
   reset: async (discordGuildId: string) => {
@@ -28,7 +30,7 @@ export const GuildSettings = {
       where: { discordGuildId },
     });
 
-    await GuildSettings.upsert(discordGuildId);
+    await GuildSettingsService.upsert(discordGuildId);
   },
 
   has: async (discordGuildId: string) => {

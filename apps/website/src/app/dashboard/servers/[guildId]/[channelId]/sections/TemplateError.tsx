@@ -2,7 +2,7 @@ import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-import { DataSourceErrorTypes } from "@mc/common/DataSourceService/DataSourceEvaluator/DataSourceError";
+import { DataSourceErrorTypes } from "@mc/services/DataSource/DataSourceEvaluator/DataSourceError";
 import { Card } from "@mc/ui/card";
 import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";

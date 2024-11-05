@@ -1,7 +1,8 @@
 import { z } from "zod";
 
+import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
+
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import { botDataExchangeConsumer } from "../services/botDataExchangeConsumer";
 
 export const botRouter = createTRPCRouter({
   gamedigGames: protectedProcedure.query(() => {

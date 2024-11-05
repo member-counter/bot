@@ -8,8 +8,7 @@ import {
   LinkIcon,
   PartyPopperIcon,
   SparklesIcon,
-  TwitchIcon,
-  UsersIcon,
+  TwitchIcon, 
   YoutubeIcon,
 } from "lucide-react";
 

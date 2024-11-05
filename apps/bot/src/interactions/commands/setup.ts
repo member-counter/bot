@@ -19,9 +19,9 @@ import {
   TwitchDataSourceReturn,
   YouTubeDataSourceReturn,
 } from "@mc/common/DataSource";
-import DataSourceService from "@mc/common/DataSourceService/index";
-import { GuildSettings } from "@mc/common/GuildSettings";
 import { noop } from "@mc/common/noop";
+import DataSourceService from "@mc/services/DataSource/index";
+import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import { DEFAULT_LANGUAGE, initI18n, tKey } from "~/i18n";
 import { Command } from "~/structures";
@@ -241,14 +241,14 @@ export const setupCommand = new Command({
         ],
       });
 
-      await GuildSettings.channels.update({
+      await GuildSettingsService.channels.update({
         discordChannelId: channel.id,
         discordGuildId: channel.guildId,
         isTemplateEnabled: true,
         template: template,
       });
 
-      GuildSettings.channels.logs
+      GuildSettingsService.channels.logs
         .set(channel.id, {
           LastTemplateUpdateDate: new Date(),
         })
@@ -397,7 +397,7 @@ export const setupCommand = new Command({
     }
 
     const guild = await command.client.guilds.fetch(command.guildId);
-    const guildSettings = await GuildSettings.upsert(command.guildId);
+    const guildSettings = await GuildSettingsService.upsert(command.guildId);
     const configuredTemplate = configureTemplate();
     await updateStatusMessage();
 

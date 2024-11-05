@@ -7,17 +7,17 @@ import {
   SlashCommandBuilder,
 } from "@discordjs/builders";
 import { ApplicationCommandType, ButtonStyle, ComponentType } from "discord.js";
+import { NotFoundError } from "node_modules/@mc/db/src/throwNotFoundOrThrow";
 
 import { BitField } from "@mc/common/BitField";
 import { Routes } from "@mc/common/Routes";
-import { NotFoundError } from "@mc/common/throwOrThrowNotFound";
 import {
   UserBadges,
   UserBadgesBitfield,
   UserBadgesEmoji,
 } from "@mc/common/UserBadges";
 import { UserPermissions } from "@mc/common/UserPermissions";
-import { UserSettings } from "@mc/common/UserSettings";
+import { UserSettingsService } from "@mc/services/userSettings";
 
 import { env } from "~/env";
 import { BaseEmbed } from "~/utils/BaseMessageEmbed";
@@ -82,17 +82,17 @@ export const profileCommand = new Command({
       throwUnsupported(command);
     }
 
-    const userSettings = await UserSettings.upsert(command.user.id);
+    const userSettings = await UserSettingsService.upsert(command.user.id);
     const userPermissions = new BitField(userSettings.permissions);
 
-    const requestedUserSettings = await UserSettings.get(targetUser.id).catch(
-      (error) => {
-        if (error instanceof NotFoundError) {
-          throw new UserError(t("interaction.commands.profile.userNotFound"));
-        }
-        throw error;
-      },
-    );
+    const requestedUserSettings = await UserSettingsService.get(
+      targetUser.id,
+    ).catch((error) => {
+      if (error instanceof NotFoundError) {
+        throw new UserError(t("interaction.commands.profile.userNotFound"));
+      }
+      throw error;
+    });
 
     const deleteProfileButtonId = randomUUID();
     const deleteProfilePromptConfirm = randomUUID();
@@ -216,7 +216,9 @@ export const profileCommand = new Command({
               break;
 
             case deleteProfilePromptConfirm:
-              await UserSettings.delete(requestedUserSettings.discordUserId);
+              await UserSettingsService.delete(
+                requestedUserSettings.discordUserId,
+              );
               await editReply(renderProfileDeletionSuccess());
               break;
           }

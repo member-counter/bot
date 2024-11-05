@@ -1,4 +1,3 @@
-import type { DemoServerData } from "@mc/common/DemoServers";
 import { TrashIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -6,6 +5,8 @@ import { Button } from "@mc/ui/button";
 import { Card } from "@mc/ui/card";
 import { Input } from "@mc/ui/input";
 import { Label } from "@mc/ui/label";
+
+import type { DemoServerData } from "../../../../../../../../packages/services/src/demoServers";
 
 interface LinkCardProps {
   link: DemoServerData["links"][number];

@@ -1,15 +1,15 @@
 import type { Guild } from "discord.js";
 
-import { GuildSettings } from "@mc/common/GuildSettings";
 import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
+import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import { EventHandler } from "../structures";
 
 const handler = async (guild: Guild) => {
-  await GuildSettings.upsert(guild.id);
+  await GuildSettingsService.upsert(guild.id);
 
-  if (await GuildSettings.isBlocked(guild.id)) {
+  if (await GuildSettingsService.isBlocked(guild.id)) {
     await guild.leave();
   }
 

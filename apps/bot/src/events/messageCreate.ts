@@ -1,6 +1,6 @@
 import { BitField } from "@mc/common/BitField";
 import { UserBadgesBitfield } from "@mc/common/UserBadges";
-import { UserSettings } from "@mc/common/UserSettings";
+import { UserSettingsService } from "@mc/services/userSettings";
 
 import { EventHandler } from "../structures";
 
@@ -14,12 +14,12 @@ export const messageCreateEvent = new EventHandler({
       return;
     }
 
-    const userSettings = await UserSettings.upsert(message.author.id);
+    const userSettings = await UserSettingsService.upsert(message.author.id);
 
     const userBadges = new BitField(userSettings.badges);
     userBadges.add(UserBadgesBitfield.PatPat);
 
-    await UserSettings.update(userSettings.id, {
+    await UserSettingsService.update(userSettings.id, {
       ...userSettings,
       badges: userBadges.bitfield,
     });

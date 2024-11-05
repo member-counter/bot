@@ -88,8 +88,8 @@ interface Resources {
       };
       dashboard: {
         noServers: {
-          heading: "You are not in any server. ";
-          subheading: "Why you don't start by creating a <createServer>new one</createServer> or by <joinSupportServer>joining us</joinSupportServer>?";
+          heading: "You aren't in any server. ";
+          subheading: "Why you don't start by creating a <CreateServerLink>new one</CreateServerLink> or by <JoinSupportServerLink>joining us</JoinSupportServerLink>?";
         };
         servers: {
           suggestedTopics: {

@@ -1,7 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import { DemoServers } from "@mc/common/DemoServers";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
 import { Errors } from "~/app/errors";
@@ -10,15 +9,16 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
+import { DemoServersService } from "../../../../../../packages/services/src/demoServers";
 
 export const demoServersRouter = createTRPCRouter({
   geAll: publicProcedure.query(async () => {
-    return await DemoServers.getAll();
+    return await DemoServersService.getAll();
   }),
   get: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input }) => {
-      return await DemoServers.get(input.id);
+      return await DemoServersService.get(input.id);
     }),
 
   create: protectedProcedure
@@ -39,7 +39,7 @@ export const demoServersRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return await DemoServers.create(input);
+      return await DemoServersService.create(input);
     }),
   update: protectedProcedure
     .input(
@@ -80,7 +80,7 @@ export const demoServersRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return DemoServers.update(input.id, input);
+      return DemoServersService.update(input.id, input);
     }),
 
   delete: protectedProcedure
@@ -100,6 +100,6 @@ export const demoServersRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      await DemoServers.delete(input.id);
+      await DemoServersService.delete(input.id);
     }),
 });

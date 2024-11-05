@@ -1,10 +1,10 @@
 import { db } from "@mc/db";
 
-import { throwOrThrowNotFound } from "./throwOrThrowNotFound";
+import { throwNotFoundOrThrow } from "../../db/src/throwNotFoundOrThrow";
 
 export type DemoServerData = Awaited<ReturnType<typeof db.demoServer.update>>;
 
-export const DemoServers = {
+export const DemoServersService = {
   create: async (data: { name: string; description: string }) => {
     return await db.demoServer.create({
       data,
@@ -22,7 +22,7 @@ export const DemoServers = {
       .findUniqueOrThrow({
         where: { id },
       })
-      .catch(throwOrThrowNotFound);
+      .catch(throwNotFoundOrThrow);
   },
 
   update: async (

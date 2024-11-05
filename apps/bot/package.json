@@ -30,11 +30,11 @@
   "dependencies": {
     "@discordjs/builders": "^1.8.1",
     "@discordjs/rest": "^2.3.0",
-    "@mc/bot-data-exchange": "workspace:*",
     "@mc/common": "workspace:*",
     "@mc/db": "workspace:*",
     "@mc/logger": "workspace:*",
     "@mc/redis": "workspace:*",
+    "@mc/services": "workspace:*",
     "@sesamecare-oss/redlock": "^1.2.1",
     "@t3-oss/env-core": "^0.10.1",
     "bufferutil": "^4.0.8",

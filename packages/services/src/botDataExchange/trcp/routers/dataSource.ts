@@ -1,9 +1,9 @@
 import { ChannelType } from "discord.js";
 import { z } from "zod";
 
-import DataSourceService from "@mc/common/DataSourceService/index";
-import { GuildSettings } from "@mc/common/GuildSettings";
 import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
+import DataSourceService from "@mc/services/DataSource/index";
+import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
@@ -32,7 +32,7 @@ export const dataSourceRouter = createTRPCRouter({
 
       await ctx.lockRequest();
 
-      const guildSettings = await GuildSettings.upsert(guild.id);
+      const guildSettings = await GuildSettingsService.upsert(guild.id);
       const channel = guild.channels.cache.get(input.channelId);
 
       const dataSourceService = new DataSourceService({

@@ -1,4 +1,4 @@
-import { GuildSettings } from "@mc/common/GuildSettings";
+import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import { Job } from "~/structures/Job";
 
@@ -7,7 +7,7 @@ export const checkBlockedGuilds = new Job({
   time: "0 0 * * * *",
   runOnClientReady: true,
   execute: async (client) => {
-    const blockedGuilds = await GuildSettings.areBlocked([
+    const blockedGuilds = await GuildSettingsService.areBlocked([
       ...client.guilds.cache.keys(),
     ]);
 

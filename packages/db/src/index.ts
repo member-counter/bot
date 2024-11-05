@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 import { env } from "./env";
 
@@ -14,6 +14,6 @@ const globalForPrisma = globalThis as unknown as {
 
 export const db = globalForPrisma.prisma ?? createPrismaClient();
 
-export const KnownError = Prisma.PrismaClientKnownRequestError;
-
 if (env.NODE_ENV !== "production") globalForPrisma.prisma = db;
+
+export { throwNotFoundOrThrow } from "./throwNotFoundOrThrow";

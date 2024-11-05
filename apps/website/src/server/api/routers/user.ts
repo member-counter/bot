@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { UserPermissions } from "@mc/common/UserPermissions";
-import { UserSettings } from "@mc/common/UserSettings";
+import { UserSettingsService } from "@mc/services/userSettings";
 
 import { Errors } from "~/app/errors";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
@@ -21,7 +21,7 @@ export const userRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return await UserSettings.get(input.discordUserId);
+      return await UserSettingsService.get(input.discordUserId);
     }),
   update: protectedProcedure
     .input(
@@ -43,7 +43,7 @@ export const userRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      return UserSettings.update(input.id, input);
+      return UserSettingsService.update(input.id, input);
     }),
 
   delete: protectedProcedure
@@ -63,6 +63,6 @@ export const userRouter = createTRPCRouter({
           message: Errors.NotAuthorized,
         });
 
-      await UserSettings.delete(input.discordUserId);
+      await UserSettingsService.delete(input.discordUserId);
     }),
 });

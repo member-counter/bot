@@ -1,8 +1,7 @@
-import type { DemoServerData } from "@mc/common/DemoServers";
+import type { DemoServerData } from "@mc/services/demoServers";
 import type { LucideIcon } from "lucide-react";
 import { HelpCircleIcon } from "lucide-react";
 
-import type { DemoServer } from "./DemoServer";
 import { ChannelIconMap } from "~/app/dashboard/servers/[guildId]/ChannelMaps";
 
 export function DescriptionAreaTitle({

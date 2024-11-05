@@ -14,7 +14,7 @@ import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import { RES_CHANNEL } from "../../../trpc-redis/src/Constants";
+import { RES_CHANNEL } from "@mc/trpc-redis/Constants";
 
 /**
  * 1. CONTEXT

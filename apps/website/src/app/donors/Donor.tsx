@@ -1,6 +1,5 @@
 "use client";
-
-import type { DiscordUser } from "@mc/validators/DiscordUser";
+ 
 import { useTranslation } from "react-i18next";
 
 import {

@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Major_Mono_Display } from "next/font/google";
-import Image from "next/image";
+import { Major_Mono_Display } from "next/font/google"; 
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 import {
   ChevronDownIcon,
