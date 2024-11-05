@@ -488,9 +488,6 @@ importers:
       '@mc/redis':
         specifier: workspace:*
         version: link:../redis
-      '@mc/services':
-        specifier: workspace:*
-        version: 'link:'
       '@mc/trpc-redis':
         specifier: workspace:*
         version: link:../trpc-redis
