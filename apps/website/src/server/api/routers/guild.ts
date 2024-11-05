@@ -9,33 +9,34 @@ import { GuildSettingsService } from "@mc/services/guildSettings";
 import type { createTRPCContext } from "~/server/api/trpc";
 import { Errors } from "~/app/errors";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import { createCaller } from "../root";
+import { DiscordService } from "@mc/services/discord";
+import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
+import assert from "assert";
 
-async function checkUserPermissions(
-  ctx: Awaited<ReturnType<typeof createTRPCContext>>,
+async function checkUserPermissions( 
+  ctx: Awaited<ReturnType<typeof createTRPCContext>> ,
   input: { discordGuildId: string },
-  check: (perms: {
+  check: (requiredPermissions: {
     userPermissions: BitField;
     userPermissionsInGuild: BitField;
   }) => boolean,
 ) {
-  if (!ctx.authUser)
+  if (!ctx.authUser || !ctx.session)
     throw new TRPCError({
       code: "UNAUTHORIZED",
       message: Errors.NotAuthenticated,
     });
-
-  const caller = createCaller(ctx);
+ 
   const { discordGuildId } = input;
 
-  const userPermissionsInGuild = await caller.discord
-    .getGuildMember({
+  const userPermissionsInGuild = await botDataExchangeConsumer.discord.getGuildMember.query({
       guildId: discordGuildId,
       memberId: ctx.authUser.discordUserId,
     })
     .then((member) => new BitField(member.permissions))
     .catch(async () => {
-      const { userGuilds } = await caller.discord.userGuilds();
+      assert(ctx.session);
+      const { userGuilds } = await DiscordService.userGuilds(ctx.session.accessToken);
 
       const guild = userGuilds.get(discordGuildId);
 
