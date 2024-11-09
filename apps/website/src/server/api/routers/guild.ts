@@ -1,20 +1,20 @@
+import assert from "assert";
 import { TRPCError } from "@trpc/server";
 import { PermissionFlagsBits } from "discord-api-types/v10";
 import { z } from "zod";
 
 import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
+import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
+import { DiscordService } from "@mc/services/discord";
 import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import type { createTRPCContext } from "~/server/api/trpc";
 import { Errors } from "~/app/errors";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import { DiscordService } from "@mc/services/discord";
-import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
-import assert from "assert";
 
-async function checkUserPermissions( 
-  ctx: Awaited<ReturnType<typeof createTRPCContext>> ,
+async function checkUserPermissions(
+  ctx: Awaited<ReturnType<typeof createTRPCContext>>,
   input: { discordGuildId: string },
   check: (requiredPermissions: {
     userPermissions: BitField;
@@ -26,22 +26,26 @@ async function checkUserPermissions(
       code: "UNAUTHORIZED",
       message: Errors.NotAuthenticated,
     });
- 
+
   const { discordGuildId } = input;
 
-  const userPermissionsInGuild = await botDataExchangeConsumer.discord.getGuildMember.query({
-      guildId: discordGuildId,
-      memberId: ctx.authUser.discordUserId,
-    })
-    .then((member) => new BitField(member.permissions))
-    .catch(async () => {
-      assert(ctx.session);
-      const { userGuilds } = await DiscordService.userGuilds(ctx.session.accessToken);
+  const userPermissionsInGuild =
+    await botDataExchangeConsumer.discord.getGuildMember
+      .query({
+        guildId: discordGuildId,
+        memberId: ctx.authUser.discordUserId,
+      })
+      .then((member) => new BitField(member.permissions))
+      .catch(async () => {
+        assert(ctx.session);
+        const { userGuilds } = await DiscordService.userGuilds(
+          ctx.session.accessToken,
+        );
 
-      const guild = userGuilds.get(discordGuildId);
+        const guild = userGuilds.get(discordGuildId);
 
-      return new BitField(guild?.permissions);
-    });
+        return new BitField(guild?.permissions);
+      });
 
   const hasPermission = check({
     userPermissions: ctx.authUser.permissions,

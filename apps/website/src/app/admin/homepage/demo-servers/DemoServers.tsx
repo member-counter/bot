@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
- 
-import { Card, CardContent, CardHeader } from "@mc/ui/card"; 
+
+import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
 import { CreateInput } from "./CreateInput";

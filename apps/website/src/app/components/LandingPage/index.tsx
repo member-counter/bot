@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Major_Mono_Display } from "next/font/google"; 
+import { Major_Mono_Display } from "next/font/google";
+import Link from "next/link";
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 import {
   ChevronDownIcon,
@@ -13,6 +14,7 @@ import TextTransition, { presets } from "react-text-transition";
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
 
+import { Routes } from "~/other/routes";
 import { BotIcon } from "../BotIcon";
 import { DiscordIcon } from "../DiscordIcon";
 import { Background } from "./Background";
@@ -82,9 +84,15 @@ export default function LandingPage() {
           </TextTransition>
         </h2>
         <div className="mt-6 flex w-full flex-col gap-2 px-2 sm:mt-3 sm:w-auto sm:flex-row">
-          <Button icon={DiscordIcon}>Add to Discord</Button>
-          <Button icon={LifeBuoyIcon}>Get Support</Button>
-          <Button icon={SlidersHorizontalIcon}>Dashboard</Button>
+          <Link href={Routes.Invite()}>
+            <Button icon={DiscordIcon}>Add to Discord</Button>
+          </Link>
+          <Link href={Routes.Support}>
+            <Button icon={LifeBuoyIcon}>Get Support</Button>
+          </Link>
+          <Link href={Routes.Dashboard}>
+            <Button icon={SlidersHorizontalIcon}>Dashboard</Button>
+          </Link>
         </div>
         <div className="grow"></div>
         <a
