@@ -5,7 +5,6 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
-      "~/env": ["./env"]
     }
   },
   "include": ["*.ts", "src"],

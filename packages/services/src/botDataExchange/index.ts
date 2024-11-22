@@ -2,11 +2,10 @@ import type { Redis } from "ioredis";
 
 import { redis } from "@mc/redis";
 
-import { env } from "~/env";
-import { createBotDataExchangeConsumer } from "./botDataExchangeConsumer";
+import { env } from "../../env"; 
+import { createBotDataExchangeConsumer } from "./createBotDataExchangeConsumer";
 
-export * from "./botDataExchangeConsumer";
-export * from "./botDataExchangeProvider";
+export * from "./botDataExchangeConsumer"; 
 
 const createRedisClient = () => redis.duplicate();
 

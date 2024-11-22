@@ -3,7 +3,7 @@ import type { Redis } from "ioredis";
 
 import { redisHandler } from "@mc/trpc-redis";
 
-import { env } from "~/env";
+import { env } from "../../env";
 import { appRouter } from "./trcp/root";
 import { createTRPCContext } from "./trcp/trpc";
 
