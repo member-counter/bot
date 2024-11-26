@@ -72,6 +72,7 @@
       "manageUsers": "Manage users",
       "manageServers": "Manage servers",
       "manageHomePage": "Manage homepage",
+      "manageDonations": "Manage donations",
       "sentry": "Sentry",
       "copyright": "© {{year}} Member Counter. All rights reserved. Created by <eduardozgzLink />.",
       "madePossibleThanksTo": "Made possible thanks to Alex, <vampireChickenLink />, <livingfloreLink />, Frosty, and <donorsLink>many more</donorsLink>."
@@ -490,7 +491,8 @@
             "manageUsers": "Manage users",
             "seeGuilds": "See servers",
             "manageGuilds": "Manage servers",
-            "manageHomePage": "Manage landing page"
+            "manageHomePage": "Manage landing page",
+            "manageDonations": "Manage donations"
           },
           "badges": {
             "title": "Badges",
@@ -564,6 +566,26 @@
             "dialogDescription": "This action cannot be undone.",
             "closeButton": "Close"
           }
+        }
+      },
+      "donations": {
+        "registerDonation": "Register donation",
+        "totalDonations": "Total donations: {{total}} ({{totalValue}}€)",
+        "form": {
+          "userId": "Discord user ID",
+          "amount": "Amount",
+          "currency": "Currency",
+          "submitBtn": "Submit",
+          "date": "Date",
+          "note": "Note",
+          "anonymous": "Anonymous",
+          "saveBtn": "Save"
+        },
+        "new": {
+          "title": "New donation"
+        },
+        "edit": {
+          "title": "Edit donation"
         }
       }
     }

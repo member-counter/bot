@@ -8,7 +8,7 @@ import { api } from "~/trpc/react";
 import { Donor } from "./Donor";
 
 interface DonorBubble {
-  donor: RouterOutputs["donor"]["geAll"][number];
+  donor: RouterOutputs["donor"]["geAllDonors"][number];
   radius: number;
   x: number;
   y: number;
@@ -27,7 +27,7 @@ export function Donors() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  const donorsQuery = api.donor.geAll.useQuery();
+  const donorsQuery = api.donor.geAllDonors.useQuery();
 
   const donors = useMemo<DonorBubble[]>(() => {
     const donors: DonorBubble[] = (donorsQuery.data ?? []).map((donor) => ({

@@ -11,10 +11,11 @@ datasource db {
 }
 
 model User {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
-  discordUserId String @unique
-  badges        BigInt @default(0)
-  permissions   BigInt @default(0)
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  discordUserId String     @unique
+  badges        BigInt     @default(0)
+  permissions   BigInt     @default(0)
+  donations     Donation[]
 }
 
 model Guild {
@@ -73,10 +74,11 @@ type DemoLink {
 
 model Donation {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  user      String
   note      String
   anonymous Boolean
   date      DateTime
   amount    Float
   currency  String
+  user      User?    @relation(fields: [userId], references: [discordUserId], onDelete: Cascade)
+  userId    String
 }

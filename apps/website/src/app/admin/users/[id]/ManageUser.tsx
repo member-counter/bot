@@ -26,6 +26,7 @@ const getPermissionsLabels = (t: TFunction) =>
     SeeGuilds: t("pages.admin.users.manage.permissions.seeGuilds"),
     ManageGuilds: t("pages.admin.users.manage.permissions.manageGuilds"),
     ManageHomePage: t("pages.admin.users.manage.permissions.manageHomePage"),
+    ManageDonations: t("pages.admin.users.manage.permissions.manageDonations"),
   }) satisfies Record<keyof typeof UserPermissions, string>;
 
 const getBadgesLabels = (t: TFunction) =>

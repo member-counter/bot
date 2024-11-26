@@ -109,6 +109,14 @@ export default function Footer() {
               >
                 {t("components.footer.manageHomePage")}
               </Link>
+              <Link
+                href={Routes.ManageDonations()}
+                className={cn({
+                  hidden: !userPermissions.has(UserPermissions.ManageDonations),
+                })}
+              >
+                {t("components.footer.manageDonations")}
+              </Link>
               <Link href={Routes.Sentry}>{t("components.footer.sentry")}</Link>
             </div>
           </div>

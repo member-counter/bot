@@ -37,6 +37,9 @@ export const Routes = (baseUrl: string) => ({
   ManageHomePage: baseUrl + "/admin/homepage",
   ManageHomeDemoServer: (id: string) =>
     baseUrl + "/admin/homepage/demo-servers/" + id,
+  ManageDonations: (id?: string) =>
+    baseUrl + "/admin/donations" + (id ? `/${id}` : ""),
+  ManageDonationsNew: () => baseUrl + "/admin/donations/new",
   Sentry: env.NEXT_PUBLIC_SENTRY_ADMIN_URL,
   Account: baseUrl + "/account",
   Dashboard: baseUrl + "/dashboard",
