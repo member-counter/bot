@@ -7,7 +7,6 @@ import {
   SlashCommandBuilder,
 } from "@discordjs/builders";
 import { ApplicationCommandType, ButtonStyle, ComponentType } from "discord.js";
-import { NotFoundError } from "node_modules/@mc/db/src/throwNotFoundOrThrow";
 
 import { BitField } from "@mc/common/BitField";
 import { Routes } from "@mc/common/Routes";
@@ -17,6 +16,7 @@ import {
   UserBadgesEmoji,
 } from "@mc/common/UserBadges";
 import { UserPermissions } from "@mc/common/UserPermissions";
+import { NotFoundError } from "@mc/db";
 import { UserSettingsService } from "@mc/services/userSettings";
 
 import { env } from "~/env";
