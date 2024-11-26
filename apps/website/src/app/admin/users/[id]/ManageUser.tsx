@@ -1,6 +1,6 @@
 import type { UserBadges } from "@mc/common/UserBadges";
 import type { TFunction } from "i18next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SaveIcon } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ import { Checkbox } from "@mc/ui/checkbox";
 import { Input } from "@mc/ui/input";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
-import useConfirmOnLeave from "~/hooks/useConfirmOnLeave";
+import { FormManagerState, useFormManager } from "~/hooks/useFormManager";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { DeleteButton } from "./DeleteButton";
@@ -44,39 +44,23 @@ const getBadgesLabels = (t: TFunction) =>
 export default function ManageUser({ userId }: { userId: string }) {
   const { t } = useTranslation();
   const router = useRouter();
+  const [_user, mutableUser, setMutableUser, submitUser, formState] =
+    useFormManager(
+      api.user.get.useQuery({ discordUserId: userId }),
+      api.user.update.useMutation(),
+    );
   const [enableTransfer, setEnableTransfer] = useState(false);
-  const [isDirty, setIsDirty] = useState(false);
   const authUser = api.session.user.useQuery().data;
   const authUserPerms = new BitField(authUser?.permissions);
   const canModify = authUserPerms.has(UserPermissions.ManageUsers);
-  const user = api.user.get.useQuery({ discordUserId: userId });
-  const userMutation = api.user.update.useMutation();
-  const [mutableUser, _setMutableUser] = useState<typeof user.data | null>(
-    null,
-  );
 
-  useConfirmOnLeave(isDirty);
+  if (!mutableUser) return null;
 
-  useEffect(() => {
-    if (!user.data) return;
-    _setMutableUser(user.data);
-  }, [user.data]);
-
-  if (!mutableUser) return;
-
-  const setMutableUser = (value: typeof user.data) => {
-    _setMutableUser(value);
-    setIsDirty(true);
-  };
-
-  const saveUser = async () => {
-    await userMutation.mutateAsync({
-      ...mutableUser,
+  const saveUser = () => {
+    void submitUser().then(() => {
+      if (enableTransfer)
+        router.replace(Routes.ManageUsers(mutableUser.discordUserId));
     });
-    setIsDirty(false);
-
-    if (enableTransfer)
-      router.replace(Routes.ManageUsers(mutableUser.discordUserId));
   };
 
   const permissionsLabels = getPermissionsLabels(t);
@@ -176,11 +160,18 @@ export default function ManageUser({ userId }: { userId: string }) {
         <Button
           icon={SaveIcon}
           type="submit"
-          disabled={!canModify || !isDirty || userMutation.isPending}
+          disabled={
+            !canModify ||
+            [FormManagerState.SAVED, FormManagerState.SAVING].includes(
+              formState,
+            )
+          }
         >
-          {userMutation.isSuccess && !isDirty
-            ? t("pages.admin.users.manage.saved")
-            : t("pages.admin.users.manage.save")}
+          {formState === FormManagerState.SAVED
+            ? t("hooks.useFormManager.state.saved")
+            : formState === FormManagerState.SAVING
+              ? t("hooks.useFormManager.state.saving")
+              : t("hooks.useFormManager.state.save")}
         </Button>
       </CardFooter>
     </form>

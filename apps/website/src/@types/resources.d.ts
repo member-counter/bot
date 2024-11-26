@@ -2,6 +2,13 @@ interface Resources {
   main: {
     hooks: {
       useConfirmOnLeave: "You have unsaved changes. Are you sure you want to leave this page?";
+      useFormManager: {
+        state: {
+          save: "Save";
+          saving: "Saving...";
+          saved: "Saved";
+        };
+      };
     };
     components: {
       Combobox: {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useParams } from "next/navigation";
 import { SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -10,7 +10,7 @@ import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildParams } from "../layout";
-import useConfirmOnLeave from "~/hooks/useConfirmOnLeave";
+import { FormManagerState, useFormManager } from "~/hooks/useFormManager";
 import { api } from "~/trpc/react";
 import { LoadingPage } from "../LoadingPage";
 import { UserPermissionsContext } from "../UserPermissionsContext";
@@ -25,40 +25,19 @@ export default function Page() {
   const { t } = useTranslation();
   const userPermissions = useContext(UserPermissionsContext);
   const { guildId } = useParams<DashboardGuildParams>();
-  const guildSettingsMutation = api.guild.update.useMutation();
   const guildSettingsQuery = api.guild.get.useQuery({
     discordGuildId: guildId,
   });
-  const guildSettings = guildSettingsQuery.data;
-  const [isDirty, setIsDirty] = useState(false);
-  const [mutableGuildSettings, _setMutableGuildSettings] = useState<
-    typeof guildSettings
-  >(structuredClone(guildSettings));
 
-  useConfirmOnLeave(isDirty);
-
-  useEffect(() => {
-    if (!guildSettings) return;
-    if (isDirty) return;
-    _setMutableGuildSettings(structuredClone(guildSettings));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [guildSettings]);
+  const [
+    _guildSettings,
+    mutableGuildSettings,
+    setMutableGuildSettings,
+    save,
+    formState,
+  ] = useFormManager(guildSettingsQuery, api.guild.update.useMutation());
 
   if (!mutableGuildSettings) return <LoadingPage />;
-
-  const setMutableGuildSettings = (value: typeof guildSettings) => {
-    _setMutableGuildSettings(value);
-    setIsDirty(true);
-  };
-
-  const save = async () => {
-    _setMutableGuildSettings(
-      await guildSettingsMutation.mutateAsync({
-        ...mutableGuildSettings,
-      }),
-    );
-    setIsDirty(false);
-  };
 
   return (
     <DemoFormattersProvider locale={mutableGuildSettings.formatSettings.locale}>
@@ -114,13 +93,16 @@ export default function Page() {
             type="submit"
             disabled={
               !userPermissions.canModify ||
-              !isDirty ||
-              guildSettingsMutation.isPending
+              [FormManagerState.SAVED, FormManagerState.SAVING].includes(
+                formState,
+              )
             }
           >
-            {isDirty
-              ? t("pages.dashboard.servers.settings.save")
-              : t("pages.dashboard.servers.settings.saved")}
+            {formState === FormManagerState.SAVED
+              ? t("hooks.useFormManager.state.saved")
+              : formState === FormManagerState.SAVING
+                ? t("hooks.useFormManager.state.saving")
+                : t("hooks.useFormManager.state.save")}
           </Button>
           {userPermissions.user.has(UserPermissions.SeeGuilds) && (
             <BlockButton
@@ -131,7 +113,8 @@ export default function Page() {
           <ResetSettings
             guildId={guildId}
             disabled={
-              !userPermissions.canModify || guildSettingsMutation.isPending
+              !userPermissions.canModify ||
+              formState === FormManagerState.SAVING
             }
           />
         </div>

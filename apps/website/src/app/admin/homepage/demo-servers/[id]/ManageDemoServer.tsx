@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { PlusIcon, SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -8,7 +7,7 @@ import { Input } from "@mc/ui/input";
 import { Label } from "@mc/ui/label";
 import { Textarea } from "@mc/ui/textarea";
 
-import useConfirmOnLeave from "~/hooks/useConfirmOnLeave";
+import { FormManagerState, useFormManager } from "~/hooks/useFormManager";
 import { addTo, removeFrom, updateIn } from "~/other/array";
 import { api } from "~/trpc/react";
 import { ChannelCard } from "./ChannelCard";
@@ -17,40 +16,24 @@ import { LinkCard } from "./LinkCard";
 
 export default function ManageDemoServer({ id }: { id: string }) {
   const { t } = useTranslation();
-  const [isDirty, setIsDirty] = useState(false);
+  const [
+    _demoServer,
+    mutableDemoServer,
+    setMutableDemoServer,
+    saveDemoServer,
+    formState,
+  ] = useFormManager(
+    api.demoServers.get.useQuery({ id }),
+    api.demoServers.update.useMutation(),
+  );
 
-  const demoServer = api.demoServers.get.useQuery({ id: id });
-  const demoServerMutation = api.demoServers.update.useMutation();
-  const [mutableDemoServer, _setMutableDemoServer] = useState<
-    typeof demoServer.data | null
-  >(null);
-
-  useConfirmOnLeave(isDirty);
-
-  useEffect(() => {
-    if (!demoServer.data) return;
-    _setMutableDemoServer(demoServer.data);
-  }, [demoServer.data]);
-
-  if (!mutableDemoServer) return;
-
-  const setMutableDemoServer = (value: typeof demoServer.data) => {
-    _setMutableDemoServer(value);
-    setIsDirty(true);
-  };
-
-  const saveDemoServer = async () => {
-    await demoServerMutation.mutateAsync({
-      ...mutableDemoServer,
-    });
-    setIsDirty(false);
-  };
+  if (!mutableDemoServer) return null;
 
   return (
     <form
-      onSubmit={async (e) => {
+      onSubmit={(e) => {
         e.preventDefault();
-        await saveDemoServer();
+        void saveDemoServer();
       }}
     >
       <CardContent className="flex flex-col gap-4 [&>*]:flex [&>*]:flex-col [&>*]:gap-2">
@@ -194,11 +177,15 @@ export default function ManageDemoServer({ id }: { id: string }) {
         <Button
           icon={SaveIcon}
           type="submit"
-          disabled={!isDirty || demoServerMutation.isPending}
+          disabled={[FormManagerState.SAVED, FormManagerState.SAVING].includes(
+            formState,
+          )}
         >
-          {demoServerMutation.isSuccess && !isDirty
-            ? t("pages.admin.homePage.demoServers.manage.saved")
-            : t("pages.admin.homePage.demoServers.manage.save")}
+          {formState === FormManagerState.SAVED
+            ? t("hooks.useFormManager.state.saved")
+            : formState === FormManagerState.SAVING
+              ? t("hooks.useFormManager.state.saving")
+              : t("hooks.useFormManager.state.save")}
         </Button>
       </CardFooter>
     </form>
