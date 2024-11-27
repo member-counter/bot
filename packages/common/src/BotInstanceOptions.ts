@@ -1,5 +1,5 @@
 import type logger from "@mc/logger";
-import type { ActivitiesOptions } from "discord.js";
+import type { ActivitiesOptions, PresenceStatusData } from "discord.js";
 
 export interface BotInstanceOptions {
   id: string;
@@ -10,6 +10,7 @@ export interface BotInstanceOptions {
   maxConcurrency: number;
   deployCommands: boolean | string;
   presenceActivity: ActivitiesOptions[];
+  presenceStatus: PresenceStatusData;
   stats: {
     DBGGToken?: string;
     DBLToken?: string;

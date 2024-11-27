@@ -50,6 +50,12 @@ export const env = createEnv({
         )
         .parse(JSON.parse(s));
     }),
+    DISCORD_BOT_INSTANCE_BOT_STATUS: z.enum([
+      "online",
+      "idle",
+      "dnd",
+      "invisible",
+    ]),
     DISCORD_BOT_INSTANCE_STATS_DBGG_TOKEN: z.string().optional(),
     DISCORD_BOT_INSTANCE_STATS_DBL_TOKEN: z.string().optional(),
     DISCORD_BOT_INSTANCE_STATS_BFD_TOKEN: z.string().optional(),

@@ -5,7 +5,9 @@ export const setBotStatus = new Job({
   time: "0 */5 * * * *",
   runOnClientReady: true,
   execute: (client) => {
-    const activities = client.botInstanceOptions.presenceActivity;
+    const { presenceActivity: activities, presenceStatus: status } =
+      client.botInstanceOptions;
+
     let activity = activities[0];
 
     if (Math.random() < 0.1) {
@@ -15,6 +17,7 @@ export const setBotStatus = new Job({
     if (!activity) return Promise.resolve();
 
     client.user.setPresence({
+      status,
       activities: [activity],
     });
 
