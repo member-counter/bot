@@ -42,7 +42,7 @@ export default function Page({ params: { id } }: Props) {
         </Button>
         <div className="grow"></div>
         <TypographyH4 className="mt-0">
-          {t("pages.admin.homePage.demoServers.manage.title")}
+          {t("pages.admin.donations.edit.title")}
         </TypographyH4>
         <div className="grow"></div>
         {donationQuery.isLoading ? (
