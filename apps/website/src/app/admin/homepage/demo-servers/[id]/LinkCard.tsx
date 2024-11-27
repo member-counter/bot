@@ -24,37 +24,31 @@ export function LinkCard({
   const { t } = useTranslation();
 
   return (
-    <Card className="flex flex-col gap-4 bg-secondary p-4 [&>*]:flex [&>*]:flex-col [&>*]:gap-2">
-      <div>
-        <Label>
-          {t("pages.admin.homePage.demoServers.manage.links.link.label")}
-        </Label>
+    <Card className="flex flex-col gap-4 bg-secondary p-4">
+      <Label>
+        {t("pages.admin.homePage.demoServers.manage.links.link.label")}
         <Input
           value={link.label}
           onChange={(e) =>
             updateLink(index, { ...link, label: e.target.value })
           }
         />
-      </div>
-      <div>
-        <Label>
-          {t("pages.admin.homePage.demoServers.manage.links.link.url")}
-        </Label>
+      </Label>
+      <Label>
+        {t("pages.admin.homePage.demoServers.manage.links.link.url")}
         <Input
           value={link.href}
           onChange={(e) => updateLink(index, { ...link, href: e.target.value })}
         />
-      </div>
-      <div>
-        <Button
-          icon={TrashIcon}
-          variant="destructive"
-          type="button"
-          onClick={() => removeLink(index)}
-        >
-          {t("pages.admin.homePage.demoServers.manage.links.link.remove")}
-        </Button>
-      </div>
+      </Label>
+      <Button
+        icon={TrashIcon}
+        variant="destructive"
+        type="button"
+        onClick={() => removeLink(index)}
+      >
+        {t("pages.admin.homePage.demoServers.manage.links.link.remove")}
+      </Button>
     </Card>
   );
 }

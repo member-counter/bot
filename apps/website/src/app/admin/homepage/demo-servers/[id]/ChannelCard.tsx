@@ -1,5 +1,4 @@
 import type { DemoServerData } from "@mc/services/demoServers";
-import { useId } from "react";
 import { ChannelType } from "discord-api-types/v10";
 import { TrashIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -37,13 +36,10 @@ export function ChannelCard({
   removeChannel,
 }: ChannelCardProps) {
   const { t } = useTranslation();
-  const skeletonCheckboxId = useId();
   return (
-    <Card className="flex flex-col gap-4 bg-secondary p-4 [&>*]:flex [&>*]:flex-col [&>*]:gap-2">
-      <div>
-        <Label>
-          {t("pages.admin.homePage.demoServers.manage.channels.channel.type")}
-        </Label>
+    <Card className="flex flex-col gap-4 bg-secondary p-4">
+      <Label>
+        {t("pages.admin.homePage.demoServers.manage.channels.channel.type")}
         <Select
           value={channel.type.toString()}
           onValueChange={(value) =>
@@ -88,22 +84,18 @@ export function ChannelCard({
             </SelectGroup>
           </SelectContent>
         </Select>
-      </div>
-      <div>
-        <Label>
-          {t("pages.admin.homePage.demoServers.manage.channels.channel.name")}
-        </Label>
+      </Label>
+      <Label>
+        {t("pages.admin.homePage.demoServers.manage.channels.channel.name")}
         <Input
           value={channel.name}
           onChange={(e) =>
             updateChannel(index, { ...channel, name: e.target.value })
           }
         />
-      </div>
-      <div>
-        <Label>
-          {t("pages.admin.homePage.demoServers.manage.channels.channel.topic")}
-        </Label>
+      </Label>
+      <Label>
+        {t("pages.admin.homePage.demoServers.manage.channels.channel.topic")}
         {[ChannelType.GuildText, ChannelType.GuildAnnouncement].includes(
           channel.type,
         ) && (
@@ -114,36 +106,28 @@ export function ChannelCard({
             }
           />
         )}
-      </div>
-      <div>
-        <div className="flex items-center gap-2">
-          <Checkbox
-            id={skeletonCheckboxId}
-            checked={channel.showAsSkeleton}
-            onCheckedChange={(state) => {
-              updateChannel(index, {
-                ...channel,
-                showAsSkeleton: Boolean(state),
-              });
-            }}
-          />
-          <Label htmlFor={skeletonCheckboxId}>
-            {t(
-              "pages.admin.homePage.demoServers.manage.channels.channel.showAsSkeleton",
-            )}
-          </Label>
-        </div>
-      </div>
-      <div>
-        <Button
-          icon={TrashIcon}
-          variant="destructive"
-          type="button"
-          onClick={() => removeChannel(index)}
-        >
-          {t("pages.admin.homePage.demoServers.manage.channels.channel.remove")}
-        </Button>
-      </div>
+      </Label>
+      <Checkbox
+        checked={channel.showAsSkeleton}
+        onCheckedChange={(state) => {
+          updateChannel(index, {
+            ...channel,
+            showAsSkeleton: Boolean(state),
+          });
+        }}
+      >
+        {t(
+          "pages.admin.homePage.demoServers.manage.channels.channel.showAsSkeleton",
+        )}
+      </Checkbox>
+      <Button
+        icon={TrashIcon}
+        variant="destructive"
+        type="button"
+        onClick={() => removeChannel(index)}
+      >
+        {t("pages.admin.homePage.demoServers.manage.channels.channel.remove")}
+      </Button>
     </Card>
   );
 }

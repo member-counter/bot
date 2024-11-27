@@ -5,7 +5,7 @@ import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
-import { Card, CardHeader } from "@mc/ui/card";
+import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
 import { Errors } from "~/app/errors";
@@ -42,7 +42,11 @@ export default function Page({ params: { id } }: Props) {
           <div className="h-5 w-5"></div>
         )}
       </CardHeader>
-      {demoServer.data && <ManageDemoServer id={id} />}
+      {demoServer.data && (
+        <CardContent>
+          <ManageDemoServer id={id} />
+        </CardContent>
+      )}
     </Card>
   );
 }

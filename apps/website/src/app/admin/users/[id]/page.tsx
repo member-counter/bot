@@ -52,7 +52,11 @@ export default function Page({ params: { id: userId } }: Props) {
           <span>{t("pages.admin.users.userNotRegistered")}</span>
         </CardContent>
       )}
-      {user.data && <ManageUser {...{ userId }} />}
+      {user.data && (
+        <CardContent>
+          <ManageUser {...{ userId }} />
+        </CardContent>
+      )}
     </Card>
   );
 }

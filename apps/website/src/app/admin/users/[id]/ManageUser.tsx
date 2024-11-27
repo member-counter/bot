@@ -9,8 +9,8 @@ import { BitField } from "@mc/common/BitField";
 import { UserBadgesBitfield } from "@mc/common/UserBadges";
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { Button } from "@mc/ui/button";
-import { CardContent, CardFooter } from "@mc/ui/card";
 import { Checkbox } from "@mc/ui/checkbox";
+import { Form } from "@mc/ui/form";
 import { Input } from "@mc/ui/input";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
@@ -68,95 +68,92 @@ export default function ManageUser({ userId }: { userId: string }) {
   const badgesLabels = getBadgesLabels(t);
 
   return (
-    <form action={saveUser}>
-      <CardContent className="flex flex-col gap-6">
-        <div className="flex flex-col gap-2">
-          <TypographyH4 className="mt-0">
-            {t("pages.admin.users.manage.permissions.title")}
-          </TypographyH4>
-          {Object.entries(permissionsLabels).map((entry) => {
-            const [permission, label] = entry as [
-              keyof typeof permissionsLabels,
-              string,
-            ];
+    <Form onSubmit={saveUser}>
+      <div className="flex flex-col gap-2">
+        <TypographyH4 className="mt-0">
+          {t("pages.admin.users.manage.permissions.title")}
+        </TypographyH4>
+        {Object.entries(permissionsLabels).map((entry) => {
+          const [permission, label] = entry as [
+            keyof typeof permissionsLabels,
+            string,
+          ];
 
-            const permissionValue = UserPermissions[permission];
+          const permissionValue = UserPermissions[permission];
 
-            return (
-              <Checkbox
-                key={permission}
-                disabled={!canModify}
-                checked={new BitField(mutableUser.permissions).has(
-                  permissionValue,
-                )}
-                onCheckedChange={(checked) => {
-                  setMutableUser({
-                    ...mutableUser,
-                    permissions: new BitField(mutableUser.permissions)[
-                      checked ? "add" : "remove"
-                    ](permissionValue).bitfield,
-                  });
-                }}
-              >
-                {label}
-              </Checkbox>
-            );
-          })}
-        </div>
-        <div className="flex flex-col gap-2">
-          <TypographyH4 className="mt-0">
-            {t("pages.admin.users.manage.badges.title")}
-          </TypographyH4>
-          {Object.entries(badgesLabels).map((entry) => {
-            const [badge, label] = entry as [keyof typeof badgesLabels, string];
-
-            const badgeValue = UserBadgesBitfield[badge];
-
-            return (
-              <Checkbox
-                key={badge}
-                disabled={!canModify}
-                checked={new BitField(mutableUser.badges).has(badgeValue)}
-                onCheckedChange={(checked) => {
-                  setMutableUser({
-                    ...mutableUser,
-                    badges: new BitField(mutableUser.badges)[
-                      checked ? "add" : "remove"
-                    ](badgeValue).bitfield,
-                  });
-                }}
-              >
-                {label}
-              </Checkbox>
-            );
-          })}
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Checkbox
-            disabled={!canModify}
-            checked={enableTransfer}
-            onCheckedChange={(v) => setEnableTransfer(!!v)}
-          >
-            <TypographyH4 className="mt-0">
-              {t("pages.admin.users.manage.transferAccount")}
-            </TypographyH4>
-          </Checkbox>
-          {enableTransfer && (
-            <Input
-              placeholder={t("pages.admin.users.manage.pasteUserId")}
-              value={mutableUser.discordUserId}
-              onChange={(e) =>
+          return (
+            <Checkbox
+              key={permission}
+              disabled={!canModify}
+              checked={new BitField(mutableUser.permissions).has(
+                permissionValue,
+              )}
+              onCheckedChange={(checked) => {
                 setMutableUser({
                   ...mutableUser,
-                  discordUserId: e.target.value,
-                })
-              }
-            />
-          )}
-        </div>
-      </CardContent>
-      <CardFooter className="flex flex-row justify-between">
+                  permissions: new BitField(mutableUser.permissions)[
+                    checked ? "add" : "remove"
+                  ](permissionValue).bitfield,
+                });
+              }}
+            >
+              {label}
+            </Checkbox>
+          );
+        })}
+      </div>
+      <div className="flex flex-col gap-2">
+        <TypographyH4 className="mt-0">
+          {t("pages.admin.users.manage.badges.title")}
+        </TypographyH4>
+        {Object.entries(badgesLabels).map((entry) => {
+          const [badge, label] = entry as [keyof typeof badgesLabels, string];
+
+          const badgeValue = UserBadgesBitfield[badge];
+
+          return (
+            <Checkbox
+              key={badge}
+              disabled={!canModify}
+              checked={new BitField(mutableUser.badges).has(badgeValue)}
+              onCheckedChange={(checked) => {
+                setMutableUser({
+                  ...mutableUser,
+                  badges: new BitField(mutableUser.badges)[
+                    checked ? "add" : "remove"
+                  ](badgeValue).bitfield,
+                });
+              }}
+            >
+              {label}
+            </Checkbox>
+          );
+        })}
+      </div>
+      <div className="flex flex-col gap-2">
+        <Checkbox
+          disabled={!canModify}
+          checked={enableTransfer}
+          onCheckedChange={(v) => setEnableTransfer(!!v)}
+        >
+          <TypographyH4 className="mt-0">
+            {t("pages.admin.users.manage.transferAccount")}
+          </TypographyH4>
+        </Checkbox>
+        {enableTransfer && (
+          <Input
+            placeholder={t("pages.admin.users.manage.pasteUserId")}
+            value={mutableUser.discordUserId}
+            onChange={(e) =>
+              setMutableUser({
+                ...mutableUser,
+                discordUserId: e.target.value,
+              })
+            }
+          />
+        )}
+      </div>
+      <div className="flex flex-row justify-between">
         <DeleteButton userId={userId} disabled={!canModify} />
         <Button
           icon={SaveIcon}
@@ -174,7 +171,7 @@ export default function ManageUser({ userId }: { userId: string }) {
               ? t("hooks.useFormManager.state.saving")
               : t("hooks.useFormManager.state.save")}
         </Button>
-      </CardFooter>
-    </form>
+      </div>
+    </Form>
   );
 }
