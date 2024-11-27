@@ -9,6 +9,12 @@ export type UpdateDonationData = Parameters<
 >[0]["data"];
 
 export const DonationsService = {
+  get: async (id: string) => {
+    return await db.donation.findUniqueOrThrow({
+      where: { id },
+    });
+  },
+
   getAll: async (returnAnonymous: boolean) => {
     return await db.donation.findMany({
       where: { anonymous: returnAnonymous ? undefined : false },
@@ -33,6 +39,8 @@ export const DonationsService = {
   },
 
   update: async (id: string, donation: UpdateDonationData) => {
+    delete (donation as unknown as { id?: string }).id;
+
     return await db.donation.update({
       where: { id },
       data: donation,

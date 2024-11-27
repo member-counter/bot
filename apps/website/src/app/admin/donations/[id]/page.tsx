@@ -5,12 +5,13 @@ import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
-import { Card, CardHeader } from "@mc/ui/card";
+import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
 import { Errors } from "~/app/errors";
+import { useFormManager } from "~/hooks/useFormManager";
 import { api } from "~/trpc/react";
-import ManageDemoServer from "./ManageDemoServer";
+import { DonationForm } from "../DonationForm";
 
 interface Props {
   params: { id: string };
@@ -18,10 +19,18 @@ interface Props {
 
 export default function Page({ params: { id } }: Props) {
   const { t } = useTranslation();
-  const demoServer = api.demoServers.get.useQuery({ id });
+  const donationQuery = api.donor.getDonation.useQuery({ id });
+  const donationMutation = api.donor.updateDonation.useMutation();
   const router = useRouter();
+  const [
+    _donation,
+    mutableDonation,
+    setMutableDonation,
+    saveDonation,
+    formState,
+  ] = useFormManager(donationQuery, donationMutation);
 
-  if (!demoServer.data && !demoServer.isLoading) {
+  if (!donationQuery.data && !donationQuery.isLoading) {
     throw new Error(Errors.NotFound);
   }
 
@@ -36,13 +45,22 @@ export default function Page({ params: { id } }: Props) {
           {t("pages.admin.homePage.demoServers.manage.title")}
         </TypographyH4>
         <div className="grow"></div>
-        {demoServer.isLoading ? (
+        {donationQuery.isLoading ? (
           <LoaderIcon className="h-5 w-5 animate-spin" />
         ) : (
           <div className="h-5 w-5"></div>
         )}
       </CardHeader>
-      {demoServer.data && <ManageDemoServer id={id} />}
+      <CardContent>
+        {mutableDonation && (
+          <DonationForm
+            formState={formState}
+            value={mutableDonation}
+            onChange={setMutableDonation}
+            onSubmit={saveDonation}
+          />
+        )}
+      </CardContent>
     </Card>
   );
 }

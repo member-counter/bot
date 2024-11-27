@@ -575,7 +575,6 @@
           "userId": "Discord user ID",
           "amount": "Amount",
           "currency": "Currency",
-          "submitBtn": "Submit",
           "date": "Date",
           "note": "Note",
           "anonymous": "Anonymous",
@@ -586,6 +585,12 @@
         },
         "edit": {
           "title": "Edit donation"
+        },
+        "delete": {
+          "button": "Delete donation",
+          "dialogTitle": "Are you absolutely sure?",
+          "dialogDescription": "This action cannot be undone.",
+          "closeButton": "Close"
         }
       }
     }

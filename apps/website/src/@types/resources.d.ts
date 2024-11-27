@@ -587,6 +587,12 @@ interface Resources {
           },
           "edit": {
             "title": "Edit donation"
+          },
+          "delete": {
+            "button": "Delete demo server",
+            "dialogTitle": "Are you absolutely sure?",
+            "dialogDescription": "This action cannot be undone.",
+            "closeButton": "Close"
           }
         }
       }

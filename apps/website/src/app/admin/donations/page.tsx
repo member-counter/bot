@@ -19,13 +19,11 @@ function LoadingPage() {
 export default function Page() {
   const { t } = useTranslation();
   const donations = api.donor.geAllDonations.useQuery();
-  const total = donations.data?.length ?? "?";
+  const total = donations.data?.length ?? "???";
   const totalValue = useMemo(
-    () => donations.data?.reduce((acc, curr) => acc + curr.value, 0) ?? "?",
+    () => donations.data?.reduce((acc, curr) => acc + curr.value, 0) ?? "???",
     [donations.data],
   );
-
-  if (!donations.data) return <LoadingPage />;
 
   return (
     <>
@@ -40,9 +38,13 @@ export default function Page() {
         </Link>
       </div>
 
-      {donations.data.map((donation) => (
-        <Donation key={donation.id} {...donation} />
-      ))}
+      {donations.data ? (
+        donations.data.map((donation) => (
+          <Donation key={donation.id} {...donation} />
+        ))
+      ) : (
+        <LoadingPage />
+      )}
     </>
   );
 }

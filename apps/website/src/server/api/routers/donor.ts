@@ -1,5 +1,4 @@
 import assert from "assert";
-import type { DonationData } from "@mc/services/donations";
 import type { DiscordUser } from "@mc/validators/DiscordUser";
 import type { DefaultUserAvatarAssets } from "discord-api-types/v10";
 import { TRPCError } from "@trpc/server";
@@ -69,8 +68,17 @@ export const donorRouter = createTRPCRouter({
     const returnAnonymous = !!authUser?.permissions.has(
       UserPermissions.ManageDonations,
     );
+    const rawDonations = await DonationsService.getAll(returnAnonymous);
 
-    return (await DonationsService.getAll(returnAnonymous)).map((donation) => ({
+    const donors = new Set(rawDonations.map((donation) => donation.userId));
+
+    const discordUsers = await fetchUsers([...donors.keys()]);
+    const mappedDiscordUsers = new Map(
+      discordUsers.map((user) => [user.id, user]),
+    );
+
+    return rawDonations.map((donation) => ({
+      user: mappedDiscordUsers.get(donation.userId),
       ...donation,
       value: donation.amount,
     }));
@@ -82,7 +90,7 @@ export const donorRouter = createTRPCRouter({
         userId: z.string(),
         note: z.string(),
         anonymous: z.boolean(),
-        date: z.union([z.date(), z.string()]),
+        date: z.date(),
         amount: z.number(),
         currency: z.string(),
       }),
@@ -102,6 +110,27 @@ export const donorRouter = createTRPCRouter({
       return await DonationsService.register(input);
     }),
 
+  getDonation: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ ctx: { authUser }, input }) => {
+      const hasPermission = authUser.permissions.has(
+        UserPermissions.ManageDonations,
+      );
+
+      if (!hasPermission) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: Errors.NotAuthorized,
+        });
+      }
+
+      return await DonationsService.get(input.id);
+    }),
+
   updateDonation: protectedProcedure
     .input(
       z.object({
@@ -109,7 +138,7 @@ export const donorRouter = createTRPCRouter({
         userId: z.string().optional(),
         note: z.string().optional(),
         anonymous: z.boolean().optional(),
-        date: z.union([z.date(), z.string()]).optional(),
+        date: z.date().optional(),
         amount: z.number().optional(),
         currency: z.string().optional(),
       }),
