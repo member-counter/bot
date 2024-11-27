@@ -10,6 +10,10 @@ import { Separator } from "@mc/ui/separator";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
+import {
+  addTimezoneOffset,
+  subTimezoneOffset,
+} from "~/other/fixTimezoneOffset";
 import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
@@ -89,18 +93,12 @@ export function CountdownOptions({
             type="datetime-local"
             value={
               options.date
-                ? new Date(
-                    options.date - new Date().getTimezoneOffset() * 60 * 1000,
-                  )
-                    .toISOString()
-                    .slice(0, 16)
+                ? subTimezoneOffset(options.date).toISOString().slice(0, 16)
                 : ""
             }
             onChange={(e) =>
               setOptions({
-                date:
-                  e.target.valueAsNumber +
-                  new Date().getTimezoneOffset() * 60 * 1000,
+                date: addTimezoneOffset(e.target.valueAsNumber).getTime(),
               })
             }
           />
