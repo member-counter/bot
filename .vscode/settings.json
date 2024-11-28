@@ -30,5 +30,23 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "colorTabs.config": [
+    {
+      "regex": "apps/bot\\.*",
+      "color": "#ea580c",
+      "label": "Bot"
+    },
+    {
+      "regex": "apps/website\\.*",
+      "color": "#0C0A09",
+      "label": "Website"
+    },
+    {
+      "regex": "packages\\.*",
+      "color": "#28B9FF",
+      "label": "Packages"
+    }
+  ],
+  "colorTabs.titleLabel": true
 }
