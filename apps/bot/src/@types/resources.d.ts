@@ -147,8 +147,8 @@ interface Resources {
                   template: "{{COUNTER}} Followers";
                 },
                 {
-                  name: "Twitch views";
-                  template: "{{COUNTER}} Views";
+                  name: "Twitch viewers";
+                  template: "Viewers: {{COUNTER}}";
                 },
               ];
             };
