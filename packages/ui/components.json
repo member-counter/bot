@@ -10,8 +10,10 @@
     "cssVariables": true
   },
   "aliases": {
+    "ui": "@mc/ui",
     "utils": "@mc/ui",
-    "components": "src/",
-    "ui": "src/"
+    "components": "@mc/ui",
+    "hooks": "@mc/ui/hooks",
+    "lib": "@mc/ui/lib"
   }
 }

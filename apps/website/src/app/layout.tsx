@@ -2,6 +2,8 @@ import "~/globals.css";
 
 import { Inter } from "next/font/google";
 
+import { Toaster } from "@mc/ui/toaster";
+
 import { I18nProvider } from "~/i18n/client";
 import { TRPCReactProvider } from "~/trpc/react";
 import NavBar from "./components/NavBar";
@@ -33,6 +35,7 @@ export default function RootLayout({
             <ProgressBarProvider>{children}</ProgressBarProvider>
           </TRPCReactProvider>
         </I18nProvider>
+        <Toaster />
       </body>
     </html>
   );

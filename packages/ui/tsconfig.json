@@ -3,7 +3,11 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "ES2022"],
     "jsx": "preserve",
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "paths": {
+      "@mc/ui": ["./src"],
+      "@mc/ui/*": ["./src/*"]
+    }
   },
   "include": ["*.ts", "src"],
   "exclude": ["node_modules"]
