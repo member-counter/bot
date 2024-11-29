@@ -19,7 +19,10 @@
     "titleBar.activeBackground": "#ea580c",
     "titleBar.activeForeground": "#ffffff",
     "titleBar.inactiveBackground": "#b4531f",
-    "titleBar.inactiveForeground": "#bbbbbb"
+    "titleBar.inactiveForeground": "#bbbbbb",
+    "tab.activeBorder": "#0C0A09",
+    "statusBar.background": "#0C0A09",
+    "statusBar.foreground": "#ffffff"
   },
   "tailwindCSS.experimental.configFile": "./tooling/tailwind/web.ts",
   "typescript.enablePromptUseWorkspaceTsdk": true,
