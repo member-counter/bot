@@ -2,7 +2,7 @@ import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-import { DataSourceErrorTypes } from "@mc/services/DataSource/DataSourceEvaluator/DataSourceError";
+import { DataSourceErrorNames } from "@mc/common/KnownError/DataSourceError";
 import { Card } from "@mc/ui/card";
 import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
@@ -20,10 +20,10 @@ export function TemplateError() {
 
   if (!channelLog.data?.LastTemplateComputeError) return null;
 
-  let translationKey: (typeof DataSourceErrorTypes)[number] = "UNKNOWN";
+  let translationKey: (typeof DataSourceErrorNames)[number] = "UNKNOWN";
 
   const parsedError = z
-    .enum(DataSourceErrorTypes)
+    .enum(DataSourceErrorNames)
     .safeParse(channelLog.data.LastTemplateComputeError);
 
   if (parsedError.success) {
@@ -43,9 +43,7 @@ export function TemplateError() {
         </Label>
         <Card className="border border-destructive p-3">
           <pre className="w-full whitespace-pre-wrap">
-            {t(
-              `pages.dashboard.servers.channels.sections.TemplateError.errors.${translationKey}`,
-            )}
+            {t(`common.errors.DataSourceError.${translationKey}`)}
           </pre>
         </Card>
       </div>

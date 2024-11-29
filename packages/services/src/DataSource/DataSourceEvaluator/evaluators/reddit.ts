@@ -2,11 +2,11 @@ import assert from "assert";
 import { z } from "zod";
 
 import { DataSourceId, RedditDataSourceReturn } from "@mc/common/DataSource";
+import { KnownError } from "@mc/common/KnownError/index";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
-import { DataSourceError } from "../DataSourceError";
 
 const CACHE_LIFETIME = 15 * 60;
 
@@ -89,7 +89,13 @@ async function fetchData(
 export const redditEvaluator = new DataSourceEvaluator({
   id: DataSourceId.REDDIT,
   execute: async ({ options }) => {
-    assert(options.subreddit, new DataSourceError("REDDIT_MISSING_SUBREDDIT"));
+    assert(
+      options.subreddit,
+      new KnownError({
+        type: "DataSourceError",
+        name: "REDDIT_MISSING_SUBREDDIT",
+      }),
+    );
 
     return await fetchData(options.subreddit, options.return);
   },

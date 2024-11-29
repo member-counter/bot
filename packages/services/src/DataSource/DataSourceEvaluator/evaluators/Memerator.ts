@@ -2,12 +2,12 @@ import assert from "assert";
 import { z } from "zod";
 
 import { DataSourceId, MemeratorDataSourceReturn } from "@mc/common/DataSource";
+import { KnownError } from "@mc/common/KnownError/index";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
 import { env } from "../../../../env";
-import { DataSourceError } from "../DataSourceError";
 
 const CACHE_LIFETIME = 30 * 60;
 
@@ -70,7 +70,13 @@ async function fetchData(
 export const memeratorEvaluator = new DataSourceEvaluator({
   id: DataSourceId.MEMERATOR,
   execute: async ({ options }) => {
-    assert(options.username, new DataSourceError("MEMERATOR_MISSING_USERNAME"));
+    assert(
+      options.username,
+      new KnownError({
+        type: "DataSourceError",
+        name: "MEMERATOR_MISSING_USERNAME",
+      }),
+    );
 
     return Number(await fetchData(options.username, options.return));
   },

@@ -8,13 +8,14 @@ import {
   InteractionType,
 } from "discord.js";
 
+import { KnownError } from "@mc/common/KnownError/index";
+
 import { env } from "~/env";
 import { DiscordBrandingColors as Colors } from "../Constants";
 import { initI18n } from "../i18n";
 import handleCommand from "../interactions/commands";
 import { EventHandler } from "../structures";
 import { BaseEmbed } from "../utils/BaseMessageEmbed";
-import { UserError } from "../utils/UserError";
 
 export const interactionCreateEvent = new EventHandler({
   name: "interactionCreate",
@@ -33,7 +34,7 @@ export const interactionCreateEvent = new EventHandler({
       if (interaction.isRepliable()) {
         const embed = new BaseEmbed(interaction.client);
         const id = randomUUID();
-        let i18n: i18n;
+        let i18n: i18n | undefined = undefined;
         let title: string, description: string, supportServerBtn: string;
 
         try {
@@ -51,11 +52,17 @@ export const interactionCreateEvent = new EventHandler({
           supportServerBtn = "Join support server";
         }
 
-        if (error instanceof UserError) {
-          embed.setDescription(error.message);
-        } else {
+        embed.setDescription(
+          description.replaceAll("{{ERROR_ID}}", inlineCode(id)),
+        );
+
+        if (
+          error instanceof KnownError &&
+          i18n &&
+          error.cause.type === "UserError"
+        ) {
           embed.setDescription(
-            description.replaceAll("{{ERROR_ID}}", inlineCode(id)),
+            i18n.t(`errors.${error.cause.type}.${error.cause.name}`),
           );
         }
 

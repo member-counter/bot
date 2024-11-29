@@ -9,6 +9,7 @@ import {
 import { ApplicationCommandType, ButtonStyle, ComponentType } from "discord.js";
 
 import { BitField } from "@mc/common/BitField";
+import { KnownError } from "@mc/common/KnownError/index";
 import { Routes } from "@mc/common/Routes";
 import {
   UserBadges,
@@ -22,7 +23,6 @@ import { UserSettingsService } from "@mc/services/userSettings";
 import { env } from "~/env";
 import { BaseEmbed } from "~/utils/BaseMessageEmbed";
 import { prepareLocalization } from "~/utils/prepareLocalization";
-import { UserError } from "~/utils/UserError";
 import { throwUnsupported } from ".";
 import { Command } from "../../structures";
 
@@ -89,7 +89,10 @@ export const profileCommand = new Command({
       targetUser.id,
     ).catch((error) => {
       if (error instanceof NotFoundError) {
-        throw new UserError(t("interaction.commands.profile.userNotFound"));
+        throw new KnownError({
+          type: "UserError",
+          name: "USER_NOT_FOUND",
+        });
       }
       throw error;
     });

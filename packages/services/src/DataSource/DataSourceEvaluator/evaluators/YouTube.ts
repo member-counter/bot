@@ -2,12 +2,12 @@ import assert from "assert";
 import { z } from "zod";
 
 import { DataSourceId, YouTubeDataSourceReturn } from "@mc/common/DataSource";
+import { KnownError } from "@mc/common/KnownError/index";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
 import { env } from "../../../../env";
-import { DataSourceError } from "../DataSourceError";
 
 const resolveToChannelIdValidator = z.object({
   items: z.array(
@@ -163,9 +163,18 @@ export const youTubeEvaluator = new DataSourceEvaluator({
   id: DataSourceId.YOUTUBE,
   execute: async ({ ctx, options: { channelUrl, return: returnType } }) => {
     const { isPremium } = ctx.guild.client.botInstanceOptions;
-    assert(isPremium, new DataSourceError("BOT_IS_NOT_PREMIUM"));
+    assert(
+      isPremium,
+      new KnownError({ type: "DataSourceError", name: "BOT_IS_NOT_PREMIUM" }),
+    );
     assert(env.YOUTUBE_API_KEY, new Error("YOUTUBE_API_KEY not provided"));
-    assert(channelUrl, new DataSourceError("YOUTUBE_MISSING_CHANNEL_URL"));
+    assert(
+      channelUrl,
+      new KnownError({
+        type: "DataSourceError",
+        name: "YOUTUBE_MISSING_CHANNEL_URL",
+      }),
+    );
 
     let searchChannel: string | undefined = "";
     let searchChannelBy: "id" | "forUsername" | undefined;
@@ -185,7 +194,10 @@ export const youTubeEvaluator = new DataSourceEvaluator({
 
     assert(
       searchChannel && searchChannelBy,
-      new DataSourceError("YOUTUBE_INVALID_CHANNEL_URL"),
+      new KnownError({
+        type: "DataSourceError",
+        name: "YOUTUBE_INVALID_CHANNEL_URL",
+      }),
     );
 
     return await fetchData(searchChannel, searchChannelBy, returnType);

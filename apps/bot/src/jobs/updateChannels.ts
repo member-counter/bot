@@ -3,13 +3,13 @@ import type { Client, Guild } from "discord.js";
 import { Redlock } from "@sesamecare-oss/redlock";
 import { ChannelType } from "discord.js";
 
+import { KnownError } from "@mc/common/KnownError/index";
 import {
   advertiseEvaluatorPriorityKey,
   discordAPIIntensiveOperationLockKey,
   updateChannelsQueueKey,
 } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
-import { DataSourceError } from "@mc/services/DataSource/DataSourceEvaluator/DataSourceError";
 import DataSourceService from "@mc/services/DataSource/index";
 import { GuildSettingsService } from "@mc/services/guildSettings";
 
@@ -44,9 +44,10 @@ async function updateGuildChannels(
         await GuildSettingsService.channels.logs
           .set(channel.id, {
             LastTemplateUpdateDate: new Date(),
-            LastTemplateComputeError: new DataSourceError(
-              "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL",
-            ).message,
+            LastTemplateComputeError: new KnownError({
+              type: "DataSourceError",
+              name: "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL",
+            }).message,
           })
           .catch(logger.error);
 

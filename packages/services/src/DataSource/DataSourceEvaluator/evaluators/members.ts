@@ -6,10 +6,10 @@ import {
   MembersFilterAccountType,
   MembersFilterStatus,
 } from "@mc/common/DataSource";
+import { KnownError } from "@mc/common/KnownError/index";
 
 import type { DataSourceContext } from "..";
 import { DataSourceEvaluator } from "..";
-import { DataSourceError } from "../DataSourceError";
 
 const fetchedGuildsBans = new Set();
 const PresenceStatusMap: Record<PresenceStatus, MembersFilterStatus> = {
@@ -24,8 +24,15 @@ const throwAvailabiltyIssue = (ctx: DataSourceContext) => {
   const { isPremium } = ctx.guild.client.botInstanceOptions;
 
   if (isPremium)
-    throw new DataSourceError("BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS");
-  else throw new DataSourceError("BOT_IS_NOT_PREMIUM");
+    throw new KnownError({
+      type: "DataSourceError",
+      name: "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS",
+    });
+  else
+    throw new KnownError({
+      type: "DataSourceError",
+      name: "BOT_IS_NOT_PREMIUM",
+    });
 };
 
 const executeUnprivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["execute"] =
@@ -52,7 +59,11 @@ const executeUnprivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["exec
       throwAvailabiltyIssue(ctx);
     }
 
-    if (!count) throw new DataSourceError("MEMBER_COUNT_NOT_AVAILABLE");
+    if (!count)
+      throw new KnownError({
+        type: "DataSourceError",
+        name: "MEMBER_COUNT_NOT_AVAILABLE",
+      });
 
     return count;
   };

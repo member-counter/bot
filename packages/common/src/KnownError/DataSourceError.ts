@@ -1,4 +1,4 @@
-export const DataSourceErrorTypes = [
+export const DataSourceErrorNames = [
   "UNKNOWN",
   "UNKNOWN_DATA_SOURCE",
   "UNKNOWN_EVALUATION_RETURN_TYPE",
@@ -25,8 +25,7 @@ export const DataSourceErrorTypes = [
   "MEMBER_COUNT_NOT_AVAILABLE",
 ] as const;
 
-export class DataSourceError extends Error {
-  constructor(message: (typeof DataSourceErrorTypes)[number]) {
-    super(message);
-  }
+export interface DataSourceError {
+  type: "DataSourceError";
+  name: (typeof DataSourceErrorNames)[number];
 }

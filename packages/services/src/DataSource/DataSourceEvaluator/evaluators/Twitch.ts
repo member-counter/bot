@@ -3,12 +3,12 @@ import { ApiClient } from "@twurple/api";
 import { AppTokenAuthProvider } from "@twurple/auth";
 
 import { DataSourceId, TwitchDataSourceReturn } from "@mc/common/DataSource";
+import { KnownError } from "@mc/common/KnownError/index";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
 import { env } from "../../../../env";
-import { DataSourceError } from "../DataSourceError";
 
 function createClient() {
   if (env.TWITCH_CLIENT_ID == null || env.TWITCH_CLIENT_SECRET == null) return;
@@ -58,7 +58,10 @@ async function fetchData(
   const channel = await client.users.getUserByName(username);
 
   if (!channel) {
-    throw new DataSourceError("TWITCH_CHANNEL_NOT_FOUND");
+    throw new KnownError({
+      type: "DataSourceError",
+      name: "TWITCH_CHANNEL_NOT_FOUND",
+    });
   }
 
   const stream = await client.streams.getStreamByUserName(username);
@@ -104,8 +107,17 @@ export const twitchEvaluator = new DataSourceEvaluator({
   id: DataSourceId.TWITCH,
   execute: ({ ctx, options }) => {
     const { isPremium } = ctx.guild.client.botInstanceOptions;
-    assert(isPremium, new DataSourceError("BOT_IS_NOT_PREMIUM"));
-    assert(options.username, new DataSourceError("TWITCH_MISSING_USERNAME"));
+    assert(
+      isPremium,
+      new KnownError({ type: "DataSourceError", name: "BOT_IS_NOT_PREMIUM" }),
+    );
+    assert(
+      options.username,
+      new KnownError({
+        type: "DataSourceError",
+        name: "TWITCH_MISSING_USERNAME",
+      }),
+    );
 
     return fetchData(options.username, options.return);
   },

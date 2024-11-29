@@ -3,11 +3,11 @@ import { z } from "zod";
 
 import { DataSourceId } from "@mc/common/DataSource";
 import jsonBodyExtractor from "@mc/common/jsonBodyExtractor";
+import { KnownError } from "@mc/common/KnownError/index";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
-import { DataSourceError } from "../DataSourceError";
 
 const cachedValueValidator = z.object({
   body: z.string(),
@@ -33,14 +33,20 @@ async function fetchData(url: string, lifetime?: number) {
 
   assert(
     response.status === 200,
-    new DataSourceError("HTTP_INVALID_RESPONSE_STATUS_CODE"),
+    new KnownError({
+      type: "DataSourceError",
+      name: "HTTP_INVALID_RESPONSE_STATUS_CODE",
+    }),
   );
 
   const contentType = response.headers.get("Content-Type")?.split(";")[0] ?? "";
 
   assert(
     ["text/plain", "application/json"].includes(contentType),
-    new DataSourceError("HTTP_INVALID_RESPONSE_CONTENT_TYPE"),
+    new KnownError({
+      type: "DataSourceError",
+      name: "HTTP_INVALID_RESPONSE_CONTENT_TYPE",
+    }),
   );
 
   const body = await response.text();
@@ -57,7 +63,10 @@ async function fetchData(url: string, lifetime?: number) {
 export const HTTPEvaluator = new DataSourceEvaluator({
   id: DataSourceId.HTTP,
   execute: async ({ options }) => {
-    assert(options.url, new DataSourceError("HTTP_MISSING_URL"));
+    assert(
+      options.url,
+      new KnownError({ type: "DataSourceError", name: "HTTP_MISSING_URL" }),
+    );
 
     const { body, contentType } = await fetchData(
       options.url,
@@ -65,7 +74,13 @@ export const HTTPEvaluator = new DataSourceEvaluator({
     );
 
     if (contentType === "application/json") {
-      assert(options.dataPath, new DataSourceError("HTTP_DATA_PATH_MANDATORY"));
+      assert(
+        options.dataPath,
+        new KnownError({
+          type: "DataSourceError",
+          name: "HTTP_DATA_PATH_MANDATORY",
+        }),
+      );
 
       return jsonBodyExtractor(JSON.parse(body), options.dataPath);
     } else {
