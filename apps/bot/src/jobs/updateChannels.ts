@@ -44,10 +44,9 @@ async function updateGuildChannels(
         await GuildSettingsService.channels.logs
           .set(channel.id, {
             LastTemplateUpdateDate: new Date(),
-            LastTemplateComputeError: new KnownError({
-              type: "DataSourceError",
-              name: "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL",
-            }).message,
+            LastTemplateComputeError: new KnownError(
+              "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL",
+            ).message,
           })
           .catch(logger.error);
 

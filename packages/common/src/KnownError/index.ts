@@ -1,10 +1,17 @@
-import type { DataSourceError } from "./DataSourceError";
-import type { UserError } from "./UserError";
+import { DataSourceErrorNames } from "./DataSourceError";
+import { UserErrorNames } from "./UserError";
 
-export type ErrorCause = DataSourceError | UserError;
+export const KnownErrorsTypeNames = [
+  ...DataSourceErrorNames,
+  ...UserErrorNames,
+] as const;
+export type KnownErrorType = (typeof KnownErrorsTypeNames)[number];
 
 export class KnownError extends Error {
-  constructor(public cause: ErrorCause) {
-    super(cause.type, { cause });
+  constructor(
+    public message: KnownErrorType,
+    options?: ErrorOptions,
+  ) {
+    super(message, options);
   }
 }

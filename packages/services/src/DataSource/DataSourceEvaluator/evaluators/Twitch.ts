@@ -58,10 +58,7 @@ async function fetchData(
   const channel = await client.users.getUserByName(username);
 
   if (!channel) {
-    throw new KnownError({
-      type: "DataSourceError",
-      name: "TWITCH_CHANNEL_NOT_FOUND",
-    });
+    throw new KnownError("TWITCH_CHANNEL_NOT_FOUND");
   }
 
   const stream = await client.streams.getStreamByUserName(username);
@@ -107,17 +104,8 @@ export const twitchEvaluator = new DataSourceEvaluator({
   id: DataSourceId.TWITCH,
   execute: ({ ctx, options }) => {
     const { isPremium } = ctx.guild.client.botInstanceOptions;
-    assert(
-      isPremium,
-      new KnownError({ type: "DataSourceError", name: "BOT_IS_NOT_PREMIUM" }),
-    );
-    assert(
-      options.username,
-      new KnownError({
-        type: "DataSourceError",
-        name: "TWITCH_MISSING_USERNAME",
-      }),
-    );
+    assert(isPremium, new KnownError("BOT_IS_NOT_PREMIUM"));
+    assert(options.username, new KnownError("TWITCH_MISSING_USERNAME"));
 
     return fetchData(options.username, options.return);
   },

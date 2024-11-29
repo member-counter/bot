@@ -89,10 +89,7 @@ export const profileCommand = new Command({
       targetUser.id,
     ).catch((error) => {
       if (error instanceof NotFoundError) {
-        throw new KnownError({
-          type: "UserError",
-          name: "USER_NOT_FOUND",
-        });
+        throw new KnownError("USER_NOT_FOUND");
       }
       throw error;
     });

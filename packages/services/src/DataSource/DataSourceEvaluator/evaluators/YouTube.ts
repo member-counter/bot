@@ -163,18 +163,9 @@ export const youTubeEvaluator = new DataSourceEvaluator({
   id: DataSourceId.YOUTUBE,
   execute: async ({ ctx, options: { channelUrl, return: returnType } }) => {
     const { isPremium } = ctx.guild.client.botInstanceOptions;
-    assert(
-      isPremium,
-      new KnownError({ type: "DataSourceError", name: "BOT_IS_NOT_PREMIUM" }),
-    );
+    assert(isPremium, new KnownError("BOT_IS_NOT_PREMIUM"));
     assert(env.YOUTUBE_API_KEY, new Error("YOUTUBE_API_KEY not provided"));
-    assert(
-      channelUrl,
-      new KnownError({
-        type: "DataSourceError",
-        name: "YOUTUBE_MISSING_CHANNEL_URL",
-      }),
-    );
+    assert(channelUrl, new KnownError("YOUTUBE_MISSING_CHANNEL_URL"));
 
     let searchChannel: string | undefined = "";
     let searchChannelBy: "id" | "forUsername" | undefined;
@@ -194,10 +185,7 @@ export const youTubeEvaluator = new DataSourceEvaluator({
 
     assert(
       searchChannel && searchChannelBy,
-      new KnownError({
-        type: "DataSourceError",
-        name: "YOUTUBE_INVALID_CHANNEL_URL",
-      }),
+      new KnownError("YOUTUBE_INVALID_CHANNEL_URL"),
     );
 
     return await fetchData(searchChannel, searchChannelBy, returnType);

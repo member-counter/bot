@@ -48,10 +48,9 @@ class DataSourceService {
       result = result.slice(0, 1023);
     } else {
       if (result.length < 2)
-        throw new KnownError({
-          type: "DataSourceError",
-          name: "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS",
-        });
+        throw new KnownError(
+          "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS",
+        );
       result = result.slice(0, 99);
     }
 
@@ -87,10 +86,7 @@ class DataSourceService {
 
     assert(
       typeof result === "number" || typeof result === "string",
-      new KnownError({
-        type: "DataSourceError",
-        name: "UNKNOWN_EVALUATION_RETURN_TYPE",
-      }),
+      new KnownError("UNKNOWN_EVALUATION_RETURN_TYPE"),
     );
 
     if (typeof result === "number" && !isNaN(result)) {
@@ -119,10 +115,7 @@ class DataSourceService {
 
     assert(
       typeof result === "string",
-      new KnownError({
-        type: "DataSourceError",
-        name: "FAILED_TO_RETURN_A_FINAL_STRING",
-      }),
+      new KnownError("FAILED_TO_RETURN_A_FINAL_STRING"),
     );
 
     return result;
@@ -192,10 +185,7 @@ class DataSourceService {
   }): Promise<DataSourceExecuteResult> {
     const dataSourceEvaluator = DataSourceService.dataSourceEvaluators[id];
 
-    assert(
-      dataSourceEvaluator,
-      new KnownError({ type: "DataSourceError", name: "UNKNOWN_DATA_SOURCE" }),
-    );
+    assert(dataSourceEvaluator, new KnownError("UNKNOWN_DATA_SOURCE"));
 
     return await dataSourceEvaluator.execute({
       format,
@@ -210,17 +200,11 @@ class DataSourceService {
     try {
       parsed = JSON.parse(unparsedRawDataSource) as DataSource;
     } catch {
-      throw new KnownError({
-        type: "DataSourceError",
-        name: "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON",
-      });
+      throw new KnownError("DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON");
     }
 
     if (!Object.prototype.hasOwnProperty.call(parsed, "id"))
-      throw new KnownError({
-        type: "DataSourceError",
-        name: "DELIMITED_DATA_SOURCE_IS_INVALID",
-      });
+      throw new KnownError("DELIMITED_DATA_SOURCE_IS_INVALID");
 
     return parsed;
   }

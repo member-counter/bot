@@ -33,20 +33,14 @@ async function fetchData(url: string, lifetime?: number) {
 
   assert(
     response.status === 200,
-    new KnownError({
-      type: "DataSourceError",
-      name: "HTTP_INVALID_RESPONSE_STATUS_CODE",
-    }),
+    new KnownError("HTTP_INVALID_RESPONSE_STATUS_CODE"),
   );
 
   const contentType = response.headers.get("Content-Type")?.split(";")[0] ?? "";
 
   assert(
     ["text/plain", "application/json"].includes(contentType),
-    new KnownError({
-      type: "DataSourceError",
-      name: "HTTP_INVALID_RESPONSE_CONTENT_TYPE",
-    }),
+    new KnownError("HTTP_INVALID_RESPONSE_CONTENT_TYPE"),
   );
 
   const body = await response.text();
@@ -63,10 +57,7 @@ async function fetchData(url: string, lifetime?: number) {
 export const HTTPEvaluator = new DataSourceEvaluator({
   id: DataSourceId.HTTP,
   execute: async ({ options }) => {
-    assert(
-      options.url,
-      new KnownError({ type: "DataSourceError", name: "HTTP_MISSING_URL" }),
-    );
+    assert(options.url, new KnownError("HTTP_MISSING_URL"));
 
     const { body, contentType } = await fetchData(
       options.url,
@@ -74,13 +65,7 @@ export const HTTPEvaluator = new DataSourceEvaluator({
     );
 
     if (contentType === "application/json") {
-      assert(
-        options.dataPath,
-        new KnownError({
-          type: "DataSourceError",
-          name: "HTTP_DATA_PATH_MANDATORY",
-        }),
-      );
+      assert(options.dataPath, new KnownError("HTTP_DATA_PATH_MANDATORY"));
 
       return jsonBodyExtractor(JSON.parse(body), options.dataPath);
     } else {

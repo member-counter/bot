@@ -178,10 +178,32 @@ interface Resources {
         "computeError": "ERROR!"
       }
     },
-    "errors": {
-      "UserError": {
-        "USER_NOT_FOUND": "User not found."
-      }
+    "knownErrors": {
+      "USER_NOT_FOUND": "User not found.",
+      "UNKNOWN": "An unknown error occurred.",
+      "UNKNOWN_DATA_SOURCE": "The counter provided is unknown or not recognized.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "The type of value returned from evaluation is unknown.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Failed to generate a final string from the evaluation.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "The counter is in a unrecognized format",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "The counter is invalid.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "The result for the channel name is less than 2 characters long.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "The bot does not have sufficient permissions to edit the channel.",
+      "MEMERATOR_MISSING_USERNAME": "The Memerator counter requires a username, which is missing.",
+      "REDDIT_MISSING_SUBREDDIT": "A subreddit must be provided for the Reddit coutner.",
+      "TWITCH_MISSING_USERNAME": "The Twitch counter requires a username to be set.",
+      "TWITCH_CHANNEL_NOT_FOUND": "The specified Twitch channel could not be found.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "The YouTube counter requires a channel URL to be set.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "The provided YouTube channel URL is invalid.",
+      "HTTP_MISSING_URL": "The HTTP counter requires a URL, which is missing.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "The content type of the HTTP response is invalid (not text/plain or application/json).",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "The HTTP response status code is invalid (not 200).",
+      "HTTP_DATA_PATH_MANDATORY": "A data path must be specified for HTTP requests whose content type is application/json.",
+      "GAME_MISSING_ADDRESS": "The game counter requires a server address.",
+      "GAME_MISSING_PORT": "The game counter requires a server port.",
+      "GAME_MISSING_GAME_ID": "A game ID must be provided for the game counter.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "The bot does not have enough privileged intents to use this counter.",
+      "BOT_IS_NOT_PREMIUM": "The bot is not a premium version and lacks certain features needed for this counter.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "The member counts are not available at this moment."
     }
   }
 }

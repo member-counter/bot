@@ -25,7 +25,4 @@ export const DataSourceErrorNames = [
   "MEMBER_COUNT_NOT_AVAILABLE",
 ] as const;
 
-export interface DataSourceError {
-  type: "DataSourceError";
-  name: (typeof DataSourceErrorNames)[number];
-}
+export type DataSourceError = (typeof DataSourceErrorNames)[number];

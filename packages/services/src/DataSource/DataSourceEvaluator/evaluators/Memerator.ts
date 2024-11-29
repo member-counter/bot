@@ -70,13 +70,7 @@ async function fetchData(
 export const memeratorEvaluator = new DataSourceEvaluator({
   id: DataSourceId.MEMERATOR,
   execute: async ({ options }) => {
-    assert(
-      options.username,
-      new KnownError({
-        type: "DataSourceError",
-        name: "MEMERATOR_MISSING_USERNAME",
-      }),
-    );
+    assert(options.username, new KnownError("MEMERATOR_MISSING_USERNAME"));
 
     return Number(await fetchData(options.username, options.return));
   },

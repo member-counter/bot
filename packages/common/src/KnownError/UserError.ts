@@ -1,4 +1,3 @@
-export interface UserError {
-  type: "UserError";
-  name: "USER_NOT_FOUND";
-}
+export const UserErrorNames = ["USER_NOT_FOUND"] as const;
+
+export type UserError = (typeof UserErrorNames)[number];

@@ -56,14 +56,8 @@ export const interactionCreateEvent = new EventHandler({
           description.replaceAll("{{ERROR_ID}}", inlineCode(id)),
         );
 
-        if (
-          error instanceof KnownError &&
-          i18n &&
-          error.cause.type === "UserError"
-        ) {
-          embed.setDescription(
-            i18n.t(`errors.${error.cause.type}.${error.cause.name}`),
-          );
+        if (error instanceof KnownError && i18n) {
+          embed.setDescription(i18n.t(`knownErrors.${error.message}`));
         }
 
         logger.error(`Interaction error`, { error, interaction });

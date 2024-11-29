@@ -89,13 +89,7 @@ async function fetchData(
 export const redditEvaluator = new DataSourceEvaluator({
   id: DataSourceId.REDDIT,
   execute: async ({ options }) => {
-    assert(
-      options.subreddit,
-      new KnownError({
-        type: "DataSourceError",
-        name: "REDDIT_MISSING_SUBREDDIT",
-      }),
-    );
+    assert(options.subreddit, new KnownError("REDDIT_MISSING_SUBREDDIT"));
 
     return await fetchData(options.subreddit, options.return);
   },
