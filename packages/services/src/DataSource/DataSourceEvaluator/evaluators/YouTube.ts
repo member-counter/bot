@@ -9,15 +9,6 @@ import { redis } from "@mc/redis";
 import { DataSourceEvaluator } from "..";
 import { env } from "../../../../env";
 
-const resolveToChannelIdValidator = z.object({
-  items: z.array(
-    z.object({
-      id: z.object({
-        channelId: z.string(),
-      }),
-    }),
-  ),
-});
 const channelValidator = z.object({
   items: z.array(
     z.object({
@@ -36,48 +27,22 @@ const channelValidator = z.object({
 const legacyUsernameChannelMatch =
   /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/(user|c)\//;
 const handleUsernameChannelMatch =
-  /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/@/;
+  /^(((http|https):\/\/|)(www\.|m\.)?youtube\.com\/)?@/;
 const idChannelMatch =
   /^((http|https):\/\/|)(www\.|m\.)?youtube\.com\/channel\//;
 
 const CACHE_LIFETIME = 60 * 60;
 
-function toCacheKey(
-  channel: string,
-  returnType: YouTubeDataSourceReturn | "resolved@username",
-) {
+function toCacheKey(channel: string, returnType: YouTubeDataSourceReturn) {
   return dataSourceCacheKey(
     DataSourceId.REDDIT,
     [channel, returnType].join(":"),
   );
 }
 
-async function resolveToChannelId(handleUsername: string) {
-  const cachedValue = await redis.get(
-    toCacheKey(handleUsername, "resolved@username"),
-  );
-  if (cachedValue) return cachedValue;
-
-  const channelId = await fetch(
-    `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${handleUsername}&type=channel&key=${env.YOUTUBE_API_KEY}`,
-    { signal: AbortSignal.timeout(5000) },
-  )
-    .then((response) => response.json())
-    .then((o) => resolveToChannelIdValidator.parse(o))
-    .then((o) => o.items[0]?.id.channelId);
-
-  await redis.set(
-    toCacheKey(handleUsername, "resolved@username"),
-    channelId ?? "",
-    "EX",
-    60 * 60 * 24 * 7,
-  );
-  return channelId;
-}
-
 async function fetchData(
   searchChannel: string,
-  searchChannelBy: "id" | "forUsername",
+  searchChannelBy: "id" | "forUsername" | "forHandle",
   returnType: YouTubeDataSourceReturn = YouTubeDataSourceReturn.SUBSCRIBERS,
 ) {
   const cachedValue = await redis.get(
@@ -167,17 +132,15 @@ export const youTubeEvaluator = new DataSourceEvaluator({
     assert(env.YOUTUBE_API_KEY, new Error("YOUTUBE_API_KEY not provided"));
     assert(channelUrl, new KnownError("YOUTUBE_MISSING_CHANNEL_URL"));
 
-    let searchChannel: string | undefined = "";
-    let searchChannelBy: "id" | "forUsername" | undefined;
+    let searchChannel: string | undefined;
+    let searchChannelBy: "id" | "forUsername" | "forHandle" | undefined;
 
     if (legacyUsernameChannelMatch.test(channelUrl)) {
       searchChannelBy = "forUsername";
       searchChannel = channelUrl.replace(legacyUsernameChannelMatch, "");
     } else if (handleUsernameChannelMatch.test(channelUrl)) {
-      searchChannelBy = "id";
-      searchChannel = await resolveToChannelId(
-        channelUrl.replace(handleUsernameChannelMatch, ""),
-      );
+      searchChannelBy = "forHandle";
+      searchChannel = channelUrl.replace(handleUsernameChannelMatch, "");
     } else if (idChannelMatch.test(channelUrl)) {
       searchChannelBy = "id";
       searchChannel = channelUrl.replace(idChannelMatch, "");
