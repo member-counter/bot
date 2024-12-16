@@ -38,6 +38,7 @@ ENV NODE_ENV='production'\
     NEXT_PUBLIC_SENTRY_ADMIN_URL='https://sentry.membercounter.app/'
 
 RUN pnpm turbo run build --filter=@mc/website
+RUN cp -r ./apps/website/public ./apps/website/.next/standalone/ && cp -r ./apps/website/.next/static ./apps/website/.next/standalone/.next/
  
 FROM base AS runner
 WORKDIR /app
@@ -53,7 +54,6 @@ RUN chown nextjs:nodejs .next
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/static ./.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/website/public ./public
 
 USER nextjs
 
@@ -61,4 +61,4 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-CMD ["node", "server.js"]
+CMD ["node", "/app/apps/website/server.js"]
