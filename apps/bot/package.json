@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "clean": "git clean -xdf .next .turbo node_modules",
-    "build": "pnpm run generate-i18next-res; tsup-node",
+    "prebuild": "pnpm run generate-i18next-res",
+    "build": "tsup-node",
     "dev": "pnpm with-env pnpm build --watch . --watch ../../packages --onSuccess \"node dist/index.js\"",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",

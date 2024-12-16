@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm run generate-i18next-res; pnpm with-env next build --experimental-build-mode compile",
+    "prebuild": "pnpm run generate-i18next-res",
+    "build": "pnpm with-env next build --experimental-build-mode compile",
     "clean": "git clean -xdf .next .turbo node_modules",
     "dev": "pnpm with-env next dev",
     "format": "prettier --check . --ignore-path ../../.gitignore",
