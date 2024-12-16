@@ -38,8 +38,7 @@ ENV NODE_ENV='production'\
     NEXT_PUBLIC_SENTRY_ADMIN_URL='https://sentry.membercounter.app/'
 
 RUN pnpm turbo run build --filter=@mc/website
-RUN cp -r ./apps/website/public ./apps/website/.next/standalone/ && cp -r ./apps/website/.next/static ./apps/website/.next/standalone/.next/
- 
+
 FROM base AS runner
 WORKDIR /app
 
@@ -52,8 +51,9 @@ RUN chown nextjs:nodejs .next
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/static ./.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/standalone/apps/website /app
+COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/static /app/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/website/public /app/public
 
 USER nextjs
 
@@ -61,4 +61,4 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-CMD ["node", "/app/apps/website/server.js"]
+CMD ["node", "server.js"]
