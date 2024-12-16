@@ -53,6 +53,7 @@ RUN chown nextjs:nodejs .next
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/static ./apps/website/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/website/public ./public
 
 USER nextjs
 
