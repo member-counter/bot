@@ -48,5 +48,5 @@
       "label": "Packages"
     }
   ],
-  "colorTabs.titleLabel": true
+  "colorTabs.titleLabel": false
 }
