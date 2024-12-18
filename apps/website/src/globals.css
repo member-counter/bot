@@ -93,3 +93,10 @@ img.emoji {
     background-color: #626262;
   }
 }
+
+@-moz-document url-prefix() {
+  body {
+    scrollbar-width: thin;
+    scrollbar-color: #959595 transparent;
+  }
+}
