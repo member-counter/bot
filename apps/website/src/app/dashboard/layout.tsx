@@ -57,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           isPending={!userGuildsQuery.isFetched}
           className={cn(
             overflowClass,
-            "mb-0 bg-black pb-3 pt-[68px] transition-all duration-100",
+            "mb-0 overflow-x-hidden bg-black pb-3 pt-[68px] transition-all duration-100",
             {
               "ml-[-72px] mr-[8px] sm:ml-[0] sm:mr-[0]": !isMenuOpen,
             },

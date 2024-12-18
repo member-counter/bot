@@ -35,7 +35,7 @@ function DataSourceFormatDigitInputInner({
         placeholder={digitNumber.toString()}
         aria-label={`Custom digit ${digitNumber}`}
         tabIndex={0}
-        className="no-scrollbar flex-grow overflow-y-hidden overflow-x-scroll [&>*]:whitespace-pre"
+        className="no-scrollbar flex-grow overflow-hidden [&>*]:whitespace-pre"
       />
       <EmojiPicker className="relative right-[-10px] top-[-5px] h-[33px] rounded-[4px] px-[9px] text-muted-foreground hover:bg-transparent" />
     </InputWrapper>
