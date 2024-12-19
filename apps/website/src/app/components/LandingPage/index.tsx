@@ -83,7 +83,7 @@ export default function LandingPage() {
             {subheadings[currentSubheading]}
           </TextTransition>
         </h2>
-        <div className="mt-6 flex w-full flex-col gap-2 px-2 sm:mt-3 sm:w-auto sm:flex-row">
+        <div className="mt-6 flex w-full flex-col gap-2 px-2 sm:mt-3 sm:w-auto sm:flex-row [&>*>*]:w-full">
           <Link href={Routes.Invite()}>
             <Button icon={DiscordIcon}>Add to Discord</Button>
           </Link>
