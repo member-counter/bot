@@ -39,6 +39,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        landingCard: {
+          DEFAULT: "hsl(var(--card-landing))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
       borderColor: {
         DEFAULT: "hsl(var(--border))",
