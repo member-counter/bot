@@ -51,7 +51,7 @@ function TemplateEditorInputLayout({
         "flex-col gap-2 px-2",
         {
           "h-auto min-h-40": target === "channelTopic",
-          "h-[82px]": target === "channelName",
+          "h-[92px]": target === "channelName",
         },
         className,
       )}
