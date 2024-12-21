@@ -12,6 +12,7 @@ Read this guide to setup this bot using docker: https://docs.membercounter.app/g
 
 ## Software requirements
 
+- Linux-based operating system (i.e. [Ubuntu](https://ubuntu.com/download), [RHEL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux), [SUSE](https://get.opensuse.org/) and others)
 - [Git](https://git-scm.com/downloads)
 - [NodeJS 20](https://nodejs.org/en/download/)
 - [Docker](https://www.docker.com/get-started)
