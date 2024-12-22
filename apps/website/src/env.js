@@ -18,6 +18,9 @@ export const env = createEnv({
     DISCORD_CLIENT_ID: z.string(),
     DISCORD_CLIENT_SECRET: z.string(),
     DISCORD_OAUTH2_REDIRECT_URI: z.string(),
+    PUBLIC_BOTS_IDS: z.string().transform((s) => {
+      return z.string().array().parse(JSON.parse(s));
+    }),
   },
 
   /**
@@ -38,6 +41,7 @@ export const env = createEnv({
     DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     DISCORD_OAUTH2_REDIRECT_URI: process.env.DISCORD_OAUTH2_REDIRECT_URI,
+    PUBLIC_BOTS_IDS: process.env.PUBLIC_BOTS_IDS,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

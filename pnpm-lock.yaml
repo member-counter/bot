@@ -146,13 +146,13 @@ importers:
         version: 5.59.0(react@18.3.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.648(@trpc/server@11.0.0-rc.648(typescript@5.4.5))(typescript@5.4.5)
+        version: 11.0.0-rc.666(@trpc/server@11.0.0-rc.666(typescript@5.4.5))(typescript@5.4.5)
       '@trpc/react-query':
         specifier: next
-        version: 11.0.0-rc.648(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.648(@trpc/server@11.0.0-rc.648(typescript@5.4.5))(typescript@5.4.5))(@trpc/server@11.0.0-rc.648(typescript@5.4.5))(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(typescript@5.4.5)
+        version: 11.0.0-rc.666(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.666(@trpc/server@11.0.0-rc.666(typescript@5.4.5))(typescript@5.4.5))(@trpc/server@11.0.0-rc.666(typescript@5.4.5))(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(typescript@5.4.5)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.648(typescript@5.4.5)
+        version: 11.0.0-rc.666(typescript@5.4.5)
       '@tsparticles/basic':
         specifier: ^3.5.0
         version: 3.5.0
@@ -207,6 +207,9 @@ importers:
       node-loader:
         specifier: ^2.0.0
         version: 2.0.0(webpack@5.91.0)
+      pretty-bytes:
+        specifier: ^6.1.1
+        version: 6.1.1
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
@@ -499,10 +502,10 @@ importers:
         version: 1.2.1(ioredis@5.4.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.648(@trpc/server@11.0.0-rc.648(typescript@5.4.5))(typescript@5.4.5)
+        version: 11.0.0-rc.666(@trpc/server@11.0.0-rc.666(typescript@5.4.5))(typescript@5.4.5)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.648(typescript@5.4.5)
+        version: 11.0.0-rc.666(typescript@5.4.5)
       discord.js:
         specifier: ^14.15.2
         version: 14.15.2(bufferutil@4.0.8)(utf-8-validate@6.0.3)
@@ -545,7 +548,7 @@ importers:
         version: 11.0.0-next-beta.216
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.648(typescript@5.4.5)
+        version: 11.0.0-rc.666(typescript@5.4.5)
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
@@ -2319,27 +2322,27 @@ packages:
   '@total-typescript/ts-reset@0.5.1':
     resolution: {integrity: sha512-AqlrT8YA1o7Ff5wPfMOL0pvL+1X+sw60NN6CcOCqs658emD6RfiXhF7Gu9QcfKBH7ELY2nInLhKSCWVoNL70MQ==}
 
-  '@trpc/client@11.0.0-rc.648':
-    resolution: {integrity: sha512-k4FfLKvJwbosUH8KYyZkC50RJHYtIyJECi5WhRXsvaf9a6lgrTlcA+osq815zYcAHo7wEgR9E9UdSTrpLdAQFQ==}
+  '@trpc/client@11.0.0-rc.666':
+    resolution: {integrity: sha512-BP3H0bktY03m7haVT5QoPR4sn30DNJcvFHsA3Msj3uPRY8JLVE03MR4rVG6T7VbcglORKpyMlRxjpUgdRmJErA==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.648+77b4d8920
+      '@trpc/server': 11.0.0-rc.666+99556c074
       typescript: '>=5.6.2'
 
   '@trpc/core@11.0.0-next-beta.216':
     resolution: {integrity: sha512-dmdSFeSzArkmdZvnymoQwAju0QBODC3PhLgBKTYgVIj0HATE/OJsPAKOxiqdcgm3YyN/zABm+ntiYmjLBJzTCA==}
 
-  '@trpc/react-query@11.0.0-rc.648':
-    resolution: {integrity: sha512-U3H6o/aN3umEA2QNDGRsaJb6M7zrffor2NQl2UaHOiLBHuXZ3ISI2fJXay7e32s1l6z5F5PGMGwTQtUedzWI2w==}
+  '@trpc/react-query@11.0.0-rc.666':
+    resolution: {integrity: sha512-BH0vU7g5w4IrN7xmWSKvLucZ9ZnpRwsDWCSJ0R09xdYwR7geHkna3PBbd8vQVFBSw7MpWEy6LGXVSCHSbUicLg==}
     peerDependencies:
-      '@tanstack/react-query': ^5.59.15
-      '@trpc/client': 11.0.0-rc.648+77b4d8920
-      '@trpc/server': 11.0.0-rc.648+77b4d8920
+      '@tanstack/react-query': ^5.62.8
+      '@trpc/client': 11.0.0-rc.666+99556c074
+      '@trpc/server': 11.0.0-rc.666+99556c074
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
       typescript: '>=5.6.2'
 
-  '@trpc/server@11.0.0-rc.648':
-    resolution: {integrity: sha512-nKW7FNM+QZrY/CVGlX3hFNIdUvbw6pwSJ+HzEF8GIeSJDKLHK7Ke1QJGI2mRW6oF9dCKMBXfuLaYY2dXfjfn7Q==}
+  '@trpc/server@11.0.0-rc.666':
+    resolution: {integrity: sha512-k+jKrdH/owDRRXPR7oPKCQRTu0dOEnqdGh56863ym95sFY8qXE7BhOR8S4WqyZw1CiPZGjRkdFN0q/GsJhKsIA==}
     peerDependencies:
       typescript: '>=5.6.2'
 
@@ -4467,6 +4470,10 @@ packages:
     resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
     engines: {node: '>=14'}
     hasBin: true
+
+  pretty-bytes@6.1.1:
+    resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
+    engines: {node: ^14.13.1 || >=16.0.0}
 
   prisma@5.14.0:
     resolution: {integrity: sha512-gCNZco7y5XtjrnQYeDJTiVZmT/ncqCr5RY1/Cf8X2wgLRmyh9ayPAGBNziI4qEE4S6SxCH5omQLVo9lmURaJ/Q==}
@@ -6837,23 +6844,23 @@ snapshots:
 
   '@total-typescript/ts-reset@0.5.1': {}
 
-  '@trpc/client@11.0.0-rc.648(@trpc/server@11.0.0-rc.648(typescript@5.4.5))(typescript@5.4.5)':
+  '@trpc/client@11.0.0-rc.666(@trpc/server@11.0.0-rc.666(typescript@5.4.5))(typescript@5.4.5)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.648(typescript@5.4.5)
+      '@trpc/server': 11.0.0-rc.666(typescript@5.4.5)
       typescript: 5.4.5
 
   '@trpc/core@11.0.0-next-beta.216': {}
 
-  '@trpc/react-query@11.0.0-rc.648(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.648(@trpc/server@11.0.0-rc.648(typescript@5.4.5))(typescript@5.4.5))(@trpc/server@11.0.0-rc.648(typescript@5.4.5))(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(typescript@5.4.5)':
+  '@trpc/react-query@11.0.0-rc.666(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.666(@trpc/server@11.0.0-rc.666(typescript@5.4.5))(typescript@5.4.5))(@trpc/server@11.0.0-rc.666(typescript@5.4.5))(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(typescript@5.4.5)':
     dependencies:
       '@tanstack/react-query': 5.59.0(react@18.3.1)
-      '@trpc/client': 11.0.0-rc.648(@trpc/server@11.0.0-rc.648(typescript@5.4.5))(typescript@5.4.5)
-      '@trpc/server': 11.0.0-rc.648(typescript@5.4.5)
+      '@trpc/client': 11.0.0-rc.666(@trpc/server@11.0.0-rc.666(typescript@5.4.5))(typescript@5.4.5)
+      '@trpc/server': 11.0.0-rc.666(typescript@5.4.5)
       react: 18.3.1
       react-dom: 18.2.0(react@18.3.1)
       typescript: 5.4.5
 
-  '@trpc/server@11.0.0-rc.648(typescript@5.4.5)':
+  '@trpc/server@11.0.0-rc.666(typescript@5.4.5)':
     dependencies:
       typescript: 5.4.5
 
@@ -9310,6 +9317,8 @@ snapshots:
       '@ianvs/prettier-plugin-sort-imports': 4.2.1(prettier@3.2.5)
 
   prettier@3.2.5: {}
+
+  pretty-bytes@6.1.1: {}
 
   prisma@5.14.0:
     dependencies:

@@ -38,7 +38,7 @@ export const createTRPCContext = (opts: {
 
   const dropRequest = () => {
     return new Promise((_resolve, reject) =>
-      setTimeout(reject, opts.clientTimeout + 1000),
+      setTimeout(() => reject("Request dropped"), opts.clientTimeout + 1000),
     );
   };
 

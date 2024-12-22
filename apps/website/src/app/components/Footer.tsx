@@ -44,6 +44,7 @@ export default function Footer() {
                   {t("components.footer.logout")}
                 </Link>
               )}
+              <Link href={Routes.Status}>{t("components.footer.status")}</Link>
             </div>
             <div>
               <h3>{t("components.footer.legal")}</h3>

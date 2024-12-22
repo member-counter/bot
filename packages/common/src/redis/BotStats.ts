@@ -2,10 +2,21 @@ import assert from "assert";
 import os from "os";
 import type { Client } from "discord.js";
 import type { Redis } from "ioredis";
-import { Status } from "discord.js";
 import { z } from "zod";
 
 import type { BotInstanceOptions } from "../BotInstanceOptions";
+
+export const WSStatus = {
+  Ready: 0,
+  Connecting: 1,
+  Reconnecting: 2,
+  Idle: 3,
+  Nearly: 4,
+  Disconnected: 5,
+  WaitingForGuilds: 6,
+  Identifying: 7,
+  Resuming: 8,
+} as const;
 
 export const toChannelName = (type: "req" | "res", botId: string) =>
   `bot-stats-${type}-${botId}`;
@@ -16,7 +27,7 @@ export const BotStatsValidator = z.object({
   childId: z.string(),
   shards: z.array(z.number()),
   shardCount: z.number(),
-  clientStatus: z.nativeEnum(Status),
+  clientStatus: z.nativeEnum(WSStatus),
   userCount: z.number(),
   guildCount: z.number(),
   unavailableGuildCount: z.number(),
@@ -27,6 +38,7 @@ export const BotStatsValidator = z.object({
   host: z.object({
     name: z.string(),
     memory: z.number(),
+    freeMemory: z.number(),
     cpus: z.number(),
     loadAvg: z.array(z.number()),
   }),
@@ -67,6 +79,7 @@ const generateStats = (
       cpus: os.cpus().length,
       loadAvg: os.loadavg(),
       memory: os.totalmem(),
+      freeMemory: os.freemem(),
     },
   } satisfies BotStats;
 };
@@ -108,7 +121,7 @@ export function setupBotStatsConsumer(options: Options) {
     return await new Promise((resolve: (botStats: BotStats[]) => void) => {
       setTimeout(() => {
         resolve([...responses.values()]);
-      }, 5_000);
+      }, 1_500);
 
       redisSubClient.on("message", (_channel, res) => {
         const botStats = BotStatsValidator.parse(JSON.parse(res));

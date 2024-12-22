@@ -60,6 +60,7 @@ interface Resources {
         "documentation": "Documentation",
         "loginWithDiscord": "Login with Discord",
         "logout": "Logout",
+        "status": "Status",
         "legal": "Legal",
         "termsOfService": "Terms of Service",
         "cookiePolicy": "Cookie Policy",
@@ -567,6 +568,36 @@ interface Resources {
             "dialogDescription": "This action cannot be undone.",
             "closeButton": "Close"
           }
+        }
+      },
+      "status": {
+        "statusUnavailable": "Status unavailable",
+        "child": "Child {{index}}",
+        "serverInformation": {
+          "title": "Server information",
+          "hostname": "Name",
+          "cpuLabel": "CPU",
+          "cpuInfo": "{{cores}} Cores\nLoad {{load}}",
+          "memoryLabel": "Memory",
+          "memoryInfo": "{{memory}}\n{{usage}}% Usage"
+        },
+        "partialOutage": "There is a partial outage",
+        "affectedServers": "Affected discord servers:",
+        "childDiscordUsers": "{{count}} Users",
+        "childDiscordServers": "{{count}} Discord servers ({{unavailableCount}} unavailable)",
+        "assignedDiscordServers": "Assigned to this child:",
+        "memoryUsageTooltip": "Memory usage",
+        "memoryUsage": "{{usage}} ({{peak}} peak)",
+        "discordClientStatus": {
+          "Ready": "Ready",
+          "Connecting": "Connecting",
+          "Reconnecting": "Reconnecting",
+          "Idle": "Idle",
+          "Nearly": "Idle",
+          "Disconnected": "Disconnected",
+          "WaitingForGuilds": "Waiting for guilds",
+          "Identifying": "Identifying",
+          "Resuming": "Resuming"
         }
       }
     },

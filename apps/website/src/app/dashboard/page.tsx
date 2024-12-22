@@ -21,8 +21,6 @@ export default function Page() {
 
   // Autoselect the first guild if no guild is selected yet.
   useEffect(() => {
-    console.log(userGuildsQuery.data);
-
     if (!userGuildsQuery.data) return;
     if (!userGuildsQuery.data.userGuilds.size) return;
     if (hasAnythingSelected) return;

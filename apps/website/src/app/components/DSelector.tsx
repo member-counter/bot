@@ -10,6 +10,8 @@ import {
   TooltipTrigger,
 } from "@mc/ui/tooltip";
 
+import { discordServerNameAbbreviated } from "~/other/discordServerNameAbbreviated";
+
 interface ItemProps {
   classNameForItem?: string;
   icon?: string | React.ReactNode;
@@ -77,10 +79,7 @@ const Item = (props: ItemProps) => {
                     aria-hidden="true"
                     className="m-auto overflow-hidden text-ellipsis whitespace-nowrap p-1"
                   >
-                    {name
-                      .split(/\s+/g)
-                      .map((x) => x[0])
-                      .join("")}
+                    {discordServerNameAbbreviated(name)}
                   </div>
                 ) : (
                   typeof icon !== "string" && icon
