@@ -9,7 +9,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      "rounded-lg border bg-landingCard text-card-foreground shadow-sm",
       className,
     )}
     {...props}
@@ -117,7 +117,7 @@ const CardBorderIlluminated = ({
         ref={spotlightRef}
         className=" absolute  z-[-1] overflow-clip rounded-full bg-gray-50 shadow-[0_0_150px_90px_white]"
       ></div>
-      <div className="z-[2] h-full w-full rounded-[calc(var(--radius)-1px)] bg-card">
+      <div className="z-[2] h-full w-full rounded-[calc(var(--radius)-1px)] bg-landingCard">
         {children}
       </div>
     </div>
