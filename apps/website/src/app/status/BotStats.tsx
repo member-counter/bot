@@ -60,7 +60,7 @@ export function BotStatus({
             {stats
               .sort((a, b) => a.childId.localeCompare(b.childId))
               .map((stats) => (
-                <ChildStats {...stats} />
+                <ChildStats key={stats.childId} {...stats} />
               ))}
 
             {!!unreportedShards.length && !!totalShards && (

@@ -19,7 +19,7 @@ export default function StatusPage() {
   return (
     <div className="flex flex-col items-center gap-14 p-[18px]">
       {status.data.map((status) => (
-        <BotStatus {...status} />
+        <BotStatus key={status.id} {...status} />
       ))}
     </div>
   );
