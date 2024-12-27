@@ -11,7 +11,7 @@ export function InfoToolip({
   text,
   children,
 }: {
-  text?: string;
+  text?: React.ReactNode;
   children?: React.ReactNode;
 }) {
   if (!text) return children;
@@ -19,12 +19,10 @@ export function InfoToolip({
     <>
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger asChild>
+          <TooltipTrigger asChild tabIndex={0}>
             {children ?? <InfoIcon className="ml-1 inline h-3 w-3" />}
           </TooltipTrigger>
-          <TooltipContent>
-            <span>{text}</span>
-          </TooltipContent>
+          <TooltipContent>{text}</TooltipContent>
         </Tooltip>
       </TooltipProvider>
     </>
