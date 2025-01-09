@@ -67,6 +67,7 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       path,
       ctx,
       getRawInput: () => Promise.resolve(deserializedInput),
+      signal: undefined,
     })) as unknown;
 
     return result;
