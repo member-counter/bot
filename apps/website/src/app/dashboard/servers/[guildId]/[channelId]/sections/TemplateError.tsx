@@ -43,7 +43,7 @@ export function TemplateError() {
         </Label>
         <Card className="border border-destructive p-3">
           <pre className="w-full whitespace-pre-wrap">
-            {t(`common.errors.DataSourceError.${translationKey}`)}
+            {t(`common.knownErrors.${translationKey}`)}
           </pre>
         </Card>
       </div>
