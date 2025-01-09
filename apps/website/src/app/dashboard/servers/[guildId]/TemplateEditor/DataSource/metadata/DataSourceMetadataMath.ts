@@ -53,6 +53,6 @@ export const createDataSourceMetadataMath = (i18n: i18n) =>
               amount: nonDisplayableNumbers,
             })
           : "",
-      });
+      }).split(/\s+/).join(" ");
     },
   });

@@ -66,6 +66,6 @@ export const createDataSourceMetadataMembers = (i18n: i18n) =>
           ? t(`display.connectedToAChannel`)
           : "",
         playingAGame: playing?.length ? t(`display.playingAGame`) : "",
-      });
+      }).split(/\s+/).join(" ");
     },
   });
