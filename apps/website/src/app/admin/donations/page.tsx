@@ -21,7 +21,7 @@ export default function Page() {
   const donations = api.donor.geAllDonations.useQuery();
   const total = donations.data?.length ?? "???";
   const totalValue = useMemo(
-    () => donations.data?.reduce((acc, curr) => acc + curr.value, 0) ?? "???",
+    () => donations.data?.reduce((acc, curr) => acc + curr.value, 0n) ?? "???",
     [donations.data],
   );
 

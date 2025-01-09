@@ -91,8 +91,9 @@ export const donorRouter = createTRPCRouter({
         note: z.string(),
         anonymous: z.boolean(),
         date: z.date(),
-        amount: z.number(),
+        amount: z.bigint(),
         currency: z.string(),
+        currencyDecimals: z.number(),
       }),
     )
     .mutation(async ({ ctx: { authUser }, input }) => {
@@ -139,8 +140,9 @@ export const donorRouter = createTRPCRouter({
         note: z.string().optional(),
         anonymous: z.boolean().optional(),
         date: z.date().optional(),
-        amount: z.number().optional(),
+        amount: z.bigint().optional(),
         currency: z.string().optional(),
+        currencyDecimals: z.number().optional(),
       }),
     )
     .mutation(async ({ ctx: { authUser }, input }) => {

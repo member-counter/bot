@@ -23,9 +23,10 @@ export default function Page() {
     RouterInputs["donor"]["registerDonation"]
   >({
     userId: "",
-    amount: 0,
+    amount: 0n,
     note: "",
     currency: "EUR",
+    currencyDecimals: 2,
     anonymous: false,
     date: new Date(),
   });

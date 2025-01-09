@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 
+import { CurrencyUtils } from "@mc/common/currencyUtils";
 import {
   Dialog,
   DialogContent,
@@ -27,8 +28,6 @@ export function Donor({
   const dateFormatter = Intl.DateTimeFormat(i18n.language, {
     dateStyle: "short",
   });
-  const currencyFormatter = (currency: string) =>
-    Intl.NumberFormat(i18n.language, { currency, style: "currency" });
 
   return (
     <Dialog>
@@ -52,24 +51,29 @@ export function Donor({
           </DialogTitle>
         </DialogHeader>
         <div className="mt-4 flex flex-col gap-2">
-          {donations.map((donation, i) => (
-            <>
-              <div className="">
-                <div className="flex justify-between text-muted-foreground">
-                  <div>{dateFormatter.format(donation.date)}</div>
-                  <div className="">
-                    {currencyFormatter(donation.currency).format(
-                      donation.amount,
-                    )}
+          {donations.map(
+            ({ date, amount, currency, currencyDecimals, note }, i) => (
+              <>
+                <div className="">
+                  <div className="flex justify-between text-muted-foreground">
+                    <div>{dateFormatter.format(date)}</div>
+                    <div className="">
+                      {CurrencyUtils.format(
+                        i18n.language,
+                        amount,
+                        currency,
+                        currencyDecimals,
+                      )}
+                    </div>
                   </div>
+                  <div className="my-2">{note}</div>
                 </div>
-                <div className="my-2">{donation.note}</div>
-              </div>
-              {i != donations.length - 1 && (
-                <Separator className="my-4 bg-accent-foreground" />
-              )}
-            </>
-          ))}
+                {i != donations.length - 1 && (
+                  <Separator className="my-4 bg-accent-foreground" />
+                )}
+              </>
+            ),
+          )}
         </div>
       </DialogContent>
     </Dialog>

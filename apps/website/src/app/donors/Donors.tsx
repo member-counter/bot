@@ -40,8 +40,8 @@ export function Donors() {
 
     return donors.sort(
       (a, b) =>
-        b.donor.donations.reduce((a, c) => c.amount + a, 0) -
-        a.donor.donations.reduce((a, c) => c.amount + a, 0),
+        b.donor.donations.reduce((a, c) => Number(c.value) + a, 0) -
+        a.donor.donations.reduce((a, c) => Number(c.value) + a, 0),
     );
   }, [donorsQuery.data]);
 
@@ -49,7 +49,7 @@ export function Donors() {
     () =>
       donors.reduce(
         (sum, { donor }) =>
-          sum + donor.donations.reduce((a, c) => c.amount + a, 0),
+          sum + donor.donations.reduce((a, c) => Number(c.value) + a, 0),
         0,
       ),
     [donors],
@@ -57,8 +57,8 @@ export function Donors() {
   const processedDonors = useMemo(() => {
     const processedDonors = structuredClone(donors);
 
-    const donationBubbleRadius = (amount: number) => {
-      const radius = (amount / totalDonated) * (totalDonated * 4);
+    const donationBubbleRadius = (value: bigint) => {
+      const radius = (Number(value) / totalDonated) * (totalDonated * 4);
       if (radius > 0.15 * screenSize[0]) {
         return screenSize[0] * 0.15;
       }
@@ -71,7 +71,7 @@ export function Donors() {
 
     processedDonors.forEach((bubble) => {
       bubble.radius = donationBubbleRadius(
-        bubble.donor.donations.reduce((a, c) => c.amount + a, 0),
+        bubble.donor.donations.reduce((a, c) => c.value + a, 0n),
       );
     });
 

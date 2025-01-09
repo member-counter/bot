@@ -550,6 +550,7 @@
           "userId": "Discord user ID",
           "amount": "Amount",
           "currency": "Currency",
+          "currencyDecimals": "Currency decimals",
           "date": "Date",
           "note": "Note",
           "anonymous": "Anonymous",

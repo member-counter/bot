@@ -73,12 +73,13 @@ type DemoLink {
 }
 
 model Donation {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  note      String
-  anonymous Boolean
-  date      DateTime
-  amount    Float
-  currency  String
-  user      User?    @relation(fields: [userId], references: [discordUserId], onDelete: Cascade)
-  userId    String
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  note             String
+  anonymous        Boolean
+  date             DateTime
+  amount           BigInt
+  currency         String
+  currencyDecimals Int
+  user             User?    @relation(fields: [userId], references: [discordUserId], onDelete: Cascade)
+  userId           String
 }

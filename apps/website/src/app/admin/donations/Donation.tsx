@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
+import { CurrencyUtils } from "@mc/common/currencyUtils";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 
 import type { RouterOutputs } from "~/trpc/react";
@@ -11,12 +12,10 @@ export function Donation(
   donation: RouterOutputs["donor"]["geAllDonations"][number],
 ) {
   const { i18n } = useTranslation();
-
+  const { amount, currency, currencyDecimals } = donation;
   const dateFormatter = Intl.DateTimeFormat(i18n.language, {
     dateStyle: "short",
   });
-  const currencyFormatter = (currency: string) =>
-    Intl.NumberFormat(i18n.language, { currency, style: "currency" });
 
   return (
     <Link href={Routes.ManageDonations(donation.id)}>
@@ -27,7 +26,12 @@ export function Donation(
           <div className="flex flex-col items-end gap-2 text-muted-foreground">
             <div>{dateFormatter.format(donation.date)}</div>
             <div className="">
-              {currencyFormatter(donation.currency).format(donation.amount)}
+              {CurrencyUtils.format(
+                i18n.language,
+                amount,
+                currency,
+                currencyDecimals,
+              )}
             </div>
           </div>
         </CardHeader>

@@ -59,9 +59,12 @@ export function DonationForm<
               min={0}
               required
               type="number"
-              value={value.amount}
+              value={Number(value.amount)}
               onChange={(e) =>
-                onChange({ ...value, amount: e.target.valueAsNumber })
+                onChange({
+                  ...value,
+                  amount: BigInt(e.target.value.replaceAll(/[^0-9]+/g, "")),
+                })
               }
             />
           </Label>
@@ -72,6 +75,22 @@ export function DonationForm<
             <Input
               value={value.currency}
               onChange={(e) => onChange({ ...value, currency: e.target.value })}
+            />
+          </Label>
+        </div>
+        <div className="flex-shrink">
+          <Label>
+            {t("pages.admin.donations.form.currencyDecimals")}
+            <Input
+              value={value.currencyDecimals}
+              onChange={(e) =>
+                onChange({
+                  ...value,
+                  currencyDecimals: Number(
+                    e.target.value.replaceAll(/[^0-9]+/g, ""),
+                  ),
+                })
+              }
             />
           </Label>
         </div>

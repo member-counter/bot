@@ -551,6 +551,7 @@ interface Resources {
             "userId": "Discord user ID",
             "amount": "Amount",
             "currency": "Currency",
+            "currencyDecimals": "Currency decimals",
             "date": "Date",
             "note": "Note",
             "anonymous": "Anonymous",
@@ -572,7 +573,7 @@ interface Resources {
       },
       "status": {
         "statusUnavailable": "Status unavailable",
-        "child": "Child {{index}}",
+        "child": "Child #{{index}}",
         "serverInformation": {
           "title": "Server information",
           "hostname": "Name",
