@@ -6,7 +6,7 @@ import type {
 } from "@mc/common/DataSource";
 import type { ChannelType, Guild } from "discord.js";
 
-import type { GuildSettingsService } from "~/guildSettings";
+import type { GuildSettingsService } from "../../guildSettings";
 
 export interface DataSourceContext {
   channelType: ChannelType;

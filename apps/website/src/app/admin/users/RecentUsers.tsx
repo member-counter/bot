@@ -13,7 +13,7 @@ import {
   defaultRecentUsers,
   recentUsersKey,
   recentUsersSchema,
-} from "./recentUsers";
+} from "./recentUsersStorage";
 
 export function RecentUsers({ className }: { className?: string }) {
   const { t } = useTranslation();

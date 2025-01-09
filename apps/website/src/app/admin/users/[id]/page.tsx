@@ -13,7 +13,7 @@ import {
   defaultRecentUsers,
   recentUsersKey,
   recentUsersSchema,
-} from "../recentUsers";
+} from "../recentUsersStorage";
 import ManageUser from "./ManageUser";
 
 interface Props {
