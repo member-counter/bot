@@ -5,6 +5,10 @@ import { ArrowLeftIcon } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
 
+import {
+  DEFAULT_CURRENCY,
+  DEFAULT_CURRENCY_DECIMALS,
+} from "@mc/common/Constants";
 import { Button } from "@mc/ui/button";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
@@ -25,8 +29,8 @@ export default function Page() {
     userId: "",
     amount: 0n,
     note: "",
-    currency: "EUR",
-    currencyDecimals: 2,
+    currency: DEFAULT_CURRENCY,
+    currencyDecimals: DEFAULT_CURRENCY_DECIMALS,
     anonymous: false,
     date: new Date(),
   });

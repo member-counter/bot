@@ -7,7 +7,7 @@ export class CurrencyUtils {
    * @param {number} decimals - Currency decimals.
    * @returns {number} - The monetary value as a Number.
    */
-  static toNumber(value: string | bigint, decimals = 2): number {
+  static toNumber(value: string | bigint, decimals: number): number {
     if (typeof value === "string") {
       return parseFloat(value);
     }
@@ -23,7 +23,7 @@ export class CurrencyUtils {
    * @param {number} decimals - Currency decimals.
    * @returns {bigint} - The amount in the smallest unit as a BigInt.
    */
-  static toBigInt(value: string, decimals = 2): bigint {
+  static toBigInt(value: string, decimals: number): bigint {
     const [whole, fraction = "0"] = value.split(".");
     assert(whole);
     const fractionPadded = fraction.padEnd(decimals, "0"); // Ensure required decimals
@@ -39,7 +39,7 @@ export class CurrencyUtils {
    * @param {number} decimals - Currency decimals.
    * @returns {string} - The monetary value as a string.
    */
-  static toString(value: bigint, decimals = 2): string {
+  static toString(value: bigint, decimals: number): string {
     const isNegative = value < 0n;
     const absoluteValue = isNegative ? -value : value;
 
