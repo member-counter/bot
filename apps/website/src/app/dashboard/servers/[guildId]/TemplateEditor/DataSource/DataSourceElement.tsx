@@ -85,7 +85,7 @@ export default function DataSourceElement(
     >
       <InlineChromiumBugfix />
       {icon}
-      {displayName}
+      <span dangerouslySetInnerHTML={{ __html: displayName }} />
       {props.children}
       <InlineChromiumBugfix />
     </span>
