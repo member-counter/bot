@@ -15,8 +15,8 @@ interface Props {
 
 export function SupportedCountersCard(props: Props) {
   return (
-    <CardBorderIlluminated>
-      <article className={"flex h-full w-full flex-row"}>
+    <CardBorderIlluminated className="[&>*]:bg-landingCard">
+      <article className={"flex h-full w-full flex-row "}>
         <div className="w-[90px] flex-none ">
           <div className="relative flex h-full items-center justify-center [&>*]:rounded-l-lg">
             {props.imgBgSrc && (
