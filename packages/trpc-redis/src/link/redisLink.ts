@@ -1,8 +1,8 @@
+import { randomUUID } from "crypto";
 import type { TRPCLink } from "@trpc/client";
 import type { AnyTRPCRouter } from "@trpc/server";
 import { TRPCClientError } from "@trpc/client";
 import { observable } from "@trpc/server/observable";
-import { v4 } from "uuid";
 
 import type { RedisRequesterOptions } from "./redisRequester";
 import { setupRedisRequester } from "./redisRequester";
@@ -16,7 +16,7 @@ export const redisLink = async <TRouter extends AnyTRPCRouter>(
     ({ op }) =>
       observable((observer) => {
         const { type, path, input } = op;
-        const id = v4();
+        const id = randomUUID();
 
         redisRequest({ id, type, path, input })
           .then((res) => {
