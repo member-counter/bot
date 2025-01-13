@@ -16,6 +16,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY .gitignore .gitignore
 COPY --from=repo /app/out/json/ .
+COPY --from=repo /app/out/full/packages/db/prisma ./prisma
 RUN pnpm install
 
 FROM base AS runner
