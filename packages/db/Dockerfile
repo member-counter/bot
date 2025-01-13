@@ -16,7 +16,6 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY .gitignore .gitignore
 COPY --from=repo /app/out/json/ .
-COPY --from=repo /app/packages/db/prisma ./packages/db/prisma
 RUN pnpm install
 
 FROM base AS runner
@@ -28,5 +27,5 @@ RUN adduser --system --uid 1001 nodejs
 USER nodejs
 
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=repo /app/packages/db/package.json .
+COPY --from=repo /app/out/full/ .
 CMD ["tail", "-f", "/dev/null"]
