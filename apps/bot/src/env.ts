@@ -13,7 +13,16 @@ export const env = createEnv({
     DISCORD_BOT_INSTANCE_ID: z.string(),
     DISCORD_BOT_INSTANCE_CHILD_ID: z.string(),
     DISCORD_BOT_INSTANCE_SHARDING_SHARDS: z.string().transform((s) => {
-      return z.array(z.number().min(0)).min(1).parse(JSON.parse(s));
+      const parsed = JSON.parse(s);
+      if (Array.isArray(parsed)) {
+        return z.array(z.number().min(0)).min(1).parse(parsed);
+      } else if (typeof parsed === "number" && parsed >= 0) {
+        return [parsed];
+      } else {
+        throw new Error(
+          "Invalid input: must be a stringified array of numbers or a single number.",
+        );
+      }
     }),
     DISCORD_BOT_INSTANCE_SHARDING_SHARD_COUNT: z.coerce.number(),
     DISCORD_BOT_INSTANCE_SHARDING_SHARD_MAX_CONCURRENCY: z.coerce.number(),
