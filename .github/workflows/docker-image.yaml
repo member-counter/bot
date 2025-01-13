@@ -38,6 +38,12 @@ jobs:
           cache-to: type=gha,mode=max
           tags: |
             ghcr.io/member-counter/website:new-beta
+          build-args: |
+            NEXT_PUBLIC_SUPPORT_URL=${{ vars.NEXT_PUBLIC_SUPPORT_URL }}
+            NEXT_PUBLIC_BOT_DOCS_URL=${{ vars.NEXT_PUBLIC_BOT_DOCS_URL }}
+            NEXT_PUBLIC_BOT_REPO_URL=${{ vars.NEXT_PUBLIC_BOT_REPO_URL }}
+            NEXT_PUBLIC_TRANSLATION_PLATFORM_URL=${{ vars.NEXT_PUBLIC_TRANSLATION_PLATFORM_URL }}
+            NEXT_PUBLIC_SENTRY_ADMIN_URL=${{ vars.NEXT_PUBLIC_SENTRY_ADMIN_URL }}
   build-bot:
     runs-on: ubuntu-latest
     permissions:
