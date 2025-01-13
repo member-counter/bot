@@ -4,31 +4,25 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
-FROM base AS builder
-RUN apk update
-RUN apk add --no-cache libc6-compat
-# Set working directory
+FROM base AS repo
 WORKDIR /app
 RUN pnpm add -g turbo@2
 COPY . .
- 
-# Generate a partial monorepo with a pruned lockfile for a target workspace.
 RUN turbo prune @mc/website --docker
- 
-# Add lockfile and package.json's of isolated subworkspace
-FROM base AS installer
+
+FROM base AS build_deps
 RUN apk update
 RUN apk add --no-cache libc6-compat make gcc g++ python3 git
 WORKDIR /app
- 
-# First install the dependencies (as they change less often)
-COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY --from=builder /app/packages/db/prisma ./packages/db/prisma
+COPY .gitignore .gitignore
+COPY --from=repo /app/out/json/ .
+COPY --from=repo /app/packages/db/prisma ./packages/db/prisma
 RUN pnpm install
- 
-# Build the project
-COPY --from=builder /app/out/full/ .
+
+FROM build_deps AS builder
+WORKDIR /app
+COPY --from=repo /app/out/full/ .
+
 ENV SKIP_ENV_VALIDATION=true
 ENV NODE_ENV='production'
 
@@ -50,6 +44,9 @@ ENV NEXT_PUBLIC_SENTRY_ADMIN_URL=${NEXT_PUBLIC_SENTRY_ADMIN_URL}
 RUN pnpm turbo run build --filter=@mc/website
 
 FROM base AS runner
+RUN apk update
+RUN apk add --no-cache libc6-compat
+
 WORKDIR /app
 
 RUN addgroup --system --gid 1001 nodejs
@@ -61,9 +58,9 @@ RUN chown nextjs:nodejs .next
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/static ./apps/website/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/website/public ./apps/website/public
+COPY --from=builder --chown=nextjs:nodejs /app/apps/website/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/website/.next/static ./apps/website/.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/apps/website/public ./apps/website/public
 
 USER nextjs
 

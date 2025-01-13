@@ -4,47 +4,45 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
  
-FROM base AS builder
-RUN apk update
-RUN apk add --no-cache libc6-compat 
-# Set working directory
+FROM base AS repo
 WORKDIR /app
 RUN pnpm add -g turbo@2
 COPY . .
- 
-# Generate a partial monorepo with a pruned lockfile for a target workspace.
 RUN turbo prune @mc/botz --docker
- 
-# Add lockfile and package.json's of isolated subworkspace
-FROM base AS installer
+
+FROM base AS build_deps
 RUN apk update
 RUN apk add --no-cache libc6-compat make gcc g++ python3 git
 WORKDIR /app
- 
-# First install the dependencies (as they change less often)
 COPY .gitignore .gitignore
-COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY --from=builder /app/packages/db/prisma ./packages/db/prisma
+COPY --from=repo /app/out/json/ .
+COPY --from=repo /app/packages/db/prisma ./packages/db/prisma
 RUN pnpm install
 
-# Build the project
-COPY --from=builder /app/out/full/ .
+FROM build_deps AS prod_deps
+WORKDIR /app
+COPY .gitignore .gitignore
+COPY --from=repo /app/out/json/ .
+COPY --from=repo /app/packages/db/prisma ./packages/db/prisma
+# needed due to warning: https://pnpm.io/cli/prune/
+RUN rm -rf node_modules
+RUN pnpm install --prod
+
+
+FROM build_deps AS builder
+WORKDIR /app
+COPY --from=repo /app/out/full/ .
 RUN pnpm turbo run build --filter=@mc/botz
 
-FROM installer AS prod_deps
-WORKDIR /app
-RUN pnpm prune --prod
- 
 FROM base AS runner
 WORKDIR /app
- 
+
 # Don't run production as root
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nodejs
 USER nodejs
 
-COPY --from=installer /app/node_modules ./node_modules
-COPY --from=installer /app/apps/bot/package.json .
-COPY --from=installer --chown=nodejs:nodejs /app/apps/bot/dist ./
+COPY --from=prod_deps /app/node_modules ./node_modules
+COPY --from=repo /app/apps/bot/package.json .
+COPY --from=builder --chown=nodejs:nodejs /app/apps/bot/dist ./
 CMD ["node", "/app/index.js"]
