@@ -1,4 +1,3 @@
-import assert from "assert";
 import { CpuIcon, MemoryStickIcon, ServerIcon } from "lucide-react";
 import prettyBytes from "pretty-bytes";
 import { useTranslation } from "react-i18next";
@@ -12,8 +11,7 @@ export function ServerInfo({
   host: { name, cpus, freeMemory, memory, loadAvg },
 }: NonNullable<RouterOutputs["bot"]["getStatus"][number]["stats"]>[number]) {
   const { t, i18n } = useTranslation();
-  const recentLoadAvg = loadAvg[0];
-  assert(recentLoadAvg);
+  const recentLoadAvg = loadAvg[0] ?? 0;
 
   const memoryUsage = ((memory - freeMemory) / memory) * 100;
 

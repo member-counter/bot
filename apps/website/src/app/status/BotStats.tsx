@@ -1,4 +1,3 @@
-import assert from "assert";
 import { useMemo } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
@@ -17,8 +16,6 @@ export function BotStatus({
 
   const icon =
     id === "main" ? mainBotIcon : id === "premium" ? premiumBotIcon : null;
-
-  assert(icon);
 
   const name =
     id === "main"
@@ -50,7 +47,7 @@ export function BotStatus({
   return (
     <article className="flex w-full max-w-[1200px] flex-col gap-2">
       <h1 className="flex items-center gap-2 text-lg font-bold">
-        <Image {...icon} alt="" className="h-6 w-6 rounded-md" />
+        {icon && <Image {...icon} alt="" className="h-6 w-6 rounded-md" />}
         {name}
       </h1>
       <div className="grid gap-2 md:grid-cols-3">
