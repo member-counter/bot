@@ -25,7 +25,7 @@ const logger = winston.createLogger({
     winston.format.splat(),
     winston.format.timestamp(),
     winston.format.printf(
-      ({ level, message, timestamp, botId, botChildId, ...metadata }) => {
+      ({ level, message, timestamp, source, ...metadata }) => {
         const metadataStr = Object.keys(metadata).length
           ? "metadata: " + inspect(metadata)
           : null;
@@ -40,9 +40,8 @@ const logger = winston.createLogger({
           : null;
 
         const messageStr = `${level}: ${message}`;
-        const botIdStr = botId ? `bot: ${botId} (${botChildId})` : null;
 
-        return [timestamp, botIdStr, messageStr, metadataStr, metadataJSONStr]
+        return [timestamp, source, messageStr, metadataStr, metadataJSONStr]
           .filter(Boolean)
           .join(" - ");
       },
