@@ -18,6 +18,9 @@ export const createDataSourceMetadataClock = (i18n: i18n) =>
       )
         return t("name");
 
-      return t("display.syntax", { timezone: dataSource.options.timezone });
+      return t("display.syntax", {
+        interpolation: { escapeValue: false },
+        timezone: dataSource.options.timezone,
+      });
     },
   });
