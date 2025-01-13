@@ -27,10 +27,9 @@ export function BotStatus({
         ? "Member Counter Premium"
         : "Unknown";
 
-  const totalShards = stats?.[0]?.shardCount;
+  const totalShards = stats?.[0]?.shardCount ?? 0;
   const unreportedShards: number[] = useMemo(() => {
     if (!stats) return [];
-    assert(totalShards);
 
     const unreportedShards = new Set(
       Array.from({ length: totalShards }, (_, i) => i),
