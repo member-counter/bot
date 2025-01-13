@@ -33,7 +33,7 @@ export default function Page() {
   return (
     <>
       <div className="my-8 flex flex-col gap-8">
-        <div className="flex flex-row items-center justify-center gap-5">
+        <div className="my-8 flex w-full flex-col gap-8 p-4 sm:max-w-[600px] [&>*]:w-full">
           {discordUser.isSuccess ? (
             <img
               src={discordUser.data.avatar}
@@ -61,10 +61,10 @@ export default function Page() {
               <Skeleton className="w-50 h-9" />
             )}
             {user.isSuccess && <DisplayUserBadges badges={user.data.badges} />}
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row flex-wrap gap-2">
               <DeleteButton />
-              <Link href={Routes.LogOut}>
-                <Button className="grow" size={"sm"} icon={LogOutIcon}>
+              <Link href={Routes.LogOut} className="grow">
+                <Button className="w-full" size={"sm"} icon={LogOutIcon}>
                   {t("pages.account.page.logoutButton")}
                 </Button>
               </Link>
