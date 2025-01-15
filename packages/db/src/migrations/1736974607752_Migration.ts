@@ -19,6 +19,20 @@ const oldDonationSchemaValidator = z.object({
   date: z.date(),
 });
 
+const oldGuildSettingsSchema = z.object({
+  _id: z.string(),
+  id: z.string(),
+  premium: z.boolean().default(false),
+  language: z.string().default("en-US"),
+  counters: z.record(z.string(), z.string()).default({}),
+  shortNumber: z.number().default(1),
+  locale: z.string().default("disabled"),
+  digits: z
+    .array(z.string())
+    .default(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]),
+  blocked: z.boolean().default(false),
+});
+
 export class Migration1736974607752 implements MigrationInterface {
   public async up(db: Db): Promise<void> {
     // Users
@@ -62,6 +76,54 @@ export class Migration1736974607752 implements MigrationInterface {
     }
 
     await oldDonationsCollection.drop();
+
+    const oldGuildsCollection = db.collection("guilds");
+    const newGuildsCollection = db.collection("Guild");
+    const blockedGuildsCollection = db.collection("BlockedGuild");
+    const channelsCollection = db.collection("Channel");
+
+    // Cursor for old guilds
+    const oldGuildsCursor = oldGuildsCollection.find();
+
+    while (await oldGuildsCursor.hasNext()) {
+      const oldGuildUnknown = await oldGuildsCursor.next();
+      const oldGuild = oldGuildSettingsSchema.parse(oldGuildUnknown);
+
+      // Transform Guild
+      const newGuild = {
+        _id: new ObjectId(oldGuild._id),
+        discordGuildId: oldGuild.id,
+        language: oldGuild.language,
+        formatSettings: {
+          locale: oldGuild.locale === "disabled" ? "en-US" : oldGuild.locale,
+          compactNotation: oldGuild.shortNumber === 1,
+          digits: oldGuild.digits,
+        },
+      };
+
+      await newGuildsCollection.insertOne(newGuild);
+
+      // Handle blocked guilds
+      if (oldGuild.blocked) {
+        await blockedGuildsCollection.insertOne({
+          discordGuildId: oldGuild.id,
+          reason: "",
+        });
+      }
+
+      // Handle channels
+      for (const [channelId, template] of Object.entries(oldGuild.counters)) {
+        await channelsCollection.insertOne({
+          discordChannelId: channelId,
+          template: template, // TODO migrate counters
+          isTemplateEnabled: Boolean(template),
+          discordGuildId: oldGuild.id,
+        });
+      }
+    }
+
+    // Drop the old collection
+    await oldGuildsCollection.drop();
   }
 
   public down(_db: Db): Promise<void> {
