@@ -77,12 +77,12 @@ export class Migration1736974607752 implements MigrationInterface {
 
     await oldDonationsCollection.drop();
 
+    // Guilds
     const oldGuildsCollection = db.collection("guilds");
     const newGuildsCollection = db.collection("Guild");
     const blockedGuildsCollection = db.collection("BlockedGuild");
     const channelsCollection = db.collection("Channel");
 
-    // Cursor for old guilds
     const oldGuildsCursor = oldGuildsCollection.find();
 
     while (await oldGuildsCursor.hasNext()) {
