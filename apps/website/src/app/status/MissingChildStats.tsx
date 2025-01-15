@@ -27,7 +27,7 @@ export function MissingChildStats(props: MissingChildStats) {
     .map(([_, guild]) => guild);
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-sm bg-red-700">
+    <article className="flex min-h-[200px] flex-col overflow-hidden rounded-sm bg-red-700">
       <div className="flex grow items-center justify-center">
         <h1 className="flex items-center gap-2 text-xl">
           <AlertCircleIcon className="inline" />{" "}

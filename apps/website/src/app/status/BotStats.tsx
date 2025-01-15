@@ -50,7 +50,7 @@ export function BotStatus({
         {icon && <Image {...icon} alt="" className="h-6 w-6 rounded-md" />}
         {name}
       </h1>
-      <div className="grid gap-2 md:grid-cols-3">
+      <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
         {stats ? (
           <>
             {stats
