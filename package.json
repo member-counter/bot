@@ -11,6 +11,7 @@
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo clean",
     "db:push": "pnpm -F db push",
+    "db:migrate": "pnpm -F db migrate",
     "dev": "turbo dev --parallel",
     "dev:docker:up": "docker compose -f docker-compose.dev.yml up -d",
     "dev:docker:down": "docker compose -f docker-compose.dev.yml down",

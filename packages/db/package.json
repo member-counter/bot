@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit",
     "postinstall": "pnpm run generate",
     "generate": "prisma generate",
+    "migrate": "TS_NODE_DEV=1 pnpm with-env tsx ./src/migrations/index.ts",
     "push": "pnpm with-env prisma db push",
     "with-env": "dotenv -e ../../.env --"
   },
@@ -32,6 +33,8 @@
   "dependencies": {
     "@prisma/client": "^5.10.2",
     "@t3-oss/env-core": "^0.10.1",
+    "mongo-migrate-ts": "^1.6.2",
+    "tsx": "^4.19.2",
     "zod": "^3.23.3"
   }
 }
