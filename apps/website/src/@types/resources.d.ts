@@ -611,6 +611,7 @@ interface Resources {
       "unknownDate": "Unknown date",
       "unknown": "Unknown",
       "unknownError": "Unknown error",
+      "unknownPublicBot": "Unknown Public Bot",
       "channelLabels": {
         "textChannel": "Text channel",
         "category": "Category",
