@@ -405,6 +405,9 @@ importers:
       '@mc/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
+      '@total-typescript/ts-reset':
+        specifier: ^0.5.1
+        version: 0.5.1
       '@types/node':
         specifier: ^20.12.9
         version: 20.12.10
