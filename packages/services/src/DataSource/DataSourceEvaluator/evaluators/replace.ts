@@ -8,8 +8,8 @@ export const replaceEvaluator = new DataSourceEvaluator({
     const text = options.text ?? "";
     const replacements = options.replacements ?? [];
 
-    let newText = text;
-
+    let newText = String(text);
+    console.log(text);
     for (const replace of replacements) {
       const { search, replacement } = replace;
       if (!search || !replacement) continue;
