@@ -22,7 +22,7 @@ interface ConvertArgs {
   aliasUsed: string;
 }
 
-type ConvertFunction = (args: ConvertArgs) => DataSource;
+type ConvertFunction = (args: ConvertArgs) => DataSource | string;
 
 interface ConvertCounter {
   /**
