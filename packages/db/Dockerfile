@@ -3,6 +3,8 @@ ENV DO_NOT_TRACK=1
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
+RUN apk update
+RUN apk add --no-cache libc6-compat 
  
 FROM base AS repo
 WORKDIR /app
@@ -11,13 +13,12 @@ COPY . .
 RUN turbo prune @mc/db --docker
 
 FROM base AS deps
-RUN apk update
-RUN apk add --no-cache libc6-compat
+COPY --from=ghcr.io/member-counter/pnpm-store-cache:latest $PNPM_HOME/store $PNPM_HOME/store
 WORKDIR /app
 COPY .gitignore .gitignore
 COPY --from=repo /app/out/json/ .
 COPY --from=repo /app/out/full/packages/db/prisma ./prisma
-RUN pnpm install
+RUN pnpm install --prefer-offline
 
 FROM base AS runner
 WORKDIR /app

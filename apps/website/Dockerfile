@@ -3,6 +3,8 @@ ENV DO_NOT_TRACK=1
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
+RUN apk update
+RUN apk add --no-cache libc6-compat
 
 FROM base AS repo
 WORKDIR /app
@@ -11,13 +13,12 @@ COPY . .
 RUN turbo prune @mc/website --docker
 
 FROM base AS build_deps
-RUN apk update
-RUN apk add --no-cache libc6-compat make gcc g++ python3 git
+COPY --from=ghcr.io/member-counter/pnpm-store-cache:latest $PNPM_HOME/store $PNPM_HOME/store
 WORKDIR /app
 COPY .gitignore .gitignore
 COPY --from=repo /app/out/json/ .
 COPY --from=repo /app/packages/db/prisma ./packages/db/prisma
-RUN pnpm install
+RUN pnpm install --prefer-offline
 
 FROM build_deps AS builder
 WORKDIR /app
@@ -44,9 +45,6 @@ ENV NEXT_PUBLIC_SENTRY_ADMIN_URL=${NEXT_PUBLIC_SENTRY_ADMIN_URL}
 RUN pnpm turbo run build --filter=@mc/website
 
 FROM base AS runner
-RUN apk update
-RUN apk add --no-cache libc6-compat
-
 WORKDIR /app
 
 RUN addgroup --system --gid 1001 nodejs
