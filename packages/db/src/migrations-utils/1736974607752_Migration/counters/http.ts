@@ -1,76 +1,58 @@
+import assert from "assert";
+import z from "zod";
+
 import type ConvertCounter from "../types/ConvertCounter";
+import type { DataSourceHTTP } from "../types/DataSource";
+import { DataSourceId } from "../types/DataSource";
 
-interface Resource {
-  url: string;
-  parseNumber: boolean;
-  dataPath: string;
-  lifetime: number;
-}
+function parseArgs(args: string[][]) {
+  try {
+    assert(args[0]?.[0]);
 
-// TODO
-const HTTPCounter: ConvertCounter = {
-  aliases: ["http", "https", "http-string", "https-string"],
-  convert: async ({ args }) => {
-    const { url, parseNumber, dataPath, lifetime }: Resource = JSON.parse(
-      Buffer.from(args[0][0], "base64").toString("utf-8"),
+    const encodedOptions = args[0][0];
+    const decodedOptions = Buffer.from(encodedOptions, "base64").toString(
+      "utf-8",
     );
 
-    if (!url) throw new Error("You didn't specify a url property");
-    if (COUNTER_HTTP_DENY_LIST?.includes(new URL(url).hostname))
-      throw new Error("You can't make requests to this url!");
+    return z
+      .object({
+        url: z.string().optional(),
+        parseNumber: z.boolean().optional(),
+        dataPath: z.string().optional(),
+        lifetime: z.number().optional(),
+      })
+      .parse(JSON.parse(decodedOptions));
+  } catch {
+    return {};
+  }
+}
 
-    let result: number | string;
-    const cachedResponse = await redis.get(url);
+const HTTPCounter: ConvertCounter = {
+  aliases: ["http", "https", "http-string", "https-string"],
+  convert: ({ args, format }) => {
+    const { url, parseNumber, dataPath, lifetime } = parseArgs(args);
 
-    if (!cachedResponse) {
-      const controller = new AbortController();
-      const response = await timeoutFetch(
-        10000,
-        fetch(url, {
-          signal: controller.signal,
-          headers: {
-            "User-Agent": `Member Counter Discord Bot/${packageJSON.version}`,
-          },
-        }),
-        controller,
-      );
+    const httpDataSource = {
+      id: DataSourceId.HTTP,
+      format,
+      options: {
+        url,
+        dataPath,
+        lifetime,
+      },
+    } as DataSourceHTTP;
 
-      if (response.status !== 200) {
-        controller.abort();
-        throw new Error("Invalid status code (not 200)");
-      }
-
-      result = await response.text();
-      redis
-        .set(url, result, "EX", lifetime ?? 1 * 60 * 60)
-        .catch(console.error);
-
-      const responseContentType = response.headers.get("Content-Type");
-      if (responseContentType.includes("text/plain")) {
-        // do nothing, just allow it
-      } else if (responseContentType.includes("application/json")) {
-        if (!dataPath)
-          throw new Error(
-            "This resource returns a json body, you must specify a valid path to get the value",
-          );
-      } else {
-        throw new Error("Content type is not application/json or text/plain");
-      }
+    if (parseNumber) {
+      return {
+        id: DataSourceId.NUMBER,
+        format,
+        options: {
+          number: httpDataSource,
+        },
+      };
     } else {
-      result = cachedResponse;
+      return httpDataSource;
     }
-
-    if (dataPath) {
-      try {
-        result = jsonBodyExtractor(JSON.parse(result.toString()), dataPath);
-      } catch {}
-    }
-
-    if (parseNumber === true) {
-      result = Number(result);
-    }
-
-    return result;
   },
 };
 
