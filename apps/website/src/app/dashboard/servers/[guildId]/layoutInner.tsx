@@ -30,6 +30,7 @@ export default function LayoutInner({
   const { guildId } = useParams<DashboardGuildParams>();
   const userPermissions = useContext(UserPermissionsContext);
   const isDesktop = useBreakpoint("sm");
+  const isWideScreen = useBreakpoint("xl");
   const menuContext = useContext(MenuContext);
 
   const [sidePanelRef, setSidePanelRef] = useState<HTMLElement | null>(null);
@@ -103,8 +104,9 @@ export default function LayoutInner({
             {isSidePanelOpen && <ResizableHandle />}
             <ResizablePanel
               id={asideId}
-              minSize={30}
-              defaultSize={30}
+              minSize={isWideScreen ? 30 : 36}
+              defaultSize={isWideScreen ? 30 : 36}
+              maxSize={isWideScreen ? 60 : 50}
               order={1}
               className={cn({ hidden: !isSidePanelOpen })}
             >
