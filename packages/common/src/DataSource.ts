@@ -24,6 +24,7 @@ export type DataSource =
   | DataSourceNitroBoosters
   | DataSourceReddit
   | DataSourceReplace
+  | DataSourceConcat
   | DataSourceRoles
   | DataSourceBotStats
   | DataSourceTwitch
@@ -54,6 +55,13 @@ export interface DataSourceMath extends DataSourceBase {
   options?: {
     operation?: MathDataSourceOperation;
     numbers?: (DataSource | number)[];
+  };
+}
+
+export interface DataSourceConcat extends DataSourceBase {
+  id: DataSourceId.CONCAT;
+  options?: {
+    strings?: (DataSource | string)[];
   };
 }
 
@@ -159,6 +167,7 @@ export interface DataSourceUnknown extends DataSourceBase {
 export enum DataSourceId {
   MEMBERS,
   MATH,
+  CONCAT,
   CHANNELS,
   CLOCK,
   COUNTDOWN,

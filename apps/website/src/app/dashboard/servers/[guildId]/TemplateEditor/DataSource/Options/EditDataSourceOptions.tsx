@@ -7,6 +7,7 @@ import { useDataSourceMetadata } from "../metadata";
 import { BotStatsOptions } from "./Pages/BotStatsOptions";
 import { ChannelOptions } from "./Pages/ChannelsOptions";
 import { ClockOptions } from "./Pages/ClockOptions";
+import { ConcatOptions } from "./Pages/ConcatOptions";
 import { CountdownOptions } from "./Pages/CountdownOptions";
 import { GameOptions } from "./Pages/GameOptions";
 import { HttpOptions } from "./Pages/HttpOptions";
@@ -22,6 +23,7 @@ import { YouTubeOptions } from "./Pages/YouTubeOptions";
 const optionsMap = {
   [DataSourceId.MEMBERS.toString()]: MembersOptions,
   [DataSourceId.MATH.toString()]: MathOptions,
+  [DataSourceId.CONCAT.toString()]: ConcatOptions,
   [DataSourceId.GAME.toString()]: GameOptions,
   [DataSourceId.CLOCK.toString()]: ClockOptions,
   [DataSourceId.COUNTDOWN.toString()]: CountdownOptions,

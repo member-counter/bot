@@ -10,6 +10,7 @@ import type { Searchable } from "~/app/components/Combobox";
 import { createDataSourceMetadataBotStats } from "./DataSourceMetadataBotStats";
 import { createDataSourceMetadataChannels } from "./DataSourceMetadataChannels";
 import { createDataSourceMetadataClock } from "./DataSourceMetadataClock";
+import { createDataSourceMetadataConcat } from "./DataSourceMetadataConcat";
 import { createDataSourceMetadataCountdown } from "./DataSourceMetadataCountdown";
 import { createDataSourceMetadataGame } from "./DataSourceMetadataGame";
 import { createDataSourceMetadataHTTP } from "./DataSourceMetadataHttp";
@@ -38,6 +39,7 @@ export function dataSourcesMetadataFactory(
       createDataSourceMetadataNumber(i18n),
       createDataSourceMetadataReddit(i18n),
       createDataSourceMetadataReplace(i18n),
+      createDataSourceMetadataConcat(i18n),
       createDataSourceMetadataGame(i18n),
       createDataSourceMetadataHTTP(i18n),
       createDataSourceMetadataMath(i18n),

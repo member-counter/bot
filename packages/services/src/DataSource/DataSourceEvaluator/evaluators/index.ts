@@ -1,6 +1,7 @@
 import { botStatsEvaluator } from "./bot-stats";
 import { channelEvaluator } from "./channels";
 import { clockEvaluator } from "./clock";
+import { concatEvaluator } from "./concat";
 import { countdownEvaluator } from "./countdown";
 import { gameEvaluator } from "./game";
 import { HTTPEvaluator } from "./http";
@@ -29,6 +30,7 @@ const dataSourceEvaluators = [
   numberEvaluator,
   redditEvaluator,
   replaceEvaluator,
+  concatEvaluator,
   rolesEvaluator,
   twitchEvaluator,
   youTubeEvaluator,

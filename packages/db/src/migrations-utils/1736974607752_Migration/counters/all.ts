@@ -3,6 +3,7 @@ import BannedMembersCounter from "./bannedMembers";
 import BotStatsCounter from "./bot-stats";
 import ChannelCounter from "./channels";
 import ClockCounter from "./clock";
+import ConcatCounter from "./concat";
 import CountdownCounter from "./countdown";
 import EscapeCounter from "./escape";
 import GameCounter from "./game";
@@ -50,6 +51,7 @@ const counters: ConvertCounter[] = [
   YouTubeCounter,
   MathCounter,
   ReplaceCounter,
+  ConcatCounter,
   EscapeCounter,
 ];
 

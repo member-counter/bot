@@ -381,6 +381,10 @@ interface Resources {
                     "removeReplacement": "Remove replacement",
                     "addReplacement": "Add replacement"
                   },
+                  "ConcatOptions": {
+                    "stringList": "String list",
+                    "addString": "Add string..."
+                  },
                   "TwitchOptions": {
                     "display": "Display",
                     "selectPlaceholder": "Select something to display",
@@ -785,6 +789,15 @@ interface Resources {
         "display": {
           "syntax": "Replace {{replaceSyntax}}",
           "replaceSyntax": "“{{search}}” by “{{replacement}}”"
+        }
+      },
+      "concat": {
+        "name": "Concat",
+        "description": "Concatenate multiple strings into one.",
+        "keywords": "concat,concatenate,strings,combine,join,merge",
+        "display": {
+          "syntax": "Concatenate {{strings}} {{undisplayableStrings}}",
+          "undisplayableStrings": "and {{amount}} more"
         }
       },
       "roles": {
