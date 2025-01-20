@@ -1,10 +1,12 @@
 import type ConvertCounter from "../types/ConvertCounter";
 import { safeCounterName } from "../safeCounterName";
+import { toUnparsedArgsCompat } from "../toUnparsedArgsCompat";
 import { DataSourceId, TwitchDataSourceReturn } from "../types/DataSource";
 
 const TwitchCounter: ConvertCounter = {
   aliases: ["twitchFollowers", "twitchViewers", "twitchChannelName"],
-  convert: ({ unparsedArgs: username, aliasUsed, format }) => {
+  convert: ({ args, aliasUsed, format }) => {
+    const username = toUnparsedArgsCompat(args);
     return {
       id: DataSourceId.TWITCH,
       format,

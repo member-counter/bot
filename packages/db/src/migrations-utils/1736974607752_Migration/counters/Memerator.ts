@@ -1,10 +1,12 @@
 import type ConvertCounter from "../types/ConvertCounter";
 import { safeCounterName } from "../safeCounterName";
+import { toUnparsedArgsCompat } from "../toUnparsedArgsCompat";
 import { DataSourceId, MemeratorDataSourceReturn } from "../types/DataSource";
 
 const MemeratorCounter: ConvertCounter = {
   aliases: ["memeratorFollowers", "memeratorMemes"],
-  convert: ({ unparsedArgs: username, aliasUsed, format }) => {
+  convert: ({ args, aliasUsed, format }) => {
+    const username = toUnparsedArgsCompat(args);
     return {
       id: DataSourceId.MEMERATOR,
       format,

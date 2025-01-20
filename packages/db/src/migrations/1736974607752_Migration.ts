@@ -3,6 +3,8 @@ import type { Db } from "mongodb";
 import { ObjectId } from "mongodb";
 import { z } from "zod";
 
+import { convert } from "../migrations-utils/1736974607752_Migration/transpiler";
+
 const oldUserSchemaValidator = z.object({
   _id: z.string(),
   id: z.string(),
@@ -115,7 +117,7 @@ export class Migration1736974607752 implements MigrationInterface {
       for (const [channelId, template] of Object.entries(oldGuild.counters)) {
         await channelsCollection.insertOne({
           discordChannelId: channelId,
-          template: template, // TODO migrate counters
+          template: convert(template),
           isTemplateEnabled: Boolean(template),
           discordGuildId: oldGuild.id,
         });

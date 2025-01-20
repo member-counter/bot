@@ -2,14 +2,21 @@ import assert from "assert";
 import z from "zod";
 
 import type ConvertCounter from "../types/ConvertCounter";
-import type { DataSourceHTTP } from "../types/DataSource";
+import type { DataSource, DataSourceHTTP } from "../types/DataSource";
 import { DataSourceId } from "../types/DataSource";
 
-function parseArgs(args: string[][]) {
+function parseArgs(args: (DataSource | string)[][]) {
   try {
     assert(args[0]?.[0]);
 
     const encodedOptions = args[0][0];
+
+    if (typeof encodedOptions !== "string") {
+      throw new SyntaxError(
+        "Unsupported edge case for http options, please contact support",
+      );
+    }
+
     const decodedOptions = Buffer.from(encodedOptions, "base64").toString(
       "utf-8",
     );

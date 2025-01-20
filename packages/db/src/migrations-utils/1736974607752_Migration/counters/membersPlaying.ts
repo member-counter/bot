@@ -4,7 +4,7 @@ import { DataSourceId } from "../types/DataSource";
 const MembersPlayingCounter: ConvertCounter = {
   aliases: ["membersplaying"],
   convert: ({ format, args }) => {
-    const games = args[0]?.map((game) => game.trim().toLowerCase());
+    const games = args[0];
 
     return {
       id: DataSourceId.MEMBERS,

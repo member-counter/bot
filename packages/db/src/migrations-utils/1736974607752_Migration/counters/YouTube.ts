@@ -1,5 +1,6 @@
 import type ConvertCounter from "../types/ConvertCounter";
 import { safeCounterName } from "../safeCounterName";
+import { toUnparsedArgsCompat } from "../toUnparsedArgsCompat";
 import { DataSourceId, YouTubeDataSourceReturn } from "../types/DataSource";
 
 const YouTubeCounter: ConvertCounter = {
@@ -9,7 +10,8 @@ const YouTubeCounter: ConvertCounter = {
     "youtubeVideos",
     "youtubeChannelName",
   ],
-  convert: ({ unparsedArgs: channelUrl, format, aliasUsed }) => {
+  convert: ({ args, format, aliasUsed }) => {
+    const channelUrl = toUnparsedArgsCompat(args);
     return {
       id: DataSourceId.YOUTUBE,
       format,

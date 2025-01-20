@@ -7,14 +7,9 @@ interface ConvertArgs {
   format: DataSourceFormatSettings | undefined;
 
   /**
-   * @description Resource, like a list of role IDs, a piece of text, an URI, etc
-   */
-  unparsedArgs: string;
-
-  /**
    * @description The args but splitted depending on which separator has been used
    */
-  args: string[][];
+  args: (DataSource | string)[][];
 
   /**
    * @description The alias that was used
@@ -22,7 +17,7 @@ interface ConvertArgs {
   aliasUsed: string;
 }
 
-type ConvertFunction = (args: ConvertArgs) => DataSource | string;
+type ConvertFunction = (args: ConvertArgs) => DataSource;
 
 interface ConvertCounter {
   /**

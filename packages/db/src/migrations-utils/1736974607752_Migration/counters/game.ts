@@ -1,5 +1,6 @@
 import type ConvertCounter from "../types/ConvertCounter";
 import { DataSourceId } from "../types/DataSource";
+import { toNumber } from "../wrappers";
 
 const gameIds = {
   americasarmypg: "aapg",
@@ -153,9 +154,9 @@ function convertGameId(oldGameId: string | undefined): string | undefined {
 const GameCounter: ConvertCounter = {
   aliases: ["game"],
   convert: ({ args, format }) => {
-    const type = args[0]?.[0];
+    const type = typeof args[0]?.[0] === "string" ? args[0][0] : undefined;
     const host = args[1]?.[0];
-    const port = parseInt(args[2]?.[0] ?? "", 10) || undefined;
+    const port = args[2]?.[0] != null ? toNumber(args[2][0]) : undefined;
 
     return {
       id: DataSourceId.GAME,

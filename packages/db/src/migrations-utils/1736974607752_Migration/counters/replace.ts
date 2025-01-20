@@ -7,7 +7,9 @@ const ReplaceCounter: ConvertCounter = {
     const [unparsedText, unparsedPairs] = args;
 
     const text = unparsedText?.[0];
-    const pairs = unparsedPairs?.map((pair) => pair.split(/(?<!\\);/));
+    const pairs = unparsedPairs?.map((pair) =>
+      typeof pair === "string" ? pair.split(/(?<!\\);/) : [pair],
+    );
 
     return {
       id: DataSourceId.REPLACE,

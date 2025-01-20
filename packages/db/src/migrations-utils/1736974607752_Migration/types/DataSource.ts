@@ -176,7 +176,6 @@ export interface DataSourceUnknown extends DataSourceBase {
 export enum DataSourceId {
   MEMBERS,
   MATH,
-  CONCAT,
   CHANNELS,
   CLOCK,
   COUNTDOWN,
@@ -193,6 +192,7 @@ export enum DataSourceId {
   YOUTUBE,
   NUMBER,
   UNKNOWN,
+  CONCAT,
 }
 
 export enum MathDataSourceOperation {

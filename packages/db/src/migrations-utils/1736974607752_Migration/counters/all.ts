@@ -1,9 +1,9 @@
 import type ConvertCounter from "../types/ConvertCounter";
+import { safeCounterName } from "../safeCounterName";
 import BannedMembersCounter from "./bannedMembers";
 import BotStatsCounter from "./bot-stats";
 import ChannelCounter from "./channels";
 import ClockCounter from "./clock";
-import ConcatCounter from "./concat";
 import CountdownCounter from "./countdown";
 import EscapeCounter from "./escape";
 import GameCounter from "./game";
@@ -21,13 +21,11 @@ import reddit from "./reddit";
 import ReplaceCounter from "./replace";
 import RolesCounter from "./roles";
 import StaticCounter from "./static";
-import TestCounter from "./test";
 import TwitchCounter from "./Twitch";
 import TwitterCounter from "./Twitter";
 import YouTubeCounter from "./YouTube";
 
 const counters: ConvertCounter[] = [
-  TestCounter,
   BannedMembersCounter,
   BotStatsCounter,
   ChannelCounter,
@@ -51,8 +49,10 @@ const counters: ConvertCounter[] = [
   YouTubeCounter,
   MathCounter,
   ReplaceCounter,
-  ConcatCounter,
   EscapeCounter,
-];
+].map((counter) => {
+  counter.aliases = counter.aliases.map((alias) => safeCounterName(alias));
+  return counter;
+});
 
 export default counters;

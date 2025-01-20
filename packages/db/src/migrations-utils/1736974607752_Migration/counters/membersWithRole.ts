@@ -8,7 +8,7 @@ const MembersWithRoleCounter: ConvertCounter = {
     "offlineMembersWithRole",
   ],
   convert: ({ format, args, aliasUsed }) => {
-    const targetRoles: string[] = args[0] ?? [];
+    const targetRoles = args[0] ?? [];
 
     return {
       id: DataSourceId.MEMBERS,
