@@ -80,6 +80,7 @@ function parseCounter(
   const args: (OldCounterNode | StringNode)[][][] = [];
 
   const getLastArg = () => {
+    if (args.length === 0) args.push([]);
     const lastArg = args[args.length - 1];
     assert(lastArg);
     return lastArg;
