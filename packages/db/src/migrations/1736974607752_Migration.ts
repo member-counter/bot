@@ -24,7 +24,7 @@ const oldGuildSettingsSchema = z.object({
   shortNumber: z.number().default(1),
   locale: z.string().default("disabled"),
   digits: z
-    .array(z.string())
+    .array(z.union([z.string(), z.null(), z.undefined()]))
     .default(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]),
   blocked: z.boolean().default(false),
 });
@@ -36,10 +36,35 @@ export class Migration1736974607752 implements MigrationInterface {
 
     // Users
     const usersCollection = db.collection("users");
+    await usersCollection.dropIndexes();
 
-    await usersCollection.updateMany({}, { $rename: { id: "discordUserId" } });
+    await usersCollection.findOneAndDelete({ id: { $eq: null } });
 
-    await usersCollection.rename("User");
+    await usersCollection.updateMany(
+      {},
+      {
+        $rename: {
+          id: "discordUserId",
+        },
+      },
+    );
+
+    await usersCollection.updateMany({}, [
+      {
+        $set: {
+          badges: {
+            $cond: [{ $eq: ["$badges", Infinity] }, 999999999999, "$badges"],
+          },
+        },
+      },
+      {
+        $set: {
+          badges: { $toLong: ["$badges"] },
+        },
+      },
+    ]);
+
+    await usersCollection.rename("User").catch(() => void 0);
 
     // Donations
     const newDonationsCollection = db.collection("Donation");
