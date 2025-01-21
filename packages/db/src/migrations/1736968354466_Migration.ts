@@ -20,21 +20,35 @@ export class Migration1736968354466 implements MigrationInterface {
         if (Object.hasOwnProperty.call(counters, id)) {
           counters[id] = counters[id].replace(
             /\{https?:(.+?)\}/gi,
-            (wholeMatch: any, url: any) => {
-              return `{http:${Buffer.from(
-                JSON.stringify({ url, parseNumber: true }),
-                "utf-8",
-              ).toString("base64")}}`;
+            (wholeMatch: any, url: string) => {
+              try {
+                // Test if migration was already applied
+                JSON.parse(Buffer.from(url, "base64").toString("utf-8"));
+
+                return `{http:${url}}`;
+              } catch {
+                return `{http:${Buffer.from(
+                  JSON.stringify({ url, parseNumber: true }),
+                  "utf-8",
+                ).toString("base64")}}`;
+              }
             },
           );
 
           counters[id] = counters[id].replace(
             /\{https?-string:(.+?)\}/gi,
             (wholeMatch: any, url: any) => {
-              return `{http:${Buffer.from(
-                JSON.stringify({ url }),
-                "utf-8",
-              ).toString("base64")}}`;
+              try {
+                // Test if migration was already applied
+                JSON.parse(Buffer.from(url, "base64").toString("utf-8"));
+
+                return `{http:${url}}`;
+              } catch {
+                return `{http:${Buffer.from(
+                  JSON.stringify({ url }),
+                  "utf-8",
+                ).toString("base64")}}`;
+              }
             },
           );
         }
