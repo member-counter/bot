@@ -96,10 +96,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Pull Test
-        run: |
-          docker pull ghcr.io/member-counter/pnpm-store-cache:latest
-
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
