@@ -5,12 +5,6 @@ import { z } from "zod";
 
 import { convert } from "../migrations-utils/1736974607752_Migration/transpiler";
 
-const oldUserSchemaValidator = z.object({
-  _id: z.instanceof(ObjectId),
-  id: z.string(),
-  badges: z.number().default(0),
-});
-
 const oldDonationSchemaValidator = z.object({
   _id: z.instanceof(ObjectId),
   user: z.string(),
@@ -41,25 +35,11 @@ export class Migration1736974607752 implements MigrationInterface {
     await db.dropCollection("motds");
 
     // Users
-    const newUsersCollection = db.collection("User");
-    const oldUsersCollection = db.collection("users");
-    const oldUsersCursor = oldUsersCollection.find();
+    const usersCollection = db.collection("users");
 
-    while (await oldUsersCursor.hasNext()) {
-      const oldUserUnknown = await oldUsersCursor.next();
+    await usersCollection.updateMany({}, { $rename: { id: "discordUserId" } });
 
-      if (oldUserUnknown?.id == null) continue;
-
-      const oldUser = oldUserSchemaValidator.parse(oldUserUnknown);
-
-      await newUsersCollection.insertOne({
-        discordUserId: oldUser.id,
-        badges: oldUser.badges,
-        permissions: 0,
-      });
-    }
-
-    await oldUsersCollection.drop();
+    await usersCollection.rename("User");
 
     // Donations
     const newDonationsCollection = db.collection("Donation");
