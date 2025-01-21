@@ -135,3 +135,13 @@ void test("convert #2", () => {
 
   assert.equal(result, expectedOutput);
 });
+
+void test("convert #3", () => {
+  const input =
+    "test {eyJzaG9ydE51bWJlciI6IC0xLCJsb2NhbGUiOiJlbi1VUyIsImRpZ2l0cyI6WzAsMSwyXX0=:sum:{static:2}4,5} aaaaaaaa";
+  const expectedOutput =
+    'test \x1F{"id":1,"format":{"compactNotation":false,"locale":"en-US","digits":["0","1","2"]},"options":{"numbers":[{"id":16,"options":{"number":{"id":18,"options":{"strings":[{"id":16,"options":{"number":{"id":18,"options":{"strings":[{"id":18,"options":{"strings":["2"]}}]}}}},"4"]}}}},5],"operation":0}}\x1F aaaaaaaa';
+  const result = convert(input);
+
+  assert.equal(result, expectedOutput);
+});

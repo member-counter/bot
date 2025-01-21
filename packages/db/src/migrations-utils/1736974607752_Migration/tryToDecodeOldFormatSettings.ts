@@ -12,7 +12,7 @@ export function tryToDecodeOldFormatSettings(
       .object({
         shortNumber: z.number().optional().nullable(),
         locale: z.string().optional().nullable(),
-        digits: z.array(z.string()).optional().nullable(),
+        digits: z.array(z.coerce.string()).optional().nullable(),
       })
       .parse(JSON.parse(firstSectionDecoded));
 
