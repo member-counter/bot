@@ -21,13 +21,11 @@ export class Migration1736968254771 implements MigrationInterface {
         }
       }
 
+      const { _id } = settings;
       delete settings._id;
       delete settings.__v;
 
-      await guildsCollection.findOneAndUpdate(
-        { guild: settings.guild },
-        { $set: settings },
-      );
+      await guildsCollection.findOneAndUpdate({ _id }, { $set: settings });
     }
   }
 

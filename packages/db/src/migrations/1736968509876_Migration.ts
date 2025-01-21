@@ -14,7 +14,7 @@ export class Migration1736968509876 implements MigrationInterface {
 
     while (await guildsCursor.hasNext()) {
       const guildSettings: any = await guildsCursor.next();
-      const { guild, counters } = guildSettings;
+      const { counters } = guildSettings;
 
       for (const id in counters) {
         if (Object.hasOwnProperty.call(counters, id)) {
@@ -27,13 +27,11 @@ export class Migration1736968509876 implements MigrationInterface {
         }
       }
 
+      const { _id } = guildSettings;
       delete guildSettings._id;
       delete guildSettings.__v;
 
-      await guildsCollection.findOneAndUpdate(
-        { guild: guild },
-        { $set: guildSettings },
-      );
+      await guildsCollection.findOneAndUpdate({ _id }, { $set: guildSettings });
     }
   }
 

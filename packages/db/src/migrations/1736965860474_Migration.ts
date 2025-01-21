@@ -34,40 +34,24 @@ export class Migration1736965860474 implements MigrationInterface {
     // Guild Settings
     const guildsCollection = db.collection("guilds");
 
+    await guildsCollection.updateMany(
+      {},
+      {
+        $rename: {
+          guild_id: "guild",
+          lang: "language",
+          topicCounterCustomNumbers: "digits",
+        },
+      },
+    );
+
     const guildsCursor = guildsCollection.find();
 
     while (await guildsCursor.hasNext()) {
       const oldSettings: any = await guildsCursor.next();
 
-      const newSettings = {
-        guild: oldSettings.guild_id,
-        counters: {},
-      } as Record<string, any>;
-
-      if ("premium" in oldSettings) {
-        newSettings.premium = oldSettings.premium;
-      }
-      if ("lang" in oldSettings) {
-        newSettings.language = oldSettings.lang;
-      }
-      if ("prefix" in oldSettings) {
-        newSettings.prefix = oldSettings.prefix;
-      }
-      if ("topicCounterCustomNumbers" in oldSettings) {
-        const newDigitsArray: (string | undefined)[] = [];
-        for (const [iString, value] of Object.entries(
-          oldSettings.topicCounterCustomNumbers as string[],
-        )) {
-          const i = Number(iString);
-
-          if (value === oldDefaultDigits[i]) {
-            newDigitsArray[i] = newDefaultDigits[i];
-          } else {
-            newDigitsArray[i] = value;
-          }
-        }
-        newSettings.digits = newDigitsArray;
-      }
+      const counters = {} as Record<string, string>;
+      const digits: (string | undefined | null)[] = [];
 
       const oldMainTopic = (
         (oldSettings.mainTopicCounter as string) || "Members: {count}"
@@ -88,7 +72,7 @@ export class Migration1736965860474 implements MigrationInterface {
             topic = oldMainTopic;
           }
 
-          newSettings.counters[channelId] = topic;
+          counters[channelId] = topic;
         });
 
       if ("channelNameCounters" in oldSettings)
@@ -114,38 +98,54 @@ export class Migration1736965860474 implements MigrationInterface {
 
           name = name.replace(/\{count\}/gi, "{" + type + "}");
 
-          newSettings.counters[channelId] = name;
+          counters[channelId] = name;
         });
 
-      await guildsCollection.insertOne(newSettings);
-      await guildsCollection.findOneAndDelete({
-        guild_id: oldSettings.guild_id,
-      });
+      if ("topicCounterCustomNumbers" in oldSettings) {
+        for (const [iString, value] of Object.entries(
+          oldSettings.topicCounterCustomNumbers as string[],
+        )) {
+          const i = Number(iString);
+
+          if (value === oldDefaultDigits[i]) {
+            digits[i] = newDefaultDigits[i];
+          } else {
+            digits[i] = value;
+          }
+        }
+      }
+
+      await guildsCollection.findOneAndUpdate(
+        {
+          guild: oldSettings.guild,
+        },
+        {
+          $set: { counters, digits },
+          $unset: {
+            mainTopicCounter: 1,
+            topicCounterChannels: 1,
+            channelNameCounters: 1,
+          },
+        },
+      );
     }
 
     // User settings
     const usersCollection = db.collection("users");
+    await usersCollection.dropIndexes();
 
-    const userCursor = usersCollection.find();
-
-    while (await userCursor.hasNext()) {
-      const oldUser: any = await userCursor.next();
-
-      const newUser = {
-        user: oldUser.user_id,
-      } as Record<string, unknown>;
-
-      if ("availableServerUpgrades" in oldUser) {
-        newUser.availableServerUpgrades = oldUser.availableServerUpgrades;
-      }
-
-      if ("premium" in oldUser && oldUser.premium) {
-        newUser.badges = 0b1;
-      }
-
-      await usersCollection.insertOne(newUser);
-      await usersCollection.findOneAndDelete({ user_id: oldUser.user_id });
-    }
+    await usersCollection.updateMany(
+      {},
+      {
+        $rename: {
+          user_id: "user",
+        },
+      },
+    );
+    await usersCollection.updateMany(
+      { premium: true },
+      { $bit: { badges: { or: 0b1 } }, $unset: { premium: 1 } },
+    );
   }
 
   public down(_db: Db): Promise<void> {

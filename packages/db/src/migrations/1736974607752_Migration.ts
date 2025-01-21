@@ -6,13 +6,13 @@ import { z } from "zod";
 import { convert } from "../migrations-utils/1736974607752_Migration/transpiler";
 
 const oldUserSchemaValidator = z.object({
-  _id: z.string(),
+  _id: z.instanceof(ObjectId),
   id: z.string(),
   badges: z.number().default(0),
 });
 
 const oldDonationSchemaValidator = z.object({
-  _id: z.string(),
+  _id: z.instanceof(ObjectId),
   user: z.string(),
   note: z.string().optional().default(""),
   anonymous: z.boolean().optional().default(false),
@@ -22,7 +22,7 @@ const oldDonationSchemaValidator = z.object({
 });
 
 const oldGuildSettingsSchema = z.object({
-  _id: z.string(),
+  _id: z.instanceof(ObjectId),
   id: z.string(),
   premium: z.boolean().default(false),
   language: z.string().default("en-US"),
@@ -37,6 +37,9 @@ const oldGuildSettingsSchema = z.object({
 
 export class Migration1736974607752 implements MigrationInterface {
   public async up(db: Db): Promise<void> {
+    // Motds
+    await db.dropCollection("motds");
+
     // Users
     const newUsersCollection = db.collection("User");
     const oldUsersCollection = db.collection("users");
@@ -44,10 +47,12 @@ export class Migration1736974607752 implements MigrationInterface {
 
     while (await oldUsersCursor.hasNext()) {
       const oldUserUnknown = await oldUsersCursor.next();
+
+      if (oldUserUnknown?.id == null) continue;
+
       const oldUser = oldUserSchemaValidator.parse(oldUserUnknown);
 
       await newUsersCollection.insertOne({
-        _id: new ObjectId(oldUser._id),
         discordUserId: oldUser.id,
         badges: oldUser.badges,
         permissions: 0,
@@ -66,7 +71,6 @@ export class Migration1736974607752 implements MigrationInterface {
       const oldDonation = oldDonationSchemaValidator.parse(oldDonationUnknown);
 
       await newDonationsCollection.insertOne({
-        _id: new ObjectId(oldDonation._id),
         note: oldDonation.note,
         anonymous: oldDonation.anonymous,
         date: oldDonation.date,
@@ -93,7 +97,6 @@ export class Migration1736974607752 implements MigrationInterface {
 
       // Transform Guild
       const newGuild = {
-        _id: new ObjectId(oldGuild._id),
         discordGuildId: oldGuild.id,
         language: oldGuild.language,
         formatSettings: {
