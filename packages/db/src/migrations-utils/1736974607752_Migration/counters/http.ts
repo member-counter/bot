@@ -24,9 +24,9 @@ function parseArgs(args: (DataSource | string)[][]) {
     return z
       .object({
         url: z.string().optional(),
-        parseNumber: z.boolean().optional(),
+        parseNumber: z.coerce.boolean().optional(),
         dataPath: z.string().optional(),
-        lifetime: z.number().optional(),
+        lifetime: z.coerce.number().optional(),
       })
       .parse(JSON.parse(decodedOptions));
   } catch {
