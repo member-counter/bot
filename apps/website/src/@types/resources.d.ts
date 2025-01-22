@@ -382,8 +382,8 @@ interface Resources {
                     "addReplacement": "Add replacement"
                   },
                   "ConcatOptions": {
-                    "stringList": "String list",
-                    "addString": "Add string..."
+                    "stringList": "Text list",
+                    "addString": "Add text..."
                   },
                   "TwitchOptions": {
                     "display": "Display",

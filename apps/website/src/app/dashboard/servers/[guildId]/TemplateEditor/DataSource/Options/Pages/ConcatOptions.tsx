@@ -62,16 +62,13 @@ export function ConcatOptions({
               onRemove: () => {
                 setOptions({ strings: removeFrom(options.strings, index) });
               },
-              dataSourceConfigWarning: t(
-                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.numberWarning",
-              ),
             })}
           />
         ))}
         <Combobox
           items={knownSearcheableDataSources}
           placeholder={t(
-            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MathOptions.addNumber",
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ConcatOptions.addString",
           )}
           allowSearchedTerm
           onItemSelect={(item) => {
