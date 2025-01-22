@@ -19,7 +19,7 @@ import { tryToDecodeOldFormatSettings } from "./tryToDecodeOldFormatSettings";
 import { DataSourceId, stringifyDataSoure } from "./types/DataSource";
 import { toConcat } from "./wrappers";
 
-function lastCounterIsClosed(tokens: OldFormatToken[]) {
+function lastCounterWasClosed(tokens: OldFormatToken[]) {
   let pendingClosings = 0;
 
   for (const token of tokens) {
@@ -35,20 +35,36 @@ function lastCounterIsClosed(tokens: OldFormatToken[]) {
   return !pendingClosings;
 }
 
+function counterWillClose(content: string, currentIndex: number) {
+  for (; currentIndex < content.length; currentIndex++) {
+    const character = content[currentIndex];
+    assert(character);
+
+    if (character === "}") {
+      return true;
+    }
+  }
+  return false;
+}
+
 function tokenize(content: string) {
   const tokens: OldFormatToken[] = [];
 
-  let i = 0;
-  while (i < content.length) {
+  for (let i = 0; i < content.length; i++) {
     const character = content[i];
     const lastToken = tokens[tokens.length - 1];
 
     assert(character);
 
     if (content[i - 1] !== "\\" && (character === "{" || character === "}")) {
-      tokens.push({ type: "counter_delimiter", value: character });
-      i++;
-    } else if (!lastCounterIsClosed(tokens)) {
+      if (character === "}" && !lastCounterWasClosed(tokens)) {
+        tokens.push({ type: "counter_delimiter", value: character });
+      } else if (character === "{" && counterWillClose(content, i)) {
+        tokens.push({ type: "counter_delimiter", value: character });
+      } else {
+        tokens.push({ type: "string", value: character });
+      }
+    } else if (!lastCounterWasClosed(tokens)) {
       if (character === ":") {
         tokens.push({ type: "counter_section_delimiter" });
       } else if (character === ",") {
@@ -58,12 +74,10 @@ function tokenize(content: string) {
           ? (lastToken.value = lastToken.value + character)
           : tokens.push({ type: "counter_section", value: character });
       }
-      i++;
     } else {
       lastToken?.type === "string"
         ? (lastToken.value = lastToken.value + character)
         : tokens.push({ type: "string", value: character });
-      i++;
     }
   }
 
