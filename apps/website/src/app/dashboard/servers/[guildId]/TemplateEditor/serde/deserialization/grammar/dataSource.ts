@@ -1,21 +1,16 @@
 /* eslint-disable no-control-regex */
-
 import type { Grammar } from "prismjs";
-
-import { createInline } from "../createInLine";
 
 export const dataSourceGrammar: Grammar = {
   dataSource: {
-    // \u001FdataSource\u001F
-    pattern: createInline(/(\u001F)(?:(?!\u001F)<inner>)+\2/.source),
+    pattern: /\u001F[^\u001F]*\u001F/,
     lookbehind: true,
-    greedy: false,
+    greedy: true,
     inside: {
-      content: {
-        pattern: /(^\u001F)[\s\S]+(?=\1$)/,
+      definition: {
+        pattern: /(^\u001F)[^\u001F]*(?=\u001F$)/,
         lookbehind: true,
       },
-
       punctuation: /\u001F/,
     },
   },

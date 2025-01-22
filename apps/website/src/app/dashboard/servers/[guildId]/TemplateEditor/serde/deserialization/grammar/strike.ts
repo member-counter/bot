@@ -24,13 +24,10 @@ THE SOFTWARE.
 
 import type { Grammar } from "prismjs";
 
-import { createInline } from "../createInLine";
-
 export const strikeGrammar: Grammar = {
   strike: {
     // ~~strike through~~
-    pattern: createInline(/(~~)(?:(?!~)<inner>)+\2/.source),
-    lookbehind: true,
+    pattern: /(~~)(?:(?!~)[\s\S])+\1/,
     greedy: true,
     inside: {
       content: {
