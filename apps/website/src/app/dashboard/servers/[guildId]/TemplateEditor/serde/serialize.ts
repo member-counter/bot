@@ -105,13 +105,13 @@ export const serialize = (
     }
   };
 
-  const serializeNode = (node: Descendant): string => {
+  const serializeNode = (node: Descendant): string | null => {
     if ("text" in node) {
-      return serializeText(node);
+      return node.text.length ? serializeText(node) : null;
     } else {
       return serializeElement(node);
     }
   };
 
-  return nodes.map(serializeNode).join("\n");
+  return nodes.map(serializeNode).filter(Boolean).join("\n");
 };
