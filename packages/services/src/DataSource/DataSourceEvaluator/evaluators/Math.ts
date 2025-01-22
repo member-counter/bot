@@ -10,21 +10,19 @@ export const mathEvaluator = new DataSourceEvaluator({
     switch (operation) {
       default:
       case MathDataSourceOperation.ADD:
-        return values.reduce((acc, curr) => acc + curr);
+        return values.reduce((acc, curr) => acc + curr, 0);
 
       case MathDataSourceOperation.SUBTRACT:
-        return values.reduce((acc, curr) => {
-          return acc - curr;
-        });
+        return values.reduce((acc, curr) => acc - curr, 0);
 
       case MathDataSourceOperation.MULTIPLY:
-        return values.reduce((acc, curr) => acc * curr);
+        return values.reduce((acc, curr) => acc * curr, 0);
 
       case MathDataSourceOperation.DIVIDE:
-        return values.reduce((acc, curr) => acc / curr);
+        return values.reduce((acc, curr) => acc / curr, 0);
 
       case MathDataSourceOperation.MODULO:
-        return values.reduce((acc, curr) => acc % curr);
+        return values.reduce((acc, curr) => acc % curr, 0);
     }
   },
 });
