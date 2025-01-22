@@ -31,7 +31,7 @@ export function EnableTemplate({ value, onChange, disabled }: Props) {
 
   return (
     <div className="flex flex-row items-center justify-between gap-2">
-      <div>
+      <div className="flex flex-col gap-3">
         <Label htmlFor={enableTemplateSwitch}>
           {t(
             "pages.dashboard.servers.channels.sections.EnableTemplate.enableTemplate",
