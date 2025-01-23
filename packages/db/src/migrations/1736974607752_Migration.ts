@@ -29,9 +29,6 @@ const oldGuildSettingsSchema = z.object({
 
 export class Migration1736974607752 implements MigrationInterface {
   public async up(db: Db): Promise<void> {
-    // Motds
-    await db.dropCollection("motds");
-
     // Users
     const usersCollection = db.collection("users");
 
@@ -130,6 +127,15 @@ export class Migration1736974607752 implements MigrationInterface {
 
     // Drop the old collection
     await oldGuildsCollection.drop();
+
+    // Guild member count cache
+    await db.dropCollection("guildcountcaches");
+
+    // Guild logs
+    await db.dropCollection("guildlogs");
+
+    // Motds
+    await db.dropCollection("motds");
   }
 
   public down(_db: Db): Promise<void> {
