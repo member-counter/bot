@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "postinstall": "pnpm run generate",
     "generate": "prisma generate",
-    "migrate": "TS_NODE_DEV=1 pnpm with-env tsx ./src/migrations/index.ts",
+    "migrate": "TS_NODE_DEV=1 pnpm with-env tsx ./src/migrate.ts",
     "push": "pnpm with-env prisma db push",
     "with-env": "dotenv -e ../../.env --"
   },

@@ -18,8 +18,6 @@ const oldDonationSchemaValidator = z.object({
 const oldGuildSettingsSchema = z.object({
   _id: z.instanceof(ObjectId),
   id: z.string(),
-  premium: z.boolean().default(false),
-  language: z.string().default("en-US"),
   counters: z.record(z.string(), z.string()).default({}),
   shortNumber: z.number().default(1),
   locale: z.string().default("disabled"),
@@ -36,7 +34,6 @@ export class Migration1736974607752 implements MigrationInterface {
 
     // Users
     const usersCollection = db.collection("users");
-    await usersCollection.dropIndexes();
 
     await usersCollection.findOneAndDelete({ id: { $eq: null } });
 
@@ -103,7 +100,6 @@ export class Migration1736974607752 implements MigrationInterface {
       // Transform Guild
       const newGuild = {
         discordGuildId: oldGuild.id,
-        language: oldGuild.language,
         formatSettings: {
           locale: oldGuild.locale === "disabled" ? "en-US" : oldGuild.locale,
           compactNotation: oldGuild.shortNumber === 1,

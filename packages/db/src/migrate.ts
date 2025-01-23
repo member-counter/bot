@@ -1,7 +1,7 @@
 import { join } from "path";
 import { mongoMigrateCli } from "mongo-migrate-ts";
 
-import { env } from "../env";
+import { env } from "./env";
 
 mongoMigrateCli({
   uri: env.DATABASE_URL,
