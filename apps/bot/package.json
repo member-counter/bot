@@ -7,7 +7,7 @@
     "clean": "git clean -xdf .next .turbo node_modules",
     "prebuild": "pnpm run generate-i18next-res",
     "build": "tsup-node",
-    "dev": "pnpm with-env pnpm build --watch . --watch ../../packages --onSuccess \"node dist/index.js\"",
+    "dev": "pnpm with-env pnpm build --watch=. --watch=../../packages --ignore-watch=../../packages/*/node_modules --onSuccess \"node dist/index.js\"",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "start": "pnpm with-env node ./dist/index.js",
