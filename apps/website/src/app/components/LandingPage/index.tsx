@@ -9,6 +9,7 @@ import {
   LifeBuoyIcon,
   SlidersHorizontalIcon,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import TextTransition, { presets } from "react-text-transition";
 
 import { cn } from "@mc/ui";
@@ -23,24 +24,11 @@ import { SupportedCounters } from "./SupportedCounters";
 
 const major = Major_Mono_Display({ subsets: ["latin"], weight: "400" });
 
-// TODO translate this
-
 export default function LandingPage() {
-  const subheadings = [
-    "Display your server’s member count dynamically",
-    "Show off your YouTube subscriber count",
-    "Monitor your Minecraft server's player count",
-    "Show off how many people is watching your Twitch channel",
-    "Display any data you want in your Discord server",
-    "Track how many players your FiveM server has",
-    "Show a clock adjusted to your preferred timezone",
-    "Create countdowns for events or special occasions",
-    "Monitor player stats across 320+ game servers",
-    "Fetch and display data from any API endpoint",
-    "Perform and display math operations on your data",
-    "Format numbers and display them beautifully",
-    "Highlight your server's Nitro boosters",
-  ];
+  const { t } = useTranslation();
+  const subheadings = t("pages.admin.homePage.headings", {
+    returnObjects: true,
+  });
 
   const [currentSubheading, setCurrentSubheading] = useState(0);
 

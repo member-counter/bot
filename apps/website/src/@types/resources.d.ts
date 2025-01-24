@@ -496,6 +496,21 @@ interface Resources {
           "userNotRegistered": "This user isn't registered."
         },
         "homePage": {
+          "headings": [
+            "Display your server’s member count dynamically",
+            "Show off your YouTube subscriber count",
+            "Monitor your Minecraft server's player count",
+            "Show off how many people is watching your Twitch channel",
+            "Display any data you want in your Discord server",
+            "Track how many players your FiveM server has",
+            "Show a clock adjusted to your preferred timezone",
+            "Create countdowns for events or special occasions",
+            "Monitor player stats across 320+ game servers",
+            "Fetch and display data from any API endpoint",
+            "Perform and display math operations on your data",
+            "Format numbers and display them beautifully",
+            "Highlight your server's Nitro boosters"
+          ],
           "demoServers": {
             "title": "Demo servers",
             "createInputPlaceholder": "New demo server name",
@@ -545,6 +560,56 @@ interface Resources {
               "dialogTitle": "Are you absolutely sure?",
               "dialogDescription": "This action cannot be undone.",
               "closeButton": "Close"
+            }
+          },
+          "supportedCounters": {
+            "discordMembers": {
+              "title": "Discord Members",
+              "description": "Count and filter members by online status, roles, and other criteria to get precise insights about your community."
+            },
+            "clock": {
+              "title": "Clock",
+              "description": "View the time in any timezone with our customizable clock. Perfect for coordinating across different regions."
+            },
+            "countdown": {
+              "title": "Countdown",
+              "description": "Create and manage countdown timers tailored to your specific events or deadlines."
+            },
+            "game": {
+              "title": "Game",
+              "description": "Monitor your game server’s activity with real-time player counts for over 320 supported games."
+            },
+            "http": {
+              "title": "HTTP",
+              "description": "Execute GET requests and receive data directly from any endpoint, streamlining your integration needs."
+            },
+            "math": {
+              "title": "Math",
+              "description": "Perform a range of mathematical operations including addition, subtraction, multiplication, and more on multiple numbers."
+            },
+            "nitroBoosters": {
+              "title": "Nitro Boosters",
+              "description": "Track the number of Nitro boosters in your server to gauge community support and engagement."
+            },
+            "reddit": {
+              "title": "Reddit",
+              "description": "Get statistics on any subreddit, including title, member count, and online members."
+            },
+            "replace": {
+              "title": "Replace",
+              "description": "Modify text dynamically with our powerful replacement tool, ideal in conjunction with the HTTP counter."
+            },
+            "twitch": {
+              "title": "Twitch",
+              "description": "Monitor Twitch channel metrics such as follower count and view statistics to stay updated on your favorite streamers."
+            },
+            "youtube": {
+              "title": "YouTube",
+              "description": "Retrieve key metrics from YouTube channels including subscriber count, video count, and overall views."
+            },
+            "andMuchMore": {
+              "title": "And Much More!",
+              "description": "Discover even more features and counters that can enhance your experience. Stay tuned for updates!"
             }
           }
         },
