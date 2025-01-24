@@ -1,14 +1,12 @@
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { z } from "zod";
 
-import { DataSourceErrorNames } from "@mc/common/KnownError/DataSourceError";
-import { Card } from "@mc/ui/card";
 import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
 
 import type { DashboardGuildChannelParams } from "../layout";
 import { api } from "~/trpc/react";
+import { DisplayTemplateError } from "../../TemplateEditor/DisplayTemplateError";
 
 export function TemplateError() {
   const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
@@ -20,18 +18,6 @@ export function TemplateError() {
 
   if (!channelLog.data?.LastTemplateComputeError) return null;
 
-  let translationKey: (typeof DataSourceErrorNames)[number] = "UNKNOWN";
-
-  const parsedError = z
-    .enum(DataSourceErrorNames)
-    .safeParse(channelLog.data.LastTemplateComputeError);
-
-  if (parsedError.success) {
-    translationKey = parsedError.data;
-  }
-
-  // TODO also display error from preview
-
   return (
     <>
       <Separator />
@@ -41,11 +27,9 @@ export function TemplateError() {
             "pages.dashboard.servers.channels.sections.TemplateError.errorTitle",
           )}
         </Label>
-        <Card className="border border-destructive p-3">
-          <pre className="w-full whitespace-pre-wrap">
-            {t(`common.knownErrors.${translationKey}`)}
-          </pre>
-        </Card>
+        <DisplayTemplateError
+          message={channelLog.data.LastTemplateComputeError}
+        />
       </div>
     </>
   );

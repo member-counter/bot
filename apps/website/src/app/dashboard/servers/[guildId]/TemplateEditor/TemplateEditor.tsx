@@ -16,6 +16,7 @@ import { useDebounce } from "~/hooks/useDebounce";
 import { api } from "~/trpc/react";
 import AddDataSourceCombobox from "./DataSource/AddDataSourceCombobox";
 import EditDataSource from "./DataSource/EditDataSource";
+import { DisplayTemplateError } from "./DisplayTemplateError";
 import { EmojiPicker } from "./Emoji/EmojiPicker";
 import { MarkButtons } from "./Marks/MarkButtons";
 import { MentionSuggestions } from "./Mention/MentionSuggestions";
@@ -214,26 +215,32 @@ export default function TemplateEditor({
 
   const preview = useMemo(() => {
     return (
-      <SlateTemplateEditor
-        key={computedValue.data}
-        disabled={disabled}
-        textarea={target === "channelTopic"}
-        features={features}
-        initialValue={computedDeserializedValue}
-      >
-        <TemplateEditorInputLayout
-          id={id}
-          className={className}
-          target={target}
-          showPreview={showPreview}
-          togglePreview={togglePreview}
-        />
-      </SlateTemplateEditor>
+      <>
+        <SlateTemplateEditor
+          key={computedValue.data}
+          disabled={disabled}
+          textarea={target === "channelTopic"}
+          features={features}
+          initialValue={computedDeserializedValue}
+        >
+          <TemplateEditorInputLayout
+            id={id}
+            className={className}
+            target={target}
+            showPreview={showPreview}
+            togglePreview={togglePreview}
+          />
+        </SlateTemplateEditor>
+        {computedValue.error && (
+          <DisplayTemplateError message={computedValue.error.message} />
+        )}
+      </>
     );
   }, [
     className,
     computedDeserializedValue,
     computedValue.data,
+    computedValue.error,
     disabled,
     features,
     id,
