@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@mc/ui/button";
 import { Input } from "@mc/ui/input";
 
+import useShowError from "~/hooks/useShowError";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 
@@ -13,11 +14,17 @@ export function CreateInput() {
   const [name, setName] = useState("");
   const createDemoServer = api.demoServers.create.useMutation();
   const router = useRouter();
+  const showError = useShowError();
 
   const create = async () => {
     if (!name) return;
-    const demoServer = await createDemoServer.mutateAsync({ name: name });
-    router.push(Routes.ManageHomeDemoServer(demoServer.id));
+
+    try {
+      const demoServer = await createDemoServer.mutateAsync({ name: name });
+      router.push(Routes.ManageHomeDemoServer(demoServer.id));
+    } catch (err) {
+      showError(err);
+    }
   };
 
   return (

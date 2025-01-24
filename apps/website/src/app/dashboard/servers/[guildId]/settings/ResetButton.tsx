@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "@mc/ui/dialog";
 
+import useShowError from "~/hooks/useShowError";
 import { api } from "~/trpc/react";
 
 export function ResetSettings({
@@ -29,10 +30,15 @@ export function ResetSettings({
   const { t } = useTranslation();
   const resetSettingsMutation = api.guild.reset.useMutation();
   const settingsMutation = api.guild.get.useQuery({ discordGuildId: guildId });
+  const showError = useShowError();
 
   const resetSettings = async () => {
-    await resetSettingsMutation.mutateAsync({ discordGuildId: guildId });
-    await settingsMutation.refetch();
+    try {
+      await resetSettingsMutation.mutateAsync({ discordGuildId: guildId });
+      await settingsMutation.refetch();
+    } catch (err) {
+      showError(err);
+    }
   };
 
   return (

@@ -15,6 +15,7 @@ import { TypographyH4 } from "@mc/ui/TypographyH4";
 
 import type { RouterInputs } from "~/trpc/react";
 import { FormManagerState } from "~/hooks/useFormManager";
+import useShowError from "~/hooks/useShowError";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 import { DonationForm } from "../DonationForm";
@@ -22,6 +23,7 @@ import { DonationForm } from "../DonationForm";
 export default function Page() {
   const { t } = useTranslation();
   const router = useRouter();
+  const showError = useShowError();
 
   const [donation, setDonation] = useState<
     RouterInputs["donor"]["registerDonation"]
@@ -40,8 +42,12 @@ export default function Page() {
   const handleSubmit = async (
     donation: RouterInputs["donor"]["registerDonation"],
   ) => {
-    const { id } = await registerDonationMutation.mutateAsync(donation);
-    router.replace(Routes.ManageDonations(id));
+    try {
+      const { id } = await registerDonationMutation.mutateAsync(donation);
+      router.replace(Routes.ManageDonations(id));
+    } catch (error) {
+      showError(error);
+    }
   };
 
   return (

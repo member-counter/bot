@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "@mc/ui/dialog";
 
+import useShowError from "~/hooks/useShowError";
 import { Routes } from "~/other/routes";
 import { api } from "~/trpc/react";
 
@@ -23,13 +24,17 @@ export function DeleteButton() {
   const router = useRouter();
   const user = api.session.user.useQuery();
   const deleteUser = api.user.delete.useMutation();
+  const showError = useShowError();
 
   const deleteAccount = async () => {
     if (!user.data) return;
 
-    await deleteUser.mutateAsync({ discordUserId: user.data.discordUserId });
-
-    router.push(Routes.LogOut);
+    try {
+      await deleteUser.mutateAsync({ discordUserId: user.data.discordUserId });
+      router.push(Routes.LogOut);
+    } catch (error) {
+      showError(error);
+    }
   };
 
   return (

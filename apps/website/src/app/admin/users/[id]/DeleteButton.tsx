@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "@mc/ui/dialog";
 
+import useShowError from "~/hooks/useShowError";
 import { api } from "~/trpc/react";
 
 export function DeleteButton({
@@ -28,10 +29,15 @@ export function DeleteButton({
   const { t } = useTranslation();
   const router = useRouter();
   const deleteUser = api.user.delete.useMutation();
+  const showError = useShowError();
 
   const deleteAccount = async () => {
-    await deleteUser.mutateAsync({ discordUserId: userId });
-    router.refresh();
+    try {
+      await deleteUser.mutateAsync({ discordUserId: userId });
+      router.refresh();
+    } catch (err) {
+      showError(err);
+    }
   };
 
   return (

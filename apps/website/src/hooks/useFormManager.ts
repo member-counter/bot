@@ -5,6 +5,7 @@ import type {
 import { useEffect, useState } from "react";
 
 import useConfirmOnLeave from "~/hooks/useConfirmOnLeave";
+import useShowError from "./useShowError";
 
 export enum FormManagerState {
   SAVED,
@@ -25,6 +26,7 @@ export function useFormManager<OT, IT>(
   const [isDirty, setIsDirty] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [mutableData, _setMutableData] = useState<OT | null>(null);
+  const showError = useShowError();
 
   useConfirmOnLeave(isDirty);
 
@@ -49,6 +51,10 @@ export function useFormManager<OT, IT>(
         ...(mutableData as unknown as IT),
       })
       .then(() => setIsDirty(false))
+      .catch((error) => {
+        showError(error);
+        throw error;
+      })
       .finally(() => setIsSaving(false));
   };
 

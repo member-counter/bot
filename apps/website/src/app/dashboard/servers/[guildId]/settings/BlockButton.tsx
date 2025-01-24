@@ -17,6 +17,7 @@ import {
 } from "@mc/ui/dialog";
 import { Input } from "@mc/ui/input";
 
+import useShowError from "~/hooks/useShowError";
 import { api } from "~/trpc/react";
 
 export function BlockButton({
@@ -34,14 +35,19 @@ export function BlockButton({
   const blockedState = api.guild.isBlocked.useQuery({
     discordGuildId: guildId,
   });
+  const showError = useShowError();
 
   const updateBlockState = async (isBlocked: boolean) => {
-    await updateBlockStateMutation.mutateAsync({
-      discordGuildId: guildId,
-      state: isBlocked,
-      reason,
-    });
-    await blockedState.refetch();
+    try {
+      await updateBlockStateMutation.mutateAsync({
+        discordGuildId: guildId,
+        state: isBlocked,
+        reason,
+      });
+      await blockedState.refetch();
+    } catch (error) {
+      showError(error);
+    }
   };
 
   if (blockedState.data) {
