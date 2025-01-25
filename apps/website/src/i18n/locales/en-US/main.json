@@ -74,7 +74,6 @@
       "manageServers": "Manage servers",
       "manageHomePage": "Manage homepage",
       "manageDonations": "Manage donations",
-      "sentry": "Sentry",
       "copyright": "© {{year}} Member Counter. All rights reserved. Created by <eduardozgzLink />.",
       "madePossibleThanksTo": "Made possible thanks to Alex, <vampireChickenLink />, <livingfloreLink />, Frosty, and <donorsLink>many more</donorsLink>."
     }

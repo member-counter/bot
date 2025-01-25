@@ -32,7 +32,6 @@ export const env = createEnv({
     NEXT_PUBLIC_BOT_DOCS_URL: z.string(),
     NEXT_PUBLIC_BOT_REPO_URL: z.string(),
     NEXT_PUBLIC_TRANSLATION_PLATFORM_URL: z.string(),
-    NEXT_PUBLIC_SENTRY_ADMIN_URL: z.string(),
   },
 
   /**
@@ -54,7 +53,6 @@ export const env = createEnv({
     NEXT_PUBLIC_BOT_REPO_URL: process.env.NEXT_PUBLIC_BOT_REPO_URL,
     NEXT_PUBLIC_TRANSLATION_PLATFORM_URL:
       process.env.NEXT_PUBLIC_TRANSLATION_PLATFORM_URL,
-    NEXT_PUBLIC_SENTRY_ADMIN_URL: process.env.NEXT_PUBLIC_SENTRY_ADMIN_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

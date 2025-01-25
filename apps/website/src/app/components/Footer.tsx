@@ -71,55 +71,51 @@ export default function Footer() {
               </Link>
               <Link href={Routes.Donors}>{t("components.footer.donate")}</Link>
             </div>
-            <div
-              className={cn({
-                hidden: !userPermissions.has(
-                  UserPermissions.SeeUsers |
-                    UserPermissions.ManageUsers |
-                    UserPermissions.SeeGuilds |
-                    UserPermissions.ManageGuilds,
-                ),
-              })}
-            >
-              <h3>{t("components.footer.admin")}</h3>
-              <Link
-                href={Routes.ManageUsers()}
-                className={cn({
-                  hidden: !userPermissions.has(
-                    UserPermissions.SeeUsers | UserPermissions.ManageUsers,
-                  ),
-                })}
-              >
-                {t("components.footer.manageUsers")}
-              </Link>
-              <Link
-                href={Routes.ManageGuilds}
-                className={cn({
-                  hidden: !userPermissions.has(
-                    UserPermissions.SeeGuilds | UserPermissions.ManageGuilds,
-                  ),
-                })}
-              >
-                {t("components.footer.manageServers")}
-              </Link>
-              <Link
-                href={Routes.ManageHomePage}
-                className={cn({
-                  hidden: !userPermissions.has(UserPermissions.ManageHomePage),
-                })}
-              >
-                {t("components.footer.manageHomePage")}
-              </Link>
-              <Link
-                href={Routes.ManageDonations()}
-                className={cn({
-                  hidden: !userPermissions.has(UserPermissions.ManageDonations),
-                })}
-              >
-                {t("components.footer.manageDonations")}
-              </Link>
-              <Link href={Routes.Sentry}>{t("components.footer.sentry")}</Link>
-            </div>
+            {userPermissions.bitfield && (
+              <div>
+                <h3>{t("components.footer.admin")}</h3>
+                <Link
+                  href={Routes.ManageUsers()}
+                  className={cn({
+                    hidden: !userPermissions.has(
+                      UserPermissions.SeeUsers | UserPermissions.ManageUsers,
+                    ),
+                  })}
+                >
+                  {t("components.footer.manageUsers")}
+                </Link>
+                <Link
+                  href={Routes.ManageGuilds}
+                  className={cn({
+                    hidden: !userPermissions.has(
+                      UserPermissions.SeeGuilds | UserPermissions.ManageGuilds,
+                    ),
+                  })}
+                >
+                  {t("components.footer.manageServers")}
+                </Link>
+                <Link
+                  href={Routes.ManageHomePage}
+                  className={cn({
+                    hidden: !userPermissions.has(
+                      UserPermissions.ManageHomePage,
+                    ),
+                  })}
+                >
+                  {t("components.footer.manageHomePage")}
+                </Link>
+                <Link
+                  href={Routes.ManageDonations()}
+                  className={cn({
+                    hidden: !userPermissions.has(
+                      UserPermissions.ManageDonations,
+                    ),
+                  })}
+                >
+                  {t("components.footer.manageDonations")}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
         <div className="border-t border-border/40 bg-[#090807] bg-background py-4">

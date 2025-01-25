@@ -40,7 +40,6 @@ export const Routes = (baseUrl: string) => ({
   ManageDonations: (id?: string) =>
     baseUrl + "/admin/donations" + (id ? `/${id}` : ""),
   ManageDonationsNew: () => baseUrl + "/admin/donations/new",
-  Sentry: env.NEXT_PUBLIC_SENTRY_ADMIN_URL,
   Account: baseUrl + "/account",
   Dashboard: baseUrl + "/dashboard",
   DashboardServers: (guildId?: string, channelId?: string) =>
