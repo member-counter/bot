@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import { DiscordIcon } from "../../DiscordIcon";
 import blackboard from "./assets/blackboard.png";
 import datacenter from "./assets/datacenter.png";
+import discordBg from "./assets/discord.png";
 import document from "./assets/document.png";
 import game from "./assets/game.png";
 import highlight from "./assets/highlight.png";
@@ -23,16 +24,16 @@ import hourglass from "./assets/hourglass.png";
 import map from "./assets/map.png";
 import nitroBoosters from "./assets/nitroboosters.png";
 import snoo from "./assets/snoo.png";
+import twitchBg from "./assets/twitch.png";
+import youtubeBg from "./assets/youtube.jpg";
 import { SupportedCountersCard } from "./Card";
-
-// TODO change backgrounds for discord, twitch and youtube
 
 export const SupportedCounters = () => {
   const { t } = useTranslation();
   return (
     <div className="m-3 grid max-w-[1000px] grid-cols-1 gap-3 md:grid-cols-3 lg:m-0 lg:w-[1000px]">
       <SupportedCountersCard
-        imgBgClassName="bg-[#5662f6]"
+        imgBgSrc={discordBg}
         icon={DiscordIcon}
         title={t("pages.admin.homePage.supportedCounters.discordMembers.title")}
         description={t(
@@ -104,7 +105,7 @@ export const SupportedCounters = () => {
         )}
       />
       <SupportedCountersCard
-        imgBgClassName="bg-[#a970ff]"
+        imgBgSrc={twitchBg}
         icon={TwitchIcon}
         title={t("pages.admin.homePage.supportedCounters.twitch.title")}
         description={t(
@@ -112,7 +113,7 @@ export const SupportedCounters = () => {
         )}
       />
       <SupportedCountersCard
-        imgBgClassName="bg-[#ff0033]"
+        imgBgSrc={youtubeBg}
         icon={YoutubeIcon}
         title={t("pages.admin.homePage.supportedCounters.youtube.title")}
         description={t(
