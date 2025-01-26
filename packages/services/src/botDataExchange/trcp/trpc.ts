@@ -16,6 +16,8 @@ import { ZodError } from "zod";
 
 import { RES_CHANNEL } from "@mc/trpc-redis/Constants";
 
+export class DropRequestError extends Error {}
+
 /**
  * 1. CONTEXT
  *
@@ -38,14 +40,20 @@ export const createTRPCContext = (opts: {
 
   const dropRequest = () => {
     return new Promise((_resolve, reject) =>
-      setTimeout(() => reject("Request dropped"), opts.clientTimeout + 1000),
+      /**
+       * let's wait at least the client's timeout
+       * so the procedure that got the lock first
+       * can have the chance to respond
+       */
+      setTimeout(
+        () => reject(new DropRequestError()),
+        opts.clientTimeout + 1000,
+      ),
     );
   };
 
   /**
    * Some procedures will need this to lock a request.
-   * If it has been locked already, let's wait at least the client's timeout
-   * so the procedure that got the lock first can have the chance to respond
    */
   const lockRequest = async () => {
     const lockKey = ["lock", RES_CHANNEL, opts.requestId].join(":");
