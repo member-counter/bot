@@ -159,9 +159,13 @@ export default function TemplateEditor({
   const onChangeCallback = useCallback(
     (nodes: Descendant[], dataSourceRefs: DataSourceRefs) => {
       const serialized = serialize(nodes, features, dataSourceRefs);
-      onChange(serialized);
+      console.log(serialized);
+
+      if (serialized !== value) {
+        onChange(serialized);
+      }
     },
-    [features, onChange],
+    [features, onChange, value],
   );
 
   const deseriaizedValue = useMemo(

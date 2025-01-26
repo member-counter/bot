@@ -17,7 +17,6 @@ import { EditTemplate } from "./sections/EditTemplate";
 import { EnableTemplate } from "./sections/EnableTemplate";
 import { TemplateError } from "./sections/TemplateError";
 
-// TODO fix: enable status is being set to its initial state when template content is changed
 export default function Page() {
   const { t } = useTranslation();
   const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
