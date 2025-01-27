@@ -25,17 +25,17 @@ export function localizeCommand(
   const descKey = commandDefinitionTKeyMap.get(def.description ?? "");
 
   if (!skipNameAndDesc) {
-    nameKey && (def.name = i18nInstance.t(nameKey as never));
-    descKey && (def.description = i18nInstance.t(descKey as never));
+    if (nameKey) def.name = i18nInstance.t(nameKey as never);
+    if (descKey) def.description = i18nInstance.t(descKey as never);
   }
 
-  nameKey &&
-    (def.name_localizations[i18nInstance.language as LocaleString] =
-      i18nInstance.t(nameKey as never));
+  if (nameKey)
+    def.name_localizations[i18nInstance.language as LocaleString] =
+      i18nInstance.t(nameKey as never);
 
-  descKey &&
-    (def.description_localizations[i18nInstance.language as LocaleString] =
-      i18nInstance.t(descKey as never));
+  if (descKey)
+    def.description_localizations[i18nInstance.language as LocaleString] =
+      i18nInstance.t(descKey as never);
 
   def.options?.forEach((option) => {
     localizeCommand(i18nInstance, option, skipNameAndDesc);

@@ -68,7 +68,7 @@ export function HttpOptions({
       .then((body) => {
         try {
           setTestResponse(JSON.stringify(JSON.parse(body), null, " "));
-        } catch (e) {
+        } catch {
           setTestResponse(body);
         }
       })

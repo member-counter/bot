@@ -1,9 +1,4 @@
-import {
-  CDNRoutes,
-  ImageFormat,
-  RouteBases,
-  Routes,
-} from "discord-api-types/v10";
+import { CDNRoutes, ImageFormat, RouteBases } from "discord-api-types/v10";
 
 import { cn } from "@mc/ui";
 
@@ -16,7 +11,6 @@ export const GuildEmojiRenderer = ({
   className?: string;
   emoji: GuildEmoji;
 }) => {
-  Routes;
   const url = `${RouteBases.cdn}${CDNRoutes.emoji(emoji.id, emoji.animated ? ImageFormat.GIF : ImageFormat.PNG)}?size=48`;
 
   return (

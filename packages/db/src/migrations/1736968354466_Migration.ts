@@ -37,7 +37,7 @@ export class Migration1736968354466 implements MigrationInterface {
 
           counters[id] = counters[id].replace(
             /\{https?-string:(.+?)\}/gi,
-            (wholeMatch: any, url: any) => {
+            (wholeMatch: any, url: string) => {
               try {
                 // Test if migration was already applied
                 JSON.parse(Buffer.from(url, "base64").toString("utf-8"));

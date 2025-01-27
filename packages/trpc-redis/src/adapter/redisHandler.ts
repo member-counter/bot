@@ -100,7 +100,7 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       });
     } catch (err) {
       onError?.({
-        error: new TRPCError({ code: "PARSE_ERROR" }),
+        error: new TRPCError({ code: "PARSE_ERROR", cause: err }),
         ctx,
         type: "unknown",
         input: undefined,

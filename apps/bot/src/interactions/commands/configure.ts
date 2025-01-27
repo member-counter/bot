@@ -29,7 +29,8 @@ export const configureCommand = new Command({
       ),
     ),
   handle: async (command, { t }) => {
-    if (!command.inGuild() || !command.isChatInputCommand()) throw null;
+    if (!command.inGuild() || !command.isChatInputCommand())
+      throw new Error("Unhandlable command", { cause: command });
 
     const setupCommandNameTKey = tKey(
       "interaction.commands.setup.definition.slash.name",

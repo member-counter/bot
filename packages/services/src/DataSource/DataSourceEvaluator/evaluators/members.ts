@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import type { PresenceStatus } from "discord.js";
 
 import {

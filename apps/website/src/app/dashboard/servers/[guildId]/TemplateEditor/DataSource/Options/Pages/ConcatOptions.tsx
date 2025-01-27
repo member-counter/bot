@@ -1,4 +1,4 @@
-import type { DataSource, DataSourceConcat } from "@mc/common/DataSource";
+import type { DataSourceConcat } from "@mc/common/DataSource";
 import { useTranslation } from "react-i18next";
 
 import { Label } from "@mc/ui/label";

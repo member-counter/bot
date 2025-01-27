@@ -69,15 +69,15 @@ function tokenize(content: string) {
         tokens.push({ type: "counter_section_delimiter" });
       } else if (character === ",") {
         tokens.push({ type: "counter_section_arg_item_delimiter" });
+      } else if (lastToken?.type === "counter_section") {
+        lastToken.value = lastToken.value + character;
       } else {
-        lastToken?.type === "counter_section"
-          ? (lastToken.value = lastToken.value + character)
-          : tokens.push({ type: "counter_section", value: character });
+        tokens.push({ type: "counter_section", value: character });
       }
+    } else if (lastToken?.type === "string") {
+      lastToken.value = lastToken.value + character;
     } else {
-      lastToken?.type === "string"
-        ? (lastToken.value = lastToken.value + character)
-        : tokens.push({ type: "string", value: character });
+      tokens.push({ type: "string", value: character });
     }
   }
 

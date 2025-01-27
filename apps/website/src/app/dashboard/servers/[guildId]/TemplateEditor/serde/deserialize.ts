@@ -14,9 +14,9 @@ function extractDataSource(content: TokenStream): DataSource {
       "Invalid parsed data source (token content is not an array)",
     );
 
-  const extractedDataSource = content.filter(
+  const extractedDataSource = content.find(
     (token) => typeof token === "object" && token.type !== "punctuation",
-  )[0];
+  );
 
   if (!extractedDataSource)
     throw new Error(
@@ -82,7 +82,7 @@ function transformTokens(tokens: TokenStream): {
 
   function transformToken(
     token: TokenStream,
-    formatting: { [key in Marks]?: boolean },
+    formatting: Partial<Record<Marks, boolean>>,
   ): Descendant[] {
     if (token instanceof Array)
       return token.flatMap((token) => transformToken(token, formatting));

@@ -132,7 +132,8 @@ export const setupCommand = new Command({
         ),
     ),
   handle: async (command, i18n) => {
-    if (!command.inGuild() || !command.isChatInputCommand()) throw null;
+    if (!command.inGuild() || !command.isChatInputCommand())
+      throw new Error("Unhandlable command", { cause: command });
 
     const { logger } = command.client.botInstanceOptions;
     const { t } = i18n;
@@ -258,7 +259,8 @@ export const setupCommand = new Command({
     }
 
     function configureTemplate() {
-      if (!command.inGuild() || !command.isChatInputCommand()) throw null;
+      if (!command.inGuild() || !command.isChatInputCommand())
+        throw new Error("Unhandlable command", { cause: command });
 
       assertValidType(type);
       const templateCollection = structuredClone(requestedTemplateCollection);

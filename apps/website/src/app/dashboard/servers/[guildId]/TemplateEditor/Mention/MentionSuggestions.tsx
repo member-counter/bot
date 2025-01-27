@@ -110,7 +110,7 @@ export function MentionSuggestions(props: {
       const after = Editor.after(editor, start);
       const afterRange = Editor.range(editor, start, after);
       const afterText = Editor.string(editor, afterRange);
-      const afterMatch = afterText.match(/^(\s|$)/);
+      const afterMatch = /^(\s|$)/.exec(afterText);
 
       if (beforeMatch?.[1] && afterMatch && beforeRange) {
         setRange(beforeRange);

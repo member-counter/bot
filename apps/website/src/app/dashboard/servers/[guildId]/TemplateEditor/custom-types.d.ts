@@ -51,6 +51,4 @@ export type Marks = "bold" | "italic" | "underline" | "strike" | "spoiler";
 
 export type CustomText = {
   text: string;
-} & {
-  [key in Marks]?: boolean;
-};
+} & Partial<Record<Marks, boolean>>;
