@@ -81,4 +81,6 @@ model Donation {
   currencyDecimals Int
   user             User?    @relation(fields: [userId], references: [discordUserId], onDelete: Cascade)
   userId           String
+
+  @@index([anonymous])
 }

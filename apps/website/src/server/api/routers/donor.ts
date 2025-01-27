@@ -44,19 +44,17 @@ export const donorRouter = createTRPCRouter({
     );
 
     const rawDonors = await DonationsService.getAllDonors(returnAnonymous);
-    const donors = new Map(
-      rawDonors.map((donor) => [donor.discordUserId, donor]),
-    );
+    const donors = new Map(Object.entries(rawDonors));
 
     const discordUsers = await fetchUsers([...donors.keys()]);
 
     return discordUsers.map((user) => {
-      const donor = donors.get(user.id);
-      assert(donor);
+      const donations = donors.get(user.id);
+      assert(donations);
 
       return {
         user,
-        donations: donor.donations.map((donation) => ({
+        donations: donations.map((donation) => ({
           ...donation,
           value: donation.amount,
         })),

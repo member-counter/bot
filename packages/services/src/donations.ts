@@ -1,3 +1,4 @@
+import { groupBy } from "@mc/common/groupBy";
 import { db } from "@mc/db";
 
 export type DonationData = Awaited<ReturnType<typeof db.donation.update>>;
@@ -22,14 +23,8 @@ export const DonationsService = {
   },
 
   getAllDonors: async (returnAnonymous: boolean) => {
-    return await db.user.findMany({
-      where: {
-        donations: { some: { anonymous: returnAnonymous ? undefined : false } },
-      },
-      include: {
-        donations: true,
-      },
-    });
+    const donations = await DonationsService.getAll(returnAnonymous);
+    return groupBy(donations, (donation) => donation.userId);
   },
 
   register: async (donation: CreateDonationData) => {
