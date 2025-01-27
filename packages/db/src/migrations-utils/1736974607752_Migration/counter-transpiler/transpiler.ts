@@ -233,14 +233,20 @@ function convertOldCounter(node: OldCounterNode): NewCounterNode | StringNode {
     );
 
   try {
-    return {
-      type: "new_counter",
-      defintion: counterConverter.convert({
-        aliasUsed: safeCounterName(node.defintion.name),
-        format: convertFormatSettings(node.defintion.format),
-        args: convertedArgs,
-      }),
-    };
+    const converted = counterConverter.convert({
+      aliasUsed: safeCounterName(node.defintion.name),
+      format: convertFormatSettings(node.defintion.format),
+      args: convertedArgs,
+    });
+
+    if (typeof converted === "string") {
+      return { type: "string", content: converted };
+    } else {
+      return {
+        type: "new_counter",
+        defintion: converted,
+      };
+    }
   } catch (err) {
     if (err instanceof SyntaxError) {
       return {
