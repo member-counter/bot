@@ -25,7 +25,7 @@ import map from "./assets/map.png";
 import nitroBoosters from "./assets/nitroboosters.png";
 import snoo from "./assets/snoo.png";
 import twitchBg from "./assets/twitch.png";
-import youtubeBg from "./assets/youtube.jpg";
+import youtubeBg from "./assets/youtube.png";
 import { SupportedCountersCard } from "./Card";
 
 export const SupportedCounters = () => {
