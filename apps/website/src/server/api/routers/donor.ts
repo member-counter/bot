@@ -5,6 +5,7 @@ import { TRPCError } from "@trpc/server";
 import { CDNRoutes, RouteBases } from "discord-api-types/v10";
 import { z } from "zod";
 
+import { CurrencyUtils } from "@mc/common/currencyUtils";
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
 import { DonationsService } from "@mc/services/donations";
@@ -56,7 +57,10 @@ export const donorRouter = createTRPCRouter({
         user,
         donations: donations.map((donation) => ({
           ...donation,
-          value: donation.amount,
+          value: CurrencyUtils.toNumber(
+            donation.amount,
+            donation.currencyDecimals,
+          ),
         })),
       };
     });
