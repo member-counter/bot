@@ -21,7 +21,7 @@ export const env = createEnv({
     TWITCH_CLIENT_SECRET: z.string().optional(),
     YOUTUBE_API_KEY: z.string().optional(),
     BDE_CALL_TIMEOUT: z.coerce.number().default(2000),
-    EXCHANGERATEAPIIO_KEY: z.string().optional(),
+    OPENEXCHANGERATESORG_KEY: z.string().optional(),
   },
 
   /**
@@ -46,7 +46,7 @@ export const env = createEnv({
     TWITCH_CLIENT_SECRET: process.env.TWITCH_CLIENT_SECRET,
     YOUTUBE_API_KEY: process.env.YOUTUBE_API_KEY,
     BDE_CALL_TIMEOUT: process.env.BDE_CALL_TIMEOUT,
-    EXCHANGERATEAPIIO_KEY: process.env.EXCHANGERATEAPIIO_KEY,
+    OPENEXCHANGERATESORG_KEY: process.env.OPENEXCHANGERATESORG_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

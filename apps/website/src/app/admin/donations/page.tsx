@@ -5,10 +5,6 @@ import Link from "next/link";
 import { DollarSignIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import {
-  DEFAULT_CURRENCY,
-  DEFAULT_CURRENCY_DECIMALS,
-} from "@mc/common/Constants";
 import { CurrencyUtils } from "@mc/common/currencyUtils";
 import { Button } from "@mc/ui/button";
 import { Skeleton } from "@mc/ui/skeleton";
@@ -38,12 +34,9 @@ export default function Page() {
             total,
             totalValue: CurrencyUtils.format(
               i18n.language,
-              CurrencyUtils.toBigInt(
-                totalValue.toFixed(2),
-                DEFAULT_CURRENCY_DECIMALS,
-              ),
-              DEFAULT_CURRENCY,
-              DEFAULT_CURRENCY_DECIMALS,
+              CurrencyUtils.toBigInt(totalValue.toFixed(2), 2),
+              "USD",
+              2,
             ),
           })}
         </span>
