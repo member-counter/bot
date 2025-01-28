@@ -5,6 +5,11 @@ import Link from "next/link";
 import { DollarSignIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import {
+  DEFAULT_CURRENCY,
+  DEFAULT_CURRENCY_DECIMALS,
+} from "@mc/common/Constants";
+import { CurrencyUtils } from "@mc/common/currencyUtils";
 import { Button } from "@mc/ui/button";
 import { Skeleton } from "@mc/ui/skeleton";
 
@@ -17,11 +22,11 @@ function LoadingPage() {
 }
 
 export default function Page() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const donations = api.donor.geAllDonations.useQuery();
   const total = donations.data?.length ?? "???";
   const totalValue = useMemo(
-    () => donations.data?.reduce((acc, curr) => acc + curr.value, 0n) ?? "???",
+    () => donations.data?.reduce((acc, curr) => acc + curr.value, 0) ?? 0,
     [donations.data],
   );
 
@@ -29,11 +34,22 @@ export default function Page() {
     <>
       <div className="flex w-full items-center justify-between">
         <span>
-          {t("pages.admin.donations.totalDonations", { total, totalValue })}
+          {t("pages.admin.donations.totalDonations", {
+            total,
+            totalValue: CurrencyUtils.format(
+              i18n.language,
+              CurrencyUtils.toBigInt(
+                totalValue.toFixed(2),
+                DEFAULT_CURRENCY_DECIMALS,
+              ),
+              DEFAULT_CURRENCY,
+              DEFAULT_CURRENCY_DECIMALS,
+            ),
+          })}
         </span>
         <Link href={Routes.ManageDonationsNew()}>
           <Button icon={DollarSignIcon}>
-            {t("pages.admin.donations.registerDonation", { total, totalValue })}
+            {t("pages.admin.donations.registerDonation")}
           </Button>
         </Link>
       </div>

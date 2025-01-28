@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
 import { CurrencyUtils } from "@mc/common/currencyUtils";
-import { Card, CardContent, CardHeader } from "@mc/ui/card";
+import { Card, CardHeader } from "@mc/ui/card";
 
 import type { RouterOutputs } from "~/trpc/react";
 import { Routes } from "~/other/routes";
@@ -20,8 +20,15 @@ export function Donation(
   return (
     <Link href={Routes.ManageDonations(donation.id)}>
       <Card>
-        <CardHeader className="flex flex-row justify-between">
-          {donation.user ? <DisplayUser {...donation.user} /> : donation.userId}
+        <CardHeader className="flex flex-row justify-between space-y-0">
+          <div className="flex flex-col gap-2 self-start">
+            {donation.user ? (
+              <DisplayUser {...donation.user} />
+            ) : (
+              donation.userId
+            )}
+            {donation.note}
+          </div>
           <div className="flex-grow"></div>
           <div className="flex flex-col items-end gap-2 text-muted-foreground">
             <div>{dateFormatter.format(donation.date)}</div>
@@ -35,7 +42,6 @@ export function Donation(
             </div>
           </div>
         </CardHeader>
-        {donation.note && <CardContent>{donation.note}</CardContent>}
       </Card>
     </Link>
   );

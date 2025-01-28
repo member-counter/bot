@@ -613,7 +613,7 @@
       },
       "donations": {
         "registerDonation": "Register donation",
-        "totalDonations": "Total donations: {{total}} ({{totalValue}}€)",
+        "totalDonations": "Total donations: {{total}} ({{totalValue}})",
         "form": {
           "userId": "Discord user ID",
           "amount": "Amount",
