@@ -15,7 +15,7 @@ if (!env.OPENEXCHANGERATESORG_KEY) {
 const fromBaseUrl = (pathname: string) => {
   assert(env.OPENEXCHANGERATESORG_KEY, "OPENEXCHANGERATESORG_KEY is not set");
 
-  const url = new URL("http://openexchangerates.org/api");
+  const url = new URL("https://openexchangerates.org/api");
 
   url.pathname = pathname;
 
