@@ -497,6 +497,9 @@ importers:
       '@mc/db':
         specifier: workspace:*
         version: link:../db
+      '@mc/logger':
+        specifier: workspace:*
+        version: link:../logger
       '@mc/redis':
         specifier: workspace:*
         version: link:../redis

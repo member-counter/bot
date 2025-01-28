@@ -16,6 +16,7 @@
   "dependencies": {
     "@mc/common": "workspace:*",
     "@mc/db": "workspace:*",
+    "@mc/logger": "workspace:*",
     "@mc/redis": "workspace:*",
     "@mc/trpc-redis": "workspace:*",
     "@mc/validators": "workspace:*",

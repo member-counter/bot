@@ -9,6 +9,7 @@ import { CurrencyUtils } from "@mc/common/currencyUtils";
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
 import { DonationsService } from "@mc/services/donations";
+import { ExchangeRateService } from "@mc/services/exchangeRates";
 
 import { Errors } from "~/app/errors";
 import {
@@ -38,13 +39,15 @@ function fetchUsers(users: string[]): Promise<DiscordUser[]> {
 }
 
 export const donorRouter = createTRPCRouter({
-  // TODO set value to EUR change rate
   geAllDonors: publicProcedure.query(async ({ ctx: { authUser } }) => {
     const returnAnonymous = !!authUser?.permissions.has(
       UserPermissions.ManageDonations,
     );
 
-    const rawDonors = await DonationsService.getAllDonors(returnAnonymous);
+    const [rawDonors, exchangeRates] = await Promise.all([
+      DonationsService.getAllDonors(returnAnonymous),
+      ExchangeRateService.getRates(),
+    ]);
     const donors = new Map(Object.entries(rawDonors));
 
     const discordUsers = await fetchUsers([...donors.keys()]);
@@ -57,9 +60,10 @@ export const donorRouter = createTRPCRouter({
         user,
         donations: donations.map((donation) => ({
           ...donation,
-          value: CurrencyUtils.toNumber(
-            donation.amount,
-            donation.currencyDecimals,
+          value: ExchangeRateService.convert(
+            CurrencyUtils.toNumber(donation.amount, donation.currencyDecimals),
+            donation.currency,
+            exchangeRates,
           ),
         })),
       };
@@ -70,7 +74,10 @@ export const donorRouter = createTRPCRouter({
     const returnAnonymous = !!authUser?.permissions.has(
       UserPermissions.ManageDonations,
     );
-    const rawDonations = await DonationsService.getAll(returnAnonymous);
+    const [rawDonations, exchangeRates] = await Promise.all([
+      DonationsService.getAll(returnAnonymous),
+      ExchangeRateService.getRates(),
+    ]);
 
     const donors = new Set(rawDonations.map((donation) => donation.userId));
 
@@ -82,7 +89,11 @@ export const donorRouter = createTRPCRouter({
     return rawDonations.map((donation) => ({
       user: mappedDiscordUsers.get(donation.userId),
       ...donation,
-      value: donation.amount,
+      value: ExchangeRateService.convert(
+        CurrencyUtils.toNumber(donation.amount, donation.currencyDecimals),
+        donation.currency,
+        exchangeRates,
+      ),
     }));
   }),
 
