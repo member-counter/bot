@@ -2,9 +2,7 @@ services:
   website:
     env_file: .env
     container_name: website
-    build:
-      context: .
-      dockerfile: ./apps/website/Dockerfile
+    image: ghcr.io/member-counter/website:new-beta
     restart: always
     ports:
       - 3000:3000
@@ -12,10 +10,15 @@ services:
   bot:
     env_file: .env
     container_name: bot
-    build:
-      context: .
-      dockerfile: ./apps/bot/Dockerfile
+    image: ghcr.io/member-counter/bot:new-beta
     restart: always
+
+  db-utils:
+    env_file: .env
+    image: ghcr.io/member-counter/db-utils:new-beta
+    restart: always
+    deploy:
+      replicas: 0
 
   mongo:
     image: mongo:7
