@@ -12,8 +12,6 @@ export function generateBotIntents({
   intents.add("Guilds");
   intents.add("GuildEmojisAndStickers");
 
-  intents.add("GuildMessages");
-
   intents.add("GuildModeration");
 
   if (isPrivileged && isPremium) {
