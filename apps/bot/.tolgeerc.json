@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.tolgee.io/cli-schema.json",
+  "projectId": 3,
+  "apiUrl": "https://tolgee.membercounter.app/",
+  "format": "JSON_I18NEXT",
+  "push": {
+    "files": [
+      {
+        "path": "./src/locales/en-US/main.json",
+        "language": "en-US",
+        "namespace": "main"
+      }
+    ],
+    "forceMode": "OVERRIDE"
+  },
+  "pull": {
+    "path": "./src/locales",
+    "namespaces": ["main"],
+    "supportArrays": true,
+    "fileStructureTemplate": "{languageTag}/{namespace}.{extension}"
+  }
+}

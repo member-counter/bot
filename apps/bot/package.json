@@ -13,12 +13,15 @@
     "start": "pnpm with-env node ./dist/index.js",
     "typecheck": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --",
-    "generate-i18next-res": "i18next-resources-for-ts interface -i ./src/locales/en-US -o ./src/@types/resources.d.ts"
+    "generate-i18next-res": "i18next-resources-for-ts interface -i ./src/locales/en-US -o ./src/@types/resources.d.ts",
+    "tolgee:push": "pnpm with-env tolgee push",
+    "tolgee:pull": "pnpm with-env tolgee pull"
   },
   "devDependencies": {
     "@mc/eslint-config": "workspace:*",
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
+    "@tolgee/cli": "^2.8.1",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^22.10.10",
     "dotenv-cli": "^7.4.1",

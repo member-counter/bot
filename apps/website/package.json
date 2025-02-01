@@ -13,7 +13,9 @@
     "start": "pnpm with-env next start",
     "typecheck": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --",
-    "generate-i18next-res": "i18next-resources-for-ts interface -i ./src/i18n/locales/en-US -o ./src/@types/resources.d.ts"
+    "generate-i18next-res": "i18next-resources-for-ts interface -i ./src/i18n/locales/en-US -o ./src/@types/resources.d.ts",
+    "tolgee:push": "turbo tolgee:push",
+    "tolgee:pull": "turbo tolgee:pull"
   },
   "dependencies": {
     "@discordjs/rest": "^2.3.0",
@@ -68,6 +70,7 @@
     "@mc/prettier-config": "workspace:*",
     "@mc/tailwind-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
+    "@tolgee/cli": "^2.8.1",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/is-hotkey": "^0.1.10",
     "@types/lodash": "^4.17.1",

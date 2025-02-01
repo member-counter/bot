@@ -24,7 +24,9 @@
     "postinstall": "pnpm lint:ws",
     "typecheck": "turbo typecheck",
     "ui-add": "pnpm -F ui ui-add",
-    "generate-i18next-res": "turbo generate-i18next-res"
+    "generate-i18next-res": "turbo generate-i18next-res",
+    "tolgee:push": "turbo tolgee:push",
+    "tolgee:pull": "turbo tolgee:pull"
   },
   "devDependencies": {
     "@mc/prettier-config": "workspace:*",

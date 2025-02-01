@@ -39,9 +39,12 @@
       "dependsOn": ["^topo"],
       "outputs": ["node_modules/.cache/tsbuildinfo.json"]
     },
-    "generate-i18next-res": {
-      "outputs": ["src/@types/resources.d.ts"],
+    "tolgee:push": {
       "inputs": ["src/**/locales/en-US/*"]
+    },
+    "tolgee:pull": {
+      "inputs": [],
+      "outputs": ["src/**/locales/en-US/*"]
     },
     "clean": {
       "cache": false
