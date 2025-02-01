@@ -14,7 +14,7 @@
     "forceMode": "OVERRIDE"
   },
   "pull": {
-    "path": "/src/i18n/locales",
+    "path": "./src/i18n/locales",
     "namespaces": ["main"],
     "supportArrays": true,
     "fileStructureTemplate": "{languageTag}/{namespace}.{extension}"
