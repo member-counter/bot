@@ -46,6 +46,10 @@
       "inputs": [],
       "outputs": ["src/**/locales/en-US/*"]
     },
+    "generate-i18next-res": {
+      "outputs": ["src/@types/resources.d.ts"],
+      "inputs": ["src/**/locales/en-US/*"]
+    },
     "clean": {
       "cache": false
     },
