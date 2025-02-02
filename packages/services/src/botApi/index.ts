@@ -5,7 +5,7 @@ import { redis } from "@mc/redis";
 import { env } from "../../env";
 import { createBotDataExchangeConsumer } from "./createBotDataExchangeConsumer";
 
-export * from "./botDataExchangeConsumer";
+export * from "./botAPIConsumer";
 
 const createRedisClient = () => redis.duplicate();
 
@@ -24,7 +24,7 @@ if (env.NODE_ENV !== "production") {
   globalForBDE.redisSubClient = redisSubClient;
 }
 
-export const botDataExchangeConsumer = await createBotDataExchangeConsumer({
+export const botAPIConsumer = await createBotDataExchangeConsumer({
   redisPubClient,
   redisSubClient,
 });

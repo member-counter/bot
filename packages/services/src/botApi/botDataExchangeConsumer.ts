@@ -22,7 +22,7 @@ if (env.NODE_ENV !== "production") {
   globalForBDE.redisSubClient = redisSubClient;
 }
 
-export const botDataExchangeConsumer = await createBotDataExchangeConsumer({
+export const botAPIConsumer = await createBotDataExchangeConsumer({
   redisPubClient,
   redisSubClient,
 });

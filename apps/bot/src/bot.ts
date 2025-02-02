@@ -7,7 +7,7 @@ import {
   setupBotStatsProvider,
 } from "@mc/common/redis/BotStats";
 import { redis } from "@mc/redis";
-import { setupBotDataExchangeProvider } from "@mc/services/botDataExchange/setupBotDataExchangeProvider";
+import { setupBotDataExchangeProvider } from "@mc/services/botAPI/setupBotDataExchangeProvider";
 
 import { setupEvents } from "./events";
 import { setupJobs } from "./jobs";
