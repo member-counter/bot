@@ -24,10 +24,10 @@ import type { Guild, GuildEmoji } from "../d-types";
 import { useBreakpoint } from "~/hooks/useBreakpoint";
 import { removeFrom } from "~/other/array";
 import { blurredBackground } from "~/other/common-styles";
-import { emojis, emojisByGroup, searchableEmojis } from "~/other/emojis";
 import { api } from "~/trpc/react";
 import { GuildEmojiRenderer } from "../../../../../components/GuildEmojiRenderer";
 import { TemplateEditorContext } from "../TemplateEditorContext";
+import { emojis, emojisByGroup, searchableEmojis } from "./emojis";
 
 export function EmojiPicker({
   className,
@@ -59,7 +59,7 @@ export function EmojiPicker({
       <Popover open={!disabled && isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>{openButton}</PopoverTrigger>
         <PopoverContent asChild>
-          <Card className=" w-[400px] p-0 ">{emojiPickerContent}</Card>
+          <Card className="w-[400px] p-0">{emojiPickerContent}</Card>
         </PopoverContent>
       </Popover>
     );
@@ -230,7 +230,7 @@ const EmojiList = memo(function EmojiList({
   return (
     <div className={"flex h-full w-full flex-col"}>
       <div className="relative h-full overflow-hidden">
-        <div className="absolute bottom-0 left-0 right-0 top-0 flex flex-col gap-5 overflow-auto p-3  pt-[70px]">
+        <div className="absolute bottom-0 left-0 right-0 top-0 flex flex-col gap-5 overflow-auto p-3 pt-[70px]">
           {groupedEmojis.map(([groupName, groupEmojis]) => {
             const hidden = !groupEmojis.some((emoji) =>
               matchingEmojis.includes(emoji),
