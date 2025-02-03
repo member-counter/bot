@@ -1,0 +1,2 @@
+[submodule "apps/website/src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/twemoji"]
+	shallow = true

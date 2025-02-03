@@ -21,13 +21,19 @@ import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 import type { Searchable } from "../../../../../components/Combobox";
 import type { CustomText, EmojiElement } from "../custom-types";
 import type { Guild, GuildEmoji } from "../d-types";
+import { TwemojiRenderer } from "~/app/components/TwemojiRenderer";
 import { useBreakpoint } from "~/hooks/useBreakpoint";
 import { removeFrom } from "~/other/array";
 import { blurredBackground } from "~/other/common-styles";
 import { api } from "~/trpc/react";
 import { GuildEmojiRenderer } from "../../../../../components/GuildEmojiRenderer";
 import { TemplateEditorContext } from "../TemplateEditorContext";
-import { emojis, emojisByGroup, searchableEmojis } from "./emojis";
+import {
+  availableSkinTones,
+  emojis,
+  emojisByGroup,
+  searchableEmojis,
+} from "./emojis";
 
 export function EmojiPicker({
   className,
@@ -298,7 +304,6 @@ function SkinToneSelector({
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const availableSkinTones = ["", "🏻", "🏼", "🏽", "🏾", "🏿"];
   const skinTonesToRender = [
     value,
     ...removeFrom(
@@ -343,7 +348,9 @@ function SkinToneSelector({
                 }
                 tabIndex={isOpen ? 1 : -1}
               >
-                <div>{`👏${skinTone}`}</div>
+                <div>
+                  <TwemojiRenderer emoji={`👏${skinTone}`} />
+                </div>
               </div>
             );
           })}

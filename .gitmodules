@@ -1,0 +1,8 @@
+[submodule "apps/website/src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/twemoji"]
+	path = apps/website/src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/twemoji
+	url = git@github.com:jdecked/twemoji.git
+	shallow = true
+[submodule "apps/website/src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/unicode-emoji-json"]
+	path = apps/website/src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/unicode-emoji-json
+	url = git@github.com:muan/unicode-emoji-json.git
+	shallow = true
