@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
-import { botAPIConsumer } from "@mc/services/botAPI/botAPIConsumer";
+import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
 import { DiscordService } from "@mc/services/discord";
 import { GuildSettingsService } from "@mc/services/guildSettings";
 
@@ -29,22 +29,23 @@ async function checkUserPermissions(
 
   const { discordGuildId } = input;
 
-  const userPermissionsInGuild = await botAPIConsumer.discord.getGuildMember
-    .query({
-      guildId: discordGuildId,
-      memberId: ctx.authUser.discordUserId,
-    })
-    .then((member) => new BitField(member.permissions))
-    .catch(async () => {
-      assert(ctx.session);
-      const { userGuilds } = await DiscordService.userGuilds(
-        ctx.session.accessToken,
-      );
+  const userPermissionsInGuild =
+    await botDataExchangeConsumer.discord.getGuildMember
+      .query({
+        guildId: discordGuildId,
+        memberId: ctx.authUser.discordUserId,
+      })
+      .then((member) => new BitField(member.permissions))
+      .catch(async () => {
+        assert(ctx.session);
+        const { userGuilds } = await DiscordService.userGuilds(
+          ctx.session.accessToken,
+        );
 
-      const guild = userGuilds.get(discordGuildId);
+        const guild = userGuilds.get(discordGuildId);
 
-      return new BitField(guild?.permissions);
-    });
+        return new BitField(guild?.permissions);
+      });
 
   const hasPermission = check({
     userPermissions: ctx.authUser.permissions,

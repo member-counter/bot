@@ -7,7 +7,7 @@ import { z } from "zod";
 
 import { CurrencyUtils } from "@mc/common/currencyUtils";
 import { UserPermissions } from "@mc/common/UserPermissions";
-import { botAPIConsumer } from "@mc/services/botAPI/botAPIConsumer";
+import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
 import { DonationsService } from "@mc/services/donations";
 import { ExchangeRateService } from "@mc/services/exchangeRates";
 
@@ -21,7 +21,7 @@ import {
 function fetchUsers(users: string[]): Promise<DiscordUser[]> {
   return Promise.all(
     users.map((id) =>
-      botAPIConsumer.discord.getUser.query({ id }).catch(
+      botDataExchangeConsumer.discord.getUser.query({ id }).catch(
         () =>
           ({
             id,
