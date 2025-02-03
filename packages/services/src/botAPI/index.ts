@@ -3,7 +3,7 @@ import type { Redis } from "ioredis";
 import { redis } from "@mc/redis";
 
 import { env } from "../../env";
-import { createBotAPIConsumer } from "./createBotAPIConsumer";
+import { createbotAPIConsumer } from "./createbotAPIConsumer";
 
 export * from "./botAPIConsumer";
 
@@ -24,7 +24,7 @@ if (env.NODE_ENV !== "production") {
   globalForBDE.redisSubClient = redisSubClient;
 }
 
-export const botAPIConsumer = await createBotAPIConsumer({
+export const botAPIConsumer = await createbotAPIConsumer({
   redisPubClient,
   redisSubClient,
 });
