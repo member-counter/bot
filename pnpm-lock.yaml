@@ -52,7 +52,7 @@ importers:
         version: 1.2.1(ioredis@5.4.1)
       '@t3-oss/env-core':
         specifier: ^0.10.1
-        version: 0.10.1(typescript@5.7.3)(zod@3.23.6)
+        version: 0.10.1(typescript@5.7.3)(zod@3.24.1)
       bufferutil:
         specifier: ^4.0.8
         version: 4.0.8
@@ -78,8 +78,8 @@ importers:
         specifier: ^0.1.9
         version: 0.1.9
       zod:
-        specifier: ^3.23.3
-        version: 3.23.6
+        specifier: ^3.24.1
+        version: 3.24.1
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -143,7 +143,7 @@ importers:
         version: 5.13.0(prisma@5.14.0)
       '@t3-oss/env-nextjs':
         specifier: ^0.10.1
-        version: 0.10.1(typescript@5.7.3)(zod@3.23.6)
+        version: 0.10.1(typescript@5.7.3)(zod@3.24.1)
       '@tanstack/react-query':
         specifier: ^5.62.8
         version: 5.65.0(react@18.3.1)
@@ -253,8 +253,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
       zod:
-        specifier: ^3.23.3
-        version: 3.23.6
+        specifier: ^3.24.1
+        version: 3.24.1
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -336,7 +336,7 @@ importers:
         version: link:../redis
       '@t3-oss/env-nextjs':
         specifier: ^0.10.1
-        version: 0.10.1(typescript@5.7.3)(zod@3.23.6)
+        version: 0.10.1(typescript@5.7.3)(zod@3.24.1)
       '@twurple/api':
         specifier: ^7.1.0
         version: 7.1.0(@twurple/auth@7.1.0)
@@ -362,8 +362,8 @@ importers:
         specifier: ^0.1.9
         version: 0.1.9
       zod:
-        specifier: ^3.23.3
-        version: 3.23.6
+        specifier: ^3.24.1
+        version: 3.24.1
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -397,7 +397,7 @@ importers:
         version: 5.13.0(prisma@5.14.0)
       '@t3-oss/env-core':
         specifier: ^0.10.1
-        version: 0.10.1(typescript@5.7.3)(zod@3.23.6)
+        version: 0.10.1(typescript@5.7.3)(zod@3.24.1)
       mongo-migrate-ts:
         specifier: ^1.6.2
         version: 1.6.2(mongodb@6.12.0(socks@2.8.3))
@@ -405,8 +405,8 @@ importers:
         specifier: ^4.19.2
         version: 4.19.2
       zod:
-        specifier: ^3.23.3
-        version: 3.23.6
+        specifier: ^3.24.1
+        version: 3.24.1
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -543,8 +543,8 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       zod:
-        specifier: ^3.23.3
-        version: 3.23.6
+        specifier: ^3.24.1
+        version: 3.24.1
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -577,8 +577,8 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1
       zod:
-        specifier: ^3.23.3
-        version: 3.23.6
+        specifier: ^3.24.1
+        version: 3.24.1
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -705,8 +705,8 @@ importers:
         specifier: ^5.7.3
         version: 5.7.3
       zod:
-        specifier: ^3.23.3
-        version: 3.23.6
+        specifier: ^3.24.1
+        version: 3.24.1
 
   packages/validators:
     dependencies:
@@ -714,8 +714,8 @@ importers:
         specifier: ^0.37.83
         version: 0.37.83
       zod:
-        specifier: ^3.23.3
-        version: 3.23.6
+        specifier: ^3.24.1
+        version: 3.24.1
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -6058,9 +6058,6 @@ packages:
   zlib-sync@0.1.9:
     resolution: {integrity: sha512-DinB43xCjVwIBDpaIvQqHbmDsnYnSt6HJ/yiB2MZQGTqgPcwBSZqLkimXwK8BvdjQ/MaZysb5uEenImncqvCqQ==}
 
-  zod@3.23.6:
-    resolution: {integrity: sha512-RTHJlZhsRbuA8Hmp/iNL7jnfc4nZishjsanDAfEY1QpDQZCahUp3xDzl+zfweE9BklxMUcgBgS1b7Lvie/ZVwA==}
-
   zod@3.24.1:
     resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
@@ -7688,22 +7685,16 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
-  '@t3-oss/env-core@0.10.1(typescript@5.7.3)(zod@3.23.6)':
-    dependencies:
-      zod: 3.23.6
-    optionalDependencies:
-      typescript: 5.7.3
-
   '@t3-oss/env-core@0.10.1(typescript@5.7.3)(zod@3.24.1)':
     dependencies:
       zod: 3.24.1
     optionalDependencies:
       typescript: 5.7.3
 
-  '@t3-oss/env-nextjs@0.10.1(typescript@5.7.3)(zod@3.23.6)':
+  '@t3-oss/env-nextjs@0.10.1(typescript@5.7.3)(zod@3.24.1)':
     dependencies:
-      '@t3-oss/env-core': 0.10.1(typescript@5.7.3)(zod@3.23.6)
-      zod: 3.23.6
+      '@t3-oss/env-core': 0.10.1(typescript@5.7.3)(zod@3.24.1)
+      zod: 3.24.1
     optionalDependencies:
       typescript: 5.7.3
 
@@ -11739,7 +11730,5 @@ snapshots:
   zlib-sync@0.1.9:
     dependencies:
       nan: 2.19.0
-
-  zod@3.23.6: {}
 
   zod@3.24.1: {}

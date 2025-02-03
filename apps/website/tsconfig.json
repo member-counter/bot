@@ -11,10 +11,11 @@
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
     "module": "esnext"
   },
-  "include": [
-    ".",
-    ".next/types/**/*.ts",
-    "../../packages/services/src/discord.ts"
-  ],
-  "exclude": ["node_modules"]
+  "include": [".", ".next/types/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    // ignore submodules
+    "./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/twemoji",
+    "./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/unicode-emoji-json"
+  ]
 }

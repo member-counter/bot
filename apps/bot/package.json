@@ -49,6 +49,6 @@
     "i18next-resources-for-ts": "^1.5.0",
     "utf-8-validate": "^6.0.3",
     "zlib-sync": "^0.1.9",
-    "zod": "^3.23.3"
+    "zod": "^3.24.1"
   }
 }
