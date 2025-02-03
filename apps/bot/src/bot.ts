@@ -7,7 +7,7 @@ import {
   setupBotStatsProvider,
 } from "@mc/common/redis/BotStats";
 import { redis } from "@mc/redis";
-import { setupBotAPIProvider } from "@mc/services/botAPI/setupBotAPIProvider";
+import { setupBotDataExchangeProvider } from "@mc/services/botAPI/setupBotDataExchangeProvider";
 
 import { setupEvents } from "./events";
 import { setupJobs } from "./jobs";
@@ -37,7 +37,7 @@ export async function startBot(options: BotInstanceOptions) {
 
   const BDERedisPubClient = redis.duplicate();
   const BDERedisSubClient = redis.duplicate();
-  await setupBotAPIProvider({
+  await setupBotDataExchangeProvider({
     redisClient: redis,
     redisPubClient: BDERedisPubClient,
     redisSubClient: BDERedisSubClient,

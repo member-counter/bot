@@ -14,7 +14,7 @@ interface Clients {
   botClient: Client;
 }
 
-export const setupBotAPIProvider = async ({
+export const setupBotDataExchangeProvider = async ({
   redisClient,
   redisSubClient,
   redisPubClient,
