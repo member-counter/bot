@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "tsx ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/makeSupportedEmojis.ts && tsx ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/makeTwemojiMap.ts",
+    "postinstall": "turbo run make:twemoji-map",
+    "make:supported-emojis": "tsx ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/makeSupportedEmojis.ts && prettier --write ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/supportedEmojis.ts",
+    "make:twemoji-map": "tsx ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/makeTwemojiMap.ts",
     "prebuild": "pnpm run generate-i18next-res",
     "build": "pnpm with-env next build --experimental-build-mode compile",
     "clean": "git clean -xdf .next .turbo node_modules",
