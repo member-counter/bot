@@ -9,7 +9,12 @@ import {
   emojis as emojisMetadata,
   getEmojiData,
 } from "./emojis";
-import { IMAGE_RES, IMAGES_PER_ROW, indexToCoords } from "./twemojiMap";
+import {
+  cleanFromVariationSelectors,
+  IMAGE_RES,
+  IMAGES_PER_ROW,
+  indexToCoords,
+} from "./twemojiMap";
 
 const emojis = Object.keys(emojisMetadata);
 
@@ -60,7 +65,7 @@ for (
     const supportsSkintone = getEmojiData(emoji)?.skin_tone_support;
 
     const codePoint = Twemoji.convert.toCodePoint(
-      `${emoji}${supportsSkintone ? skinTone : ""}`,
+      `${cleanFromVariationSelectors(emoji)}${supportsSkintone ? skinTone : ""}`,
     );
     const emojiPath = `${path.join(import.meta.dirname, "twemoji", "assets", "72x72", codePoint)}.png`;
 
@@ -73,9 +78,8 @@ for (
     canvas.composite(emojiCanvas, ...indexToCoords(i, IMAGE_RES, canvas.width));
   }
 
-  await canvas.write(
-    `${path.join(import.meta.dirname, "twemojiMaps", "twemojiMap")}${skinToneIndex}.png`,
-  );
+  const emojiMapPath: `${string}.${string}` = `${path.join(import.meta.dirname, "twemojiMaps", "twemojiMap")}${skinToneIndex}.png`;
+  await canvas.write(emojiMapPath);
 
   console.log(
     `twemojiMap ${skinToneIndex + 1} of ${availableSkinTones.length} generated`,

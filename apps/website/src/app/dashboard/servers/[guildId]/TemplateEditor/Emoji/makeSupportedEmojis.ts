@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import Twemoji from "@twemoji/api";
 
+import { cleanFromVariationSelectors } from "./twemojiMap";
 import EmojiData from "./unicode-emoji-json/data-by-emoji.json";
 
 console.log("Updating supported emojis...");
@@ -25,10 +26,10 @@ async function exists(path: string) {
   }
 }
 
-// TODO figure out where the emoji numbers went
-
 for (const [emoji, emojiData] of Object.entries(EmojiData)) {
-  const codePoint = Twemoji.convert.toCodePoint(emoji);
+  const codePoint = Twemoji.convert.toCodePoint(
+    cleanFromVariationSelectors(emoji),
+  );
   const emojiPath = `${path.join(import.meta.dirname, "twemoji", "assets", "72x72", codePoint)}.png`;
 
   if (!(await exists(emojiPath))) continue;
@@ -48,6 +49,9 @@ export const supportedEmojis = ${JSON.stringify(supportedEmojis)} as Record<
 >;
 `;
 
-fs.writeFile(path.join(import.meta.dirname, "supportedEmojis.ts"), fileContent);
+await fs.writeFile(
+  path.join(import.meta.dirname, "supportedEmojis.ts"),
+  fileContent,
+);
 
 console.log("Supported emojis updated");
