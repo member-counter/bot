@@ -12,7 +12,7 @@ interface PubSubClients {
   redisPubClient: Redis;
 }
 
-export const createBotDataExchangeConsumer = async ({
+export const createBotAPIConsumer = async ({
   redisSubClient,
   redisPubClient,
 }: PubSubClients) =>
