@@ -1,4 +1,5 @@
 import assert from "assert";
+import { CSSProperties } from "react";
 
 import { availableSkinTones } from "./emojis";
 import twemojiMap0 from "./twemojiMaps/twemojiMap0.png";

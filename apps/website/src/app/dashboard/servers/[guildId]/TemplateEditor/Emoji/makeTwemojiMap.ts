@@ -4,14 +4,11 @@ import path from "path";
 import Twemoji from "@twemoji/api";
 import { Jimp } from "jimp";
 
-import {
-  availableSkinTones,
-  emojis as emojisMetadata,
-  getEmojiData,
-} from "./emojis";
+import { availableSkinTones, emojis as emojisMetadata } from "./emojis";
 import {
   cleanFromVariationSelectors,
-  IMAGE_RES,
+  IMAGE_PADDING,
+  IMAGE_RESOLUTION,
   IMAGES_PER_ROW,
   indexToCoords,
 } from "./twemojiMap";
@@ -55,14 +52,14 @@ for (
   assert(typeof skinTone === "string");
 
   const canvas = new Jimp(
-    computeCanvasSize(IMAGES_PER_ROW, emojis.length, IMAGE_RES),
+    computeCanvasSize(IMAGES_PER_ROW, emojis.length, IMAGE_RESOLUTION),
   );
 
   for (let i = 0; i < emojis.length; i++) {
     const emoji = emojis[i];
     assert(emoji);
 
-    const supportsSkintone = getEmojiData(emoji)?.skin_tone_support;
+    const supportsSkintone = emojisMetadata[emoji]?.skin_tone_support;
 
     const codePoint = Twemoji.convert.toCodePoint(
       `${cleanFromVariationSelectors(emoji)}${supportsSkintone ? skinTone : ""}`,
@@ -73,9 +70,11 @@ for (
 
     const emojiCanvas = await Jimp.read(emojiPath);
 
-    emojiCanvas.resize({ w: IMAGE_RES });
+    emojiCanvas.resize({ w: IMAGE_RESOLUTION - IMAGE_PADDING });
 
-    canvas.composite(emojiCanvas, ...indexToCoords(i, IMAGE_RES, canvas.width));
+    const [x, y] = indexToCoords(i, IMAGE_RESOLUTION, canvas.width);
+
+    canvas.composite(emojiCanvas, x + IMAGE_PADDING, y + IMAGE_PADDING);
   }
 
   const emojiMapPath: `${string}.${string}` = `${path.join(import.meta.dirname, "twemojiMaps", "twemojiMap")}${skinToneIndex}.png`;

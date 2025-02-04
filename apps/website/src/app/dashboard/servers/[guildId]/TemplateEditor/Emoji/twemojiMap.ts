@@ -1,5 +1,6 @@
 export const IMAGES_PER_ROW = 30;
-export const IMAGE_RES = 30;
+export const IMAGE_RESOLUTION = 30;
+export const IMAGE_PADDING = 1;
 
 export function indexToCoords(
   index: number,

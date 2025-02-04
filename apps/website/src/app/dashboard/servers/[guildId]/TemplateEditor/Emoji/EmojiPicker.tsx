@@ -34,6 +34,7 @@ import {
   emojisByGroup,
   searchableEmojis,
 } from "./emojis";
+import { TwemojiRendererMap } from "./TwemojiRendererMap";
 
 export function EmojiPicker({
   className,
@@ -65,7 +66,7 @@ export function EmojiPicker({
       <Popover open={!disabled && isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>{openButton}</PopoverTrigger>
         <PopoverContent asChild>
-          <Card className="w-[400px] p-0">{emojiPickerContent}</Card>
+          <Card className="w-[386px] p-0">{emojiPickerContent}</Card>
         </PopoverContent>
       </Popover>
     );
@@ -224,11 +225,7 @@ const EmojiList = memo(function EmojiList({
     : hoveredEmoji.name;
 
   const hoveredEmojiDisplay = hoveredIsUnicodeEmoji ? (
-    emojis[hoveredEmoji]?.skin_tone_support ? (
-      hoveredEmoji + skinTone
-    ) : (
-      hoveredEmoji
-    )
+    <TwemojiRendererMap emoji={hoveredEmoji} skinTone={skinTone} />
   ) : (
     <GuildEmojiRenderer emoji={hoveredEmoji} />
   );
@@ -244,15 +241,15 @@ const EmojiList = memo(function EmojiList({
             return (
               <div key={groupName} className={cn({ hidden })}>
                 <div className="text-sm font-medium">{groupName}</div>
-                <div className="flex flex-row flex-wrap place-content-between">
+                <div className="flex flex-row flex-wrap">
                   {groupEmojis.map((emoji, i) => {
                     const isMatching = !matchingEmojis.includes(emoji);
 
-                    const skined =
+                    const supportsSkinning =
                       typeof emoji === "string" &&
-                      emojis[emoji]?.skin_tone_support
-                        ? emoji + skinTone
-                        : emoji;
+                      emojis[emoji]?.skin_tone_support;
+
+                    const skined = supportsSkinning ? emoji + skinTone : emoji;
 
                     return (
                       <div
@@ -270,12 +267,15 @@ const EmojiList = memo(function EmojiList({
                         onClick={() => onSelect(skined)}
                         onMouseEnter={() => setHoveredEmoji(emoji)}
                       >
-                        {typeof skined === "string" ? (
-                          skined
+                        {typeof emoji === "string" ? (
+                          <TwemojiRendererMap
+                            emoji={emoji}
+                            skinTone={skinTone}
+                          />
                         ) : (
                           <GuildEmojiRenderer
                             className="w-[30px]"
-                            emoji={skined}
+                            emoji={emoji}
                           />
                         )}
                       </div>
@@ -349,7 +349,10 @@ function SkinToneSelector({
                 tabIndex={isOpen ? 1 : -1}
               >
                 <div>
-                  <TwemojiRenderer emoji={`👏${skinTone}`} />
+                  <TwemojiRenderer
+                    className="h-[25px] w-[25px]"
+                    emoji={`👏${skinTone}`}
+                  />
                 </div>
               </div>
             );
