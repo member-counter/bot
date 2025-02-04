@@ -5,7 +5,12 @@ import reactConfig from "@mc/eslint-config/react";
 /** @type {import('typescript-eslint').Config} */
 export default [
   {
-    ignores: [".next/**"],
+    ignores: [
+      ".next/**",
+      // ignore submodules
+      "**/twemoji/**",
+      "**/unicode-emoji-json/**",
+    ],
   },
   ...baseConfig,
   ...reactConfig,
