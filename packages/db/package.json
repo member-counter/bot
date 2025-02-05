@@ -12,7 +12,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "postinstall": "pnpm run generate",
+    "postinstall": "pnpm run generate || exit 0",
     "generate": "prisma generate",
     "migrate": "TS_NODE_DEV=1 pnpm with-env tsx ./src/migrate.ts",
     "push": "pnpm with-env prisma db push",
