@@ -1,6 +1,7 @@
 import type { BaseInteraction, LocaleString } from "discord.js";
 import { createInstance } from "i18next";
 
+import type Resources from "./@types/resources";
 import mainUS from "./locales/en-US/main.json";
 import mainES from "./locales/es-ES/main.json";
 import mainRU from "./locales/ru/main.json";
@@ -13,6 +14,7 @@ export const AVAILABLE_LANGUAGES: LocaleString[] = [
   "ru",
 ] as const;
 export const DEFAULT_LANGUAGE: LocaleString = "en-US";
+export const NAMESPACES: (keyof Resources)[] = ["main"];
 
 export async function initI18n(interaction: LocaleString | BaseInteraction) {
   let requestedLanguage: string;
@@ -28,6 +30,7 @@ export async function initI18n(interaction: LocaleString | BaseInteraction) {
     supportedLngs: AVAILABLE_LANGUAGES,
     fallbackLng: [requestedLanguage, DEFAULT_LANGUAGE],
     defaultNS: "main",
+    ns: NAMESPACES,
     resources: {
       "en-US": {
         main: mainUS,

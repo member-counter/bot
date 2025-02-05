@@ -9,6 +9,7 @@ export const languageEntries: Record<(typeof languages)[number], string> = {
 };
 export const defaultNS: keyof Resources = "main";
 export const cookieName = "language";
+export const namespaces: (keyof Resources)[] = ["main"];
 
 export function getOptions(lng = fallbackLng) {
   return {
@@ -17,5 +18,6 @@ export function getOptions(lng = fallbackLng) {
     fallbackLng,
     fallbackNS: defaultNS,
     defaultNS,
+    ns: namespaces,
   };
 }
