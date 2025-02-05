@@ -18,7 +18,7 @@ COPY --from=ghcr.io/member-counter/pnpm-store-cache:latest $PNPM_HOME/store $PNP
 WORKDIR /app
 COPY .gitignore .gitignore
 COPY --from=repo /app/out/json/ .
-COPY --from=repo /app/out/full/packages/db/prisma ./prisma
+COPY --from=repo /app/out/full/packages/db/prisma ./packages/db/prisma
 RUN pnpm install --prefer-offline
 
 FROM base AS runner
