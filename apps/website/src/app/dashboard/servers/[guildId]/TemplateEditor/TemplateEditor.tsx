@@ -70,7 +70,7 @@ function TemplateEditorInputLayout({
           />
           <EmojiPicker
             disabled={disabled || showPreview}
-            className="h-6 w-6 px-0  py-0"
+            className="h-6 w-6 px-0 py-0"
           />
         </div>
         <div className="flex flex-row gap-2 [&_*]:rounded-sm">
@@ -159,7 +159,6 @@ export default function TemplateEditor({
   const onChangeCallback = useCallback(
     (nodes: Descendant[], dataSourceRefs: DataSourceRefs) => {
       const serialized = serialize(nodes, features, dataSourceRefs);
-      console.log(serialized);
 
       if (serialized !== value) {
         onChange(serialized);

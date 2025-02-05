@@ -9,7 +9,6 @@ export const replaceEvaluator = new DataSourceEvaluator({
     const replacements = options.replacements ?? [];
 
     let newText = String(text);
-    console.log(text);
     for (const replace of replacements) {
       const { search, replacement } = replace;
       if (!search || !replacement) continue;
