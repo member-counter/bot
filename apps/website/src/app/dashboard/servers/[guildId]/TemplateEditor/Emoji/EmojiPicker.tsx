@@ -29,6 +29,7 @@ import { api } from "~/trpc/react";
 import { GuildEmojiRenderer } from "../../../../../components/GuildEmojiRenderer";
 import { TemplateEditorContext } from "../TemplateEditorContext";
 import {
+  applySkinTone,
   availableSkinTones,
   emojis,
   emojisByGroup,
@@ -249,7 +250,9 @@ const EmojiList = memo(function EmojiList({
                       typeof emoji === "string" &&
                       emojis[emoji]?.skin_tone_support;
 
-                    const skined = supportsSkinning ? emoji + skinTone : emoji;
+                    const skined = supportsSkinning
+                      ? applySkinTone(emoji, skinTone)
+                      : emoji;
 
                     return (
                       <div
@@ -351,7 +354,7 @@ function SkinToneSelector({
                 <div>
                   <TwemojiRenderer
                     className="h-[25px] w-[25px]"
-                    emoji={`👏${skinTone}`}
+                    emoji={applySkinTone("👏", skinTone)}
                   />
                 </div>
               </div>
