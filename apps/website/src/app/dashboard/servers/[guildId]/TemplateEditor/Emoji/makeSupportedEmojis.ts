@@ -1,8 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
-import Twemoji from "@twemoji/api";
 
-import { cleanFromVariationSelectors } from "./twemojiMap";
+import { grabTheRightIcon } from "./twemojiMap";
 import EmojiData from "./unicode-emoji-json/data-by-emoji.json";
 
 console.log("Updating supported emojis...");
@@ -27,9 +26,7 @@ async function exists(path: string) {
 }
 
 for (const [emoji, emojiData] of Object.entries(EmojiData)) {
-  const codePoint = Twemoji.convert.toCodePoint(
-    cleanFromVariationSelectors(emoji),
-  );
+  const codePoint = grabTheRightIcon(emoji);
   const emojiPath = `${path.join(import.meta.dirname, "twemoji", "assets", "72x72", codePoint)}.png`;
 
   if (!(await exists(emojiPath))) continue;

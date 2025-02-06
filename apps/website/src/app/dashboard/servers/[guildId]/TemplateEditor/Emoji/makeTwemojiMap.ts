@@ -1,12 +1,15 @@
 import assert from "assert";
 import fs from "fs/promises";
 import path from "path";
-import Twemoji from "@twemoji/api";
 import { Jimp } from "jimp";
 
-import { availableSkinTones, emojis as emojisMetadata } from "./emojis";
 import {
-  cleanFromVariationSelectors,
+  applySkinTone,
+  availableSkinTones,
+  emojis as emojisMetadata,
+} from "./emojis";
+import {
+  grabTheRightIcon,
   IMAGE_PADDING,
   IMAGE_RESOLUTION,
   IMAGES_PER_ROW,
@@ -61,9 +64,10 @@ for (
 
     const supportsSkintone = emojisMetadata[emoji]?.skin_tone_support;
 
-    const codePoint = Twemoji.convert.toCodePoint(
-      `${cleanFromVariationSelectors(emoji)}${supportsSkintone ? skinTone : ""}`,
+    const codePoint = grabTheRightIcon(
+      supportsSkintone ? applySkinTone(emoji, skinTone) : emoji,
     );
+
     const emojiPath = `${path.join(import.meta.dirname, "twemoji", "assets", "72x72", codePoint)}.png`;
 
     if (!(await exists(emojiPath))) continue;
