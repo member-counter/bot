@@ -71,7 +71,7 @@ export default function Footer() {
               </Link>
               <Link href={Routes.Donors}>{t("components.footer.donate")}</Link>
             </div>
-            {userPermissions.bitfield && (
+            {!!userPermissions.bitfield && (
               <div>
                 <h3>{t("components.footer.admin")}</h3>
                 <Link
