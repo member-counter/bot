@@ -60,7 +60,13 @@ export default function DataSourceFormatDigitInput({
     <SlateTemplateEditor
       features={features}
       initialValue={deseriaizedValue}
-      onChange={(nodes) => onChange(serialize(nodes, features))}
+      onChange={(nodes) => {
+        const serialized = serialize(nodes, features);
+
+        if (serialized !== value) {
+          onChange(serialized);
+        }
+      }}
     >
       <DataSourceFormatDigitInputInner
         className={className}
