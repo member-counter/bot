@@ -7,11 +7,11 @@ import { catchErrors } from "../catchErrors";
 
 export const dynamic = "force-dynamic";
 
-export const GET = catchErrors((req: NextRequest) => {
+export const GET = catchErrors(async (req: NextRequest) => {
   const redirectTo = req.nextUrl.searchParams.get("redirect_to");
 
   if (redirectTo) {
-    cookies().set("redirect_to", redirectTo);
+    (await cookies()).set("redirect_to", redirectTo);
   }
 
   redirect(getOAuth2Url(), RedirectType.replace);

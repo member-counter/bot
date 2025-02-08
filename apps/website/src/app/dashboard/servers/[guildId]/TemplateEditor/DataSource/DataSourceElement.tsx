@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import type { RenderElementProps } from "slate-react";
 import { useContext, useMemo } from "react";
 import { Eye } from "lucide-react";

@@ -50,12 +50,21 @@ export const env = createEnv({
     DISCORD_BOT_INSTANCE_BOT_PRESENCE_ACTIVITY: z.string().transform((s) => {
       return z
         .array(
-          z.object({
-            name: z.string(),
-            type: z.number().min(0).max(5),
-            state: z.string().optional(),
-            url: z.string().optional(),
-          }),
+          z
+            .object({
+              name: z.string(),
+              type: z.number().min(0).max(5),
+              state: z.string().optional().nullable(),
+              url: z.string().optional().nullable(),
+            })
+            .transform((activity) => {
+              return {
+                name: activity.name,
+                type: activity.type,
+                ...(activity.state && { state: activity.state }),
+                ...(activity.url && { url: activity.url }),
+              };
+            }),
         )
         .parse(JSON.parse(s));
     }),

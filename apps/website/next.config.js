@@ -7,9 +7,6 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 /** @type {import("next").NextConfig} */
 const config = {
   output: "standalone",
-  experimental: {
-    outputFileTracingRoot: "../../",
-  },
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@mc/db",
@@ -19,15 +16,6 @@ const config = {
     "@mc/common",
     "@mc/services",
   ],
-
-  webpack: (config, { isServer }) => {
-    config.module.rules.push({
-      test: /\.node$/,
-      loader: "node-loader",
-    });
-
-    return config;
-  },
 
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },

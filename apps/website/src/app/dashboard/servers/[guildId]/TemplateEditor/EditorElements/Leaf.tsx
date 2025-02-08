@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import type { RenderLeafProps } from "slate-react";
 import { useContext } from "react";
 

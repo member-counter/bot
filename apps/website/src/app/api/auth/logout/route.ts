@@ -6,7 +6,7 @@ import { destroySession } from "../../sessionCookie";
 
 export const dynamic = "force-dynamic";
 
-export const GET = catchErrors(() => {
-  destroySession();
+export const GET = catchErrors(async () => {
+  await destroySession();
   redirect(Routes.Home, RedirectType.replace);
 });

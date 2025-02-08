@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import type { RenderElementProps } from "slate-react";
 import { useContext } from "react";
 import { DefaultElement } from "slate-react";

@@ -10,10 +10,11 @@ import { Routes } from "~/other/routes";
 import { legalPages } from "../legalPages";
 
 interface Props {
-  params: { oldSlug: string | undefined };
+  params: Promise<{ oldSlug: string | undefined }>;
 }
 
-export function generateMetadata({ params }: Props): Metadata {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   let requestedSlug: LegalPagesSlugs;
 
   try {
@@ -29,7 +30,8 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const requestedSlug =
     z.enum(legalPagesSlugs).safeParse(params.oldSlug).data ??
     "terms-of-service";

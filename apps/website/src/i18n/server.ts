@@ -24,7 +24,7 @@ const initI18next = async (lng: string) => {
 
 export async function translation() {
   const lng =
-    acceptLanguage.get(cookies().get(cookieName)?.value) ?? fallbackLng;
+    acceptLanguage.get((await cookies()).get(cookieName)?.value) ?? fallbackLng;
 
   const i18nextInstance = await initI18next(lng);
 

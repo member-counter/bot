@@ -10,10 +10,11 @@ import { legalPages } from "./legalPages";
 import PageSwitcher from "./PageSwitcher";
 
 interface Props {
-  searchParams: { page: string | undefined };
+  searchParams: Promise<{ page: string | undefined }>;
 }
 
-export function generateMetadata({ searchParams }: Props): Metadata {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const searchParams = await props.searchParams;
   const requestedSlug =
     z.enum(legalPagesSlugs).safeParse(searchParams.page).data ??
     "terms-of-service";

@@ -4,6 +4,8 @@ import type { EmojiElement as EmojiElementType } from "../custom-types";
 import { GuildEmojiRenderer } from "~/app/components/GuildEmojiRenderer";
 import { TwemojiRenderer } from "~/app/components/TwemojiRenderer";
 
+import type { JSX } from "react";
+
 export default function EmojiElement(props: RenderElementProps): JSX.Element {
   const element = props.element as EmojiElementType;
   const className = "inline-block max-h-[20px] w-[20px] mb-[3px]";

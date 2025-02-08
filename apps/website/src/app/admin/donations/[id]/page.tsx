@@ -1,4 +1,5 @@
-"use client";
+"use client";;
+import { use } from "react";
 
 import { ArrowLeftIcon, LoaderIcon } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
@@ -14,10 +15,16 @@ import { api } from "~/trpc/react";
 import { DonationForm } from "../DonationForm";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function Page({ params: { id } }: Props) {
+export default function Page(props: Props) {
+  const params = use(props.params);
+
+  const {
+    id
+  } = params;
+
   const { t } = useTranslation();
   const donationQuery = api.donor.getDonation.useQuery({ id });
   const donationMutation = api.donor.updateDonation.useMutation();

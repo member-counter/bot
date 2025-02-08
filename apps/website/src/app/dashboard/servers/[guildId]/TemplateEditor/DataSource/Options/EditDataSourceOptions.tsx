@@ -1,4 +1,5 @@
 import type { DataSource } from "@mc/common/DataSource";
+import type { JSX } from "react";
 import React from "react";
 
 import { DataSourceId } from "@mc/common/DataSource";

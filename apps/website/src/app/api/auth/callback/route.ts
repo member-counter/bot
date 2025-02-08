@@ -17,9 +17,9 @@ export const GET = catchErrors(async (req: NextRequest) => {
   const sessionTokens = await exchangeTokens({ code });
   await setSession(sessionTokens);
 
-  const redirectTo = cookies().get("redirect_to");
+  const redirectTo = (await cookies()).get("redirect_to");
   if (redirectTo) {
-    cookies().delete("redirect_to");
+    (await cookies()).delete("redirect_to");
     redirect(redirectTo.value);
   } else {
     redirect(Routes.Home);

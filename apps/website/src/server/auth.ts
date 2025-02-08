@@ -95,7 +95,7 @@ export async function refreshToken(
 
       await setSession(session);
     } catch {
-      destroySession();
+      await destroySession();
     }
   }
 

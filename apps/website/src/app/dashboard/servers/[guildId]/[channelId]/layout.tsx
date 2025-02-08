@@ -1,5 +1,6 @@
 "use client";
 
+import { use } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Separator } from "@mc/ui/separator";
@@ -14,12 +15,13 @@ export type DashboardGuildChannelParams = {
 } & DashboardGuildParams;
 
 interface Props {
-  params: DashboardGuildChannelParams;
+  params: Promise<DashboardGuildChannelParams>;
   children: React.ReactNode;
 }
 
 export default function Layout(props: Props) {
-  const { channelId, guildId } = props.params;
+  const params = use(props.params);
+  const { channelId, guildId } = params;
   const { t } = useTranslation();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);

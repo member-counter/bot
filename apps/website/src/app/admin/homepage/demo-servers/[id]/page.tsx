@@ -1,4 +1,5 @@
-"use client";
+"use client";;
+import { use } from "react";
 
 import { ArrowLeftIcon, LoaderIcon } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
@@ -13,10 +14,16 @@ import { api } from "~/trpc/react";
 import ManageDemoServer from "./ManageDemoServer";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function Page({ params: { id } }: Props) {
+export default function Page(props: Props) {
+  const params = use(props.params);
+
+  const {
+    id
+  } = params;
+
   const { t } = useTranslation();
   const demoServer = api.demoServers.get.useQuery({ id });
   const router = useRouter();

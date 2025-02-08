@@ -27,13 +27,13 @@
     "dotenv-cli": "^7.4.1",
     "eslint": "^9.19.0",
     "prettier": "^3.4.2",
-    "prisma": "^5.14.0",
+    "prisma": "^5.22.0",
     "typescript": "^5.7.3"
   },
   "prettier": "@mc/prettier-config",
   "dependencies": {
-    "@prisma/client": "^5.10.2",
-    "@t3-oss/env-core": "^0.10.1",
+    "@prisma/client": "^5.22.0",
+    "@t3-oss/env-core": "^0.11.1",
     "mongo-migrate-ts": "^1.6.2",
     "tsx": "^4.19.2",
     "zod": "^3.24.1"

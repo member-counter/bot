@@ -1,4 +1,5 @@
 import type { DataSource } from "@mc/common/DataSource";
+import type { JSX } from "react";
 import { useEffect, useState } from "react";
 import {
   ArrowLeftIcon,
@@ -97,7 +98,7 @@ export default function EditDataSourcePanel({
             const isLastItem = editStack.length - 1 === i;
             return (
               <div
-                className={isLastItem ? " flex flex-col gap-1 p-3" : "hidden"}
+                className={isLastItem ? "flex flex-col gap-1 p-3" : "hidden"}
                 key={i}
               >
                 <EditDataSourceOptions

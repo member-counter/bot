@@ -6,11 +6,11 @@ import { generateInviteLink } from "@mc/common/generateInviteLink";
 import { env } from "~/env";
 
 interface Props {
-  searchParams: { guildId?: string };
+  searchParams: Promise<{ guildId?: string }>;
 }
 
-export default function Page(props: Props) {
-  const guildId = props.searchParams.guildId;
+export default async function Page(props: Props) {
+  const guildId = (await props.searchParams).guildId;
   redirect(
     generateInviteLink({
       clientId: env.DISCORD_CLIENT_ID,

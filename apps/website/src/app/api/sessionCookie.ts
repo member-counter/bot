@@ -9,7 +9,7 @@ import { env } from "~/env";
 const cookieName = "session";
 
 export async function getSession(): Promise<Session | null> {
-  const session = cookies().get(cookieName);
+  const session = (await cookies()).get(cookieName);
 
   if (!session) return null;
 
@@ -21,7 +21,7 @@ export async function getSession(): Promise<Session | null> {
     return SessionSchema.parse(unsealed);
   } catch (err) {
     console.error(err);
-    destroySession();
+    await destroySession();
     return null;
   }
 }
@@ -31,7 +31,7 @@ export async function setSession(sessionTokens: Session) {
     password: env.COOKIE_SECRET,
   });
 
-  cookies().set({
+  (await cookies()).set({
     name: cookieName,
     value: sealedSessionTokens,
     httpOnly: true,
@@ -40,6 +40,6 @@ export async function setSession(sessionTokens: Session) {
   });
 }
 
-export function destroySession() {
-  cookies().delete(cookieName);
+export async function destroySession() {
+  (await cookies()).delete(cookieName);
 }

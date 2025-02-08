@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, use } from "react";
 import { LoaderIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -17,10 +17,16 @@ import {
 import ManageUser from "./ManageUser";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function Page({ params: { id: userId } }: Props) {
+export default function Page(props: Props) {
+  const params = use(props.params);
+
+  const {
+    id: userId
+  } = params;
+
   const [recentUsers, setRecentUsers] = useLocalStorage(
     recentUsersKey,
     recentUsersSchema,
