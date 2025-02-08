@@ -1,4 +1,4 @@
-import type { ElementType } from "react";
+import type { ElementType, JSX } from "react";
 
 import { SelectItem } from "./select";
 

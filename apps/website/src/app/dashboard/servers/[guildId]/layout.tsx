@@ -12,7 +12,7 @@ export interface DashboardGuildParams {
 
 export interface DashboardGuildPageProps {
   children: React.ReactNode;
-  params: DashboardGuildParams;
+  params: Promise<DashboardGuildParams>;
 }
 
 export default function Layout({ children }: DashboardGuildPageProps) {

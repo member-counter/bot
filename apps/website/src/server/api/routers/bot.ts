@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { botDataExchangeConsumer } from "@mc/services/botDataExchange/botDataExchangeConsumer";
+import { botAPIConsumer } from "@mc/services/botAPI/botAPIConsumer";
 
 import { env } from "~/env";
 import {
@@ -11,7 +11,7 @@ import {
 
 export const botRouter = createTRPCRouter({
   gamedigGames: protectedProcedure.query(() => {
-    return botDataExchangeConsumer.gamedig.getGames.query();
+    return botAPIConsumer.gamedig.getGames.query();
   }),
   computeTemplate: protectedProcedure
     .input(
@@ -22,14 +22,14 @@ export const botRouter = createTRPCRouter({
       }),
     )
     .query(({ input }) => {
-      return botDataExchangeConsumer.dataSource.computeTemplate.query(input);
+      return botAPIConsumer.dataSource.computeTemplate.query(input);
     }),
 
   getStatus: publicProcedure.query(() => {
     return Promise.all(
       env.PUBLIC_BOTS_IDS.map(async (id) => ({
         id,
-        stats: await botDataExchangeConsumer.bot.getStats
+        stats: await botAPIConsumer.bot.getStats
           .query({ id })
           .catch(() => null),
       })),
