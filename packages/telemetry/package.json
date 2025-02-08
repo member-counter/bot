@@ -1,0 +1,38 @@
+{
+  "name": "@mc/telemetry",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    "./registerVercelOTel": "./src/registerVercelOTel.ts",
+    "./registerOTel": "./src/registerOTel.ts"
+  },
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@mc/eslint-config": "workspace:*",
+    "@mc/prettier-config": "workspace:*",
+    "@mc/tsconfig": "workspace:*",
+    "@types/node": "^22.10.10",
+    "eslint": "^9.19.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  },
+  "prettier": "@mc/prettier-config",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/api-logs": "^0.57.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.57.1",
+    "@opentelemetry/instrumentation": "^0.57.1",
+    "@opentelemetry/sdk-logs": "^0.57.1",
+    "@opentelemetry/sdk-node": "^0.57.1",
+    "@prisma/instrumentation": "^6.3.1",
+    "@t3-oss/env-core": "^0.11.1",
+    "@vercel/otel": "^1.10.1"
+  }
+}
