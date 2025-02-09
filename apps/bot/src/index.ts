@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import type { BotInstanceOptions } from "@mc/common/BotInstanceOptions";
 
 import { db } from "@mc/db";

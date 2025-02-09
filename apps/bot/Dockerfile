@@ -49,4 +49,4 @@ USER nodejs
 COPY --from=prod_deps /app/node_modules ./node_modules
 COPY --from=repo /app/apps/bot/package.json .
 COPY --from=builder --chown=nodejs:nodejs /app/apps/bot/dist ./
-CMD ["node", "/app/index.js"]
+CMD node --experimental-loader=@opentelemetry/instrumentation/hook.mjs --import /app/telemetry.js /app/index.js
