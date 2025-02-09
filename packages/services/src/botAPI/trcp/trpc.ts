@@ -15,6 +15,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { RES_CHANNEL } from "@mc/trpc-redis/Constants";
+import { trpcTracing } from "@mc/trpc-telemetry";
 
 export class DropRequestError extends Error {}
 
@@ -121,4 +122,4 @@ export const createTRPCRouter = t.router;
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-export const publicProcedure = t.procedure;
+export const publicProcedure = t.procedure.unstable_concat(trpcTracing());

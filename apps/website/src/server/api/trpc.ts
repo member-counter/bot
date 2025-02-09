@@ -6,7 +6,6 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
@@ -15,6 +14,7 @@ import { BitField } from "@mc/common/BitField";
 import { db } from "@mc/db";
 import { redis } from "@mc/redis";
 import { UserSettingsService } from "@mc/services/userSettings";
+import { trpcTracing } from "@mc/trpc-telemetry";
 
 import { getSession } from "~/app/api/sessionCookie";
 import { Errors } from "~/app/errors";
@@ -100,7 +100,7 @@ export const createTRPCRouter = t.router;
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-export const publicProcedure = t.procedure;
+export const publicProcedure = t.procedure.unstable_concat(trpcTracing());
 
 /**
  * Protected (authenticated) procedure
@@ -110,7 +110,7 @@ export const publicProcedure = t.procedure;
  *
  * @see https://trpc.io/docs/procedures
  */
-export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
+export const protectedProcedure = publicProcedure.use(({ ctx, next }) => {
   if (!ctx.session || !ctx.authUser) {
     throw new TRPCError({
       code: "UNAUTHORIZED",

@@ -19,6 +19,7 @@
     "@mc/logger": "workspace:*",
     "@mc/redis": "workspace:*",
     "@mc/trpc-redis": "workspace:*",
+    "@mc/trpc-telemetry": "workspace:*",
     "@mc/validators": "workspace:*",
     "@sesamecare-oss/redlock": "^1.2.1",
     "@trpc/client": "next",
