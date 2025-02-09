@@ -6,6 +6,8 @@ export const requestMessageSchema = z.object({
   type: z.enum(["query", "mutation", "subscription"]),
   path: z.string(),
   input: z.unknown(),
+  traceId: z.string(),
+  spanId: z.string(),
 });
 
 export type ResponseMessage = z.infer<typeof responseMessageSchema>;

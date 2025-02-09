@@ -1,3 +1,4 @@
+import type { SpanContext } from "@opentelemetry/api";
 import type {
   AnyTRPCRouter,
   CreateContextCallback,
@@ -6,9 +7,9 @@ import type {
 import type {
   ErrorHandlerOptions,
   MaybePromise,
-  RouterRecord,
 } from "@trpc/server/unstable-core-do-not-import";
 import type { Redis } from "ioredis";
+import { context, trace, TraceFlags } from "@opentelemetry/api";
 import { TRPCError } from "@trpc/core";
 import {
   callTRPCProcedure,
@@ -62,7 +63,7 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
     const deserializedInput = deserialize(input) as unknown;
 
     const result = (await callTRPCProcedure({
-      procedures: router._def.procedures as RouterRecord,
+      _def: router._def,
       type,
       path,
       ctx,
@@ -109,36 +110,47 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       return;
     }
 
-    const { input, path, type } = requestMessage;
+    const { input, path, type, traceId, spanId } = requestMessage;
 
-    try {
+    const spanContext: SpanContext = {
+      traceId,
+      spanId,
+      isRemote: true,
+      traceFlags: TraceFlags.SAMPLED,
+    };
+
+    const remoteContext = trace.setSpanContext(context.active(), spanContext);
+
+    void context.with(remoteContext, async () => {
       try {
-        await respond({
-          id: requestMessage.id,
-          type: "result",
-          result: await resolve(ctx, requestMessage),
-        });
+        try {
+          await respond({
+            id: requestMessage.id,
+            type: "result",
+            result: await resolve(ctx, requestMessage),
+          });
+        } catch (err) {
+          const error = getTRPCErrorFromUnknown(err);
+          onError?.({ error, ctx, input, path, type });
+
+          await respond({
+            id: requestMessage.id,
+            type: "error",
+            error: getErrorShape({
+              config: router._def._config,
+              error,
+              type,
+              path,
+              input,
+              ctx,
+            }),
+          });
+        }
       } catch (err) {
         const error = getTRPCErrorFromUnknown(err);
         onError?.({ error, ctx, input, path, type });
-
-        await respond({
-          id: requestMessage.id,
-          type: "error",
-          error: getErrorShape({
-            config: router._def._config,
-            error,
-            type,
-            path,
-            input,
-            ctx,
-          }),
-        });
       }
-    } catch (err) {
-      const error = getTRPCErrorFromUnknown(err);
-      onError?.({ error, ctx, input, path, type });
-    }
+    });
   };
 
   await redisSubClient.subscribe(REQ_CHANNEL);
