@@ -128,8 +128,8 @@ class DataSourceService {
     const rootItem = new ExplorerStackItem({ root: rawDataSource }, "root");
     const queue: ExplorerStackItem[] = [rootItem];
 
-    let interationsLeft = 50_000;
-    while (--interationsLeft) {
+    let iterationsLeft = 50_000;
+    while (--iterationsLeft) {
       const toExploreMore: ExplorerStackItem[] = [];
       const item = queue.pop();
       if (!item) break;
@@ -165,9 +165,9 @@ class DataSourceService {
       }
     }
 
-    if (!interationsLeft) {
+    if (!iterationsLeft) {
       throw new Error(
-        `Max iterations (${interationsLeft}) reached for ${JSON.stringify(rawDataSource)}`,
+        `Max iterations (${iterationsLeft}) reached for ${JSON.stringify(rawDataSource)}`,
       );
     }
 
