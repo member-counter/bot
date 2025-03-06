@@ -63,7 +63,7 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
     const deserializedInput = deserialize(input) as unknown;
 
     const result = (await callTRPCProcedure({
-      _def: router._def,
+      router,
       type,
       path,
       ctx,
