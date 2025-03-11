@@ -10,7 +10,6 @@ import { env } from "./env";
 
 export function registerVercelOTel() {
   _registerVercelOTel({
-    serviceName: env.OTEL_SERVICE_NAME,
     instrumentations: [new PrismaInstrumentation()],
     spanProcessors: [
       "auto",

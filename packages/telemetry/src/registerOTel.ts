@@ -20,7 +20,6 @@ const PrismaInstrumentation = require("@prisma/instrumentation")
 
 export function registerOTel() {
   const sdk = new NodeSDK({
-    serviceName: env.OTEL_SERVICE_NAME,
     instrumentations: [new PrismaInstrumentation()],
     spanProcessors: [
       env.NODE_ENV === "production"
