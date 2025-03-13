@@ -18,8 +18,7 @@ export const infoCommand = new Command({
       prepareLocalization(
         "interaction.commands.info.definition.slash.description",
       ),
-    )
-    .setDMPermission(true),
+    ),
   handle: async (command, { t }) => {
     const embed = new BaseEmbed(command.client)
       .setDescription(

@@ -61,8 +61,7 @@ export const profileCommand = new Command({
             "interaction.commands.profile.definition.slash.options.user.description",
           ),
         ),
-    )
-    .setDMPermission(true),
+    ),
   contextDefinition: new ContextMenuCommandBuilder()
     .setName(
       prepareLocalization(

@@ -7,6 +7,7 @@ import {
 import {
   CategoryChannel,
   ChannelType,
+  InteractionContextType,
   OverwriteType,
   PermissionFlagsBits,
   PermissionsBitField,
@@ -56,7 +57,7 @@ const TemplateStatusTKey = {
 export const setupCommand = new Command({
   slashDefinition: new SlashCommandBuilder()
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
-    .setDMPermission(false)
+    .setContexts(InteractionContextType.Guild)
     .setName(
       prepareLocalization("interaction.commands.setup.definition.slash.name"),
     )

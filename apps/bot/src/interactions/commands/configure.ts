@@ -4,7 +4,11 @@ import {
   chatInputApplicationCommandMention,
   SlashCommandBuilder,
 } from "@discordjs/builders";
-import { ButtonStyle, PermissionFlagsBits } from "discord.js";
+import {
+  ButtonStyle,
+  InteractionContextType,
+  PermissionFlagsBits,
+} from "discord.js";
 
 import { fetchCommandId } from "@mc/common/bot/fetchCommandId";
 import { tKey } from "@mc/common/bot/i18n/index";
@@ -18,7 +22,7 @@ import { DEFAULT_LANGUAGE, initI18n } from "~/i18n";
 export const configureCommand = new Command({
   slashDefinition: new SlashCommandBuilder()
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
-    .setDMPermission(false)
+    .setContexts(InteractionContextType.Guild)
     .setName(
       prepareLocalization(
         "interaction.commands.configure.definition.slash.name",
