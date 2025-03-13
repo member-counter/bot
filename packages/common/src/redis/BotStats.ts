@@ -4,7 +4,7 @@ import type { Client } from "discord.js";
 import type { Redis } from "ioredis";
 import { z } from "zod";
 
-import type { BotInstanceOptions } from "../BotInstanceOptions";
+import type { BotInstanceOptions } from "../bot/BotInstanceOptions";
 
 export const WSStatus = {
   Ready: 0,
@@ -64,7 +64,7 @@ const generateStats = (
     clientStatus: botClient.ws.status,
     userCount: botClient.guilds.cache.reduce(
       (acc, g) =>
-        acc + (isPrivileged ? g.memberCount : g.approximateMemberCount ?? 0),
+        acc + (isPrivileged ? g.memberCount : (g.approximateMemberCount ?? 0)),
       0,
     ),
     guildCount: botClient.guilds.cache.size,

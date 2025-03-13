@@ -1,4 +1,5 @@
-import type { BaseInteraction, LocaleString } from "discord.js";
+import type { InitI18NOptions } from "@mc/common/bot/i18n/index";
+import { Locale } from "discord.js";
 import { createInstance } from "i18next";
 
 import type Resources from "./@types/resources";
@@ -6,45 +7,37 @@ import mainUS from "./locales/en-US/main.json";
 import mainES from "./locales/es-ES/main.json";
 import mainRU from "./locales/ru/main.json";
 
-export const AVAILABLE_LANGUAGES: LocaleString[] = [
-  "en-US",
-  "en-GB",
-  "es-ES",
-  "es-419",
-  "ru",
+export const AVAILABLE_LANGUAGES: Locale[] = [
+  Locale.EnglishUS,
+  Locale.EnglishGB,
+  Locale.SpanishES,
+  Locale.SpanishLATAM,
+  Locale.Russian,
 ] as const;
-export const DEFAULT_LANGUAGE: LocaleString = "en-US";
+export const DEFAULT_LANGUAGE: Locale = Locale.EnglishUS;
 export const NAMESPACES: (keyof Resources)[] = ["main"];
 
-export async function initI18n(interaction: LocaleString | BaseInteraction) {
-  let requestedLanguage: string;
-
-  if (typeof interaction === "string") {
-    requestedLanguage = interaction;
-  } else {
-    requestedLanguage = interaction.locale;
-  }
-
+export async function initI18n({ locale }: InitI18NOptions) {
   const i18nextInstance = createInstance({
-    lng: requestedLanguage,
+    lng: locale,
     supportedLngs: AVAILABLE_LANGUAGES,
-    fallbackLng: [requestedLanguage, DEFAULT_LANGUAGE],
+    fallbackLng: [locale, DEFAULT_LANGUAGE],
     defaultNS: "main",
     ns: NAMESPACES,
     resources: {
-      "en-US": {
+      [Locale.EnglishUS]: {
         main: mainUS,
       },
-      "en-GB": {
+      [Locale.EnglishGB]: {
         main: mainUS,
       },
-      "es-ES": {
+      [Locale.SpanishES]: {
         main: mainES,
       },
-      "es-419": {
+      [Locale.SpanishLATAM]: {
         main: mainES,
       },
-      ru: {
+      [Locale.Russian]: {
         main: mainRU,
       },
     },
@@ -57,15 +50,3 @@ export async function initI18n(interaction: LocaleString | BaseInteraction) {
 
   return i18nextInstance;
 }
-
-export type TFunction = Awaited<ReturnType<typeof initI18n>>["t"];
-
-type Unpacked<T> = T extends (infer U)[] ? U : T;
-export type TKey<K = Parameters<TFunction>[0]> = K extends
-  | string
-  | string[]
-  | TemplateStringsArray
-  ? never
-  : Exclude<Unpacked<K>, TemplateStringsArray>;
-
-export const tKey = <K extends TKey>(key: K): K => key;

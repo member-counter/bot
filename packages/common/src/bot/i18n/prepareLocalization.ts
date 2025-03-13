@@ -1,4 +1,4 @@
-import type { TKey } from "~/i18n";
+import type { TKey } from ".";
 
 let TKeyMapCounter = 0;
 export const commandDefinitionTKeyMap = new Map<string, TKey>();

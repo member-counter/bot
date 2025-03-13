@@ -1,4 +1,4 @@
-import type { BotInstanceOptions } from "@mc/common/BotInstanceOptions";
+import type { BotInstanceOptions } from "@mc/common/bot/BotInstanceOptions";
 
 import { db } from "@mc/db";
 import baseLogger from "@mc/logger";

@@ -1,7 +1,8 @@
 import type { CommandInteraction } from "discord.js";
 
+import { commandDefinitionTKeyMap } from "@mc/common/bot/i18n/prepareLocalization";
+
 import { DEFAULT_LANGUAGE, initI18n } from "~/i18n";
-import { commandDefinitionTKeyMap } from "~/utils/prepareLocalization";
 import { configureCommand } from "./configure";
 import { infoCommand } from "./info";
 import { inviteCommand } from "./invite";
@@ -26,7 +27,7 @@ export default async function handleCommand(
   const { logger } = commandInteraction.client.botInstanceOptions;
 
   await commandInteraction.deferReply({ ephemeral: true });
-  const i18nDefaultLanguage = await initI18n(DEFAULT_LANGUAGE);
+  const i18nDefaultLanguage = await initI18n({ locale: DEFAULT_LANGUAGE });
 
   const command = allCommands.find((c) => {
     const commandNames = [c.slashDefinition?.name, c.contextDefinition?.name]

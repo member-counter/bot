@@ -12,6 +12,9 @@ import {
   PermissionsBitField,
 } from "discord.js";
 
+import { fetchCommandId } from "@mc/common/bot/fetchCommandId";
+import { tKey } from "@mc/common/bot/i18n/index";
+import { prepareLocalization } from "@mc/common/bot/i18n/prepareLocalization";
 import { Command } from "@mc/common/bot/structures/Command";
 import {
   DataSourceId,
@@ -24,9 +27,7 @@ import { noop } from "@mc/common/noop";
 import DataSourceService from "@mc/services/DataSource/index";
 import { GuildSettingsService } from "@mc/services/guildSettings";
 
-import { DEFAULT_LANGUAGE, initI18n, tKey } from "~/i18n";
-import { fetchCommandId } from "~/utils/fetchCommandId";
-import { prepareLocalization } from "~/utils/prepareLocalization";
+import { DEFAULT_LANGUAGE, initI18n } from "~/i18n";
 
 enum TemplateStatus {
   PENDING,
@@ -137,7 +138,7 @@ export const setupCommand = new Command({
 
     const { logger } = command.client.botInstanceOptions;
     const { t } = i18n;
-    const i18nDefault = await initI18n(DEFAULT_LANGUAGE);
+    const i18nDefault = await initI18n({ locale: DEFAULT_LANGUAGE });
     const type = command.options.getSubcommand(true);
     const templateCollection = t(
       `interaction.commands.setup.templateCollection`,
@@ -201,7 +202,12 @@ export const setupCommand = new Command({
       );
       const configureCommandMention = chatInputApplicationCommandMention(
         t(configureCommandNameTKey),
-        await fetchCommandId(command.client, configureCommandNameTKey),
+        await fetchCommandId({
+          client: command.client,
+          tkey: configureCommandNameTKey,
+          defaultLanguage: DEFAULT_LANGUAGE,
+          initI18n: initI18n,
+        }),
       );
 
       content += t("interaction.commands.setup.status.configureSuggestion", {

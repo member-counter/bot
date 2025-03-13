@@ -1,7 +1,8 @@
-import type { BotInstanceOptions } from "@mc/common/BotInstanceOptions";
+import type { BotInstanceOptions } from "@mc/common/bot/BotInstanceOptions";
 import { Client } from "discord.js";
 
-import { generateBotIntents } from "@mc/common/botIntents";
+import { generateBotIntents } from "@mc/common/bot/botIntents";
+import { deployCommands } from "@mc/common/bot/deployCommands";
 import {
   setupBotStatsConsumer,
   setupBotStatsProvider,
@@ -10,14 +11,21 @@ import { redis } from "@mc/redis";
 import { setupBotAPIProvider } from "@mc/services/botAPI/setupBotAPIProvider";
 
 import { setupEvents } from "./events";
+import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE, initI18n } from "./i18n";
+import { allCommands } from "./interactions/commands";
 import { setupJobs } from "./jobs";
-import { deployCommands } from "./utils/deployCommands";
 import { makeCache } from "./utils/makeCache";
 import { RedisIdentifyThrottler } from "./utils/RedisIdentifyThrottler";
 import { sweepers } from "./utils/sweepers";
 
 export async function startBot(options: BotInstanceOptions) {
-  await deployCommands(options);
+  await deployCommands({
+    ...options,
+    availableLanguages: AVAILABLE_LANGUAGES,
+    defaultLanguage: DEFAULT_LANGUAGE,
+    initI18n: initI18n,
+    commands: allCommands,
+  });
 
   const { logger } = options;
 

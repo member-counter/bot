@@ -1,4 +1,4 @@
-import type { BotInstanceOptions } from "@mc/common/BotInstanceOptions";
+import type { BotInstanceOptions } from "@mc/common/bot/BotInstanceOptions";
 import type { IIdentifyThrottler } from "discord.js";
 import { Redlock } from "@sesamecare-oss/redlock";
 

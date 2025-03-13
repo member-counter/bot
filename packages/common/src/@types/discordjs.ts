@@ -1,4 +1,4 @@
-import type { BotInstanceOptions } from "../BotInstanceOptions";
+import type { BotInstanceOptions } from "../bot/BotInstanceOptions";
 import type { setupBotStatsConsumer } from "../redis/BotStats";
 
 declare module "discord.js" {

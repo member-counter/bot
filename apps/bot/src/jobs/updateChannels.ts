@@ -29,7 +29,7 @@ async function updateGuildChannels(
   const guildChannelsSettings = await GuildSettingsService.channels.getAll(
     guild.id,
   );
-  const i18n = await initI18n(guild.preferredLocale);
+  const i18n = await initI18n({ locale: guild.preferredLocale });
 
   await Promise.all(
     guildChannelsSettings.map(async (channelSettings) => {

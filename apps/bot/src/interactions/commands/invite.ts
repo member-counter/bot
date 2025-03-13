@@ -5,13 +5,13 @@ import {
 } from "@discordjs/builders";
 import { ButtonStyle } from "discord.js";
 
+import { botPermissions } from "@mc/common/bot/botPermissions";
+import { prepareLocalization } from "@mc/common/bot/i18n/prepareLocalization";
 import { Command } from "@mc/common/bot/structures/Command";
-import { botPermissions } from "@mc/common/botPermissions";
 import { generateInviteLink } from "@mc/common/generateInviteLink";
 
 import { env } from "~/env";
 import { BaseEmbed } from "~/utils/BaseMessageEmbed";
-import { prepareLocalization } from "~/utils/prepareLocalization";
 
 export const inviteCommand = new Command({
   slashDefinition: new SlashCommandBuilder()

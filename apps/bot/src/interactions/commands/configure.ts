@@ -6,13 +6,14 @@ import {
 } from "@discordjs/builders";
 import { ButtonStyle, PermissionFlagsBits } from "discord.js";
 
+import { fetchCommandId } from "@mc/common/bot/fetchCommandId";
+import { tKey } from "@mc/common/bot/i18n/index";
+import { prepareLocalization } from "@mc/common/bot/i18n/prepareLocalization";
 import { Command } from "@mc/common/bot/structures/Command";
 import { Routes } from "@mc/common/Routes";
 
 import { env } from "~/env";
-import { tKey } from "~/i18n";
-import { fetchCommandId } from "~/utils/fetchCommandId";
-import { prepareLocalization } from "~/utils/prepareLocalization";
+import { DEFAULT_LANGUAGE, initI18n } from "~/i18n";
 
 export const configureCommand = new Command({
   slashDefinition: new SlashCommandBuilder()
@@ -41,7 +42,12 @@ export const configureCommand = new Command({
     const setupCommandMention = chatInputApplicationCommandMention(
       t(setupCommandNameTKey),
       t(setupSubCommandNameTKey),
-      await fetchCommandId(command.client, setupCommandNameTKey),
+      await fetchCommandId({
+        client: command.client,
+        tkey: setupCommandNameTKey,
+        defaultLanguage: DEFAULT_LANGUAGE,
+        initI18n: initI18n,
+      }),
     );
 
     await command.editReply({

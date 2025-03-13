@@ -1,6 +1,6 @@
 import type {
   APIApplicationCommandOption,
-  LocaleString,
+  Locale,
   LocalizationMap,
 } from "discord.js";
 import type { i18n } from "i18next";
@@ -30,11 +30,12 @@ export function localizeCommand(
   }
 
   if (nameKey)
-    def.name_localizations[i18nInstance.language as LocaleString] =
-      i18nInstance.t(nameKey as never);
+    def.name_localizations[i18nInstance.language as Locale] = i18nInstance.t(
+      nameKey as never,
+    );
 
   if (descKey)
-    def.description_localizations[i18nInstance.language as LocaleString] =
+    def.description_localizations[i18nInstance.language as Locale] =
       i18nInstance.t(descKey as never);
 
   def.options?.forEach((option) => {

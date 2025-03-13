@@ -9,6 +9,7 @@ import {
 import { ApplicationCommandType, ButtonStyle, ComponentType } from "discord.js";
 
 import { BitField } from "@mc/common/BitField";
+import { prepareLocalization } from "@mc/common/bot/i18n/prepareLocalization";
 import { Command } from "@mc/common/bot/structures/Command";
 import { KnownError } from "@mc/common/KnownError/index";
 import { Routes } from "@mc/common/Routes";
@@ -23,7 +24,6 @@ import { UserSettingsService } from "@mc/services/userSettings";
 
 import { env } from "~/env";
 import { BaseEmbed } from "~/utils/BaseMessageEmbed";
-import { prepareLocalization } from "~/utils/prepareLocalization";
 import { throwUnsupported } from ".";
 
 const generateBadgeList = (badges: bigint): string => {
