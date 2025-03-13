@@ -1,7 +1,6 @@
+import { EventHandler } from "@mc/common/bot/structures/EventHandler";
 import { botPermissions } from "@mc/common/botPermissions";
 import { generateInviteLink } from "@mc/common/generateInviteLink";
-
-import { EventHandler } from "../structures";
 
 export const readyEvent = new EventHandler({
   name: "ready",

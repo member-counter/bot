@@ -1,8 +1,7 @@
 import { BitField } from "@mc/common/BitField";
+import { EventHandler } from "@mc/common/bot/structures/EventHandler";
 import { UserBadgesBitfield } from "@mc/common/UserBadges";
 import { UserSettingsService } from "@mc/services/userSettings";
-
-import { EventHandler } from "../structures";
 
 export const messageCreateEvent = new EventHandler({
   name: "messageCreate",

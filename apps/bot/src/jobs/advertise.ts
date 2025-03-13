@@ -1,9 +1,8 @@
 import type { Callback, Result } from "ioredis";
 
+import { Job } from "@mc/common/bot/structures/Job";
 import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
-
-import { Job } from "~/structures/Job";
 
 declare module "ioredis" {
   interface RedisCommander<Context> {

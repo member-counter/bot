@@ -1,10 +1,9 @@
 import { Redlock } from "@sesamecare-oss/redlock";
 
+import { Job } from "@mc/common/bot/structures/Job";
 import { noop } from "@mc/common/noop";
 import { sendBotStatsLockKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
-
-import { Job } from "~/structures/Job";
 
 export const sendBotStats = new Job({
   name: "Send bot stats",

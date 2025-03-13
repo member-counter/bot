@@ -1,7 +1,8 @@
 import type { Client } from "discord.js";
 import { EmbedBuilder } from "@discordjs/builders";
 
-import { BrandingColors as Colors } from "../Constants";
+import { BrandingColors as Colors } from "@mc/common/Constants";
+
 import { env } from "../env";
 
 export class BaseEmbed extends EmbedBuilder {

@@ -1,4 +1,4 @@
-import { Job } from "~/structures/Job";
+import { Job } from "@mc/common/bot/structures/Job";
 
 export const setBotStatus = new Job({
   name: "Set bot status",

@@ -6,11 +6,11 @@ import {
 } from "@discordjs/builders";
 import { ButtonStyle, PermissionFlagsBits } from "discord.js";
 
+import { Command } from "@mc/common/bot/structures/Command";
 import { Routes } from "@mc/common/Routes";
 
 import { env } from "~/env";
 import { tKey } from "~/i18n";
-import { Command } from "~/structures";
 import { fetchCommandId } from "~/utils/fetchCommandId";
 import { prepareLocalization } from "~/utils/prepareLocalization";
 

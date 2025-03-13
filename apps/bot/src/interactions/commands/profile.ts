@@ -9,6 +9,7 @@ import {
 import { ApplicationCommandType, ButtonStyle, ComponentType } from "discord.js";
 
 import { BitField } from "@mc/common/BitField";
+import { Command } from "@mc/common/bot/structures/Command";
 import { KnownError } from "@mc/common/KnownError/index";
 import { Routes } from "@mc/common/Routes";
 import {
@@ -24,7 +25,6 @@ import { env } from "~/env";
 import { BaseEmbed } from "~/utils/BaseMessageEmbed";
 import { prepareLocalization } from "~/utils/prepareLocalization";
 import { throwUnsupported } from ".";
-import { Command } from "../../structures";
 
 const generateBadgeList = (badges: bigint): string => {
   const hasBadge = (badgeN: bigint): boolean => (badges & badgeN) === badgeN;

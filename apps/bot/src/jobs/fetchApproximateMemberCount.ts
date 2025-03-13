@@ -2,13 +2,12 @@ import { setTimeout as sleep } from "timers/promises";
 import type { Client } from "discord.js";
 import { Redlock } from "@sesamecare-oss/redlock";
 
+import { Job } from "@mc/common/bot/structures/Job";
 import {
   discordAPIIntensiveOperationLockKey,
   fetchMemembersQueueKey,
 } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
-
-import { Job } from "~/structures/Job";
 
 export const fetchApproximateMemberCount = (client: Client) => {
   return new Job({

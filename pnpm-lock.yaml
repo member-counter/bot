@@ -13,7 +13,7 @@ importers:
         version: link:tooling/prettier
       '@turbo/gen':
         specifier: ^2.3.4
-        version: 2.4.0(@types/node@22.13.1)(typescript@5.7.3)
+        version: 2.4.0(@types/node@22.13.9)(typescript@5.7.3)
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -158,13 +158,13 @@ importers:
         version: 5.66.0(react@19.0.0)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.824(@trpc/server@11.0.0-rc.824(typescript@5.7.3))(typescript@5.7.3)
+        version: 11.0.0-rc.828(@trpc/server@11.0.0-rc.828(typescript@5.7.3))(typescript@5.7.3)
       '@trpc/react-query':
         specifier: next
-        version: 11.0.0-rc.824(@tanstack/react-query@5.66.0(react@19.0.0))(@trpc/client@11.0.0-rc.824(@trpc/server@11.0.0-rc.824(typescript@5.7.3))(typescript@5.7.3))(@trpc/server@11.0.0-rc.824(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
+        version: 11.0.0-rc.828(@tanstack/react-query@5.66.0(react@19.0.0))(@trpc/client@11.0.0-rc.828(@trpc/server@11.0.0-rc.828(typescript@5.7.3))(typescript@5.7.3))(@trpc/server@11.0.0-rc.828(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.824(typescript@5.7.3)
+        version: 11.0.0-rc.828(typescript@5.7.3)
       '@tsparticles/basic':
         specifier: ^3.5.0
         version: 3.8.1
@@ -361,6 +361,9 @@ importers:
       gamedig:
         specifier: ^5.0.1
         version: 5.2.0
+      i18next:
+        specifier: ^23.16.8
+        version: 23.16.8
       ioredis:
         specifier: ^5.4.1
         version: 5.5.0
@@ -538,10 +541,10 @@ importers:
         version: 1.4.0(ioredis@5.5.0)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.824(@trpc/server@11.0.0-rc.824(typescript@5.7.3))(typescript@5.7.3)
+        version: 11.0.0-rc.828(@trpc/server@11.0.0-rc.828(typescript@5.7.3))(typescript@5.7.3)
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.824(typescript@5.7.3)
+        version: 11.0.0-rc.828(typescript@5.7.3)
       discord.js:
         specifier: ^14.15.2
         version: 14.17.3(bufferutil@4.0.9)(utf-8-validate@6.0.5)
@@ -639,7 +642,7 @@ importers:
         version: 11.0.0-next-beta.216
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.824(typescript@5.7.3)
+        version: 11.0.0-rc.828(typescript@5.7.3)
       ioredis:
         specifier: ^5.4.1
         version: 5.5.0
@@ -692,7 +695,7 @@ importers:
         version: link:../../tooling/typescript
       '@trpc/server':
         specifier: next
-        version: 11.0.0-rc.824(typescript@5.7.3)
+        version: 11.0.0-rc.828(typescript@5.7.3)
       '@types/node':
         specifier: ^22.10.10
         version: 22.13.1
@@ -2625,27 +2628,27 @@ packages:
   '@total-typescript/ts-reset@0.5.1':
     resolution: {integrity: sha512-AqlrT8YA1o7Ff5wPfMOL0pvL+1X+sw60NN6CcOCqs658emD6RfiXhF7Gu9QcfKBH7ELY2nInLhKSCWVoNL70MQ==}
 
-  '@trpc/client@11.0.0-rc.824':
-    resolution: {integrity: sha512-3JMsgiMrCEeblrzu7ScTjipYaeEmegbnM5ZPmqqkPIbXcnth/TwH5tRr+nQbLSU/NGkWJWsjgEq7bM0BV17sJw==}
+  '@trpc/client@11.0.0-rc.828':
+    resolution: {integrity: sha512-pV2bELnPqH7S2R1wBH6OB7lOi61ELt8CEcvHuxVM2YhL4hP408tzKT0YvNBo4GVqc8So/1ncpXJyRJQG0o6rsQ==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.824+b21849468
+      '@trpc/server': 11.0.0-rc.828+322552736
       typescript: '>=5.7.2'
 
   '@trpc/core@11.0.0-next-beta.216':
     resolution: {integrity: sha512-dmdSFeSzArkmdZvnymoQwAju0QBODC3PhLgBKTYgVIj0HATE/OJsPAKOxiqdcgm3YyN/zABm+ntiYmjLBJzTCA==}
 
-  '@trpc/react-query@11.0.0-rc.824':
-    resolution: {integrity: sha512-M1Ui946RBKDjQN/w9JRANJUXStoUDIRd+ti5IhggNdyzY21kx7AJkz5vujZ2GEUxUIQBG8QbUxXN7mj+5BL/mw==}
+  '@trpc/react-query@11.0.0-rc.828':
+    resolution: {integrity: sha512-oir4OikvCEqbheswHZhKrXSz1hKvFcDFlc/NZ9zShMlosJtO585az0XRrGuwFvjVShP5YCRvzFb4shiJjw5PXA==}
     peerDependencies:
       '@tanstack/react-query': ^5.67.1
-      '@trpc/client': 11.0.0-rc.824+b21849468
-      '@trpc/server': 11.0.0-rc.824+b21849468
+      '@trpc/client': 11.0.0-rc.828+322552736
+      '@trpc/server': 11.0.0-rc.828+322552736
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.0.0-rc.824':
-    resolution: {integrity: sha512-6u6CZ/x+oe2bZDhOo5h0wonbMU3svPe8hs6Dr2ymrU+23NAHE6tHtROAX+dKrMzup9KJcqyAabuFRYHy2H0tjw==}
+  '@trpc/server@11.0.0-rc.828':
+    resolution: {integrity: sha512-+dvcIcE5QPy52cz4rqwfUqk+WQDYAH3Xri+u2t0NdzIoo78fnL14if8oSZXAPU1bCmWGyR1k/0m5rSQ7AZaKlQ==}
     peerDependencies:
       typescript: '>=5.7.2'
 
@@ -7822,23 +7825,23 @@ snapshots:
 
   '@total-typescript/ts-reset@0.5.1': {}
 
-  '@trpc/client@11.0.0-rc.824(@trpc/server@11.0.0-rc.824(typescript@5.7.3))(typescript@5.7.3)':
+  '@trpc/client@11.0.0-rc.828(@trpc/server@11.0.0-rc.828(typescript@5.7.3))(typescript@5.7.3)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.824(typescript@5.7.3)
+      '@trpc/server': 11.0.0-rc.828(typescript@5.7.3)
       typescript: 5.7.3
 
   '@trpc/core@11.0.0-next-beta.216': {}
 
-  '@trpc/react-query@11.0.0-rc.824(@tanstack/react-query@5.66.0(react@19.0.0))(@trpc/client@11.0.0-rc.824(@trpc/server@11.0.0-rc.824(typescript@5.7.3))(typescript@5.7.3))(@trpc/server@11.0.0-rc.824(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)':
+  '@trpc/react-query@11.0.0-rc.828(@tanstack/react-query@5.66.0(react@19.0.0))(@trpc/client@11.0.0-rc.828(@trpc/server@11.0.0-rc.828(typescript@5.7.3))(typescript@5.7.3))(@trpc/server@11.0.0-rc.828(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)':
     dependencies:
       '@tanstack/react-query': 5.66.0(react@19.0.0)
-      '@trpc/client': 11.0.0-rc.824(@trpc/server@11.0.0-rc.824(typescript@5.7.3))(typescript@5.7.3)
-      '@trpc/server': 11.0.0-rc.824(typescript@5.7.3)
+      '@trpc/client': 11.0.0-rc.828(@trpc/server@11.0.0-rc.828(typescript@5.7.3))(typescript@5.7.3)
+      '@trpc/server': 11.0.0-rc.828(typescript@5.7.3)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       typescript: 5.7.3
 
-  '@trpc/server@11.0.0-rc.824(typescript@5.7.3)':
+  '@trpc/server@11.0.0-rc.828(typescript@5.7.3)':
     dependencies:
       typescript: 5.7.3
 
@@ -7907,7 +7910,7 @@ snapshots:
     dependencies:
       '@tsparticles/engine': 3.8.1
 
-  '@turbo/gen@2.4.0(@types/node@22.13.1)(typescript@5.7.3)':
+  '@turbo/gen@2.4.0(@types/node@22.13.9)(typescript@5.7.3)':
     dependencies:
       '@turbo/workspaces': 2.4.0
       commander: 10.0.1
@@ -7917,7 +7920,7 @@ snapshots:
       node-plop: 0.26.3
       picocolors: 1.0.1
       proxy-agent: 6.5.0
-      ts-node: 10.9.2(@types/node@22.13.1)(typescript@5.7.3)
+      ts-node: 10.9.2(@types/node@22.13.9)(typescript@5.7.3)
       update-check: 1.5.4
       validate-npm-package-name: 5.0.1
     transitivePeerDependencies:
@@ -11457,6 +11460,7 @@ snapshots:
       typescript: 5.7.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    optional: true
 
   ts-node@10.9.2(@types/node@22.13.9)(typescript@5.7.3):
     dependencies:
@@ -11475,7 +11479,6 @@ snapshots:
       typescript: 5.7.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
-    optional: true
 
   tsconfig-paths@3.15.0:
     dependencies:

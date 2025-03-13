@@ -1,10 +1,9 @@
 import type { Guild } from "discord.js";
 
+import { EventHandler } from "@mc/common/bot/structures/EventHandler";
 import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 import { GuildSettingsService } from "@mc/services/guildSettings";
-
-import { EventHandler } from "../structures";
 
 const handler = async (guild: Guild) => {
   await GuildSettingsService.upsert(guild.id);

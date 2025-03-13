@@ -23,6 +23,7 @@
     "discord-api-types": "^0.37.83",
     "discord.js": "^14.15.2",
     "gamedig": "^5.0.1",
+    "i18next": "^23.16.8",
     "ioredis": "^5.4.1",
     "utf-8-validate": "^6.0.3",
     "zlib-sync": "^0.1.9",

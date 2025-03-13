@@ -1,11 +1,11 @@
 import { inlineCode, SlashCommandBuilder } from "@discordjs/builders";
 
+import { Command } from "@mc/common/bot/structures/Command";
 import { botPermissions } from "@mc/common/botPermissions";
 import { generateInviteLink } from "@mc/common/generateInviteLink";
 
 import { version } from "~/../../../../package.json";
 import { env } from "~/env";
-import { Command } from "~/structures";
 import { BaseEmbed } from "~/utils/BaseMessageEmbed";
 import { prepareLocalization } from "~/utils/prepareLocalization";
 

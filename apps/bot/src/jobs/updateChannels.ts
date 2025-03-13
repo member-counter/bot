@@ -3,6 +3,7 @@ import type { Client, Guild } from "discord.js";
 import { Redlock } from "@sesamecare-oss/redlock";
 import { ChannelType } from "discord.js";
 
+import { Job } from "@mc/common/bot/structures//Job";
 import { KnownError } from "@mc/common/KnownError/index";
 import {
   advertiseEvaluatorPriorityKey,
@@ -14,7 +15,6 @@ import DataSourceService from "@mc/services/DataSource/index";
 import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import { initI18n } from "~/i18n";
-import { Job } from "~/structures/Job";
 import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
 
 async function updateGuildChannels(

@@ -5,12 +5,11 @@ import type {
   SlashCommandSubcommandsOnlyBuilder,
 } from "@discordjs/builders";
 import type { CommandInteraction } from "discord.js";
-
-import type { initI18n } from "~/i18n";
+import type i18next from "i18next";
 
 export type CommandHandle = (
   command: CommandInteraction,
-  i18n: Awaited<ReturnType<typeof initI18n>>,
+  i18n: typeof i18next,
 ) => void | Promise<void>;
 
 type SlashCommandUnion =

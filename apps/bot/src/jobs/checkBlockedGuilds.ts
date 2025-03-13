@@ -1,6 +1,5 @@
+import { Job } from "@mc/common/bot/structures/Job";
 import { GuildSettingsService } from "@mc/services/guildSettings";
-
-import { Job } from "~/structures/Job";
 
 export const checkBlockedGuilds = new Job({
   name: "Check blocked guilds",

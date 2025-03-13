@@ -12,6 +12,7 @@ import {
   PermissionsBitField,
 } from "discord.js";
 
+import { Command } from "@mc/common/bot/structures/Command";
 import {
   DataSourceId,
   MembersFilterStatus,
@@ -24,7 +25,6 @@ import DataSourceService from "@mc/services/DataSource/index";
 import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import { DEFAULT_LANGUAGE, initI18n, tKey } from "~/i18n";
-import { Command } from "~/structures";
 import { fetchCommandId } from "~/utils/fetchCommandId";
 import { prepareLocalization } from "~/utils/prepareLocalization";
 

@@ -1,7 +1,7 @@
+import type { Job } from "@mc/common/bot/structures/Job";
 import type { Client } from "discord.js";
 import { CronJob } from "cron";
 
-import type { Job } from "../structures/Job";
 import { advertise } from "./advertise";
 import { checkBlockedGuilds } from "./checkBlockedGuilds";
 import { fetchApproximateMemberCount } from "./fetchApproximateMemberCount";

@@ -8,13 +8,13 @@ import {
   InteractionType,
 } from "discord.js";
 
+import { EventHandler } from "@mc/common/bot/structures/EventHandler";
+import { DiscordBrandingColors as Colors } from "@mc/common/Constants";
 import { KnownError } from "@mc/common/KnownError/index";
 
 import { env } from "~/env";
-import { DiscordBrandingColors as Colors } from "../Constants";
 import { initI18n } from "../i18n";
 import handleCommand from "../interactions/commands";
-import { EventHandler } from "../structures";
 import { BaseEmbed } from "../utils/BaseMessageEmbed";
 
 export const interactionCreateEvent = new EventHandler({
