@@ -33,6 +33,7 @@ export async function startBot(options: BotInstanceOptions) {
     intents: generateBotIntents(options),
     shards: options.shards,
     shardCount: options.shardCount,
+    waitGuildTimeout: 0,
     rest: {
       globalRequestsPerSecond: options.discordAPIRequestsPerSecond,
     },
