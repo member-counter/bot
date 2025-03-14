@@ -39,7 +39,7 @@ export async function deployCommands({
     availableLanguages.map((locale) => initI18n({ locale })),
   );
   const i18nDefault = i18nInstances.find(
-    (instance) => instance.language === defaultLanguage,
+    (instance) => (instance.language as Locale) === defaultLanguage,
   );
 
   if (!i18nDefault) throw new Error("Failed to get the default i18n instance");
