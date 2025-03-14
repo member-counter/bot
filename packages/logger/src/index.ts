@@ -39,7 +39,7 @@ const logger = winston.createLogger({
           ? "metadata as JSON: " + JSON.stringify(metadataSerialized)
           : null;
 
-        const messageStr = `${level}: ${message}`;
+        const messageStr = `${level}: ${typeof message === "string" ? message : inspect(message)}`;
 
         return [timestamp, source, messageStr, metadataStr, metadataJSONStr]
           .filter(Boolean)

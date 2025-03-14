@@ -1,5 +1,3 @@
-import { cn } from "@mc/ui";
-
 import { emojisKeys } from "./emojis";
 import { IMAGE_RESOLUTION, indexToCoords } from "./twemojiMap";
 import { getTwemojiMapBySkinTone } from "./twemojiMaps";

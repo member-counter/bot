@@ -43,7 +43,7 @@ export default function Error({
     const tKey = errorMessages[error.message];
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment
     message = t(tKey);
   }
 
