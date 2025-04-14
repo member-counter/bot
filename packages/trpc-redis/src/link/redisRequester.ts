@@ -1,4 +1,4 @@
-import type { DataTransformer } from "@trpc/core";
+import type { DataTransformer } from "@trpc/server/unstable-core-do-not-import";
 import type { Redis } from "ioredis";
 
 import type { RequestMessage, ResponseMessage } from "../schemas";

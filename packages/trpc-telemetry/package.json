@@ -17,7 +17,7 @@
     "@mc/eslint-config": "workspace:*",
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
-    "@trpc/server": "next",
+    "@trpc/server": "^11.1.0",
     "@types/node": "^22.10.10",
     "eslint": "^9.19.0",
     "prettier": "^3.4.2",

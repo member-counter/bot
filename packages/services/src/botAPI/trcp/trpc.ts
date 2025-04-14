@@ -122,4 +122,4 @@ export const createTRPCRouter = t.router;
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-export const publicProcedure = t.procedure.unstable_concat(trpcTracing());
+export const publicProcedure = t.procedure.concat(trpcTracing());

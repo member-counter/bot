@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   loggerLink,
   splitLink,
-  unstable_httpBatchStreamLink,
+  httpBatchStreamLink,
 } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import SuperJSON from "superjson";
@@ -69,12 +69,12 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
 
             return op.context.useSlowLink === true;
           },
-          true: unstable_httpBatchStreamLink({
+          true: httpBatchStreamLink({
             transformer,
             url,
             headers,
           }),
-          false: unstable_httpBatchStreamLink({
+          false: httpBatchStreamLink({
             transformer,
             url,
             headers,

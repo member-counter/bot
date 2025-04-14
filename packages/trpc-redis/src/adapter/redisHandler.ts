@@ -10,11 +10,11 @@ import type {
 } from "@trpc/server/unstable-core-do-not-import";
 import type { Redis } from "ioredis";
 import { context, trace, TraceFlags } from "@opentelemetry/api";
-import { TRPCError } from "@trpc/core";
 import {
   callTRPCProcedure,
   getErrorShape,
   getTRPCErrorFromUnknown,
+  TRPCError,
 } from "@trpc/server";
 
 import type { RequestMessage, ResponseMessage } from "../schemas";
