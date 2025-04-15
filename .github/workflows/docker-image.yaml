@@ -67,8 +67,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           target: prepare-tooling
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/prepare-tooling:build-cache
-          cache-to: type=registry,ref=ghcr.io/member-counter/prepare-tooling:build-cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/member-counter/pnpm-store-cache:build-cache
           tags: |
             ghcr.io/member-counter/prepare-tooling:new-beta
   format:
