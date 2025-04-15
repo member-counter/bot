@@ -14,7 +14,7 @@ RUN apk add --no-cache make gcc g++ python3 git curl
 COPY pnpm-lock.yaml .
 RUN pnpm fetch
 
-FROM app-deps AS tooling
+FROM app-deps AS prepare-tooling
 WORKDIR /app
 COPY . .
 
