@@ -89,7 +89,7 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}:/app \
             -w /app \
-            ghcr.io/member-counter/tooling:new-beta \
+            ghcr.io/member-counter/prepare-tooling:new-beta \
             pnpm run format:fix
 
       - name: Commit and push changes if any

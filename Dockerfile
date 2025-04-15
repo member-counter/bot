@@ -17,5 +17,6 @@ RUN pnpm fetch
 FROM app-deps AS prepare-tooling
 WORKDIR /app
 COPY . .
+RUN pnpm install --prefer-offline
 
 FROM app-deps AS default
