@@ -54,7 +54,7 @@
     "next-nprogress-bar": "^2.3.14",
     "node-loader": "^2.1.0",
     "pretty-bytes": "^6.1.1",
-    "prismjs": "^1.29.0",
+    "prismjs": "^1.30.0",
     "react": "19.0.0",
     "react-cookie": "^7.1.4",
     "react-dom": "19.0.0",
