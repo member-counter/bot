@@ -20,6 +20,8 @@ import { sweepers } from "./utils/sweepers";
 
 export async function startBot(options: BotInstanceOptions) {
   await deployCommands({
+
+    
     ...options,
     availableLanguages: AVAILABLE_LANGUAGES,
     defaultLanguage: DEFAULT_LANGUAGE,
