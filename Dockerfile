@@ -15,6 +15,7 @@ COPY pnpm-lock.yaml .
 RUN pnpm fetch
 
 FROM app-deps AS tooling
+WORKDIR /app
 COPY . .
 
 FROM app-deps AS default

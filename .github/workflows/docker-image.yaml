@@ -85,11 +85,23 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run formatter in container
+      - name: Run format:fix in container
         run: |
           docker run --rm \
-            ghcr.io/member-counter/prepare-tooling:new-beta \
-            pnpm run format
+            -v ${{ github.workspace }}:/app \
+            -w /app \
+            ghcr.io/member-counter/tooling:new-beta \
+            pnpm run format:fix
+
+      - name: Commit and push changes if any
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add .
+            git commit -m "chore(format): auto-fix formatting"
+            git push
+          fi
 
   lint:
     runs-on: ubuntu-latest
