@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Image CI - Beta
 
 permissions:
   contents: read
@@ -6,7 +6,7 @@ permissions:
 
 on:
   push:
-    branches: [master]
+    branches: [dev]
 
 jobs:
   pnpm-store-cache:
@@ -35,10 +35,10 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/pnpm-store-cache:build-cache
-          cache-to: type=registry,ref=ghcr.io/member-counter/pnpm-store-cache:build-cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/member-counter/pnpm-store-cache:build-cache-beta
+          cache-to: type=registry,ref=ghcr.io/member-counter/pnpm-store-cache:build-cache-beta,mode=max
           tags: |
-            ghcr.io/member-counter/pnpm-store-cache:latest
+            ghcr.io/member-counter/pnpm-store-cache:beta
   build-website:
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
@@ -68,10 +68,10 @@ jobs:
           file: apps/website/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/website:build-cache
-          cache-to: type=registry,ref=ghcr.io/member-counter/website:build-cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/member-counter/website:build-cache-beta
+          cache-to: type=registry,ref=ghcr.io/member-counter/website:build-cache-beta,mode=max
           tags: |
-            ghcr.io/member-counter/website:latest
+            ghcr.io/member-counter/website:beta
           build-args: |
             NEXT_PUBLIC_SUPPORT_URL=${{ vars.NEXT_PUBLIC_SUPPORT_URL }}
             NEXT_PUBLIC_BOT_DOCS_URL=${{ vars.NEXT_PUBLIC_BOT_DOCS_URL }}
@@ -104,10 +104,10 @@ jobs:
           file: apps/bot/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/bot:build-cache
-          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta
+          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta,mode=max
           tags: |
-            ghcr.io/member-counter/bot:latest
+            ghcr.io/member-counter/bot:beta
   build-db-utils:
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
@@ -135,7 +135,7 @@ jobs:
           file: packages/db/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/db-utils:build-cache
-          cache-to: type=registry,ref=ghcr.io/member-counter/db-utils:build-cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/member-counter/db-utils:build-cache-beta
+          cache-to: type=registry,ref=ghcr.io/member-counter/db-utils:build-cache-beta,mode=max
           tags: |
-            ghcr.io/member-counter/db-utils:latest
+            ghcr.io/member-counter/db-utils:beta
