@@ -359,7 +359,7 @@ importers:
         specifier: ^14.15.2
         version: 14.17.3(bufferutil@4.0.9)(utf-8-validate@6.0.5)
       gamedig:
-        specifier: ^5.0.1
+        specifier: ^5.2.0
         version: 5.2.0
       i18next:
         specifier: ^23.11.5
@@ -549,7 +549,7 @@ importers:
         specifier: ^14.15.2
         version: 14.17.3(bufferutil@4.0.9)(utf-8-validate@6.0.5)
       gamedig:
-        specifier: ^5.0.1
+        specifier: ^5.2.0
         version: 5.2.0
       ioredis:
         specifier: ^5.4.1

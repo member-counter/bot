@@ -22,7 +22,7 @@
     "@twurple/auth": "^7.1.0",
     "discord-api-types": "^0.37.83",
     "discord.js": "^14.15.2",
-    "gamedig": "^5.0.1",
+    "gamedig": "^5.2.0",
     "i18next": "^23.11.5",
     "ioredis": "^5.4.1",
     "utf-8-validate": "^6.0.3",
