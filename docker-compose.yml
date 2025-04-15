@@ -6,12 +6,16 @@ services:
     restart: always
     ports:
       - 3000:3000
+    networks:
+      - member-counter
 
   bot:
     env_file: .env
     container_name: bot
     image: ghcr.io/member-counter/bot:new-beta
     restart: always
+    networks:
+      - member-counter
 
   db-utils:
     env_file: .env
@@ -19,6 +23,8 @@ services:
     restart: always
     deploy:
       replicas: 0
+    networks:
+      - member-counter
 
   mongo:
     image: mongo:7
@@ -35,6 +41,8 @@ services:
     expose:
       - 27017
     restart: unless-stopped
+    networks:
+      - member-counter
 
   setup-mongo-rs:
     image: mongo:7
@@ -45,6 +53,8 @@ services:
         condition: service_healthy
         restart: true
     restart: "no"
+    networks:
+      - member-counter
 
   redis:
     image: redis
@@ -52,7 +62,7 @@ services:
     container_name: Redis
     restart: unless-stopped
     networks:
-      - default
+      - member-counter
 
 networks:
-  default:
+  member-counter:
