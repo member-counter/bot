@@ -21,8 +21,8 @@ export function DescriptionArea({
         demoServer={demoServer}
         selectedChannelIndex={selectedChannelIndex}
       />
-      <div className="flex  grow flex-col items-center justify-center overflow-hidden">
-        <div className=" w-[320px]">
+      <div className="flex grow flex-col items-center justify-center overflow-hidden">
+        <div className="w-[320px]">
           <div className="text-2xl font-semibold">{demoServer.name}</div>
           <div
             className="w-full"

@@ -49,11 +49,11 @@ export default function LandingPage() {
   return (
     <div className="relative flex flex-col items-center justify-center gap-10 pb-10">
       <div className="fixed top-[0] z-[-1] h-[120px] w-full bg-gradient-to-b from-black"></div>
-      <Background className="fixed z-[-2]  " />
+      <Background className="fixed z-[-2]" />
       <div className="flex min-h-screen w-full flex-col items-center justify-center gap-4">
         <div className="grow"></div>
         <div className="flex flex-row items-center">
-          <BotIcon className="relative top-[3px] ml-4 hidden h-20 w-20 min-w-20 md:block " />
+          <BotIcon className="relative top-[3px] ml-4 hidden h-20 w-20 min-w-20 md:block" />
           <h1
             className={cn(
               major.className,

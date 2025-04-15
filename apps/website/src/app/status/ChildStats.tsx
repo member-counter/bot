@@ -89,11 +89,11 @@ export function ChildStats(stats: ChildStats) {
       </div>
       <div className="p-4">
         <div>
-          <UserIcon className="mr-1 inline h-4 w-4 " />
+          <UserIcon className="mr-1 inline h-4 w-4" />
           {t("pages.status.childDiscordUsers", { count: stats.userCount })}
         </div>
         <div>
-          <GroupIcon className="mr-1 inline h-4 w-4 " />
+          <GroupIcon className="mr-1 inline h-4 w-4" />
           {t("pages.status.childDiscordServers", {
             count: stats.guildCount,
             unavailableCount: stats.unavailableGuildCount,
@@ -101,7 +101,7 @@ export function ChildStats(stats: ChildStats) {
         </div>
         {!!assignedGuilds.length && (
           <>
-            <CornerDownRightIcon className="mr-1 inline h-4 w-4 " />
+            <CornerDownRightIcon className="mr-1 inline h-4 w-4" />
             {t("pages.status.assignedDiscordServers")}
             <ChildStatsDiscordServers
               className="bg-card"

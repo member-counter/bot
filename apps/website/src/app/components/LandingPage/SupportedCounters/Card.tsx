@@ -16,8 +16,8 @@ interface Props {
 export function SupportedCountersCard(props: Props) {
   return (
     <CardBorderIlluminated className="[&>*]:bg-landingCard">
-      <article className={"flex h-full w-full flex-row "}>
-        <div className="w-[90px] flex-none ">
+      <article className={"flex h-full w-full flex-row"}>
+        <div className="w-[90px] flex-none">
           <div className="relative flex h-full items-center justify-center [&>*]:rounded-l-lg">
             {props.imgBgSrc && (
               <Image
@@ -28,12 +28,12 @@ export function SupportedCountersCard(props: Props) {
             )}
             <div
               className={cn(
-                "absolute h-full  w-full",
+                "absolute h-full w-full",
                 { "bg-black opacity-70": props.imgBgSrc },
                 props.imgBgClassName,
               )}
             />{" "}
-            {props.icon && <props.icon className=" absolute h-12 w-12" />}
+            {props.icon && <props.icon className="absolute h-12 w-12" />}
           </div>
         </div>
         <div className="p-3">

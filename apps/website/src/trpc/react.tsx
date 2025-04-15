@@ -3,11 +3,7 @@
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  loggerLink,
-  splitLink,
-  httpBatchStreamLink,
-} from "@trpc/client";
+import { httpBatchStreamLink, loggerLink, splitLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import SuperJSON from "superjson";
 

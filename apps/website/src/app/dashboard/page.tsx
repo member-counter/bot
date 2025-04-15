@@ -31,7 +31,7 @@ export default function Page() {
   }, [hasAnythingSelected, router, userGuildsQuery.data]);
 
   return (
-    <div className="flex h-full grow flex-col items-center justify-center  p-1 ">
+    <div className="flex h-full grow flex-col items-center justify-center p-1">
       {!userGuildsQuery.isLoading && !userGuildsQuery.data?.userGuilds.size && (
         <>
           <TypographyH3>

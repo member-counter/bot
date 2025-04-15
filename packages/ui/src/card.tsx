@@ -115,7 +115,7 @@ const CardBorderIlluminated = ({
     >
       <div
         ref={spotlightRef}
-        className=" absolute  z-[-1] overflow-clip rounded-full bg-gray-50 shadow-[0_0_150px_90px_white]"
+        className="absolute z-[-1] overflow-clip rounded-full bg-gray-50 shadow-[0_0_150px_90px_white]"
       ></div>
       <div className="z-[2] h-full w-full rounded-[calc(var(--radius)-1px)] bg-card">
         {children}

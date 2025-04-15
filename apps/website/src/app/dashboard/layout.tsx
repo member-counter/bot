@@ -52,7 +52,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <MenuContext.Provider value={menuContextValue}>
-      <div className="flex grow flex-row bg-black ">
+      <div className="flex grow flex-row bg-black">
         <DSelector
           isPending={!userGuildsQuery.isFetched}
           className={cn(

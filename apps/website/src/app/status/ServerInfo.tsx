@@ -21,7 +21,7 @@ export function ServerInfo({
         <Button
           variant="ghost"
           size={"icon"}
-          className=" h-full w-full rounded-none "
+          className="h-full w-full rounded-none"
         >
           <ServerIcon
             className="h-4 w-4"

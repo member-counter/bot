@@ -19,7 +19,7 @@ export function DescriptionAreaTitle({
     ChannelIconMap[selectedChannel.type] ?? HelpCircleIcon;
 
   return (
-    <div className="flex h-[48px] w-full flex-shrink-0 flex-row items-center pl-3 pr-1 font-semibold  shadow-[0_1px_0_rgba(4,4,5,.2),0_1.5px_0_rgba(6,6,7,.05),0_2px_0_rgba(4,4,5,.05)]">
+    <div className="flex h-[48px] w-full flex-shrink-0 flex-row items-center pl-3 pr-1 font-semibold shadow-[0_1px_0_rgba(4,4,5,.2),0_1.5px_0_rgba(6,6,7,.05),0_2px_0_rgba(4,4,5,.05)]">
       <Icon className="mr-3 h-5 w-5" />
       <h1>{selectedChannel.name}</h1>
       {selectedChannel.topic && (

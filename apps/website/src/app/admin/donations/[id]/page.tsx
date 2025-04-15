@@ -1,6 +1,6 @@
-"use client";;
-import { use } from "react";
+"use client";
 
+import { use } from "react";
 import { ArrowLeftIcon, LoaderIcon } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
@@ -21,9 +21,7 @@ interface Props {
 export default function Page(props: Props) {
   const params = use(props.params);
 
-  const {
-    id
-  } = params;
+  const { id } = params;
 
   const { t } = useTranslation();
   const donationQuery = api.donor.getDonation.useQuery({ id });

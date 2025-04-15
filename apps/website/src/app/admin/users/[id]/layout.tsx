@@ -6,7 +6,7 @@ import { RecentUsers } from "../RecentUsers";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className="hidden sm:block ">
+      <div className="hidden sm:block">
         <RecentUsers />
       </div>
       <div className="flex-grow">

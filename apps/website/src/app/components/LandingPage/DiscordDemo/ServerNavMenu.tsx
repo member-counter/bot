@@ -32,7 +32,7 @@ export function ServerNavMenu({
       <div className="flex h-[48px] min-h-[48px] min-w-0 items-center font-semibold shadow-[0_1px_0_rgba(4,4,5,.2),0_1.5px_0_rgba(6,6,7,.05),0_2px_0_rgba(4,4,5,.05)]">
         <div
           className={
-            "flex-shrink overflow-hidden  text-ellipsis whitespace-nowrap pl-4"
+            "flex-shrink overflow-hidden text-ellipsis whitespace-nowrap pl-4"
           }
         >
           {demoServer.name}
@@ -40,7 +40,7 @@ export function ServerNavMenu({
       </div>
 
       <Separator tabIndex={-1} />
-      <div className="flex max-h-full grow flex-col gap-1  p-[8px]">
+      <div className="flex max-h-full grow flex-col gap-1 p-[8px]">
         {demoServer.channels.map((channel, i) =>
           channel.showAsSkeleton ? (
             <ChannelNavItemSkeleton key={i} />

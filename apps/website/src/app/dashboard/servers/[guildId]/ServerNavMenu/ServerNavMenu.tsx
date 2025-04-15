@@ -43,7 +43,7 @@ export const ServerNavMenu = memo(function ServerNavMenu({
     >
       <div className="flex h-[48px] min-h-[48px] min-w-0 items-center font-semibold">
         <div
-          className="flex-shrink overflow-hidden  text-ellipsis whitespace-nowrap pl-4"
+          className="flex-shrink overflow-hidden text-ellipsis whitespace-nowrap pl-4"
           aria-hidden
         >
           {!guild.data && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, use } from "react";
+import { use, useEffect } from "react";
 import { LoaderIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -23,9 +23,7 @@ interface Props {
 export default function Page(props: Props) {
   const params = use(props.params);
 
-  const {
-    id: userId
-  } = params;
+  const { id: userId } = params;
 
   const [recentUsers, setRecentUsers] = useLocalStorage(
     recentUsersKey,
