@@ -2,7 +2,7 @@ services:
   website:
     env_file: .env
     container_name: website
-    image: ghcr.io/member-counter/website:beta
+    image: ghcr.io/member-counter/website:latest
     restart: always
     ports:
       - 3000:3000
@@ -12,14 +12,14 @@ services:
   bot:
     env_file: .env
     container_name: bot
-    image: ghcr.io/member-counter/bot:beta
+    image: ghcr.io/member-counter/bot:latest
     restart: always
     networks:
       - member-counter
 
   db-utils:
     env_file: .env
-    image: ghcr.io/member-counter/db-utils:beta
+    image: ghcr.io/member-counter/db-utils:latest
     restart: always
     deploy:
       replicas: 0

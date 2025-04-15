@@ -14,7 +14,7 @@ COPY . .
 RUN turbo prune @mc/website --docker
 
 FROM base AS build_deps
-COPY --from=ghcr.io/member-counter/pnpm-store-cache:beta $PNPM_HOME/store $PNPM_HOME/store
+COPY --from=ghcr.io/member-counter/pnpm-store-cache:latest $PNPM_HOME/store $PNPM_HOME/store
 WORKDIR /app
 COPY .gitignore .gitignore
 COPY --from=repo /app/out/json/ .
