@@ -1,6 +1,4 @@
-import { setTimeout as sleep } from "timers/promises";
 import type { Client, Guild } from "discord.js";
-import { Redlock } from "@sesamecare-oss/redlock";
 import { ChannelType } from "discord.js";
 
 import { Job } from "@mc/common/bot/structures//Job";
@@ -16,10 +14,12 @@ import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import { initI18n } from "~/i18n";
 import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
+import { makeIsValidChild } from "~/utils/isValidChildId";
+import { withQueueLock } from "~/utils/withQueueLock";
 
 async function updateGuildChannels(
   guild: Guild,
-  extendLock: () => Promise<void>,
+  extendLock: () => Promise<unknown>,
 ) {
   if (!guild.available) return;
 
@@ -111,57 +111,34 @@ export const updateChannels = (client: Client) => {
         client.botInstanceOptions;
 
       const queueKey = updateChannelsQueueKey(id);
-      const queue = await redis.lrange(queueKey, 0, -1);
+      const lockKey = discordAPIIntensiveOperationLockKey(id);
 
-      if (!queue.includes(childId)) {
-        await redis.lpush(queueKey, childId);
-      }
-
-      while (true) {
-        const [nextTurn] = await redis.lrange(queueKey, -1, -1);
-
-        if (nextTurn === childId) {
-          break;
-        } else {
-          await sleep(5_000);
-        }
-      }
-
-      const redlock = new Redlock([redis], {
-        retryCount: Infinity,
-        retryDelay: 15_000,
-      });
-
-      let lock = await redlock.acquire(
-        [discordAPIIntensiveOperationLockKey(id)],
-        15_000,
-      );
-
-      const extendLock = async () => {
-        lock = await lock.extend(15_000);
-      };
-
-      await Promise.all(
-        client.guilds.cache.map(async (guild) => {
-          const handledPriority = Number(
-            await redis.get(advertiseEvaluatorPriorityKey(guild.id)),
-          );
-
-          if (handledPriority > dataSourceComputePriority) return;
-
-          await updateGuildChannels(guild, extendLock).catch(
-            (error: unknown) => {
-              logger.error(
-                `Error while trying to update channels for ${guild.toString()}`,
-                { error, guild },
+      await withQueueLock({
+        queueKey,
+        lockKey,
+        queueEntryId: childId,
+        isValidEntry: makeIsValidChild(client.botInstanceOptions),
+        task: async (extendLock) => {
+          await Promise.all(
+            client.guilds.cache.map(async (guild) => {
+              const handledPriority = Number(
+                await redis.get(advertiseEvaluatorPriorityKey(guild.id)),
               );
-            },
-          );
-        }),
-      );
 
-      await lock.release();
-      await redis.rpop(queueKey);
+              if (handledPriority > dataSourceComputePriority) return;
+
+              await updateGuildChannels(guild, () => extendLock(15_000)).catch(
+                (error: unknown) => {
+                  logger.error(
+                    `Error while trying to update channels for ${guild.toString()}`,
+                    { error, guild },
+                  );
+                },
+              );
+            }),
+          );
+        },
+      });
     },
   });
 };
