@@ -58,7 +58,7 @@ const executeUnprivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["exec
       throwAvailabiltyIssue(ctx);
     }
 
-    if (!count) throw new KnownError("MEMBER_COUNT_NOT_AVAILABLE");
+    if (count === null) throw new KnownError("MEMBER_COUNT_NOT_AVAILABLE");
 
     return count;
   };
