@@ -14,8 +14,8 @@ import { Card, CardContent, CardHeader } from "@mc/ui/card";
 
 import { useTranslation } from "~/i18n/client";
 import { MenuButton } from "../../Menu";
+import Link from "next/link";
 
-// TODO link guides to docs
 const suggestedTopics = (
   t: TFunction,
 ): {
@@ -24,6 +24,7 @@ const suggestedTopics = (
   icon: LucideIcon;
   label?: string;
   disabled?: boolean;
+  link?: string;
 }[] => [
   {
     icon: ZapIcon,
@@ -32,6 +33,7 @@ const suggestedTopics = (
       "pages.dashboard.servers.suggestedTopics.quickSetup.description",
     ),
     label: t("pages.dashboard.servers.suggestedTopics.quickSetup.label"),
+    link: "https://docs.membercounter.app/readme/using-the-bot/creating-your-first-counter",
   },
   {
     icon: LandPlotIcon,
@@ -40,6 +42,7 @@ const suggestedTopics = (
       "pages.dashboard.servers.suggestedTopics.createFromScratch.description",
     ),
     label: t("pages.dashboard.servers.suggestedTopics.createFromScratch.label"),
+    link: "https://docs.membercounter.app/readme/using-the-bot/customizing-counters",
   },
   {
     icon: BlocksIcon,
@@ -48,6 +51,7 @@ const suggestedTopics = (
       "pages.dashboard.servers.suggestedTopics.advancedCounters.description",
     ),
     label: t("pages.dashboard.servers.suggestedTopics.advancedCounters.label"),
+    link: "https://docs.membercounter.app/readme/using-the-bot/more-on-complex-counters"
   },
   {
     icon: CandlestickChartIcon,
@@ -81,11 +85,12 @@ export default function Page() {
         </span>
         <div className="mb-auto mt-4 flex flex-row flex-wrap justify-center gap-2 p-2">
           {suggestedTopics(t).map((topic, i) => (
-            <article
+            <Link
               className="group"
               key={i}
-              tabIndex={topic.disabled ? -1 : 0}
-              role="button"
+              href={topic.link ?? "#!"}
+              target={topic.link && "_blank"}
+              rel="noopener noreferrer"
             >
               <Card
                 className={cn(
@@ -111,7 +116,7 @@ export default function Page() {
                   <p className="relative z-10">{topic.description}</p>
                 </CardContent>
               </Card>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
