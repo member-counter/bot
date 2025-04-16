@@ -36,8 +36,7 @@ const executeUnprivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["exec
     if (statusFilter) {
       if (statusFilter === MembersFilterStatus.ONLINE) {
         count = ctx.guild.approximatePresenceCount;
-      }
-      if (
+      } else if (
         statusFilter === MembersFilterStatus.OFFLINE &&
         ctx.guild.approximateMemberCount !== null &&
         ctx.guild.approximatePresenceCount !== null
