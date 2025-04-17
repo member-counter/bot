@@ -13,7 +13,7 @@ export const fetchApproximateMemberCount = (client: Client) =>
   new Job({
     disabled: client.botInstanceOptions.isPrivileged,
     name: "Fetch approximate member count",
-    time: "0 */10 * * * *",
+    time: "0 */20 * * * *",
     runOnClientReady: true,
     execute: async (client) => {
       const { id, childId, logger } = client.botInstanceOptions;
