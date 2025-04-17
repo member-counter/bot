@@ -118,6 +118,7 @@ export const updateChannels = (client: Client) => {
         lockKey,
         queueEntryId: childId,
         isValidEntry: makeIsValidChild(client.botInstanceOptions),
+        logger: logger.child("Update channels"),
         task: async (extendLock) => {
           await Promise.allSettled(
             client.guilds.cache.map(async (guild, _key, collection) => {

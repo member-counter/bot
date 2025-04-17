@@ -25,6 +25,7 @@ export const fetchApproximateMemberCount = (client: Client) =>
         lockKey,
         queueEntryId: childId,
         isValidEntry: makeIsValidChild(client.botInstanceOptions),
+        logger: logger.child("Fetch approximate member count"),
         task: async (extendLock) => {
           let debugCheckCount = 0;
 
