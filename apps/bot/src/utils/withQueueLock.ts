@@ -1,4 +1,3 @@
-import { debug } from "console";
 import { setTimeout as sleep } from "timers/promises";
 import type logger from "@mc/logger";
 import type { Lock } from "@sesamecare-oss/redlock";

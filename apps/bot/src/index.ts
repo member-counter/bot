@@ -9,7 +9,7 @@ import { env } from "./env";
 
 async function main() {
   const logger = baseLogger.child({
-    source: `bot: ${env.DISCORD_BOT_INSTANCE_ID} (${env.DISCORD_BOT_INSTANCE_CHILD_ID})`,
+    bot: `${env.DISCORD_BOT_INSTANCE_ID} (${env.DISCORD_BOT_INSTANCE_CHILD_ID})`,
   });
 
   const botOptions: BotInstanceOptions = {
