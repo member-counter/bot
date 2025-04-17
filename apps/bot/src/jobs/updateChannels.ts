@@ -129,7 +129,16 @@ export const updateChannels = (client: Client) => {
                   await redis.get(advertiseEvaluatorPriorityKey(guild.id)),
                 );
 
-                if (handledPriority > dataSourceComputePriority) return;
+                logger.debug(
+                  `Compute priority for guild ${guild.id} is ${handledPriority}`,
+                );
+
+                if (handledPriority > dataSourceComputePriority) {
+                  logger.debug(
+                    `Guild ${guild.id} has a higher priority (${handledPriority}) than the bot (${dataSourceComputePriority}). Skipping...`,
+                  );
+                  return;
+                }
 
                 await updateGuildChannels(guild, () => extendLock(15_000));
 
