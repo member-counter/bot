@@ -25,32 +25,53 @@ export async function withQueueLock<T>({
   lockTtl = 15_000,
   task,
 }: WithQueueLockOpts<T>): Promise<T> {
-  await redis.lrem(queueKey, 0, queueEntryId);
-  await redis.lpush(queueKey, queueEntryId);
+  const redlock = new Redlock([redis], redlockOptions);
+
+  // 1) Enqueue at tail
+  await redis
+    .multi()
+    .lrem(queueKey, 0, queueEntryId)
+    .rpush(queueKey, queueEntryId)
+    .exec();
 
   try {
-    // wait for our turn, popping invalid entries
     while (true) {
       const queue = await redis.lrange(queueKey, 0, -1);
-      const next = queue[queue.length - 1];
-      if (!next) throw new Error("queue emptied unexpectedly");
-      if (await isValidEntry(next)) {
-        if (next === queueEntryId) break;
-        await sleep(queueCheckDelay);
-      } else {
-        await redis.rpop(queueKey);
+      const myPos = queue.indexOf(queueEntryId);
+      if (myPos === -1) throw new Error("Lost from the queue");
+
+      // only consider entries *ahead* of me (0..myPos‑1)
+      const ahead = queue.slice(0, myPos);
+      // batch‑remove any of those that aren’t valid
+      for (const entry of ahead) {
+        if (!(await isValidEntry(entry))) {
+          await redis.lrem(queueKey, 0, entry);
+        }
       }
+
+      // re‑fetch head
+      const head = ahead.length
+        ? (await redis.lrange(queueKey, 0, 0))[0]
+        : queueEntryId; // if nothing ahead, it's me
+
+      if (head === undefined) throw new Error("Unexpected empty queue");
+
+      if (head === queueEntryId) break;
+
+      // if the head is not me, wait for my turn
+      await sleep(queueCheckDelay);
     }
 
-    const redlock = new Redlock([redis], redlockOptions);
-    const lock = await redlock.acquire([lockKey], lockTtl);
+    // 3) Acquire work lock
+    const workLock = await redlock.acquire([lockKey], lockTtl);
 
     try {
-      return await task((ttl) => lock.extend(ttl));
+      return await task((ttl) => workLock.extend(ttl));
     } finally {
-      await lock.release();
+      await workLock.release();
     }
   } finally {
+    // 4) Always dequeue ourselves
     await redis.lrem(queueKey, 0, queueEntryId);
   }
 }

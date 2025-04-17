@@ -31,7 +31,7 @@ async function updateGuildChannels(
   );
   const i18n = await initI18n({ locale: guild.preferredLocale });
 
-  await Promise.all(
+  await Promise.allSettled(
     guildChannelsSettings.map(async (channelSettings) => {
       if (!channelSettings.isTemplateEnabled) return;
 

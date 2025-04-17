@@ -26,7 +26,7 @@ export const fetchApproximateMemberCount = (client: Client) =>
         queueEntryId: childId,
         isValidEntry: makeIsValidChild(client.botInstanceOptions),
         task: async (extendLock) => {
-          await Promise.all(
+          await Promise.allSettled(
             client.guilds.cache.map(async (guild) => {
               await client.guilds.fetch({
                 guild,
