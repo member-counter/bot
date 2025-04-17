@@ -120,11 +120,11 @@ export const updateChannels = (client: Client) => {
         isValidEntry: makeIsValidChild(client.botInstanceOptions),
         logger: logger.child({ task: "Update channels" }),
         task: async (extendLock) => {
+          let debugCheckCount = 0;
+
           await Promise.allSettled(
             client.guilds.cache.map(async (guild, _key, collection) => {
               try {
-                let debugCheckCount = 0;
-
                 const handledPriority = Number(
                   await redis.get(advertiseEvaluatorPriorityKey(guild.id)),
                 );
