@@ -119,22 +119,28 @@ export const updateChannels = (client: Client) => {
         queueEntryId: childId,
         isValidEntry: makeIsValidChild(client.botInstanceOptions),
         task: async (extendLock) => {
-          await Promise.all(
-            client.guilds.cache.map(async (guild) => {
-              const handledPriority = Number(
-                await redis.get(advertiseEvaluatorPriorityKey(guild.id)),
-              );
+          await Promise.allSettled(
+            client.guilds.cache.map(async (guild, _key, collection) => {
+              try {
+                let debugCheckCount = 0;
 
-              if (handledPriority > dataSourceComputePriority) return;
+                const handledPriority = Number(
+                  await redis.get(advertiseEvaluatorPriorityKey(guild.id)),
+                );
 
-              await updateGuildChannels(guild, () => extendLock(15_000)).catch(
-                (error: unknown) => {
-                  logger.error(
-                    `Error while trying to update channels for ${guild.toString()}`,
-                    { error, guild },
-                  );
-                },
-              );
+                if (handledPriority > dataSourceComputePriority) return;
+
+                await updateGuildChannels(guild, () => extendLock(15_000));
+
+                logger.debug(
+                  `Updated guild channels ${guild.id} (${++debugCheckCount}/${collection.size})`,
+                );
+              } catch (error) {
+                logger.error(
+                  `Error while trying to update channels for ${guild.toString()}`,
+                  { error, guild },
+                );
+              }
             }),
           );
         },

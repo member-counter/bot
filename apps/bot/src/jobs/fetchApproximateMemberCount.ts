@@ -16,7 +16,7 @@ export const fetchApproximateMemberCount = (client: Client) =>
     time: "0 */10 * * * *",
     runOnClientReady: true,
     execute: async (client) => {
-      const { id, childId } = client.botInstanceOptions;
+      const { id, childId, logger } = client.botInstanceOptions;
       const queueKey = fetchMemembersQueueKey(id);
       const lockKey = discordAPIIntensiveOperationLockKey(id);
 
@@ -26,14 +26,21 @@ export const fetchApproximateMemberCount = (client: Client) =>
         queueEntryId: childId,
         isValidEntry: makeIsValidChild(client.botInstanceOptions),
         task: async (extendLock) => {
+          let debugCheckCount = 0;
+
           await Promise.allSettled(
-            client.guilds.cache.map(async (guild) => {
+            client.guilds.cache.map(async (guild, _key, collection) => {
               await client.guilds.fetch({
                 guild,
                 withCounts: true,
                 cache: true,
                 force: true,
               });
+
+              logger.debug(
+                `Fetched approximate member count for guild ${guild.id} (${++debugCheckCount}/${collection.size})`,
+              );
+
               await extendLock(15_000);
             }),
           );

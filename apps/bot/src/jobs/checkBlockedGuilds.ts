@@ -10,7 +10,7 @@ export const checkBlockedGuilds = new Job({
       ...client.guilds.cache.keys(),
     ]);
 
-    await Promise.all(
+    await Promise.allSettled(
       blockedGuilds.map(async ({ discordGuildId }) => {
         const guild = await client.guilds.fetch(discordGuildId);
         await guild.leave();
