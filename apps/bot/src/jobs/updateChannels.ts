@@ -1,3 +1,4 @@
+import { inspect } from "node:util";
 import type { Channel } from "@mc/db";
 import type originalLogger from "@mc/logger";
 import type { GuildSettingsData } from "@mc/services/guildSettings";
@@ -6,7 +7,6 @@ import type { Logger } from "winston";
 import { ChannelType } from "discord.js";
 
 import { Job } from "@mc/common/bot/structures//Job";
-import { KnownError } from "@mc/common/KnownError/index";
 import {
   advertiseEvaluatorPriorityKey,
   discordAPIIntensiveOperationLockKey,
@@ -28,34 +28,55 @@ async function updateGuildChannel(
   i18n: Awaited<ReturnType<typeof initI18n>>,
   logger: typeof originalLogger,
 ) {
-  if (!channelSettings.isTemplateEnabled) return;
+  logger.debug(
+    `Starting update for channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+  );
 
+  if (!channelSettings.isTemplateEnabled) {
+    logger.debug(
+      `Template disabled for channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+    );
+    return;
+  }
+
+  logger.debug(
+    `Fetching channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+  );
   const channel = await guild.channels.fetch(channelSettings.discordChannelId);
 
-  if (!channel) return;
+  if (!channel) {
+    logger.debug(
+      `Channel ${channelSettings.discordChannelId} in guild ${guild.id} not found`,
+    );
+    return;
+  }
 
   if (!botHasPermsToEdit(channel)) {
-    await GuildSettingsService.channels.logs
-      .set(channel.id, {
-        LastTemplateUpdateDate: new Date(),
-        LastTemplateComputeError: new KnownError(
-          "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL",
-        ).message,
-      })
-      .catch(logger.error);
+    logger.debug(
+      `Bot doesn't have permissions to edit channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+    );
 
     return;
   }
 
+  logger.debug(
+    `Creating DataSourceService for channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+  );
   const dataSourceService = new DataSourceService({
     guild: channel.guild,
     guildSettings,
     channelType: channel.type,
   });
 
+  logger.debug(
+    `Evaluating template for channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+  );
   const computedTemplate = await dataSourceService
     .evaluateTemplate(channelSettings.template)
     .then((computed) => {
+      logger.debug(
+        `Template evaluation successful for channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+      );
       GuildSettingsService.channels.logs
         .set(channel.id, {
           LastTemplateUpdateDate: new Date(),
@@ -66,6 +87,9 @@ async function updateGuildChannel(
       return computed;
     })
     .catch((error) => {
+      logger.debug(
+        `Template evaluation failed for channel ${channelSettings.discordChannelId} in guild ${guild.id}, error: ${inspect(error)}`,
+      );
       if (error instanceof Error) {
         GuildSettingsService.channels.logs
           .set(channel.id, {
@@ -82,10 +106,26 @@ async function updateGuildChannel(
     channel.type === ChannelType.GuildText ||
     channel.type === ChannelType.GuildAnnouncement
   ) {
-    if (channel.topic === computedTemplate) return;
+    if (channel.topic === computedTemplate) {
+      logger.debug(
+        `Topic unchanged for channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+      );
+      return;
+    }
+    logger.debug(
+      `Updating topic for channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+    );
     await channel.edit({ topic: computedTemplate });
   } else {
-    if (channel.name === computedTemplate) return;
+    if (channel.name === computedTemplate) {
+      logger.debug(
+        `Name unchanged for channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+      );
+      return;
+    }
+    logger.debug(
+      `Updating name for channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+    );
     await channel.edit({ name: computedTemplate });
   }
 }
@@ -95,16 +135,33 @@ async function updateGuildChannels(guild: Guild) {
 
   const { logger } = guild.client.botInstanceOptions;
 
+  logger.debug(`Fetching settings for guild ${guild.id}`);
   const guildSettings = await GuildSettingsService.upsert(guild.id);
   const guildChannelsSettings = await GuildSettingsService.channels.getAll(
     guild.id,
   );
   const i18n = await initI18n({ locale: guild.preferredLocale });
 
+  logger.debug(
+    `Processing ${guildChannelsSettings.length} channels in guild ${guild.id}`,
+  );
+
   await Promise.allSettled(
-    guildChannelsSettings.map((channelSettings) =>
-      updateGuildChannel(guild, guildSettings, channelSettings, i18n, logger),
-    ),
+    guildChannelsSettings.map(async (channelSettings) => {
+      logger.debug(
+        `Updating channel ${channelSettings.discordChannelId} in guild ${guild.id}"`,
+      );
+      await updateGuildChannel(
+        guild,
+        guildSettings,
+        channelSettings,
+        i18n,
+        logger,
+      );
+      logger.debug(
+        `Finished updating channel ${channelSettings.discordChannelId} in guild ${guild.id}`,
+      );
+    }),
   );
 }
 
