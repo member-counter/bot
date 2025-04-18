@@ -1,6 +1,5 @@
 import { setTimeout as sleep } from "timers/promises";
 import type logger from "@mc/logger";
-import type { Lock } from "@sesamecare-oss/redlock";
 import { Redlock } from "@sesamecare-oss/redlock";
 
 import { redis } from "@mc/redis";
@@ -14,7 +13,7 @@ interface WithQueueLockOpts<T> {
   redlockOptions?: Partial<ConstructorParameters<typeof Redlock>[1]>;
   lockTtl?: number;
   logger?: typeof logger;
-  task: (extendLock: (ttl: number) => Promise<Lock>) => Promise<T>;
+  task: () => Promise<T>;
 }
 
 export async function withQueueLock<T>({
@@ -43,12 +42,11 @@ export async function withQueueLock<T>({
     while (true) {
       logger?.debug(`Checking queue ${queueKey}...`);
       const queue = await redis.lrange(queueKey, 0, -1);
-      logger?.debug(`Queue ${queueKey} is now:`, queue);
+      logger?.debug(`Queue ${queueKey} is now: ${queue.toString()}`);
 
       const myPos = queue.indexOf(queueEntryId);
       if (myPos === -1) {
         logger?.error(`Failed to find ${queueEntryId} in ${queueKey}`);
-
         throw new Error("Lost from the queue");
       }
 
@@ -94,14 +92,28 @@ export async function withQueueLock<T>({
     const workLock = await redlock.acquire([lockKey], lockTtl);
     logger?.debug(`Acquired lock ${lockKey}`);
 
+    const autoExtendLockInterval = setInterval(() => {
+      logger?.debug(`Auto extending lock ${lockKey}...`);
+
+      void workLock
+        .extend(lockTtl)
+        .then(() => {
+          logger?.debug(`Auto extended lock ${lockKey}`);
+        })
+        .catch((error) => {
+          logger?.error(`Failed to auto extend lock ${lockKey} (${error})`);
+        });
+    }, lockTtl / 2);
+
     try {
       logger?.debug(`Running task...`);
-      const returnValue = await task((ttl) => workLock.extend(ttl));
+      const returnValue = await task();
       logger?.debug(`Task finished successfully`);
 
       return returnValue;
     } finally {
       logger?.debug(`Releasing lock ${lockKey}...`);
+      clearInterval(autoExtendLockInterval);
       await workLock.release();
       logger?.debug(`Released lock ${lockKey}`);
     }

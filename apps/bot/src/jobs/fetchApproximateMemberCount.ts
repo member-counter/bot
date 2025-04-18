@@ -26,7 +26,7 @@ export const fetchApproximateMemberCount = (client: Client) =>
         queueEntryId: childId,
         isValidEntry: makeIsValidChild(client.botInstanceOptions),
         logger: logger.child({ task: "Fetch approximate member count" }),
-        task: async (extendLock) => {
+        task: async () => {
           let debugCheckCount = 0;
 
           await Promise.allSettled(
@@ -41,8 +41,6 @@ export const fetchApproximateMemberCount = (client: Client) =>
               logger.debug(
                 `Fetched approximate member count for guild ${guild.id} (${++debugCheckCount}/${collection.size})`,
               );
-
-              await extendLock(15_000);
             }),
           );
         },
