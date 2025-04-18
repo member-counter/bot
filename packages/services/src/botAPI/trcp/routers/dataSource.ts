@@ -19,7 +19,11 @@ export const dataSourceRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const { botClient, redisClient } = ctx;
       const guild = botClient.guilds.cache.get(input.guildId);
-      if (!guild) return;
+
+      if (!guild) {
+        await ctx.dropRequest();
+        return;
+      }
 
       const handledPriority = Number(
         await redisClient.get(advertiseEvaluatorPriorityKey(guild.id)),
@@ -27,8 +31,10 @@ export const dataSourceRouter = createTRPCRouter({
 
       if (
         handledPriority > botClient.botInstanceOptions.dataSourceComputePriority
-      )
+      ) {
+        await ctx.dropRequest();
         return;
+      }
 
       await ctx.lockRequest();
 
