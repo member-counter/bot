@@ -1,5 +1,6 @@
 import type { Client } from "discord.js";
 
+import { env } from "~/env";
 import { guildAvailableEvent, guildCreateEvent } from "./guildCreate";
 import { interactionCreateEvent } from "./interactionCreate";
 import { messageCreateEvent } from "./messageCreate";
@@ -15,6 +16,13 @@ const allEvents = [
 
 export function setupEvents(client: Client) {
   const { logger } = client.botInstanceOptions;
+
+  if (env.LOG_LEVEL === "debug") {
+    client.on("debug", (message) => {
+      logger.debug(message);
+    });
+  }
+
   allEvents.forEach((event) => {
     client.on(event.name, (...args) => {
       void (async () => {
