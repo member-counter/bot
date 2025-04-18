@@ -169,6 +169,16 @@ const task = async (client: Client, logger: Logger) => {
   const { dataSourceComputePriority } = client.botInstanceOptions;
 
   let debugCheckCount = 0;
+  const guildsToProccessLeft = new Set<string>(client.guilds.cache.keys());
+  const guildsToProcessSize = guildsToProccessLeft.size;
+
+  const debugInterval = setInterval(() => {
+    if (guildsToProccessLeft.size <= guildsToProcessSize * 0.05) {
+      logger.debug(
+        `Almost done, ${guildsToProccessLeft.size} guilds left: ${Array.from(guildsToProccessLeft).join(", ")}`,
+      );
+    }
+  }, 5_000);
 
   await Promise.allSettled(
     client.guilds.cache.map(async (guild, _key, collection) => {
@@ -198,9 +208,13 @@ const task = async (client: Client, logger: Logger) => {
           `Error while trying to update channels for ${guild.toString()}`,
           { error, guild },
         );
+      } finally {
+        guildsToProccessLeft.delete(guild.id);
       }
     }),
   );
+
+  clearInterval(debugInterval);
 };
 
 export const updateChannels = (client: Client) => {
