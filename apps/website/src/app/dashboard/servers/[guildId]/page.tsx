@@ -2,6 +2,7 @@
 
 import type { TFunction } from "i18next";
 import type { LucideIcon } from "lucide-react";
+import Link from "next/link";
 import {
   BlocksIcon,
   CandlestickChartIcon,
@@ -14,7 +15,6 @@ import { Card, CardContent, CardHeader } from "@mc/ui/card";
 
 import { useTranslation } from "~/i18n/client";
 import { MenuButton } from "../../Menu";
-import Link from "next/link";
 
 const suggestedTopics = (
   t: TFunction,
@@ -51,7 +51,7 @@ const suggestedTopics = (
       "pages.dashboard.servers.suggestedTopics.advancedCounters.description",
     ),
     label: t("pages.dashboard.servers.suggestedTopics.advancedCounters.label"),
-    link: "https://docs.membercounter.app/readme/using-the-bot/more-on-complex-counters"
+    link: "https://docs.membercounter.app/readme/using-the-bot/more-on-complex-counters",
   },
   {
     icon: CandlestickChartIcon,

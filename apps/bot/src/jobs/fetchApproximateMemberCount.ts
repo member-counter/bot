@@ -1,65 +1,49 @@
-import { setTimeout as sleep } from "timers/promises";
 import type { Client } from "discord.js";
-import { Redlock } from "@sesamecare-oss/redlock";
 
 import { Job } from "@mc/common/bot/structures/Job";
 import {
   discordAPIIntensiveOperationLockKey,
   fetchMemembersQueueKey,
 } from "@mc/common/redis/keys";
-import { redis } from "@mc/redis";
 
-export const fetchApproximateMemberCount = (client: Client) => {
-  return new Job({
+import { makeIsValidChild } from "~/utils/isValidChildId";
+import { withQueueLock } from "~/utils/withQueueLock";
+
+export const fetchApproximateMemberCount = (client: Client) =>
+  new Job({
     disabled: client.botInstanceOptions.isPrivileged,
     name: "Fetch approximate member count",
-    time: "0 */10 * * * *",
+    time: "0 */20 * * * *",
     runOnClientReady: true,
     execute: async (client) => {
-      const { id, childId } = client.botInstanceOptions;
-
+      const { id, childId, logger } = client.botInstanceOptions;
       const queueKey = fetchMemembersQueueKey(id);
-      const queue = await redis.lrange(queueKey, 0, -1);
+      const lockKey = discordAPIIntensiveOperationLockKey(id);
 
-      if (!queue.includes(childId)) {
-        await redis.lpush(queueKey, childId);
-      }
+      await withQueueLock({
+        queueKey,
+        lockKey,
+        queueEntryId: childId,
+        isValidEntry: makeIsValidChild(client.botInstanceOptions),
+        logger: logger.child({ task: "Fetch approximate member count" }),
+        task: async () => {
+          let debugCheckCount = 0;
 
-      while (true) {
-        const [nextTurn] = await redis.lrange(queueKey, -1, -1);
+          await Promise.allSettled(
+            client.guilds.cache.map(async (guild, _key, collection) => {
+              await client.guilds.fetch({
+                guild,
+                withCounts: true,
+                cache: true,
+                force: true,
+              });
 
-        if (nextTurn === childId) {
-          break;
-        } else {
-          await sleep(5_000);
-        }
-      }
-
-      const redlock = new Redlock([redis], {
-        retryCount: Infinity,
-        retryDelay: 15_000,
+              logger.debug(
+                `Fetched approximate member count for guild ${guild.id} (${++debugCheckCount}/${collection.size})`,
+              );
+            }),
+          );
+        },
       });
-
-      let lock = await redlock.acquire(
-        [discordAPIIntensiveOperationLockKey(id)],
-        15_000,
-      );
-
-      await Promise.all(
-        client.guilds.cache.map(async (guild) => {
-          await client.guilds.fetch({
-            guild,
-            withCounts: true,
-            cache: true,
-            force: true,
-          });
-
-          lock = await lock.extend(15_000);
-        }),
-      );
-
-      await lock.release();
-      await redis.rpop(queueKey);
     },
   });
-};

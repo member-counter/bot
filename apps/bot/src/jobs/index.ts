@@ -32,9 +32,11 @@ export function setupJobs(client: Client) {
       if (isLocked || !client.isReady()) return;
       isLocked = true;
 
+      logger.debug(`Running job: ${job.name}`);
       await job
         .execute(client)
         .catch((error) => logger.error("A job failed", error, job));
+      logger.debug(`Job finished: ${job.name}`);
 
       isLocked = false;
     };

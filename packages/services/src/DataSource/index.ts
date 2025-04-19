@@ -35,7 +35,18 @@ class DataSourceService {
       } else {
         const dataSourcePart = parts[i];
         assert(typeof dataSourcePart === "string", "expected string");
-        result += await this.evaluateDataSource(dataSourcePart);
+
+        const timeoutPromise = new Promise<never>((_, reject) =>
+          setTimeout(
+            () => reject(new KnownError("EVALUATION_TIMEOUT")),
+            60_000,
+          ),
+        );
+
+        result += await Promise.race([
+          this.evaluateDataSource(dataSourcePart),
+          timeoutPromise,
+        ]);
       }
     }
 

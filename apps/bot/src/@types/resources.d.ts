@@ -204,6 +204,7 @@ interface Resources {
       BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS: "The bot does not have enough privileged intents to use this counter.";
       BOT_IS_NOT_PREMIUM: "The bot is not a premium version and lacks certain features needed for this counter.";
       MEMBER_COUNT_NOT_AVAILABLE: "The member counts are not available at this moment.";
+      EVALUATION_TIMEOUT: "The evaluation took too long and timed out.";
     };
   };
 }

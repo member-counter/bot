@@ -77,6 +77,7 @@ export const env = createEnv({
     DISCORD_BOT_INSTANCE_STATS_DBGG_TOKEN: z.string().optional(),
     DISCORD_BOT_INSTANCE_STATS_DBL_TOKEN: z.string().optional(),
     DISCORD_BOT_INSTANCE_STATS_BFD_TOKEN: z.string().optional(),
+    LOG_LEVEL: z.enum(["error", "warn", "info", "debug"]).default("info"),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

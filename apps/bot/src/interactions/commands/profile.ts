@@ -196,10 +196,11 @@ export const profileCommand = new Command({
     async function editReply(editOptions: InteractionEditReplyOptions) {
       const response = await command.editReply(editOptions);
 
+      if (!editOptions.components?.length) return;
       await response
         .awaitMessageComponent({
-          time: 60_000,
-          idle: 60_000,
+          time: 60_000 * 5,
+          idle: 60_000 * 5,
           componentType: ComponentType.Button,
           filter: (i) => i.user.id === command.user.id,
         })
@@ -220,6 +221,14 @@ export const profileCommand = new Command({
               );
               await editReply(renderProfileDeletionSuccess());
               break;
+          }
+        })
+        .catch(async () => {
+          // No interaction received, go back and remove buttons
+          const defaultView = renderProfileView();
+          if (defaultView.components) {
+            defaultView.components = [];
+            await editReply(defaultView);
           }
         });
     }

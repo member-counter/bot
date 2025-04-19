@@ -16,7 +16,7 @@ const enumerateErrorFormat = winston.format((info) => {
 });
 
 const logger = winston.createLogger({
-  level: env.NODE_ENV === "development" ? "debug" : "info",
+  level: env.LOG_LEVEL,
   format: winston.format.combine(
     enumerateErrorFormat(),
     env.NODE_ENV === "development"
@@ -24,28 +24,23 @@ const logger = winston.createLogger({
       : winston.format.uncolorize(),
     winston.format.splat(),
     winston.format.timestamp(),
-    winston.format.printf(
-      ({ level, message, timestamp, source, ...metadata }) => {
-        const metadataStr = Object.keys(metadata).length
-          ? "metadata: " + inspect(metadata)
-          : null;
+    winston.format.printf(({ level, message, timestamp, ...rest }) => {
+      const format = (something: unknown) =>
+        typeof something === "string" ? something : inspect(something);
 
-        const metadataSerialized =
-          Object.keys(metadata).length &&
-          JSON.stringify(metadata, (_, v: unknown) =>
-            typeof v === "bigint" ? v.toString() : v,
-          );
-        const metadataJSONStr = Object.keys(metadata).length
-          ? "metadata as JSON: " + JSON.stringify(metadataSerialized)
-          : null;
-
-        const messageStr = `${level}: ${typeof message === "string" ? message : inspect(message)}`;
-
-        return [timestamp, source, messageStr, metadataStr, metadataJSONStr]
-          .filter(Boolean)
-          .join(" - ");
-      },
-    ),
+      return [
+        timestamp,
+        level,
+        `[${Object.entries(rest)
+          .filter(([key]) => typeof key !== "symbol")
+          .filter(([key]) => Number.isNaN(Number(key)))
+          .map((pair) => pair.join(": "))
+          .join(", ")}]`,
+        format(message),
+      ]
+        .filter(Boolean)
+        .join(" - ");
+    }),
   ),
   transports: [
     new winston.transports.Console({
