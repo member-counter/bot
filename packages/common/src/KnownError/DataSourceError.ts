@@ -23,6 +23,7 @@ export const DataSourceErrorNames = [
   "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS",
   "BOT_IS_NOT_PREMIUM",
   "MEMBER_COUNT_NOT_AVAILABLE",
+  "EVALUATION_TIMEOUT",
 ] as const;
 
 export type DataSourceError = (typeof DataSourceErrorNames)[number];
