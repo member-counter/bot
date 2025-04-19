@@ -23,7 +23,7 @@ export async function withQueueLock<T>({
   queueCheckDelay = 5_000,
   lockKey,
   redlockOptions = { retryCount: 5, retryDelay: 1_000 },
-  lockTtl = 15_000,
+  lockTtl = 60_000,
   task,
   logger,
 }: WithQueueLockOpts<T>): Promise<T> {
