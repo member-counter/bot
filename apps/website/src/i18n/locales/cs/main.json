@@ -103,7 +103,7 @@
       "legal": "Právní",
       "loginWithDiscord": "Přihlášení přes Discord",
       "logout": "Odhlášení",
-      "madePossibleThanksTo": "Díky Alexovi, <vampireChickenLink />, <livingfloreLink />, Frostymu a <donorsLink>mnoha dalším</donorsLink>.",
+      "madePossibleThanksTo": "Díky Alex, <vampireChickenLink />, <livingfloreLink />, Frosty a <donorsLink>mnoha dalším</donorsLink>.",
       "manageDonations": "Správa darů",
       "manageHomePage": "Správa domovské stránky",
       "manageServers": "Správa serverů",
@@ -150,7 +150,151 @@
       "description": "Vytvořte si časovač odpočítávání ve formátu přizpůsobeném vašim potřebám.",
       "display": {
         "syntax": "Odpočet do {{datetime}}"
-      }
+      },
+      "keywords": "odpočítávání,časovač",
+      "name": "Odpočet"
+    },
+    "game": {
+      "description": "Získejte aktuální počet online hráčů na herním serveru, kompatibilní s více než 320 hrami.",
+      "display": {
+        "playerCountFor": "Počet hráčů pro {{gameServerAddress}}"
+      },
+      "keywords": "hra,hráči,online,server",
+      "name": "Hra"
+    },
+    "http": {
+      "description": "Odeslání požadavku GET na koncový bod a poskytnutí výsledku tomuto botovi.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,request,endpoint,API,fetch",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "Provádějte matematické operace, jako je sčítání, odčítání, násobení, dělení nebo modul na seznamu čísel.",
+      "display": {
+        "operationType": {
+          "add": "přidat",
+          "divide": "dělit",
+          "modulo": "modulo",
+          "multiply": "násobit",
+          "subtract": "odečíst"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "a {{amount}} více"
+      },
+      "keywords": "matematika,kalkulačka,operace,čísla,aritmetika,sčítání,odčítání,násobení,dělení,modulus",
+      "name": "Matika"
+    },
+    "members": {
+      "description": "Počítejte členy, můžete je také filtrovat podle jejich online stavu, konkrétních rolí a dalších údajů.",
+      "display": {
+        "accountStatus": {
+          "dnd": "NERUŠIT",
+          "idle": "nečinnost",
+          "offline": "offline",
+          "online": "online"
+        },
+        "accountType": {
+          "any": "členi",
+          "bot": "boti",
+          "user": "uživatelé"
+        },
+        "bannedMembers": "členi s banem",
+        "connectedToAChannel": "připojen ke kanálu",
+        "playingAGame": "při hraní hry",
+        "roleFiltering": {
+          "any": "s rolemi",
+          "overlapping": "s překrývajícími se rolemi"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "členové,filtr,role,online,status,zakázáno,hraje,offline,dnd,rušit,nečinnost,afk,uživatel,bot,připojeno",
+      "name": "Členi"
+    },
+    "memerator": {
+      "description": "Získat počet sledujících a počet memů pro účet Memerator.",
+      "display": {
+        "returnKind": {
+          "followers": "následující",
+          "memes": "memečka"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,sledovatel,zobrazení,kanál",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "Získání počtu boosterů Nitro pro server.",
+      "keywords": "nitro,boostery,server",
+      "name": "Nitro Boosteři"
+    },
+    "number": {
+      "description": "Použít formátování čísla na zadané číslo.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} jako číslo",
+        "raw": "Číslo ({{number}})"
+      },
+      "keywords": "číslo,formátování",
+      "name": "Číslo"
+    },
+    "reddit": {
+      "description": "Získat název subredditu spolu s celkovým počtem členů a počtem členů, kteří jsou aktuálně online.",
+      "display": {
+        "returnKind": {
+          "members": "členi",
+          "membersOnline": "online členi",
+          "title": "nadpis"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,subreddit,členi,online",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "Nahrazení textu, užitečné ve spojení s dalšími vnořenými čítači pro komplexní úpravu textu.",
+      "display": {
+        "replaceSyntax": "“{{search}}” skrz “{{replacement}}”",
+        "syntax": "Nahradit {{replaceSyntax}}"
+      },
+      "keywords": "text,náhrada,úprava,řetězec,podřetězec",
+      "name": "Nahradit"
+    },
+    "roles": {
+      "description": "Spočítá všechny role přítomné na serveru.",
+      "keywords": "role",
+      "name": "Role"
+    },
+    "twitch": {
+      "description": "Získání počtu sledujících a celkového počtu zobrazení pro kanál Twitch.",
+      "display": {
+        "returnKind": {
+          "channelName": "název kanálu",
+          "followers": "následovníci",
+          "viewers": "diváků"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,sledovatel,zobrazení,kanál",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "Neznámý pult. To je pravděpodobně způsobeno chybou",
+      "name": "Neznámý"
+    },
+    "youtube": {
+      "description": "Získání počtu odběratelů, počtu videí a celkového počtu zhlédnutí z kanálu YouTube.",
+      "display": {
+        "returnKind": {
+          "channelName": "název kanálu",
+          "subscribers": "odběratelé",
+          "videos": "videa",
+          "views": "shlédnutí"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,předplatitel,video,zobrazení,kanál",
+      "name": "YouTube"
     }
   }
 }

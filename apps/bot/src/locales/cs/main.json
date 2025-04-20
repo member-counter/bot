@@ -84,7 +84,7 @@
                 "options": {
                   "username": {
                     "description": "Uživatelské jméno kanálu.",
-                    "name": "uživatelské jméno"
+                    "name": "uživatelské-jméno"
                   }
                 }
               },

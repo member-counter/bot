@@ -21,7 +21,7 @@
         "definition": {
           "slash": {
             "description": "Liste von nützlichen Links und anderen Informationen.",
-            "name": "Info"
+            "name": "info"
           }
         },
         "embedReply": {
@@ -34,7 +34,7 @@
         "definition": {
           "slash": {
             "description": "Bietet einen Einladungslink an zum Hinzufügen des Bots.",
-            "name": "Einladung"
+            "name": "einladung"
           }
         },
         "description": "Dein Einladungslink ist fertig:\n{{INVITE_URL}}",
@@ -80,11 +80,11 @@
               },
               "twitch": {
                 "description": "Einrichten von Twitch-bezogenen Zählern.",
-                "name": "Twitch",
+                "name": "twitch",
                 "options": {
                   "username": {
                     "description": "Den Kanalnamen.",
-                    "name": "Nutzername"
+                    "name": "nutzername"
                   }
                 }
               },
@@ -94,7 +94,7 @@
                 "options": {
                   "channelUrl": {
                     "description": "Die Kanal-URL.",
-                    "name": "URL"
+                    "name": "url"
                   }
                 }
               }
