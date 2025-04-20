@@ -1,1 +1,195 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Algo salió mal, por favor intenta de nuevo más tarde.\n\nID del error: {{ERROR_ID}}",
+        "title": "¡ERROR!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Ir al panel",
+        "definition": {
+          "slash": {
+            "description": "Obtén el enlace para configurar el bot en el sitio web.",
+            "name": "configurar"
+          }
+        },
+        "reply": "Haz clic abajo para configurar el bot en el panel de control.\nTambién puedes configurar algunos contadores básicos usando el comando {{SETUP_COMMAND}} sin salir de Discord."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Lista de enlaces útiles y otra información.",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[Agrégame a tu servidor]({{BOT_INVITE_URL}})\n[Sitio web]({{WEBSITE_URL}})\n[Servidor de soporte]({{BOT_SUPPORT_URL}})\n[Repositorio GitHub]({{BOT_REPO_URL}})\n[Versión del bot: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Agregar al servidor",
+        "addToServerAgain": "Agregar nuevamente a este servidor",
+        "definition": {
+          "slash": {
+            "description": "Proporciona un enlace de invitación para agregar el bot.",
+            "name": "invitar"
+          }
+        },
+        "description": "Tu enlace de invitación está listo:\n{{INVITE_URL}}",
+        "joinSupportServer": "Unirse al servidor de soporte"
+      },
+      "profile": {
+        "badges": "Insignias",
+        "definition": {
+          "context": {
+            "name": "Perfil"
+          },
+          "slash": {
+            "description": "Muestra información relacionada entre tú y este bot.",
+            "name": "perfil",
+            "options": {
+              "user": {
+                "description": "El usuario cuyo perfil quieres ver.",
+                "name": "usuario"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Eliminar datos",
+        "deleteProfilePrompt": {
+          "cancelButton": "Cancelar",
+          "confirmButton": "Sí",
+          "description": "Esta acción no se puede deshacer.",
+          "removeDataSuccess": "Los datos se han eliminado correctamente.",
+          "title": "¿Estás seguro de que deseas eliminar los datos?"
+        },
+        "moreOptionsButton": "Más opciones",
+        "userNotFound": "Usuario no encontrado"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Configura algunos contadores básicos.",
+            "name": "setup",
+            "subcommands": {
+              "server": {
+                "description": "Configura contadores relacionados al servidor.",
+                "name": "servidor"
+              },
+              "twitch": {
+                "description": "Configura contadores relacionados a Twitch.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "El nombre de usuario del canal.",
+                    "name": "usuario"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "Configura contadores relacionados a YouTube.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "La URL del canal.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Creación completada.",
+          "configureSuggestion": "Deberías revisar {{CONFIGURE_COMMAND}} para una configuración más personalizada.",
+          "createdCategory": "{{ICON}} Categoría creada.",
+          "createdChannel": "{{ICON}} {{NAME}} creado.",
+          "creating": "Creando contadores...",
+          "creatingCategory": "{{ICON}} Creando categoría.",
+          "creatingChannel": "{{ICON}} Creando contador {{NAME}}.",
+          "failedCategory": "{{ICON}} Error al crear categoría.",
+          "failedChannel": "{{ICON}} Error al crear {{NAME}}."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Estadísticas del Servidor \uD83D\uDCCA",
+            "templates": [ {
+              "name": "Miembros en línea",
+              "template": "En línea: {{COUNTER}}"
+            }, {
+              "name": "Miembros",
+              "template": "Miembros: {{COUNTER}}"
+            }, {
+              "name": "Impulsores de Nitro",
+              "template": "Boosters: {{COUNTER}}"
+            }, {
+              "name": "Roles",
+              "template": "Roles: {{COUNTER}}"
+            }, {
+              "name": "Canales",
+              "template": "Canales: {{COUNTER}}"
+            } ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA Estadísticas de Twitch de {{COUNTER}} \uD83D\uDCCA",
+            "templates": [ {
+              "name": "Seguidores de Twitch",
+              "template": "{{COUNTER}} Seguidores"
+            }, {
+              "name": "Espectadores de Twitch",
+              "template": "Espectadores: {{COUNTER}}"
+            } ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA Estadísticas de YouTube de {{COUNTER}} \uD83D\uDCCA",
+            "templates": [ {
+              "name": "Suscriptores de YouTube",
+              "template": "{{COUNTER}} Suscriptores"
+            }, {
+              "name": "Videos de YouTube",
+              "template": "{{COUNTER}} Videos"
+            }, {
+              "name": "Vistas de YouTube",
+              "template": "{{COUNTER}} Vistas"
+            } ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "¡ERROR!"
+    }
+  },
+  "knownErrors": {
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "El bot no tiene suficientes intents privilegiados para usar este contador.",
+    "BOT_IS_NOT_PREMIUM": "El bot no es premium y no tiene las funciones necesarias para este contador.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "El contador tiene un formato no reconocido.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "El contador es inválido.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "El resultado del nombre del canal tiene menos de 2 caracteres.",
+    "EVALUATION_TIMEOUT": "La evaluación tomó demasiado tiempo y se agotó el tiempo.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "No se pudo generar una cadena final a partir de la evaluación.",
+    "GAME_MISSING_ADDRESS": "El contador de juegos requiere una dirección del servidor.",
+    "GAME_MISSING_GAME_ID": "Debe proporcionarse un ID de juego para el contador.",
+    "GAME_MISSING_PORT": "El contador de juegos requiere un puerto del servidor.",
+    "HTTP_DATA_PATH_MANDATORY": "Debe especificarse una ruta de datos para respuestas HTTP con tipo de contenido application/json.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "El tipo de contenido de la respuesta HTTP no es válido (no es text/plain ni application/json).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "El código de estado de la respuesta HTTP no es válido (distinto de 200).",
+    "HTTP_MISSING_URL": "El contador HTTP requiere una URL.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "Los recuentos de miembros no están disponibles en este momento.",
+    "MEMERATOR_MISSING_USERNAME": "El contador de Memerator requiere un nombre de usuario, el cual falta.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "El bot no tiene permisos suficientes para editar el canal.",
+    "REDDIT_MISSING_SUBREDDIT": "Debe proporcionarse un subreddit para el contador de Reddit.",
+    "TWITCH_CHANNEL_NOT_FOUND": "No se pudo encontrar el canal de Twitch especificado.",
+    "TWITCH_MISSING_USERNAME": "El contador de Twitch requiere un nombre de usuario.",
+    "UNKNOWN": "Ocurrió un error desconocido.",
+    "UNKNOWN_DATA_SOURCE": "El contador proporcionado es desconocido o no reconocido.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "El tipo de valor devuelto por la evaluación es desconocido.",
+    "USER_NOT_FOUND": "Usuario no encontrado.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "La URL de canal de YouTube proporcionada no es válida.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "El contador de YouTube requiere una URL de canal."
+  }
+}

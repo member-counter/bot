@@ -1,1 +1,156 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "Kanál oznámení",
+      "category": "Kategorie",
+      "forumChannel": "Kanál fóra",
+      "mediaChannel": "Mediální kanál",
+      "stageChannel": "Stage kanál",
+      "textChannel": "Textový kanál",
+      "voiceChannel": "Hlasový kanál"
+    },
+    "knownError": "Chyba",
+    "knownErrors": {
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Bot nemá dostatek privilegovaných intencí, aby mohl toto počítadlo použít.",
+      "BOT_IS_NOT_PREMIUM": "Bot není prémiová verze a postrádá některé funkce potřebné pro toto počítadlo.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Čítač je v nerozpoznaném formátu.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "Počítadlo je neplatné.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Výsledek pro název kanálu je kratší než 2 znaky.",
+      "EVALUATION_TIMEOUT": "Vyhodnocení trvalo příliš dlouho a skončilo.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Nepodařilo se vygenerovat konečný řetězec z vyhodnocení.",
+      "GAME_MISSING_ADDRESS": "Počítadlo her vyžaduje adresu serveru.",
+      "GAME_MISSING_GAME_ID": "Na počítadle her musí být uvedeno ID hry.",
+      "GAME_MISSING_PORT": "Počítadlo her vyžaduje port serveru.",
+      "HTTP_DATA_PATH_MANDATORY": "Pro požadavky HTTP, jejichž typ obsahu je application/json, musí být zadána datová cesta.",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "Stavový kód odpovědi HTTP je neplatný (nikoli 200).",
+      "HTTP_MISSING_URL": "Počítadlo HTTP vyžaduje adresu URL, která chybí.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "Počty členů nejsou v tuto chvíli k dispozici.",
+      "MEMERATOR_MISSING_USERNAME": "Počítadlo Memerator vyžaduje uživatelské jméno, které chybí.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Bot nemá dostatečná oprávnění k úpravám kanálu.",
+      "REDDIT_MISSING_SUBREDDIT": "Pro uživatele Redditu musí být uveden subreddit.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Zadaný kanál Twitch se nepodařilo najít.",
+      "TWITCH_MISSING_USERNAME": "Počítadlo Twitch vyžaduje nastavení uživatelského jména.",
+      "UNKNOWN": "Došlo k neznámé chybě.",
+      "UNKNOWN_DATA_SOURCE": "Poskytnuté počítadlo je neznámé nebo není rozpoznáno.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Typ hodnoty vrácené z vyhodnocení není znám.",
+      "USER_NOT_FOUND": "Uživatel nebyl nalezen.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "Zadaná adresa URL kanálu YouTube je neplatná.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "Počítadlo YouTube vyžaduje nastavení adresy URL kanálu."
+    },
+    "unknown": "Neznámý",
+    "unknownChannel": "Neznámý kanál",
+    "unknownChannelType": "Neznámý typ kanálu",
+    "unknownDate": "Neznámé datum",
+    "unknownError": "Neznámá chyba",
+    "unknownPublicBot": "Neznámý veřejný bot",
+    "unknownRole": "Neznámá role",
+    "unknownServer": "Neznámý server",
+    "unknownUser": "Neznámý uživatel {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "Odstranit kanál",
+          "selected": "Vybrané"
+        },
+        "DataSourceItem": {
+          "edit": "Upravit počítadlo",
+          "notSelected": "Nevybráno",
+          "remove": "Odebrat počítadlo",
+          "selected": "Vybrané"
+        },
+        "GamedigItem": {
+          "remove": "Odebrat hru",
+          "selected": "Vybrané"
+        },
+        "LocaleItem": {
+          "remove": "Odstranění locale",
+          "selected": "Vybrané"
+        },
+        "RoleItem": {
+          "everyone": "Všichni",
+          "remove": "Odebrat roli",
+          "selected": "Vybrané"
+        },
+        "TextItem": {
+          "remove": "Odstranit {{item}}",
+          "selected": "Vybrané"
+        },
+        "TimezoneItem": {
+          "remove": "Odebrání časové zóny",
+          "selected": "Vybrané"
+        }
+      },
+      "noResults": "Nenalezeny žádné výsledky.",
+      "placeholder": "Přidat...",
+      "searchPlaceholder": "Hledat..."
+    },
+    "NavBar": {
+      "accountEntry": "Účet",
+      "dashboardEntry": "Ovládací panel",
+      "supportEntry": "Podpora"
+    },
+    "footer": {
+      "acceptableUsePolicy": "Zásady přijatelného užívání",
+      "admin": "Admin",
+      "codeRepository": "Repozitář kódů",
+      "cookiePolicy": "Zásady pro soubory cookie",
+      "copyright": "© {{year}} Member Counter. Všechna práva vyhrazena. Vytvořil <eduardozgzLink />.",
+      "documentation": "Dokumentace",
+      "donate": "Daruj",
+      "improveMemberCounter": "Zlepšení Member Counter",
+      "legal": "Právní",
+      "loginWithDiscord": "Přihlášení přes Discord",
+      "logout": "Odhlášení",
+      "madePossibleThanksTo": "Díky Alexovi, <vampireChickenLink />, <livingfloreLink />, Frostymu a <donorsLink>mnoha dalším</donorsLink>.",
+      "manageDonations": "Správa darů",
+      "manageHomePage": "Správa domovské stránky",
+      "manageServers": "Správa serverů",
+      "manageUsers": "Správa uživatelů",
+      "privacyPolicy": "Zásady ochrany soukromí",
+      "status": "Status",
+      "supportServer": "Server podpory",
+      "termsOfService": "Podmínky služby",
+      "translateBot": "Přeložit bota",
+      "usefulLinks": "Užitečné odkazy"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "Vrátí celkový počet uživatelů a serverů, ve kterých se bot právě nachází. (Pravděpodobně to nepotřebujete)",
+      "name": "Statistiky bota"
+    },
+    "channels": {
+      "description": "Spočítejte počet kanálů v rámci zadaných kategorií nebo celkově.",
+      "display": {
+        "channelsUnderACategory": "Kanály v dané kategorii"
+      },
+      "keywords": "kanály,kategorie",
+      "name": "Kanály"
+    },
+    "clock": {
+      "description": "Zobrazení hodin upravených podle preferovaného časového pásma.",
+      "display": {
+        "syntax": "Hodiny ({{timezone}})"
+      },
+      "keywords": "hodiny,časové pásmo",
+      "name": "Hodiny"
+    },
+    "concat": {
+      "description": "Spojení více řetězců do jednoho.",
+      "display": {
+        "syntax": "Spojit {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "a {{amount}} víc"
+      },
+      "keywords": "konkat,konkatenovat,řetězce,kombinovat,spojit,sloučit",
+      "name": "Konkat"
+    },
+    "countdown": {
+      "description": "Vytvořte si časovač odpočítávání ve formátu přizpůsobeném vašim potřebám.",
+      "display": {
+        "syntax": "Odpočet do {{datetime}}"
+      }
+    }
+  }
+}

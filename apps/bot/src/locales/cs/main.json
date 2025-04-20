@@ -1,1 +1,195 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Něco se pokazilo, zkuste to prosím později.\n\nID chyby: {{ERROR_ID}}",
+        "title": "CHYBA!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Přejít na ovládací panel",
+        "definition": {
+          "slash": {
+            "description": "Získejte odkaz pro konfiguraci bota na webu.",
+            "name": "nastavit"
+          }
+        },
+        "reply": "Kliknutím níže můžete bota nakonfigurovat na ovládacím panelu.\nPomocí příkazu {{SETUP_COMMAND}} můžete také nastavit některá základní počítadla, aniž byste museli opustit Discord."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Seznam užitečných odkazů a dalších informací.",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[Přidejte mě na svůj server]({{BOT_INVITE_URL}})\n[Webové stránky]({{WEBSITE_URL}})\n[Support server]({{BOT_SUPPORT_URL}})\n[Úložiště GitHub]({{BOT_REPO_URL}})\n[Verze bota: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Přidat na server",
+        "addToServerAgain": "Přidat na tento server znova",
+        "definition": {
+          "slash": {
+            "description": "Poskytne zvací odkaz pro přidání bota.",
+            "name": "pozvánka"
+          }
+        },
+        "description": "Odkaz na pozvánku je připraven:\n{{INVITE_URL}}",
+        "joinSupportServer": "Připojení k serveru podpory"
+      },
+      "profile": {
+        "badges": "Odznaky",
+        "definition": {
+          "context": {
+            "name": "Profil"
+          },
+          "slash": {
+            "description": "Zobrazí související informace mezi vámi a tímto botem.",
+            "name": "profil",
+            "options": {
+              "user": {
+                "description": "Uživatel, jehož profil chcete zobrazit.",
+                "name": "uživatel"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Smazat data",
+        "deleteProfilePrompt": {
+          "cancelButton": "Zrušit",
+          "confirmButton": "Ano",
+          "description": "Tato akce se nedá vrátit.",
+          "removeDataSuccess": "Data byla úspěšně odstraněna.",
+          "title": "Jste si jisti, že chcete data odstranit?"
+        },
+        "moreOptionsButton": "Další možnosti",
+        "userNotFound": "Uživatel nebyl nalezen"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Nastavte několik základních počítadel.",
+            "name": "nastavení",
+            "subcommands": {
+              "server": {
+                "description": "Nastavení počítadel souvisejících se serverem.",
+                "name": "server"
+              },
+              "twitch": {
+                "description": "Nastavení počítadel souvisejících s Twitchem.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "Uživatelské jméno kanálu.",
+                    "name": "uživatelské jméno"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "Nastavení počítadel souvisejících s YouTube.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "Adresa URL kanálu.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Vytvoření dokončeno.",
+          "configureSuggestion": "Pro více přizpůsobené nastavení byste se měli podívat na {{CONFIGURE_COMMAND}}.",
+          "createdCategory": "{{ICON}} Kategorie vytvořena.",
+          "createdChannel": "{{ICON}} {{NAME}} vytvořeno.",
+          "creating": "Vytváření počítadel...",
+          "creatingCategory": "{{ICON}} Vytvoření kategorie.",
+          "creatingChannel": "{{ICON}} Vytvoření počítadla {{NAME}}.",
+          "failedCategory": "{{ICON}} Kategorie selhala.",
+          "failedChannel": "{{ICON}} {{NAME}} selhalo."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Statistiky serveru \uD83D\uDCCA",
+            "templates": [ {
+              "name": "Online členů",
+              "template": "Online: {{COUNTER}}"
+            }, {
+              "name": "Členů",
+              "template": "Členů: {{COUNTER}}"
+            }, {
+              "name": "Nitro boosteři",
+              "template": "Boosteři: {{COUNTER}}"
+            }, {
+              "name": "Role",
+              "template": "Role: {{COUNTER}}"
+            }, {
+              "name": "Kanály",
+              "template": "Kanály: {{COUNTER}}"
+            } ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch Statistiky \uD83D\uDCCA",
+            "templates": [ {
+              "name": "Twitch následující",
+              "template": "{{COUNTER}} Následující"
+            }, {
+              "name": "Twitch sledující",
+              "template": "Sledující: {{COUNTER}}"
+            } ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube Statistiky \uD83D\uDCCA",
+            "templates": [ {
+              "name": "YouTube odběratelé",
+              "template": "{{COUNTER}} Odběratelé"
+            }, {
+              "name": "YouTube videa",
+              "template": "{{COUNTER}} Videa"
+            }, {
+              "name": "YouTube shlédnutí",
+              "template": "{{COUNTER}} Shlédnutí"
+            } ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "CHYBA!"
+    }
+  },
+  "knownErrors": {
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Bot nemá dostatek privilegovaných záměrů, aby mohl toto počítadlo použít.",
+    "BOT_IS_NOT_PREMIUM": "Bot není prémiová verze a postrádá některé funkce potřebné pro toto počítadlo.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Čítač je v nerozpoznaném formátu.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "Počítadlo je neplatné.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Výsledek pro název kanálu je kratší než 2 znaky.",
+    "EVALUATION_TIMEOUT": "Vyhodnocení trvalo příliš dlouho a skončilo.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "Nepodařilo se vygenerovat konečný řetězec z vyhodnocení.",
+    "GAME_MISSING_ADDRESS": "Počítadlo her vyžaduje adresu serveru.",
+    "GAME_MISSING_GAME_ID": "Na počítadle her musí být uvedeno ID hry.",
+    "GAME_MISSING_PORT": "Počítadlo her vyžaduje port serveru.",
+    "HTTP_DATA_PATH_MANDATORY": "Pro požadavky HTTP, jejichž typ obsahu je application/json, musí být zadána datová cesta.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Typ obsahu odpovědi HTTP je neplatný (není text/plain nebo application/json).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "Stavový kód odpovědi HTTP je neplatný (nikoli 200).",
+    "HTTP_MISSING_URL": "Počítadlo HTTP vyžaduje adresu URL, která chybí.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "Počty členů nejsou v tuto chvíli k dispozici.",
+    "MEMERATOR_MISSING_USERNAME": "Počítadlo Memerator vyžaduje uživatelské jméno, které chybí.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Bot nemá dostatečná oprávnění k úpravám kanálu.",
+    "REDDIT_MISSING_SUBREDDIT": "Pro uživatele Redditu musí být uveden subreddit.",
+    "TWITCH_CHANNEL_NOT_FOUND": "Zadaný kanál Twitch se nepodařilo najít.",
+    "TWITCH_MISSING_USERNAME": "Počítadlo Twitch vyžaduje nastavení uživatelského jména.",
+    "UNKNOWN": "Došlo k neznámé chybě.",
+    "UNKNOWN_DATA_SOURCE": "Poskytnuté počítadlo je neznámé nebo není rozpoznáno.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "Typ hodnoty vrácené z vyhodnocení není znám.",
+    "USER_NOT_FOUND": "Uživatel nebyl nalezen.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "Zadaná adresa URL kanálu YouTube je neplatná.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "Počítadlo YouTube vyžaduje nastavení adresy URL kanálu."
+  }
+}
