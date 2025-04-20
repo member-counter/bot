@@ -695,7 +695,7 @@
       "UNKNOWN_DATA_SOURCE": "The counter provided is unknown or not recognized.",
       "UNKNOWN_EVALUATION_RETURN_TYPE": "The type of value returned from evaluation is unknown.",
       "FAILED_TO_RETURN_A_FINAL_STRING": "Failed to generate a final string from the evaluation.",
-      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "The counter is in a unrecognized format",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "The counter is in a unrecognized format.",
       "DELIMITED_DATA_SOURCE_IS_INVALID": "The counter is invalid.",
       "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "The result for the channel name is less than 2 characters long.",
       "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "The bot does not have sufficient permissions to edit the channel.",
