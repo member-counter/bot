@@ -1,5 +1,4 @@
 import { inspect } from "node:util";
-import type { Channel } from "@mc/db";
 import type originalLogger from "@mc/logger";
 import type { GuildSettingsData } from "@mc/services/guildSettings";
 import type { Client, Guild } from "discord.js";
@@ -21,19 +20,18 @@ import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
 import { makeIsValidChild } from "~/utils/isValidChildId";
 import { withQueueLock } from "~/utils/withQueueLock";
 
+type ChannelSettingsMinimal = Awaited<
+  ReturnType<typeof GuildSettingsService.channels.getAllEnabledTempaltes>
+>[number];
+
 async function updateGuildChannel(
   guild: Guild,
   guildSettings: GuildSettingsData,
-  channelSettings: Channel,
+  channelSettings: ChannelSettingsMinimal,
   i18n: Awaited<ReturnType<typeof initI18n>>,
   logger: typeof originalLogger,
 ) {
   logger.debug(`Starting update for channel`);
-
-  if (!channelSettings.isTemplateEnabled) {
-    logger.debug(`Template disabled for channel`);
-    return;
-  }
 
   logger.debug(`Fetching channel`);
   const channel = await guild.channels.fetch(channelSettings.discordChannelId);
@@ -45,7 +43,6 @@ async function updateGuildChannel(
 
   if (!botHasPermsToEdit(channel)) {
     logger.debug(`Bot doesn't have permissions to edit channel`);
-
     return;
   }
 
@@ -106,24 +103,19 @@ async function updateGuildChannel(
   }
 }
 
-async function updateGuildChannels(guild: Guild, guildLogger: Logger) {
-  if (!guild.available) return;
-
-  guildLogger.debug(`Fetching settings for guild`);
-  const guildSettings = await GuildSettingsService.upsert(guild.id);
-
-  guildLogger.debug(`Fetching settings for guild's channels`);
-  const guildChannelsSettings = await GuildSettingsService.channels.getAll(
-    guild.id,
-  );
-
+async function updateGuildChannels(
+  guild: Guild,
+  guildSettings: GuildSettingsData,
+  channelsSettings: ChannelSettingsMinimal[],
+  guildLogger: Logger,
+) {
   guildLogger.debug(`Init i18n`);
   const i18n = await initI18n({ locale: guild.preferredLocale });
 
-  guildLogger.debug(`Processing ${guildChannelsSettings.length} channels`);
+  guildLogger.debug(`Processing ${channelsSettings.length} channels`);
 
   await Promise.allSettled(
-    guildChannelsSettings.map(async (channelSettings) => {
+    channelsSettings.map(async (channelSettings) => {
       const channelLogger = guildLogger.child({
         channel: channelSettings.discordChannelId,
       });
@@ -144,8 +136,27 @@ async function updateGuildChannels(guild: Guild, guildLogger: Logger) {
 const task = async (client: Client, logger: Logger) => {
   const { dataSourceComputePriority } = client.botInstanceOptions;
 
+  const guildIds = client.guilds.cache
+    .filter((guild) => guild.available)
+    .map(({ id }) => id);
+
+  if (!guildIds.length) return;
+
+  const evaluationPriorities = await redis.mget(
+    ...guildIds.map((id) => advertiseEvaluatorPriorityKey(id)),
+  );
+
+  const guildsToHandle = guildIds.filter((id, index) => {
+    const priority = evaluationPriorities[index];
+    if (priority === null) {
+      return false;
+    } else {
+      return Number(priority) <= dataSourceComputePriority;
+    }
+  });
+
   let debugCheckCount = 0;
-  const guildsToProccessLeft = new Set<string>(client.guilds.cache.keys());
+  const guildsToProccessLeft = new Set<string>(guildsToHandle);
   const guildsToProcessSize = guildsToProccessLeft.size;
 
   const debugInterval = setInterval(() => {
@@ -156,38 +167,56 @@ const task = async (client: Client, logger: Logger) => {
     }
   }, 5_000);
 
+  const guildsSettings = await GuildSettingsService.getMany(guildsToHandle);
+  const channelsSettings =
+    await GuildSettingsService.channels.getAllEnabledTempaltes(guildsToHandle);
+
   await Promise.allSettled(
-    client.guilds.cache.map(async (guild, _key, collection) => {
-      const guildLogger = guild.client.botInstanceOptions.logger.child({
-        guild: guild.id,
+    guildsToHandle.map(async (guildId) => {
+      const guildLogger = logger.child({
+        guild: guildId,
       });
 
-      try {
-        const handledPriority = Number(
-          await redis.get(advertiseEvaluatorPriorityKey(guild.id)),
-        );
-
-        guildLogger.debug(`Compute priority is ${handledPriority}`);
-
-        if (handledPriority > dataSourceComputePriority) {
-          logger.debug(
-            `Guild has a higher priority (${handledPriority}) than the bot (${dataSourceComputePriority}). Skipping...`,
-          );
-          return;
-        }
-
-        await updateGuildChannels(guild, guildLogger);
-
-        logger.debug(
-          `Updated guild channels (${++debugCheckCount}/${collection.size})`,
-        );
-      } catch (error) {
-        logger.error(
-          `Error while trying to update channels, error ${inspect(error)}`,
-        );
-      } finally {
-        guildsToProccessLeft.delete(guild.id);
+      const guildSettings = guildsSettings.find(
+        (guildSettings) => guildSettings.discordGuildId === guildId,
+      );
+      if (!guildSettings) {
+        return;
       }
+
+      const guildChannelSettings = channelsSettings.filter(
+        (channelSettings) => channelSettings.discordGuildId === guildId,
+      );
+
+      if (!guildChannelSettings.length) {
+        return;
+      }
+
+      const guild = client.guilds.cache.get(guildId);
+
+      if (!guild) {
+        return;
+      }
+
+      await updateGuildChannels(
+        guild,
+        guildSettings,
+        guildChannelSettings,
+        guildLogger,
+      )
+        .then(() => {
+          logger.debug(
+            `Updated guild channels (${++debugCheckCount}/${guildsToHandle.length})`,
+          );
+        })
+        .catch((error) => {
+          logger.error(
+            `Error while trying to update channels, error ${inspect(error)}`,
+          );
+        })
+        .finally(() => {
+          guildsToProccessLeft.delete(guildId);
+        });
     }),
   );
 

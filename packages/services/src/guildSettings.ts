@@ -25,6 +25,12 @@ export const GuildSettingsService = {
       .catch(throwNotFoundOrThrow);
   },
 
+  getMany: async (discordGuildIds: string[]) => {
+    return await db.guild.findMany({
+      where: { discordGuildId: { in: discordGuildIds } },
+    });
+  },
+
   reset: async (discordGuildId: string) => {
     await db.guild.delete({
       where: { discordGuildId },
@@ -83,6 +89,20 @@ export const GuildSettingsService = {
     getAll: async (discordGuildId: string) => {
       return await db.channel.findMany({
         where: { discordGuildId },
+      });
+    },
+
+    getAllEnabledTempaltes: async (discordGuildIds: string[]) => {
+      return await db.channel.findMany({
+        where: {
+          discordGuildId: { in: discordGuildIds },
+          isTemplateEnabled: true,
+        },
+        select: {
+          discordGuildId: true,
+          discordChannelId: true,
+          template: true,
+        },
       });
     },
 
