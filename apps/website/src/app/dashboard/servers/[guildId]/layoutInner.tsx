@@ -54,14 +54,20 @@ export default function LayoutInner({
   const has = api.guild.has.useQuery({
     discordGuildId: guildId,
   });
-  api.guild.get.useQuery({
+  api.guild.get.usePrefetchQuery({
     discordGuildId: guildId,
   });
-  api.guild.isBlocked.useQuery({
+  api.guild.isBlocked.usePrefetchQuery({
     discordGuildId: guildId,
   });
-  api.discord.getGuild.useQuery({
+  api.discord.getGuild.usePrefetchQuery({
     id: guildId,
+  });
+  api.guild.channels.getAll.usePrefetchQuery({
+    discordGuildId: guildId,
+  });
+  api.guild.channels.logs.getAll.usePrefetchQuery({
+    discordGuildId: guildId,
   });
 
   if (!has.isSuccess || !userPermissions.fetched) {
