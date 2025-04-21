@@ -24,6 +24,7 @@
     "@discordjs/rest": "^2.3.0",
     "@mc/common": "workspace:*",
     "@mc/db": "workspace:*",
+    "@mc/logger": "workspace:*",
     "@mc/redis": "workspace:*",
     "@mc/services": "workspace:*",
     "@mc/telemetry": "workspace:*",

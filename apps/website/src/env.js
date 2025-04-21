@@ -7,6 +7,7 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    LOG_LEVEL: z.enum(["error", "warn", "info", "debug"]).default("info"),
   },
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
@@ -42,6 +43,7 @@ export const env = createEnv({
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     DISCORD_OAUTH2_REDIRECT_URI: process.env.DISCORD_OAUTH2_REDIRECT_URI,
     PUBLIC_BOTS_IDS: process.env.PUBLIC_BOTS_IDS,
+    LOG_LEVEL: process.env.LOG_LEVEL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

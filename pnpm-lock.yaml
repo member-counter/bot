@@ -132,6 +132,9 @@ importers:
       '@mc/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@mc/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
       '@mc/redis':
         specifier: workspace:*
         version: link:../../packages/redis
@@ -404,6 +407,9 @@ importers:
 
   packages/db:
     dependencies:
+      '@mc/logger':
+        specifier: workspace:*
+        version: link:../logger
       '@prisma/client':
         specifier: ^6.3.1
         version: 6.3.1(prisma@6.3.1(typescript@5.7.3))(typescript@5.7.3)
