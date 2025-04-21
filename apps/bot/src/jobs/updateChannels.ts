@@ -167,9 +167,20 @@ const task = async (client: Client, logger: Logger) => {
     }
   }, 5_000);
 
+  logger.debug(
+    `Fetching guilds settings for ${guildsToHandle.length} guilds`,
+    logger,
+  );
   const guildsSettings = await GuildSettingsService.getMany(guildsToHandle);
+  logger.debug(`Fetched guilds settings for ${guildsToHandle.length} guilds`);
+
+  logger.debug(
+    `Fetching channels settings for ${guildsToHandle.length} guilds`,
+    logger,
+  );
   const channelsSettings =
     await GuildSettingsService.channels.getAllEnabledTempaltes(guildsToHandle);
+  logger.debug(`Fetched channels settings for ${guildsToHandle.length} guilds`);
 
   await Promise.allSettled(
     guildsToHandle.map(async (guildId) => {
