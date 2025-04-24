@@ -417,7 +417,21 @@
           },
           "title": "Demo servery"
         },
-        "headings": [ "Dynamické zobrazení počtu členů serveru", "Pochlubte se počtem odběratelů YouTube", "Sledování počtu hráčů na serveru Minecraft", "Pochlubte se, kolik lidí sleduje váš kanál na Twitchi", "Zobrazení libovolných údajů na serveru Discord", "Sledování počtu hráčů na serveru FiveM", "Zobrazení hodin upravených podle preferovaného časového pásma", "Vytváření odpočítávání pro události nebo zvláštní příležitosti", "Sledování statistik hráčů na více než 320 herních serverech", "Získávání a zobrazování dat z libovolného koncového bodu API", "Provádění a zobrazování matematických operací s daty", "Formátování čísel a jejich krásné zobrazení", "Zvýrazněte boostery Nitro na svém serveru" ],
+        "headings": [
+          "Dynamické zobrazení počtu členů serveru",
+          "Pochlubte se počtem odběratelů YouTube",
+          "Sledování počtu hráčů na serveru Minecraft",
+          "Pochlubte se, kolik lidí sleduje váš kanál na Twitchi",
+          "Zobrazení libovolných údajů na serveru Discord",
+          "Sledování počtu hráčů na serveru FiveM",
+          "Zobrazení hodin upravených podle preferovaného časového pásma",
+          "Vytváření odpočítávání pro události nebo zvláštní příležitosti",
+          "Sledování statistik hráčů na více než 320 herních serverech",
+          "Získávání a zobrazování dat z libovolného koncového bodu API",
+          "Provádění a zobrazování matematických operací s daty",
+          "Formátování čísel a jejich krásné zobrazení",
+          "Zvýrazněte boostery Nitro na svém serveru"
+        ],
         "supportedCounters": {
           "andMuchMore": {
             "description": "Objevte ještě více funkcí a počítadel, které mohou vylepšit vaše zážitky. Zůstaňte naladěni na aktualizace!",

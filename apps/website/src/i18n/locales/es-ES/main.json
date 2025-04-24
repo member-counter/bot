@@ -417,7 +417,21 @@
           },
           "title": "Servidores de demostración"
         },
-        "headings": [ "Muestra el recuento de miembros de tu servidor dinámicamente", "Presume de tu recuento de suscriptores de YouTube", "Monitoriza el recuento de jugadores de tu servidor de Minecraft", "Muestra cuánta gente está viendo tu canal de Twitch", "Muestra cualquier dato que desees en tu servidor de Discord", "Monitoriza cuántos jugadores tiene tu servidor de FiveM", "Muestra un reloj ajustado a tu zona horaria preferida", "Crea cuentas regresivas para eventos u ocasiones especiales", "Monitoriza estadísticas de jugadores en más de 320 servidores de juegos", "Obtén y muestra datos de cualquier endpoint de API", "Realiza y muestra operaciones matemáticas con tus datos", "Formatea números y muéstralos de forma atractiva", "Destaca a los boosters Nitro de tu servidor" ],
+        "headings": [
+          "Muestra el recuento de miembros de tu servidor dinámicamente",
+          "Presume de tu recuento de suscriptores de YouTube",
+          "Monitoriza el recuento de jugadores de tu servidor de Minecraft",
+          "Muestra cuánta gente está viendo tu canal de Twitch",
+          "Muestra cualquier dato que desees en tu servidor de Discord",
+          "Monitoriza cuántos jugadores tiene tu servidor de FiveM",
+          "Muestra un reloj ajustado a tu zona horaria preferida",
+          "Crea cuentas regresivas para eventos u ocasiones especiales",
+          "Monitoriza estadísticas de jugadores en más de 320 servidores de juegos",
+          "Obtén y muestra datos de cualquier endpoint de API",
+          "Realiza y muestra operaciones matemáticas con tus datos",
+          "Formatea números y muéstralos de forma atractiva",
+          "Destaca a los boosters Nitro de tu servidor"
+        ],
         "supportedCounters": {
           "andMuchMore": {
             "description": "Descubre aún más características y contadores que pueden mejorar tu experiencia. ¡Mantente atento a las actualizaciones!",
