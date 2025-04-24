@@ -401,6 +401,7 @@ interface Resources {
               };
               description: "Description";
               icon: "Icon URL";
+              language: "Language";
               links: {
                 add: "Add link";
                 link: {

@@ -49,6 +49,7 @@ export const demoServersRouter = createTRPCRouter({
         description: z.string().optional(),
         icon: z.string().nullable(),
         priority: z.number().optional(),
+        language: z.string().optional(),
         channels: z
           .array(
             z.object({

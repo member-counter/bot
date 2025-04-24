@@ -55,6 +55,7 @@ model DemoServer {
   description String
   icon        String?
   priority    Int           @default(0)
+  language    String        @default("es-ES")
   channels    DemoChannel[]
   links       DemoLink[]
 }

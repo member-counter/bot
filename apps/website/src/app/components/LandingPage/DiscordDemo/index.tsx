@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ChannelType } from "discord-api-types/v10";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
 
@@ -10,11 +11,17 @@ import { DescriptionArea } from "./DescriptionArea";
 import { ServerNavMenu } from "./ServerNavMenu";
 
 export function DiscordDemo() {
+  const { i18n } = useTranslation();
+
   const [mouseIsHovering, setMouseIsHovering] = useState(false);
   const [selectedServerIndex, setSelectedServerIndex] = useState(0);
   const [selectedChannelIndex, setSelectedChannelIndex] = useState(-1);
   const demoServersQuery = api.demoServers.geAll.useQuery();
-  const demoServers = demoServersQuery.data ?? [];
+  const demoServers = useMemo(() => {
+    const demoServers = demoServersQuery.data ?? [];
+    return demoServers.sort((a) => (a.language === i18n.language ? -1 : 1));
+  }, [demoServersQuery.data, i18n.language]);
+
   const selectedServer = demoServers[selectedServerIndex];
 
   useEffect(() => {

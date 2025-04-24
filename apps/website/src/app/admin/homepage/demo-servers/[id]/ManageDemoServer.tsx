@@ -5,9 +5,18 @@ import { Button } from "@mc/ui/button";
 import { Form } from "@mc/ui/form";
 import { Input } from "@mc/ui/input";
 import { Label } from "@mc/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@mc/ui/select";
 import { Textarea } from "@mc/ui/textarea";
 
 import { FormManagerState, useFormManager } from "~/hooks/useFormManager";
+import { languageEntries } from "~/i18n/settings";
 import { addTo, removeFrom, updateIn } from "~/other/array";
 import { api } from "~/trpc/react";
 import { ChannelCard } from "./ChannelCard";
@@ -79,6 +88,31 @@ export default function ManageDemoServer({ id }: { id: string }) {
             })
           }
         />
+      </Label>
+      <Label>
+        {t("pages.admin.homePage.demoServers.manage.language")}
+        <Select
+          value={mutableDemoServer.language}
+          onValueChange={(language) =>
+            setMutableDemoServer({
+              ...mutableDemoServer,
+              language,
+            })
+          }
+        >
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {Object.entries(languageEntries).map(([code, label]) => (
+                <SelectItem key={code} value={code}>
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </Label>
       <Label>
         {t("pages.admin.homePage.demoServers.manage.channels.title")}
