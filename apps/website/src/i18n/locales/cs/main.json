@@ -22,6 +22,7 @@
       "GAME_MISSING_GAME_ID": "Na počítadle her musí být uvedeno ID hry.",
       "GAME_MISSING_PORT": "Počítadlo her vyžaduje port serveru.",
       "HTTP_DATA_PATH_MANDATORY": "Pro požadavky HTTP, jejichž typ obsahu je application/json, musí být zadána datová cesta.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Typ obsahu odpovědi HTTP je neplatný (není text/plain nebo application/json).",
       "HTTP_INVALID_RESPONSE_STATUS_CODE": "Stavový kód odpovědi HTTP je neplatný (nikoli 200).",
       "HTTP_MISSING_URL": "Počítadlo HTTP vyžaduje adresu URL, která chybí.",
       "MEMBER_COUNT_NOT_AVAILABLE": "Počty členů nejsou v tuto chvíli k dispozici.",
@@ -295,6 +296,443 @@
       },
       "keywords": "YouTube,předplatitel,video,zobrazení,kanál",
       "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "Máte neuložené změny. Opravdu chcete opustit tuto stránku?",
+    "useFormManager": {
+      "state": {
+        "save": "Uložit",
+        "saved": "Uloženo",
+        "saving": "Ukládám..."
+      }
+    }
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "Zavřít",
+        "confirmDescription": "Tuto akci nelze vzít zpět. Tím dojde k trvalému smazání vašeho účtu a odstranění vašich dat z našich serverů.",
+        "confirmTitle": "Jste si naprosto jisti?",
+        "deleteAccountBtn": "Smazat účet"
+      },
+      "page": {
+        "avatarAlt": "avatar {{username}}",
+        "logoutButton": "Odhlásit"
+      },
+      "userBadges": {
+        "betaTester": "Zúčastnili jste se beta programu.",
+        "bigBrain": "Navrhl jste nápad, který byl realizován.",
+        "bugCatcher": "Našli jste a nahlásili chybu.",
+        "contributor": "Implementovali jste funkci nebo opravili chybu.",
+        "donor": "Přispěli jste na podporu vývoje a údržby služby Member Counter.",
+        "foldingAtHome": "V programu folding@home jste přispěli WU.",
+        "patPat": "Našel jsi tajemství.",
+        "premium": "Jste prémiový uživatel.",
+        "translator": "Pomohli jste přeložit bota."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "Smazat dar",
+          "closeButton": "Zavřít",
+          "dialogDescription": "Tuto akci nelze vzít zpět.",
+          "dialogTitle": "Jste si naprosto jisti?"
+        },
+        "edit": {
+          "title": "Úprava daru"
+        },
+        "form": {
+          "amount": "Množství",
+          "anonymous": "Anonym",
+          "currency": "Měna",
+          "currencyDecimals": "Měnové desetiny",
+          "date": "Datum",
+          "note": "Poznámka",
+          "saveBtn": "Uložit",
+          "userId": "Discord uživatelské ID"
+        },
+        "new": {
+          "title": "Nový dar"
+        },
+        "registerDonation": "Registrace daru",
+        "totalDonations": "Všechny dary: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "Nahrát server",
+          "placeholder": "Vložit server ID"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "Vytvořit",
+          "createInputPlaceholder": "Nový demo server název",
+          "delete": {
+            "button": "Smazat demo server",
+            "closeButton": "Zavřít",
+            "dialogDescription": "Tuto akci nelze vzít zpět.",
+            "dialogTitle": "Jste si naprosto jisti?"
+          },
+          "list": {
+            "display": {
+              "priority": "Priority: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "Přidat kanál",
+              "channel": {
+                "name": "Název",
+                "remove": "Smazat",
+                "showAsSkeleton": "Zobrazit jako kostru",
+                "topic": "Téma",
+                "type": "Typ",
+                "types": {
+                  "announcementChannel": "Kanál oznámení",
+                  "categoryChannel": "Kanál kategorie",
+                  "textChannel": "Textový kanál",
+                  "voiceChannel": "Uzamčený hlasový kanál"
+                }
+              },
+              "title": "Kanály"
+            },
+            "description": "Popis",
+            "icon": "Ikona URL",
+            "links": {
+              "add": "Přidat link",
+              "link": {
+                "label": "Štítek",
+                "remove": "Smazat",
+                "url": "URL"
+              },
+              "title": "Linky"
+            },
+            "name": "Název serveru",
+            "priority": "Priorita",
+            "save": "Uložit",
+            "saved": "Uloženo",
+            "title": "Upravit demo server"
+          },
+          "title": "Demo servery"
+        },
+        "headings": [ "Dynamické zobrazení počtu členů serveru", "Pochlubte se počtem odběratelů YouTube", "Sledování počtu hráčů na serveru Minecraft", "Pochlubte se, kolik lidí sleduje váš kanál na Twitchi", "Zobrazení libovolných údajů na serveru Discord", "Sledování počtu hráčů na serveru FiveM", "Zobrazení hodin upravených podle preferovaného časového pásma", "Vytváření odpočítávání pro události nebo zvláštní příležitosti", "Sledování statistik hráčů na více než 320 herních serverech", "Získávání a zobrazování dat z libovolného koncového bodu API", "Provádění a zobrazování matematických operací s daty", "Formátování čísel a jejich krásné zobrazení", "Zvýrazněte boostery Nitro na svém serveru" ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Objevte ještě více funkcí a počítadel, které mohou vylepšit vaše zážitky. Zůstaňte naladěni na aktualizace!",
+            "title": "A mnoho dalšího!"
+          },
+          "clock": {
+            "description": "Pomocí našich přizpůsobitelných hodin můžete zobrazit čas v libovolném časovém pásmu. Ideální pro koordinaci v různých regionech.",
+            "title": "Hodiny"
+          },
+          "countdown": {
+            "description": "Vytvářejte a spravujte časovače odpočítávání přizpůsobené konkrétním událostem nebo termínům.",
+            "title": "Odpočet"
+          },
+          "discordMembers": {
+            "description": "Počítejte a filtrujte členy podle online stavu, rolí a dalších kritérií, abyste získali přesné informace o své komunitě.",
+            "title": "Členové Discordu"
+          },
+          "game": {
+            "description": "Sledujte aktivitu svého herního serveru s počty hráčů v reálném čase pro více než 320 podporovaných her.",
+            "title": "Hra"
+          },
+          "http": {
+            "description": "Provádějte požadavky GET a přijímejte data přímo z libovolného koncového bodu, čímž zefektivníte své integrační potřeby.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Provádějte řadu matematických operací včetně sčítání, odčítání, násobení a dalších s více čísly.",
+            "title": "Matika"
+          },
+          "nitroBoosters": {
+            "description": "Sledujte počet posilovačů Nitro na svém serveru, abyste zjistili podporu a zapojení komunity.",
+            "title": "Nitro Boosteři"
+          },
+          "reddit": {
+            "description": "Získejte statistiky o jakémkoli subredditu, včetně názvu, počtu členů a online členů.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Dynamicky upravujte text pomocí našeho výkonného nástroje pro nahrazování, který je ideální ve spojení s počítadlem HTTP.",
+            "title": "Nahradit"
+          },
+          "twitch": {
+            "description": "Sledujte metriky kanálu Twitch, jako je počet sledujících a statistiky zobrazení, a mějte přehled o svých oblíbených streamech.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Získejte klíčové metriky z kanálů YouTube včetně počtu odběratelů, počtu videí a celkového počtu zhlédnutí.",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "Smazat účet",
+          "closeButton": "Zavřít",
+          "dialogDescription": "Tuto akci nelze vzít zpět.",
+          "dialogTitle": "Jste si naprosto jisti?"
+        },
+        "loadUser": "Nahrát uživatele",
+        "manage": {
+          "badges": {
+            "betaTester": "Beta Tester",
+            "bigBrain": "Big Brain",
+            "bugCatcher": "Chytač Bugů",
+            "contributor": "Přispěvatel",
+            "donor": "Dárce",
+            "foldingAtHome": "folding@home",
+            "patPat": "Pat Pat",
+            "premium": "Premium",
+            "title": "Odznaky",
+            "translator": "Překladatel"
+          },
+          "pasteUserId": "Vložit ID uživatele",
+          "permissions": {
+            "manageDonations": "Správa darů",
+            "manageGuilds": "Správa serverů",
+            "manageHomePage": "Správa vstupní stránky",
+            "manageUsers": "Správa uživatelů",
+            "seeGuilds": "Zobrazit servery",
+            "seeUsers": "Zobrazit uživatele",
+            "title": "Oprávnění"
+          },
+          "save": "Uložit",
+          "saved": "Uloženo",
+          "transferAccount": "Převod účtu"
+        },
+        "recentUsers": "Poslední uživatelé",
+        "userNotRegistered": "Tento uživatel není registrován."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "Nejste na žádném serveru. ",
+        "subheading": "Proč nezačnete vytvořením <CreateServerLink>nového</CreateServerLink> nebo <JoinSupportServerLink>připojením se k nám</JoinSupportServerLink>?"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "V tomto kanálu jsou povoleny čítače",
+            "issue": "V tomto kanálu je problém, který vyžaduje vaši pozornost."
+          },
+          "unsupportedChannelType": "Tento typ kanálu zatím není podporován."
+        },
+        "ServerNavMenu": {
+          "channelList": "Seznam kanálů",
+          "loading": "Načítání dat serveru...",
+          "serverSettings": "Nastavení serveru",
+          "unknownChannels": "Návštěva uložených kanálů, pokud se kanály Discordu nedaří načíst"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "Nebyla nalezena žádná počítadla.",
+            "searchPlaceholder": "Hledat počítadlo..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "Výchozí nastavení serveru",
+                "no": "Ne",
+                "overrideDefaultDigits": "Přepsání výchozích číslic",
+                "overrideDefaultLocale": "Přepsání výchozího locale",
+                "searchLocale": "Hledání locale...",
+                "select": "Vybrat",
+                "useCompactNotation": "Použití kompaktního zápisu",
+                "yes": "Ano"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "Displej",
+                  "selectPlaceholder": "Vyberte něco k zobrazení",
+                  "servers": "Servery",
+                  "users": "Uživatelé"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "Přidat kategorii...",
+                  "configWarning": "Nezapomeňte vrátit platné ID kategorie",
+                  "filterByCategory": "Filtrovat podle kategorie"
+                },
+                "ClockOptions": {
+                  "configWarning": "Nezapomeňte vrátit platný identifikátor časové zóny.",
+                  "searchTimezonePlaceholder": "Hledání časového pásma...",
+                  "timezone": "Časové pásmo"
+                },
+                "ConcatOptions": {
+                  "addString": "Přidat text...",
+                  "stringList": "Seznam textu"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "Pokud je cílové datum nebo formát výsledkem počítadla, nemůžeme vám zobrazit živý náhled, musíte si prohlédnout celou šablonu, abyste viděli, jak bude vypadat.",
+                  "dateConfigWarning": "Nezapomeňte vrátit platné časové razítko systému UNIX.",
+                  "datePlaceholder": "Nebo si vezměte data z počítadla...",
+                  "defaultFormat": "zbývá %d dní, %h hodin a %m minut",
+                  "format": "Formát",
+                  "formatConfigWarning": "Nezapomeňte vrátit platný formátovací řetězec",
+                  "formatInstructions": "Použijte <code>%d</code> k ukázání zbývajících dní, <code>%h</code> pro zbývající hodiny, a <code>%m</code> zbývající minuty.",
+                  "livePreview": "Živý náhled",
+                  "noPreview": "Pokud je cílové datum nebo formát prázdný, nemůžeme zobrazit živý náhled.",
+                  "targetDate": "Cílové datum"
+                },
+                "GameOptions": {
+                  "address": "Adresa",
+                  "addressWarning": "Nezapomeňte vrátit platnou adresu",
+                  "game": "Hra",
+                  "gameWarning": "Nezapomeňte vrátit platný typ hry node-gamedig",
+                  "port": "Port (nebo port dotazu)",
+                  "portWarning": "Nezapomeňte vrátit platné číslo portu",
+                  "searchPlaceholder": "Hledat..."
+                },
+                "HttpOptions": {
+                  "dataPath": "Datová cesta",
+                  "dataPathDescription": "Cesta k získání požadované hodnoty, pokud je typem obsahu odpovědi JSON, syntaxe je podobná té, kterou používá JS pro přístup k vlastnostem a položkám pole.",
+                  "dataPathWarning": "Nezapomeňte vrátit datovou cestu",
+                  "emptyUrl": "Nelze načíst, adresa URL je prázdná",
+                  "fetch": "Přinést",
+                  "fetching": "Získávání...",
+                  "lifetime": "Životnost (v sekundách)",
+                  "lifetimeDescription": "Určuje, jak dlouho se bude odpověď zadané adresy URL ukládat do mezipaměti.",
+                  "lifetimeWarning": "Nezapomeňte vrátit platné číslo",
+                  "noPreview": "Nemůžeme zobrazit náhled, pokud je adresa URL nebo cesta k datům výsledkem počítadla, musíte zobrazit náhled celé šablony, abyste viděli, jak bude vypadat.",
+                  "preview": "Náhled",
+                  "testResponse": "Reakce na test",
+                  "url": "URL (GET)",
+                  "urlWarning": "Nezapomeňte vrátit platnou adresu URL"
+                },
+                "MathOptions": {
+                  "addNumber": "Přidat číslo...",
+                  "addition": "Dodatek",
+                  "division": "Oddíl",
+                  "modulo": "Modulo (připomínka dělení)",
+                  "multiplication": "Násobení",
+                  "numberList": "Seznam čísel",
+                  "numberWarning": "Nezapomeňte vrátit platné číslo",
+                  "operation": "Typ operace",
+                  "selectOperation": "Vyberte typ operace",
+                  "subtraction": "Substrakce"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Počítejte pouze zakázané členy"
+                  },
+                  "FilterByAccountType": {
+                    "any": "Jakýkoli",
+                    "bot": "Bot",
+                    "label": "Filtrování podle typu účtu",
+                    "placeholder": "Vyberte typ účtu",
+                    "user": "Uživatel"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "Přidání hlasového kanálu...",
+                    "dataSourceConfigWarning": "Nezapomeňte vrátit platné ID hlasového kanálu",
+                    "label": "Filtrování podle připojení k hlasovému kanálu"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "Přidat roli...",
+                    "dataSourceConfigWarning": "Nezapomeňte vrátit platné ID role",
+                    "label": "Filtrování podle role"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "Jakákoli shoda",
+                    "label": "Režim filtru",
+                    "overlap": "Překrytí",
+                    "placeholder": "Výběr režimu filtru"
+                  },
+                  "FilterByStatus": {
+                    "any": "Jakýkoli",
+                    "dnd": "Nerušit",
+                    "idle": "Nečinný",
+                    "label": "Filtrování podle stavu",
+                    "offline": "Offline",
+                    "online": "Online",
+                    "placeholder": "Výběr stavu"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Filtrování pomocí hry",
+                    "placeholder": "Přidat hru..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "Zobraz",
+                  "followers": "Sledující",
+                  "memes": "Memečka",
+                  "selectDisplay": "Vyberte něco, co se má zobrazit",
+                  "username": "Uživatelské jméno",
+                  "usernameWarning": "Nezapomeňte vrátit platné uživatelské jméno"
+                },
+                "NumberOptions": {
+                  "number": "Číslo",
+                  "numberWarning": "Nezapomeňte vrátit platné číslo",
+                  "placeholder": "Zadejte číslo nebo vyhledejte počítadlo"
+                },
+                "RedditOptions": {
+                  "display": "Zobraz",
+                  "members": "Členové",
+                  "membersOnline": "Členové online",
+                  "selectPlaceholder": "Vyberte něco, co se má zobrazit",
+                  "subreddit": "Název subredditu",
+                  "subredditPlaceholder": "Zadejte subreddit nebo vyhledejte počítadlo",
+                  "subredditWarning": "Nezapomeňte vrátit platný subreddit",
+                  "title": "Nadpis subredditu"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "Přidat náhradu",
+                  "inputText": "Vlož text",
+                  "removeReplacement": "Odebrat náhradu",
+                  "replaceWith": "Nahradit",
+                  "replacementPlaceholder": "Zadejte náhradní text",
+                  "searchFor": "Vyhledávání",
+                  "searchPlaceholder": "Zadejte hledaný výraz",
+                  "textPlaceholder": "Zadejte text, který chcete nahradit"
+                },
+                "TwitchOptions": {
+                  "channelName": "Název kanálu",
+                  "display": "Zobrazit",
+                  "followers": "Sledující",
+                  "selectPlaceholder": "Vyberte něco, co se má zobrazit",
+                  "username": "Uživatelské jméno",
+                  "usernamePlaceholder": "Zadejte uživatelské jméno",
+                  "usernameWarning": "Nezapomeňte vrátit platné uživatelské jméno",
+                  "viewers": "Sledovatelé"
+                },
+                "YouTubeOptions": {
+                  "channelName": "Název kanálu",
+                  "channelUrl": "URL kanálu",
+                  "channelUrlPlaceholder": "Zadejte URL kanálu",
+                  "channelUrlWarning": "Nezapomeňte vrátit platnou URL kanálu",
+                  "display": "Zobrazit",
+                  "selectPlaceholder": "Vyberte něco, co se má zobrazit",
+                  "subscribers": "Odběratelé",
+                  "videos": "Videa",
+                  "views": "Shlédnutí"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "Výběr emoji",
+            "searchEmoji": "Hledej emoji"
+          },
+          "markButtons": {
+            "bold": "tučné",
+            "italic": "kurzíva",
+            "spoiler": "spoiler",
+            "strike": "přeškrtnutí",
+            "underline": "podtržení"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "Zásady přijatelného používání",
+          "noReasonGiven": "Bez udání důvodu",
+          "supportTeam": "Support tým",
+          "termsOfService": "Podmínky služby"
+        }
+      }
     }
   }
 }
