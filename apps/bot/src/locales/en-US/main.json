@@ -115,58 +115,45 @@
         "templateCollection": {
           "server": {
             "categoryName": "\uD83D\uDCCA Server Stats \uD83D\uDCCA",
-            "templates": [
-              {
-                "name": "Online members",
-                "template": "Online: {{COUNTER}}"
-              },
-              {
-                "name": "Members",
-                "template": "Members: {{COUNTER}}"
-              },
-              {
-                "name": "Nitro boosters",
-                "template": "Boosters: {{COUNTER}}"
-              },
-              {
-                "name": "Roles",
-                "template": "Roles: {{COUNTER}}"
-              },
-              {
-                "name": "Channels",
-                "template": "Channels: {{COUNTER}}"
-              }
-            ]
+            "templates": [ {
+              "name": "Online members",
+              "template": "Online: {{COUNTER}}"
+            }, {
+              "name": "Members",
+              "template": "Members: {{COUNTER}}"
+            }, {
+              "name": "Nitro boosters",
+              "template": "Boosters: {{COUNTER}}"
+            }, {
+              "name": "Roles",
+              "template": "Roles: {{COUNTER}}"
+            }, {
+              "name": "Channels",
+              "template": "Channels: {{COUNTER}}"
+            } ]
           },
           "twitch": {
             "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch Stats \uD83D\uDCCA",
-            "templates": [
-              {
-                "name": "Twitch followers",
-                "template": "{{COUNTER}} Followers"
-              },
-              {
-                "name": "Twitch viewers",
-                "template": "Viewers: {{COUNTER}}"
-              }
-            ]
+            "templates": [ {
+              "name": "Twitch followers",
+              "template": "{{COUNTER}} Followers"
+            }, {
+              "name": "Twitch viewers",
+              "template": "Viewers: {{COUNTER}}"
+            } ]
           },
           "youtube": {
             "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube Stats \uD83D\uDCCA",
-            "templates": [
-              {
-                "name": "YouTube subscribers",
-                "template": "{{COUNTER}} Subscribers"
-              },
-              {
-                "name": "YouTube videos",
-                "template": "{{COUNTER}} Videos"
-              },
-              {
-                "name": "YouTube views",
-                "template": "{{COUNTER}} Views"
-              }
-            ]
+            "templates": [ {
+              "name": "YouTube subscribers",
+              "template": "{{COUNTER}} Subscribers"
+            }, {
+              "name": "YouTube videos",
+              "template": "{{COUNTER}} Videos"
+            }, {
+              "name": "YouTube views",
+              "template": "{{COUNTER}} Views"
+            } ]
           }
         }
       }

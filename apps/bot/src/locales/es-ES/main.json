@@ -115,58 +115,45 @@
         "templateCollection": {
           "server": {
             "categoryName": "\uD83D\uDCCA Estadísticas del Servidor \uD83D\uDCCA",
-            "templates": [
-              {
-                "name": "Miembros en línea",
-                "template": "En línea: {{COUNTER}}"
-              },
-              {
-                "name": "Miembros",
-                "template": "Miembros: {{COUNTER}}"
-              },
-              {
-                "name": "Impulsores de Nitro",
-                "template": "Boosters: {{COUNTER}}"
-              },
-              {
-                "name": "Roles",
-                "template": "Roles: {{COUNTER}}"
-              },
-              {
-                "name": "Canales",
-                "template": "Canales: {{COUNTER}}"
-              }
-            ]
+            "templates": [ {
+              "name": "Miembros en línea",
+              "template": "En línea: {{COUNTER}}"
+            }, {
+              "name": "Miembros",
+              "template": "Miembros: {{COUNTER}}"
+            }, {
+              "name": "Impulsores de Nitro",
+              "template": "Boosters: {{COUNTER}}"
+            }, {
+              "name": "Roles",
+              "template": "Roles: {{COUNTER}}"
+            }, {
+              "name": "Canales",
+              "template": "Canales: {{COUNTER}}"
+            } ]
           },
           "twitch": {
             "categoryName": "\uD83D\uDCCA Estadísticas de Twitch de {{COUNTER}} \uD83D\uDCCA",
-            "templates": [
-              {
-                "name": "Seguidores de Twitch",
-                "template": "{{COUNTER}} Seguidores"
-              },
-              {
-                "name": "Espectadores de Twitch",
-                "template": "Espectadores: {{COUNTER}}"
-              }
-            ]
+            "templates": [ {
+              "name": "Seguidores de Twitch",
+              "template": "{{COUNTER}} Seguidores"
+            }, {
+              "name": "Espectadores de Twitch",
+              "template": "Espectadores: {{COUNTER}}"
+            } ]
           },
           "youtube": {
             "categoryName": "\uD83D\uDCCA Estadísticas de YouTube de {{COUNTER}} \uD83D\uDCCA",
-            "templates": [
-              {
-                "name": "Suscriptores de YouTube",
-                "template": "{{COUNTER}} Suscriptores"
-              },
-              {
-                "name": "Videos de YouTube",
-                "template": "{{COUNTER}} Videos"
-              },
-              {
-                "name": "Vistas de YouTube",
-                "template": "{{COUNTER}} Vistas"
-              }
-            ]
+            "templates": [ {
+              "name": "Suscriptores de YouTube",
+              "template": "{{COUNTER}} Suscriptores"
+            }, {
+              "name": "Videos de YouTube",
+              "template": "{{COUNTER}} Videos"
+            }, {
+              "name": "Vistas de YouTube",
+              "template": "{{COUNTER}} Vistas"
+            } ]
           }
         }
       }
