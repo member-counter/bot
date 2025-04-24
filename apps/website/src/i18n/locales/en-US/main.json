@@ -858,7 +858,8 @@
       "affectedServers": "Affected discord servers:",
       "assignedDiscordServers": "Assigned to this child:",
       "child": "Child #{{index}}",
-      "childDiscordServers": "{{count}} Discord servers ({{unavailableCount}} unavailable)",
+      "childDiscordServers": "{{count}} Discord servers {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} unavailable)",
       "childDiscordUsers": "{{count}} Users",
       "discordClientStatus": {
         "Connecting": "Connecting",

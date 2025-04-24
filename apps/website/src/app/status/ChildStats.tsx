@@ -96,7 +96,11 @@ export function ChildStats(stats: ChildStats) {
           <GroupIcon className="mr-1 inline h-4 w-4" />
           {t("pages.status.childDiscordServers", {
             count: stats.guildCount,
-            unavailableCount: stats.unavailableGuildCount,
+            unavailableCount: stats.unavailableGuildCount
+              ? t("pages.status.childDiscordUnavailableServers", {
+                  unavailableCount: stats.unavailableGuildCount,
+                })
+              : "",
           })}
         </div>
         {!!assignedGuilds.length && (
