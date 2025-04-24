@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { useMemo } from "react";
 import { ChannelType } from "discord-api-types/v10";
-import { HelpCircleIcon, LockKeyholeIcon } from "lucide-react";
+import { BookTextIcon, HelpCircleIcon, LockKeyholeIcon } from "lucide-react";
 
 import { cn } from "@mc/ui";
 import { Skeleton } from "@mc/ui/skeleton";
@@ -13,15 +13,18 @@ export function ChannelNavItem({
   type,
   name,
   isSelected,
+  isRulesChannel,
   onClick,
 }: {
   type: ChannelType;
   name: string;
   isSelected: boolean;
+  isRulesChannel: boolean;
   onClick?: () => void;
 }) {
   let Icon: LucideIcon | undefined = ChannelIconMap[type];
   if (type === ChannelType.GuildVoice) Icon = LockKeyholeIcon;
+  if (type === ChannelType.GuildText && isRulesChannel) Icon = BookTextIcon;
   Icon ??= HelpCircleIcon;
 
   const isCategory = type === ChannelType.GuildCategory;

@@ -384,6 +384,7 @@
             "channels": {
               "add": "Add channel",
               "channel": {
+                "isRulesChannel": "Show as rules channel",
                 "name": "Name",
                 "remove": "Remove",
                 "showAsSkeleton": "Show as skeleton",

@@ -150,6 +150,7 @@ export default function ManageDemoServer({ id }: { id: string }) {
                 name: "",
                 type: 0,
                 topic: "",
+                isRulesChannel: false,
                 showAsSkeleton: false,
               }),
             });

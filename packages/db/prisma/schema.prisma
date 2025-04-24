@@ -65,6 +65,7 @@ type DemoChannel {
   type           Int
   topic          String?
   showAsSkeleton Boolean @default(false)
+  isRulesChannel Boolean @default(false)
 }
 
 type DemoLink {

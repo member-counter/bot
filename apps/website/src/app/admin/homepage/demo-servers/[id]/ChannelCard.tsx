@@ -107,6 +107,21 @@ export function ChannelCard({
           />
         )}
       </Label>
+      {ChannelType.GuildText === (channel.type as ChannelType) && (
+        <Checkbox
+          checked={channel.isRulesChannel}
+          onCheckedChange={(state) => {
+            updateChannel(index, {
+              ...channel,
+              isRulesChannel: Boolean(state),
+            });
+          }}
+        >
+          {t(
+            "pages.admin.homePage.demoServers.manage.channels.channel.isRulesChannel",
+          )}
+        </Checkbox>
+      )}
       <Checkbox
         checked={channel.showAsSkeleton}
         onCheckedChange={(state) => {

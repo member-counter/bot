@@ -115,45 +115,58 @@
         "templateCollection": {
           "server": {
             "categoryName": "\uD83D\uDCCA Statistiky serveru \uD83D\uDCCA",
-            "templates": [ {
-              "name": "Online členů",
-              "template": "Online: {{COUNTER}}"
-            }, {
-              "name": "Členů",
-              "template": "Členů: {{COUNTER}}"
-            }, {
-              "name": "Nitro boosteři",
-              "template": "Boosteři: {{COUNTER}}"
-            }, {
-              "name": "Role",
-              "template": "Role: {{COUNTER}}"
-            }, {
-              "name": "Kanály",
-              "template": "Kanály: {{COUNTER}}"
-            } ]
+            "templates": [
+              {
+                "name": "Online členů",
+                "template": "Online: {{COUNTER}}"
+              },
+              {
+                "name": "Členů",
+                "template": "Členů: {{COUNTER}}"
+              },
+              {
+                "name": "Nitro boosteři",
+                "template": "Boosteři: {{COUNTER}}"
+              },
+              {
+                "name": "Role",
+                "template": "Role: {{COUNTER}}"
+              },
+              {
+                "name": "Kanály",
+                "template": "Kanály: {{COUNTER}}"
+              }
+            ]
           },
           "twitch": {
             "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch Statistiky \uD83D\uDCCA",
-            "templates": [ {
-              "name": "Twitch následující",
-              "template": "{{COUNTER}} Následující"
-            }, {
-              "name": "Twitch sledující",
-              "template": "Sledující: {{COUNTER}}"
-            } ]
+            "templates": [
+              {
+                "name": "Twitch následující",
+                "template": "{{COUNTER}} Následující"
+              },
+              {
+                "name": "Twitch sledující",
+                "template": "Sledující: {{COUNTER}}"
+              }
+            ]
           },
           "youtube": {
             "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube Statistiky \uD83D\uDCCA",
-            "templates": [ {
-              "name": "YouTube odběratelé",
-              "template": "{{COUNTER}} Odběratelé"
-            }, {
-              "name": "YouTube videa",
-              "template": "{{COUNTER}} Videa"
-            }, {
-              "name": "YouTube shlédnutí",
-              "template": "{{COUNTER}} Shlédnutí"
-            } ]
+            "templates": [
+              {
+                "name": "YouTube odběratelé",
+                "template": "{{COUNTER}} Odběratelé"
+              },
+              {
+                "name": "YouTube videa",
+                "template": "{{COUNTER}} Videa"
+              },
+              {
+                "name": "YouTube shlédnutí",
+                "template": "{{COUNTER}} Shlédnutí"
+              }
+            ]
           }
         }
       }

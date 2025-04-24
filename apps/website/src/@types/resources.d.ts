@@ -386,6 +386,7 @@ interface Resources {
                 add: "Add channel";
                 channel: {
                   name: "Name";
+                  isRulesChannel: "Show as rules channel";
                   remove: "Remove";
                   showAsSkeleton: "Show as skeleton";
                   topic: "Topic";

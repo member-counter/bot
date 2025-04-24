@@ -384,6 +384,7 @@
             "channels": {
               "add": "Añadir canal",
               "channel": {
+                "isRulesChannel": "Mostrar como canal de reglas",
                 "name": "Nombre",
                 "remove": "Eliminar",
                 "showAsSkeleton": "Mostrar como esqueleto",
@@ -400,6 +401,7 @@
             },
             "description": "Descripción",
             "icon": "URL del icono",
+            "language": "Idioma",
             "links": {
               "add": "Añadir enlace",
               "link": {
@@ -874,6 +876,7 @@
       "assignedDiscordServers": "Asignado a este nodo:",
       "child": "Nodo #{{index}}",
       "childDiscordServers": "{{count}} Servidores de Discord ({{unavailableCount}} no disponibles)",
+      "childDiscordUnavailableServers": "({{unavailableCount}} no disponibles)",
       "childDiscordUsers": "{{count}} Usuarios",
       "discordClientStatus": {
         "Connecting": "Conectando",

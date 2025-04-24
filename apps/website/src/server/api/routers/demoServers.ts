@@ -57,6 +57,7 @@ export const demoServersRouter = createTRPCRouter({
               type: z.number(),
               topic: z.string().nullable(),
               showAsSkeleton: z.boolean(),
+              isRulesChannel: z.boolean(),
             }),
           )
           .optional(),

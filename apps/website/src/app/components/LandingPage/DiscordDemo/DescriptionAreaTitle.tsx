@@ -1,6 +1,7 @@
 import type { DemoServerData } from "@mc/services/demoServers";
 import type { LucideIcon } from "lucide-react";
-import { HelpCircleIcon } from "lucide-react";
+import { ChannelType } from "discord-api-types/v10";
+import { BookTextIcon, HelpCircleIcon, LockKeyholeIcon } from "lucide-react";
 
 import { ChannelIconMap } from "~/app/dashboard/servers/[guildId]/ChannelMaps";
 
@@ -15,8 +16,15 @@ export function DescriptionAreaTitle({
 
   if (!selectedChannel) return null;
 
-  const Icon: LucideIcon =
-    ChannelIconMap[selectedChannel.type] ?? HelpCircleIcon;
+  let Icon: LucideIcon | undefined = ChannelIconMap[selectedChannel.type];
+  if ((selectedChannel.type as ChannelType) === ChannelType.GuildVoice)
+    Icon = LockKeyholeIcon;
+  if (
+    (selectedChannel.type as ChannelType) === ChannelType.GuildText &&
+    selectedChannel.isRulesChannel
+  )
+    Icon = BookTextIcon;
+  Icon ??= HelpCircleIcon;
 
   return (
     <div className="flex h-[48px] w-full flex-shrink-0 flex-row items-center pl-3 pr-1 font-semibold shadow-[0_1px_0_rgba(4,4,5,.2),0_1.5px_0_rgba(6,6,7,.05),0_2px_0_rgba(4,4,5,.05)]">
