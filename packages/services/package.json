@@ -23,7 +23,7 @@
     "@mc/validators": "workspace:*",
     "@sesamecare-oss/redlock": "^1.2.1",
     "@trpc/client": "^11.1.0",
-    "@trpc/server": "^11.1.0",
+    "@trpc/server": "^11.1.1",
     "discord.js": "^14.15.2",
     "gamedig": "^5.2.0",
     "ioredis": "^5.4.1",
