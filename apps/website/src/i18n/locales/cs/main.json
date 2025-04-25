@@ -384,6 +384,7 @@
             "channels": {
               "add": "Přidat kanál",
               "channel": {
+                "isRulesChannel": "Zobrazit jako kanál s pravidly",
                 "name": "Název",
                 "remove": "Smazat",
                 "showAsSkeleton": "Zobrazit jako kostru",
@@ -400,6 +401,7 @@
             },
             "description": "Popis",
             "icon": "Ikona URL",
+            "language": "Jazyk",
             "links": {
               "add": "Přidat link",
               "link": {
@@ -744,9 +746,160 @@
           "acceptableUsePolicy": "Zásady přijatelného používání",
           "noReasonGiven": "Bez udání důvodu",
           "supportTeam": "Support tým",
-          "termsOfService": "Podmínky služby"
+          "termsOfService": "Podmínky služby",
+          "text": "Tento server byl zablokován za porušení našich <LinkTerms>Podmínek služby </LinkTerms> nebo <LinkPolicy>Pravidla přijatelného použití </LinkPolicy>.<br />Důvod: {{reason}}<br />Pokud si myslíte, že je to chyba, prosím kontaktujte náš <SupportLink>tým podpory</SupportLink>."
+        },
+        "channels": {
+          "save": "Uložit",
+          "saved": "Uloženo",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "Poslední aktualizace: {{lastTemplateUpdateDate}}",
+              "template": "Šablona"
+            },
+            "EnableTemplate": {
+              "description": "Je-li tato funkce povolena, počítadlo členů automaticky aktualizuje {{templateTarget}} tohoto kanálu tak, aby zobrazovalo zpracovanou šablonu.",
+              "enableTemplate": "Povolit šablonu",
+              "nameTarget": "jméno",
+              "topicTarget": "téma"
+            },
+            "TemplateError": {
+              "errorDescription": "Při posledním zpracování šablony došlo k chybě. Podrobnosti jsou uvedeny níže.",
+              "errorTitle": "Při posledním zpracování šablony došlo k chybě."
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "Nemáte oprávnění spravovat tento server.\nPožádejte správce na adrese {{guildName}}, aby vám udělil oprávnění Správce nebo Spravovat cech.",
+          "title": "Odmítnutí Přístupu"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "Zavřít",
+          "message": "Vypadá to, že bot počítadla členů není na tomto serveru. Chtěli byste ho <LinkURL>přidat</LinkURL>?"
+        },
+        "inviteBotPage": {
+          "addToServer": "Přidat do {{serverName}}",
+          "copyLink": "Kopírovat odkaz na pozvánku",
+          "linkCopied": "Odkaz byl zkopírován do schránky.",
+          "noPermission": "Nemáte dostatečná oprávnění k přidání bota. Požádejte prosím správce nebo někoho s oprávněním Manage Server o přidání tohoto bota.",
+          "subtitle": "Přidejte Member Counter do {{serverName}} a využívejte čítače v reálném čase.",
+          "title": "Nastavíme bota!",
+          "useOrShareLink": "Pro přidání bota použijte nebo sdílejte tento odkaz."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "Blokovat server",
+            "blockDialogDescription": "Uvedený důvod se zobrazí správcům serveru.",
+            "blockDialogTitle": "Opravdu chcete tento server zablokovat?",
+            "closeButton": "Zavřít",
+            "reasonLabel": "Důvod",
+            "reasonPlaceholder": "Uveďte prosím důvod",
+            "unblockButton": "Odblokovat server",
+            "unblockDialogDescription": "Tento server byl zablokován z následujícího důvodu: {{reason}}",
+            "unblockDialogTitle": "Opravdu chcete tento server odblokovat?"
+          },
+          "reset": {
+            "closeButton": "Zavřít",
+            "dialogDescription": "Tuto akci nelze vzít zpět. Všechna nastavení budou obnovena na výchozí hodnoty.",
+            "dialogTitle": "Jste si naprosto jisti?",
+            "resetButton": "Obnovení nastavení"
+          },
+          "save": "Uložit",
+          "saved": "Uloženo",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Vlastní číslice",
+              "customDigitsDescription": "V čítačích, které vracejí číslo, nahradí Member Counter každou číslici číslicemi, které zadáte. To je užitečné, pokud chcete zobrazit vlastní emotikony nebo něco jiného, například „písma ve stylu unicode“.",
+              "customizationRecommendation": "Nedoporučujeme přizpůsobovat žádnou číslici, pokud si nejste jisti, že nikdo, kdo používá čtečku obrazovky, nebude mít k počítadlu přístup.",
+              "screenReaderWarning": "Mějte na paměti, že uživatelé používající čtečku obrazovky (převod textu na řeč) nemusí být schopni porozumět přizpůsobeným číslicím a <demoLink>mohou slyšet něco nesrozumitelného</demoLink>. Čtečky obrazovky často používají lidé se zrakovým postižením."
+            },
+            "Locale": {
+              "description": "Změna tohoto parametru ovlivní způsob zobrazení některých čítačů.",
+              "locale": "Locale",
+              "numberExample": "439212 se zobrazí jako {{number}}.",
+              "searchPlaceholder": "Hledat locale...",
+              "timeExample": "15:30h (nebo 15:30) se zobrazí jako {{time}}."
+            },
+            "UseCompactNotation": {
+              "description": "Čítače, které vracejí čísla, se zobrazí kompaktněji.",
+              "example1": "12300 se zobrazí jako {{number}}",
+              "example2": "439212 se zobrazí jako {{number}}",
+              "example3": "1500000 se zobrazí jako {{number}}",
+              "label": "Používání kompaktního zápisu čísel"
+            }
+          },
+          "title": "Nastavení Serveru"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "Získejte ze svých počítadel maximum a přizpůsobte je svým potřebám.",
+            "label": "Jako pro",
+            "title": "Pokročilé čítače"
+          },
+          "createFromScratch": {
+            "description": "Naučte se vytvořit první vlastní počítadlo během několika minut.",
+            "label": "Buďte unikátní!",
+            "title": "Vytvořit od nuly"
+          },
+          "queryHistoricalStatistics": {
+            "description": "Podívejte se, jak se vaše počítadla a další běžné statistiky vyvíjely v čase.",
+            "label": "Již brzy™",
+            "title": "Dotazování na historické statistiky"
+          },
+          "quickSetup": {
+            "description": "Nejběžnější počítadla vytvoříte rychle na několik kliknutí. Není potřeba žádná představivost ani mozek!",
+            "label": "Bez starostí!",
+            "title": "Rychlé nastavení"
+          },
+          "subTitle": "Zde je několik návrhů:",
+          "title": "Vítej zpět!"
         }
       }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "Došlo k neočekávané chybě.",
+        "NotAuthenticated": "Nejste přihlášeni.",
+        "NotAuthorized": "Nejste oprávněni k přístupu na tuto stránku.",
+        "NotFound": "Hledanou stránku se nepodařilo najít."
+      },
+      "nav": {
+        "backBtn": "Vrátit se zpět",
+        "homeBtn": "Jdi domů",
+        "supportBtn": "Získejte podporu",
+        "tryAgainBtn": "Zkuste znovu"
+      }
+    },
+    "status": {
+      "affectedServers": "Postižené servery Discord:",
+      "assignedDiscordServers": "Přiřazené tomuto dítku:",
+      "child": "Dítě #{{index}}",
+      "childDiscordServers": "{{count}} Discord servery {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} nedostupné)",
+      "childDiscordUsers": "{{count}} Uživatelé",
+      "discordClientStatus": {
+        "Connecting": "Pripojuji",
+        "Disconnected": "Odpojeno",
+        "Identifying": "Identifikuji",
+        "Idle": "Nečinný",
+        "Nearly": "Nečinný",
+        "Ready": "Připraven",
+        "Reconnecting": "Připojuji znovu",
+        "Resuming": "Obnovuji",
+        "WaitingForGuilds": "Čekání na guildy"
+      },
+      "memoryUsage": "{{usage}} ({{peak}} špička)",
+      "memoryUsageTooltip": "Využití paměti",
+      "partialOutage": "Došlo k částečnému výpadku",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} Jádra\nZatížení {{load}}",
+        "cpuLabel": "CPU",
+        "hostname": "Jméno",
+        "memoryInfo": "{{memory}}\n{{usage}}% Využití",
+        "memoryLabel": "Paměť",
+        "title": "Serverové informace"
+      },
+      "statusUnavailable": "Status nedostupný"
     }
   }
 }
