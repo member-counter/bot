@@ -1,1 +1,38 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "Канал с объявлениями",
+      "category": "Категория",
+      "forumChannel": "Форум",
+      "mediaChannel": "Медиа канал",
+      "stageChannel": "Трибуна",
+      "textChannel": "Текстовый канал",
+      "voiceChannel": "Голосовой канал"
+    },
+    "knownError": "Ошибка",
+    "knownErrors": {
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "У бота недостаточно прав (intents) чтобы использовать этот счетчик.",
+      "BOT_IS_NOT_PREMIUM": "Бот не является премиум версией и не имеет некоторого функционала, необходимого для этого счетчика.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Формат счетчика не может быть распознан.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "Неверный счетчик.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Результат вывода для имени канала имеет длину менее двух символов.",
+      "EVALUATION_TIMEOUT": "Вычисление не завершилось в отведенное время (таймаут).",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Не удалось сгенерировать финальную строку по итогу вычисления.",
+      "GAME_MISSING_ADDRESS": "Игровому счетчику необходим адрес (айпи) сервера.",
+      "GAME_MISSING_GAME_ID": "Необходимо указать айди игры для игрового счетчика.",
+      "GAME_MISSING_PORT": "Игровому счетчику необходим порт сервера.",
+      "HTTP_DATA_PATH_MANDATORY": "Для HTTP-запросов с типом содержимого application/json необходимо указать путь к данным (data path).",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Тип содержимого HTTP-ответа недопустим (должен быть text/plain или application/json). ",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "Код состояния HTTP-ответа недопустим (должен быть 200).",
+      "HTTP_MISSING_URL": "HTTP-счетчику необходим URL, который отсутствует.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "Данные о кол-ве участников недоступны на данный момент.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "У бота недостаточно прав для редактирования канала.",
+      "REDDIT_MISSING_SUBREDDIT": "Необходимо указать subreddit для Reddit счетчика.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Не удалось найти указанный Twitch канал.",
+      "TWITCH_MISSING_USERNAME": "Необходимо указать юзернейм канала для Twitch счетчика.",
+      "UNKNOWN": "Произошла неизвестная ошибка.",
+      "UNKNOWN_DATA_SOURCE": "Предоставленный счетчик неизвестен или не может быть распознан.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Тип значения, возвращаемого при вычислении, неизвестен."
+    }
+  }
+}
