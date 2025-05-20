@@ -1,7 +1,9 @@
+import { inspect } from "util";
 import type { Redis } from "ioredis";
 import { createTRPCClient, loggerLink } from "@trpc/client";
 import SuperJSON from "superjson";
 
+import logger from "@mc/logger";
 import { redisLink } from "@mc/trpc-redis";
 
 import type { AppRouter } from "./trcp/root";
@@ -20,8 +22,18 @@ export const createBotAPIConsumer = async ({
     links: [
       loggerLink({
         enabled: (op) =>
-          env.NODE_ENV === "development" ||
+          env.LOG_LEVEL === "debug" ||
           (op.direction === "down" && op.result instanceof Error),
+
+        console: {
+          log: (...args) => {
+            logger.child({ component: "tRPC" }).debug(inspect(args));
+          },
+          error: (...args) => {
+            logger.child({ component: "tRPC" }).error(inspect(args));
+          },
+        },
+        colorMode: "none",
       }),
       await redisLink({
         transformer: SuperJSON,

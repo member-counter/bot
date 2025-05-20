@@ -3,6 +3,8 @@ import { Locale } from "discord.js";
 import { createInstance } from "i18next";
 
 import type Resources from "./@types/resources";
+import mainCS from "./locales/cs/main.json";
+import mainDE from "./locales/de/main.json";
 import mainUS from "./locales/en-US/main.json";
 import mainES from "./locales/es-ES/main.json";
 import mainRU from "./locales/ru/main.json";
@@ -13,6 +15,8 @@ export const AVAILABLE_LANGUAGES: Locale[] = [
   Locale.SpanishES,
   Locale.SpanishLATAM,
   Locale.Russian,
+  Locale.Czech,
+  Locale.German,
 ] as const;
 export const DEFAULT_LANGUAGE: Locale = Locale.EnglishUS;
 export const NAMESPACES: (keyof Resources)[] = ["main"];
@@ -39,6 +43,12 @@ export async function initI18n({ locale }: InitI18NOptions) {
       },
       [Locale.Russian]: {
         main: mainRU,
+      },
+      [Locale.Czech]: {
+        main: mainCS,
+      },
+      [Locale.German]: {
+        main: mainDE,
       },
     },
     interpolation: {

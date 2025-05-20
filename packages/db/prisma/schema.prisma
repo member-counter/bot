@@ -55,6 +55,7 @@ model DemoServer {
   description String
   icon        String?
   priority    Int           @default(0)
+  language    String        @default("en-US")
   channels    DemoChannel[]
   links       DemoLink[]
 }
@@ -64,6 +65,7 @@ type DemoChannel {
   type           Int
   topic          String?
   showAsSkeleton Boolean @default(false)
+  isRulesChannel Boolean @default(false)
 }
 
 type DemoLink {

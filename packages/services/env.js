@@ -6,6 +6,7 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    LOG_LEVEL: z.enum(["error", "warn", "info", "debug"]).default("info"),
   },
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
@@ -47,6 +48,7 @@ export const env = createEnv({
     YOUTUBE_API_KEY: process.env.YOUTUBE_API_KEY,
     BDE_CALL_TIMEOUT: process.env.BDE_CALL_TIMEOUT,
     OPENEXCHANGERATESORG_KEY: process.env.OPENEXCHANGERATESORG_KEY,
+    LOG_LEVEL: process.env.LOG_LEVEL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

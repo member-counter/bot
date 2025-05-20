@@ -54,7 +54,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
       links: [
         loggerLink({
           enabled: (op) =>
-            env.NODE_ENV === "development" ||
+            env.LOG_LEVEL === "debug" ||
             (op.direction === "down" && op.result instanceof Error),
         }),
         splitLink({

@@ -1,0 +1,208 @@
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Es ist etwas schiefgelaufen, bitte probiere es später erneut.\n\nError ID: {{ERROR_ID}}",
+        "title": "FEHLER!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Zum Dashbord",
+        "definition": {
+          "slash": {
+            "description": "Erhalte den Link zum Konfigurieren des Bots auf der Website.",
+            "name": "konfigurieren"
+          }
+        },
+        "reply": "Klicke unten, um den Bot auf dem Dashboard zu konfigurieren.\nDu kannst auch einige Basis Zähler mit dem Befehl {{SETUP_COMMAND}} einrichten, ohne Discord zu verlassen."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Liste von nützlichen Links und anderen Informationen.",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[Füge mich zu deinem Server]({{BOT_INVITE_URL}})\n[Website]({{WEBSITE_URL}})\n[Support-Server]({{BOT_SUPPORT_URL}})\n[GitHub-Repository]({{BOT_REPO_URL}})\n[Bot Version: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Zum Server hinzufügen",
+        "addToServerAgain": "Erneut zu diesem Server hinzufügen",
+        "definition": {
+          "slash": {
+            "description": "Bietet einen Einladungslink an zum Hinzufügen des Bots.",
+            "name": "einladung"
+          }
+        },
+        "description": "Dein Einladungslink ist fertig:\n{{INVITE_URL}}",
+        "joinSupportServer": "Support-Server beitreten"
+      },
+      "profile": {
+        "badges": "Abzeichen",
+        "definition": {
+          "context": {
+            "name": "Profil"
+          },
+          "slash": {
+            "description": "Zeigt bekannte Informationen zwischen dir und diesem Bot.",
+            "name": "profil",
+            "options": {
+              "user": {
+                "description": "Der Nutzer, dessen Profil du anzeigen möchtest.",
+                "name": "nutzer"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Daten löschen",
+        "deleteProfilePrompt": {
+          "cancelButton": "Abbrechen",
+          "confirmButton": "Ja",
+          "description": "Diese Aktion kann nicht rückgängig gemacht werden.",
+          "removeDataSuccess": "Die Daten wurden erfolgreich entfernt.",
+          "title": "Bist du sicher, dass du die Daten löschen willst?"
+        },
+        "moreOptionsButton": "Mehr Optionen",
+        "userNotFound": "Nutzer nicht gefunden"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Einrichten von Basis Zählern.",
+            "name": "einrichten",
+            "subcommands": {
+              "server": {
+                "description": "Einrichten von Server-bezogenen Zählern.",
+                "name": "server"
+              },
+              "twitch": {
+                "description": "Einrichten von Twitch-bezogenen Zählern.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "Den Kanalnamen.",
+                    "name": "nutzername"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "Einrichten von YouTube-bezogenen Zählern.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "Die Kanal-URL.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Erstellung abgeschlossen.",
+          "configureSuggestion": "Du solltest den Befehl {{CONFIGURE_COMMAND}} für mehr individuelle Einrichtung abchecken.",
+          "createdCategory": "Kategorie erstellt.",
+          "createdChannel": "{{ICON}}{{NAME}} erstellt.",
+          "creating": "Zähler erstellen...",
+          "creatingCategory": "{{ICON}} Kategorie erstellen.",
+          "creatingChannel": "{{ICON}} Zähler {{NAME}} erstellen.",
+          "failedCategory": "{{ICON}} Kategorie fehlgeschlagen.",
+          "failedChannel": "{{ICON}}{{NAME}} fehlgeschlagen."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Server Statistiken \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Mitglieder online",
+                "template": "Online: {{COUNTER}}"
+              },
+              {
+                "name": "Mitglieder",
+                "template": "Mitglieder: {{COUNTER}}"
+              },
+              {
+                "name": "Nitro-Booster",
+                "template": "Booster: {{COUNTER}}"
+              },
+              {
+                "name": "Rollen",
+                "template": "Rollen: {{COUNTER}}"
+              },
+              {
+                "name": "Kanäle",
+                "template": "Kanäle: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch Statistiken \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Twitch follower",
+                "template": "{{COUNTER}} Follower"
+              },
+              {
+                "name": "Twitch Zuschauer",
+                "template": "Zuschauer: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube Statistiken \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Youtube Abonnenten",
+                "template": "{{COUNTER}} Abonnenten"
+              },
+              {
+                "name": "YouTube Videos",
+                "template": "{{COUNTER}} Videos"
+              },
+              {
+                "name": "YouTube Ansichten",
+                "template": "{{COUNTER}} Ansichten"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "FEHLER!"
+    }
+  },
+  "knownErrors": {
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Der Bot hat nicht genügend priviligierte Intents, um diesen Zähler zu benutzen.",
+    "BOT_IS_NOT_PREMIUM": "Der Bot ist keine Premium Version und bestimmte Funktionen werden für diesen Zähler benötigt.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Dieser Zähler ist in einem unerkannten Format.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "Der Zähler ist ungültig.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Das Ergebnis für den Kanalnamen ist kleiner als 2 Zeichen lang.",
+    "EVALUATION_TIMEOUT": "Die Erhebung hat zu lang gedauert und ist abgelaufen.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "Aus der Auswertung konnte keine endgültige Zeichenfolge generiert werden.",
+    "GAME_MISSING_ADDRESS": "Der Spiel-Zähler benötigt eine Server-Adresse.",
+    "GAME_MISSING_GAME_ID": "Eine Spiel-ID muss für den Spiel-Zähler angegeben werden.",
+    "GAME_MISSING_PORT": "Der Spiel-Zähler erfordert einen Port für den Server.",
+    "HTTP_DATA_PATH_MANDATORY": "Ein Daten-Pfad muss für die HTTP-Anfragen angegeben werden als application/json Inhalt.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Der Typ des Inhalts von der HTTP-Antwort ist ungültig (nicht text/plain oder application/json).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "Der Status Code der HTTP-Antwort ist ungültig (nicht 200).",
+    "HTTP_MISSING_URL": "Der HTTP-Zähler erfordert eine URL, welche fehlt.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "Der Mitglied-Zähler ist derzeit nicht verfügbar.",
+    "MEMERATOR_MISSING_USERNAME": "Der Memerator-Zähler erfordert einen Nutzernamen, welcher fehlt.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Der Bot hat nicht die ausreichenden Berechtigungen zum Bearbeiten des Kanals.",
+    "REDDIT_MISSING_SUBREDDIT": "Ein Sub-Reddit muss angegeben werden für den Reddit-Zähler.",
+    "TWITCH_CHANNEL_NOT_FOUND": "Der angegebene Twitch-Kanal kann nicht gefunden werden.",
+    "TWITCH_MISSING_USERNAME": "Der Twitch-Zähler erfordert einen Nutzernamen, der gesetzt ist.",
+    "UNKNOWN": "Ein unerwarteter Fehler ist aufgetreten.",
+    "UNKNOWN_DATA_SOURCE": "Der angegebene Zähler ist unbekannt oder nicht anerkannt.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "Der Typ des ausgegebenen Wertes von der Auswertung ist unbekannt.",
+    "USER_NOT_FOUND": "Nutzer nicht gefunden.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "Die angegebene YouTube-Kanal URL ist ungültig.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "Der YouTube-Zähler erfordert eine Kanal-URL, die gesetzt ist."
+  }
+}

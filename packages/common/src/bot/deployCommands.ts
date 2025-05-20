@@ -46,25 +46,18 @@ export async function deployCommands({
 
   logger.info("deployCommands: Localizing application commands.");
 
-  const allDefinitions = commands.map(
-    ({ slashDefinition, contextDefinition }) => {
-      return {
-        slash: slashDefinition?.toJSON(),
-        context: contextDefinition?.toJSON(),
-      };
-    },
-  );
+  const allDefinitions = commands
+    .flatMap(({ slashDefinition, contextDefinition }) => {
+      return [slashDefinition?.toJSON(), contextDefinition?.toJSON()];
+    })
+    .filter(Boolean);
 
   allDefinitions.forEach((defs) => {
     i18nInstances.forEach((i18nInstance) => {
-      if (defs.slash) localizeCommand(i18nInstance, defs.slash, true);
-
-      if (defs.context) localizeCommand(i18nInstance, defs.context, true);
+      localizeCommand(i18nInstance, defs, true);
     });
 
-    if (defs.slash) localizeCommand(i18nDefault, defs.slash);
-
-    if (defs.context) localizeCommand(i18nDefault, defs.context);
+    localizeCommand(i18nDefault, defs);
   });
 
   logger.info("deployCommands: Reloading application commands...");
@@ -74,12 +67,8 @@ export async function deployCommands({
     route = Routes.applicationGuildCommands(clientId, deployCommands);
   }
 
-  const flattedDefs = allDefinitions
-    .flatMap((defs) => Object.values(defs))
-    .filter(Boolean);
-
   await discordRest.put(route, {
-    body: flattedDefs,
+    body: allDefinitions,
   });
 
   logger.info("deployCommands: Successfully reloaded application commands.");
