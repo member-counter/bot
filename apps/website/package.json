@@ -17,8 +17,10 @@
     "typecheck": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --",
     "generate-i18next-res": "i18next-resources-for-ts interface -i ./src/i18n/locales/en-US -o ./src/@types/resources.d.ts",
+    "postgenerate-i18next-res": "pnpm run format --write ./src/@types/resources.d.ts ./src/i18n/locales/**/*.json",
     "tolgee:push": "pnpm with-env tolgee push",
-    "tolgee:pull": "pnpm with-env tolgee pull"
+    "tolgee:pull": "pnpm with-env tolgee pull",
+    "posttolgee:pull": "pnpm run generate-i18next-res"
   },
   "dependencies": {
     "@discordjs/rest": "^2.3.0",
