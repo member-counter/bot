@@ -666,7 +666,6 @@
                     "label": "Filtrar por estado",
                     "offline": "Desconectado",
                     "online": "En línea",
-                    "onlineNotice": "Esto también incluirá Ausente y No Molestar si no estás usando un bot personalizado",
                     "placeholder": "Selecciona un estado"
                   },
                   "FilterPlayingGame": {
