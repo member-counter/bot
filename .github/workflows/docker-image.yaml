@@ -63,7 +63,7 @@ jobs:
             -w /workspace \
             ghcr.io/member-counter/pnpm-store-cache:latest \
             sh -c "
-              pnpm install --frozen-lockfile --prefer-offline &&
+              pnpm install --frozen-lockfile --offline &&
               pnpm format
             "
 
@@ -90,7 +90,7 @@ jobs:
             -w /workspace \
             ghcr.io/member-counter/pnpm-store-cache:latest \
             sh -c "
-              pnpm install --frozen-lockfile --prefer-offline &&
+              pnpm install --frozen-lockfile --offline &&
               pnpm lint
             "
 
@@ -117,7 +117,7 @@ jobs:
             -w /workspace \
             ghcr.io/member-counter/pnpm-store-cache:latest \
             sh -c "
-              pnpm install --frozen-lockfile --prefer-offline &&
+              pnpm install --frozen-lockfile --offline &&
               pnpm typecheck
             "
 
@@ -144,7 +144,7 @@ jobs:
             -w /workspace \
             ghcr.io/member-counter/pnpm-store-cache:latest \
             sh -c "
-              pnpm install --frozen-lockfile --prefer-offline &&
+              pnpm install --frozen-lockfile --offline &&
               pnpm lint:ws
             "
 
