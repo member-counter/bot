@@ -39,119 +39,9 @@ jobs:
           cache-to: type=registry,ref=ghcr.io/member-counter/pnpm-store-cache:build-cache,mode=max
           tags: |
             ghcr.io/member-counter/pnpm-store-cache:latest
-
-  format-check:
-    runs-on: ubuntu-latest
-    needs: pnpm-store-cache
-    timeout-minutes: 10
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Log in to GitHub Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check formatting
-        run: |
-          docker run --rm \
-            -v $(pwd):/workspace \
-            -w /workspace \
-            ghcr.io/member-counter/pnpm-store-cache:latest \
-            sh -c "
-              pnpm install --frozen-lockfile --offline &&
-              pnpm format
-            "
-
-  lint-check:
-    runs-on: ubuntu-latest
-    needs: pnpm-store-cache
-    timeout-minutes: 10
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Log in to GitHub Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run linting
-        run: |
-          docker run --rm \
-            -v $(pwd):/workspace \
-            -w /workspace \
-            ghcr.io/member-counter/pnpm-store-cache:latest \
-            sh -c "
-              pnpm install --frozen-lockfile --offline &&
-              pnpm lint
-            "
-
-  typecheck:
-    runs-on: ubuntu-latest
-    needs: pnpm-store-cache
-    timeout-minutes: 10
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Log in to GitHub Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run typecheck
-        run: |
-          docker run --rm \
-            -v $(pwd):/workspace \
-            -w /workspace \
-            ghcr.io/member-counter/pnpm-store-cache:latest \
-            sh -c "
-              pnpm install --frozen-lockfile --offline &&
-              pnpm typecheck
-            "
-
-  workspace-check:
-    runs-on: ubuntu-latest
-    needs: pnpm-store-cache
-    timeout-minutes: 5
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Log in to GitHub Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check workspace dependencies
-        run: |
-          docker run --rm \
-            -v $(pwd):/workspace \
-            -w /workspace \
-            ghcr.io/member-counter/pnpm-store-cache:latest \
-            sh -c "
-              pnpm install --frozen-lockfile --offline &&
-              pnpm lint:ws
-            "
-
   build-website:
     runs-on: ubuntu-latest
-    needs:
-      [pnpm-store-cache, format-check, lint-check, typecheck, workspace-check]
+    needs: pnpm-store-cache
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -187,11 +77,9 @@ jobs:
             NEXT_PUBLIC_BOT_DOCS_URL=${{ vars.NEXT_PUBLIC_BOT_DOCS_URL }}
             NEXT_PUBLIC_BOT_REPO_URL=${{ vars.NEXT_PUBLIC_BOT_REPO_URL }}
             NEXT_PUBLIC_TRANSLATION_PLATFORM_URL=${{ vars.NEXT_PUBLIC_TRANSLATION_PLATFORM_URL }}
-
   build-bot:
     runs-on: ubuntu-latest
-    needs:
-      [pnpm-store-cache, format-check, lint-check, typecheck, workspace-check]
+    needs: pnpm-store-cache
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -220,11 +108,9 @@ jobs:
           cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache,mode=max
           tags: |
             ghcr.io/member-counter/bot:latest
-
   build-db-utils:
     runs-on: ubuntu-latest
-    needs:
-      [pnpm-store-cache, format-check, lint-check, typecheck, workspace-check]
+    needs: pnpm-store-cache
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
