@@ -29,7 +29,7 @@ interface Resources {
         MEMBER_COUNT_NOT_AVAILABLE: "The member counts are not available at this moment.";
         MEMERATOR_MISSING_USERNAME: "The Memerator counter requires a username, which is missing.";
         NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL: "The bot does not have sufficient permissions to edit the channel.";
-        REDDIT_MISSING_SUBREDDIT: "A subreddit must be provided for the Reddit coutner.";
+        REDDIT_MISSING_SUBREDDIT: "A subreddit must be provided for the Reddit counter.";
         TWITCH_CHANNEL_NOT_FOUND: "The specified Twitch channel could not be found.";
         TWITCH_MISSING_USERNAME: "The Twitch counter requires a username to be set.";
         UNKNOWN: "An unknown error occurred.";
@@ -385,8 +385,8 @@ interface Resources {
               channels: {
                 add: "Add channel";
                 channel: {
-                  name: "Name";
                   isRulesChannel: "Show as rules channel";
+                  name: "Name";
                   remove: "Remove";
                   showAsSkeleton: "Show as skeleton";
                   topic: "Topic";
