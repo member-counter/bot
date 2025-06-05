@@ -192,6 +192,7 @@ interface Resources {
         description: "Count members, you can also filter them by their online status, specific roles and more.";
         display: {
           accountStatus: {
+            any: " ";
             dnd: "DND";
             idle: "idle";
             offline: "offline";
