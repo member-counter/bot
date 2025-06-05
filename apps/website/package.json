@@ -6,7 +6,7 @@
   "scripts": {
     "make:supported-emojis": "tsx ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/makeSupportedEmojis.ts && prettier --write ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/supportedEmojis.ts",
     "make:twemoji-map": "tsx ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/makeTwemojiMap.ts",
-    "prebuild": "pnpm run generate-i18next-res && turbo run make:twemoji-map",
+    "prebuild": "turbo run make:twemoji-map",
     "build": "pnpm with-env next build --experimental-build-mode compile",
     "clean": "git clean -xdf .next .turbo node_modules",
     "predev": "pnpm run prebuild",

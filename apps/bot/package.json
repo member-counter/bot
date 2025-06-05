@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "clean": "git clean -xdf .next .turbo node_modules",
-    "prebuild": "pnpm run generate-i18next-res",
     "build": "tsup-node",
     "dev": "pnpm with-env pnpm build --watch=. --watch=../../packages --ignore-watch=../../packages/*/node_modules --onSuccess \"pnpm start\"",
     "format": "prettier --check . --ignore-path ../../.gitignore",
