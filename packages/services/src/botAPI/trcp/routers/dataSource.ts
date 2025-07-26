@@ -1,10 +1,10 @@
 import { ChannelType } from "discord.js";
 import { z } from "zod";
 
-import { advertiseEvaluatorPriorityKey } from "@mc/common/redis/keys";
 import DataSourceService from "@mc/services/DataSource/index";
 import { GuildSettingsService } from "@mc/services/guildSettings";
 
+import { checkPriority } from "../../checkPriority";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const dataSourceRouter = createTRPCRouter({
@@ -17,7 +17,7 @@ export const dataSourceRouter = createTRPCRouter({
       }),
     )
     .query(async ({ ctx, input }) => {
-      const { botClient, redisClient } = ctx;
+      const { botClient } = ctx;
       const guild = botClient.guilds.cache.get(input.guildId);
 
       if (!guild) {
@@ -25,13 +25,9 @@ export const dataSourceRouter = createTRPCRouter({
         return;
       }
 
-      const handledPriority = Number(
-        await redisClient.get(advertiseEvaluatorPriorityKey(guild.id)),
-      );
+      const hasPriority = await checkPriority(guild, ctx);
 
-      if (
-        handledPriority > botClient.botInstanceOptions.dataSourceComputePriority
-      ) {
+      if (!hasPriority) {
         await ctx.dropRequest();
         return;
       }
