@@ -763,6 +763,16 @@
               "nameTarget": "nombre",
               "topicTarget": "tema"
             },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Comprobar de nuevo",
+              "description": "Por favor, verifica que el bot tiene los siguientes permisos en este canal:",
+              "permissions": {
+                "connect": "Conectar",
+                "manageChannel": "Gestionar canal",
+                "viewChannel": "Ver canal"
+              },
+              "title": "El bot no tiene permiso para editar este canal"
+            },
             "TemplateError": {
               "errorDescription": "Ocurrió un error durante el último procesamiento de la plantilla. Los detalles se muestran a continuación.",
               "errorTitle": "La plantilla tuvo un error la última vez que se procesó"

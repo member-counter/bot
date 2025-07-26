@@ -765,6 +765,16 @@ interface Resources {
                 nameTarget: "name";
                 topicTarget: "topic";
               };
+              MissingPermissionsWarning: {
+                checkAgainBtn: "Check again";
+                description: "Please verify that the bot has the following permissions in this channel:";
+                permissions: {
+                  connect: "Connect";
+                  manageChannel: "Manage Channel";
+                  viewChannel: "View Channel";
+                };
+                title: "The bot does not have permission to edit this channel.";
+              };
               TemplateError: {
                 errorDescription: "An error occurred during the last template processing. Details are shown below.";
                 errorTitle: "The template had an error when it was last processed";
