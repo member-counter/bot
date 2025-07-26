@@ -53,7 +53,7 @@ export const inviteCommand = new Command({
         new ButtonBuilder({
           style: ButtonStyle.Link,
           url: generateInviteLink({
-            clientId: env.MAIN_DISCORD_CLIENT_ID,
+            clientId: env.DISCORD_CLIENT_ID,
             permissions: botPermissions,
             selectedGuild: command.guildId,
           }),
