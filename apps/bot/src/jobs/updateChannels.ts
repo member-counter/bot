@@ -43,7 +43,15 @@ async function updateGuildChannel(
 
   if (!botHasPermsToEdit(channel)) {
     logger.debug(`Bot doesn't have permissions to edit channel`);
-    return;
+    const error = new KnownError("NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL");
+
+    GuildSettingsService.channels.logs
+      .set(channel.id, {
+        LastTemplateUpdateDate: new Date(),
+        LastTemplateComputeError: error.message,
+      })
+      .catch(logger.error);
+    throw error;
   }
 
   logger.debug(`Creating DataSourceService for channel`);
