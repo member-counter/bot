@@ -25,7 +25,7 @@
           }
         },
         "embedReply": {
-          "description": "[Přidejte mě na svůj server]({{BOT_INVITE_URL}})\n[Webové stránky]({{WEBSITE_URL}})\n[Support server]({{BOT_SUPPORT_URL}})\n[Úložiště GitHub]({{BOT_REPO_URL}})\n[Verze bota: {{VERSION}}]({{VERSION_URL}})"
+          "description": "[Přidejte mě na svůj server]({{BOT_INVITE_URL}})\n[Webové stránky]({{OFFICIAL_WEBSITE_URL}})\n[Support server]({{BOT_SUPPORT_URL}})\n[Úložiště GitHub]({{BOT_REPO_URL}})\n[Verze bota: {{VERSION}}]({{VERSION_URL}})"
         }
       },
       "invite": {

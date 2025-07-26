@@ -25,7 +25,7 @@
           }
         },
         "embedReply": {
-          "description": "[Agrégame a tu servidor]({{BOT_INVITE_URL}})\n[Sitio web]({{WEBSITE_URL}})\n[Servidor de soporte]({{BOT_SUPPORT_URL}})\n[Repositorio GitHub]({{BOT_REPO_URL}})\n[Versión del bot: {{VERSION}}]({{VERSION_URL}})"
+          "description": "[Agrégame a tu servidor]({{BOT_INVITE_URL}})\n[Sitio web]({{OFFICIAL_WEBSITE_URL}})\n[Servidor de soporte]({{BOT_SUPPORT_URL}})\n[Repositorio GitHub]({{BOT_REPO_URL}})\n[Versión del bot: {{VERSION}}]({{VERSION_URL}})"
         }
       },
       "invite": {

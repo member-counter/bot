@@ -5,6 +5,7 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "production", "test"]),
     WEBSITE_URL: z.string(),
+    OFFICIAL_WEBSITE_URL: z.string().default("https://membercounter.app"),
     NEXT_PUBLIC_BOT_REPO_URL: z.string(),
     NEXT_PUBLIC_SUPPORT_URL: z.string(),
     DISCORD_CLIENT_ID: z.string(),
