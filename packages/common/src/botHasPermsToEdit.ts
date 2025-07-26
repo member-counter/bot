@@ -11,19 +11,14 @@ const botHasPermsToEdit = (channel: GuildBasedChannel): boolean => {
     PermissionFlagsBits.ManageChannels,
   );
 
-  const botCanRead =
-    channel.type === ChannelType.GuildText ||
-    channel.type === ChannelType.GuildCategory ||
-    channel.type === ChannelType.GuildAnnouncement
-      ? botPermsInChannel.has(PermissionFlagsBits.ReadMessageHistory)
-      : true;
+  const botCanSee = botPermsInChannel.has(PermissionFlagsBits.ViewChannel);
 
   const botCanConnect =
     channel.type === ChannelType.GuildVoice
       ? botPermsInChannel.has(PermissionFlagsBits.Connect)
       : true;
 
-  return botCanManage && botCanRead && botCanConnect;
+  return botCanManage && botCanSee && botCanConnect;
 };
 
 export default botHasPermsToEdit;
