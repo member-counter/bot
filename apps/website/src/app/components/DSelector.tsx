@@ -63,7 +63,7 @@ const Item = (props: ItemProps) => {
                 <div className="absolute ml-[-12px] flex h-[48px] w-[8px] items-center justify-start">
                   <div
                     className={cn(
-                      "duration-[150ms] transition-all ease-out",
+                      "transition-all duration-150 ease-out",
                       "ml-[-4px] h-[8px] w-[8px] rounded-r-[4px] bg-white",
                       "translate-x-[-3px] opacity-0",
                       {
