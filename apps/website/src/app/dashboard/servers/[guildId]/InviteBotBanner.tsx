@@ -32,12 +32,12 @@ export function InviteBotBanner() {
   if (!has.data) return;
 
   return (
-    <div className="flex w-full flex-row bg-primary p-1 text-xs">
+    <div className="flex w-full flex-row bg-primary p-1 text-xs font-bold">
       <div className="flex items-center pl-1 pr-2">
         <BotIcon className="h-5 w-5" />
       </div>
       <div className="flex items-center">
-        <p>
+        <p className="drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)]">
           <Trans
             i18nKey="pages.dashboard.servers.inviteBotBanner.message"
             components={{
