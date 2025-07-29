@@ -4,13 +4,18 @@ import { botAPIConsumer } from "@mc/services/botAPI/botAPIConsumer";
 import { DiscordService } from "@mc/services/discord";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
+import { handleUnauthorizedDiscordError } from "~/server/auth";
 
 export const discordRouter = createTRPCRouter({
   identify: protectedProcedure.query(({ ctx }) => {
-    return DiscordService.identify(ctx.session.accessToken);
+    return DiscordService.identify(ctx.session.accessToken).catch(
+      handleUnauthorizedDiscordError,
+    );
   }),
   userGuilds: protectedProcedure.query(({ ctx }) => {
-    return DiscordService.userGuilds(ctx.session.accessToken);
+    return DiscordService.userGuilds(ctx.session.accessToken).catch(
+      handleUnauthorizedDiscordError,
+    );
   }),
   getUser: protectedProcedure
     .input(z.object({ id: z.string() }))

@@ -8,9 +8,35 @@ import { createTRPCReact } from "@trpc/react-query";
 import SuperJSON from "superjson";
 
 import type { AppRouter } from "~/server/api/root";
+import { Errors } from "~/app/errors";
 import { env } from "~/env";
+import { Routes } from "~/other/routes";
 
-const createQueryClient = () => new QueryClient();
+const throwOnError = (error: Error) => {
+  if (error.message === Errors.NotAuthenticated) {
+    window.location.href = Routes.Login;
+  }
+
+  return false;
+};
+
+const retry = (failureCount: number, error: Error) => {
+  return failureCount < 3 && error.message !== Errors.NotAuthenticated;
+};
+
+const createQueryClient = () =>
+  new QueryClient({
+    defaultOptions: {
+      mutations: {
+        throwOnError,
+        retry,
+      },
+      queries: {
+        throwOnError,
+        retry,
+      },
+    },
+  });
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined;
 const getQueryClient = () => {
@@ -60,7 +86,13 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
         splitLink({
           condition(op) {
             // Well known slow paths that will block other requests
-            if (["discord.userGuilds", "discord.getGuild"].includes(op.path))
+            if (
+              [
+                "discord.userGuilds",
+                "discord.getGuild",
+                "discord.identify",
+              ].includes(op.path)
+            )
               return true;
 
             return op.context.useSlowLink === true;
