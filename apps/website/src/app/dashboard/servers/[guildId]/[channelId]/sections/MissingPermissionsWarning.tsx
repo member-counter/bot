@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
 import { CircleAlertIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import { cn } from "@mc/ui";
 import { Alert, AlertDescription, AlertTitle } from "@mc/ui/alert";
 import { Button } from "@mc/ui/button";
 
@@ -14,6 +16,8 @@ export default function MissingPermissionsWarning() {
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
   const { t } = useTranslation();
+
+  const [shake, setShake] = useState(false);
 
   const botHasPermissionsToEdit = api.bot.canBotEditChannel.useQuery({
     guildId,
@@ -49,7 +53,7 @@ export default function MissingPermissionsWarning() {
   }
 
   return (
-    <Alert variant="destructive">
+    <Alert variant="destructive" className={cn(shake && "animate-shake-once")}>
       <CircleAlertIcon className="mr-42" />
       <AlertTitle>
         {t(
@@ -72,7 +76,10 @@ export default function MissingPermissionsWarning() {
             variant="outline"
             disabled={botHasPermissionsToEdit.isFetching}
             onClick={() => {
-              void botHasPermissionsToEdit.refetch();
+              setShake(false);
+              void botHasPermissionsToEdit.refetch().then((res) => {
+                setShake(!res.data);
+              });
             }}
           >
             {t(
