@@ -106,7 +106,7 @@ export async function refreshToken(
   return session;
 }
 
-export function handleUnauthorizedDiscordError(error: unknown) {
+export function handleUnauthorizedDiscordError(error: unknown): never {
   if (error instanceof DiscordAPIError && error.status === 401) {
     // Destroying the session here wouldn't work because tRPC has already sent some body in the response, so we can't send set-cookie headers
     // We will need to handle that on the client: apps/website/src/trpc/react.tsx
