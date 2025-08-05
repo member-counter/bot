@@ -66,7 +66,7 @@ export function Donor({
                       )}
                     </div>
                   </div>
-                  <div className="my-2">{note}</div>
+                  <div className="my-2 text-wrap break-all">{note}</div>
                 </div>
                 {i != donations.length - 1 && (
                   <Separator className="my-4 bg-accent-foreground" />
