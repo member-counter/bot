@@ -39,8 +39,8 @@ export function Donor({
           }}
         ></div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
-        <DialogHeader>
+      <DialogContent className="flex max-h-[100vh] p-0 sm:max-w-[500px] md:max-h-[90vh]">
+        <DialogHeader className="absolute w-full bg-background/95 p-6 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
           <DialogTitle className="flex flex-row items-center gap-2">
             <img
               src={user.avatar}
@@ -50,7 +50,7 @@ export function Donor({
             <DisplayUsername {...user} />
           </DialogTitle>
         </DialogHeader>
-        <div className="mt-4 flex flex-col gap-2">
+        <div className="flex flex-1 flex-col gap-2 overflow-y-auto px-6 pb-6 pt-[96px]">
           {donations.map(
             ({ date, amount, currency, currencyDecimals, note }, i) => (
               <>
@@ -66,7 +66,7 @@ export function Donor({
                       )}
                     </div>
                   </div>
-                  <div className="my-2 text-wrap break-all">{note}</div>
+                  <div className="my-2 text-wrap break-words">{note}</div>
                 </div>
                 {i != donations.length - 1 && (
                   <Separator className="my-4 bg-accent-foreground" />
