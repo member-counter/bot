@@ -4,8 +4,8 @@ import type { Redis } from "ioredis";
 import { redisHandler } from "@mc/trpc-redis";
 
 import { env } from "../../env";
-import { appRouter } from "./trcp/root";
-import { createTRPCContext, DropRequestError } from "./trcp/trpc";
+import { appRouter } from "./trpc/root";
+import { createTRPCContext, DropRequestError } from "./trpc/trpc";
 
 interface Clients {
   redisClient: Redis;
