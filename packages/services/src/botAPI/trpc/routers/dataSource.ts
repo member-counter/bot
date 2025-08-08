@@ -1,3 +1,4 @@
+import assert from "node:assert";
 import { ChannelType } from "discord.js";
 import { z } from "zod";
 
@@ -19,20 +20,11 @@ export const dataSourceRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const { botClient } = ctx;
       const guild = botClient.guilds.cache.get(input.guildId);
+      const hasPriority = !!guild && (await checkPriority(guild, ctx));
 
-      if (!guild) {
-        await ctx.dropRequest();
-        return;
-      }
+      await ctx.takeRequest(hasPriority);
 
-      const hasPriority = await checkPriority(guild, ctx);
-
-      if (!hasPriority) {
-        await ctx.dropRequest();
-        return;
-      }
-
-      await ctx.lockRequest();
+      assert(guild);
 
       const guildSettings = await GuildSettingsService.upsert(guild.id);
       const channel = guild.channels.cache.get(input.channelId);

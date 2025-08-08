@@ -20,7 +20,7 @@ const transformed: Record<
 
 export const gamedigRouter = createTRPCRouter({
   getGames: publicProcedure.query(async ({ ctx }) => {
-    await ctx.lockRequest();
+    await ctx.takeRequest(true);
 
     return transformed;
   }),

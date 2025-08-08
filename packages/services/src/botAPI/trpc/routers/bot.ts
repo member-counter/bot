@@ -1,3 +1,4 @@
+import assert from "node:assert";
 import { z } from "zod";
 
 import botHasPermsToEdit from "@mc/common/botHasPermsToEdit";
@@ -9,10 +10,7 @@ export const botRouter = createTRPCRouter({
   getStats: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      if (ctx.botClient.botInstanceOptions.id != input.id)
-        await ctx.dropRequest();
-
-      await ctx.lockRequest();
+      await ctx.takeRequest(ctx.botClient.botInstanceOptions.id === input.id);
 
       return await ctx.botClient.fetchBotStats();
     }),
@@ -21,27 +19,14 @@ export const botRouter = createTRPCRouter({
     .input(z.object({ guildId: z.string(), channelId: z.string() }))
     .query(async ({ ctx, input }) => {
       const guild = ctx.botClient.guilds.cache.get(input.guildId);
+      const channel = await guild?.channels.fetch(input.channelId);
+      const hasPriority =
+        !!guild && !!channel && (await checkPriority(guild, ctx));
 
-      if (!guild) {
-        await ctx.dropRequest();
-        return;
-      }
+      await ctx.takeRequest(hasPriority);
 
-      await ctx.lockRequest();
-
-      const hasPriority = await checkPriority(guild, ctx);
-
-      if (!hasPriority) {
-        await ctx.dropRequest();
-        return;
-      }
-
-      const channel = await guild.channels.fetch(input.channelId);
-
-      if (!channel) {
-        await ctx.dropRequest();
-        return;
-      }
+      assert(guild);
+      assert(channel);
 
       return botHasPermsToEdit(channel);
     }),

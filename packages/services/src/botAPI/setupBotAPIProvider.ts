@@ -5,7 +5,7 @@ import { redisHandler } from "@mc/trpc-redis";
 
 import { env } from "../../env";
 import { appRouter } from "./trpc/root";
-import { createTRPCContext, DropRequestError } from "./trpc/trpc";
+import { createTRPCContext } from "./trpc/trpc";
 
 interface Clients {
   redisClient: Redis;
@@ -24,18 +24,16 @@ export const setupBotAPIProvider = async ({
     redisSubClient,
     redisPubClient,
     router: appRouter,
-    createContext: ({ requestId }) =>
+    createContext: ({ requestId, takeRequest }) =>
       createTRPCContext({
         botClient,
         redisClient,
         requestId,
-        clientTimeout: env.BDE_CALL_TIMEOUT,
+        takeRequest,
       }),
     onError:
       env.NODE_ENV === "development"
         ? ({ path, error }) => {
-            if (error.cause instanceof DropRequestError) return;
-
             console.error(
               `❌ bot-data-exchange tRPC failed on ${path ?? "<no-path>"}: ${error.message}`,
             );

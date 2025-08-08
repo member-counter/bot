@@ -6,7 +6,7 @@ export const discordRouter = createTRPCRouter({
   getUser: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      await ctx.lockRequest();
+      await ctx.takeRequest(true);
 
       const user = await ctx.botClient.users.fetch(input.id);
 
@@ -21,9 +21,7 @@ export const discordRouter = createTRPCRouter({
   getGuild: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      if (!ctx.botClient.guilds.cache.has(input.id)) await ctx.dropRequest();
-
-      await ctx.lockRequest();
+      await ctx.takeRequest(ctx.botClient.guilds.cache.has(input.id));
 
       const guild = await ctx.botClient.guilds.fetch({
         guild: input.id,
@@ -74,10 +72,7 @@ export const discordRouter = createTRPCRouter({
   getGuildMember: publicProcedure
     .input(z.object({ guildId: z.string(), memberId: z.string() }))
     .query(async ({ ctx, input }) => {
-      if (!ctx.botClient.guilds.cache.has(input.guildId))
-        await ctx.dropRequest();
-
-      await ctx.lockRequest();
+      await ctx.takeRequest(ctx.botClient.guilds.cache.has(input.guildId));
 
       const guild = await ctx.botClient.guilds.fetch({
         guild: input.guildId,
