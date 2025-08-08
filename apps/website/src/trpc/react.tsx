@@ -10,15 +10,6 @@ import SuperJSON from "superjson";
 import type { AppRouter } from "~/server/api/root";
 import { Errors } from "~/app/errors";
 import { env } from "~/env";
-import { Routes } from "~/other/routes";
-
-const throwOnError = (error: Error) => {
-  if (error.message === Errors.NotAuthenticated) {
-    window.location.href = Routes.Login;
-  }
-
-  return false;
-};
 
 const retry = (failureCount: number, error: Error) => {
   return failureCount < 3 && error.message !== Errors.NotAuthenticated;
@@ -28,11 +19,9 @@ const createQueryClient = () =>
   new QueryClient({
     defaultOptions: {
       mutations: {
-        throwOnError,
         retry,
       },
       queries: {
-        throwOnError,
         retry,
       },
     },
