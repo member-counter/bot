@@ -34,7 +34,7 @@
   "dependencies": {
     "@mc/logger": "workspace:*",
     "@prisma/client": "^6.3.1",
-    "@t3-oss/env-core": "^0.11.1",
+    "@t3-oss/env-core": "^0.13.8",
     "mongo-migrate-ts": "^1.6.2",
     "tsx": "^4.19.2",
     "zod": "^3.24.1"
