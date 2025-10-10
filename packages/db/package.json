@@ -24,7 +24,7 @@
     "@mc/tsconfig": "workspace:*",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^22.10.10",
-    "dotenv-cli": "^7.4.1",
+    "dotenv-cli": "^10.0.0",
     "eslint": "^9.19.0",
     "prettier": "^3.4.2",
     "prisma": "^6.3.1",
