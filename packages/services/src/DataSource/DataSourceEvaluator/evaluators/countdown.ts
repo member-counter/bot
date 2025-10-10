@@ -18,7 +18,14 @@ export const countdownEvaluator = new DataSourceEvaluator({
       )
       .replace(/%h/gi, `${timeLeft.getUTCHours()}`)
       .replace(/%m/gi, `${timeLeft.getUTCMinutes()}`)
-      .replace(/%s/gi, `${timeLeft.getUTCSeconds()}`);
+      .replace(/%s/gi, `${timeLeft.getUTCSeconds()}`)
+      .replace(
+        /%D/gi,
+        `${Math.floor(timeLeft.getTime() / 1000 / 60 / 60 / 24)}`,
+      )
+      .replace(/%H/gi, `${Math.floor(timeLeft.getTime() / 1000 / 60 / 60)}`)
+      .replace(/%M/gi, `${Math.floor(timeLeft.getTime() / 1000 / 60)}`)
+      .replace(/%S/gi, `${Math.floor(timeLeft.getTime() / 1000)}`);
 
     return formatted;
   },

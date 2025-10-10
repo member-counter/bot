@@ -592,7 +592,7 @@ interface Resources {
                     defaultFormat: "%d days, %h hours and %m minutes left";
                     format: "Format";
                     formatConfigWarning: "Remember to return a valid formatting string";
-                    formatInstructions: "Use <code>%d</code> to show the days left, <code>%h</code> for the hours left, and <code>%m</code> for the minutes left.";
+                    formatInstructions: 'Use <code>%d</code> to show the days left, <code>%h</code> for the hours left, and <code>%m</code> for the minutes left.\n\nYou can also use their respective uppercase equivalents <code>%D</code>, <code>%H</code>, and <code>%M</code> to show the total number of hours or minutes left (e.g. If countdown is in 2 days, <code>%H</code> will show "48").';
                     livePreview: "Live preview";
                     noPreview: "We can't show you a live preview when the target date or format is empty.";
                     targetDate: "Target date";
