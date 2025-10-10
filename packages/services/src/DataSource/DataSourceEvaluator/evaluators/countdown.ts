@@ -12,20 +12,14 @@ export const countdownEvaluator = new DataSourceEvaluator({
     if (date - Date.now() < 0) timeLeft = new Date(0);
 
     const formatted = format
-      .replace(
-        /%d/gi,
-        `${Math.floor(timeLeft.getTime() / 1000 / 60 / 60 / 24)}`,
-      )
-      .replace(/%h/gi, `${timeLeft.getUTCHours()}`)
-      .replace(/%m/gi, `${timeLeft.getUTCMinutes()}`)
-      .replace(/%s/gi, `${timeLeft.getUTCSeconds()}`)
-      .replace(
-        /%D/gi,
-        `${Math.floor(timeLeft.getTime() / 1000 / 60 / 60 / 24)}`,
-      )
-      .replace(/%H/gi, `${Math.floor(timeLeft.getTime() / 1000 / 60 / 60)}`)
-      .replace(/%M/gi, `${Math.floor(timeLeft.getTime() / 1000 / 60)}`)
-      .replace(/%S/gi, `${Math.floor(timeLeft.getTime() / 1000)}`);
+      .replace(/%d/g, `${Math.floor(timeLeft.getTime() / 1000 / 60 / 60 / 24)}`)
+      .replace(/%h/g, `${timeLeft.getUTCHours()}`)
+      .replace(/%m/g, `${timeLeft.getUTCMinutes()}`)
+      .replace(/%s/g, `${timeLeft.getUTCSeconds()}`)
+      .replace(/%D/g, `${Math.floor(timeLeft.getTime() / 1000 / 60 / 60 / 24)}`)
+      .replace(/%H/g, `${Math.floor(timeLeft.getTime() / 1000 / 60 / 60)}`)
+      .replace(/%M/g, `${Math.floor(timeLeft.getTime() / 1000 / 60)}`)
+      .replace(/%S/g, `${Math.floor(timeLeft.getTime() / 1000)}`);
 
     return formatted;
   },
