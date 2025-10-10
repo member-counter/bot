@@ -27,6 +27,7 @@ export const createDataSourceMetadataTwitch = (i18n: i18n) =>
           returnKind: t(
             `display.returnKind.${TwitchReturnTKey[dataSource.options.return]}`,
           ),
+          interpolation: { escapeValue: false },
         }),
       );
     },

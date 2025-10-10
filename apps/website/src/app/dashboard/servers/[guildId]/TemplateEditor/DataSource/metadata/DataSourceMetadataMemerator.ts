@@ -24,6 +24,7 @@ export const createDataSourceMetadataMemerator = (i18n: i18n) =>
         returnKind: t(
           `display.returnKind.${MemeratorReturnTKey[dataSource.options.return]}`,
         ),
+        interpolation: { escapeValue: false },
       });
     },
   });

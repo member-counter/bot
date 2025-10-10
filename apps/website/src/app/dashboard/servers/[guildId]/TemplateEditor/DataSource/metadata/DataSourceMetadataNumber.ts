@@ -28,9 +28,13 @@ export const createDataSourceMetadataNumber = (i18n: i18n) =>
           dataSourceDisplayName: nestedMetadata.displayName(
             dataSource.options.number,
           ),
+          interpolation: { escapeValue: false },
         });
       } else {
-        return t("display.raw", { number: dataSource.options.number });
+        return t("display.raw", {
+          number: dataSource.options.number,
+          interpolation: { escapeValue: false },
+        });
       }
     },
   });

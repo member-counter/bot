@@ -17,6 +17,7 @@ export const createDataSourceMetadataCountdown = (i18n: i18n) =>
 
       return t("display.syntax", {
         datetime: new Date(dataSource.options.date).toLocaleString(),
+        interpolation: { escapeValue: false },
       });
     },
   });

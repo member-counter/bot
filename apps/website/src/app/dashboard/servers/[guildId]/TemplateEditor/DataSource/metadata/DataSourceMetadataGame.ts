@@ -20,6 +20,7 @@ export const createDataSourceMetadataGame = (i18n: i18n) =>
 
       return t("display.playerCountFor", {
         gameServerAddress: dataSource.options.address,
+        interpolation: { escapeValue: false },
       });
     },
   });

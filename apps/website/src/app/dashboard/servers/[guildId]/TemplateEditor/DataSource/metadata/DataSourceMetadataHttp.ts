@@ -18,6 +18,7 @@ export const createDataSourceMetadataHTTP = (i18n: i18n) =>
         if (typeof dataSource.options?.url === "string")
           displayName = t("display.syntax", {
             hostname: new URL(dataSource.options.url).hostname,
+            interpolation: { escapeValue: false },
           });
       } catch {
         /* empty */

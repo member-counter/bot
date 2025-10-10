@@ -53,6 +53,7 @@ export const createDataSourceMetadataMath = (i18n: i18n) =>
               amount: nonDisplayableNumbers,
             })
           : "",
+        interpolation: { escapeValue: false },
       })
         .split(/\s+/)
         .join(" ");

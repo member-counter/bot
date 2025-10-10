@@ -25,6 +25,7 @@ export const createDataSourceMetadataReddit = (i18n: i18n) =>
         returnKind: t(
           `display.returnKind.${RedditReturnTKey[dataSource.options.return]}`,
         ),
+        interpolation: { escapeValue: false },
       });
     },
   });
