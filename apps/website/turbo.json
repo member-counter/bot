@@ -4,20 +4,14 @@
   "tasks": {
     "make:supported-emojis": {
       "inputs": [
-        "./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/unicode-emoji-json/data-by-emoji.json"
+        "**/TemplateEditor/Emoji/unicode-emoji-json/data-by-emoji.json"
       ],
-      "outputs": [
-        "./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/supportedEmojis.ts"
-      ]
+      "outputs": ["**/TemplateEditor/Emoji/supportedEmojis.ts"]
     },
     "make:twemoji-map": {
       "dependsOn": ["make:supported-emojis"],
-      "inputs": [
-        "./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/supportedEmojis.ts"
-      ],
-      "outputs": [
-        "./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/twemojiMaps/*.png"
-      ]
+      "inputs": ["**/TemplateEditor/Emoji/supportedEmojis.ts"],
+      "outputs": ["**/TemplateEditor/Emoji/twemojiMaps/*.png"]
     }
   }
 }
