@@ -13,16 +13,16 @@ export const mathEvaluator = new DataSourceEvaluator({
         return values.reduce((acc, curr) => acc + curr, 0);
 
       case MathDataSourceOperation.SUBTRACT:
-        return values.reduce((acc, curr) => acc - curr, 0);
+        return values.reduce((acc, curr) => acc - curr);
 
       case MathDataSourceOperation.MULTIPLY:
-        return values.reduce((acc, curr) => acc * curr, 0);
+        return values.reduce((acc, curr) => acc * curr, 1);
 
       case MathDataSourceOperation.DIVIDE:
-        return values.reduce((acc, curr) => acc / curr, 0);
+        return values.reduce((acc, curr) => acc / curr);
 
       case MathDataSourceOperation.MODULO:
-        return values.reduce((acc, curr) => acc % curr, 0);
+        return values.reduce((acc, curr) => acc % curr);
     }
   },
 });
