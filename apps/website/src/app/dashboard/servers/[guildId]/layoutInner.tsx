@@ -63,12 +63,20 @@ export default function LayoutInner({
   api.discord.getGuild.usePrefetchQuery({
     id: guildId,
   });
-  api.guild.channels.getAll.usePrefetchQuery({
-    discordGuildId: guildId,
-  });
   api.guild.channels.logs.getAll.usePrefetchQuery({
     discordGuildId: guildId,
   });
+  const [{ channels }] = api.guild.channels.getAll.useSuspenseQuery({
+    discordGuildId: guildId,
+  });
+  api.useQueries((t) =>
+    [...channels.keys()].map((channelId) =>
+      t.guild.channels.get({
+        discordGuildId: guildId,
+        discordChannelId: channelId,
+      }),
+    ),
+  );
 
   if (!has.isSuccess || !userPermissions.fetched) {
     return <LoadingPage />;

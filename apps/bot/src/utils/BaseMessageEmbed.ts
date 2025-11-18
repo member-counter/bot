@@ -16,7 +16,7 @@ export class BaseEmbed extends EmbedBuilder {
     }
 
     this.setFooter({
-      text: env.WEBSITE_URL,
+      text: env.OFFICIAL_WEBSITE_URL,
       iconURL: client.user.displayAvatarURL({ extension: "jpeg" }),
     });
   }

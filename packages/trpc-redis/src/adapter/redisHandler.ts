@@ -1,4 +1,4 @@
-import type { SpanContext } from "@opentelemetry/api";
+import type { Lock } from "@sesamecare-oss/redlock";
 import type {
   AnyTRPCRouter,
   CreateContextCallback,
@@ -9,7 +9,7 @@ import type {
   MaybePromise,
 } from "@trpc/server/unstable-core-do-not-import";
 import type { Redis } from "ioredis";
-import { context, trace, TraceFlags } from "@opentelemetry/api";
+import { Redlock } from "@sesamecare-oss/redlock";
 import {
   callTRPCProcedure,
   getErrorShape,
@@ -20,9 +20,13 @@ import {
 import type { RequestMessage, ResponseMessage } from "../schemas";
 import { REQ_CHANNEL, RES_CHANNEL } from "../Constants";
 import { requestMessageSchema } from "../schemas";
+import { resumeOtelTracing } from "./resumeOtelTracing";
 
-interface CreateRedisContextFnOpts {
+class DropRequestError extends Error {}
+
+export interface CreateRedisContextFnOpts {
   requestId: string;
+  takeRequest: (take: boolean) => Promise<void>;
 }
 
 export type CreateRedisContextFn<TRouter extends AnyTRPCRouter> = (
@@ -44,11 +48,86 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
 ) {
   const { redisPubClient, redisSubClient, router, createContext, onError } =
     opts;
+  const redLock = new Redlock([redisPubClient], { retryCount: 0 });
 
   const { deserialize, serialize } = router._def._config.transformer.output;
 
-  const resolve = async (
-    ctx: (typeof opts)["createContext"],
+  const publishResponse = async (responseMessage: ResponseMessage) => {
+    if (responseMessage.type === "error") {
+      responseMessage = {
+        ...responseMessage,
+        error: serialize(responseMessage.error),
+      };
+    } else if (responseMessage.type === "result") {
+      responseMessage = {
+        ...responseMessage,
+        result: serialize(responseMessage.result),
+      };
+    }
+
+    await redisPubClient.publish(RES_CHANNEL, JSON.stringify(responseMessage));
+  };
+
+  const makeTakeRequest = (requestMessage: RequestMessage) => {
+    let takeDecided = false;
+    let lock: Lock | undefined = undefined;
+    let interval: NodeJS.Timeout;
+
+    const takeRequest = async (take: boolean) => {
+      if (takeDecided) {
+        return;
+      }
+
+      takeDecided = true;
+
+      if (!take) {
+        throw new DropRequestError();
+      }
+
+      const lockKey = `lock:${RES_CHANNEL}:${requestMessage.id}`;
+
+      lock = await redLock
+        .acquire([lockKey], 3000, {
+          retryCount: 0,
+        })
+        .catch(() => {
+          throw new DropRequestError();
+        });
+
+      await publishResponse({
+        id: requestMessage.id,
+        type: "heartbeat",
+      });
+
+      interval = setInterval(() => {
+        void lock
+          ?.extend(3000)
+          .then((newLock) => {
+            lock = newLock;
+            void publishResponse({
+              id: requestMessage.id,
+              type: "heartbeat",
+            });
+          })
+          .catch(() => {
+            clearInterval(interval);
+          });
+      }, 3000 / 2);
+    };
+
+    const requestDone = async () => {
+      clearInterval(interval);
+      await lock?.release();
+    };
+
+    return {
+      takeRequest,
+      requestDone,
+    };
+  };
+
+  const executeProcedure = async (
+    ctx: inferRouterContext<TRouter>,
     requestMessage: RequestMessage,
   ) => {
     const { path, type, input } = requestMessage;
@@ -62,7 +141,7 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
 
     const deserializedInput = deserialize(input) as unknown;
 
-    const result = (await callTRPCProcedure({
+    return (await callTRPCProcedure({
       router,
       type,
       path,
@@ -70,39 +149,17 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       getRawInput: () => Promise.resolve(deserializedInput),
       signal: undefined,
     })) as unknown;
-
-    return result;
   };
 
-  const respond = async (responseMessage: ResponseMessage) => {
-    if (responseMessage.type === "error") {
-      responseMessage = {
-        ...responseMessage,
-        error: serialize(responseMessage.error),
-      };
-    } else {
-      responseMessage = {
-        ...responseMessage,
-        result: serialize(responseMessage.result),
-      };
-    }
-
-    await redisPubClient.publish(RES_CHANNEL, JSON.stringify(responseMessage));
-  };
-
-  const handleRequest = async (message: string) => {
-    let ctx = await createContext?.({ requestId: "unknown" });
-
+  const handleRequest = (rawMessage: string) => {
     let requestMessage: RequestMessage;
+
     try {
-      requestMessage = requestMessageSchema.parse(JSON.parse(message));
-      ctx = await createContext?.({
-        requestId: requestMessage.id,
-      });
+      requestMessage = requestMessageSchema.parse(JSON.parse(rawMessage));
     } catch (err) {
       onError?.({
         error: new TRPCError({ code: "PARSE_ERROR", cause: err }),
-        ctx,
+        ctx: undefined,
         type: "unknown",
         input: undefined,
         path: undefined,
@@ -110,53 +167,51 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       return;
     }
 
-    const { input, path, type, traceId, spanId } = requestMessage;
+    const { input, path, type, traceId, spanId, id } = requestMessage;
 
-    const spanContext: SpanContext = {
-      traceId,
-      spanId,
-      isRemote: true,
-      traceFlags: TraceFlags.SAMPLED,
-    };
+    void resumeOtelTracing(traceId, spanId, async () => {
+      const { takeRequest, requestDone } = makeTakeRequest(requestMessage);
 
-    const remoteContext = trace.setSpanContext(context.active(), spanContext);
+      const ctx = await createContext?.({
+        requestId: requestMessage.id,
+        takeRequest: takeRequest,
+      });
 
-    void context.with(remoteContext, async () => {
       try {
-        try {
-          await respond({
-            id: requestMessage.id,
-            type: "result",
-            result: await resolve(ctx, requestMessage),
-          });
-        } catch (err) {
-          const error = getTRPCErrorFromUnknown(err);
-          onError?.({ error, ctx, input, path, type });
+        const result = await executeProcedure(ctx, requestMessage);
 
-          await respond({
-            id: requestMessage.id,
-            type: "error",
-            error: getErrorShape({
-              config: router._def._config,
-              error,
-              type,
-              path,
-              input,
-              ctx,
-            }),
-          });
-        }
+        await publishResponse({ id, type: "result", result });
       } catch (err) {
         const error = getTRPCErrorFromUnknown(err);
+
+        if (error.cause instanceof DropRequestError) {
+          return;
+        }
+
         onError?.({ error, ctx, input, path, type });
+
+        void publishResponse({
+          id,
+          type: "error",
+          error: getErrorShape({
+            config: router._def._config,
+            error,
+            type,
+            path,
+            input,
+            ctx,
+          }),
+        });
+      } finally {
+        await requestDone();
       }
     });
   };
-
-  await redisSubClient.subscribe(REQ_CHANNEL);
 
   redisSubClient.on("message", (channel, message) => {
     if (channel !== REQ_CHANNEL) return;
     void handleRequest(message);
   });
+
+  await redisSubClient.subscribe(REQ_CHANNEL);
 }

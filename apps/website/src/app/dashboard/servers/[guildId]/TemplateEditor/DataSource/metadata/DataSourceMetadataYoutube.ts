@@ -26,6 +26,7 @@ export const createDataSourceMetadataYoutube = (i18n: i18n) =>
         returnKind: t(
           `display.returnKind.${YoutubeReturnTKey[dataSource.options.return]}`,
         ),
+        interpolation: { escapeValue: false },
       });
     },
   });

@@ -47,6 +47,10 @@ export default function Error({
     message = t(tKey);
   }
 
+  if (error.message === Errors.NotAuthenticated) {
+    window.location.href = Routes.Login;
+  }
+
   return (
     <>
       <main className="my-auto flex flex-col items-center justify-center gap-5">

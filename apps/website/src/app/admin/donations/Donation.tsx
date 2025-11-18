@@ -20,19 +20,19 @@ export function Donation(
   return (
     <Link href={Routes.ManageDonations(donation.id)}>
       <Card>
-        <CardHeader className="flex flex-row justify-between space-y-0">
+        <CardHeader className="flex flex-row justify-between gap-2 space-y-0">
           <div className="flex flex-col gap-2 self-start">
             {donation.user ? (
               <DisplayUser {...donation.user} />
             ) : (
               donation.userId
             )}
-            {donation.note}
+            <p className="text-wrap break-all">{donation.note}</p>
           </div>
           <div className="flex-grow"></div>
           <div className="flex flex-col items-end gap-2 text-muted-foreground">
             <div>{dateFormatter.format(donation.date)}</div>
-            <div className="">
+            <div>
               {CurrencyUtils.format(
                 i18n.language,
                 amount,

@@ -30,6 +30,9 @@ export const createDataSourceMetadataReplace = (i18n: i18n) =>
           .filter(Boolean),
       );
 
-      return t("display.syntax", { replaceSyntax: replacements });
+      return t("display.syntax", {
+        replaceSyntax: replacements,
+        interpolation: { escapeValue: false },
+      });
     },
   });

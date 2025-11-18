@@ -35,4 +35,10 @@ export const botRouter = createTRPCRouter({
       })),
     );
   }),
+
+  canBotEditChannel: protectedProcedure
+    .input(z.object({ guildId: z.string(), channelId: z.string() }))
+    .query(({ input: { guildId, channelId } }) => {
+      return botAPIConsumer.bot.canBotEditChannel.query({ guildId, channelId });
+    }),
 });

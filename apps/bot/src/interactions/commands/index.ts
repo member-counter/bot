@@ -1,4 +1,5 @@
 import type { CommandInteraction } from "discord.js";
+import { MessageFlags } from "discord.js";
 
 import { commandDefinitionTKeyMap } from "@mc/common/bot/i18n/prepareLocalization";
 
@@ -26,7 +27,7 @@ export default async function handleCommand(
 ): Promise<void> {
   const { logger } = commandInteraction.client.botInstanceOptions;
 
-  await commandInteraction.deferReply({ ephemeral: true });
+  await commandInteraction.deferReply({ flags: MessageFlags.Ephemeral });
   const i18nDefaultLanguage = await initI18n({ locale: DEFAULT_LANGUAGE });
 
   const command = allCommands.find((c) => {

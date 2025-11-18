@@ -15,6 +15,7 @@ import { LoadingPage } from "../LoadingPage";
 import { UserPermissionsContext } from "../UserPermissionsContext";
 import { EditTemplate } from "./sections/EditTemplate";
 import { EnableTemplate } from "./sections/EnableTemplate";
+import MissingPermissionsWarning from "./sections/MissingPermissionsWarning";
 import { TemplateError } from "./sections/TemplateError";
 
 export default function Page() {
@@ -48,6 +49,7 @@ export default function Page() {
       action={save}
       className="m-auto flex min-h-full flex-col gap-5 p-3 sm:max-w-[600px]"
     >
+      <MissingPermissionsWarning />
       <EnableTemplate
         disabled={!userPermissions.canModify}
         value={mutableChannelSettings.isTemplateEnabled}

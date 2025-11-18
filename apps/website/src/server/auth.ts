@@ -1,10 +1,13 @@
 import type { Session } from "@mc/validators/Session";
+import { DiscordAPIError } from "@discordjs/rest";
+import { TRPCError } from "@trpc/server";
 import { OAuth2Routes } from "discord-api-types/v10";
 
 import { DiscordService } from "@mc/services/discord";
 import { DiscordOAuth2TokenExchangeResponseSchema } from "@mc/validators/DiscordOAuth2TokenExchangeResponse";
 
 import { destroySession, setSession } from "~/app/api/sessionCookie";
+import { Errors } from "~/app/errors";
 import { env } from "~/env";
 
 const requiredScopes = ["identify", "guilds"];
@@ -96,8 +99,23 @@ export async function refreshToken(
       await setSession(session);
     } catch {
       await destroySession();
+      return null;
     }
   }
 
   return session;
+}
+
+export function handleUnauthorizedDiscordError(error: unknown): never {
+  if (error instanceof DiscordAPIError && error.status === 401) {
+    // Destroying the session here wouldn't work because tRPC has already sent some body in the response, so we can't send set-cookie headers
+    // We will need to handle that on the client: apps/website/src/trpc/react.tsx
+
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: Errors.NotAuthenticated,
+    });
+  }
+
+  throw error;
 }

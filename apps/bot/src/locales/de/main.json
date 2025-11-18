@@ -25,7 +25,7 @@
           }
         },
         "embedReply": {
-          "description": "[Füge mich zu deinem Server]({{BOT_INVITE_URL}})\n[Website]({{WEBSITE_URL}})\n[Support-Server]({{BOT_SUPPORT_URL}})\n[GitHub-Repository]({{BOT_REPO_URL}})\n[Bot Version: {{VERSION}}]({{VERSION_URL}})"
+          "description": "[Füge mich zu deinem Server]({{BOT_INVITE_URL}})\n[Website]({{OFFICIAL_WEBSITE_URL}})\n[Support-Server]({{BOT_SUPPORT_URL}})\n[GitHub-Repository]({{BOT_REPO_URL}})\n[Bot Version: {{VERSION}}]({{VERSION_URL}})"
         }
       },
       "invite": {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import { Trans } from "react-i18next";
 
 import { cn } from "@mc/ui";
@@ -54,9 +53,9 @@ export function CustomDigits({
               <DataSourceFormatDigitInput
                 key={i}
                 className={cn({ "col-span-3": i === 0 })}
-                value={value[i] || i.toString()}
+                value={value[i] ?? ""}
                 onChange={(digit) => {
-                  value[i] = digit || i.toString();
+                  value[i] = digit;
                   onChange(value);
                 }}
                 digitNumber={i}

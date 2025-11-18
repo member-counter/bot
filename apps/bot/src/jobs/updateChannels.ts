@@ -5,7 +5,9 @@ import type { Client, Guild } from "discord.js";
 import type { Logger } from "winston";
 import { ChannelType } from "discord.js";
 
-import { Job } from "@mc/common/bot/structures//Job";
+import { Job } from "@mc/common/bot/structures/Job";
+import botHasPermsToEdit from "@mc/common/botHasPermsToEdit";
+import { KnownError } from "@mc/common/KnownError/index";
 import {
   advertiseEvaluatorPriorityKey,
   discordAPIIntensiveOperationLockKey,
@@ -16,7 +18,6 @@ import DataSourceService from "@mc/services/DataSource/index";
 import { GuildSettingsService } from "@mc/services/guildSettings";
 
 import { initI18n } from "~/i18n";
-import botHasPermsToEdit from "~/utils/botHasPermsToEdit";
 import { makeIsValidChild } from "~/utils/isValidChildId";
 import { withQueueLock } from "~/utils/withQueueLock";
 
@@ -43,7 +44,15 @@ async function updateGuildChannel(
 
   if (!botHasPermsToEdit(channel)) {
     logger.debug(`Bot doesn't have permissions to edit channel`);
-    return;
+    const error = new KnownError("NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL");
+
+    GuildSettingsService.channels.logs
+      .set(channel.id, {
+        LastTemplateUpdateDate: new Date(),
+        LastTemplateComputeError: error.message,
+      })
+      .catch(logger.error);
+    throw error;
   }
 
   logger.debug(`Creating DataSourceService for channel`);

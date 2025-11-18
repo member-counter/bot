@@ -30,6 +30,7 @@ export const createDataSourceMetadataConcat = (i18n: i18n) =>
       const displayableStringsJoined = formatter.format(displayableStrings);
 
       return t("display.syntax", {
+        interpolation: { escapeValue: false },
         strings: displayableStringsJoined,
         undisplayableStrings: nonDisplayableStrings
           ? t("display.undisplayableStrings", {

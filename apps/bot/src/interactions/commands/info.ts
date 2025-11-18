@@ -29,7 +29,7 @@ export const infoCommand = new Command({
           }),
           BOT_REPO_URL: env.NEXT_PUBLIC_BOT_REPO_URL,
           BOT_SUPPORT_URL: env.NEXT_PUBLIC_SUPPORT_URL,
-          WEBSITE_URL: env.WEBSITE_URL,
+          OFFICIAL_WEBSITE_URL: env.OFFICIAL_WEBSITE_URL,
           VERSION: inlineCode("v" + version),
           VERSION_URL: `${env.NEXT_PUBLIC_BOT_REPO_URL}/releases/tag/v${version}`,
         }),

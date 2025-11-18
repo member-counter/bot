@@ -64,7 +64,7 @@ const executeUnprivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["exec
   };
 
 const executePrivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["execute"] =
-  async ({
+  ({
     ctx,
     options: {
       accountTypeFilter,
@@ -75,7 +75,7 @@ const executePrivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["execut
       statusFilter,
     },
   }) => {
-    const filteredMembers = (await ctx.guild.members.fetch()).clone();
+    const filteredMembers = ctx.guild.members.cache.clone();
 
     if (connectedTo?.length) {
       const channels = ctx.guild.channels.cache.filter((channel) =>

@@ -8,16 +8,12 @@
  */
 
 import type { Client } from "discord.js";
-import type { Redis } from "ioredis";
-import { Redlock } from "@sesamecare-oss/redlock";
+import type Redis from "ioredis";
 import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import { RES_CHANNEL } from "@mc/trpc-redis/Constants";
 import { trpcTracing } from "@mc/trpc-telemetry";
-
-export class DropRequestError extends Error {}
 
 /**
  * 1. CONTEXT
@@ -35,41 +31,10 @@ export const createTRPCContext = (opts: {
   botClient: Client;
   redisClient: Redis;
   requestId: string;
-  clientTimeout: number;
+  takeRequest: (take: boolean) => Promise<void>;
 }) => {
-  const redLock = new Redlock([opts.redisClient], { retryCount: 0 });
-
-  const dropRequest = () => {
-    return new Promise((_resolve, reject) =>
-      /**
-       * let's wait at least the client's timeout
-       * so the procedure that got the lock first
-       * can have the chance to respond
-       */
-      setTimeout(
-        () => reject(new DropRequestError()),
-        opts.clientTimeout + 1000,
-      ),
-    );
-  };
-
-  /**
-   * Some procedures will need this to lock a request.
-   */
-  const lockRequest = async () => {
-    const lockKey = ["lock", RES_CHANNEL, opts.requestId].join(":");
-    await redLock
-      .acquire([lockKey], opts.clientTimeout, {
-        retryCount: 0,
-      })
-      .catch(dropRequest);
-  };
-
   return {
     ...opts,
-    redLock,
-    lockRequest,
-    dropRequest,
   };
 };
 

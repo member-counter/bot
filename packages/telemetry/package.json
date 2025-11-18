@@ -32,7 +32,7 @@
     "@opentelemetry/sdk-logs": "^0.57.1",
     "@opentelemetry/sdk-node": "^0.57.1",
     "@prisma/instrumentation": "^6.3.1",
-    "@t3-oss/env-core": "^0.11.1",
+    "@t3-oss/env-core": "^0.13.8",
     "@vercel/otel": "^1.10.1"
   }
 }

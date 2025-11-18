@@ -24,7 +24,7 @@
   },
   "prettier": "@mc/prettier-config",
   "dependencies": {
-    "@t3-oss/env-core": "^0.11.1",
+    "@t3-oss/env-core": "^0.13.8",
     "ioredis": "^5.4.1"
   }
 }
