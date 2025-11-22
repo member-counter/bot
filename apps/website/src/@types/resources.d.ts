@@ -139,14 +139,6 @@ interface Resources {
         keywords: "clock,timezone";
         name: "Clock";
       };
-      date: {
-        description: "Display the current date adjusted to your preferred timezone.";
-        display: {
-          syntax: "Date ({{timezone}})";
-        };
-        keywords: "date,calendar,timezone";
-        name: "Date";
-      };
       concat: {
         description: "Concatenate multiple strings into one.";
         display: {
@@ -163,6 +155,14 @@ interface Resources {
         };
         keywords: "countdown,timer";
         name: "Countdown";
+      };
+      date: {
+        description: "Display the current date adjusted to your preferred timezone.";
+        display: {
+          syntax: "Date ({{timezone}})";
+        };
+        keywords: "date,calendar,timezone";
+        name: "Date";
       };
       game: {
         description: "Retrieve the current number of online players in your game server, compatible with more than 320 games.";
@@ -454,13 +454,13 @@ interface Resources {
               description: "View the time in any timezone with our customizable clock. Perfect for coordinating across different regions.";
               title: "Clock";
             };
-            date: {
-              description: "Display the current date in any timezone with customizable formatting. Great for showing dates across different regions.";
-              title: "Date";
-            };
             countdown: {
               description: "Create and manage countdown timers tailored to your specific events or deadlines.";
               title: "Countdown";
+            };
+            date: {
+              description: "Display the current date in any timezone with customizable formatting. Great for showing dates across different regions.";
+              title: "Date";
             };
             discordMembers: {
               description: "Count and filter members by online status, roles, and other criteria to get precise insights about your community.";
@@ -601,18 +601,6 @@ interface Resources {
                     searchTimezonePlaceholder: "Search timezone...";
                     timezone: "Timezone";
                   };
-                  DateOptions: {
-                    configWarning: "Remember to return a valid timezone identifier";
-                    counterPreview: "We can't show you a live preview when the format is the result of a counter, you must preview the whole template to see how it will look like.";
-                    defaultFormat: "%f";
-                    format: "Format";
-                    formatConfigWarning: "Remember to return a valid formatting string";
-                    formatInstructions: "Available placeholders:\n• <code>%Y</code> - Full year (2025)\n• <code>%y</code> - 2-digit year (25)\n• <code>%Ms</code> - Full month name (November)\n• <code>%ms</code> - Short month name (Nov)\n• <code>%M</code> - Month number with leading zero (01-12)\n• <code>%m</code> - Month number (1-12)\n• <code>%Ws</code> - Full day of week name (Monday)\n• <code>%ws</code> - Short day of week name (Mon)\n• <code>%w</code> - Day of week number (0=Sunday, 6=Saturday)\n• <code>%D</code> - Day with leading zero (05)\n• <code>%d</code> - Day without leading zero (5)\n• <code>%f</code> - Default locale-based formatting";
-                    livePreview: "Live preview";
-                    noPreview: "We can't show you a live preview when the format is empty.";
-                    searchTimezonePlaceholder: "Search timezone...";
-                    timezone: "Timezone";
-                  };
                   ConcatOptions: {
                     addString: "Add text...";
                     stringList: "Text list";
@@ -628,6 +616,18 @@ interface Resources {
                     livePreview: "Live preview";
                     noPreview: "We can't show you a live preview when the target date or format is empty.";
                     targetDate: "Target date";
+                  };
+                  DateOptions: {
+                    configWarning: "Remember to return a valid timezone identifier";
+                    counterPreview: "We can't show you a live preview when the format is the result of a counter, you must preview the whole template to see how it will look like.";
+                    defaultFormat: "%f";
+                    format: "Format";
+                    formatConfigWarning: "Remember to return a valid formatting string";
+                    formatInstructions: "Available placeholders:\n• <code>%Y</code> - Full year (2025)\n• <code>%y</code> - 2-digit year (25)\n• <code>%Ms</code> - Full month name (November)\n• <code>%ms</code> - Short month name (Nov)\n• <code>%M</code> - Month number with leading zero (01-12)\n• <code>%m</code> - Month number (1-12)\n• <code>%Ws</code> - Full day of week name (Monday)\n• <code>%ws</code> - Short day of week name (Mon)\n• <code>%w</code> - Day of week number (0=Sunday, 6=Saturday)\n• <code>%D</code> - Day with leading zero (05)\n• <code>%d</code> - Day without leading zero (5)\n• <code>%f</code> - Default locale-based formatting";
+                    livePreview: "Live preview";
+                    noPreview: "We can't show you a live preview when the format is empty.";
+                    searchTimezonePlaceholder: "Search timezone...";
+                    timezone: "Timezone";
                   };
                   GameOptions: {
                     address: "Address";
