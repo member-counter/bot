@@ -104,11 +104,10 @@ const executePrivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["execut
         const presenceStatus =
           PresenceStatusMap[member.presence?.status ?? "offline"];
 
-        if (
-          statusFilter === MembersFilterStatus.ONLINE_IDLE_DND &&
-          presenceStatus === MembersFilterStatus.OFFLINE
-        ) {
-          filteredMembers.delete(id);
+        if (statusFilter === MembersFilterStatus.ONLINE_IDLE_DND) {
+          if (presenceStatus === MembersFilterStatus.OFFLINE) {
+            filteredMembers.delete(id);
+          }
         } else if (presenceStatus != statusFilter) {
           filteredMembers.delete(id);
         }
