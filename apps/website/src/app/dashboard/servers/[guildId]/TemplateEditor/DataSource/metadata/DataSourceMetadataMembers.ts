@@ -16,6 +16,7 @@ const MemberFilterStatusTkey = {
   [MembersFilterStatus.IDLE]: "idle",
   [MembersFilterStatus.DND]: "dnd",
   [MembersFilterStatus.OFFLINE]: "offline",
+  [MembersFilterStatus.ONLINE_IDLE_DND]: "onlineIdleDnd",
 } as const;
 
 const MembersFilterAccountTypeTKey = {

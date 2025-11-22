@@ -3,6 +3,7 @@ import { channelEvaluator } from "./channels";
 import { clockEvaluator } from "./clock";
 import { concatEvaluator } from "./concat";
 import { countdownEvaluator } from "./countdown";
+import { dateEvaluator } from "./date";
 import { gameEvaluator } from "./game";
 import { HTTPEvaluator } from "./http";
 import { mathEvaluator } from "./Math";
@@ -20,6 +21,7 @@ const dataSourceEvaluators = [
   botStatsEvaluator,
   channelEvaluator,
   clockEvaluator,
+  dateEvaluator,
   countdownEvaluator,
   gameEvaluator,
   HTTPEvaluator,

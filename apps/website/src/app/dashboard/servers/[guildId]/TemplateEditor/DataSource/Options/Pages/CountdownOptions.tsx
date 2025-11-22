@@ -145,7 +145,7 @@ export function CountdownOptions({
             "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.format",
           )}
         </Label>
-        <p className="text-sm font-light italic">
+        <p className="whitespace-pre-wrap text-sm font-light italic">
           <Trans
             i18nKey="pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.CountdownOptions.formatInstructions"
             components={{ code: <code /> }}

@@ -156,6 +156,14 @@ interface Resources {
         keywords: "countdown,timer";
         name: "Countdown";
       };
+      date: {
+        description: "Display the current date adjusted to your preferred timezone.";
+        display: {
+          syntax: "Date ({{timezone}})";
+        };
+        keywords: "date,calendar,timezone";
+        name: "Date";
+      };
       game: {
         description: "Retrieve the current number of online players in your game server, compatible with more than 320 games.";
         display: {
@@ -197,6 +205,7 @@ interface Resources {
             idle: "idle";
             offline: "offline";
             online: "online";
+            onlineIdleDnd: "online + idle + DND";
           };
           accountType: {
             any: "members";
@@ -449,6 +458,10 @@ interface Resources {
               description: "Create and manage countdown timers tailored to your specific events or deadlines.";
               title: "Countdown";
             };
+            date: {
+              description: "Display the current date in any timezone with customizable formatting. Great for showing dates across different regions.";
+              title: "Date";
+            };
             discordMembers: {
               description: "Count and filter members by online status, roles, and other criteria to get precise insights about your community.";
               title: "Discord Members";
@@ -578,6 +591,13 @@ interface Resources {
                   };
                   ClockOptions: {
                     configWarning: "Remember to return a valid timezone identifier";
+                    counterPreview: "We can't show you a live preview when the format is the result of a counter, you must preview the whole template to see how it will look like.";
+                    defaultFormat: "%f";
+                    format: "Format";
+                    formatConfigWarning: "Remember to return a valid formatting string";
+                    formatInstructions: "Available placeholders:\n• <code>%H</code> - Hour with leading zero, 24-hour (00-23)\n• <code>%h</code> - Hour without leading zero, 24-hour (0-23)\n• <code>%I</code> - Hour with leading zero, 12-hour (01-12)\n• <code>%i</code> - Hour without leading zero, 12-hour (1-12)\n• <code>%M</code> - Minute with leading zero (00-59)\n• <code>%m</code> - Minute without leading zero (0-59)\n• <code>%S</code> - Second with leading zero (00-59)\n• <code>%s</code> - Second without leading zero (0-59)\n• <code>%p</code> - am/pm (lowercase)\n• <code>%P</code> - AM/PM (uppercase)\n• <code>%f</code> - Default locale-based formatting";
+                    livePreview: "Live preview";
+                    noPreview: "We can't show you a live preview when the format is empty.";
                     searchTimezonePlaceholder: "Search timezone...";
                     timezone: "Timezone";
                   };
@@ -592,10 +612,22 @@ interface Resources {
                     defaultFormat: "%d days, %h hours and %m minutes left";
                     format: "Format";
                     formatConfigWarning: "Remember to return a valid formatting string";
-                    formatInstructions: 'Use <code>%d</code> to show the days left, <code>%h</code> for the hours left, and <code>%m</code> for the minutes left.\n\nYou can also use their respective uppercase equivalents <code>%D</code>, <code>%H</code>, and <code>%M</code> to show the total number of hours or minutes left (e.g. If countdown is in 2 days, <code>%H</code> will show "48").';
+                    formatInstructions: "Available placeholders:\n• <code>%d</code> - Days left\n• <code>%h</code> - Hours left (0-23)\n• <code>%m</code> - Minutes left (0-59)\n• <code>%s</code> - Seconds left (0-59)\n• <code>%D</code> - Total days left\n• <code>%H</code> - Total hours left\n• <code>%M</code> - Total minutes left\n• <code>%S</code> - Total seconds left";
                     livePreview: "Live preview";
                     noPreview: "We can't show you a live preview when the target date or format is empty.";
                     targetDate: "Target date";
+                  };
+                  DateOptions: {
+                    configWarning: "Remember to return a valid timezone identifier";
+                    counterPreview: "We can't show you a live preview when the format is the result of a counter, you must preview the whole template to see how it will look like.";
+                    defaultFormat: "%f";
+                    format: "Format";
+                    formatConfigWarning: "Remember to return a valid formatting string";
+                    formatInstructions: "Available placeholders:\n• <code>%Y</code> - Full year (2025)\n• <code>%y</code> - 2-digit year (25)\n• <code>%Ms</code> - Full month name (November)\n• <code>%ms</code> - Short month name (Nov)\n• <code>%M</code> - Month number with leading zero (01-12)\n• <code>%m</code> - Month number (1-12)\n• <code>%Ws</code> - Full day of week name (Monday)\n• <code>%ws</code> - Short day of week name (Mon)\n• <code>%w</code> - Day of week number (0=Sunday, 6=Saturday)\n• <code>%D</code> - Day with leading zero (05)\n• <code>%d</code> - Day without leading zero (5)\n• <code>%f</code> - Default locale-based formatting";
+                    livePreview: "Live preview";
+                    noPreview: "We can't show you a live preview when the format is empty.";
+                    searchTimezonePlaceholder: "Search timezone...";
+                    timezone: "Timezone";
                   };
                   GameOptions: {
                     address: "Address";
@@ -668,6 +700,7 @@ interface Resources {
                       label: "Filter by status";
                       offline: "Offline";
                       online: "Online";
+                      onlineIdleDnd: "Online + Idle + DND";
                       placeholder: "Select a status";
                     };
                     FilterPlayingGame: {

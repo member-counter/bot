@@ -155,6 +155,14 @@
       "keywords": "odpočítávání,časovač",
       "name": "Odpočet"
     },
+    "date": {
+      "description": "Zobrazení aktuálního data upraveného podle preferovaného časového pásma.",
+      "display": {
+        "syntax": "Datum ({{timezone}})"
+      },
+      "keywords": "datum,kalendář,časové pásmo",
+      "name": "Datum"
+    },
     "game": {
       "description": "Získejte aktuální počet online hráčů na herním serveru, kompatibilní s více než 320 hrami.",
       "display": {
@@ -194,7 +202,8 @@
           "dnd": "NERUŠIT",
           "idle": "nečinnost",
           "offline": "offline",
-          "online": "online"
+          "online": "online",
+          "onlineIdleDnd": "online + nečinnost + nerušit"
         },
         "accountType": {
           "any": "členi",
@@ -447,6 +456,10 @@
             "description": "Vytvářejte a spravujte časovače odpočítávání přizpůsobené konkrétním událostem nebo termínům.",
             "title": "Odpočet"
           },
+          "date": {
+            "description": "Zobrazení aktuálního data v libovolném časovém pásmu s přizpůsobitelným formátováním. Skvělé pro zobrazování dat v různých regionech.",
+            "title": "Datum"
+          },
           "discordMembers": {
             "description": "Počítejte a filtrujte členy podle online stavu, rolí a dalších kritérií, abyste získali přesné informace o své komunitě.",
             "title": "Členové Discordu"
@@ -576,6 +589,13 @@
                 },
                 "ClockOptions": {
                   "configWarning": "Nezapomeňte vrátit platný identifikátor časové zóny.",
+                  "counterPreview": "Pokud je formát výsledkem počítadla, nemůžeme vám zobrazit živý náhled, musíte si prohlédnout celou šablonu, abyste viděli, jak bude vypadat.",
+                  "defaultFormat": "%f",
+                  "format": "Formát",
+                  "formatConfigWarning": "Nezapomeňte vrátit platný formátovací řetězec",
+                  "formatInstructions": "Dostupné zástupné symboly:\n• <code>%H</code> - Hodina s nulou na začátku, 24hodinový formát (00-23)\n• <code>%h</code> - Hodina bez nuly na začátku, 24hodinový formát (0-23)\n• <code>%I</code> - Hodina s nulou na začátku, 12hodinový formát (01-12)\n• <code>%i</code> - Hodina bez nuly na začátku, 12hodinový formát (1-12)\n• <code>%M</code> - Minuta s nulou na začátku (00-59)\n• <code>%m</code> - Minuta bez nuly na začátku (0-59)\n• <code>%S</code> - Sekunda s nulou na začátku (00-59)\n• <code>%s</code> - Sekunda bez nuly na začátku (0-59)\n• <code>%p</code> - dop./odp. (malá písmena)\n• <code>%P</code> - DOP./ODP. (velká písmena)\n• <code>%f</code> - Výchozí formátování založené na místním nastavení",
+                  "livePreview": "Živý náhled",
+                  "noPreview": "Pokud je formát prázdný, nemůžeme zobrazit živý náhled.",
                   "searchTimezonePlaceholder": "Hledání časového pásma...",
                   "timezone": "Časové pásmo"
                 },
@@ -590,10 +610,22 @@
                   "defaultFormat": "zbývá %d dní, %h hodin a %m minut",
                   "format": "Formát",
                   "formatConfigWarning": "Nezapomeňte vrátit platný formátovací řetězec",
-                  "formatInstructions": "Použijte <code>%d</code> k ukázání zbývajících dní, <code>%h</code> pro zbývající hodiny, a <code>%m</code> zbývající minuty.",
+                  "formatInstructions": "Dostupné zástupné symboly:\n• <code>%d</code> - Zbývající dny\n• <code>%h</code> - Zbývající hodiny (0-23)\n• <code>%m</code> - Zbývající minuty (0-59)\n• <code>%s</code> - Zbývající sekundy (0-59)\n• <code>%D</code> - Celkový počet zbývajících dnů\n• <code>%H</code> - Celkový počet zbývajících hodin\n• <code>%M</code> - Celkový počet zbývajících minut\n• <code>%S</code> - Celkový počet zbývajících sekund",
                   "livePreview": "Živý náhled",
                   "noPreview": "Pokud je cílové datum nebo formát prázdný, nemůžeme zobrazit živý náhled.",
                   "targetDate": "Cílové datum"
+                },
+                "DateOptions": {
+                  "configWarning": "Nezapomeňte vrátit platný identifikátor časové zóny.",
+                  "counterPreview": "Pokud je formát výsledkem počítadla, nemůžeme vám zobrazit živý náhled, musíte si prohlédnout celou šablonu, abyste viděli, jak bude vypadat.",
+                  "defaultFormat": "%f",
+                  "format": "Formát",
+                  "formatConfigWarning": "Nezapomeňte vrátit platný formátovací řetězec",
+                  "formatInstructions": "Dostupné zástupné symboly:\n• <code>%Y</code> - Celý rok (2025)\n• <code>%y</code> - Dvouciferný rok (25)\n• <code>%Ms</code> - Úplný název měsíce (listopad)\n• <code>%ms</code> - Krátký název měsíce (lis)\n• <code>%M</code> - Číslo měsíce s nulou na začátku (01-12)\n• <code>%m</code> - Číslo měsíce (1-12)\n• <code>%Ws</code> - Úplný název dne v týdnu (pondělí)\n• <code>%ws</code> - Krátký název dne v týdnu (po)\n• <code>%w</code> - Číslo dne v týdnu (0=neděle, 6=sobota)\n• <code>%D</code> - Den s nulou na začátku (05)\n• <code>%d</code> - Den bez nuly na začátku (5)\n• <code>%f</code> - Výchozí formátování založené na místním nastavení",
+                  "livePreview": "Živý náhled",
+                  "noPreview": "Pokud je formát prázdný, nemůžeme zobrazit živý náhled.",
+                  "searchTimezonePlaceholder": "Hledání časového pásma...",
+                  "timezone": "Časové pásmo"
                 },
                 "GameOptions": {
                   "address": "Adresa",
@@ -666,6 +698,7 @@
                     "label": "Filtrování podle stavu",
                     "offline": "Offline",
                     "online": "Online",
+                    "onlineIdleDnd": "Online + Nečinný + Nerušit",
                     "placeholder": "Výběr stavu"
                   },
                   "FilterPlayingGame": {

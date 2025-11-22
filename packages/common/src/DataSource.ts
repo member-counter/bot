@@ -17,6 +17,7 @@ export type DataSource =
   | DataSourceMath
   | DataSourceChannels
   | DataSourceClock
+  | DataSourceDate
   | DataSourceCountdown
   | DataSourceGame
   | DataSourceHTTP
@@ -72,7 +73,18 @@ export interface DataSourceChannels extends DataSourceBase {
 
 export interface DataSourceClock extends DataSourceBase {
   id: DataSourceId.CLOCK;
-  options?: { timezone?: DataSource | string };
+  options?: {
+    timezone?: DataSource | string;
+    format?: DataSource | string;
+  };
+}
+
+export interface DataSourceDate extends DataSourceBase {
+  id: DataSourceId.DATE;
+  options?: {
+    timezone?: DataSource | string;
+    format?: DataSource | string;
+  };
 }
 
 export interface DataSourceCountdown extends DataSourceBase {
@@ -169,6 +181,7 @@ export enum DataSourceId {
   MATH,
   CHANNELS,
   CLOCK,
+  DATE,
   COUNTDOWN,
   GAME,
   HTTP,
@@ -233,6 +246,7 @@ export enum MembersFilterStatus {
   IDLE,
   DND,
   OFFLINE,
+  ONLINE_IDLE_DND,
 }
 
 export enum MembersFilterAccountType {

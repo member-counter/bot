@@ -1,4 +1,4 @@
-import type { DataSource, DataSourceClock } from "@mc/common/DataSource";
+import type { DataSource, DataSourceDate } from "@mc/common/DataSource";
 import type { TFunction } from "i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
@@ -19,7 +19,7 @@ import {
 } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
-function formatClock(
+function formatDate(
   timezone: unknown,
   format: unknown,
   locale?: string | null,
@@ -33,59 +33,83 @@ function formatClock(
   // Validate locale - default to en-US if invalid
   const validLocale = locale && locale.length >= 2 ? locale : "en-US";
 
-  // Get default formatted time for %f placeholder
+  // Get default formatted date for %f placeholder
   const defaultFormatted = () =>
     new Intl.DateTimeFormat(validLocale, {
-      hour: "numeric",
-      minute: "numeric",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
       timeZone: typeof timezone === "string" ? timezone : undefined,
     }).format(rounded);
 
-  // Get time parts in the specified timezone
-  const timeInTimezone = new Intl.DateTimeFormat(validLocale, {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
+  // Get date parts in the specified timezone
+  const dateInTimezone = new Intl.DateTimeFormat(validLocale, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
     timeZone: typeof timezone === "string" ? timezone : undefined,
   });
 
-  const parts = timeInTimezone.formatToParts(rounded);
-  const hour = parts.find((p) => p.type === "hour")?.value ?? "";
-  const minute = parts.find((p) => p.type === "minute")?.value ?? "";
-  const second = parts.find((p) => p.type === "second")?.value ?? "";
+  const parts = dateInTimezone.formatToParts(rounded);
+  const year = parts.find((p) => p.type === "year")?.value ?? "";
+  const month = parts.find((p) => p.type === "month")?.value ?? "";
+  const day = parts.find((p) => p.type === "day")?.value ?? "";
 
-  // Get 12-hour format
-  const time12 = new Intl.DateTimeFormat(validLocale, {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true,
-    timeZone: typeof timezone === "string" ? timezone : undefined,
-  });
+  // Get month name
+  const monthName = () =>
+    new Intl.DateTimeFormat(validLocale, {
+      month: "long",
+      timeZone: typeof timezone === "string" ? timezone : undefined,
+    }).format(rounded);
 
-  const parts12 = time12.formatToParts(rounded);
-  const hour12 = parts12.find((p) => p.type === "hour")?.value ?? "";
-  const dayPeriod = parts12.find((p) => p.type === "dayPeriod")?.value ?? "";
+  const monthNameShort = () =>
+    new Intl.DateTimeFormat(validLocale, {
+      month: "short",
+      timeZone: typeof timezone === "string" ? timezone : undefined,
+    }).format(rounded);
+
+  // Get day of week
+  const weekdayName = () =>
+    new Intl.DateTimeFormat(validLocale, {
+      weekday: "long",
+      timeZone: typeof timezone === "string" ? timezone : undefined,
+    }).format(rounded);
+
+  const weekdayNameShort = () =>
+    new Intl.DateTimeFormat(validLocale, {
+      weekday: "short",
+      timeZone: typeof timezone === "string" ? timezone : undefined,
+    }).format(rounded);
+
+  // Get day of week number (0=Sunday, 6=Saturday)
+  const dayOfWeek = () =>
+    new Date(
+      rounded.toLocaleString("en-US", {
+        timeZone: typeof timezone === "string" ? timezone : undefined,
+      }),
+    )
+      .getDay()
+      .toString();
 
   // Replace format placeholders
   const formatted = format
     .replace(/%f/g, defaultFormatted) // Default locale-based formatting
-    .replace(/%H/g, hour) // Hour with leading zero, 24-hour format (00-23)
-    .replace(/%h/g, () => String(parseInt(hour, 10))) // Hour without leading zero, 24-hour format (0-23)
-    .replace(/%I/g, hour12) // Hour with leading zero, 12-hour format (01-12)
-    .replace(/%i/g, () => String(parseInt(hour12, 10))) // Hour without leading zero, 12-hour format (1-12)
-    .replace(/%M/g, minute) // Minute with leading zero (00-59)
-    .replace(/%m/g, () => String(parseInt(minute, 10))) // Minute without leading zero (0-59)
-    .replace(/%S/g, second) // Second with leading zero (00-59)
-    .replace(/%s/g, () => String(parseInt(second, 10))) // Second without leading zero (0-59)
-    .replace(/%p/g, dayPeriod.toLowerCase()) // am/pm
-    .replace(/%P/g, dayPeriod.toUpperCase()); // AM/PM
+    .replace(/%Y/g, year) // Full year (e.g., 2025)
+    .replace(/%y/g, () => year.slice(-2)) // 2-digit year (e.g., 25)
+    .replace(/%Ms/g, monthName) // Full month name (e.g., November)
+    .replace(/%ms/g, monthNameShort) // Short month name (e.g., Nov)
+    .replace(/%M/g, month) // Month number with leading zero (e.g., 01, 11)
+    .replace(/%m/g, () => String(parseInt(month, 10))) // Month number without leading zero (e.g., 1, 11)
+    .replace(/%Ws/g, weekdayName) // Full day of week name (e.g., Monday)
+    .replace(/%ws/g, weekdayNameShort) // Short day of week name (e.g., Mon)
+    .replace(/%w/g, dayOfWeek) // Day of week number (0=Sunday, 6=Saturday)
+    .replace(/%D/g, day) // Day with leading zero (e.g., 05)
+    .replace(/%d/g, () => String(parseInt(day, 10))); // Day without leading zero (e.g., 5)
 
   return formatted;
 }
 
-type DataSourceType = DataSourceClock;
+type DataSourceType = DataSourceDate;
 
 const defaultOptionsMerger =
   (t: TFunction) =>
@@ -95,12 +119,12 @@ const defaultOptionsMerger =
       format:
         options.format ??
         t(
-          "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.defaultFormat",
+          "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.defaultFormat",
         ),
     };
   };
 
-export function ClockOptions({
+export function DateOptions({
   options: unmergedOptions,
   onOptionsChange,
   format,
@@ -123,11 +147,11 @@ export function ClockOptions({
     );
 
   const [preview, setPreview] = useState(
-    formatClock(options.timezone, options.format, format?.locale),
+    formatDate(options.timezone, options.format, format?.locale),
   );
 
   const displayPreview = useCallback(() => {
-    const formatted = formatClock(
+    const formatted = formatDate(
       options.timezone,
       options.format,
       format?.locale,
@@ -152,13 +176,13 @@ export function ClockOptions({
       <div>
         <Label>
           {t(
-            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.timezone",
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.timezone",
           )}
         </Label>
         <Combobox
           items={searchableTimezonesAndDataSources}
           placeholder={t(
-            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.searchTimezonePlaceholder",
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.searchTimezonePlaceholder",
           )}
           selectedItem={options.timezone}
           onItemSelect={(item) => {
@@ -179,7 +203,7 @@ export function ClockOptions({
               });
             },
             dataSourceConfigWarning: t(
-              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.configWarning",
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.configWarning",
             ),
           })}
         />
@@ -188,12 +212,12 @@ export function ClockOptions({
       <div>
         <Label>
           {t(
-            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.format",
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.format",
           )}
         </Label>
         <p className="whitespace-pre-wrap text-sm font-light italic">
           <Trans
-            i18nKey="pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.formatInstructions"
+            i18nKey="pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.formatInstructions"
             components={{ code: <code /> }}
           />
         </p>
@@ -221,7 +245,7 @@ export function ClockOptions({
               });
             },
             dataSourceConfigWarning: t(
-              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.formatConfigWarning",
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.formatConfigWarning",
             ),
           })}
         />
@@ -230,19 +254,19 @@ export function ClockOptions({
       <div>
         <Label>
           {t(
-            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.livePreview",
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.livePreview",
           )}
         </Label>
         {!options.format ? (
           <span className="text-sm font-light italic">
             {t(
-              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.noPreview",
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.noPreview",
             )}
           </span>
         ) : typeof options.format !== "string" ? (
           <span className="text-sm font-light italic">
             {t(
-              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.ClockOptions.counterPreview",
+              "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.DateOptions.counterPreview",
             )}
           </span>
         ) : (
