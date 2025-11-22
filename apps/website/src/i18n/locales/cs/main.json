@@ -588,6 +588,13 @@
                 },
                 "ClockOptions": {
                   "configWarning": "Nezapomeňte vrátit platný identifikátor časové zóny.",
+                  "counterPreview": "Pokud je formát výsledkem počítadla, nemůžeme vám zobrazit živý náhled, musíte si prohlédnout celou šablonu, abyste viděli, jak bude vypadat.",
+                  "defaultFormat": "%f",
+                  "format": "Formát",
+                  "formatConfigWarning": "Nezapomeňte vrátit platný formátovací řetězec",
+                  "formatInstructions": "Dostupné zástupné symboly:\n• <code>%H</code> - Hodina s nulou na začátku, 24hodinový formát (00-23)\n• <code>%h</code> - Hodina bez nuly na začátku, 24hodinový formát (0-23)\n• <code>%I</code> - Hodina s nulou na začátku, 12hodinový formát (01-12)\n• <code>%i</code> - Hodina bez nuly na začátku, 12hodinový formát (1-12)\n• <code>%M</code> - Minuta s nulou na začátku (00-59)\n• <code>%m</code> - Minuta bez nuly na začátku (0-59)\n• <code>%S</code> - Sekunda s nulou na začátku (00-59)\n• <code>%s</code> - Sekunda bez nuly na začátku (0-59)\n• <code>%p</code> - dop./odp. (malá písmena)\n• <code>%P</code> - DOP./ODP. (velká písmena)\n• <code>%f</code> - Výchozí formátování založené na místním nastavení",
+                  "livePreview": "Živý náhled",
+                  "noPreview": "Pokud je formát prázdný, nemůžeme zobrazit živý náhled.",
                   "searchTimezonePlaceholder": "Hledání časového pásma...",
                   "timezone": "Časové pásmo"
                 },

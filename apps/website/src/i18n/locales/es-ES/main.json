@@ -588,6 +588,13 @@
                 },
                 "ClockOptions": {
                   "configWarning": "Recuerda devolver un identificador de zona horaria válido",
+                  "counterPreview": "No podemos mostrarte una vista previa en vivo cuando el formato es el resultado de un contador, debes previsualizar toda la plantilla para ver cómo se verá.",
+                  "defaultFormat": "%f",
+                  "format": "Formato",
+                  "formatConfigWarning": "Recuerda devolver una cadena de formato válida",
+                  "formatInstructions": "Marcadores disponibles:\n• <code>%H</code> - Hora con cero inicial, 24 horas (00-23)\n• <code>%h</code> - Hora sin cero inicial, 24 horas (0-23)\n• <code>%I</code> - Hora con cero inicial, 12 horas (01-12)\n• <code>%i</code> - Hora sin cero inicial, 12 horas (1-12)\n• <code>%M</code> - Minuto con cero inicial (00-59)\n• <code>%m</code> - Minuto sin cero inicial (0-59)\n• <code>%S</code> - Segundo con cero inicial (00-59)\n• <code>%s</code> - Segundo sin cero inicial (0-59)\n• <code>%p</code> - am/pm (minúsculas)\n• <code>%P</code> - AM/PM (mayúsculas)\n• <code>%f</code> - Formato predeterminado basado en la configuración regional",
+                  "livePreview": "Vista previa en vivo",
+                  "noPreview": "No podemos mostrarte una vista previa en vivo cuando el formato está vacío.",
                   "searchTimezonePlaceholder": "Buscar zona horaria...",
                   "timezone": "Zona horaria"
                 },

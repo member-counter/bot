@@ -73,7 +73,10 @@ export interface DataSourceChannels extends DataSourceBase {
 
 export interface DataSourceClock extends DataSourceBase {
   id: DataSourceId.CLOCK;
-  options?: { timezone?: DataSource | string };
+  options?: {
+    timezone?: DataSource | string;
+    format?: DataSource | string;
+  };
 }
 
 export interface DataSourceDate extends DataSourceBase {

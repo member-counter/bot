@@ -590,6 +590,13 @@ interface Resources {
                   };
                   ClockOptions: {
                     configWarning: "Remember to return a valid timezone identifier";
+                    counterPreview: "We can't show you a live preview when the format is the result of a counter, you must preview the whole template to see how it will look like.";
+                    defaultFormat: "%f";
+                    format: "Format";
+                    formatConfigWarning: "Remember to return a valid formatting string";
+                    formatInstructions: "Available placeholders:\n• <code>%H</code> - Hour with leading zero, 24-hour (00-23)\n• <code>%h</code> - Hour without leading zero, 24-hour (0-23)\n• <code>%I</code> - Hour with leading zero, 12-hour (01-12)\n• <code>%i</code> - Hour without leading zero, 12-hour (1-12)\n• <code>%M</code> - Minute with leading zero (00-59)\n• <code>%m</code> - Minute without leading zero (0-59)\n• <code>%S</code> - Second with leading zero (00-59)\n• <code>%s</code> - Second without leading zero (0-59)\n• <code>%p</code> - am/pm (lowercase)\n• <code>%P</code> - AM/PM (uppercase)\n• <code>%f</code> - Default locale-based formatting";
+                    livePreview: "Live preview";
+                    noPreview: "We can't show you a live preview when the format is empty.";
                     searchTimezonePlaceholder: "Search timezone...";
                     timezone: "Timezone";
                   };
