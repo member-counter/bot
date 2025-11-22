@@ -19,25 +19,31 @@ import {
 } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
-function formatDate(timezone: unknown, format: unknown) {
+function formatDate(
+  timezone: unknown,
+  format: unknown,
+  locale?: string | null,
+) {
   if (typeof format !== "string") return;
 
   const coeff = 1000 * 60 * 5;
   const date = new Date();
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
 
-  // If format is %f, use default Intl formatting
-  if (format === "%f") {
-    return new Intl.DateTimeFormat(undefined, {
+  // Validate locale - default to en-US if invalid
+  const validLocale = locale && locale.length >= 2 ? locale : "en-US";
+
+  // Get default formatted date for %f placeholder
+  const defaultFormatted = () =>
+    new Intl.DateTimeFormat(validLocale, {
       year: "numeric",
       month: "long",
       day: "numeric",
       timeZone: typeof timezone === "string" ? timezone : undefined,
     }).format(rounded);
-  }
 
   // Get date parts in the specified timezone
-  const dateInTimezone = new Intl.DateTimeFormat(undefined, {
+  const dateInTimezone = new Intl.DateTimeFormat(validLocale, {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -51,26 +57,26 @@ function formatDate(timezone: unknown, format: unknown) {
 
   // Get month name
   const monthName = () =>
-    new Intl.DateTimeFormat(undefined, {
+    new Intl.DateTimeFormat(validLocale, {
       month: "long",
       timeZone: typeof timezone === "string" ? timezone : undefined,
     }).format(rounded);
 
   const monthNameShort = () =>
-    new Intl.DateTimeFormat(undefined, {
+    new Intl.DateTimeFormat(validLocale, {
       month: "short",
       timeZone: typeof timezone === "string" ? timezone : undefined,
     }).format(rounded);
 
   // Get day of week
   const weekdayName = () =>
-    new Intl.DateTimeFormat(undefined, {
+    new Intl.DateTimeFormat(validLocale, {
       weekday: "long",
       timeZone: typeof timezone === "string" ? timezone : undefined,
     }).format(rounded);
 
   const weekdayNameShort = () =>
-    new Intl.DateTimeFormat(undefined, {
+    new Intl.DateTimeFormat(validLocale, {
       weekday: "short",
       timeZone: typeof timezone === "string" ? timezone : undefined,
     }).format(rounded);
@@ -87,17 +93,18 @@ function formatDate(timezone: unknown, format: unknown) {
 
   // Replace format placeholders
   const formatted = format
+    .replace(/%f/g, defaultFormatted) // Default locale-based formatting
     .replace(/%Y/g, year) // Full year (e.g., 2025)
     .replace(/%y/g, () => year.slice(-2)) // 2-digit year (e.g., 25)
     .replace(/%Ms/g, monthName) // Full month name (e.g., November)
     .replace(/%ms/g, monthNameShort) // Short month name (e.g., Nov)
     .replace(/%M/g, month) // Month number with leading zero (e.g., 01, 11)
-    .replace(/%m/g, String(parseInt(month, 10))) // Month number without leading zero (e.g., 1, 11)
+    .replace(/%m/g, () => String(parseInt(month, 10))) // Month number without leading zero (e.g., 1, 11)
     .replace(/%Ws/g, weekdayName) // Full day of week name (e.g., Monday)
     .replace(/%ws/g, weekdayNameShort) // Short day of week name (e.g., Mon)
     .replace(/%w/g, dayOfWeek) // Day of week number (0=Sunday, 6=Saturday)
     .replace(/%D/g, day) // Day with leading zero (e.g., 05)
-    .replace(/%d/g, String(parseInt(day, 10))); // Day without leading zero (e.g., 5)
+    .replace(/%d/g, () => String(parseInt(day, 10))); // Day without leading zero (e.g., 5)
 
   return formatted;
 }
@@ -120,6 +127,7 @@ const defaultOptionsMerger =
 export function DateOptions({
   options: unmergedOptions,
   onOptionsChange,
+  format,
 }: SetupOptionsInterface<DataSourceType>) {
   const { t } = useTranslation();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -139,13 +147,17 @@ export function DateOptions({
     );
 
   const [preview, setPreview] = useState(
-    formatDate(options.timezone, options.format),
+    formatDate(options.timezone, options.format, format?.locale),
   );
 
   const displayPreview = useCallback(() => {
-    const formatted = formatDate(options.timezone, options.format);
+    const formatted = formatDate(
+      options.timezone,
+      options.format,
+      format?.locale,
+    );
     if (preview !== formatted) setPreview(formatted);
-  }, [options.timezone, options.format, preview]);
+  }, [options.timezone, options.format, format?.locale, preview]);
 
   useEffect(() => {
     const interval = setInterval(() => {

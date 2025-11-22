@@ -61,6 +61,7 @@ export function EditDataSourceOptions({
       {
         <Options
           options={dataSource.options as never}
+          format={dataSource.format}
           onOptionsChange={(options) => {
             onChangeDataSource({ ...dataSource, options } as never);
           }}

@@ -9,17 +9,16 @@ export const dateEvaluator = new DataSourceEvaluator({
     const date = new Date();
     const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
 
-    const formatString = options.format ?? "%f";
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+    const formatString = options.format || "%f";
 
-    // If format is %f, use default Intl formatting
-    if (formatString === "%f") {
-      return new Intl.DateTimeFormat(format.locale, {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        timeZone: options.timezone,
-      }).format(rounded);
-    }
+    // Get default formatted date for %f placeholder
+    const defaultFormatted = new Intl.DateTimeFormat(format.locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: options.timezone,
+    }).format(rounded);
 
     // Get date parts in the specified timezone
     const dateInTimezone = new Intl.DateTimeFormat(format.locale, {
@@ -68,6 +67,7 @@ export const dateEvaluator = new DataSourceEvaluator({
 
     // Replace format placeholders
     const formatted = formatString
+      .replace(/%f/g, defaultFormatted) // Default locale-based formatting
       .replace(/%Y/g, year) // Full year (e.g., 2025)
       .replace(/%y/g, () => year.slice(-2)) // 2-digit year (e.g., 25)
       .replace(/%Ms/g, monthName) // Full month name (e.g., November)

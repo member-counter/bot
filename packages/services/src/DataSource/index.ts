@@ -198,8 +198,14 @@ class DataSourceService {
 
     assert(dataSourceEvaluator, new KnownError("UNKNOWN_DATA_SOURCE"));
 
+    // Validate locale, default to en-US if invalid (less than 2 characters)
+    const validatedFormat = {
+      ...format,
+      locale: format.locale.length >= 2 ? format.locale : "en-US",
+    };
+
     return await dataSourceEvaluator.execute({
-      format,
+      format: validatedFormat,
       options: options as never,
       ctx: this.ctx,
     });

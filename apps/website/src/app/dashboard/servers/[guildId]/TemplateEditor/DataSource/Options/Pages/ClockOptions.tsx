@@ -19,24 +19,30 @@ import {
 } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
-function formatClock(timezone: unknown, format: unknown) {
+function formatClock(
+  timezone: unknown,
+  format: unknown,
+  locale?: string | null,
+) {
   if (typeof format !== "string") return;
 
   const coeff = 1000 * 60 * 5;
   const date = new Date();
   const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
 
-  // If format is %f, use default Intl formatting
-  if (format === "%f") {
-    return new Intl.DateTimeFormat(undefined, {
+  // Validate locale - default to en-US if invalid
+  const validLocale = locale && locale.length >= 2 ? locale : "en-US";
+
+  // Get default formatted time for %f placeholder
+  const defaultFormatted = () =>
+    new Intl.DateTimeFormat(validLocale, {
       hour: "numeric",
       minute: "numeric",
       timeZone: typeof timezone === "string" ? timezone : undefined,
     }).format(rounded);
-  }
 
   // Get time parts in the specified timezone
-  const timeInTimezone = new Intl.DateTimeFormat(undefined, {
+  const timeInTimezone = new Intl.DateTimeFormat(validLocale, {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
@@ -50,7 +56,7 @@ function formatClock(timezone: unknown, format: unknown) {
   const second = parts.find((p) => p.type === "second")?.value ?? "";
 
   // Get 12-hour format
-  const time12 = new Intl.DateTimeFormat(undefined, {
+  const time12 = new Intl.DateTimeFormat(validLocale, {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
@@ -64,6 +70,7 @@ function formatClock(timezone: unknown, format: unknown) {
 
   // Replace format placeholders
   const formatted = format
+    .replace(/%f/g, defaultFormatted) // Default locale-based formatting
     .replace(/%H/g, hour) // Hour with leading zero, 24-hour format (00-23)
     .replace(/%h/g, () => String(parseInt(hour, 10))) // Hour without leading zero, 24-hour format (0-23)
     .replace(/%I/g, hour12) // Hour with leading zero, 12-hour format (01-12)
@@ -96,6 +103,7 @@ const defaultOptionsMerger =
 export function ClockOptions({
   options: unmergedOptions,
   onOptionsChange,
+  format,
 }: SetupOptionsInterface<DataSourceType>) {
   const { t } = useTranslation();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -115,13 +123,17 @@ export function ClockOptions({
     );
 
   const [preview, setPreview] = useState(
-    formatClock(options.timezone, options.format),
+    formatClock(options.timezone, options.format, format?.locale),
   );
 
   const displayPreview = useCallback(() => {
-    const formatted = formatClock(options.timezone, options.format);
+    const formatted = formatClock(
+      options.timezone,
+      options.format,
+      format?.locale,
+    );
     if (preview !== formatted) setPreview(formatted);
-  }, [options.timezone, options.format, preview]);
+  }, [options.timezone, options.format, format?.locale, preview]);
 
   useEffect(() => {
     const interval = setInterval(() => {

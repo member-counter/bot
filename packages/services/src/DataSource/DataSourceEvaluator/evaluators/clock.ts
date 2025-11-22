@@ -9,16 +9,15 @@ export const clockEvaluator = new DataSourceEvaluator({
     const date = new Date();
     const rounded = new Date(Math.round(date.getTime() / coeff) * coeff);
 
-    const formatString = options.format ?? "%f";
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+    const formatString = options.format || "%f";
 
-    // If format is %f, use default Intl formatting
-    if (formatString === "%f") {
-      return new Intl.DateTimeFormat(format.locale, {
-        hour: "numeric",
-        minute: "numeric",
-        timeZone: options.timezone,
-      }).format(rounded);
-    }
+    // Get default formatted time for %f placeholder
+    const defaultFormatted = new Intl.DateTimeFormat(format.locale, {
+      hour: "numeric",
+      minute: "numeric",
+      timeZone: options.timezone,
+    }).format(rounded);
 
     // Get time parts in the specified timezone
     const timeInTimezone = new Intl.DateTimeFormat(format.locale, {
@@ -49,6 +48,7 @@ export const clockEvaluator = new DataSourceEvaluator({
 
     // Replace format placeholders
     const formatted = formatString
+      .replace(/%f/g, defaultFormatted) // Default locale-based formatting
       .replace(/%H/g, hour) // Hour with leading zero, 24-hour format (00-23)
       .replace(/%h/g, () => String(parseInt(hour, 10))) // Hour without leading zero, 24-hour format (0-23)
       .replace(/%I/g, hour12) // Hour with leading zero, 12-hour format (01-12)
