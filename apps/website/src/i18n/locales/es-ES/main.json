@@ -621,7 +621,7 @@
                   "defaultFormat": "%d días, %h horas y %m minutos restantes",
                   "format": "Formato",
                   "formatConfigWarning": "Recuerda devolver una cadena de formato válida",
-                  "formatInstructions": "Usa <code>%d</code> para mostrar los días restantes, <code>%h</code> para las horas restantes y <code>%m</code> para los minutos restantes.",
+                  "formatInstructions": "Marcadores disponibles:\n• <code>%d</code> - Días restantes\n• <code>%h</code> - Horas restantes (0-23)\n• <code>%m</code> - Minutos restantes (0-59)\n• <code>%s</code> - Segundos restantes (0-59)\n• <code>%D</code> - Total de días restantes\n• <code>%H</code> - Total de horas restantes\n• <code>%M</code> - Total de minutos restantes\n• <code>%S</code> - Total de segundos restantes",
                   "livePreview": "Vista previa en vivo",
                   "noPreview": "No podemos mostrarte una vista previa en vivo cuando la fecha objetivo o el formato están vacíos.",
                   "targetDate": "Fecha objetivo"

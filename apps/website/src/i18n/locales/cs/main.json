@@ -621,7 +621,7 @@
                   "defaultFormat": "zbývá %d dní, %h hodin a %m minut",
                   "format": "Formát",
                   "formatConfigWarning": "Nezapomeňte vrátit platný formátovací řetězec",
-                  "formatInstructions": "Použijte <code>%d</code> k ukázání zbývajících dní, <code>%h</code> pro zbývající hodiny, a <code>%m</code> zbývající minuty.",
+                  "formatInstructions": "Dostupné zástupné symboly:\n• <code>%d</code> - Zbývající dny\n• <code>%h</code> - Zbývající hodiny (0-23)\n• <code>%m</code> - Zbývající minuty (0-59)\n• <code>%s</code> - Zbývající sekundy (0-59)\n• <code>%D</code> - Celkový počet zbývajících dnů\n• <code>%H</code> - Celkový počet zbývajících hodin\n• <code>%M</code> - Celkový počet zbývajících minut\n• <code>%S</code> - Celkový počet zbývajících sekund",
                   "livePreview": "Živý náhled",
                   "noPreview": "Pokud je cílové datum nebo formát prázdný, nemůžeme zobrazit živý náhled.",
                   "targetDate": "Cílové datum"
