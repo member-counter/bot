@@ -203,7 +203,8 @@
           "dnd": "DND",
           "idle": "idle",
           "offline": "offline",
-          "online": "online"
+          "online": "online",
+          "onlineIdleDnd": "online + idle + DND"
         },
         "accountType": {
           "any": "members",
@@ -698,6 +699,7 @@
                     "label": "Filter by status",
                     "offline": "Offline",
                     "online": "Online",
+                    "onlineIdleDnd": "Online + Idle + DND",
                     "placeholder": "Select a status"
                   },
                   "FilterPlayingGame": {

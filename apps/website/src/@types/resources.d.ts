@@ -205,6 +205,7 @@ interface Resources {
             idle: "idle";
             offline: "offline";
             online: "online";
+            onlineIdleDnd: "online + idle + DND";
           };
           accountType: {
             any: "members";
@@ -699,6 +700,7 @@ interface Resources {
                       label: "Filter by status";
                       offline: "Offline";
                       online: "Online";
+                      onlineIdleDnd: "Online + Idle + DND";
                       placeholder: "Select a status";
                     };
                     FilterPlayingGame: {

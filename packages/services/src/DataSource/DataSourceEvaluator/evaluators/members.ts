@@ -34,7 +34,10 @@ const executeUnprivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["exec
     let count: number | null = ctx.guild.approximateMemberCount;
 
     if (statusFilter) {
-      if (statusFilter === MembersFilterStatus.ONLINE) {
+      if (
+        statusFilter === MembersFilterStatus.ONLINE ||
+        statusFilter === MembersFilterStatus.ONLINE_IDLE_DND
+      ) {
         count = ctx.guild.approximatePresenceCount;
       } else if (statusFilter === MembersFilterStatus.OFFLINE) {
         if (
@@ -98,11 +101,17 @@ const executePrivilegedSearch: DataSourceEvaluator<DataSourceId.MEMBERS>["execut
 
     if (statusFilter) {
       for (const [id, member] of filteredMembers) {
+        const presenceStatus =
+          PresenceStatusMap[member.presence?.status ?? "offline"];
+
         if (
-          PresenceStatusMap[member.presence?.status ?? "offline"] !=
-          statusFilter
-        )
+          statusFilter === MembersFilterStatus.ONLINE_IDLE_DND &&
+          presenceStatus === MembersFilterStatus.OFFLINE
+        ) {
           filteredMembers.delete(id);
+        } else if (presenceStatus != statusFilter) {
+          filteredMembers.delete(id);
+        }
       }
     }
 

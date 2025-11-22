@@ -246,6 +246,7 @@ export enum MembersFilterStatus {
   IDLE,
   DND,
   OFFLINE,
+  ONLINE_IDLE_DND,
 }
 
 export enum MembersFilterAccountType {

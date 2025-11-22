@@ -4,6 +4,7 @@ import {
   CircleIcon,
   MinusCircleIcon,
   MoonIcon,
+  UsersIcon,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -54,6 +55,13 @@ export function FilterByStatus({
                 "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.any",
               )}
               icon={AsteriskIcon}
+            />
+            <SelectItemWithIcon
+              value={MembersFilterStatus.ONLINE_IDLE_DND.toString()}
+              label={t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.MembersOptions.FilterByStatus.onlineIdleDnd",
+              )}
+              icon={UsersIcon}
             />
             <SelectItemWithIcon
               value={MembersFilterStatus.ONLINE.toString()}

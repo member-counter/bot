@@ -202,7 +202,8 @@
           "dnd": "NERUŠIT",
           "idle": "nečinnost",
           "offline": "offline",
-          "online": "online"
+          "online": "online",
+          "onlineIdleDnd": "online + nečinnost + nerušit"
         },
         "accountType": {
           "any": "členi",
@@ -697,6 +698,7 @@
                     "label": "Filtrování podle stavu",
                     "offline": "Offline",
                     "online": "Online",
+                    "onlineIdleDnd": "Online + Nečinný + Nerušit",
                     "placeholder": "Výběr stavu"
                   },
                   "FilterPlayingGame": {

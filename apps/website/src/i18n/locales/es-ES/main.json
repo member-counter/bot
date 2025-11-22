@@ -202,7 +202,8 @@
           "dnd": "No molestar",
           "idle": "ausente",
           "offline": "desconectado",
-          "online": "en línea"
+          "online": "en línea",
+          "onlineIdleDnd": "en línea + ausente + no molestar"
         },
         "accountType": {
           "any": "miembros",
@@ -697,6 +698,7 @@
                     "label": "Filtrar por estado",
                     "offline": "Desconectado",
                     "online": "En línea",
+                    "onlineIdleDnd": "En línea + Ausente + No molestar",
                     "placeholder": "Selecciona un estado"
                   },
                   "FilterPlayingGame": {
