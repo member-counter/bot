@@ -12,6 +12,7 @@ import { createDataSourceMetadataChannels } from "./DataSourceMetadataChannels";
 import { createDataSourceMetadataClock } from "./DataSourceMetadataClock";
 import { createDataSourceMetadataConcat } from "./DataSourceMetadataConcat";
 import { createDataSourceMetadataCountdown } from "./DataSourceMetadataCountdown";
+import { createDataSourceMetadataDate } from "./DataSourceMetadataDate";
 import { createDataSourceMetadataGame } from "./DataSourceMetadataGame";
 import { createDataSourceMetadataHTTP } from "./DataSourceMetadataHttp";
 import { createDataSourceMetadataMath } from "./DataSourceMetadataMath";
@@ -35,6 +36,7 @@ export function dataSourcesMetadataFactory(
       createDataSourceMetadataChannels(i18n),
       createDataSourceMetadataCountdown(i18n),
       createDataSourceMetadataClock(i18n),
+      createDataSourceMetadataDate(i18n),
       createDataSourceMetadataNitroboosters(i18n),
       createDataSourceMetadataNumber(i18n),
       createDataSourceMetadataReddit(i18n),

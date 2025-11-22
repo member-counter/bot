@@ -138,6 +138,14 @@
       "keywords": "hodiny,časové pásmo",
       "name": "Hodiny"
     },
+    "date": {
+      "description": "Zobrazení aktuálního data upraveného podle preferovaného časového pásma.",
+      "display": {
+        "syntax": "Datum ({{timezone}})"
+      },
+      "keywords": "datum,kalendář,časové pásmo",
+      "name": "Datum"
+    },
     "concat": {
       "description": "Spojení více řetězců do jednoho.",
       "display": {
@@ -443,6 +451,10 @@
             "description": "Pomocí našich přizpůsobitelných hodin můžete zobrazit čas v libovolném časovém pásmu. Ideální pro koordinaci v různých regionech.",
             "title": "Hodiny"
           },
+          "date": {
+            "description": "Zobrazení aktuálního data v libovolném časovém pásmu s přizpůsobitelným formátováním. Skvělé pro zobrazování dat v různých regionech.",
+            "title": "Datum"
+          },
           "countdown": {
             "description": "Vytvářejte a spravujte časovače odpočítávání přizpůsobené konkrétním událostem nebo termínům.",
             "title": "Odpočet"
@@ -576,6 +588,18 @@
                 },
                 "ClockOptions": {
                   "configWarning": "Nezapomeňte vrátit platný identifikátor časové zóny.",
+                  "searchTimezonePlaceholder": "Hledání časového pásma...",
+                  "timezone": "Časové pásmo"
+                },
+                "DateOptions": {
+                  "configWarning": "Nezapomeňte vrátit platný identifikátor časové zóny.",
+                  "counterPreview": "Pokud je formát výsledkem počítadla, nemůžeme vám zobrazit živý náhled, musíte si prohlédnout celou šablonu, abyste viděli, jak bude vypadat.",
+                  "defaultFormat": "%f",
+                  "format": "Formát",
+                  "formatConfigWarning": "Nezapomeňte vrátit platný formátovací řetězec",
+                  "formatInstructions": "Dostupné zástupné symboly:\n• <code>%Y</code> - Celý rok (2025)\n• <code>%y</code> - Dvouciferný rok (25)\n• <code>%Ms</code> - Úplný název měsíce (listopad)\n• <code>%ms</code> - Krátký název měsíce (lis)\n• <code>%M</code> - Číslo měsíce s nulou na začátku (01-12)\n• <code>%m</code> - Číslo měsíce (1-12)\n• <code>%Ws</code> - Úplný název dne v týdnu (pondělí)\n• <code>%ws</code> - Krátký název dne v týdnu (po)\n• <code>%w</code> - Číslo dne v týdnu (0=neděle, 6=sobota)\n• <code>%D</code> - Den s nulou na začátku (05)\n• <code>%d</code> - Den bez nuly na začátku (5)\n• <code>%f</code> - Výchozí formátování založené na místním nastavení",
+                  "livePreview": "Živý náhled",
+                  "noPreview": "Pokud je formát prázdný, nemůžeme zobrazit živý náhled.",
                   "searchTimezonePlaceholder": "Hledání časového pásma...",
                   "timezone": "Časové pásmo"
                 },

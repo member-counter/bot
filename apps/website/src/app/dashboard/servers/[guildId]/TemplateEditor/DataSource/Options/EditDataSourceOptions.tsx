@@ -10,6 +10,7 @@ import { ChannelOptions } from "./Pages/ChannelsOptions";
 import { ClockOptions } from "./Pages/ClockOptions";
 import { ConcatOptions } from "./Pages/ConcatOptions";
 import { CountdownOptions } from "./Pages/CountdownOptions";
+import { DateOptions } from "./Pages/DateOptions";
 import { GameOptions } from "./Pages/GameOptions";
 import { HttpOptions } from "./Pages/HttpOptions";
 import { MathOptions } from "./Pages/MathOptions";
@@ -27,6 +28,7 @@ const optionsMap = {
   [DataSourceId.CONCAT.toString()]: ConcatOptions,
   [DataSourceId.GAME.toString()]: GameOptions,
   [DataSourceId.CLOCK.toString()]: ClockOptions,
+  [DataSourceId.DATE.toString()]: DateOptions,
   [DataSourceId.COUNTDOWN.toString()]: CountdownOptions,
   [DataSourceId.TWITCH.toString()]: TwitchOptions,
   [DataSourceId.YOUTUBE.toString()]: YouTubeOptions,

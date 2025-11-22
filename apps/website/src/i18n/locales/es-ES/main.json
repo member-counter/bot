@@ -138,6 +138,14 @@
       "keywords": "reloj,zona horaria",
       "name": "Reloj"
     },
+    "date": {
+      "description": "Muestra la fecha actual ajustada a tu zona horaria preferida.",
+      "display": {
+        "syntax": "Fecha ({{timezone}})"
+      },
+      "keywords": "fecha,calendario,zona horaria",
+      "name": "Fecha"
+    },
     "concat": {
       "description": "Concatena múltiples cadenas en una sola.",
       "display": {
@@ -443,6 +451,10 @@
             "description": "Consulta la hora en cualquier zona horaria con nuestro reloj personalizable. Perfecto para coordinar entre diferentes regiones.",
             "title": "Reloj"
           },
+          "date": {
+            "description": "Muestra la fecha actual en cualquier zona horaria con formato personalizable. Ideal para mostrar fechas en diferentes regiones.",
+            "title": "Fecha"
+          },
           "countdown": {
             "description": "Crea y gestiona temporizadores de cuenta regresiva adaptados a tus eventos o plazos específicos.",
             "title": "Cuenta regresiva"
@@ -576,6 +588,18 @@
                 },
                 "ClockOptions": {
                   "configWarning": "Recuerda devolver un identificador de zona horaria válido",
+                  "searchTimezonePlaceholder": "Buscar zona horaria...",
+                  "timezone": "Zona horaria"
+                },
+                "DateOptions": {
+                  "configWarning": "Recuerda devolver un identificador de zona horaria válido",
+                  "counterPreview": "No podemos mostrarte una vista previa en vivo cuando el formato es el resultado de un contador, debes previsualizar toda la plantilla para ver cómo se verá.",
+                  "defaultFormat": "%f",
+                  "format": "Formato",
+                  "formatConfigWarning": "Recuerda devolver una cadena de formato válida",
+                  "formatInstructions": "Marcadores disponibles:\n• <code>%Y</code> - Año completo (2025)\n• <code>%y</code> - Año de 2 dígitos (25)\n• <code>%Ms</code> - Nombre completo del mes (noviembre)\n• <code>%ms</code> - Nombre corto del mes (nov)\n• <code>%M</code> - Número de mes con cero inicial (01-12)\n• <code>%m</code> - Número de mes (1-12)\n• <code>%Ws</code> - Nombre completo del día de la semana (lunes)\n• <code>%ws</code> - Nombre corto del día de la semana (lun)\n• <code>%w</code> - Número del día de la semana (0=domingo, 6=sábado)\n• <code>%D</code> - Día con cero inicial (05)\n• <code>%d</code> - Día sin cero inicial (5)\n• <code>%f</code> - Formato predeterminado basado en la configuración regional",
+                  "livePreview": "Vista previa en vivo",
+                  "noPreview": "No podemos mostrarte una vista previa en vivo cuando el formato está vacío.",
                   "searchTimezonePlaceholder": "Buscar zona horaria...",
                   "timezone": "Zona horaria"
                 },
