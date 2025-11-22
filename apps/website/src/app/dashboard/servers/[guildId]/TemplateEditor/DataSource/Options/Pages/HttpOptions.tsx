@@ -59,7 +59,7 @@ export function HttpOptions({
   }, [testResponse, options.dataPath, t]);
 
   const testHTTP = () => {
-    if (typeof options.url !== "string") return;
+    if (typeof options.url !== "string" || !options.url.trim()) return;
 
     setTestLoading(true);
 
@@ -81,6 +81,12 @@ export function HttpOptions({
         setTestLoading(false);
       });
   };
+
+  // Autofetch on mount
+  useEffect(() => {
+    testHTTP();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
