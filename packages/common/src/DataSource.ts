@@ -181,7 +181,6 @@ export enum DataSourceId {
   MATH,
   CHANNELS,
   CLOCK,
-  DATE,
   COUNTDOWN,
   GAME,
   HTTP,
@@ -196,6 +195,7 @@ export enum DataSourceId {
   NUMBER,
   UNKNOWN,
   CONCAT,
+  DATE,
 }
 
 export enum MathDataSourceOperation {
