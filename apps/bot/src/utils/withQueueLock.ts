@@ -89,16 +89,16 @@ export async function withQueueLock<T>({
 
     // 3) Acquire work lock
     logger?.debug(`Acquiring lock ${lockKey}...`);
-    const workLock = await redlock.acquire([lockKey], lockTtl);
-    logger?.debug(`Acquired lock ${lockKey}`);
+    let workLock = await redlock.acquire([lockKey], lockTtl);
 
     const autoExtendLockInterval = setInterval(() => {
       logger?.debug(`Auto extending lock ${lockKey}...`);
 
       void workLock
         .extend(lockTtl)
-        .then(() => {
+        .then((newLock) => {
           logger?.debug(`Auto extended lock ${lockKey}`);
+          workLock = newLock;
         })
         .catch((error) => {
           logger?.error(`Failed to auto extend lock ${lockKey} (${error})`);
