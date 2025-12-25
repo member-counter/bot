@@ -115,9 +115,11 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       }, 3000 / 2);
     };
 
-    const requestDone = async () => {
+    const requestDone = () => {
       clearInterval(interval);
-      await lock?.release();
+      lock?.release().catch(() => {
+        // ignore release lock errors
+      });
     };
 
     return {
@@ -203,7 +205,7 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
           }),
         });
       } finally {
-        await requestDone();
+        requestDone();
       }
     });
   };
