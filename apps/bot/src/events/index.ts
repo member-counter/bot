@@ -4,10 +4,10 @@ import { env } from "~/env";
 import { guildAvailableEvent, guildCreateEvent } from "./guildCreate";
 import { interactionCreateEvent } from "./interactionCreate";
 import { messageCreateEvent } from "./messageCreate";
-import { readyEvent } from "./ready";
+import { clientReadyEvent } from "./clientReady";
 
 const allEvents = [
-  readyEvent,
+  clientReadyEvent,
   guildCreateEvent,
   guildAvailableEvent,
   messageCreateEvent,
