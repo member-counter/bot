@@ -46,9 +46,12 @@
       "inputs": [],
       "outputs": ["src/**/locales/en-US/*"]
     },
-    "generate-i18next-res": {
-      "outputs": ["src/@types/resources.d.ts"],
-      "inputs": ["src/**/locales/en-US/*"]
+    "codegen": {
+      "cache": true
+    },
+    "dev:codegen": {
+      "cache": false,
+      "persistent": true
     },
     "clean": {
       "cache": false

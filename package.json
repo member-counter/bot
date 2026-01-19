@@ -12,7 +12,7 @@
     "clean:ws": "turbo clean",
     "db:push": "pnpm -F db push",
     "db:migrate": "pnpm -F db migrate",
-    "dev": "turbo dev --parallel",
+    "dev": "turbo run dev dev:codegen --continue",
     "dev:docker:up": "docker compose -f docker-compose.dev.yml up -d",
     "dev:docker:down": "docker compose -f docker-compose.dev.yml down",
     "start": "turbo start --parallel",
@@ -24,7 +24,8 @@
     "postinstall": "pnpm lint:ws",
     "typecheck": "turbo typecheck",
     "ui-add": "pnpm -F ui ui-add",
-    "generate-i18next-res": "turbo generate-i18next-res",
+    "codegen": "turbo codegen",
+    "dev:codegen": "turbo run dev:codegen",
     "tolgee:push": "turbo tolgee:push",
     "tolgee:pull": "turbo tolgee:pull"
   },
