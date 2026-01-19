@@ -18,21 +18,21 @@
     "@mc/eslint-config": "workspace:*",
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
-    "@types/node": "^22.10.10",
-    "eslint": "^9.19.0",
-    "prettier": "^3.4.2",
-    "typescript": "^5.7.3"
+    "@types/node": "^22.19.7",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.0",
+    "typescript": "^5.9.3"
   },
   "prettier": "@mc/prettier-config",
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
-    "@opentelemetry/api-logs": "^0.57.1",
-    "@opentelemetry/exporter-trace-otlp-http": "^0.57.1",
-    "@opentelemetry/instrumentation": "^0.57.1",
-    "@opentelemetry/sdk-logs": "^0.57.1",
-    "@opentelemetry/sdk-node": "^0.57.1",
-    "@prisma/instrumentation": "^6.3.1",
-    "@t3-oss/env-core": "^0.13.8",
-    "@vercel/otel": "^1.10.1"
+    "@opentelemetry/api-logs": "^0.57.2",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.57.2",
+    "@opentelemetry/instrumentation": "^0.57.2",
+    "@opentelemetry/sdk-logs": "^0.57.2",
+    "@opentelemetry/sdk-node": "^0.57.2",
+    "@prisma/instrumentation": "^6.19.2",
+    "@t3-oss/env-core": "^0.13.10",
+    "@vercel/otel": "^1.14.0"
   }
 }

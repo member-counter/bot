@@ -259,8 +259,7 @@ const EmojiList = memo(function EmojiList({
                         key={i}
                         role="button"
                         className={cn({
-                          "flex h-[40px] min-w-[40px] select-none items-center justify-center overflow-hidden rounded-md text-[25px] hover:bg-accent":
-                            true,
+                          "flex h-[40px] min-w-[40px] select-none items-center justify-center overflow-hidden rounded-md text-[25px] hover:bg-accent": true,
                           hidden: isMatching,
                         })}
                         tabIndex={0}

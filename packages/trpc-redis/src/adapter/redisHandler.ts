@@ -50,6 +50,7 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
     opts;
   const redLock = new Redlock([redisPubClient], { retryCount: 0 });
 
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { deserialize, serialize } = router._def._config.transformer.output;
 
   const publishResponse = async (responseMessage: ResponseMessage) => {

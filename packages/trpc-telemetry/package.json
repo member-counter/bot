@@ -17,16 +17,16 @@
     "@mc/eslint-config": "workspace:*",
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
-    "@trpc/server": "^11.1.1",
-    "@types/node": "^22.10.10",
-    "eslint": "^9.19.0",
-    "prettier": "^3.4.2",
-    "typescript": "^5.7.3"
+    "@trpc/server": "^11.8.1",
+    "@types/node": "^22.19.7",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.0",
+    "typescript": "^5.9.3"
   },
   "prettier": "@mc/prettier-config",
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
-    "@t3-oss/env-core": "^0.13.8"
+    "@t3-oss/env-core": "^0.13.10"
   },
   "peerDependencies": {
     "@opentelemetry/api": "^1.9.0"

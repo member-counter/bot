@@ -8,8 +8,8 @@
   "packageManager": "pnpm@9.15.5+sha1.cb1f6372ef64e2ba352f2f46325adead1c99ff8f",
   "scripts": {
     "build": "turbo build",
-    "clean": "git clean -xdf node_modules",
-    "clean:workspaces": "turbo clean",
+    "clean": "git clean -xdf node_modules .turbo",
+    "clean:ws": "turbo clean",
     "db:push": "pnpm -F db push",
     "db:migrate": "pnpm -F db migrate",
     "dev": "turbo dev --parallel",
@@ -30,10 +30,9 @@
   },
   "devDependencies": {
     "@mc/prettier-config": "workspace:*",
-    "@turbo/gen": "^2.3.4",
-    "prettier": "^3.4.2",
-    "turbo": "^2.3.4",
-    "typescript": "^5.7.3"
+    "prettier": "^3.8.0",
+    "turbo": "^2.7.5",
+    "typescript": "^5.9.3"
   },
   "prettier": "@mc/prettier-config"
 }

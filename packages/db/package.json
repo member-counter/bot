@@ -23,20 +23,20 @@
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
     "@total-typescript/ts-reset": "^0.5.1",
-    "@types/node": "^22.10.10",
-    "dotenv-cli": "^7.4.1",
-    "eslint": "^9.19.0",
-    "prettier": "^3.4.2",
-    "prisma": "^6.3.1",
-    "typescript": "^5.7.3"
+    "@types/node": "^22.19.7",
+    "dotenv-cli": "^7.4.4",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.0",
+    "prisma": "^6.19.2",
+    "typescript": "^5.9.3"
   },
   "prettier": "@mc/prettier-config",
   "dependencies": {
     "@mc/logger": "workspace:*",
-    "@prisma/client": "^6.3.1",
-    "@t3-oss/env-core": "^0.13.8",
-    "mongo-migrate-ts": "^1.6.2",
-    "tsx": "^4.19.2",
-    "zod": "^3.24.1"
+    "@prisma/client": "^6.19.2",
+    "@t3-oss/env-core": "^0.13.10",
+    "mongo-migrate-ts": "^1.6.3",
+    "tsx": "^4.21.0",
+    "zod": "^3.25.76"
   }
 }

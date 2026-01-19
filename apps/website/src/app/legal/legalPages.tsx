@@ -636,7 +636,8 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
           countries in the European Economic Area (EEA) to countries outside the
           EEA will be protected by appropriate safeguards, for example by using
           standard data protection clauses approved by the European Commission,
-          or the use of binding corporate rules or other legally accepted means.{" "}
+          or the use of binding corporate rules or other legally accepted
+          means.{" "}
         </TypographyP>
         <TypographyH4>
           Your Rights and Controlling Your Personal Information
@@ -678,7 +679,8 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
           engines and similar third parties may still retain copies of your
           personal information that has been made public at least once, like
           certain profile information and public comments, even after you have
-          deleted the information from our services or deactivated your account.{" "}
+          deleted the information from our services or deactivated your
+          account.{" "}
         </TypographyP>
         <TypographyH2>
           Additional Disclosures for California Compliance (US)
@@ -889,7 +891,8 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
         </TypographyP>
         <TypographyP>
           {" "}
-          We use essential cookies to enable certain functions on our website.{" "}
+          We use essential cookies to enable certain functions on our
+          website.{" "}
         </TypographyP>
         <TypographyH4>Performance cookies</TypographyH4>
         <TypographyP>
@@ -992,7 +995,8 @@ export const legalPages: Record<LegalPagesSlugs, LegalPage> = {
           offending account or the account itself or take any remedial or
           preventative action we deem appropriate, without notice. To the extent
           permitted by law, no credit will be available for interruptions of
-          service resulting from any violation of our acceptable use policy.{" "}
+          service resulting from any violation of our acceptable use
+          policy.{" "}
         </TypographyP>
         <TypographyH2>Prohibited activity</TypographyH2>
         <TypographyH4>

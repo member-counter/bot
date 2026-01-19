@@ -62,7 +62,7 @@ export const discordRouter = createTRPCRouter({
         emojis: new Map(
           guild.emojis.cache.mapValues((emoji) => ({
             id: emoji.id,
-            name: emoji.name ?? "",
+            name: emoji.name,
             animated: emoji.animated,
           })),
         ),
