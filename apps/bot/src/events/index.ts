@@ -1,10 +1,10 @@
 import type { Client } from "discord.js";
 
 import { env } from "~/env";
+import { clientReadyEvent } from "./clientReady";
 import { guildAvailableEvent, guildCreateEvent } from "./guildCreate";
 import { interactionCreateEvent } from "./interactionCreate";
 import { messageCreateEvent } from "./messageCreate";
-import { clientReadyEvent } from "./clientReady";
 
 const allEvents = [
   clientReadyEvent,
