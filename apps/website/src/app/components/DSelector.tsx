@@ -30,10 +30,10 @@ const Item = (props: ItemProps) => {
   const itemImageStyle: React.CSSProperties =
     typeof icon === "string"
       ? {
-        backgroundImage: `url('${icon}')`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }
+          backgroundImage: `url('${icon}')`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }
       : {};
 
   return (
