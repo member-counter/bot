@@ -16,6 +16,8 @@ const config = {
     "@mc/redis",
     "@mc/common",
     "@mc/services",
+    "@t3-oss/env-nextjs",
+    "@t3-oss/env-core",
   ],
 
   webpack: (config, { isServer }) => {
