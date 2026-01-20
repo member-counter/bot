@@ -30,10 +30,10 @@ const Item = (props: ItemProps) => {
   const itemImageStyle: React.CSSProperties =
     typeof icon === "string"
       ? {
-          backgroundImage: `url('${icon}')`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }
+        backgroundImage: `url('${icon}')`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }
       : {};
 
   return (
@@ -47,7 +47,7 @@ const Item = (props: ItemProps) => {
                   "group bg-[#424242]",
                   "background mx-3 flex h-[48px] w-[48px] cursor-pointer select-none overflow-hidden bg-contain bg-center",
                   "transition-all",
-                  "rounded-[100%] focus-within:rounded-[15px] hover:rounded-[15px]",
+                  "rounded-[15px]",
                   {
                     ["rounded-[15px]"]: isSelected,
                   },
@@ -104,20 +104,20 @@ interface Props {
 
 const DSelector = (props: Props) => {
   const { guilds, pre, classNameForItem, isPending } = props;
-
   return (
     <nav
       className={cn(
         "my-3 flex w-[72px] min-w-[72px] flex-col gap-3",
         props.className,
+        isPending && "overflow-clip",
       )}
     >
       {isPending &&
-        new Array(6)
+        new Array(16)
           .fill(null)
           .map((_, i) => (
             <Skeleton
-              className="mx-3 h-[48px] w-[48px] flex-shrink-0 rounded-full"
+              className="mx-3 h-[48px] w-[48px] flex-shrink-0 rounded-[15px]"
               key={i}
             />
           ))}
