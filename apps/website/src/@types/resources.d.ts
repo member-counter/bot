@@ -411,6 +411,15 @@ interface Resources {
                 title: "Channels";
               };
               description: "Description";
+              features: {
+                options: {
+                  Community: "Community";
+                  Discoverable: "Discoverable";
+                  Partnered: "Partnered";
+                  Verified: "Verified";
+                };
+                title: "Features";
+              };
               icon: "Icon URL";
               language: "Language";
               links: {
@@ -423,6 +432,15 @@ interface Resources {
                 title: "Links";
               };
               name: "Server name";
+              premiumTier: {
+                options: {
+                  None: "None";
+                  Tier1: "Level 1";
+                  Tier2: "Level 2";
+                  Tier3: "Level 3";
+                };
+                title: "Premium tier";
+              };
               priority: "Priority";
               save: "Save";
               saved: "Saved";

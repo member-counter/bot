@@ -2,6 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { UserPermissions } from "@mc/common/UserPermissions";
+import { DemoServerFeature, DemoServerPremiumTier } from "@mc/db";
 
 import { Errors } from "~/app/errors";
 import {
@@ -50,6 +51,8 @@ export const demoServersRouter = createTRPCRouter({
         icon: z.string().nullable(),
         priority: z.number().optional(),
         language: z.string().optional(),
+        features: z.array(z.nativeEnum(DemoServerFeature)).optional(),
+        premiumTier: z.nativeEnum(DemoServerPremiumTier).optional(),
         channels: z
           .array(
             z.object({

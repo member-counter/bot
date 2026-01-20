@@ -1,10 +1,15 @@
 import { PlusIcon, SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import {
+  DemoServerFeature,
+  DemoServerPremiumTier,
+} from "@mc/common/DemoServer";
 import { Button } from "@mc/ui/button";
 import { Form } from "@mc/ui/form";
 import { Input } from "@mc/ui/input";
 import { Label } from "@mc/ui/label";
+import { MultiSelect } from "@mc/ui/multi-select";
 import {
   Select,
   SelectContent,
@@ -113,6 +118,56 @@ export default function ManageDemoServer({ id }: { id: string }) {
             </SelectGroup>
           </SelectContent>
         </Select>
+      </Label>
+      <Label>
+        {t("pages.admin.homePage.demoServers.manage.premiumTier.title")}
+        <Select
+          value={mutableDemoServer.premiumTier}
+          onValueChange={(premiumTier: DemoServerPremiumTier) =>
+            setMutableDemoServer({
+              ...mutableDemoServer,
+              premiumTier,
+            })
+          }
+        >
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {Object.values(DemoServerPremiumTier).map((premiumTier) => (
+                <SelectItem key={premiumTier} value={premiumTier}>
+                  {t(
+                    `pages.admin.homePage.demoServers.manage.premiumTier.options.${premiumTier}`,
+                  )}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
+
+      <Label>
+        {t("pages.admin.homePage.demoServers.manage.features.title")}
+        <MultiSelect
+          options={Object.values(DemoServerFeature).map((feature) => ({
+            value: feature,
+            label: t(
+              `pages.admin.homePage.demoServers.manage.features.options.${feature}`,
+            ),
+          }))}
+          onValueChange={(features: string[]) =>
+            setMutableDemoServer({
+              ...mutableDemoServer,
+              features: features as DemoServerFeature[],
+            })
+          }
+          defaultValue={mutableDemoServer.features}
+          responsive={true}
+          searchable={false}
+          hideSelectAll={true}
+          placeholder=""
+        />
       </Label>
       <Label>
         {t("pages.admin.homePage.demoServers.manage.channels.title")}

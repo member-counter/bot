@@ -49,15 +49,31 @@ model Channel {
   @@index([discordGuildId])
 }
 
+enum DemoServerFeature {
+  Verified
+  Partnered
+  Community
+  Discoverable
+}
+
+enum DemoServerPremiumTier {
+  None
+  Tier1
+  Tier2
+  Tier3
+}
+
 model DemoServer {
-  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  id          String                @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String
   icon        String?
-  priority    Int           @default(0)
-  language    String        @default("en-US")
+  priority    Int                   @default(0)
+  language    String                @default("en-US")
   channels    DemoChannel[]
   links       DemoLink[]
+  features    DemoServerFeature[]   @default([])
+  premiumTier DemoServerPremiumTier @default(None)
 }
 
 type DemoChannel {

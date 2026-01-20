@@ -391,6 +391,24 @@
             }
           },
           "manage": {
+            "premiumTier": {
+              "title": "Premium tier",
+              "options": {
+                "None": "None",
+                "Tier1": "Level 1",
+                "Tier2": "Level 2",
+                "Tier3": "Level 3"
+              }
+            },
+            "features": {
+              "title": "Features",
+              "options": {
+                "Verified": "Verified",
+                "Partnered": "Partnered",
+                "Community": "Community",
+                "Discoverable": "Discoverable"
+              }
+            },
             "channels": {
               "add": "Add channel",
               "channel": {
