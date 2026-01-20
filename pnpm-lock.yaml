@@ -55,7 +55,7 @@ importers:
         version: 1.4.0(ioredis@5.9.2)
       '@t3-oss/env-core':
         specifier: ^0.13.10
-        version: 0.13.10(typescript@5.9.3)(zod@3.25.76)
+        version: 0.13.10(typescript@5.9.3)(zod@4.3.5)
       bufferutil:
         specifier: ^4.1.0
         version: 4.1.0
@@ -78,8 +78,8 @@ importers:
         specifier: ^6.0.6
         version: 6.0.6
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -149,7 +149,7 @@ importers:
         version: link:../../packages/validators
       '@t3-oss/env-nextjs':
         specifier: ^0.11.1
-        version: 0.11.1(typescript@5.9.3)(zod@3.25.76)
+        version: 0.11.1(typescript@5.9.3)(zod@4.3.5)
       '@tanstack/react-query':
         specifier: ^5.90.19
         version: 5.90.19(react@19.0.0)
@@ -259,8 +259,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -342,7 +342,7 @@ importers:
         version: link:../redis
       '@t3-oss/env-nextjs':
         specifier: ^0.11.1
-        version: 0.11.1(typescript@5.9.3)(zod@3.25.76)
+        version: 0.11.1(typescript@5.9.3)(zod@4.3.5)
       '@twurple/api':
         specifier: ^7.4.0
         version: 7.4.0(@twurple/auth@7.4.0)
@@ -368,8 +368,8 @@ importers:
         specifier: ^6.0.6
         version: 6.0.6
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -406,7 +406,7 @@ importers:
         version: 6.19.2(prisma@6.19.2(typescript@5.9.3))(typescript@5.9.3)
       '@t3-oss/env-core':
         specifier: ^0.13.10
-        version: 0.13.10(typescript@5.9.3)(zod@3.25.76)
+        version: 0.13.10(typescript@5.9.3)(zod@4.3.5)
       mongo-migrate-ts:
         specifier: ^1.6.3
         version: 1.6.3(mongodb@6.13.0(socks@2.8.7))
@@ -414,8 +414,8 @@ importers:
         specifier: ^4.21.0
         version: 4.21.0
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -452,7 +452,7 @@ importers:
     dependencies:
       '@t3-oss/env-core':
         specifier: ^0.13.10
-        version: 0.13.10(typescript@5.9.3)(zod@3.25.76)
+        version: 0.13.10(typescript@5.9.3)(zod@4.3.5)
       winston:
         specifier: ^3.19.0
         version: 3.19.0
@@ -483,7 +483,7 @@ importers:
     dependencies:
       '@t3-oss/env-core':
         specifier: ^0.13.10
-        version: 0.13.10(typescript@5.9.3)(zod@3.25.76)
+        version: 0.13.10(typescript@5.9.3)(zod@4.3.5)
       ioredis:
         specifier: ^5.9.2
         version: 5.9.2
@@ -555,8 +555,8 @@ importers:
         specifier: ^2.2.6
         version: 2.2.6
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -602,7 +602,7 @@ importers:
         version: 6.19.2(@opentelemetry/api@1.9.0)
       '@t3-oss/env-core':
         specifier: ^0.13.10
-        version: 0.13.10(typescript@5.9.3)(zod@3.25.76)
+        version: 0.13.10(typescript@5.9.3)(zod@4.3.5)
       '@vercel/otel':
         specifier: ^1.14.0
         version: 1.14.0(@opentelemetry/api-logs@0.57.2)(@opentelemetry/api@1.9.0)(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-logs@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-metrics@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))
@@ -644,8 +644,8 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -676,7 +676,7 @@ importers:
         version: 1.9.0
       '@t3-oss/env-core':
         specifier: ^0.13.10
-        version: 0.13.10(typescript@5.9.3)(zod@3.25.76)
+        version: 0.13.10(typescript@5.9.3)(zod@4.3.5)
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -803,8 +803,8 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
 
   packages/validators:
     dependencies:
@@ -812,8 +812,8 @@ importers:
         specifier: ^0.38.37
         version: 0.38.37
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@mc/eslint-config':
         specifier: workspace:*
@@ -5931,6 +5931,9 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
+  zod@4.3.5:
+    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
+
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
@@ -7679,21 +7682,21 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
-  '@t3-oss/env-core@0.11.1(typescript@5.9.3)(zod@3.25.76)':
+  '@t3-oss/env-core@0.11.1(typescript@5.9.3)(zod@4.3.5)':
     dependencies:
-      zod: 3.25.76
+      zod: 4.3.5
     optionalDependencies:
       typescript: 5.9.3
 
-  '@t3-oss/env-core@0.13.10(typescript@5.9.3)(zod@3.25.76)':
+  '@t3-oss/env-core@0.13.10(typescript@5.9.3)(zod@4.3.5)':
     optionalDependencies:
       typescript: 5.9.3
-      zod: 3.25.76
+      zod: 4.3.5
 
-  '@t3-oss/env-nextjs@0.11.1(typescript@5.9.3)(zod@3.25.76)':
+  '@t3-oss/env-nextjs@0.11.1(typescript@5.9.3)(zod@4.3.5)':
     dependencies:
-      '@t3-oss/env-core': 0.11.1(typescript@5.9.3)(zod@3.25.76)
-      zod: 3.25.76
+      '@t3-oss/env-core': 0.11.1(typescript@5.9.3)(zod@4.3.5)
+      zod: 4.3.5
     optionalDependencies:
       typescript: 5.9.3
 
@@ -11273,3 +11276,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   zod@3.25.76: {}
+
+  zod@4.3.5: {}

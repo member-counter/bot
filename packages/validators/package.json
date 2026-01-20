@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "discord-api-types": "^0.38.37",
-    "zod": "^3.25.76"
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "@mc/eslint-config": "workspace:*",
