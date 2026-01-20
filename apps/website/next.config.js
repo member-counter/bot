@@ -1,5 +1,6 @@
 import { fileURLToPath } from "url";
 import { createJiti } from "jiti";
+import webpack from "webpack";
 
 // Import env files to validate at build time. Use jiti so we can load .ts files in here.
 createJiti(fileURLToPath(import.meta.url)).import("./src/env");
@@ -18,6 +19,10 @@ const config = {
   ],
 
   webpack: (config, { isServer }) => {
+    config.plugins.push(
+      new webpack.IgnorePlugin({ resourceRegExp: /^zlib-sync$/ }),
+      new webpack.IgnorePlugin({ resourceRegExp: /^bufferutil$/ }),
+    );
     config.module.rules.push({
       test: /\.node$/,
       loader: "node-loader",
