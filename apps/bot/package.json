@@ -44,7 +44,7 @@
     "@mc/redis": "workspace:*",
     "@mc/services": "workspace:*",
     "@mc/telemetry": "workspace:*",
-    "@opentelemetry/instrumentation": "^0.57.2",
+    "@opentelemetry/instrumentation": "^0.210.0",
     "@sesamecare-oss/redlock": "^1.4.0",
     "@t3-oss/env-core": "^0.13.10",
     "bufferutil": "^4.1.0",

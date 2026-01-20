@@ -26,11 +26,11 @@
   "prettier": "@mc/prettier-config",
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
-    "@opentelemetry/api-logs": "^0.57.2",
-    "@opentelemetry/exporter-trace-otlp-http": "^0.57.2",
-    "@opentelemetry/instrumentation": "^0.57.2",
-    "@opentelemetry/sdk-logs": "^0.57.2",
-    "@opentelemetry/sdk-node": "^0.57.2",
+    "@opentelemetry/api-logs": "^0.210.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.210.0",
+    "@opentelemetry/instrumentation": "^0.210.0",
+    "@opentelemetry/sdk-logs": "^0.210.0",
+    "@opentelemetry/sdk-node": "^0.210.0",
     "@prisma/instrumentation": "^6.19.2",
     "@t3-oss/env-core": "^0.13.10",
     "@vercel/otel": "^1.14.0"
