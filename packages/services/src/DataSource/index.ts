@@ -87,49 +87,53 @@ class DataSourceService {
         : guildFormatSettings.digits,
     };
 
-    const { compactNotation, digits, locale } = formatSettings;
-
-    let result = await this.exploreAndExecute(dataSource, {
-      compactNotation,
-      digits,
-      locale,
-    });
+    const result = await this.exploreAndExecute(dataSource, formatSettings);
 
     assert(
       typeof result === "number" || typeof result === "string",
       new KnownError("UNKNOWN_EVALUATION_RETURN_TYPE"),
     );
 
-    if (typeof result === "number" && !isNaN(result)) {
-      let numericResult: string | number = result;
+    return this.formatDataSourceResult(result, formatSettings);
+  }
 
-      if (compactNotation) {
-        numericResult = new Intl.NumberFormat(locale, {
-          notation: "compact",
-        }).format(result);
-      }
-
-      if (
-        [ChannelType.GuildAnnouncement, ChannelType.GuildText].includes(
-          this.ctx.channelType,
-        )
-      ) {
-        result = numericResult
-          .toString()
-          .split("")
-          .map((digit) => (typeof digit === "number" ? digits[digit] : digit))
-          .join("");
-      } else {
-        result = numericResult.toString();
-      }
+  private formatDataSourceResult(
+    result: string | number,
+    { compactNotation, digits, locale }: PreparedDataSourceFormatSettings,
+  ): string {
+    if (typeof result === "string") {
+      return result;
     }
 
-    assert(
-      typeof result === "string",
-      new KnownError("FAILED_TO_RETURN_A_FINAL_STRING"),
-    );
+    if (isNaN(result)) {
+      throw new KnownError("FAILED_TO_RETURN_A_FINAL_STRING");
+    }
 
-    return result;
+    if (compactNotation) {
+      result = new Intl.NumberFormat(locale, {
+        notation: "compact",
+      }).format(result);
+    }
+
+    if (
+      [ChannelType.GuildAnnouncement, ChannelType.GuildText].includes(
+        this.ctx.channelType,
+      )
+    ) {
+      result = result
+        .toString()
+        .split("")
+        .map((character) => {
+          const digit = Number(character);
+
+          if (isNaN(digit)) return character;
+
+          return digits[digit];
+        })
+        .join("");
+    }
+
+    return result.toString();
   }
 
   private async exploreAndExecute(
