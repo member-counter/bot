@@ -80,11 +80,15 @@ class DataSourceService {
       compactNotation:
         dataSource.format?.compactNotation ??
         guildFormatSettings.compactNotation,
-      digits: dataSource.format?.digits
-        ? new Array(10)
-            .fill(null)
-            .map((_, i) => formatSettings.digits[i] ?? i.toString())
-        : guildFormatSettings.digits,
+      digits: new Array(10)
+        .fill(null)
+        .map((_, i) =>
+          dataSource.format?.digits?.[i]?.length
+            ? dataSource.format.digits[i]
+            : guildFormatSettings.digits[i]?.length
+              ? guildFormatSettings.digits[i]
+              : i.toString(),
+        ),
     };
 
     const result = await this.exploreAndExecute(dataSource, formatSettings);
