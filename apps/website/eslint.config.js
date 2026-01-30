@@ -5,6 +5,7 @@ import reactConfig from "@mc/eslint-config/react";
 export default [
   {
     ignores: [
+      "dist/**",
       // ignore submodules
       "**/twemoji/**",
       "**/unicode-emoji-json/**",

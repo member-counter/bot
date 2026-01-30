@@ -1,4 +1,5 @@
 import twemoji from "@twemoji/api";
+
 import { grabTheRightIcon } from "../dashboard/servers/[guildId]/TemplateEditor/Emoji/twemojiMap";
 
 export const TwemojiRenderer = ({
@@ -10,12 +11,7 @@ export const TwemojiRenderer = ({
 }) => {
   const codePoint = grabTheRightIcon(emoji);
 
-  const url = "".concat(
-    twemoji.base,
-    "svg/",
-    codePoint,
-    ".svg",
-  );
+  const url = "".concat(twemoji.base, "svg/", codePoint, ".svg");
 
   return <img className={className} alt={emoji} src={url} draggable="false" />;
 };

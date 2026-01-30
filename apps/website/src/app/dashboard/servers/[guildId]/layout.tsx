@@ -52,7 +52,6 @@ export default function Layout() {
   const mainId = useId();
   const asideId = useId();
 
-
   const has = api.guild.has.useQuery({
     discordGuildId: guildId,
   });

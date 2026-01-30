@@ -45,7 +45,3 @@ yarn-error.log*
 .turbo
 
 storage
-
-# emoji stuff to be ignored by prettier
-twemoji/
-unicode-emoji-json/

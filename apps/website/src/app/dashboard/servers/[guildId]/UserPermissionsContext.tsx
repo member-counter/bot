@@ -67,4 +67,3 @@ export const useCreateUserPermissions = () => {
 
   return contextValue;
 };
-
