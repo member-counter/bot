@@ -49,7 +49,13 @@ export function DiscordDemo() {
     );
   }, [selectedServer]);
 
-  if (!selectedServer) return null;
+  if (!selectedServer)
+    return (
+      <div
+        className={cn("flex h-[550px] w-[1000px] overflow-hidden rounded-lg animate-pulse")}
+        style={{ backgroundColor: serverListColor }}
+      ></div>
+    );
 
   return (
     <div

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { UserPermissions } from "@mc/common/UserPermissions";
@@ -18,7 +19,6 @@ import { ResetSettings } from "./ResetButton";
 import { CustomDigits } from "./sections/CustomDigits";
 import { Locale } from "./sections/Locale";
 import { UseCompactNotation } from "./sections/UseCompactNotation";
-import invariant from "tiny-invariant";
 
 export default function Page() {
   const { t } = useTranslation();

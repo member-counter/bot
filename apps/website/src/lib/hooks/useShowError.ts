@@ -1,6 +1,6 @@
 import { TRPCClientError } from "@trpc/client";
 import { useTranslation } from "react-i18next";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import { KnownErrorsTypeNames } from "@mc/common/KnownError/index";
 import { useToast } from "@mc/ui/hooks/use-toast";

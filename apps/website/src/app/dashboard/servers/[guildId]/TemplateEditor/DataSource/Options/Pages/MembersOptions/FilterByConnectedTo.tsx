@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
@@ -14,7 +15,6 @@ import { makeSercheableChannels } from "~/app/components/Combobox/sercheableMake
 import { addTo, removeFrom, updateIn } from "~/lib/array";
 import { api } from "~/lib/trpc";
 import { useKnownSearcheableDataSource } from "../../../metadata";
-import invariant from "tiny-invariant";
 
 type Type = (string | DataSource)[];
 export function FilterByConnectedTo({

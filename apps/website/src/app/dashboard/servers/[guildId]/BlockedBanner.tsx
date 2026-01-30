@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { ShieldBanIcon, XIcon } from "lucide-react";
 import { Trans } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
 import { api } from "~/lib/trpc";
-import invariant from "tiny-invariant";
 
 export function BlockedBanner() {
   const [closed, setClosed] = useState(false);

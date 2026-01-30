@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
@@ -7,7 +8,6 @@ import { Separator } from "@mc/ui/separator";
 
 import { api } from "~/lib/trpc";
 import { DisplayTemplateError } from "../../TemplateEditor/DisplayTemplateError";
-import invariant from "tiny-invariant";
 
 export function TemplateError() {
   const { guildId, channelId } = useTypedParams(

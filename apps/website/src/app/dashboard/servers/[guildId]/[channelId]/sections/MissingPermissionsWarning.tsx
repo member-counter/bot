@@ -3,6 +3,7 @@ import { ChannelType } from "discord-api-types/v10";
 import { CircleAlertIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
@@ -10,7 +11,6 @@ import { Alert, AlertDescription, AlertTitle } from "@mc/ui/alert";
 import { Button } from "@mc/ui/button";
 
 import { api } from "~/lib/trpc";
-import invariant from "tiny-invariant";
 
 export default function MissingPermissionsWarning() {
   const { guildId, channelId } = useTypedParams(

@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import { LegalPagesSlugs, routes } from "@mc/common/Routes";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@mc/ui/tabs";
 import { TypographyH1 } from "@mc/ui/TypographyH1";
 
-import { legalPages } from "./legalPages";
 import Footer from "~/app/components/Footer";
+import { legalPages } from "./legalPages";
 
 export default function PageSwitcher() {
   const { page } = useTypedParams(routes.legal.page);

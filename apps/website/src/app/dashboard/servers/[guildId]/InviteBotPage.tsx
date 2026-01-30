@@ -3,6 +3,7 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
@@ -13,7 +14,6 @@ import { DiscordIcon } from "~/app/components/DiscordIcon";
 import { api } from "~/lib/trpc";
 import { MenuButton } from "../../Menu";
 import { UserPermissionsContext } from "./UserPermissionsContext";
-import invariant from "tiny-invariant";
 
 export function InviteBotPage() {
   const { guildId } = useTypedParams(routes.dashboard.servers.server);

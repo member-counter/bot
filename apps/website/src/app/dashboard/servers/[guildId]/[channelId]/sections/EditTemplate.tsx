@@ -2,6 +2,7 @@ import { useId } from "react";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
@@ -9,7 +10,6 @@ import { Label } from "@mc/ui/label";
 import formatRelativeTime from "~/lib/formatRelativeTime";
 import { api } from "~/lib/trpc";
 import TemplateEditor from "../../TemplateEditor/TemplateEditor";
-import invariant from "tiny-invariant";
 
 interface Props {
   value: string;

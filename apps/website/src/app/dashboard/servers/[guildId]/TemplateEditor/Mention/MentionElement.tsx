@@ -3,6 +3,7 @@ import { useState } from "react";
 import { AtSignIcon } from "lucide-react";
 import { useTypedParams } from "react-router-typesafe-routes";
 import { useFocused, useSelected } from "slate-react";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 
@@ -11,7 +12,6 @@ import type { GuildChannel, GuildRole } from "../d-types";
 import { mentionColor } from "~/lib/mentionColor";
 import { api } from "~/lib/trpc";
 import { useChannelIcon } from "../../ChannelMaps";
-import invariant from "tiny-invariant";
 
 export const MentionElement = (props: RenderElementProps) => {
   const { guildId } = useTypedParams(routes.dashboard.servers.server);

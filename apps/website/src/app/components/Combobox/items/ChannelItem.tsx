@@ -1,6 +1,7 @@
 import { CheckIcon, XIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 
@@ -9,7 +10,6 @@ import { useChannelIcon } from "~/app/dashboard/servers/[guildId]/ChannelMaps";
 import { mentionColor } from "~/lib/mentionColor";
 import { api } from "~/lib/trpc";
 import { TinyIconButton } from "../TinyIconButton";
-import invariant from "tiny-invariant";
 
 const useChannelId = (id: string) => {
   const { guildId } = useTypedParams(routes.dashboard.servers.server);

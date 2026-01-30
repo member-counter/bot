@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import { DataSourceErrorNames } from "@mc/common/KnownError/DataSourceError";
 import { Card } from "@mc/ui/card";

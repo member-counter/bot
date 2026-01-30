@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Separator } from "@mc/ui/separator";
@@ -8,7 +9,6 @@ import { Separator } from "@mc/ui/separator";
 import { api } from "~/lib/trpc";
 import { MenuButton } from "../../../Menu";
 import { ChannelLabelMap, useChannelIcon } from "../ChannelMaps";
-import invariant from "tiny-invariant";
 
 export default function Layout() {
   const { channelId, guildId } = useTypedParams(

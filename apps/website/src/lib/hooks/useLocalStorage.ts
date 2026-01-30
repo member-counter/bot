@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { z } from "zod";
+import type { z } from "zod/v4";
 import { useState } from "react";
 
 export function useLocalStorage<T>(

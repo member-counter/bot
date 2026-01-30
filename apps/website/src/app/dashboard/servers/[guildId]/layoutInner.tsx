@@ -1,5 +1,6 @@
 import { useContext, useEffect, useId, useState } from "react";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
@@ -12,14 +13,13 @@ import { Separator } from "@mc/ui/separator";
 
 import { useBreakpoint } from "~/lib/hooks/useBreakpoint";
 import { api } from "~/lib/trpc";
+import { LoadingPage } from "../../../components/LoadingPage";
 import { MenuContext } from "../../Menu";
 import { ForbiddenPage } from "./ForbiddenPage";
 import { InviteBotPage } from "./InviteBotPage";
-import { LoadingPage } from "../../../components/LoadingPage";
 import { ServerNavMenu } from "./ServerNavMenu/ServerNavMenu";
 import { SidePanelContext } from "./SidePanelContext";
 import { UserPermissionsContext } from "./UserPermissionsContext";
-import invariant from "tiny-invariant";
 
 export default function LayoutInner({
   children,

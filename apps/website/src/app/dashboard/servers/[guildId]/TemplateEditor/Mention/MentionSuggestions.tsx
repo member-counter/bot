@@ -3,6 +3,7 @@ import { AtSignIcon } from "lucide-react";
 import { useTypedParams } from "react-router-typesafe-routes";
 import { Editor, Range, Transforms } from "slate";
 import { ReactEditor, useSlate } from "slate-react";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { searchInTexts } from "@mc/common/searchInTexts";
@@ -14,7 +15,6 @@ import { mentionColor } from "~/lib/mentionColor";
 import { api } from "~/lib/trpc";
 import { useChannelIcon } from "../../ChannelMaps";
 import { insertMention } from "./insertMention";
-import invariant from "tiny-invariant";
 
 const SearchType = {
   Role: "role",

@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { CurlyBracesIcon, EditIcon, ScanEyeIcon } from "lucide-react";
 import { useTypedParams } from "react-router-typesafe-routes";
 import { ReactEditor, useSlateStatic } from "slate-react";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
@@ -26,7 +27,6 @@ import { deserialize } from "./serde/deserialize";
 import { serialize } from "./serde/serialize";
 import SlateTemplateEditor from "./SlateTemplateEditor";
 import SlateTemplateEditorInput from "./SlateTemplateEditorInput";
-import invariant from "tiny-invariant";
 
 type TemplateTarget = "channelName" | "channelTopic";
 

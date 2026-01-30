@@ -1,8 +1,9 @@
 import { useContext, useMemo } from "react";
 import { ChannelType } from "discord-api-types/v10";
-import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
@@ -18,7 +19,6 @@ import { InfoToolip } from "~/app/components/InfoTooltip";
 import { MenuContext } from "~/app/dashboard/Menu";
 import { api } from "~/lib/trpc";
 import { useChannelIcon } from "../ChannelMaps";
-import invariant from "tiny-invariant";
 
 export function ChannelNavItem(channel: {
   id: string;
@@ -104,11 +104,11 @@ export function ChannelNavItem(channel: {
                 text={
                   hasIssue
                     ? t(
-                      "pages.dashboard.servers.ChannelNavItem.infoTooltip.issue",
-                    )
+                        "pages.dashboard.servers.ChannelNavItem.infoTooltip.issue",
+                      )
                     : t(
-                      "pages.dashboard.servers.ChannelNavItem.infoTooltip.enabled",
-                    )
+                        "pages.dashboard.servers.ChannelNavItem.infoTooltip.enabled",
+                      )
                 }
               >
                 <div className="ml-auto">

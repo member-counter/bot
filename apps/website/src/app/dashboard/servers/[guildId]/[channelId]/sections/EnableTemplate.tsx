@@ -2,13 +2,13 @@ import { useId } from "react";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
 import { Switch } from "@mc/ui/switch";
 
 import { api } from "~/lib/trpc";
-import invariant from "tiny-invariant";
 
 interface Props {
   value: boolean;

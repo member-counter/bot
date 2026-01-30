@@ -1,12 +1,12 @@
 import { BanIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 
 import { api } from "~/lib/trpc";
 import { MenuButton } from "../../Menu";
-import invariant from "tiny-invariant";
 
 export function ForbiddenPage() {
   const { guildId } = useTypedParams(routes.dashboard.servers.server);

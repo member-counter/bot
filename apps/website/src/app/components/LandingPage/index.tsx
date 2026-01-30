@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 import {
   ChevronDownIcon,
@@ -15,9 +15,12 @@ import { Button } from "@mc/ui/button";
 
 import { BotIcon } from "../BotIcon";
 import { DiscordIcon } from "../DiscordIcon";
-import { Background } from "./Background";
 import { DiscordDemo } from "./DiscordDemo";
 import { SupportedCounters } from "./SupportedCounters";
+
+const Background = lazy(() =>
+  import("./Background").then((m) => ({ default: m.Background })),
+);
 
 // TODO SOME PARTS NOT TRANSLATED
 
@@ -46,7 +49,11 @@ export default function LandingPage() {
   return (
     <div className="relative flex flex-col items-center justify-center gap-10 pb-10">
       <div className="fixed top-[0] z-[-1] h-[120px] w-full bg-gradient-to-b from-black"></div>
-      <Background className="fixed z-[-2]" />
+      <Suspense
+        fallback={<div className="fixed z-[-2] h-full w-full bg-stone-950" />}
+      >
+        <Background className="fixed z-[-2]" />
+      </Suspense>
       <div className="flex min-h-screen w-full flex-col items-center justify-center gap-4">
         <div className="grow"></div>
         <div className="flex flex-row items-center">

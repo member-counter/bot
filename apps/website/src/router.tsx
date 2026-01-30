@@ -1,8 +1,8 @@
-import { BrowserRouter, Route, Routes } from "react-router";
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router";
 
-import { ProtectedRoute } from "./app/components/ProtectedRoute";
 import { LoadingPage } from "./app/components/LoadingPage";
+import { ProtectedRoute } from "./app/components/ProtectedRoute";
 import RootLayout from "./app/layout";
 import Home from "./app/page";
 
@@ -23,11 +23,12 @@ export default function Router() {
           {/* Auth */}
           <Route path="login" element={Lazy("./app/login/page")} />
           <Route path="logout" element={Lazy("./app/logout/page")} />
-          <Route path="account" element={
-            <ProtectedRoute>
-              {Lazy("./app/account/page")}
-            </ProtectedRoute>
-          } />
+          <Route
+            path="account"
+            element={
+              <ProtectedRoute>{Lazy("./app/account/page")}</ProtectedRoute>
+            }
+          />
 
           {/* Public pages */}
           <Route path="status" element={Lazy("./app/status/page")} />
@@ -47,19 +48,46 @@ export default function Router() {
           </Route>
 
           {/* Dashboard */}
-          <Route path="dashboard" element={
-            <ProtectedRoute>
-              {Lazy("./app/dashboard/layout")}
-            </ProtectedRoute>
-          }>
+          <Route
+            path="dashboard"
+            element={
+              <ProtectedRoute>{Lazy("./app/dashboard/layout")}</ProtectedRoute>
+            }
+          >
             <Route index element={Lazy("./app/dashboard/page")} />
-            <Route path="servers/:guildId" element={Lazy("./app/dashboard/servers/[guildId]/layout")}>
-              <Route index element={Lazy("./app/dashboard/servers/[guildId]/page")} />
-              <Route path=":channelId" element={Lazy("./app/dashboard/servers/[guildId]/[channelId]/layout")}>
-                <Route index element={Lazy("./app/dashboard/servers/[guildId]/[channelId]/page")} />
+            <Route
+              path="servers/:guildId"
+              element={Lazy("./app/dashboard/servers/[guildId]/layout")}
+            >
+              <Route
+                index
+                element={Lazy("./app/dashboard/servers/[guildId]/page")}
+              />
+              <Route
+                path=":channelId"
+                element={Lazy(
+                  "./app/dashboard/servers/[guildId]/[channelId]/layout",
+                )}
+              >
+                <Route
+                  index
+                  element={Lazy(
+                    "./app/dashboard/servers/[guildId]/[channelId]/page",
+                  )}
+                />
               </Route>
-              <Route path="settings" element={Lazy("./app/dashboard/servers/[guildId]/settings/layout")}>
-                <Route index element={Lazy("./app/dashboard/servers/[guildId]/settings/page")} />
+              <Route
+                path="settings"
+                element={Lazy(
+                  "./app/dashboard/servers/[guildId]/settings/layout",
+                )}
+              >
+                <Route
+                  index
+                  element={Lazy(
+                    "./app/dashboard/servers/[guildId]/settings/page",
+                  )}
+                />
               </Route>
             </Route>
           </Route>
@@ -68,24 +96,45 @@ export default function Router() {
           <Route path="admin">
             <Route path="users" element={Lazy("./app/admin/users/layout")}>
               <Route index element={Lazy("./app/admin/users/page")} />
-              <Route path=":userId" element={Lazy("./app/admin/users/[id]/layout")}>
+              <Route
+                path=":userId"
+                element={Lazy("./app/admin/users/[id]/layout")}
+              >
                 <Route index element={Lazy("./app/admin/users/[id]/page")} />
               </Route>
             </Route>
             <Route path="guilds" element={Lazy("./app/admin/guilds/layout")}>
               <Route index element={Lazy("./app/admin/guilds/page")} />
             </Route>
-            <Route path="homepage" element={Lazy("./app/admin/homepage/layout")}>
+            <Route
+              path="homepage"
+              element={Lazy("./app/admin/homepage/layout")}
+            >
               <Route index element={Lazy("./app/admin/homepage/page")} />
-              <Route path="demo-servers" >
-                <Route index element={Lazy("./app/admin/homepage/demo-servers/page")} />
-                <Route path=":id" element={Lazy("./app/admin/homepage/demo-servers/[id]/page")} />
+              <Route path="demo-servers">
+                <Route
+                  index
+                  element={Lazy("./app/admin/homepage/demo-servers/page")}
+                />
+                <Route
+                  path=":id"
+                  element={Lazy("./app/admin/homepage/demo-servers/[id]/page")}
+                />
               </Route>
             </Route>
-            <Route path="donations" element={Lazy("./app/admin/donations/layout")}>
+            <Route
+              path="donations"
+              element={Lazy("./app/admin/donations/layout")}
+            >
               <Route index element={Lazy("./app/admin/donations/page")} />
-              <Route path=":id" element={Lazy("./app/admin/donations/[id]/page")} />
-              <Route path="new" element={Lazy("./app/admin/donations/new/page")} />
+              <Route
+                path=":id"
+                element={Lazy("./app/admin/donations/[id]/page")}
+              />
+              <Route
+                path="new"
+                element={Lazy("./app/admin/donations/new/page")}
+              />
             </Route>
           </Route>
 

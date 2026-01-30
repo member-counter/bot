@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
@@ -15,7 +16,6 @@ import { EditTemplate } from "./sections/EditTemplate";
 import { EnableTemplate } from "./sections/EnableTemplate";
 import MissingPermissionsWarning from "./sections/MissingPermissionsWarning";
 import { TemplateError } from "./sections/TemplateError";
-import invariant from "tiny-invariant";
 
 export default function Page() {
   const { t } = useTranslation();

@@ -23,7 +23,14 @@ interface ItemProps {
 }
 
 const Item = (props: ItemProps) => {
-  const { icon: icon, onClick, name, notSelectable, classNameForItem, onHover } = props;
+  const {
+    icon: icon,
+    onClick,
+    name,
+    notSelectable,
+    classNameForItem,
+    onHover,
+  } = props;
   let { isSelected } = props;
 
   if (notSelectable) isSelected = false;
@@ -31,10 +38,10 @@ const Item = (props: ItemProps) => {
   const itemImageStyle: React.CSSProperties =
     typeof icon === "string"
       ? {
-        backgroundImage: `url('${icon}')`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }
+          backgroundImage: `url('${icon}')`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }
       : {};
 
   return (

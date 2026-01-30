@@ -1,6 +1,7 @@
 import type { DataSource } from "@mc/common/DataSource";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 
@@ -11,7 +12,6 @@ import { makeSercheableRoles } from "~/app/components/Combobox/sercheableMakers/
 import { addTo, removeFrom, updateIn } from "~/lib/array";
 import { api } from "~/lib/trpc";
 import { useKnownSearcheableDataSource } from "../../../metadata";
-import invariant from "tiny-invariant";
 
 type Type = (string | DataSource)[];
 export function FilterByRole({

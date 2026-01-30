@@ -1,5 +1,3 @@
-
-
 import { routes } from "@mc/common/Routes";
 
 export default function Page() {

@@ -3,6 +3,7 @@ import { SettingsIcon, XIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link, useMatch } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
@@ -14,7 +15,6 @@ import { MenuContext } from "~/app/dashboard/Menu";
 import { api } from "~/lib/trpc";
 import { ChannelNavItem, ChannelNavItemSkeleton } from "./ChannelNavItem";
 import { sortChannels } from "./sortChannels";
-import invariant from "tiny-invariant";
 
 export const ServerNavMenu = memo(function ServerNavMenu({
   className,

@@ -63,9 +63,15 @@ export default function Layout() {
                 void trpcUtils.discord.getGuild.prefetch({ id: guild.id });
                 void trpcUtils.guild.has.prefetch({ discordGuildId: guild.id });
                 void trpcUtils.guild.get.prefetch({ discordGuildId: guild.id });
-                void trpcUtils.guild.isBlocked.prefetch({ discordGuildId: guild.id });
-                void trpcUtils.guild.channels.logs.getAll.prefetch({ discordGuildId: guild.id });
-                void trpcUtils.guild.channels.getAll.prefetch({ discordGuildId: guild.id });
+                void trpcUtils.guild.isBlocked.prefetch({
+                  discordGuildId: guild.id,
+                });
+                void trpcUtils.guild.channels.logs.getAll.prefetch({
+                  discordGuildId: guild.id,
+                });
+                void trpcUtils.guild.channels.getAll.prefetch({
+                  discordGuildId: guild.id,
+                });
               },
               isSelected: params.guildId === guild.id,
             }),
