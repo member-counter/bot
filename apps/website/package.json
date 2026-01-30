@@ -11,7 +11,7 @@
     "clean": "git clean -xdf dist .turbo node_modules",
     "predev": "pnpm run prebuild",
     "dev": "pnpm with-env vite",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "format": "prettier --check . \"!**/*/{twemoji,unicode-emoji-json}/**\" --ignore-path ../../.gitignore",
     "lint": "eslint",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
