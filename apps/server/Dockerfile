@@ -47,6 +47,6 @@ RUN adduser --system --uid 1001 nodejs
 USER nodejs
 
 COPY --from=prod_deps /app/node_modules ./node_modules
-COPY --from=repo /app/apps/bot/package.json .
-COPY --from=builder --chown=nodejs:nodejs /app/apps/bot/dist ./
+COPY --from=repo /app/apps/server/package.json .
+COPY --from=builder --chown=nodejs:nodejs /app/apps/server/dist ./
 CMD node /app/index.js
