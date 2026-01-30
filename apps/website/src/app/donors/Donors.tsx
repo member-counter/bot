@@ -1,5 +1,5 @@
-import assert from "assert";
 import { useEffect, useMemo, useState } from "react";
+import invariant from "tiny-invariant";
 
 import type { RouterOutputs } from "~/lib/trpc";
 import { api } from "~/lib/trpc";
@@ -150,7 +150,7 @@ export function Donors() {
 
       const space = findSpaceForDonor(donor);
 
-      assert(space);
+      invariant(space);
 
       donor.x = space.x;
       donor.y = space.y;

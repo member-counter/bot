@@ -1,16 +1,9 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 
-import { LoadingPage } from "./app/components/LoadingPage";
+import { Lazy } from "./app/components/Lazy";
 import { ProtectedRoute } from "./app/components/ProtectedRoute";
 import RootLayout from "./app/layout";
 import Home from "./app/page";
-
-const Lazy = (importPath: string) => (
-  <React.Suspense fallback={<LoadingPage />}>
-    {React.createElement(React.lazy(() => import(importPath)))}
-  </React.Suspense>
-);
 
 export default function Router() {
   return (
@@ -21,71 +14,116 @@ export default function Router() {
           <Route index element={<Home />} />
 
           {/* Auth */}
-          <Route path="login" element={Lazy("./app/login/page")} />
-          <Route path="logout" element={Lazy("./app/logout/page")} />
+          <Route
+            path="login"
+            element={Lazy(() => import("./app/login/page"))}
+          />
+          <Route
+            path="logout"
+            element={Lazy(() => import("./app/logout/page"))}
+          />
           <Route
             path="account"
             element={
-              <ProtectedRoute>{Lazy("./app/account/page")}</ProtectedRoute>
+              <ProtectedRoute>
+                {Lazy(() => import("./app/account/page"))}
+              </ProtectedRoute>
             }
           />
 
           {/* Public pages */}
-          <Route path="status" element={Lazy("./app/status/page")} />
-          <Route path="donors" element={Lazy("./app/donors/page")} />
-          <Route path="donate" element={Lazy("./app/donate/page")} />
-          <Route path="docs" element={Lazy("./app/docs/page")} />
-          <Route path="support" element={Lazy("./app/support/page")} />
-          <Route path="premium" element={Lazy("./app/premium/page")} />
-          <Route path="invite" element={Lazy("./app/invite/page")} />
-          <Route path="repository" element={Lazy("./app/repository/page")} />
-          <Route path="translate" element={Lazy("./app/translate/page")} />
+          <Route
+            path="status"
+            element={Lazy(() => import("./app/status/page"))}
+          />
+          <Route
+            path="donors"
+            element={Lazy(() => import("./app/donors/page"))}
+          />
+          <Route
+            path="donate"
+            element={Lazy(() => import("./app/donate/page"))}
+          />
+          <Route path="docs" element={Lazy(() => import("./app/docs/page"))} />
+          <Route
+            path="support"
+            element={Lazy(() => import("./app/support/page"))}
+          />
+          <Route
+            path="premium"
+            element={Lazy(() => import("./app/premium/page"))}
+          />
+          <Route
+            path="invite"
+            element={Lazy(() => import("./app/invite/page"))}
+          />
+          <Route
+            path="repository"
+            element={Lazy(() => import("./app/repository/page"))}
+          />
+          <Route
+            path="translate"
+            element={Lazy(() => import("./app/translate/page"))}
+          />
 
           {/* Legal */}
           <Route path="legal">
-            <Route index element={Lazy("./app/legal/page")} />
-            <Route path=":page" element={Lazy("./app/legal/[page]/page")} />
+            <Route index element={Lazy(() => import("./app/legal/page"))} />
+            <Route
+              path=":page"
+              element={Lazy(() => import("./app/legal/[page]/page"))}
+            />
           </Route>
 
           {/* Dashboard */}
           <Route
             path="dashboard"
             element={
-              <ProtectedRoute>{Lazy("./app/dashboard/layout")}</ProtectedRoute>
+              <ProtectedRoute>
+                {Lazy(() => import("./app/dashboard/layout"))}
+              </ProtectedRoute>
             }
           >
-            <Route index element={Lazy("./app/dashboard/page")} />
+            <Route index element={Lazy(() => import("./app/dashboard/page"))} />
             <Route
               path="servers/:guildId"
-              element={Lazy("./app/dashboard/servers/[guildId]/layout")}
+              element={Lazy(
+                () => import("./app/dashboard/servers/[guildId]/layout"),
+              )}
             >
               <Route
                 index
-                element={Lazy("./app/dashboard/servers/[guildId]/page")}
+                element={Lazy(
+                  () => import("./app/dashboard/servers/[guildId]/page"),
+                )}
               />
               <Route
                 path=":channelId"
                 element={Lazy(
-                  "./app/dashboard/servers/[guildId]/[channelId]/layout",
+                  () =>
+                    import("./app/dashboard/servers/[guildId]/[channelId]/layout"),
                 )}
               >
                 <Route
                   index
                   element={Lazy(
-                    "./app/dashboard/servers/[guildId]/[channelId]/page",
+                    () =>
+                      import("./app/dashboard/servers/[guildId]/[channelId]/page"),
                   )}
                 />
               </Route>
               <Route
                 path="settings"
                 element={Lazy(
-                  "./app/dashboard/servers/[guildId]/settings/layout",
+                  () =>
+                    import("./app/dashboard/servers/[guildId]/settings/layout"),
                 )}
               >
                 <Route
                   index
                   element={Lazy(
-                    "./app/dashboard/servers/[guildId]/settings/page",
+                    () =>
+                      import("./app/dashboard/servers/[guildId]/settings/page"),
                   )}
                 />
               </Route>
@@ -94,52 +132,77 @@ export default function Router() {
 
           {/* Admin */}
           <Route path="admin">
-            <Route path="users" element={Lazy("./app/admin/users/layout")}>
-              <Route index element={Lazy("./app/admin/users/page")} />
+            <Route
+              path="users"
+              element={Lazy(() => import("./app/admin/users/layout"))}
+            >
+              <Route
+                index
+                element={Lazy(() => import("./app/admin/users/page"))}
+              />
               <Route
                 path=":userId"
-                element={Lazy("./app/admin/users/[id]/layout")}
+                element={Lazy(() => import("./app/admin/users/[id]/layout"))}
               >
-                <Route index element={Lazy("./app/admin/users/[id]/page")} />
+                <Route
+                  index
+                  element={Lazy(() => import("./app/admin/users/[id]/page"))}
+                />
               </Route>
             </Route>
-            <Route path="guilds" element={Lazy("./app/admin/guilds/layout")}>
-              <Route index element={Lazy("./app/admin/guilds/page")} />
+            <Route
+              path="guilds"
+              element={Lazy(() => import("./app/admin/guilds/layout"))}
+            >
+              <Route
+                index
+                element={Lazy(() => import("./app/admin/guilds/page"))}
+              />
             </Route>
             <Route
               path="homepage"
-              element={Lazy("./app/admin/homepage/layout")}
+              element={Lazy(() => import("./app/admin/homepage/layout"))}
             >
-              <Route index element={Lazy("./app/admin/homepage/page")} />
+              <Route
+                index
+                element={Lazy(() => import("./app/admin/homepage/page"))}
+              />
               <Route path="demo-servers">
                 <Route
                   index
-                  element={Lazy("./app/admin/homepage/demo-servers/page")}
+                  element={Lazy(
+                    () => import("./app/admin/homepage/demo-servers/page"),
+                  )}
                 />
                 <Route
                   path=":id"
-                  element={Lazy("./app/admin/homepage/demo-servers/[id]/page")}
+                  element={Lazy(
+                    () => import("./app/admin/homepage/demo-servers/[id]/page"),
+                  )}
                 />
               </Route>
             </Route>
             <Route
               path="donations"
-              element={Lazy("./app/admin/donations/layout")}
+              element={Lazy(() => import("./app/admin/donations/layout"))}
             >
-              <Route index element={Lazy("./app/admin/donations/page")} />
+              <Route
+                index
+                element={Lazy(() => import("./app/admin/donations/page"))}
+              />
               <Route
                 path=":id"
-                element={Lazy("./app/admin/donations/[id]/page")}
+                element={Lazy(() => import("./app/admin/donations/[id]/page"))}
               />
               <Route
                 path="new"
-                element={Lazy("./app/admin/donations/new/page")}
+                element={Lazy(() => import("./app/admin/donations/new/page"))}
               />
             </Route>
           </Route>
 
           {/* 404 */}
-          <Route path="*" element={Lazy("./app/not-found")} />
+          <Route path="*" element={Lazy(() => import("./app/not-found"))} />
         </Route>
       </Routes>
     </BrowserRouter>

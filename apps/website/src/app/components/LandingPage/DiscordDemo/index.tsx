@@ -52,7 +52,9 @@ export function DiscordDemo() {
   if (!selectedServer)
     return (
       <div
-        className={cn("flex h-[550px] w-[1000px] overflow-hidden rounded-lg animate-pulse")}
+        className={cn(
+          "flex h-[550px] w-[1000px] animate-pulse overflow-hidden rounded-lg",
+        )}
         style={{ backgroundColor: serverListColor }}
       ></div>
     );
