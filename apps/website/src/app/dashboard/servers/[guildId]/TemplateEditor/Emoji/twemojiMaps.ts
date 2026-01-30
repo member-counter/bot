@@ -1,12 +1,12 @@
-import assert from "assert";
+import invariant from "tiny-invariant";
 
 import { availableSkinTones } from "./emojis";
-import twemojiMap0 from "./twemojiMaps/twemojiMap0.png";
-import twemojiMap1 from "./twemojiMaps/twemojiMap1.png";
-import twemojiMap2 from "./twemojiMaps/twemojiMap2.png";
-import twemojiMap3 from "./twemojiMaps/twemojiMap3.png";
-import twemojiMap4 from "./twemojiMaps/twemojiMap4.png";
-import twemojiMap5 from "./twemojiMaps/twemojiMap5.png";
+import twemojiMap0 from "./twemojiMaps/twemojiMap0.png?as=metadata&imagetools";
+import twemojiMap1 from "./twemojiMaps/twemojiMap1.png?as=metadata&imagetools";
+import twemojiMap2 from "./twemojiMaps/twemojiMap2.png?as=metadata&imagetools";
+import twemojiMap3 from "./twemojiMaps/twemojiMap3.png?as=metadata&imagetools";
+import twemojiMap4 from "./twemojiMaps/twemojiMap4.png?as=metadata&imagetools";
+import twemojiMap5 from "./twemojiMaps/twemojiMap5.png?as=metadata&imagetools";
 
 const twemojiMaps = [
   twemojiMap0,
@@ -22,7 +22,7 @@ export function getTwemojiMapBySkinTone(skinTone: string) {
 
   const twemojiMap = twemojiMaps[index];
 
-  assert(twemojiMap);
+  invariant(twemojiMap);
 
   return twemojiMap;
 }

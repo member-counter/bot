@@ -22,7 +22,6 @@
     "@mc/eslint-config": "workspace:*",
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
-    "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^22.19.7",
     "dotenv-cli": "^7.4.4",
     "eslint": "^9.39.2",

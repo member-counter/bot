@@ -3,7 +3,7 @@ import { TwitchIcon } from "lucide-react";
 
 import { DataSourceId, TwitchDataSourceReturn } from "@mc/common/DataSource";
 
-import { capitalize } from "~/other/capitalize";
+import { capitalize } from "~/lib/capitalize";
 import { createDataSourceMetadata } from "./createDataSourceMetadata";
 
 const TwitchReturnTKey = {

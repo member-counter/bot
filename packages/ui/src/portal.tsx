@@ -1,5 +1,3 @@
-"use client";
-
 import type { PropsWithChildren } from "react";
 import { useEffect, useState } from "react";
 import * as PortalPrimitive from "@radix-ui/react-portal";

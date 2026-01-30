@@ -1,4 +1,5 @@
 import { LanguagesIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@mc/ui/button";
 import {
@@ -8,8 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@mc/ui/dropdown-menu";
 
-import { useTranslation } from "~/i18n/client";
-import { languageEntries } from "~/i18n/settings";
+import { languageEntries } from "~/lib/i18n";
 
 export function LanguageSelector() {
   const { i18n } = useTranslation();

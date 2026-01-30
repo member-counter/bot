@@ -1,7 +1,6 @@
-"use client";
+import { Errors } from "@mc/trpc-api/utils/errors";
 
-import ErrorPage from "./error";
-import { Errors } from "./errors";
+import ErrorPage from "./components/error";
 
 export default function NotFound() {
   return <ErrorPage error={new Error(Errors.NotFound)} />;

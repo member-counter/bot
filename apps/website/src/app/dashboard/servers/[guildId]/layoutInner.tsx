@@ -1,8 +1,7 @@
-"use client";
-
 import { useContext, useEffect, useId, useState } from "react";
-import { useParams } from "next/navigation";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 import {
   ResizableHandle,
@@ -11,28 +10,29 @@ import {
 } from "@mc/ui/resizable";
 import { Separator } from "@mc/ui/separator";
 
-import type { DashboardGuildParams } from "./layout";
-import { useBreakpoint } from "~/hooks/useBreakpoint";
-import { api } from "~/trpc/react";
+import { useBreakpoint } from "~/lib/hooks/useBreakpoint";
+import { api } from "~/lib/trpc";
 import { MenuContext } from "../../Menu";
 import { ForbiddenPage } from "./ForbiddenPage";
 import { InviteBotPage } from "./InviteBotPage";
-import { LoadingPage } from "./LoadingPage";
+import { LoadingPage } from "../../../components/LoadingPage";
 import { ServerNavMenu } from "./ServerNavMenu/ServerNavMenu";
 import { SidePanelContext } from "./SidePanelContext";
 import { UserPermissionsContext } from "./UserPermissionsContext";
+import invariant from "tiny-invariant";
 
 export default function LayoutInner({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const userPermissions = useContext(UserPermissionsContext);
   const isDesktop = useBreakpoint("sm");
   const isWideScreen = useBreakpoint("xl");
   const menuContext = useContext(MenuContext);
-
+  invariant(menuContext, "Expected menuContext to be defined");
   const [sidePanelRef, setSidePanelRef] = useState<HTMLElement | null>(null);
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
   useEffect(() => {

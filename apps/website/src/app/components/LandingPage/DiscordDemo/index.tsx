@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
 
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import DSelector from "../../DSelector";
 import { serverListColor } from "./colors";
 import { DescriptionArea } from "./DescriptionArea";

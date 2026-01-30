@@ -1,6 +1,5 @@
 import type { TFunction } from "i18next";
 import type { LucideIcon } from "lucide-react";
-import { useParams } from "next/navigation";
 import { ChannelType, PermissionFlagsBits } from "discord-api-types/v10";
 import {
   BookTextIcon,
@@ -15,11 +14,13 @@ import {
   PodcastIcon,
   Volume2Icon,
 } from "lucide-react";
+import { useTypedParams } from "react-router-typesafe-routes";
+import invariant from "tiny-invariant";
 
 import { BitField } from "@mc/common/BitField";
+import { routes } from "@mc/common/Routes";
 
-import type { DashboardGuildParams } from "./layout";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 
 export const ChannelIconMap: Record<ChannelType | number, LucideIcon> = {
   [ChannelType.GuildText]: HashIcon,
@@ -51,7 +52,8 @@ export function useChannelIcon(
   channelId: string,
   channelListView = false,
 ): LucideIcon {
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
 

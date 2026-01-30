@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import { ShieldBanIcon, XIcon } from "lucide-react";
 import { Trans } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
-import type { DashboardGuildParams } from "./layout";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
+import invariant from "tiny-invariant";
 
 export function BlockedBanner() {
   const [closed, setClosed] = useState(false);
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const blockedState = api.guild.isBlocked.useQuery({
     discordGuildId: guildId,
   });
@@ -37,12 +38,20 @@ export function BlockedBanner() {
           i18nKey="pages.dashboard.servers.blockedBanner.text"
           components={{
             LinkTerms: (
-              <LinkUnderlined href={Routes.Legal("terms-of-service")} />
+              <LinkUnderlined
+                to={routes.legal.page.$buildPath({
+                  params: { page: "terms-of-service" },
+                })}
+              />
             ),
             LinkPolicy: (
-              <LinkUnderlined href={Routes.Legal("acceptable-use-policy")} />
+              <LinkUnderlined
+                to={routes.legal.page.$buildPath({
+                  params: { page: "acceptable-use-policy" },
+                })}
+              />
             ),
-            SupportLink: <LinkUnderlined href={Routes.Support} />,
+            SupportLink: <LinkUnderlined to={routes.support.$buildPath({})} />,
           }}
           values={{ reason: reason.trim().length ? reason : undefined }}
         />

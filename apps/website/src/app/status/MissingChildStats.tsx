@@ -1,7 +1,7 @@
 import { AlertCircleIcon, CornerDownRightIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import { ChildStatsDiscordServers } from "./ChildStatsServers";
 
 interface MissingChildStats {

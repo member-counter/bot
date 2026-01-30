@@ -1,8 +1,12 @@
 {
-  "extends": "@mc/tsconfig/base.json",
+  "extends": "@mc/tsconfig/internal-package.json",
   "compilerOptions": {
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
-  "include": ["*.ts", "src"],
+  "include": ["*.ts", "src", "env.js", "../../tooling/typescript/reset.d.ts"],
   "exclude": ["node_modules"]
 }

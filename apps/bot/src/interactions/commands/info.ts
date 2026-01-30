@@ -27,11 +27,11 @@ export const infoCommand = new Command({
             clientId: command.client.user.id,
             permissions: botPermissions,
           }),
-          BOT_REPO_URL: env.NEXT_PUBLIC_BOT_REPO_URL,
-          BOT_SUPPORT_URL: env.NEXT_PUBLIC_SUPPORT_URL,
+          BOT_REPO_URL: env.VITE_BOT_REPO_URL,
+          BOT_SUPPORT_URL: env.VITE_SUPPORT_URL,
           OFFICIAL_WEBSITE_URL: env.OFFICIAL_WEBSITE_URL,
           VERSION: inlineCode("v" + version),
-          VERSION_URL: `${env.NEXT_PUBLIC_BOT_REPO_URL}/releases/tag/v${version}`,
+          VERSION_URL: `${env.VITE_BOT_REPO_URL}/releases/tag/v${version}`,
         }),
       )
       .setThumbnail(command.client.user.displayAvatarURL());

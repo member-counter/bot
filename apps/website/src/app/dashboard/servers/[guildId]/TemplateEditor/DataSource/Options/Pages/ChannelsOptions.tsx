@@ -1,22 +1,23 @@
 import type { DataSource, DataSourceChannels } from "@mc/common/DataSource";
 import { useMemo } from "react";
-import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
 
-import type { DashboardGuildParams } from "../../../../layout";
 import type { GuildChannel } from "../../../d-types";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import type { Searchable } from "~/app/components/Combobox";
 import { Combobox } from "~/app/components/Combobox";
 import { channelWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/channelWithDataSourceItem";
 import { makeSercheableChannels } from "~/app/components/Combobox/sercheableMakers/makeSercheableChannels";
-import { addTo, removeFrom, updateIn } from "~/other/array";
-import { api } from "~/trpc/react";
+import { addTo, removeFrom, updateIn } from "~/lib/array";
+import { api } from "~/lib/trpc";
 import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
+import invariant from "tiny-invariant";
 
 type DataSourceType = DataSourceChannels;
 
@@ -37,7 +38,8 @@ export function ChannelOptions({
     onOptionsChange,
   });
 
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channels = useMemo(
     () => guild.data?.channels ?? new Map<string, GuildChannel>(),

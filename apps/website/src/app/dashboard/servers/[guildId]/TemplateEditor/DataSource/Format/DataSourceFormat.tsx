@@ -19,7 +19,7 @@ import { SelectItemWithIcon } from "@mc/ui/selectItemWithIcon";
 
 import { Combobox } from "~/app/components/Combobox";
 import { localeItem } from "~/app/components/Combobox/renderers/localeItem";
-import { searchableLocales } from "~/other/locales";
+import { searchableLocales } from "~/lib/locales";
 import DataSourceFormatDigitInput from "./DataSourceFormatDigitInput";
 import useDataSourceFormat from "./useDataSourceFormat";
 

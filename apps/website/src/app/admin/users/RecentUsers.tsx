@@ -1,12 +1,10 @@
-"use client";
-
 import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
-import { useLocalStorage } from "~/hooks/useLocalStorage";
+import { useLocalStorage } from "~/lib/hooks/useLocalStorage";
 import { LoadUserInput } from "./LoadUserInput";
 import { RecentUser } from "./RecentUser";
 import {

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@mc/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
-import type { RouterOutputs } from "~/trpc/react";
+import type { RouterOutputs } from "~/lib/trpc";
 
 export function ServerInfo({
   host: { name, cpus, freeMemory, memory, loadAvg },

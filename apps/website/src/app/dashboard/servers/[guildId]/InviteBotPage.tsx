@@ -1,22 +1,23 @@
 import { useContext, useEffect, useState } from "react";
-import Link from "next/link";
-import { useParams } from "next/navigation";
 import { CheckIcon, CopyIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
-import type { DashboardGuildParams } from "./layout";
 import { BotIcon } from "~/app/components/BotIcon";
 import { DiscordIcon } from "~/app/components/DiscordIcon";
-import { useTranslation } from "~/i18n/client";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import { MenuButton } from "../../Menu";
 import { UserPermissionsContext } from "./UserPermissionsContext";
+import invariant from "tiny-invariant";
 
 export function InviteBotPage() {
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const [clipboardFailed, setClipboardFailed] = useState(
     !window.isSecureContext,
   );
@@ -31,7 +32,7 @@ export function InviteBotPage() {
 
   const [t] = useTranslation();
 
-  const inviteLink = Routes.Invite(guildId);
+  const inviteLink = routes.invite.$buildPath({ searchParams: { guildId } });
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(
@@ -64,7 +65,7 @@ export function InviteBotPage() {
           })}
         </h2>
         {userPermissions.canInviteBot ? (
-          <Link href={inviteLink} target="_blank" className="block">
+          <Link to={inviteLink} target="_blank" className="block">
             <Button className="h-auto w-full text-wrap py-3" icon={DiscordIcon}>
               {t("pages.dashboard.servers.inviteBotPage.addToServer", {
                 serverName: guild?.name ?? t("common.unknownServer"),
@@ -77,7 +78,7 @@ export function InviteBotPage() {
               {t("pages.dashboard.servers.inviteBotPage.noPermission")}
             </div>
             {clipboardFailed ? (
-              <LinkUnderlined href={inviteLink} target="_blank">
+              <LinkUnderlined to={inviteLink} target="_blank">
                 {t("pages.dashboard.servers.inviteBotPage.useOrShareLink")}
               </LinkUnderlined>
             ) : (

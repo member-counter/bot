@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 import { WSStatus } from "@mc/common/redis/BotStats";
 import { cn } from "@mc/ui";
 
-import type { RouterOutputs } from "~/trpc/react";
-import { api } from "~/trpc/react";
+import type { RouterOutputs } from "~/lib/trpc";
+import { api } from "~/lib/trpc";
 import { InfoToolip } from "../components/InfoTooltip";
 import { GroupIcon } from "./assets/GroupIcon";
 import { ChildStatsDiscordServers } from "./ChildStatsServers";

@@ -3,7 +3,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { Drawer, DrawerContent } from "@mc/ui/drawer";
 import { Portal } from "@mc/ui/portal";
 
-import { useBreakpoint } from "~/hooks/useBreakpoint";
+import { useBreakpoint } from "~/lib/hooks/useBreakpoint";
 import { SidePanelContext } from "../../SidePanelContext";
 import { TemplateEditorContext } from "../TemplateEditorContext";
 import { useDataSourceRefs } from "./DataSourceRefs";

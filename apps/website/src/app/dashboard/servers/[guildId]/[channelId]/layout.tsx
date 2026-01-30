@@ -1,27 +1,22 @@
-"use client";
-
-import { use } from "react";
 import { useTranslation } from "react-i18next";
+import { Outlet } from "react-router";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Separator } from "@mc/ui/separator";
 
-import type { DashboardGuildParams } from "../layout";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import { MenuButton } from "../../../Menu";
 import { ChannelLabelMap, useChannelIcon } from "../ChannelMaps";
+import invariant from "tiny-invariant";
 
-export type DashboardGuildChannelParams = {
-  channelId: string;
-} & DashboardGuildParams;
+export default function Layout() {
+  const { channelId, guildId } = useTypedParams(
+    routes.dashboard.servers.server.channel,
+  );
+  invariant(channelId, "Expected channelId to be defined");
+  invariant(guildId, "Expected guildId to be defined");
 
-interface Props {
-  params: Promise<DashboardGuildChannelParams>;
-  children: React.ReactNode;
-}
-
-export default function Layout(props: Props) {
-  const params = use(props.params);
-  const { channelId, guildId } = params;
   const { t } = useTranslation();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
@@ -47,7 +42,9 @@ export default function Layout(props: Props) {
       </div>
       <Separator orientation="horizontal" />
       <div className="grow overflow-hidden">
-        <div className="h-full overflow-auto">{props.children}</div>
+        <div className="h-full overflow-auto">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

@@ -1,18 +1,21 @@
 import type { RenderElementProps } from "slate-react";
 import { useState } from "react";
-import { useParams } from "next/navigation";
 import { AtSignIcon } from "lucide-react";
+import { useTypedParams } from "react-router-typesafe-routes";
 import { useFocused, useSelected } from "slate-react";
 
-import type { DashboardGuildParams } from "../../layout";
+import { routes } from "@mc/common/Routes";
+
 import type { MentionElement as MentionElementType } from "../custom-types";
 import type { GuildChannel, GuildRole } from "../d-types";
-import { mentionColor } from "~/other/mentionColor";
-import { api } from "~/trpc/react";
+import { mentionColor } from "~/lib/mentionColor";
+import { api } from "~/lib/trpc";
 import { useChannelIcon } from "../../ChannelMaps";
+import invariant from "tiny-invariant";
 
 export const MentionElement = (props: RenderElementProps) => {
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const element = props.element as MentionElementType;
   const { channels, roles } = api.discord.getGuild.useQuery({ id: guildId })
     .data ?? {

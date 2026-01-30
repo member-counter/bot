@@ -1,30 +1,33 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useParams } from "next/navigation";
 import { AtSignIcon } from "lucide-react";
+import { useTypedParams } from "react-router-typesafe-routes";
 import { Editor, Range, Transforms } from "slate";
 import { ReactEditor, useSlate } from "slate-react";
 
+import { routes } from "@mc/common/Routes";
 import { searchInTexts } from "@mc/common/searchInTexts";
 import { cn } from "@mc/ui";
 import { Portal } from "@mc/ui/portal";
 
-import type { DashboardGuildParams } from "../../layout";
 import type { GuildChannel, GuildRole } from "../d-types";
-import { mentionColor } from "~/other/mentionColor";
-import { api } from "~/trpc/react";
+import { mentionColor } from "~/lib/mentionColor";
+import { api } from "~/lib/trpc";
 import { useChannelIcon } from "../../ChannelMaps";
 import { insertMention } from "./insertMention";
+import invariant from "tiny-invariant";
 
-enum SearchType {
-  Role,
-  Channel,
-}
+const SearchType = {
+  Role: "role",
+  Channel: "channel",
+} as const;
+type SearchType = (typeof SearchType)[keyof typeof SearchType];
 
 export function MentionSuggestions(props: {
   enabled: boolean;
   children: React.ReactNode;
 }) {
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const suggestionBoxRef = useRef<HTMLDivElement>(null);
   const editor = useSlate();
   const { channels, roles } = api.discord.getGuild.useQuery({ id: guildId })
@@ -35,7 +38,7 @@ export function MentionSuggestions(props: {
   const [range, setRange] = useState<Range | null>(null);
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const [search, setSearch] = useState("");
-  const [searchType, setSearchType] = useState(SearchType.Role);
+  const [searchType, setSearchType] = useState<SearchType>(SearchType.Role);
 
   const suggestedItems: (GuildChannel | GuildRole)[] = useMemo(() => {
     const suggestableItems = [

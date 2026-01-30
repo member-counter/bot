@@ -11,7 +11,7 @@ import type { Searchable } from "../../../../../../../components/Combobox";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
 import { timezoneWithDataSourceItem } from "~/app/components/Combobox/renderers/timezoneWithDataSourceItem";
-import { searchableTimezones } from "~/other/timezones";
+import { searchableTimezones } from "~/lib/timezones";
 import { Combobox } from "../../../../../../../components/Combobox";
 import {
   useKnownSearcheableDataSource,

@@ -1,22 +1,20 @@
-import { redirect, RedirectType } from "next/navigation";
+import { useTypedSearchParams } from "react-router-typesafe-routes";
 
 import { botPermissions } from "@mc/common/bot/botPermissions";
 import { generateInviteLink } from "@mc/common/generateInviteLink";
+import { routes } from "@mc/common/Routes";
 
 import { env } from "~/env";
 
-interface Props {
-  searchParams: Promise<{ guildId?: string }>;
-}
+export default function Page() {
+  const [{ guildId }] = useTypedSearchParams(routes.invite);
+  const inviteLink = generateInviteLink({
+    clientId: env.VITE_DISCORD_CLIENT_ID,
+    permissions: botPermissions,
+    ...(guildId && { selectedGuild: guildId }),
+  });
 
-export default async function Page(props: Props) {
-  const guildId = (await props.searchParams).guildId;
-  redirect(
-    generateInviteLink({
-      clientId: env.DISCORD_CLIENT_ID,
-      permissions: botPermissions,
-      ...(guildId && { selectedGuild: guildId }),
-    }),
-    RedirectType.replace,
-  );
+  window.location.replace(inviteLink);
+
+  return null;
 }

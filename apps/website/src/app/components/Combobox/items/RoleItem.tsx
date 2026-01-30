@@ -1,15 +1,18 @@
-import { useParams } from "next/navigation";
 import { AtSignIcon, CheckIcon, XIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
+
+import { routes } from "@mc/common/Routes";
 
 import type { ComboboxProps } from "..";
-import type { DashboardGuildParams } from "~/app/dashboard/servers/[guildId]/layout";
-import { mentionColor } from "~/other/mentionColor";
-import { api } from "~/trpc/react";
+import { mentionColor } from "~/lib/mentionColor";
+import { api } from "~/lib/trpc";
 import { TinyIconButton } from "../TinyIconButton";
+import invariant from "tiny-invariant";
 
 const useRoleId = (id: string) => {
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const guild = api.discord.getGuild.useQuery({ id: guildId });
 
   return guild.data?.roles.get(id);

@@ -1,28 +1,20 @@
-"use client";
+import { Outlet } from "react-router";
 
 import { BlockedBanner } from "./BlockedBanner";
 import { InviteBotBanner } from "./InviteBotBanner";
 import LayoutInner from "./layoutInner";
 import { UserPermissionsContextProvider } from "./UserPermissionsContext";
 
-export interface DashboardGuildParams {
-  guildId: string;
-  [key: string]: string | string[];
-}
-
-export interface DashboardGuildPageProps {
-  children: React.ReactNode;
-  params: Promise<DashboardGuildParams>;
-}
-
-export default function Layout({ children }: DashboardGuildPageProps) {
+export default function Layout() {
   return (
     <UserPermissionsContextProvider>
       <div className="flex h-full max-h-full flex-col overflow-hidden rounded">
         <BlockedBanner />
         <InviteBotBanner />
         <div className="grow overflow-hidden">
-          <LayoutInner>{children}</LayoutInner>
+          <LayoutInner>
+            <Outlet />
+          </LayoutInner>
         </div>
       </div>
     </UserPermissionsContextProvider>

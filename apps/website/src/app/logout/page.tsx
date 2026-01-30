@@ -1,7 +1,8 @@
-import { redirect, RedirectType } from "next/navigation";
 
-import { Routes } from "~/other/routes";
+
+import { routes } from "@mc/common/Routes";
 
 export default function Page() {
-  redirect(Routes.ApiLogout, RedirectType.push);
+  window.location.replace(routes.api.auth.logout.$buildPath({}));
+  return null;
 }

@@ -28,40 +28,21 @@ COPY --from=repo /app/out/full/ .
 ENV SKIP_ENV_VALIDATION=true
 ENV NODE_ENV='production'
 
-ARG NEXT_PUBLIC_SUPPORT_URL
-ENV NEXT_PUBLIC_SUPPORT_URL=${NEXT_PUBLIC_SUPPORT_URL}
+ARG VITE_SUPPORT_URL
+ENV VITE_SUPPORT_URL=${VITE_SUPPORT_URL}
 
-ARG NEXT_PUBLIC_BOT_DOCS_URL
-ENV NEXT_PUBLIC_BOT_DOCS_URL=${NEXT_PUBLIC_BOT_DOCS_URL}
+ARG VITE_BOT_DOCS_URL
+ENV VITE_BOT_DOCS_URL=${VITE_BOT_DOCS_URL}
 
-ARG NEXT_PUBLIC_BOT_REPO_URL
-ENV NEXT_PUBLIC_BOT_REPO_URL=${NEXT_PUBLIC_BOT_REPO_URL}
+ARG VITE_BOT_REPO_URL
+ENV VITE_BOT_REPO_URL=${VITE_BOT_REPO_URL}
 
-ARG NEXT_PUBLIC_TRANSLATION_PLATFORM_URL
-ENV NEXT_PUBLIC_TRANSLATION_PLATFORM_URL=${NEXT_PUBLIC_TRANSLATION_PLATFORM_URL}
+ARG VITE_TRANSLATION_PLATFORM_URL
+ENV VITE_TRANSLATION_PLATFORM_URL=${VITE_TRANSLATION_PLATFORM_URL}
 
 RUN pnpm turbo run build --filter=@mc/website
 
-FROM base AS runner
-WORKDIR /app
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Set the correct permission for prerender cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=nextjs:nodejs /app/apps/website/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/apps/website/.next/static ./apps/website/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/apps/website/public ./apps/website/public
-
-USER nextjs
-
-EXPOSE 3000
-ENV PORT=3000
-ENV HOSTNAME=0.0.0.0
-
-CMD ["node", "/app/apps/website/server.js"]
+FROM nginx:alpine
+COPY --from=build /app/apps/frontend/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

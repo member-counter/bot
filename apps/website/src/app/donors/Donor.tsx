@@ -1,5 +1,3 @@
-"use client";
-
 import { useTranslation } from "react-i18next";
 
 import { CurrencyUtils } from "@mc/common/currencyUtils";
@@ -12,10 +10,9 @@ import {
 } from "@mc/ui/dialog";
 import { Separator } from "@mc/ui/separator";
 
-import type { RouterOutputs } from "~/trpc/react";
+import type { RouterOutputs } from "~/lib/trpc";
 import { DisplayUsername } from "../components/DisplayUsername";
 
-/* eslint-disable @next/next/no-img-element */
 export function Donor({
   className,
   donor: { user, donations },

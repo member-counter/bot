@@ -1,5 +1,3 @@
-"use client";
-
 import { TrashIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -15,8 +13,8 @@ import {
   DialogTrigger,
 } from "@mc/ui/dialog";
 
-import useShowError from "~/hooks/useShowError";
-import { api } from "~/trpc/react";
+import useShowError from "~/lib/hooks/useShowError";
+import { api } from "~/lib/trpc";
 
 export function ResetSettings({
   guildId,

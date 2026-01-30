@@ -1,21 +1,7 @@
 {
-  "extends": "@mc/tsconfig/base.json",
-  "compilerOptions": {
-    "lib": ["es2022", "dom", "dom.iterable"],
-    "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
-    "plugins": [{ "name": "next" }],
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "module": "esnext"
-  },
-  "include": [".", ".next/types/**/*.ts"],
-  "exclude": [
-    "node_modules",
-    // ignore submodules
-    "**/twemoji/**",
-    "**/unicode-emoji-json/**"
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
   ]
 }

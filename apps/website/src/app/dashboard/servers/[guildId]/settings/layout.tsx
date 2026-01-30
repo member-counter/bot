@@ -1,13 +1,12 @@
-"use client";
-
 import { ServerCogIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Outlet } from "react-router";
 
 import { Separator } from "@mc/ui/separator";
 
 import { MenuButton } from "../../../Menu";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
   const { t } = useTranslation();
 
   return (
@@ -19,7 +18,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
       <Separator orientation="horizontal" />
       <div className="grow overflow-hidden">
-        <div className="h-full overflow-auto">{children}</div>
+        <div className="h-full overflow-auto">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import { useId } from "react";
-import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
 import { Switch } from "@mc/ui/switch";
 
-import type { DashboardGuildChannelParams } from "../layout";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
+import invariant from "tiny-invariant";
 
 interface Props {
   value: boolean;
@@ -16,7 +17,12 @@ interface Props {
 }
 
 export function EnableTemplate({ value, onChange, disabled }: Props) {
-  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  const { guildId, channelId } = useTypedParams(
+    routes.dashboard.servers.server.channel,
+  );
+  invariant(channelId, "Expected channelId to be defined");
+  invariant(guildId, "Expected guildId to be defined");
+
   const { t } = useTranslation();
   const enableTemplateSwitch = useId();
   const guild = api.discord.getGuild.useQuery({ id: guildId });

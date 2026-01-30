@@ -1,9 +1,7 @@
-"use client";
-
 import type { Grammar } from "prismjs";
 import type { JSX, ReactNode } from "react";
 import type { Descendant } from "slate";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Slate } from "slate-react";
 import { v4 } from "uuid";
 

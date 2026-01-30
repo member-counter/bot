@@ -1,15 +1,17 @@
 import type { DataSource } from "@mc/common/DataSource";
-import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
+
+import { routes } from "@mc/common/Routes";
 
 import type { Searchable } from "~/app/components/Combobox";
-import type { DashboardGuildParams } from "~/app/dashboard/servers/[guildId]/layout";
 import { Combobox } from "~/app/components/Combobox";
 import { roleWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/roleWithDataSourceItem";
 import { makeSercheableRoles } from "~/app/components/Combobox/sercheableMakers/makeSercheableRoles";
-import { addTo, removeFrom, updateIn } from "~/other/array";
-import { api } from "~/trpc/react";
+import { addTo, removeFrom, updateIn } from "~/lib/array";
+import { api } from "~/lib/trpc";
 import { useKnownSearcheableDataSource } from "../../../metadata";
+import invariant from "tiny-invariant";
 
 type Type = (string | DataSource)[];
 export function FilterByRole({
@@ -20,7 +22,8 @@ export function FilterByRole({
   onChange: (value: Type) => void;
 }) {
   const { t } = useTranslation();
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const guild = api.discord.getGuild.useQuery({ id: guildId });
 
   const knownSearcheableDataSources = useKnownSearcheableDataSource();

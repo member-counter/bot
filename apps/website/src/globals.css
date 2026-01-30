@@ -54,12 +54,26 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply scroll-smooth;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply font-inter-sans dark bg-background text-foreground antialiased;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
   }
+  #root {
+    @apply flex min-h-screen grow flex-col;
+  }
+}
+
+.font-inter-sans {
+  font-family: "Inter Variable", sans-serif;
+}
+
+.font-major-mono {
+  font-family: "Major Mono Display", monospace;
 }
 
 img.emoji {

@@ -14,7 +14,7 @@ import {
 import { Drawer, DrawerContent, DrawerTrigger } from "@mc/ui/drawer";
 import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
-import { useBreakpoint } from "~/hooks/useBreakpoint";
+import { useBreakpoint } from "~/lib/hooks/useBreakpoint";
 import { useDataSourceRefs } from "./DataSourceRefs";
 import { useInsertDataSource } from "./insertDataSource";
 import { useKnownSearcheableDataSourceMetadata } from "./metadata";

@@ -1,10 +1,8 @@
-import type { StaticImageData } from "next/image";
 import { useMemo } from "react";
-import Image from "next/image";
 import { BotIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import type { RouterOutputs } from "~/trpc/react";
+import type { RouterOutputs } from "~/lib/trpc";
 import betaBotIcon from "./assets/bot-beta.png";
 import mainBotIcon from "./assets/bot-main.png";
 import premiumBotIcon from "./assets/bot-premium.png";
@@ -24,7 +22,7 @@ const KnownPublicBots = {
     name: "Member Counter Beta",
     icon: betaBotIcon,
   },
-} as Record<string, { name: string; icon: StaticImageData }>;
+} as Record<string, { name: string; icon: string }>;
 
 export function BotStatus({
   id,
@@ -59,7 +57,7 @@ export function BotStatus({
     <article className="flex w-full max-w-[1200px] flex-col gap-2">
       <h1 className="flex items-center gap-2 text-lg font-bold">
         {icon ? (
-          <Image {...icon} alt="" className="h-6 w-6 rounded-md" />
+          <img src={icon} alt="" className="h-6 w-6 rounded-md" />
         ) : (
           <BotIcon className="h-5 w-5" />
         )}

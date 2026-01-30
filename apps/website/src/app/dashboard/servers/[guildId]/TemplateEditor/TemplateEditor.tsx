@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import type { Descendant } from "slate";
 import { useCallback, useMemo, useState } from "react";
-import { useParams } from "next/navigation";
 import { CurlyBracesIcon, EditIcon, ScanEyeIcon } from "lucide-react";
+import { useTypedParams } from "react-router-typesafe-routes";
 import { ReactEditor, useSlateStatic } from "slate-react";
 
+import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
 import { InputWrapper } from "@mc/ui/InputWrapper";
 import { Separator } from "@mc/ui/separator";
 
-import type { DashboardGuildChannelParams } from "../[channelId]/layout";
 import type { DataSourceRefs } from "./utils";
-import { useDebounce } from "~/hooks/useDebounce";
-import { api } from "~/trpc/react";
+import { useDebounce } from "~/lib/hooks/useDebounce";
+import { api } from "~/lib/trpc";
 import AddDataSourceCombobox from "./DataSource/AddDataSourceCombobox";
 import EditDataSource from "./DataSource/EditDataSource";
 import { DisplayTemplateError } from "./DisplayTemplateError";
@@ -26,6 +26,7 @@ import { deserialize } from "./serde/deserialize";
 import { serialize } from "./serde/serialize";
 import SlateTemplateEditor from "./SlateTemplateEditor";
 import SlateTemplateEditorInput from "./SlateTemplateEditorInput";
+import invariant from "tiny-invariant";
 
 type TemplateTarget = "channelName" | "channelTopic";
 
@@ -143,7 +144,11 @@ export default function TemplateEditor({
   disabled?: boolean;
   target: TemplateTarget;
 }) {
-  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  const { guildId, channelId } = useTypedParams(
+    routes.dashboard.servers.server.channel,
+  );
+  invariant(guildId, "Expected guildId to be defined");
+  invariant(channelId, "Expected channelId to be defined");
 
   const [showPreview, setShowPreview] = useState(false);
   const togglePreview = useCallback(

@@ -1,0 +1,41 @@
+{
+  "name": "@mc/trpc-api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^2.6.0",
+    "@mc/common": "workspace:*",
+    "@mc/db": "workspace:*",
+    "@mc/redis": "workspace:*",
+    "@mc/services": "workspace:*",
+    "@mc/telemetry": "workspace:*",
+    "@mc/trpc-telemetry": "workspace:*",
+    "@mc/validators": "workspace:*",
+    "@trpc/server": "^11.8.1",
+    "discord-api-types": "^0.38.37",
+    "superjson": "^2.2.6",
+    "zod": "^4.3.5"
+  },
+  "devDependencies": {
+    "@mc/eslint-config": "workspace:*",
+    "@mc/prettier-config": "workspace:*",
+    "@mc/tsconfig": "workspace:*",
+    "@types/node": "^22.19.7",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.0",
+    "typescript": "^5.9.3"
+  },
+  "prettier": "@mc/prettier-config"
+}

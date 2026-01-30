@@ -1,38 +1,16 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-import { z } from "zod";
+import { Navigate } from "react-router";
+import { useTypedSearchParams } from "react-router-typesafe-routes";
 
-import { legalPagesSlugs } from "@mc/common/Routes";
-
-import Footer from "~/app/components/Footer";
-import { pageTitle } from "~/other/pageTitle";
-import { legalPages } from "./legalPages";
-import PageSwitcher from "./PageSwitcher";
-
-interface Props {
-  searchParams: Promise<{ page: string | undefined }>;
-}
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const searchParams = await props.searchParams;
-  const requestedSlug =
-    z.enum(legalPagesSlugs).safeParse(searchParams.page).data ??
-    "terms-of-service";
-
-  const legalPage = legalPages[requestedSlug];
-
-  return {
-    title: pageTitle(legalPage.title),
-  };
-}
+import { routes } from "@mc/common/Routes";
 
 export default function Page() {
+  const [{ page }] = useTypedSearchParams(routes.legal);
   return (
-    <>
-      <Suspense>
-        <PageSwitcher />
-      </Suspense>
-      <Footer />
-    </>
+    <Navigate
+      to={routes.legal.page.$buildPath({
+        params: { page: page ?? "terms-of-service" },
+      })}
+      replace
+    />
   );
 }

@@ -1,15 +1,21 @@
-import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
 import { Separator } from "@mc/ui/separator";
 
-import type { DashboardGuildChannelParams } from "../layout";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import { DisplayTemplateError } from "../../TemplateEditor/DisplayTemplateError";
+import invariant from "tiny-invariant";
 
 export function TemplateError() {
-  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  const { guildId, channelId } = useTypedParams(
+    routes.dashboard.servers.server.channel,
+  );
+  invariant(channelId, "Expected channelId to be defined");
+  invariant(guildId, "Expected guildId to be defined");
+
   const { t } = useTranslation();
   const channelLog = api.guild.channels.logs.get.useQuery({
     discordChannelId: channelId,

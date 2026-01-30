@@ -1,9 +1,9 @@
 import type { BotInstanceOptions } from "../bot/BotInstanceOptions";
-import type { setupBotStatsConsumer } from "../redis/BotStats";
+import type { BotStats } from "../redis/BotStats";
 
 declare module "discord.js" {
   interface Client {
     botInstanceOptions: BotInstanceOptions;
-    fetchBotStats: () => ReturnType<ReturnType<typeof setupBotStatsConsumer>>;
+    fetchBotStats: () => Promise<BotStats[]>;
   }
 }

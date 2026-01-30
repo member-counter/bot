@@ -1,10 +1,7 @@
-"use client";
-
 import { useTranslation } from "react-i18next";
 
 import { DisplayUsername } from "~/app/components/DisplayUsername";
 
-/* eslint-disable @next/next/no-img-element */
 export const DisplayUser = ({
   id,
   username,

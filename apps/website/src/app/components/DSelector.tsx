@@ -10,19 +10,20 @@ import {
   TooltipTrigger,
 } from "@mc/ui/tooltip";
 
-import { discordServerNameAbbreviated } from "~/other/discordServerNameAbbreviated";
+import { discordServerNameAbbreviated } from "~/lib/discordServerNameAbbreviated";
 
 interface ItemProps {
   classNameForItem?: string;
   icon?: string | React.ReactNode;
   onClick: () => void;
+  onHover?: () => void;
   name: string;
   isSelected?: boolean;
   notSelectable?: boolean;
 }
 
 const Item = (props: ItemProps) => {
-  const { icon: icon, onClick, name, notSelectable, classNameForItem } = props;
+  const { icon: icon, onClick, name, notSelectable, classNameForItem, onHover } = props;
   let { isSelected } = props;
 
   if (notSelectable) isSelected = false;
@@ -30,10 +31,10 @@ const Item = (props: ItemProps) => {
   const itemImageStyle: React.CSSProperties =
     typeof icon === "string"
       ? {
-          backgroundImage: `url('${icon}')`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }
+        backgroundImage: `url('${icon}')`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }
       : {};
 
   return (
@@ -59,6 +60,7 @@ const Item = (props: ItemProps) => {
                 role="link"
                 tabIndex={0}
                 aria-label={name}
+                onMouseEnter={onHover}
               >
                 <div className="absolute ml-[-12px] flex h-[48px] w-[8px] items-center justify-start">
                   <div

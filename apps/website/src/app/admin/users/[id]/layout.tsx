@@ -1,9 +1,9 @@
-"use client";
+import { Outlet } from "react-router";
 
 import { LoadUserInput } from "../LoadUserInput";
 import { RecentUsers } from "../RecentUsers";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
   return (
     <>
       <div className="hidden sm:block">
@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="block sm:hidden">
             <LoadUserInput />
           </div>
-          {children}
+          <Outlet />
         </div>
       </div>
     </>

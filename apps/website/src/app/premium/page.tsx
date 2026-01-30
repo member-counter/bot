@@ -1,7 +1,7 @@
-import { redirect, RedirectType } from "next/navigation";
+import { Navigate } from "react-router";
 
-import { Routes } from "~/other/routes";
+import { routes } from "@mc/common/Routes";
 
 export default function Page() {
-  redirect(Routes.Dashboard, RedirectType.replace);
+  return <Navigate to={routes.dashboard.$buildPath({})} replace />;
 }

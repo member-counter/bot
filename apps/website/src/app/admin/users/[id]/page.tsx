@@ -1,13 +1,13 @@
-"use client";
-
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 import { LoaderIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 
-import { useLocalStorage } from "~/hooks/useLocalStorage";
-import { api } from "~/trpc/react";
+import { useLocalStorage } from "~/lib/hooks/useLocalStorage";
+import { api } from "~/lib/trpc";
 import { DisplayUser } from "../DisplayUser";
 import {
   defaultRecentUsers,
@@ -16,14 +16,8 @@ import {
 } from "../recentUsersStorage";
 import ManageUser from "./ManageUser";
 
-interface Props {
-  params: Promise<{ id: string }>;
-}
-
-export default function Page(props: Props) {
-  const params = use(props.params);
-
-  const { id: userId } = params;
+export default function Page() {
+  const { userId } = useTypedParams(routes.admin.users.user);
 
   const [recentUsers, setRecentUsers] = useLocalStorage(
     recentUsersKey,

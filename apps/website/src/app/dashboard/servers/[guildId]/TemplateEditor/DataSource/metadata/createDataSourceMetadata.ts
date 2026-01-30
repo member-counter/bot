@@ -3,7 +3,7 @@ import type { i18n, TFunction } from "i18next";
 import type { LucideIcon } from "lucide-react";
 
 import type Resources from "~/@types/resources";
-import { capitalize } from "~/other/capitalize";
+import { capitalize } from "~/lib/capitalize";
 
 type TKeyName = keyof Resources["main"]["dataSourceMetadata"];
 

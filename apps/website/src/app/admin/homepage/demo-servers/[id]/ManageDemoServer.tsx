@@ -20,10 +20,10 @@ import {
 } from "@mc/ui/select";
 import { Textarea } from "@mc/ui/textarea";
 
-import { FormManagerState, useFormManager } from "~/hooks/useFormManager";
-import { languageEntries } from "~/i18n/settings";
-import { addTo, removeFrom, updateIn } from "~/other/array";
-import { api } from "~/trpc/react";
+import { addTo, removeFrom, updateIn } from "~/lib/array";
+import { FormManagerState, useFormManager } from "~/lib/hooks/useFormManager";
+import { languageEntries } from "~/lib/i18n/index";
+import { api } from "~/lib/trpc";
 import { ChannelCard } from "./ChannelCard";
 import { DeleteButton } from "./DeleteButton";
 import { LinkCard } from "./LinkCard";

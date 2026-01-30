@@ -1,7 +1,7 @@
 {
   "$schema": "https://turborepo.org/schema.json",
   "globalDependencies": ["**/.env"],
-  "globalEnv": ["NODE_ENV", "NEXT_TELEMETRY_DISABLED"],
+  "globalEnv": ["NODE_ENV"],
   "tasks": {
     "topo": {
       "dependsOn": ["^topo"]
@@ -10,9 +10,6 @@
       "dependsOn": ["^build"],
       "outputs": [
         "./dist/**",
-        ".next/**",
-        "!.next/cache/**",
-        "next-env.d.ts",
         ".expo/**",
         ".output/**",
         ".vercel/output/**"

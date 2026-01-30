@@ -12,7 +12,7 @@ export const sortChannels = <
 ): C[] => {
   channels.sort((a) => Number(a.parentId));
   channels.sort((a, b) => Number(a.position) - Number(b.position));
-  channels.sort((a, b) =>
+  channels.sort((_a, b) =>
     Number(
       [ChannelType.GuildVoice, ChannelType.GuildStageVoice].includes(b.type),
     )

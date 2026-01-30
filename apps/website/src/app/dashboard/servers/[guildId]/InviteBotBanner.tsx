@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import { BotIcon, XIcon } from "lucide-react";
 import { Trans } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
-import type { DashboardGuildParams } from "./layout";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
+import invariant from "tiny-invariant";
 
 export function InviteBotBanner() {
   const [closed, setClosed] = useState(false);
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const authenticatedUser = api.session.user.useQuery();
   const has = api.guild.has.useQuery({
     discordGuildId: guildId,
@@ -42,7 +43,10 @@ export function InviteBotBanner() {
             i18nKey="pages.dashboard.servers.inviteBotBanner.message"
             components={{
               LinkURL: (
-                <LinkUnderlined href={Routes.Invite(guildId)} target="_blank" />
+                <LinkUnderlined
+                  to={routes.invite.$buildPath({ params: { guildId } })}
+                  target="_blank"
+                />
               ),
             }}
           />

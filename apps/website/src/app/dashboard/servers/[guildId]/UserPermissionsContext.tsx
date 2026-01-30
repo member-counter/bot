@@ -1,12 +1,13 @@
 import { createContext, useMemo } from "react";
-import { useParams } from "next/navigation";
 import { PermissionFlagsBits } from "discord-api-types/v10";
+import { useTypedParams } from "react-router-typesafe-routes";
 
 import { BitField } from "@mc/common/BitField";
+import { routes } from "@mc/common/Routes";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
-import type { DashboardGuildParams } from "./layout";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
+import invariant from "tiny-invariant";
 
 export interface UserPermissionsContextValue {
   canRead: boolean;
@@ -32,7 +33,8 @@ export const UserPermissionsContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const authUser = api.session.user.useQuery();
 
   const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {

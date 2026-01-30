@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
+import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { Input } from "@mc/ui/input";
 
-import useShowError from "~/hooks/useShowError";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import useShowError from "~/lib/hooks/useShowError";
+import { api } from "~/lib/trpc";
 
 export function CreateInput() {
   const { t } = useTranslation();
   const [name, setName] = useState("");
   const createDemoServer = api.demoServers.create.useMutation();
-  const router = useRouter();
+  const navigate = useNavigate();
   const showError = useShowError();
 
   const create = async () => {
@@ -21,7 +21,12 @@ export function CreateInput() {
 
     try {
       const demoServer = await createDemoServer.mutateAsync({ name: name });
-      router.push(Routes.ManageHomeDemoServer(demoServer.id));
+
+      await navigate(
+        routes.admin.homepage.demoServers.demoServer.$buildPath({
+          params: { id: demoServer.id },
+        }),
+      );
     } catch (err) {
       showError(err);
     }

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { ShieldBanIcon, ShieldCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -17,8 +15,8 @@ import {
 } from "@mc/ui/dialog";
 import { Input } from "@mc/ui/input";
 
-import useShowError from "~/hooks/useShowError";
-import { api } from "~/trpc/react";
+import useShowError from "~/lib/hooks/useShowError";
+import { api } from "~/lib/trpc";
 
 export function BlockButton({
   guildId,

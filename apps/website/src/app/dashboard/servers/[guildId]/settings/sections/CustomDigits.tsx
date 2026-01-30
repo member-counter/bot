@@ -34,7 +34,7 @@ export function CustomDigits({
             components={{
               demoLink: (
                 <LinkUnderlined
-                  href="https://x.com/kentcdodds/status/1083073242330361856"
+                  to="https://x.com/kentcdodds/status/1083073242330361856"
                   target="_blank"
                   referrerPolicy="no-referrer"
                 />

@@ -1,6 +1,4 @@
-"use client";
-
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import { BotIcon } from "../components/BotIcon";
 import { BotStatus } from "./BotStats";
 

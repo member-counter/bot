@@ -14,7 +14,7 @@ import { fetchCommandId } from "@mc/common/bot/fetchCommandId";
 import { tKey } from "@mc/common/bot/i18n/index";
 import { prepareLocalization } from "@mc/common/bot/i18n/prepareLocalization";
 import { Command } from "@mc/common/bot/structures/Command";
-import { Routes } from "@mc/common/Routes";
+import { frontendUrl, routes } from "@mc/common/frontendRoutes";
 
 import { env } from "~/env";
 import { DEFAULT_LANGUAGE, initI18n } from "~/i18n";
@@ -63,7 +63,14 @@ export const configureCommand = new Command({
           new ButtonBuilder()
             .setLabel(t("interaction.commands.configure.dashboardButton"))
             .setStyle(ButtonStyle.Link)
-            .setURL(Routes(env.WEBSITE_URL).DashboardServers(command.guildId)),
+            .setURL(
+              frontendUrl(
+                env.WEBSITE_URL,
+                routes.dashboard.servers.$buildPath({
+                  params: { guildId: command.guildId },
+                }),
+              ),
+            ),
         ),
       ],
     });

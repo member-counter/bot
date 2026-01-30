@@ -1,16 +1,14 @@
-"use client";
-
 import { useMemo } from "react";
-import Link from "next/link";
 import { DollarSignIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
 import { CurrencyUtils } from "@mc/common/currencyUtils";
+import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { Skeleton } from "@mc/ui/skeleton";
 
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import { Donation } from "./Donation";
 
 function LoadingPage() {
@@ -40,7 +38,7 @@ export default function Page() {
             ),
           })}
         </span>
-        <Link href={Routes.ManageDonationsNew()}>
+        <Link to={routes.admin.donations.new.$buildPath({})}>
           <Button icon={DollarSignIcon}>
             {t("pages.admin.donations.registerDonation")}
           </Button>

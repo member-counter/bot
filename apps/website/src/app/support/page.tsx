@@ -1,7 +1,6 @@
-import { redirect, RedirectType } from "next/navigation";
-
-import { Routes } from "~/other/routes";
+import { env } from "~/env";
 
 export default function Page() {
-  redirect(Routes.Support, RedirectType.replace);
+  window.location.replace(env.VITE_SUPPORT_URL);
+  return null;
 }

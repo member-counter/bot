@@ -1,10 +1,8 @@
-"use client";
-
 import assert from "assert";
 import { useEffect, useMemo, useState } from "react";
 
-import type { RouterOutputs } from "~/trpc/react";
-import { api } from "~/trpc/react";
+import type { RouterOutputs } from "~/lib/trpc";
+import { api } from "~/lib/trpc";
 import { Donor } from "./Donor";
 
 interface DonorBubble {

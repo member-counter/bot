@@ -1,18 +1,24 @@
 import { useState } from "react";
-import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
 import { CircleAlertIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 import { Alert, AlertDescription, AlertTitle } from "@mc/ui/alert";
 import { Button } from "@mc/ui/button";
 
-import type { DashboardGuildChannelParams } from "../layout";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
+import invariant from "tiny-invariant";
 
 export default function MissingPermissionsWarning() {
-  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  const { guildId, channelId } = useTypedParams(
+    routes.dashboard.servers.server.channel,
+  );
+  invariant(channelId, "Expected channelId to be defined");
+  invariant(guildId, "Expected guildId to be defined");
+
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
   const { t } = useTranslation();

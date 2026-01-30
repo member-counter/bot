@@ -2,7 +2,7 @@ import { CheckIcon, XIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import type { ComboboxProps } from "..";
-import { locales } from "~/other/locales";
+import { locales } from "~/lib/locales";
 import { TinyIconButton } from "../TinyIconButton";
 
 type Props = Parameters<ComboboxProps<string>["onItemRender"]>[0] & {

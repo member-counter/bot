@@ -1,9 +1,8 @@
-"use client";
-
 import { TrashIcon } from "lucide-react";
-import { useRouter } from "next-nprogress-bar";
 import { Trans } from "react-i18next";
+import { useNavigate } from "react-router";
 
+import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import {
   Dialog,
@@ -16,13 +15,12 @@ import {
   DialogTrigger,
 } from "@mc/ui/dialog";
 
-import useShowError from "~/hooks/useShowError";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import useShowError from "~/lib/hooks/useShowError";
+import { api } from "~/lib/trpc";
 
 export function DeleteButton() {
-  const router = useRouter();
   const user = api.session.user.useQuery();
+  const navigate = useNavigate();
   const deleteUser = api.user.delete.useMutation();
   const showError = useShowError();
 
@@ -31,7 +29,7 @@ export function DeleteButton() {
 
     try {
       await deleteUser.mutateAsync({ discordUserId: user.data.discordUserId });
-      router.push(Routes.LogOut);
+      void navigate(routes.logout.$buildPath({}));
     } catch (error) {
       showError(error);
     }

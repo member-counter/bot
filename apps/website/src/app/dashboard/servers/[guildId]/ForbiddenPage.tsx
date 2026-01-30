@@ -1,13 +1,16 @@
-import { useParams } from "next/navigation";
 import { BanIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
-import type { DashboardGuildParams } from "./layout";
-import { useTranslation } from "~/i18n/client";
-import { api } from "~/trpc/react";
+import { routes } from "@mc/common/Routes";
+
+import { api } from "~/lib/trpc";
 import { MenuButton } from "../../Menu";
+import invariant from "tiny-invariant";
 
 export function ForbiddenPage() {
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
     initialData: () => ({ userGuilds: new Map() }),
   });

@@ -1,8 +1,4 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import { Major_Mono_Display } from "next/font/google";
-import Link from "next/link";
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 import {
   ChevronDownIcon,
@@ -10,19 +6,20 @@ import {
   SlidersHorizontalIcon,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 import TextTransition, { presets } from "react-text-transition";
 
+import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
 
-import { Routes } from "~/other/routes";
 import { BotIcon } from "../BotIcon";
 import { DiscordIcon } from "../DiscordIcon";
 import { Background } from "./Background";
 import { DiscordDemo } from "./DiscordDemo";
 import { SupportedCounters } from "./SupportedCounters";
 
-const major = Major_Mono_Display({ subsets: ["latin"], weight: "400" });
+// TODO SOME PARTS NOT TRANSLATED
 
 export default function LandingPage() {
   const { t } = useTranslation();
@@ -56,7 +53,7 @@ export default function LandingPage() {
           <BotIcon className="relative top-[3px] ml-4 hidden h-20 w-20 min-w-20 md:block" />
           <h1
             className={cn(
-              major.className,
+              "font-major-mono",
               "py-3 text-center text-6xl font-extrabold md:ml-10 md:text-left",
             )}
           >
@@ -72,13 +69,13 @@ export default function LandingPage() {
           </TextTransition>
         </h2>
         <div className="mt-6 flex w-full flex-col gap-2 px-2 sm:mt-3 sm:w-auto sm:flex-row [&>*>*]:w-full">
-          <Link href={Routes.Invite()}>
+          <a href={routes.invite.$buildPath({})} target="_blank">
             <Button icon={DiscordIcon}>Add to Discord</Button>
-          </Link>
-          <Link href={Routes.Support}>
+          </a>
+          <a href={routes.support.$buildPath({})} target="_blank">
             <Button icon={LifeBuoyIcon}>Get Support</Button>
-          </Link>
-          <Link href={Routes.Dashboard}>
+          </a>
+          <Link to={routes.dashboard.$buildPath({})}>
             <Button icon={SlidersHorizontalIcon}>Dashboard</Button>
           </Link>
         </div>

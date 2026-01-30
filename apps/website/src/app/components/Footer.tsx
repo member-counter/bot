@@ -1,16 +1,14 @@
-"use client";
-
 import { useMemo } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
 import { BitField } from "@mc/common/BitField";
+import { routes } from "@mc/common/Routes";
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { cn } from "@mc/ui";
 import { Link } from "@mc/ui/Link";
 import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -29,53 +27,73 @@ export default function Footer() {
           <div className="container flex flex-row flex-wrap gap-[60px] py-0 [&>*>h3]:pb-5 [&>*>h3]:text-xl [&>*>h3]:font-bold [&>*>h3]:tracking-tight [&>*]:flex [&>*]:max-w-[240px] [&>*]:flex-col">
             <div>
               <h3>{t("components.footer.usefulLinks")}</h3>
-              <Link href={Routes.Support}>
+              <a href={routes.support.$buildPath({})} target="_blank">
                 {t("components.footer.supportServer")}
-              </Link>
-              <Link href={Routes.Documentation}>
+              </a>
+              <a href={routes.docs.$buildPath({})} target="_blank">
                 {t("components.footer.documentation")}
-              </Link>
+              </a>
               {!isAuthenticated.data ? (
-                <Link href={Routes.Login}>
+                <Link to={routes.login.$buildPath({})}>
                   {t("components.footer.loginWithDiscord")}
                 </Link>
               ) : (
-                <Link href={Routes.LogOut}>
+                <Link to={routes.logout.$buildPath({})}>
                   {t("components.footer.logout")}
                 </Link>
               )}
-              <Link href={Routes.Status}>{t("components.footer.status")}</Link>
+              <Link to={routes.status.$buildPath({})}>
+                {t("components.footer.status")}
+              </Link>
             </div>
             <div>
               <h3>{t("components.footer.legal")}</h3>
-              <Link href={Routes.Legal("terms-of-service")}>
+              <Link
+                to={routes.legal.page.$buildPath({
+                  params: { page: "terms-of-service" },
+                })}
+              >
                 {t("components.footer.termsOfService")}
               </Link>
-              <Link href={Routes.Legal("cookie-policy")}>
+              <Link
+                to={routes.legal.page.$buildPath({
+                  params: { page: "cookie-policy" },
+                })}
+              >
                 {t("components.footer.cookiePolicy")}
               </Link>
-              <Link href={Routes.Legal("privacy-policy")}>
+              <Link
+                to={routes.legal.page.$buildPath({
+                  params: { page: "privacy-policy" },
+                })}
+              >
                 {t("components.footer.privacyPolicy")}
               </Link>
-              <Link href={Routes.Legal("acceptable-use-policy")}>
+              <Link
+                to={routes.legal.page.$buildPath({
+                  params: { page: "acceptable-use-policy" },
+                })}
+              >
                 {t("components.footer.acceptableUsePolicy")}
               </Link>
             </div>
             <div>
               <h3>{t("components.footer.improveMemberCounter")}</h3>
-              <Link href={Routes.BotRepository}>
+              <Link to={routes.repository.$buildPath({})}>
                 {t("components.footer.codeRepository")}
               </Link>
-              <Link href={Routes.Translate}>
+              <Link to={routes.translate.$buildPath({})}>
                 {t("components.footer.translateBot")}
               </Link>
-              <Link href={Routes.Donors}>{t("components.footer.donate")}</Link>
+              <Link to={routes.donate.$buildPath({})}>
+                {t("components.footer.donate")}
+              </Link>
             </div>
             {!!userPermissions.bitfield && (
               <div>
                 <h3>{t("components.footer.admin")}</h3>
                 <Link
-                  href={Routes.ManageUsers()}
+                  to={routes.admin.users.$buildPath({})}
                   className={cn({
                     hidden: !userPermissions.has(
                       UserPermissions.SeeUsers | UserPermissions.ManageUsers,
@@ -85,7 +103,7 @@ export default function Footer() {
                   {t("components.footer.manageUsers")}
                 </Link>
                 <Link
-                  href={Routes.ManageGuilds}
+                  to={routes.admin.guilds.$buildPath({})}
                   className={cn({
                     hidden: !userPermissions.has(
                       UserPermissions.SeeGuilds | UserPermissions.ManageGuilds,
@@ -95,7 +113,7 @@ export default function Footer() {
                   {t("components.footer.manageServers")}
                 </Link>
                 <Link
-                  href={Routes.ManageHomePage}
+                  to={routes.admin.homepage.$buildPath({})}
                   className={cn({
                     hidden: !userPermissions.has(
                       UserPermissions.ManageHomePage,
@@ -105,7 +123,7 @@ export default function Footer() {
                   {t("components.footer.manageHomePage")}
                 </Link>
                 <Link
-                  href={Routes.ManageDonations()}
+                  to={routes.admin.donations.$buildPath({})}
                   className={cn({
                     hidden: !userPermissions.has(
                       UserPermissions.ManageDonations,
@@ -128,7 +146,7 @@ export default function Footer() {
                   eduardozgzLink: (
                     <LinkUnderlined
                       target="_blank"
-                      href="https://eduardozgz.com/"
+                      to="https://eduardozgz.com/"
                     >
                       eduardozgz
                     </LinkUnderlined>
@@ -142,20 +160,19 @@ export default function Footer() {
                   vampireChickenLink: (
                     <LinkUnderlined
                       target="_blank"
-                      href="https://github.com/VampireChicken12/"
+                      to="https://github.com/VampireChicken12/"
                     >
                       VampireChicken
                     </LinkUnderlined>
                   ),
                   livingfloreLink: (
-                    <LinkUnderlined
-                      target="_blank"
-                      href="https://livingflo.re/"
-                    >
+                    <LinkUnderlined target="_blank" to="https://livingflo.re/">
                       livingflore
                     </LinkUnderlined>
                   ),
-                  donorsLink: <LinkUnderlined href={Routes.Donors} />,
+                  donorsLink: (
+                    <LinkUnderlined to={routes.donors.$buildPath({})} />
+                  ),
                 }}
               />
             </span>

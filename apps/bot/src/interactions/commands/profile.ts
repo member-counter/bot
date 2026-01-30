@@ -11,8 +11,8 @@ import { ApplicationCommandType, ButtonStyle, ComponentType } from "discord.js";
 import { BitField } from "@mc/common/BitField";
 import { prepareLocalization } from "@mc/common/bot/i18n/prepareLocalization";
 import { Command } from "@mc/common/bot/structures/Command";
+import { frontendUrl, routes } from "@mc/common/frontendRoutes";
 import { KnownError } from "@mc/common/KnownError/index";
-import { Routes } from "@mc/common/Routes";
 import {
   UserBadges,
   UserBadgesBitfield,
@@ -143,7 +143,14 @@ export const profileCommand = new Command({
             .setEmoji({ name: "⚙️" })
             .setLabel(t("interaction.commands.profile.moreOptionsButton"))
             .setStyle(ButtonStyle.Link)
-            .setURL(Routes(env.WEBSITE_URL).ManageUsers(targetUser.id)),
+            .setURL(
+              frontendUrl(
+                env.WEBSITE_URL,
+                routes.admin.users.$buildPath({
+                  params: { userId: targetUser.id },
+                }),
+              ),
+            ),
         );
       }
 

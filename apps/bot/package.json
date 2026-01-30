@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "clean": "git clean -xdf .next .turbo node_modules",
+    "clean": "git clean -xdf .turbo node_modules",
     "build": "tsup-node",
     "dev": "pnpm with-env pnpm build --watch=. --watch=../../packages --ignore-watch=../../packages/*/node_modules --onSuccess \"pnpm start\"",
     "format": "prettier --check . --ignore-path ../../.gitignore",
@@ -26,7 +26,6 @@
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
     "@tolgee/cli": "^2.15.1",
-    "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^22.19.7",
     "dotenv-cli": "^7.4.4",
     "eslint": "^9.39.2",

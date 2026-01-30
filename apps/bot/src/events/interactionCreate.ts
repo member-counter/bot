@@ -72,7 +72,7 @@ export const interactionCreateEvent = new EventHandler({
           componentRow.addComponents(
             new ButtonBuilder({
               style: ButtonStyle.Link,
-              url: env.NEXT_PUBLIC_SUPPORT_URL,
+              url: env.VITE_SUPPORT_URL,
               label: supportServerBtn,
             }),
           );

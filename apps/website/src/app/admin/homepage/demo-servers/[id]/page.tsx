@@ -1,30 +1,23 @@
-"use client";
-
-import { use } from "react";
 import { ArrowLeftIcon, LoaderIcon } from "lucide-react";
-import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
+import { Errors } from "@mc/trpc-api/utils/errors";
 import { Button } from "@mc/ui/button";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
-import { Errors } from "~/app/errors";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import ManageDemoServer from "./ManageDemoServer";
 
-interface Props {
-  params: Promise<{ id: string }>;
-}
-
-export default function Page(props: Props) {
-  const params = use(props.params);
-
-  const { id } = params;
+export default function Page() {
+  const { id } = useTypedParams(routes.admin.homepage.demoServers.demoServer);
 
   const { t } = useTranslation();
   const demoServer = api.demoServers.get.useQuery({ id });
-  const router = useRouter();
+  const navigate = useNavigate();
 
   if (!demoServer.data && !demoServer.isLoading) {
     throw new Error(Errors.NotFound);
@@ -33,7 +26,7 @@ export default function Page(props: Props) {
   return (
     <Card className="flex w-full flex-col">
       <CardHeader className="flex h-20 flex-row items-center justify-center">
-        <Button variant="ghost" size="icon" onClick={() => router.back()}>
+        <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
           <ArrowLeftIcon className="h-4 w-4" />
         </Button>
         <div className="grow"></div>

@@ -1,19 +1,17 @@
-"use client";
-
 import type { TFunction } from "i18next";
 import type { LucideIcon } from "lucide-react";
-import Link from "next/link";
 import {
   BlocksIcon,
   CandlestickChartIcon,
   LandPlotIcon,
   ZapIcon,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
 import { cn } from "@mc/ui";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 
-import { useTranslation } from "~/i18n/client";
 import { MenuButton } from "../../Menu";
 
 const suggestedTopics = (
@@ -88,7 +86,7 @@ export default function Page() {
             <Link
               className="group"
               key={i}
-              href={topic.link ?? "#!"}
+              to={topic.link ?? "#!"}
               target={topic.link && "_blank"}
               rel="noopener noreferrer"
             >

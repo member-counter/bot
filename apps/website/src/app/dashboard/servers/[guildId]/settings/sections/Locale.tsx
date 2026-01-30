@@ -5,7 +5,7 @@ import { Label } from "@mc/ui/label";
 
 import { Combobox } from "~/app/components/Combobox";
 import { localeItem } from "~/app/components/Combobox/renderers/localeItem";
-import { searchableLocales } from "~/other/locales";
+import { searchableLocales } from "~/lib/locales";
 import { useDemoFormatters } from "../DemoFormatters";
 
 interface Props {

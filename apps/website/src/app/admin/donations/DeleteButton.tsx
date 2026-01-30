@@ -1,8 +1,6 @@
-"use client";
-
 import { TrashIcon } from "lucide-react";
-import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 import { Button } from "@mc/ui/button";
 import {
@@ -16,8 +14,8 @@ import {
   DialogTrigger,
 } from "@mc/ui/dialog";
 
-import useShowError from "~/hooks/useShowError";
-import { api } from "~/trpc/react";
+import useShowError from "~/lib/hooks/useShowError";
+import { api } from "~/lib/trpc";
 
 export function DeleteButton({
   donationId,
@@ -27,14 +25,14 @@ export function DeleteButton({
   disabled?: boolean;
 }) {
   const { t } = useTranslation();
-  const router = useRouter();
+  const navigate = useNavigate();
   const deleteUser = api.donor.deleteDonation.useMutation();
   const showError = useShowError();
 
   const deleteAccount = async () => {
     try {
       await deleteUser.mutateAsync({ id: donationId });
-      router.back();
+      await navigate(-1);
     } catch (err) {
       showError(err);
     }

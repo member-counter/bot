@@ -1,5 +1,3 @@
-"use client";
-
 import { LoadGuildInput } from "./LoadGuildInput";
 
 export default function Page() {

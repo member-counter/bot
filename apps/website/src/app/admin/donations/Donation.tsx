@@ -1,11 +1,11 @@
-import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
 import { CurrencyUtils } from "@mc/common/currencyUtils";
+import { routes } from "@mc/common/Routes";
 import { Card, CardHeader } from "@mc/ui/card";
 
-import type { RouterOutputs } from "~/trpc/react";
-import { Routes } from "~/other/routes";
+import type { RouterOutputs } from "~/lib/trpc";
 import { DisplayUser } from "../users/DisplayUser";
 
 export function Donation(
@@ -18,7 +18,11 @@ export function Donation(
   });
 
   return (
-    <Link href={Routes.ManageDonations(donation.id)}>
+    <Link
+      to={routes.admin.donations.donation.$buildPath({
+        params: { id: donation.id },
+      })}
+    >
       <Card>
         <CardHeader className="flex flex-row justify-between gap-2 space-y-0">
           <div className="flex flex-col gap-2 self-start">

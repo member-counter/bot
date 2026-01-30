@@ -1,20 +1,20 @@
 import { memo, useContext, useMemo } from "react";
-import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
 import { SettingsIcon, XIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link, useMatch } from "react-router";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
 import { Skeleton } from "@mc/ui/skeleton";
 
-import type { DashboardGuildChannelParams } from "../[channelId]/layout";
 import { MenuContext } from "~/app/dashboard/Menu";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import { ChannelNavItem, ChannelNavItemSkeleton } from "./ChannelNavItem";
 import { sortChannels } from "./sortChannels";
+import invariant from "tiny-invariant";
 
 export const ServerNavMenu = memo(function ServerNavMenu({
   className,
@@ -22,9 +22,15 @@ export const ServerNavMenu = memo(function ServerNavMenu({
   className?: string;
 }) {
   const { t } = useTranslation();
-  const pathname = usePathname();
   const menuContext = useContext(MenuContext);
-  const { guildId } = useParams<DashboardGuildChannelParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
+  invariant(menuContext, "Expected menuContext to be defined");
+  const isInSettings = !!useMatch(
+    routes.dashboard.servers.server.settings.$buildPath({
+      params: { guildId },
+    }),
+  );
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channels = useMemo(
     () => sortChannels([...(guild.data?.channels.values() ?? [])]),
@@ -52,12 +58,13 @@ export const ServerNavMenu = memo(function ServerNavMenu({
           {guild.data?.name}
         </div>
         <Link
-          href={Routes.DashboardServers(guildId, "settings")}
+          to={routes.dashboard.servers.server.settings.$buildPath({
+            params: { guildId },
+          })}
           onClick={() => menuContext.setIsOpen(false)}
           className="ml-auto mr-1"
           aria-hidden
           tabIndex={-1}
-          prefetch={true}
         >
           <Button
             aria-label={t(
@@ -65,7 +72,7 @@ export const ServerNavMenu = memo(function ServerNavMenu({
             )}
             size={"icon"}
             variant={"ghost"}
-            className={cn({ hidden: pathname.endsWith("settings") })}
+            className={cn({ hidden: isInSettings })}
           >
             <SettingsIcon className="h-5 w-5" aria-hidden />
           </Button>

@@ -16,7 +16,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@mc/ui/drawer";
 import { InputWrapper } from "@mc/ui/InputWrapper";
 import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
-import { useBreakpoint } from "~/hooks/useBreakpoint";
+import { useBreakpoint } from "~/lib/hooks/useBreakpoint";
 
 export interface Searchable<T> {
   value: T;

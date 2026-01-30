@@ -8,12 +8,9 @@ import { Input } from "@mc/ui/input";
 import { Label } from "@mc/ui/label";
 import { Textarea } from "@mc/ui/textarea";
 
-import type { RouterInputs } from "~/trpc/react";
-import { FormManagerState } from "~/hooks/useFormManager";
-import {
-  addTimezoneOffset,
-  subTimezoneOffset,
-} from "~/other/fixTimezoneOffset";
+import type { RouterInputs } from "~/lib/trpc";
+import { addTimezoneOffset, subTimezoneOffset } from "~/lib/fixTimezoneOffset";
+import { FormManagerState } from "~/lib/hooks/useFormManager";
 import { DeleteButton } from "./DeleteButton";
 
 export function DonationForm<

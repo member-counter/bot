@@ -1,28 +1,26 @@
-"use client";
-
 import { useState } from "react";
 import { ArrowLeftIcon } from "lucide-react";
-import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 import {
   DEFAULT_CURRENCY,
   DEFAULT_CURRENCY_DECIMALS,
 } from "@mc/common/Constants";
+import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
-import type { RouterInputs } from "~/trpc/react";
-import { FormManagerState } from "~/hooks/useFormManager";
-import useShowError from "~/hooks/useShowError";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import type { RouterInputs } from "~/lib/trpc";
+import { FormManagerState } from "~/lib/hooks/useFormManager";
+import useShowError from "~/lib/hooks/useShowError";
+import { api } from "~/lib/trpc";
 import { DonationForm } from "../DonationForm";
 
 export default function Page() {
   const { t } = useTranslation();
-  const router = useRouter();
+  const navigate = useNavigate();
   const showError = useShowError();
 
   const [donation, setDonation] = useState<
@@ -44,7 +42,10 @@ export default function Page() {
   ) => {
     try {
       const { id } = await registerDonationMutation.mutateAsync(donation);
-      router.replace(Routes.ManageDonations(id));
+      void navigate(
+        routes.admin.donations.donation.$buildPath({ params: { id } }),
+        { replace: true },
+      );
     } catch (error) {
       showError(error);
     }
@@ -53,7 +54,7 @@ export default function Page() {
   return (
     <Card className="flex w-full flex-col">
       <CardHeader className="flex h-20 flex-row items-center justify-center">
-        <Button variant="ghost" size="icon" onClick={() => router.back()}>
+        <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
           <ArrowLeftIcon className="h-4 w-4" />
         </Button>
         <div className="grow"></div>

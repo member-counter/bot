@@ -1,19 +1,20 @@
 import type { DataSource } from "@mc/common/DataSource";
 import { useMemo } from "react";
-import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
 
 import type { Searchable } from "~/app/components/Combobox";
-import type { DashboardGuildParams } from "~/app/dashboard/servers/[guildId]/layout";
 import { Combobox } from "~/app/components/Combobox";
 import { channelWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/channelWithDataSourceItem";
 import { makeSercheableChannels } from "~/app/components/Combobox/sercheableMakers/makeSercheableChannels";
-import { addTo, removeFrom, updateIn } from "~/other/array";
-import { api } from "~/trpc/react";
+import { addTo, removeFrom, updateIn } from "~/lib/array";
+import { api } from "~/lib/trpc";
 import { useKnownSearcheableDataSource } from "../../../metadata";
+import invariant from "tiny-invariant";
 
 type Type = (string | DataSource)[];
 export function FilterByConnectedTo({
@@ -24,7 +25,8 @@ export function FilterByConnectedTo({
   onChange: (value: Type) => void;
 }) {
   const { t } = useTranslation();
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const guild = api.discord.getGuild.useQuery({ id: guildId });
 
   const knownSearcheableDataSources = useKnownSearcheableDataSource();

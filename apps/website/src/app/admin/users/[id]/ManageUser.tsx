@@ -2,10 +2,11 @@ import type { UserBadges } from "@mc/common/UserBadges";
 import type { TFunction } from "i18next";
 import { useState } from "react";
 import { SaveIcon } from "lucide-react";
-import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 import { BitField } from "@mc/common/BitField";
+import { routes } from "@mc/common/Routes";
 import { UserBadgesBitfield } from "@mc/common/UserBadges";
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { Button } from "@mc/ui/button";
@@ -14,9 +15,8 @@ import { Form } from "@mc/ui/form";
 import { Input } from "@mc/ui/input";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
-import { FormManagerState, useFormManager } from "~/hooks/useFormManager";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import { FormManagerState, useFormManager } from "~/lib/hooks/useFormManager";
+import { api } from "~/lib/trpc";
 import { DeleteButton } from "./DeleteButton";
 
 const getPermissionsLabels = (t: TFunction) =>
@@ -44,7 +44,7 @@ const getBadgesLabels = (t: TFunction) =>
 
 export default function ManageUser({ userId }: { userId: string }) {
   const { t } = useTranslation();
-  const router = useRouter();
+  const navigate = useNavigate();
   const [_user, mutableUser, setMutableUser, submitUser, formState] =
     useFormManager(
       api.user.get.useQuery({ discordUserId: userId }),
@@ -60,7 +60,11 @@ export default function ManageUser({ userId }: { userId: string }) {
   const saveUser = () => {
     void submitUser().then(() => {
       if (enableTransfer)
-        router.replace(Routes.ManageUsers(mutableUser.discordUserId));
+        void navigate(
+          routes.admin.users.user.$buildPath({
+            params: { userId: mutableUser.discordUserId },
+          }),
+        );
     });
   };
 

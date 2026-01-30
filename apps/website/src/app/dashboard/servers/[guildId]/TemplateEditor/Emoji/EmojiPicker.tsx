@@ -22,10 +22,10 @@ import type { Searchable } from "../../../../../components/Combobox";
 import type { CustomText, EmojiElement } from "../custom-types";
 import type { Guild, GuildEmoji } from "../d-types";
 import { TwemojiRenderer } from "~/app/components/TwemojiRenderer";
-import { useBreakpoint } from "~/hooks/useBreakpoint";
-import { removeFrom } from "~/other/array";
-import { blurredBackground } from "~/other/common-styles";
-import { api } from "~/trpc/react";
+import { removeFrom } from "~/lib/array";
+import { blurredBackground } from "~/lib/common-styles";
+import { useBreakpoint } from "~/lib/hooks/useBreakpoint";
+import { api } from "~/lib/trpc";
 import { GuildEmojiRenderer } from "../../../../../components/GuildEmojiRenderer";
 import { TemplateEditorContext } from "../TemplateEditorContext";
 import {

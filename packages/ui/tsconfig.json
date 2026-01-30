@@ -9,6 +9,6 @@
       "@mc/ui/*": ["./src/*"]
     }
   },
-  "include": ["*.ts", "src"],
+  "include": ["*.ts", "src", "../../tooling/typescript/reset.d.ts"],
   "exclude": ["node_modules"]
 }

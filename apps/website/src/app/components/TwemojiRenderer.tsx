@@ -14,6 +14,5 @@ export const TwemojiRenderer = ({
     ".svg",
   );
 
-  // eslint-disable-next-line @next/next/no-img-element
   return <img className={className} alt={emoji} src={url} draggable="false" />;
 };

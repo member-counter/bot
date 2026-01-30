@@ -10,10 +10,7 @@ import { Separator } from "@mc/ui/separator";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
-import {
-  addTimezoneOffset,
-  subTimezoneOffset,
-} from "~/other/fixTimezoneOffset";
+import { addTimezoneOffset, subTimezoneOffset } from "~/lib/fixTimezoneOffset";
 import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 

@@ -1,9 +1,10 @@
 import { useContext, useMemo } from "react";
-import Link from "next/link";
-import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
+import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 import { Skeleton } from "@mc/ui/skeleton";
 import {
@@ -13,12 +14,11 @@ import {
   TooltipTrigger,
 } from "@mc/ui/tooltip";
 
-import type { DashboardGuildChannelParams } from "../[channelId]/layout";
 import { InfoToolip } from "~/app/components/InfoTooltip";
 import { MenuContext } from "~/app/dashboard/Menu";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import { useChannelIcon } from "../ChannelMaps";
+import invariant from "tiny-invariant";
 
 export function ChannelNavItem(channel: {
   id: string;
@@ -28,7 +28,11 @@ export function ChannelNavItem(channel: {
 }) {
   const { t } = useTranslation();
   const menuContext = useContext(MenuContext);
-  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  invariant(menuContext, "Expected menuContext to be defined");
+  const { guildId, channelId } = useTypedParams(
+    routes.dashboard.servers.server.channel,
+  );
+  invariant(guildId, "Expected guildId to be defined");
   const guildSettingsChannels = api.guild.channels.getAll.useQuery({
     discordGuildId: guildId,
   });
@@ -59,10 +63,9 @@ export function ChannelNavItem(channel: {
       <Tooltip>
         <TooltipTrigger asChild>
           <Link
-            href={Routes.DashboardServers(
-              guildId,
-              isSupported ? channel.id : undefined,
-            )}
+            to={routes.dashboard.servers.server.channel.$buildPath({
+              params: { guildId, channelId: isSupported ? channel.id : "" },
+            })}
             onClick={() => menuContext.setIsOpen(false)}
             className={cn(
               "group block cursor-pointer",
@@ -78,7 +81,6 @@ export function ChannelNavItem(channel: {
                 "hover:bg-accent": isSupported && !isCategory,
               },
             )}
-            prefetch={true}
           >
             <span
               className={cn(
@@ -102,11 +104,11 @@ export function ChannelNavItem(channel: {
                 text={
                   hasIssue
                     ? t(
-                        "pages.dashboard.servers.ChannelNavItem.infoTooltip.issue",
-                      )
+                      "pages.dashboard.servers.ChannelNavItem.infoTooltip.issue",
+                    )
                     : t(
-                        "pages.dashboard.servers.ChannelNavItem.infoTooltip.enabled",
-                      )
+                      "pages.dashboard.servers.ChannelNavItem.infoTooltip.enabled",
+                    )
                 }
               >
                 <div className="ml-auto">

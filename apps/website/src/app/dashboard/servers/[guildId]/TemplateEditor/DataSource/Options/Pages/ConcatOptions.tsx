@@ -6,7 +6,7 @@ import { Label } from "@mc/ui/label";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
-import { addTo, removeFrom, updateIn } from "~/other/array";
+import { addTo, removeFrom, updateIn } from "~/lib/array";
 import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 

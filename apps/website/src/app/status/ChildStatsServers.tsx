@@ -1,6 +1,6 @@
 import { cn } from "@mc/ui";
 
-import { discordServerNameAbbreviated } from "~/other/discordServerNameAbbreviated";
+import { discordServerNameAbbreviated } from "~/lib/discordServerNameAbbreviated";
 import { InfoToolip } from "../components/InfoTooltip";
 
 export function ChildStatsDiscordServers({
@@ -24,7 +24,6 @@ export function ChildStatsDiscordServers({
       {assignedGuilds.map((server) => (
         <InfoToolip key={server.id} text={server.name}>
           {server.icon ? (
-            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={server.icon}
               className="h-6 w-6 rounded-full"

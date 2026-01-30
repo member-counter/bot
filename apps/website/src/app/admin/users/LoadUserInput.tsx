@@ -1,22 +1,19 @@
-"use client";
-
 import { useState } from "react";
-import { useRouter } from "next-nprogress-bar";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
+import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { Input } from "@mc/ui/input";
 
-import { Routes } from "~/other/routes";
-
 export const LoadUserInput = () => {
   const { t } = useTranslation();
-  const router = useRouter();
+  const navigate = useNavigate();
   const [userId, setUserId] = useState("");
 
   const loadUser = (userId: string) => {
     if (!userId) return;
-    router.push(Routes.ManageUsers(userId));
+    void navigate(routes.admin.users.user.$buildPath({ params: { userId } }));
   };
 
   return (

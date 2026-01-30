@@ -1,26 +1,29 @@
-"use client";
-
 import { useContext } from "react";
-import { useParams } from "next/navigation";
 import { SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
 
-import type { DashboardGuildChannelParams } from "./layout";
-import { FormManagerState, useFormManager } from "~/hooks/useFormManager";
-import { api } from "~/trpc/react";
-import { LoadingPage } from "../LoadingPage";
+import { FormManagerState, useFormManager } from "~/lib/hooks/useFormManager";
+import { api } from "~/lib/trpc";
+import { LoadingPage } from "../../../../components/LoadingPage";
 import { UserPermissionsContext } from "../UserPermissionsContext";
 import { EditTemplate } from "./sections/EditTemplate";
 import { EnableTemplate } from "./sections/EnableTemplate";
 import MissingPermissionsWarning from "./sections/MissingPermissionsWarning";
 import { TemplateError } from "./sections/TemplateError";
+import invariant from "tiny-invariant";
 
 export default function Page() {
   const { t } = useTranslation();
-  const { guildId, channelId } = useParams<DashboardGuildChannelParams>();
+  const { guildId, channelId } = useTypedParams(
+    routes.dashboard.servers.server.channel,
+  );
+  invariant(channelId, "Expected channelId to be defined");
+  invariant(guildId, "Expected guildId to be defined");
   const trpcUtils = api.useUtils();
   const userPermissions = useContext(UserPermissionsContext);
 

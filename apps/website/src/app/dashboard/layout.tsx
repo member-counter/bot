@@ -1,23 +1,19 @@
-"use client";
+import { useMemo, useState } from "react";
+import { Outlet, useNavigate } from "react-router";
+import { useTypedParams } from "react-router-typesafe-routes";
 
-import type React from "react";
-import { useEffect, useMemo, useState } from "react";
-import { redirect, useParams } from "next/navigation";
-import { useRouter } from "next-nprogress-bar";
-
+import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 
-import type { DashboardGuildParams } from "./servers/[guildId]/layout";
-import { pageTitle } from "~/other/pageTitle";
-import { Routes } from "~/other/routes";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import DSelector from "../components/DSelector";
 import { MenuContext } from "./Menu";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
+  const trpcUtils = api.useUtils();
   const isAuthenticated = api.session.isAuthenticated.useQuery();
-  const router = useRouter();
-  const params = useParams<DashboardGuildParams>();
+  const navigate = useNavigate();
+  const params = useTypedParams(routes.dashboard.servers.server);
   const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
     initialData: () => ({ userGuilds: new Map() }),
   });
@@ -32,23 +28,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     [isMenuOpen],
   );
 
-  useEffect(() => {
-    userGuildsQuery.data.userGuilds.forEach((guild) =>
-      router.prefetch(Routes.DashboardServers(guild.id)),
-    );
-
-    if (!params.guildId) return;
-
-    const selectedGuild = userGuildsQuery.data.userGuilds.get(params.guildId);
-
-    document.title = pageTitle(selectedGuild?.name ?? "Unknown server");
-  }, [params.guildId, userGuildsQuery, router]);
-
   // margin-top/padding-top to leave space for the nav bar but keeping the actual box under it
   const overflowClass = "mt-[-57px] pt-[57px] max-h-screen overflow-auto";
 
-  if (isAuthenticated.data != null && !isAuthenticated.data)
-    redirect(Routes.Login);
+  if (isAuthenticated.data != null && !isAuthenticated.data) {
+    void navigate(routes.login.$buildPath({}));
+  }
 
   return (
     <MenuContext.Provider value={menuContextValue}>
@@ -68,7 +53,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             (guild) => ({
               ...guild,
               onClick: () => {
-                router.push(Routes.DashboardServers(guild.id));
+                void navigate(
+                  routes.dashboard.servers.server.$buildPath({
+                    params: { guildId: guild.id },
+                  }),
+                );
+              },
+              onHover: () => {
+                void trpcUtils.discord.getGuild.prefetch({ id: guild.id });
+                void trpcUtils.guild.has.prefetch({ discordGuildId: guild.id });
+                void trpcUtils.guild.get.prefetch({ discordGuildId: guild.id });
+                void trpcUtils.guild.isBlocked.prefetch({ discordGuildId: guild.id });
+                void trpcUtils.guild.channels.logs.getAll.prefetch({ discordGuildId: guild.id });
+                void trpcUtils.guild.channels.getAll.prefetch({ discordGuildId: guild.id });
               },
               isSelected: params.guildId === guild.id,
             }),
@@ -81,7 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           )}
         >
           <div className="h-full max-h-full rounded border border-border bg-[#181514]">
-            {children}
+            <Outlet />
           </div>
         </div>
       </div>

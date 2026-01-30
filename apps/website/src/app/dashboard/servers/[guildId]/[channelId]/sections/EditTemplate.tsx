@@ -1,13 +1,15 @@
 import { useId } from "react";
-import { useParams } from "next/navigation";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
 
-import formatRelativeTime from "~/other/formatRelativeTime";
-import { api } from "~/trpc/react";
+import formatRelativeTime from "~/lib/formatRelativeTime";
+import { api } from "~/lib/trpc";
 import TemplateEditor from "../../TemplateEditor/TemplateEditor";
+import invariant from "tiny-invariant";
 
 interface Props {
   value: string;
@@ -16,10 +18,12 @@ interface Props {
 }
 
 export function EditTemplate({ value, onChange, disabled }: Props) {
-  const { guildId, channelId } = useParams<{
-    guildId: string;
-    channelId: string;
-  }>();
+  const { guildId, channelId } = useTypedParams(
+    routes.dashboard.servers.server.channel,
+  );
+  invariant(channelId, "Expected channelId to be defined");
+  invariant(guildId, "Expected guildId to be defined");
+
   const { t } = useTranslation();
   const channelQuery = api.guild.channels.get.useQuery({
     discordGuildId: guildId,

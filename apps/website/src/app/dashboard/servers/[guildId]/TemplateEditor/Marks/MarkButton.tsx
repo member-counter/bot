@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import React, { memo, useContext } from "react";
+import { memo, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useSlate } from "slate-react";
 

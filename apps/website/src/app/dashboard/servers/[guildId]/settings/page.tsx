@@ -1,18 +1,16 @@
-"use client";
-
 import { useContext } from "react";
-import { useParams } from "next/navigation";
 import { SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useTypedParams } from "react-router-typesafe-routes";
 
+import { routes } from "@mc/common/Routes";
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
 
-import type { DashboardGuildParams } from "../layout";
-import { FormManagerState, useFormManager } from "~/hooks/useFormManager";
-import { api } from "~/trpc/react";
-import { LoadingPage } from "../LoadingPage";
+import { FormManagerState, useFormManager } from "~/lib/hooks/useFormManager";
+import { api } from "~/lib/trpc";
+import { LoadingPage } from "../../../../components/LoadingPage";
 import { UserPermissionsContext } from "../UserPermissionsContext";
 import { BlockButton } from "./BlockButton";
 import DemoFormattersProvider from "./DemoFormatters";
@@ -20,11 +18,13 @@ import { ResetSettings } from "./ResetButton";
 import { CustomDigits } from "./sections/CustomDigits";
 import { Locale } from "./sections/Locale";
 import { UseCompactNotation } from "./sections/UseCompactNotation";
+import invariant from "tiny-invariant";
 
 export default function Page() {
   const { t } = useTranslation();
   const userPermissions = useContext(UserPermissionsContext);
-  const { guildId } = useParams<DashboardGuildParams>();
+  const { guildId } = useTypedParams(routes.dashboard.servers.server);
+  invariant(guildId, "Expected guildId to be defined");
   const guildSettingsQuery = api.guild.get.useQuery({
     discordGuildId: guildId,
   });

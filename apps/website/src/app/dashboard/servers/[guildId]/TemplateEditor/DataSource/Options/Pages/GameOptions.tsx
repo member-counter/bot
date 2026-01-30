@@ -10,7 +10,7 @@ import type { Searchable } from "~/app/components/Combobox";
 import { Combobox } from "~/app/components/Combobox";
 import { gamedigWithDataSourceItem } from "~/app/components/Combobox/renderers/gameWithDataSourceItem";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
-import { api } from "~/trpc/react";
+import { api } from "~/lib/trpc";
 import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 

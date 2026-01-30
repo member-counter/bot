@@ -18,7 +18,6 @@
     "@mc/eslint-config": "workspace:*",
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
-    "@total-typescript/ts-reset": "^0.5.1",
     "eslint": "^9.39.2",
     "prettier": "^3.8.0",
     "typescript": "^5.9.3"

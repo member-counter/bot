@@ -1,8 +1,5 @@
-"use client";
-
 import { useTranslation } from "react-i18next";
 
-/* eslint-disable @next/next/no-img-element */
 export const DisplayDemoServer = ({
   name,
   icon,

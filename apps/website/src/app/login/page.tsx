@@ -1,10 +1,8 @@
-import { headers } from "next/headers";
-import { redirect, RedirectType } from "next/navigation";
 
-import { Routes } from "~/other/routes";
 
-export default async function Page() {
-  const referer = (await headers()).get("referer") ?? undefined;
-  const authPath = Routes.ApiLogin(referer);
-  redirect(authPath, RedirectType.push);
+import { routes } from "@mc/common/Routes";
+
+export default function Page() {
+  window.location.replace(routes.api.auth.$buildPath({}));
+  return null;
 }
