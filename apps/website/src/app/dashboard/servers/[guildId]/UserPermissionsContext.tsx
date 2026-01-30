@@ -28,11 +28,7 @@ export const UserPermissionsContext =
     fetched: false,
   });
 
-export const UserPermissionsContextProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const useCreateUserPermissions = () => {
   const { guildId } = useTypedParams(routes.dashboard.servers.server);
   invariant(guildId, "Expected guildId to be defined");
   const authUser = api.session.user.useQuery();
@@ -68,7 +64,7 @@ export const UserPermissionsContextProvider = ({
     guild?.permissions,
     userGuildsQuery.isSuccess,
   ]);
-  return (
-    <UserPermissionsContext.Provider value={contextValue} children={children} />
-  );
+
+  return contextValue;
 };
+

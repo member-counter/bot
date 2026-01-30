@@ -49,6 +49,7 @@ export default function ManageUser({ userId }: { userId: string }) {
     useFormManager(
       api.user.get.useQuery({ discordUserId: userId }),
       api.user.update.useMutation(),
+      userId,
     );
   const [enableTransfer, setEnableTransfer] = useState(false);
   const authUser = api.session.user.useQuery().data;

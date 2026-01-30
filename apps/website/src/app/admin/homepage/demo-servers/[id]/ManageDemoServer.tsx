@@ -39,6 +39,7 @@ export default function ManageDemoServer({ id }: { id: string }) {
   ] = useFormManager(
     api.demoServers.get.useQuery({ id }),
     api.demoServers.update.useMutation(),
+    id,
   );
 
   if (!mutableDemoServer) return null;

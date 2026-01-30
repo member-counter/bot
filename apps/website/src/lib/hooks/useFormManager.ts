@@ -2,7 +2,7 @@ import type {
   UseTRPCMutationResult,
   UseTRPCQueryResult,
 } from "@trpc/react-query/shared";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import useConfirmOnLeave from "~/lib/hooks/useConfirmOnLeave";
 import useShowError from "./useShowError";
@@ -18,6 +18,7 @@ export type FormManagerState =
 export function useFormManager<OT, IT>(
   query: UseTRPCQueryResult<OT, unknown>,
   mutation: UseTRPCMutationResult<unknown, unknown, IT, unknown>,
+  key: string,
 ): [
   OT | null,
   OT | null,
@@ -28,16 +29,31 @@ export function useFormManager<OT, IT>(
   const [isDirty, setIsDirty] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [mutableData, _setMutableData] = useState<OT | null>(null);
+  const [prevKey, setPrevKey] = useState(key);
+  const [prevQueryData, setPrevQueryData] = useState(query.data);
   const showError = useShowError();
 
   useConfirmOnLeave(isDirty);
 
-  useEffect(() => {
-    if (!query.data) return;
-    if (isDirty) return;
-    _setMutableData(structuredClone(query.data) as OT);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.data]);
+  // Synchronously update mutableData during render when query.data changes
+  // Using useEffect would cause a render with stale mutableData before the effect fires
+  if (key !== prevKey) {
+    // Key changed (e.g. navigated to a different entity) - always reset
+    setPrevKey(key);
+    setPrevQueryData(query.data);
+    if (query.data) {
+      _setMutableData(structuredClone(query.data) as OT);
+    } else {
+      _setMutableData(null);
+    }
+    setIsDirty(false);
+  } else if (query.data !== prevQueryData) {
+    // Same key, data changed (e.g. refetch) - only update if form is not dirty
+    setPrevQueryData(query.data);
+    if (query.data && !isDirty) {
+      _setMutableData(structuredClone(query.data) as OT);
+    }
+  }
 
   const setMutableData = (value: IT) => {
     _setMutableData(value as unknown as OT);

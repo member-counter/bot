@@ -25,7 +25,7 @@ export default function Page() {
     setMutableDonation,
     saveDonation,
     formState,
-  ] = useFormManager(donationQuery, donationMutation);
+  ] = useFormManager(donationQuery, donationMutation, id);
 
   if (!donationQuery.data && !donationQuery.isLoading) {
     throw new Error(Errors.NotFound);

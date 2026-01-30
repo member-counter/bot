@@ -188,15 +188,16 @@ export default function TemplateEditor({
     [computedValue.data, features],
   );
 
-  const editor = useMemo(() => {
-    if (!initiate) return null;
-    return (
+  if (!initiate) return null;
+
+  return showPreview ? (
+    <>
       <SlateTemplateEditor
+        key={computedValue.data}
         disabled={disabled}
         textarea={target === "channelTopic"}
         features={features}
-        initialValue={deseriaizedValue}
-        onChange={onChangeCallback}
+        initialValue={computedDeserializedValue}
       >
         <TemplateEditorInputLayout
           id={id}
@@ -207,55 +208,27 @@ export default function TemplateEditor({
           togglePreview={togglePreview}
         />
       </SlateTemplateEditor>
-    );
-  }, [
-    className,
-    deseriaizedValue,
-    disabled,
-    features,
-    id,
-    initiate,
-    onChangeCallback,
-    showPreview,
-    target,
-    togglePreview,
-  ]);
-
-  const preview = useMemo(() => {
-    return (
-      <>
-        <SlateTemplateEditor
-          key={computedValue.data}
-          disabled={disabled}
-          textarea={target === "channelTopic"}
-          features={features}
-          initialValue={computedDeserializedValue}
-        >
-          <TemplateEditorInputLayout
-            id={id}
-            className={className}
-            target={target}
-            showPreview={showPreview}
-            togglePreview={togglePreview}
-          />
-        </SlateTemplateEditor>
-        {computedValue.error && (
-          <DisplayTemplateError message={computedValue.error.message} />
-        )}
-      </>
-    );
-  }, [
-    className,
-    computedDeserializedValue,
-    computedValue.data,
-    computedValue.error,
-    disabled,
-    features,
-    id,
-    showPreview,
-    target,
-    togglePreview,
-  ]);
-
-  return showPreview ? preview : editor;
+      {computedValue.error && (
+        <DisplayTemplateError message={computedValue.error.message} />
+      )}
+    </>
+  ) : (
+    <SlateTemplateEditor
+      key={channelId}
+      disabled={disabled}
+      textarea={target === "channelTopic"}
+      features={features}
+      initialValue={deseriaizedValue}
+      onChange={onChangeCallback}
+    >
+      <TemplateEditorInputLayout
+        id={id}
+        className={className}
+        disabled={disabled}
+        target={target}
+        showPreview={showPreview}
+        togglePreview={togglePreview}
+      />
+    </SlateTemplateEditor>
+  );
 }

@@ -35,7 +35,7 @@ export default function Page() {
     setMutableGuildSettings,
     save,
     formState,
-  ] = useFormManager(guildSettingsQuery, api.guild.update.useMutation());
+  ] = useFormManager(guildSettingsQuery, api.guild.update.useMutation(), guildId);
 
   if (!mutableGuildSettings) return <LoadingPage />;
 

@@ -43,6 +43,7 @@ export default function Page() {
         void trpcUtils.guild.invalidate();
       },
     }),
+    channelId,
   );
 
   if (!mutableChannelSettings) return <LoadingPage />;

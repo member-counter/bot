@@ -63,6 +63,7 @@ export function EditTemplate({ value, onChange, disabled }: Props) {
         </span>
       </div>
       <TemplateEditor
+        key={channelId}
         id={templateInput}
         initiate={channelQuery.isSuccess}
         value={value}

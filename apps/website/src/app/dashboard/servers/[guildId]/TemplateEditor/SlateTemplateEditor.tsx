@@ -1,7 +1,7 @@
 import type { Grammar } from "prismjs";
 import type { JSX, ReactNode } from "react";
 import type { Descendant } from "slate";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Slate } from "slate-react";
 import { v4 } from "uuid";
 
@@ -15,7 +15,6 @@ import {
 } from "./utils";
 
 export default function SlateTemplateEditor({
-  key,
   initialValue = {
     nodes: defaultInitialEditorValue,
     dataSourceRefs: new Map(),
@@ -26,7 +25,6 @@ export default function SlateTemplateEditor({
   children,
   disabled,
 }: {
-  key?: string;
   textarea?: boolean;
   initialValue?: { nodes: Descendant[]; dataSourceRefs: DataSourceRefs };
   onChange?: (nodes: Descendant[], dataSourceRefs: DataSourceRefs) => void;
@@ -41,6 +39,8 @@ export default function SlateTemplateEditor({
 
   const [editingDataSourceRefId, setEditingDataSourceRefId] =
     useState<DataSourceRefId | null>(null);
+
+  const isInitialMount = useRef(true);
 
   // Handle data source paste
   const [defaultInsertFragment] = useState(() => editor.insertFragment);
@@ -90,12 +90,19 @@ export default function SlateTemplateEditor({
   );
 
   useEffect(() => {
+    // Skip the initial mount to avoid calling onChange with stale editor.children
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     onChange?.(editor.children, dataSourceRefs);
-  }, [dataSourceRefs, editor.children, onChange]);
+    // Only fire when dataSourceRefs changes, not editor.children
+    // editor.children changes are handled by slateOnChangeCallback
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataSourceRefs]);
 
   return (
     <Slate
-      key={key}
       editor={editor}
       initialValue={initialValue.nodes}
       onChange={slateOnChangeCallback}
