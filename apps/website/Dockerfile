@@ -43,6 +43,6 @@ ENV VITE_TRANSLATION_PLATFORM_URL=${VITE_TRANSLATION_PLATFORM_URL}
 RUN pnpm turbo run build --filter=@mc/website
 
 FROM nginx:alpine
-COPY --from=build /app/apps/website/dist /usr/share/nginx/html
+COPY --from=builder /app/apps/website/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
