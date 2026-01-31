@@ -134,7 +134,11 @@ export default function Router() {
           <Route path="admin">
             <Route
               path="users"
-              element={Lazy(() => import("./app/admin/users/layout"))}
+              element={
+                <ProtectedRoute requiredPermissions={["ManageUsers"]}>
+                  {Lazy(() => import("./app/admin/users/layout"))}
+                </ProtectedRoute>
+              }
             >
               <Route
                 index
@@ -152,7 +156,11 @@ export default function Router() {
             </Route>
             <Route
               path="guilds"
-              element={Lazy(() => import("./app/admin/guilds/layout"))}
+              element={
+                <ProtectedRoute requiredPermissions={["ManageGuilds"]}>
+                  {Lazy(() => import("./app/admin/guilds/layout"))}
+                </ProtectedRoute>
+              }
             >
               <Route
                 index
@@ -161,7 +169,11 @@ export default function Router() {
             </Route>
             <Route
               path="homepage"
-              element={Lazy(() => import("./app/admin/homepage/layout"))}
+              element={
+                <ProtectedRoute requiredPermissions={["ManageHomePage"]}>
+                  {Lazy(() => import("./app/admin/homepage/layout"))}
+                </ProtectedRoute>
+              }
             >
               <Route
                 index
@@ -184,7 +196,11 @@ export default function Router() {
             </Route>
             <Route
               path="donations"
-              element={Lazy(() => import("./app/admin/donations/layout"))}
+              element={
+                <ProtectedRoute requiredPermissions={["ManageDonations"]}>
+                  {Lazy(() => import("./app/admin/donations/layout"))}
+                </ProtectedRoute>
+              }
             >
               <Route
                 index
