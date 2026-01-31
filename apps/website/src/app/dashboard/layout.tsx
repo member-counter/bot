@@ -13,7 +13,9 @@ export default function Layout() {
   const trpcUtils = api.useUtils();
   const isAuthenticated = api.session.isAuthenticated.useQuery();
   const navigate = useNavigate();
-  const { guildId: selectedGuildId } = useTypedParams(routes.dashboard.servers.server);
+  const { guildId: selectedGuildId } = useTypedParams(
+    routes.dashboard.servers.server,
+  );
   const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
     initialData: () => ({ userGuilds: new Map() }),
   });
