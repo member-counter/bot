@@ -13,7 +13,7 @@ FROM base AS repo
 WORKDIR /app
 RUN pnpm add -g turbo@2
 COPY . .
-RUN turbo prune @mc/server --docker
+RUN turbo prune @mc/backend --docker
 
 FROM base AS deps-base
 COPY --from=ghcr.io/member-counter/pnpm-store-cache:beta $PNPM_HOME/store $PNPM_HOME/store
@@ -31,7 +31,7 @@ RUN pnpm install --prod --prefer-offline
 FROM build_deps AS builder
 WORKDIR /app
 COPY --from=repo /app/out/full/ .
-RUN pnpm turbo run build --filter=@mc/server
+RUN pnpm turbo run build --filter=@mc/backend
 
 FROM --platform=linux/amd64 ${JS_SOURCE_IMAGE} AS js-source
 

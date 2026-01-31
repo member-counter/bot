@@ -30,7 +30,7 @@ app.use(cookieParser());
 
 // tRPC endpoint
 app.use(
-  "/api/trpc",
+  "/trpc",
   trpcExpress.createExpressMiddleware({
     router: appRouter,
     createContext: async ({ req, res }) => {
@@ -58,7 +58,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Auth routes
-app.use("/api", authRouter);
+app.use("/auth", authRouter);
 
 // Health check
 app.get("/health", (_req, res) => {

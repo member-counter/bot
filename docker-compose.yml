@@ -1,11 +1,36 @@
 services:
+  frontend:
+    env_file: .env
+    container_name: frontend
+    image: ghcr.io/member-counter/frontend:beta
+    restart: always
+    networks:
+      - member-counter
+
+  backend:
+    env_file: .env
+    container_name: backend
+    image: ghcr.io/member-counter/backend:beta
+    restart: always
+    healthcheck:
+      test: curl -f http://localhost:8080/health || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 30
+      start_period: 20s
+    networks:
+      - member-counter
+
   website:
     env_file: .env
     container_name: website
-    image: ghcr.io/member-counter/website:beta
+    image: nginx:latest
     restart: always
     ports:
-      - 3000:3000
+      - "3000:80"
+    configs:
+      - source: nginx.conf
+        target: /etc/nginx/nginx.conf
     networks:
       - member-counter
 
@@ -38,8 +63,6 @@ services:
       start_period: 20s
     volumes:
       - ./storage/db:/data/db
-    expose:
-      - 27017
     restart: unless-stopped
     networks:
       - member-counter
@@ -63,6 +86,51 @@ services:
     restart: unless-stopped
     networks:
       - member-counter
+
+configs:
+  nginx.conf:
+    content: |
+      worker_processes 1;
+      events { worker_connections 1024; }
+
+      http {
+          upstream backend-upstream {
+            server backend:8080;
+          }
+
+          upstream frontend-upstream {
+            server frontend:80;
+          }
+
+          server {
+              listen 80;
+              server_name _;
+
+              location /api/ { 
+                  rewrite ^/api/(.*)$$ /$$1 break;
+
+                  proxy_pass http://backend-upstream;
+                  proxy_http_version 1.1;
+                  
+                  proxy_set_header Host $$http_host;
+                  proxy_set_header X-Real-IP $$remote_addr;
+                  proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto $$scheme;
+                  proxy_set_header X-Forwarded-Host $$http_host;
+                  proxy_set_header X-Forwarded-Port $$server_port;
+                  proxy_set_header Upgrade $$http_upgrade;
+                  proxy_set_header Connection "upgrade";
+              }
+
+              location / {
+                  proxy_pass http://frontend-upstream;
+                  proxy_http_version 1.1;
+
+                  proxy_set_header Upgrade $$http_upgrade;
+                  proxy_set_header Connection "upgrade";
+              }
+          }
+      }
 
 networks:
   member-counter:

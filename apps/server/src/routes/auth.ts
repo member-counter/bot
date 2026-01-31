@@ -16,7 +16,7 @@ const redirectToCookieName = "redirect_to";
  * GET /api/auth
  * Redirects to Discord OAuth2 authorization.
  */
-router.get("/auth", (req: Request, res: Response) => {
+router.get("/", (req: Request, res: Response) => {
   const redirectTo = z.string().optional().parse(req.query.redirect_to);
 
   // Store redirect_to in a cookie if provided
@@ -37,7 +37,7 @@ router.get("/auth", (req: Request, res: Response) => {
  * GET /api/auth/callback
  * OAuth2 callback endpoint.
  */
-router.get("/auth/callback", async (req: Request, res: Response) => {
+router.get("/callback", async (req: Request, res: Response) => {
   const code = z.string().parse(req.query.code);
 
   try {
@@ -64,7 +64,7 @@ router.get("/auth/callback", async (req: Request, res: Response) => {
  * GET /api/auth/logout
  * Logout endpoint.
  */
-router.get("/auth/logout", (req: Request, res: Response) => {
+router.get("/logout", (req: Request, res: Response) => {
   destroySession(res);
   res.redirect(env.WEBSITE_URL);
 });
