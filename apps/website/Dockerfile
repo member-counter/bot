@@ -1,4 +1,4 @@
-ARG JS_SOURCE_IMAGE=scratch
+ARG JS_SOURCE_IMAGE
 
 FROM node:22-alpine3.20 AS base
 ENV DO_NOT_TRACK=1
@@ -38,14 +38,9 @@ ARG VITE_TRANSLATION_PLATFORM_URL
 ENV VITE_TRANSLATION_PLATFORM_URL=${VITE_TRANSLATION_PLATFORM_URL}
 RUN pnpm turbo run build --filter=@mc/website
 
-FROM nginx:alpine AS runner
-COPY --from=builder /app/apps/website/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-
 FROM --platform=linux/amd64 ${JS_SOURCE_IMAGE} AS js-source
 
-FROM nginx:alpine AS runner-cross
+FROM nginx:alpine AS runner
 COPY --from=js-source /app/apps/website/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

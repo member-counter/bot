@@ -61,7 +61,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build amd64 builder stage
+      - name: Build and push amd64 builder
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -79,45 +79,22 @@ jobs:
             VITE_BOT_REPO_URL=${{ vars.VITE_BOT_REPO_URL }}
             VITE_TRANSLATION_PLATFORM_URL=${{ vars.VITE_TRANSLATION_PLATFORM_URL }}
 
-      - name: Build amd64 final image
+      - name: Build and push multi-arch runner
         uses: docker/build-push-action@v5
         with:
           context: .
           file: apps/website/Dockerfile
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           target: runner
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/website:build-cache-beta-amd64
-          cache-to: type=registry,ref=ghcr.io/member-counter/website:build-cache-beta-amd64,mode=max
+          cache-from: |
+            type=registry,ref=ghcr.io/member-counter/website:build-cache-beta-amd64
+            type=registry,ref=ghcr.io/member-counter/website:build-cache-beta
+          cache-to: type=registry,ref=ghcr.io/member-counter/website:build-cache-beta,mode=max
           tags: |
-            ghcr.io/member-counter/website:beta-amd64
-          build-args: |
-            VITE_SUPPORT_URL=${{ vars.VITE_SUPPORT_URL }}
-            VITE_BOT_DOCS_URL=${{ vars.VITE_BOT_DOCS_URL }}
-            VITE_BOT_REPO_URL=${{ vars.VITE_BOT_REPO_URL }}
-            VITE_TRANSLATION_PLATFORM_URL=${{ vars.VITE_TRANSLATION_PLATFORM_URL }}
-
-      - name: Build arm64 final image (cross)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: apps/website/Dockerfile
-          platforms: linux/arm64
-          target: runner-cross
-          push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/website:build-cache-beta-arm64
-          cache-to: type=registry,ref=ghcr.io/member-counter/website:build-cache-beta-arm64,mode=max
-          tags: |
-            ghcr.io/member-counter/website:beta-arm64
+            ghcr.io/member-counter/website:beta
           build-args: |
             JS_SOURCE_IMAGE=ghcr.io/member-counter/website:beta-builder
-
-      - name: Create multi-arch manifest
-        run: |
-          docker buildx imagetools create \
-            -t ghcr.io/member-counter/website:beta \
-            ghcr.io/member-counter/website:beta-amd64 \
-            ghcr.io/member-counter/website:beta-arm64
   build-bot:
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
@@ -138,7 +115,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build amd64 builder stage
+      - name: Build and push amd64 builder
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -151,40 +128,21 @@ jobs:
           tags: |
             ghcr.io/member-counter/bot:beta-builder
 
-      - name: Build amd64 final image
+      - name: Build and push multi-arch runner
         uses: docker/build-push-action@v5
         with:
           context: .
           file: apps/bot/Dockerfile
-          platforms: linux/amd64
-          target: runner
+          platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta-amd64
-          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta-amd64,mode=max
+          cache-from: |
+            type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta-amd64
+            type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta
+          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta,mode=max
           tags: |
-            ghcr.io/member-counter/bot:beta-amd64
-
-      - name: Build arm64 final image (cross)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: apps/bot/Dockerfile
-          platforms: linux/arm64
-          target: runner-cross
-          push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta-arm64
-          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta-arm64,mode=max
-          tags: |
-            ghcr.io/member-counter/bot:beta-arm64
+            ghcr.io/member-counter/bot:beta
           build-args: |
             JS_SOURCE_IMAGE=ghcr.io/member-counter/bot:beta-builder
-
-      - name: Create multi-arch manifest
-        run: |
-          docker buildx imagetools create \
-            -t ghcr.io/member-counter/bot:beta \
-            ghcr.io/member-counter/bot:beta-amd64 \
-            ghcr.io/member-counter/bot:beta-arm64
   build-server:
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
@@ -205,7 +163,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build amd64 builder stage
+      - name: Build and push amd64 builder
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -218,40 +176,21 @@ jobs:
           tags: |
             ghcr.io/member-counter/server:beta-builder
 
-      - name: Build amd64 final image
+      - name: Build and push multi-arch runner
         uses: docker/build-push-action@v5
         with:
           context: .
           file: apps/server/Dockerfile
-          platforms: linux/amd64
-          target: runner
+          platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/server:build-cache-beta-amd64
-          cache-to: type=registry,ref=ghcr.io/member-counter/server:build-cache-beta-amd64,mode=max
+          cache-from: |
+            type=registry,ref=ghcr.io/member-counter/server:build-cache-beta-amd64
+            type=registry,ref=ghcr.io/member-counter/server:build-cache-beta
+          cache-to: type=registry,ref=ghcr.io/member-counter/server:build-cache-beta,mode=max
           tags: |
-            ghcr.io/member-counter/server:beta-amd64
-
-      - name: Build arm64 final image (cross)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: apps/server/Dockerfile
-          platforms: linux/arm64
-          target: runner-cross
-          push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/server:build-cache-beta-arm64
-          cache-to: type=registry,ref=ghcr.io/member-counter/server:build-cache-beta-arm64,mode=max
-          tags: |
-            ghcr.io/member-counter/server:beta-arm64
+            ghcr.io/member-counter/server:beta
           build-args: |
             JS_SOURCE_IMAGE=ghcr.io/member-counter/server:beta-builder
-
-      - name: Create multi-arch manifest
-        run: |
-          docker buildx imagetools create \
-            -t ghcr.io/member-counter/server:beta \
-            ghcr.io/member-counter/server:beta-amd64 \
-            ghcr.io/member-counter/server:beta-arm64
   build-db-utils:
     runs-on: ubuntu-latest
     needs: pnpm-store-cache

@@ -1,4 +1,4 @@
-ARG JS_SOURCE_IMAGE=scratch
+ARG JS_SOURCE_IMAGE
 
 FROM node:22-alpine3.20 AS base
 ENV DO_NOT_TRACK=1
@@ -33,7 +33,9 @@ WORKDIR /app
 COPY --from=repo /app/out/full/ .
 RUN pnpm turbo run build --filter=@mc/server
 
-FROM base AS runner-base
+FROM --platform=linux/amd64 ${JS_SOURCE_IMAGE} AS js-source
+
+FROM base AS runner
 RUN apk update
 RUN apk add --no-cache jq
 WORKDIR /app
@@ -42,13 +44,5 @@ RUN adduser --system --uid 1001 nodejs
 USER nodejs
 COPY --from=prod_deps /app/node_modules ./node_modules
 COPY --from=repo /app/apps/server/package.json .
-
-FROM runner-base AS runner
-COPY --from=builder --chown=nodejs:nodejs /app/apps/server/dist ./
-CMD node /app/index.js
-
-FROM --platform=linux/amd64 ${JS_SOURCE_IMAGE} AS js-source
-
-FROM runner-base AS runner-cross
 COPY --from=js-source --chown=nodejs:nodejs /app/apps/server/dist ./
 CMD node /app/index.js
