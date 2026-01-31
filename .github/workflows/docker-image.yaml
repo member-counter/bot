@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: Dockerfile
@@ -61,22 +61,63 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v3
+      - name: Build amd64 builder stage
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: apps/website/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
+          target: builder
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/website:build-cache
-          cache-to: type=registry,ref=ghcr.io/member-counter/website:build-cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/member-counter/website:build-cache-amd64
+          cache-to: type=registry,ref=ghcr.io/member-counter/website:build-cache-amd64,mode=max
           tags: |
-            ghcr.io/member-counter/website:latest
+            ghcr.io/member-counter/website:latest-builder
           build-args: |
             VITE_SUPPORT_URL=${{ vars.VITE_SUPPORT_URL }}
             VITE_BOT_DOCS_URL=${{ vars.VITE_BOT_DOCS_URL }}
             VITE_BOT_REPO_URL=${{ vars.VITE_BOT_REPO_URL }}
             VITE_TRANSLATION_PLATFORM_URL=${{ vars.VITE_TRANSLATION_PLATFORM_URL }}
+
+      - name: Build amd64 final image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/website/Dockerfile
+          platforms: linux/amd64
+          target: runner
+          push: true
+          cache-from: type=registry,ref=ghcr.io/member-counter/website:build-cache-amd64
+          cache-to: type=registry,ref=ghcr.io/member-counter/website:build-cache-amd64,mode=max
+          tags: |
+            ghcr.io/member-counter/website:latest-amd64
+          build-args: |
+            VITE_SUPPORT_URL=${{ vars.VITE_SUPPORT_URL }}
+            VITE_BOT_DOCS_URL=${{ vars.VITE_BOT_DOCS_URL }}
+            VITE_BOT_REPO_URL=${{ vars.VITE_BOT_REPO_URL }}
+            VITE_TRANSLATION_PLATFORM_URL=${{ vars.VITE_TRANSLATION_PLATFORM_URL }}
+
+      - name: Build arm64 final image (cross)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/website/Dockerfile
+          platforms: linux/arm64
+          target: runner-cross
+          push: true
+          cache-from: type=registry,ref=ghcr.io/member-counter/website:build-cache-arm64
+          cache-to: type=registry,ref=ghcr.io/member-counter/website:build-cache-arm64,mode=max
+          tags: |
+            ghcr.io/member-counter/website:latest-arm64
+          build-args: |
+            JS_SOURCE_IMAGE=ghcr.io/member-counter/website:latest-builder
+
+      - name: Create multi-arch manifest
+        run: |
+          docker buildx imagetools create \
+            -t ghcr.io/member-counter/website:latest \
+            ghcr.io/member-counter/website:latest-amd64 \
+            ghcr.io/member-counter/website:latest-arm64
   build-bot:
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
@@ -97,17 +138,53 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v3
+      - name: Build amd64 builder stage
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: apps/bot/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
+          target: builder
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/bot:build-cache
-          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/member-counter/bot:build-cache-amd64
+          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache-amd64,mode=max
           tags: |
-            ghcr.io/member-counter/bot:latest
+            ghcr.io/member-counter/bot:latest-builder
+
+      - name: Build amd64 final image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/bot/Dockerfile
+          platforms: linux/amd64
+          target: runner
+          push: true
+          cache-from: type=registry,ref=ghcr.io/member-counter/bot:build-cache-amd64
+          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache-amd64,mode=max
+          tags: |
+            ghcr.io/member-counter/bot:latest-amd64
+
+      - name: Build arm64 final image (cross)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/bot/Dockerfile
+          platforms: linux/arm64
+          target: runner-cross
+          push: true
+          cache-from: type=registry,ref=ghcr.io/member-counter/bot:build-cache-arm64
+          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache-arm64,mode=max
+          tags: |
+            ghcr.io/member-counter/bot:latest-arm64
+          build-args: |
+            JS_SOURCE_IMAGE=ghcr.io/member-counter/bot:latest-builder
+
+      - name: Create multi-arch manifest
+        run: |
+          docker buildx imagetools create \
+            -t ghcr.io/member-counter/bot:latest \
+            ghcr.io/member-counter/bot:latest-amd64 \
+            ghcr.io/member-counter/bot:latest-arm64
   build-server:
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
@@ -128,17 +205,53 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v3
+      - name: Build amd64 builder stage
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: apps/server/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
+          target: builder
           push: true
-          cache-from: type=registry,ref=ghcr.io/member-counter/server:build-cache
-          cache-to: type=registry,ref=ghcr.io/member-counter/server:build-cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/member-counter/server:build-cache-amd64
+          cache-to: type=registry,ref=ghcr.io/member-counter/server:build-cache-amd64,mode=max
           tags: |
-            ghcr.io/member-counter/server:latest
+            ghcr.io/member-counter/server:latest-builder
+
+      - name: Build amd64 final image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/server/Dockerfile
+          platforms: linux/amd64
+          target: runner
+          push: true
+          cache-from: type=registry,ref=ghcr.io/member-counter/server:build-cache-amd64
+          cache-to: type=registry,ref=ghcr.io/member-counter/server:build-cache-amd64,mode=max
+          tags: |
+            ghcr.io/member-counter/server:latest-amd64
+
+      - name: Build arm64 final image (cross)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/server/Dockerfile
+          platforms: linux/arm64
+          target: runner-cross
+          push: true
+          cache-from: type=registry,ref=ghcr.io/member-counter/server:build-cache-arm64
+          cache-to: type=registry,ref=ghcr.io/member-counter/server:build-cache-arm64,mode=max
+          tags: |
+            ghcr.io/member-counter/server:latest-arm64
+          build-args: |
+            JS_SOURCE_IMAGE=ghcr.io/member-counter/server:latest-builder
+
+      - name: Create multi-arch manifest
+        run: |
+          docker buildx imagetools create \
+            -t ghcr.io/member-counter/server:latest \
+            ghcr.io/member-counter/server:latest-amd64 \
+            ghcr.io/member-counter/server:latest-arm64
   build-db-utils:
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
@@ -160,7 +273,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: packages/db/Dockerfile

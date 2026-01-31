@@ -24,25 +24,27 @@ RUN pnpm install --prefer-offline
 FROM build_deps AS builder
 WORKDIR /app
 COPY --from=repo /app/out/full/ .
-
 ENV SKIP_ENV_VALIDATION=true
 ENV NODE_ENV='production'
-
 ARG VITE_SUPPORT_URL
 ENV VITE_SUPPORT_URL=${VITE_SUPPORT_URL}
-
 ARG VITE_BOT_DOCS_URL
 ENV VITE_BOT_DOCS_URL=${VITE_BOT_DOCS_URL}
-
 ARG VITE_BOT_REPO_URL
 ENV VITE_BOT_REPO_URL=${VITE_BOT_REPO_URL}
-
 ARG VITE_TRANSLATION_PLATFORM_URL
 ENV VITE_TRANSLATION_PLATFORM_URL=${VITE_TRANSLATION_PLATFORM_URL}
-
 RUN pnpm turbo run build --filter=@mc/website
 
-FROM nginx:alpine
+FROM nginx:alpine AS runner
 COPY --from=builder /app/apps/website/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+ARG JS_SOURCE_IMAGE=scratch
+FROM --platform=linux/amd64 ${JS_SOURCE_IMAGE} AS js-source
+
+FROM nginx:alpine AS runner-cross
+COPY --from=js-source /app/apps/website/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
