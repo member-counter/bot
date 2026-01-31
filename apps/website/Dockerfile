@@ -1,3 +1,5 @@
+ARG JS_SOURCE_IMAGE=scratch
+
 FROM node:22-alpine3.20 AS base
 ENV DO_NOT_TRACK=1
 ENV PNPM_HOME="/pnpm"
@@ -41,7 +43,6 @@ COPY --from=builder /app/apps/website/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
-ARG JS_SOURCE_IMAGE=scratch
 FROM --platform=linux/amd64 ${JS_SOURCE_IMAGE} AS js-source
 
 FROM nginx:alpine AS runner-cross

@@ -1,3 +1,5 @@
+ARG JS_SOURCE_IMAGE=scratch
+
 FROM node:22-alpine3.20 AS base
 ENV DO_NOT_TRACK=1
 ENV PNPM_HOME="/pnpm"
@@ -45,7 +47,6 @@ FROM runner-base AS runner
 COPY --from=builder --chown=nodejs:nodejs /app/apps/bot/dist ./
 CMD node --experimental-loader=@opentelemetry/instrumentation/hook.mjs --import /app/telemetry.js /app/index.js
 
-ARG JS_SOURCE_IMAGE=scratch
 FROM --platform=linux/amd64 ${JS_SOURCE_IMAGE} AS js-source
 
 FROM runner-base AS runner-cross
