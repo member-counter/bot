@@ -455,6 +455,14 @@ export const supportedEmojis = {
     unicode_version: "1.0",
     skin_tone_support: false,
   },
+  "🫩": {
+    name: "face with bags under eyes",
+    slug: "face_with_bags_under_eyes",
+    group: "Smileys & Emotion",
+    emoji_version: "16.0",
+    unicode_version: "16.0",
+    skin_tone_support: false,
+  },
   "😷": {
     name: "face with medical mask",
     slug: "face_with_medical_mask",
@@ -4746,6 +4754,14 @@ export const supportedEmojis = {
     unicode_version: "0.6",
     skin_tone_support: false,
   },
+  "🫆": {
+    name: "fingerprint",
+    slug: "fingerprint",
+    group: "People & Body",
+    emoji_version: "16.0",
+    unicode_version: "16.0",
+    skin_tone_support: false,
+  },
   "🐵": {
     name: "monkey face",
     slug: "monkey_face",
@@ -6010,6 +6026,14 @@ export const supportedEmojis = {
     unicode_version: "0.6",
     skin_tone_support: false,
   },
+  "🪾": {
+    name: "leafless tree",
+    slug: "leafless_tree",
+    group: "Animals & Nature",
+    emoji_version: "16.0",
+    unicode_version: "16.0",
+    skin_tone_support: false,
+  },
   "🍇": {
     name: "grapes",
     slug: "grapes",
@@ -6312,6 +6336,14 @@ export const supportedEmojis = {
     group: "Food & Drink",
     emoji_version: "15.1",
     unicode_version: "15.1",
+    skin_tone_support: false,
+  },
+  "🫜": {
+    name: "root vegetable",
+    slug: "root_vegetable",
+    group: "Food & Drink",
+    emoji_version: "16.0",
+    unicode_version: "16.0",
     skin_tone_support: false,
   },
   "🍞": {
@@ -10082,6 +10114,14 @@ export const supportedEmojis = {
     unicode_version: "15.0",
     skin_tone_support: false,
   },
+  "🪉": {
+    name: "harp",
+    slug: "harp",
+    group: "Objects",
+    emoji_version: "16.0",
+    unicode_version: "16.0",
+    skin_tone_support: false,
+  },
   "📱": {
     name: "mobile phone",
     slug: "mobile_phone",
@@ -11184,6 +11224,14 @@ export const supportedEmojis = {
     group: "Objects",
     emoji_version: "13.0",
     unicode_version: "13.0",
+    skin_tone_support: false,
+  },
+  "🪏": {
+    name: "shovel",
+    slug: "shovel",
+    group: "Objects",
+    emoji_version: "16.0",
+    unicode_version: "16.0",
     skin_tone_support: false,
   },
   "⚗️": {
@@ -12666,6 +12714,14 @@ export const supportedEmojis = {
     unicode_version: "0.6",
     skin_tone_support: false,
   },
+  "🫟": {
+    name: "splatter",
+    slug: "splatter",
+    group: "Symbols",
+    emoji_version: "16.0",
+    unicode_version: "16.0",
+    skin_tone_support: false,
+  },
   "#️⃣": {
     name: "keycap #",
     slug: "keycap_number_sign",
@@ -13824,6 +13880,14 @@ export const supportedEmojis = {
     group: "Flags",
     emoji_version: "2.0",
     unicode_version: "2.0",
+    skin_tone_support: false,
+  },
+  "🇨🇶": {
+    name: "flag Sark",
+    slug: "flag_sark",
+    group: "Flags",
+    emoji_version: "16.0",
+    unicode_version: "16.0",
     skin_tone_support: false,
   },
   "🇨🇷": {
