@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 
 import { CurrencyUtils } from "@mc/common/currencyUtils";
 import { routes } from "@mc/common/Routes";
 import { Card, CardHeader } from "@mc/ui/card";
 
 import type { RouterOutputs } from "~/lib/trpc";
+import { Link } from "~/lib/navigation";
 import { DisplayUser } from "../users/DisplayUser";
 
 export function Donation(

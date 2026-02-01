@@ -23,4 +23,39 @@ export default [
       },
     },
   },
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    ignores: ["src/lib/navigation/**"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "process",
+              importNames: ["env"],
+              message:
+                "Use `import { env } from '~/env'` instead to ensure validated types.",
+            },
+            {
+              name: "react-router",
+              importNames: ["useNavigate", "Link", "NavLink"],
+              message:
+                "Use `~/lib/navigation` instead to support dirty form blocking.",
+            },
+            {
+              name: "@mc/ui/Link",
+              message:
+                "This module has been moved. Use `~/app/components/Link` instead.",
+            },
+            {
+              name: "@mc/ui/LinkUnderlined",
+              message:
+                "This module has been moved. Use `~/app/components/LinkUnderlined` instead.",
+            },
+          ],
+        },
+      ],
+    },
+  },
 ];

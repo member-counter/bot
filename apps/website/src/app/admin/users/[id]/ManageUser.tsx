@@ -3,7 +3,6 @@ import type { TFunction } from "i18next";
 import { useState } from "react";
 import { SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 
 import { BitField } from "@mc/common/BitField";
 import { routes } from "@mc/common/Routes";
@@ -16,6 +15,7 @@ import { Input } from "@mc/ui/input";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
 import { FormManagerState, useFormManager } from "~/lib/hooks/useFormManager";
+import { useNavigate } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import { DeleteButton } from "./DeleteButton";
 

@@ -2,11 +2,12 @@ import type { LegalPagesSlugs } from "@mc/common/Routes";
 import type { ReactNode } from "react";
 
 import { routes } from "@mc/common/Routes";
-import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 import { TypographyH2 } from "@mc/ui/TypographyH2";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 import { TypographyOList, TypographyUList } from "@mc/ui/TypographyList";
 import { TypographyP } from "@mc/ui/TypographyP";
+
+import { LinkUnderlined } from "~/app/components/LinkUnderlined";
 
 export interface LegalPage {
   title: string;

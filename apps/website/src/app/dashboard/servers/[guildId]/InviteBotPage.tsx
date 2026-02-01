@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
 import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
-import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
 import { BotIcon } from "~/app/components/BotIcon";
 import { DiscordIcon } from "~/app/components/DiscordIcon";
+import { LinkUnderlined } from "~/app/components/LinkUnderlined";
+import { Link } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import { MenuButton } from "../../Menu";
 import { UserPermissionsContext } from "./UserPermissionsContext";

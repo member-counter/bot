@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { Link, NavLink } from "react-router";
 
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 
+import { Link, NavLink } from "~/lib/navigation";
 import { BotIcon } from "./BotIcon";
 import { LanguageSelector } from "./LanguageSelector";
 
@@ -36,10 +36,9 @@ export default function NavBar() {
         <NavLink
           to={routes.dashboard.$buildPath({})}
           className={({ isActive }) =>
-            cn(
-              "text-muted-foreground hover:text-foreground",
-              { "text-foreground": isActive },
-            )
+            cn("text-muted-foreground hover:text-foreground", {
+              "text-foreground": isActive,
+            })
           }
         >
           {t("components.NavBar.dashboardEntry")}
@@ -47,10 +46,9 @@ export default function NavBar() {
         <NavLink
           to={routes.account.$buildPath({})}
           className={({ isActive }) =>
-            cn(
-              "text-muted-foreground hover:text-foreground",
-              { "text-foreground": isActive },
-            )
+            cn("text-muted-foreground hover:text-foreground", {
+              "text-foreground": isActive,
+            })
           }
         >
           {t("components.NavBar.accountEntry")}

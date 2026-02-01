@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 
 import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { Input } from "@mc/ui/input";
+
+import { useNavigate } from "~/lib/navigation";
 
 export const LoadUserInput = () => {
   const { t } = useTranslation();

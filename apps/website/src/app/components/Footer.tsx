@@ -5,9 +5,9 @@ import { BitField } from "@mc/common/BitField";
 import { routes } from "@mc/common/Routes";
 import { UserPermissions } from "@mc/common/UserPermissions";
 import { cn } from "@mc/ui";
-import { Link } from "@mc/ui/Link";
-import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
+import { Link } from "~/app/components/Link";
+import { LinkUnderlined } from "~/app/components/LinkUnderlined";
 import { api } from "~/lib/trpc";
 
 export default function Footer() {

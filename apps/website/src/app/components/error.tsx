@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router";
 
 import { routes } from "@mc/common/Routes";
 import { Errors } from "@mc/trpc-api/utils/errors";
 import { Button } from "@mc/ui/button";
+
+import { Link, useNavigate } from "~/lib/navigation";
 
 const errorCodes: Record<string, string> = {
   [Errors.NotAuthenticated]: "401",

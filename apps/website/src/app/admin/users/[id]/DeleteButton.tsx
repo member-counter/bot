@@ -1,6 +1,5 @@
 import { TrashIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 
 import { Button } from "@mc/ui/button";
 import {
@@ -15,6 +14,7 @@ import {
 } from "@mc/ui/dialog";
 
 import useShowError from "~/lib/hooks/useShowError";
+import { useNavigate } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 
 export function DeleteButton({

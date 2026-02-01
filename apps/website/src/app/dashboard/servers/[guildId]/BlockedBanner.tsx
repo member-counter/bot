@@ -6,8 +6,8 @@ import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
-import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
+import { LinkUnderlined } from "~/app/components/LinkUnderlined";
 import { api } from "~/lib/trpc";
 
 export function BlockedBanner() {

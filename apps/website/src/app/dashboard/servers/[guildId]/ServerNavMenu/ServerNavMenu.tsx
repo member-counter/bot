@@ -1,7 +1,7 @@
 import { memo, useContext, useMemo } from "react";
 import { SettingsIcon, XIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Link, useMatch } from "react-router";
+import { useMatch } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
 import invariant from "tiny-invariant";
 
@@ -12,6 +12,7 @@ import { Separator } from "@mc/ui/separator";
 import { Skeleton } from "@mc/ui/skeleton";
 
 import { MenuContext } from "~/app/dashboard/Menu";
+import { Link } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import { ChannelNavItem, ChannelNavItemSkeleton } from "./ChannelNavItem";
 import { sortChannels } from "./sortChannels";

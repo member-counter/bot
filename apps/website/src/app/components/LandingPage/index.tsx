@@ -6,13 +6,13 @@ import {
   SlidersHorizontalIcon,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 import TextTransition, { presets } from "react-text-transition";
 
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
 
+import { Link } from "~/lib/navigation";
 import { BotIcon } from "../BotIcon";
 import { DiscordIcon } from "../DiscordIcon";
 import { DiscordDemo } from "./DiscordDemo";

@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
 
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 
+import { useNavigate } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import DSelector from "../components/DSelector";
 import { MenuContext } from "./Menu";

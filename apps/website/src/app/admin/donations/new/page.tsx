@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ArrowLeftIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 
 import {
   DEFAULT_CURRENCY,
@@ -15,6 +14,7 @@ import { TypographyH4 } from "@mc/ui/TypographyH4";
 import type { RouterInputs } from "~/lib/trpc";
 import { FormManagerState } from "~/lib/hooks/useFormManager";
 import useShowError from "~/lib/hooks/useShowError";
+import { useNavigate } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import { DonationForm } from "../DonationForm";
 

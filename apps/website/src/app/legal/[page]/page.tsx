@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
 import { z } from "zod/v4";
 
@@ -8,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@mc/ui/tabs";
 import { TypographyH1 } from "@mc/ui/TypographyH1";
 
 import Footer from "~/app/components/Footer";
+import { useNavigate } from "~/lib/navigation";
 import { legalPages } from "./legalPages";
 
 export default function PageSwitcher() {

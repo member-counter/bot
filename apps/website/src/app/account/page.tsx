@@ -1,11 +1,11 @@
 import { LogOutIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 
 import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { Skeleton } from "@mc/ui/skeleton";
 
+import { Link } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import Footer from "../components/Footer";
 import { DeleteButton } from "./DeleteButton";

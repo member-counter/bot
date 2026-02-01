@@ -2,8 +2,8 @@ import { Trans } from "react-i18next";
 
 import { cn } from "@mc/ui";
 import { Label } from "@mc/ui/label";
-import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 
+import { LinkUnderlined } from "~/app/components/LinkUnderlined";
 import DataSourceFormatDigitInput from "../../TemplateEditor/DataSource/Format/DataSourceFormatDigitInput";
 
 interface Props {

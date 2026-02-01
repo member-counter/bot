@@ -1,8 +1,7 @@
-import { useNavigate } from "react-router";
-
 import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 
+import { useNavigate } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import { DisplayUser } from "./DisplayUser";
 

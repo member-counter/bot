@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Link } from "react-router";
 
 import { cn } from "@mc/ui";
+
+import { Link } from "~/lib/navigation";
 
 const LinkUnderlined = React.forwardRef<
   React.ElementRef<typeof Link>,

@@ -7,11 +7,11 @@ import {
   ZapIcon,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 
 import { cn } from "@mc/ui";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 
+import { Link } from "~/lib/navigation";
 import { MenuButton } from "../../Menu";
 
 const suggestedTopics = (

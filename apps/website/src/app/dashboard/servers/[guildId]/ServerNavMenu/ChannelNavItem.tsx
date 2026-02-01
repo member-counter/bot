@@ -1,7 +1,6 @@
 import { useContext, useMemo } from "react";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
 import invariant from "tiny-invariant";
 
@@ -17,6 +16,7 @@ import {
 
 import { InfoToolip } from "~/app/components/InfoTooltip";
 import { MenuContext } from "~/app/dashboard/Menu";
+import { Link } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import { useChannelIcon } from "../ChannelMaps";
 

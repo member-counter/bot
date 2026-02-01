@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { Trans } from "react-i18next";
-import { useNavigate } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
 
 import { routes } from "@mc/common/Routes";
-import { LinkUnderlined } from "@mc/ui/LinkUnderlined";
 import { TypographyH3 } from "@mc/ui/TypographyH3";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
+import { LinkUnderlined } from "~/app/components/LinkUnderlined";
+import { useNavigate } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 
 export default function Page() {

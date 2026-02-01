@@ -1,6 +1,5 @@
 import { ArrowLeftIcon, LoaderIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 import { useTypedParams } from "react-router-typesafe-routes";
 
 import { routes } from "@mc/common/Routes";
@@ -10,6 +9,7 @@ import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
 import { useFormManager } from "~/lib/hooks/useFormManager";
+import { useNavigate } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import { DonationForm } from "../DonationForm";
 
