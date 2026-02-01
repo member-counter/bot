@@ -17,6 +17,7 @@ export default defineConfig({
     }),
   ],
   server: {
+    open: false,
     host: true,
     allowedHosts: ["frontend-upstream"],
     proxy: {
