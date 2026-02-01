@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-imports */
 import type { NavigateOptions, To } from "react-router";
 import { useCallback } from "react";
 import { useNavigate as useRouterNavigate } from "react-router";

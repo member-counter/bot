@@ -25,7 +25,6 @@ export default [
   },
   {
     files: ["**/*.ts", "**/*.tsx"],
-    ignores: ["src/lib/navigation/**"],
     rules: {
       "no-restricted-imports": [
         "error",
