@@ -5,6 +5,7 @@ import { ProtectedRoute } from "./app/components/ProtectedRoute";
 import RootLayout from "./app/layout";
 import Home from "./app/page";
 import { NavigationBlockerProvider } from "./lib/navigation";
+import { routes } from "@mc/common/Routes";
 
 export default function Router() {
   return (
@@ -17,15 +18,15 @@ export default function Router() {
 
             {/* Auth */}
             <Route
-              path="login"
+              path={routes.login.$path({ relative: true })}
               element={Lazy(() => import("./app/login/page"))}
             />
             <Route
-              path="logout"
+              path={routes.logout.$path({ relative: true })}
               element={Lazy(() => import("./app/logout/page"))}
             />
             <Route
-              path="account"
+              path={routes.account.$path({ relative: true })}
               element={
                 <ProtectedRoute>
                   {Lazy(() => import("./app/account/page"))}
@@ -35,54 +36,54 @@ export default function Router() {
 
             {/* Public pages */}
             <Route
-              path="status"
+              path={routes.status.$path({ relative: true })}
               element={Lazy(() => import("./app/status/page"))}
             />
             <Route
-              path="donors"
+              path={routes.donors.$path({ relative: true })}
               element={Lazy(() => import("./app/donors/page"))}
             />
             <Route
-              path="donate"
+              path={routes.donate.$path({ relative: true })}
               element={Lazy(() => import("./app/donate/page"))}
             />
             <Route
-              path="docs"
+              path={routes.docs.$path({ relative: true })}
               element={Lazy(() => import("./app/docs/page"))}
             />
             <Route
-              path="support"
+              path={routes.support.$path({ relative: true })}
               element={Lazy(() => import("./app/support/page"))}
             />
             <Route
-              path="premium"
+              path={routes.premium.$path({ relative: true })}
               element={Lazy(() => import("./app/premium/page"))}
             />
             <Route
-              path="invite"
+              path={routes.invite.$path({ relative: true })}
               element={Lazy(() => import("./app/invite/page"))}
             />
             <Route
-              path="repository"
+              path={routes.repository.$path({ relative: true })}
               element={Lazy(() => import("./app/repository/page"))}
             />
             <Route
-              path="translate"
+              path={routes.translate.$path({ relative: true })}
               element={Lazy(() => import("./app/translate/page"))}
             />
 
             {/* Legal */}
-            <Route path="legal">
+            <Route path={routes.legal.$path({ relative: true })}>
               <Route index element={Lazy(() => import("./app/legal/page"))} />
               <Route
-                path=":page"
+                path={routes.legal.$.page.$path({ relative: true })}
                 element={Lazy(() => import("./app/legal/[page]/page"))}
               />
             </Route>
 
             {/* Dashboard */}
             <Route
-              path="dashboard"
+              path={routes.dashboard.$path({ relative: true })}
               element={
                 <ProtectedRoute>
                   {Lazy(() => import("./app/dashboard/layout"))}
@@ -94,7 +95,7 @@ export default function Router() {
                 element={Lazy(() => import("./app/dashboard/page"))}
               />
               <Route
-                path="servers/:guildId"
+                path={routes.dashboard.$.servers.server.$path({ relative: true })}
                 element={Lazy(
                   () => import("./app/dashboard/servers/[guildId]/layout"),
                 )}
@@ -106,7 +107,7 @@ export default function Router() {
                   )}
                 />
                 <Route
-                  path=":channelId"
+                  path={routes.dashboard.$.servers.server.$.channel.$path({ relative: true })}
                   element={Lazy(
                     () =>
                       import("./app/dashboard/servers/[guildId]/[channelId]/layout"),
@@ -121,7 +122,7 @@ export default function Router() {
                   />
                 </Route>
                 <Route
-                  path="settings"
+                  path={routes.dashboard.$.servers.server.$.settings.$path({ relative: true })}
                   element={Lazy(
                     () =>
                       import("./app/dashboard/servers/[guildId]/settings/layout"),
@@ -139,9 +140,9 @@ export default function Router() {
             </Route>
 
             {/* Admin */}
-            <Route path="admin">
+            <Route path={routes.admin.$path({ relative: true })}>
               <Route
-                path="users"
+                path={routes.admin.$.users.$path({ relative: true })}
                 element={
                   <ProtectedRoute requiredPermissions={["ManageUsers"]}>
                     {Lazy(() => import("./app/admin/users/layout"))}
@@ -153,7 +154,7 @@ export default function Router() {
                   element={Lazy(() => import("./app/admin/users/page"))}
                 />
                 <Route
-                  path=":userId"
+                  path={routes.admin.$.users.$.user.$path({ relative: true })}
                   element={Lazy(() => import("./app/admin/users/[id]/layout"))}
                 >
                   <Route
@@ -163,7 +164,7 @@ export default function Router() {
                 </Route>
               </Route>
               <Route
-                path="guilds"
+                path={routes.admin.$.guilds.$path({ relative: true })}
                 element={
                   <ProtectedRoute requiredPermissions={["ManageGuilds"]}>
                     {Lazy(() => import("./app/admin/guilds/layout"))}
@@ -176,7 +177,7 @@ export default function Router() {
                 />
               </Route>
               <Route
-                path="homepage"
+                path={routes.admin.$.homepage.$path({ relative: true })}
                 element={
                   <ProtectedRoute requiredPermissions={["ManageHomePage"]}>
                     {Lazy(() => import("./app/admin/homepage/layout"))}
@@ -187,7 +188,7 @@ export default function Router() {
                   index
                   element={Lazy(() => import("./app/admin/homepage/page"))}
                 />
-                <Route path="demo-servers">
+                <Route path={routes.admin.$.homepage.$.demoServers.$path({ relative: true })}>
                   <Route
                     index
                     element={Lazy(
@@ -195,7 +196,7 @@ export default function Router() {
                     )}
                   />
                   <Route
-                    path=":id"
+                    path={routes.admin.$.homepage.$.demoServers.$.demoServer.$path({ relative: true })}
                     element={Lazy(
                       () =>
                         import("./app/admin/homepage/demo-servers/[id]/page"),
@@ -204,7 +205,7 @@ export default function Router() {
                 </Route>
               </Route>
               <Route
-                path="donations"
+                path={routes.admin.$.donations.$path({ relative: true })}
                 element={
                   <ProtectedRoute requiredPermissions={["ManageDonations"]}>
                     {Lazy(() => import("./app/admin/donations/layout"))}
@@ -216,13 +217,13 @@ export default function Router() {
                   element={Lazy(() => import("./app/admin/donations/page"))}
                 />
                 <Route
-                  path=":id"
+                  path={routes.admin.$.donations.$.donation.$path({ relative: true })}
                   element={Lazy(
                     () => import("./app/admin/donations/[id]/page"),
                   )}
                 />
                 <Route
-                  path="new"
+                  path={routes.admin.$.donations.$.new.$path({ relative: true })}
                   element={Lazy(() => import("./app/admin/donations/new/page"))}
                 />
               </Route>
