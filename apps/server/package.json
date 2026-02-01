@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup-node",
-    "dev": "pnpm with-env tsup-node --watch src --watch ../../packages --onSuccess \"node dist/index.js\"",
+    "dev": "pnpm with-env pnpm build --watch . --watch ../../packages --onSuccess \"node dist/index.js\"",
     "start": "node dist/index.js",
     "clean": "rm -rf .turbo node_modules dist",
     "format": "prettier --check . --ignore-path ../../.gitignore",
