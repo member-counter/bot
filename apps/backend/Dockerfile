@@ -43,6 +43,6 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nodejs
 USER nodejs
 COPY --from=prod_deps /app/node_modules ./node_modules
-COPY --from=repo /app/apps/server/package.json .
-COPY --from=js-source --chown=nodejs:nodejs /app/apps/server/dist ./
+COPY --from=repo /app/apps/backend/package.json .
+COPY --from=js-source --chown=nodejs:nodejs /app/apps/backend/dist ./
 CMD node /app/index.js

@@ -37,7 +37,7 @@
       "label": "Bot"
     },
     {
-      "regex": "apps/website\\.*",
+      "regex": "apps/frontend\\.*",
       "color": "#0C0A09",
       "label": "Website"
     },

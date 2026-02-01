@@ -65,7 +65,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: apps/website/Dockerfile
+          file: apps/frontend/Dockerfile
           platforms: linux/amd64
           target: builder
           push: true
@@ -83,7 +83,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: apps/website/Dockerfile
+          file: apps/frontend/Dockerfile
           platforms: linux/amd64,linux/arm64
           target: runner
           push: true
@@ -167,7 +167,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: apps/server/Dockerfile
+          file: apps/backend/Dockerfile
           platforms: linux/amd64
           target: builder
           push: true
@@ -180,7 +180,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: apps/server/Dockerfile
+          file: apps/backend/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           cache-from: |
