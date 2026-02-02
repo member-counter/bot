@@ -8,6 +8,7 @@ export const env = createEnv({
       .default("development"),
     LOG_LEVEL: z.enum(["error", "warn", "info", "debug"]).default("info"),
     BACKEND_PORT: z.coerce.number().default(8080),
+    BACKEND_MAX_TRUSTED_PROXIES: z.coerce.number(),
     WEBSITE_URL: z.url(),
     DATABASE_URL: z.string(),
     COOKIE_SECRET: z.string().min(32),

@@ -17,7 +17,7 @@ import { errorHandlerZod } from "./middlewares/errorHandlerZod";
 
 const app = express();
 
-app.set("trust proxy", true);
+app.set("trust proxy", env.BACKEND_MAX_TRUSTED_PROXIES);
 
 app.use(
   cors({
