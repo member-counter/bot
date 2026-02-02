@@ -52,8 +52,11 @@ router.get("/callback", async (req: Request, res: Response) => {
 
     res.clearCookie(redirectToCookieName);
 
-    const redirectUrl = redirectTo ?? "/";
-    res.redirect(new URL(redirectUrl, env.WEBSITE_URL).toString());
+    let parsed = new URL(redirectTo ?? "/", env.WEBSITE_URL);
+    if (parsed.origin !== new URL(env.WEBSITE_URL).origin) {
+      parsed = new URL("/", env.WEBSITE_URL);
+    }
+    res.redirect(parsed.toString());
   } catch (error) {
     logger.error("OAuth2 callback error:", error);
     throw new Error("Authentication failed");
