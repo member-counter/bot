@@ -4,6 +4,8 @@ import { Button } from "@mc/ui/button";
 
 import { messageListColor } from "./colors";
 import { DescriptionAreaTitle } from "./DescriptionAreaTitle";
+import DOMPurify from 'dompurify';
+import { useMemo } from "react";
 
 export function DescriptionArea({
   demoServer,
@@ -12,6 +14,10 @@ export function DescriptionArea({
   demoServer: DemoServerData;
   selectedChannelIndex: number;
 }) {
+  const description = useMemo(() => {
+    return DOMPurify.sanitize(demoServer.description);
+  }, [demoServer.description]);
+
   return (
     <div
       className="flex h-full grow flex-col"
@@ -26,7 +32,7 @@ export function DescriptionArea({
           <div className="text-2xl font-semibold">{demoServer.name}</div>
           <div
             className="w-full"
-            dangerouslySetInnerHTML={{ __html: demoServer.description }}
+            dangerouslySetInnerHTML={{ __html: description }}
           ></div>
           <div className="mt-4 flex w-full flex-col gap-2">
             {demoServer.links.map((link, i) => (
