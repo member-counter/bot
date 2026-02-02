@@ -2,6 +2,7 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
+import helmet from "helmet";
 import morgan from "morgan";
 
 import logger from "@mc/logger";
@@ -18,7 +19,7 @@ import { errorHandlerZod } from "./middlewares/errorHandlerZod";
 const app = express();
 
 app.set("trust proxy", env.BACKEND_MAX_TRUSTED_PROXIES);
-
+app.use(helmet());
 app.use(
   cors({
     origin: env.WEBSITE_URL,
