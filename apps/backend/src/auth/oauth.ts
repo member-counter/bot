@@ -16,7 +16,7 @@ function basicAuth(id: string, pass: string) {
 /**
  * Get the Discord OAuth2 authorization URL.
  */
-export function getOAuth2Url(): string {
+export function getOAuth2Url(state: string): string {
   const oauth2Url = new URL(OAuth2Routes.authorizationURL);
 
   oauth2Url.searchParams.set("client_id", env.DISCORD_CLIENT_ID);
@@ -24,6 +24,7 @@ export function getOAuth2Url(): string {
   oauth2Url.searchParams.set("scope", requiredScopes.join(" "));
   oauth2Url.searchParams.set("redirect_uri", env.DISCORD_OAUTH2_REDIRECT_URI);
   oauth2Url.searchParams.set("prompt", "none");
+  oauth2Url.searchParams.set("state", state);
 
   return oauth2Url.toString();
 }

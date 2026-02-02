@@ -1,3 +1,4 @@
+import crypto from "node:crypto";
 import type { Request, Response } from "express";
 import { Router } from "express";
 import z from "zod/v4";
@@ -11,6 +12,7 @@ import { destroySession, setSession } from "~/session";
 const router = Router();
 
 const redirectToCookieName = "redirect_to";
+const oauthStateCookieName = "oauth_state";
 
 /**
  * GET /api/auth
@@ -29,7 +31,15 @@ router.get("/", (req: Request, res: Response) => {
     });
   }
 
-  const oauth2Url = getOAuth2Url();
+  const state = crypto.randomBytes(32).toString("hex");
+  res.cookie(oauthStateCookieName, state, {
+    httpOnly: true,
+    secure: env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 1000 * 60 * 15, // 15 minutes
+  });
+
+  const oauth2Url = getOAuth2Url(state);
   res.redirect(oauth2Url);
 });
 
@@ -39,6 +49,14 @@ router.get("/", (req: Request, res: Response) => {
  */
 router.get("/callback", async (req: Request, res: Response) => {
   const code = z.string().parse(req.query.code);
+  const state = z.string().parse(req.query.state);
+  const storedState = z.string().parse(req.cookies[oauthStateCookieName]);
+
+  res.clearCookie(oauthStateCookieName);
+
+  if (!crypto.timingSafeEqual(Buffer.from(state), Buffer.from(storedState))) {
+    throw new Error("Invalid OAuth2 state");
+  }
 
   try {
     const session = await exchangeTokens({ code });
