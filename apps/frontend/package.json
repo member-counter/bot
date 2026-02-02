@@ -52,7 +52,7 @@
     "ioredis": "^5.9.2",
     "is-hotkey": "^0.2.0",
     "iso-lang-codes": "^2.2.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "lucide-react": "^0.475.0",
     "node-loader": "^2.1.0",
     "pretty-bytes": "^6.1.1",
