@@ -32,6 +32,12 @@ app.use(cookieParser());
 // tRPC endpoint
 app.use(
   "/trpc",
+  (req, _res, next) => {
+    if (req.headers["x-trpc-source"] !== "vite-react") {
+      throw new Error("Invalid tRPC source");
+    }
+    next();
+  },
   trpcExpress.createExpressMiddleware({
     router: appRouter,
     createContext: async ({ req, res }) => {
