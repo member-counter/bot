@@ -87,10 +87,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           target: runner
           push: true
-          cache-from: |
-            type=registry,ref=ghcr.io/member-counter/frontend:build-cache-beta-amd64
-            type=registry,ref=ghcr.io/member-counter/frontend:build-cache-beta
-          cache-to: type=registry,ref=ghcr.io/member-counter/frontend:build-cache-beta,mode=max
+          no-cache: true
           tags: |
             ghcr.io/member-counter/frontend:beta
           build-args: |
@@ -135,10 +132,7 @@ jobs:
           file: apps/bot/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: |
-            type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta-amd64
-            type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta
-          cache-to: type=registry,ref=ghcr.io/member-counter/bot:build-cache-beta,mode=max
+          no-cache: true
           tags: |
             ghcr.io/member-counter/bot:beta
           build-args: |
@@ -183,10 +177,7 @@ jobs:
           file: apps/backend/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          cache-from: |
-            type=registry,ref=ghcr.io/member-counter/backend:build-cache-beta-amd64
-            type=registry,ref=ghcr.io/member-counter/backend:build-cache-beta
-          cache-to: type=registry,ref=ghcr.io/member-counter/backend:build-cache-beta,mode=max
+          no-cache: true
           tags: |
             ghcr.io/member-counter/backend:beta
           build-args: |
