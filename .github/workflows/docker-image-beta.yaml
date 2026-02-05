@@ -78,7 +78,6 @@ jobs:
             VITE_BOT_DOCS_URL=${{ vars.VITE_BOT_DOCS_URL }}
             VITE_BOT_REPO_URL=${{ vars.VITE_BOT_REPO_URL }}
             VITE_TRANSLATION_PLATFORM_URL=${{ vars.VITE_TRANSLATION_PLATFORM_URL }}
-            VITE_DISCORD_CLIENT_ID=${{ vars.VITE_DISCORD_CLIENT_ID }}
 
       - name: Build and push multi-arch runner
         uses: docker/build-push-action@v5

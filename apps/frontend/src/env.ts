@@ -17,7 +17,6 @@ export const env = createEnv({
     VITE_TRANSLATION_PLATFORM_URL: z
       .string()
       .default("https://tolgee.membercounter.app/"),
-    VITE_DISCORD_CLIENT_ID: z.string(),
   },
 
   runtimeEnv: import.meta.env,

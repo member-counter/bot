@@ -1,11 +1,11 @@
 import type { DemoServerData } from "@mc/services/demoServers";
+import { useMemo } from "react";
+import DOMPurify from "dompurify";
 
 import { Button } from "@mc/ui/button";
 
 import { messageListColor } from "./colors";
 import { DescriptionAreaTitle } from "./DescriptionAreaTitle";
-import DOMPurify from 'dompurify';
-import { useMemo } from "react";
 
 export function DescriptionArea({
   demoServer,

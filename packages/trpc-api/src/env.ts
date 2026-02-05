@@ -7,6 +7,7 @@ export const env = createEnv({
     PUBLIC_BOTS_IDS: z.string().transform((s) => {
       return z.string().array().parse(JSON.parse(s));
     }),
+    DISCORD_CLIENT_ID: z.string(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
