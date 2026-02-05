@@ -41,6 +41,7 @@ RUN pnpm turbo run build --filter=@mc/frontend
 FROM --platform=linux/amd64 ${JS_SOURCE_IMAGE} AS js-source
 
 FROM nginx:alpine AS runner
+COPY --from=js-source /app/apps/frontend/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=js-source /app/apps/frontend/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
