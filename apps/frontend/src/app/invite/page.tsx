@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useTypedSearchParams } from "react-router-typesafe-routes";
 
 import { botPermissions } from "@mc/common/bot/botPermissions";
@@ -11,17 +11,22 @@ export default function Page() {
   const [{ guildId }] = useTypedSearchParams(routes.invite);
   const trpc = api.useUtils();
 
+  const getClientId = useCallback(
+    async () => (await trpc.env.fetch()).DISCORD_CLIENT_ID,
+    [trpc.env],
+  );
+
   useEffect(() => {
     void (async () => {
       const inviteLink = generateInviteLink({
-        clientId: await trpc.invite.botId.fetch(),
+        clientId: await getClientId(),
         permissions: botPermissions,
         ...(guildId && { selectedGuild: guildId }),
       });
 
       window.location.replace(inviteLink);
     })();
-  }, [guildId, trpc.invite.botId]);
+  }, [getClientId, guildId]);
 
   return null;
 }

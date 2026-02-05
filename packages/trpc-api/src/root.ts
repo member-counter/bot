@@ -2,8 +2,8 @@ import { botRouter } from "./routers/bot";
 import { demoServersRouter } from "./routers/demoServers";
 import { discordRouter } from "./routers/discord";
 import { donorRouter } from "./routers/donor";
+import { envRouter } from "./routers/env";
 import { guildRouter } from "./routers/guild";
-import { inviteRouter } from "./routers/invite";
 import { sessionRouter } from "./routers/session";
 import { userRouter } from "./routers/user";
 import { createCallerFactory, createTRPCRouter } from "./trpc";
@@ -21,7 +21,7 @@ export const appRouter = createTRPCRouter({
   bot: botRouter,
   demoServers: demoServersRouter,
   donor: donorRouter,
-  invite: inviteRouter,
+  env: envRouter,
 });
 
 // Export type definition of API
