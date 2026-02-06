@@ -28,7 +28,9 @@ export function useFormManager<OT, IT>(
 ] {
   const [isDirty, setIsDirty] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [mutableData, _setMutableData] = useState<OT | null>(null);
+  const [mutableData, _setMutableData] = useState<OT | null>(
+    query.data ? (structuredClone(query.data) as OT) : null,
+  );
   const [prevKey, setPrevKey] = useState(key);
   const [prevQueryData, setPrevQueryData] = useState(query.data);
   const showError = useShowError();
