@@ -24,6 +24,7 @@ export const ServerNavMenu = memo(function ServerNavMenu({
 }) {
   const { t } = useTranslation();
   const menuContext = useContext(MenuContext);
+  const trpcUtils = api.useUtils();
   const { guildId } = useTypedParams(routes.dashboard.servers.server);
   invariant(guildId, "Expected guildId to be defined");
   invariant(menuContext, "Expected menuContext to be defined");
@@ -63,6 +64,9 @@ export const ServerNavMenu = memo(function ServerNavMenu({
             params: { guildId },
           })}
           onClick={() => menuContext.setIsOpen(false)}
+          onMouseEnter={() => {
+            void trpcUtils.guild.get.prefetch({ discordGuildId: guildId });
+          }}
           className="ml-auto mr-1"
           aria-hidden
           tabIndex={-1}
@@ -91,7 +95,16 @@ export const ServerNavMenu = memo(function ServerNavMenu({
       <Separator tabIndex={-1} />
       <div className="flex max-h-full grow flex-col gap-1 overflow-auto p-[8px]">
         {channels.map((channel) => (
-          <ChannelNavItem {...channel} key={channel.id} />
+          <ChannelNavItem
+            {...channel}
+            key={channel.id}
+            onHover={() => {
+              void trpcUtils.guild.channels.get.prefetch({
+                discordGuildId: guildId,
+                discordChannelId: channel.id,
+              });
+            }}
+          />
         ))}
         {!guild.data &&
           new Array(15)
