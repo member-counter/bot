@@ -13,7 +13,9 @@ import { api } from "~/lib/trpc";
 export default function Footer() {
   const { t } = useTranslation();
   const isAuthenticated = api.session.isAuthenticated.useQuery();
-  const user = api.session.user.useQuery(undefined);
+  const user = api.session.user.useQuery(undefined, {
+    retry: false,
+  });
 
   const userPermissions = useMemo(
     () => new BitField(user.data?.permissions),
