@@ -8,6 +8,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
+import { KnownError } from "@mc/common/KnownError/index";
 import { trpcTracing } from "@mc/trpc-telemetry";
 
 import type { TRPCContext } from "./context";
@@ -19,8 +20,14 @@ import { Errors } from "./utils/errors";
 const t = initTRPC.context<TRPCContext>().create({
   transformer: superjson,
   errorFormatter({ shape, error }) {
+    // If the error cause is a KnownError, use its message for the error message
+    // This allows the frontend to properly parse and translate known errors
+    const knownErrorMessage =
+      error.cause instanceof KnownError ? error.cause.message : null;
+
     return {
       ...shape,
+      message: knownErrorMessage ?? shape.message,
       data: {
         ...shape.data,
         zodError:
