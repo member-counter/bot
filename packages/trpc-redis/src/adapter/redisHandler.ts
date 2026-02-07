@@ -213,7 +213,18 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
 
   redisSubClient.on("message", (channel, message) => {
     if (channel !== REQ_CHANNEL) return;
-    void handleRequest(message);
+
+    try {
+      handleRequest(message);
+    } catch (err) {
+      onError?.({
+        error: getTRPCErrorFromUnknown(err),
+        ctx: undefined,
+        type: "unknown",
+        input: undefined,
+        path: undefined,
+      });
+    }
   });
 
   await redisSubClient.subscribe(REQ_CHANNEL);

@@ -16,6 +16,14 @@ import { errorHandler } from "./middlewares/errorHandler";
 import { errorHandlerPrisma } from "./middlewares/errorHandlerPrisma";
 import { errorHandlerZod } from "./middlewares/errorHandlerZod";
 
+process.on("unhandledRejection", (reason, promise) => {
+  logger.error("Unhandled Rejection at:", { promise, reason });
+});
+
+process.on("uncaughtException", (error) => {
+  logger.error("Uncaught Exception:", { error });
+});
+
 const app = express();
 
 app.set("trust proxy", env.BACKEND_MAX_TRUSTED_PROXIES);

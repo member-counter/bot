@@ -12,6 +12,14 @@ async function main() {
     bot: `${env.DISCORD_BOT_INSTANCE_ID} (${env.DISCORD_BOT_INSTANCE_CHILD_ID})`,
   });
 
+  process.on("unhandledRejection", (reason, promise) => {
+    logger.error("Unhandled Rejection at:", { promise, reason });
+  });
+
+  process.on("uncaughtException", (error) => {
+    logger.error("Uncaught Exception:", { error });
+  });
+
   const botOptions: BotInstanceOptions = {
     id: env.DISCORD_BOT_INSTANCE_ID,
     childId: env.DISCORD_BOT_INSTANCE_CHILD_ID,
