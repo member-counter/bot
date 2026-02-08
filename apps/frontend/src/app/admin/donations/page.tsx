@@ -17,7 +17,7 @@ function LoadingPage() {
 
 export default function Page() {
   const { t, i18n } = useTranslation();
-  const donations = api.donor.geAllDonations.useQuery();
+  const donations = api.donor.getAllDonations.useQuery();
   const total = donations.data?.length ?? "???";
   const totalValue = useMemo(
     () => donations.data?.reduce((acc, curr) => acc + curr.value, 0) ?? 0,

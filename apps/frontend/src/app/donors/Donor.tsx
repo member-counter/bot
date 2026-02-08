@@ -18,7 +18,7 @@ export function Donor({
   donor: { user, donations },
 }: {
   className: string;
-  donor: RouterOutputs["donor"]["geAllDonors"][number];
+  donor: RouterOutputs["donor"]["getAllDonors"][number];
 }) {
   const { i18n } = useTranslation();
 

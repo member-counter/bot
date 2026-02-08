@@ -35,7 +35,7 @@ function fetchUsers(users: string[]): Promise<DiscordUser[]> {
 }
 
 export const donorRouter = createTRPCRouter({
-  geAllDonors: publicProcedure.query(async ({ ctx: { authUser } }) => {
+  getAllDonors: publicProcedure.query(async ({ ctx: { authUser } }) => {
     const returnAnonymous = !!authUser?.permissions.has(
       UserPermissions.ManageDonations,
     );
@@ -66,7 +66,30 @@ export const donorRouter = createTRPCRouter({
     });
   }),
 
-  geAllDonations: publicProcedure.query(async ({ ctx: { authUser } }) => {
+  getAllDonorsLazy: publicProcedure.query(async ({ ctx: { authUser } }) => {
+    const returnAnonymous = !!authUser?.permissions.has(
+      UserPermissions.ManageDonations,
+    );
+
+    const [rawDonors, exchangeRates] = await Promise.all([
+      DonationsService.getAllDonors(returnAnonymous),
+      ExchangeRateService.getRates(),
+    ]);
+
+    return Object.entries(rawDonors).map(([userId, donations]) => ({
+      userId,
+      donations: donations.map((donation) => ({
+        ...donation,
+        value: ExchangeRateService.convert(
+          CurrencyUtils.toNumber(donation.amount, donation.currencyDecimals),
+          donation.currency,
+          exchangeRates,
+        ),
+      })),
+    }));
+  }),
+
+  getAllDonations: publicProcedure.query(async ({ ctx: { authUser } }) => {
     const returnAnonymous = !!authUser?.permissions.has(
       UserPermissions.ManageDonations,
     );

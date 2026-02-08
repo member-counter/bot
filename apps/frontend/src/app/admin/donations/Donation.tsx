@@ -9,7 +9,7 @@ import { Link } from "~/lib/navigation";
 import { DisplayUser } from "../users/DisplayUser";
 
 export function Donation(
-  donation: RouterOutputs["donor"]["geAllDonations"][number],
+  donation: RouterOutputs["donor"]["getAllDonations"][number],
 ) {
   const { i18n } = useTranslation();
   const { amount, currency, currencyDecimals } = donation;

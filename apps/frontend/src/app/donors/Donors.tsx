@@ -1,16 +1,116 @@
 import { useEffect, useMemo, useState } from "react";
 import invariant from "tiny-invariant";
+import { CDNRoutes, RouteBases } from "discord-api-types/v10";
+import type { DefaultUserAvatarAssets } from "discord-api-types/v10";
+
 
 import type { RouterOutputs } from "~/lib/trpc";
 import { api } from "~/lib/trpc";
 import { Donor } from "./Donor";
 
 interface DonorBubble {
-  donor: RouterOutputs["donor"]["geAllDonors"][number];
+  donor: RouterOutputs["donor"]["getAllDonors"][number];
   radius: number;
   x: number;
   y: number;
   childs: DonorBubble[];
+}
+
+function useLazyDonors() {
+  const donorsLazyQuery = api.donor.getAllDonorsLazy.useQuery(undefined, {
+    staleTime: 1000 * 60 * 5,
+  });
+
+  const utils = api.useUtils();
+
+  const [userProfiles, setUserProfiles] = useState<Map<string, RouterOutputs["discord"]["getUser"]>>(
+    new Map()
+  );
+
+  // Sort donors by total donation amount (biggest first) for prioritized loading
+  const sortedUserIds = useMemo(() => {
+    if (!donorsLazyQuery.data) return [];
+
+    return donorsLazyQuery.data
+      .map((donor) => ({
+        userId: donor.userId,
+        totalValue: donor.donations.reduce((sum, d) => sum + d.value, 0),
+      }))
+      .sort((a, b) => b.totalValue - a.totalValue) // Biggest donors first
+      .map((d) => d.userId);
+  }, [donorsLazyQuery.data]);
+
+  // Fetch user profiles progressively in batches (biggest donors first)
+  useEffect(() => {
+    if (sortedUserIds.length === 0) return;
+
+    let cancelled = false;
+    const batchSize = 20;
+    let currentIndex = 0;
+
+    const fetchNextBatch = async () => {
+      if (cancelled || currentIndex >= sortedUserIds.length) return;
+
+      const batch = sortedUserIds.slice(currentIndex, currentIndex + batchSize);
+      currentIndex += batchSize;
+
+      try {
+        // Fetch batch of users (tRPC batching will combine these into fewer requests)
+        const userPromises = batch.map((userId) =>
+          utils.discord.getUser.fetch({ id: userId })
+            .catch(() => null) // Handle failures gracefully
+        );
+
+        const users = await Promise.all(userPromises);
+
+        // Actually by the cleanup function
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        if (cancelled) return;
+
+        // Update state with successfully fetched users
+        setUserProfiles((prev) => {
+          const updated = new Map(prev);
+          users.forEach((user) => {
+            if (user) {
+              updated.set(user.id, user);
+            }
+          });
+          return updated;
+        });
+
+        // Schedule next batch with small delay
+        if (currentIndex < sortedUserIds.length) {
+          setTimeout(() => void fetchNextBatch(), 100);
+        }
+      } catch (error) {
+        console.error("Failed to fetch user batch:", error);
+      }
+    };
+
+    void fetchNextBatch();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [sortedUserIds, utils]);
+
+  // Merge donation data with user profiles
+  return useMemo(() => {
+    if (!donorsLazyQuery.data) return undefined;
+
+    return donorsLazyQuery.data.map((donor) => ({
+      user: userProfiles.get(donor.userId) ?? {
+        id: donor.userId,
+        username: "Unknown",
+        discriminator: "0",
+        avatar: RouteBases.cdn +
+          CDNRoutes.defaultUserAvatar(
+            Number((BigInt(donor.userId) >> 22n) % 6n) as DefaultUserAvatarAssets,
+          ),
+      },
+      donations: donor.donations,
+    }));
+  }, [donorsLazyQuery.data, userProfiles]);
 }
 
 export function Donors() {
@@ -25,10 +125,11 @@ export function Donors() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  const donorsQuery = api.donor.geAllDonors.useQuery();
+
+  const donorsData = useLazyDonors();
 
   const donors = useMemo<DonorBubble[]>(() => {
-    const donors: DonorBubble[] = (donorsQuery.data ?? []).map((donor) => ({
+    const donors: DonorBubble[] = (donorsData ?? []).map((donor) => ({
       donor,
       radius: 10,
       x: 0,
@@ -41,7 +142,7 @@ export function Donors() {
         b.donor.donations.reduce((a, c) => c.value + a, 0) -
         a.donor.donations.reduce((a, c) => c.value + a, 0),
     );
-  }, [donorsQuery.data]);
+  }, [donorsData]);
 
   const totalDonated = useMemo(
     () =>
