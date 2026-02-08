@@ -6,37 +6,52 @@ import { CDNRoutes, RouteBases } from "discord-api-types/v10";
 import { z } from "zod";
 
 import { CurrencyUtils } from "@mc/common/currencyUtils";
+import { CachedDiscordUserValidator } from "@mc/common/redis/DiscordUserCache";
+import { discordUserCacheKey } from "@mc/common/redis/keys";
 import { UserPermissions } from "@mc/common/UserPermissions";
-import { botAPIConsumer } from "@mc/services/botAPI/botAPIConsumer";
 import { DonationsService } from "@mc/services/donations";
 import { ExchangeRateService } from "@mc/services/exchangeRates";
 
+import type { TRPCContext } from "../context";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { Errors } from "../utils/errors";
 
-function fetchUsers(users: string[]): Promise<DiscordUser[]> {
-  return Promise.all(
-    users.map((id) =>
-      botAPIConsumer.discord.getUser.query({ id }).catch(
-        () =>
-          ({
-            id,
-            username: "Unknown",
-            discriminator: "0",
-            avatar:
-              RouteBases.cdn +
-              CDNRoutes.defaultUserAvatar(
-                Number((BigInt(id) >> 22n) % 6n) as DefaultUserAvatarAssets,
-              ),
-          }) as DiscordUser,
-      ),
-    ),
-  );
+async function tryFetchCachedUsers(
+  ctx: TRPCContext,
+  userIds: string[],
+): Promise<(DiscordUser & { needsFetch: boolean })[]> {
+  const cacheKeys = userIds.map((userId) => discordUserCacheKey(userId));
+
+  const result = await ctx.redis.mget(cacheKeys);
+
+  return result.map((cached, index) => {
+    try {
+      return {
+        ...CachedDiscordUserValidator.parse(JSON.parse(cached ?? "")),
+        needsFetch: false,
+      };
+    } catch {
+      const id = userIds[index];
+      assert(id);
+
+      return {
+        id,
+        username: "Unknown",
+        discriminator: "0",
+        avatar:
+          RouteBases.cdn +
+          CDNRoutes.defaultUserAvatar(
+            Number((BigInt(id) >> 22n) % 6n) as DefaultUserAvatarAssets,
+          ),
+        needsFetch: true,
+      } satisfies DiscordUser & { needsFetch: boolean };
+    }
+  });
 }
 
 export const donorRouter = createTRPCRouter({
-  getAllDonors: publicProcedure.query(async ({ ctx: { authUser } }) => {
-    const returnAnonymous = !!authUser?.permissions.has(
+  getAllDonors: publicProcedure.query(async ({ ctx }) => {
+    const returnAnonymous = !!ctx.authUser?.permissions.has(
       UserPermissions.ManageDonations,
     );
 
@@ -46,7 +61,7 @@ export const donorRouter = createTRPCRouter({
     ]);
     const donors = new Map(Object.entries(rawDonors));
 
-    const discordUsers = await fetchUsers([...donors.keys()]);
+    const discordUsers = await tryFetchCachedUsers(ctx, [...donors.keys()]);
 
     return discordUsers.map((user) => {
       const donations = donors.get(user.id);
@@ -66,31 +81,8 @@ export const donorRouter = createTRPCRouter({
     });
   }),
 
-  getAllDonorsLazy: publicProcedure.query(async ({ ctx: { authUser } }) => {
-    const returnAnonymous = !!authUser?.permissions.has(
-      UserPermissions.ManageDonations,
-    );
-
-    const [rawDonors, exchangeRates] = await Promise.all([
-      DonationsService.getAllDonors(returnAnonymous),
-      ExchangeRateService.getRates(),
-    ]);
-
-    return Object.entries(rawDonors).map(([userId, donations]) => ({
-      userId,
-      donations: donations.map((donation) => ({
-        ...donation,
-        value: ExchangeRateService.convert(
-          CurrencyUtils.toNumber(donation.amount, donation.currencyDecimals),
-          donation.currency,
-          exchangeRates,
-        ),
-      })),
-    }));
-  }),
-
-  getAllDonations: publicProcedure.query(async ({ ctx: { authUser } }) => {
-    const returnAnonymous = !!authUser?.permissions.has(
+  getAllDonations: publicProcedure.query(async ({ ctx }) => {
+    const returnAnonymous = !!ctx.authUser?.permissions.has(
       UserPermissions.ManageDonations,
     );
     const [rawDonations, exchangeRates] = await Promise.all([
@@ -100,7 +92,7 @@ export const donorRouter = createTRPCRouter({
 
     const donors = new Set(rawDonations.map((donation) => donation.userId));
 
-    const discordUsers = await fetchUsers([...donors.keys()]);
+    const discordUsers = await tryFetchCachedUsers(ctx, [...donors.keys()]);
     const mappedDiscordUsers = new Map(
       discordUsers.map((user) => [user.id, user]),
     );

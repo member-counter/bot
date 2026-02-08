@@ -1,6 +1,4 @@
-import type { DefaultUserAvatarAssets } from "discord-api-types/v10";
 import { useEffect, useMemo, useState } from "react";
-import { CDNRoutes, RouteBases } from "discord-api-types/v10";
 import invariant from "tiny-invariant";
 
 import type { RouterOutputs } from "~/lib/trpc";
@@ -16,103 +14,91 @@ interface DonorBubble {
 }
 
 function useLazyDonors() {
-  const donorsLazyQuery = api.donor.getAllDonorsLazy.useQuery(undefined, {
+  const donorsQuery = api.donor.getAllDonors.useQuery(undefined, {
     staleTime: 1000 * 60 * 5,
   });
 
   const utils = api.useUtils();
 
-  const [userProfiles, setUserProfiles] = useState<
-    Map<string, RouterOutputs["discord"]["getUser"]>
+  const [fetchedUserProfiles, setFetchedUserProfiles] = useState<
+    Map<string, RouterOutputs["donor"]["getAllDonors"][number]["user"]>
   >(new Map());
 
-  // Sort donors by total donation amount (biggest first) for prioritized loading
-  const sortedUserIds = useMemo(() => {
-    if (!donorsLazyQuery.data) return [];
+  // Filter by if it needs to be fetched and sort donors by total donation amount (biggest first) for prioritized loading
+  const usersToFetch = useMemo(() => {
+    if (!donorsQuery.data) return [];
 
-    return donorsLazyQuery.data
+    return donorsQuery.data
+      .filter((donor) => donor.user.needsFetch)
       .map((donor) => ({
-        userId: donor.userId,
+        userId: donor.user.id,
         totalValue: donor.donations.reduce((sum, d) => sum + d.value, 0),
       }))
       .sort((a, b) => b.totalValue - a.totalValue) // Biggest donors first
       .map((d) => d.userId);
-  }, [donorsLazyQuery.data]);
+  }, [donorsQuery.data]);
 
   // Fetch user profiles progressively in batches (biggest donors first)
   useEffect(() => {
-    if (sortedUserIds.length === 0) return;
+    if (usersToFetch.length === 0) return;
 
     let cancelled = false;
-    const batchSize = 20;
+    const batchSize = 40;
     let currentIndex = 0;
 
     const fetchNextBatch = async () => {
-      if (cancelled || currentIndex >= sortedUserIds.length) return;
+      if (cancelled) return;
 
-      const batch = sortedUserIds.slice(currentIndex, currentIndex + batchSize);
+      const nextBatch = usersToFetch.slice(
+        currentIndex,
+        currentIndex + batchSize,
+      );
       currentIndex += batchSize;
 
-      try {
-        // Fetch batch of users (tRPC batching will combine these into fewer requests)
-        const userPromises = batch.map(
-          (userId) =>
-            utils.discord.getUser.fetch({ id: userId }).catch(() => null), // Handle failures gracefully
-        );
+      // Fetch batch of users (tRPC batching will combine them into a single request)
+      const userPromises = nextBatch.map((userId) =>
+        utils.discord.getUser.fetch({ id: userId }).catch(() => null),
+      );
 
-        const users = await Promise.all(userPromises);
+      const users = await Promise.all(userPromises);
 
-        // Actually by the cleanup function
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        if (cancelled) return;
-
-        // Update state with successfully fetched users
-        setUserProfiles((prev) => {
-          const updated = new Map(prev);
-          users.forEach((user) => {
-            if (user) {
-              updated.set(user.id, user);
-            }
-          });
-          return updated;
+      // Update state with successfully fetched users
+      setFetchedUserProfiles((prev) => {
+        const updated = new Map(prev);
+        users.forEach((user) => {
+          if (user) {
+            updated.set(user.id, {
+              ...user,
+              needsFetch: false,
+            });
+          }
         });
-
-        // Schedule next batch with small delay
-        if (currentIndex < sortedUserIds.length) {
-          setTimeout(() => void fetchNextBatch(), 100);
-        }
-      } catch (error) {
-        console.error("Failed to fetch user batch:", error);
-      }
+        return updated;
+      });
     };
 
-    void fetchNextBatch();
+    void (async () => {
+      while (currentIndex < usersToFetch.length) {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        if (cancelled) break;
+        await fetchNextBatch();
+      }
+    })();
 
     return () => {
       cancelled = true;
     };
-  }, [sortedUserIds, utils]);
+  }, [usersToFetch, utils]);
 
-  // Merge donation data with user profiles
+  // Merge donation data with fetched user profiles`
   return useMemo(() => {
-    if (!donorsLazyQuery.data) return undefined;
+    if (!donorsQuery.data) return undefined;
 
-    return donorsLazyQuery.data.map((donor) => ({
-      user: userProfiles.get(donor.userId) ?? {
-        id: donor.userId,
-        username: "Unknown",
-        discriminator: "0",
-        avatar:
-          RouteBases.cdn +
-          CDNRoutes.defaultUserAvatar(
-            Number(
-              (BigInt(donor.userId) >> 22n) % 6n,
-            ) as DefaultUserAvatarAssets,
-          ),
-      },
+    return donorsQuery.data.map((donor) => ({
+      user: fetchedUserProfiles.get(donor.user.id) ?? donor.user,
       donations: donor.donations,
     }));
-  }, [donorsLazyQuery.data, userProfiles]);
+  }, [donorsQuery.data, fetchedUserProfiles]);
 }
 
 export function Donors() {

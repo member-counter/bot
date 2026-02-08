@@ -49,9 +49,9 @@ export function Donor({
         </DialogHeader>
         <div className="flex flex-1 flex-col gap-2 overflow-y-auto px-6 pb-6 pt-[96px]">
           {donations.map(
-            ({ date, amount, currency, currencyDecimals, note }, i) => (
+            ({ date, amount, currency, currencyDecimals, note, id }, i) => (
               <>
-                <div className="">
+                <div className="" key={id}>
                   <div className="flex justify-between text-muted-foreground">
                     <div>{dateFormatter.format(date)}</div>
                     <div className="">
@@ -66,7 +66,10 @@ export function Donor({
                   <div className="my-2 text-wrap break-words">{note}</div>
                 </div>
                 {i != donations.length - 1 && (
-                  <Separator className="my-4 bg-accent-foreground" />
+                  <Separator
+                    key={id + "-separator"}
+                    className="my-4 bg-accent-foreground"
+                  />
                 )}
               </>
             ),
