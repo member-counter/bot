@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
-import invariant from "tiny-invariant";
-import { CDNRoutes, RouteBases } from "discord-api-types/v10";
 import type { DefaultUserAvatarAssets } from "discord-api-types/v10";
-
+import { useEffect, useMemo, useState } from "react";
+import { CDNRoutes, RouteBases } from "discord-api-types/v10";
+import invariant from "tiny-invariant";
 
 import type { RouterOutputs } from "~/lib/trpc";
 import { api } from "~/lib/trpc";
@@ -23,9 +22,9 @@ function useLazyDonors() {
 
   const utils = api.useUtils();
 
-  const [userProfiles, setUserProfiles] = useState<Map<string, RouterOutputs["discord"]["getUser"]>>(
-    new Map()
-  );
+  const [userProfiles, setUserProfiles] = useState<
+    Map<string, RouterOutputs["discord"]["getUser"]>
+  >(new Map());
 
   // Sort donors by total donation amount (biggest first) for prioritized loading
   const sortedUserIds = useMemo(() => {
@@ -56,9 +55,9 @@ function useLazyDonors() {
 
       try {
         // Fetch batch of users (tRPC batching will combine these into fewer requests)
-        const userPromises = batch.map((userId) =>
-          utils.discord.getUser.fetch({ id: userId })
-            .catch(() => null) // Handle failures gracefully
+        const userPromises = batch.map(
+          (userId) =>
+            utils.discord.getUser.fetch({ id: userId }).catch(() => null), // Handle failures gracefully
         );
 
         const users = await Promise.all(userPromises);
@@ -103,9 +102,12 @@ function useLazyDonors() {
         id: donor.userId,
         username: "Unknown",
         discriminator: "0",
-        avatar: RouteBases.cdn +
+        avatar:
+          RouteBases.cdn +
           CDNRoutes.defaultUserAvatar(
-            Number((BigInt(donor.userId) >> 22n) % 6n) as DefaultUserAvatarAssets,
+            Number(
+              (BigInt(donor.userId) >> 22n) % 6n,
+            ) as DefaultUserAvatarAssets,
           ),
       },
       donations: donor.donations,
