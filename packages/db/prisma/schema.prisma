@@ -101,4 +101,5 @@ model Donation {
   userId           String
 
   @@index([anonymous])
+  @@index([userId])
 }
