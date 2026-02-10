@@ -62,7 +62,7 @@ export default function Layout() {
                   }),
                 );
               },
-              onHover: () => {
+              onPrefetch: () => {
                 void trpcUtils.discord.getGuild.prefetch({ id: guild.id });
                 void trpcUtils.guild.has.prefetch({ discordGuildId: guild.id });
                 void trpcUtils.guild.get.prefetch({ discordGuildId: guild.id });

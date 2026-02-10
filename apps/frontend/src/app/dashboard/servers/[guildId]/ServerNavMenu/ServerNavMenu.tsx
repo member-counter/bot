@@ -64,7 +64,7 @@ export const ServerNavMenu = memo(function ServerNavMenu({
             params: { guildId },
           })}
           onClick={() => menuContext.setIsOpen(false)}
-          onMouseEnter={() => {
+          onPrefetch={() => {
             void trpcUtils.guild.get.prefetch({ discordGuildId: guildId });
           }}
           className="ml-auto mr-1"
@@ -98,7 +98,7 @@ export const ServerNavMenu = memo(function ServerNavMenu({
           <ChannelNavItem
             {...channel}
             key={channel.id}
-            onHover={() => {
+            onPrefetch={() => {
               void trpcUtils.guild.channels.get.prefetch({
                 discordGuildId: guildId,
                 discordChannelId: channel.id,

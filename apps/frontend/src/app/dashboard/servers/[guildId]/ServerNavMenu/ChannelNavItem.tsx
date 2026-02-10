@@ -25,7 +25,7 @@ export function ChannelNavItem(channel: {
   type: ChannelType;
   name: string;
   everyonePermissions: string;
-  onHover?: () => void;
+  onPrefetch?: () => void;
 }) {
   const { t } = useTranslation();
   const menuContext = useContext(MenuContext);
@@ -68,7 +68,7 @@ export function ChannelNavItem(channel: {
               params: { guildId, channelId: isSupported ? channel.id : "" },
             })}
             onClick={() => menuContext.setIsOpen(false)}
-            onMouseEnter={channel.onHover}
+            onPrefetch={channel.onPrefetch}
             className={cn(
               "group block cursor-pointer",
               "flex flex-row items-center",
