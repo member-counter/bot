@@ -9,7 +9,7 @@ import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { Errors } from "../utils/errors";
 
 export const demoServersRouter = createTRPCRouter({
-  geAll: publicProcedure.query(async () => {
+  getAll: publicProcedure.query(async () => {
     return await DemoServersService.getAll();
   }),
   get: publicProcedure

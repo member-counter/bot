@@ -6,7 +6,7 @@ import { api } from "~/lib/trpc";
 import { DisplayDemoServer } from "./DisplayDemoServer";
 
 export const ListDemoServers = () => {
-  const demoServers = api.demoServers.geAll.useQuery();
+  const demoServers = api.demoServers.getAll.useQuery();
   const navigate = useNavigate();
 
   return (

@@ -12,9 +12,7 @@ export const DemoServersService = {
   },
 
   getAll: async () => {
-    return (await db.demoServer.findMany()).sort(
-      (a, b) => b.priority - a.priority,
-    );
+    return await db.demoServer.findMany();
   },
 
   get: async (id: string) => {
