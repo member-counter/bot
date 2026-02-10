@@ -19,9 +19,15 @@ export function DiscordDemo() {
   const demoServersQuery = api.demoServers.getAll.useQuery();
   const demoServers = useMemo(() => {
     const demoServers = [...(demoServersQuery.data ?? [])];
-    return demoServers
-      .sort((a, b) => b.priority - a.priority)
-      .sort((a) => (a.language === i18n.language ? -1 : 1));
+    return demoServers.sort((a, b) => {
+      // First: matching language on top
+      const aMatch = a.language === i18n.language ? 1 : 0;
+      const bMatch = b.language === i18n.language ? 1 : 0;
+      if (aMatch !== bMatch) return bMatch - aMatch;
+
+      // Then: by priority descending
+      return b.priority - a.priority;
+    });
   }, [demoServersQuery.data, i18n.language]);
 
   const selectedServer = demoServers[selectedServerIndex];
