@@ -37,17 +37,14 @@ export const interactionCreateEvent = new EventHandler({
         try {
           i18n = await initI18n(interaction);
           title = i18n.t("interaction.commandHandler.error.title");
-          description = i18n.t(
-            "interaction.commandHandler.error.description",
-          );
+          description = i18n.t("interaction.commandHandler.error.description");
           supportServerBtn = i18n.t(
             "interaction.commands.invite.joinSupportServer",
           );
         } catch (e) {
           logger.error(e);
           title = "ERROR!";
-          description =
-            "Something went wrong, please, try again later";
+          description = "Something went wrong, please, try again later";
           supportServerBtn = "Join support server";
         }
 
