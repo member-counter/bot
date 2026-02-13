@@ -20,7 +20,6 @@ import {
 import type { RequestMessage, ResponseMessage } from "../schemas";
 import { REQ_CHANNEL, RES_CHANNEL } from "../Constants";
 import { requestMessageSchema } from "../schemas";
-import { resumeOtelTracing } from "./resumeOtelTracing";
 
 class DropRequestError extends Error {}
 
@@ -170,9 +169,9 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       return;
     }
 
-    const { input, path, type, traceId, spanId, id } = requestMessage;
+    const { input, path, type, id } = requestMessage;
 
-    void resumeOtelTracing(traceId, spanId, async () => {
+    void (async () => {
       const { takeRequest, requestDone } = makeTakeRequest(requestMessage);
 
       const ctx = await createContext?.({

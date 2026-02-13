@@ -19,7 +19,6 @@
     "@mc/logger": "workspace:*",
     "@mc/redis": "workspace:*",
     "@mc/trpc-redis": "workspace:*",
-    "@mc/trpc-telemetry": "workspace:*",
     "@mc/validators": "workspace:*",
     "@sesamecare-oss/redlock": "^1.4.0",
     "@t3-oss/env-core": "^0.13.10",

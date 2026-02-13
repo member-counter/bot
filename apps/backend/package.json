@@ -19,7 +19,6 @@
     "@mc/db": "workspace:*",
     "@mc/logger": "workspace:*",
     "@mc/services": "workspace:*",
-    "@mc/telemetry": "workspace:*",
     "@mc/trpc-api": "workspace:*",
     "@mc/validators": "workspace:*",
     "@t3-oss/env-core": "^0.13.10",

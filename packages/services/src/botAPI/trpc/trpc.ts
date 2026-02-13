@@ -13,7 +13,6 @@ import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import { trpcTracing } from "@mc/trpc-telemetry";
 
 /**
  * 1. CONTEXT
@@ -87,4 +86,4 @@ export const createTRPCRouter = t.router;
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-export const publicProcedure = t.procedure.concat(trpcTracing());
+export const publicProcedure = t.procedure;

@@ -45,4 +45,4 @@ USER nodejs
 COPY --from=prod_deps /app/node_modules ./node_modules
 COPY --from=repo /app/apps/bot/package.json .
 COPY --from=js-source --chown=nodejs:nodejs /app/apps/bot/dist ./
-CMD node --experimental-loader=@opentelemetry/instrumentation/hook.mjs --import /app/telemetry.js /app/index.js
+CMD node /app/index.js

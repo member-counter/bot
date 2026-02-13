@@ -24,7 +24,6 @@
   },
   "prettier": "@mc/prettier-config",
   "dependencies": {
-    "@opentelemetry/api": "^1.9.0",
     "zod": "^4.3.5"
   },
   "peerDependencies": {

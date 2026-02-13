@@ -1,8 +1,0 @@
-{
-  "extends": "@mc/tsconfig/base.json",
-  "compilerOptions": {
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
-  },
-  "include": ["*.ts", "src", "../../tooling/typescript/reset.d.ts"],
-  "exclude": ["node_modules"]
-}

@@ -9,7 +9,6 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { KnownError } from "@mc/common/KnownError/index";
-import { trpcTracing } from "@mc/trpc-telemetry";
 
 import type { TRPCContext } from "./context";
 import { Errors } from "./utils/errors";
@@ -58,7 +57,7 @@ export const createTRPCRouter = t.router;
  * It does not guarantee that a user querying is authorized, but you can still access
  * user session data if they are logged in.
  */
-export const publicProcedure = t.procedure.concat(trpcTracing());
+export const publicProcedure = t.procedure;
 
 /**
  * Protected (authenticated) procedure
