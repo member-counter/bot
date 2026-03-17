@@ -10,6 +10,7 @@ on:
 
 jobs:
   pnpm-store-cache:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -40,6 +41,7 @@ jobs:
           tags: |
             ghcr.io/member-counter/pnpm-store-cache:beta
   build-frontend:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
     steps:
@@ -93,6 +95,7 @@ jobs:
           build-args: |
             JS_SOURCE_IMAGE=ghcr.io/member-counter/frontend:beta-builder
   build-bot:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
     steps:
@@ -138,6 +141,7 @@ jobs:
           build-args: |
             JS_SOURCE_IMAGE=ghcr.io/member-counter/bot:beta-builder
   build-backend:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
     steps:
@@ -183,6 +187,7 @@ jobs:
           build-args: |
             JS_SOURCE_IMAGE=ghcr.io/member-counter/backend:beta-builder
   build-db-utils:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: pnpm-store-cache
     steps:
