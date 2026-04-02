@@ -24,6 +24,7 @@
   },
   "prettier": "@mc/prettier-config",
   "dependencies": {
+    "@sesamecare-oss/redlock": "^1.4.0",
     "zod": "^4.3.5"
   },
   "peerDependencies": {
