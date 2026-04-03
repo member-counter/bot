@@ -52,6 +52,13 @@ export default function LandingPage() {
       >
         <Background className="fixed z-[-2]" />
       </Suspense>
+      <div
+        className="pointer-events-none fixed inset-0 z-[-1]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 75%, #0c0a09 0%, #0c0a09 15%, transparent 50%)",
+        }}
+      />
       <div className="flex min-h-screen w-full flex-col items-center justify-center gap-4">
         <div className="grow"></div>
         <div className="flex flex-row items-center">
@@ -100,10 +107,7 @@ export default function LandingPage() {
           <ChevronDownIcon className="relative bottom-[1px] ml-2 inline" />
         </a>
         <div className="relative top-2 hidden flex-col gap-3 lg:flex">
-          <h3 className="text-center text-xl font-bold">
-            {t("pages.home.seeHowPeopleUseIt")}
-          </h3>
-          <DiscordDemo />
+          <DiscordDemo heading={t("pages.home.seeHowPeopleUseIt")} />
         </div>
       </div>
       <div className="flex flex-col gap-3" ref={supportedCountersRef}>

@@ -121,8 +121,8 @@ export const Badge = ({
     <>
       <svg width="0" height="0" className="absolute" aria-hidden="true">
         <linearGradient id={premiumGradientId} gradientTransform="rotate(45)">
-          <stop offset="0" stop-color="#ff73f5"></stop>
-          <stop offset="1" stop-color="#e292aa"></stop>
+          <stop offset="0" stopColor="#ff73f5"></stop>
+          <stop offset="1" stopColor="#e292aa"></stop>
         </linearGradient>
       </svg>
       <div className="relative mr-2 flex h-[18px] w-[18px] items-center justify-center [&>svg]:h-full [&>svg]:w-full">

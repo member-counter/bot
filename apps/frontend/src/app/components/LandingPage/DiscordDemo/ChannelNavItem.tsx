@@ -15,12 +15,14 @@ export function ChannelNavItem({
   isSelected,
   isRulesChannel,
   onClick,
+  highlighted,
 }: {
   type: ChannelType;
   name: string;
   isSelected: boolean;
   isRulesChannel: boolean;
   onClick?: () => void;
+  highlighted?: boolean;
 }) {
   let Icon: LucideIcon | undefined = ChannelIconMap[type];
   if (type === ChannelType.GuildVoice) Icon = LockKeyholeIcon;
@@ -32,12 +34,17 @@ export function ChannelNavItem({
     type === ChannelType.GuildText || type === ChannelType.GuildAnnouncement;
   return (
     <div
-      className={cn("group block select-none", "flex flex-row items-center", {
-        "mb-1 mt-4 pr-2 text-xs text-muted-foreground": isCategory,
-        "rounded-sm px-2 py-1.5 text-sm": !isCategory,
-        "text-foreground": isSelected,
-        [`cursor-pointer hover:bg-[#3f4248]`]: isTextBased,
-      })}
+      className={cn(
+        "group block select-none",
+        "flex flex-row items-center transition-[background-color,color] duration-300",
+        {
+          "mb-1 mt-4 pr-2 text-xs text-muted-foreground": isCategory,
+          "rounded-sm px-2 py-1.5 text-sm": !isCategory,
+          "text-foreground": isSelected || highlighted,
+          [`cursor-pointer hover:bg-[#3f4248]`]: isTextBased,
+          "relative text-white": highlighted,
+        },
+      )}
       style={{
         backgroundColor: isSelected ? selectedChannelInChannelListColor : "",
       }}
@@ -52,6 +59,7 @@ export function ChannelNavItem({
         <Icon
           className={cn("mr-2 mt-[-2px] inline h-5 w-5 text-muted-foreground", {
             "mr-1 h-4 w-4": isCategory,
+            "text-white": highlighted,
           })}
           aria-hidden
         />

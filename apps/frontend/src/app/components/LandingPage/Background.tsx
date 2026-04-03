@@ -257,15 +257,15 @@ export const Background = memo(function Background({
           },
           center: {
             x: 50,
-            y: 50,
+            y: 75,
             mode: "percent",
             radius: 0,
           },
           decay: 0,
           distance: {},
-          direction: "none",
+          direction: "outside",
           drift: 0,
-          enable: false,
+          enable: true,
           gravity: {
             acceleration: 9.81,
             enable: false,
@@ -289,7 +289,7 @@ export const Background = memo(function Background({
           },
           random: false,
           size: false,
-          speed: 2,
+          speed: 0.5,
           spin: {
             acceleration: 0,
             enable: false,
@@ -313,7 +313,7 @@ export const Background = memo(function Background({
             mode: "delete",
             value: 0,
           },
-          value: 200,
+          value: 2000,
         },
         opacity: {
           value: {
