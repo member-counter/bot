@@ -3,15 +3,22 @@ import { renderToPipeableStream } from "react-dom/server";
 
 import { routes } from "@mc/common/Routes";
 
+import { fallbackLng, languages } from "~/lib/i18n";
 import ServerApp from "./ServerApp";
 
 /** Routes to pre-render at build time. */
 export const prerenderRoutes = [routes.$buildPath({})];
 
+/** Languages to pre-render for each route. */
+export { languages, fallbackLng };
+
 // -- Render --
 
-export async function render(url: string): Promise<string> {
-  const element = <ServerApp url={url} />;
+export async function render(
+  url: string,
+  lang: (typeof languages)[number] = fallbackLng,
+): Promise<string> {
+  const element = <ServerApp url={url} lang={lang} />;
 
   return new Promise((resolve, reject) => {
     let html = "";

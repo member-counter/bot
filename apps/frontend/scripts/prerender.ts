@@ -18,31 +18,45 @@ async function prerender() {
   }
 
   // Import the SSR bundle
-  const { render, prerenderRoutes } = (await import(
+  const { render, prerenderRoutes, languages, fallbackLng } = (await import(
     path.join(distDir, "server", "entry-server.js")
   )) as {
-    render: (url: string) => Promise<string>;
+    render: (url: string, lang?: string) => Promise<string>;
     prerenderRoutes: string[];
+    languages: readonly string[];
+    fallbackLng: string;
   };
 
   for (const route of prerenderRoutes) {
-    const appHtml = await render(route);
+    for (const lang of languages) {
+      const appHtml = await render(route, lang);
 
-    const finalHtml = template.replace(
-      '<div id="root"></div>',
-      `<div id="root">${appHtml}</div>`,
-    );
+      const finalHtml = template.replace(
+        '<div id="root"></div>',
+        `<div id="root">${appHtml}</div>`,
+      );
 
-    // "/" → dist/index.html, "/legal/foo" → dist/legal/foo/index.html
-    const outPath =
-      route === "/"
-        ? indexPath
-        : path.join(distDir, route, "index.html");
+      // Default language → index.html, others → index.<lang>.html
+      // For sub-routes: /legal/foo → legal/foo/index.html or legal/foo/index.<lang>.html
+      let outPath: string;
+      if (route === "/") {
+        outPath =
+          lang === fallbackLng
+            ? path.join(distDir, "index.html")
+            : path.join(distDir, `index.${lang}.html`);
+      } else {
+        const baseName =
+          lang === fallbackLng ? "index.html" : `index.${lang}.html`;
+        outPath = path.join(distDir, route, baseName);
+      }
 
-    fs.mkdirSync(path.dirname(outPath), { recursive: true });
-    fs.writeFileSync(outPath, finalHtml);
+      fs.mkdirSync(path.dirname(outPath), { recursive: true });
+      fs.writeFileSync(outPath, finalHtml);
 
-    console.log(`Pre-rendered ${route} → ${path.relative(distDir, outPath)}`);
+      console.log(
+        `Pre-rendered ${route} [${lang}] → ${path.relative(distDir, outPath)}`,
+      );
+    }
   }
 
   // Clean up server bundle — no longer needed at runtime

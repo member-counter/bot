@@ -1,0 +1,32 @@
+# Resolve pre-render language from cookie, then Accept-Language header
+map $cookie_language $cookie_lang {
+    default    "";
+{{COOKIE_LANG_ENTRIES}}
+}
+
+map $http_accept_language $browser_lang {
+    default    "{{FALLBACK_LNG}}";
+{{ACCEPT_LANG_ENTRIES}}
+}
+
+map $cookie_lang $resolved_lang {
+    default    $cookie_lang;
+    ""         $browser_lang;
+}
+
+server {
+    listen       80;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Pre-rendered home page — serve the matching language variant
+    location = / {
+        try_files /index.${resolved_lang}.html /index.html /200.html;
+    }
+
+    location / {
+        # Static assets, then pre-rendered route dirs, then SPA fallback
+        try_files $uri $uri/ /200.html;
+    }
+}

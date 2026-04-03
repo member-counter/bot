@@ -17,7 +17,9 @@ const app = (
 );
 
 if (rootElement.childNodes.length > 0) {
-  // Pre-rendered HTML exists (home page) — hydrate to preserve it
+  // Pre-rendered HTML exists — hydrate to preserve it.
+  // Nginx already serves the correct language variant based on the cookie /
+  // Accept-Language header, so the content should match the client's language.
   hydrateRoot(rootElement, app);
 } else {
   // No pre-rendered content — standard SPA mount

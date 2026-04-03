@@ -7,7 +7,7 @@
     "make:supported-emojis": "tsx ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/makeSupportedEmojis.ts && prettier --write ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/supportedEmojis.ts",
     "make:twemoji-map": "tsx ./src/app/dashboard/servers/[guildId]/TemplateEditor/Emoji/makeTwemojiMap.ts",
     "prebuild": "turbo run make:twemoji-map",
-    "build": "pnpm with-env vite build && pnpm with-env vite build --ssr src/entry-server.tsx --outDir dist/server && pnpm with-env tsx scripts/prerender.ts",
+    "build": "pnpm with-env vite build && pnpm with-env vite build --ssr src/entry-server.tsx --outDir dist/server && pnpm with-env tsx scripts/prerender.ts && tsx scripts/generate-nginx-conf.ts",
     "clean": "git clean -xdf dist .turbo node_modules",
     "predev": "pnpm run prebuild",
     "dev": "pnpm with-env vite",
