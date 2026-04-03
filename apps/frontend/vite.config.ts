@@ -26,6 +26,12 @@ export default defineConfig({
       },
     },
   },
+  ssr: {
+    // Bundle all dependencies for SSR to avoid CJS/ESM interop issues
+    // (e.g. react-text-transition default export resolving to an object).
+    // The SSR bundle is only used at build time for prerendering.
+    noExternal: true,
+  },
   build: {
     rollupOptions: {
       output: {

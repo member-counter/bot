@@ -23,6 +23,7 @@
   },
   "include": [
     "vite.config.ts",
+    "scripts/**/*",
     "src/env.ts",
     "../../tooling/typescript/reset.d.ts"
   ]
