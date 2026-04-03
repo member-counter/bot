@@ -11,28 +11,965 @@
     },
     "knownError": "Ошибка",
     "knownErrors": {
-      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "У бота недостаточно прав (intents) чтобы использовать этот счетчик.",
-      "BOT_IS_NOT_PREMIUM": "Бот не является премиум версией и не имеет некоторого функционала, необходимого для этого счетчика.",
-      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Формат счетчика не может быть распознан.",
-      "DELIMITED_DATA_SOURCE_IS_INVALID": "Неверный счетчик.",
-      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Результат вывода для имени канала имеет длину менее двух символов.",
-      "EVALUATION_TIMEOUT": "Вычисление не завершилось в отведенное время (таймаут).",
-      "FAILED_TO_RETURN_A_FINAL_STRING": "Не удалось сгенерировать финальную строку по итогу вычисления.",
-      "GAME_MISSING_ADDRESS": "Игровому счетчику необходим адрес (айпи) сервера.",
-      "GAME_MISSING_GAME_ID": "Необходимо указать айди игры для игрового счетчика.",
-      "GAME_MISSING_PORT": "Игровому счетчику необходим порт сервера.",
-      "HTTP_DATA_PATH_MANDATORY": "Для HTTP-запросов с типом содержимого application/json необходимо указать путь к данным (data path).",
-      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Тип содержимого HTTP-ответа недопустим (должен быть text/plain или application/json). ",
+      "BAD_REQUEST": "Запрос был недействительным.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "У бота недостаточно привилегированных интентов для использования этого счётчика.",
+      "BOT_IS_NOT_PREMIUM": "Бот не является премиум-версией и не имеет некоторых функций, необходимых для этого счётчика.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Формат счётчика не может быть распознан.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "Недействительный счётчик.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Результат для имени канала содержит менее 2 символов.",
+      "EVALUATION_TIMEOUT": "Вычисление заняло слишком много времени и было прервано.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Не удалось сгенерировать итоговую строку по результатам вычисления.",
+      "FORBIDDEN": "Запрос был запрещён.",
+      "GAME_MISSING_ADDRESS": "Для игрового счётчика необходим адрес сервера.",
+      "GAME_MISSING_GAME_ID": "Для игрового счётчика необходимо указать ID игры.",
+      "GAME_MISSING_PORT": "Для игрового счётчика необходим порт сервера.",
+      "HTTP_DATA_PATH_MANDATORY": "Для HTTP-запросов с типом содержимого application/json необходимо указать путь к данным.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Тип содержимого HTTP-ответа недопустим (должен быть text/plain или application/json).",
       "HTTP_INVALID_RESPONSE_STATUS_CODE": "Код состояния HTTP-ответа недопустим (должен быть 200).",
-      "HTTP_MISSING_URL": "HTTP-счетчику необходим URL, который отсутствует.",
-      "MEMBER_COUNT_NOT_AVAILABLE": "Данные о кол-ве участников недоступны на данный момент.",
+      "HTTP_MISSING_URL": "Для HTTP-счётчика необходим URL, который отсутствует.",
+      "INTERNAL_SERVER_ERROR": "Произошла внутренняя ошибка сервера.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "Данные о количестве участников недоступны в данный момент.",
+      "MEMERATOR_MISSING_USERNAME": "Для счётчика Memerator необходимо имя пользователя, которое отсутствует.",
+      "NOT_FOUND": "Запрашиваемый ресурс не найден.",
       "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "У бота недостаточно прав для редактирования канала.",
-      "REDDIT_MISSING_SUBREDDIT": "Необходимо указать subreddit для Reddit счетчика.",
-      "TWITCH_CHANNEL_NOT_FOUND": "Не удалось найти указанный Twitch канал.",
-      "TWITCH_MISSING_USERNAME": "Необходимо указать юзернейм канала для Twitch счетчика.",
+      "REDDIT_MISSING_SUBREDDIT": "Для счётчика Reddit необходимо указать subreddit.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Не удалось найти указанный канал Twitch.",
+      "TWITCH_MISSING_USERNAME": "Для счётчика Twitch необходимо указать имя пользователя.",
+      "UNAUTHORIZED": "Запрос не авторизован.",
       "UNKNOWN": "Произошла неизвестная ошибка.",
-      "UNKNOWN_DATA_SOURCE": "Предоставленный счетчик неизвестен или не может быть распознан.",
-      "UNKNOWN_EVALUATION_RETURN_TYPE": "Тип значения, возвращаемого при вычислении, неизвестен."
+      "UNKNOWN_DATA_SOURCE": "Предоставленный счётчик неизвестен или не распознан.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Тип значения, возвращённого при вычислении, неизвестен.",
+      "USER_NOT_FOUND": "Пользователь не найден.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "Указан недействительный URL канала YouTube.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "Для счётчика YouTube необходимо указать URL канала."
+    },
+    "unknown": "Неизвестно",
+    "unknownChannel": "Неизвестный канал",
+    "unknownChannelType": "Неизвестный тип канала",
+    "unknownDate": "Неизвестная дата",
+    "unknownError": "Неизвестная ошибка",
+    "unknownPublicBot": "Неизвестный публичный бот",
+    "unknownRole": "Неизвестная роль",
+    "unknownServer": "Неизвестный сервер",
+    "unknownUser": "Неизвестный пользователь {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "Удалить канал",
+          "selected": "Выбрано"
+        },
+        "DataSourceItem": {
+          "edit": "Редактировать счётчик",
+          "notSelected": "Не выбрано",
+          "remove": "Удалить счётчик",
+          "selected": "Выбрано"
+        },
+        "GamedigItem": {
+          "remove": "Удалить игру",
+          "selected": "Выбрано"
+        },
+        "LocaleItem": {
+          "remove": "Удалить локаль",
+          "selected": "Выбрано"
+        },
+        "RoleItem": {
+          "everyone": "Все",
+          "remove": "Удалить роль",
+          "selected": "Выбрано"
+        },
+        "TextItem": {
+          "remove": "Удалить {{item}}",
+          "selected": "Выбрано"
+        },
+        "TimezoneItem": {
+          "remove": "Удалить часовой пояс",
+          "selected": "Выбрано"
+        }
+      },
+      "noResults": "Результатов не найдено.",
+      "placeholder": "Добавить...",
+      "searchPlaceholder": "Поиск..."
+    },
+    "NavBar": {
+      "accountEntry": "Аккаунт",
+      "dashboardEntry": "Панель управления",
+      "supportEntry": "Поддержка"
+    },
+    "footer": {
+      "acceptableUsePolicy": "Политика допустимого использования",
+      "admin": "Администрирование",
+      "codeRepository": "Репозиторий кода",
+      "cookiePolicy": "Политика использования файлов cookie",
+      "copyright": "© {{year}} Member Counter. Все права защищены. Создано <eduardozgzLink />.",
+      "documentation": "Документация",
+      "donate": "Пожертвовать",
+      "improveMemberCounter": "Улучшить Member Counter",
+      "legal": "Правовая информация",
+      "loginWithDiscord": "Войти через Discord",
+      "logout": "Выйти",
+      "madePossibleThanksTo": "Стало возможным благодаря Alex, <vampireChickenLink />, <livingfloreLink />, Frosty и <donorsLink>многим другим</donorsLink>.",
+      "manageDonations": "Управление пожертвованиями",
+      "manageHomePage": "Управление главной страницей",
+      "manageServers": "Управление серверами",
+      "manageUsers": "Управление пользователями",
+      "privacyPolicy": "Политика конфиденциальности",
+      "status": "Статус",
+      "supportServer": "Сервер поддержки",
+      "termsOfService": "Условия использования",
+      "translateBot": "Перевести бота",
+      "usefulLinks": "Полезные ссылки"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "Возвращает общее количество пользователей и серверов, на которых находится бот. (Скорее всего, вам это не нужно)",
+      "name": "Статистика бота"
+    },
+    "channels": {
+      "description": "Подсчёт количества каналов в указанных категориях или в целом.",
+      "display": {
+        "channelsUnderACategory": "Каналы в категории"
+      },
+      "keywords": "каналы,категории",
+      "name": "Каналы"
+    },
+    "clock": {
+      "description": "Отображение часов, настроенных на предпочитаемый часовой пояс.",
+      "display": {
+        "syntax": "Часы ({{timezone}})"
+      },
+      "keywords": "часы,часовой пояс",
+      "name": "Часы"
+    },
+    "concat": {
+      "description": "Объединение нескольких строк в одну.",
+      "display": {
+        "syntax": "Объединить {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "и ещё {{amount}}"
+      },
+      "keywords": "объединение,конкатенация,строки,соединить,слить",
+      "name": "Объединение"
+    },
+    "countdown": {
+      "description": "Создание таймера обратного отсчёта с настраиваемым форматом.",
+      "display": {
+        "syntax": "Обратный отсчёт до {{datetime}}"
+      },
+      "keywords": "обратный отсчёт,таймер",
+      "name": "Обратный отсчёт"
+    },
+    "date": {
+      "description": "Отображение текущей даты, настроенной на предпочитаемый часовой пояс.",
+      "display": {
+        "syntax": "Дата ({{timezone}})"
+      },
+      "keywords": "дата,календарь,часовой пояс",
+      "name": "Дата"
+    },
+    "game": {
+      "description": "Получение текущего количества онлайн-игроков на вашем игровом сервере, поддерживается более 320 игр.",
+      "display": {
+        "playerCountFor": "Количество игроков на {{gameServerAddress}}"
+      },
+      "keywords": "игра,игроки,онлайн,сервер",
+      "name": "Игра"
+    },
+    "http": {
+      "description": "Отправка GET-запроса к конечной точке и передача результата боту.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,запрос,конечная точка,API,получить",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "Выполнение математических операций: сложение, вычитание, умножение, деление или взятие остатка от деления для списка чисел.",
+      "display": {
+        "operationType": {
+          "add": "сложить",
+          "divide": "разделить",
+          "modulo": "остаток",
+          "multiply": "умножить",
+          "subtract": "вычесть"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "и ещё {{amount}}"
+      },
+      "keywords": "математика,калькулятор,операции,числа,арифметика,сложение,вычитание,умножение,деление,остаток",
+      "name": "Математика"
+    },
+    "members": {
+      "description": "Подсчёт участников с возможностью фильтрации по статусу онлайн, ролям и другим параметрам.",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "Не беспокоить",
+          "idle": "неактивен",
+          "offline": "не в сети",
+          "online": "в сети",
+          "onlineIdleDnd": "в сети + неактивен + Не беспокоить"
+        },
+        "accountType": {
+          "any": "участников",
+          "bot": "ботов",
+          "user": "пользователей"
+        },
+        "bannedMembers": "заблокированных участников",
+        "connectedToAChannel": "подключённых к каналу",
+        "playingAGame": "во время игры",
+        "roleFiltering": {
+          "any": "с ролями",
+          "overlapping": "с пересекающимися ролями"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "участники,фильтр,роли,онлайн,статус,заблокированные,играют,не в сети,не беспокоить,неактивен,афк,пользователь,бот,подключён",
+      "name": "Участники"
+    },
+    "memerator": {
+      "description": "Получение количества подписчиков и мемов аккаунта Memerator.",
+      "display": {
+        "returnKind": {
+          "followers": "подписчики",
+          "memes": "мемы"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,подписчик,просмотр,канал",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "Получение количества бустеров Nitro на сервере.",
+      "keywords": "nitro,бустеры,сервер",
+      "name": "Бустеры Nitro"
+    },
+    "number": {
+      "description": "Применение числового форматирования к указанному числу.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} как число",
+        "raw": "Число ({{number}})"
+      },
+      "keywords": "число,форматирование",
+      "name": "Число"
+    },
+    "reddit": {
+      "description": "Получение названия subreddit, общего количества участников и количества участников онлайн.",
+      "display": {
+        "returnKind": {
+          "members": "участники",
+          "membersOnline": "участники онлайн",
+          "title": "название"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,subreddit,участники,онлайн",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "Замена текста, полезна в сочетании с другими вложенными счётчиками для комплексной модификации текста.",
+      "display": {
+        "replaceSyntax": "«{{search}}» на «{{replacement}}»",
+        "syntax": "Заменить {{replaceSyntax}}"
+      },
+      "keywords": "текст,замена,модификация,строка,подстрока",
+      "name": "Замена"
+    },
+    "roles": {
+      "description": "Подсчёт всех ролей на сервере.",
+      "keywords": "роли",
+      "name": "Роли"
+    },
+    "twitch": {
+      "description": "Получение количества подписчиков и общего числа просмотров канала Twitch.",
+      "display": {
+        "returnKind": {
+          "channelName": "название канала",
+          "followers": "подписчики",
+          "viewers": "зрители"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,подписчик,просмотр,канал",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "Неизвестный счётчик. Вероятно, это вызвано ошибкой",
+      "name": "Неизвестно"
+    },
+    "youtube": {
+      "description": "Получение количества подписчиков, видео и общего числа просмотров канала YouTube.",
+      "display": {
+        "returnKind": {
+          "channelName": "название канала",
+          "subscribers": "подписчики",
+          "videos": "видео",
+          "views": "просмотры"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,подписчик,видео,просмотры,канал",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "У вас есть несохранённые изменения. Вы уверены, что хотите покинуть эту страницу?",
+    "useFormManager": {
+      "state": {
+        "save": "Сохранить",
+        "saved": "Сохранено",
+        "saving": "Сохранение..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter — бот Discord для подсчёта участников и не только"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "Закрыть",
+        "confirmDescription": "Это действие необратимо. Ваш аккаунт будет удалён навсегда, а данные будут стёрты с наших серверов.",
+        "confirmTitle": "Вы абсолютно уверены?",
+        "deleteAccountBtn": "Удалить аккаунт"
+      },
+      "page": {
+        "avatarAlt": "Аватар {{username}}",
+        "logoutButton": "Выйти"
+      },
+      "userBadges": {
+        "betaTester": "Вы участвовали в программе бета-тестирования.",
+        "bigBrain": "Вы предложили идею, которая была реализована.",
+        "bugCatcher": "Вы нашли и сообщили об ошибке.",
+        "contributor": "Вы реализовали функцию или исправили ошибку.",
+        "donor": "Вы сделали пожертвование на поддержку разработки и обслуживания Member Counter.",
+        "foldingAtHome": "Вы внесли вклад в folding@home.",
+        "patPat": "Вы нашли секрет.",
+        "premium": "Вы являетесь премиум-пользователем.",
+        "translator": "Вы помогли перевести бота."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "Удалить пожертвование",
+          "closeButton": "Закрыть",
+          "dialogDescription": "Это действие необратимо.",
+          "dialogTitle": "Вы абсолютно уверены?"
+        },
+        "edit": {
+          "title": "Редактировать пожертвование"
+        },
+        "form": {
+          "amount": "Сумма",
+          "anonymous": "Анонимное",
+          "currency": "Валюта",
+          "currencyDecimals": "Десятичные знаки валюты",
+          "date": "Дата",
+          "note": "Примечание",
+          "saveBtn": "Сохранить",
+          "userId": "ID пользователя Discord"
+        },
+        "new": {
+          "title": "Новое пожертвование"
+        },
+        "registerDonation": "Зарегистрировать пожертвование",
+        "totalDonations": "Всего пожертвований: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "Загрузить сервер",
+          "placeholder": "Вставьте ID сервера"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "Создать",
+          "createInputPlaceholder": "Название нового демо-сервера",
+          "delete": {
+            "button": "Удалить демо-сервер",
+            "closeButton": "Закрыть",
+            "dialogDescription": "Это действие необратимо.",
+            "dialogTitle": "Вы абсолютно уверены?"
+          },
+          "list": {
+            "display": {
+              "priority": "Приоритет: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "Добавить канал",
+              "channel": {
+                "isRulesChannel": "Показывать как канал правил",
+                "name": "Название",
+                "remove": "Удалить",
+                "showAsSkeleton": "Показывать как заглушку",
+                "topic": "Тема",
+                "type": "Тип",
+                "types": {
+                  "announcementChannel": "Канал объявлений",
+                  "categoryChannel": "Канал-категория",
+                  "textChannel": "Текстовый канал",
+                  "voiceChannel": "Закрытый голосовой канал"
+                }
+              },
+              "title": "Каналы"
+            },
+            "description": "Описание",
+            "features": {
+              "options": {
+                "Community": "Сообщество",
+                "Discoverable": "Обнаруживаемый",
+                "Partnered": "Партнёрский",
+                "Verified": "Верифицированный"
+              },
+              "title": "Функции"
+            },
+            "icon": "URL иконки",
+            "language": "Язык",
+            "links": {
+              "add": "Добавить ссылку",
+              "link": {
+                "label": "Подпись",
+                "remove": "Удалить",
+                "url": "URL"
+              },
+              "title": "Ссылки"
+            },
+            "name": "Название сервера",
+            "premiumTier": {
+              "options": {
+                "None": "Нет",
+                "Tier1": "Уровень 1",
+                "Tier2": "Уровень 2",
+                "Tier3": "Уровень 3"
+              },
+              "title": "Уровень премиума"
+            },
+            "priority": "Приоритет",
+            "save": "Сохранить",
+            "saved": "Сохранено",
+            "title": "Редактирование демо-сервера"
+          },
+          "title": "Демо-серверы"
+        },
+        "headings": [
+          "Динамически отображайте количество участников вашего сервера",
+          "Покажите количество подписчиков вашего YouTube-канала",
+          "Отслеживайте количество игроков на вашем сервере Minecraft",
+          "Покажите, сколько зрителей у вашего канала на Twitch",
+          "Отображайте любые данные на вашем сервере Discord",
+          "Отслеживайте количество игроков на вашем сервере FiveM",
+          "Показывайте часы, настроенные на предпочитаемый часовой пояс",
+          "Создавайте обратные отсчёты для событий или особых случаев",
+          "Отслеживайте статистику игроков на более чем 320 игровых серверах",
+          "Получайте и отображайте данные из любой конечной точки API",
+          "Выполняйте и отображайте математические операции с вашими данными",
+          "Форматируйте числа и отображайте их красиво",
+          "Выделяйте бустеров Nitro вашего сервера"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Откройте для себя ещё больше функций и счётчиков, которые могут улучшить ваш опыт. Следите за обновлениями!",
+            "title": "И многое другое!"
+          },
+          "clock": {
+            "description": "Смотрите время в любом часовом поясе с настраиваемыми часами. Идеально для координации между разными регионами.",
+            "title": "Часы"
+          },
+          "countdown": {
+            "description": "Создавайте таймеры обратного отсчёта, адаптированные к вашим событиям или дедлайнам.",
+            "title": "Обратный отсчёт"
+          },
+          "date": {
+            "description": "Отображайте текущую дату в любом часовом поясе с настраиваемым форматированием. Отлично подходит для показа дат в разных регионах.",
+            "title": "Дата"
+          },
+          "discordMembers": {
+            "description": "Подсчитывайте и фильтруйте участников по статусу онлайн, ролям и другим критериям для получения точной информации о вашем сообществе.",
+            "title": "Участники Discord"
+          },
+          "game": {
+            "description": "Отслеживайте активность вашего игрового сервера с количеством игроков в реальном времени для более чем 320 поддерживаемых игр.",
+            "title": "Игра"
+          },
+          "http": {
+            "description": "Выполняйте GET-запросы и получайте данные непосредственно из любой конечной точки, упрощая интеграцию.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Выполняйте различные математические операции, включая сложение, вычитание, умножение и другие над несколькими числами.",
+            "title": "Математика"
+          },
+          "nitroBoosters": {
+            "description": "Отслеживайте количество бустеров Nitro на сервере для оценки поддержки и вовлечённости сообщества.",
+            "title": "Бустеры Nitro"
+          },
+          "reddit": {
+            "description": "Получайте статистику любого subreddit, включая название, количество участников и участников онлайн.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Динамически изменяйте текст с помощью мощного инструмента замены, идеального в сочетании с HTTP-счётчиком.",
+            "title": "Замена"
+          },
+          "twitch": {
+            "description": "Отслеживайте метрики каналов Twitch, такие как количество подписчиков и статистика просмотров, чтобы быть в курсе дел ваших любимых стримеров.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Получайте ключевые метрики каналов YouTube, включая количество подписчиков, видео и общее число просмотров.",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "Удалить аккаунт",
+          "closeButton": "Закрыть",
+          "dialogDescription": "Это действие необратимо.",
+          "dialogTitle": "Вы абсолютно уверены?"
+        },
+        "loadUser": "Загрузить пользователя",
+        "manage": {
+          "badges": {
+            "betaTester": "Бета-тестер",
+            "bigBrain": "Светлая голова",
+            "bugCatcher": "Ловец багов",
+            "contributor": "Участник разработки",
+            "donor": "Донатер",
+            "foldingAtHome": "folding@home",
+            "patPat": "Pat Pat",
+            "premium": "Премиум",
+            "title": "Значки",
+            "translator": "Переводчик"
+          },
+          "pasteUserId": "Вставьте ID пользователя",
+          "permissions": {
+            "manageDonations": "Управление пожертвованиями",
+            "manageGuilds": "Управление серверами",
+            "manageHomePage": "Управление главной страницей",
+            "manageUsers": "Управление пользователями",
+            "seeGuilds": "Просмотр серверов",
+            "seeUsers": "Просмотр пользователей",
+            "title": "Разрешения"
+          },
+          "save": "Сохранить",
+          "saved": "Сохранено",
+          "transferAccount": "Перенести аккаунт"
+        },
+        "recentUsers": "Недавние пользователи",
+        "userNotRegistered": "Этот пользователь не зарегистрирован."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "Вы не состоите ни на одном сервере.",
+        "subheading": "Почему бы не начать с создания <CreateServerLink>нового</CreateServerLink> или <JoinSupportServerLink>присоединиться к нам</JoinSupportServerLink>?"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "Счётчики включены в этом канале",
+            "issue": "В этом канале есть проблема, требующая вашего внимания"
+          },
+          "unsupportedChannelType": "Этот тип канала пока не поддерживается."
+        },
+        "ServerNavMenu": {
+          "channelList": "Список каналов",
+          "loading": "Загрузка данных сервера...",
+          "serverSettings": "Настройки сервера",
+          "unknownChannels": "Перейдите к сохранённым каналам, если каналы Discord не удаётся загрузить"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "Счётчики не найдены.",
+            "searchPlaceholder": "Поиск счётчика..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "По умолчанию — настройки сервера",
+                "no": "Нет",
+                "overrideDefaultDigits": "Переопределить цифры по умолчанию",
+                "overrideDefaultLocale": "Переопределить локаль по умолчанию",
+                "searchLocale": "Поиск локали...",
+                "select": "Выбрать",
+                "useCompactNotation": "Компактная запись",
+                "yes": "Да"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "Отображение",
+                  "selectPlaceholder": "Выберите, что отображать",
+                  "servers": "Серверы",
+                  "users": "Пользователи"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "Добавить категорию...",
+                  "configWarning": "Не забудьте вернуть действительный ID категории",
+                  "filterByCategory": "Фильтровать по категории"
+                },
+                "ClockOptions": {
+                  "configWarning": "Не забудьте вернуть действительный идентификатор часового пояса",
+                  "counterPreview": "Мы не можем показать вам предварительный просмотр в реальном времени, когда формат является результатом счётчика. Для просмотра результата необходимо предварительно просмотреть весь шаблон.",
+                  "defaultFormat": "%f",
+                  "format": "Формат",
+                  "formatConfigWarning": "Не забудьте вернуть действительную строку формата",
+                  "formatInstructions": "Доступные заполнители:\n• <code>%H</code> — Час с ведущим нулём, 24 часа (00-23)\n• <code>%h</code> — Час без ведущего нуля, 24 часа (0-23)\n• <code>%I</code> — Час с ведущим нулём, 12 часов (01-12)\n• <code>%i</code> — Час без ведущего нуля, 12 часов (1-12)\n• <code>%M</code> — Минуты с ведущим нулём (00-59)\n• <code>%m</code> — Минуты без ведущего нуля (0-59)\n• <code>%S</code> — Секунды с ведущим нулём (00-59)\n• <code>%s</code> — Секунды без ведущего нуля (0-59)\n• <code>%p</code> — am/pm (строчные)\n• <code>%P</code> — AM/PM (прописные)\n• <code>%f</code> — Форматирование по умолчанию на основе локали",
+                  "livePreview": "Предпросмотр в реальном времени",
+                  "noPreview": "Мы не можем показать предпросмотр в реальном времени, когда формат пуст.",
+                  "searchTimezonePlaceholder": "Поиск часового пояса...",
+                  "timezone": "Часовой пояс"
+                },
+                "ConcatOptions": {
+                  "addString": "Добавить текст...",
+                  "stringList": "Список текста"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "Мы не можем показать предпросмотр в реальном времени, когда целевая дата или формат являются результатом счётчика. Для просмотра результата необходимо предварительно просмотреть весь шаблон.",
+                  "dateConfigWarning": "Не забудьте вернуть действительную метку времени UNIX",
+                  "datePlaceholder": "Или взять дату из счётчика...",
+                  "defaultFormat": "%d дней, %h часов и %m минут осталось",
+                  "format": "Формат",
+                  "formatConfigWarning": "Не забудьте вернуть действительную строку формата",
+                  "formatInstructions": "Доступные заполнители:\n• <code>%d</code> — Осталось дней\n• <code>%h</code> — Осталось часов (0-23)\n• <code>%m</code> — Осталось минут (0-59)\n• <code>%s</code> — Осталось секунд (0-59)\n• <code>%D</code> — Всего дней осталось\n• <code>%H</code> — Всего часов осталось\n• <code>%M</code> — Всего минут осталось\n• <code>%S</code> — Всего секунд осталось",
+                  "livePreview": "Предпросмотр в реальном времени",
+                  "noPreview": "Мы не можем показать предпросмотр в реальном времени, когда целевая дата или формат пусты.",
+                  "targetDate": "Целевая дата"
+                },
+                "DateOptions": {
+                  "configWarning": "Не забудьте вернуть действительный идентификатор часового пояса",
+                  "counterPreview": "Мы не можем показать предпросмотр в реальном времени, когда формат является результатом счётчика. Для просмотра результата необходимо предварительно просмотреть весь шаблон.",
+                  "defaultFormat": "%f",
+                  "format": "Формат",
+                  "formatConfigWarning": "Не забудьте вернуть действительную строку формата",
+                  "formatInstructions": "Доступные заполнители:\n• <code>%Y</code> — Полный год (2025)\n• <code>%y</code> — Год, 2 цифры (25)\n• <code>%Ms</code> — Полное название месяца (ноябрь)\n• <code>%ms</code> — Сокращённое название месяца (ноя)\n• <code>%M</code> — Номер месяца с ведущим нулём (01-12)\n• <code>%m</code> — Номер месяца (1-12)\n• <code>%Ws</code> — Полное название дня недели (понедельник)\n• <code>%ws</code> — Сокращённое название дня недели (пн)\n• <code>%w</code> — Номер дня недели (0=воскресенье, 6=суббота)\n• <code>%D</code> — День с ведущим нулём (05)\n• <code>%d</code> — День без ведущего нуля (5)\n• <code>%f</code> — Форматирование по умолчанию на основе локали",
+                  "livePreview": "Предпросмотр в реальном времени",
+                  "noPreview": "Мы не можем показать предпросмотр в реальном времени, когда формат пуст.",
+                  "searchTimezonePlaceholder": "Поиск часового пояса...",
+                  "timezone": "Часовой пояс"
+                },
+                "GameOptions": {
+                  "address": "Адрес",
+                  "addressWarning": "Не забудьте вернуть действительный адрес",
+                  "game": "Игра",
+                  "gameWarning": "Не забудьте вернуть действительный тип игры node-gamedig",
+                  "port": "Порт (или порт запроса)",
+                  "portWarning": "Не забудьте вернуть действительный номер порта",
+                  "searchPlaceholder": "Поиск..."
+                },
+                "HttpOptions": {
+                  "dataPath": "Путь к данным",
+                  "dataPathDescription": "Путь для получения нужного значения, когда тип содержимого ответа — JSON. Синтаксис аналогичен тому, что используется в JS для доступа к свойствам и элементам массивов.",
+                  "dataPathWarning": "Не забудьте вернуть путь к данным",
+                  "emptyUrl": "Невозможно выполнить запрос, URL пуст",
+                  "fetch": "Запросить",
+                  "fetching": "Загрузка...",
+                  "lifetime": "Время жизни (в секундах)",
+                  "lifetimeDescription": "Указывает, как долго ответ указанного URL будет храниться в кэше.",
+                  "lifetimeWarning": "Не забудьте вернуть действительное число",
+                  "noPreview": "Мы не можем показать предпросмотр, когда URL или путь к данным являются результатом счётчика. Для просмотра результата необходимо предварительно просмотреть весь шаблон.",
+                  "preview": "Предпросмотр",
+                  "testResponse": "Тестовый ответ",
+                  "url": "URL (GET)",
+                  "urlWarning": "Не забудьте вернуть действительный URL"
+                },
+                "MathOptions": {
+                  "addNumber": "Добавить число...",
+                  "addition": "Сложение",
+                  "division": "Деление",
+                  "modulo": "Остаток от деления",
+                  "multiplication": "Умножение",
+                  "numberList": "Список чисел",
+                  "numberWarning": "Не забудьте вернуть действительное число",
+                  "operation": "Тип операции",
+                  "selectOperation": "Выберите тип операции",
+                  "subtraction": "Вычитание"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Считать только заблокированных участников"
+                  },
+                  "FilterByAccountType": {
+                    "any": "Любой",
+                    "bot": "Бот",
+                    "label": "Фильтровать по типу аккаунта",
+                    "placeholder": "Выберите тип аккаунта",
+                    "user": "Пользователь"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "Добавить голосовой канал...",
+                    "dataSourceConfigWarning": "Не забудьте вернуть действительный ID голосового канала",
+                    "label": "Фильтровать по подключению к голосовому каналу"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "Добавить роль...",
+                    "dataSourceConfigWarning": "Не забудьте вернуть действительный ID роли",
+                    "label": "Фильтровать по роли"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "Любое совпадение",
+                    "label": "Режим фильтрации",
+                    "overlap": "Пересечение",
+                    "placeholder": "Выберите режим фильтрации"
+                  },
+                  "FilterByStatus": {
+                    "any": "Любой",
+                    "dnd": "Не беспокоить",
+                    "idle": "Неактивен",
+                    "label": "Фильтровать по статусу",
+                    "offline": "Не в сети",
+                    "online": "В сети",
+                    "onlineIdleDnd": "В сети + Неактивен + Не беспокоить",
+                    "placeholder": "Выберите статус"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Фильтровать по игре",
+                    "placeholder": "Добавить игру..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "Отображение",
+                  "followers": "Подписчики",
+                  "memes": "Мемы",
+                  "selectDisplay": "Выберите, что отображать",
+                  "username": "Имя пользователя",
+                  "usernameWarning": "Не забудьте вернуть действительное имя пользователя"
+                },
+                "NumberOptions": {
+                  "number": "Число",
+                  "numberWarning": "Не забудьте вернуть действительное число",
+                  "placeholder": "Введите число или найдите счётчик"
+                },
+                "RedditOptions": {
+                  "display": "Отображение",
+                  "members": "Участники",
+                  "membersOnline": "Участники онлайн",
+                  "selectPlaceholder": "Выберите, что отображать",
+                  "subreddit": "Название subreddit",
+                  "subredditPlaceholder": "Введите subreddit или найдите счётчик",
+                  "subredditWarning": "Не забудьте вернуть действительный subreddit",
+                  "title": "Название subreddit"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "Добавить замену",
+                  "inputText": "Исходный текст",
+                  "removeReplacement": "Удалить замену",
+                  "replaceWith": "Заменить на",
+                  "replacementPlaceholder": "Введите текст замены",
+                  "searchFor": "Искать",
+                  "searchPlaceholder": "Введите поисковый запрос",
+                  "textPlaceholder": "Введите текст для замены"
+                },
+                "TwitchOptions": {
+                  "channelName": "Название канала",
+                  "display": "Отображение",
+                  "followers": "Подписчики",
+                  "selectPlaceholder": "Выберите, что отображать",
+                  "username": "Имя пользователя",
+                  "usernamePlaceholder": "Введите имя пользователя",
+                  "usernameWarning": "Не забудьте вернуть действительное имя пользователя",
+                  "viewers": "Зрители"
+                },
+                "YouTubeOptions": {
+                  "channelName": "Название канала",
+                  "channelUrl": "URL канала",
+                  "channelUrlPlaceholder": "Введите URL канала",
+                  "channelUrlWarning": "Не забудьте вернуть действительный URL канала",
+                  "display": "Отображение",
+                  "selectPlaceholder": "Выберите, что отображать",
+                  "subscribers": "Подписчики",
+                  "videos": "Видео",
+                  "views": "Просмотры"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "Выбор эмодзи",
+            "searchEmoji": "Поиск эмодзи"
+          },
+          "markButtons": {
+            "bold": "жирный",
+            "italic": "курсив",
+            "spoiler": "спойлер",
+            "strike": "зачёркнутый",
+            "underline": "подчёркнутый"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "Политика допустимого использования",
+          "noReasonGiven": "Причина не указана",
+          "supportTeam": "Служба поддержки",
+          "termsOfService": "Условия использования",
+          "text": "Этот сервер был заблокирован за нарушение наших <LinkTerms>Условий использования</LinkTerms> или <LinkPolicy>Политики допустимого использования</LinkPolicy>.<br />Указанная причина: {{reason}}<br />Если вы считаете, что это ошибка, обратитесь в нашу <SupportLink>службу поддержки</SupportLink>."
+        },
+        "channels": {
+          "save": "Сохранить",
+          "saved": "Сохранено",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "Последнее обновление: {{lastTemplateUpdateDate}}",
+              "template": "Шаблон"
+            },
+            "EnableTemplate": {
+              "description": "При включении Member Counter будет автоматически обновлять {{templateTarget}} этого канала для отображения обработанного шаблона.",
+              "enableTemplate": "Включить шаблон",
+              "nameTarget": "название",
+              "topicTarget": "тему"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Проверить снова",
+              "description": "Пожалуйста, убедитесь, что у бота есть следующие разрешения в этом канале:",
+              "permissions": {
+                "connect": "Подключение",
+                "manageChannel": "Управление каналом",
+                "viewChannel": "Просмотр канала"
+              },
+              "title": "У бота нет разрешения на редактирование этого канала."
+            },
+            "TemplateError": {
+              "errorDescription": "При последней обработке шаблона произошла ошибка. Подробности приведены ниже.",
+              "errorTitle": "При последней обработке шаблона произошла ошибка"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "У вас нет прав на управление этим сервером.\nПопросите администратора {{guildName}} выдать вам права администратора или управления сервером.",
+          "title": "Доступ запрещён"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "Закрыть",
+          "message": "Похоже, бот Member Counter отсутствует на этом сервере. Хотите <LinkURL>добавить его</LinkURL>?"
+        },
+        "inviteBotPage": {
+          "addToServer": "Добавить на {{serverName}}",
+          "copyLink": "Скопировать ссылку приглашения",
+          "linkCopied": "Ссылка скопирована в буфер обмена.",
+          "noPermission": "У вас недостаточно прав для добавления бота. Пожалуйста, попросите администратора или пользователя с правом управления сервером добавить этого бота.",
+          "subtitle": "Добавьте Member Counter на {{serverName}} и наслаждайтесь счётчиками в реальном времени.",
+          "title": "Давайте настроим бота!",
+          "useOrShareLink": "Используйте или поделитесь этой ссылкой, чтобы добавить бота."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "Заблокировать сервер",
+            "blockDialogDescription": "Указанная причина будет отображаться администраторам сервера.",
+            "blockDialogTitle": "Вы действительно хотите заблокировать этот сервер?",
+            "closeButton": "Закрыть",
+            "reasonLabel": "Причина",
+            "reasonPlaceholder": "Пожалуйста, укажите причину",
+            "unblockButton": "Разблокировать сервер",
+            "unblockDialogDescription": "Этот сервер был заблокирован по следующей причине: {{reason}}",
+            "unblockDialogTitle": "Вы действительно хотите разблокировать этот сервер?"
+          },
+          "reset": {
+            "closeButton": "Закрыть",
+            "dialogDescription": "Это действие необратимо. Все настройки будут сброшены до значений по умолчанию.",
+            "dialogTitle": "Вы абсолютно уверены?",
+            "resetButton": "Сбросить настройки"
+          },
+          "save": "Сохранить",
+          "saved": "Сохранено",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Пользовательские цифры",
+              "customDigitsDescription": "В счётчиках, возвращающих числа, Member Counter заменит каждую цифру на указанные вами. Это полезно, если вы хотите отображать пользовательские эмодзи или что-то другое, например «шрифты в стиле Unicode».",
+              "customizationRecommendation": "Мы не рекомендуем настраивать цифры, если вы не уверены, что ни один пользователь с программой чтения экрана не будет иметь доступа к счётчикам.",
+              "screenReaderWarning": "Имейте в виду, что пользователи программ чтения с экрана (синтез речи) могут не понять пользовательские цифры и <demoLink>могут услышать что-то непонятное</demoLink>. Программы чтения с экрана часто используются людьми с нарушениями зрения."
+            },
+            "Locale": {
+              "description": "Изменение этого параметра повлияет на отображение некоторых счётчиков.",
+              "locale": "Локаль",
+              "numberExample": "439212 будет отображаться как {{number}}",
+              "searchPlaceholder": "Поиск локали...",
+              "timeExample": "15:30 (или 3:30 PM) будет отображаться как {{time}}"
+            },
+            "UseCompactNotation": {
+              "description": "Счётчики, возвращающие числа, будут отображаться в более компактном виде.",
+              "example1": "12300 будет отображаться как {{number}}",
+              "example2": "439212 будет отображаться как {{number}}",
+              "example3": "1500000 будет отображаться как {{number}}",
+              "label": "Использовать компактную запись для чисел"
+            }
+          },
+          "title": "Настройки сервера"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "Получите максимум от ваших счётчиков, настроенных под ваши потребности.",
+            "label": "Как профессионал",
+            "title": "Продвинутые счётчики"
+          },
+          "createFromScratch": {
+            "description": "Узнайте, как создать свой первый пользовательский счётчик за несколько минут.",
+            "label": "Будьте уникальны!",
+            "title": "Создать с нуля"
+          },
+          "queryHistoricalStatistics": {
+            "description": "Посмотрите, как ваши счётчики и другая статистика менялись со временем.",
+            "label": "Скоро™",
+            "title": "Историческая статистика"
+          },
+          "quickSetup": {
+            "description": "Быстро создайте самые популярные счётчики в несколько кликов. Никакой фантазии не требуется!",
+            "label": "Без хлопот!",
+            "title": "Быстрая настройка"
+          },
+          "subTitle": "Вот несколько предложений для вас:",
+          "title": "С возвращением!"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "Произошла непредвиденная ошибка.",
+        "NotAuthenticated": "Вы не авторизованы.",
+        "NotAuthorized": "У вас нет доступа к этой странице.",
+        "NotFound": "Запрашиваемая страница не найдена."
+      },
+      "nav": {
+        "backBtn": "Назад",
+        "homeBtn": "На главную",
+        "supportBtn": "Поддержка",
+        "tryAgainBtn": "Попробовать снова"
+      }
+    },
+    "status": {
+      "affectedServers": "Затронутые серверы Discord:",
+      "assignedDiscordServers": "Назначены этому узлу:",
+      "child": "Узел #{{index}}",
+      "childDiscordServers": "{{count}} серверов Discord {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} недоступно)",
+      "childDiscordUsers": "{{count}} пользователей",
+      "discordClientStatus": {
+        "Connecting": "Подключение",
+        "Disconnected": "Отключён",
+        "Identifying": "Идентификация",
+        "Idle": "Ожидание",
+        "Nearly": "Ожидание",
+        "Ready": "Готов",
+        "Reconnecting": "Переподключение",
+        "Resuming": "Возобновление",
+        "WaitingForGuilds": "Ожидание серверов"
+      },
+      "memoryUsage": "{{usage}} (пик {{peak}})",
+      "memoryUsageTooltip": "Использование памяти",
+      "partialOutage": "Частичный сбой",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} ядер\nНагрузка {{load}}",
+        "cpuLabel": "Процессор",
+        "hostname": "Имя",
+        "memoryInfo": "{{memory}}\n{{usage}}% использовано",
+        "memoryLabel": "Память",
+        "title": "Информация о сервере"
+      },
+      "statusUnavailable": "Статус недоступен"
     }
   }
 }

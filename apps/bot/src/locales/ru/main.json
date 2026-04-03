@@ -1,1 +1,213 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Что-то пошло не так, пожалуйста, попробуйте позже.\n\nID ошибки: {{ERROR_ID}}",
+        "title": "ОШИБКА!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Перейти в панель управления",
+        "definition": {
+          "slash": {
+            "description": "Получить ссылку для настройки бота на сайте.",
+            "name": "настройка"
+          }
+        },
+        "reply": "Нажмите ниже, чтобы настроить бота в панели управления.\nВы также можете настроить базовые счётчики с помощью команды {{SETUP_COMMAND}}, не покидая Discord."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Список полезных ссылок и другая информация.",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[Добавить меня на сервер]({{BOT_INVITE_URL}})\n[Веб-сайт]({{OFFICIAL_WEBSITE_URL}})\n[Сервер поддержки]({{BOT_SUPPORT_URL}})\n[Репозиторий GitHub]({{BOT_REPO_URL}})\n[Версия бота: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Добавить на сервер",
+        "addToServerAgain": "Добавить на этот сервер снова",
+        "definition": {
+          "slash": {
+            "description": "Предоставляет ссылку-приглашение для добавления бота.",
+            "name": "пригласить"
+          }
+        },
+        "description": "Ваша ссылка-приглашение готова:\n{{INVITE_URL}}",
+        "joinSupportServer": "Присоединиться к серверу поддержки"
+      },
+      "profile": {
+        "badges": "Значки",
+        "definition": {
+          "context": {
+            "name": "Профиль"
+          },
+          "slash": {
+            "description": "Показывает информацию о вашем взаимодействии с ботом.",
+            "name": "профиль",
+            "options": {
+              "user": {
+                "description": "Пользователь, чей профиль вы хотите посмотреть.",
+                "name": "пользователь"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Удалить данные",
+        "deleteProfilePrompt": {
+          "cancelButton": "Отмена",
+          "confirmButton": "Да",
+          "description": "Это действие нельзя отменить.",
+          "removeDataSuccess": "Данные были успешно удалены.",
+          "title": "Вы уверены, что хотите удалить данные?"
+        },
+        "moreOptionsButton": "Дополнительные параметры",
+        "userNotFound": "Пользователь не найден"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Настроить базовые счётчики.",
+            "name": "setup",
+            "subcommands": {
+              "server": {
+                "description": "Настроить счётчики, связанные с сервером.",
+                "name": "сервер"
+              },
+              "twitch": {
+                "description": "Настроить счётчики, связанные с Twitch.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "Имя пользователя канала.",
+                    "name": "имя"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "Настроить счётчики, связанные с YouTube.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "URL-адрес канала.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Создание завершено.",
+          "configureSuggestion": "Попробуйте {{CONFIGURE_COMMAND}} для более детальной настройки.",
+          "createdCategory": "{{ICON}} Категория создана.",
+          "createdChannel": "{{ICON}} {{NAME}} создан.",
+          "creating": "Создание счётчиков...",
+          "creatingCategory": "{{ICON}} Создание категории.",
+          "creatingChannel": "{{ICON}} Создание счётчика {{NAME}}.",
+          "failedCategory": "{{ICON}} Не удалось создать категорию.",
+          "failedChannel": "{{ICON}} Не удалось создать {{NAME}}."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Статистика сервера \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Участники онлайн",
+                "template": "Онлайн: {{COUNTER}}"
+              },
+              {
+                "name": "Участники",
+                "template": "Участники: {{COUNTER}}"
+              },
+              {
+                "name": "Бустеры Nitro",
+                "template": "Бустеры: {{COUNTER}}"
+              },
+              {
+                "name": "Роли",
+                "template": "Роли: {{COUNTER}}"
+              },
+              {
+                "name": "Каналы",
+                "template": "Каналы: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA Статистика Twitch {{COUNTER}} \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Подписчики Twitch",
+                "template": "{{COUNTER}} подписчиков"
+              },
+              {
+                "name": "Зрители Twitch",
+                "template": "Зрители: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA Статистика YouTube {{COUNTER}} \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Подписчики YouTube",
+                "template": "{{COUNTER}} подписчиков"
+              },
+              {
+                "name": "Видео YouTube",
+                "template": "{{COUNTER}} видео"
+              },
+              {
+                "name": "Просмотры YouTube",
+                "template": "{{COUNTER}} просмотров"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "ОШИБКА!"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "Некорректный запрос.",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "У бота недостаточно привилегированных разрешений (intents) для использования этого счётчика.",
+    "BOT_IS_NOT_PREMIUM": "Бот не является премиум-версией и не имеет функций, необходимых для этого счётчика.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Счётчик имеет нераспознанный формат.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "Счётчик недействителен.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Результат для имени канала содержит менее 2 символов.",
+    "EVALUATION_TIMEOUT": "Вычисление заняло слишком много времени и было прервано.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "Не удалось сформировать итоговую строку из результата вычисления.",
+    "FORBIDDEN": "Доступ запрещён.",
+    "GAME_MISSING_ADDRESS": "Для игрового счётчика требуется адрес сервера.",
+    "GAME_MISSING_GAME_ID": "Для игрового счётчика необходимо указать ID игры.",
+    "GAME_MISSING_PORT": "Для игрового счётчика требуется порт сервера.",
+    "HTTP_DATA_PATH_MANDATORY": "Необходимо указать путь к данным для HTTP-запросов с типом содержимого application/json.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Недопустимый тип содержимого HTTP-ответа (не text/plain и не application/json).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "Недопустимый код состояния HTTP-ответа (не 200).",
+    "HTTP_MISSING_URL": "Для HTTP-счётчика требуется URL-адрес, который не указан.",
+    "INTERNAL_SERVER_ERROR": "Произошла внутренняя ошибка сервера.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "Количество участников в данный момент недоступно.",
+    "MEMERATOR_MISSING_USERNAME": "Для счётчика Memerator требуется имя пользователя, которое не указано.",
+    "NOT_FOUND": "Запрашиваемый ресурс не найден.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "У бота недостаточно прав для редактирования канала.",
+    "REDDIT_MISSING_SUBREDDIT": "Для счётчика Reddit необходимо указать сабреддит.",
+    "TWITCH_CHANNEL_NOT_FOUND": "Указанный канал Twitch не найден.",
+    "TWITCH_MISSING_USERNAME": "Для счётчика Twitch необходимо указать имя пользователя.",
+    "UNAUTHORIZED": "Запрос не авторизован.",
+    "UNKNOWN": "Произошла неизвестная ошибка.",
+    "UNKNOWN_DATA_SOURCE": "Указанный счётчик неизвестен или не распознан.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "Неизвестный тип значения, возвращённого при вычислении.",
+    "USER_NOT_FOUND": "Пользователь не найден.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "Указан недействительный URL-адрес канала YouTube.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "Для счётчика YouTube необходимо указать URL-адрес канала."
+  }
+}

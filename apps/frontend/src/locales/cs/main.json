@@ -11,6 +11,7 @@
     },
     "knownError": "Chyba",
     "knownErrors": {
+      "BAD_REQUEST": "Požadavek byl neplatný.",
       "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Bot nemá dostatek privilegovaných intencí, aby mohl toto počítadlo použít.",
       "BOT_IS_NOT_PREMIUM": "Bot není prémiová verze a postrádá některé funkce potřebné pro toto počítadlo.",
       "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Čítač je v nerozpoznaném formátu.",
@@ -18,6 +19,7 @@
       "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Výsledek pro název kanálu je kratší než 2 znaky.",
       "EVALUATION_TIMEOUT": "Vyhodnocení trvalo příliš dlouho a skončilo.",
       "FAILED_TO_RETURN_A_FINAL_STRING": "Nepodařilo se vygenerovat konečný řetězec z vyhodnocení.",
+      "FORBIDDEN": "Požadavek byl zamítnut.",
       "GAME_MISSING_ADDRESS": "Počítadlo her vyžaduje adresu serveru.",
       "GAME_MISSING_GAME_ID": "Na počítadle her musí být uvedeno ID hry.",
       "GAME_MISSING_PORT": "Počítadlo her vyžaduje port serveru.",
@@ -25,12 +27,15 @@
       "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Typ obsahu odpovědi HTTP je neplatný (není text/plain nebo application/json).",
       "HTTP_INVALID_RESPONSE_STATUS_CODE": "Stavový kód odpovědi HTTP je neplatný (nikoli 200).",
       "HTTP_MISSING_URL": "Počítadlo HTTP vyžaduje adresu URL, která chybí.",
+      "INTERNAL_SERVER_ERROR": "Došlo k interní chybě serveru.",
       "MEMBER_COUNT_NOT_AVAILABLE": "Počty členů nejsou v tuto chvíli k dispozici.",
       "MEMERATOR_MISSING_USERNAME": "Počítadlo Memerator vyžaduje uživatelské jméno, které chybí.",
+      "NOT_FOUND": "Požadovaný zdroj nebyl nalezen.",
       "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Bot nemá dostatečná oprávnění k úpravám kanálu.",
       "REDDIT_MISSING_SUBREDDIT": "Pro uživatele Redditu musí být uveden subreddit.",
       "TWITCH_CHANNEL_NOT_FOUND": "Zadaný kanál Twitch se nepodařilo najít.",
       "TWITCH_MISSING_USERNAME": "Počítadlo Twitch vyžaduje nastavení uživatelského jména.",
+      "UNAUTHORIZED": "Požadavek nebyl autorizován.",
       "UNKNOWN": "Došlo k neznámé chybě.",
       "UNKNOWN_DATA_SOURCE": "Poskytnuté počítadlo je neznámé nebo není rozpoznáno.",
       "UNKNOWN_EVALUATION_RETURN_TYPE": "Typ hodnoty vrácené z vyhodnocení není znám.",
@@ -199,6 +204,7 @@
       "description": "Počítejte členy, můžete je také filtrovat podle jejich online stavu, konkrétních rolí a dalších údajů.",
       "display": {
         "accountStatus": {
+          "any": " ",
           "dnd": "NERUŠIT",
           "idle": "nečinnost",
           "offline": "offline",
@@ -317,6 +323,9 @@
       }
     }
   },
+  "meta": {
+    "description": "Member Counter - Discord bot pro počítání členů a mnohem více"
+  },
   "pages": {
     "account": {
       "deleteButton": {
@@ -409,6 +418,15 @@
               "title": "Kanály"
             },
             "description": "Popis",
+            "features": {
+              "options": {
+                "Community": "Komunita",
+                "Discoverable": "Objevitelný",
+                "Partnered": "Partnerský",
+                "Verified": "Ověřený"
+              },
+              "title": "Funkce"
+            },
             "icon": "Ikona URL",
             "language": "Jazyk",
             "links": {
@@ -421,6 +439,15 @@
               "title": "Linky"
             },
             "name": "Název serveru",
+            "premiumTier": {
+              "options": {
+                "None": "Žádný",
+                "Tier1": "Úroveň 1",
+                "Tier2": "Úroveň 2",
+                "Tier3": "Úroveň 3"
+              },
+              "title": "Prémiová úroveň"
+            },
             "priority": "Priorita",
             "save": "Uložit",
             "saved": "Uloženo",
@@ -795,6 +822,16 @@
               "enableTemplate": "Povolit šablonu",
               "nameTarget": "jméno",
               "topicTarget": "téma"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Zkontrolovat znovu",
+              "description": "Ověřte prosím, že bot má v tomto kanálu následující oprávnění:",
+              "permissions": {
+                "connect": "Připojit se",
+                "manageChannel": "Spravovat kanál",
+                "viewChannel": "Zobrazit kanál"
+              },
+              "title": "Bot nemá oprávnění upravovat tento kanál."
             },
             "TemplateError": {
               "errorDescription": "Při posledním zpracování šablony došlo k chybě. Podrobnosti jsou uvedeny níže.",

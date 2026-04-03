@@ -11,6 +11,7 @@
     },
     "knownError": "Error",
     "knownErrors": {
+      "BAD_REQUEST": "La solicitud no era válida.",
       "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "El bot no tiene suficientes intents privilegiados para usar este contador.",
       "BOT_IS_NOT_PREMIUM": "El bot no es una versión premium y carece de ciertas características necesarias para este contador.",
       "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "El contador está en un formato no reconocido.",
@@ -18,6 +19,7 @@
       "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "El resultado para el nombre del canal tiene menos de 2 caracteres.",
       "EVALUATION_TIMEOUT": "La evaluación tardó demasiado y expiró.",
       "FAILED_TO_RETURN_A_FINAL_STRING": "No se pudo generar una cadena final a partir de la evaluación.",
+      "FORBIDDEN": "La solicitud fue denegada.",
       "GAME_MISSING_ADDRESS": "El contador de juego requiere una dirección de servidor.",
       "GAME_MISSING_GAME_ID": "Se debe proporcionar un ID de juego para el contador de juego.",
       "GAME_MISSING_PORT": "El contador de juego requiere un puerto de servidor.",
@@ -25,12 +27,15 @@
       "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "El tipo de contenido de la respuesta HTTP no es válido (no es text/plain ni application/json).",
       "HTTP_INVALID_RESPONSE_STATUS_CODE": "El código de estado de la respuesta HTTP no es válido (no es 200).",
       "HTTP_MISSING_URL": "El contador HTTP requiere una URL, que falta.",
+      "INTERNAL_SERVER_ERROR": "Ocurrió un error interno del servidor.",
       "MEMBER_COUNT_NOT_AVAILABLE": "El recuento de miembros no está disponible en este momento.",
       "MEMERATOR_MISSING_USERNAME": "El contador de Memerator requiere un nombre de usuario, que falta.",
+      "NOT_FOUND": "El recurso solicitado no fue encontrado.",
       "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "El bot no tiene permisos suficientes para editar el canal.",
       "REDDIT_MISSING_SUBREDDIT": "Se debe proporcionar un subreddit para el contador de Reddit.",
       "TWITCH_CHANNEL_NOT_FOUND": "No se pudo encontrar el canal de Twitch especificado.",
       "TWITCH_MISSING_USERNAME": "El contador de Twitch requiere que se establezca un nombre de usuario.",
+      "UNAUTHORIZED": "La solicitud no estaba autorizada.",
       "UNKNOWN": "Ocurrió un error desconocido.",
       "UNKNOWN_DATA_SOURCE": "El contador proporcionado es desconocido o no reconocido.",
       "UNKNOWN_EVALUATION_RETURN_TYPE": "El tipo de valor devuelto de la evaluación es desconocido.",
@@ -155,6 +160,14 @@
       "keywords": "cuenta regresiva,temporizador",
       "name": "Cuenta regresiva"
     },
+    "date": {
+      "description": "Muestra la fecha actual ajustada a tu zona horaria preferida.",
+      "display": {
+        "syntax": "Fecha ({{timezone}})"
+      },
+      "keywords": "fecha,calendario,zona horaria",
+      "name": "Fecha"
+    },
     "game": {
       "description": "Recupera el número actual de jugadores en línea en tu servidor de juegos, compatible con más de 320 juegos.",
       "display": {
@@ -191,10 +204,12 @@
       "description": "Cuenta miembros, también puedes filtrarlos por su estado en línea, roles específicos y más.",
       "display": {
         "accountStatus": {
+          "any": " ",
           "dnd": "No molestar",
           "idle": "ausente",
           "offline": "desconectado",
-          "online": "en línea"
+          "online": "en línea",
+          "onlineIdleDnd": "en línea + ausente + No molestar"
         },
         "accountType": {
           "any": "miembros",
@@ -403,6 +418,15 @@
               "title": "Canales"
             },
             "description": "Descripción",
+            "features": {
+              "options": {
+                "Community": "Comunidad",
+                "Discoverable": "Descubrible",
+                "Partnered": "Asociado",
+                "Verified": "Verificado"
+              },
+              "title": "Características"
+            },
             "icon": "URL del icono",
             "language": "Idioma",
             "links": {
@@ -415,6 +439,15 @@
               "title": "Enlaces"
             },
             "name": "Nombre del servidor",
+            "premiumTier": {
+              "options": {
+                "None": "Ninguno",
+                "Tier1": "Nivel 1",
+                "Tier2": "Nivel 2",
+                "Tier3": "Nivel 3"
+              },
+              "title": "Nivel premium"
+            },
             "priority": "Prioridad",
             "save": "Guardar",
             "saved": "Guardado",
@@ -449,6 +482,10 @@
           "countdown": {
             "description": "Crea y gestiona temporizadores de cuenta regresiva adaptados a tus eventos o plazos específicos.",
             "title": "Cuenta regresiva"
+          },
+          "date": {
+            "description": "Muestra la fecha actual en cualquier zona horaria con formato personalizable. Ideal para mostrar fechas en diferentes regiones.",
+            "title": "Fecha"
           },
           "discordMembers": {
             "description": "Cuenta y filtra miembros por estado en línea, roles y otros criterios para obtener información precisa sobre tu comunidad.",
@@ -579,6 +616,13 @@
                 },
                 "ClockOptions": {
                   "configWarning": "Recuerda devolver un identificador de zona horaria válido",
+                  "counterPreview": "No podemos mostrarte una vista previa en vivo cuando el formato es el resultado de un contador, debes previsualizar toda la plantilla para ver cómo se verá.",
+                  "defaultFormat": "%f",
+                  "format": "Formato",
+                  "formatConfigWarning": "Recuerda devolver una cadena de formato válida",
+                  "formatInstructions": "Marcadores disponibles:\n• <code>%H</code> - Hora con cero inicial, 24 horas (00-23)\n• <code>%h</code> - Hora sin cero inicial, 24 horas (0-23)\n• <code>%I</code> - Hora con cero inicial, 12 horas (01-12)\n• <code>%i</code> - Hora sin cero inicial, 12 horas (1-12)\n• <code>%M</code> - Minuto con cero inicial (00-59)\n• <code>%m</code> - Minuto sin cero inicial (0-59)\n• <code>%S</code> - Segundo con cero inicial (00-59)\n• <code>%s</code> - Segundo sin cero inicial (0-59)\n• <code>%p</code> - am/pm (minúsculas)\n• <code>%P</code> - AM/PM (mayúsculas)\n• <code>%f</code> - Formato predeterminado según la configuración regional",
+                  "livePreview": "Vista previa en vivo",
+                  "noPreview": "No podemos mostrarte una vista previa en vivo cuando el formato está vacío.",
                   "searchTimezonePlaceholder": "Buscar zona horaria...",
                   "timezone": "Zona horaria"
                 },
@@ -597,6 +641,18 @@
                   "livePreview": "Vista previa en vivo",
                   "noPreview": "No podemos mostrarte una vista previa en vivo cuando la fecha objetivo o el formato están vacíos.",
                   "targetDate": "Fecha objetivo"
+                },
+                "DateOptions": {
+                  "configWarning": "Recuerda devolver un identificador de zona horaria válido",
+                  "counterPreview": "No podemos mostrarte una vista previa en vivo cuando el formato es el resultado de un contador, debes previsualizar toda la plantilla para ver cómo se verá.",
+                  "defaultFormat": "%f",
+                  "format": "Formato",
+                  "formatConfigWarning": "Recuerda devolver una cadena de formato válida",
+                  "formatInstructions": "Marcadores disponibles:\n• <code>%Y</code> - Año completo (2025)\n• <code>%y</code> - Año de 2 dígitos (25)\n• <code>%Ms</code> - Nombre completo del mes (noviembre)\n• <code>%ms</code> - Nombre corto del mes (nov)\n• <code>%M</code> - Número de mes con cero inicial (01-12)\n• <code>%m</code> - Número de mes (1-12)\n• <code>%Ws</code> - Nombre completo del día de la semana (lunes)\n• <code>%ws</code> - Nombre corto del día de la semana (lun)\n• <code>%w</code> - Número del día de la semana (0=domingo, 6=sábado)\n• <code>%D</code> - Día con cero inicial (05)\n• <code>%d</code> - Día sin cero inicial (5)\n• <code>%f</code> - Formato predeterminado según la configuración regional",
+                  "livePreview": "Vista previa en vivo",
+                  "noPreview": "No podemos mostrarte una vista previa en vivo cuando el formato está vacío.",
+                  "searchTimezonePlaceholder": "Buscar zona horaria...",
+                  "timezone": "Zona horaria"
                 },
                 "GameOptions": {
                   "address": "Dirección",
@@ -669,6 +725,7 @@
                     "label": "Filtrar por estado",
                     "offline": "Desconectado",
                     "online": "En línea",
+                    "onlineIdleDnd": "En línea + Ausente + No molestar",
                     "placeholder": "Selecciona un estado"
                   },
                   "FilterPlayingGame": {

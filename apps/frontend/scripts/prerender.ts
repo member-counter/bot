@@ -58,8 +58,10 @@ async function prerender() {
       const descriptionMatch =
         /<meta\s+name="description"\s+content="([^"]*)"/.exec(appHtml);
 
-      let finalHtml = template
-        .replace('<html lang="en">', `<html lang="${lang}">`);
+      let finalHtml = template.replace(
+        '<html lang="en">',
+        `<html lang="${lang}">`,
+      );
 
       // Patch the <head> meta description with the translated value
       if (descriptionMatch?.[1]) {
