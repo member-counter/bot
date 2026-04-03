@@ -454,75 +454,6 @@
             "title": "Upravit demo server"
           },
           "title": "Demo servery"
-        },
-        "headings": [
-          "Dynamické zobrazení počtu členů serveru",
-          "Pochlubte se počtem odběratelů YouTube",
-          "Sledování počtu hráčů na serveru Minecraft",
-          "Pochlubte se, kolik lidí sleduje váš kanál na Twitchi",
-          "Zobrazení libovolných údajů na serveru Discord",
-          "Sledování počtu hráčů na serveru FiveM",
-          "Zobrazení hodin upravených podle preferovaného časového pásma",
-          "Vytváření odpočítávání pro události nebo zvláštní příležitosti",
-          "Sledování statistik hráčů na více než 320 herních serverech",
-          "Získávání a zobrazování dat z libovolného koncového bodu API",
-          "Provádění a zobrazování matematických operací s daty",
-          "Formátování čísel a jejich krásné zobrazení",
-          "Zvýrazněte boostery Nitro na svém serveru"
-        ],
-        "supportedCounters": {
-          "andMuchMore": {
-            "description": "Objevte ještě více funkcí a počítadel, které mohou vylepšit vaše zážitky. Zůstaňte naladěni na aktualizace!",
-            "title": "A mnoho dalšího!"
-          },
-          "clock": {
-            "description": "Pomocí našich přizpůsobitelných hodin můžete zobrazit čas v libovolném časovém pásmu. Ideální pro koordinaci v různých regionech.",
-            "title": "Hodiny"
-          },
-          "countdown": {
-            "description": "Vytvářejte a spravujte časovače odpočítávání přizpůsobené konkrétním událostem nebo termínům.",
-            "title": "Odpočet"
-          },
-          "date": {
-            "description": "Zobrazení aktuálního data v libovolném časovém pásmu s přizpůsobitelným formátováním. Skvělé pro zobrazování dat v různých regionech.",
-            "title": "Datum"
-          },
-          "discordMembers": {
-            "description": "Počítejte a filtrujte členy podle online stavu, rolí a dalších kritérií, abyste získali přesné informace o své komunitě.",
-            "title": "Členové Discordu"
-          },
-          "game": {
-            "description": "Sledujte aktivitu svého herního serveru s počty hráčů v reálném čase pro více než 320 podporovaných her.",
-            "title": "Hra"
-          },
-          "http": {
-            "description": "Provádějte požadavky GET a přijímejte data přímo z libovolného koncového bodu, čímž zefektivníte své integrační potřeby.",
-            "title": "HTTP"
-          },
-          "math": {
-            "description": "Provádějte řadu matematických operací včetně sčítání, odčítání, násobení a dalších s více čísly.",
-            "title": "Matika"
-          },
-          "nitroBoosters": {
-            "description": "Sledujte počet posilovačů Nitro na svém serveru, abyste zjistili podporu a zapojení komunity.",
-            "title": "Nitro Boosteři"
-          },
-          "reddit": {
-            "description": "Získejte statistiky o jakémkoli subredditu, včetně názvu, počtu členů a online členů.",
-            "title": "Reddit"
-          },
-          "replace": {
-            "description": "Dynamicky upravujte text pomocí našeho výkonného nástroje pro nahrazování, který je ideální ve spojení s počítadlem HTTP.",
-            "title": "Nahradit"
-          },
-          "twitch": {
-            "description": "Sledujte metriky kanálu Twitch, jako je počet sledujících a statistiky zobrazení, a mějte přehled o svých oblíbených streamech.",
-            "title": "Twitch"
-          },
-          "youtube": {
-            "description": "Získejte klíčové metriky z kanálů YouTube včetně počtu odběratelů, počtu videí a celkového počtu zhlédnutí.",
-            "title": "YouTube"
-          }
         }
       },
       "users": {
@@ -562,6 +493,83 @@
         },
         "recentUsers": "Poslední uživatelé",
         "userNotRegistered": "Tento uživatel není registrován."
+      }
+    },
+    "home": {
+      "addToDiscord": "Přidat na Discord",
+      "dashboard": "Panel",
+      "getSupport": "Získat podporu",
+      "seeHowPeopleUseIt": "Podívej se, jak to lidé používají",
+      "seeMore": "Zobrazit více",
+      "supportedCounters_heading": "Podporovaná počítadla",
+      "headings": [
+        "Dynamické zobrazení počtu členů serveru",
+        "Pochlubte se počtem odběratelů YouTube",
+        "Sledování počtu hráčů na serveru Minecraft",
+        "Pochlubte se, kolik lidí sleduje váš kanál na Twitchi",
+        "Zobrazení libovolných údajů na serveru Discord",
+        "Sledování počtu hráčů na serveru FiveM",
+        "Zobrazení hodin upravených podle preferovaného časového pásma",
+        "Vytváření odpočítávání pro události nebo zvláštní příležitosti",
+        "Sledování statistik hráčů na více než 320 herních serverech",
+        "Získávání a zobrazování dat z libovolného koncového bodu API",
+        "Provádění a zobrazování matematických operací s daty",
+        "Formátování čísel a jejich krásné zobrazení",
+        "Zvýrazněte boostery Nitro na svém serveru"
+      ],
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Objevte ještě více funkcí a počítadel, které mohou vylepšit vaše zážitky. Zůstaňte naladěni na aktualizace!",
+          "title": "A mnoho dalšího!"
+        },
+        "clock": {
+          "description": "Pomocí našich přizpůsobitelných hodin můžete zobrazit čas v libovolném časovém pásmu. Ideální pro koordinaci v různých regionech.",
+          "title": "Hodiny"
+        },
+        "countdown": {
+          "description": "Vytvářejte a spravujte časovače odpočítávání přizpůsobené konkrétním událostem nebo termínům.",
+          "title": "Odpočet"
+        },
+        "date": {
+          "description": "Zobrazení aktuálního data v libovolném časovém pásmu s přizpůsobitelným formátováním. Skvělé pro zobrazování dat v různých regionech.",
+          "title": "Datum"
+        },
+        "discordMembers": {
+          "description": "Počítejte a filtrujte členy podle online stavu, rolí a dalších kritérií, abyste získali přesné informace o své komunitě.",
+          "title": "Členové Discordu"
+        },
+        "game": {
+          "description": "Sledujte aktivitu svého herního serveru s počty hráčů v reálném čase pro více než 320 podporovaných her.",
+          "title": "Hra"
+        },
+        "http": {
+          "description": "Provádějte požadavky GET a přijímejte data přímo z libovolného koncového bodu, čímž zefektivníte své integrační potřeby.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Provádějte řadu matematických operací včetně sčítání, odčítání, násobení a dalších s více čísly.",
+          "title": "Matika"
+        },
+        "nitroBoosters": {
+          "description": "Sledujte počet posilovačů Nitro na svém serveru, abyste zjistili podporu a zapojení komunity.",
+          "title": "Nitro Boosteři"
+        },
+        "reddit": {
+          "description": "Získejte statistiky o jakémkoli subredditu, včetně názvu, počtu členů a online členů.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Dynamicky upravujte text pomocí našeho výkonného nástroje pro nahrazování, který je ideální ve spojení s počítadlem HTTP.",
+          "title": "Nahradit"
+        },
+        "twitch": {
+          "description": "Sledujte metriky kanálu Twitch, jako je počet sledujících a statistiky zobrazení, a mějte přehled o svých oblíbených streamech.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Získejte klíčové metriky z kanálů YouTube včetně počtu odběratelů, počtu videí a celkového počtu zhlédnutí.",
+          "title": "YouTube"
+        }
       }
     },
     "dashboard": {

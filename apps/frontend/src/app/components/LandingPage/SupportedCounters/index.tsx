@@ -35,98 +35,78 @@ export const SupportedCounters = () => {
       <SupportedCountersCard
         imgBgSrc={discordBg}
         icon={DiscordIcon}
-        title={t("pages.admin.homePage.supportedCounters.discordMembers.title")}
+        title={t("pages.home.supportedCounters.discordMembers.title")}
         description={t(
-          "pages.admin.homePage.supportedCounters.discordMembers.description",
+          "pages.home.supportedCounters.discordMembers.description",
         )}
       />
       <SupportedCountersCard
         imgBgSrc={map}
         icon={ClockIcon}
-        title={t("pages.admin.homePage.supportedCounters.clock.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.clock.description",
-        )}
+        title={t("pages.home.supportedCounters.clock.title")}
+        description={t("pages.home.supportedCounters.clock.description")}
       />
       <SupportedCountersCard
         imgBgSrc={hourglass}
         icon={HourglassIcon}
-        title={t("pages.admin.homePage.supportedCounters.countdown.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.countdown.description",
-        )}
+        title={t("pages.home.supportedCounters.countdown.title")}
+        description={t("pages.home.supportedCounters.countdown.description")}
       />
       <SupportedCountersCard
         imgBgSrc={game}
         icon={GamepadIcon}
-        title={t("pages.admin.homePage.supportedCounters.game.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.game.description",
-        )}
+        title={t("pages.home.supportedCounters.game.title")}
+        description={t("pages.home.supportedCounters.game.description")}
       />
       <SupportedCountersCard
         imgBgSrc={datacenter}
         icon={LinkIcon}
-        title={t("pages.admin.homePage.supportedCounters.http.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.http.description",
-        )}
+        title={t("pages.home.supportedCounters.http.title")}
+        description={t("pages.home.supportedCounters.http.description")}
       />
       <SupportedCountersCard
         imgBgSrc={blackboard}
         icon={CalculatorIcon}
-        title={t("pages.admin.homePage.supportedCounters.math.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.math.description",
-        )}
+        title={t("pages.home.supportedCounters.math.title")}
+        description={t("pages.home.supportedCounters.math.description")}
       />
       <SupportedCountersCard
         imgBgSrc={nitroBoosters}
         icon={PartyPopperIcon}
-        title={t("pages.admin.homePage.supportedCounters.nitroBoosters.title")}
+        title={t("pages.home.supportedCounters.nitroBoosters.title")}
         description={t(
-          "pages.admin.homePage.supportedCounters.nitroBoosters.description",
+          "pages.home.supportedCounters.nitroBoosters.description",
         )}
       />
       <SupportedCountersCard
         imgBgSrc={snoo}
         icon={CakeSliceIcon}
-        title={t("pages.admin.homePage.supportedCounters.reddit.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.reddit.description",
-        )}
+        title={t("pages.home.supportedCounters.reddit.title")}
+        description={t("pages.home.supportedCounters.reddit.description")}
       />
       <SupportedCountersCard
         imgBgSrc={document}
         icon={EditIcon}
-        title={t("pages.admin.homePage.supportedCounters.replace.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.replace.description",
-        )}
+        title={t("pages.home.supportedCounters.replace.title")}
+        description={t("pages.home.supportedCounters.replace.description")}
       />
       <SupportedCountersCard
         imgBgSrc={twitchBg}
         icon={TwitchIcon}
-        title={t("pages.admin.homePage.supportedCounters.twitch.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.twitch.description",
-        )}
+        title={t("pages.home.supportedCounters.twitch.title")}
+        description={t("pages.home.supportedCounters.twitch.description")}
       />
       <SupportedCountersCard
         imgBgSrc={youtubeBg}
         icon={YoutubeIcon}
-        title={t("pages.admin.homePage.supportedCounters.youtube.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.youtube.description",
-        )}
+        title={t("pages.home.supportedCounters.youtube.title")}
+        description={t("pages.home.supportedCounters.youtube.description")}
       />
       <SupportedCountersCard
         imgBgSrc={highlight}
         icon={SparklesIcon}
-        title={t("pages.admin.homePage.supportedCounters.andMuchMore.title")}
-        description={t(
-          "pages.admin.homePage.supportedCounters.andMuchMore.description",
-        )}
+        title={t("pages.home.supportedCounters.andMuchMore.title")}
+        description={t("pages.home.supportedCounters.andMuchMore.description")}
       />
     </div>
   );

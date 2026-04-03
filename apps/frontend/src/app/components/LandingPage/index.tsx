@@ -22,11 +22,9 @@ const Background = lazy(() =>
   import("./Background").then((m) => ({ default: m.Background })),
 );
 
-// TODO SOME PARTS NOT TRANSLATED
-
 export default function LandingPage() {
   const { t } = useTranslation();
-  const subheadings = t("pages.admin.homePage.headings", {
+  const subheadings = t("pages.home.headings", {
     returnObjects: true,
   });
 
@@ -77,13 +75,15 @@ export default function LandingPage() {
         </h2>
         <div className="mt-6 flex w-full flex-col gap-2 px-2 sm:mt-3 sm:w-auto sm:flex-row [&>*>*]:w-full">
           <a href={routes.invite.$buildPath({})} target="_blank">
-            <Button icon={DiscordIcon}>Add to Discord</Button>
+            <Button icon={DiscordIcon}>{t("pages.home.addToDiscord")}</Button>
           </a>
           <a href={routes.support.$buildPath({})} target="_blank">
-            <Button icon={LifeBuoyIcon}>Get Support</Button>
+            <Button icon={LifeBuoyIcon}>{t("pages.home.getSupport")}</Button>
           </a>
           <Link to={routes.dashboard.$buildPath({})}>
-            <Button icon={SlidersHorizontalIcon}>Dashboard</Button>
+            <Button icon={SlidersHorizontalIcon}>
+              {t("pages.home.dashboard")}
+            </Button>
           </Link>
         </div>
         <div className="grow"></div>
@@ -96,12 +96,12 @@ export default function LandingPage() {
             },
           )}
         >
-          See more
+          {t("pages.home.seeMore")}
           <ChevronDownIcon className="relative bottom-[1px] ml-2 inline" />
         </a>
         <div className="relative top-2 hidden flex-col gap-3 lg:flex">
           <h3 className="text-center text-xl font-bold">
-            See how people use it
+            {t("pages.home.seeHowPeopleUseIt")}
           </h3>
           <DiscordDemo />
         </div>
@@ -111,7 +111,7 @@ export default function LandingPage() {
           className="pt-[64px] text-center text-xl font-bold"
           id="supported-features"
         >
-          Supported counters
+          {t("pages.home.supportedCounters_heading")}
         </h3>
         <SupportedCounters />
       </div>

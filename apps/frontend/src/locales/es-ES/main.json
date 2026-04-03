@@ -454,75 +454,6 @@
             "title": "Editar servidor de demostración"
           },
           "title": "Servidores de demostración"
-        },
-        "headings": [
-          "Muestra el recuento de miembros de tu servidor dinámicamente",
-          "Presume de tu recuento de suscriptores de YouTube",
-          "Monitoriza el recuento de jugadores de tu servidor de Minecraft",
-          "Muestra cuánta gente está viendo tu canal de Twitch",
-          "Muestra cualquier dato que desees en tu servidor de Discord",
-          "Monitoriza cuántos jugadores tiene tu servidor de FiveM",
-          "Muestra un reloj ajustado a tu zona horaria preferida",
-          "Crea cuentas regresivas para eventos u ocasiones especiales",
-          "Monitoriza estadísticas de jugadores en más de 320 servidores de juegos",
-          "Obtén y muestra datos de cualquier endpoint de API",
-          "Realiza y muestra operaciones matemáticas con tus datos",
-          "Formatea números y muéstralos de forma atractiva",
-          "Destaca a los boosters Nitro de tu servidor"
-        ],
-        "supportedCounters": {
-          "andMuchMore": {
-            "description": "Descubre aún más características y contadores que pueden mejorar tu experiencia. ¡Mantente atento a las actualizaciones!",
-            "title": "¡Y mucho más!"
-          },
-          "clock": {
-            "description": "Consulta la hora en cualquier zona horaria con nuestro reloj personalizable. Perfecto para coordinar entre diferentes regiones.",
-            "title": "Reloj"
-          },
-          "countdown": {
-            "description": "Crea y gestiona temporizadores de cuenta regresiva adaptados a tus eventos o plazos específicos.",
-            "title": "Cuenta regresiva"
-          },
-          "date": {
-            "description": "Muestra la fecha actual en cualquier zona horaria con formato personalizable. Ideal para mostrar fechas en diferentes regiones.",
-            "title": "Fecha"
-          },
-          "discordMembers": {
-            "description": "Cuenta y filtra miembros por estado en línea, roles y otros criterios para obtener información precisa sobre tu comunidad.",
-            "title": "Miembros de Discord"
-          },
-          "game": {
-            "description": "Monitoriza la actividad de tu servidor de juegos con recuentos de jugadores en tiempo real para más de 320 juegos compatibles.",
-            "title": "Juego"
-          },
-          "http": {
-            "description": "Ejecuta solicitudes GET y recibe datos directamente desde cualquier endpoint, simplificando tus necesidades de integración.",
-            "title": "HTTP"
-          },
-          "math": {
-            "description": "Realiza una variedad de operaciones matemáticas incluyendo suma, resta, multiplicación y más en múltiples números.",
-            "title": "Matemáticas"
-          },
-          "nitroBoosters": {
-            "description": "Rastrea el número de boosters Nitro en tu servidor para medir el apoyo y la participación de la comunidad.",
-            "title": "Boosters Nitro"
-          },
-          "reddit": {
-            "description": "Obtén estadísticas de cualquier subreddit, incluyendo título, recuento de miembros y miembros en línea.",
-            "title": "Reddit"
-          },
-          "replace": {
-            "description": "Modifica texto dinámicamente con nuestra potente herramienta de reemplazo, ideal en conjunto con el contador HTTP.",
-            "title": "Reemplazar"
-          },
-          "twitch": {
-            "description": "Monitoriza métricas de canales de Twitch como el recuento de seguidores y las estadísticas de visualización para estar al día de tus streamers favoritos.",
-            "title": "Twitch"
-          },
-          "youtube": {
-            "description": "Recupera métricas clave de canales de YouTube incluyendo el recuento de suscriptores, recuento de vídeos y visualizaciones totales.",
-            "title": "YouTube"
-          }
         }
       },
       "users": {
@@ -562,6 +493,83 @@
         },
         "recentUsers": "Usuarios recientes",
         "userNotRegistered": "Este usuario no está registrado."
+      }
+    },
+    "home": {
+      "addToDiscord": "Añadir a Discord",
+      "dashboard": "Panel",
+      "getSupport": "Obtener soporte",
+      "seeHowPeopleUseIt": "Mira cómo la gente lo usa",
+      "seeMore": "Ver más",
+      "supportedCounters_heading": "Contadores compatibles",
+      "headings": [
+        "Muestra el recuento de miembros de tu servidor dinámicamente",
+        "Presume de tu recuento de suscriptores de YouTube",
+        "Monitoriza el recuento de jugadores de tu servidor de Minecraft",
+        "Muestra cuánta gente está viendo tu canal de Twitch",
+        "Muestra cualquier dato que desees en tu servidor de Discord",
+        "Monitoriza cuántos jugadores tiene tu servidor de FiveM",
+        "Muestra un reloj ajustado a tu zona horaria preferida",
+        "Crea cuentas regresivas para eventos u ocasiones especiales",
+        "Monitoriza estadísticas de jugadores en más de 320 servidores de juegos",
+        "Obtén y muestra datos de cualquier endpoint de API",
+        "Realiza y muestra operaciones matemáticas con tus datos",
+        "Formatea números y muéstralos de forma atractiva",
+        "Destaca a los boosters Nitro de tu servidor"
+      ],
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Descubre aún más características y contadores que pueden mejorar tu experiencia. ¡Mantente atento a las actualizaciones!",
+          "title": "¡Y mucho más!"
+        },
+        "clock": {
+          "description": "Consulta la hora en cualquier zona horaria con nuestro reloj personalizable. Perfecto para coordinar entre diferentes regiones.",
+          "title": "Reloj"
+        },
+        "countdown": {
+          "description": "Crea y gestiona temporizadores de cuenta regresiva adaptados a tus eventos o plazos específicos.",
+          "title": "Cuenta regresiva"
+        },
+        "date": {
+          "description": "Muestra la fecha actual en cualquier zona horaria con formato personalizable. Ideal para mostrar fechas en diferentes regiones.",
+          "title": "Fecha"
+        },
+        "discordMembers": {
+          "description": "Cuenta y filtra miembros por estado en línea, roles y otros criterios para obtener información precisa sobre tu comunidad.",
+          "title": "Miembros de Discord"
+        },
+        "game": {
+          "description": "Monitoriza la actividad de tu servidor de juegos con recuentos de jugadores en tiempo real para más de 320 juegos compatibles.",
+          "title": "Juego"
+        },
+        "http": {
+          "description": "Ejecuta solicitudes GET y recibe datos directamente desde cualquier endpoint, simplificando tus necesidades de integración.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Realiza una variedad de operaciones matemáticas incluyendo suma, resta, multiplicación y más en múltiples números.",
+          "title": "Matemáticas"
+        },
+        "nitroBoosters": {
+          "description": "Rastrea el número de boosters Nitro en tu servidor para medir el apoyo y la participación de la comunidad.",
+          "title": "Boosters Nitro"
+        },
+        "reddit": {
+          "description": "Obtén estadísticas de cualquier subreddit, incluyendo título, recuento de miembros y miembros en línea.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Modifica texto dinámicamente con nuestra potente herramienta de reemplazo, ideal en conjunto con el contador HTTP.",
+          "title": "Reemplazar"
+        },
+        "twitch": {
+          "description": "Monitoriza métricas de canales de Twitch como el recuento de seguidores y las estadísticas de visualización para estar al día de tus streamers favoritos.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Recupera métricas clave de canales de YouTube incluyendo el recuento de suscriptores, recuento de vídeos y visualizaciones totales.",
+          "title": "YouTube"
+        }
       }
     },
     "dashboard": {
