@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 
 import { cookieName } from "./lib/i18n";
+
 import "./globals.css";
 import "@fontsource/major-mono-display/400.css";
 import "@fontsource-variable/inter";

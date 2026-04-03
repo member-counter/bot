@@ -88,10 +88,7 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         >
-          <Route
-            index
-            element={Lazy(() => import("./app/dashboard/page"))}
-          />
+          <Route index element={Lazy(() => import("./app/dashboard/page"))} />
           <Route
             path={routes.dashboard.$.servers.server.$path({
               relative: true,
@@ -112,18 +109,14 @@ export default function AppRoutes() {
               })}
               element={Lazy(
                 () =>
-                  import(
-                    "./app/dashboard/servers/[guildId]/[channelId]/layout"
-                  ),
+                  import("./app/dashboard/servers/[guildId]/[channelId]/layout"),
               )}
             >
               <Route
                 index
                 element={Lazy(
                   () =>
-                    import(
-                      "./app/dashboard/servers/[guildId]/[channelId]/page"
-                    ),
+                    import("./app/dashboard/servers/[guildId]/[channelId]/page"),
                 )}
               />
             </Route>
@@ -133,18 +126,14 @@ export default function AppRoutes() {
               })}
               element={Lazy(
                 () =>
-                  import(
-                    "./app/dashboard/servers/[guildId]/settings/layout"
-                  ),
+                  import("./app/dashboard/servers/[guildId]/settings/layout"),
               )}
             >
               <Route
                 index
                 element={Lazy(
                   () =>
-                    import(
-                      "./app/dashboard/servers/[guildId]/settings/page"
-                    ),
+                    import("./app/dashboard/servers/[guildId]/settings/page"),
                 )}
               />
             </Route>
@@ -212,12 +201,11 @@ export default function AppRoutes() {
                 )}
               />
               <Route
-                path={routes.admin.$.homepage.$.demoServers.$.demoServer.$path(
-                  { relative: true },
-                )}
+                path={routes.admin.$.homepage.$.demoServers.$.demoServer.$path({
+                  relative: true,
+                })}
                 element={Lazy(
-                  () =>
-                    import("./app/admin/homepage/demo-servers/[id]/page"),
+                  () => import("./app/admin/homepage/demo-servers/[id]/page"),
                 )}
               />
             </Route>
@@ -238,9 +226,7 @@ export default function AppRoutes() {
               path={routes.admin.$.donations.$.donation.$path({
                 relative: true,
               })}
-              element={Lazy(
-                () => import("./app/admin/donations/[id]/page"),
-              )}
+              element={Lazy(() => import("./app/admin/donations/[id]/page"))}
             />
             <Route
               path={routes.admin.$.donations.$.new.$path({

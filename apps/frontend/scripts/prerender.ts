@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const distDir = path.resolve(process.cwd(), "dist");
+// eslint-disable-next-line no-restricted-properties -- build script, not a Vite module
 const siteUrl = (process.env.SITE_URL ?? "").replace(/\/$/, "");
 
 function buildHreflangTags(
@@ -48,19 +49,30 @@ async function prerender() {
   };
 
   for (const route of prerenderRoutes) {
-    const hreflangTags = siteUrl
-      ? buildHreflangTags(route, languages)
-      : "";
+    const hreflangTags = siteUrl ? buildHreflangTags(route, languages) : "";
 
     for (const lang of languages) {
       const appHtml = await render(route, lang);
 
+      // Extract the translated meta description from the React-rendered HTML
+      const descriptionMatch =
+        /<meta\s+name="description"\s+content="([^"]*)"/.exec(appHtml);
+
       let finalHtml = template
-        .replace('<html lang="en">', `<html lang="${lang}">`)
-        .replace(
-          '<div id="root"></div>',
-          `<div id="root">${appHtml}</div>`,
+        .replace('<html lang="en">', `<html lang="${lang}">`);
+
+      // Patch the <head> meta description with the translated value
+      if (descriptionMatch?.[1]) {
+        finalHtml = finalHtml.replace(
+          /(<meta\s*\n?\s*name="description"\s*\n?\s*content=")[^"]*(")/,
+          `$1${descriptionMatch[1]}$2`,
         );
+      }
+
+      finalHtml = finalHtml.replace(
+        '<div id="root"></div>',
+        `<div id="root">${appHtml}</div>`,
+      );
 
       if (hreflangTags) {
         finalHtml = finalHtml.replace(

@@ -11,7 +11,6 @@ import { api } from "~/lib/trpc";
 import AppProviders from "./AppProviders";
 import AppRoutes from "./AppRoutes";
 import { NavigationBlockerProvider } from "./lib/navigation";
-
 // Static imports for all locale bundles
 import cs from "./locales/cs/main.json";
 import de from "./locales/de/main.json";
@@ -39,6 +38,7 @@ async function getI18n(lng: (typeof languages)[number]) {
   const instance = i18next.createInstance();
   await instance.init({
     lng,
+    fallbackLng: "en-US",
     defaultNS: "main",
     ns: ["main"],
     resources: localeResources,

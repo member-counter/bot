@@ -308,6 +308,9 @@
       }
     }
   },
+  "meta": {
+    "description": "Member Counter - El bot de Discord para contar miembros y mucho más "
+  },
   "pages": {
     "account": {
       "deleteButton": {

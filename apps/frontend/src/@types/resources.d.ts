@@ -324,6 +324,9 @@ interface Resources {
         };
       };
     };
+    meta: {
+      description: "Member Counter - The Discord bot for counting members and more";
+    };
     pages: {
       account: {
         deleteButton: {
