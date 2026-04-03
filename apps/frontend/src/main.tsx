@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 
-import "./lib/i18n";
+import { cookieName } from "./lib/i18n";
 import "./globals.css";
 import "@fontsource/major-mono-display/400.css";
 import "@fontsource-variable/inter";
@@ -16,12 +16,23 @@ const app = (
   </StrictMode>
 );
 
-if (rootElement.childNodes.length > 0) {
-  // Pre-rendered HTML exists — hydrate to preserve it.
-  // Nginx already serves the correct language variant based on the cookie /
-  // Accept-Language header, so the content should match the client's language.
+// Hydrate only when the pre-rendered language matches the client's language.
+// The <html lang> attribute is set per language variant during prerender.
+// Compare base language prefixes (e.g. "en" from "en-US") to handle
+// mismatches like navigator returning "en" vs pre-rendered "en-US".
+const hasPrerenderedContent = rootElement.childNodes.length > 0;
+const prerenderedLang = document.documentElement.lang;
+const clientLang =
+  document.cookie
+    .split("; ")
+    .find((c) => c.startsWith(`${cookieName}=`))
+    ?.split("=")[1] ?? navigator.language;
+const canHydrate =
+  hasPrerenderedContent &&
+  prerenderedLang.split("-")[0] === clientLang.split("-")[0];
+
+if (canHydrate) {
   hydrateRoot(rootElement, app);
 } else {
-  // No pre-rendered content — standard SPA mount
   createRoot(rootElement).render(app);
 }

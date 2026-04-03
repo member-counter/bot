@@ -2,6 +2,26 @@ import fs from "node:fs";
 import path from "node:path";
 
 const distDir = path.resolve(process.cwd(), "dist");
+const siteUrl = (process.env.SITE_URL ?? "").replace(/\/$/, "");
+
+function buildHreflangTags(
+  route: string,
+  languages: readonly string[],
+): string {
+  const canonicalRoute = route === "/" ? "/" : route;
+
+  const tags = languages.map((lang) => {
+    const href = `${siteUrl}${canonicalRoute}?lang=${lang}`;
+    return `<link rel="alternate" hreflang="${lang}" href="${href}" />`;
+  });
+
+  // x-default points to the route without a lang param
+  tags.push(
+    `<link rel="alternate" hreflang="x-default" href="${siteUrl}${canonicalRoute}" />`,
+  );
+
+  return tags.join("\n    ");
+}
 
 async function prerender() {
   const indexPath = path.join(distDir, "index.html");
@@ -28,13 +48,26 @@ async function prerender() {
   };
 
   for (const route of prerenderRoutes) {
+    const hreflangTags = siteUrl
+      ? buildHreflangTags(route, languages)
+      : "";
+
     for (const lang of languages) {
       const appHtml = await render(route, lang);
 
-      const finalHtml = template.replace(
-        '<div id="root"></div>',
-        `<div id="root">${appHtml}</div>`,
-      );
+      let finalHtml = template
+        .replace('<html lang="en">', `<html lang="${lang}">`)
+        .replace(
+          '<div id="root"></div>',
+          `<div id="root">${appHtml}</div>`,
+        );
+
+      if (hreflangTags) {
+        finalHtml = finalHtml.replace(
+          "</head>",
+          `    ${hreflangTags}\n  </head>`,
+        );
+      }
 
       // Default language → index.html, others → index.<lang>.html
       // For sub-routes: /legal/foo → legal/foo/index.html or legal/foo/index.<lang>.html
