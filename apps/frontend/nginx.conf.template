@@ -1,4 +1,9 @@
-# Resolve pre-render language from cookie, then Accept-Language header
+# Resolve pre-render language: ?lang= query param > cookie > Accept-Language
+map $arg_lang $query_lang {
+    default    "";
+{{QUERY_LANG_ENTRIES}}
+}
+
 map $cookie_language $cookie_lang {
     default    "";
 {{COOKIE_LANG_ENTRIES}}
@@ -9,8 +14,14 @@ map $http_accept_language $browser_lang {
 {{ACCEPT_LANG_ENTRIES}}
 }
 
-map $cookie_lang $resolved_lang {
-    default    $cookie_lang;
+# Priority chain: query param > cookie > browser
+map $query_lang $lang_step1 {
+    default    $query_lang;
+    ""         $cookie_lang;
+}
+
+map $lang_step1 $resolved_lang {
+    default    $lang_step1;
     ""         $browser_lang;
 }
 
@@ -20,8 +31,11 @@ server {
     root /usr/share/nginx/html;
     index index.html;
 
-    # Pre-rendered home page — serve the matching language variant
+    # Pre-rendered home page — serve the matching language variant.
+    # Vary ensures the browser re-fetches when the language cookie changes
+    # instead of serving a stale cached version in the wrong language.
     location = / {
+        add_header Vary "Cookie, Accept-Language";
         try_files /index.${resolved_lang}.html /index.html /200.html;
     }
 

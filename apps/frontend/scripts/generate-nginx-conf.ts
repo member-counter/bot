@@ -16,8 +16,8 @@ function langPrefix(lang: string): string {
   return lang.split("-")[0] ?? lang;
 }
 
-// Cookie map: exact match on the language cookie value
-const cookieEntries = languages
+// Query param and cookie maps: exact match on language value
+const exactEntries = languages
   .map(
     (lang) =>
       `    "${lang}"${" ".repeat(Math.max(1, 8 - lang.length))}"${lang}";`,
@@ -41,7 +41,8 @@ const acceptEntries = languages
   .join("\n");
 
 const output = template
-  .replace("{{COOKIE_LANG_ENTRIES}}", cookieEntries)
+  .replace("{{QUERY_LANG_ENTRIES}}", exactEntries)
+  .replace("{{COOKIE_LANG_ENTRIES}}", exactEntries)
   .replace("{{ACCEPT_LANG_ENTRIES}}", acceptEntries)
   .replace("{{FALLBACK_LNG}}", fallbackLng);
 
