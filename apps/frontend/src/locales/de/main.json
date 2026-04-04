@@ -454,6 +454,75 @@
             "title": "Demo-Server bearbeiten"
           },
           "title": "Demo-Server"
+        },
+        "headings": [
+          "Zeige die Mitgliederanzahl deines Servers dynamisch an",
+          "Präsentiere deine YouTube-Abonnentenzahl",
+          "Überwache die Spieleranzahl deines Minecraft-Servers",
+          "Zeige, wie viele Leute deinen Twitch-Kanal schauen",
+          "Zeige beliebige Daten auf deinem Discord-Server an",
+          "Verfolge, wie viele Spieler dein FiveM-Server hat",
+          "Zeige eine Uhr in deiner bevorzugten Zeitzone an",
+          "Erstelle Countdowns für Events oder besondere Anlässe",
+          "Überwache Spielerstatistiken auf über 320 Spieleservern",
+          "Rufe Daten von beliebigen API-Endpunkten ab und zeige sie an",
+          "Führe mathematische Operationen auf deinen Daten durch und zeige sie an",
+          "Formatiere Zahlen und zeige sie ansprechend an",
+          "Hebe die Nitro-Booster deines Servers hervor"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Entdecke noch mehr Funktionen und Zähler, die dein Erlebnis verbessern können. Bleib gespannt auf Updates!",
+            "title": "Und vieles mehr!"
+          },
+          "clock": {
+            "description": "Sieh die Uhrzeit in jeder Zeitzone mit unserer anpassbaren Uhr. Perfekt für die Koordination zwischen verschiedenen Regionen.",
+            "title": "Uhr"
+          },
+          "countdown": {
+            "description": "Erstelle und verwalte Countdown-Timer, die auf deine speziellen Events oder Fristen zugeschnitten sind.",
+            "title": "Countdown"
+          },
+          "date": {
+            "description": "Zeige das aktuelle Datum in jeder Zeitzone mit anpassbarer Formatierung an. Ideal, um Daten in verschiedenen Regionen anzuzeigen.",
+            "title": "Datum"
+          },
+          "discordMembers": {
+            "description": "Zähle und filtere Mitglieder nach Online-Status, Rollen und anderen Kriterien, um präzise Einblicke in deine Community zu erhalten.",
+            "title": "Discord-Mitglieder"
+          },
+          "game": {
+            "description": "Überwache die Aktivität deines Spieleservers mit Echtzeit-Spielerzahlen für über 320 unterstützte Spiele.",
+            "title": "Spiel"
+          },
+          "http": {
+            "description": "Führe GET-Anfragen aus und empfange Daten direkt von jedem Endpunkt, um deine Integrationsbedürfnisse zu vereinfachen.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Führe eine Reihe von mathematischen Operationen durch, darunter Addition, Subtraktion, Multiplikation und mehr mit mehreren Zahlen.",
+            "title": "Mathematik"
+          },
+          "nitroBoosters": {
+            "description": "Verfolge die Anzahl der Nitro-Booster auf deinem Server, um die Unterstützung und das Engagement der Community zu messen.",
+            "title": "Nitro-Booster"
+          },
+          "reddit": {
+            "description": "Erhalte Statistiken zu jedem Subreddit, einschließlich Titel, Mitgliederanzahl und Online-Mitglieder.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Ändere Text dynamisch mit unserem leistungsstarken Ersetzungstool, ideal in Kombination mit dem HTTP-Zähler.",
+            "title": "Ersetzen"
+          },
+          "twitch": {
+            "description": "Überwache Twitch-Kanalmetriken wie Follower-Anzahl und Aufrufstatistiken, um über deine Lieblingsstreamer auf dem Laufenden zu bleiben.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Rufe wichtige Metriken von YouTube-Kanälen ab, einschließlich Abonnentenzahl, Videoanzahl und Gesamtaufrufe.",
+            "title": "YouTube"
+          }
         }
       },
       "users": {
@@ -493,83 +562,6 @@
         },
         "recentUsers": "Letzte Benutzer",
         "userNotRegistered": "Dieser Benutzer ist nicht registriert."
-      }
-    },
-    "home": {
-      "addToDiscord": "Zu Discord hinzufügen",
-      "dashboard": "Dashboard",
-      "getSupport": "Support erhalten",
-      "seeHowPeopleUseIt": "Schau, wie andere es nutzen",
-      "seeMore": "Mehr anzeigen",
-      "supportedCounters_heading": "Unterstützte Zähler",
-      "headings": [
-        "Zeige die Mitgliederanzahl deines Servers dynamisch an",
-        "Präsentiere deine YouTube-Abonnentenzahl",
-        "Überwache die Spieleranzahl deines Minecraft-Servers",
-        "Zeige, wie viele Leute deinen Twitch-Kanal schauen",
-        "Zeige beliebige Daten auf deinem Discord-Server an",
-        "Verfolge, wie viele Spieler dein FiveM-Server hat",
-        "Zeige eine Uhr in deiner bevorzugten Zeitzone an",
-        "Erstelle Countdowns für Events oder besondere Anlässe",
-        "Überwache Spielerstatistiken auf über 320 Spieleservern",
-        "Rufe Daten von beliebigen API-Endpunkten ab und zeige sie an",
-        "Führe mathematische Operationen auf deinen Daten durch und zeige sie an",
-        "Formatiere Zahlen und zeige sie ansprechend an",
-        "Hebe die Nitro-Booster deines Servers hervor"
-      ],
-      "supportedCounters": {
-        "andMuchMore": {
-          "description": "Entdecke noch mehr Funktionen und Zähler, die dein Erlebnis verbessern können. Bleib gespannt auf Updates!",
-          "title": "Und vieles mehr!"
-        },
-        "clock": {
-          "description": "Sieh die Uhrzeit in jeder Zeitzone mit unserer anpassbaren Uhr. Perfekt für die Koordination zwischen verschiedenen Regionen.",
-          "title": "Uhr"
-        },
-        "countdown": {
-          "description": "Erstelle und verwalte Countdown-Timer, die auf deine speziellen Events oder Fristen zugeschnitten sind.",
-          "title": "Countdown"
-        },
-        "date": {
-          "description": "Zeige das aktuelle Datum in jeder Zeitzone mit anpassbarer Formatierung an. Ideal, um Daten in verschiedenen Regionen anzuzeigen.",
-          "title": "Datum"
-        },
-        "discordMembers": {
-          "description": "Zähle und filtere Mitglieder nach Online-Status, Rollen und anderen Kriterien, um präzise Einblicke in deine Community zu erhalten.",
-          "title": "Discord-Mitglieder"
-        },
-        "game": {
-          "description": "Überwache die Aktivität deines Spieleservers mit Echtzeit-Spielerzahlen für über 320 unterstützte Spiele.",
-          "title": "Spiel"
-        },
-        "http": {
-          "description": "Führe GET-Anfragen aus und empfange Daten direkt von jedem Endpunkt, um deine Integrationsbedürfnisse zu vereinfachen.",
-          "title": "HTTP"
-        },
-        "math": {
-          "description": "Führe eine Reihe von mathematischen Operationen durch, darunter Addition, Subtraktion, Multiplikation und mehr mit mehreren Zahlen.",
-          "title": "Mathematik"
-        },
-        "nitroBoosters": {
-          "description": "Verfolge die Anzahl der Nitro-Booster auf deinem Server, um die Unterstützung und das Engagement der Community zu messen.",
-          "title": "Nitro-Booster"
-        },
-        "reddit": {
-          "description": "Erhalte Statistiken zu jedem Subreddit, einschließlich Titel, Mitgliederanzahl und Online-Mitglieder.",
-          "title": "Reddit"
-        },
-        "replace": {
-          "description": "Ändere Text dynamisch mit unserem leistungsstarken Ersetzungstool, ideal in Kombination mit dem HTTP-Zähler.",
-          "title": "Ersetzen"
-        },
-        "twitch": {
-          "description": "Überwache Twitch-Kanalmetriken wie Follower-Anzahl und Aufrufstatistiken, um über deine Lieblingsstreamer auf dem Laufenden zu bleiben.",
-          "title": "Twitch"
-        },
-        "youtube": {
-          "description": "Rufe wichtige Metriken von YouTube-Kanälen ab, einschließlich Abonnentenzahl, Videoanzahl und Gesamtaufrufe.",
-          "title": "YouTube"
-        }
       }
     },
     "dashboard": {
@@ -947,6 +939,83 @@
         "supportBtn": "Support erhalten",
         "tryAgainBtn": "Erneut versuchen"
       }
+    },
+    "home": {
+      "addToDiscord": "Zu Discord hinzufügen",
+      "dashboard": "Dashboard",
+      "getSupport": "Support erhalten",
+      "headings": [
+        "Zeige die Mitgliederanzahl deines Servers dynamisch an",
+        "Präsentiere deine YouTube-Abonnentenzahl",
+        "Überwache die Spieleranzahl deines Minecraft-Servers",
+        "Zeige, wie viele Leute deinen Twitch-Kanal schauen",
+        "Zeige beliebige Daten auf deinem Discord-Server an",
+        "Verfolge, wie viele Spieler dein FiveM-Server hat",
+        "Zeige eine Uhr in deiner bevorzugten Zeitzone an",
+        "Erstelle Countdowns für Events oder besondere Anlässe",
+        "Überwache Spielerstatistiken auf über 320 Spieleservern",
+        "Rufe Daten von beliebigen API-Endpunkten ab und zeige sie an",
+        "Führe mathematische Operationen auf deinen Daten durch und zeige sie an",
+        "Formatiere Zahlen und zeige sie ansprechend an",
+        "Hebe die Nitro-Booster deines Servers hervor"
+      ],
+      "seeHowPeopleUseIt": "Schau, wie andere es nutzen",
+      "seeMore": "Mehr anzeigen",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Entdecke noch mehr Funktionen und Zähler, die dein Erlebnis verbessern können. Bleib gespannt auf Updates!",
+          "title": "Und vieles mehr!"
+        },
+        "clock": {
+          "description": "Sieh die Uhrzeit in jeder Zeitzone mit unserer anpassbaren Uhr. Perfekt für die Koordination zwischen verschiedenen Regionen.",
+          "title": "Uhr"
+        },
+        "countdown": {
+          "description": "Erstelle und verwalte Countdown-Timer, die auf deine speziellen Events oder Fristen zugeschnitten sind.",
+          "title": "Countdown"
+        },
+        "date": {
+          "description": "Zeige das aktuelle Datum in jeder Zeitzone mit anpassbarer Formatierung an. Ideal, um Daten in verschiedenen Regionen anzuzeigen.",
+          "title": "Datum"
+        },
+        "discordMembers": {
+          "description": "Zähle und filtere Mitglieder nach Online-Status, Rollen und anderen Kriterien, um präzise Einblicke in deine Community zu erhalten.",
+          "title": "Discord-Mitglieder"
+        },
+        "game": {
+          "description": "Überwache die Aktivität deines Spieleservers mit Echtzeit-Spielerzahlen für über 320 unterstützte Spiele.",
+          "title": "Spiel"
+        },
+        "http": {
+          "description": "Führe GET-Anfragen aus und empfange Daten direkt von jedem Endpunkt, um deine Integrationsbedürfnisse zu vereinfachen.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Führe eine Reihe von mathematischen Operationen durch, darunter Addition, Subtraktion, Multiplikation und mehr mit mehreren Zahlen.",
+          "title": "Mathematik"
+        },
+        "nitroBoosters": {
+          "description": "Verfolge die Anzahl der Nitro-Booster auf deinem Server, um die Unterstützung und das Engagement der Community zu messen.",
+          "title": "Nitro-Booster"
+        },
+        "reddit": {
+          "description": "Erhalte Statistiken zu jedem Subreddit, einschließlich Titel, Mitgliederanzahl und Online-Mitglieder.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Ändere Text dynamisch mit unserem leistungsstarken Ersetzungstool, ideal in Kombination mit dem HTTP-Zähler.",
+          "title": "Ersetzen"
+        },
+        "twitch": {
+          "description": "Überwache Twitch-Kanalmetriken wie Follower-Anzahl und Aufrufstatistiken, um über deine Lieblingsstreamer auf dem Laufenden zu bleiben.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Rufe wichtige Metriken von YouTube-Kanälen ab, einschließlich Abonnentenzahl, Videoanzahl und Gesamtaufrufe.",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "Unterstützte Zähler"
     },
     "status": {
       "affectedServers": "Betroffene Discord-Server:",

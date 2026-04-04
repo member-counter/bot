@@ -7,13 +7,21 @@ import { initReactI18next } from "react-i18next";
 import type Resources from "~/@types/resources";
 
 export const fallbackLng = "en-US";
-export const languages = [fallbackLng, "es-ES", "ru", "cs", "de"] as const;
+export const languages = [
+  fallbackLng,
+  "es-ES",
+  "ru",
+  "cs",
+  "de",
+  "tr",
+] as const;
 export const languageEntries: Record<(typeof languages)[number], string> = {
   "en-US": "🇺🇸 English (US)",
   "es-ES": "🇪🇸 Español",
   ru: "🇷🇺 Русский",
   cs: "🇨🇿 Čeština",
   de: "🇩🇪 Deutsch",
+  tr: "🇹🇷 Türkçe",
 };
 export const defaultNS: keyof Resources = "main";
 export const cookieName = "language";

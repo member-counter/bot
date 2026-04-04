@@ -1,0 +1,983 @@
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "Duyuru kanalı",
+      "category": "Kategori",
+      "forumChannel": "Forum kanalı",
+      "mediaChannel": "Medya kanalı",
+      "stageChannel": "Sahne kanalı",
+      "textChannel": "Yazı kanalı",
+      "voiceChannel": "Sesli kanal"
+    },
+    "knownError": "Hata",
+    "knownErrors": {
+      "BAD_REQUEST": "İstek geçersizdi.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Bot, bu sayacı kullanmak için yeterli ayrıcalıklı intent'lere sahip değil.",
+      "BOT_IS_NOT_PREMIUM": "Bot, premium sürüm değil ve bu sayaç için gereken bazı özelliklere sahip değil.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Sayaç tanınmayan bir biçimde.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "Sayaç geçersiz.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Kanal adı için sonuç 2 karakterden kısa.",
+      "EVALUATION_TIMEOUT": "Değerlendirme çok uzun sürdü ve zaman aşımına uğradı.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Değerlendirmeden son bir metin oluşturulamadı.",
+      "FORBIDDEN": "İstek yasaklandı.",
+      "GAME_MISSING_ADDRESS": "Oyun sayacı bir sunucu adresi gerektiriyor.",
+      "GAME_MISSING_GAME_ID": "Oyun sayacı için bir oyun kimliği belirtilmelidir.",
+      "GAME_MISSING_PORT": "Oyun sayacı bir sunucu portu gerektiriyor.",
+      "HTTP_DATA_PATH_MANDATORY": "İçerik türü application/json olan HTTP istekleri için bir veri yolu belirtilmelidir.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTP yanıtının içerik türü geçersiz (text/plain veya application/json değil).",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP yanıt durum kodu geçersiz (200 değil).",
+      "HTTP_MISSING_URL": "HTTP sayacı bir URL gerektiriyor ancak eksik.",
+      "INTERNAL_SERVER_ERROR": "Dahili bir sunucu hatası oluştu.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "Üye sayıları şu anda kullanılamıyor.",
+      "MEMERATOR_MISSING_USERNAME": "Memerator sayacı bir kullanıcı adı gerektiriyor ancak eksik.",
+      "NOT_FOUND": "İstenen kaynak bulunamadı.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Bot, kanalı düzenlemek için yeterli izne sahip değil.",
+      "REDDIT_MISSING_SUBREDDIT": "Reddit sayacı için bir subreddit belirtilmelidir.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Belirtilen Twitch kanalı bulunamadı.",
+      "TWITCH_MISSING_USERNAME": "Twitch sayacı için bir kullanıcı adı ayarlanmalıdır.",
+      "UNAUTHORIZED": "İstek yetkilendirilmemiş.",
+      "UNKNOWN": "Bilinmeyen bir hata oluştu.",
+      "UNKNOWN_DATA_SOURCE": "Belirtilen sayaç bilinmiyor veya tanınmıyor.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Değerlendirmeden dönen değer türü bilinmiyor.",
+      "USER_NOT_FOUND": "Kullanıcı bulunamadı.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "Sağlanan YouTube kanal URL'si geçersiz.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "YouTube sayacı için bir kanal URL'si ayarlanmalıdır."
+    },
+    "unknown": "Bilinmiyor",
+    "unknownChannel": "Bilinmeyen kanal",
+    "unknownChannelType": "Bilinmeyen kanal türü",
+    "unknownDate": "Bilinmeyen tarih",
+    "unknownError": "Bilinmeyen hata",
+    "unknownPublicBot": "Bilinmeyen Herkese Açık Bot",
+    "unknownRole": "Bilinmeyen rol",
+    "unknownServer": "Bilinmeyen sunucu",
+    "unknownUser": "Bilinmeyen kullanıcı {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "Kanalı kaldır",
+          "selected": "Seçili"
+        },
+        "DataSourceItem": {
+          "edit": "Sayacı düzenle",
+          "notSelected": "Seçili değil",
+          "remove": "Sayacı kaldır",
+          "selected": "Seçili"
+        },
+        "GamedigItem": {
+          "remove": "Oyunu kaldır",
+          "selected": "Seçili"
+        },
+        "LocaleItem": {
+          "remove": "Dili kaldır",
+          "selected": "Seçili"
+        },
+        "RoleItem": {
+          "everyone": "Herkes",
+          "remove": "Rolü kaldır",
+          "selected": "Seçili"
+        },
+        "TextItem": {
+          "remove": "{{item}} kaldır",
+          "selected": "Seçili"
+        },
+        "TimezoneItem": {
+          "remove": "Saat dilimini kaldır",
+          "selected": "Seçili"
+        }
+      },
+      "noResults": "Sonuç bulunamadı.",
+      "placeholder": "Ekle...",
+      "searchPlaceholder": "Ara..."
+    },
+    "NavBar": {
+      "accountEntry": "Hesap",
+      "dashboardEntry": "Kontrol Paneli",
+      "supportEntry": "Destek"
+    },
+    "footer": {
+      "acceptableUsePolicy": "Kabul Edilebilir Kullanım Politikası",
+      "admin": "Yönetici",
+      "codeRepository": "Kod Deposu",
+      "cookiePolicy": "Çerez Politikası",
+      "copyright": "© {{year}} Member Counter. Tüm hakları saklıdır. <eduardozgzLink /> tarafından oluşturulmuştur.",
+      "documentation": "Belgeler",
+      "donate": "Bağış Yap",
+      "improveMemberCounter": "Member Counter'ı Geliştir",
+      "legal": "Yasal",
+      "loginWithDiscord": "Discord ile Giriş Yap",
+      "logout": "Çıkış Yap",
+      "madePossibleThanksTo": "Alex, <vampireChickenLink />, <livingfloreLink />, Frosty ve <donorsLink>daha birçok kişinin</donorsLink> katkılarıyla mümkün olmuştur.",
+      "manageDonations": "Bağışları yönet",
+      "manageHomePage": "Ana sayfayı yönet",
+      "manageServers": "Sunucuları yönet",
+      "manageUsers": "Kullanıcıları yönet",
+      "privacyPolicy": "Gizlilik Politikası",
+      "status": "Durum",
+      "supportServer": "Destek sunucusu",
+      "termsOfService": "Hizmet Şartları",
+      "translateBot": "Botu çevir",
+      "usefulLinks": "Faydalı Bağlantılar"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "Botun şu anda bulunduğu toplam kullanıcı ve sunucu sayısını döndürür. (Muhtemelen buna ihtiyacınız yok)",
+      "name": "Bot istatistikleri"
+    },
+    "channels": {
+      "description": "Belirtilen kategorilerdeki veya toplam kanal sayısını sayar.",
+      "display": {
+        "channelsUnderACategory": "Bir kategorideki kanallar"
+      },
+      "keywords": "kanallar,kategoriler",
+      "name": "Kanallar"
+    },
+    "clock": {
+      "description": "Tercih ettiğiniz saat dilimine göre ayarlanmış bir saat görüntüler.",
+      "display": {
+        "syntax": "Saat ({{timezone}})"
+      },
+      "keywords": "saat,zaman dilimi",
+      "name": "Saat"
+    },
+    "concat": {
+      "description": "Birden fazla metni tek bir metin olarak birleştirir.",
+      "display": {
+        "syntax": "Birleştir {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "ve {{amount}} tane daha"
+      },
+      "keywords": "birleştir,metin,kombine,katıl,birleş",
+      "name": "Birleştir"
+    },
+    "countdown": {
+      "description": "İhtiyaçlarınıza göre özelleştirilmiş bir geri sayım zamanlayıcısı oluşturun.",
+      "display": {
+        "syntax": "{{datetime}} tarihine geri sayım"
+      },
+      "keywords": "geri sayım,zamanlayıcı",
+      "name": "Geri Sayım"
+    },
+    "date": {
+      "description": "Tercih ettiğiniz saat dilimine göre ayarlanmış güncel tarihi görüntüler.",
+      "display": {
+        "syntax": "Tarih ({{timezone}})"
+      },
+      "keywords": "tarih,takvim,saat dilimi",
+      "name": "Tarih"
+    },
+    "game": {
+      "description": "320'den fazla oyunla uyumlu olarak oyun sunucunuzdaki çevrimiçi oyuncu sayısını alır.",
+      "display": {
+        "playerCountFor": "{{gameServerAddress}} için oyuncu sayısı"
+      },
+      "keywords": "oyun,oyuncular,çevrimiçi,sunucu",
+      "name": "Oyun"
+    },
+    "http": {
+      "description": "Bir uç noktaya GET isteği gönderir ve sonucu bu bota sağlar.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,istek,uç nokta,API,getir",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "Bir sayı listesi üzerinde toplama, çıkarma, çarpma, bölme veya mod alma gibi matematik işlemleri gerçekleştirir.",
+      "display": {
+        "operationType": {
+          "add": "topla",
+          "divide": "böl",
+          "modulo": "mod",
+          "multiply": "çarp",
+          "subtract": "çıkar"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "ve {{amount}} tane daha"
+      },
+      "keywords": "matematik,hesap makinesi,işlemler,sayılar,aritmetik,toplama,çıkarma,çarpma,bölme,mod",
+      "name": "Matematik"
+    },
+    "members": {
+      "description": "Üyeleri sayar, ayrıca çevrimiçi durumlarına, belirli rollerine ve daha fazlasına göre filtreleyebilirsiniz.",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "Rahatsız Etmeyin",
+          "idle": "boşta",
+          "offline": "çevrimdışı",
+          "online": "çevrimiçi",
+          "onlineIdleDnd": "çevrimiçi + boşta + Rahatsız Etmeyin"
+        },
+        "accountType": {
+          "any": "üye",
+          "bot": "bot",
+          "user": "kullanıcı"
+        },
+        "bannedMembers": "yasaklanmış üyeler",
+        "connectedToAChannel": "bir kanala bağlı",
+        "playingAGame": "oyun oynarken",
+        "roleFiltering": {
+          "any": "rollere sahip",
+          "overlapping": "örtüşen rollere sahip"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "üyeler,filtre,roller,çevrimiçi,durum,yasaklı,oynuyor,çevrimdışı,meşgul,rahatsız etmeyin,boşta,kullanıcı,bot,bağlı",
+      "name": "Üyeler"
+    },
+    "memerator": {
+      "description": "Bir Memerator hesabının takipçi sayısını ve meme sayısını getirir.",
+      "display": {
+        "returnKind": {
+          "followers": "takipçiler",
+          "memes": "memeler"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,takipçi,görüntüleme,kanal",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "Sunucunun Nitro takviye edenlerin sayısını alır.",
+      "keywords": "nitro,takviye edenler,sunucu",
+      "name": "Nitro Takviye Edenler"
+    },
+    "number": {
+      "description": "Verilen sayıya sayı biçimlendirmesi uygular.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} sayı olarak",
+        "raw": "Sayı ({{number}})"
+      },
+      "keywords": "sayı,biçimlendirme",
+      "name": "Sayı"
+    },
+    "reddit": {
+      "description": "Bir subreddit'in başlığını, toplam üye sayısını ve çevrimiçi üye sayısını alır.",
+      "display": {
+        "returnKind": {
+          "members": "üyeler",
+          "membersOnline": "çevrimiçi üyeler",
+          "title": "başlık"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,subreddit,üyeler,çevrimiçi",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "Metin değiştirme; kapsamlı metin düzenlemesi için diğer iç içe sayaçlarla birlikte kullanışlıdır.",
+      "display": {
+        "replaceSyntax": "\"{{search}}\" yerine \"{{replacement}}\"",
+        "syntax": "Değiştir {{replaceSyntax}}"
+      },
+      "keywords": "metin,değiştirme,düzenleme,dize,alt dize",
+      "name": "Değiştir"
+    },
+    "roles": {
+      "description": "Sunucudaki tüm rolleri sayar.",
+      "keywords": "roller",
+      "name": "Roller"
+    },
+    "twitch": {
+      "description": "Bir Twitch kanalının takipçi sayısını ve toplam izlenme sayısını alır.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanal adı",
+          "followers": "takipçiler",
+          "viewers": "izleyiciler"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,takipçi,izlenme,kanal",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "Bilinmeyen sayaç. Bu muhtemelen bir hatadan kaynaklanıyor",
+      "name": "Bilinmiyor"
+    },
+    "youtube": {
+      "description": "Bir YouTube kanalının abone sayısını, video sayısını ve toplam izlenmelerini getirir.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanal adı",
+          "subscribers": "aboneler",
+          "videos": "videolar",
+          "views": "izlenmeler"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,abone,video,izlenme,kanal",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "Kaydedilmemiş değişiklikleriniz var. Bu sayfadan ayrılmak istediğinizden emin misiniz?",
+    "useFormManager": {
+      "state": {
+        "save": "Kaydet",
+        "saved": "Kaydedildi",
+        "saving": "Kaydediliyor..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - Üye sayma ve daha fazlası için Discord botu"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "Kapat",
+        "confirmDescription": "Bu işlem geri alınamaz. Hesabınız kalıcı olarak silinecek ve verileriniz sunucularımızdan kaldırılacaktır.",
+        "confirmTitle": "Kesinlikle emin misiniz?",
+        "deleteAccountBtn": "Hesabı sil"
+      },
+      "page": {
+        "avatarAlt": "{{username}} kullanıcısının avatarı",
+        "logoutButton": "Çıkış Yap"
+      },
+      "userBadges": {
+        "betaTester": "Bir beta programına katıldınız.",
+        "bigBrain": "Uygulamaya geçirilen bir fikir önerddiniz.",
+        "bugCatcher": "Bir hata buldunuz ve bildirdiniz.",
+        "contributor": "Bir özellik eklediniz veya bir hatayı düzeltdiniz.",
+        "donor": "Member Counter'ın geliştirilmesini ve bakımını desteklemek için bağışta bulundunuz.",
+        "foldingAtHome": "folding@home'da bir WU katkısında bulundunuz.",
+        "patPat": "Bir sır keşfettiniz.",
+        "premium": "Premium kullanıcısınız.",
+        "translator": "Botun çevirisine yardım ettiniz."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "Bağışı sil",
+          "closeButton": "Kapat",
+          "dialogDescription": "Bu işlem geri alınamaz.",
+          "dialogTitle": "Kesinlikle emin misiniz?"
+        },
+        "edit": {
+          "title": "Bağışı düzenle"
+        },
+        "form": {
+          "amount": "Miktar",
+          "anonymous": "Anonim",
+          "currency": "Para birimi",
+          "currencyDecimals": "Para birimi ondalıkları",
+          "date": "Tarih",
+          "note": "Not",
+          "saveBtn": "Kaydet",
+          "userId": "Discord kullanıcı kimliği"
+        },
+        "new": {
+          "title": "Yeni bağış"
+        },
+        "registerDonation": "Bağış kaydet",
+        "totalDonations": "Toplam bağışlar: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "Sunucuyu yükle",
+          "placeholder": "Sunucu kimliğini yapıştırın"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "Oluştur",
+          "createInputPlaceholder": "Yeni demo sunucu adı",
+          "delete": {
+            "button": "Demo sunucuyu sil",
+            "closeButton": "Kapat",
+            "dialogDescription": "Bu işlem geri alınamaz.",
+            "dialogTitle": "Kesinlikle emin misiniz?"
+          },
+          "list": {
+            "display": {
+              "priority": "Öncelik: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "Kanal ekle",
+              "channel": {
+                "isRulesChannel": "Kurallar kanalı olarak göster",
+                "name": "Ad",
+                "remove": "Kaldır",
+                "showAsSkeleton": "İskelet olarak göster",
+                "topic": "Konu",
+                "type": "Tür",
+                "types": {
+                  "announcementChannel": "Duyuru kanalı",
+                  "categoryChannel": "Kategori kanalı",
+                  "textChannel": "Yazı kanalı",
+                  "voiceChannel": "Kilitli sesli kanal"
+                }
+              },
+              "title": "Kanallar"
+            },
+            "description": "Açıklama",
+            "features": {
+              "options": {
+                "Community": "Topluluk",
+                "Discoverable": "Keşfedilebilir",
+                "Partnered": "Ortak",
+                "Verified": "Doğrulanmış"
+              },
+              "title": "Özellikler"
+            },
+            "icon": "Simge URL'si",
+            "language": "Dil",
+            "links": {
+              "add": "Bağlantı ekle",
+              "link": {
+                "label": "Etiket",
+                "remove": "Kaldır",
+                "url": "URL"
+              },
+              "title": "Bağlantılar"
+            },
+            "name": "Sunucu adı",
+            "premiumTier": {
+              "options": {
+                "None": "Yok",
+                "Tier1": "Seviye 1",
+                "Tier2": "Seviye 2",
+                "Tier3": "Seviye 3"
+              },
+              "title": "Premium seviyesi"
+            },
+            "priority": "Öncelik",
+            "save": "Kaydet",
+            "saved": "Kaydedildi",
+            "title": "Demo sunucuyu düzenle"
+          },
+          "title": "Demo sunucular"
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "Hesabı sil",
+          "closeButton": "Kapat",
+          "dialogDescription": "Bu işlem geri alınamaz.",
+          "dialogTitle": "Kesinlikle emin misiniz?"
+        },
+        "loadUser": "Kullanıcıyı yükle",
+        "manage": {
+          "badges": {
+            "betaTester": "Beta Test Kullanıcısı",
+            "bigBrain": "Parlak Zeka",
+            "bugCatcher": "Hata Avcısı",
+            "contributor": "Katkıda Bulunan",
+            "donor": "Bağışçı",
+            "foldingAtHome": "folding@home",
+            "patPat": "Pat Pat",
+            "premium": "Premium",
+            "title": "Rozetler",
+            "translator": "Çevirmen"
+          },
+          "pasteUserId": "Kullanıcı kimliğini yapıştırın",
+          "permissions": {
+            "manageDonations": "Bağışları yönet",
+            "manageGuilds": "Sunucuları yönet",
+            "manageHomePage": "Ana sayfayı yönet",
+            "manageUsers": "Kullanıcıları yönet",
+            "seeGuilds": "Sunucuları gör",
+            "seeUsers": "Kullanıcıları gör",
+            "title": "İzinler"
+          },
+          "save": "Kaydet",
+          "saved": "Kaydedildi",
+          "transferAccount": "Hesabı transfer et"
+        },
+        "recentUsers": "Son kullanıcılar",
+        "userNotRegistered": "Bu kullanıcı kayıtlı değil."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "Hiçbir sunucuda değilsiniz. ",
+        "subheading": "<CreateServerLink>Yeni bir tane</CreateServerLink> oluşturarak veya <JoinSupportServerLink>bize katılarak</JoinSupportServerLink> başlamaya ne dersiniz?"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "Bu kanalda sayaçlar etkin",
+            "issue": "Bu kanalda dikkatinizi gerektiren bir sorun var"
+          },
+          "unsupportedChannelType": "Bu kanal türü henüz desteklenmiyor."
+        },
+        "ServerNavMenu": {
+          "channelList": "Kanal listesi",
+          "loading": "Sunucu verileri yükleniyor...",
+          "serverSettings": "Sunucu ayarları",
+          "unknownChannels": "Discord kanalları yüklenemiyorsa kayıtlı kanalları ziyaret edin"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "Sayaç bulunamadı.",
+            "searchPlaceholder": "Sayaç ara..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "Sunucu ayarlarını varsayılan olarak kullan",
+                "no": "Hayır",
+                "overrideDefaultDigits": "Varsayılan rakamları geçersiz kıl",
+                "overrideDefaultLocale": "Varsayılan dili geçersiz kıl",
+                "searchLocale": "Dil ara...",
+                "select": "Seç",
+                "useCompactNotation": "Kısa gösterim kullan",
+                "yes": "Evet"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "Görüntüle",
+                  "selectPlaceholder": "Görüntülenecek bir şey seçin",
+                  "servers": "Sunucular",
+                  "users": "Kullanıcılar"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "Kategori ekle...",
+                  "configWarning": "Geçerli bir kategori kimliği döndürmeyi unutmayın",
+                  "filterByCategory": "Kategoriye göre filtrele"
+                },
+                "ClockOptions": {
+                  "configWarning": "Geçerli bir saat dilimi tanımlayıcısı döndürmeyi unutmayın",
+                  "counterPreview": "Biçim bir sayacın sonucu olduğunda canlı önizleme gösteremiyoruz; nasıl görüneceğini görmek için tüm şablonu önizlemeniz gerekir.",
+                  "defaultFormat": "%f",
+                  "format": "Biçim",
+                  "formatConfigWarning": "Geçerli bir biçimlendirme dizesi döndürmeyi unutmayın",
+                  "formatInstructions": "Kullanılabilir yer tutucular:\n• <code>%H</code> - Başında sıfır olan saat, 24 saat (00-23)\n• <code>%h</code> - Başında sıfır olmayan saat, 24 saat (0-23)\n• <code>%I</code> - Başında sıfır olan saat, 12 saat (01-12)\n• <code>%i</code> - Başında sıfır olmayan saat, 12 saat (1-12)\n• <code>%M</code> - Başında sıfır olan dakika (00-59)\n• <code>%m</code> - Başında sıfır olmayan dakika (0-59)\n• <code>%S</code> - Başında sıfır olan saniye (00-59)\n• <code>%s</code> - Başında sıfır olmayan saniye (0-59)\n• <code>%p</code> - öö/ös (küçük harf)\n• <code>%P</code> - ÖÖ/ÖS (büyük harf)\n• <code>%f</code> - Varsayılan yerel ayara dayalı biçimlendirme",
+                  "livePreview": "Canlı önizleme",
+                  "noPreview": "Biçim boş olduğunda canlı önizleme gösteremiyoruz.",
+                  "searchTimezonePlaceholder": "Saat dilimi ara...",
+                  "timezone": "Saat dilimi"
+                },
+                "ConcatOptions": {
+                  "addString": "Metin ekle...",
+                  "stringList": "Metin listesi"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "Hedef tarih veya biçim bir sayacın sonucu olduğunda canlı önizleme gösteremiyoruz; nasıl görüneceğini görmek için tüm şablonu önizlemeniz gerekir.",
+                  "dateConfigWarning": "Geçerli bir UNIX zaman damgası döndürmeyi unutmayın",
+                  "datePlaceholder": "Veya bir sayaçtan tarih alın...",
+                  "defaultFormat": "%d gün, %h saat ve %m dakika kaldı",
+                  "format": "Biçim",
+                  "formatConfigWarning": "Geçerli bir biçimlendirme dizesi döndürmeyi unutmayın",
+                  "formatInstructions": "Kullanılabilir yer tutucular:\n• <code>%d</code> - Kalan gün\n• <code>%h</code> - Kalan saat (0-23)\n• <code>%m</code> - Kalan dakika (0-59)\n• <code>%s</code> - Kalan saniye (0-59)\n• <code>%D</code> - Toplam kalan gün\n• <code>%H</code> - Toplam kalan saat\n• <code>%M</code> - Toplam kalan dakika\n• <code>%S</code> - Toplam kalan saniye",
+                  "livePreview": "Canlı önizleme",
+                  "noPreview": "Hedef tarih veya biçim boş olduğunda canlı önizleme gösteremiyoruz.",
+                  "targetDate": "Hedef tarih"
+                },
+                "DateOptions": {
+                  "configWarning": "Geçerli bir saat dilimi tanımlayıcısı döndürmeyi unutmayın",
+                  "counterPreview": "Biçim bir sayacın sonucu olduğunda canlı önizleme gösteremiyoruz; nasıl görüneceğini görmek için tüm şablonu önizlemeniz gerekir.",
+                  "defaultFormat": "%f",
+                  "format": "Biçim",
+                  "formatConfigWarning": "Geçerli bir biçimlendirme dizesi döndürmeyi unutmayın",
+                  "formatInstructions": "Kullanılabilir yer tutucular:\n• <code>%Y</code> - Tam yıl (2025)\n• <code>%y</code> - 2 haneli yıl (25)\n• <code>%Ms</code> - Tam ay adı (Kasım)\n• <code>%ms</code> - Kısa ay adı (Kas)\n• <code>%M</code> - Başında sıfır olan ay numarası (01-12)\n• <code>%m</code> - Ay numarası (1-12)\n• <code>%Ws</code> - Tam gün adı (Pazartesi)\n• <code>%ws</code> - Kısa gün adı (Pzt)\n• <code>%w</code> - Haftanın günü numarası (0=Pazar, 6=Cumartesi)\n• <code>%D</code> - Başında sıfır olan gün (05)\n• <code>%d</code> - Başında sıfır olmayan gün (5)\n• <code>%f</code> - Varsayılan yerel ayara dayalı biçimlendirme",
+                  "livePreview": "Canlı önizleme",
+                  "noPreview": "Biçim boş olduğunda canlı önizleme gösteremiyoruz.",
+                  "searchTimezonePlaceholder": "Saat dilimi ara...",
+                  "timezone": "Saat dilimi"
+                },
+                "GameOptions": {
+                  "address": "Adres",
+                  "addressWarning": "Geçerli bir adres döndürmeyi unutmayın",
+                  "game": "Oyun",
+                  "gameWarning": "Geçerli bir node-gamedig oyun türü döndürmeyi unutmayın",
+                  "port": "Port (veya sorgu portu)",
+                  "portWarning": "Geçerli bir port numarası döndürmeyi unutmayın",
+                  "searchPlaceholder": "Ara..."
+                },
+                "HttpOptions": {
+                  "dataPath": "Veri yolu",
+                  "dataPathDescription": "Yanıtın içerik türü JSON olduğunda istenen değeri almak için bir yol; sözdizimi, JS'de özelliklere ve dizi öğelerine erişmek için kullanılana benzerdir.",
+                  "dataPathWarning": "Bir veri yolu döndürmeyi unutmayın",
+                  "emptyUrl": "URL boş olduğu için getirilemez",
+                  "fetch": "Getir",
+                  "fetching": "Getiriliyor...",
+                  "lifetime": "Ömür (saniye cinsinden)",
+                  "lifetimeDescription": "Belirtilen URL'nin yanıtının ne kadar süreyle önbelleğe alınacağını belirler.",
+                  "lifetimeWarning": "Geçerli bir sayı döndürmeyi unutmayın",
+                  "noPreview": "URL veya veri yolu bir sayacın sonucu olduğunda önizleme gösteremiyoruz; nasıl görüneceğini görmek için tüm şablonu önizlemeniz gerekir.",
+                  "preview": "Önizleme",
+                  "testResponse": "Test yanıtı",
+                  "url": "URL (GET)",
+                  "urlWarning": "Geçerli bir URL döndürmeyi unutmayın"
+                },
+                "MathOptions": {
+                  "addNumber": "Sayı ekle...",
+                  "addition": "Toplama",
+                  "division": "Bölme",
+                  "modulo": "Mod (Bölmenin kalanı)",
+                  "multiplication": "Çarpma",
+                  "numberList": "Sayı listesi",
+                  "numberWarning": "Geçerli bir sayı döndürmeyi unutmayın",
+                  "operation": "İşlem türü",
+                  "selectOperation": "Bir işlem türü seçin",
+                  "subtraction": "Çıkarma"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Yalnızca yasaklanmış üyeleri say"
+                  },
+                  "FilterByAccountType": {
+                    "any": "Herhangi",
+                    "bot": "Bot",
+                    "label": "Hesap türüne göre filtrele",
+                    "placeholder": "Bir hesap türü seçin",
+                    "user": "Kullanıcı"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "Sesli kanal ekle...",
+                    "dataSourceConfigWarning": "Geçerli bir sesli kanal kimliği döndürmeyi unutmayın",
+                    "label": "Sesli kanala bağlı olanlara göre filtrele"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "Rol ekle...",
+                    "dataSourceConfigWarning": "Geçerli bir rol kimliği döndürmeyi unutmayın",
+                    "label": "Role göre filtrele"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "Herhangi bir eşleşme",
+                    "label": "Filtre modu",
+                    "overlap": "Örtüşme",
+                    "placeholder": "Filtre modunu seçin"
+                  },
+                  "FilterByStatus": {
+                    "any": "Herhangi",
+                    "dnd": "Rahatsız etmeyin",
+                    "idle": "Boşta",
+                    "label": "Duruma göre filtrele",
+                    "offline": "Çevrimdışı",
+                    "online": "Çevrimiçi",
+                    "onlineIdleDnd": "Çevrimiçi + Boşta + Rahatsız Etmeyin",
+                    "placeholder": "Bir durum seçin"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Oyun oynayana göre filtrele",
+                    "placeholder": "Oyun ekle..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "Görüntüle",
+                  "followers": "Takipçiler",
+                  "memes": "Memeler",
+                  "selectDisplay": "Görüntülenecek bir şey seçin",
+                  "username": "Kullanıcı adı",
+                  "usernameWarning": "Geçerli bir kullanıcı adı döndürmeyi unutmayın"
+                },
+                "NumberOptions": {
+                  "number": "Sayı",
+                  "numberWarning": "Geçerli bir sayı döndürmeyi unutmayın",
+                  "placeholder": "Bir sayı girin veya sayaç arayın"
+                },
+                "RedditOptions": {
+                  "display": "Görüntüle",
+                  "members": "Üyeler",
+                  "membersOnline": "Çevrimiçi üyeler",
+                  "selectPlaceholder": "Görüntülenecek bir şey seçin",
+                  "subreddit": "Subreddit adı",
+                  "subredditPlaceholder": "Bir subreddit girin veya sayaç arayın",
+                  "subredditWarning": "Geçerli bir subreddit döndürmeyi unutmayın",
+                  "title": "Subreddit başlığı"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "Değiştirme ekle",
+                  "inputText": "Giriş metni",
+                  "removeReplacement": "Değiştirmeyi kaldır",
+                  "replaceWith": "Şununla değiştir",
+                  "replacementPlaceholder": "Değiştirme metnini girin",
+                  "searchFor": "Ara",
+                  "searchPlaceholder": "Arama terimini girin",
+                  "textPlaceholder": "Değiştirilecek metni girin"
+                },
+                "TwitchOptions": {
+                  "channelName": "Kanal adı",
+                  "display": "Görüntüle",
+                  "followers": "Takipçiler",
+                  "selectPlaceholder": "Görüntülenecek bir şey seçin",
+                  "username": "Kullanıcı adı",
+                  "usernamePlaceholder": "Bir kullanıcı adı girin",
+                  "usernameWarning": "Geçerli bir kullanıcı adı döndürmeyi unutmayın",
+                  "viewers": "İzleyiciler"
+                },
+                "YouTubeOptions": {
+                  "channelName": "Kanal adı",
+                  "channelUrl": "Kanal URL'si",
+                  "channelUrlPlaceholder": "Bir kanal URL'si girin",
+                  "channelUrlWarning": "Geçerli bir kanal URL'si döndürmeyi unutmayın",
+                  "display": "Görüntüle",
+                  "selectPlaceholder": "Görüntülenecek bir şey seçin",
+                  "subscribers": "Aboneler",
+                  "videos": "Videolar",
+                  "views": "İzlenmeler"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "Emoji seçici",
+            "searchEmoji": "Emoji ara"
+          },
+          "markButtons": {
+            "bold": "kalın",
+            "italic": "italik",
+            "spoiler": "spoiler",
+            "strike": "üstü çizili",
+            "underline": "altı çizili"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "Kabul Edilebilir Kullanım Politikası",
+          "noReasonGiven": "Sebep belirtilmedi",
+          "supportTeam": "Destek ekibi",
+          "termsOfService": "Hizmet Şartları",
+          "text": "Bu sunucu, <LinkTerms>Hizmet Şartları</LinkTerms> veya <LinkPolicy>Kabul Edilebilir Kullanım Politikası</LinkPolicy>'nı ihlal ettiği için engellenmiştir.<br />Belirtilen sebep: {{reason}}<br />Bunun bir hata olduğunu düşünüyorsanız, lütfen <SupportLink>destek ekibimiz</SupportLink> ile iletişime geçin."
+        },
+        "channels": {
+          "save": "Kaydet",
+          "saved": "Kaydedildi",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "Son güncelleme: {{lastTemplateUpdateDate}}",
+              "template": "Şablon"
+            },
+            "EnableTemplate": {
+              "description": "Etkinleştirildiğinde, Member Counter bu kanalın {{templateTarget}} bilgisini işlenmiş şablonu gösterecek şekilde otomatik olarak güncelleyecektir.",
+              "enableTemplate": "Şablonu etkinleştir",
+              "nameTarget": "adı",
+              "topicTarget": "konusu"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Tekrar kontrol et",
+              "description": "Lütfen botun bu kanalda aşağıdaki izinlere sahip olduğunu doğrulayın:",
+              "permissions": {
+                "connect": "Bağlan",
+                "manageChannel": "Kanalı Yönet",
+                "viewChannel": "Kanalı Görüntüle"
+              },
+              "title": "Bot, bu kanalı düzenleme iznine sahip değil."
+            },
+            "TemplateError": {
+              "errorDescription": "Son şablon işleme sırasında bir hata oluştu. Ayrıntılar aşağıda gösterilmektedir.",
+              "errorTitle": "Şablon en son işlendiğinde bir hata oluştu"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "Bu sunucuyu yönetme izniniz yok.\n{{guildName}} sunucusundaki bir yöneticiden size Yönetici veya Sunucuyu Yönet izinlerini vermesini isteyin.",
+          "title": "İzin Reddedildi"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "Kapat",
+          "message": "Member Counter Botu bu sunucuda görünmüyor. <LinkURL>Eklemek</LinkURL> ister misiniz?"
+        },
+        "inviteBotPage": {
+          "addToServer": "{{serverName}} sunucusuna ekle",
+          "copyLink": "Davet bağlantısını kopyala",
+          "linkCopied": "Bağlantı panonuza kopyalandı.",
+          "noPermission": "Botu eklemek için yeterli izniniz yok. Lütfen bir yöneticiden veya Sunucuyu Yönet iznine sahip birinden bu botu eklemesini isteyin.",
+          "subtitle": "Member Counter'ı {{serverName}} sunucusuna ekleyin ve gerçek zamanlı sayaçların keyfini çıkarın.",
+          "title": "Botu kuralım!",
+          "useOrShareLink": "Botu eklemek için bu bağlantıyı kullanın veya paylaşın."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "Sunucuyu engelle",
+            "blockDialogDescription": "Belirtilen sebep sunucu yöneticilerine gösterilecektir.",
+            "blockDialogTitle": "Bu sunucuyu gerçekten engellemek istiyor musunuz?",
+            "closeButton": "Kapat",
+            "reasonLabel": "Sebep",
+            "reasonPlaceholder": "Lütfen bir sebep belirtin",
+            "unblockButton": "Sunucunun engelini kaldır",
+            "unblockDialogDescription": "Bu sunucu şu sebepten dolayı engellenmiştir: {{reason}}",
+            "unblockDialogTitle": "Bu sunucunun engelini gerçekten kaldırmak istiyor musunuz?"
+          },
+          "reset": {
+            "closeButton": "Kapat",
+            "dialogDescription": "Bu işlem geri alınamaz. Tüm ayarlar varsayılanlara sıfırlanacaktır.",
+            "dialogTitle": "Kesinlikle emin misiniz?",
+            "resetButton": "Ayarları sıfırla"
+          },
+          "save": "Kaydet",
+          "saved": "Kaydedildi",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Özel rakamlar",
+              "customDigitsDescription": "Sayı döndüren sayaçlarda, Member Counter her rakamı sizin belirttiğinizle değiştirecektir. Bu, özel emoji veya \"unicode tarzı yazı tipleri\" gibi başka şeyler görüntülemek istiyorsanız kullanışlıdır.",
+              "customizationRecommendation": "Ekran okuyucu kullanan herhangi bir kişinin herhangi bir sayaca erişmeyeceğinden emin olmadıkça herhangi bir rakamı özelleştirmenizi önermiyoruz.",
+              "screenReaderWarning": "Ekran okuyucu (metinden konuşmaya) kullanan kullanıcıların özelleştirilmiş rakamları anlayamayabileceğini ve <demoLink>anlaşılmaz bir şey duyabileceklerini</demoLink> unutmayın. Ekran okuyucular genellikle görme engelli kişiler tarafından kullanılır."
+            },
+            "Locale": {
+              "description": "Bunu değiştirmek bazı sayaçların görüntülenme şeklini etkileyecektir.",
+              "locale": "Yerel ayar",
+              "numberExample": "439212 şu şekilde görüntülenecektir: {{number}}",
+              "searchPlaceholder": "Yerel ayar ara...",
+              "timeExample": "15:30 (veya 3:30 PM) şu şekilde görüntülenecektir: {{time}}"
+            },
+            "UseCompactNotation": {
+              "description": "Sayı döndüren sayaçlar daha kısa bir biçimde görüntülenecektir.",
+              "example1": "12300 şu şekilde görüntülenecektir: {{number}}",
+              "example2": "439212 şu şekilde görüntülenecektir: {{number}}",
+              "example3": "1500000 şu şekilde görüntülenecektir: {{number}}",
+              "label": "Sayılar için kısa gösterim kullan"
+            }
+          },
+          "title": "Sunucu Ayarları"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "İhtiyaçlarınıza göre özelleştirilmiş sayaçlarınızdan en iyi şekilde yararlanın.",
+            "label": "Profesyonel gibi",
+            "title": "Gelişmiş sayaçlar"
+          },
+          "createFromScratch": {
+            "description": "Birkaç dakika içinde ilk özel sayacınızı nasıl oluşturacağınızı öğrenin.",
+            "label": "Benzersiz olun!",
+            "title": "Sıfırdan oluştur"
+          },
+          "queryHistoricalStatistics": {
+            "description": "Sayaçlarınızın ve diğer genel istatistiklerin zaman içinde nasıl değiştiğini görün.",
+            "label": "Yakında™",
+            "title": "Geçmiş istatistikleri sorgula"
+          },
+          "quickSetup": {
+            "description": "Birkaç tıklamayla en yaygın sayaçları hızlıca oluşturun. Hayal gücü veya beyin gerektirmez!",
+            "label": "Zahmetsiz!",
+            "title": "Hızlı kurulum"
+          },
+          "subTitle": "İşte sizin için bazı öneriler:",
+          "title": "Tekrar hoş geldiniz!"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "Beklenmeyen bir hata oluştu.",
+        "NotAuthenticated": "Giriş yapmadınız.",
+        "NotAuthorized": "Bu sayfaya erişim yetkiniz yok.",
+        "NotFound": "Aradığınız sayfa bulunamadı."
+      },
+      "nav": {
+        "backBtn": "Geri dön",
+        "homeBtn": "Ana sayfaya git",
+        "supportBtn": "Destek al",
+        "tryAgainBtn": "Tekrar dene"
+      }
+    },
+    "home": {
+      "addToDiscord": "Discord'a Ekle",
+      "dashboard": "Kontrol Paneli",
+      "getSupport": "Destek Al",
+      "headings": [
+        "Sunucunuzun üye sayısını dinamik olarak görüntüleyin",
+        "YouTube abone sayınızı gösterin",
+        "Minecraft sunucunuzun oyuncu sayısını takip edin",
+        "Twitch kanalınızı kaç kişinin izlediğini gösterin",
+        "Discord sunucunuzda istediğiniz verileri görüntüleyin",
+        "FiveM sunucunuzun kaç oyuncusu olduğunu takip edin",
+        "Tercih ettiğiniz saat dilimine göre ayarlanmış bir saat gösterin",
+        "Etkinlikler veya özel günler için geri sayımlar oluşturun",
+        "320'den fazla oyun sunucusunda oyuncu istatistiklerini takip edin",
+        "Herhangi bir API uç noktasından veri alın ve görüntüleyin",
+        "Verileriniz üzerinde matematik işlemleri yapın ve görüntüleyin",
+        "Sayıları biçimlendirin ve güzel bir şekilde görüntüleyin",
+        "Sunucunuzun Nitro takviye edenlerini öne çıkarın"
+      ],
+      "seeHowPeopleUseIt": "İnsanların nasıl kullandığını görün",
+      "seeMore": "Daha fazla gör",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Deneyiminizi geliştirebilecek daha birçok özellik ve sayacı keşfedin. Güncellemeler için bizi takip edin!",
+          "title": "Ve Çok Daha Fazlası!"
+        },
+        "clock": {
+          "description": "Özelleştirilebilir saatimizle herhangi bir saat dilimindeki saati görüntüleyin. Farklı bölgeler arasında koordinasyon sağlamak için mükemmel.",
+          "title": "Saat"
+        },
+        "countdown": {
+          "description": "Belirli etkinliklerinize veya son tarihlerinize göre özelleştirilmiş geri sayım zamanlayıcıları oluşturun ve yönetin.",
+          "title": "Geri Sayım"
+        },
+        "date": {
+          "description": "Özelleştirilebilir biçimlendirmeyle herhangi bir saat dilimindeki güncel tarihi görüntüleyin. Farklı bölgelerdeki tarihleri göstermek için idealdir.",
+          "title": "Tarih"
+        },
+        "discordMembers": {
+          "description": "Topluluğunuz hakkında doğru bilgiler elde etmek için üyeleri çevrimiçi durumuna, rollerine ve diğer kriterlere göre sayın ve filtreleyin.",
+          "title": "Discord Üyeleri"
+        },
+        "game": {
+          "description": "320'den fazla desteklenen oyun için gerçek zamanlı oyuncu sayılarıyla oyun sunucunuzun aktivitesini takip edin.",
+          "title": "Oyun"
+        },
+        "http": {
+          "description": "Herhangi bir uç noktadan GET istekleri gönderin ve veri alın, entegrasyon ihtiyaçlarınızı kolaylaştırın.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Birden fazla sayı üzerinde toplama, çıkarma, çarpma ve daha fazlası dahil olmak üzere çeşitli matematik işlemleri gerçekleştirin.",
+          "title": "Matematik"
+        },
+        "nitroBoosters": {
+          "description": "Topluluk desteğini ve katılımını ölçmek için sunucunuzdaki Nitro takviye edenlerin sayısını takip edin.",
+          "title": "Nitro Takviye Edenler"
+        },
+        "reddit": {
+          "description": "Başlık, üye sayısı ve çevrimiçi üyeler dahil olmak üzere herhangi bir subreddit hakkında istatistikler alın.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Güçlü değiştirme aracımızla metni dinamik olarak düzenleyin; HTTP sayacıyla birlikte kullanım için idealdir.",
+          "title": "Değiştir"
+        },
+        "twitch": {
+          "description": "En sevdiğiniz yayıncılar hakkında güncel kalmak için takipçi sayısı ve izlenme istatistikleri gibi Twitch kanal ölçümlerini takip edin.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Abone sayısı, video sayısı ve genel izlenmeler dahil olmak üzere YouTube kanallarından temel metrikleri alın.",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "Desteklenen sayaçlar"
+    },
+    "status": {
+      "affectedServers": "Etkilenen Discord sunucuları:",
+      "assignedDiscordServers": "Bu alt birime atanan:",
+      "child": "Alt Birim #{{index}}",
+      "childDiscordServers": "{{count}} Discord sunucusu {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} kullanılamıyor)",
+      "childDiscordUsers": "{{count}} Kullanıcı",
+      "discordClientStatus": {
+        "Connecting": "Bağlanıyor",
+        "Disconnected": "Bağlantı kesildi",
+        "Identifying": "Kimlik doğrulanıyor",
+        "Idle": "Boşta",
+        "Nearly": "Boşta",
+        "Ready": "Hazır",
+        "Reconnecting": "Yeniden bağlanıyor",
+        "Resuming": "Devam ettiriliyor",
+        "WaitingForGuilds": "Sunucular bekleniyor"
+      },
+      "memoryUsage": "{{usage}} (en yüksek {{peak}})",
+      "memoryUsageTooltip": "Bellek kullanımı",
+      "partialOutage": "Kısmi bir kesinti yaşanıyor",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} Çekirdek\nYük {{load}}",
+        "cpuLabel": "İşlemci",
+        "hostname": "Ad",
+        "memoryInfo": "{{memory}}\n%{{usage}} Kullanım",
+        "memoryLabel": "Bellek",
+        "title": "Sunucu bilgileri"
+      },
+      "statusUnavailable": "Durum bilgisi mevcut değil"
+    }
+  }
+}

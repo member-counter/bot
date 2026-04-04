@@ -8,6 +8,7 @@ import mainDE from "./locales/de/main.json";
 import mainUS from "./locales/en-US/main.json";
 import mainES from "./locales/es-ES/main.json";
 import mainRU from "./locales/ru/main.json";
+import mainTR from "./locales/tr/main.json";
 
 export const AVAILABLE_LANGUAGES: Locale[] = [
   Locale.EnglishUS,
@@ -17,6 +18,7 @@ export const AVAILABLE_LANGUAGES: Locale[] = [
   Locale.Russian,
   Locale.Czech,
   Locale.German,
+  Locale.Turkish,
 ] as const;
 export const DEFAULT_LANGUAGE: Locale = Locale.EnglishUS;
 export const NAMESPACES: (keyof Resources)[] = ["main"];
@@ -49,6 +51,9 @@ export async function initI18n({ locale }: InitI18NOptions) {
       },
       [Locale.German]: {
         main: mainDE,
+      },
+      [Locale.Turkish]: {
+        main: mainTR,
       },
     },
     interpolation: {
