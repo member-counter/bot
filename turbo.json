@@ -14,7 +14,14 @@
         ".output/**",
         ".vercel/output/**"
       ],
-      "env": ["SKIP_ENV_VALIDATION"]
+      "env": [
+        "SKIP_ENV_VALIDATION",
+        "SITE_URL",
+        "VITE_SUPPORT_URL",
+        "VITE_BOT_DOCS_URL",
+        "VITE_BOT_REPO_URL",
+        "VITE_TRANSLATION_PLATFORM_URL"
+      ]
     },
     "dev": {
       "persistent": true,
