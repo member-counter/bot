@@ -51,6 +51,7 @@ export async function startBot(options: BotInstanceOptions) {
     redisPubClient: BDERedisPubClient,
     redisSubClient: BDERedisSubClient,
     botClient: botClient,
+    logger: logger,
   });
 
   const BSPRedisPubClient = redis.duplicate();
