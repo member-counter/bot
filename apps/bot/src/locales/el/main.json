@@ -1,1 +1,213 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Κάτι πήγε στραβά, παρακαλώ δοκιμάστε ξανά αργότερα.\n\nΑναγνωριστικό σφάλματος: {{ERROR_ID}}",
+        "title": "ΣΦΑΛΜΑ!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Μετάβαση στον πίνακα ελέγχου",
+        "definition": {
+          "slash": {
+            "description": "Λάβετε τον σύνδεσμο για τη ρύθμιση του bot στον ιστότοπο.",
+            "name": "rythmisi"
+          }
+        },
+        "reply": "Κάντε κλικ παρακάτω για να ρυθμίσετε το bot στον πίνακα ελέγχου.\nΜπορείτε επίσης να ρυθμίσετε μερικούς βασικούς μετρητές χρησιμοποιώντας την εντολή {{SETUP_COMMAND}} χωρίς να φύγετε από το Discord."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Λίστα χρήσιμων συνδέσμων και άλλων πληροφοριών.",
+            "name": "plirofories"
+          }
+        },
+        "embedReply": {
+          "description": "[Προσθήκη στον διακομιστή σας]({{BOT_INVITE_URL}})\n[Ιστότοπος]({{OFFICIAL_WEBSITE_URL}})\n[Διακομιστής υποστήριξης]({{BOT_SUPPORT_URL}})\n[Αποθετήριο GitHub]({{BOT_REPO_URL}})\n[Έκδοση bot: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Προσθήκη σε διακομιστή",
+        "addToServerAgain": "Προσθήκη σε αυτόν τον διακομιστή ξανά",
+        "definition": {
+          "slash": {
+            "description": "Παρέχει σύνδεσμο πρόσκλησης για την προσθήκη του bot.",
+            "name": "prosklisi"
+          }
+        },
+        "description": "Ο σύνδεσμος πρόσκλησής σας είναι έτοιμος:\n{{INVITE_URL}}",
+        "joinSupportServer": "Εγγραφή στον διακομιστή υποστήριξης"
+      },
+      "profile": {
+        "badges": "Σήματα",
+        "definition": {
+          "context": {
+            "name": "Profil"
+          },
+          "slash": {
+            "description": "Εμφανίζει σχετικές πληροφορίες μεταξύ εσάς και αυτού του bot.",
+            "name": "profil",
+            "options": {
+              "user": {
+                "description": "Ο χρήστης του οποίου το προφίλ θέλετε να δείτε.",
+                "name": "xristis"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Διαγραφή δεδομένων",
+        "deleteProfilePrompt": {
+          "cancelButton": "Ακύρωση",
+          "confirmButton": "Ναι",
+          "description": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+          "removeDataSuccess": "Τα δεδομένα αφαιρέθηκαν επιτυχώς.",
+          "title": "Είστε σίγουροι ότι θέλετε να διαγράψετε τα δεδομένα;"
+        },
+        "moreOptionsButton": "Περισσότερες επιλογές",
+        "userNotFound": "Ο χρήστης δεν βρέθηκε"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Ρύθμιση βασικών μετρητών.",
+            "name": "egkatastasi",
+            "subcommands": {
+              "server": {
+                "description": "Ρύθμιση μετρητών σχετικών με τον διακομιστή.",
+                "name": "diakomistis"
+              },
+              "twitch": {
+                "description": "Ρύθμιση μετρητών σχετικών με το Twitch.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "Το όνομα χρήστη του καναλιού.",
+                    "name": "onoma-xristi"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "Ρύθμιση μετρητών σχετικών με το YouTube.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "Η διεύθυνση URL του καναλιού.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Η δημιουργία ολοκληρώθηκε.",
+          "configureSuggestion": "Θα πρέπει να δοκιμάσετε την εντολή {{CONFIGURE_COMMAND}} για πιο εξατομικευμένη ρύθμιση.",
+          "createdCategory": "{{ICON}} Η κατηγορία δημιουργήθηκε.",
+          "createdChannel": "{{ICON}} Το {{NAME}} δημιουργήθηκε.",
+          "creating": "Δημιουργία μετρητών...",
+          "creatingCategory": "{{ICON}} Δημιουργία κατηγορίας.",
+          "creatingChannel": "{{ICON}} Δημιουργία μετρητή {{NAME}}.",
+          "failedCategory": "{{ICON}} Η κατηγορία απέτυχε.",
+          "failedChannel": "{{ICON}} Το {{NAME}} απέτυχε."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Στατιστικά Διακομιστή \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Συνδεδεμένα μέλη",
+                "template": "Συνδεδεμένα: {{COUNTER}}"
+              },
+              {
+                "name": "Μέλη",
+                "template": "Μέλη: {{COUNTER}}"
+              },
+              {
+                "name": "Nitro boosters",
+                "template": "Boosters: {{COUNTER}}"
+              },
+              {
+                "name": "Ρόλοι",
+                "template": "Ρόλοι: {{COUNTER}}"
+              },
+              {
+                "name": "Κανάλια",
+                "template": "Κανάλια: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Στατιστικά Twitch \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Ακόλουθοι Twitch",
+                "template": "{{COUNTER}} Ακόλουθοι"
+              },
+              {
+                "name": "Θεατές Twitch",
+                "template": "Θεατές: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Στατιστικά YouTube \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Συνδρομητές YouTube",
+                "template": "{{COUNTER}} Συνδρομητές"
+              },
+              {
+                "name": "Βίντεο YouTube",
+                "template": "{{COUNTER}} Βίντεο"
+              },
+              {
+                "name": "Προβολές YouTube",
+                "template": "{{COUNTER}} Προβολές"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "ΣΦΑΛΜΑ!"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "Το αίτημα ήταν μη έγκυρο.",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Το bot δεν έχει αρκετά προνομιακά intents για τη χρήση αυτού του μετρητή.",
+    "BOT_IS_NOT_PREMIUM": "Το bot δεν είναι premium έκδοση και δεν διαθέτει ορισμένες λειτουργίες που απαιτούνται για αυτόν τον μετρητή.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Ο μετρητής έχει μη αναγνωρίσιμη μορφή.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "Ο μετρητής δεν είναι έγκυρος.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Το αποτέλεσμα για το όνομα καναλιού είναι μικρότερο από 2 χαρακτήρες.",
+    "EVALUATION_TIMEOUT": "Η αξιολόγηση διήρκεσε πολύ και έληξε.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "Αποτυχία δημιουργίας τελικής συμβολοσειράς από την αξιολόγηση.",
+    "FORBIDDEN": "Το αίτημα απαγορεύτηκε.",
+    "GAME_MISSING_ADDRESS": "Ο μετρητής παιχνιδιού απαιτεί διεύθυνση διακομιστή.",
+    "GAME_MISSING_GAME_ID": "Πρέπει να παρασχεθεί αναγνωριστικό παιχνιδιού για τον μετρητή παιχνιδιού.",
+    "GAME_MISSING_PORT": "Ο μετρητής παιχνιδιού απαιτεί θύρα διακομιστή.",
+    "HTTP_DATA_PATH_MANDATORY": "Πρέπει να καθοριστεί διαδρομή δεδομένων για αιτήματα HTTP με τύπο περιεχομένου application/json.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Ο τύπος περιεχομένου της απάντησης HTTP δεν είναι έγκυρος (ούτε text/plain ούτε application/json).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "Ο κωδικός κατάστασης της απάντησης HTTP δεν είναι έγκυρος (δεν είναι 200).",
+    "HTTP_MISSING_URL": "Ο μετρητής HTTP απαιτεί μια διεύθυνση URL που λείπει.",
+    "INTERNAL_SERVER_ERROR": "Παρουσιάστηκε εσωτερικό σφάλμα διακομιστή.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "Οι μετρήσεις μελών δεν είναι διαθέσιμες αυτή τη στιγμή.",
+    "MEMERATOR_MISSING_USERNAME": "Ο μετρητής Memerator απαιτεί ένα όνομα χρήστη που λείπει.",
+    "NOT_FOUND": "Ο ζητούμενος πόρος δεν βρέθηκε.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Το bot δεν έχει επαρκή δικαιώματα για την επεξεργασία του καναλιού.",
+    "REDDIT_MISSING_SUBREDDIT": "Πρέπει να παρασχεθεί ένα subreddit για τον μετρητή Reddit.",
+    "TWITCH_CHANNEL_NOT_FOUND": "Το καθορισμένο κανάλι Twitch δεν βρέθηκε.",
+    "TWITCH_MISSING_USERNAME": "Ο μετρητής Twitch απαιτεί τον ορισμό ονόματος χρήστη.",
+    "UNAUTHORIZED": "Το αίτημα δεν ήταν εξουσιοδοτημένο.",
+    "UNKNOWN": "Παρουσιάστηκε άγνωστο σφάλμα.",
+    "UNKNOWN_DATA_SOURCE": "Ο παρεχόμενος μετρητής είναι άγνωστος ή μη αναγνωρίσιμος.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "Ο τύπος τιμής που επιστράφηκε από την αξιολόγηση είναι άγνωστος.",
+    "USER_NOT_FOUND": "Ο χρήστης δεν βρέθηκε.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "Η παρεχόμενη διεύθυνση URL καναλιού YouTube δεν είναι έγκυρη.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "Ο μετρητής YouTube απαιτεί τον ορισμό διεύθυνσης URL καναλιού."
+  }
+}

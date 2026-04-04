@@ -1,1 +1,213 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "出了点问题，请稍后再试。\n\n错误 ID：{{ERROR_ID}}",
+        "title": "错误！"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "前往控制面板",
+        "definition": {
+          "slash": {
+            "description": "获取在网站上配置机器人的链接。",
+            "name": "configure"
+          }
+        },
+        "reply": "点击下方按钮在控制面板中配置机器人。\n你也可以使用 {{SETUP_COMMAND}} 命令在 Discord 中直接设置一些基本计数器。"
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "实用链接列表和其他信息。",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[添加到你的服务器]({{BOT_INVITE_URL}})\n[网站]({{OFFICIAL_WEBSITE_URL}})\n[支持服务器]({{BOT_SUPPORT_URL}})\n[GitHub 仓库]({{BOT_REPO_URL}})\n[机器人版本：{{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "添加到服务器",
+        "addToServerAgain": "再次添加到此服务器",
+        "definition": {
+          "slash": {
+            "description": "提供添加机器人的邀请链接。",
+            "name": "invite"
+          }
+        },
+        "description": "你的邀请链接已准备好：\n{{INVITE_URL}}",
+        "joinSupportServer": "加入支持服务器"
+      },
+      "profile": {
+        "badges": "徽章",
+        "definition": {
+          "context": {
+            "name": "Profile"
+          },
+          "slash": {
+            "description": "显示你与此机器人之间的相关信息。",
+            "name": "profile",
+            "options": {
+              "user": {
+                "description": "你想查看其个人资料的用户。",
+                "name": "user"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "删除数据",
+        "deleteProfilePrompt": {
+          "cancelButton": "取消",
+          "confirmButton": "确认",
+          "description": "此操作无法撤消。",
+          "removeDataSuccess": "数据已成功删除。",
+          "title": "你确定要删除数据吗？"
+        },
+        "moreOptionsButton": "更多选项",
+        "userNotFound": "未找到用户"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "设置一些基本计数器。",
+            "name": "setup",
+            "subcommands": {
+              "server": {
+                "description": "设置服务器相关的计数器。",
+                "name": "server"
+              },
+              "twitch": {
+                "description": "设置 Twitch 相关的计数器。",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "频道用户名。",
+                    "name": "username"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "设置 YouTube 相关的计数器。",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "频道 URL。",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "创建完成。",
+          "configureSuggestion": "你可以查看 {{CONFIGURE_COMMAND}} 以获得更个性化的设置。",
+          "createdCategory": "{{ICON}} 分类已创建。",
+          "createdChannel": "{{ICON}} {{NAME}} 已创建。",
+          "creating": "正在创建计数器...",
+          "creatingCategory": "{{ICON}} 正在创建分类。",
+          "creatingChannel": "{{ICON}} 正在创建 {{NAME}} 计数器。",
+          "failedCategory": "{{ICON}} 分类创建失败。",
+          "failedChannel": "{{ICON}} {{NAME}} 创建失败。"
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA 服务器统计 \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "在线成员",
+                "template": "在线：{{COUNTER}}"
+              },
+              {
+                "name": "成员",
+                "template": "成员：{{COUNTER}}"
+              },
+              {
+                "name": "Nitro 助力者",
+                "template": "助力者：{{COUNTER}}"
+              },
+              {
+                "name": "身份组",
+                "template": "身份组：{{COUNTER}}"
+              },
+              {
+                "name": "频道",
+                "template": "频道：{{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch 统计 \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Twitch 关注者",
+                "template": "{{COUNTER}} 关注者"
+              },
+              {
+                "name": "Twitch 观众",
+                "template": "观众：{{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube 统计 \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "YouTube 订阅者",
+                "template": "{{COUNTER}} 订阅者"
+              },
+              {
+                "name": "YouTube 视频",
+                "template": "{{COUNTER}} 视频"
+              },
+              {
+                "name": "YouTube 观看次数",
+                "template": "{{COUNTER}} 观看次数"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "错误！"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "请求无效。",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "机器人没有足够的特权意图来使用此计数器。",
+    "BOT_IS_NOT_PREMIUM": "该机器人不是高级版本，缺少此计数器所需的某些功能。",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "计数器格式无法识别。",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "计数器无效。",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "频道名称的结果少于 2 个字符。",
+    "EVALUATION_TIMEOUT": "计算时间过长，已超时。",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "无法从计算中生成最终字符串。",
+    "FORBIDDEN": "请求被禁止。",
+    "GAME_MISSING_ADDRESS": "游戏计数器需要服务器地址。",
+    "GAME_MISSING_GAME_ID": "必须为游戏计数器提供游戏 ID。",
+    "GAME_MISSING_PORT": "游戏计数器需要服务器端口。",
+    "HTTP_DATA_PATH_MANDATORY": "当内容类型为 application/json 时，必须为 HTTP 请求指定数据路径。",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTP 响应的内容类型无效（不是 text/plain 或 application/json）。",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP 响应状态码无效（不是 200）。",
+    "HTTP_MISSING_URL": "HTTP 计数器需要一个 URL，但缺少该 URL。",
+    "INTERNAL_SERVER_ERROR": "发生了内部服务器错误。",
+    "MEMBER_COUNT_NOT_AVAILABLE": "成员计数当前不可用。",
+    "MEMERATOR_MISSING_USERNAME": "Memerator 计数器需要一个用户名，但缺少该用户名。",
+    "NOT_FOUND": "未找到请求的资源。",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "机器人没有足够的权限来编辑频道。",
+    "REDDIT_MISSING_SUBREDDIT": "必须为 Reddit 计数器提供子版块名称。",
+    "TWITCH_CHANNEL_NOT_FOUND": "未找到指定的 Twitch 频道。",
+    "TWITCH_MISSING_USERNAME": "Twitch 计数器需要设置用户名。",
+    "UNAUTHORIZED": "请求未经授权。",
+    "UNKNOWN": "发生了未知错误。",
+    "UNKNOWN_DATA_SOURCE": "提供的计数器未知或无法识别。",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "计算返回的值类型未知。",
+    "USER_NOT_FOUND": "未找到用户。",
+    "YOUTUBE_INVALID_CHANNEL_URL": "提供的 YouTube 频道 URL 无效。",
+    "YOUTUBE_MISSING_CHANNEL_URL": "YouTube 计数器需要设置频道 URL。"
+  }
+}

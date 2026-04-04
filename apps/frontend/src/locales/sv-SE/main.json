@@ -1,1 +1,1052 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "Meddelandekanal",
+      "category": "Kategori",
+      "forumChannel": "Forumkanal",
+      "mediaChannel": "Mediakanal",
+      "stageChannel": "Scenkanal",
+      "textChannel": "Textkanal",
+      "voiceChannel": "Röstkanal"
+    },
+    "knownError": "Fel",
+    "knownErrors": {
+      "BAD_REQUEST": "Begäran var ogiltig.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Boten har inte tillräckligt med privilegierade intents för att använda denna räknare.",
+      "BOT_IS_NOT_PREMIUM": "Boten är inte en premiumversion och saknar vissa funktioner som behövs för denna räknare.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Räknaren har ett okänt format.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "Räknaren är ogiltig.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Resultatet för kanalnamnet är kortare än 2 tecken.",
+      "EVALUATION_TIMEOUT": "Utvärderingen tog för lång tid och avbröts.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Misslyckades med att generera en slutgiltig sträng från utvärderingen.",
+      "FORBIDDEN": "Begäran var förbjuden.",
+      "GAME_MISSING_ADDRESS": "Spelräknaren kräver en serveradress.",
+      "GAME_MISSING_GAME_ID": "Ett spel-ID måste anges för spelräknaren.",
+      "GAME_MISSING_PORT": "Spelräknaren kräver en serverport.",
+      "HTTP_DATA_PATH_MANDATORY": "En datasökväg måste anges för HTTP-begäranden vars innehållstyp är application/json.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Innehållstypen för HTTP-svaret är ogiltig (inte text/plain eller application/json).",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP-svarets statuskod är ogiltig (inte 200).",
+      "HTTP_MISSING_URL": "HTTP-räknaren kräver en URL som saknas.",
+      "INTERNAL_SERVER_ERROR": "Ett internt serverfel inträffade.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "Medlemsantalet är inte tillgängligt just nu.",
+      "MEMERATOR_MISSING_USERNAME": "Memerator-räknaren kräver ett användarnamn som saknas.",
+      "NOT_FOUND": "Den begärda resursen hittades inte.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Boten har inte tillräckliga behörigheter för att redigera kanalen.",
+      "REDDIT_MISSING_SUBREDDIT": "En subreddit måste anges för Reddit-räknaren.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Den angivna Twitch-kanalen kunde inte hittas.",
+      "TWITCH_MISSING_USERNAME": "Twitch-räknaren kräver att ett användarnamn anges.",
+      "UNAUTHORIZED": "Begäran var obehörig.",
+      "UNKNOWN": "Ett okänt fel inträffade.",
+      "UNKNOWN_DATA_SOURCE": "Den angivna räknaren är okänd eller inte igenkänd.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Typen av värde som returnerades från utvärderingen är okänd.",
+      "USER_NOT_FOUND": "Användaren hittades inte.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "Den angivna YouTube-kanal-URL:en är ogiltig.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "YouTube-räknaren kräver att en kanal-URL anges."
+    },
+    "unknown": "Okänd",
+    "unknownChannel": "Okänd kanal",
+    "unknownChannelType": "Okänd kanaltyp",
+    "unknownDate": "Okänt datum",
+    "unknownError": "Okänt fel",
+    "unknownPublicBot": "Okänd offentlig bot",
+    "unknownRole": "Okänd roll",
+    "unknownServer": "Okänd server",
+    "unknownUser": "Okänd användare {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "Ta bort kanal",
+          "selected": "Vald"
+        },
+        "DataSourceItem": {
+          "edit": "Redigera räknare",
+          "notSelected": "Inte vald",
+          "remove": "Ta bort räknare",
+          "selected": "Vald"
+        },
+        "GamedigItem": {
+          "remove": "Ta bort spel",
+          "selected": "Vald"
+        },
+        "LocaleItem": {
+          "remove": "Ta bort språk",
+          "selected": "Vald"
+        },
+        "RoleItem": {
+          "everyone": "Alla",
+          "remove": "Ta bort roll",
+          "selected": "Vald"
+        },
+        "TextItem": {
+          "remove": "Ta bort {{item}}",
+          "selected": "Vald"
+        },
+        "TimezoneItem": {
+          "remove": "Ta bort tidszon",
+          "selected": "Vald"
+        }
+      },
+      "noResults": "Inga resultat hittades.",
+      "placeholder": "Lägg till...",
+      "searchPlaceholder": "Sök..."
+    },
+    "NavBar": {
+      "accountEntry": "Konto",
+      "dashboardEntry": "Instrumentpanel",
+      "supportEntry": "Support"
+    },
+    "footer": {
+      "acceptableUsePolicy": "Policy för godtagbar användning",
+      "admin": "Admin",
+      "codeRepository": "Kodarkiv",
+      "cookiePolicy": "Cookiepolicy",
+      "copyright": "© {{year}} Member Counter. Alla rättigheter förbehållna. Skapad av <eduardozgzLink />.",
+      "documentation": "Dokumentation",
+      "donate": "Donera",
+      "improveMemberCounter": "Förbättra Member Counter",
+      "legal": "Juridiskt",
+      "loginWithDiscord": "Logga in med Discord",
+      "logout": "Logga ut",
+      "madePossibleThanksTo": "Möjliggjort tack vare Alex, <vampireChickenLink />, <livingfloreLink />, Frosty och <donorsLink>många fler</donorsLink>.",
+      "manageDonations": "Hantera donationer",
+      "manageHomePage": "Hantera startsida",
+      "manageServers": "Hantera servrar",
+      "manageUsers": "Hantera användare",
+      "privacyPolicy": "Integritetspolicy",
+      "status": "Status",
+      "supportServer": "Supportserver",
+      "termsOfService": "Användarvillkor",
+      "translateBot": "Översätt boten",
+      "usefulLinks": "Användbara länkar"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "Returnerar det totala antalet användare och servrar som boten är ansluten till. (Du behöver förmodligen inte detta)",
+      "name": "Botstatistik"
+    },
+    "channels": {
+      "description": "Räkna antalet kanaler inom angivna kategorier eller totalt.",
+      "display": {
+        "channelsUnderACategory": "Kanaler under en kategori"
+      },
+      "keywords": "kanaler,kategorier",
+      "name": "Kanaler"
+    },
+    "clock": {
+      "description": "Visa en klocka justerad efter din föredragna tidszon.",
+      "display": {
+        "syntax": "Klocka ({{timezone}})"
+      },
+      "keywords": "klocka,tidszon",
+      "name": "Klocka"
+    },
+    "concat": {
+      "description": "Sammanfoga flera strängar till en.",
+      "display": {
+        "syntax": "Sammanfoga {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "och {{amount}} till"
+      },
+      "keywords": "sammanfoga,strängar,kombinera,slå ihop,förena",
+      "name": "Sammanfoga"
+    },
+    "countdown": {
+      "description": "Skapa en nedräkningstimer med ett format anpassat efter dina behov.",
+      "display": {
+        "syntax": "Nedräkning till {{datetime}}"
+      },
+      "keywords": "nedräkning,timer",
+      "name": "Nedräkning"
+    },
+    "date": {
+      "description": "Visa aktuellt datum justerat efter din föredragna tidszon.",
+      "display": {
+        "syntax": "Datum ({{timezone}})"
+      },
+      "keywords": "datum,kalender,tidszon",
+      "name": "Datum"
+    },
+    "game": {
+      "description": "Hämta aktuellt antal spelare online på din spelserver, kompatibel med mer än 320 spel.",
+      "display": {
+        "playerCountFor": "Spelarantal för {{gameServerAddress}}"
+      },
+      "keywords": "spel,spelare,online,server",
+      "name": "Spel"
+    },
+    "http": {
+      "description": "Skicka en GET-begäran till en slutpunkt och ge resultatet till denna bot.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,begäran,slutpunkt,API,hämta",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "Utför matematiska operationer som addition, subtraktion, multiplikation, division eller modulus på en lista med tal.",
+      "display": {
+        "operationType": {
+          "add": "addera",
+          "divide": "dividera",
+          "modulo": "modulo",
+          "multiply": "multiplicera",
+          "subtract": "subtrahera"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "och {{amount}} till"
+      },
+      "keywords": "matematik,kalkylator,operationer,tal,aritmetik,addition,subtraktion,multiplikation,division,modulus",
+      "name": "Matematik"
+    },
+    "members": {
+      "description": "Räkna medlemmar, du kan även filtrera dem efter onlinestatus, specifika roller och mer.",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "Stör ej",
+          "idle": "inaktiv",
+          "offline": "offline",
+          "online": "online",
+          "onlineIdleDnd": "online + inaktiv + Stör ej"
+        },
+        "accountType": {
+          "any": "medlemmar",
+          "bot": "bottar",
+          "user": "användare"
+        },
+        "bannedMembers": "bannade medlemmar",
+        "connectedToAChannel": "anslutna till en kanal",
+        "playingAGame": "medan de spelar ett spel",
+        "roleFiltering": {
+          "any": "med roller",
+          "overlapping": "med överlappande roller"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "medlemmar,filter,roller,online,status,bannad,spelar,offline,stör ej,inaktiv,afk,användare,bot,ansluten",
+      "name": "Medlemmar"
+    },
+    "memerator": {
+      "description": "Hämta antal följare och memes för ett Memerator-konto.",
+      "display": {
+        "returnKind": {
+          "followers": "följare",
+          "memes": "memes"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,följare,visning,kanal",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "Hämta antalet Nitro-boostare för servern.",
+      "keywords": "nitro,boostare,server",
+      "name": "Nitro-boostare"
+    },
+    "number": {
+      "description": "Tillämpa talformatering på det angivna talet.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} som tal",
+        "raw": "Tal ({{number}})"
+      },
+      "keywords": "tal,formatering",
+      "name": "Tal"
+    },
+    "reddit": {
+      "description": "Hämta titeln på en subreddit tillsammans med det totala antalet medlemmar och antalet medlemmar som är online.",
+      "display": {
+        "returnKind": {
+          "members": "medlemmar",
+          "membersOnline": "medlemmar online",
+          "title": "titel"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,subreddit,medlemmar,online",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "Textersättning, användbart i kombination med andra nästlade räknare för omfattande textändringar.",
+      "display": {
+        "replaceSyntax": "\"{{search}}\" med \"{{replacement}}\"",
+        "syntax": "Ersätt {{replaceSyntax}}"
+      },
+      "keywords": "text,ersättning,ändring,sträng,delsträng",
+      "name": "Ersätt"
+    },
+    "roles": {
+      "description": "Räkna alla roller som finns på servern.",
+      "keywords": "roller",
+      "name": "Roller"
+    },
+    "twitch": {
+      "description": "Hämta antal följare och totalt antal visningar för en Twitch-kanal.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanalnamn",
+          "followers": "följare",
+          "viewers": "tittare"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,följare,visning,kanal",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "Okänd räknare. Detta beror förmodligen på ett fel",
+      "name": "Okänd"
+    },
+    "youtube": {
+      "description": "Hämta antal prenumeranter, antal videor och totala visningar från en YouTube-kanal.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanalnamn",
+          "subscribers": "prenumeranter",
+          "videos": "videor",
+          "views": "visningar"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,prenumerant,video,visningar,kanal",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "Du har osparade ändringar. Är du säker på att du vill lämna denna sida?",
+    "useFormManager": {
+      "state": {
+        "save": "Spara",
+        "saved": "Sparat",
+        "saving": "Sparar..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - Discord-boten för att räkna medlemmar och mer"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "Stäng",
+        "confirmDescription": "Denna åtgärd kan inte ångras. Detta kommer permanent att radera ditt konto och ta bort dina data från våra servrar.",
+        "confirmTitle": "Är du helt säker?",
+        "deleteAccountBtn": "Radera konto"
+      },
+      "page": {
+        "avatarAlt": "{{username}}s avatar",
+        "logoutButton": "Logga ut"
+      },
+      "userBadges": {
+        "betaTester": "Du deltog i ett betaprogram.",
+        "bigBrain": "Du föreslog en idé som implementerades.",
+        "bugCatcher": "Du hittade och rapporterade en bugg.",
+        "contributor": "Du implementerade en funktion eller fixade en bugg.",
+        "donor": "Du donerade för att stödja utvecklingen och underhållet av Member Counter.",
+        "foldingAtHome": "Du bidrog med en WU i folding@home.",
+        "patPat": "Du hittade en hemlighet.",
+        "premium": "Du är en premiumanvändare.",
+        "translator": "Du hjälpte till att översätta boten."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "Radera donation",
+          "closeButton": "Stäng",
+          "dialogDescription": "Denna åtgärd kan inte ångras.",
+          "dialogTitle": "Är du helt säker?"
+        },
+        "edit": {
+          "title": "Redigera donation"
+        },
+        "form": {
+          "amount": "Belopp",
+          "anonymous": "Anonym",
+          "currency": "Valuta",
+          "currencyDecimals": "Valutadecimaler",
+          "date": "Datum",
+          "note": "Anteckning",
+          "saveBtn": "Spara",
+          "userId": "Discord-användar-ID"
+        },
+        "new": {
+          "title": "Ny donation"
+        },
+        "registerDonation": "Registrera donation",
+        "totalDonations": "Totala donationer: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "Ladda server",
+          "placeholder": "Klistra in server-ID"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "Skapa",
+          "createInputPlaceholder": "Nytt demoservernamn",
+          "delete": {
+            "button": "Radera demoserver",
+            "closeButton": "Stäng",
+            "dialogDescription": "Denna åtgärd kan inte ångras.",
+            "dialogTitle": "Är du helt säker?"
+          },
+          "list": {
+            "display": {
+              "priority": "Prioritet: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "Lägg till kanal",
+              "channel": {
+                "isRulesChannel": "Visa som regelkanal",
+                "name": "Namn",
+                "remove": "Ta bort",
+                "showAsSkeleton": "Visa som skelett",
+                "topic": "Ämne",
+                "type": "Typ",
+                "types": {
+                  "announcementChannel": "Meddelandekanal",
+                  "categoryChannel": "Kategorikanal",
+                  "textChannel": "Textkanal",
+                  "voiceChannel": "Låst röstkanal"
+                }
+              },
+              "title": "Kanaler"
+            },
+            "description": "Beskrivning",
+            "features": {
+              "options": {
+                "Community": "Community",
+                "Discoverable": "Upptäckbar",
+                "Partnered": "Partner",
+                "Verified": "Verifierad"
+              },
+              "title": "Funktioner"
+            },
+            "icon": "Ikon-URL",
+            "language": "Språk",
+            "links": {
+              "add": "Lägg till länk",
+              "link": {
+                "label": "Etikett",
+                "remove": "Ta bort",
+                "url": "URL"
+              },
+              "title": "Länkar"
+            },
+            "name": "Servernamn",
+            "premiumTier": {
+              "options": {
+                "None": "Ingen",
+                "Tier1": "Nivå 1",
+                "Tier2": "Nivå 2",
+                "Tier3": "Nivå 3"
+              },
+              "title": "Premiumnivå"
+            },
+            "priority": "Prioritet",
+            "save": "Spara",
+            "saved": "Sparat",
+            "title": "Redigera demoserver"
+          },
+          "title": "Demoservrar"
+        },
+        "headings": [
+          "Visa din servers medlemsantal dynamiskt",
+          "Visa upp ditt antal YouTube-prenumeranter",
+          "Övervaka din Minecraft-servers spelarantal",
+          "Visa hur många som tittar på din Twitch-kanal",
+          "Visa vilken data du vill på din Discord-server",
+          "Följ hur många spelare din FiveM-server har",
+          "Visa en klocka justerad efter din föredragna tidszon",
+          "Skapa nedräkningar för event eller speciella tillfällen",
+          "Övervaka spelarstatistik för 320+ spelservrar",
+          "Hämta och visa data från vilken API-slutpunkt som helst",
+          "Utför och visa matematiska operationer på dina data",
+          "Formatera tal och visa dem snyggt",
+          "Framhäv din servers Nitro-boostare"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Upptäck ännu fler funktioner och räknare som kan förbättra din upplevelse. Håll utkik efter uppdateringar!",
+            "title": "Och mycket mer!"
+          },
+          "clock": {
+            "description": "Se tiden i vilken tidszon som helst med vår anpassningsbara klocka. Perfekt för samordning mellan olika regioner.",
+            "title": "Klocka"
+          },
+          "countdown": {
+            "description": "Skapa och hantera nedräkningstimers anpassade efter dina specifika event eller deadlines.",
+            "title": "Nedräkning"
+          },
+          "date": {
+            "description": "Visa aktuellt datum i vilken tidszon som helst med anpassningsbar formatering. Perfekt för att visa datum i olika regioner.",
+            "title": "Datum"
+          },
+          "discordMembers": {
+            "description": "Räkna och filtrera medlemmar efter onlinestatus, roller och andra kriterier för att få precisa insikter om ditt community.",
+            "title": "Discord-medlemmar"
+          },
+          "game": {
+            "description": "Övervaka din spelservers aktivitet med realtids-spelarantal för över 320 spel som stöds.",
+            "title": "Spel"
+          },
+          "http": {
+            "description": "Utför GET-begäranden och ta emot data direkt från vilken slutpunkt som helst, vilket förenklar dina integrationsbehov.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Utför en mängd matematiska operationer inklusive addition, subtraktion, multiplikation och mer på flera tal.",
+            "title": "Matematik"
+          },
+          "nitroBoosters": {
+            "description": "Följ antalet Nitro-boostare i din server för att mäta communityts stöd och engagemang.",
+            "title": "Nitro-boostare"
+          },
+          "reddit": {
+            "description": "Få statistik om vilken subreddit som helst, inklusive titel, medlemsantal och medlemmar online.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Ändra text dynamiskt med vårt kraftfulla ersättningsverktyg, idealiskt i kombination med HTTP-räknaren.",
+            "title": "Ersätt"
+          },
+          "twitch": {
+            "description": "Övervaka Twitch-kanalmått som antal följare och visningsstatistik för att hålla koll på dina favoritstreamers.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Hämta nyckeltal från YouTube-kanaler inklusive antal prenumeranter, antal videor och totala visningar.",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "Radera konto",
+          "closeButton": "Stäng",
+          "dialogDescription": "Denna åtgärd kan inte ångras.",
+          "dialogTitle": "Är du helt säker?"
+        },
+        "loadUser": "Ladda användare",
+        "manage": {
+          "badges": {
+            "betaTester": "Betatestare",
+            "bigBrain": "Storhjärna",
+            "bugCatcher": "Buggfångare",
+            "contributor": "Bidragsgivare",
+            "donor": "Donator",
+            "foldingAtHome": "folding@home",
+            "patPat": "Klapp klapp",
+            "premium": "Premium",
+            "title": "Utmärkelser",
+            "translator": "Översättare"
+          },
+          "pasteUserId": "Klistra in användar-ID",
+          "permissions": {
+            "manageDonations": "Hantera donationer",
+            "manageGuilds": "Hantera servrar",
+            "manageHomePage": "Hantera startsida",
+            "manageUsers": "Hantera användare",
+            "seeGuilds": "Se servrar",
+            "seeUsers": "Se användare",
+            "title": "Behörigheter"
+          },
+          "save": "Spara",
+          "saved": "Sparat",
+          "transferAccount": "Överför konto"
+        },
+        "recentUsers": "Senaste användare",
+        "userNotRegistered": "Denna användare är inte registrerad."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "Du är inte i någon server. ",
+        "subheading": "Varför inte börja med att skapa en <CreateServerLink>ny</CreateServerLink> eller genom att <JoinSupportServerLink>gå med oss</JoinSupportServerLink>?"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "Räknare är aktiverade i denna kanal",
+            "issue": "Det finns ett problem i denna kanal som kräver din uppmärksamhet"
+          },
+          "unsupportedChannelType": "Denna kanaltyp stöds inte ännu."
+        },
+        "ServerNavMenu": {
+          "channelList": "Kanallista",
+          "loading": "Laddar serverdata...",
+          "serverSettings": "Serverinställningar",
+          "unknownChannels": "Besök sparade kanaler om Discord-kanalerna inte kan laddas"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "Inga räknare hittades.",
+            "searchPlaceholder": "Sök räknare..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "Standard serverinställningar",
+                "no": "Nej",
+                "overrideDefaultDigits": "Åsidosätt standardsiffror",
+                "overrideDefaultLocale": "Åsidosätt standardspråk",
+                "searchLocale": "Sök språk...",
+                "select": "Välj",
+                "useCompactNotation": "Använd kompakt notation",
+                "yes": "Ja"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "Visa",
+                  "selectPlaceholder": "Välj vad som ska visas",
+                  "servers": "Servrar",
+                  "users": "Användare"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "Lägg till kategori...",
+                  "configWarning": "Kom ihåg att returnera ett giltigt kategori-ID",
+                  "filterByCategory": "Filtrera efter kategori"
+                },
+                "ClockOptions": {
+                  "configWarning": "Kom ihåg att returnera en giltig tidszonsidentifierare",
+                  "counterPreview": "Vi kan inte visa en liveförhandsgranskning när formatet är resultatet av en räknare, du måste förhandsgranska hela mallen för att se hur det kommer att se ut.",
+                  "defaultFormat": "%f",
+                  "format": "Format",
+                  "formatConfigWarning": "Kom ihåg att returnera en giltig formateringssträng",
+                  "formatInstructions": "Tillgängliga platshållare:\n• <code>%H</code> - Timme med inledande nolla, 24-timmars (00-23)\n• <code>%h</code> - Timme utan inledande nolla, 24-timmars (0-23)\n• <code>%I</code> - Timme med inledande nolla, 12-timmars (01-12)\n• <code>%i</code> - Timme utan inledande nolla, 12-timmars (1-12)\n• <code>%M</code> - Minut med inledande nolla (00-59)\n• <code>%m</code> - Minut utan inledande nolla (0-59)\n• <code>%S</code> - Sekund med inledande nolla (00-59)\n• <code>%s</code> - Sekund utan inledande nolla (0-59)\n• <code>%p</code> - am/pm (gemener)\n• <code>%P</code> - AM/PM (versaler)\n• <code>%f</code> - Standardformatering baserad på språk",
+                  "livePreview": "Liveförhandsgranskning",
+                  "noPreview": "Vi kan inte visa en liveförhandsgranskning när formatet är tomt.",
+                  "searchTimezonePlaceholder": "Sök tidszon...",
+                  "timezone": "Tidszon"
+                },
+                "ConcatOptions": {
+                  "addString": "Lägg till text...",
+                  "stringList": "Textlista"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "Vi kan inte visa en liveförhandsgranskning när måldatumet eller formatet är resultatet av en räknare, du måste förhandsgranska hela mallen för att se hur det kommer att se ut.",
+                  "dateConfigWarning": "Kom ihåg att returnera en giltig UNIX-tidsstämpel",
+                  "datePlaceholder": "Eller ta datum från en räknare...",
+                  "defaultFormat": "%d dagar, %h timmar och %m minuter kvar",
+                  "format": "Format",
+                  "formatConfigWarning": "Kom ihåg att returnera en giltig formateringssträng",
+                  "formatInstructions": "Tillgängliga platshållare:\n• <code>%d</code> - Dagar kvar\n• <code>%h</code> - Timmar kvar (0-23)\n• <code>%m</code> - Minuter kvar (0-59)\n• <code>%s</code> - Sekunder kvar (0-59)\n• <code>%D</code> - Totalt antal dagar kvar\n• <code>%H</code> - Totalt antal timmar kvar\n• <code>%M</code> - Totalt antal minuter kvar\n• <code>%S</code> - Totalt antal sekunder kvar",
+                  "livePreview": "Liveförhandsgranskning",
+                  "noPreview": "Vi kan inte visa en liveförhandsgranskning när måldatumet eller formatet är tomt.",
+                  "targetDate": "Måldatum"
+                },
+                "DateOptions": {
+                  "configWarning": "Kom ihåg att returnera en giltig tidszonsidentifierare",
+                  "counterPreview": "Vi kan inte visa en liveförhandsgranskning när formatet är resultatet av en räknare, du måste förhandsgranska hela mallen för att se hur det kommer att se ut.",
+                  "defaultFormat": "%f",
+                  "format": "Format",
+                  "formatConfigWarning": "Kom ihåg att returnera en giltig formateringssträng",
+                  "formatInstructions": "Tillgängliga platshållare:\n• <code>%Y</code> - Fullständigt år (2025)\n• <code>%y</code> - 2-siffrigt år (25)\n• <code>%Ms</code> - Fullständigt månadsnamn (November)\n• <code>%ms</code> - Kort månadsnamn (Nov)\n• <code>%M</code> - Månadsnummer med inledande nolla (01-12)\n• <code>%m</code> - Månadsnummer (1-12)\n• <code>%Ws</code> - Fullständigt veckodagsnamn (Måndag)\n• <code>%ws</code> - Kort veckodagsnamn (Mån)\n• <code>%w</code> - Veckodagsnummer (0=Söndag, 6=Lördag)\n• <code>%D</code> - Dag med inledande nolla (05)\n• <code>%d</code> - Dag utan inledande nolla (5)\n• <code>%f</code> - Standardformatering baserad på språk",
+                  "livePreview": "Liveförhandsgranskning",
+                  "noPreview": "Vi kan inte visa en liveförhandsgranskning när formatet är tomt.",
+                  "searchTimezonePlaceholder": "Sök tidszon...",
+                  "timezone": "Tidszon"
+                },
+                "GameOptions": {
+                  "address": "Adress",
+                  "addressWarning": "Kom ihåg att returnera en giltig adress",
+                  "game": "Spel",
+                  "gameWarning": "Kom ihåg att returnera en giltig node-gamedig-speltyp",
+                  "port": "Port (eller queryport)",
+                  "portWarning": "Kom ihåg att returnera ett giltigt portnummer",
+                  "searchPlaceholder": "Sök..."
+                },
+                "HttpOptions": {
+                  "dataPath": "Datasökväg",
+                  "dataPathDescription": "En sökväg för att hämta önskat värde när svarets innehållstyp är JSON. Syntaxen liknar den som används av JS för att komma åt egenskaper och arrayelement.",
+                  "dataPathWarning": "Kom ihåg att returnera en datasökväg",
+                  "emptyUrl": "Kan inte hämta, URL:en är tom",
+                  "fetch": "Hämta",
+                  "fetching": "Hämtar...",
+                  "lifetime": "Livstid (i sekunder)",
+                  "lifetimeDescription": "Anger hur länge svaret från den angivna URL:en kommer att cachas.",
+                  "lifetimeWarning": "Kom ihåg att returnera ett giltigt tal",
+                  "noPreview": "Vi kan inte visa en förhandsgranskning när URL:en eller datasökvägen är resultatet av en räknare, du måste förhandsgranska hela mallen för att se hur det kommer att se ut.",
+                  "preview": "Förhandsgranskning",
+                  "testResponse": "Testsvar",
+                  "url": "URL (GET)",
+                  "urlWarning": "Kom ihåg att returnera en giltig URL"
+                },
+                "MathOptions": {
+                  "addNumber": "Lägg till tal...",
+                  "addition": "Addition",
+                  "division": "Division",
+                  "modulo": "Modulo (rest vid division)",
+                  "multiplication": "Multiplikation",
+                  "numberList": "Tallista",
+                  "numberWarning": "Kom ihåg att returnera ett giltigt tal",
+                  "operation": "Operationstyp",
+                  "selectOperation": "Välj en operationstyp",
+                  "subtraction": "Subtraktion"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Räkna bara bannade medlemmar"
+                  },
+                  "FilterByAccountType": {
+                    "any": "Alla",
+                    "bot": "Bot",
+                    "label": "Filtrera efter kontotyp",
+                    "placeholder": "Välj en kontotyp",
+                    "user": "Användare"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "Lägg till röstkanal...",
+                    "dataSourceConfigWarning": "Kom ihåg att returnera ett giltigt röstkanal-ID",
+                    "label": "Filtrera efter anslutning till en röstkanal"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "Lägg till roll...",
+                    "dataSourceConfigWarning": "Kom ihåg att returnera ett giltigt roll-ID",
+                    "label": "Filtrera efter roll"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "Valfri matchning",
+                    "label": "Filterläge",
+                    "overlap": "Överlappning",
+                    "placeholder": "Välj filterläge"
+                  },
+                  "FilterByStatus": {
+                    "any": "Alla",
+                    "dnd": "Stör ej",
+                    "idle": "Inaktiv",
+                    "label": "Filtrera efter status",
+                    "offline": "Offline",
+                    "online": "Online",
+                    "onlineIdleDnd": "Online + Inaktiv + Stör ej",
+                    "placeholder": "Välj en status"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Filtrera efter att spela ett spel",
+                    "placeholder": "Lägg till spel..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "Visa",
+                  "followers": "Följare",
+                  "memes": "Memes",
+                  "selectDisplay": "Välj vad som ska visas",
+                  "username": "Användarnamn",
+                  "usernameWarning": "Kom ihåg att returnera ett giltigt användarnamn"
+                },
+                "NumberOptions": {
+                  "number": "Tal",
+                  "numberWarning": "Kom ihåg att returnera ett giltigt tal",
+                  "placeholder": "Ange ett tal eller sök en räknare"
+                },
+                "RedditOptions": {
+                  "display": "Visa",
+                  "members": "Medlemmar",
+                  "membersOnline": "Medlemmar online",
+                  "selectPlaceholder": "Välj vad som ska visas",
+                  "subreddit": "Subredditnamn",
+                  "subredditPlaceholder": "Ange en subreddit eller sök en räknare",
+                  "subredditWarning": "Kom ihåg att returnera en giltig subreddit",
+                  "title": "Subreddittitel"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "Lägg till ersättning",
+                  "inputText": "Inmatningstext",
+                  "removeReplacement": "Ta bort ersättning",
+                  "replaceWith": "Ersätt med",
+                  "replacementPlaceholder": "Ange ersättningstexten",
+                  "searchFor": "Sök efter",
+                  "searchPlaceholder": "Ange söktermen",
+                  "textPlaceholder": "Ange texten att ersätta"
+                },
+                "TwitchOptions": {
+                  "channelName": "Kanalnamn",
+                  "display": "Visa",
+                  "followers": "Följare",
+                  "selectPlaceholder": "Välj vad som ska visas",
+                  "username": "Användarnamn",
+                  "usernamePlaceholder": "Ange ett användarnamn",
+                  "usernameWarning": "Kom ihåg att returnera ett giltigt användarnamn",
+                  "viewers": "Tittare"
+                },
+                "YouTubeOptions": {
+                  "channelName": "Kanalnamn",
+                  "channelUrl": "Kanal-URL",
+                  "channelUrlPlaceholder": "Ange en kanal-URL",
+                  "channelUrlWarning": "Kom ihåg att returnera en giltig kanal-URL",
+                  "display": "Visa",
+                  "selectPlaceholder": "Välj vad som ska visas",
+                  "subscribers": "Prenumeranter",
+                  "videos": "Videor",
+                  "views": "Visningar"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "Emojiväljar",
+            "searchEmoji": "Sök emoji"
+          },
+          "markButtons": {
+            "bold": "fetstil",
+            "italic": "kursiv",
+            "spoiler": "spoiler",
+            "strike": "genomstruken",
+            "underline": "understrykning"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "Policy för godtagbar användning",
+          "noReasonGiven": "Inget skäl angivet",
+          "supportTeam": "Supportteamet",
+          "termsOfService": "Användarvillkor",
+          "text": "Denna server har blockerats för brott mot våra <LinkTerms>Användarvillkor</LinkTerms> eller <LinkPolicy>Policy för godtagbar användning</LinkPolicy>.<br />Angivet skäl: {{reason}}<br />Om du tror att detta är ett misstag, kontakta vårt <SupportLink>supportteam</SupportLink>."
+        },
+        "channels": {
+          "save": "Spara",
+          "saved": "Sparat",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "Senast uppdaterad: {{lastTemplateUpdateDate}}",
+              "template": "Mall"
+            },
+            "EnableTemplate": {
+              "description": "När aktiverad kommer Member Counter automatiskt att uppdatera denna kanals {{templateTarget}} för att visa den bearbetade mallen.",
+              "enableTemplate": "Aktivera mall",
+              "nameTarget": "namn",
+              "topicTarget": "ämne"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Kontrollera igen",
+              "description": "Verifiera att boten har följande behörigheter i denna kanal:",
+              "permissions": {
+                "connect": "Anslut",
+                "manageChannel": "Hantera kanal",
+                "viewChannel": "Visa kanal"
+              },
+              "title": "Boten har inte behörighet att redigera denna kanal."
+            },
+            "TemplateError": {
+              "errorDescription": "Ett fel inträffade vid den senaste mallbearbetningen. Detaljer visas nedan.",
+              "errorTitle": "Mallen hade ett fel vid senaste bearbetningen"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "Du har inte behörighet att hantera denna server.\nBe en administratör på {{guildName}} att ge dig Administratör- eller Hantera server-behörigheter.",
+          "title": "Åtkomst nekad"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "Stäng",
+          "message": "Det verkar som att Member Counter-boten inte finns på denna server. Vill du <LinkURL>lägga till den</LinkURL>?"
+        },
+        "inviteBotPage": {
+          "addToServer": "Lägg till på {{serverName}}",
+          "copyLink": "Kopiera inbjudningslänk",
+          "linkCopied": "Länken har kopierats till ditt urklipp.",
+          "noPermission": "Du har inte tillräckliga behörigheter för att lägga till boten. Be en administratör eller någon med Hantera server-behörighet att lägga till denna bot.",
+          "subtitle": "Lägg till Member Counter på {{serverName}} och njut av realtidsräknare.",
+          "title": "Nu sätter vi upp boten!",
+          "useOrShareLink": "Använd eller dela denna länk för att lägga till boten."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "Blockera server",
+            "blockDialogDescription": "Det angivna skälet kommer att visas för serveradministratörerna.",
+            "blockDialogTitle": "Vill du verkligen blockera denna server?",
+            "closeButton": "Stäng",
+            "reasonLabel": "Skäl",
+            "reasonPlaceholder": "Ange ett skäl",
+            "unblockButton": "Avblockera server",
+            "unblockDialogDescription": "Denna server blockerades på grund av följande skäl: {{reason}}",
+            "unblockDialogTitle": "Vill du verkligen avblockera denna server?"
+          },
+          "reset": {
+            "closeButton": "Stäng",
+            "dialogDescription": "Denna åtgärd kan inte ångras. Alla inställningar kommer att återställas till standardvärden.",
+            "dialogTitle": "Är du helt säker?",
+            "resetButton": "Återställ inställningar"
+          },
+          "save": "Spara",
+          "saved": "Sparat",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Anpassade siffror",
+              "customDigitsDescription": "I räknare som returnerar ett tal kommer Member Counter att ersätta varje siffra med de du anger. Detta är användbart om du vill visa anpassade emojier eller något annat, som \"unicode-stilar.\"",
+              "customizationRecommendation": "Vi rekommenderar inte att anpassa några siffror om du inte är säker på att ingen som använder en skärmläsare kommer att ha tillgång till någon räknare.",
+              "screenReaderWarning": "Tänk på att användare som använder en skärmläsare (text-till-tal) kanske inte kan förstå de anpassade siffrorna och <demoLink>kan höra något obegripligt</demoLink>. Skärmläsare används ofta av personer med synnedsättning."
+            },
+            "Locale": {
+              "description": "Att ändra detta påverkar hur vissa räknare visas.",
+              "locale": "Språk",
+              "numberExample": "439212 kommer att visas som {{number}}",
+              "searchPlaceholder": "Sök språk...",
+              "timeExample": "15:30 (eller 3:30 PM) kommer att visas som {{time}}"
+            },
+            "UseCompactNotation": {
+              "description": "Räknare som returnerar tal kommer att visas på ett mer kompakt sätt.",
+              "example1": "12300 kommer att visas som {{number}}",
+              "example2": "439212 kommer att visas som {{number}}",
+              "example3": "1500000 kommer att visas som {{number}}",
+              "label": "Använd kompakt notation för tal"
+            }
+          },
+          "title": "Serverinställningar"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "Få ut det mesta av dina räknare, anpassade efter dina behov.",
+            "label": "Som ett proffs",
+            "title": "Avancerade räknare"
+          },
+          "createFromScratch": {
+            "description": "Lär dig hur du skapar din första anpassade räknare på några minuter.",
+            "label": "Var unik!",
+            "title": "Skapa från grunden"
+          },
+          "queryHistoricalStatistics": {
+            "description": "Se hur dina räknare och annan vanlig statistik har utvecklats över tid.",
+            "label": "Kommer snart™",
+            "title": "Visa historisk statistik"
+          },
+          "quickSetup": {
+            "description": "Skapa snabbt de vanligaste räknarna med några klick. Ingen fantasi eller hjärna krävs!",
+            "label": "Enkelt!",
+            "title": "Snabbinstallation"
+          },
+          "subTitle": "Här är några förslag till dig:",
+          "title": "Välkommen tillbaka!"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "Ett oväntat fel inträffade.",
+        "NotAuthenticated": "Du är inte inloggad.",
+        "NotAuthorized": "Du har inte behörighet att komma åt denna sida.",
+        "NotFound": "Sidan du letar efter kunde inte hittas."
+      },
+      "nav": {
+        "backBtn": "Gå tillbaka",
+        "homeBtn": "Gå till startsidan",
+        "supportBtn": "Få support",
+        "tryAgainBtn": "Försök igen"
+      }
+    },
+    "home": {
+      "addToDiscord": "Lägg till på Discord",
+      "dashboard": "Instrumentpanel",
+      "getSupport": "Få support",
+      "headings": [
+        "Visa din servers medlemsantal dynamiskt",
+        "Visa upp ditt antal YouTube-prenumeranter",
+        "Övervaka din Minecraft-servers spelarantal",
+        "Visa hur många som tittar på din Twitch-kanal",
+        "Visa vilken data du vill på din Discord-server",
+        "Följ hur många spelare din FiveM-server har",
+        "Visa en klocka justerad efter din föredragna tidszon",
+        "Skapa nedräkningar för event eller speciella tillfällen",
+        "Övervaka spelarstatistik för 320+ spelservrar",
+        "Hämta och visa data från vilken API-slutpunkt som helst",
+        "Utför och visa matematiska operationer på dina data",
+        "Formatera tal och visa dem snyggt",
+        "Framhäv din servers Nitro-boostare"
+      ],
+      "seeHowPeopleUseIt": "Se hur andra använder det",
+      "seeMore": "Se mer",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Upptäck ännu fler funktioner och räknare som kan förbättra din upplevelse. Håll utkik efter uppdateringar!",
+          "title": "Och mycket mer!"
+        },
+        "clock": {
+          "description": "Se tiden i vilken tidszon som helst med vår anpassningsbara klocka. Perfekt för samordning mellan olika regioner.",
+          "title": "Klocka"
+        },
+        "countdown": {
+          "description": "Skapa och hantera nedräkningstimers anpassade efter dina specifika event eller deadlines.",
+          "title": "Nedräkning"
+        },
+        "date": {
+          "description": "Visa aktuellt datum i vilken tidszon som helst med anpassningsbar formatering. Perfekt för att visa datum i olika regioner.",
+          "title": "Datum"
+        },
+        "discordMembers": {
+          "description": "Räkna och filtrera medlemmar efter onlinestatus, roller och andra kriterier för att få precisa insikter om ditt community.",
+          "title": "Discord-medlemmar"
+        },
+        "game": {
+          "description": "Övervaka din spelservers aktivitet med realtids-spelarantal för över 320 spel som stöds.",
+          "title": "Spel"
+        },
+        "http": {
+          "description": "Utför GET-begäranden och ta emot data direkt från vilken slutpunkt som helst, vilket förenklar dina integrationsbehov.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Utför en mängd matematiska operationer inklusive addition, subtraktion, multiplikation och mer på flera tal.",
+          "title": "Matematik"
+        },
+        "nitroBoosters": {
+          "description": "Följ antalet Nitro-boostare i din server för att mäta communityts stöd och engagemang.",
+          "title": "Nitro-boostare"
+        },
+        "reddit": {
+          "description": "Få statistik om vilken subreddit som helst, inklusive titel, medlemsantal och medlemmar online.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Ändra text dynamiskt med vårt kraftfulla ersättningsverktyg, idealiskt i kombination med HTTP-räknaren.",
+          "title": "Ersätt"
+        },
+        "twitch": {
+          "description": "Övervaka Twitch-kanalmått som antal följare och visningsstatistik för att hålla koll på dina favoritstreamers.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Hämta nyckeltal från YouTube-kanaler inklusive antal prenumeranter, antal videor och totala visningar.",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "Räknare som stöds"
+    },
+    "status": {
+      "affectedServers": "Påverkade Discord-servrar:",
+      "assignedDiscordServers": "Tilldelade till denna child:",
+      "child": "Child #{{index}}",
+      "childDiscordServers": "{{count}} Discord-servrar {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} otillgängliga)",
+      "childDiscordUsers": "{{count}} Användare",
+      "discordClientStatus": {
+        "Connecting": "Ansluter",
+        "Disconnected": "Frånkopplad",
+        "Identifying": "Identifierar",
+        "Idle": "Inaktiv",
+        "Nearly": "Inaktiv",
+        "Ready": "Redo",
+        "Reconnecting": "Återansluter",
+        "Resuming": "Återupptar",
+        "WaitingForGuilds": "Väntar på servrar"
+      },
+      "memoryUsage": "{{usage}} ({{peak}} topp)",
+      "memoryUsageTooltip": "Minnesanvändning",
+      "partialOutage": "Det finns en delvis störning",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} Kärnor\nBelastning {{load}}",
+        "cpuLabel": "CPU",
+        "hostname": "Namn",
+        "memoryInfo": "{{memory}}\n{{usage}}% Användning",
+        "memoryLabel": "Minne",
+        "title": "Serverinformation"
+      },
+      "statusUnavailable": "Status ej tillgänglig"
+    }
+  }
+}

@@ -1,1 +1,1052 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "Kanał ogłoszeń",
+      "category": "Kategoria",
+      "forumChannel": "Kanał forum",
+      "mediaChannel": "Kanał multimedialny",
+      "stageChannel": "Kanał sceniczny",
+      "textChannel": "Kanał tekstowy",
+      "voiceChannel": "Kanał głosowy"
+    },
+    "knownError": "Błąd",
+    "knownErrors": {
+      "BAD_REQUEST": "Żądanie było nieprawidłowe.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Bot nie ma wystarczających uprzywilejowanych intencji, aby użyć tego licznika.",
+      "BOT_IS_NOT_PREMIUM": "Bot nie jest wersją premium i brakuje mu pewnych funkcji potrzebnych do tego licznika.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Licznik jest w nierozpoznanym formacie.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "Licznik jest nieprawidłowy.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Wynik dla nazwy kanału ma mniej niż 2 znaki.",
+      "EVALUATION_TIMEOUT": "Ewaluacja trwała zbyt długo i przekroczyła limit czasu.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Nie udało się wygenerować końcowego tekstu z ewaluacji.",
+      "FORBIDDEN": "Żądanie zostało zabronione.",
+      "GAME_MISSING_ADDRESS": "Licznik gry wymaga adresu serwera.",
+      "GAME_MISSING_GAME_ID": "Należy podać identyfikator gry dla licznika gry.",
+      "GAME_MISSING_PORT": "Licznik gry wymaga portu serwera.",
+      "HTTP_DATA_PATH_MANDATORY": "Należy określić ścieżkę danych dla żądań HTTP, których typ zawartości to application/json.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Typ zawartości odpowiedzi HTTP jest nieprawidłowy (nie text/plain ani application/json).",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "Kod statusu odpowiedzi HTTP jest nieprawidłowy (nie 200).",
+      "HTTP_MISSING_URL": "Licznik HTTP wymaga adresu URL, którego brakuje.",
+      "INTERNAL_SERVER_ERROR": "Wystąpił wewnętrzny błąd serwera.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "Liczba członków jest w tej chwili niedostępna.",
+      "MEMERATOR_MISSING_USERNAME": "Licznik Memeratora wymaga nazwy użytkownika, której brakuje.",
+      "NOT_FOUND": "Żądany zasób nie został znaleziony.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Bot nie ma wystarczających uprawnień do edycji kanału.",
+      "REDDIT_MISSING_SUBREDDIT": "Należy podać subreddit dla licznika Reddit.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Nie znaleziono podanego kanału Twitch.",
+      "TWITCH_MISSING_USERNAME": "Licznik Twitch wymaga ustawienia nazwy użytkownika.",
+      "UNAUTHORIZED": "Żądanie było nieautoryzowane.",
+      "UNKNOWN": "Wystąpił nieznany błąd.",
+      "UNKNOWN_DATA_SOURCE": "Podany licznik jest nieznany lub nierozpoznany.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Typ wartości zwróconej z ewaluacji jest nieznany.",
+      "USER_NOT_FOUND": "Nie znaleziono użytkownika.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "Podany adres URL kanału YouTube jest nieprawidłowy.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "Licznik YouTube wymaga ustawienia adresu URL kanału."
+    },
+    "unknown": "Nieznany",
+    "unknownChannel": "Nieznany kanał",
+    "unknownChannelType": "Nieznany typ kanału",
+    "unknownDate": "Nieznana data",
+    "unknownError": "Nieznany błąd",
+    "unknownPublicBot": "Nieznany publiczny bot",
+    "unknownRole": "Nieznana rola",
+    "unknownServer": "Nieznany serwer",
+    "unknownUser": "Nieznany użytkownik {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "Usuń kanał",
+          "selected": "Zaznaczono"
+        },
+        "DataSourceItem": {
+          "edit": "Edytuj licznik",
+          "notSelected": "Nie zaznaczono",
+          "remove": "Usuń licznik",
+          "selected": "Zaznaczono"
+        },
+        "GamedigItem": {
+          "remove": "Usuń grę",
+          "selected": "Zaznaczono"
+        },
+        "LocaleItem": {
+          "remove": "Usuń ustawienia regionalne",
+          "selected": "Zaznaczono"
+        },
+        "RoleItem": {
+          "everyone": "Wszyscy",
+          "remove": "Usuń rolę",
+          "selected": "Zaznaczono"
+        },
+        "TextItem": {
+          "remove": "Usuń {{item}}",
+          "selected": "Zaznaczono"
+        },
+        "TimezoneItem": {
+          "remove": "Usuń strefę czasową",
+          "selected": "Zaznaczono"
+        }
+      },
+      "noResults": "Nie znaleziono wyników.",
+      "placeholder": "Dodaj...",
+      "searchPlaceholder": "Szukaj..."
+    },
+    "NavBar": {
+      "accountEntry": "Konto",
+      "dashboardEntry": "Panel",
+      "supportEntry": "Pomoc"
+    },
+    "footer": {
+      "acceptableUsePolicy": "Zasady dopuszczalnego użytkowania",
+      "admin": "Admin",
+      "codeRepository": "Repozytorium kodu",
+      "cookiePolicy": "Polityka plików cookie",
+      "copyright": "© {{year}} Member Counter. Wszelkie prawa zastrzeżone. Stworzony przez <eduardozgzLink />.",
+      "documentation": "Dokumentacja",
+      "donate": "Wesprzyj",
+      "improveMemberCounter": "Ulepsz Member Counter",
+      "legal": "Informacje prawne",
+      "loginWithDiscord": "Zaloguj się przez Discord",
+      "logout": "Wyloguj się",
+      "madePossibleThanksTo": "Możliwe dzięki Alexowi, <vampireChickenLink />, <livingfloreLink />, Frosty i <donorsLink>wielu innym</donorsLink>.",
+      "manageDonations": "Zarządzaj darowiznami",
+      "manageHomePage": "Zarządzaj stroną główną",
+      "manageServers": "Zarządzaj serwerami",
+      "manageUsers": "Zarządzaj użytkownikami",
+      "privacyPolicy": "Polityka prywatności",
+      "status": "Status",
+      "supportServer": "Serwer pomocy",
+      "termsOfService": "Regulamin",
+      "translateBot": "Przetłumacz bota",
+      "usefulLinks": "Przydatne linki"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "Zwraca łączną liczbę użytkowników i serwerów, na których aktualnie jest bot. (Prawdopodobnie tego nie potrzebujesz)",
+      "name": "Statystyki bota"
+    },
+    "channels": {
+      "description": "Licz liczbę kanałów w określonych kategoriach lub ogólnie.",
+      "display": {
+        "channelsUnderACategory": "Kanały w kategorii"
+      },
+      "keywords": "kanaly,kategorie",
+      "name": "Kanały"
+    },
+    "clock": {
+      "description": "Wyświetl zegar dostosowany do preferowanej strefy czasowej.",
+      "display": {
+        "syntax": "Zegar ({{timezone}})"
+      },
+      "keywords": "zegar,strefa czasowa",
+      "name": "Zegar"
+    },
+    "concat": {
+      "description": "Połącz wiele ciągów tekstowych w jeden.",
+      "display": {
+        "syntax": "Połącz {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "i {{amount}} więcej"
+      },
+      "keywords": "polacz,laczenie,teksty,ciagi,scalanie,zlaczanie",
+      "name": "Połącz"
+    },
+    "countdown": {
+      "description": "Utwórz odliczanie z formatem dostosowanym do twoich potrzeb.",
+      "display": {
+        "syntax": "Odliczanie do {{datetime}}"
+      },
+      "keywords": "odliczanie,timer,minutnik",
+      "name": "Odliczanie"
+    },
+    "date": {
+      "description": "Wyświetl aktualną datę dostosowaną do preferowanej strefy czasowej.",
+      "display": {
+        "syntax": "Data ({{timezone}})"
+      },
+      "keywords": "data,kalendarz,strefa czasowa",
+      "name": "Data"
+    },
+    "game": {
+      "description": "Pobierz aktualną liczbę graczy online na twoim serwerze gry, kompatybilny z ponad 320 grami.",
+      "display": {
+        "playerCountFor": "Liczba graczy dla {{gameServerAddress}}"
+      },
+      "keywords": "gra,gracze,online,serwer",
+      "name": "Gra"
+    },
+    "http": {
+      "description": "Wyślij żądanie GET do punktu końcowego i przekaż wynik do tego bota.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,zadanie,endpoint,API,pobieranie",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "Wykonuj operacje matematyczne, takie jak dodawanie, odejmowanie, mnożenie, dzielenie lub modulo na liście liczb.",
+      "display": {
+        "operationType": {
+          "add": "dodaj",
+          "divide": "podziel",
+          "modulo": "modulo",
+          "multiply": "pomnóż",
+          "subtract": "odejmij"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "i {{amount}} więcej"
+      },
+      "keywords": "matematyka,kalkulator,operacje,liczby,arytmetyka,dodawanie,odejmowanie,mnozenie,dzielenie,modulo",
+      "name": "Matematyka"
+    },
+    "members": {
+      "description": "Licz członków, możesz też filtrować ich według statusu online, określonych ról i więcej.",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "nie przeszkadzać",
+          "idle": "bezczynny",
+          "offline": "offline",
+          "online": "online",
+          "onlineIdleDnd": "online + bezczynny + nie przeszkadzać"
+        },
+        "accountType": {
+          "any": "członkowie",
+          "bot": "boty",
+          "user": "użytkownicy"
+        },
+        "bannedMembers": "zbanowani członkowie",
+        "connectedToAChannel": "połączeni z kanałem",
+        "playingAGame": "podczas grania w grę",
+        "roleFiltering": {
+          "any": "z rolami",
+          "overlapping": "z nakładającymi się rolami"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "czlonkowie,filtr,role,online,status,zbanowani,granie,offline,nie przeszkadzac,bezczynny,afk,uzytkownik,bot,polaczony",
+      "name": "Członkowie"
+    },
+    "memerator": {
+      "description": "Pobierz liczbę obserwujących i liczbę memów dla konta Memerator.",
+      "display": {
+        "returnKind": {
+          "followers": "obserwujący",
+          "memes": "memy"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,obserwujacy,wyswietlenia,kanal",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "Pobierz liczbę boosterów Nitro dla serwera.",
+      "keywords": "nitro,boosterzy,serwer",
+      "name": "Boosterzy Nitro"
+    },
+    "number": {
+      "description": "Zastosuj formatowanie liczbowe do podanej liczby.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} jako liczba",
+        "raw": "Liczba ({{number}})"
+      },
+      "keywords": "liczba,formatowanie",
+      "name": "Liczba"
+    },
+    "reddit": {
+      "description": "Pobierz tytuł subreddita wraz z łączną liczbą członków i liczbą członków aktualnie online.",
+      "display": {
+        "returnKind": {
+          "members": "członkowie",
+          "membersOnline": "członkowie online",
+          "title": "tytuł"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,subreddit,czlonkowie,online",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "Zamiana tekstu, przydatna w połączeniu z innymi zagnieżdżonymi licznikami do kompleksowej modyfikacji tekstu.",
+      "display": {
+        "replaceSyntax": "„{{search}}” na „{{replacement}}”",
+        "syntax": "Zamień {{replaceSyntax}}"
+      },
+      "keywords": "tekst,zamiana,modyfikacja,ciag,podciag",
+      "name": "Zamień"
+    },
+    "roles": {
+      "description": "Licz wszystkie role obecne na serwerze.",
+      "keywords": "role",
+      "name": "Role"
+    },
+    "twitch": {
+      "description": "Pobierz liczbę obserwujących i łączną liczbę wyświetleń dla kanału Twitch.",
+      "display": {
+        "returnKind": {
+          "channelName": "nazwa kanału",
+          "followers": "obserwujący",
+          "viewers": "widzowie"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,obserwujacy,wyswietlenia,kanal",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "Nieznany licznik. Prawdopodobnie jest to spowodowane błędem",
+      "name": "Nieznany"
+    },
+    "youtube": {
+      "description": "Pobierz liczbę subskrybentów, liczbę filmów i łączne wyświetlenia z kanału YouTube.",
+      "display": {
+        "returnKind": {
+          "channelName": "nazwa kanału",
+          "subscribers": "subskrybenci",
+          "videos": "filmy",
+          "views": "wyświetlenia"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,subskrybenci,filmy,wyswietlenia,kanal",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "Masz niezapisane zmiany. Czy na pewno chcesz opuścić tę stronę?",
+    "useFormManager": {
+      "state": {
+        "save": "Zapisz",
+        "saved": "Zapisano",
+        "saving": "Zapisywanie..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - Bot Discord do liczenia członków i nie tylko"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "Zamknij",
+        "confirmDescription": "Tej operacji nie można cofnąć. Spowoduje to trwałe usunięcie twojego konta i usunięcie twoich danych z naszych serwerów.",
+        "confirmTitle": "Czy jesteś absolutnie pewny?",
+        "deleteAccountBtn": "Usuń konto"
+      },
+      "page": {
+        "avatarAlt": "Awatar użytkownika {{username}}",
+        "logoutButton": "Wyloguj się"
+      },
+      "userBadges": {
+        "betaTester": "Brałeś udział w programie beta.",
+        "bigBrain": "Zaproponowałeś pomysł, który został wdrożony.",
+        "bugCatcher": "Znalazłeś i zgłosiłeś błąd.",
+        "contributor": "Zaimplementowałeś funkcję lub naprawiłeś błąd.",
+        "donor": "Przekazałeś darowiznę na wsparcie rozwoju i utrzymania Member Counter.",
+        "foldingAtHome": "Przesłałeś jednostkę roboczą w folding@home.",
+        "patPat": "Znalazłeś sekret.",
+        "premium": "Jesteś użytkownikiem premium.",
+        "translator": "Pomogłeś w tłumaczeniu bota."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "Usuń darowiznę",
+          "closeButton": "Zamknij",
+          "dialogDescription": "Tej operacji nie można cofnąć.",
+          "dialogTitle": "Czy jesteś absolutnie pewny?"
+        },
+        "edit": {
+          "title": "Edytuj darowiznę"
+        },
+        "form": {
+          "amount": "Kwota",
+          "anonymous": "Anonimowa",
+          "currency": "Waluta",
+          "currencyDecimals": "Miejsca dziesiętne waluty",
+          "date": "Data",
+          "note": "Notatka",
+          "saveBtn": "Zapisz",
+          "userId": "ID użytkownika Discord"
+        },
+        "new": {
+          "title": "Nowa darowizna"
+        },
+        "registerDonation": "Zarejestruj darowiznę",
+        "totalDonations": "Łączna liczba darowizn: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "Załaduj serwer",
+          "placeholder": "Wklej ID serwera"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "Utwórz",
+          "createInputPlaceholder": "Nazwa nowego serwera demo",
+          "delete": {
+            "button": "Usuń serwer demo",
+            "closeButton": "Zamknij",
+            "dialogDescription": "Tej operacji nie można cofnąć.",
+            "dialogTitle": "Czy jesteś absolutnie pewny?"
+          },
+          "list": {
+            "display": {
+              "priority": "Priorytet: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "Dodaj kanał",
+              "channel": {
+                "isRulesChannel": "Pokaż jako kanał zasad",
+                "name": "Nazwa",
+                "remove": "Usuń",
+                "showAsSkeleton": "Pokaż jako szkielet",
+                "topic": "Temat",
+                "type": "Typ",
+                "types": {
+                  "announcementChannel": "Kanał ogłoszeń",
+                  "categoryChannel": "Kanał kategorii",
+                  "textChannel": "Kanał tekstowy",
+                  "voiceChannel": "Zablokowany kanał głosowy"
+                }
+              },
+              "title": "Kanały"
+            },
+            "description": "Opis",
+            "features": {
+              "options": {
+                "Community": "Społeczność",
+                "Discoverable": "Wykrywalny",
+                "Partnered": "Partnerski",
+                "Verified": "Zweryfikowany"
+              },
+              "title": "Funkcje"
+            },
+            "icon": "URL ikony",
+            "language": "Język",
+            "links": {
+              "add": "Dodaj link",
+              "link": {
+                "label": "Etykieta",
+                "remove": "Usuń",
+                "url": "URL"
+              },
+              "title": "Linki"
+            },
+            "name": "Nazwa serwera",
+            "premiumTier": {
+              "options": {
+                "None": "Brak",
+                "Tier1": "Poziom 1",
+                "Tier2": "Poziom 2",
+                "Tier3": "Poziom 3"
+              },
+              "title": "Poziom premium"
+            },
+            "priority": "Priorytet",
+            "save": "Zapisz",
+            "saved": "Zapisano",
+            "title": "Edytuj serwer demo"
+          },
+          "title": "Serwery demo"
+        },
+        "headings": [
+          "Dynamicznie wyświetlaj liczbę członków swojego serwera",
+          "Pochwal się liczbą subskrybentów na YouTube",
+          "Monitoruj liczbę graczy na serwerze Minecraft",
+          "Pokaż, ile osób ogląda twój kanał na Twitchu",
+          "Wyświetlaj dowolne dane na swoim serwerze Discord",
+          "Śledź liczbę graczy na serwerze FiveM",
+          "Pokaż zegar dostosowany do preferowanej strefy czasowej",
+          "Twórz odliczania do wydarzeń lub specjalnych okazji",
+          "Monitoruj statystyki graczy na ponad 320 serwerach gier",
+          "Pobieraj i wyświetlaj dane z dowolnego punktu końcowego API",
+          "Wykonuj i wyświetlaj operacje matematyczne na swoich danych",
+          "Formatuj liczby i wyświetlaj je w atrakcyjny sposób",
+          "Wyróżnij boosterów Nitro na swoim serwerze"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Odkryj jeszcze więcej funkcji i liczników, które mogą wzbogacić twoje doświadczenie. Bądź na bieżąco z aktualizacjami!",
+            "title": "I wiele więcej!"
+          },
+          "clock": {
+            "description": "Sprawdzaj czas w dowolnej strefie czasowej dzięki naszemu konfigurowalnemu zegarowi. Idealny do koordynacji między różnymi regionami.",
+            "title": "Zegar"
+          },
+          "countdown": {
+            "description": "Twórz i zarządzaj odliczaniami dostosowanymi do twoich konkretnych wydarzeń lub terminów.",
+            "title": "Odliczanie"
+          },
+          "date": {
+            "description": "Wyświetlaj aktualną datę w dowolnej strefie czasowej z konfigurowalnym formatowaniem. Świetne do pokazywania dat w różnych regionach.",
+            "title": "Data"
+          },
+          "discordMembers": {
+            "description": "Licz i filtruj członków według statusu online, ról i innych kryteriów, aby uzyskać dokładne informacje o twojej społeczności.",
+            "title": "Członkowie Discord"
+          },
+          "game": {
+            "description": "Monitoruj aktywność serwera gry dzięki liczbie graczy w czasie rzeczywistym dla ponad 320 wspieranych gier.",
+            "title": "Gra"
+          },
+          "http": {
+            "description": "Wykonuj żądania GET i odbieraj dane bezpośrednio z dowolnego punktu końcowego, usprawniając twoje potrzeby integracyjne.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Wykonuj szereg operacji matematycznych, w tym dodawanie, odejmowanie, mnożenie i inne na wielu liczbach.",
+            "title": "Matematyka"
+          },
+          "nitroBoosters": {
+            "description": "Śledź liczbę boosterów Nitro na swoim serwerze, aby ocenić wsparcie i zaangażowanie społeczności.",
+            "title": "Boosterzy Nitro"
+          },
+          "reddit": {
+            "description": "Pobieraj statystyki dowolnego subreddita, w tym tytuł, liczbę członków i członków online.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Dynamicznie modyfikuj tekst za pomocą naszego potężnego narzędzia do zamiany, idealnego w połączeniu z licznikiem HTTP.",
+            "title": "Zamień"
+          },
+          "twitch": {
+            "description": "Monitoruj metryki kanału Twitch, takie jak liczba obserwujących i statystyki wyświetleń, aby być na bieżąco z ulubionymi streamerami.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Pobieraj kluczowe metryki z kanałów YouTube, w tym liczbę subskrybentów, liczbę filmów i łączne wyświetlenia.",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "Usuń konto",
+          "closeButton": "Zamknij",
+          "dialogDescription": "Tej operacji nie można cofnąć.",
+          "dialogTitle": "Czy jesteś absolutnie pewny?"
+        },
+        "loadUser": "Załaduj użytkownika",
+        "manage": {
+          "badges": {
+            "betaTester": "Beta tester",
+            "bigBrain": "Wielki umysł",
+            "bugCatcher": "Łowca błędów",
+            "contributor": "Współtwórca",
+            "donor": "Darczyńca",
+            "foldingAtHome": "folding@home",
+            "patPat": "Pat Pat",
+            "premium": "Premium",
+            "title": "Odznaki",
+            "translator": "Tłumacz"
+          },
+          "pasteUserId": "Wklej ID użytkownika",
+          "permissions": {
+            "manageDonations": "Zarządzaj darowiznami",
+            "manageGuilds": "Zarządzaj serwerami",
+            "manageHomePage": "Zarządzaj stroną główną",
+            "manageUsers": "Zarządzaj użytkownikami",
+            "seeGuilds": "Zobacz serwery",
+            "seeUsers": "Zobacz użytkowników",
+            "title": "Uprawnienia"
+          },
+          "save": "Zapisz",
+          "saved": "Zapisano",
+          "transferAccount": "Przenieś konto"
+        },
+        "recentUsers": "Ostatni użytkownicy",
+        "userNotRegistered": "Ten użytkownik nie jest zarejestrowany."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "Nie jesteś na żadnym serwerze. ",
+        "subheading": "Może zaczniesz od utworzenia <CreateServerLink>nowego</CreateServerLink> lub <JoinSupportServerLink>dołączenia do nas</JoinSupportServerLink>?"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "Liczniki są włączone w tym kanale",
+            "issue": "W tym kanale jest problem wymagający twojej uwagi"
+          },
+          "unsupportedChannelType": "Ten typ kanału nie jest jeszcze obsługiwany."
+        },
+        "ServerNavMenu": {
+          "channelList": "Lista kanałów",
+          "loading": "Ładowanie danych serwera...",
+          "serverSettings": "Ustawienia serwera",
+          "unknownChannels": "Odwiedź zapisane kanały, jeśli kanały Discord nie mogą się załadować"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "Nie znaleziono liczników.",
+            "searchPlaceholder": "Szukaj licznika..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "Domyślne ustawienia serwera",
+                "no": "Nie",
+                "overrideDefaultDigits": "Nadpisz domyślne cyfry",
+                "overrideDefaultLocale": "Nadpisz domyślne ustawienia regionalne",
+                "searchLocale": "Szukaj ustawień regionalnych...",
+                "select": "Wybierz",
+                "useCompactNotation": "Użyj notacji zwartej",
+                "yes": "Tak"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "Wyświetlanie",
+                  "selectPlaceholder": "Wybierz, co wyświetlić",
+                  "servers": "Serwery",
+                  "users": "Użytkownicy"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "Dodaj kategorię...",
+                  "configWarning": "Pamiętaj, aby zwrócić prawidłowe ID kategorii",
+                  "filterByCategory": "Filtruj według kategorii"
+                },
+                "ClockOptions": {
+                  "configWarning": "Pamiętaj, aby zwrócić prawidłowy identyfikator strefy czasowej",
+                  "counterPreview": "Nie możemy pokazać podglądu na żywo, gdy format jest wynikiem licznika. Musisz wyświetlić podgląd całego szablonu, aby zobaczyć, jak będzie wyglądać.",
+                  "defaultFormat": "%f",
+                  "format": "Format",
+                  "formatConfigWarning": "Pamiętaj, aby zwrócić prawidłowy ciąg formatujący",
+                  "formatInstructions": "Dostępne symbole zastępcze:\n• <code>%H</code> - Godzina z zerem wiodącym, 24-godzinny (00-23)\n• <code>%h</code> - Godzina bez zera wiodącego, 24-godzinny (0-23)\n• <code>%I</code> - Godzina z zerem wiodącym, 12-godzinny (01-12)\n• <code>%i</code> - Godzina bez zera wiodącego, 12-godzinny (1-12)\n• <code>%M</code> - Minuta z zerem wiodącym (00-59)\n• <code>%m</code> - Minuta bez zera wiodącego (0-59)\n• <code>%S</code> - Sekunda z zerem wiodącym (00-59)\n• <code>%s</code> - Sekunda bez zera wiodącego (0-59)\n• <code>%p</code> - am/pm (małe litery)\n• <code>%P</code> - AM/PM (wielkie litery)\n• <code>%f</code> - Domyślne formatowanie oparte na ustawieniach regionalnych",
+                  "livePreview": "Podgląd na żywo",
+                  "noPreview": "Nie możemy pokazać podglądu na żywo, gdy format jest pusty.",
+                  "searchTimezonePlaceholder": "Szukaj strefy czasowej...",
+                  "timezone": "Strefa czasowa"
+                },
+                "ConcatOptions": {
+                  "addString": "Dodaj tekst...",
+                  "stringList": "Lista tekstów"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "Nie możemy pokazać podglądu na żywo, gdy data docelowa lub format jest wynikiem licznika. Musisz wyświetlić podgląd całego szablonu, aby zobaczyć, jak będzie wyglądać.",
+                  "dateConfigWarning": "Pamiętaj, aby zwrócić prawidłowy znacznik czasu UNIX",
+                  "datePlaceholder": "Lub pobierz datę z licznika...",
+                  "defaultFormat": "%d dni, %h godzin i %m minut pozostało",
+                  "format": "Format",
+                  "formatConfigWarning": "Pamiętaj, aby zwrócić prawidłowy ciąg formatujący",
+                  "formatInstructions": "Dostępne symbole zastępcze:\n• <code>%d</code> - Pozostałe dni\n• <code>%h</code> - Pozostałe godziny (0-23)\n• <code>%m</code> - Pozostałe minuty (0-59)\n• <code>%s</code> - Pozostałe sekundy (0-59)\n• <code>%D</code> - Łączna liczba pozostałych dni\n• <code>%H</code> - Łączna liczba pozostałych godzin\n• <code>%M</code> - Łączna liczba pozostałych minut\n• <code>%S</code> - Łączna liczba pozostałych sekund",
+                  "livePreview": "Podgląd na żywo",
+                  "noPreview": "Nie możemy pokazać podglądu na żywo, gdy data docelowa lub format jest pusty.",
+                  "targetDate": "Data docelowa"
+                },
+                "DateOptions": {
+                  "configWarning": "Pamiętaj, aby zwrócić prawidłowy identyfikator strefy czasowej",
+                  "counterPreview": "Nie możemy pokazać podglądu na żywo, gdy format jest wynikiem licznika. Musisz wyświetlić podgląd całego szablonu, aby zobaczyć, jak będzie wyglądać.",
+                  "defaultFormat": "%f",
+                  "format": "Format",
+                  "formatConfigWarning": "Pamiętaj, aby zwrócić prawidłowy ciąg formatujący",
+                  "formatInstructions": "Dostępne symbole zastępcze:\n• <code>%Y</code> - Pełny rok (2025)\n• <code>%y</code> - 2-cyfrowy rok (25)\n• <code>%Ms</code> - Pełna nazwa miesiąca (Listopad)\n• <code>%ms</code> - Skrócona nazwa miesiąca (Lis)\n• <code>%M</code> - Numer miesiąca z zerem wiodącym (01-12)\n• <code>%m</code> - Numer miesiąca (1-12)\n• <code>%Ws</code> - Pełna nazwa dnia tygodnia (Poniedziałek)\n• <code>%ws</code> - Skrócona nazwa dnia tygodnia (Pon)\n• <code>%w</code> - Numer dnia tygodnia (0=Niedziela, 6=Sobota)\n• <code>%D</code> - Dzień z zerem wiodącym (05)\n• <code>%d</code> - Dzień bez zera wiodącego (5)\n• <code>%f</code> - Domyślne formatowanie oparte na ustawieniach regionalnych",
+                  "livePreview": "Podgląd na żywo",
+                  "noPreview": "Nie możemy pokazać podglądu na żywo, gdy format jest pusty.",
+                  "searchTimezonePlaceholder": "Szukaj strefy czasowej...",
+                  "timezone": "Strefa czasowa"
+                },
+                "GameOptions": {
+                  "address": "Adres",
+                  "addressWarning": "Pamiętaj, aby zwrócić prawidłowy adres",
+                  "game": "Gra",
+                  "gameWarning": "Pamiętaj, aby zwrócić prawidłowy typ gry node-gamedig",
+                  "port": "Port (lub port zapytań)",
+                  "portWarning": "Pamiętaj, aby zwrócić prawidłowy numer portu",
+                  "searchPlaceholder": "Szukaj..."
+                },
+                "HttpOptions": {
+                  "dataPath": "Ścieżka danych",
+                  "dataPathDescription": "Ścieżka do uzyskania żądanej wartości, gdy typ zawartości odpowiedzi to JSON. Składnia jest podobna do tej używanej przez JS do dostępu do właściwości i elementów tablicy.",
+                  "dataPathWarning": "Pamiętaj, aby zwrócić ścieżkę danych",
+                  "emptyUrl": "Nie można pobrać, URL jest pusty",
+                  "fetch": "Pobierz",
+                  "fetching": "Pobieranie...",
+                  "lifetime": "Czas życia (w sekundach)",
+                  "lifetimeDescription": "Określa, jak długo odpowiedź z podanego URL będzie przechowywana w pamięci podręcznej.",
+                  "lifetimeWarning": "Pamiętaj, aby zwrócić prawidłową liczbę",
+                  "noPreview": "Nie możemy pokazać podglądu, gdy URL lub ścieżka danych jest wynikiem licznika. Musisz wyświetlić podgląd całego szablonu, aby zobaczyć, jak będzie wyglądać.",
+                  "preview": "Podgląd",
+                  "testResponse": "Testowa odpowiedź",
+                  "url": "URL (GET)",
+                  "urlWarning": "Pamiętaj, aby zwrócić prawidłowy URL"
+                },
+                "MathOptions": {
+                  "addNumber": "Dodaj liczbę...",
+                  "addition": "Dodawanie",
+                  "division": "Dzielenie",
+                  "modulo": "Modulo (reszta z dzielenia)",
+                  "multiplication": "Mnożenie",
+                  "numberList": "Lista liczb",
+                  "numberWarning": "Pamiętaj, aby zwrócić prawidłową liczbę",
+                  "operation": "Typ operacji",
+                  "selectOperation": "Wybierz typ operacji",
+                  "subtraction": "Odejmowanie"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Licz tylko zbanowanych członków"
+                  },
+                  "FilterByAccountType": {
+                    "any": "Dowolny",
+                    "bot": "Bot",
+                    "label": "Filtruj według typu konta",
+                    "placeholder": "Wybierz typ konta",
+                    "user": "Użytkownik"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "Dodaj kanał głosowy...",
+                    "dataSourceConfigWarning": "Pamiętaj, aby zwrócić prawidłowe ID kanału głosowego",
+                    "label": "Filtruj według połączenia z kanałem głosowym"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "Dodaj rolę...",
+                    "dataSourceConfigWarning": "Pamiętaj, aby zwrócić prawidłowe ID roli",
+                    "label": "Filtruj według roli"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "Dowolne dopasowanie",
+                    "label": "Tryb filtrowania",
+                    "overlap": "Nakładanie się",
+                    "placeholder": "Wybierz tryb filtrowania"
+                  },
+                  "FilterByStatus": {
+                    "any": "Dowolny",
+                    "dnd": "Nie przeszkadzać",
+                    "idle": "Bezczynny",
+                    "label": "Filtruj według statusu",
+                    "offline": "Offline",
+                    "online": "Online",
+                    "onlineIdleDnd": "Online + Bezczynny + Nie przeszkadzać",
+                    "placeholder": "Wybierz status"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Filtruj według grania w grę",
+                    "placeholder": "Dodaj grę..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "Wyświetlanie",
+                  "followers": "Obserwujący",
+                  "memes": "Memy",
+                  "selectDisplay": "Wybierz, co wyświetlić",
+                  "username": "Nazwa użytkownika",
+                  "usernameWarning": "Pamiętaj, aby zwrócić prawidłową nazwę użytkownika"
+                },
+                "NumberOptions": {
+                  "number": "Liczba",
+                  "numberWarning": "Pamiętaj, aby zwrócić prawidłową liczbę",
+                  "placeholder": "Wprowadź liczbę lub wyszukaj licznik"
+                },
+                "RedditOptions": {
+                  "display": "Wyświetlanie",
+                  "members": "Członkowie",
+                  "membersOnline": "Członkowie online",
+                  "selectPlaceholder": "Wybierz, co wyświetlić",
+                  "subreddit": "Nazwa subreddita",
+                  "subredditPlaceholder": "Wprowadź subreddit lub wyszukaj licznik",
+                  "subredditWarning": "Pamiętaj, aby zwrócić prawidłowy subreddit",
+                  "title": "Tytuł subreddita"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "Dodaj zamianę",
+                  "inputText": "Tekst wejściowy",
+                  "removeReplacement": "Usuń zamianę",
+                  "replaceWith": "Zamień na",
+                  "replacementPlaceholder": "Wprowadź tekst zamiany",
+                  "searchFor": "Szukaj",
+                  "searchPlaceholder": "Wprowadź szukany tekst",
+                  "textPlaceholder": "Wprowadź tekst do zamiany"
+                },
+                "TwitchOptions": {
+                  "channelName": "Nazwa kanału",
+                  "display": "Wyświetlanie",
+                  "followers": "Obserwujący",
+                  "selectPlaceholder": "Wybierz, co wyświetlić",
+                  "username": "Nazwa użytkownika",
+                  "usernamePlaceholder": "Wprowadź nazwę użytkownika",
+                  "usernameWarning": "Pamiętaj, aby zwrócić prawidłową nazwę użytkownika",
+                  "viewers": "Widzowie"
+                },
+                "YouTubeOptions": {
+                  "channelName": "Nazwa kanału",
+                  "channelUrl": "URL kanału",
+                  "channelUrlPlaceholder": "Wprowadź URL kanału",
+                  "channelUrlWarning": "Pamiętaj, aby zwrócić prawidłowy URL kanału",
+                  "display": "Wyświetlanie",
+                  "selectPlaceholder": "Wybierz, co wyświetlić",
+                  "subscribers": "Subskrybenci",
+                  "videos": "Filmy",
+                  "views": "Wyświetlenia"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "Selektor emoji",
+            "searchEmoji": "Szukaj emoji"
+          },
+          "markButtons": {
+            "bold": "pogrubienie",
+            "italic": "kursywa",
+            "spoiler": "spoiler",
+            "strike": "przekreślenie",
+            "underline": "podkreślenie"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "Zasady dopuszczalnego użytkowania",
+          "noReasonGiven": "Nie podano powodu",
+          "supportTeam": "Zespół wsparcia",
+          "termsOfService": "Regulamin",
+          "text": "Ten serwer został zablokowany za naruszenie naszego <LinkTerms>Regulaminu</LinkTerms> lub <LinkPolicy>Zasad dopuszczalnego użytkowania</LinkPolicy>.<br />Podany powód: {{reason}}<br />Jeśli uważasz, że to pomyłka, skontaktuj się z naszym <SupportLink>zespołem wsparcia</SupportLink>."
+        },
+        "channels": {
+          "save": "Zapisz",
+          "saved": "Zapisano",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "Ostatnia aktualizacja: {{lastTemplateUpdateDate}}",
+              "template": "Szablon"
+            },
+            "EnableTemplate": {
+              "description": "Po włączeniu Member Counter będzie automatycznie aktualizować {{templateTarget}} tego kanału, aby wyświetlać przetworzony szablon.",
+              "enableTemplate": "Włącz szablon",
+              "nameTarget": "nazwę",
+              "topicTarget": "temat"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Sprawdź ponownie",
+              "description": "Upewnij się, że bot ma następujące uprawnienia w tym kanale:",
+              "permissions": {
+                "connect": "Łączenie",
+                "manageChannel": "Zarządzanie kanałem",
+                "viewChannel": "Wyświetlanie kanału"
+              },
+              "title": "Bot nie ma uprawnień do edycji tego kanału."
+            },
+            "TemplateError": {
+              "errorDescription": "Podczas ostatniego przetwarzania szablonu wystąpił błąd. Szczegóły są pokazane poniżej.",
+              "errorTitle": "Szablon miał błąd podczas ostatniego przetwarzania"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "Nie masz uprawnień do zarządzania tym serwerem.\nPoproś administratora serwera {{guildName}}, aby nadał ci uprawnienia Administratora lub Zarządzania serwerem.",
+          "title": "Brak uprawnień"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "Zamknij",
+          "message": "Wygląda na to, że bot Member Counter nie jest na tym serwerze. Chcesz go <LinkURL>dodać</LinkURL>?"
+        },
+        "inviteBotPage": {
+          "addToServer": "Dodaj do {{serverName}}",
+          "copyLink": "Kopiuj link zaproszenia",
+          "linkCopied": "Link został skopiowany do schowka.",
+          "noPermission": "Nie masz wystarczających uprawnień, aby dodać bota. Poproś administratora lub osobę z uprawnieniami Zarządzania serwerem, aby dodała tego bota.",
+          "subtitle": "Dodaj Member Counter do {{serverName}} i ciesz się licznikami w czasie rzeczywistym.",
+          "title": "Skonfigurujmy bota!",
+          "useOrShareLink": "Użyj lub udostępnij ten link, aby dodać bota."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "Zablokuj serwer",
+            "blockDialogDescription": "Podany powód zostanie wyświetlony administratorom serwera.",
+            "blockDialogTitle": "Czy na pewno chcesz zablokować ten serwer?",
+            "closeButton": "Zamknij",
+            "reasonLabel": "Powód",
+            "reasonPlaceholder": "Podaj powód",
+            "unblockButton": "Odblokuj serwer",
+            "unblockDialogDescription": "Ten serwer został zablokowany z następującego powodu: {{reason}}",
+            "unblockDialogTitle": "Czy na pewno chcesz odblokować ten serwer?"
+          },
+          "reset": {
+            "closeButton": "Zamknij",
+            "dialogDescription": "Tej operacji nie można cofnąć. Wszystkie ustawienia zostaną przywrócone do wartości domyślnych.",
+            "dialogTitle": "Czy jesteś absolutnie pewny?",
+            "resetButton": "Resetuj ustawienia"
+          },
+          "save": "Zapisz",
+          "saved": "Zapisano",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Niestandardowe cyfry",
+              "customDigitsDescription": "W licznikach zwracających liczbę Member Counter zastąpi każdą cyfrę tymi, które podasz. Jest to przydatne, jeśli chcesz wyświetlać niestandardowe emoji lub coś innego, np. „czcionki w stylu Unicode”.",
+              "customizationRecommendation": "Nie zalecamy dostosowywania żadnej cyfry, chyba że masz pewność, że nikt korzystający z czytnika ekranu nie będzie miał dostępu do żadnego licznika.",
+              "screenReaderWarning": "Pamiętaj, że użytkownicy korzystający z czytnika ekranu (syntezatora mowy) mogą nie być w stanie zrozumieć dostosowanych cyfr i <demoLink>mogą usłyszeć coś niezrozumiałego</demoLink>. Czytniki ekranu są często używane przez osoby z niepełnosprawnością wzroku."
+            },
+            "Locale": {
+              "description": "Zmiana tego wpłynie na sposób wyświetlania niektórych liczników.",
+              "locale": "Ustawienia regionalne",
+              "numberExample": "439212 będzie wyświetlane jako {{number}}",
+              "searchPlaceholder": "Szukaj ustawień regionalnych...",
+              "timeExample": "15:30 (lub 3:30 PM) będzie wyświetlane jako {{time}}"
+            },
+            "UseCompactNotation": {
+              "description": "Liczniki zwracające liczby będą wyświetlane w bardziej zwartej formie.",
+              "example1": "12300 będzie wyświetlane jako {{number}}",
+              "example2": "439212 będzie wyświetlane jako {{number}}",
+              "example3": "1500000 będzie wyświetlane jako {{number}}",
+              "label": "Użyj notacji zwartej dla liczb"
+            }
+          },
+          "title": "Ustawienia serwera"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "Wykorzystaj swoje liczniki w pełni, dostosowane do twoich potrzeb.",
+            "label": "Jak profesjonalista",
+            "title": "Zaawansowane liczniki"
+          },
+          "createFromScratch": {
+            "description": "Dowiedz się, jak stworzyć swój pierwszy niestandardowy licznik w kilka minut.",
+            "label": "Bądź wyjątkowy!",
+            "title": "Stwórz od zera"
+          },
+          "queryHistoricalStatistics": {
+            "description": "Zobacz, jak twoje liczniki i inne popularne statystyki zmieniały się w czasie.",
+            "label": "Wkrótce™",
+            "title": "Statystyki historyczne"
+          },
+          "quickSetup": {
+            "description": "Szybko stwórz najpopularniejsze liczniki kilkoma kliknięciami. Nie wymaga wyobraźni ani wysiłku!",
+            "label": "Bez wysiłku!",
+            "title": "Szybka konfiguracja"
+          },
+          "subTitle": "Oto kilka propozycji dla ciebie:",
+          "title": "Witaj ponownie!"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "Wystąpił nieoczekiwany błąd.",
+        "NotAuthenticated": "Nie jesteś zalogowany.",
+        "NotAuthorized": "Nie masz uprawnień do dostępu do tej strony.",
+        "NotFound": "Strona, której szukasz, nie została znaleziona."
+      },
+      "nav": {
+        "backBtn": "Wróć",
+        "homeBtn": "Strona główna",
+        "supportBtn": "Uzyskaj pomoc",
+        "tryAgainBtn": "Spróbuj ponownie"
+      }
+    },
+    "home": {
+      "addToDiscord": "Dodaj do Discorda",
+      "dashboard": "Panel",
+      "getSupport": "Uzyskaj pomoc",
+      "headings": [
+        "Dynamicznie wyświetlaj liczbę członków swojego serwera",
+        "Pochwal się liczbą subskrybentów na YouTube",
+        "Monitoruj liczbę graczy na serwerze Minecraft",
+        "Pokaż, ile osób ogląda twój kanał na Twitchu",
+        "Wyświetlaj dowolne dane na swoim serwerze Discord",
+        "Śledź liczbę graczy na serwerze FiveM",
+        "Pokaż zegar dostosowany do preferowanej strefy czasowej",
+        "Twórz odliczania do wydarzeń lub specjalnych okazji",
+        "Monitoruj statystyki graczy na ponad 320 serwerach gier",
+        "Pobieraj i wyświetlaj dane z dowolnego punktu końcowego API",
+        "Wykonuj i wyświetlaj operacje matematyczne na swoich danych",
+        "Formatuj liczby i wyświetlaj je w atrakcyjny sposób",
+        "Wyróżnij boosterów Nitro na swoim serwerze"
+      ],
+      "seeHowPeopleUseIt": "Zobacz, jak inni tego używają",
+      "seeMore": "Zobacz więcej",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Odkryj jeszcze więcej funkcji i liczników, które mogą wzbogacić twoje doświadczenie. Bądź na bieżąco z aktualizacjami!",
+          "title": "I wiele więcej!"
+        },
+        "clock": {
+          "description": "Sprawdzaj czas w dowolnej strefie czasowej dzięki naszemu konfigurowalnemu zegarowi. Idealny do koordynacji między różnymi regionami.",
+          "title": "Zegar"
+        },
+        "countdown": {
+          "description": "Twórz i zarządzaj odliczaniami dostosowanymi do twoich konkretnych wydarzeń lub terminów.",
+          "title": "Odliczanie"
+        },
+        "date": {
+          "description": "Wyświetlaj aktualną datę w dowolnej strefie czasowej z konfigurowalnym formatowaniem. Świetne do pokazywania dat w różnych regionach.",
+          "title": "Data"
+        },
+        "discordMembers": {
+          "description": "Licz i filtruj członków według statusu online, ról i innych kryteriów, aby uzyskać dokładne informacje o twojej społeczności.",
+          "title": "Członkowie Discord"
+        },
+        "game": {
+          "description": "Monitoruj aktywność serwera gry dzięki liczbie graczy w czasie rzeczywistym dla ponad 320 wspieranych gier.",
+          "title": "Gra"
+        },
+        "http": {
+          "description": "Wykonuj żądania GET i odbieraj dane bezpośrednio z dowolnego punktu końcowego, usprawniając twoje potrzeby integracyjne.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Wykonuj szereg operacji matematycznych, w tym dodawanie, odejmowanie, mnożenie i inne na wielu liczbach.",
+          "title": "Matematyka"
+        },
+        "nitroBoosters": {
+          "description": "Śledź liczbę boosterów Nitro na swoim serwerze, aby ocenić wsparcie i zaangażowanie społeczności.",
+          "title": "Boosterzy Nitro"
+        },
+        "reddit": {
+          "description": "Pobieraj statystyki dowolnego subreddita, w tym tytuł, liczbę członków i członków online.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Dynamicznie modyfikuj tekst za pomocą naszego potężnego narzędzia do zamiany, idealnego w połączeniu z licznikiem HTTP.",
+          "title": "Zamień"
+        },
+        "twitch": {
+          "description": "Monitoruj metryki kanału Twitch, takie jak liczba obserwujących i statystyki wyświetleń, aby być na bieżąco z ulubionymi streamerami.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Pobieraj kluczowe metryki z kanałów YouTube, w tym liczbę subskrybentów, liczbę filmów i łączne wyświetlenia.",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "Obsługiwane liczniki"
+    },
+    "status": {
+      "affectedServers": "Dotknięte serwery Discord:",
+      "assignedDiscordServers": "Przypisane do tego procesu potomnego:",
+      "child": "Proces potomny #{{index}}",
+      "childDiscordServers": "{{count}} serwerów Discord {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} niedostępnych)",
+      "childDiscordUsers": "{{count}} użytkowników",
+      "discordClientStatus": {
+        "Connecting": "Łączenie",
+        "Disconnected": "Rozłączony",
+        "Identifying": "Identyfikacja",
+        "Idle": "Bezczynny",
+        "Nearly": "Bezczynny",
+        "Ready": "Gotowy",
+        "Reconnecting": "Ponowne łączenie",
+        "Resuming": "Wznawianie",
+        "WaitingForGuilds": "Oczekiwanie na serwery"
+      },
+      "memoryUsage": "{{usage}} ({{peak}} szczytowe)",
+      "memoryUsageTooltip": "Zużycie pamięci",
+      "partialOutage": "Występuje częściowa awaria",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} rdzeni\nObciążenie {{load}}",
+        "cpuLabel": "CPU",
+        "hostname": "Nazwa",
+        "memoryInfo": "{{memory}}\n{{usage}}% wykorzystania",
+        "memoryLabel": "Pamięć",
+        "title": "Informacje o serwerze"
+      },
+      "statusUnavailable": "Status niedostępny"
+    }
+  }
+}

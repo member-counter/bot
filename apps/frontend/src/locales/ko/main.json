@@ -1,1 +1,1052 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "공지 채널",
+      "category": "카테고리",
+      "forumChannel": "포럼 채널",
+      "mediaChannel": "미디어 채널",
+      "stageChannel": "스테이지 채널",
+      "textChannel": "텍스트 채널",
+      "voiceChannel": "음성 채널"
+    },
+    "knownError": "오류",
+    "knownErrors": {
+      "BAD_REQUEST": "잘못된 요청입니다.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "봇에 이 카운터를 사용하기 위한 권한 있는 인텐트가 충분하지 않습니다.",
+      "BOT_IS_NOT_PREMIUM": "봇이 프리미엄 버전이 아니며 이 카운터에 필요한 특정 기능이 없습니다.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "카운터가 인식할 수 없는 형식입니다.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "카운터가 유효하지 않습니다.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "채널 이름의 결과가 2자 미만입니다.",
+      "EVALUATION_TIMEOUT": "평가 시간이 너무 오래 걸려 시간이 초과되었습니다.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "평가에서 최종 문자열을 생성하지 못했습니다.",
+      "FORBIDDEN": "요청이 금지되었습니다.",
+      "GAME_MISSING_ADDRESS": "게임 카운터에 서버 주소가 필요합니다.",
+      "GAME_MISSING_GAME_ID": "게임 카운터에 게임 ID를 제공해야 합니다.",
+      "GAME_MISSING_PORT": "게임 카운터에 서버 포트가 필요합니다.",
+      "HTTP_DATA_PATH_MANDATORY": "콘텐츠 유형이 application/json인 HTTP 요청에는 데이터 경로를 지정해야 합니다.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTP 응답의 콘텐츠 유형이 유효하지 않습니다 (text/plain 또는 application/json이 아님).",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP 응답 상태 코드가 유효하지 않습니다 (200이 아님).",
+      "HTTP_MISSING_URL": "HTTP 카운터에 URL이 필요하지만 누락되었습니다.",
+      "INTERNAL_SERVER_ERROR": "내부 서버 오류가 발생했습니다.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "현재 멤버 수를 사용할 수 없습니다.",
+      "MEMERATOR_MISSING_USERNAME": "Memerator 카운터에 사용자 이름이 필요하지만 누락되었습니다.",
+      "NOT_FOUND": "요청한 리소스를 찾을 수 없습니다.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "봇에 채널을 편집할 수 있는 충분한 권한이 없습니다.",
+      "REDDIT_MISSING_SUBREDDIT": "Reddit 카운터에 서브레딧을 제공해야 합니다.",
+      "TWITCH_CHANNEL_NOT_FOUND": "지정된 Twitch 채널을 찾을 수 없습니다.",
+      "TWITCH_MISSING_USERNAME": "Twitch 카운터에 사용자 이름이 설정되어야 합니다.",
+      "UNAUTHORIZED": "인증되지 않은 요청입니다.",
+      "UNKNOWN": "알 수 없는 오류가 발생했습니다.",
+      "UNKNOWN_DATA_SOURCE": "제공된 카운터를 알 수 없거나 인식할 수 없습니다.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "평가에서 반환된 값의 유형을 알 수 없습니다.",
+      "USER_NOT_FOUND": "사용자를 찾을 수 없습니다.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "제공된 YouTube 채널 URL이 유효하지 않습니다.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "YouTube 카운터에 채널 URL이 설정되어야 합니다."
+    },
+    "unknown": "알 수 없음",
+    "unknownChannel": "알 수 없는 채널",
+    "unknownChannelType": "알 수 없는 채널 유형",
+    "unknownDate": "알 수 없는 날짜",
+    "unknownError": "알 수 없는 오류",
+    "unknownPublicBot": "알 수 없는 공개 봇",
+    "unknownRole": "알 수 없는 역할",
+    "unknownServer": "알 수 없는 서버",
+    "unknownUser": "알 수 없는 사용자 {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "채널 제거",
+          "selected": "선택됨"
+        },
+        "DataSourceItem": {
+          "edit": "카운터 편집",
+          "notSelected": "선택되지 않음",
+          "remove": "카운터 제거",
+          "selected": "선택됨"
+        },
+        "GamedigItem": {
+          "remove": "게임 제거",
+          "selected": "선택됨"
+        },
+        "LocaleItem": {
+          "remove": "로케일 제거",
+          "selected": "선택됨"
+        },
+        "RoleItem": {
+          "everyone": "전체",
+          "remove": "역할 제거",
+          "selected": "선택됨"
+        },
+        "TextItem": {
+          "remove": "{{item}} 제거",
+          "selected": "선택됨"
+        },
+        "TimezoneItem": {
+          "remove": "시간대 제거",
+          "selected": "선택됨"
+        }
+      },
+      "noResults": "결과를 찾을 수 없습니다.",
+      "placeholder": "추가...",
+      "searchPlaceholder": "검색..."
+    },
+    "NavBar": {
+      "accountEntry": "계정",
+      "dashboardEntry": "대시보드",
+      "supportEntry": "지원"
+    },
+    "footer": {
+      "acceptableUsePolicy": "이용 규정",
+      "admin": "관리자",
+      "codeRepository": "코드 저장소",
+      "cookiePolicy": "쿠키 정책",
+      "copyright": "© {{year}} Member Counter. All rights reserved. Created by <eduardozgzLink />.",
+      "documentation": "문서",
+      "donate": "기부하기",
+      "improveMemberCounter": "Member Counter 개선하기",
+      "legal": "법적 고지",
+      "loginWithDiscord": "Discord로 로그인",
+      "logout": "로그아웃",
+      "madePossibleThanksTo": "Alex, <vampireChickenLink />, <livingfloreLink />, Frosty, 그리고 <donorsLink>많은 분들</donorsLink>의 도움으로 만들어졌습니다.",
+      "manageDonations": "기부 관리",
+      "manageHomePage": "홈페이지 관리",
+      "manageServers": "서버 관리",
+      "manageUsers": "사용자 관리",
+      "privacyPolicy": "개인정보 처리방침",
+      "status": "상태",
+      "supportServer": "지원 서버",
+      "termsOfService": "서비스 이용약관",
+      "translateBot": "봇 번역하기",
+      "usefulLinks": "유용한 링크"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "봇이 현재 참여 중인 전체 사용자 수와 서버 수를 반환합니다. (대부분의 경우 필요하지 않습니다)",
+      "name": "봇 통계"
+    },
+    "channels": {
+      "description": "특정 카테고리 또는 전체 채널 수를 계산합니다.",
+      "display": {
+        "channelsUnderACategory": "카테고리 내 채널"
+      },
+      "keywords": "채널,카테고리,channels,categories",
+      "name": "채널"
+    },
+    "clock": {
+      "description": "선호하는 시간대에 맞춘 시계를 표시합니다.",
+      "display": {
+        "syntax": "시계 ({{timezone}})"
+      },
+      "keywords": "시계,시간대,clock,timezone",
+      "name": "시계"
+    },
+    "concat": {
+      "description": "여러 문자열을 하나로 연결합니다.",
+      "display": {
+        "syntax": "연결 {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "외 {{amount}}개"
+      },
+      "keywords": "연결,결합,합치기,concat,concatenate,strings,combine,join,merge",
+      "name": "연결"
+    },
+    "countdown": {
+      "description": "필요에 맞게 형식을 지정할 수 있는 카운트다운 타이머를 생성합니다.",
+      "display": {
+        "syntax": "{{datetime}}까지 카운트다운"
+      },
+      "keywords": "카운트다운,타이머,countdown,timer",
+      "name": "카운트다운"
+    },
+    "date": {
+      "description": "선호하는 시간대에 맞춘 현재 날짜를 표시합니다.",
+      "display": {
+        "syntax": "날짜 ({{timezone}})"
+      },
+      "keywords": "날짜,달력,시간대,date,calendar,timezone",
+      "name": "날짜"
+    },
+    "game": {
+      "description": "320개 이상의 게임과 호환되는 게임 서버의 현재 온라인 플레이어 수를 가져옵니다.",
+      "display": {
+        "playerCountFor": "{{gameServerAddress}} 플레이어 수"
+      },
+      "keywords": "게임,플레이어,온라인,서버,game,players,online,server",
+      "name": "게임"
+    },
+    "http": {
+      "description": "엔드포인트로 GET 요청을 보내고 결과를 이 봇에 제공합니다.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,요청,엔드포인트,API,가져오기,request,endpoint,fetch",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "숫자 목록에 대해 덧셈, 뺄셈, 곱셈, 나눗셈, 나머지 등의 수학 연산을 수행합니다.",
+      "display": {
+        "operationType": {
+          "add": "덧셈",
+          "divide": "나눗셈",
+          "modulo": "나머지",
+          "multiply": "곱셈",
+          "subtract": "뺄셈"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "외 {{amount}}개"
+      },
+      "keywords": "수학,계산기,연산,숫자,산술,덧셈,뺄셈,곱셈,나눗셈,나머지,math,calculator,operations,numbers",
+      "name": "수학"
+    },
+    "members": {
+      "description": "멤버를 계산하며, 온라인 상태, 특정 역할 등으로 필터링할 수도 있습니다.",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "방해 금지",
+          "idle": "자리 비움",
+          "offline": "오프라인",
+          "online": "온라인",
+          "onlineIdleDnd": "온라인 + 자리 비움 + 방해 금지"
+        },
+        "accountType": {
+          "any": "멤버",
+          "bot": "봇",
+          "user": "사용자"
+        },
+        "bannedMembers": "차단된 멤버",
+        "connectedToAChannel": "채널에 접속 중",
+        "playingAGame": "게임 플레이 중",
+        "roleFiltering": {
+          "any": "역할 보유",
+          "overlapping": "역할이 겹치는"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "멤버,필터,역할,온라인,상태,차단,게임,오프라인,방해금지,자리비움,사용자,봇,접속,members,filter,roles,online,status,banned",
+      "name": "멤버"
+    },
+    "memerator": {
+      "description": "Memerator 계정의 팔로워 수와 밈 수를 가져옵니다.",
+      "display": {
+        "returnKind": {
+          "followers": "팔로워",
+          "memes": "밈"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,팔로워,조회,채널,follower,view,channel",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "서버의 니트로 부스터 수를 가져옵니다.",
+      "keywords": "니트로,부스터,서버,nitro,boosters,server",
+      "name": "니트로 부스터"
+    },
+    "number": {
+      "description": "주어진 숫자에 숫자 서식을 적용합니다.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} (숫자로)",
+        "raw": "숫자 ({{number}})"
+      },
+      "keywords": "숫자,서식,number,formatting",
+      "name": "숫자"
+    },
+    "reddit": {
+      "description": "서브레딧의 제목과 전체 멤버 수 및 현재 온라인 멤버 수를 가져옵니다.",
+      "display": {
+        "returnKind": {
+          "members": "멤버",
+          "membersOnline": "온라인 멤버",
+          "title": "제목"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,서브레딧,멤버,온라인,subreddit,members,online",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "텍스트 치환 기능으로, 다른 중첩 카운터와 함께 사용하면 포괄적인 텍스트 수정이 가능합니다.",
+      "display": {
+        "replaceSyntax": "\"{{search}}\"을(를) \"{{replacement}}\"(으)로",
+        "syntax": "치환 {{replaceSyntax}}"
+      },
+      "keywords": "텍스트,치환,수정,문자열,부분문자열,text,replacement,modification,string,substring",
+      "name": "치환"
+    },
+    "roles": {
+      "description": "서버에 있는 모든 역할의 수를 계산합니다.",
+      "keywords": "역할,roles",
+      "name": "역할"
+    },
+    "twitch": {
+      "description": "Twitch 채널의 팔로워 수와 총 조회수를 가져옵니다.",
+      "display": {
+        "returnKind": {
+          "channelName": "채널 이름",
+          "followers": "팔로워",
+          "viewers": "시청자"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,팔로워,조회,채널,follower,view,channel",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "알 수 없는 카운터입니다. 오류로 인한 것일 수 있습니다",
+      "name": "알 수 없음"
+    },
+    "youtube": {
+      "description": "YouTube 채널의 구독자 수, 동영상 수, 총 조회수를 가져옵니다.",
+      "display": {
+        "returnKind": {
+          "channelName": "채널 이름",
+          "subscribers": "구독자",
+          "videos": "동영상",
+          "views": "조회수"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,구독자,동영상,조회수,채널,subscriber,video,views,channel",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "저장하지 않은 변경 사항이 있습니다. 정말로 이 페이지를 떠나시겠습니까?",
+    "useFormManager": {
+      "state": {
+        "save": "저장",
+        "saved": "저장됨",
+        "saving": "저장 중..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - 멤버 수 등을 표시하는 Discord 봇"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "닫기",
+        "confirmDescription": "이 작업은 되돌릴 수 없습니다. 계정이 영구적으로 삭제되며 서버에서 데이터가 제거됩니다.",
+        "confirmTitle": "정말로 삭제하시겠습니까?",
+        "deleteAccountBtn": "계정 삭제"
+      },
+      "page": {
+        "avatarAlt": "{{username}}의 아바타",
+        "logoutButton": "로그아웃"
+      },
+      "userBadges": {
+        "betaTester": "베타 프로그램에 참여하셨습니다.",
+        "bigBrain": "구현된 아이디어를 제안하셨습니다.",
+        "bugCatcher": "버그를 발견하고 보고하셨습니다.",
+        "contributor": "기능을 구현하거나 버그를 수정하셨습니다.",
+        "donor": "Member Counter의 개발 및 유지보수를 위해 기부하셨습니다.",
+        "foldingAtHome": "folding@home에서 WU를 기여하셨습니다.",
+        "patPat": "비밀을 발견하셨습니다.",
+        "premium": "프리미엄 사용자입니다.",
+        "translator": "봇 번역에 도움을 주셨습니다."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "기부 삭제",
+          "closeButton": "닫기",
+          "dialogDescription": "이 작업은 되돌릴 수 없습니다.",
+          "dialogTitle": "정말로 삭제하시겠습니까?"
+        },
+        "edit": {
+          "title": "기부 편집"
+        },
+        "form": {
+          "amount": "금액",
+          "anonymous": "익명",
+          "currency": "통화",
+          "currencyDecimals": "통화 소수점",
+          "date": "날짜",
+          "note": "메모",
+          "saveBtn": "저장",
+          "userId": "Discord 사용자 ID"
+        },
+        "new": {
+          "title": "새 기부"
+        },
+        "registerDonation": "기부 등록",
+        "totalDonations": "총 기부: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "서버 불러오기",
+          "placeholder": "서버 ID를 붙여넣으세요"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "생성",
+          "createInputPlaceholder": "새 데모 서버 이름",
+          "delete": {
+            "button": "데모 서버 삭제",
+            "closeButton": "닫기",
+            "dialogDescription": "이 작업은 되돌릴 수 없습니다.",
+            "dialogTitle": "정말로 삭제하시겠습니까?"
+          },
+          "list": {
+            "display": {
+              "priority": "우선순위: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "채널 추가",
+              "channel": {
+                "isRulesChannel": "규칙 채널로 표시",
+                "name": "이름",
+                "remove": "제거",
+                "showAsSkeleton": "스켈레톤으로 표시",
+                "topic": "주제",
+                "type": "유형",
+                "types": {
+                  "announcementChannel": "공지 채널",
+                  "categoryChannel": "카테고리 채널",
+                  "textChannel": "텍스트 채널",
+                  "voiceChannel": "잠긴 음성 채널"
+                }
+              },
+              "title": "채널"
+            },
+            "description": "설명",
+            "features": {
+              "options": {
+                "Community": "커뮤니티",
+                "Discoverable": "검색 가능",
+                "Partnered": "파트너",
+                "Verified": "인증됨"
+              },
+              "title": "기능"
+            },
+            "icon": "아이콘 URL",
+            "language": "언어",
+            "links": {
+              "add": "링크 추가",
+              "link": {
+                "label": "라벨",
+                "remove": "제거",
+                "url": "URL"
+              },
+              "title": "링크"
+            },
+            "name": "서버 이름",
+            "premiumTier": {
+              "options": {
+                "None": "없음",
+                "Tier1": "레벨 1",
+                "Tier2": "레벨 2",
+                "Tier3": "레벨 3"
+              },
+              "title": "프리미엄 등급"
+            },
+            "priority": "우선순위",
+            "save": "저장",
+            "saved": "저장됨",
+            "title": "데모 서버 편집"
+          },
+          "title": "데모 서버"
+        },
+        "headings": [
+          "서버의 멤버 수를 실시간으로 표시하세요",
+          "YouTube 구독자 수를 자랑하세요",
+          "Minecraft 서버의 플레이어 수를 모니터링하세요",
+          "Twitch 채널 시청자 수를 보여주세요",
+          "Discord 서버에 원하는 모든 데이터를 표시하세요",
+          "FiveM 서버의 플레이어 수를 추적하세요",
+          "선호하는 시간대에 맞춘 시계를 표시하세요",
+          "이벤트나 특별한 날을 위한 카운트다운을 만드세요",
+          "320개 이상의 게임 서버에서 플레이어 통계를 모니터링하세요",
+          "모든 API 엔드포인트에서 데이터를 가져와 표시하세요",
+          "데이터에 수학 연산을 수행하고 표시하세요",
+          "숫자를 서식에 맞춰 아름답게 표시하세요",
+          "서버의 니트로 부스터를 강조하세요"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "경험을 향상시킬 수 있는 더 많은 기능과 카운터를 발견하세요. 업데이트를 기대해 주세요!",
+            "title": "그리고 더 많은 기능!"
+          },
+          "clock": {
+            "description": "맞춤형 시계로 모든 시간대의 시간을 확인하세요. 여러 지역 간 조율에 적합합니다.",
+            "title": "시계"
+          },
+          "countdown": {
+            "description": "특정 이벤트나 마감일에 맞춘 카운트다운 타이머를 생성하고 관리하세요.",
+            "title": "카운트다운"
+          },
+          "date": {
+            "description": "맞춤형 서식으로 모든 시간대의 현재 날짜를 표시합니다. 여러 지역의 날짜를 보여주기에 적합합니다.",
+            "title": "날짜"
+          },
+          "discordMembers": {
+            "description": "온라인 상태, 역할 등의 기준으로 멤버를 계산하고 필터링하여 커뮤니티에 대한 정확한 인사이트를 얻으세요.",
+            "title": "Discord 멤버"
+          },
+          "game": {
+            "description": "320개 이상의 지원 게임에 대해 실시간 플레이어 수로 게임 서버 활동을 모니터링하세요.",
+            "title": "게임"
+          },
+          "http": {
+            "description": "GET 요청을 실행하고 모든 엔드포인트에서 직접 데이터를 수신하여 통합 요구 사항을 간소화하세요.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "여러 숫자에 대해 덧셈, 뺄셈, 곱셈 등 다양한 수학 연산을 수행하세요.",
+            "title": "수학"
+          },
+          "nitroBoosters": {
+            "description": "서버의 니트로 부스터 수를 추적하여 커뮤니티 지원 및 참여도를 확인하세요.",
+            "title": "니트로 부스터"
+          },
+          "reddit": {
+            "description": "제목, 멤버 수, 온라인 멤버를 포함한 서브레딧 통계를 확인하세요.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "강력한 치환 도구로 텍스트를 동적으로 수정하세요. HTTP 카운터와 함께 사용하기에 이상적입니다.",
+            "title": "치환"
+          },
+          "twitch": {
+            "description": "팔로워 수, 조회수 등 Twitch 채널 지표를 모니터링하여 좋아하는 스트리머의 최신 정보를 받아보세요.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "구독자 수, 동영상 수, 전체 조회수를 포함한 YouTube 채널의 주요 지표를 가져오세요.",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "계정 삭제",
+          "closeButton": "닫기",
+          "dialogDescription": "이 작업은 되돌릴 수 없습니다.",
+          "dialogTitle": "정말로 삭제하시겠습니까?"
+        },
+        "loadUser": "사용자 불러오기",
+        "manage": {
+          "badges": {
+            "betaTester": "베타 테스터",
+            "bigBrain": "빅 브레인",
+            "bugCatcher": "버그 캐처",
+            "contributor": "기여자",
+            "donor": "기부자",
+            "foldingAtHome": "folding@home",
+            "patPat": "토닥토닥",
+            "premium": "프리미엄",
+            "title": "배지",
+            "translator": "번역가"
+          },
+          "pasteUserId": "사용자 ID를 붙여넣으세요",
+          "permissions": {
+            "manageDonations": "기부 관리",
+            "manageGuilds": "서버 관리",
+            "manageHomePage": "랜딩 페이지 관리",
+            "manageUsers": "사용자 관리",
+            "seeGuilds": "서버 보기",
+            "seeUsers": "사용자 보기",
+            "title": "권한"
+          },
+          "save": "저장",
+          "saved": "저장됨",
+          "transferAccount": "계정 이전"
+        },
+        "recentUsers": "최근 사용자",
+        "userNotRegistered": "이 사용자는 등록되지 않았습니다."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "어떤 서버에도 참여하지 않았습니다. ",
+        "subheading": "<CreateServerLink>새 서버를 만들거나</CreateServerLink> <JoinSupportServerLink>지원 서버에 참가</JoinSupportServerLink>하는 것부터 시작해 보세요."
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "이 채널에서 카운터가 활성화되어 있습니다",
+            "issue": "이 채널에 주의가 필요한 문제가 있습니다"
+          },
+          "unsupportedChannelType": "이 채널 유형은 아직 지원되지 않습니다."
+        },
+        "ServerNavMenu": {
+          "channelList": "채널 목록",
+          "loading": "서버 데이터를 불러오는 중...",
+          "serverSettings": "서버 설정",
+          "unknownChannels": "Discord 채널을 불러올 수 없는 경우 저장된 채널을 방문하세요"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "카운터를 찾을 수 없습니다.",
+            "searchPlaceholder": "카운터 검색..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "서버 설정 기본값 사용",
+                "no": "아니요",
+                "overrideDefaultDigits": "기본 숫자 재정의",
+                "overrideDefaultLocale": "기본 로케일 재정의",
+                "searchLocale": "로케일 검색...",
+                "select": "선택",
+                "useCompactNotation": "간략한 표기법 사용",
+                "yes": "예"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "표시",
+                  "selectPlaceholder": "표시할 항목을 선택하세요",
+                  "servers": "서버",
+                  "users": "사용자"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "카테고리 추가...",
+                  "configWarning": "유효한 카테고리 ID를 반환해야 합니다",
+                  "filterByCategory": "카테고리별 필터링"
+                },
+                "ClockOptions": {
+                  "configWarning": "유효한 시간대 식별자를 반환해야 합니다",
+                  "counterPreview": "형식이 카운터의 결과인 경우 실시간 미리보기를 표시할 수 없습니다. 전체 템플릿을 미리보기하여 결과를 확인하세요.",
+                  "defaultFormat": "%f",
+                  "format": "형식",
+                  "formatConfigWarning": "유효한 형식 문자열을 반환해야 합니다",
+                  "formatInstructions": "사용 가능한 자리표시자:\n• <code>%H</code> - 앞에 0이 붙는 24시간 형식 시 (00-23)\n• <code>%h</code> - 앞에 0이 붙지 않는 24시간 형식 시 (0-23)\n• <code>%I</code> - 앞에 0이 붙는 12시간 형식 시 (01-12)\n• <code>%i</code> - 앞에 0이 붙지 않는 12시간 형식 시 (1-12)\n• <code>%M</code> - 앞에 0이 붙는 분 (00-59)\n• <code>%m</code> - 앞에 0이 붙지 않는 분 (0-59)\n• <code>%S</code> - 앞에 0이 붙는 초 (00-59)\n• <code>%s</code> - 앞에 0이 붙지 않는 초 (0-59)\n• <code>%p</code> - am/pm (소문자)\n• <code>%P</code> - AM/PM (대문자)\n• <code>%f</code> - 기본 로케일 기반 형식",
+                  "livePreview": "실시간 미리보기",
+                  "noPreview": "형식이 비어 있으면 실시간 미리보기를 표시할 수 없습니다.",
+                  "searchTimezonePlaceholder": "시간대 검색...",
+                  "timezone": "시간대"
+                },
+                "ConcatOptions": {
+                  "addString": "텍스트 추가...",
+                  "stringList": "텍스트 목록"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "대상 날짜 또는 형식이 카운터의 결과인 경우 실시간 미리보기를 표시할 수 없습니다. 전체 템플릿을 미리보기하여 결과를 확인하세요.",
+                  "dateConfigWarning": "유효한 UNIX 타임스탬프를 반환해야 합니다",
+                  "datePlaceholder": "또는 카운터에서 날짜를 가져오기...",
+                  "defaultFormat": "%d일, %h시간 %m분 남음",
+                  "format": "형식",
+                  "formatConfigWarning": "유효한 형식 문자열을 반환해야 합니다",
+                  "formatInstructions": "사용 가능한 자리표시자:\n• <code>%d</code> - 남은 일수\n• <code>%h</code> - 남은 시간 (0-23)\n• <code>%m</code> - 남은 분 (0-59)\n• <code>%s</code> - 남은 초 (0-59)\n• <code>%D</code> - 총 남은 일수\n• <code>%H</code> - 총 남은 시간\n• <code>%M</code> - 총 남은 분\n• <code>%S</code> - 총 남은 초",
+                  "livePreview": "실시간 미리보기",
+                  "noPreview": "대상 날짜 또는 형식이 비어 있으면 실시간 미리보기를 표시할 수 없습니다.",
+                  "targetDate": "대상 날짜"
+                },
+                "DateOptions": {
+                  "configWarning": "유효한 시간대 식별자를 반환해야 합니다",
+                  "counterPreview": "형식이 카운터의 결과인 경우 실시간 미리보기를 표시할 수 없습니다. 전체 템플릿을 미리보기하여 결과를 확인하세요.",
+                  "defaultFormat": "%f",
+                  "format": "형식",
+                  "formatConfigWarning": "유효한 형식 문자열을 반환해야 합니다",
+                  "formatInstructions": "사용 가능한 자리표시자:\n• <code>%Y</code> - 전체 연도 (2025)\n• <code>%y</code> - 2자리 연도 (25)\n• <code>%Ms</code> - 전체 월 이름 (November)\n• <code>%ms</code> - 약어 월 이름 (Nov)\n• <code>%M</code> - 앞에 0이 붙는 월 번호 (01-12)\n• <code>%m</code> - 월 번호 (1-12)\n• <code>%Ws</code> - 전체 요일 이름 (Monday)\n• <code>%ws</code> - 약어 요일 이름 (Mon)\n• <code>%w</code> - 요일 번호 (0=일요일, 6=토요일)\n• <code>%D</code> - 앞에 0이 붙는 일 (05)\n• <code>%d</code> - 앞에 0이 붙지 않는 일 (5)\n• <code>%f</code> - 기본 로케일 기반 형식",
+                  "livePreview": "실시간 미리보기",
+                  "noPreview": "형식이 비어 있으면 실시간 미리보기를 표시할 수 없습니다.",
+                  "searchTimezonePlaceholder": "시간대 검색...",
+                  "timezone": "시간대"
+                },
+                "GameOptions": {
+                  "address": "주소",
+                  "addressWarning": "유효한 주소를 반환해야 합니다",
+                  "game": "게임",
+                  "gameWarning": "유효한 node-gamedig 게임 유형을 반환해야 합니다",
+                  "port": "포트 (또는 쿼리 포트)",
+                  "portWarning": "유효한 포트 번호를 반환해야 합니다",
+                  "searchPlaceholder": "검색..."
+                },
+                "HttpOptions": {
+                  "dataPath": "데이터 경로",
+                  "dataPathDescription": "응답의 콘텐츠 유형이 JSON일 때 원하는 값을 가져오기 위한 경로이며, 구문은 JS에서 속성 및 배열 항목에 접근하는 것과 유사합니다.",
+                  "dataPathWarning": "데이터 경로를 반환해야 합니다",
+                  "emptyUrl": "URL이 비어 있어 가져올 수 없습니다",
+                  "fetch": "가져오기",
+                  "fetching": "가져오는 중...",
+                  "lifetime": "수명 (초)",
+                  "lifetimeDescription": "지정된 URL의 응답이 캐시되는 기간을 지정합니다.",
+                  "lifetimeWarning": "유효한 숫자를 반환해야 합니다",
+                  "noPreview": "URL 또는 데이터 경로가 카운터의 결과인 경우 미리보기를 표시할 수 없습니다. 전체 템플릿을 미리보기하여 결과를 확인하세요.",
+                  "preview": "미리보기",
+                  "testResponse": "테스트 응답",
+                  "url": "URL (GET)",
+                  "urlWarning": "유효한 URL을 반환해야 합니다"
+                },
+                "MathOptions": {
+                  "addNumber": "숫자 추가...",
+                  "addition": "덧셈",
+                  "division": "나눗셈",
+                  "modulo": "나머지 (나눗셈의 나머지)",
+                  "multiplication": "곱셈",
+                  "numberList": "숫자 목록",
+                  "numberWarning": "유효한 숫자를 반환해야 합니다",
+                  "operation": "연산 유형",
+                  "selectOperation": "연산 유형을 선택하세요",
+                  "subtraction": "뺄셈"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "차단된 멤버만 계산"
+                  },
+                  "FilterByAccountType": {
+                    "any": "전체",
+                    "bot": "봇",
+                    "label": "계정 유형별 필터링",
+                    "placeholder": "계정 유형을 선택하세요",
+                    "user": "사용자"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "음성 채널 추가...",
+                    "dataSourceConfigWarning": "유효한 음성 채널 ID를 반환해야 합니다",
+                    "label": "음성 채널 접속 여부로 필터링"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "역할 추가...",
+                    "dataSourceConfigWarning": "유효한 역할 ID를 반환해야 합니다",
+                    "label": "역할별 필터링"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "일부 일치",
+                    "label": "필터 모드",
+                    "overlap": "겹침",
+                    "placeholder": "필터 모드를 선택하세요"
+                  },
+                  "FilterByStatus": {
+                    "any": "전체",
+                    "dnd": "방해 금지",
+                    "idle": "자리 비움",
+                    "label": "상태별 필터링",
+                    "offline": "오프라인",
+                    "online": "온라인",
+                    "onlineIdleDnd": "온라인 + 자리 비움 + 방해 금지",
+                    "placeholder": "상태를 선택하세요"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "게임 플레이 여부로 필터링",
+                    "placeholder": "게임 추가..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "표시",
+                  "followers": "팔로워",
+                  "memes": "밈",
+                  "selectDisplay": "표시할 항목을 선택하세요",
+                  "username": "사용자 이름",
+                  "usernameWarning": "유효한 사용자 이름을 반환해야 합니다"
+                },
+                "NumberOptions": {
+                  "number": "숫자",
+                  "numberWarning": "유효한 숫자를 반환해야 합니다",
+                  "placeholder": "숫자를 입력하거나 카운터를 검색하세요"
+                },
+                "RedditOptions": {
+                  "display": "표시",
+                  "members": "멤버",
+                  "membersOnline": "온라인 멤버",
+                  "selectPlaceholder": "표시할 항목을 선택하세요",
+                  "subreddit": "서브레딧 이름",
+                  "subredditPlaceholder": "서브레딧을 입력하거나 카운터를 검색하세요",
+                  "subredditWarning": "유효한 서브레딧을 반환해야 합니다",
+                  "title": "서브레딧 제목"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "치환 추가",
+                  "inputText": "입력 텍스트",
+                  "removeReplacement": "치환 제거",
+                  "replaceWith": "치환할 텍스트",
+                  "replacementPlaceholder": "치환 텍스트를 입력하세요",
+                  "searchFor": "검색 대상",
+                  "searchPlaceholder": "검색어를 입력하세요",
+                  "textPlaceholder": "치환할 텍스트를 입력하세요"
+                },
+                "TwitchOptions": {
+                  "channelName": "채널 이름",
+                  "display": "표시",
+                  "followers": "팔로워",
+                  "selectPlaceholder": "표시할 항목을 선택하세요",
+                  "username": "사용자 이름",
+                  "usernamePlaceholder": "사용자 이름을 입력하세요",
+                  "usernameWarning": "유효한 사용자 이름을 반환해야 합니다",
+                  "viewers": "시청자"
+                },
+                "YouTubeOptions": {
+                  "channelName": "채널 이름",
+                  "channelUrl": "채널 URL",
+                  "channelUrlPlaceholder": "채널 URL을 입력하세요",
+                  "channelUrlWarning": "유효한 채널 URL을 반환해야 합니다",
+                  "display": "표시",
+                  "selectPlaceholder": "표시할 항목을 선택하세요",
+                  "subscribers": "구독자",
+                  "videos": "동영상",
+                  "views": "조회수"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "이모지 선택기",
+            "searchEmoji": "이모지 검색"
+          },
+          "markButtons": {
+            "bold": "굵게",
+            "italic": "기울임꼴",
+            "spoiler": "스포일러",
+            "strike": "취소선",
+            "underline": "밑줄"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "이용 규정",
+          "noReasonGiven": "사유가 제공되지 않았습니다",
+          "supportTeam": "지원 팀",
+          "termsOfService": "서비스 이용약관",
+          "text": "이 서버는 <LinkTerms>서비스 이용약관</LinkTerms> 또는 <LinkPolicy>이용 규정</LinkPolicy> 위반으로 차단되었습니다.<br />제공된 사유: {{reason}}<br />이것이 실수라고 생각하시면 <SupportLink>지원 팀</SupportLink>에 문의해 주세요."
+        },
+        "channels": {
+          "save": "저장",
+          "saved": "저장됨",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "마지막 업데이트: {{lastTemplateUpdateDate}}",
+              "template": "템플릿"
+            },
+            "EnableTemplate": {
+              "description": "활성화하면 Member Counter가 처리된 템플릿을 표시하기 위해 이 채널의 {{templateTarget}}을(를) 자동으로 업데이트합니다.",
+              "enableTemplate": "템플릿 활성화",
+              "nameTarget": "이름",
+              "topicTarget": "주제"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "다시 확인",
+              "description": "이 채널에서 봇에 다음 권한이 있는지 확인해 주세요:",
+              "permissions": {
+                "connect": "연결",
+                "manageChannel": "채널 관리",
+                "viewChannel": "채널 보기"
+              },
+              "title": "봇에 이 채널을 편집할 권한이 없습니다."
+            },
+            "TemplateError": {
+              "errorDescription": "마지막 템플릿 처리 중 오류가 발생했습니다. 자세한 내용은 아래에 표시됩니다.",
+              "errorTitle": "마지막 처리 시 템플릿에 오류가 발생했습니다"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "이 서버를 관리할 권한이 없습니다.\n{{guildName}}의 관리자에게 관리자 또는 서버 관리 권한을 요청하세요.",
+          "title": "권한 거부"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "닫기",
+          "message": "이 서버에 Member Counter 봇이 없는 것 같습니다. <LinkURL>추가</LinkURL>하시겠습니까?"
+        },
+        "inviteBotPage": {
+          "addToServer": "{{serverName}}에 추가",
+          "copyLink": "초대 링크 복사",
+          "linkCopied": "링크가 클립보드에 복사되었습니다.",
+          "noPermission": "봇을 추가할 권한이 충분하지 않습니다. 관리자 또는 서버 관리 권한이 있는 사람에게 이 봇을 추가해 달라고 요청하세요.",
+          "subtitle": "Member Counter를 {{serverName}}에 추가하고 실시간 카운터를 즐기세요.",
+          "title": "봇을 설정해 봅시다!",
+          "useOrShareLink": "이 링크를 사용하거나 공유하여 봇을 추가하세요."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "서버 차단",
+            "blockDialogDescription": "제공된 사유가 서버 관리자에게 표시됩니다.",
+            "blockDialogTitle": "정말로 이 서버를 차단하시겠습니까?",
+            "closeButton": "닫기",
+            "reasonLabel": "사유",
+            "reasonPlaceholder": "사유를 입력해 주세요",
+            "unblockButton": "서버 차단 해제",
+            "unblockDialogDescription": "이 서버는 다음 사유로 차단되었습니다: {{reason}}",
+            "unblockDialogTitle": "정말로 이 서버의 차단을 해제하시겠습니까?"
+          },
+          "reset": {
+            "closeButton": "닫기",
+            "dialogDescription": "이 작업은 되돌릴 수 없습니다. 모든 설정이 기본값으로 초기화됩니다.",
+            "dialogTitle": "정말로 초기화하시겠습니까?",
+            "resetButton": "설정 초기화"
+          },
+          "save": "저장",
+          "saved": "저장됨",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "맞춤 숫자",
+              "customDigitsDescription": "숫자를 반환하는 카운터에서 Member Counter가 각 숫자를 사용자가 제공한 것으로 대체합니다. 이는 맞춤 이모지나 \"유니코드 스타일 글꼴\" 등 다른 것을 표시하고 싶을 때 유용합니다.",
+              "customizationRecommendation": "스크린 리더를 사용하는 사람이 어떤 카운터에도 접근하지 않을 것이 확실하지 않다면 숫자를 맞춤 설정하지 않는 것을 권장합니다.",
+              "screenReaderWarning": "스크린 리더(텍스트 음성 변환)를 사용하는 사용자는 맞춤 숫자를 이해하지 못하고 <demoLink>알아들을 수 없는 소리를 들을 수 있습니다</demoLink>. 스크린 리더는 시각 장애가 있는 분들이 자주 사용합니다."
+            },
+            "Locale": {
+              "description": "이 설정을 변경하면 일부 카운터의 표시 방식에 영향을 줍니다.",
+              "locale": "로케일",
+              "numberExample": "439212가 {{number}}(으)로 표시됩니다",
+              "searchPlaceholder": "로케일 검색...",
+              "timeExample": "15:30 (또는 오후 3:30)이 {{time}}(으)로 표시됩니다"
+            },
+            "UseCompactNotation": {
+              "description": "숫자를 반환하는 카운터가 더 간략한 방식으로 표시됩니다.",
+              "example1": "12300이 {{number}}(으)로 표시됩니다",
+              "example2": "439212가 {{number}}(으)로 표시됩니다",
+              "example3": "1500000이 {{number}}(으)로 표시됩니다",
+              "label": "숫자에 간략한 표기법 사용"
+            }
+          },
+          "title": "서버 설정"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "필요에 맞게 카운터를 최대한 활용하세요.",
+            "label": "프로처럼",
+            "title": "고급 카운터"
+          },
+          "createFromScratch": {
+            "description": "몇 분 안에 첫 번째 맞춤 카운터를 만드는 방법을 알아보세요.",
+            "label": "나만의 스타일로!",
+            "title": "처음부터 만들기"
+          },
+          "queryHistoricalStatistics": {
+            "description": "카운터 및 기타 일반 통계가 시간에 따라 어떻게 변화했는지 확인하세요.",
+            "label": "곧 출시 예정",
+            "title": "과거 통계 조회"
+          },
+          "quickSetup": {
+            "description": "몇 번의 클릭만으로 가장 일반적인 카운터를 빠르게 만드세요. 상상력이나 고민이 필요 없습니다!",
+            "label": "간편하게!",
+            "title": "빠른 설정"
+          },
+          "subTitle": "다음과 같은 제안을 드립니다:",
+          "title": "다시 오신 것을 환영합니다!"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "예기치 않은 오류가 발생했습니다.",
+        "NotAuthenticated": "로그인하지 않았습니다.",
+        "NotAuthorized": "이 페이지에 접근할 권한이 없습니다.",
+        "NotFound": "요청하신 페이지를 찾을 수 없습니다."
+      },
+      "nav": {
+        "backBtn": "뒤로 가기",
+        "homeBtn": "홈으로 이동",
+        "supportBtn": "지원 받기",
+        "tryAgainBtn": "다시 시도"
+      }
+    },
+    "home": {
+      "addToDiscord": "Discord에 추가",
+      "dashboard": "대시보드",
+      "getSupport": "지원 받기",
+      "headings": [
+        "서버의 멤버 수를 실시간으로 표시하세요",
+        "YouTube 구독자 수를 자랑하세요",
+        "Minecraft 서버의 플레이어 수를 모니터링하세요",
+        "Twitch 채널 시청자 수를 보여주세요",
+        "Discord 서버에 원하는 모든 데이터를 표시하세요",
+        "FiveM 서버의 플레이어 수를 추적하세요",
+        "선호하는 시간대에 맞춘 시계를 표시하세요",
+        "이벤트나 특별한 날을 위한 카운트다운을 만드세요",
+        "320개 이상의 게임 서버에서 플레이어 통계를 모니터링하세요",
+        "모든 API 엔드포인트에서 데이터를 가져와 표시하세요",
+        "데이터에 수학 연산을 수행하고 표시하세요",
+        "숫자를 서식에 맞춰 아름답게 표시하세요",
+        "서버의 니트로 부스터를 강조하세요"
+      ],
+      "seeHowPeopleUseIt": "사람들이 어떻게 사용하는지 보기",
+      "seeMore": "더 보기",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "경험을 향상시킬 수 있는 더 많은 기능과 카운터를 발견하세요. 업데이트를 기대해 주세요!",
+          "title": "그리고 더 많은 기능!"
+        },
+        "clock": {
+          "description": "맞춤형 시계로 모든 시간대의 시간을 확인하세요. 여러 지역 간 조율에 적합합니다.",
+          "title": "시계"
+        },
+        "countdown": {
+          "description": "특정 이벤트나 마감일에 맞춘 카운트다운 타이머를 생성하고 관리하세요.",
+          "title": "카운트다운"
+        },
+        "date": {
+          "description": "맞춤형 서식으로 모든 시간대의 현재 날짜를 표시합니다. 여러 지역의 날짜를 보여주기에 적합합니다.",
+          "title": "날짜"
+        },
+        "discordMembers": {
+          "description": "온라인 상태, 역할 등의 기준으로 멤버를 계산하고 필터링하여 커뮤니티에 대한 정확한 인사이트를 얻으세요.",
+          "title": "Discord 멤버"
+        },
+        "game": {
+          "description": "320개 이상의 지원 게임에 대해 실시간 플레이어 수로 게임 서버 활동을 모니터링하세요.",
+          "title": "게임"
+        },
+        "http": {
+          "description": "GET 요청을 실행하고 모든 엔드포인트에서 직접 데이터를 수신하여 통합 요구 사항을 간소화하세요.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "여러 숫자에 대해 덧셈, 뺄셈, 곱셈 등 다양한 수학 연산을 수행하세요.",
+          "title": "수학"
+        },
+        "nitroBoosters": {
+          "description": "서버의 니트로 부스터 수를 추적하여 커뮤니티 지원 및 참여도를 확인하세요.",
+          "title": "니트로 부스터"
+        },
+        "reddit": {
+          "description": "제목, 멤버 수, 온라인 멤버를 포함한 서브레딧 통계를 확인하세요.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "강력한 치환 도구로 텍스트를 동적으로 수정하세요. HTTP 카운터와 함께 사용하기에 이상적입니다.",
+          "title": "치환"
+        },
+        "twitch": {
+          "description": "팔로워 수, 조회수 등 Twitch 채널 지표를 모니터링하여 좋아하는 스트리머의 최신 정보를 받아보세요.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "구독자 수, 동영상 수, 전체 조회수를 포함한 YouTube 채널의 주요 지표를 가져오세요.",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "지원하는 카운터"
+    },
+    "status": {
+      "affectedServers": "영향받는 Discord 서버:",
+      "assignedDiscordServers": "이 자식 프로세스에 할당됨:",
+      "child": "자식 #{{index}}",
+      "childDiscordServers": "{{count}}개의 Discord 서버 {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}}개 사용 불가)",
+      "childDiscordUsers": "{{count}}명의 사용자",
+      "discordClientStatus": {
+        "Connecting": "연결 중",
+        "Disconnected": "연결 끊김",
+        "Identifying": "식별 중",
+        "Idle": "유휴",
+        "Nearly": "유휴",
+        "Ready": "준비됨",
+        "Reconnecting": "재연결 중",
+        "Resuming": "재개 중",
+        "WaitingForGuilds": "서버 대기 중"
+      },
+      "memoryUsage": "{{usage}} (최대 {{peak}})",
+      "memoryUsageTooltip": "메모리 사용량",
+      "partialOutage": "부분적인 서비스 중단이 있습니다",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} 코어\n부하 {{load}}",
+        "cpuLabel": "CPU",
+        "hostname": "이름",
+        "memoryInfo": "{{memory}}\n{{usage}}% 사용 중",
+        "memoryLabel": "메모리",
+        "title": "서버 정보"
+      },
+      "statusUnavailable": "상태를 사용할 수 없습니다"
+    }
+  }
+}

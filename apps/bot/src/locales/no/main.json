@@ -1,1 +1,213 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Noe gikk galt, vennligst prøv igjen senere.\n\nFeil-ID: {{ERROR_ID}}",
+        "title": "FEIL!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Gå til kontrollpanelet",
+        "definition": {
+          "slash": {
+            "description": "Få lenken for å konfigurere boten på nettstedet.",
+            "name": "konfigurer"
+          }
+        },
+        "reply": "Klikk nedenfor for å konfigurere boten i kontrollpanelet.\nDu kan også sette opp noen grunnleggende tellere ved å bruke kommandoen {{SETUP_COMMAND}} uten å forlate Discord."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Liste over nyttige lenker og annen informasjon.",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[Legg meg til på serveren din]({{BOT_INVITE_URL}})\n[Nettsted]({{OFFICIAL_WEBSITE_URL}})\n[Støtteserver]({{BOT_SUPPORT_URL}})\n[GitHub-repositorium]({{BOT_REPO_URL}})\n[Bot-versjon: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Legg til på server",
+        "addToServerAgain": "Legg til på denne serveren igjen",
+        "definition": {
+          "slash": {
+            "description": "Gir en invitasjonslenke for å legge til boten.",
+            "name": "inviter"
+          }
+        },
+        "description": "Invitasjonslenken din er klar:\n{{INVITE_URL}}",
+        "joinSupportServer": "Bli med på støtteserveren"
+      },
+      "profile": {
+        "badges": "Merker",
+        "definition": {
+          "context": {
+            "name": "Profil"
+          },
+          "slash": {
+            "description": "Viser relatert informasjon mellom deg og denne boten.",
+            "name": "profil",
+            "options": {
+              "user": {
+                "description": "Brukeren du vil se profilen til.",
+                "name": "bruker"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Slett data",
+        "deleteProfilePrompt": {
+          "cancelButton": "Avbryt",
+          "confirmButton": "Ja",
+          "description": "Denne handlingen kan ikke angres.",
+          "removeDataSuccess": "Dataene har blitt fjernet.",
+          "title": "Er du sikker på at du vil slette dataene?"
+        },
+        "moreOptionsButton": "Flere alternativer",
+        "userNotFound": "Bruker ikke funnet"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Sett opp noen grunnleggende tellere.",
+            "name": "oppsett",
+            "subcommands": {
+              "server": {
+                "description": "Sett opp serverrelaterte tellere.",
+                "name": "server"
+              },
+              "twitch": {
+                "description": "Sett opp Twitch-relaterte tellere.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "Kanalens brukernavn.",
+                    "name": "brukernavn"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "Sett opp YouTube-relaterte tellere.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "Kanalens URL.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Opprettelse fullført.",
+          "configureSuggestion": "Du bør sjekke ut {{CONFIGURE_COMMAND}} for et mer tilpasset oppsett.",
+          "createdCategory": "{{ICON}} Kategori opprettet.",
+          "createdChannel": "{{ICON}} {{NAME}} opprettet.",
+          "creating": "Oppretter tellere...",
+          "creatingCategory": "{{ICON}} Oppretter kategori.",
+          "creatingChannel": "{{ICON}} Oppretter {{NAME}}-teller.",
+          "failedCategory": "{{ICON}} Kategori feilet.",
+          "failedChannel": "{{ICON}} {{NAME}} feilet."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Serverstatistikk \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Påloggede medlemmer",
+                "template": "Pålogget: {{COUNTER}}"
+              },
+              {
+                "name": "Medlemmer",
+                "template": "Medlemmer: {{COUNTER}}"
+              },
+              {
+                "name": "Nitro-boostere",
+                "template": "Boostere: {{COUNTER}}"
+              },
+              {
+                "name": "Roller",
+                "template": "Roller: {{COUNTER}}"
+              },
+              {
+                "name": "Kanaler",
+                "template": "Kanaler: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch-statistikk \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Twitch-følgere",
+                "template": "{{COUNTER}} følgere"
+              },
+              {
+                "name": "Twitch-seere",
+                "template": "Seere: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube-statistikk \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "YouTube-abonnenter",
+                "template": "{{COUNTER}} abonnenter"
+              },
+              {
+                "name": "YouTube-videoer",
+                "template": "{{COUNTER}} videoer"
+              },
+              {
+                "name": "YouTube-visninger",
+                "template": "{{COUNTER}} visninger"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "FEIL!"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "Forespørselen var ugyldig.",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Boten har ikke nok privilegerte intents for å bruke denne telleren.",
+    "BOT_IS_NOT_PREMIUM": "Boten er ikke en premiumversjon og mangler visse funksjoner som trengs for denne telleren.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Telleren er i et ugjenkjennelig format.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "Telleren er ugyldig.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Resultatet for kanalnavnet er kortere enn 2 tegn.",
+    "EVALUATION_TIMEOUT": "Evalueringen tok for lang tid og ble tidsavbrutt.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "Kunne ikke generere en endelig streng fra evalueringen.",
+    "FORBIDDEN": "Forespørselen ble avvist.",
+    "GAME_MISSING_ADDRESS": "Spilltelleren krever en serveradresse.",
+    "GAME_MISSING_GAME_ID": "En spill-ID må oppgis for spilltelleren.",
+    "GAME_MISSING_PORT": "Spilltelleren krever en serverport.",
+    "HTTP_DATA_PATH_MANDATORY": "En datasti må angis for HTTP-forespørsler der innholdstypen er application/json.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Innholdstypen i HTTP-svaret er ugyldig (ikke text/plain eller application/json).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP-svarets statuskode er ugyldig (ikke 200).",
+    "HTTP_MISSING_URL": "HTTP-telleren krever en URL, som mangler.",
+    "INTERNAL_SERVER_ERROR": "En intern serverfeil oppstod.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "Medlemstellingene er ikke tilgjengelige for øyeblikket.",
+    "MEMERATOR_MISSING_USERNAME": "Memerator-telleren krever et brukernavn, som mangler.",
+    "NOT_FOUND": "Den forespurte ressursen ble ikke funnet.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Boten har ikke tilstrekkelige tillatelser til å redigere kanalen.",
+    "REDDIT_MISSING_SUBREDDIT": "En subreddit må oppgis for Reddit-telleren.",
+    "TWITCH_CHANNEL_NOT_FOUND": "Den angitte Twitch-kanalen ble ikke funnet.",
+    "TWITCH_MISSING_USERNAME": "Twitch-telleren krever at et brukernavn er satt.",
+    "UNAUTHORIZED": "Forespørselen var uautorisert.",
+    "UNKNOWN": "En ukjent feil oppstod.",
+    "UNKNOWN_DATA_SOURCE": "Den oppgitte telleren er ukjent eller ikke gjenkjent.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "Verditypen returnert fra evalueringen er ukjent.",
+    "USER_NOT_FOUND": "Bruker ikke funnet.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "Den oppgitte YouTube-kanal-URLen er ugyldig.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "YouTube-telleren krever at en kanal-URL er satt."
+  }
+}

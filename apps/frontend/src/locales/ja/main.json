@@ -1,1 +1,1052 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "アナウンスチャンネル",
+      "category": "カテゴリ",
+      "forumChannel": "フォーラムチャンネル",
+      "mediaChannel": "メディアチャンネル",
+      "stageChannel": "ステージチャンネル",
+      "textChannel": "テキストチャンネル",
+      "voiceChannel": "ボイスチャンネル"
+    },
+    "knownError": "エラー",
+    "knownErrors": {
+      "BAD_REQUEST": "リクエストが無効です。",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "このカウンターを使用するために必要な特権インテントがボットにありません。",
+      "BOT_IS_NOT_PREMIUM": "ボットはプレミアム版ではないため、このカウンターに必要な一部の機能が利用できません。",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "カウンターの形式が認識できません。",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "カウンターが無効です。",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "チャンネル名の結果が2文字未満です。",
+      "EVALUATION_TIMEOUT": "評価に時間がかかりすぎてタイムアウトしました。",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "評価から最終的な文字列を生成できませんでした。",
+      "FORBIDDEN": "リクエストが拒否されました。",
+      "GAME_MISSING_ADDRESS": "ゲームカウンターにはサーバーアドレスが必要です。",
+      "GAME_MISSING_GAME_ID": "ゲームカウンターにはゲームIDを指定する必要があります。",
+      "GAME_MISSING_PORT": "ゲームカウンターにはサーバーポートが必要です。",
+      "HTTP_DATA_PATH_MANDATORY": "コンテンツタイプが application/json のHTTPリクエストにはデータパスを指定する必要があります。",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTPレスポンスのコンテンツタイプが無効です（text/plain または application/json ではありません）。",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTPレスポンスのステータスコードが無効です（200 ではありません）。",
+      "HTTP_MISSING_URL": "HTTPカウンターにはURLが必要ですが、指定されていません。",
+      "INTERNAL_SERVER_ERROR": "内部サーバーエラーが発生しました。",
+      "MEMBER_COUNT_NOT_AVAILABLE": "現在、メンバー数を取得できません。",
+      "MEMERATOR_MISSING_USERNAME": "Memeratorカウンターにはユーザー名が必要ですが、指定されていません。",
+      "NOT_FOUND": "リクエストされたリソースが見つかりません。",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "ボットにチャンネルを編集するための十分な権限がありません。",
+      "REDDIT_MISSING_SUBREDDIT": "Redditカウンターにはサブレディットを指定する必要があります。",
+      "TWITCH_CHANNEL_NOT_FOUND": "指定されたTwitchチャンネルが見つかりません。",
+      "TWITCH_MISSING_USERNAME": "Twitchカウンターにはユーザー名を設定する必要があります。",
+      "UNAUTHORIZED": "リクエストが認証されていません。",
+      "UNKNOWN": "不明なエラーが発生しました。",
+      "UNKNOWN_DATA_SOURCE": "指定されたカウンターは不明または認識できません。",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "評価から返された値の型が不明です。",
+      "USER_NOT_FOUND": "ユーザーが見つかりません。",
+      "YOUTUBE_INVALID_CHANNEL_URL": "指定されたYouTubeチャンネルURLが無効です。",
+      "YOUTUBE_MISSING_CHANNEL_URL": "YouTubeカウンターにはチャンネルURLを設定する必要があります。"
+    },
+    "unknown": "不明",
+    "unknownChannel": "不明なチャンネル",
+    "unknownChannelType": "不明なチャンネルタイプ",
+    "unknownDate": "不明な日付",
+    "unknownError": "不明なエラー",
+    "unknownPublicBot": "不明な公開ボット",
+    "unknownRole": "不明なロール",
+    "unknownServer": "不明なサーバー",
+    "unknownUser": "不明なユーザー {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "チャンネルを削除",
+          "selected": "選択済み"
+        },
+        "DataSourceItem": {
+          "edit": "カウンターを編集",
+          "notSelected": "未選択",
+          "remove": "カウンターを削除",
+          "selected": "選択済み"
+        },
+        "GamedigItem": {
+          "remove": "ゲームを削除",
+          "selected": "選択済み"
+        },
+        "LocaleItem": {
+          "remove": "ロケールを削除",
+          "selected": "選択済み"
+        },
+        "RoleItem": {
+          "everyone": "全員",
+          "remove": "ロールを削除",
+          "selected": "選択済み"
+        },
+        "TextItem": {
+          "remove": "{{item}}を削除",
+          "selected": "選択済み"
+        },
+        "TimezoneItem": {
+          "remove": "タイムゾーンを削除",
+          "selected": "選択済み"
+        }
+      },
+      "noResults": "結果が見つかりません。",
+      "placeholder": "追加...",
+      "searchPlaceholder": "検索..."
+    },
+    "NavBar": {
+      "accountEntry": "アカウント",
+      "dashboardEntry": "ダッシュボード",
+      "supportEntry": "サポート"
+    },
+    "footer": {
+      "acceptableUsePolicy": "利用規約",
+      "admin": "管理",
+      "codeRepository": "コードリポジトリ",
+      "cookiePolicy": "Cookieポリシー",
+      "copyright": "© {{year}} Member Counter. All rights reserved. Created by <eduardozgzLink />.",
+      "documentation": "ドキュメント",
+      "donate": "寄付する",
+      "improveMemberCounter": "Member Counterを改善する",
+      "legal": "法的情報",
+      "loginWithDiscord": "Discordでログイン",
+      "logout": "ログアウト",
+      "madePossibleThanksTo": "Alex、<vampireChickenLink />、<livingfloreLink />、Frosty、そして<donorsLink>他多くの方々</donorsLink>のおかげで実現しました。",
+      "manageDonations": "寄付を管理",
+      "manageHomePage": "ホームページを管理",
+      "manageServers": "サーバーを管理",
+      "manageUsers": "ユーザーを管理",
+      "privacyPolicy": "プライバシーポリシー",
+      "status": "ステータス",
+      "supportServer": "サポートサーバー",
+      "termsOfService": "利用規約",
+      "translateBot": "ボットを翻訳する",
+      "usefulLinks": "便利なリンク"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "ボットが現在参加しているユーザー数とサーバー数の合計を返します。（通常は必要ありません）",
+      "name": "ボット統計"
+    },
+    "channels": {
+      "description": "指定したカテゴリ内または全体のチャンネル数を数えます。",
+      "display": {
+        "channelsUnderACategory": "カテゴリ内のチャンネル"
+      },
+      "keywords": "チャンネル,カテゴリ,channels,categories",
+      "name": "チャンネル"
+    },
+    "clock": {
+      "description": "お好みのタイムゾーンに合わせた時計を表示します。",
+      "display": {
+        "syntax": "時計 ({{timezone}})"
+      },
+      "keywords": "時計,タイムゾーン,clock,timezone",
+      "name": "時計"
+    },
+    "concat": {
+      "description": "複数の文字列を1つに結合します。",
+      "display": {
+        "syntax": "結合 {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "他{{amount}}件"
+      },
+      "keywords": "結合,連結,文字列,concat,concatenate,strings,combine,join,merge",
+      "name": "結合"
+    },
+    "countdown": {
+      "description": "ニーズに合わせたフォーマットでカウントダウンタイマーを作成します。",
+      "display": {
+        "syntax": "{{datetime}}までのカウントダウン"
+      },
+      "keywords": "カウントダウン,タイマー,countdown,timer",
+      "name": "カウントダウン"
+    },
+    "date": {
+      "description": "お好みのタイムゾーンに合わせた現在の日付を表示します。",
+      "display": {
+        "syntax": "日付 ({{timezone}})"
+      },
+      "keywords": "日付,カレンダー,タイムゾーン,date,calendar,timezone",
+      "name": "日付"
+    },
+    "game": {
+      "description": "320以上のゲームに対応し、ゲームサーバーの現在のオンラインプレイヤー数を取得します。",
+      "display": {
+        "playerCountFor": "{{gameServerAddress}}のプレイヤー数"
+      },
+      "keywords": "ゲーム,プレイヤー,オンライン,サーバー,game,players,online,server",
+      "name": "ゲーム"
+    },
+    "http": {
+      "description": "エンドポイントにGETリクエストを送信し、結果をこのボットに提供します。",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,リクエスト,エンドポイント,API,フェッチ,request,endpoint,fetch",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "数値のリストに対して加算、減算、乗算、除算、剰余などの数学演算を行います。",
+      "display": {
+        "operationType": {
+          "add": "加算",
+          "divide": "除算",
+          "modulo": "剰余",
+          "multiply": "乗算",
+          "subtract": "減算"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "他{{amount}}件"
+      },
+      "keywords": "数学,計算,演算,数値,算術,加算,減算,乗算,除算,剰余,math,calculator",
+      "name": "数学"
+    },
+    "members": {
+      "description": "メンバーを数えます。オンラインステータス、特定のロールなどでフィルタリングもできます。",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "取り込み中",
+          "idle": "退席中",
+          "offline": "オフライン",
+          "online": "オンライン",
+          "onlineIdleDnd": "オンライン + 退席中 + 取り込み中"
+        },
+        "accountType": {
+          "any": "メンバー",
+          "bot": "ボット",
+          "user": "ユーザー"
+        },
+        "bannedMembers": "BANされたメンバー",
+        "connectedToAChannel": "チャンネルに接続中",
+        "playingAGame": "ゲームをプレイ中",
+        "roleFiltering": {
+          "any": "ロール付き",
+          "overlapping": "ロールが重複"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "メンバー,フィルター,ロール,オンライン,ステータス,BAN,ゲーム,オフライン,退席中,取り込み中,ユーザー,ボット,接続,members,filter,roles,online",
+      "name": "メンバー"
+    },
+    "memerator": {
+      "description": "Memeratorアカウントのフォロワー数とミーム数を取得します。",
+      "display": {
+        "returnKind": {
+          "followers": "フォロワー",
+          "memes": "ミーム"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,フォロワー,表示,チャンネル,follower,view,channel",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "サーバーのNitroブースター数を取得します。",
+      "keywords": "Nitro,ブースター,サーバー,boosters,server",
+      "name": "Nitroブースター"
+    },
+    "number": {
+      "description": "指定した数値に数値フォーマットを適用します。",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}}（数値として）",
+        "raw": "数値 ({{number}})"
+      },
+      "keywords": "数値,フォーマット,number,formatting",
+      "name": "数値"
+    },
+    "reddit": {
+      "description": "サブレディットのタイトル、メンバー総数、現在オンラインのメンバー数を取得します。",
+      "display": {
+        "returnKind": {
+          "members": "メンバー",
+          "membersOnline": "オンラインメンバー",
+          "title": "タイトル"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "Reddit,サブレディット,メンバー,オンライン,subreddit,members,online",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "テキスト置換機能。他のネストされたカウンターと組み合わせて包括的なテキスト変更に便利です。",
+      "display": {
+        "replaceSyntax": "「{{search}}」を「{{replacement}}」に",
+        "syntax": "置換 {{replaceSyntax}}"
+      },
+      "keywords": "テキスト,置換,変更,文字列,text,replacement,modification,string,substring",
+      "name": "置換"
+    },
+    "roles": {
+      "description": "サーバー内のすべてのロールを数えます。",
+      "keywords": "ロール,roles",
+      "name": "ロール"
+    },
+    "twitch": {
+      "description": "Twitchチャンネルのフォロワー数と合計視聴回数を取得します。",
+      "display": {
+        "returnKind": {
+          "channelName": "チャンネル名",
+          "followers": "フォロワー",
+          "viewers": "視聴者"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,フォロワー,視聴,チャンネル,follower,view,channel",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "不明なカウンターです。これはエラーの可能性があります。",
+      "name": "不明"
+    },
+    "youtube": {
+      "description": "YouTubeチャンネルのチャンネル登録者数、動画数、合計再生回数を取得します。",
+      "display": {
+        "returnKind": {
+          "channelName": "チャンネル名",
+          "subscribers": "チャンネル登録者",
+          "videos": "動画",
+          "views": "再生回数"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,チャンネル登録者,動画,再生回数,チャンネル,subscriber,video,views,channel",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "保存されていない変更があります。このページを離れてもよろしいですか？",
+    "useFormManager": {
+      "state": {
+        "save": "保存",
+        "saved": "保存済み",
+        "saving": "保存中..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - メンバー数などをカウントするDiscordボット"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "閉じる",
+        "confirmDescription": "この操作は取り消せません。アカウントが完全に削除され、サーバーからデータが削除されます。",
+        "confirmTitle": "本当によろしいですか？",
+        "deleteAccountBtn": "アカウントを削除"
+      },
+      "page": {
+        "avatarAlt": "{{username}}のアバター",
+        "logoutButton": "ログアウト"
+      },
+      "userBadges": {
+        "betaTester": "ベータプログラムに参加しました。",
+        "bigBrain": "実装されたアイデアを提案しました。",
+        "bugCatcher": "バグを発見して報告しました。",
+        "contributor": "機能の実装またはバグの修正を行いました。",
+        "donor": "Member Counterの開発と維持のために寄付しました。",
+        "foldingAtHome": "folding@homeでWUを提供しました。",
+        "patPat": "秘密を見つけました。",
+        "premium": "プレミアムユーザーです。",
+        "translator": "ボットの翻訳に協力しました。"
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "寄付を削除",
+          "closeButton": "閉じる",
+          "dialogDescription": "この操作は取り消せません。",
+          "dialogTitle": "本当によろしいですか？"
+        },
+        "edit": {
+          "title": "寄付を編集"
+        },
+        "form": {
+          "amount": "金額",
+          "anonymous": "匿名",
+          "currency": "通貨",
+          "currencyDecimals": "通貨の小数点以下桁数",
+          "date": "日付",
+          "note": "メモ",
+          "saveBtn": "保存",
+          "userId": "DiscordユーザーID"
+        },
+        "new": {
+          "title": "新規寄付"
+        },
+        "registerDonation": "寄付を登録",
+        "totalDonations": "寄付総数: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "サーバーを読み込む",
+          "placeholder": "サーバーIDを貼り付け"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "作成",
+          "createInputPlaceholder": "新しいデモサーバー名",
+          "delete": {
+            "button": "デモサーバーを削除",
+            "closeButton": "閉じる",
+            "dialogDescription": "この操作は取り消せません。",
+            "dialogTitle": "本当によろしいですか？"
+          },
+          "list": {
+            "display": {
+              "priority": "優先度: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "チャンネルを追加",
+              "channel": {
+                "isRulesChannel": "ルールチャンネルとして表示",
+                "name": "名前",
+                "remove": "削除",
+                "showAsSkeleton": "スケルトンとして表示",
+                "topic": "トピック",
+                "type": "タイプ",
+                "types": {
+                  "announcementChannel": "アナウンスチャンネル",
+                  "categoryChannel": "カテゴリチャンネル",
+                  "textChannel": "テキストチャンネル",
+                  "voiceChannel": "ロック付きボイスチャンネル"
+                }
+              },
+              "title": "チャンネル"
+            },
+            "description": "説明",
+            "features": {
+              "options": {
+                "Community": "コミュニティ",
+                "Discoverable": "ディスカバリー",
+                "Partnered": "パートナー",
+                "Verified": "認証済み"
+              },
+              "title": "機能"
+            },
+            "icon": "アイコンURL",
+            "language": "言語",
+            "links": {
+              "add": "リンクを追加",
+              "link": {
+                "label": "ラベル",
+                "remove": "削除",
+                "url": "URL"
+              },
+              "title": "リンク"
+            },
+            "name": "サーバー名",
+            "premiumTier": {
+              "options": {
+                "None": "なし",
+                "Tier1": "レベル1",
+                "Tier2": "レベル2",
+                "Tier3": "レベル3"
+              },
+              "title": "プレミアムティア"
+            },
+            "priority": "優先度",
+            "save": "保存",
+            "saved": "保存済み",
+            "title": "デモサーバーを編集"
+          },
+          "title": "デモサーバー"
+        },
+        "headings": [
+          "サーバーのメンバー数をダイナミックに表示",
+          "YouTubeのチャンネル登録者数を表示",
+          "Minecraftサーバーのプレイヤー数を監視",
+          "Twitchチャンネルの視聴者数を表示",
+          "Discordサーバーに好きなデータを表示",
+          "FiveMサーバーのプレイヤー数を追跡",
+          "お好みのタイムゾーンに合わせた時計を表示",
+          "イベントや特別な機会のカウントダウンを作成",
+          "320以上のゲームサーバーのプレイヤー統計を監視",
+          "あらゆるAPIエンドポイントからデータを取得して表示",
+          "データの数学演算を実行して表示",
+          "数値をフォーマットして美しく表示",
+          "サーバーのNitroブースターをハイライト"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "さらに多くの機能やカウンターを発見して、体験を向上させましょう。アップデートをお楽しみに！",
+            "title": "さらに多くの機能！"
+          },
+          "clock": {
+            "description": "カスタマイズ可能な時計であらゆるタイムゾーンの時間を確認できます。異なる地域間の調整に最適です。",
+            "title": "時計"
+          },
+          "countdown": {
+            "description": "特定のイベントや期限に合わせたカウントダウンタイマーを作成・管理できます。",
+            "title": "カウントダウン"
+          },
+          "date": {
+            "description": "カスタマイズ可能なフォーマットで、あらゆるタイムゾーンの現在の日付を表示します。異なる地域の日付表示に最適です。",
+            "title": "日付"
+          },
+          "discordMembers": {
+            "description": "オンラインステータス、ロールなどの条件でメンバーをカウント・フィルタリングし、コミュニティの正確な情報を取得できます。",
+            "title": "Discordメンバー"
+          },
+          "game": {
+            "description": "320以上のゲームに対応したリアルタイムプレイヤー数で、ゲームサーバーのアクティビティを監視できます。",
+            "title": "ゲーム"
+          },
+          "http": {
+            "description": "GETリクエストを実行し、あらゆるエンドポイントから直接データを取得して、統合ニーズを効率化します。",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "複数の数値に対して加算、減算、乗算など、さまざまな数学演算を実行できます。",
+            "title": "数学"
+          },
+          "nitroBoosters": {
+            "description": "サーバーのNitroブースター数を追跡して、コミュニティのサポートとエンゲージメントを把握できます。",
+            "title": "Nitroブースター"
+          },
+          "reddit": {
+            "description": "タイトル、メンバー数、オンラインメンバー数など、あらゆるサブレディットの統計を取得できます。",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "強力な置換ツールでテキストをダイナミックに変更できます。HTTPカウンターと組み合わせると特に便利です。",
+            "title": "置換"
+          },
+          "twitch": {
+            "description": "フォロワー数や視聴統計などのTwitchチャンネル指標を監視して、お気に入りの配信者の最新情報を把握できます。",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "チャンネル登録者数、動画数、合計再生回数など、YouTubeチャンネルの主要な指標を取得できます。",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "アカウントを削除",
+          "closeButton": "閉じる",
+          "dialogDescription": "この操作は取り消せません。",
+          "dialogTitle": "本当によろしいですか？"
+        },
+        "loadUser": "ユーザーを読み込む",
+        "manage": {
+          "badges": {
+            "betaTester": "ベータテスター",
+            "bigBrain": "ビッグブレイン",
+            "bugCatcher": "バグキャッチャー",
+            "contributor": "コントリビューター",
+            "donor": "寄付者",
+            "foldingAtHome": "folding@home",
+            "patPat": "パットパット",
+            "premium": "プレミアム",
+            "title": "バッジ",
+            "translator": "翻訳者"
+          },
+          "pasteUserId": "ユーザーIDを貼り付け",
+          "permissions": {
+            "manageDonations": "寄付を管理",
+            "manageGuilds": "サーバーを管理",
+            "manageHomePage": "ランディングページを管理",
+            "manageUsers": "ユーザーを管理",
+            "seeGuilds": "サーバーを閲覧",
+            "seeUsers": "ユーザーを閲覧",
+            "title": "権限"
+          },
+          "save": "保存",
+          "saved": "保存済み",
+          "transferAccount": "アカウントを移行"
+        },
+        "recentUsers": "最近のユーザー",
+        "userNotRegistered": "このユーザーは登録されていません。"
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "どのサーバーにも参加していません。",
+        "subheading": "<CreateServerLink>新しいサーバーを作成</CreateServerLink>するか、<JoinSupportServerLink>サポートサーバーに参加</JoinSupportServerLink>してみませんか？"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "このチャンネルではカウンターが有効です",
+            "issue": "このチャンネルには対応が必要な問題があります"
+          },
+          "unsupportedChannelType": "このチャンネルタイプはまだサポートされていません。"
+        },
+        "ServerNavMenu": {
+          "channelList": "チャンネル一覧",
+          "loading": "サーバーデータを読み込み中...",
+          "serverSettings": "サーバー設定",
+          "unknownChannels": "Discordチャンネルが読み込めない場合は、保存済みチャンネルにアクセスしてください"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "カウンターが見つかりません。",
+            "searchPlaceholder": "カウンターを検索..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "サーバー設定に従う",
+                "no": "いいえ",
+                "overrideDefaultDigits": "デフォルトの数字を上書き",
+                "overrideDefaultLocale": "デフォルトのロケールを上書き",
+                "searchLocale": "ロケールを検索...",
+                "select": "選択",
+                "useCompactNotation": "コンパクト表記を使用",
+                "yes": "はい"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "表示項目",
+                  "selectPlaceholder": "表示する項目を選択",
+                  "servers": "サーバー",
+                  "users": "ユーザー"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "カテゴリを追加...",
+                  "configWarning": "有効なカテゴリIDを返すようにしてください",
+                  "filterByCategory": "カテゴリでフィルタリング"
+                },
+                "ClockOptions": {
+                  "configWarning": "有効なタイムゾーン識別子を返すようにしてください",
+                  "counterPreview": "フォーマットがカウンターの結果の場合、ライブプレビューを表示できません。テンプレート全体をプレビューして確認してください。",
+                  "defaultFormat": "%f",
+                  "format": "フォーマット",
+                  "formatConfigWarning": "有効なフォーマット文字列を返すようにしてください",
+                  "formatInstructions": "利用可能なプレースホルダー:\n• <code>%H</code> - 先頭ゼロ付き時間、24時間制 (00-23)\n• <code>%h</code> - 先頭ゼロなし時間、24時間制 (0-23)\n• <code>%I</code> - 先頭ゼロ付き時間、12時間制 (01-12)\n• <code>%i</code> - 先頭ゼロなし時間、12時間制 (1-12)\n• <code>%M</code> - 先頭ゼロ付き分 (00-59)\n• <code>%m</code> - 先頭ゼロなし分 (0-59)\n• <code>%S</code> - 先頭ゼロ付き秒 (00-59)\n• <code>%s</code> - 先頭ゼロなし秒 (0-59)\n• <code>%p</code> - am/pm（小文字）\n• <code>%P</code> - AM/PM（大文字）\n• <code>%f</code> - デフォルトのロケールベースフォーマット",
+                  "livePreview": "ライブプレビュー",
+                  "noPreview": "フォーマットが空の場合、ライブプレビューを表示できません。",
+                  "searchTimezonePlaceholder": "タイムゾーンを検索...",
+                  "timezone": "タイムゾーン"
+                },
+                "ConcatOptions": {
+                  "addString": "テキストを追加...",
+                  "stringList": "テキストリスト"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "目標日時またはフォーマットがカウンターの結果の場合、ライブプレビューを表示できません。テンプレート全体をプレビューして確認してください。",
+                  "dateConfigWarning": "有効なUNIXタイムスタンプを返すようにしてください",
+                  "datePlaceholder": "またはカウンターから日付を取得...",
+                  "defaultFormat": "残り%d日、%h時間%m分",
+                  "format": "フォーマット",
+                  "formatConfigWarning": "有効なフォーマット文字列を返すようにしてください",
+                  "formatInstructions": "利用可能なプレースホルダー:\n• <code>%d</code> - 残り日数\n• <code>%h</code> - 残り時間 (0-23)\n• <code>%m</code> - 残り分 (0-59)\n• <code>%s</code> - 残り秒 (0-59)\n• <code>%D</code> - 合計残り日数\n• <code>%H</code> - 合計残り時間\n• <code>%M</code> - 合計残り分\n• <code>%S</code> - 合計残り秒",
+                  "livePreview": "ライブプレビュー",
+                  "noPreview": "目標日時またはフォーマットが空の場合、ライブプレビューを表示できません。",
+                  "targetDate": "目標日時"
+                },
+                "DateOptions": {
+                  "configWarning": "有効なタイムゾーン識別子を返すようにしてください",
+                  "counterPreview": "フォーマットがカウンターの結果の場合、ライブプレビューを表示できません。テンプレート全体をプレビューして確認してください。",
+                  "defaultFormat": "%f",
+                  "format": "フォーマット",
+                  "formatConfigWarning": "有効なフォーマット文字列を返すようにしてください",
+                  "formatInstructions": "利用可能なプレースホルダー:\n• <code>%Y</code> - 4桁の年 (2025)\n• <code>%y</code> - 2桁の年 (25)\n• <code>%Ms</code> - 月名（正式名） (November)\n• <code>%ms</code> - 月名（略称） (Nov)\n• <code>%M</code> - 先頭ゼロ付き月 (01-12)\n• <code>%m</code> - 月 (1-12)\n• <code>%Ws</code> - 曜日名（正式名） (Monday)\n• <code>%ws</code> - 曜日名（略称） (Mon)\n• <code>%w</code> - 曜日番号 (0=日曜日, 6=土曜日)\n• <code>%D</code> - 先頭ゼロ付き日 (05)\n• <code>%d</code> - 日 (5)\n• <code>%f</code> - デフォルトのロケールベースフォーマット",
+                  "livePreview": "ライブプレビュー",
+                  "noPreview": "フォーマットが空の場合、ライブプレビューを表示できません。",
+                  "searchTimezonePlaceholder": "タイムゾーンを検索...",
+                  "timezone": "タイムゾーン"
+                },
+                "GameOptions": {
+                  "address": "アドレス",
+                  "addressWarning": "有効なアドレスを返すようにしてください",
+                  "game": "ゲーム",
+                  "gameWarning": "有効なnode-gamedigゲームタイプを返すようにしてください",
+                  "port": "ポート（またはクエリポート）",
+                  "portWarning": "有効なポート番号を返すようにしてください",
+                  "searchPlaceholder": "検索..."
+                },
+                "HttpOptions": {
+                  "dataPath": "データパス",
+                  "dataPathDescription": "レスポンスのコンテンツタイプがJSONの場合に目的の値を取得するためのパスです。構文はJSでプロパティや配列要素にアクセスする方法と似ています。",
+                  "dataPathWarning": "データパスを返すようにしてください",
+                  "emptyUrl": "URLが空のため取得できません",
+                  "fetch": "取得",
+                  "fetching": "取得中...",
+                  "lifetime": "有効期間（秒）",
+                  "lifetimeDescription": "指定したURLのレスポンスがキャッシュされる期間を指定します。",
+                  "lifetimeWarning": "有効な数値を返すようにしてください",
+                  "noPreview": "URLまたはデータパスがカウンターの結果の場合、プレビューを表示できません。テンプレート全体をプレビューして確認してください。",
+                  "preview": "プレビュー",
+                  "testResponse": "テストレスポンス",
+                  "url": "URL (GET)",
+                  "urlWarning": "有効なURLを返すようにしてください"
+                },
+                "MathOptions": {
+                  "addNumber": "数値を追加...",
+                  "addition": "加算",
+                  "division": "除算",
+                  "modulo": "剰余（除算の余り）",
+                  "multiplication": "乗算",
+                  "numberList": "数値リスト",
+                  "numberWarning": "有効な数値を返すようにしてください",
+                  "operation": "演算タイプ",
+                  "selectOperation": "演算タイプを選択",
+                  "subtraction": "減算"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "BANされたメンバーのみをカウント"
+                  },
+                  "FilterByAccountType": {
+                    "any": "すべて",
+                    "bot": "ボット",
+                    "label": "アカウントタイプでフィルタリング",
+                    "placeholder": "アカウントタイプを選択",
+                    "user": "ユーザー"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "ボイスチャンネルを追加...",
+                    "dataSourceConfigWarning": "有効なボイスチャンネルIDを返すようにしてください",
+                    "label": "ボイスチャンネル接続でフィルタリング"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "ロールを追加...",
+                    "dataSourceConfigWarning": "有効なロールIDを返すようにしてください",
+                    "label": "ロールでフィルタリング"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "いずれかに一致",
+                    "label": "フィルターモード",
+                    "overlap": "重複",
+                    "placeholder": "フィルターモードを選択"
+                  },
+                  "FilterByStatus": {
+                    "any": "すべて",
+                    "dnd": "取り込み中",
+                    "idle": "退席中",
+                    "label": "ステータスでフィルタリング",
+                    "offline": "オフライン",
+                    "online": "オンライン",
+                    "onlineIdleDnd": "オンライン + 退席中 + 取り込み中",
+                    "placeholder": "ステータスを選択"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "ゲームプレイでフィルタリング",
+                    "placeholder": "ゲームを追加..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "表示項目",
+                  "followers": "フォロワー",
+                  "memes": "ミーム",
+                  "selectDisplay": "表示する項目を選択",
+                  "username": "ユーザー名",
+                  "usernameWarning": "有効なユーザー名を返すようにしてください"
+                },
+                "NumberOptions": {
+                  "number": "数値",
+                  "numberWarning": "有効な数値を返すようにしてください",
+                  "placeholder": "数値を入力またはカウンターを検索"
+                },
+                "RedditOptions": {
+                  "display": "表示項目",
+                  "members": "メンバー",
+                  "membersOnline": "オンラインメンバー",
+                  "selectPlaceholder": "表示する項目を選択",
+                  "subreddit": "サブレディット名",
+                  "subredditPlaceholder": "サブレディットを入力またはカウンターを検索",
+                  "subredditWarning": "有効なサブレディットを返すようにしてください",
+                  "title": "サブレディットタイトル"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "置換を追加",
+                  "inputText": "入力テキスト",
+                  "removeReplacement": "置換を削除",
+                  "replaceWith": "置換後のテキスト",
+                  "replacementPlaceholder": "置換テキストを入力",
+                  "searchFor": "検索対象",
+                  "searchPlaceholder": "検索語を入力",
+                  "textPlaceholder": "置換するテキストを入力"
+                },
+                "TwitchOptions": {
+                  "channelName": "チャンネル名",
+                  "display": "表示項目",
+                  "followers": "フォロワー",
+                  "selectPlaceholder": "表示する項目を選択",
+                  "username": "ユーザー名",
+                  "usernamePlaceholder": "ユーザー名を入力",
+                  "usernameWarning": "有効なユーザー名を返すようにしてください",
+                  "viewers": "視聴者"
+                },
+                "YouTubeOptions": {
+                  "channelName": "チャンネル名",
+                  "channelUrl": "チャンネルURL",
+                  "channelUrlPlaceholder": "チャンネルURLを入力",
+                  "channelUrlWarning": "有効なチャンネルURLを返すようにしてください",
+                  "display": "表示項目",
+                  "selectPlaceholder": "表示する項目を選択",
+                  "subscribers": "チャンネル登録者",
+                  "videos": "動画",
+                  "views": "再生回数"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "絵文字ピッカー",
+            "searchEmoji": "絵文字を検索"
+          },
+          "markButtons": {
+            "bold": "太字",
+            "italic": "斜体",
+            "spoiler": "スポイラー",
+            "strike": "取り消し線",
+            "underline": "下線"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "利用規約",
+          "noReasonGiven": "理由は提示されていません",
+          "supportTeam": "サポートチーム",
+          "termsOfService": "利用規約",
+          "text": "このサーバーは<LinkTerms>利用規約</LinkTerms>または<LinkPolicy>利用規約</LinkPolicy>に違反したためブロックされました。<br />理由: {{reason}}<br />誤りだと思われる場合は、<SupportLink>サポートチーム</SupportLink>にお問い合わせください。"
+        },
+        "channels": {
+          "save": "保存",
+          "saved": "保存済み",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "最終更新: {{lastTemplateUpdateDate}}",
+              "template": "テンプレート"
+            },
+            "EnableTemplate": {
+              "description": "有効にすると、Member Counterがこのチャンネルの{{templateTarget}}を自動的に更新し、処理されたテンプレートを表示します。",
+              "enableTemplate": "テンプレートを有効にする",
+              "nameTarget": "名前",
+              "topicTarget": "トピック"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "再確認",
+              "description": "このチャンネルでボットが以下の権限を持っていることを確認してください：",
+              "permissions": {
+                "connect": "接続",
+                "manageChannel": "チャンネルの管理",
+                "viewChannel": "チャンネルの閲覧"
+              },
+              "title": "ボットにこのチャンネルを編集する権限がありません。"
+            },
+            "TemplateError": {
+              "errorDescription": "最後のテンプレート処理中にエラーが発生しました。詳細は以下に表示されています。",
+              "errorTitle": "最後の処理時にテンプレートでエラーが発生しました"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "このサーバーを管理する権限がありません。\n{{guildName}}の管理者に管理者権限またはサーバー管理権限を付与してもらってください。",
+          "title": "アクセス拒否"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "閉じる",
+          "message": "このサーバーにMember Counterボットがいないようです。<LinkURL>追加</LinkURL>しますか？"
+        },
+        "inviteBotPage": {
+          "addToServer": "{{serverName}}に追加",
+          "copyLink": "招待リンクをコピー",
+          "linkCopied": "リンクがクリップボードにコピーされました。",
+          "noPermission": "ボットを追加するための十分な権限がありません。管理者またはサーバー管理権限を持つユーザーにボットの追加を依頼してください。",
+          "subtitle": "Member Counterを{{serverName}}に追加して、リアルタイムカウンターをお楽しみください。",
+          "title": "ボットをセットアップしましょう！",
+          "useOrShareLink": "このリンクを使用するか共有して、ボットを追加してください。"
+        },
+        "settings": {
+          "block": {
+            "blockButton": "サーバーをブロック",
+            "blockDialogDescription": "指定した理由がサーバー管理者に表示されます。",
+            "blockDialogTitle": "本当にこのサーバーをブロックしますか？",
+            "closeButton": "閉じる",
+            "reasonLabel": "理由",
+            "reasonPlaceholder": "理由を入力してください",
+            "unblockButton": "サーバーのブロックを解除",
+            "unblockDialogDescription": "このサーバーは次の理由でブロックされました: {{reason}}",
+            "unblockDialogTitle": "本当にこのサーバーのブロックを解除しますか？"
+          },
+          "reset": {
+            "closeButton": "閉じる",
+            "dialogDescription": "この操作は取り消せません。すべての設定がデフォルトにリセットされます。",
+            "dialogTitle": "本当によろしいですか？",
+            "resetButton": "設定をリセット"
+          },
+          "save": "保存",
+          "saved": "保存済み",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "カスタム数字",
+              "customDigitsDescription": "数値を返すカウンターで、Member Counterは各数字を指定したものに置き換えます。カスタム絵文字や「Unicodeスタイルフォント」など、別のものを表示したい場合に便利です。",
+              "customizationRecommendation": "スクリーンリーダーを使用するユーザーがカウンターにアクセスする可能性がある場合は、数字のカスタマイズをお勧めしません。",
+              "screenReaderWarning": "スクリーンリーダー（テキスト読み上げ）を使用するユーザーは、カスタマイズされた数字を理解できない場合があり、<demoLink>意味不明に聞こえる可能性があります</demoLink>。スクリーンリーダーは視覚障害のある方がよく使用しています。"
+            },
+            "Locale": {
+              "description": "変更すると、一部のカウンターの表示方法に影響します。",
+              "locale": "ロケール",
+              "numberExample": "439212は{{number}}と表示されます",
+              "searchPlaceholder": "ロケールを検索...",
+              "timeExample": "15:30（または午後3:30）は{{time}}と表示されます"
+            },
+            "UseCompactNotation": {
+              "description": "数値を返すカウンターがよりコンパクトに表示されます。",
+              "example1": "12300は{{number}}と表示されます",
+              "example2": "439212は{{number}}と表示されます",
+              "example3": "1500000は{{number}}と表示されます",
+              "label": "数値にコンパクト表記を使用"
+            }
+          },
+          "title": "サーバー設定"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "ニーズに合わせてカウンターを最大限に活用しましょう。",
+            "label": "プロ仕様",
+            "title": "高度なカウンター"
+          },
+          "createFromScratch": {
+            "description": "数分で最初のカスタムカウンターを作成する方法を学びましょう。",
+            "label": "オリジナルを作ろう！",
+            "title": "ゼロから作成"
+          },
+          "queryHistoricalStatistics": {
+            "description": "カウンターやその他の一般的な統計がどのように推移してきたかを確認できます。",
+            "label": "近日公開™",
+            "title": "過去の統計を照会"
+          },
+          "quickSetup": {
+            "description": "数クリックでよく使うカウンターをすぐに作成できます。想像力も頭脳も必要ありません！",
+            "label": "手間いらず！",
+            "title": "クイックセットアップ"
+          },
+          "subTitle": "いくつかの提案をご用意しました：",
+          "title": "おかえりなさい！"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "予期しないエラーが発生しました。",
+        "NotAuthenticated": "ログインしていません。",
+        "NotAuthorized": "このページにアクセスする権限がありません。",
+        "NotFound": "お探しのページが見つかりません。"
+      },
+      "nav": {
+        "backBtn": "戻る",
+        "homeBtn": "ホームへ",
+        "supportBtn": "サポートを受ける",
+        "tryAgainBtn": "もう一度試す"
+      }
+    },
+    "home": {
+      "addToDiscord": "Discordに追加",
+      "dashboard": "ダッシュボード",
+      "getSupport": "サポートを受ける",
+      "headings": [
+        "サーバーのメンバー数をダイナミックに表示",
+        "YouTubeのチャンネル登録者数を表示",
+        "Minecraftサーバーのプレイヤー数を監視",
+        "Twitchチャンネルの視聴者数を表示",
+        "Discordサーバーに好きなデータを表示",
+        "FiveMサーバーのプレイヤー数を追跡",
+        "お好みのタイムゾーンに合わせた時計を表示",
+        "イベントや特別な機会のカウントダウンを作成",
+        "320以上のゲームサーバーのプレイヤー統計を監視",
+        "あらゆるAPIエンドポイントからデータを取得して表示",
+        "データの数学演算を実行して表示",
+        "数値をフォーマットして美しく表示",
+        "サーバーのNitroブースターをハイライト"
+      ],
+      "seeHowPeopleUseIt": "みんなの使い方を見る",
+      "seeMore": "もっと見る",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "さらに多くの機能やカウンターを発見して、体験を向上させましょう。アップデートをお楽しみに！",
+          "title": "さらに多くの機能！"
+        },
+        "clock": {
+          "description": "カスタマイズ可能な時計であらゆるタイムゾーンの時間を確認できます。異なる地域間の調整に最適です。",
+          "title": "時計"
+        },
+        "countdown": {
+          "description": "特定のイベントや期限に合わせたカウントダウンタイマーを作成・管理できます。",
+          "title": "カウントダウン"
+        },
+        "date": {
+          "description": "カスタマイズ可能なフォーマットで、あらゆるタイムゾーンの現在の日付を表示します。異なる地域の日付表示に最適です。",
+          "title": "日付"
+        },
+        "discordMembers": {
+          "description": "オンラインステータス、ロールなどの条件でメンバーをカウント・フィルタリングし、コミュニティの正確な情報を取得できます。",
+          "title": "Discordメンバー"
+        },
+        "game": {
+          "description": "320以上のゲームに対応したリアルタイムプレイヤー数で、ゲームサーバーのアクティビティを監視できます。",
+          "title": "ゲーム"
+        },
+        "http": {
+          "description": "GETリクエストを実行し、あらゆるエンドポイントから直接データを取得して、統合ニーズを効率化します。",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "複数の数値に対して加算、減算、乗算など、さまざまな数学演算を実行できます。",
+          "title": "数学"
+        },
+        "nitroBoosters": {
+          "description": "サーバーのNitroブースター数を追跡して、コミュニティのサポートとエンゲージメントを把握できます。",
+          "title": "Nitroブースター"
+        },
+        "reddit": {
+          "description": "タイトル、メンバー数、オンラインメンバー数など、あらゆるサブレディットの統計を取得できます。",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "強力な置換ツールでテキストをダイナミックに変更できます。HTTPカウンターと組み合わせると特に便利です。",
+          "title": "置換"
+        },
+        "twitch": {
+          "description": "フォロワー数や視聴統計などのTwitchチャンネル指標を監視して、お気に入りの配信者の最新情報を把握できます。",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "チャンネル登録者数、動画数、合計再生回数など、YouTubeチャンネルの主要な指標を取得できます。",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "対応カウンター"
+    },
+    "status": {
+      "affectedServers": "影響を受けたDiscordサーバー:",
+      "assignedDiscordServers": "この子プロセスに割り当て済み:",
+      "child": "子プロセス #{{index}}",
+      "childDiscordServers": "{{count}} Discordサーバー {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} 利用不可)",
+      "childDiscordUsers": "{{count}} ユーザー",
+      "discordClientStatus": {
+        "Connecting": "接続中",
+        "Disconnected": "切断済み",
+        "Identifying": "識別中",
+        "Idle": "アイドル",
+        "Nearly": "アイドル",
+        "Ready": "準備完了",
+        "Reconnecting": "再接続中",
+        "Resuming": "再開中",
+        "WaitingForGuilds": "サーバー待機中"
+      },
+      "memoryUsage": "{{usage}} (ピーク {{peak}})",
+      "memoryUsageTooltip": "メモリ使用量",
+      "partialOutage": "部分的な障害が発生しています",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} コア\n負荷 {{load}}",
+        "cpuLabel": "CPU",
+        "hostname": "名前",
+        "memoryInfo": "{{memory}}\n使用率 {{usage}}%",
+        "memoryLabel": "メモリ",
+        "title": "サーバー情報"
+      },
+      "statusUnavailable": "ステータスを取得できません"
+    }
+  }
+}

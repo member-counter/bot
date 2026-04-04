@@ -1,1 +1,1052 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "Aankondigingskanaal",
+      "category": "Categorie",
+      "forumChannel": "Forumkanaal",
+      "mediaChannel": "Mediakanaal",
+      "stageChannel": "Podiumkanaal",
+      "textChannel": "Tekstkanaal",
+      "voiceChannel": "Spraakkanaal"
+    },
+    "knownError": "Fout",
+    "knownErrors": {
+      "BAD_REQUEST": "Het verzoek was ongeldig.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "De bot heeft niet genoeg geprivilegieerde intents om deze teller te gebruiken.",
+      "BOT_IS_NOT_PREMIUM": "De bot is geen premiumversie en mist bepaalde functies die nodig zijn voor deze teller.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "De teller heeft een niet-herkend formaat.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "De teller is ongeldig.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Het resultaat voor de kanaalnaam is korter dan 2 tekens.",
+      "EVALUATION_TIMEOUT": "De evaluatie duurde te lang en is verlopen.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Het genereren van een eindresultaat uit de evaluatie is mislukt.",
+      "FORBIDDEN": "Het verzoek was verboden.",
+      "GAME_MISSING_ADDRESS": "De gameteller vereist een serveradres.",
+      "GAME_MISSING_GAME_ID": "Er moet een game-ID worden opgegeven voor de gameteller.",
+      "GAME_MISSING_PORT": "De gameteller vereist een serverpoort.",
+      "HTTP_DATA_PATH_MANDATORY": "Er moet een datapad worden opgegeven voor HTTP-verzoeken waarvan het inhoudstype application/json is.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Het inhoudstype van het HTTP-antwoord is ongeldig (niet text/plain of application/json).",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "De HTTP-antwoordstatuscode is ongeldig (niet 200).",
+      "HTTP_MISSING_URL": "De HTTP-teller vereist een URL, die ontbreekt.",
+      "INTERNAL_SERVER_ERROR": "Er is een interne serverfout opgetreden.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "De ledenaantallen zijn op dit moment niet beschikbaar.",
+      "MEMERATOR_MISSING_USERNAME": "De Memerator-teller vereist een gebruikersnaam, die ontbreekt.",
+      "NOT_FOUND": "De gevraagde bron is niet gevonden.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "De bot heeft onvoldoende rechten om het kanaal te bewerken.",
+      "REDDIT_MISSING_SUBREDDIT": "Er moet een subreddit worden opgegeven voor de Reddit-teller.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Het opgegeven Twitch-kanaal kon niet worden gevonden.",
+      "TWITCH_MISSING_USERNAME": "De Twitch-teller vereist dat een gebruikersnaam is ingesteld.",
+      "UNAUTHORIZED": "Het verzoek was niet geautoriseerd.",
+      "UNKNOWN": "Er is een onbekende fout opgetreden.",
+      "UNKNOWN_DATA_SOURCE": "De opgegeven teller is onbekend of wordt niet herkend.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Het type waarde dat door de evaluatie is geretourneerd, is onbekend.",
+      "USER_NOT_FOUND": "Gebruiker niet gevonden.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "De opgegeven YouTube-kanaal-URL is ongeldig.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "De YouTube-teller vereist dat een kanaal-URL is ingesteld."
+    },
+    "unknown": "Onbekend",
+    "unknownChannel": "Onbekend kanaal",
+    "unknownChannelType": "Onbekend kanaaltype",
+    "unknownDate": "Onbekende datum",
+    "unknownError": "Onbekende fout",
+    "unknownPublicBot": "Onbekende openbare bot",
+    "unknownRole": "Onbekende rol",
+    "unknownServer": "Onbekende server",
+    "unknownUser": "Onbekende gebruiker {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "Kanaal verwijderen",
+          "selected": "Geselecteerd"
+        },
+        "DataSourceItem": {
+          "edit": "Teller bewerken",
+          "notSelected": "Niet geselecteerd",
+          "remove": "Teller verwijderen",
+          "selected": "Geselecteerd"
+        },
+        "GamedigItem": {
+          "remove": "Game verwijderen",
+          "selected": "Geselecteerd"
+        },
+        "LocaleItem": {
+          "remove": "Taalinstelling verwijderen",
+          "selected": "Geselecteerd"
+        },
+        "RoleItem": {
+          "everyone": "Iedereen",
+          "remove": "Rol verwijderen",
+          "selected": "Geselecteerd"
+        },
+        "TextItem": {
+          "remove": "{{item}} verwijderen",
+          "selected": "Geselecteerd"
+        },
+        "TimezoneItem": {
+          "remove": "Tijdzone verwijderen",
+          "selected": "Geselecteerd"
+        }
+      },
+      "noResults": "Geen resultaten gevonden.",
+      "placeholder": "Toevoegen...",
+      "searchPlaceholder": "Zoeken..."
+    },
+    "NavBar": {
+      "accountEntry": "Account",
+      "dashboardEntry": "Dashboard",
+      "supportEntry": "Ondersteuning"
+    },
+    "footer": {
+      "acceptableUsePolicy": "Beleid voor acceptabel gebruik",
+      "admin": "Beheer",
+      "codeRepository": "Coderepository",
+      "cookiePolicy": "Cookiebeleid",
+      "copyright": "© {{year}} Member Counter. Alle rechten voorbehouden. Gemaakt door <eduardozgzLink />.",
+      "documentation": "Documentatie",
+      "donate": "Doneren",
+      "improveMemberCounter": "Verbeter Member Counter",
+      "legal": "Juridisch",
+      "loginWithDiscord": "Inloggen met Discord",
+      "logout": "Uitloggen",
+      "madePossibleThanksTo": "Mede mogelijk gemaakt dankzij Alex, <vampireChickenLink />, <livingfloreLink />, Frosty, en <donorsLink>nog veel meer</donorsLink>.",
+      "manageDonations": "Donaties beheren",
+      "manageHomePage": "Startpagina beheren",
+      "manageServers": "Servers beheren",
+      "manageUsers": "Gebruikers beheren",
+      "privacyPolicy": "Privacybeleid",
+      "status": "Status",
+      "supportServer": "Ondersteuningsserver",
+      "termsOfService": "Servicevoorwaarden",
+      "translateBot": "Vertaal de bot",
+      "usefulLinks": "Handige links"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "Geeft het totale aantal gebruikers en servers weer waar de bot zich momenteel bevindt. (Dit heb je waarschijnlijk niet nodig)",
+      "name": "Botstatistieken"
+    },
+    "channels": {
+      "description": "Tel het aantal kanalen binnen opgegeven categorieën of in totaal.",
+      "display": {
+        "channelsUnderACategory": "Kanalen onder een categorie"
+      },
+      "keywords": "kanalen,categorieën",
+      "name": "Kanalen"
+    },
+    "clock": {
+      "description": "Toon een klok afgestemd op je gewenste tijdzone.",
+      "display": {
+        "syntax": "Klok ({{timezone}})"
+      },
+      "keywords": "klok,tijdzone",
+      "name": "Klok"
+    },
+    "concat": {
+      "description": "Voeg meerdere teksten samen tot één.",
+      "display": {
+        "syntax": "Samenvoegen {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "en nog {{amount}} meer"
+      },
+      "keywords": "samenvoegen,teksten,combineren,verbinden,mergen",
+      "name": "Samenvoegen"
+    },
+    "countdown": {
+      "description": "Maak een afteltimer met een opmaak op maat.",
+      "display": {
+        "syntax": "Aftellen naar {{datetime}}"
+      },
+      "keywords": "aftellen,timer",
+      "name": "Aftellen"
+    },
+    "date": {
+      "description": "Toon de huidige datum afgestemd op je gewenste tijdzone.",
+      "display": {
+        "syntax": "Datum ({{timezone}})"
+      },
+      "keywords": "datum,kalender,tijdzone",
+      "name": "Datum"
+    },
+    "game": {
+      "description": "Haal het huidige aantal online spelers op van je gameserver, compatibel met meer dan 320 games.",
+      "display": {
+        "playerCountFor": "Aantal spelers voor {{gameServerAddress}}"
+      },
+      "keywords": "game,spelers,online,server",
+      "name": "Game"
+    },
+    "http": {
+      "description": "Stuur een GET-verzoek naar een endpoint en geef het resultaat aan deze bot.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,verzoek,endpoint,API,ophalen",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "Voer wiskundige bewerkingen uit zoals optellen, aftrekken, vermenigvuldigen, delen of modulo op een lijst met getallen.",
+      "display": {
+        "operationType": {
+          "add": "optellen",
+          "divide": "delen",
+          "modulo": "modulo",
+          "multiply": "vermenigvuldigen",
+          "subtract": "aftrekken"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "en nog {{amount}} meer"
+      },
+      "keywords": "wiskunde,rekenmachine,bewerkingen,getallen,rekenen,optellen,aftrekken,vermenigvuldigen,delen,modulo",
+      "name": "Wiskunde"
+    },
+    "members": {
+      "description": "Tel leden, je kunt ze ook filteren op hun onlinestatus, specifieke rollen en meer.",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "NietStoren",
+          "idle": "inactief",
+          "offline": "offline",
+          "online": "online",
+          "onlineIdleDnd": "online + inactief + NietStoren"
+        },
+        "accountType": {
+          "any": "leden",
+          "bot": "bots",
+          "user": "gebruikers"
+        },
+        "bannedMembers": "verbannen leden",
+        "connectedToAChannel": "verbonden met een kanaal",
+        "playingAGame": "terwijl ze een game spelen",
+        "roleFiltering": {
+          "any": "met rollen",
+          "overlapping": "met overlappende rollen"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "leden,filter,rollen,online,status,verbannen,spelend,offline,nietstoren,inactief,afwezig,gebruiker,bot,verbonden",
+      "name": "Leden"
+    },
+    "memerator": {
+      "description": "Haal het aantal volgers en memes op voor een Memerator-account.",
+      "display": {
+        "returnKind": {
+          "followers": "volgers",
+          "memes": "memes"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,volger,weergave,kanaal",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "Haal het aantal Nitro-boosters op voor de server.",
+      "keywords": "nitro,boosters,server",
+      "name": "Nitro-boosters"
+    },
+    "number": {
+      "description": "Pas getalnotatie toe op het opgegeven getal.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} als getal",
+        "raw": "Getal ({{number}})"
+      },
+      "keywords": "getal,opmaak",
+      "name": "Getal"
+    },
+    "reddit": {
+      "description": "Haal de titel van een subreddit op samen met het totale aantal leden en het aantal leden dat momenteel online is.",
+      "display": {
+        "returnKind": {
+          "members": "leden",
+          "membersOnline": "online leden",
+          "title": "titel"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,subreddit,leden,online",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "Tekstvervanging, handig in combinatie met andere geneste tellers voor uitgebreide tekstwijziging.",
+      "display": {
+        "replaceSyntax": "\"{{search}}\" door \"{{replacement}}\"",
+        "syntax": "Vervangen {{replaceSyntax}}"
+      },
+      "keywords": "tekst,vervanging,wijziging,tekenreeks,substring",
+      "name": "Vervangen"
+    },
+    "roles": {
+      "description": "Tel alle rollen in de server.",
+      "keywords": "rollen",
+      "name": "Rollen"
+    },
+    "twitch": {
+      "description": "Haal het aantal volgers en het totale aantal weergaven op voor een Twitch-kanaal.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanaalnaam",
+          "followers": "volgers",
+          "viewers": "kijkers"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,volger,weergave,kanaal",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "Onbekende teller. Dit komt waarschijnlijk door een fout",
+      "name": "Onbekend"
+    },
+    "youtube": {
+      "description": "Haal het aantal abonnees, video's en totale weergaven op van een YouTube-kanaal.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanaalnaam",
+          "subscribers": "abonnees",
+          "videos": "video's",
+          "views": "weergaven"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,abonnee,video,weergaven,kanaal",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "Je hebt niet-opgeslagen wijzigingen. Weet je zeker dat je deze pagina wilt verlaten?",
+    "useFormManager": {
+      "state": {
+        "save": "Opslaan",
+        "saved": "Opgeslagen",
+        "saving": "Opslaan..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - De Discord-bot voor het tellen van leden en meer"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "Sluiten",
+        "confirmDescription": "Deze actie kan niet ongedaan worden gemaakt. Dit verwijdert permanent je account en al je gegevens van onze servers.",
+        "confirmTitle": "Weet je het absoluut zeker?",
+        "deleteAccountBtn": "Account verwijderen"
+      },
+      "page": {
+        "avatarAlt": "Avatar van {{username}}",
+        "logoutButton": "Uitloggen"
+      },
+      "userBadges": {
+        "betaTester": "Je hebt deelgenomen aan een bètaprogramma.",
+        "bigBrain": "Je hebt een idee voorgesteld dat is geïmplementeerd.",
+        "bugCatcher": "Je hebt een bug gevonden en gemeld.",
+        "contributor": "Je hebt een functie geïmplementeerd of een bug opgelost.",
+        "donor": "Je hebt gedoneerd om de ontwikkeling en het onderhoud van Member Counter te ondersteunen.",
+        "foldingAtHome": "Je hebt een WU bijgedragen aan folding@home.",
+        "patPat": "Je hebt een geheim gevonden.",
+        "premium": "Je bent een premiumgebruiker.",
+        "translator": "Je hebt geholpen bij het vertalen van de bot."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "Donatie verwijderen",
+          "closeButton": "Sluiten",
+          "dialogDescription": "Deze actie kan niet ongedaan worden gemaakt.",
+          "dialogTitle": "Weet je het absoluut zeker?"
+        },
+        "edit": {
+          "title": "Donatie bewerken"
+        },
+        "form": {
+          "amount": "Bedrag",
+          "anonymous": "Anoniem",
+          "currency": "Valuta",
+          "currencyDecimals": "Valutadecimalen",
+          "date": "Datum",
+          "note": "Opmerking",
+          "saveBtn": "Opslaan",
+          "userId": "Discord-gebruikers-ID"
+        },
+        "new": {
+          "title": "Nieuwe donatie"
+        },
+        "registerDonation": "Donatie registreren",
+        "totalDonations": "Totaal donaties: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "Server laden",
+          "placeholder": "Plak server-ID"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "Aanmaken",
+          "createInputPlaceholder": "Nieuwe demoservernaam",
+          "delete": {
+            "button": "Demoserver verwijderen",
+            "closeButton": "Sluiten",
+            "dialogDescription": "Deze actie kan niet ongedaan worden gemaakt.",
+            "dialogTitle": "Weet je het absoluut zeker?"
+          },
+          "list": {
+            "display": {
+              "priority": "Prioriteit: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "Kanaal toevoegen",
+              "channel": {
+                "isRulesChannel": "Tonen als regelskanaal",
+                "name": "Naam",
+                "remove": "Verwijderen",
+                "showAsSkeleton": "Tonen als skeleton",
+                "topic": "Onderwerp",
+                "type": "Type",
+                "types": {
+                  "announcementChannel": "Aankondigingskanaal",
+                  "categoryChannel": "Categoriekanaal",
+                  "textChannel": "Tekstkanaal",
+                  "voiceChannel": "Vergrendeld spraakkanaal"
+                }
+              },
+              "title": "Kanalen"
+            },
+            "description": "Beschrijving",
+            "features": {
+              "options": {
+                "Community": "Community",
+                "Discoverable": "Vindbaar",
+                "Partnered": "Partner",
+                "Verified": "Geverifieerd"
+              },
+              "title": "Functies"
+            },
+            "icon": "Pictogram-URL",
+            "language": "Taal",
+            "links": {
+              "add": "Link toevoegen",
+              "link": {
+                "label": "Label",
+                "remove": "Verwijderen",
+                "url": "URL"
+              },
+              "title": "Links"
+            },
+            "name": "Servernaam",
+            "premiumTier": {
+              "options": {
+                "None": "Geen",
+                "Tier1": "Niveau 1",
+                "Tier2": "Niveau 2",
+                "Tier3": "Niveau 3"
+              },
+              "title": "Premiumniveau"
+            },
+            "priority": "Prioriteit",
+            "save": "Opslaan",
+            "saved": "Opgeslagen",
+            "title": "Demoserver bewerken"
+          },
+          "title": "Demoservers"
+        },
+        "headings": [
+          "Toon het ledenaantal van je server dynamisch",
+          "Pronk met je YouTube-abonneeaantal",
+          "Monitor het aantal spelers op je Minecraft-server",
+          "Laat zien hoeveel mensen je Twitch-kanaal bekijken",
+          "Toon alle gewenste gegevens in je Discord-server",
+          "Houd bij hoeveel spelers je FiveM-server heeft",
+          "Toon een klok afgestemd op je gewenste tijdzone",
+          "Maak aftellingen voor evenementen of speciale gelegenheden",
+          "Monitor spelersstatistieken voor meer dan 320 gameservers",
+          "Haal gegevens op en toon ze van elk API-endpoint",
+          "Voer wiskundige bewerkingen uit en toon ze op je gegevens",
+          "Geef getallen mooi opgemaakt weer",
+          "Zet de Nitro-boosters van je server in de schijnwerpers"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Ontdek nog meer functies en tellers die je ervaring kunnen verbeteren. Houd ons in de gaten voor updates!",
+            "title": "En nog veel meer!"
+          },
+          "clock": {
+            "description": "Bekijk de tijd in elke tijdzone met onze aanpasbare klok. Perfect voor coördinatie tussen verschillende regio's.",
+            "title": "Klok"
+          },
+          "countdown": {
+            "description": "Maak en beheer afteltimers op maat voor je specifieke evenementen of deadlines.",
+            "title": "Aftellen"
+          },
+          "date": {
+            "description": "Toon de huidige datum in elke tijdzone met aanpasbare opmaak. Ideaal voor het tonen van datums in verschillende regio's.",
+            "title": "Datum"
+          },
+          "discordMembers": {
+            "description": "Tel en filter leden op onlinestatus, rollen en andere criteria voor nauwkeurige inzichten over je community.",
+            "title": "Discord-leden"
+          },
+          "game": {
+            "description": "Monitor de activiteit van je gameserver met realtime spelersaantallen voor meer dan 320 ondersteunde games.",
+            "title": "Game"
+          },
+          "http": {
+            "description": "Voer GET-verzoeken uit en ontvang gegevens direct van elk endpoint, waardoor je integratiemogelijkheden worden vereenvoudigd.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Voer diverse wiskundige bewerkingen uit, waaronder optellen, aftrekken, vermenigvuldigen en meer met meerdere getallen.",
+            "title": "Wiskunde"
+          },
+          "nitroBoosters": {
+            "description": "Houd het aantal Nitro-boosters in je server bij om de betrokkenheid en steun van de community te meten.",
+            "title": "Nitro-boosters"
+          },
+          "reddit": {
+            "description": "Bekijk statistieken van elke subreddit, inclusief titel, ledenaantal en online leden.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Wijzig tekst dynamisch met onze krachtige vervangingstool, ideaal in combinatie met de HTTP-teller.",
+            "title": "Vervangen"
+          },
+          "twitch": {
+            "description": "Monitor Twitch-kanaalstatistieken zoals het aantal volgers en weergavestatistieken om op de hoogte te blijven van je favoriete streamers.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Haal belangrijke statistieken op van YouTube-kanalen, waaronder het aantal abonnees, video's en totale weergaven.",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "Account verwijderen",
+          "closeButton": "Sluiten",
+          "dialogDescription": "Deze actie kan niet ongedaan worden gemaakt.",
+          "dialogTitle": "Weet je het absoluut zeker?"
+        },
+        "loadUser": "Gebruiker laden",
+        "manage": {
+          "badges": {
+            "betaTester": "Bètatester",
+            "bigBrain": "Slimmerik",
+            "bugCatcher": "Bugvanger",
+            "contributor": "Bijdrager",
+            "donor": "Donateur",
+            "foldingAtHome": "folding@home",
+            "patPat": "Pat Pat",
+            "premium": "Premium",
+            "title": "Badges",
+            "translator": "Vertaler"
+          },
+          "pasteUserId": "Plak gebruikers-ID",
+          "permissions": {
+            "manageDonations": "Donaties beheren",
+            "manageGuilds": "Servers beheren",
+            "manageHomePage": "Landingspagina beheren",
+            "manageUsers": "Gebruikers beheren",
+            "seeGuilds": "Servers bekijken",
+            "seeUsers": "Gebruikers bekijken",
+            "title": "Rechten"
+          },
+          "save": "Opslaan",
+          "saved": "Opgeslagen",
+          "transferAccount": "Account overdragen"
+        },
+        "recentUsers": "Recente gebruikers",
+        "userNotRegistered": "Deze gebruiker is niet geregistreerd."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "Je zit niet in een server. ",
+        "subheading": "Waarom begin je niet met het aanmaken van een <CreateServerLink>nieuwe server</CreateServerLink> of door <JoinSupportServerLink>je bij ons aan te sluiten</JoinSupportServerLink>?"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "Tellers zijn ingeschakeld in dit kanaal",
+            "issue": "Er is een probleem in dit kanaal dat je aandacht vereist"
+          },
+          "unsupportedChannelType": "Dit kanaaltype wordt nog niet ondersteund."
+        },
+        "ServerNavMenu": {
+          "channelList": "Kanaallijst",
+          "loading": "Servergegevens laden...",
+          "serverSettings": "Serverinstellingen",
+          "unknownChannels": "Bezoek opgeslagen kanalen als de Discord-kanalen niet kunnen worden geladen"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "Geen tellers gevonden.",
+            "searchPlaceholder": "Teller zoeken..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "Standaard naar serverinstellingen",
+                "no": "Nee",
+                "overrideDefaultDigits": "Standaardcijfers overschrijven",
+                "overrideDefaultLocale": "Standaardtaalinstelling overschrijven",
+                "searchLocale": "Taalinstelling zoeken...",
+                "select": "Selecteren",
+                "useCompactNotation": "Compacte notatie gebruiken",
+                "yes": "Ja"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "Weergave",
+                  "selectPlaceholder": "Selecteer iets om weer te geven",
+                  "servers": "Servers",
+                  "users": "Gebruikers"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "Categorie toevoegen...",
+                  "configWarning": "Vergeet niet een geldig categorie-ID te retourneren",
+                  "filterByCategory": "Filteren op categorie"
+                },
+                "ClockOptions": {
+                  "configWarning": "Vergeet niet een geldige tijdzone-identifier te retourneren",
+                  "counterPreview": "We kunnen je geen live voorbeeld tonen wanneer het formaat het resultaat is van een teller, je moet het hele template bekijken om te zien hoe het eruitziet.",
+                  "defaultFormat": "%f",
+                  "format": "Formaat",
+                  "formatConfigWarning": "Vergeet niet een geldige opmaaktekenreeks te retourneren",
+                  "formatInstructions": "Beschikbare plaatshouders:\n• <code>%H</code> - Uur met voorloopnul, 24-uurs (00-23)\n• <code>%h</code> - Uur zonder voorloopnul, 24-uurs (0-23)\n• <code>%I</code> - Uur met voorloopnul, 12-uurs (01-12)\n• <code>%i</code> - Uur zonder voorloopnul, 12-uurs (1-12)\n• <code>%M</code> - Minuut met voorloopnul (00-59)\n• <code>%m</code> - Minuut zonder voorloopnul (0-59)\n• <code>%S</code> - Seconde met voorloopnul (00-59)\n• <code>%s</code> - Seconde zonder voorloopnul (0-59)\n• <code>%p</code> - am/pm (kleine letters)\n• <code>%P</code> - AM/PM (hoofdletters)\n• <code>%f</code> - Standaard lokale opmaak",
+                  "livePreview": "Live voorbeeld",
+                  "noPreview": "We kunnen je geen live voorbeeld tonen wanneer het formaat leeg is.",
+                  "searchTimezonePlaceholder": "Tijdzone zoeken...",
+                  "timezone": "Tijdzone"
+                },
+                "ConcatOptions": {
+                  "addString": "Tekst toevoegen...",
+                  "stringList": "Tekstlijst"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "We kunnen je geen live voorbeeld tonen wanneer de doeldatum of het formaat het resultaat is van een teller, je moet het hele template bekijken om te zien hoe het eruitziet.",
+                  "dateConfigWarning": "Vergeet niet een geldig UNIX-tijdstempel te retourneren",
+                  "datePlaceholder": "Of neem een datum van een teller...",
+                  "defaultFormat": "%d dagen, %h uur en %m minuten resterend",
+                  "format": "Formaat",
+                  "formatConfigWarning": "Vergeet niet een geldige opmaaktekenreeks te retourneren",
+                  "formatInstructions": "Beschikbare plaatshouders:\n• <code>%d</code> - Resterende dagen\n• <code>%h</code> - Resterende uren (0-23)\n• <code>%m</code> - Resterende minuten (0-59)\n• <code>%s</code> - Resterende seconden (0-59)\n• <code>%D</code> - Totaal resterende dagen\n• <code>%H</code> - Totaal resterende uren\n• <code>%M</code> - Totaal resterende minuten\n• <code>%S</code> - Totaal resterende seconden",
+                  "livePreview": "Live voorbeeld",
+                  "noPreview": "We kunnen je geen live voorbeeld tonen wanneer de doeldatum of het formaat leeg is.",
+                  "targetDate": "Doeldatum"
+                },
+                "DateOptions": {
+                  "configWarning": "Vergeet niet een geldige tijdzone-identifier te retourneren",
+                  "counterPreview": "We kunnen je geen live voorbeeld tonen wanneer het formaat het resultaat is van een teller, je moet het hele template bekijken om te zien hoe het eruitziet.",
+                  "defaultFormat": "%f",
+                  "format": "Formaat",
+                  "formatConfigWarning": "Vergeet niet een geldige opmaaktekenreeks te retourneren",
+                  "formatInstructions": "Beschikbare plaatshouders:\n• <code>%Y</code> - Volledig jaar (2025)\n• <code>%y</code> - 2-cijferig jaar (25)\n• <code>%Ms</code> - Volledige maandnaam (november)\n• <code>%ms</code> - Korte maandnaam (nov)\n• <code>%M</code> - Maandnummer met voorloopnul (01-12)\n• <code>%m</code> - Maandnummer (1-12)\n• <code>%Ws</code> - Volledige dagnaam (maandag)\n• <code>%ws</code> - Korte dagnaam (ma)\n• <code>%w</code> - Dagnummer van de week (0=zondag, 6=zaterdag)\n• <code>%D</code> - Dag met voorloopnul (05)\n• <code>%d</code> - Dag zonder voorloopnul (5)\n• <code>%f</code> - Standaard lokale opmaak",
+                  "livePreview": "Live voorbeeld",
+                  "noPreview": "We kunnen je geen live voorbeeld tonen wanneer het formaat leeg is.",
+                  "searchTimezonePlaceholder": "Tijdzone zoeken...",
+                  "timezone": "Tijdzone"
+                },
+                "GameOptions": {
+                  "address": "Adres",
+                  "addressWarning": "Vergeet niet een geldig adres te retourneren",
+                  "game": "Game",
+                  "gameWarning": "Vergeet niet een geldig node-gamedig gametype te retourneren",
+                  "port": "Poort (of querypoort)",
+                  "portWarning": "Vergeet niet een geldig poortnummer te retourneren",
+                  "searchPlaceholder": "Zoeken..."
+                },
+                "HttpOptions": {
+                  "dataPath": "Datapad",
+                  "dataPathDescription": "Een pad om de gewenste waarde op te halen wanneer het inhoudstype van het antwoord JSON is. De syntax is vergelijkbaar met die van JS om eigenschappen en array-items te benaderen.",
+                  "dataPathWarning": "Vergeet niet een datapad te retourneren",
+                  "emptyUrl": "Kan niet ophalen, URL is leeg",
+                  "fetch": "Ophalen",
+                  "fetching": "Ophalen...",
+                  "lifetime": "Levensduur (in seconden)",
+                  "lifetimeDescription": "Geeft aan hoe lang het antwoord van de opgegeven URL in de cache wordt bewaard.",
+                  "lifetimeWarning": "Vergeet niet een geldig getal te retourneren",
+                  "noPreview": "We kunnen je geen voorbeeld tonen wanneer de URL of het datapad het resultaat is van een teller, je moet het hele template bekijken om te zien hoe het eruitziet.",
+                  "preview": "Voorbeeld",
+                  "testResponse": "Testantwoord",
+                  "url": "URL (GET)",
+                  "urlWarning": "Vergeet niet een geldige URL te retourneren"
+                },
+                "MathOptions": {
+                  "addNumber": "Getal toevoegen...",
+                  "addition": "Optellen",
+                  "division": "Delen",
+                  "modulo": "Modulo (rest van een deling)",
+                  "multiplication": "Vermenigvuldigen",
+                  "numberList": "Getallenlijst",
+                  "numberWarning": "Vergeet niet een geldig getal te retourneren",
+                  "operation": "Type bewerking",
+                  "selectOperation": "Selecteer een type bewerking",
+                  "subtraction": "Aftrekken"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Alleen verbannen leden tellen"
+                  },
+                  "FilterByAccountType": {
+                    "any": "Alle",
+                    "bot": "Bot",
+                    "label": "Filteren op accounttype",
+                    "placeholder": "Selecteer een accounttype",
+                    "user": "Gebruiker"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "Spraakkanaal toevoegen...",
+                    "dataSourceConfigWarning": "Vergeet niet een geldig spraakkanaal-ID te retourneren",
+                    "label": "Filteren op verbonden met een spraakkanaal"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "Rol toevoegen...",
+                    "dataSourceConfigWarning": "Vergeet niet een geldig rol-ID te retourneren",
+                    "label": "Filteren op rol"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "Elke overeenkomst",
+                    "label": "Filtermodus",
+                    "overlap": "Overlap",
+                    "placeholder": "Selecteer de filtermodus"
+                  },
+                  "FilterByStatus": {
+                    "any": "Alle",
+                    "dnd": "Niet storen",
+                    "idle": "Inactief",
+                    "label": "Filteren op status",
+                    "offline": "Offline",
+                    "online": "Online",
+                    "onlineIdleDnd": "Online + Inactief + Niet storen",
+                    "placeholder": "Selecteer een status"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Filteren op het spelen van een game",
+                    "placeholder": "Game toevoegen..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "Weergave",
+                  "followers": "Volgers",
+                  "memes": "Memes",
+                  "selectDisplay": "Selecteer iets om weer te geven",
+                  "username": "Gebruikersnaam",
+                  "usernameWarning": "Vergeet niet een geldige gebruikersnaam te retourneren"
+                },
+                "NumberOptions": {
+                  "number": "Getal",
+                  "numberWarning": "Vergeet niet een geldig getal te retourneren",
+                  "placeholder": "Voer een getal in of zoek een teller"
+                },
+                "RedditOptions": {
+                  "display": "Weergave",
+                  "members": "Leden",
+                  "membersOnline": "Online leden",
+                  "selectPlaceholder": "Selecteer iets om weer te geven",
+                  "subreddit": "Subredditnaam",
+                  "subredditPlaceholder": "Voer een subreddit in of zoek een teller",
+                  "subredditWarning": "Vergeet niet een geldige subreddit te retourneren",
+                  "title": "Subreddittitel"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "Vervanging toevoegen",
+                  "inputText": "Invoertekst",
+                  "removeReplacement": "Vervanging verwijderen",
+                  "replaceWith": "Vervangen door",
+                  "replacementPlaceholder": "Voer de vervangende tekst in",
+                  "searchFor": "Zoeken naar",
+                  "searchPlaceholder": "Voer de zoekterm in",
+                  "textPlaceholder": "Voer de te vervangen tekst in"
+                },
+                "TwitchOptions": {
+                  "channelName": "Kanaalnaam",
+                  "display": "Weergave",
+                  "followers": "Volgers",
+                  "selectPlaceholder": "Selecteer iets om weer te geven",
+                  "username": "Gebruikersnaam",
+                  "usernamePlaceholder": "Voer een gebruikersnaam in",
+                  "usernameWarning": "Vergeet niet een geldige gebruikersnaam te retourneren",
+                  "viewers": "Kijkers"
+                },
+                "YouTubeOptions": {
+                  "channelName": "Kanaalnaam",
+                  "channelUrl": "Kanaal-URL",
+                  "channelUrlPlaceholder": "Voer een kanaal-URL in",
+                  "channelUrlWarning": "Vergeet niet een geldige kanaal-URL te retourneren",
+                  "display": "Weergave",
+                  "selectPlaceholder": "Selecteer iets om weer te geven",
+                  "subscribers": "Abonnees",
+                  "videos": "Video's",
+                  "views": "Weergaven"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "Emojikiezer",
+            "searchEmoji": "Emoji zoeken"
+          },
+          "markButtons": {
+            "bold": "vet",
+            "italic": "cursief",
+            "spoiler": "spoiler",
+            "strike": "doorhalen",
+            "underline": "onderstrepen"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "Beleid voor acceptabel gebruik",
+          "noReasonGiven": "Geen reden opgegeven",
+          "supportTeam": "Ondersteuningsteam",
+          "termsOfService": "Servicevoorwaarden",
+          "text": "Deze server is geblokkeerd wegens schending van onze <LinkTerms>Servicevoorwaarden</LinkTerms> of <LinkPolicy>Beleid voor acceptabel gebruik</LinkPolicy>.<br />Opgegeven reden: {{reason}}<br />Als je denkt dat dit een vergissing is, neem dan contact op met ons <SupportLink>ondersteuningsteam</SupportLink>."
+        },
+        "channels": {
+          "save": "Opslaan",
+          "saved": "Opgeslagen",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "Laatst bijgewerkt: {{lastTemplateUpdateDate}}",
+              "template": "Template"
+            },
+            "EnableTemplate": {
+              "description": "Wanneer ingeschakeld, zal Member Counter automatisch de {{templateTarget}} van dit kanaal bijwerken om het verwerkte template te tonen.",
+              "enableTemplate": "Template inschakelen",
+              "nameTarget": "naam",
+              "topicTarget": "onderwerp"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Opnieuw controleren",
+              "description": "Controleer of de bot de volgende rechten heeft in dit kanaal:",
+              "permissions": {
+                "connect": "Verbinden",
+                "manageChannel": "Kanaal beheren",
+                "viewChannel": "Kanaal bekijken"
+              },
+              "title": "De bot heeft geen toestemming om dit kanaal te bewerken."
+            },
+            "TemplateError": {
+              "errorDescription": "Er is een fout opgetreden tijdens de laatste templateverwerking. Details worden hieronder weergegeven.",
+              "errorTitle": "Het template had een fout bij de laatste verwerking"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "Je hebt geen toestemming om deze server te beheren.\nVraag een beheerder van {{guildName}} om je Beheerder- of Serverbeheer-rechten te geven.",
+          "title": "Toegang geweigerd"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "Sluiten",
+          "message": "Het lijkt erop dat de Member Counter Bot niet in deze server zit. Wil je hem <LinkURL>toevoegen</LinkURL>?"
+        },
+        "inviteBotPage": {
+          "addToServer": "Toevoegen aan {{serverName}}",
+          "copyLink": "Uitnodigingslink kopiëren",
+          "linkCopied": "De link is naar je klembord gekopieerd.",
+          "noPermission": "Je hebt niet genoeg rechten om de bot toe te voegen. Vraag een beheerder of iemand met Serverbeheer-rechten om deze bot toe te voegen.",
+          "subtitle": "Voeg Member Counter toe aan {{serverName}} en geniet van realtime tellers.",
+          "title": "Laten we de bot instellen!",
+          "useOrShareLink": "Gebruik of deel deze link om de bot toe te voegen."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "Server blokkeren",
+            "blockDialogDescription": "De opgegeven reden wordt weergegeven aan de serverbeheerders.",
+            "blockDialogTitle": "Wil je deze server echt blokkeren?",
+            "closeButton": "Sluiten",
+            "reasonLabel": "Reden",
+            "reasonPlaceholder": "Geef een reden op",
+            "unblockButton": "Server deblokkeren",
+            "unblockDialogDescription": "Deze server is geblokkeerd om de volgende reden: {{reason}}",
+            "unblockDialogTitle": "Wil je deze server echt deblokkeren?"
+          },
+          "reset": {
+            "closeButton": "Sluiten",
+            "dialogDescription": "Deze actie kan niet ongedaan worden gemaakt. Alle instellingen worden teruggezet naar de standaardwaarden.",
+            "dialogTitle": "Weet je het absoluut zeker?",
+            "resetButton": "Instellingen resetten"
+          },
+          "save": "Opslaan",
+          "saved": "Opgeslagen",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Aangepaste cijfers",
+              "customDigitsDescription": "Bij tellers die een getal retourneren, vervangt Member Counter elk cijfer door de cijfers die je opgeeft. Dit is handig als je aangepaste emoji's of iets anders wilt weergeven, zoals \"unicode-stijl lettertypen.\"",
+              "customizationRecommendation": "We raden af om cijfers aan te passen, tenzij je er zeker van bent dat niemand die een schermlezer gebruikt toegang heeft tot een teller.",
+              "screenReaderWarning": "Houd er rekening mee dat gebruikers met een schermlezer (tekst-naar-spraak) de aangepaste cijfers mogelijk niet kunnen begrijpen en <demoLink>mogelijk iets onbegrijpelijks horen</demoLink>. Schermlezers worden vaak gebruikt door mensen met een visuele beperking."
+            },
+            "Locale": {
+              "description": "Dit wijzigen heeft invloed op hoe sommige tellers worden weergegeven.",
+              "locale": "Taalinstelling",
+              "numberExample": "439212 wordt weergegeven als {{number}}",
+              "searchPlaceholder": "Taalinstelling zoeken...",
+              "timeExample": "15:30u (of 3:30 PM) wordt weergegeven als {{time}}"
+            },
+            "UseCompactNotation": {
+              "description": "Tellers die getallen retourneren worden op een compactere manier weergegeven.",
+              "example1": "12300 wordt weergegeven als {{number}}",
+              "example2": "439212 wordt weergegeven als {{number}}",
+              "example3": "1500000 wordt weergegeven als {{number}}",
+              "label": "Compacte notatie gebruiken voor getallen"
+            }
+          },
+          "title": "Serverinstellingen"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "Haal het meeste uit je tellers, op maat gemaakt voor jouw behoeften.",
+            "label": "Als een pro",
+            "title": "Geavanceerde tellers"
+          },
+          "createFromScratch": {
+            "description": "Leer hoe je in een paar minuten je eerste aangepaste teller maakt.",
+            "label": "Wees uniek!",
+            "title": "Helemaal zelf maken"
+          },
+          "queryHistoricalStatistics": {
+            "description": "Bekijk hoe je tellers en andere veelvoorkomende statistieken zich in de loop van de tijd hebben ontwikkeld.",
+            "label": "Binnenkort beschikbaar™",
+            "title": "Historische statistieken opvragen"
+          },
+          "quickSetup": {
+            "description": "Maak snel de meest voorkomende tellers aan in een paar klikken. Geen fantasie of hersenwerk nodig!",
+            "label": "Moeiteloos!",
+            "title": "Snelle installatie"
+          },
+          "subTitle": "Hier zijn wat suggesties voor je:",
+          "title": "Welkom terug!"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "Er is een onverwachte fout opgetreden.",
+        "NotAuthenticated": "Je bent niet ingelogd.",
+        "NotAuthorized": "Je hebt geen toegang tot deze pagina.",
+        "NotFound": "De pagina die je zoekt kon niet worden gevonden."
+      },
+      "nav": {
+        "backBtn": "Ga terug",
+        "homeBtn": "Naar startpagina",
+        "supportBtn": "Hulp krijgen",
+        "tryAgainBtn": "Opnieuw proberen"
+      }
+    },
+    "home": {
+      "addToDiscord": "Toevoegen aan Discord",
+      "dashboard": "Dashboard",
+      "getSupport": "Hulp krijgen",
+      "headings": [
+        "Toon het ledenaantal van je server dynamisch",
+        "Pronk met je YouTube-abonneeaantal",
+        "Monitor het aantal spelers op je Minecraft-server",
+        "Laat zien hoeveel mensen je Twitch-kanaal bekijken",
+        "Toon alle gewenste gegevens in je Discord-server",
+        "Houd bij hoeveel spelers je FiveM-server heeft",
+        "Toon een klok afgestemd op je gewenste tijdzone",
+        "Maak aftellingen voor evenementen of speciale gelegenheden",
+        "Monitor spelersstatistieken voor meer dan 320 gameservers",
+        "Haal gegevens op en toon ze van elk API-endpoint",
+        "Voer wiskundige bewerkingen uit en toon ze op je gegevens",
+        "Geef getallen mooi opgemaakt weer",
+        "Zet de Nitro-boosters van je server in de schijnwerpers"
+      ],
+      "seeHowPeopleUseIt": "Bekijk hoe anderen het gebruiken",
+      "seeMore": "Meer bekijken",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Ontdek nog meer functies en tellers die je ervaring kunnen verbeteren. Houd ons in de gaten voor updates!",
+          "title": "En nog veel meer!"
+        },
+        "clock": {
+          "description": "Bekijk de tijd in elke tijdzone met onze aanpasbare klok. Perfect voor coördinatie tussen verschillende regio's.",
+          "title": "Klok"
+        },
+        "countdown": {
+          "description": "Maak en beheer afteltimers op maat voor je specifieke evenementen of deadlines.",
+          "title": "Aftellen"
+        },
+        "date": {
+          "description": "Toon de huidige datum in elke tijdzone met aanpasbare opmaak. Ideaal voor het tonen van datums in verschillende regio's.",
+          "title": "Datum"
+        },
+        "discordMembers": {
+          "description": "Tel en filter leden op onlinestatus, rollen en andere criteria voor nauwkeurige inzichten over je community.",
+          "title": "Discord-leden"
+        },
+        "game": {
+          "description": "Monitor de activiteit van je gameserver met realtime spelersaantallen voor meer dan 320 ondersteunde games.",
+          "title": "Game"
+        },
+        "http": {
+          "description": "Voer GET-verzoeken uit en ontvang gegevens direct van elk endpoint, waardoor je integratiemogelijkheden worden vereenvoudigd.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Voer diverse wiskundige bewerkingen uit, waaronder optellen, aftrekken, vermenigvuldigen en meer met meerdere getallen.",
+          "title": "Wiskunde"
+        },
+        "nitroBoosters": {
+          "description": "Houd het aantal Nitro-boosters in je server bij om de betrokkenheid en steun van de community te meten.",
+          "title": "Nitro-boosters"
+        },
+        "reddit": {
+          "description": "Bekijk statistieken van elke subreddit, inclusief titel, ledenaantal en online leden.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Wijzig tekst dynamisch met onze krachtige vervangingstool, ideaal in combinatie met de HTTP-teller.",
+          "title": "Vervangen"
+        },
+        "twitch": {
+          "description": "Monitor Twitch-kanaalstatistieken zoals het aantal volgers en weergavestatistieken om op de hoogte te blijven van je favoriete streamers.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Haal belangrijke statistieken op van YouTube-kanalen, waaronder het aantal abonnees, video's en totale weergaven.",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "Ondersteunde tellers"
+    },
+    "status": {
+      "affectedServers": "Getroffen Discord-servers:",
+      "assignedDiscordServers": "Toegewezen aan dit kindproces:",
+      "child": "Kindproces #{{index}}",
+      "childDiscordServers": "{{count}} Discord-servers {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} niet beschikbaar)",
+      "childDiscordUsers": "{{count}} gebruikers",
+      "discordClientStatus": {
+        "Connecting": "Verbinden",
+        "Disconnected": "Verbroken",
+        "Identifying": "Identificeren",
+        "Idle": "Inactief",
+        "Nearly": "Inactief",
+        "Ready": "Gereed",
+        "Reconnecting": "Opnieuw verbinden",
+        "Resuming": "Hervatten",
+        "WaitingForGuilds": "Wachten op servers"
+      },
+      "memoryUsage": "{{usage}} ({{peak}} piek)",
+      "memoryUsageTooltip": "Geheugengebruik",
+      "partialOutage": "Er is een gedeeltelijke storing",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} kernen\nBelasting {{load}}",
+        "cpuLabel": "CPU",
+        "hostname": "Naam",
+        "memoryInfo": "{{memory}}\n{{usage}}% gebruik",
+        "memoryLabel": "Geheugen",
+        "title": "Serverinformatie"
+      },
+      "statusUnavailable": "Status niet beschikbaar"
+    }
+  }
+}

@@ -1,1 +1,1052 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "Ilmoituskanava",
+      "category": "Kategoria",
+      "forumChannel": "Foorumikanava",
+      "mediaChannel": "Mediakanava",
+      "stageChannel": "Lavakanava",
+      "textChannel": "Tekstikanava",
+      "voiceChannel": "Äänikanava"
+    },
+    "knownError": "Virhe",
+    "knownErrors": {
+      "BAD_REQUEST": "Pyyntö oli virheellinen.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Botilla ei ole riittäviä etuoikeutettuja intent-oikeuksia tämän laskurin käyttämiseen.",
+      "BOT_IS_NOT_PREMIUM": "Botti ei ole premium-versio, ja siltä puuttuu tiettyjä ominaisuuksia, joita tämä laskuri tarvitsee.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Laskuri on tuntemattomassa muodossa.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "Laskuri on virheellinen.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Kanavan nimen tulos on alle 2 merkkiä pitkä.",
+      "EVALUATION_TIMEOUT": "Laskennan suoritus kesti liian kauan ja aikakatkaistiin.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Lopullisen merkkijonon luominen laskennasta epäonnistui.",
+      "FORBIDDEN": "Pyyntö oli kielletty.",
+      "GAME_MISSING_ADDRESS": "Pelilaskuri vaatii palvelinosoitteen.",
+      "GAME_MISSING_GAME_ID": "Pelilaskurille on annettava pelin tunniste.",
+      "GAME_MISSING_PORT": "Pelilaskuri vaatii palvelinportin.",
+      "HTTP_DATA_PATH_MANDATORY": "Datapolku on määritettävä HTTP-pyynnöille, joiden sisältötyyppi on application/json.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTP-vastauksen sisältötyyppi on virheellinen (ei text/plain eikä application/json).",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP-vastauksen tilakoodi on virheellinen (ei 200).",
+      "HTTP_MISSING_URL": "HTTP-laskuri vaatii URL-osoitteen, joka puuttuu.",
+      "INTERNAL_SERVER_ERROR": "Sisäinen palvelinvirhe tapahtui.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "Jäsenmäärät eivät ole tällä hetkellä saatavilla.",
+      "MEMERATOR_MISSING_USERNAME": "Memerator-laskuri vaatii käyttäjänimen, joka puuttuu.",
+      "NOT_FOUND": "Pyydettyä resurssia ei löytynyt.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Botilla ei ole riittäviä oikeuksia kanavan muokkaamiseen.",
+      "REDDIT_MISSING_SUBREDDIT": "Reddit-laskurille on annettava subreddit.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Määritettyä Twitch-kanavaa ei löytynyt.",
+      "TWITCH_MISSING_USERNAME": "Twitch-laskuri vaatii käyttäjänimen.",
+      "UNAUTHORIZED": "Pyyntö oli luvaton.",
+      "UNKNOWN": "Tuntematon virhe tapahtui.",
+      "UNKNOWN_DATA_SOURCE": "Annettu laskuri on tuntematon tai sitä ei tunnistettu.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Laskennan palauttaman arvon tyyppi on tuntematon.",
+      "USER_NOT_FOUND": "Käyttäjää ei löytynyt.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "Annettu YouTube-kanavan URL-osoite on virheellinen.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "YouTube-laskuri vaatii kanavan URL-osoitteen."
+    },
+    "unknown": "Tuntematon",
+    "unknownChannel": "Tuntematon kanava",
+    "unknownChannelType": "Tuntematon kanavatyyppi",
+    "unknownDate": "Tuntematon päivämäärä",
+    "unknownError": "Tuntematon virhe",
+    "unknownPublicBot": "Tuntematon julkinen botti",
+    "unknownRole": "Tuntematon rooli",
+    "unknownServer": "Tuntematon palvelin",
+    "unknownUser": "Tuntematon käyttäjä {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "Poista kanava",
+          "selected": "Valittu"
+        },
+        "DataSourceItem": {
+          "edit": "Muokkaa laskuria",
+          "notSelected": "Ei valittu",
+          "remove": "Poista laskuri",
+          "selected": "Valittu"
+        },
+        "GamedigItem": {
+          "remove": "Poista peli",
+          "selected": "Valittu"
+        },
+        "LocaleItem": {
+          "remove": "Poista kielialue",
+          "selected": "Valittu"
+        },
+        "RoleItem": {
+          "everyone": "Kaikki",
+          "remove": "Poista rooli",
+          "selected": "Valittu"
+        },
+        "TextItem": {
+          "remove": "Poista {{item}}",
+          "selected": "Valittu"
+        },
+        "TimezoneItem": {
+          "remove": "Poista aikavyöhyke",
+          "selected": "Valittu"
+        }
+      },
+      "noResults": "Tuloksia ei löytynyt.",
+      "placeholder": "Lisää...",
+      "searchPlaceholder": "Hae..."
+    },
+    "NavBar": {
+      "accountEntry": "Tili",
+      "dashboardEntry": "Hallintapaneeli",
+      "supportEntry": "Tuki"
+    },
+    "footer": {
+      "acceptableUsePolicy": "Hyväksyttävän käytön periaatteet",
+      "admin": "Ylläpito",
+      "codeRepository": "Koodirepositorio",
+      "cookiePolicy": "Evästekäytäntö",
+      "copyright": "© {{year}} Member Counter. Kaikki oikeudet pidätetään. Tekijä: <eduardozgzLink />.",
+      "documentation": "Dokumentaatio",
+      "donate": "Lahjoita",
+      "improveMemberCounter": "Paranna Member Counteria",
+      "legal": "Oikeudelliset tiedot",
+      "loginWithDiscord": "Kirjaudu Discordilla",
+      "logout": "Kirjaudu ulos",
+      "madePossibleThanksTo": "Mahdollistaneet: Alex, <vampireChickenLink />, <livingfloreLink />, Frosty ja <donorsLink>monet muut</donorsLink>.",
+      "manageDonations": "Hallitse lahjoituksia",
+      "manageHomePage": "Hallitse etusivua",
+      "manageServers": "Hallitse palvelimia",
+      "manageUsers": "Hallitse käyttäjiä",
+      "privacyPolicy": "Tietosuojakäytäntö",
+      "status": "Tila",
+      "supportServer": "Tukipalvelin",
+      "termsOfService": "Käyttöehdot",
+      "translateBot": "Käännä bottia",
+      "usefulLinks": "Hyödyllisiä linkkejä"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "Palauttaa botin nykyisen käyttäjien ja palvelimien kokonaismäärän. (Et todennäköisesti tarvitse tätä)",
+      "name": "Bottitilastot"
+    },
+    "channels": {
+      "description": "Laske kanavien määrä tietyissä kategorioissa tai kokonaisuudessaan.",
+      "display": {
+        "channelsUnderACategory": "Kanavat kategoriassa"
+      },
+      "keywords": "kanavat,kategoriat",
+      "name": "Kanavat"
+    },
+    "clock": {
+      "description": "Näytä kello säädettynä haluamaasi aikavyöhykkeeseen.",
+      "display": {
+        "syntax": "Kello ({{timezone}})"
+      },
+      "keywords": "kello,aikavyöhyke",
+      "name": "Kello"
+    },
+    "concat": {
+      "description": "Yhdistä useita merkkijonoja yhdeksi.",
+      "display": {
+        "syntax": "Yhdistä {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "ja {{amount}} lisää"
+      },
+      "keywords": "yhdistä,ketjuta,merkkijonot,yhdistele,liitä",
+      "name": "Yhdistä"
+    },
+    "countdown": {
+      "description": "Luo lähtölaskenta-ajastin tarpeisiisi sopivalla muodolla.",
+      "display": {
+        "syntax": "Lähtölaskenta {{datetime}} asti"
+      },
+      "keywords": "lähtölaskenta,ajastin",
+      "name": "Lähtölaskenta"
+    },
+    "date": {
+      "description": "Näytä nykyinen päivämäärä säädettynä haluamaasi aikavyöhykkeeseen.",
+      "display": {
+        "syntax": "Päivämäärä ({{timezone}})"
+      },
+      "keywords": "päivämäärä,kalenteri,aikavyöhyke",
+      "name": "Päivämäärä"
+    },
+    "game": {
+      "description": "Hae pelipalvelimesi nykyinen online-pelaajamäärä, yhteensopiva yli 320 pelin kanssa.",
+      "display": {
+        "playerCountFor": "Pelaajamäärä: {{gameServerAddress}}"
+      },
+      "keywords": "peli,pelaajat,online,palvelin",
+      "name": "Peli"
+    },
+    "http": {
+      "description": "Lähetä GET-pyyntö päätepisteeseen ja tarjoa tulos tälle botille.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,pyyntö,päätepiste,API,hae",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "Suorita matemaattisia operaatioita kuten yhteenlasku, vähennyslasku, kertolasku, jakolasku tai jakojäännös numeroluettelolle.",
+      "display": {
+        "operationType": {
+          "add": "yhteenlasku",
+          "divide": "jakolasku",
+          "modulo": "jakojäännös",
+          "multiply": "kertolasku",
+          "subtract": "vähennyslasku"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "ja {{amount}} lisää"
+      },
+      "keywords": "matematiikka,laskin,operaatiot,numerot,aritmetiikka,yhteenlasku,vähennyslasku,kertolasku,jakolasku,jakojäännös",
+      "name": "Matematiikka"
+    },
+    "members": {
+      "description": "Laske jäseniä, voit myös suodattaa heitä online-tilan, tiettyjen roolien ja muun perusteella.",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "Älä häiritse",
+          "idle": "poissa",
+          "offline": "offline",
+          "online": "online",
+          "onlineIdleDnd": "online + poissa + Älä häiritse"
+        },
+        "accountType": {
+          "any": "jäseniä",
+          "bot": "botteja",
+          "user": "käyttäjiä"
+        },
+        "bannedMembers": "estetyt jäsenet",
+        "connectedToAChannel": "yhdistetty kanavalle",
+        "playingAGame": "peliä pelatessa",
+        "roleFiltering": {
+          "any": "rooleilla",
+          "overlapping": "päällekkäisillä rooleilla"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "jäsenet,suodata,roolit,online,tila,estetty,pelaa,offline,älä häiritse,poissa,käyttäjä,botti,yhdistetty",
+      "name": "Jäsenet"
+    },
+    "memerator": {
+      "description": "Hae seuraajamäärä ja meemimäärä Memerator-tilille.",
+      "display": {
+        "returnKind": {
+          "followers": "seuraajat",
+          "memes": "meemit"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,seuraaja,katselu,kanava",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "Hae palvelimen Nitro-buustaajien määrä.",
+      "keywords": "nitro,buustaajat,palvelin",
+      "name": "Nitro-buustaajat"
+    },
+    "number": {
+      "description": "Käytä numeromuotoilua annettuun numeroon.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} numerona",
+        "raw": "Numero ({{number}})"
+      },
+      "keywords": "numero,muotoilu",
+      "name": "Numero"
+    },
+    "reddit": {
+      "description": "Hae subredditin otsikko sekä jäsenten kokonaismäärä ja paikalla olevien jäsenten määrä.",
+      "display": {
+        "returnKind": {
+          "members": "jäsenet",
+          "membersOnline": "online-jäsenet",
+          "title": "otsikko"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,subreddit,jäsenet,online",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "Tekstin korvaus, hyödyllinen yhdessä muiden sisäkkäisten laskureiden kanssa kattavaan tekstin muokkaukseen.",
+      "display": {
+        "replaceSyntax": "\"{{search}}\" muotoon \"{{replacement}}\"",
+        "syntax": "Korvaa {{replaceSyntax}}"
+      },
+      "keywords": "teksti,korvaus,muokkaus,merkkijono,alimerkkijono",
+      "name": "Korvaa"
+    },
+    "roles": {
+      "description": "Laske kaikki palvelimen roolit.",
+      "keywords": "roolit",
+      "name": "Roolit"
+    },
+    "twitch": {
+      "description": "Hae Twitch-kanavan seuraajamäärä ja kokonaiskatselumäärä.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanavan nimi",
+          "followers": "seuraajat",
+          "viewers": "katsojat"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,seuraaja,katselu,kanava",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "Tuntematon laskuri. Tämä johtuu todennäköisesti virheestä",
+      "name": "Tuntematon"
+    },
+    "youtube": {
+      "description": "Hae YouTube-kanavan tilaajamäärä, videomäärä ja kokonaiskatselukerrat.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanavan nimi",
+          "subscribers": "tilaajat",
+          "videos": "videot",
+          "views": "katselukerrat"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,tilaaja,video,katselukerrat,kanava",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "Sinulla on tallentamattomia muutoksia. Haluatko varmasti poistua tältä sivulta?",
+    "useFormManager": {
+      "state": {
+        "save": "Tallenna",
+        "saved": "Tallennettu",
+        "saving": "Tallennetaan..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - Discord-botti jäsenten ja muun laskemiseen"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "Sulje",
+        "confirmDescription": "Tätä toimintoa ei voi peruuttaa. Tämä poistaa tilisi pysyvästi ja poistaa tietosi palvelimiltamme.",
+        "confirmTitle": "Oletko aivan varma?",
+        "deleteAccountBtn": "Poista tili"
+      },
+      "page": {
+        "avatarAlt": "Käyttäjän {{username}} avatar",
+        "logoutButton": "Kirjaudu ulos"
+      },
+      "userBadges": {
+        "betaTester": "Osallistuit beta-ohjelmaan.",
+        "bigBrain": "Ehdotit idean, joka toteutettiin.",
+        "bugCatcher": "Löysit ja raportoit bugin.",
+        "contributor": "Toteutit ominaisuuden tai korjasit bugin.",
+        "donor": "Lahjoitit tukeaksesi Member Counterin kehitystä ja ylläpitoa.",
+        "foldingAtHome": "Osallistuit WU:lla folding@home-projektiin.",
+        "patPat": "Löysit salaisuuden.",
+        "premium": "Olet premium-käyttäjä.",
+        "translator": "Autoit botin kääntämisessä."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "Poista lahjoitus",
+          "closeButton": "Sulje",
+          "dialogDescription": "Tätä toimintoa ei voi peruuttaa.",
+          "dialogTitle": "Oletko aivan varma?"
+        },
+        "edit": {
+          "title": "Muokkaa lahjoitusta"
+        },
+        "form": {
+          "amount": "Summa",
+          "anonymous": "Anonyymi",
+          "currency": "Valuutta",
+          "currencyDecimals": "Valuutan desimaalit",
+          "date": "Päivämäärä",
+          "note": "Muistiinpano",
+          "saveBtn": "Tallenna",
+          "userId": "Discord-käyttäjätunnus"
+        },
+        "new": {
+          "title": "Uusi lahjoitus"
+        },
+        "registerDonation": "Rekisteröi lahjoitus",
+        "totalDonations": "Lahjoitukset yhteensä: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "Lataa palvelin",
+          "placeholder": "Liitä palvelimen tunnus"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "Luo",
+          "createInputPlaceholder": "Uuden demopalvelimen nimi",
+          "delete": {
+            "button": "Poista demopalvelin",
+            "closeButton": "Sulje",
+            "dialogDescription": "Tätä toimintoa ei voi peruuttaa.",
+            "dialogTitle": "Oletko aivan varma?"
+          },
+          "list": {
+            "display": {
+              "priority": "Prioriteetti: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "Lisää kanava",
+              "channel": {
+                "isRulesChannel": "Näytä sääntökanavana",
+                "name": "Nimi",
+                "remove": "Poista",
+                "showAsSkeleton": "Näytä runkona",
+                "topic": "Aihe",
+                "type": "Tyyppi",
+                "types": {
+                  "announcementChannel": "Ilmoituskanava",
+                  "categoryChannel": "Kategoriakanava",
+                  "textChannel": "Tekstikanava",
+                  "voiceChannel": "Lukittu äänikanava"
+                }
+              },
+              "title": "Kanavat"
+            },
+            "description": "Kuvaus",
+            "features": {
+              "options": {
+                "Community": "Yhteisö",
+                "Discoverable": "Löydettävissä",
+                "Partnered": "Kumppani",
+                "Verified": "Vahvistettu"
+              },
+              "title": "Ominaisuudet"
+            },
+            "icon": "Kuvakkeen URL",
+            "language": "Kieli",
+            "links": {
+              "add": "Lisää linkki",
+              "link": {
+                "label": "Otsikko",
+                "remove": "Poista",
+                "url": "URL"
+              },
+              "title": "Linkit"
+            },
+            "name": "Palvelimen nimi",
+            "premiumTier": {
+              "options": {
+                "None": "Ei mitään",
+                "Tier1": "Taso 1",
+                "Tier2": "Taso 2",
+                "Tier3": "Taso 3"
+              },
+              "title": "Premium-taso"
+            },
+            "priority": "Prioriteetti",
+            "save": "Tallenna",
+            "saved": "Tallennettu",
+            "title": "Muokkaa demopalvelinta"
+          },
+          "title": "Demopalvelimet"
+        },
+        "headings": [
+          "Näytä palvelimesi jäsenmäärä dynaamisesti",
+          "Esittele YouTube-tilaajamääräsi",
+          "Seuraa Minecraft-palvelimesi pelaajamäärää",
+          "Näytä kuinka moni katsoo Twitch-kanavaasi",
+          "Näytä mitä tahansa tietoa Discord-palvelimellasi",
+          "Seuraa kuinka monta pelaajaa FiveM-palvelimellasi on",
+          "Näytä kello säädettynä haluamaasi aikavyöhykkeeseen",
+          "Luo lähtölaskentoja tapahtumille tai erityistilaisuuksille",
+          "Seuraa pelaajastatistiikkoja yli 320 pelipalvelimella",
+          "Hae ja näytä tietoja mistä tahansa API-päätepisteestä",
+          "Suorita ja näytä matemaattisia operaatioita tiedoillasi",
+          "Muotoile numerot ja näytä ne kauniisti",
+          "Korosta palvelimesi Nitro-buustaajia"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Löydä vielä enemmän ominaisuuksia ja laskureita, jotka voivat parantaa kokemustasi. Pysy kuulolla päivityksistä!",
+            "title": "Ja paljon muuta!"
+          },
+          "clock": {
+            "description": "Näytä aika missä tahansa aikavyöhykkeessä mukautettavalla kellolla. Täydellinen eri alueiden väliseen koordinointiin.",
+            "title": "Kello"
+          },
+          "countdown": {
+            "description": "Luo ja hallitse lähtölaskenta-ajastimia räätälöitynä tiettyihin tapahtumiisi tai määräaikoihisi.",
+            "title": "Lähtölaskenta"
+          },
+          "date": {
+            "description": "Näytä nykyinen päivämäärä missä tahansa aikavyöhykkeessä mukautettavalla muotoilulla. Loistava päivämäärien näyttämiseen eri alueilla.",
+            "title": "Päivämäärä"
+          },
+          "discordMembers": {
+            "description": "Laske ja suodata jäseniä online-tilan, roolien ja muiden kriteerien perusteella saadaksesi tarkkoja tietoja yhteisöstäsi.",
+            "title": "Discord-jäsenet"
+          },
+          "game": {
+            "description": "Seuraa pelipalvelimesi aktiivisuutta reaaliaikaisilla pelaajamäärillä yli 320 tuetun pelin osalta.",
+            "title": "Peli"
+          },
+          "http": {
+            "description": "Suorita GET-pyyntöjä ja vastaanota tietoja suoraan mistä tahansa päätepisteestä, tehostaen integraatiotarpeitasi.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Suorita erilaisia matemaattisia operaatioita, mukaan lukien yhteenlasku, vähennyslasku, kertolasku ja muuta useille numeroille.",
+            "title": "Matematiikka"
+          },
+          "nitroBoosters": {
+            "description": "Seuraa palvelimesi Nitro-buustaajien määrää yhteisön tuen ja aktiivisuuden mittaamiseksi.",
+            "title": "Nitro-buustaajat"
+          },
+          "reddit": {
+            "description": "Hae tilastoja mistä tahansa subredditistä, mukaan lukien otsikko, jäsenmäärä ja online-jäsenet.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Muokkaa tekstiä dynaamisesti tehokkaalla korvaustyökalullamme, ihanteellinen yhdessä HTTP-laskurin kanssa.",
+            "title": "Korvaa"
+          },
+          "twitch": {
+            "description": "Seuraa Twitch-kanavan mittareita kuten seuraajamäärää ja katselutilastoja pysyäksesi ajan tasalla suosikkistriimaajiesi tilanteesta.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Hae YouTube-kanavien keskeisiä mittareita, mukaan lukien tilaajamäärä, videomäärä ja kokonaiskatselukerrat.",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "Poista tili",
+          "closeButton": "Sulje",
+          "dialogDescription": "Tätä toimintoa ei voi peruuttaa.",
+          "dialogTitle": "Oletko aivan varma?"
+        },
+        "loadUser": "Lataa käyttäjä",
+        "manage": {
+          "badges": {
+            "betaTester": "Beta-testaaja",
+            "bigBrain": "Nero",
+            "bugCatcher": "Bugien metsästäjä",
+            "contributor": "Osallistuja",
+            "donor": "Lahjoittaja",
+            "foldingAtHome": "folding@home",
+            "patPat": "Pat Pat",
+            "premium": "Premium",
+            "title": "Merkit",
+            "translator": "Kääntäjä"
+          },
+          "pasteUserId": "Liitä käyttäjätunnus",
+          "permissions": {
+            "manageDonations": "Hallitse lahjoituksia",
+            "manageGuilds": "Hallitse palvelimia",
+            "manageHomePage": "Hallitse aloitussivua",
+            "manageUsers": "Hallitse käyttäjiä",
+            "seeGuilds": "Näytä palvelimet",
+            "seeUsers": "Näytä käyttäjät",
+            "title": "Oikeudet"
+          },
+          "save": "Tallenna",
+          "saved": "Tallennettu",
+          "transferAccount": "Siirrä tili"
+        },
+        "recentUsers": "Viimeisimmät käyttäjät",
+        "userNotRegistered": "Tämä käyttäjä ei ole rekisteröitynyt."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "Et ole millään palvelimella. ",
+        "subheading": "Entä jos aloittaisit <CreateServerLink>luomalla uuden</CreateServerLink> tai <JoinSupportServerLink>liittymällä meihin</JoinSupportServerLink>?"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "Laskurit ovat käytössä tällä kanavalla",
+            "issue": "Tällä kanavalla on ongelma, joka vaatii huomiotasi"
+          },
+          "unsupportedChannelType": "Tätä kanavatyyppiä ei tueta vielä."
+        },
+        "ServerNavMenu": {
+          "channelList": "Kanavaluettelo",
+          "loading": "Ladataan palvelimen tietoja...",
+          "serverSettings": "Palvelimen asetukset",
+          "unknownChannels": "Käy tallennetuilla kanavilla, jos Discord-kanavia ei pystytä lataamaan"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "Laskureita ei löytynyt.",
+            "searchPlaceholder": "Hae laskuria..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "Oletuksena palvelimen asetukset",
+                "no": "Ei",
+                "overrideDefaultDigits": "Ohita oletusnumerot",
+                "overrideDefaultLocale": "Ohita oletuskielialue",
+                "searchLocale": "Hae kielialuetta...",
+                "select": "Valitse",
+                "useCompactNotation": "Käytä tiivistä merkintätapaa",
+                "yes": "Kyllä"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "Näytä",
+                  "selectPlaceholder": "Valitse näytettävä tieto",
+                  "servers": "Palvelimet",
+                  "users": "Käyttäjät"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "Lisää kategoria...",
+                  "configWarning": "Muista palauttaa kelvollinen kategoriatunnus",
+                  "filterByCategory": "Suodata kategorian mukaan"
+                },
+                "ClockOptions": {
+                  "configWarning": "Muista palauttaa kelvollinen aikavyöhyketunniste",
+                  "counterPreview": "Emme voi näyttää sinulle reaaliaikaista esikatselua, kun muoto on laskurin tulos. Sinun täytyy esikatsella koko mallinetta nähdäksesi miltä se näyttää.",
+                  "defaultFormat": "%f",
+                  "format": "Muoto",
+                  "formatConfigWarning": "Muista palauttaa kelvollinen muotoilumerkkijono",
+                  "formatInstructions": "Käytettävissä olevat paikkamerkit:\n• <code>%H</code> - Tunti etunollalla, 24h (00-23)\n• <code>%h</code> - Tunti ilman etunollaa, 24h (0-23)\n• <code>%I</code> - Tunti etunollalla, 12h (01-12)\n• <code>%i</code> - Tunti ilman etunollaa, 12h (1-12)\n• <code>%M</code> - Minuutti etunollalla (00-59)\n• <code>%m</code> - Minuutti ilman etunollaa (0-59)\n• <code>%S</code> - Sekunti etunollalla (00-59)\n• <code>%s</code> - Sekunti ilman etunollaa (0-59)\n• <code>%p</code> - am/pm (pienaakkosilla)\n• <code>%P</code> - AM/PM (suuraakkosilla)\n• <code>%f</code> - Oletuskielikohtainen muotoilu",
+                  "livePreview": "Reaaliaikainen esikatselu",
+                  "noPreview": "Emme voi näyttää sinulle reaaliaikaista esikatselua, kun muoto on tyhjä.",
+                  "searchTimezonePlaceholder": "Hae aikavyöhykettä...",
+                  "timezone": "Aikavyöhyke"
+                },
+                "ConcatOptions": {
+                  "addString": "Lisää teksti...",
+                  "stringList": "Tekstilista"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "Emme voi näyttää sinulle reaaliaikaista esikatselua, kun kohdepäivämäärä tai muoto on laskurin tulos. Sinun täytyy esikatsella koko mallinetta nähdäksesi miltä se näyttää.",
+                  "dateConfigWarning": "Muista palauttaa kelvollinen UNIX-aikaleima",
+                  "datePlaceholder": "Tai ota päivämäärä laskurista...",
+                  "defaultFormat": "%d päivää, %h tuntia ja %m minuuttia jäljellä",
+                  "format": "Muoto",
+                  "formatConfigWarning": "Muista palauttaa kelvollinen muotoilumerkkijono",
+                  "formatInstructions": "Käytettävissä olevat paikkamerkit:\n• <code>%d</code> - Päiviä jäljellä\n• <code>%h</code> - Tunteja jäljellä (0-23)\n• <code>%m</code> - Minuutteja jäljellä (0-59)\n• <code>%s</code> - Sekunteja jäljellä (0-59)\n• <code>%D</code> - Päiviä jäljellä yhteensä\n• <code>%H</code> - Tunteja jäljellä yhteensä\n• <code>%M</code> - Minuutteja jäljellä yhteensä\n• <code>%S</code> - Sekunteja jäljellä yhteensä",
+                  "livePreview": "Reaaliaikainen esikatselu",
+                  "noPreview": "Emme voi näyttää sinulle esikatselua, kun kohdepäivämäärä tai muoto on tyhjä.",
+                  "targetDate": "Kohdepäivämäärä"
+                },
+                "DateOptions": {
+                  "configWarning": "Muista palauttaa kelvollinen aikavyöhyketunniste",
+                  "counterPreview": "Emme voi näyttää sinulle reaaliaikaista esikatselua, kun muoto on laskurin tulos. Sinun täytyy esikatsella koko mallinetta nähdäksesi miltä se näyttää.",
+                  "defaultFormat": "%f",
+                  "format": "Muoto",
+                  "formatConfigWarning": "Muista palauttaa kelvollinen muotoilumerkkijono",
+                  "formatInstructions": "Käytettävissä olevat paikkamerkit:\n• <code>%Y</code> - Täysi vuosi (2025)\n• <code>%y</code> - 2-numeroinen vuosi (25)\n• <code>%Ms</code> - Kuukauden koko nimi (marraskuu)\n• <code>%ms</code> - Kuukauden lyhyt nimi (marras)\n• <code>%M</code> - Kuukauden numero etunollalla (01-12)\n• <code>%m</code> - Kuukauden numero (1-12)\n• <code>%Ws</code> - Viikonpäivän koko nimi (maanantai)\n• <code>%ws</code> - Viikonpäivän lyhyt nimi (ma)\n• <code>%w</code> - Viikonpäivän numero (0=sunnuntai, 6=lauantai)\n• <code>%D</code> - Päivä etunollalla (05)\n• <code>%d</code> - Päivä ilman etunollaa (5)\n• <code>%f</code> - Oletuskielikohtainen muotoilu",
+                  "livePreview": "Reaaliaikainen esikatselu",
+                  "noPreview": "Emme voi näyttää sinulle reaaliaikaista esikatselua, kun muoto on tyhjä.",
+                  "searchTimezonePlaceholder": "Hae aikavyöhykettä...",
+                  "timezone": "Aikavyöhyke"
+                },
+                "GameOptions": {
+                  "address": "Osoite",
+                  "addressWarning": "Muista palauttaa kelvollinen osoite",
+                  "game": "Peli",
+                  "gameWarning": "Muista palauttaa kelvollinen node-gamedig-pelityyppi",
+                  "port": "Portti (tai kyselyportti)",
+                  "portWarning": "Muista palauttaa kelvollinen porttinumero",
+                  "searchPlaceholder": "Hae..."
+                },
+                "HttpOptions": {
+                  "dataPath": "Datapolku",
+                  "dataPathDescription": "Polku halutun arvon hakemiseen, kun vastauksen sisältötyyppi on JSON. Syntaksi on samanlainen kuin JS:ssä ominaisuuksien ja taulukkoelementtien käyttämiseen.",
+                  "dataPathWarning": "Muista palauttaa datapolku",
+                  "emptyUrl": "Ei voida hakea, URL on tyhjä",
+                  "fetch": "Hae",
+                  "fetching": "Haetaan...",
+                  "lifetime": "Elinaika (sekunteina)",
+                  "lifetimeDescription": "Määrittää kuinka kauan määritetyn URL:n vastaus säilytetään välimuistissa.",
+                  "lifetimeWarning": "Muista palauttaa kelvollinen numero",
+                  "noPreview": "Emme voi näyttää sinulle esikatselua, kun URL tai datapolku on laskurin tulos. Sinun täytyy esikatsella koko mallinetta nähdäksesi miltä se näyttää.",
+                  "preview": "Esikatselu",
+                  "testResponse": "Testivastaus",
+                  "url": "URL (GET)",
+                  "urlWarning": "Muista palauttaa kelvollinen URL"
+                },
+                "MathOptions": {
+                  "addNumber": "Lisää numero...",
+                  "addition": "Yhteenlasku",
+                  "division": "Jakolasku",
+                  "modulo": "Jakojäännös (jakolaskun jäännös)",
+                  "multiplication": "Kertolasku",
+                  "numberList": "Numerolista",
+                  "numberWarning": "Muista palauttaa kelvollinen numero",
+                  "operation": "Operaatiotyyppi",
+                  "selectOperation": "Valitse operaatiotyyppi",
+                  "subtraction": "Vähennyslasku"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Laske vain estetyt jäsenet"
+                  },
+                  "FilterByAccountType": {
+                    "any": "Mikä tahansa",
+                    "bot": "Botti",
+                    "label": "Suodata tilityypin mukaan",
+                    "placeholder": "Valitse tilityyppi",
+                    "user": "Käyttäjä"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "Lisää äänikanava...",
+                    "dataSourceConfigWarning": "Muista palauttaa kelvollinen äänikanavan tunnus",
+                    "label": "Suodata äänikanavaan yhdistettyjen mukaan"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "Lisää rooli...",
+                    "dataSourceConfigWarning": "Muista palauttaa kelvollinen roolitunnus",
+                    "label": "Suodata roolin mukaan"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "Mikä tahansa osuma",
+                    "label": "Suodatustapa",
+                    "overlap": "Päällekkäisyys",
+                    "placeholder": "Valitse suodatustapa"
+                  },
+                  "FilterByStatus": {
+                    "any": "Mikä tahansa",
+                    "dnd": "Älä häiritse",
+                    "idle": "Poissa",
+                    "label": "Suodata tilan mukaan",
+                    "offline": "Offline",
+                    "online": "Online",
+                    "onlineIdleDnd": "Online + Poissa + Älä häiritse",
+                    "placeholder": "Valitse tila"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Suodata peliä pelaavien mukaan",
+                    "placeholder": "Lisää peli..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "Näytä",
+                  "followers": "Seuraajat",
+                  "memes": "Meemit",
+                  "selectDisplay": "Valitse näytettävä tieto",
+                  "username": "Käyttäjänimi",
+                  "usernameWarning": "Muista palauttaa kelvollinen käyttäjänimi"
+                },
+                "NumberOptions": {
+                  "number": "Numero",
+                  "numberWarning": "Muista palauttaa kelvollinen numero",
+                  "placeholder": "Syötä numero tai hae laskuria"
+                },
+                "RedditOptions": {
+                  "display": "Näytä",
+                  "members": "Jäsenet",
+                  "membersOnline": "Online-jäsenet",
+                  "selectPlaceholder": "Valitse näytettävä tieto",
+                  "subreddit": "Subredditin nimi",
+                  "subredditPlaceholder": "Syötä subreddit tai hae laskuria",
+                  "subredditWarning": "Muista palauttaa kelvollinen subreddit",
+                  "title": "Subredditin otsikko"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "Lisää korvaus",
+                  "inputText": "Syöteteksti",
+                  "removeReplacement": "Poista korvaus",
+                  "replaceWith": "Korvaa tekstillä",
+                  "replacementPlaceholder": "Syötä korvaava teksti",
+                  "searchFor": "Etsi",
+                  "searchPlaceholder": "Syötä hakutermi",
+                  "textPlaceholder": "Syötä korvattava teksti"
+                },
+                "TwitchOptions": {
+                  "channelName": "Kanavan nimi",
+                  "display": "Näytä",
+                  "followers": "Seuraajat",
+                  "selectPlaceholder": "Valitse näytettävä tieto",
+                  "username": "Käyttäjänimi",
+                  "usernamePlaceholder": "Syötä käyttäjänimi",
+                  "usernameWarning": "Muista palauttaa kelvollinen käyttäjänimi",
+                  "viewers": "Katsojat"
+                },
+                "YouTubeOptions": {
+                  "channelName": "Kanavan nimi",
+                  "channelUrl": "Kanavan URL",
+                  "channelUrlPlaceholder": "Syötä kanavan URL",
+                  "channelUrlWarning": "Muista palauttaa kelvollinen kanavan URL",
+                  "display": "Näytä",
+                  "selectPlaceholder": "Valitse näytettävä tieto",
+                  "subscribers": "Tilaajat",
+                  "videos": "Videot",
+                  "views": "Katselukerrat"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "Emojivalitsin",
+            "searchEmoji": "Hae emojia"
+          },
+          "markButtons": {
+            "bold": "lihavointi",
+            "italic": "kursiivi",
+            "spoiler": "spoileri",
+            "strike": "yliviivaus",
+            "underline": "alleviivaus"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "Hyväksyttävän käytön periaatteet",
+          "noReasonGiven": "Syytä ei annettu",
+          "supportTeam": "Tukitiimi",
+          "termsOfService": "Käyttöehdot",
+          "text": "Tämä palvelin on estetty <LinkTerms>käyttöehtojen</LinkTerms> tai <LinkPolicy>hyväksyttävän käytön periaatteiden</LinkPolicy> rikkomisen vuoksi.<br />Annettu syy: {{reason}}<br />Jos uskot tämän olevan virhe, ota yhteyttä <SupportLink>tukitiimiimme</SupportLink>."
+        },
+        "channels": {
+          "save": "Tallenna",
+          "saved": "Tallennettu",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "Viimeksi päivitetty: {{lastTemplateUpdateDate}}",
+              "template": "Malline"
+            },
+            "EnableTemplate": {
+              "description": "Kun käytössä, Member Counter päivittää automaattisesti tämän kanavan {{templateTarget}} näyttääkseen käsitellyn mallineen.",
+              "enableTemplate": "Ota malline käyttöön",
+              "nameTarget": "nimen",
+              "topicTarget": "aiheen"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Tarkista uudelleen",
+              "description": "Varmista, että botilla on seuraavat oikeudet tällä kanavalla:",
+              "permissions": {
+                "connect": "Yhdistä",
+                "manageChannel": "Hallitse kanavaa",
+                "viewChannel": "Näytä kanava"
+              },
+              "title": "Botilla ei ole oikeuksia muokata tätä kanavaa."
+            },
+            "TemplateError": {
+              "errorDescription": "Viimeisimmässä mallineen käsittelyssä tapahtui virhe. Tiedot näkyvät alla.",
+              "errorTitle": "Mallineessa oli virhe viimeisimmässä käsittelyssä"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "Sinulla ei ole oikeuksia hallita tätä palvelinta.\nPyydä palvelimen {{guildName}} ylläpitäjää antamaan sinulle Ylläpitäjä- tai Hallitse palvelinta -oikeudet.",
+          "title": "Pääsy evätty"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "Sulje",
+          "message": "Näyttää siltä, että Member Counter -bottia ei ole tällä palvelimella. Haluatko <LinkURL>lisätä sen</LinkURL>?"
+        },
+        "inviteBotPage": {
+          "addToServer": "Lisää palvelimelle {{serverName}}",
+          "copyLink": "Kopioi kutsulinkki",
+          "linkCopied": "Linkki on kopioitu leikepöydällesi.",
+          "noPermission": "Sinulla ei ole riittäviä oikeuksia botin lisäämiseen. Pyydä ylläpitäjää tai henkilöä, jolla on Hallitse palvelinta -oikeus, lisäämään tämä botti.",
+          "subtitle": "Lisää Member Counter palvelimelle {{serverName}} ja nauti reaaliaikaisista laskureista.",
+          "title": "Otetaan botti käyttöön!",
+          "useOrShareLink": "Käytä tai jaa tätä linkkiä botin lisäämiseksi."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "Estä palvelin",
+            "blockDialogDescription": "Annettu syy näytetään palvelimen ylläpitäjille.",
+            "blockDialogTitle": "Haluatko varmasti estää tämän palvelimen?",
+            "closeButton": "Sulje",
+            "reasonLabel": "Syy",
+            "reasonPlaceholder": "Anna syy",
+            "unblockButton": "Poista palvelimen esto",
+            "unblockDialogDescription": "Tämä palvelin estettiin seuraavasta syystä: {{reason}}",
+            "unblockDialogTitle": "Haluatko varmasti poistaa tämän palvelimen eston?"
+          },
+          "reset": {
+            "closeButton": "Sulje",
+            "dialogDescription": "Tätä toimintoa ei voi peruuttaa. Kaikki asetukset palautetaan oletusarvoihin.",
+            "dialogTitle": "Oletko aivan varma?",
+            "resetButton": "Palauta asetukset"
+          },
+          "save": "Tallenna",
+          "saved": "Tallennettu",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Mukautetut numerot",
+              "customDigitsDescription": "Numeron palauttavissa laskureissa Member Counter korvaa jokaisen numeron antamillasi merkeillä. Tämä on hyödyllistä, jos haluat näyttää mukautettuja emojeja tai jotain muuta, kuten \"unicode-tyylisiä fontteja.\"",
+              "customizationRecommendation": "Emme suosittele minkään numeron mukauttamista, ellet ole varma, ettei kenelläkään ruudunlukijaa käyttävällä ole pääsyä mihinkään laskuriin.",
+              "screenReaderWarning": "Huomaa, että ruudunlukijaa (tekstistä puheeksi) käyttävät eivät välttämättä ymmärrä mukautettuja numeroita ja <demoLink>saattavat kuulla jotain käsittämätöntä</demoLink>. Ruudunlukijoita käyttävät usein näkövammaiset henkilöt."
+            },
+            "Locale": {
+              "description": "Tämän muuttaminen vaikuttaa joidenkin laskureiden näyttötapaan.",
+              "locale": "Kielialue",
+              "numberExample": "439212 näytetään muodossa {{number}}",
+              "searchPlaceholder": "Hae kielialuetta...",
+              "timeExample": "15:30 (tai 3:30 PM) näytetään muodossa {{time}}"
+            },
+            "UseCompactNotation": {
+              "description": "Numeron palauttavat laskurit näytetään tiiviimmässä muodossa.",
+              "example1": "12300 näytetään muodossa {{number}}",
+              "example2": "439212 näytetään muodossa {{number}}",
+              "example3": "1500000 näytetään muodossa {{number}}",
+              "label": "Käytä tiivistä merkintätapaa numeroille"
+            }
+          },
+          "title": "Palvelimen asetukset"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "Hyödynnä laskureitasi parhaalla mahdollisella tavalla tarpeisiisi räätälöitynä.",
+            "label": "Kuin ammattilainen",
+            "title": "Edistyneet laskurit"
+          },
+          "createFromScratch": {
+            "description": "Opi luomaan ensimmäinen mukautettu laskurisi muutamassa minuutissa.",
+            "label": "Ole ainutlaatuinen!",
+            "title": "Luo alusta alkaen"
+          },
+          "queryHistoricalStatistics": {
+            "description": "Katso miten laskurisi ja muut yleiset tilastot ovat kehittyneet ajan myötä.",
+            "label": "Tulossa pian™",
+            "title": "Hae historiallisia tilastoja"
+          },
+          "quickSetup": {
+            "description": "Luo nopeasti yleisimmät laskurit muutamalla napsautuksella. Ei mielikuvitusta tai aivoja tarvita!",
+            "label": "Vaivatonta!",
+            "title": "Pika-asennus"
+          },
+          "subTitle": "Tässä joitakin ehdotuksia sinulle:",
+          "title": "Tervetuloa takaisin!"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "Odottamaton virhe tapahtui.",
+        "NotAuthenticated": "Et ole kirjautunut sisään.",
+        "NotAuthorized": "Sinulla ei ole oikeuksia käyttää tätä sivua.",
+        "NotFound": "Etsimääsi sivua ei löytynyt."
+      },
+      "nav": {
+        "backBtn": "Takaisin",
+        "homeBtn": "Etusivulle",
+        "supportBtn": "Hae tukea",
+        "tryAgainBtn": "Yritä uudelleen"
+      }
+    },
+    "home": {
+      "addToDiscord": "Lisää Discordiin",
+      "dashboard": "Hallintapaneeli",
+      "getSupport": "Hae tukea",
+      "headings": [
+        "Näytä palvelimesi jäsenmäärä dynaamisesti",
+        "Esittele YouTube-tilaajamääräsi",
+        "Seuraa Minecraft-palvelimesi pelaajamäärää",
+        "Näytä kuinka moni katsoo Twitch-kanavaasi",
+        "Näytä mitä tahansa tietoa Discord-palvelimellasi",
+        "Seuraa kuinka monta pelaajaa FiveM-palvelimellasi on",
+        "Näytä kello säädettynä haluamaasi aikavyöhykkeeseen",
+        "Luo lähtölaskentoja tapahtumille tai erityistilaisuuksille",
+        "Seuraa pelaajastatistiikkoja yli 320 pelipalvelimella",
+        "Hae ja näytä tietoja mistä tahansa API-päätepisteestä",
+        "Suorita ja näytä matemaattisia operaatioita tiedoillasi",
+        "Muotoile numerot ja näytä ne kauniisti",
+        "Korosta palvelimesi Nitro-buustaajia"
+      ],
+      "seeHowPeopleUseIt": "Katso miten ihmiset käyttävät sitä",
+      "seeMore": "Näytä lisää",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Löydä vielä enemmän ominaisuuksia ja laskureita, jotka voivat parantaa kokemustasi. Pysy kuulolla päivityksistä!",
+          "title": "Ja paljon muuta!"
+        },
+        "clock": {
+          "description": "Näytä aika missä tahansa aikavyöhykkeessä mukautettavalla kellolla. Täydellinen eri alueiden väliseen koordinointiin.",
+          "title": "Kello"
+        },
+        "countdown": {
+          "description": "Luo ja hallitse lähtölaskenta-ajastimia räätälöitynä tiettyihin tapahtumiisi tai määräaikoihisi.",
+          "title": "Lähtölaskenta"
+        },
+        "date": {
+          "description": "Näytä nykyinen päivämäärä missä tahansa aikavyöhykkeessä mukautettavalla muotoilulla. Loistava päivämäärien näyttämiseen eri alueilla.",
+          "title": "Päivämäärä"
+        },
+        "discordMembers": {
+          "description": "Laske ja suodata jäseniä online-tilan, roolien ja muiden kriteerien perusteella saadaksesi tarkkoja tietoja yhteisöstäsi.",
+          "title": "Discord-jäsenet"
+        },
+        "game": {
+          "description": "Seuraa pelipalvelimesi aktiivisuutta reaaliaikaisilla pelaajamäärillä yli 320 tuetun pelin osalta.",
+          "title": "Peli"
+        },
+        "http": {
+          "description": "Suorita GET-pyyntöjä ja vastaanota tietoja suoraan mistä tahansa päätepisteestä, tehostaen integraatiotarpeitasi.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Suorita erilaisia matemaattisia operaatioita, mukaan lukien yhteenlasku, vähennyslasku, kertolasku ja muuta useille numeroille.",
+          "title": "Matematiikka"
+        },
+        "nitroBoosters": {
+          "description": "Seuraa palvelimesi Nitro-buustaajien määrää yhteisön tuen ja aktiivisuuden mittaamiseksi.",
+          "title": "Nitro-buustaajat"
+        },
+        "reddit": {
+          "description": "Hae tilastoja mistä tahansa subredditistä, mukaan lukien otsikko, jäsenmäärä ja online-jäsenet.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Muokkaa tekstiä dynaamisesti tehokkaalla korvaustyökalullamme, ihanteellinen yhdessä HTTP-laskurin kanssa.",
+          "title": "Korvaa"
+        },
+        "twitch": {
+          "description": "Seuraa Twitch-kanavan mittareita kuten seuraajamäärää ja katselutilastoja pysyäksesi ajan tasalla suosikkistriimaajiesi tilanteesta.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Hae YouTube-kanavien keskeisiä mittareita, mukaan lukien tilaajamäärä, videomäärä ja kokonaiskatselukerrat.",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "Tuetut laskurit"
+    },
+    "status": {
+      "affectedServers": "Vaikutuksen alaiset Discord-palvelimet:",
+      "assignedDiscordServers": "Tähän lapsiprosessiin liitetyt:",
+      "child": "Lapsiprosessi #{{index}}",
+      "childDiscordServers": "{{count}} Discord-palvelinta {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} ei saatavilla)",
+      "childDiscordUsers": "{{count}} käyttäjää",
+      "discordClientStatus": {
+        "Connecting": "Yhdistetään",
+        "Disconnected": "Yhteys katkaistu",
+        "Identifying": "Tunnistetaan",
+        "Idle": "Odottaa",
+        "Nearly": "Odottaa",
+        "Ready": "Valmis",
+        "Reconnecting": "Yhdistetään uudelleen",
+        "Resuming": "Jatketaan",
+        "WaitingForGuilds": "Odotetaan palvelimia"
+      },
+      "memoryUsage": "{{usage}} ({{peak}} huippu)",
+      "memoryUsageTooltip": "Muistin käyttö",
+      "partialOutage": "Osittainen palvelukatkos",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} ydintä\nKuormitus {{load}}",
+        "cpuLabel": "Suoritin",
+        "hostname": "Nimi",
+        "memoryInfo": "{{memory}}\n{{usage}}% käytössä",
+        "memoryLabel": "Muisti",
+        "title": "Palvelimen tiedot"
+      },
+      "statusUnavailable": "Tila ei saatavilla"
+    }
+  }
+}

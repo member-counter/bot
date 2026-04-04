@@ -1,1 +1,213 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Jokin meni pieleen, yritä myöhemmin uudelleen.\n\nVirhetunnus: {{ERROR_ID}}",
+        "title": "VIRHE!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Siirry hallintapaneeliin",
+        "definition": {
+          "slash": {
+            "description": "Hae linkki botin asetusten määrittämiseksi verkkosivustolla.",
+            "name": "asetukset"
+          }
+        },
+        "reply": "Napsauta alla olevaa painiketta määrittääksesi botin asetukset hallintapaneelissa.\nVoit myös määrittää joitakin peruslaskureita komennolla {{SETUP_COMMAND}} poistumatta Discordista."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Luettelo hyödyllisistä linkeistä ja muista tiedoista.",
+            "name": "tiedot"
+          }
+        },
+        "embedReply": {
+          "description": "[Lisää minut palvelimellesi]({{BOT_INVITE_URL}})\n[Verkkosivusto]({{OFFICIAL_WEBSITE_URL}})\n[Tukipalvelin]({{BOT_SUPPORT_URL}})\n[GitHub-repositorio]({{BOT_REPO_URL}})\n[Botin versio: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Lisää palvelimelle",
+        "addToServerAgain": "Lisää tälle palvelimelle uudelleen",
+        "definition": {
+          "slash": {
+            "description": "Antaa kutsulinkin botin lisäämiseksi.",
+            "name": "kutsu"
+          }
+        },
+        "description": "Kutsulinkki on valmis:\n{{INVITE_URL}}",
+        "joinSupportServer": "Liity tukipalvelimelle"
+      },
+      "profile": {
+        "badges": "Merkit",
+        "definition": {
+          "context": {
+            "name": "Profiili"
+          },
+          "slash": {
+            "description": "Näyttää sinun ja tämän botin väliset tiedot.",
+            "name": "profiili",
+            "options": {
+              "user": {
+                "description": "Käyttäjä, jonka profiilin haluat nähdä.",
+                "name": "käyttäjä"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Poista tiedot",
+        "deleteProfilePrompt": {
+          "cancelButton": "Peruuta",
+          "confirmButton": "Kyllä",
+          "description": "Tätä toimintoa ei voi peruuttaa.",
+          "removeDataSuccess": "Tiedot on poistettu onnistuneesti.",
+          "title": "Haluatko varmasti poistaa tiedot?"
+        },
+        "moreOptionsButton": "Lisää vaihtoehtoja",
+        "userNotFound": "Käyttäjää ei löytynyt"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Määritä joitakin peruslaskureita.",
+            "name": "asennus",
+            "subcommands": {
+              "server": {
+                "description": "Määritä palvelimeen liittyviä laskureita.",
+                "name": "palvelin"
+              },
+              "twitch": {
+                "description": "Määritä Twitchiin liittyviä laskureita.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "Kanavan käyttäjänimi.",
+                    "name": "käyttäjänimi"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "Määritä YouTubeen liittyviä laskureita.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "Kanavan URL-osoite.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Luonti valmis.",
+          "configureSuggestion": "Kokeile komentoa {{CONFIGURE_COMMAND}} muokatumpien asetusten tekemiseksi.",
+          "createdCategory": "{{ICON}} Kategoria luotu.",
+          "createdChannel": "{{ICON}} {{NAME}} luotu.",
+          "creating": "Luodaan laskureita...",
+          "creatingCategory": "{{ICON}} Luodaan kategoriaa.",
+          "creatingChannel": "{{ICON}} Luodaan {{NAME}}-laskuria.",
+          "failedCategory": "{{ICON}} Kategorian luonti epäonnistui.",
+          "failedChannel": "{{ICON}} {{NAME}} epäonnistui."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Palvelintilastot \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Online members",
+                "template": "Paikalla: {{COUNTER}}"
+              },
+              {
+                "name": "Members",
+                "template": "Jäsenet: {{COUNTER}}"
+              },
+              {
+                "name": "Nitro boosters",
+                "template": "Buustaajat: {{COUNTER}}"
+              },
+              {
+                "name": "Roles",
+                "template": "Roolit: {{COUNTER}}"
+              },
+              {
+                "name": "Channels",
+                "template": "Kanavat: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch-tilastot \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Twitch followers",
+                "template": "{{COUNTER}} seuraajaa"
+              },
+              {
+                "name": "Twitch viewers",
+                "template": "Katsojat: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube-tilastot \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "YouTube subscribers",
+                "template": "{{COUNTER}} tilaajaa"
+              },
+              {
+                "name": "YouTube videos",
+                "template": "{{COUNTER}} videota"
+              },
+              {
+                "name": "YouTube views",
+                "template": "{{COUNTER}} katselukertaa"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "VIRHE!"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "Pyyntö oli virheellinen.",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Botilla ei ole riittäviä etuoikeutettuja intent-oikeuksia tämän laskurin käyttämiseen.",
+    "BOT_IS_NOT_PREMIUM": "Botti ei ole premium-versio, ja siltä puuttuu tiettyjä ominaisuuksia, joita tämä laskuri tarvitsee.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Laskuri on tuntemattomassa muodossa.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "Laskuri on virheellinen.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Kanavan nimen tulos on alle 2 merkkiä pitkä.",
+    "EVALUATION_TIMEOUT": "Laskennan suoritus kesti liian kauan ja aikakatkaistiin.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "Lopullisen merkkijonon luominen laskennasta epäonnistui.",
+    "FORBIDDEN": "Pyyntö oli kielletty.",
+    "GAME_MISSING_ADDRESS": "Pelilaskuri vaatii palvelinosoitteen.",
+    "GAME_MISSING_GAME_ID": "Pelilaskurille on annettava pelin tunniste.",
+    "GAME_MISSING_PORT": "Pelilaskuri vaatii palvelinportin.",
+    "HTTP_DATA_PATH_MANDATORY": "Datapolku on määritettävä HTTP-pyynnöille, joiden sisältötyyppi on application/json.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTP-vastauksen sisältötyyppi on virheellinen (ei text/plain eikä application/json).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP-vastauksen tilakoodi on virheellinen (ei 200).",
+    "HTTP_MISSING_URL": "HTTP-laskuri vaatii URL-osoitteen, joka puuttuu.",
+    "INTERNAL_SERVER_ERROR": "Sisäinen palvelinvirhe tapahtui.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "Jäsenmäärät eivät ole tällä hetkellä saatavilla.",
+    "MEMERATOR_MISSING_USERNAME": "Memerator-laskuri vaatii käyttäjänimen, joka puuttuu.",
+    "NOT_FOUND": "Pyydettyä resurssia ei löytynyt.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Botilla ei ole riittäviä oikeuksia kanavan muokkaamiseen.",
+    "REDDIT_MISSING_SUBREDDIT": "Reddit-laskurille on annettava subreddit.",
+    "TWITCH_CHANNEL_NOT_FOUND": "Määritettyä Twitch-kanavaa ei löytynyt.",
+    "TWITCH_MISSING_USERNAME": "Twitch-laskuri vaatii käyttäjänimen.",
+    "UNAUTHORIZED": "Pyyntö oli luvaton.",
+    "UNKNOWN": "Tuntematon virhe tapahtui.",
+    "UNKNOWN_DATA_SOURCE": "Annettu laskuri on tuntematon tai sitä ei tunnistettu.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "Laskennan palauttaman arvon tyyppi on tuntematon.",
+    "USER_NOT_FOUND": "Käyttäjää ei löytynyt.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "Annettu YouTube-kanavan URL-osoite on virheellinen.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "YouTube-laskuri vaatii kanavan URL-osoitteen."
+  }
+}

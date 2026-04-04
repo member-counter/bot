@@ -1,1 +1,1052 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "公告频道",
+      "category": "分类",
+      "forumChannel": "论坛频道",
+      "mediaChannel": "媒体频道",
+      "stageChannel": "舞台频道",
+      "textChannel": "文字频道",
+      "voiceChannel": "语音频道"
+    },
+    "knownError": "错误",
+    "knownErrors": {
+      "BAD_REQUEST": "请求无效。",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "机器人没有足够的特权意图来使用此计数器。",
+      "BOT_IS_NOT_PREMIUM": "该机器人不是高级版本，缺少此计数器所需的某些功能。",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "计数器格式无法识别。",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "计数器无效。",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "频道名称的结果少于 2 个字符。",
+      "EVALUATION_TIMEOUT": "计算时间过长，已超时。",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "无法从计算中生成最终字符串。",
+      "FORBIDDEN": "请求被禁止。",
+      "GAME_MISSING_ADDRESS": "游戏计数器需要服务器地址。",
+      "GAME_MISSING_GAME_ID": "必须为游戏计数器提供游戏 ID。",
+      "GAME_MISSING_PORT": "游戏计数器需要服务器端口。",
+      "HTTP_DATA_PATH_MANDATORY": "当内容类型为 application/json 时，必须为 HTTP 请求指定数据路径。",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTP 响应的内容类型无效（不是 text/plain 或 application/json）。",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP 响应状态码无效（不是 200）。",
+      "HTTP_MISSING_URL": "HTTP 计数器需要一个 URL，但缺少该 URL。",
+      "INTERNAL_SERVER_ERROR": "发生了内部服务器错误。",
+      "MEMBER_COUNT_NOT_AVAILABLE": "成员计数当前不可用。",
+      "MEMERATOR_MISSING_USERNAME": "Memerator 计数器需要一个用户名，但缺少该用户名。",
+      "NOT_FOUND": "未找到请求的资源。",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "机器人没有足够的权限来编辑频道。",
+      "REDDIT_MISSING_SUBREDDIT": "必须为 Reddit 计数器提供子版块名称。",
+      "TWITCH_CHANNEL_NOT_FOUND": "未找到指定的 Twitch 频道。",
+      "TWITCH_MISSING_USERNAME": "Twitch 计数器需要设置用户名。",
+      "UNAUTHORIZED": "请求未经授权。",
+      "UNKNOWN": "发生了未知错误。",
+      "UNKNOWN_DATA_SOURCE": "提供的计数器未知或无法识别。",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "计算返回的值类型未知。",
+      "USER_NOT_FOUND": "未找到用户。",
+      "YOUTUBE_INVALID_CHANNEL_URL": "提供的 YouTube 频道 URL 无效。",
+      "YOUTUBE_MISSING_CHANNEL_URL": "YouTube 计数器需要设置频道 URL。"
+    },
+    "unknown": "未知",
+    "unknownChannel": "未知频道",
+    "unknownChannelType": "未知频道类型",
+    "unknownDate": "未知日期",
+    "unknownError": "未知错误",
+    "unknownPublicBot": "未知公共机器人",
+    "unknownRole": "未知身份组",
+    "unknownServer": "未知服务器",
+    "unknownUser": "未知用户 {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "移除频道",
+          "selected": "已选择"
+        },
+        "DataSourceItem": {
+          "edit": "编辑计数器",
+          "notSelected": "未选择",
+          "remove": "移除计数器",
+          "selected": "已选择"
+        },
+        "GamedigItem": {
+          "remove": "移除游戏",
+          "selected": "已选择"
+        },
+        "LocaleItem": {
+          "remove": "移除语言",
+          "selected": "已选择"
+        },
+        "RoleItem": {
+          "everyone": "所有人",
+          "remove": "移除身份组",
+          "selected": "已选择"
+        },
+        "TextItem": {
+          "remove": "移除 {{item}}",
+          "selected": "已选择"
+        },
+        "TimezoneItem": {
+          "remove": "移除时区",
+          "selected": "已选择"
+        }
+      },
+      "noResults": "未找到结果。",
+      "placeholder": "添加...",
+      "searchPlaceholder": "搜索..."
+    },
+    "NavBar": {
+      "accountEntry": "账户",
+      "dashboardEntry": "控制面板",
+      "supportEntry": "支持"
+    },
+    "footer": {
+      "acceptableUsePolicy": "可接受使用政策",
+      "admin": "管理",
+      "codeRepository": "代码仓库",
+      "cookiePolicy": "Cookie 政策",
+      "copyright": "© {{year}} Member Counter。保留所有权利。由 <eduardozgzLink /> 创建。",
+      "documentation": "文档",
+      "donate": "捐赠",
+      "improveMemberCounter": "改进 Member Counter",
+      "legal": "法律信息",
+      "loginWithDiscord": "通过 Discord 登录",
+      "logout": "退出登录",
+      "madePossibleThanksTo": "感谢 Alex、<vampireChickenLink />、<livingfloreLink />、Frosty 以及<donorsLink>更多人</donorsLink>的支持。",
+      "manageDonations": "管理捐赠",
+      "manageHomePage": "管理主页",
+      "manageServers": "管理服务器",
+      "manageUsers": "管理用户",
+      "privacyPolicy": "隐私政策",
+      "status": "状态",
+      "supportServer": "支持服务器",
+      "termsOfService": "服务条款",
+      "translateBot": "翻译机器人",
+      "usefulLinks": "实用链接"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "返回机器人当前所在的用户总数和服务器总数。（你可能不需要这个）",
+      "name": "机器人统计"
+    },
+    "channels": {
+      "description": "统计指定分类或全部分类中的频道数量。",
+      "display": {
+        "channelsUnderACategory": "分类下的频道"
+      },
+      "keywords": "频道,分类,channels,categories",
+      "name": "频道"
+    },
+    "clock": {
+      "description": "显示一个按你偏好时区调整的时钟。",
+      "display": {
+        "syntax": "时钟 ({{timezone}})"
+      },
+      "keywords": "时钟,时区,clock,timezone",
+      "name": "时钟"
+    },
+    "concat": {
+      "description": "将多个字符串连接为一个。",
+      "display": {
+        "syntax": "连接 {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "以及另外 {{amount}} 个"
+      },
+      "keywords": "连接,合并,拼接,字符串,concat,concatenate,strings,combine,join,merge",
+      "name": "连接"
+    },
+    "countdown": {
+      "description": "创建一个可按需自定义格式的倒计时。",
+      "display": {
+        "syntax": "倒计时至 {{datetime}}"
+      },
+      "keywords": "倒计时,计时器,countdown,timer",
+      "name": "倒计时"
+    },
+    "date": {
+      "description": "显示按你偏好时区调整的当前日期。",
+      "display": {
+        "syntax": "日期 ({{timezone}})"
+      },
+      "keywords": "日期,日历,时区,date,calendar,timezone",
+      "name": "日期"
+    },
+    "game": {
+      "description": "获取你的游戏服务器当前在线玩家数量，兼容超过 320 款游戏。",
+      "display": {
+        "playerCountFor": "{{gameServerAddress}} 的玩家数量"
+      },
+      "keywords": "游戏,玩家,在线,服务器,game,players,online,server",
+      "name": "游戏"
+    },
+    "http": {
+      "description": "向端点发送 GET 请求并将结果提供给此机器人。",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,请求,端点,API,获取,request,endpoint,fetch",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "对一组数字执行加法、减法、乘法、除法或取模等数学运算。",
+      "display": {
+        "operationType": {
+          "add": "加",
+          "divide": "除",
+          "modulo": "取模",
+          "multiply": "乘",
+          "subtract": "减"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "以及另外 {{amount}} 个"
+      },
+      "keywords": "数学,计算器,运算,数字,算术,加法,减法,乘法,除法,取模,math,calculator,operations,numbers",
+      "name": "数学"
+    },
+    "members": {
+      "description": "统计成员数量，还可以按在线状态、特定身份组等进行筛选。",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "勿扰",
+          "idle": "闲置",
+          "offline": "离线",
+          "online": "在线",
+          "onlineIdleDnd": "在线 + 闲置 + 勿扰"
+        },
+        "accountType": {
+          "any": "成员",
+          "bot": "机器人",
+          "user": "用户"
+        },
+        "bannedMembers": "被封禁的成员",
+        "connectedToAChannel": "已连接到频道",
+        "playingAGame": "正在玩游戏",
+        "roleFiltering": {
+          "any": "拥有身份组",
+          "overlapping": "身份组重叠"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "成员,筛选,身份组,在线,状态,封禁,游戏,离线,勿扰,闲置,用户,机器人,连接,members,filter,roles,online,status,banned",
+      "name": "成员"
+    },
+    "memerator": {
+      "description": "获取 Memerator 账户的关注者数量和表情包数量。",
+      "display": {
+        "returnKind": {
+          "followers": "关注者",
+          "memes": "表情包"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,关注者,查看,频道,follower,view,channel",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "获取服务器的 Nitro 助力者数量。",
+      "keywords": "nitro,助力者,服务器,boosters,server",
+      "name": "Nitro 助力者"
+    },
+    "number": {
+      "description": "对给定的数字应用数字格式化。",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} 作为数字",
+        "raw": "数字 ({{number}})"
+      },
+      "keywords": "数字,格式化,number,formatting",
+      "name": "数字"
+    },
+    "reddit": {
+      "description": "获取子版块的标题、总成员数以及当前在线成员数。",
+      "display": {
+        "returnKind": {
+          "members": "成员",
+          "membersOnline": "在线成员",
+          "title": "标题"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,子版块,成员,在线,subreddit,members,online",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "文本替换，与其他嵌套计数器配合使用可实现全面的文本修改。",
+      "display": {
+        "replaceSyntax": "将“{{search}}”替换为“{{replacement}}”",
+        "syntax": "替换 {{replaceSyntax}}"
+      },
+      "keywords": "文本,替换,修改,字符串,子串,text,replacement,modification,string,substring",
+      "name": "替换"
+    },
+    "roles": {
+      "description": "统计服务器中所有身份组的数量。",
+      "keywords": "身份组,roles",
+      "name": "身份组"
+    },
+    "twitch": {
+      "description": "获取 Twitch 频道的关注者数量和总观看次数。",
+      "display": {
+        "returnKind": {
+          "channelName": "频道名称",
+          "followers": "关注者",
+          "viewers": "观众"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,关注者,观看,频道,follower,view,channel",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "未知计数器。这可能是由于错误导致的",
+      "name": "未知"
+    },
+    "youtube": {
+      "description": "获取 YouTube 频道的订阅者数量、视频数量和总观看次数。",
+      "display": {
+        "returnKind": {
+          "channelName": "频道名称",
+          "subscribers": "订阅者",
+          "videos": "视频",
+          "views": "观看次数"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,订阅者,视频,观看次数,频道,subscriber,video,views,channel",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "你有未保存的更改。确定要离开此页面吗？",
+    "useFormManager": {
+      "state": {
+        "save": "保存",
+        "saved": "已保存",
+        "saving": "保存中..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - 用于统计成员数量等功能的 Discord 机器人"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "关闭",
+        "confirmDescription": "此操作无法撤消。这将永久删除你的账户并从我们的服务器中移除你的数据。",
+        "confirmTitle": "你确定吗？",
+        "deleteAccountBtn": "删除账户"
+      },
+      "page": {
+        "avatarAlt": "{{username}} 的头像",
+        "logoutButton": "退出登录"
+      },
+      "userBadges": {
+        "betaTester": "你参与了测试计划。",
+        "bigBrain": "你提出了一个被采纳实现的想法。",
+        "bugCatcher": "你发现并报告了一个错误。",
+        "contributor": "你实现了一个功能或修复了一个错误。",
+        "donor": "你捐赠支持了 Member Counter 的开发和维护。",
+        "foldingAtHome": "你在 folding@home 中贡献了一个工作单元。",
+        "patPat": "你发现了一个秘密。",
+        "premium": "你是高级用户。",
+        "translator": "你帮助翻译了机器人。"
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "删除捐赠",
+          "closeButton": "关闭",
+          "dialogDescription": "此操作无法撤消。",
+          "dialogTitle": "你确定吗？"
+        },
+        "edit": {
+          "title": "编辑捐赠"
+        },
+        "form": {
+          "amount": "金额",
+          "anonymous": "匿名",
+          "currency": "货币",
+          "currencyDecimals": "货币小数位数",
+          "date": "日期",
+          "note": "备注",
+          "saveBtn": "保存",
+          "userId": "Discord 用户 ID"
+        },
+        "new": {
+          "title": "新捐赠"
+        },
+        "registerDonation": "登记捐赠",
+        "totalDonations": "总捐赠：{{total}}（{{totalValue}}）"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "加载服务器",
+          "placeholder": "粘贴服务器 ID"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "创建",
+          "createInputPlaceholder": "新演示服务器名称",
+          "delete": {
+            "button": "删除演示服务器",
+            "closeButton": "关闭",
+            "dialogDescription": "此操作无法撤消。",
+            "dialogTitle": "你确定吗？"
+          },
+          "list": {
+            "display": {
+              "priority": "优先级：{{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "添加频道",
+              "channel": {
+                "isRulesChannel": "显示为规则频道",
+                "name": "名称",
+                "remove": "移除",
+                "showAsSkeleton": "显示为骨架屏",
+                "topic": "主题",
+                "type": "类型",
+                "types": {
+                  "announcementChannel": "公告频道",
+                  "categoryChannel": "分类频道",
+                  "textChannel": "文字频道",
+                  "voiceChannel": "锁定语音频道"
+                }
+              },
+              "title": "频道"
+            },
+            "description": "描述",
+            "features": {
+              "options": {
+                "Community": "社区",
+                "Discoverable": "可发现",
+                "Partnered": "合作伙伴",
+                "Verified": "已验证"
+              },
+              "title": "功能"
+            },
+            "icon": "图标 URL",
+            "language": "语言",
+            "links": {
+              "add": "添加链接",
+              "link": {
+                "label": "标签",
+                "remove": "移除",
+                "url": "URL"
+              },
+              "title": "链接"
+            },
+            "name": "服务器名称",
+            "premiumTier": {
+              "options": {
+                "None": "无",
+                "Tier1": "等级 1",
+                "Tier2": "等级 2",
+                "Tier3": "等级 3"
+              },
+              "title": "高级等级"
+            },
+            "priority": "优先级",
+            "save": "保存",
+            "saved": "已保存",
+            "title": "编辑演示服务器"
+          },
+          "title": "演示服务器"
+        },
+        "headings": [
+          "动态显示你服务器的成员数量",
+          "展示你的 YouTube 订阅者数量",
+          "监控你的 Minecraft 服务器玩家数量",
+          "展示有多少人正在观看你的 Twitch 频道",
+          "在你的 Discord 服务器中显示任何你想要的数据",
+          "追踪你的 FiveM 服务器有多少玩家",
+          "显示按你偏好时区调整的时钟",
+          "为活动或特殊场合创建倒计时",
+          "监控 320 多款游戏服务器的玩家统计",
+          "从任何 API 端点获取并显示数据",
+          "对你的数据执行并显示数学运算",
+          "格式化数字并美观地展示它们",
+          "突出显示你服务器的 Nitro 助力者"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "发现更多可以提升你体验的功能和计数器。敬请期待更新！",
+            "title": "还有更多！"
+          },
+          "clock": {
+            "description": "使用我们可自定义的时钟查看任何时区的时间。非常适合跨地区协调。",
+            "title": "时钟"
+          },
+          "countdown": {
+            "description": "创建和管理专为你的特定活动或截止日期定制的倒计时。",
+            "title": "倒计时"
+          },
+          "date": {
+            "description": "以可自定义的格式显示任何时区的当前日期。非常适合显示不同地区的日期。",
+            "title": "日期"
+          },
+          "discordMembers": {
+            "description": "按在线状态、身份组和其他条件统计和筛选成员，获取关于你社区的精确洞察。",
+            "title": "Discord 成员"
+          },
+          "game": {
+            "description": "通过实时玩家计数监控你的游戏服务器活动，支持超过 320 款游戏。",
+            "title": "游戏"
+          },
+          "http": {
+            "description": "执行 GET 请求并直接从任何端点接收数据，简化你的集成需求。",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "对多个数字执行各种数学运算，包括加法、减法、乘法等。",
+            "title": "数学"
+          },
+          "nitroBoosters": {
+            "description": "追踪你服务器中 Nitro 助力者的数量，衡量社区支持和参与度。",
+            "title": "Nitro 助力者"
+          },
+          "reddit": {
+            "description": "获取任何子版块的统计数据，包括标题、成员数和在线成员数。",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "使用我们强大的替换工具动态修改文本，与 HTTP 计数器配合使用效果最佳。",
+            "title": "替换"
+          },
+          "twitch": {
+            "description": "监控 Twitch 频道指标，如关注者数量和观看统计数据，随时了解你喜欢的主播动态。",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "获取 YouTube 频道的关键指标，包括订阅者数量、视频数量和总观看次数。",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "删除账户",
+          "closeButton": "关闭",
+          "dialogDescription": "此操作无法撤消。",
+          "dialogTitle": "你确定吗？"
+        },
+        "loadUser": "加载用户",
+        "manage": {
+          "badges": {
+            "betaTester": "测试用户",
+            "bigBrain": "大脑袋",
+            "bugCatcher": "捉虫达人",
+            "contributor": "贡献者",
+            "donor": "捐赠者",
+            "foldingAtHome": "folding@home",
+            "patPat": "摸摸",
+            "premium": "高级版",
+            "title": "徽章",
+            "translator": "翻译者"
+          },
+          "pasteUserId": "粘贴用户 ID",
+          "permissions": {
+            "manageDonations": "管理捐赠",
+            "manageGuilds": "管理服务器",
+            "manageHomePage": "管理着陆页",
+            "manageUsers": "管理用户",
+            "seeGuilds": "查看服务器",
+            "seeUsers": "查看用户",
+            "title": "权限"
+          },
+          "save": "保存",
+          "saved": "已保存",
+          "transferAccount": "转移账户"
+        },
+        "recentUsers": "最近的用户",
+        "userNotRegistered": "此用户尚未注册。"
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "你不在任何服务器中。",
+        "subheading": "何不<CreateServerLink>创建一个新的</CreateServerLink>或<JoinSupportServerLink>加入我们</JoinSupportServerLink>呢？"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "此频道已启用计数器",
+            "issue": "此频道存在需要你处理的问题"
+          },
+          "unsupportedChannelType": "此频道类型暂不支持。"
+        },
+        "ServerNavMenu": {
+          "channelList": "频道列表",
+          "loading": "正在加载服务器数据...",
+          "serverSettings": "服务器设置",
+          "unknownChannels": "如果 Discord 频道无法加载，请访问已保存的频道"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "未找到计数器。",
+            "searchPlaceholder": "搜索计数器..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "默认使用服务器设置",
+                "no": "否",
+                "overrideDefaultDigits": "覆盖默认数字样式",
+                "overrideDefaultLocale": "覆盖默认语言",
+                "searchLocale": "搜索语言...",
+                "select": "选择",
+                "useCompactNotation": "使用紧凑表示法",
+                "yes": "是"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "显示",
+                  "selectPlaceholder": "选择要显示的内容",
+                  "servers": "服务器",
+                  "users": "用户"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "添加分类...",
+                  "configWarning": "请记住返回一个有效的分类 ID",
+                  "filterByCategory": "按分类筛选"
+                },
+                "ClockOptions": {
+                  "configWarning": "请记住返回一个有效的时区标识符",
+                  "counterPreview": "当格式是计数器的结果时，我们无法为你显示实时预览，你需要预览整个模板来查看效果。",
+                  "defaultFormat": "%f",
+                  "format": "格式",
+                  "formatConfigWarning": "请记住返回一个有效的格式字符串",
+                  "formatInstructions": "可用占位符：\n• <code>%H</code> - 带前导零的小时，24 小时制（00-23）\n• <code>%h</code> - 不带前导零的小时，24 小时制（0-23）\n• <code>%I</code> - 带前导零的小时，12 小时制（01-12）\n• <code>%i</code> - 不带前导零的小时，12 小时制（1-12）\n• <code>%M</code> - 带前导零的分钟（00-59）\n• <code>%m</code> - 不带前导零的分钟（0-59）\n• <code>%S</code> - 带前导零的秒（00-59）\n• <code>%s</code> - 不带前导零的秒（0-59）\n• <code>%p</code> - am/pm（小写）\n• <code>%P</code> - AM/PM（大写）\n• <code>%f</code> - 默认基于语言的格式",
+                  "livePreview": "实时预览",
+                  "noPreview": "当格式为空时，我们无法为你显示实时预览。",
+                  "searchTimezonePlaceholder": "搜索时区...",
+                  "timezone": "时区"
+                },
+                "ConcatOptions": {
+                  "addString": "添加文本...",
+                  "stringList": "文本列表"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "当目标日期或格式是计数器的结果时，我们无法为你显示实时预览，你需要预览整个模板来查看效果。",
+                  "dateConfigWarning": "请记住返回一个有效的 UNIX 时间戳",
+                  "datePlaceholder": "或从计数器获取日期...",
+                  "defaultFormat": "%d 天，%h 小时和 %m 分钟",
+                  "format": "格式",
+                  "formatConfigWarning": "请记住返回一个有效的格式字符串",
+                  "formatInstructions": "可用占位符：\n• <code>%d</code> - 剩余天数\n• <code>%h</code> - 剩余小时（0-23）\n• <code>%m</code> - 剩余分钟（0-59）\n• <code>%s</code> - 剩余秒数（0-59）\n• <code>%D</code> - 总剩余天数\n• <code>%H</code> - 总剩余小时\n• <code>%M</code> - 总剩余分钟\n• <code>%S</code> - 总剩余秒数",
+                  "livePreview": "实时预览",
+                  "noPreview": "当目标日期或格式为空时，我们无法为你显示实时预览。",
+                  "targetDate": "目标日期"
+                },
+                "DateOptions": {
+                  "configWarning": "请记住返回一个有效的时区标识符",
+                  "counterPreview": "当格式是计数器的结果时，我们无法为你显示实时预览，你需要预览整个模板来查看效果。",
+                  "defaultFormat": "%f",
+                  "format": "格式",
+                  "formatConfigWarning": "请记住返回一个有效的格式字符串",
+                  "formatInstructions": "可用占位符：\n• <code>%Y</code> - 完整年份（2025）\n• <code>%y</code> - 两位年份（25）\n• <code>%Ms</code> - 完整月份名称（November）\n• <code>%ms</code> - 缩写月份名称（Nov）\n• <code>%M</code> - 带前导零的月份数字（01-12）\n• <code>%m</code> - 月份数字（1-12）\n• <code>%Ws</code> - 完整星期名称（Monday）\n• <code>%ws</code> - 缩写星期名称（Mon）\n• <code>%w</code> - 星期数字（0=星期日，6=星期六）\n• <code>%D</code> - 带前导零的日（05）\n• <code>%d</code> - 不带前导零的日（5）\n• <code>%f</code> - 默认基于语言的格式",
+                  "livePreview": "实时预览",
+                  "noPreview": "当格式为空时，我们无法为你显示实时预览。",
+                  "searchTimezonePlaceholder": "搜索时区...",
+                  "timezone": "时区"
+                },
+                "GameOptions": {
+                  "address": "地址",
+                  "addressWarning": "请记住返回一个有效的地址",
+                  "game": "游戏",
+                  "gameWarning": "请记住返回一个有效的 node-gamedig 游戏类型",
+                  "port": "端口（或查询端口）",
+                  "portWarning": "请记住返回一个有效的端口号",
+                  "searchPlaceholder": "搜索..."
+                },
+                "HttpOptions": {
+                  "dataPath": "数据路径",
+                  "dataPathDescription": "当响应的内容类型为 JSON 时，用于获取所需值的路径，语法类似于 JS 访问属性和数组元素的方式。",
+                  "dataPathWarning": "请记住返回一个数据路径",
+                  "emptyUrl": "无法获取，URL 为空",
+                  "fetch": "获取",
+                  "fetching": "获取中...",
+                  "lifetime": "生存时间（秒）",
+                  "lifetimeDescription": "指定指定 URL 的响应将被缓存多长时间。",
+                  "lifetimeWarning": "请记住返回一个有效的数字",
+                  "noPreview": "当 URL 或数据路径是计数器的结果时，我们无法为你显示预览，你需要预览整个模板来查看效果。",
+                  "preview": "预览",
+                  "testResponse": "测试响应",
+                  "url": "URL (GET)",
+                  "urlWarning": "请记住返回一个有效的 URL"
+                },
+                "MathOptions": {
+                  "addNumber": "添加数字...",
+                  "addition": "加法",
+                  "division": "除法",
+                  "modulo": "取模（除法的余数）",
+                  "multiplication": "乘法",
+                  "numberList": "数字列表",
+                  "numberWarning": "请记住返回一个有效的数字",
+                  "operation": "运算类型",
+                  "selectOperation": "选择运算类型",
+                  "subtraction": "减法"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "仅统计被封禁的成员"
+                  },
+                  "FilterByAccountType": {
+                    "any": "全部",
+                    "bot": "机器人",
+                    "label": "按账户类型筛选",
+                    "placeholder": "选择账户类型",
+                    "user": "用户"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "添加语音频道...",
+                    "dataSourceConfigWarning": "请记住返回一个有效的语音频道 ID",
+                    "label": "按连接到语音频道筛选"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "添加身份组...",
+                    "dataSourceConfigWarning": "请记住返回一个有效的身份组 ID",
+                    "label": "按身份组筛选"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "任意匹配",
+                    "label": "筛选模式",
+                    "overlap": "重叠",
+                    "placeholder": "选择筛选模式"
+                  },
+                  "FilterByStatus": {
+                    "any": "全部",
+                    "dnd": "勿扰",
+                    "idle": "闲置",
+                    "label": "按状态筛选",
+                    "offline": "离线",
+                    "online": "在线",
+                    "onlineIdleDnd": "在线 + 闲置 + 勿扰",
+                    "placeholder": "选择状态"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "按正在玩的游戏筛选",
+                    "placeholder": "添加游戏..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "显示",
+                  "followers": "关注者",
+                  "memes": "表情包",
+                  "selectDisplay": "选择要显示的内容",
+                  "username": "用户名",
+                  "usernameWarning": "请记住返回一个有效的用户名"
+                },
+                "NumberOptions": {
+                  "number": "数字",
+                  "numberWarning": "请记住返回一个有效的数字",
+                  "placeholder": "输入数字或搜索计数器"
+                },
+                "RedditOptions": {
+                  "display": "显示",
+                  "members": "成员",
+                  "membersOnline": "在线成员",
+                  "selectPlaceholder": "选择要显示的内容",
+                  "subreddit": "子版块名称",
+                  "subredditPlaceholder": "输入子版块名称或搜索计数器",
+                  "subredditWarning": "请记住返回一个有效的子版块名称",
+                  "title": "子版块标题"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "添加替换",
+                  "inputText": "输入文本",
+                  "removeReplacement": "移除替换",
+                  "replaceWith": "替换为",
+                  "replacementPlaceholder": "输入替换文本",
+                  "searchFor": "搜索",
+                  "searchPlaceholder": "输入搜索词",
+                  "textPlaceholder": "输入要替换的文本"
+                },
+                "TwitchOptions": {
+                  "channelName": "频道名称",
+                  "display": "显示",
+                  "followers": "关注者",
+                  "selectPlaceholder": "选择要显示的内容",
+                  "username": "用户名",
+                  "usernamePlaceholder": "输入用户名",
+                  "usernameWarning": "请记住返回一个有效的用户名",
+                  "viewers": "观众"
+                },
+                "YouTubeOptions": {
+                  "channelName": "频道名称",
+                  "channelUrl": "频道 URL",
+                  "channelUrlPlaceholder": "输入频道 URL",
+                  "channelUrlWarning": "请记住返回一个有效的频道 URL",
+                  "display": "显示",
+                  "selectPlaceholder": "选择要显示的内容",
+                  "subscribers": "订阅者",
+                  "videos": "视频",
+                  "views": "观看次数"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "表情选择器",
+            "searchEmoji": "搜索表情"
+          },
+          "markButtons": {
+            "bold": "加粗",
+            "italic": "斜体",
+            "spoiler": "剧透",
+            "strike": "删除线",
+            "underline": "下划线"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "可接受使用政策",
+          "noReasonGiven": "未提供原因",
+          "supportTeam": "支持团队",
+          "termsOfService": "服务条款",
+          "text": "此服务器因违反我们的<LinkTerms>服务条款</LinkTerms>或<LinkPolicy>可接受使用政策</LinkPolicy>而被封禁。<br />给出的原因：{{reason}}<br />如果你认为这是一个错误，请联系我们的<SupportLink>支持团队</SupportLink>。"
+        },
+        "channels": {
+          "save": "保存",
+          "saved": "已保存",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "上次更新：{{lastTemplateUpdateDate}}",
+              "template": "模板"
+            },
+            "EnableTemplate": {
+              "description": "启用后，Member Counter 将自动更新此频道的{{templateTarget}}以显示处理后的模板。",
+              "enableTemplate": "启用模板",
+              "nameTarget": "名称",
+              "topicTarget": "主题"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "重新检查",
+              "description": "请确认机器人在此频道中拥有以下权限：",
+              "permissions": {
+                "connect": "连接",
+                "manageChannel": "管理频道",
+                "viewChannel": "查看频道"
+              },
+              "title": "机器人没有权限编辑此频道。"
+            },
+            "TemplateError": {
+              "errorDescription": "上次模板处理时发生了错误。详情如下。",
+              "errorTitle": "模板上次处理时出现了错误"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "你没有管理此服务器的权限。\n请让 {{guildName}} 的管理员授予你管理员或管理服务器权限。",
+          "title": "权限不足"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "关闭",
+          "message": "看起来 Member Counter 机器人不在此服务器中。你想要<LinkURL>添加它</LinkURL>吗？"
+        },
+        "inviteBotPage": {
+          "addToServer": "添加到 {{serverName}}",
+          "copyLink": "复制邀请链接",
+          "linkCopied": "链接已复制到你的剪贴板。",
+          "noPermission": "你没有足够的权限来添加机器人。请让管理员或拥有管理服务器权限的人来添加此机器人。",
+          "subtitle": "将 Member Counter 添加到 {{serverName}} 并享受实时计数器。",
+          "title": "让我们来设置机器人！",
+          "useOrShareLink": "使用或分享此链接来添加机器人。"
+        },
+        "settings": {
+          "block": {
+            "blockButton": "封禁服务器",
+            "blockDialogDescription": "给出的原因将显示给服务器管理员。",
+            "blockDialogTitle": "你确定要封禁此服务器吗？",
+            "closeButton": "关闭",
+            "reasonLabel": "原因",
+            "reasonPlaceholder": "请说明原因",
+            "unblockButton": "解封服务器",
+            "unblockDialogDescription": "此服务器因以下原因被封禁：{{reason}}",
+            "unblockDialogTitle": "你确定要解封此服务器吗？"
+          },
+          "reset": {
+            "closeButton": "关闭",
+            "dialogDescription": "此操作无法撤消。所有设置将被重置为默认值。",
+            "dialogTitle": "你确定吗？",
+            "resetButton": "重置设置"
+          },
+          "save": "保存",
+          "saved": "已保存",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "自定义数字",
+              "customDigitsDescription": "在返回数字的计数器中，Member Counter 将用你提供的字符替换每个数字。如果你想显示自定义表情或其他内容（如\"Unicode 风格字体\"），这会很有用。",
+              "customizationRecommendation": "我们不建议自定义任何数字，除非你确定没有使用屏幕阅读器的用户会访问任何计数器。",
+              "screenReaderWarning": "请注意，使用屏幕阅读器（文字转语音）的用户可能无法理解自定义数字，<demoLink>可能会听到无法辨识的内容</demoLink>。屏幕阅读器通常由有视觉障碍的人使用。"
+            },
+            "Locale": {
+              "description": "更改此项将影响某些计数器的显示方式。",
+              "locale": "语言",
+              "numberExample": "439212 将显示为 {{number}}",
+              "searchPlaceholder": "搜索语言...",
+              "timeExample": "15:30h（或 3:30 PM）将显示为 {{time}}"
+            },
+            "UseCompactNotation": {
+              "description": "返回数字的计数器将以更紧凑的方式显示。",
+              "example1": "12300 将显示为 {{number}}",
+              "example2": "439212 将显示为 {{number}}",
+              "example3": "1500000 将显示为 {{number}}",
+              "label": "对数字使用紧凑表示法"
+            }
+          },
+          "title": "服务器设置"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "充分利用你的计数器，按需定制。",
+            "label": "像专家一样",
+            "title": "高级计数器"
+          },
+          "createFromScratch": {
+            "description": "学习如何在几分钟内创建你的第一个自定义计数器。",
+            "label": "独一无二！",
+            "title": "从零开始创建"
+          },
+          "queryHistoricalStatistics": {
+            "description": "查看你的计数器和其他常见统计数据随时间的变化。",
+            "label": "即将推出",
+            "title": "查询历史统计数据"
+          },
+          "quickSetup": {
+            "description": "只需几次点击即可快速创建最常用的计数器。无需想象力或动脑！",
+            "label": "轻松搞定！",
+            "title": "快速设置"
+          },
+          "subTitle": "以下是为你准备的一些建议：",
+          "title": "欢迎回来！"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "发生了意外错误。",
+        "NotAuthenticated": "你尚未登录。",
+        "NotAuthorized": "你无权访问此页面。",
+        "NotFound": "找不到你要查找的页面。"
+      },
+      "nav": {
+        "backBtn": "返回",
+        "homeBtn": "回到首页",
+        "supportBtn": "获取支持",
+        "tryAgainBtn": "重试"
+      }
+    },
+    "home": {
+      "addToDiscord": "添加到 Discord",
+      "dashboard": "控制面板",
+      "getSupport": "获取支持",
+      "headings": [
+        "动态显示你服务器的成员数量",
+        "展示你的 YouTube 订阅者数量",
+        "监控你的 Minecraft 服务器玩家数量",
+        "展示有多少人正在观看你的 Twitch 频道",
+        "在你的 Discord 服务器中显示任何你想要的数据",
+        "追踪你的 FiveM 服务器有多少玩家",
+        "显示按你偏好时区调整的时钟",
+        "为活动或特殊场合创建倒计时",
+        "监控 320 多款游戏服务器的玩家统计",
+        "从任何 API 端点获取并显示数据",
+        "对你的数据执行并显示数学运算",
+        "格式化数字并美观地展示它们",
+        "突出显示你服务器的 Nitro 助力者"
+      ],
+      "seeHowPeopleUseIt": "看看大家是如何使用的",
+      "seeMore": "查看更多",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "发现更多可以提升你体验的功能和计数器。敬请期待更新！",
+          "title": "还有更多！"
+        },
+        "clock": {
+          "description": "使用我们可自定义的时钟查看任何时区的时间。非常适合跨地区协调。",
+          "title": "时钟"
+        },
+        "countdown": {
+          "description": "创建和管理专为你的特定活动或截止日期定制的倒计时。",
+          "title": "倒计时"
+        },
+        "date": {
+          "description": "以可自定义的格式显示任何时区的当前日期。非常适合显示不同地区的日期。",
+          "title": "日期"
+        },
+        "discordMembers": {
+          "description": "按在线状态、身份组和其他条件统计和筛选成员，获取关于你社区的精确洞察。",
+          "title": "Discord 成员"
+        },
+        "game": {
+          "description": "通过实时玩家计数监控你的游戏服务器活动，支持超过 320 款游戏。",
+          "title": "游戏"
+        },
+        "http": {
+          "description": "执行 GET 请求并直接从任何端点接收数据，简化你的集成需求。",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "对多个数字执行各种数学运算，包括加法、减法、乘法等。",
+          "title": "数学"
+        },
+        "nitroBoosters": {
+          "description": "追踪你服务器中 Nitro 助力者的数量，衡量社区支持和参与度。",
+          "title": "Nitro 助力者"
+        },
+        "reddit": {
+          "description": "获取任何子版块的统计数据，包括标题、成员数和在线成员数。",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "使用我们强大的替换工具动态修改文本，与 HTTP 计数器配合使用效果最佳。",
+          "title": "替换"
+        },
+        "twitch": {
+          "description": "监控 Twitch 频道指标，如关注者数量和观看统计数据，随时了解你喜欢的主播动态。",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "获取 YouTube 频道的关键指标，包括订阅者数量、视频数量和总观看次数。",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "支持的计数器"
+    },
+    "status": {
+      "affectedServers": "受影响的 Discord 服务器：",
+      "assignedDiscordServers": "分配给此子进程：",
+      "child": "子进程 #{{index}}",
+      "childDiscordServers": "{{count}} 个 Discord 服务器 {{unavailableCount}}",
+      "childDiscordUnavailableServers": "（{{unavailableCount}} 个不可用）",
+      "childDiscordUsers": "{{count}} 个用户",
+      "discordClientStatus": {
+        "Connecting": "连接中",
+        "Disconnected": "已断开",
+        "Identifying": "识别中",
+        "Idle": "空闲",
+        "Nearly": "空闲",
+        "Ready": "就绪",
+        "Reconnecting": "重新连接中",
+        "Resuming": "恢复中",
+        "WaitingForGuilds": "等待服务器列表"
+      },
+      "memoryUsage": "{{usage}}（峰值 {{peak}}）",
+      "memoryUsageTooltip": "内存使用量",
+      "partialOutage": "存在部分服务中断",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} 核心\n负载 {{load}}",
+        "cpuLabel": "CPU",
+        "hostname": "名称",
+        "memoryInfo": "{{memory}}\n{{usage}}% 使用率",
+        "memoryLabel": "内存",
+        "title": "服务器信息"
+      },
+      "statusUnavailable": "状态不可用"
+    }
+  }
+}

@@ -1,1 +1,1052 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "Κανάλι ανακοινώσεων",
+      "category": "Κατηγορία",
+      "forumChannel": "Κανάλι φόρουμ",
+      "mediaChannel": "Κανάλι πολυμέσων",
+      "stageChannel": "Κανάλι σκηνής",
+      "textChannel": "Κανάλι κειμένου",
+      "voiceChannel": "Κανάλι φωνής"
+    },
+    "knownError": "Σφάλμα",
+    "knownErrors": {
+      "BAD_REQUEST": "Το αίτημα ήταν μη έγκυρο.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Το bot δεν έχει αρκετά προνομιακά intents για τη χρήση αυτού του μετρητή.",
+      "BOT_IS_NOT_PREMIUM": "Το bot δεν είναι premium έκδοση και δεν διαθέτει ορισμένες λειτουργίες που απαιτούνται για αυτόν τον μετρητή.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Ο μετρητής έχει μη αναγνωρίσιμη μορφή.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "Ο μετρητής δεν είναι έγκυρος.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Το αποτέλεσμα για το όνομα καναλιού είναι μικρότερο από 2 χαρακτήρες.",
+      "EVALUATION_TIMEOUT": "Η αξιολόγηση διήρκεσε πολύ και έληξε.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Αποτυχία δημιουργίας τελικής συμβολοσειράς από την αξιολόγηση.",
+      "FORBIDDEN": "Το αίτημα απαγορεύτηκε.",
+      "GAME_MISSING_ADDRESS": "Ο μετρητής παιχνιδιού απαιτεί διεύθυνση διακομιστή.",
+      "GAME_MISSING_GAME_ID": "Πρέπει να παρασχεθεί αναγνωριστικό παιχνιδιού για τον μετρητή παιχνιδιού.",
+      "GAME_MISSING_PORT": "Ο μετρητής παιχνιδιού απαιτεί θύρα διακομιστή.",
+      "HTTP_DATA_PATH_MANDATORY": "Πρέπει να καθοριστεί διαδρομή δεδομένων για αιτήματα HTTP με τύπο περιεχομένου application/json.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Ο τύπος περιεχομένου της απάντησης HTTP δεν είναι έγκυρος (ούτε text/plain ούτε application/json).",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "Ο κωδικός κατάστασης της απάντησης HTTP δεν είναι έγκυρος (δεν είναι 200).",
+      "HTTP_MISSING_URL": "Ο μετρητής HTTP απαιτεί μια διεύθυνση URL που λείπει.",
+      "INTERNAL_SERVER_ERROR": "Παρουσιάστηκε εσωτερικό σφάλμα διακομιστή.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "Οι μετρήσεις μελών δεν είναι διαθέσιμες αυτή τη στιγμή.",
+      "MEMERATOR_MISSING_USERNAME": "Ο μετρητής Memerator απαιτεί ένα όνομα χρήστη που λείπει.",
+      "NOT_FOUND": "Ο ζητούμενος πόρος δεν βρέθηκε.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Το bot δεν έχει επαρκή δικαιώματα για την επεξεργασία του καναλιού.",
+      "REDDIT_MISSING_SUBREDDIT": "Πρέπει να παρασχεθεί ένα subreddit για τον μετρητή Reddit.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Το καθορισμένο κανάλι Twitch δεν βρέθηκε.",
+      "TWITCH_MISSING_USERNAME": "Ο μετρητής Twitch απαιτεί τον ορισμό ονόματος χρήστη.",
+      "UNAUTHORIZED": "Το αίτημα δεν ήταν εξουσιοδοτημένο.",
+      "UNKNOWN": "Παρουσιάστηκε άγνωστο σφάλμα.",
+      "UNKNOWN_DATA_SOURCE": "Ο παρεχόμενος μετρητής είναι άγνωστος ή μη αναγνωρίσιμος.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Ο τύπος τιμής που επιστράφηκε από την αξιολόγηση είναι άγνωστος.",
+      "USER_NOT_FOUND": "Ο χρήστης δεν βρέθηκε.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "Η παρεχόμενη διεύθυνση URL καναλιού YouTube δεν είναι έγκυρη.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "Ο μετρητής YouTube απαιτεί τον ορισμό διεύθυνσης URL καναλιού."
+    },
+    "unknown": "Άγνωστο",
+    "unknownChannel": "Άγνωστο κανάλι",
+    "unknownChannelType": "Άγνωστος τύπος καναλιού",
+    "unknownDate": "Άγνωστη ημερομηνία",
+    "unknownError": "Άγνωστο σφάλμα",
+    "unknownPublicBot": "Άγνωστο δημόσιο bot",
+    "unknownRole": "Άγνωστος ρόλος",
+    "unknownServer": "Άγνωστος διακομιστής",
+    "unknownUser": "Άγνωστος χρήστης {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "Αφαίρεση καναλιού",
+          "selected": "Επιλεγμένο"
+        },
+        "DataSourceItem": {
+          "edit": "Επεξεργασία μετρητή",
+          "notSelected": "Μη επιλεγμένο",
+          "remove": "Αφαίρεση μετρητή",
+          "selected": "Επιλεγμένο"
+        },
+        "GamedigItem": {
+          "remove": "Αφαίρεση παιχνιδιού",
+          "selected": "Επιλεγμένο"
+        },
+        "LocaleItem": {
+          "remove": "Αφαίρεση τοπικών ρυθμίσεων",
+          "selected": "Επιλεγμένο"
+        },
+        "RoleItem": {
+          "everyone": "Όλοι",
+          "remove": "Αφαίρεση ρόλου",
+          "selected": "Επιλεγμένο"
+        },
+        "TextItem": {
+          "remove": "Αφαίρεση {{item}}",
+          "selected": "Επιλεγμένο"
+        },
+        "TimezoneItem": {
+          "remove": "Αφαίρεση ζώνης ώρας",
+          "selected": "Επιλεγμένο"
+        }
+      },
+      "noResults": "Δεν βρέθηκαν αποτελέσματα.",
+      "placeholder": "Προσθήκη...",
+      "searchPlaceholder": "Αναζήτηση..."
+    },
+    "NavBar": {
+      "accountEntry": "Λογαριασμός",
+      "dashboardEntry": "Πίνακας ελέγχου",
+      "supportEntry": "Υποστήριξη"
+    },
+    "footer": {
+      "acceptableUsePolicy": "Πολιτική αποδεκτής χρήσης",
+      "admin": "Διαχείριση",
+      "codeRepository": "Αποθετήριο κώδικα",
+      "cookiePolicy": "Πολιτική cookies",
+      "copyright": "© {{year}} Member Counter. Με επιφύλαξη παντός δικαιώματος. Δημιουργήθηκε από τον/την <eduardozgzLink />.",
+      "documentation": "Τεκμηρίωση",
+      "donate": "Δωρεά",
+      "improveMemberCounter": "Βελτιώστε το Member Counter",
+      "legal": "Νομικά",
+      "loginWithDiscord": "Σύνδεση με Discord",
+      "logout": "Αποσύνδεση",
+      "madePossibleThanksTo": "Πραγματοποιήθηκε χάρη στους Alex, <vampireChickenLink />, <livingfloreLink />, Frosty, και <donorsLink>πολλούς ακόμα</donorsLink>.",
+      "manageDonations": "Διαχείριση δωρεών",
+      "manageHomePage": "Διαχείριση αρχικής σελίδας",
+      "manageServers": "Διαχείριση διακομιστών",
+      "manageUsers": "Διαχείριση χρηστών",
+      "privacyPolicy": "Πολιτική απορρήτου",
+      "status": "Κατάσταση",
+      "supportServer": "Διακομιστής υποστήριξης",
+      "termsOfService": "Όροι χρήσης",
+      "translateBot": "Μεταφράστε το bot",
+      "usefulLinks": "Χρήσιμοι σύνδεσμοι"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "Επιστρέφει τον συνολικό αριθμό χρηστών και διακομιστών στους οποίους βρίσκεται το bot αυτή τη στιγμή. (Πιθανότατα δεν το χρειάζεστε)",
+      "name": "Στατιστικά bot"
+    },
+    "channels": {
+      "description": "Μετρήστε τον αριθμό καναλιών εντός συγκεκριμένων κατηγοριών ή συνολικά.",
+      "display": {
+        "channelsUnderACategory": "Κανάλια κάτω από μια κατηγορία"
+      },
+      "keywords": "κανάλια,κατηγορίες",
+      "name": "Κανάλια"
+    },
+    "clock": {
+      "description": "Εμφάνιση ρολογιού προσαρμοσμένου στη ζώνη ώρας της προτίμησής σας.",
+      "display": {
+        "syntax": "Ρολόι ({{timezone}})"
+      },
+      "keywords": "ρολόι,ζώνη ώρας",
+      "name": "Ρολόι"
+    },
+    "concat": {
+      "description": "Συνένωση πολλών συμβολοσειρών σε μία.",
+      "display": {
+        "syntax": "Συνένωση {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "και {{amount}} ακόμα"
+      },
+      "keywords": "συνένωση,συμβολοσειρές,συνδυασμός,ένωση,συγχώνευση",
+      "name": "Συνένωση"
+    },
+    "countdown": {
+      "description": "Δημιουργήστε ένα χρονόμετρο αντίστροφης μέτρησης με μορφή προσαρμοσμένη στις ανάγκες σας.",
+      "display": {
+        "syntax": "Αντίστροφη μέτρηση μέχρι {{datetime}}"
+      },
+      "keywords": "αντίστροφη μέτρηση,χρονόμετρο",
+      "name": "Αντίστροφη μέτρηση"
+    },
+    "date": {
+      "description": "Εμφάνιση της τρέχουσας ημερομηνίας προσαρμοσμένης στη ζώνη ώρας της προτίμησής σας.",
+      "display": {
+        "syntax": "Ημερομηνία ({{timezone}})"
+      },
+      "keywords": "ημερομηνία,ημερολόγιο,ζώνη ώρας",
+      "name": "Ημερομηνία"
+    },
+    "game": {
+      "description": "Ανάκτηση του τρέχοντος αριθμού συνδεδεμένων παικτών στον διακομιστή παιχνιδιού σας, συμβατό με περισσότερα από 320 παιχνίδια.",
+      "display": {
+        "playerCountFor": "Αριθμός παικτών για {{gameServerAddress}}"
+      },
+      "keywords": "παιχνίδι,παίκτες,συνδεδεμένοι,διακομιστής",
+      "name": "Παιχνίδι"
+    },
+    "http": {
+      "description": "Στείλτε ένα αίτημα GET σε ένα endpoint και λάβετε το αποτέλεσμα σε αυτό το bot.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,αίτημα,endpoint,API,ανάκτηση",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "Εκτελέστε μαθηματικές πράξεις όπως πρόσθεση, αφαίρεση, πολλαπλασιασμό, διαίρεση ή υπόλοιπο σε μια λίστα αριθμών.",
+      "display": {
+        "operationType": {
+          "add": "πρόσθεση",
+          "divide": "διαίρεση",
+          "modulo": "υπόλοιπο",
+          "multiply": "πολλαπλασιασμός",
+          "subtract": "αφαίρεση"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "και {{amount}} ακόμα"
+      },
+      "keywords": "μαθηματικά,αριθμομηχανή,πράξεις,αριθμοί,αριθμητική,πρόσθεση,αφαίρεση,πολλαπλασιασμός,διαίρεση,υπόλοιπο",
+      "name": "Μαθηματικά"
+    },
+    "members": {
+      "description": "Μετρήστε μέλη, μπορείτε επίσης να τα φιλτράρετε ανά κατάσταση σύνδεσης, συγκεκριμένους ρόλους και άλλα.",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "Μην ενοχλείτε",
+          "idle": "αδρανές",
+          "offline": "εκτός σύνδεσης",
+          "online": "συνδεδεμένο",
+          "onlineIdleDnd": "συνδεδεμένο + αδρανές + Μην ενοχλείτε"
+        },
+        "accountType": {
+          "any": "μέλη",
+          "bot": "bots",
+          "user": "χρήστες"
+        },
+        "bannedMembers": "αποκλεισμένα μέλη",
+        "connectedToAChannel": "συνδεδεμένα σε κανάλι",
+        "playingAGame": "ενώ παίζουν παιχνίδι",
+        "roleFiltering": {
+          "any": "με ρόλους",
+          "overlapping": "με επικαλυπτόμενους ρόλους"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "μέλη,φίλτρο,ρόλοι,συνδεδεμένοι,κατάσταση,αποκλεισμένοι,παίζουν,εκτός σύνδεσης,μην ενοχλείτε,αδρανές,χρήστης,bot,συνδεδεμένος",
+      "name": "Μέλη"
+    },
+    "memerator": {
+      "description": "Ανάκτηση του αριθμού ακολούθων και μιμιδίων για έναν λογαριασμό Memerator.",
+      "display": {
+        "returnKind": {
+          "followers": "ακόλουθοι",
+          "memes": "μιμίδια"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,ακόλουθοι,προβολές,κανάλι",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "Ανάκτηση του αριθμού Nitro boosters του διακομιστή.",
+      "keywords": "nitro,boosters,διακομιστής",
+      "name": "Nitro Boosters"
+    },
+    "number": {
+      "description": "Εφαρμογή μορφοποίησης αριθμού στον δοθέντα αριθμό.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} ως αριθμός",
+        "raw": "Αριθμός ({{number}})"
+      },
+      "keywords": "αριθμός,μορφοποίηση",
+      "name": "Αριθμός"
+    },
+    "reddit": {
+      "description": "Ανάκτηση του τίτλου ενός subreddit μαζί με τον συνολικό αριθμό μελών και τον αριθμό μελών που είναι συνδεδεμένα.",
+      "display": {
+        "returnKind": {
+          "members": "μέλη",
+          "membersOnline": "συνδεδεμένα μέλη",
+          "title": "τίτλος"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,subreddit,μέλη,συνδεδεμένοι",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "Αντικατάσταση κειμένου, χρήσιμη σε συνδυασμό με άλλους ένθετους μετρητές για ολοκληρωμένη τροποποίηση κειμένου.",
+      "display": {
+        "replaceSyntax": "\"{{search}}\" με \"{{replacement}}\"",
+        "syntax": "Αντικατάσταση {{replaceSyntax}}"
+      },
+      "keywords": "κείμενο,αντικατάσταση,τροποποίηση,συμβολοσειρά,υποσυμβολοσειρά",
+      "name": "Αντικατάσταση"
+    },
+    "roles": {
+      "description": "Μέτρηση όλων των ρόλων που υπάρχουν στον διακομιστή.",
+      "keywords": "ρόλοι",
+      "name": "Ρόλοι"
+    },
+    "twitch": {
+      "description": "Ανάκτηση αριθμού ακολούθων και συνολικών προβολών για ένα κανάλι Twitch.",
+      "display": {
+        "returnKind": {
+          "channelName": "όνομα καναλιού",
+          "followers": "ακόλουθοι",
+          "viewers": "θεατές"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,ακόλουθοι,προβολές,κανάλι",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "Άγνωστος μετρητής. Αυτό πιθανότατα οφείλεται σε σφάλμα",
+      "name": "Άγνωστο"
+    },
+    "youtube": {
+      "description": "Ανάκτηση αριθμού συνδρομητών, αριθμού βίντεο και συνολικών προβολών από ένα κανάλι YouTube.",
+      "display": {
+        "returnKind": {
+          "channelName": "όνομα καναλιού",
+          "subscribers": "συνδρομητές",
+          "videos": "βίντεο",
+          "views": "προβολές"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,συνδρομητές,βίντεο,προβολές,κανάλι",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "Έχετε μη αποθηκευμένες αλλαγές. Είστε σίγουροι ότι θέλετε να φύγετε από αυτήν τη σελίδα;",
+    "useFormManager": {
+      "state": {
+        "save": "Αποθήκευση",
+        "saved": "Αποθηκεύτηκε",
+        "saving": "Αποθήκευση..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - Το Discord bot για μέτρηση μελών και πολλά άλλα"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "Κλείσιμο",
+        "confirmDescription": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Αυτό θα διαγράψει οριστικά τον λογαριασμό σας και θα αφαιρέσει τα δεδομένα σας από τους διακομιστές μας.",
+        "confirmTitle": "Είστε απολύτως σίγουροι;",
+        "deleteAccountBtn": "Διαγραφή λογαριασμού"
+      },
+      "page": {
+        "avatarAlt": "Εικόνα προφίλ του/της {{username}}",
+        "logoutButton": "Αποσύνδεση"
+      },
+      "userBadges": {
+        "betaTester": "Συμμετείχατε σε πρόγραμμα beta.",
+        "bigBrain": "Προτείνατε μια ιδέα που υλοποιήθηκε.",
+        "bugCatcher": "Βρήκατε και αναφέρατε ένα σφάλμα.",
+        "contributor": "Υλοποιήσατε μια λειτουργία ή διορθώσατε ένα σφάλμα.",
+        "donor": "Κάνατε δωρεά για την υποστήριξη της ανάπτυξης και συντήρησης του Member Counter.",
+        "foldingAtHome": "Συνεισφέρατε μια WU στο folding@home.",
+        "patPat": "Βρήκατε ένα μυστικό.",
+        "premium": "Είστε χρήστης premium.",
+        "translator": "Βοηθήσατε στη μετάφραση του bot."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "Διαγραφή δωρεάς",
+          "closeButton": "Κλείσιμο",
+          "dialogDescription": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+          "dialogTitle": "Είστε απολύτως σίγουροι;"
+        },
+        "edit": {
+          "title": "Επεξεργασία δωρεάς"
+        },
+        "form": {
+          "amount": "Ποσό",
+          "anonymous": "Ανώνυμη",
+          "currency": "Νόμισμα",
+          "currencyDecimals": "Δεκαδικά νομίσματος",
+          "date": "Ημερομηνία",
+          "note": "Σημείωση",
+          "saveBtn": "Αποθήκευση",
+          "userId": "Αναγνωριστικό χρήστη Discord"
+        },
+        "new": {
+          "title": "Νέα δωρεά"
+        },
+        "registerDonation": "Καταχώρηση δωρεάς",
+        "totalDonations": "Σύνολο δωρεών: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "Φόρτωση διακομιστή",
+          "placeholder": "Επικολλήστε αναγνωριστικό διακομιστή"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "Δημιουργία",
+          "createInputPlaceholder": "Όνομα νέου demo διακομιστή",
+          "delete": {
+            "button": "Διαγραφή demo διακομιστή",
+            "closeButton": "Κλείσιμο",
+            "dialogDescription": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+            "dialogTitle": "Είστε απολύτως σίγουροι;"
+          },
+          "list": {
+            "display": {
+              "priority": "Προτεραιότητα: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "Προσθήκη καναλιού",
+              "channel": {
+                "isRulesChannel": "Εμφάνιση ως κανάλι κανόνων",
+                "name": "Όνομα",
+                "remove": "Αφαίρεση",
+                "showAsSkeleton": "Εμφάνιση ως σκελετός",
+                "topic": "Θέμα",
+                "type": "Τύπος",
+                "types": {
+                  "announcementChannel": "Κανάλι ανακοινώσεων",
+                  "categoryChannel": "Κανάλι κατηγορίας",
+                  "textChannel": "Κανάλι κειμένου",
+                  "voiceChannel": "Κλειδωμένο κανάλι φωνής"
+                }
+              },
+              "title": "Κανάλια"
+            },
+            "description": "Περιγραφή",
+            "features": {
+              "options": {
+                "Community": "Κοινότητα",
+                "Discoverable": "Ανακαλύψιμο",
+                "Partnered": "Συνεργάτης",
+                "Verified": "Επαληθευμένο"
+              },
+              "title": "Χαρακτηριστικά"
+            },
+            "icon": "URL εικονιδίου",
+            "language": "Γλώσσα",
+            "links": {
+              "add": "Προσθήκη συνδέσμου",
+              "link": {
+                "label": "Ετικέτα",
+                "remove": "Αφαίρεση",
+                "url": "URL"
+              },
+              "title": "Σύνδεσμοι"
+            },
+            "name": "Όνομα διακομιστή",
+            "premiumTier": {
+              "options": {
+                "None": "Κανένα",
+                "Tier1": "Επίπεδο 1",
+                "Tier2": "Επίπεδο 2",
+                "Tier3": "Επίπεδο 3"
+              },
+              "title": "Επίπεδο premium"
+            },
+            "priority": "Προτεραιότητα",
+            "save": "Αποθήκευση",
+            "saved": "Αποθηκεύτηκε",
+            "title": "Επεξεργασία demo διακομιστή"
+          },
+          "title": "Demo διακομιστές"
+        },
+        "headings": [
+          "Εμφανίστε δυναμικά τον αριθμό μελών του διακομιστή σας",
+          "Επιδείξτε τον αριθμό συνδρομητών σας στο YouTube",
+          "Παρακολουθήστε τον αριθμό παικτών του Minecraft διακομιστή σας",
+          "Επιδείξτε πόσοι θεατές παρακολουθούν το κανάλι σας στο Twitch",
+          "Εμφανίστε οποιαδήποτε δεδομένα θέλετε στον Discord διακομιστή σας",
+          "Παρακολουθήστε πόσους παίκτες έχει ο FiveM διακομιστής σας",
+          "Εμφανίστε ένα ρολόι προσαρμοσμένο στη ζώνη ώρας της προτίμησής σας",
+          "Δημιουργήστε αντίστροφες μετρήσεις για εκδηλώσεις ή ειδικές περιστάσεις",
+          "Παρακολουθήστε στατιστικά παικτών σε 320+ διακομιστές παιχνιδιών",
+          "Ανακτήστε και εμφανίστε δεδομένα από οποιοδήποτε API endpoint",
+          "Εκτελέστε και εμφανίστε μαθηματικές πράξεις στα δεδομένα σας",
+          "Μορφοποιήστε αριθμούς και εμφανίστε τους όμορφα",
+          "Αναδείξτε τους Nitro boosters του διακομιστή σας"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Ανακαλύψτε ακόμα περισσότερες δυνατότητες και μετρητές που μπορούν να βελτιώσουν την εμπειρία σας. Μείνετε συντονισμένοι για ενημερώσεις!",
+            "title": "Και πολλά ακόμα!"
+          },
+          "clock": {
+            "description": "Δείτε την ώρα σε οποιαδήποτε ζώνη ώρας με το προσαρμόσιμο ρολόι μας. Ιδανικό για συντονισμό μεταξύ διαφορετικών περιοχών.",
+            "title": "Ρολόι"
+          },
+          "countdown": {
+            "description": "Δημιουργήστε και διαχειριστείτε χρονόμετρα αντίστροφης μέτρησης προσαρμοσμένα στις συγκεκριμένες εκδηλώσεις ή προθεσμίες σας.",
+            "title": "Αντίστροφη μέτρηση"
+          },
+          "date": {
+            "description": "Εμφανίστε την τρέχουσα ημερομηνία σε οποιαδήποτε ζώνη ώρας με προσαρμόσιμη μορφοποίηση. Ιδανικό για εμφάνιση ημερομηνιών σε διαφορετικές περιοχές.",
+            "title": "Ημερομηνία"
+          },
+          "discordMembers": {
+            "description": "Μετρήστε και φιλτράρετε μέλη ανά κατάσταση σύνδεσης, ρόλους και άλλα κριτήρια για ακριβείς πληροφορίες σχετικά με την κοινότητά σας.",
+            "title": "Μέλη Discord"
+          },
+          "game": {
+            "description": "Παρακολουθήστε τη δραστηριότητα του διακομιστή παιχνιδιών σας με μετρήσεις παικτών σε πραγματικό χρόνο για πάνω από 320 υποστηριζόμενα παιχνίδια.",
+            "title": "Παιχνίδι"
+          },
+          "http": {
+            "description": "Εκτελέστε αιτήματα GET και λάβετε δεδομένα απευθείας από οποιοδήποτε endpoint, απλοποιώντας τις ανάγκες ενσωμάτωσής σας.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Εκτελέστε μια σειρά μαθηματικών πράξεων συμπεριλαμβανομένων πρόσθεσης, αφαίρεσης, πολλαπλασιασμού και άλλων σε πολλαπλούς αριθμούς.",
+            "title": "Μαθηματικά"
+          },
+          "nitroBoosters": {
+            "description": "Παρακολουθήστε τον αριθμό Nitro boosters στον διακομιστή σας για να αξιολογήσετε την υποστήριξη και τη συμμετοχή της κοινότητας.",
+            "title": "Nitro Boosters"
+          },
+          "reddit": {
+            "description": "Λάβετε στατιστικά για οποιοδήποτε subreddit, συμπεριλαμβανομένου τίτλου, αριθμού μελών και συνδεδεμένων μελών.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Τροποποιήστε κείμενο δυναμικά με το ισχυρό εργαλείο αντικατάστασής μας, ιδανικό σε συνδυασμό με τον μετρητή HTTP.",
+            "title": "Αντικατάσταση"
+          },
+          "twitch": {
+            "description": "Παρακολουθήστε μετρικές καναλιών Twitch όπως αριθμό ακολούθων και στατιστικά θεάσεων για να ενημερώνεστε για τους αγαπημένους σας streamers.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Ανακτήστε βασικές μετρικές από κανάλια YouTube, συμπεριλαμβανομένων αριθμού συνδρομητών, αριθμού βίντεο και συνολικών προβολών.",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "Διαγραφή λογαριασμού",
+          "closeButton": "Κλείσιμο",
+          "dialogDescription": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+          "dialogTitle": "Είστε απολύτως σίγουροι;"
+        },
+        "loadUser": "Φόρτωση χρήστη",
+        "manage": {
+          "badges": {
+            "betaTester": "Beta Tester",
+            "bigBrain": "Μεγάλο μυαλό",
+            "bugCatcher": "Κυνηγός σφαλμάτων",
+            "contributor": "Συνεισφέρων",
+            "donor": "Δωρητής",
+            "foldingAtHome": "folding@home",
+            "patPat": "Pat Pat",
+            "premium": "Premium",
+            "title": "Σήματα",
+            "translator": "Μεταφραστής"
+          },
+          "pasteUserId": "Επικολλήστε αναγνωριστικό χρήστη",
+          "permissions": {
+            "manageDonations": "Διαχείριση δωρεών",
+            "manageGuilds": "Διαχείριση διακομιστών",
+            "manageHomePage": "Διαχείριση αρχικής σελίδας",
+            "manageUsers": "Διαχείριση χρηστών",
+            "seeGuilds": "Προβολή διακομιστών",
+            "seeUsers": "Προβολή χρηστών",
+            "title": "Δικαιώματα"
+          },
+          "save": "Αποθήκευση",
+          "saved": "Αποθηκεύτηκε",
+          "transferAccount": "Μεταφορά λογαριασμού"
+        },
+        "recentUsers": "Πρόσφατοι χρήστες",
+        "userNotRegistered": "Αυτός ο χρήστης δεν είναι εγγεγραμμένος."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "Δεν είστε σε κανέναν διακομιστή. ",
+        "subheading": "Γιατί δεν ξεκινάτε δημιουργώντας έναν <CreateServerLink>νέο</CreateServerLink> ή <JoinSupportServerLink>ερχόμενοι μαζί μας</JoinSupportServerLink>;"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "Οι μετρητές είναι ενεργοποιημένοι σε αυτό το κανάλι",
+            "issue": "Υπάρχει ένα πρόβλημα σε αυτό το κανάλι που απαιτεί την προσοχή σας"
+          },
+          "unsupportedChannelType": "Αυτός ο τύπος καναλιού δεν υποστηρίζεται ακόμα."
+        },
+        "ServerNavMenu": {
+          "channelList": "Λίστα καναλιών",
+          "loading": "Φόρτωση δεδομένων διακομιστή...",
+          "serverSettings": "Ρυθμίσεις διακομιστή",
+          "unknownChannels": "Επισκεφθείτε τα αποθηκευμένα κανάλια αν τα κανάλια Discord δεν μπορούν να φορτωθούν"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "Δεν βρέθηκαν μετρητές.",
+            "searchPlaceholder": "Αναζήτηση μετρητή..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "Προεπιλογή ρυθμίσεων διακομιστή",
+                "no": "Όχι",
+                "overrideDefaultDigits": "Παράκαμψη προεπιλεγμένων ψηφίων",
+                "overrideDefaultLocale": "Παράκαμψη προεπιλεγμένων τοπικών ρυθμίσεων",
+                "searchLocale": "Αναζήτηση τοπικών ρυθμίσεων...",
+                "select": "Επιλογή",
+                "useCompactNotation": "Χρήση συμπαγούς σημειογραφίας",
+                "yes": "Ναι"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "Εμφάνιση",
+                  "selectPlaceholder": "Επιλέξτε κάτι για εμφάνιση",
+                  "servers": "Διακομιστές",
+                  "users": "Χρήστες"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "Προσθήκη κατηγορίας...",
+                  "configWarning": "Θυμηθείτε να επιστρέψετε ένα έγκυρο αναγνωριστικό κατηγορίας",
+                  "filterByCategory": "Φιλτράρισμα ανά κατηγορία"
+                },
+                "ClockOptions": {
+                  "configWarning": "Θυμηθείτε να επιστρέψετε ένα έγκυρο αναγνωριστικό ζώνης ώρας",
+                  "counterPreview": "Δεν μπορούμε να σας δείξουμε ζωντανή προεπισκόπηση όταν η μορφή είναι αποτέλεσμα μετρητή, πρέπει να κάνετε προεπισκόπηση ολόκληρου του προτύπου για να δείτε πώς θα φαίνεται.",
+                  "defaultFormat": "%f",
+                  "format": "Μορφή",
+                  "formatConfigWarning": "Θυμηθείτε να επιστρέψετε μια έγκυρη συμβολοσειρά μορφοποίησης",
+                  "formatInstructions": "Διαθέσιμα σύμβολα αντικατάστασης:\n• <code>%H</code> - Ώρα με αρχικό μηδέν, 24ωρο (00-23)\n• <code>%h</code> - Ώρα χωρίς αρχικό μηδέν, 24ωρο (0-23)\n• <code>%I</code> - Ώρα με αρχικό μηδέν, 12ωρο (01-12)\n• <code>%i</code> - Ώρα χωρίς αρχικό μηδέν, 12ωρο (1-12)\n• <code>%M</code> - Λεπτό με αρχικό μηδέν (00-59)\n• <code>%m</code> - Λεπτό χωρίς αρχικό μηδέν (0-59)\n• <code>%S</code> - Δευτερόλεπτο με αρχικό μηδέν (00-59)\n• <code>%s</code> - Δευτερόλεπτο χωρίς αρχικό μηδέν (0-59)\n• <code>%p</code> - πμ/μμ (πεζά)\n• <code>%P</code> - ΠΜ/ΜΜ (κεφαλαία)\n• <code>%f</code> - Προεπιλεγμένη μορφοποίηση βάσει τοπικών ρυθμίσεων",
+                  "livePreview": "Ζωντανή προεπισκόπηση",
+                  "noPreview": "Δεν μπορούμε να σας δείξουμε ζωντανή προεπισκόπηση όταν η μορφή είναι κενή.",
+                  "searchTimezonePlaceholder": "Αναζήτηση ζώνης ώρας...",
+                  "timezone": "Ζώνη ώρας"
+                },
+                "ConcatOptions": {
+                  "addString": "Προσθήκη κειμένου...",
+                  "stringList": "Λίστα κειμένων"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "Δεν μπορούμε να σας δείξουμε ζωντανή προεπισκόπηση όταν η ημερομηνία-στόχος ή η μορφή είναι αποτέλεσμα μετρητή, πρέπει να κάνετε προεπισκόπηση ολόκληρου του προτύπου για να δείτε πώς θα φαίνεται.",
+                  "dateConfigWarning": "Θυμηθείτε να επιστρέψετε μια έγκυρη χρονοσφραγίδα UNIX",
+                  "datePlaceholder": "Ή λάβετε ημερομηνία από μετρητή...",
+                  "defaultFormat": "%d ημέρες, %h ώρες και %m λεπτά απομένουν",
+                  "format": "Μορφή",
+                  "formatConfigWarning": "Θυμηθείτε να επιστρέψετε μια έγκυρη συμβολοσειρά μορφοποίησης",
+                  "formatInstructions": "Διαθέσιμα σύμβολα αντικατάστασης:\n• <code>%d</code> - Ημέρες που απομένουν\n• <code>%h</code> - Ώρες που απομένουν (0-23)\n• <code>%m</code> - Λεπτά που απομένουν (0-59)\n• <code>%s</code> - Δευτερόλεπτα που απομένουν (0-59)\n• <code>%D</code> - Σύνολο ημερών που απομένουν\n• <code>%H</code> - Σύνολο ωρών που απομένουν\n• <code>%M</code> - Σύνολο λεπτών που απομένουν\n• <code>%S</code> - Σύνολο δευτερολέπτων που απομένουν",
+                  "livePreview": "Ζωντανή προεπισκόπηση",
+                  "noPreview": "Δεν μπορούμε να σας δείξουμε ζωντανή προεπισκόπηση όταν η ημερομηνία-στόχος ή η μορφή είναι κενή.",
+                  "targetDate": "Ημερομηνία-στόχος"
+                },
+                "DateOptions": {
+                  "configWarning": "Θυμηθείτε να επιστρέψετε ένα έγκυρο αναγνωριστικό ζώνης ώρας",
+                  "counterPreview": "Δεν μπορούμε να σας δείξουμε ζωντανή προεπισκόπηση όταν η μορφή είναι αποτέλεσμα μετρητή, πρέπει να κάνετε προεπισκόπηση ολόκληρου του προτύπου για να δείτε πώς θα φαίνεται.",
+                  "defaultFormat": "%f",
+                  "format": "Μορφή",
+                  "formatConfigWarning": "Θυμηθείτε να επιστρέψετε μια έγκυρη συμβολοσειρά μορφοποίησης",
+                  "formatInstructions": "Διαθέσιμα σύμβολα αντικατάστασης:\n• <code>%Y</code> - Πλήρες έτος (2025)\n• <code>%y</code> - Διψήφιο έτος (25)\n• <code>%Ms</code> - Πλήρες όνομα μήνα (Νοέμβριος)\n• <code>%ms</code> - Σύντομο όνομα μήνα (Νοε)\n• <code>%M</code> - Αριθμός μήνα με αρχικό μηδέν (01-12)\n• <code>%m</code> - Αριθμός μήνα (1-12)\n• <code>%Ws</code> - Πλήρες όνομα ημέρας εβδομάδας (Δευτέρα)\n• <code>%ws</code> - Σύντομο όνομα ημέρας εβδομάδας (Δευ)\n• <code>%w</code> - Αριθμός ημέρας εβδομάδας (0=Κυριακή, 6=Σάββατο)\n• <code>%D</code> - Ημέρα με αρχικό μηδέν (05)\n• <code>%d</code> - Ημέρα χωρίς αρχικό μηδέν (5)\n• <code>%f</code> - Προεπιλεγμένη μορφοποίηση βάσει τοπικών ρυθμίσεων",
+                  "livePreview": "Ζωντανή προεπισκόπηση",
+                  "noPreview": "Δεν μπορούμε να σας δείξουμε ζωντανή προεπισκόπηση όταν η μορφή είναι κενή.",
+                  "searchTimezonePlaceholder": "Αναζήτηση ζώνης ώρας...",
+                  "timezone": "Ζώνη ώρας"
+                },
+                "GameOptions": {
+                  "address": "Διεύθυνση",
+                  "addressWarning": "Θυμηθείτε να επιστρέψετε μια έγκυρη διεύθυνση",
+                  "game": "Παιχνίδι",
+                  "gameWarning": "Θυμηθείτε να επιστρέψετε έναν έγκυρο τύπο παιχνιδιού node-gamedig",
+                  "port": "Θύρα (ή θύρα ερωτήματος)",
+                  "portWarning": "Θυμηθείτε να επιστρέψετε έναν έγκυρο αριθμό θύρας",
+                  "searchPlaceholder": "Αναζήτηση..."
+                },
+                "HttpOptions": {
+                  "dataPath": "Διαδρομή δεδομένων",
+                  "dataPathDescription": "Μια διαδρομή για τη λήψη της επιθυμητής τιμής όταν ο τύπος περιεχομένου της απάντησης είναι JSON. Η σύνταξη είναι παρόμοια με αυτή που χρησιμοποιεί η JS για πρόσβαση σε ιδιότητες και στοιχεία πίνακα.",
+                  "dataPathWarning": "Θυμηθείτε να επιστρέψετε μια διαδρομή δεδομένων",
+                  "emptyUrl": "Αδυναμία ανάκτησης, η διεύθυνση URL είναι κενή",
+                  "fetch": "Ανάκτηση",
+                  "fetching": "Ανάκτηση...",
+                  "lifetime": "Διάρκεια ζωής (σε δευτερόλεπτα)",
+                  "lifetimeDescription": "Καθορίζει για πόσο χρόνο θα αποθηκευτεί η απάντηση του καθορισμένου URL στην προσωρινή μνήμη.",
+                  "lifetimeWarning": "Θυμηθείτε να επιστρέψετε έναν έγκυρο αριθμό",
+                  "noPreview": "Δεν μπορούμε να σας δείξουμε προεπισκόπηση όταν η διεύθυνση URL ή η διαδρομή δεδομένων είναι αποτέλεσμα μετρητή, πρέπει να κάνετε προεπισκόπηση ολόκληρου του προτύπου για να δείτε πώς θα φαίνεται.",
+                  "preview": "Προεπισκόπηση",
+                  "testResponse": "Δοκιμαστική απάντηση",
+                  "url": "URL (GET)",
+                  "urlWarning": "Θυμηθείτε να επιστρέψετε μια έγκυρη διεύθυνση URL"
+                },
+                "MathOptions": {
+                  "addNumber": "Προσθήκη αριθμού...",
+                  "addition": "Πρόσθεση",
+                  "division": "Διαίρεση",
+                  "modulo": "Υπόλοιπο (Υπόλοιπο διαίρεσης)",
+                  "multiplication": "Πολλαπλασιασμός",
+                  "numberList": "Λίστα αριθμών",
+                  "numberWarning": "Θυμηθείτε να επιστρέψετε έναν έγκυρο αριθμό",
+                  "operation": "Τύπος πράξης",
+                  "selectOperation": "Επιλέξτε τύπο πράξης",
+                  "subtraction": "Αφαίρεση"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Μέτρηση μόνο αποκλεισμένων μελών"
+                  },
+                  "FilterByAccountType": {
+                    "any": "Οποιοσδήποτε",
+                    "bot": "Bot",
+                    "label": "Φιλτράρισμα ανά τύπο λογαριασμού",
+                    "placeholder": "Επιλέξτε τύπο λογαριασμού",
+                    "user": "Χρήστης"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "Προσθήκη καναλιού φωνής...",
+                    "dataSourceConfigWarning": "Θυμηθείτε να επιστρέψετε ένα έγκυρο αναγνωριστικό καναλιού φωνής",
+                    "label": "Φιλτράρισμα ανά σύνδεση σε κανάλι φωνής"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "Προσθήκη ρόλου...",
+                    "dataSourceConfigWarning": "Θυμηθείτε να επιστρέψετε ένα έγκυρο αναγνωριστικό ρόλου",
+                    "label": "Φιλτράρισμα ανά ρόλο"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "Οποιαδήποτε αντιστοιχία",
+                    "label": "Λειτουργία φίλτρου",
+                    "overlap": "Επικάλυψη",
+                    "placeholder": "Επιλέξτε τη λειτουργία φίλτρου"
+                  },
+                  "FilterByStatus": {
+                    "any": "Οποιαδήποτε",
+                    "dnd": "Μην ενοχλείτε",
+                    "idle": "Αδρανές",
+                    "label": "Φιλτράρισμα ανά κατάσταση",
+                    "offline": "Εκτός σύνδεσης",
+                    "online": "Συνδεδεμένο",
+                    "onlineIdleDnd": "Συνδεδεμένο + Αδρανές + Μην ενοχλείτε",
+                    "placeholder": "Επιλέξτε κατάσταση"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Φιλτράρισμα ανά εκτέλεση παιχνιδιού",
+                    "placeholder": "Προσθήκη παιχνιδιού..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "Εμφάνιση",
+                  "followers": "Ακόλουθοι",
+                  "memes": "Μιμίδια",
+                  "selectDisplay": "Επιλέξτε κάτι για εμφάνιση",
+                  "username": "Όνομα χρήστη",
+                  "usernameWarning": "Θυμηθείτε να επιστρέψετε ένα έγκυρο όνομα χρήστη"
+                },
+                "NumberOptions": {
+                  "number": "Αριθμός",
+                  "numberWarning": "Θυμηθείτε να επιστρέψετε έναν έγκυρο αριθμό",
+                  "placeholder": "Εισαγάγετε αριθμό ή αναζητήστε μετρητή"
+                },
+                "RedditOptions": {
+                  "display": "Εμφάνιση",
+                  "members": "Μέλη",
+                  "membersOnline": "Συνδεδεμένα μέλη",
+                  "selectPlaceholder": "Επιλέξτε κάτι για εμφάνιση",
+                  "subreddit": "Όνομα subreddit",
+                  "subredditPlaceholder": "Εισαγάγετε ένα subreddit ή αναζητήστε μετρητή",
+                  "subredditWarning": "Θυμηθείτε να επιστρέψετε ένα έγκυρο subreddit",
+                  "title": "Τίτλος subreddit"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "Προσθήκη αντικατάστασης",
+                  "inputText": "Κείμενο εισόδου",
+                  "removeReplacement": "Αφαίρεση αντικατάστασης",
+                  "replaceWith": "Αντικατάσταση με",
+                  "replacementPlaceholder": "Εισαγάγετε το κείμενο αντικατάστασης",
+                  "searchFor": "Αναζήτηση για",
+                  "searchPlaceholder": "Εισαγάγετε τον όρο αναζήτησης",
+                  "textPlaceholder": "Εισαγάγετε το κείμενο προς αντικατάσταση"
+                },
+                "TwitchOptions": {
+                  "channelName": "Όνομα καναλιού",
+                  "display": "Εμφάνιση",
+                  "followers": "Ακόλουθοι",
+                  "selectPlaceholder": "Επιλέξτε κάτι για εμφάνιση",
+                  "username": "Όνομα χρήστη",
+                  "usernamePlaceholder": "Εισαγάγετε όνομα χρήστη",
+                  "usernameWarning": "Θυμηθείτε να επιστρέψετε ένα έγκυρο όνομα χρήστη",
+                  "viewers": "Θεατές"
+                },
+                "YouTubeOptions": {
+                  "channelName": "Όνομα καναλιού",
+                  "channelUrl": "URL καναλιού",
+                  "channelUrlPlaceholder": "Εισαγάγετε URL καναλιού",
+                  "channelUrlWarning": "Θυμηθείτε να επιστρέψετε ένα έγκυρο URL καναλιού",
+                  "display": "Εμφάνιση",
+                  "selectPlaceholder": "Επιλέξτε κάτι για εμφάνιση",
+                  "subscribers": "Συνδρομητές",
+                  "videos": "Βίντεο",
+                  "views": "Προβολές"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "Επιλογέας emoji",
+            "searchEmoji": "Αναζήτηση emoji"
+          },
+          "markButtons": {
+            "bold": "έντονα",
+            "italic": "πλάγια",
+            "spoiler": "spoiler",
+            "strike": "διαγραφή",
+            "underline": "υπογράμμιση"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "Πολιτική αποδεκτής χρήσης",
+          "noReasonGiven": "Δεν δόθηκε λόγος",
+          "supportTeam": "Ομάδα υποστήριξης",
+          "termsOfService": "Όροι χρήσης",
+          "text": "Αυτός ο διακομιστής έχει αποκλειστεί για παραβίαση των <LinkTerms>Όρων χρήσης</LinkTerms> ή της <LinkPolicy>Πολιτικής αποδεκτής χρήσης</LinkPolicy>.<br />Αιτία: {{reason}}<br />Αν πιστεύετε ότι πρόκειται για λάθος, παρακαλώ επικοινωνήστε με την <SupportLink>ομάδα υποστήριξής μας</SupportLink>."
+        },
+        "channels": {
+          "save": "Αποθήκευση",
+          "saved": "Αποθηκεύτηκε",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "Τελευταία ενημέρωση: {{lastTemplateUpdateDate}}",
+              "template": "Πρότυπο"
+            },
+            "EnableTemplate": {
+              "description": "Όταν είναι ενεργοποιημένο, το Member Counter θα ενημερώνει αυτόματα το {{templateTarget}} αυτού του καναλιού για να εμφανίζει το επεξεργασμένο πρότυπο.",
+              "enableTemplate": "Ενεργοποίηση προτύπου",
+              "nameTarget": "όνομα",
+              "topicTarget": "θέμα"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Έλεγχος ξανά",
+              "description": "Παρακαλώ βεβαιωθείτε ότι το bot έχει τα ακόλουθα δικαιώματα σε αυτό το κανάλι:",
+              "permissions": {
+                "connect": "Σύνδεση",
+                "manageChannel": "Διαχείριση καναλιού",
+                "viewChannel": "Προβολή καναλιού"
+              },
+              "title": "Το bot δεν έχει δικαίωμα επεξεργασίας αυτού του καναλιού."
+            },
+            "TemplateError": {
+              "errorDescription": "Παρουσιάστηκε σφάλμα κατά την τελευταία επεξεργασία του προτύπου. Οι λεπτομέρειες εμφανίζονται παρακάτω.",
+              "errorTitle": "Το πρότυπο είχε σφάλμα κατά την τελευταία επεξεργασία"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "Δεν έχετε δικαίωμα διαχείρισης αυτού του διακομιστή.\nΖητήστε από έναν διαχειριστή στο {{guildName}} να σας δώσει δικαιώματα Διαχειριστή ή Διαχείρισης διακομιστή.",
+          "title": "Δεν επιτρέπεται η πρόσβαση"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "Κλείσιμο",
+          "message": "Φαίνεται ότι το Member Counter Bot δεν είναι σε αυτόν τον διακομιστή. Θα θέλατε να το <LinkURL>προσθέσετε</LinkURL>;"
+        },
+        "inviteBotPage": {
+          "addToServer": "Προσθήκη στο {{serverName}}",
+          "copyLink": "Αντιγραφή συνδέσμου πρόσκλησης",
+          "linkCopied": "Ο σύνδεσμος αντιγράφηκε στο πρόχειρό σας.",
+          "noPermission": "Δεν έχετε αρκετά δικαιώματα για να προσθέσετε το bot. Παρακαλώ ζητήστε από έναν διαχειριστή ή κάποιον με δικαίωμα Διαχείρισης διακομιστή να προσθέσει αυτό το bot.",
+          "subtitle": "Προσθέστε το Member Counter στο {{serverName}} και απολαύστε μετρητές σε πραγματικό χρόνο.",
+          "title": "Ας ρυθμίσουμε το bot!",
+          "useOrShareLink": "Χρησιμοποιήστε ή μοιραστείτε αυτόν τον σύνδεσμο για να προσθέσετε το bot."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "Αποκλεισμός διακομιστή",
+            "blockDialogDescription": "Ο λόγος που δίνεται θα εμφανίζεται στους διαχειριστές του διακομιστή.",
+            "blockDialogTitle": "Θέλετε πραγματικά να αποκλείσετε αυτόν τον διακομιστή;",
+            "closeButton": "Κλείσιμο",
+            "reasonLabel": "Λόγος",
+            "reasonPlaceholder": "Παρακαλώ αναφέρετε έναν λόγο",
+            "unblockButton": "Άρση αποκλεισμού διακομιστή",
+            "unblockDialogDescription": "Αυτός ο διακομιστής αποκλείστηκε για τον ακόλουθο λόγο: {{reason}}",
+            "unblockDialogTitle": "Θέλετε πραγματικά να άρετε τον αποκλεισμό αυτού του διακομιστή;"
+          },
+          "reset": {
+            "closeButton": "Κλείσιμο",
+            "dialogDescription": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Όλες οι ρυθμίσεις θα επαναφερθούν στις προεπιλογές.",
+            "dialogTitle": "Είστε απολύτως σίγουροι;",
+            "resetButton": "Επαναφορά ρυθμίσεων"
+          },
+          "save": "Αποθήκευση",
+          "saved": "Αποθηκεύτηκε",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Προσαρμοσμένα ψηφία",
+              "customDigitsDescription": "Σε μετρητές που επιστρέφουν αριθμό, το Member Counter θα αντικαταστήσει κάθε ψηφίο με αυτά που παρέχετε. Αυτό είναι χρήσιμο αν θέλετε να εμφανίσετε προσαρμοσμένα emoji ή κάτι άλλο, όπως «γραμματοσειρές σε στυλ unicode».",
+              "customizationRecommendation": "Δεν συνιστούμε την προσαρμογή κανενός ψηφίου, εκτός αν είστε σίγουροι ότι κανείς που χρησιμοποιεί αναγνώστη οθόνης δεν θα έχει πρόσβαση σε κανέναν μετρητή.",
+              "screenReaderWarning": "Λάβετε υπόψη ότι οι χρήστες που χρησιμοποιούν αναγνώστη οθόνης (μετατροπή κειμένου σε ομιλία) ενδέχεται να μην κατανοούν τα προσαρμοσμένα ψηφία και <demoLink>ίσως ακούσουν κάτι ακατανόητο</demoLink>. Οι αναγνώστες οθόνης χρησιμοποιούνται συχνά από άτομα με οπτικές αναπηρίες."
+            },
+            "Locale": {
+              "description": "Η αλλαγή αυτής της ρύθμισης θα επηρεάσει τον τρόπο εμφάνισης ορισμένων μετρητών.",
+              "locale": "Τοπικές ρυθμίσεις",
+              "numberExample": "Το 439212 θα εμφανίζεται ως {{number}}",
+              "searchPlaceholder": "Αναζήτηση τοπικών ρυθμίσεων...",
+              "timeExample": "Η 15:30 (ή 3:30 μμ) θα εμφανίζεται ως {{time}}"
+            },
+            "UseCompactNotation": {
+              "description": "Οι μετρητές που επιστρέφουν αριθμούς θα εμφανίζονται με πιο συμπαγή τρόπο.",
+              "example1": "Το 12300 θα εμφανίζεται ως {{number}}",
+              "example2": "Το 439212 θα εμφανίζεται ως {{number}}",
+              "example3": "Το 1500000 θα εμφανίζεται ως {{number}}",
+              "label": "Χρήση συμπαγούς σημειογραφίας για αριθμούς"
+            }
+          },
+          "title": "Ρυθμίσεις διακομιστή"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "Αξιοποιήστε στο μέγιστο τους μετρητές σας, προσαρμοσμένους στις ανάγκες σας.",
+            "label": "Σαν επαγγελματίας",
+            "title": "Προηγμένοι μετρητές"
+          },
+          "createFromScratch": {
+            "description": "Μάθετε πώς να δημιουργήσετε τον πρώτο σας προσαρμοσμένο μετρητή σε λίγα λεπτά.",
+            "label": "Γίνε μοναδικός!",
+            "title": "Δημιουργία από το μηδέν"
+          },
+          "queryHistoricalStatistics": {
+            "description": "Δείτε πώς εξελίχθηκαν οι μετρητές σας και άλλα κοινά στατιστικά με την πάροδο του χρόνου.",
+            "label": "Σύντομα",
+            "title": "Αναζήτηση ιστορικών στατιστικών"
+          },
+          "quickSetup": {
+            "description": "Δημιουργήστε γρήγορα τους πιο συνηθισμένους μετρητές με λίγα κλικ. Δεν χρειάζεται φαντασία ή σκέψη!",
+            "label": "Χωρίς κόπο!",
+            "title": "Γρήγορη ρύθμιση"
+          },
+          "subTitle": "Ακολουθούν μερικές προτάσεις για εσάς:",
+          "title": "Καλώς ήρθατε ξανά!"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "Παρουσιάστηκε μη αναμενόμενο σφάλμα.",
+        "NotAuthenticated": "Δεν έχετε συνδεθεί.",
+        "NotAuthorized": "Δεν έχετε εξουσιοδότηση πρόσβασης σε αυτήν τη σελίδα.",
+        "NotFound": "Η σελίδα που αναζητάτε δεν βρέθηκε."
+      },
+      "nav": {
+        "backBtn": "Επιστροφή",
+        "homeBtn": "Αρχική σελίδα",
+        "supportBtn": "Υποστήριξη",
+        "tryAgainBtn": "Δοκιμάστε ξανά"
+      }
+    },
+    "home": {
+      "addToDiscord": "Προσθήκη στο Discord",
+      "dashboard": "Πίνακας ελέγχου",
+      "getSupport": "Υποστήριξη",
+      "headings": [
+        "Εμφανίστε δυναμικά τον αριθμό μελών του διακομιστή σας",
+        "Επιδείξτε τον αριθμό συνδρομητών σας στο YouTube",
+        "Παρακολουθήστε τον αριθμό παικτών του Minecraft διακομιστή σας",
+        "Επιδείξτε πόσοι θεατές παρακολουθούν το κανάλι σας στο Twitch",
+        "Εμφανίστε οποιαδήποτε δεδομένα θέλετε στον Discord διακομιστή σας",
+        "Παρακολουθήστε πόσους παίκτες έχει ο FiveM διακομιστής σας",
+        "Εμφανίστε ένα ρολόι προσαρμοσμένο στη ζώνη ώρας της προτίμησής σας",
+        "Δημιουργήστε αντίστροφες μετρήσεις για εκδηλώσεις ή ειδικές περιστάσεις",
+        "Παρακολουθήστε στατιστικά παικτών σε 320+ διακομιστές παιχνιδιών",
+        "Ανακτήστε και εμφανίστε δεδομένα από οποιοδήποτε API endpoint",
+        "Εκτελέστε και εμφανίστε μαθηματικές πράξεις στα δεδομένα σας",
+        "Μορφοποιήστε αριθμούς και εμφανίστε τους όμορφα",
+        "Αναδείξτε τους Nitro boosters του διακομιστή σας"
+      ],
+      "seeHowPeopleUseIt": "Δείτε πώς το χρησιμοποιούν",
+      "seeMore": "Δείτε περισσότερα",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Ανακαλύψτε ακόμα περισσότερες δυνατότητες και μετρητές που μπορούν να βελτιώσουν την εμπειρία σας. Μείνετε συντονισμένοι για ενημερώσεις!",
+          "title": "Και πολλά ακόμα!"
+        },
+        "clock": {
+          "description": "Δείτε την ώρα σε οποιαδήποτε ζώνη ώρας με το προσαρμόσιμο ρολόι μας. Ιδανικό για συντονισμό μεταξύ διαφορετικών περιοχών.",
+          "title": "Ρολόι"
+        },
+        "countdown": {
+          "description": "Δημιουργήστε και διαχειριστείτε χρονόμετρα αντίστροφης μέτρησης προσαρμοσμένα στις συγκεκριμένες εκδηλώσεις ή προθεσμίες σας.",
+          "title": "Αντίστροφη μέτρηση"
+        },
+        "date": {
+          "description": "Εμφανίστε την τρέχουσα ημερομηνία σε οποιαδήποτε ζώνη ώρας με προσαρμόσιμη μορφοποίηση. Ιδανικό για εμφάνιση ημερομηνιών σε διαφορετικές περιοχές.",
+          "title": "Ημερομηνία"
+        },
+        "discordMembers": {
+          "description": "Μετρήστε και φιλτράρετε μέλη ανά κατάσταση σύνδεσης, ρόλους και άλλα κριτήρια για ακριβείς πληροφορίες σχετικά με την κοινότητά σας.",
+          "title": "Μέλη Discord"
+        },
+        "game": {
+          "description": "Παρακολουθήστε τη δραστηριότητα του διακομιστή παιχνιδιών σας με μετρήσεις παικτών σε πραγματικό χρόνο για πάνω από 320 υποστηριζόμενα παιχνίδια.",
+          "title": "Παιχνίδι"
+        },
+        "http": {
+          "description": "Εκτελέστε αιτήματα GET και λάβετε δεδομένα απευθείας από οποιοδήποτε endpoint, απλοποιώντας τις ανάγκες ενσωμάτωσής σας.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Εκτελέστε μια σειρά μαθηματικών πράξεων συμπεριλαμβανομένων πρόσθεσης, αφαίρεσης, πολλαπλασιασμού και άλλων σε πολλαπλούς αριθμούς.",
+          "title": "Μαθηματικά"
+        },
+        "nitroBoosters": {
+          "description": "Παρακολουθήστε τον αριθμό Nitro boosters στον διακομιστή σας για να αξιολογήσετε την υποστήριξη και τη συμμετοχή της κοινότητας.",
+          "title": "Nitro Boosters"
+        },
+        "reddit": {
+          "description": "Λάβετε στατιστικά για οποιοδήποτε subreddit, συμπεριλαμβανομένου τίτλου, αριθμού μελών και συνδεδεμένων μελών.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Τροποποιήστε κείμενο δυναμικά με το ισχυρό εργαλείο αντικατάστασής μας, ιδανικό σε συνδυασμό με τον μετρητή HTTP.",
+          "title": "Αντικατάσταση"
+        },
+        "twitch": {
+          "description": "Παρακολουθήστε μετρικές καναλιών Twitch όπως αριθμό ακολούθων και στατιστικά θεάσεων για να ενημερώνεστε για τους αγαπημένους σας streamers.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Ανακτήστε βασικές μετρικές από κανάλια YouTube, συμπεριλαμβανομένων αριθμού συνδρομητών, αριθμού βίντεο και συνολικών προβολών.",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "Υποστηριζόμενοι μετρητές"
+    },
+    "status": {
+      "affectedServers": "Επηρεαζόμενοι διακομιστές Discord:",
+      "assignedDiscordServers": "Ανατεθειμένοι σε αυτό το child:",
+      "child": "Child #{{index}}",
+      "childDiscordServers": "{{count}} διακομιστές Discord {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} μη διαθέσιμοι)",
+      "childDiscordUsers": "{{count}} χρήστες",
+      "discordClientStatus": {
+        "Connecting": "Σύνδεση",
+        "Disconnected": "Αποσυνδεδεμένο",
+        "Identifying": "Ταυτοποίηση",
+        "Idle": "Αδρανές",
+        "Nearly": "Αδρανές",
+        "Ready": "Έτοιμο",
+        "Reconnecting": "Επανασύνδεση",
+        "Resuming": "Επανεκκίνηση",
+        "WaitingForGuilds": "Αναμονή για διακομιστές"
+      },
+      "memoryUsage": "{{usage}} (κορύφωση {{peak}})",
+      "memoryUsageTooltip": "Χρήση μνήμης",
+      "partialOutage": "Υπάρχει μερική διακοπή",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} πυρήνες\nΦόρτος {{load}}",
+        "cpuLabel": "CPU",
+        "hostname": "Όνομα",
+        "memoryInfo": "{{memory}}\n{{usage}}% χρήση",
+        "memoryLabel": "Μνήμη",
+        "title": "Πληροφορίες διακομιστή"
+      },
+      "statusUnavailable": "Η κατάσταση δεν είναι διαθέσιμη"
+    }
+  }
+}

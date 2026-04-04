@@ -1,1 +1,213 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "문제가 발생했습니다. 나중에 다시 시도해 주세요.\n\n오류 ID: {{ERROR_ID}}",
+        "title": "오류!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "대시보드로 이동",
+        "definition": {
+          "slash": {
+            "description": "웹사이트에서 봇을 설정할 수 있는 링크를 받습니다.",
+            "name": "configure"
+          }
+        },
+        "reply": "아래 버튼을 클릭하여 대시보드에서 봇을 설정하세요.\nDiscord를 떠나지 않고 {{SETUP_COMMAND}} 명령어를 사용하여 기본 카운터를 설정할 수도 있습니다."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "유용한 링크 목록 및 기타 정보를 표시합니다.",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[서버에 추가하기]({{BOT_INVITE_URL}})\n[웹사이트]({{OFFICIAL_WEBSITE_URL}})\n[지원 서버]({{BOT_SUPPORT_URL}})\n[GitHub 저장소]({{BOT_REPO_URL}})\n[봇 버전: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "서버에 추가",
+        "addToServerAgain": "이 서버에 다시 추가",
+        "definition": {
+          "slash": {
+            "description": "봇을 추가할 수 있는 초대 링크를 제공합니다.",
+            "name": "invite"
+          }
+        },
+        "description": "초대 링크가 준비되었습니다:\n{{INVITE_URL}}",
+        "joinSupportServer": "지원 서버 참가"
+      },
+      "profile": {
+        "badges": "배지",
+        "definition": {
+          "context": {
+            "name": "Profile"
+          },
+          "slash": {
+            "description": "이 봇과 관련된 사용자 정보를 표시합니다.",
+            "name": "profile",
+            "options": {
+              "user": {
+                "description": "프로필을 확인할 사용자입니다.",
+                "name": "user"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "데이터 삭제",
+        "deleteProfilePrompt": {
+          "cancelButton": "취소",
+          "confirmButton": "예",
+          "description": "이 작업은 되돌릴 수 없습니다.",
+          "removeDataSuccess": "데이터가 성공적으로 삭제되었습니다.",
+          "title": "정말로 데이터를 삭제하시겠습니까?"
+        },
+        "moreOptionsButton": "추가 옵션",
+        "userNotFound": "사용자를 찾을 수 없습니다"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "기본 카운터를 설정합니다.",
+            "name": "setup",
+            "subcommands": {
+              "server": {
+                "description": "서버 관련 카운터를 설정합니다.",
+                "name": "server"
+              },
+              "twitch": {
+                "description": "Twitch 관련 카운터를 설정합니다.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "채널 사용자 이름입니다.",
+                    "name": "username"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "YouTube 관련 카운터를 설정합니다.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "채널 URL입니다.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "생성이 완료되었습니다.",
+          "configureSuggestion": "더 맞춤화된 설정을 위해 {{CONFIGURE_COMMAND}}을(를) 확인해 보세요.",
+          "createdCategory": "{{ICON}} 카테고리가 생성되었습니다.",
+          "createdChannel": "{{ICON}} {{NAME}}이(가) 생성되었습니다.",
+          "creating": "카운터를 생성하는 중...",
+          "creatingCategory": "{{ICON}} 카테고리를 생성하는 중입니다.",
+          "creatingChannel": "{{ICON}} {{NAME}} 카운터를 생성하는 중입니다.",
+          "failedCategory": "{{ICON}} 카테고리 생성에 실패했습니다.",
+          "failedChannel": "{{ICON}} {{NAME}} 생성에 실패했습니다."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA 서버 통계 \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "온라인 멤버",
+                "template": "온라인: {{COUNTER}}"
+              },
+              {
+                "name": "멤버",
+                "template": "멤버: {{COUNTER}}"
+              },
+              {
+                "name": "니트로 부스터",
+                "template": "부스터: {{COUNTER}}"
+              },
+              {
+                "name": "역할",
+                "template": "역할: {{COUNTER}}"
+              },
+              {
+                "name": "채널",
+                "template": "채널: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch 통계 \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Twitch 팔로워",
+                "template": "{{COUNTER}} 팔로워"
+              },
+              {
+                "name": "Twitch 시청자",
+                "template": "시청자: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube 통계 \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "YouTube 구독자",
+                "template": "{{COUNTER}} 구독자"
+              },
+              {
+                "name": "YouTube 동영상",
+                "template": "{{COUNTER}} 동영상"
+              },
+              {
+                "name": "YouTube 조회수",
+                "template": "{{COUNTER}} 조회수"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "오류!"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "잘못된 요청입니다.",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "봇에 이 카운터를 사용하기 위한 권한 있는 인텐트가 충분하지 않습니다.",
+    "BOT_IS_NOT_PREMIUM": "봇이 프리미엄 버전이 아니며 이 카운터에 필요한 특정 기능이 없습니다.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "카운터가 인식할 수 없는 형식입니다.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "카운터가 유효하지 않습니다.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "채널 이름의 결과가 2자 미만입니다.",
+    "EVALUATION_TIMEOUT": "평가 시간이 너무 오래 걸려 시간이 초과되었습니다.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "평가에서 최종 문자열을 생성하지 못했습니다.",
+    "FORBIDDEN": "요청이 금지되었습니다.",
+    "GAME_MISSING_ADDRESS": "게임 카운터에 서버 주소가 필요합니다.",
+    "GAME_MISSING_GAME_ID": "게임 카운터에 게임 ID를 제공해야 합니다.",
+    "GAME_MISSING_PORT": "게임 카운터에 서버 포트가 필요합니다.",
+    "HTTP_DATA_PATH_MANDATORY": "콘텐츠 유형이 application/json인 HTTP 요청에는 데이터 경로를 지정해야 합니다.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTP 응답의 콘텐츠 유형이 유효하지 않습니다 (text/plain 또는 application/json이 아님).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP 응답 상태 코드가 유효하지 않습니다 (200이 아님).",
+    "HTTP_MISSING_URL": "HTTP 카운터에 URL이 필요하지만 누락되었습니다.",
+    "INTERNAL_SERVER_ERROR": "내부 서버 오류가 발생했습니다.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "현재 멤버 수를 사용할 수 없습니다.",
+    "MEMERATOR_MISSING_USERNAME": "Memerator 카운터에 사용자 이름이 필요하지만 누락되었습니다.",
+    "NOT_FOUND": "요청한 리소스를 찾을 수 없습니다.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "봇에 채널을 편집할 수 있는 충분한 권한이 없습니다.",
+    "REDDIT_MISSING_SUBREDDIT": "Reddit 카운터에 서브레딧을 제공해야 합니다.",
+    "TWITCH_CHANNEL_NOT_FOUND": "지정된 Twitch 채널을 찾을 수 없습니다.",
+    "TWITCH_MISSING_USERNAME": "Twitch 카운터에 사용자 이름이 설정되어야 합니다.",
+    "UNAUTHORIZED": "인증되지 않은 요청입니다.",
+    "UNKNOWN": "알 수 없는 오류가 발생했습니다.",
+    "UNKNOWN_DATA_SOURCE": "제공된 카운터를 알 수 없거나 인식할 수 없습니다.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "평가에서 반환된 값의 유형을 알 수 없습니다.",
+    "USER_NOT_FOUND": "사용자를 찾을 수 없습니다.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "제공된 YouTube 채널 URL이 유효하지 않습니다.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "YouTube 카운터에 채널 URL이 설정되어야 합니다."
+  }
+}

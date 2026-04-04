@@ -1,1 +1,213 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Något gick fel, försök igen senare.\n\nFel-ID: {{ERROR_ID}}",
+        "title": "FEL!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Gå till instrumentpanelen",
+        "definition": {
+          "slash": {
+            "description": "Få länken för att konfigurera boten på webbplatsen.",
+            "name": "konfigurera"
+          }
+        },
+        "reply": "Klicka nedan för att konfigurera boten på instrumentpanelen.\nDu kan också ställa in några grundläggande räknare med kommandot {{SETUP_COMMAND}} utan att lämna Discord."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Lista med användbara länkar och annan information.",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[Lägg till mig på din server]({{BOT_INVITE_URL}})\n[Webbplats]({{OFFICIAL_WEBSITE_URL}})\n[Supportserver]({{BOT_SUPPORT_URL}})\n[GitHub-repository]({{BOT_REPO_URL}})\n[Botversion: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Lägg till på server",
+        "addToServerAgain": "Lägg till på denna server igen",
+        "definition": {
+          "slash": {
+            "description": "Ger en inbjudningslänk för att lägga till boten.",
+            "name": "bjud-in"
+          }
+        },
+        "description": "Din inbjudningslänk är klar:\n{{INVITE_URL}}",
+        "joinSupportServer": "Gå med i supportservern"
+      },
+      "profile": {
+        "badges": "Utmärkelser",
+        "definition": {
+          "context": {
+            "name": "Profil"
+          },
+          "slash": {
+            "description": "Visar relaterad information mellan dig och denna bot.",
+            "name": "profil",
+            "options": {
+              "user": {
+                "description": "Användaren vars profil du vill visa.",
+                "name": "användare"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Radera data",
+        "deleteProfilePrompt": {
+          "cancelButton": "Avbryt",
+          "confirmButton": "Ja",
+          "description": "Denna åtgärd kan inte ångras.",
+          "removeDataSuccess": "Datan har raderats.",
+          "title": "Är du säker på att du vill radera datan?"
+        },
+        "moreOptionsButton": "Fler alternativ",
+        "userNotFound": "Användaren hittades inte"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Ställ in några grundläggande räknare.",
+            "name": "installation",
+            "subcommands": {
+              "server": {
+                "description": "Ställ in serverrelaterade räknare.",
+                "name": "server"
+              },
+              "twitch": {
+                "description": "Ställ in Twitch-relaterade räknare.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "Kanalens användarnamn.",
+                    "name": "användarnamn"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "Ställ in YouTube-relaterade räknare.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "Kanalens URL.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Skapandet är klart.",
+          "configureSuggestion": "Du bör kolla in {{CONFIGURE_COMMAND}} för en mer anpassad konfiguration.",
+          "createdCategory": "{{ICON}} Kategori skapad.",
+          "createdChannel": "{{ICON}} {{NAME}} skapad.",
+          "creating": "Skapar räknare...",
+          "creatingCategory": "{{ICON}} Skapar kategori.",
+          "creatingChannel": "{{ICON}} Skapar {{NAME}}-räknare.",
+          "failedCategory": "{{ICON}} Kategori misslyckades.",
+          "failedChannel": "{{ICON}} {{NAME}} misslyckades."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Serverstatistik \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Medlemmar online",
+                "template": "Online: {{COUNTER}}"
+              },
+              {
+                "name": "Medlemmar",
+                "template": "Medlemmar: {{COUNTER}}"
+              },
+              {
+                "name": "Nitro-boostare",
+                "template": "Boostare: {{COUNTER}}"
+              },
+              {
+                "name": "Roller",
+                "template": "Roller: {{COUNTER}}"
+              },
+              {
+                "name": "Kanaler",
+                "template": "Kanaler: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch-statistik \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Twitch-följare",
+                "template": "{{COUNTER}} Följare"
+              },
+              {
+                "name": "Twitch-tittare",
+                "template": "Tittare: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube-statistik \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "YouTube-prenumeranter",
+                "template": "{{COUNTER}} Prenumeranter"
+              },
+              {
+                "name": "YouTube-videor",
+                "template": "{{COUNTER}} Videor"
+              },
+              {
+                "name": "YouTube-visningar",
+                "template": "{{COUNTER}} Visningar"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "FEL!"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "Begäran var ogiltig.",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Boten har inte tillräckligt med privilegierade intents för att använda denna räknare.",
+    "BOT_IS_NOT_PREMIUM": "Boten är inte en premiumversion och saknar vissa funktioner som behövs för denna räknare.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Räknaren har ett okänt format.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "Räknaren är ogiltig.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Resultatet för kanalnamnet är kortare än 2 tecken.",
+    "EVALUATION_TIMEOUT": "Utvärderingen tog för lång tid och avbröts.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "Misslyckades med att generera en slutgiltig sträng från utvärderingen.",
+    "FORBIDDEN": "Begäran var förbjuden.",
+    "GAME_MISSING_ADDRESS": "Spelräknaren kräver en serveradress.",
+    "GAME_MISSING_GAME_ID": "Ett spel-ID måste anges för spelräknaren.",
+    "GAME_MISSING_PORT": "Spelräknaren kräver en serverport.",
+    "HTTP_DATA_PATH_MANDATORY": "En datasökväg måste anges för HTTP-begäranden vars innehållstyp är application/json.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Innehållstypen för HTTP-svaret är ogiltig (inte text/plain eller application/json).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP-svarets statuskod är ogiltig (inte 200).",
+    "HTTP_MISSING_URL": "HTTP-räknaren kräver en URL som saknas.",
+    "INTERNAL_SERVER_ERROR": "Ett internt serverfel inträffade.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "Medlemsantalet är inte tillgängligt just nu.",
+    "MEMERATOR_MISSING_USERNAME": "Memerator-räknaren kräver ett användarnamn som saknas.",
+    "NOT_FOUND": "Den begärda resursen hittades inte.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Boten har inte tillräckliga behörigheter för att redigera kanalen.",
+    "REDDIT_MISSING_SUBREDDIT": "En subreddit måste anges för Reddit-räknaren.",
+    "TWITCH_CHANNEL_NOT_FOUND": "Den angivna Twitch-kanalen kunde inte hittas.",
+    "TWITCH_MISSING_USERNAME": "Twitch-räknaren kräver att ett användarnamn anges.",
+    "UNAUTHORIZED": "Begäran var obehörig.",
+    "UNKNOWN": "Ett okänt fel inträffade.",
+    "UNKNOWN_DATA_SOURCE": "Den angivna räknaren är okänd eller inte igenkänd.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "Typen av värde som returnerades från utvärderingen är okänd.",
+    "USER_NOT_FOUND": "Användaren hittades inte.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "Den angivna YouTube-kanal-URL:en är ogiltig.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "YouTube-räknaren kräver att en kanal-URL anges."
+  }
+}

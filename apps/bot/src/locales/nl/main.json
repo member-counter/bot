@@ -1,1 +1,213 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Er is iets misgegaan, probeer het later opnieuw.\n\nFout-ID: {{ERROR_ID}}",
+        "title": "FOUT!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Naar dashboard",
+        "definition": {
+          "slash": {
+            "description": "Ontvang de link om de bot op de website te configureren.",
+            "name": "configureren"
+          }
+        },
+        "reply": "Klik hieronder om de bot op het dashboard te configureren.\nJe kunt ook enkele basistellers instellen met het {{SETUP_COMMAND}} commando zonder Discord te verlaten."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Lijst met handige links en andere informatie.",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[Voeg mij toe aan je server]({{BOT_INVITE_URL}})\n[Website]({{OFFICIAL_WEBSITE_URL}})\n[Ondersteuningsserver]({{BOT_SUPPORT_URL}})\n[GitHub-repository]({{BOT_REPO_URL}})\n[Botversie: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Toevoegen aan server",
+        "addToServerAgain": "Opnieuw toevoegen aan deze server",
+        "definition": {
+          "slash": {
+            "description": "Geeft een uitnodigingslink om de bot toe te voegen.",
+            "name": "uitnodigen"
+          }
+        },
+        "description": "Je uitnodigingslink is klaar:\n{{INVITE_URL}}",
+        "joinSupportServer": "Lid worden van ondersteuningsserver"
+      },
+      "profile": {
+        "badges": "Badges",
+        "definition": {
+          "context": {
+            "name": "Profiel"
+          },
+          "slash": {
+            "description": "Toont gerelateerde informatie tussen jou en deze bot.",
+            "name": "profiel",
+            "options": {
+              "user": {
+                "description": "De gebruiker wiens profiel je wilt bekijken.",
+                "name": "gebruiker"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Gegevens verwijderen",
+        "deleteProfilePrompt": {
+          "cancelButton": "Annuleren",
+          "confirmButton": "Ja",
+          "description": "Deze actie kan niet ongedaan worden gemaakt.",
+          "removeDataSuccess": "De gegevens zijn succesvol verwijderd.",
+          "title": "Weet je zeker dat je de gegevens wilt verwijderen?"
+        },
+        "moreOptionsButton": "Meer opties",
+        "userNotFound": "Gebruiker niet gevonden"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Stel enkele basistellers in.",
+            "name": "instellen",
+            "subcommands": {
+              "server": {
+                "description": "Stel servergerelateerde tellers in.",
+                "name": "server"
+              },
+              "twitch": {
+                "description": "Stel Twitch-gerelateerde tellers in.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "De gebruikersnaam van het kanaal.",
+                    "name": "gebruikersnaam"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "Stel YouTube-gerelateerde tellers in.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "De kanaal-URL.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Aanmaken voltooid.",
+          "configureSuggestion": "Bekijk {{CONFIGURE_COMMAND}} voor een meer aangepaste configuratie.",
+          "createdCategory": "{{ICON}} Categorie aangemaakt.",
+          "createdChannel": "{{ICON}} {{NAME}} aangemaakt.",
+          "creating": "Tellers worden aangemaakt...",
+          "creatingCategory": "{{ICON}} Categorie wordt aangemaakt.",
+          "creatingChannel": "{{ICON}} {{NAME}}-teller wordt aangemaakt.",
+          "failedCategory": "{{ICON}} Categorie mislukt.",
+          "failedChannel": "{{ICON}} {{NAME}} mislukt."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Serverstatistieken \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Online leden",
+                "template": "Online: {{COUNTER}}"
+              },
+              {
+                "name": "Leden",
+                "template": "Leden: {{COUNTER}}"
+              },
+              {
+                "name": "Nitro-boosters",
+                "template": "Boosters: {{COUNTER}}"
+              },
+              {
+                "name": "Rollen",
+                "template": "Rollen: {{COUNTER}}"
+              },
+              {
+                "name": "Kanalen",
+                "template": "Kanalen: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch-statistieken \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Twitch-volgers",
+                "template": "{{COUNTER}} volgers"
+              },
+              {
+                "name": "Twitch-kijkers",
+                "template": "Kijkers: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube-statistieken \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "YouTube-abonnees",
+                "template": "{{COUNTER}} abonnees"
+              },
+              {
+                "name": "YouTube-video's",
+                "template": "{{COUNTER}} video's"
+              },
+              {
+                "name": "YouTube-weergaven",
+                "template": "{{COUNTER}} weergaven"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "FOUT!"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "Het verzoek was ongeldig.",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "De bot heeft niet genoeg geprivilegieerde intents om deze teller te gebruiken.",
+    "BOT_IS_NOT_PREMIUM": "De bot is geen premiumversie en mist bepaalde functies die nodig zijn voor deze teller.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "De teller heeft een niet-herkend formaat.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "De teller is ongeldig.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Het resultaat voor de kanaalnaam is korter dan 2 tekens.",
+    "EVALUATION_TIMEOUT": "De evaluatie duurde te lang en is verlopen.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "Het genereren van een eindresultaat uit de evaluatie is mislukt.",
+    "FORBIDDEN": "Het verzoek was verboden.",
+    "GAME_MISSING_ADDRESS": "De gameteller vereist een serveradres.",
+    "GAME_MISSING_GAME_ID": "Er moet een game-ID worden opgegeven voor de gameteller.",
+    "GAME_MISSING_PORT": "De gameteller vereist een serverpoort.",
+    "HTTP_DATA_PATH_MANDATORY": "Er moet een datapad worden opgegeven voor HTTP-verzoeken waarvan het inhoudstype application/json is.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Het inhoudstype van het HTTP-antwoord is ongeldig (niet text/plain of application/json).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "De HTTP-antwoordstatuscode is ongeldig (niet 200).",
+    "HTTP_MISSING_URL": "De HTTP-teller vereist een URL, die ontbreekt.",
+    "INTERNAL_SERVER_ERROR": "Er is een interne serverfout opgetreden.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "De ledenaantallen zijn op dit moment niet beschikbaar.",
+    "MEMERATOR_MISSING_USERNAME": "De Memerator-teller vereist een gebruikersnaam, die ontbreekt.",
+    "NOT_FOUND": "De gevraagde bron is niet gevonden.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "De bot heeft onvoldoende rechten om het kanaal te bewerken.",
+    "REDDIT_MISSING_SUBREDDIT": "Er moet een subreddit worden opgegeven voor de Reddit-teller.",
+    "TWITCH_CHANNEL_NOT_FOUND": "Het opgegeven Twitch-kanaal kon niet worden gevonden.",
+    "TWITCH_MISSING_USERNAME": "De Twitch-teller vereist dat een gebruikersnaam is ingesteld.",
+    "UNAUTHORIZED": "Het verzoek was niet geautoriseerd.",
+    "UNKNOWN": "Er is een onbekende fout opgetreden.",
+    "UNKNOWN_DATA_SOURCE": "De opgegeven teller is onbekend of wordt niet herkend.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "Het type waarde dat door de evaluatie is geretourneerd, is onbekend.",
+    "USER_NOT_FOUND": "Gebruiker niet gevonden.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "De opgegeven YouTube-kanaal-URL is ongeldig.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "De YouTube-teller vereist dat een kanaal-URL is ingesteld."
+  }
+}

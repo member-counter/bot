@@ -1,1 +1,1052 @@
-{}
+{
+  "common": {
+    "channelLabels": {
+      "announcementChannel": "Kunngjøringskanal",
+      "category": "Kategori",
+      "forumChannel": "Forumkanal",
+      "mediaChannel": "Mediekanal",
+      "stageChannel": "Scenekanal",
+      "textChannel": "Tekstkanal",
+      "voiceChannel": "Talekanal"
+    },
+    "knownError": "Feil",
+    "knownErrors": {
+      "BAD_REQUEST": "Forespørselen var ugyldig.",
+      "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Boten har ikke nok privilegerte intents for å bruke denne telleren.",
+      "BOT_IS_NOT_PREMIUM": "Boten er ikke en premiumversjon og mangler visse funksjoner som trengs for denne telleren.",
+      "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Telleren er i et ugjenkjennelig format.",
+      "DELIMITED_DATA_SOURCE_IS_INVALID": "Telleren er ugyldig.",
+      "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Resultatet for kanalnavnet er kortere enn 2 tegn.",
+      "EVALUATION_TIMEOUT": "Evalueringen tok for lang tid og ble tidsavbrutt.",
+      "FAILED_TO_RETURN_A_FINAL_STRING": "Kunne ikke generere en endelig streng fra evalueringen.",
+      "FORBIDDEN": "Forespørselen ble avvist.",
+      "GAME_MISSING_ADDRESS": "Spilltelleren krever en serveradresse.",
+      "GAME_MISSING_GAME_ID": "En spill-ID må oppgis for spilltelleren.",
+      "GAME_MISSING_PORT": "Spilltelleren krever en serverport.",
+      "HTTP_DATA_PATH_MANDATORY": "En datasti må angis for HTTP-forespørsler der innholdstypen er application/json.",
+      "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "Innholdstypen i HTTP-svaret er ugyldig (ikke text/plain eller application/json).",
+      "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP-svarets statuskode er ugyldig (ikke 200).",
+      "HTTP_MISSING_URL": "HTTP-telleren krever en URL, som mangler.",
+      "INTERNAL_SERVER_ERROR": "En intern serverfeil oppstod.",
+      "MEMBER_COUNT_NOT_AVAILABLE": "Medlemstellingene er ikke tilgjengelige for øyeblikket.",
+      "MEMERATOR_MISSING_USERNAME": "Memerator-telleren krever et brukernavn, som mangler.",
+      "NOT_FOUND": "Den forespurte ressursen ble ikke funnet.",
+      "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Boten har ikke tilstrekkelige tillatelser til å redigere kanalen.",
+      "REDDIT_MISSING_SUBREDDIT": "En subreddit må oppgis for Reddit-telleren.",
+      "TWITCH_CHANNEL_NOT_FOUND": "Den angitte Twitch-kanalen ble ikke funnet.",
+      "TWITCH_MISSING_USERNAME": "Twitch-telleren krever at et brukernavn er satt.",
+      "UNAUTHORIZED": "Forespørselen var uautorisert.",
+      "UNKNOWN": "En ukjent feil oppstod.",
+      "UNKNOWN_DATA_SOURCE": "Den oppgitte telleren er ukjent eller ikke gjenkjent.",
+      "UNKNOWN_EVALUATION_RETURN_TYPE": "Verditypen returnert fra evalueringen er ukjent.",
+      "USER_NOT_FOUND": "Bruker ikke funnet.",
+      "YOUTUBE_INVALID_CHANNEL_URL": "Den oppgitte YouTube-kanal-URLen er ugyldig.",
+      "YOUTUBE_MISSING_CHANNEL_URL": "YouTube-telleren krever at en kanal-URL er satt."
+    },
+    "unknown": "Ukjent",
+    "unknownChannel": "Ukjent kanal",
+    "unknownChannelType": "Ukjent kanaltype",
+    "unknownDate": "Ukjent dato",
+    "unknownError": "Ukjent feil",
+    "unknownPublicBot": "Ukjent offentlig bot",
+    "unknownRole": "Ukjent rolle",
+    "unknownServer": "Ukjent server",
+    "unknownUser": "Ukjent bruker {{id}}"
+  },
+  "components": {
+    "Combobox": {
+      "items": {
+        "ChannelItem": {
+          "removeChannel": "Fjern kanal",
+          "selected": "Valgt"
+        },
+        "DataSourceItem": {
+          "edit": "Rediger teller",
+          "notSelected": "Ikke valgt",
+          "remove": "Fjern teller",
+          "selected": "Valgt"
+        },
+        "GamedigItem": {
+          "remove": "Fjern spill",
+          "selected": "Valgt"
+        },
+        "LocaleItem": {
+          "remove": "Fjern språk",
+          "selected": "Valgt"
+        },
+        "RoleItem": {
+          "everyone": "Alle",
+          "remove": "Fjern rolle",
+          "selected": "Valgt"
+        },
+        "TextItem": {
+          "remove": "Fjern {{item}}",
+          "selected": "Valgt"
+        },
+        "TimezoneItem": {
+          "remove": "Fjern tidssone",
+          "selected": "Valgt"
+        }
+      },
+      "noResults": "Ingen resultater funnet.",
+      "placeholder": "Legg til...",
+      "searchPlaceholder": "Søk..."
+    },
+    "NavBar": {
+      "accountEntry": "Konto",
+      "dashboardEntry": "Kontrollpanel",
+      "supportEntry": "Støtte"
+    },
+    "footer": {
+      "acceptableUsePolicy": "Retningslinjer for akseptabel bruk",
+      "admin": "Admin",
+      "codeRepository": "Kodearkiv",
+      "cookiePolicy": "Retningslinjer for informasjonskapsler",
+      "copyright": "© {{year}} Member Counter. Alle rettigheter forbeholdt. Laget av <eduardozgzLink />.",
+      "documentation": "Dokumentasjon",
+      "donate": "Doner",
+      "improveMemberCounter": "Forbedre Member Counter",
+      "legal": "Juridisk",
+      "loginWithDiscord": "Logg inn med Discord",
+      "logout": "Logg ut",
+      "madePossibleThanksTo": "Muliggjort takket være Alex, <vampireChickenLink />, <livingfloreLink />, Frosty og <donorsLink>mange flere</donorsLink>.",
+      "manageDonations": "Administrer donasjoner",
+      "manageHomePage": "Administrer hjemmeside",
+      "manageServers": "Administrer servere",
+      "manageUsers": "Administrer brukere",
+      "privacyPolicy": "Personvernerklæring",
+      "status": "Status",
+      "supportServer": "Støtteserver",
+      "termsOfService": "Vilkår for bruk",
+      "translateBot": "Oversett boten",
+      "usefulLinks": "Nyttige lenker"
+    }
+  },
+  "dataSourceMetadata": {
+    "botStats": {
+      "description": "Returnerer det totale antallet brukere og servere boten er på for øyeblikket. (Du trenger sannsynligvis ikke dette)",
+      "name": "Bot-statistikk"
+    },
+    "channels": {
+      "description": "Tell antall kanaler innenfor angitte kategorier eller totalt.",
+      "display": {
+        "channelsUnderACategory": "Kanaler under en kategori"
+      },
+      "keywords": "kanaler,kategorier",
+      "name": "Kanaler"
+    },
+    "clock": {
+      "description": "Vis en klokke justert til din foretrukne tidssone.",
+      "display": {
+        "syntax": "Klokke ({{timezone}})"
+      },
+      "keywords": "klokke,tidssone",
+      "name": "Klokke"
+    },
+    "concat": {
+      "description": "Slå sammen flere tekststrenger til én.",
+      "display": {
+        "syntax": "Slå sammen {{strings}} {{undisplayableStrings}}",
+        "undisplayableStrings": "og {{amount}} til"
+      },
+      "keywords": "slåsammen,sammensett,strenger,kombinere,koble,flette",
+      "name": "Slå sammen"
+    },
+    "countdown": {
+      "description": "Lag en nedtellingstidtaker med et format tilpasset dine behov.",
+      "display": {
+        "syntax": "Nedtelling til {{datetime}}"
+      },
+      "keywords": "nedtelling,tidtaker",
+      "name": "Nedtelling"
+    },
+    "date": {
+      "description": "Vis gjeldende dato justert til din foretrukne tidssone.",
+      "display": {
+        "syntax": "Dato ({{timezone}})"
+      },
+      "keywords": "dato,kalender,tidssone",
+      "name": "Dato"
+    },
+    "game": {
+      "description": "Hent gjeldende antall spillere på spillserveren din, kompatibel med over 320 spill.",
+      "display": {
+        "playerCountFor": "Spillerantall for {{gameServerAddress}}"
+      },
+      "keywords": "spill,spillere,pålogget,server",
+      "name": "Spill"
+    },
+    "http": {
+      "description": "Send en GET-forespørsel til et endepunkt og gi resultatet til denne boten.",
+      "display": {
+        "syntax": "HTTP {{hostname}}"
+      },
+      "keywords": "HTTP,GET,forespørsel,endepunkt,API,hent",
+      "name": "HTTP"
+    },
+    "math": {
+      "description": "Utfør matematiske operasjoner som addisjon, subtraksjon, multiplikasjon, divisjon eller modulus på en liste med tall.",
+      "display": {
+        "operationType": {
+          "add": "adder",
+          "divide": "divider",
+          "modulo": "modulo",
+          "multiply": "multipliser",
+          "subtract": "subtraher"
+        },
+        "syntax": "{{operationType}} {{numbers}} {{undisplayableNumbers}}",
+        "undisplayableNumbers": "og {{amount}} til"
+      },
+      "keywords": "matte,kalkulator,operasjoner,tall,aritmetikk,addisjon,subtraksjon,multiplikasjon,divisjon,modulus",
+      "name": "Matte"
+    },
+    "members": {
+      "description": "Tell medlemmer, du kan også filtrere dem etter påloggingsstatus, spesifikke roller og mer.",
+      "display": {
+        "accountStatus": {
+          "any": " ",
+          "dnd": "Ikke forstyrr",
+          "idle": "inaktiv",
+          "offline": "frakoblet",
+          "online": "pålogget",
+          "onlineIdleDnd": "pålogget + inaktiv + Ikke forstyrr"
+        },
+        "accountType": {
+          "any": "medlemmer",
+          "bot": "boter",
+          "user": "brukere"
+        },
+        "bannedMembers": "utestengte medlemmer",
+        "connectedToAChannel": "tilkoblet en kanal",
+        "playingAGame": "mens de spiller et spill",
+        "roleFiltering": {
+          "any": "med roller",
+          "overlapping": "med overlappende roller"
+        },
+        "syntax": "{{accountType}} {{accountStatus}} {{roleFiltering}} {{connectedToAChannel}} {{playingAGame}}"
+      },
+      "keywords": "medlemmer,filter,roller,pålogget,status,utestengt,spiller,frakoblet,ikkeforstyrr,inaktiv,borte,bruker,bot,tilkoblet",
+      "name": "Medlemmer"
+    },
+    "memerator": {
+      "description": "Hent følgerantall og antall memes for en Memerator-konto.",
+      "display": {
+        "returnKind": {
+          "followers": "følgere",
+          "memes": "memes"
+        },
+        "syntax": "Memerator {{returnKind}}"
+      },
+      "keywords": "memerator,følger,visning,kanal",
+      "name": "Memerator"
+    },
+    "nitroboosters": {
+      "description": "Hent antall Nitro-boostere for serveren.",
+      "keywords": "nitro,boostere,server",
+      "name": "Nitro-boostere"
+    },
+    "number": {
+      "description": "Bruk tallformatering på det gitte tallet.",
+      "display": {
+        "dataSource": "{{dataSourceDisplayName}} som tall",
+        "raw": "Tall ({{number}})"
+      },
+      "keywords": "tall,formatering",
+      "name": "Tall"
+    },
+    "reddit": {
+      "description": "Hent tittelen på en subreddit sammen med det totale antallet medlemmer og antall medlemmer som er pålogget.",
+      "display": {
+        "returnKind": {
+          "members": "medlemmer",
+          "membersOnline": "påloggede medlemmer",
+          "title": "tittel"
+        },
+        "syntax": "Reddit {{returnKind}}"
+      },
+      "keywords": "reddit,subreddit,medlemmer,pålogget",
+      "name": "Reddit"
+    },
+    "replace": {
+      "description": "Teksterstatning, nyttig i kombinasjon med andre nestede tellere for omfattende tekstendringer.",
+      "display": {
+        "replaceSyntax": "«{{search}}» med «{{replacement}}»",
+        "syntax": "Erstatt {{replaceSyntax}}"
+      },
+      "keywords": "tekst,erstatning,endring,streng,delstreng",
+      "name": "Erstatt"
+    },
+    "roles": {
+      "description": "Tell alle roller som finnes på serveren.",
+      "keywords": "roller",
+      "name": "Roller"
+    },
+    "twitch": {
+      "description": "Hent følgerantall og totalt antall visninger for en Twitch-kanal.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanalnavn",
+          "followers": "følgere",
+          "viewers": "seere"
+        },
+        "syntax": "Twitch {{returnKind}}"
+      },
+      "keywords": "Twitch,følger,visning,kanal",
+      "name": "Twitch"
+    },
+    "unknown": {
+      "description": "Ukjent teller. Dette skyldes sannsynligvis en feil",
+      "name": "Ukjent"
+    },
+    "youtube": {
+      "description": "Hent abonnentantall, videoantall og totale visninger fra en YouTube-kanal.",
+      "display": {
+        "returnKind": {
+          "channelName": "kanalnavn",
+          "subscribers": "abonnenter",
+          "videos": "videoer",
+          "views": "visninger"
+        },
+        "syntax": "YouTube {{returnKind}}"
+      },
+      "keywords": "YouTube,abonnent,video,visninger,kanal",
+      "name": "YouTube"
+    }
+  },
+  "hooks": {
+    "useConfirmOnLeave": "Du har ulagrede endringer. Er du sikker på at du vil forlate denne siden?",
+    "useFormManager": {
+      "state": {
+        "save": "Lagre",
+        "saved": "Lagret",
+        "saving": "Lagrer..."
+      }
+    }
+  },
+  "meta": {
+    "description": "Member Counter - Discord-boten for å telle medlemmer og mer"
+  },
+  "pages": {
+    "account": {
+      "deleteButton": {
+        "closeBtn": "Lukk",
+        "confirmDescription": "Denne handlingen kan ikke angres. Dette vil permanent slette kontoen din og fjerne dataene dine fra serverne våre.",
+        "confirmTitle": "Er du helt sikker?",
+        "deleteAccountBtn": "Slett konto"
+      },
+      "page": {
+        "avatarAlt": "{{username}}s avatar",
+        "logoutButton": "Logg ut"
+      },
+      "userBadges": {
+        "betaTester": "Du deltok i et betaprogram.",
+        "bigBrain": "Du foreslo en idé som ble implementert.",
+        "bugCatcher": "Du fant og rapporterte en feil.",
+        "contributor": "Du implementerte en funksjon eller fikset en feil.",
+        "donor": "Du donerte for å støtte utviklingen og vedlikeholdet av Member Counter.",
+        "foldingAtHome": "Du bidro med en WU i folding@home.",
+        "patPat": "Du fant en hemmelighet.",
+        "premium": "Du er en premiumbruker.",
+        "translator": "Du hjalp til med å oversette boten."
+      }
+    },
+    "admin": {
+      "donations": {
+        "delete": {
+          "button": "Slett donasjon",
+          "closeButton": "Lukk",
+          "dialogDescription": "Denne handlingen kan ikke angres.",
+          "dialogTitle": "Er du helt sikker?"
+        },
+        "edit": {
+          "title": "Rediger donasjon"
+        },
+        "form": {
+          "amount": "Beløp",
+          "anonymous": "Anonym",
+          "currency": "Valuta",
+          "currencyDecimals": "Valutadesimaler",
+          "date": "Dato",
+          "note": "Merknad",
+          "saveBtn": "Lagre",
+          "userId": "Discord bruker-ID"
+        },
+        "new": {
+          "title": "Ny donasjon"
+        },
+        "registerDonation": "Registrer donasjon",
+        "totalDonations": "Totale donasjoner: {{total}} ({{totalValue}})"
+      },
+      "guilds": {
+        "loadGuildInput": {
+          "loadButton": "Last inn server",
+          "placeholder": "Lim inn server-ID"
+        }
+      },
+      "homePage": {
+        "demoServers": {
+          "createBtn": "Opprett",
+          "createInputPlaceholder": "Nytt demoservernavn",
+          "delete": {
+            "button": "Slett demoserver",
+            "closeButton": "Lukk",
+            "dialogDescription": "Denne handlingen kan ikke angres.",
+            "dialogTitle": "Er du helt sikker?"
+          },
+          "list": {
+            "display": {
+              "priority": "Prioritet: {{priority}}"
+            }
+          },
+          "manage": {
+            "channels": {
+              "add": "Legg til kanal",
+              "channel": {
+                "isRulesChannel": "Vis som regelkanal",
+                "name": "Navn",
+                "remove": "Fjern",
+                "showAsSkeleton": "Vis som skjelett",
+                "topic": "Emne",
+                "type": "Type",
+                "types": {
+                  "announcementChannel": "Kunngjøringskanal",
+                  "categoryChannel": "Kategorikanal",
+                  "textChannel": "Tekstkanal",
+                  "voiceChannel": "Låst talekanal"
+                }
+              },
+              "title": "Kanaler"
+            },
+            "description": "Beskrivelse",
+            "features": {
+              "options": {
+                "Community": "Fellesskap",
+                "Discoverable": "Oppdagbar",
+                "Partnered": "Partner",
+                "Verified": "Verifisert"
+              },
+              "title": "Funksjoner"
+            },
+            "icon": "Ikon-URL",
+            "language": "Språk",
+            "links": {
+              "add": "Legg til lenke",
+              "link": {
+                "label": "Etikett",
+                "remove": "Fjern",
+                "url": "URL"
+              },
+              "title": "Lenker"
+            },
+            "name": "Servernavn",
+            "premiumTier": {
+              "options": {
+                "None": "Ingen",
+                "Tier1": "Nivå 1",
+                "Tier2": "Nivå 2",
+                "Tier3": "Nivå 3"
+              },
+              "title": "Premiumnivå"
+            },
+            "priority": "Prioritet",
+            "save": "Lagre",
+            "saved": "Lagret",
+            "title": "Rediger demoserver"
+          },
+          "title": "Demoservere"
+        },
+        "headings": [
+          "Vis serverens medlemstall dynamisk",
+          "Vis frem YouTube-abonnenttallet ditt",
+          "Overvåk spillerantallet på Minecraft-serveren din",
+          "Vis hvor mange som ser på Twitch-kanalen din",
+          "Vis hvilken som helst data du vil på Discord-serveren din",
+          "Spor hvor mange spillere FiveM-serveren din har",
+          "Vis en klokke justert til din foretrukne tidssone",
+          "Lag nedtellinger for arrangementer eller spesielle anledninger",
+          "Overvåk spillerstatistikk på over 320 spillservere",
+          "Hent og vis data fra et hvilket som helst API-endepunkt",
+          "Utfør og vis matematiske operasjoner på dataene dine",
+          "Formater tall og vis dem på en fin måte",
+          "Fremhev serverens Nitro-boostere"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Oppdag enda flere funksjoner og tellere som kan forbedre opplevelsen din. Følg med for oppdateringer!",
+            "title": "Og mye mer!"
+          },
+          "clock": {
+            "description": "Se tiden i hvilken som helst tidssone med vår tilpassbare klokke. Perfekt for koordinering på tvers av regioner.",
+            "title": "Klokke"
+          },
+          "countdown": {
+            "description": "Opprett og administrer nedtellingstidtakere tilpasset dine spesifikke arrangementer eller tidsfrister.",
+            "title": "Nedtelling"
+          },
+          "date": {
+            "description": "Vis gjeldende dato i hvilken som helst tidssone med tilpassbar formatering. Flott for å vise datoer på tvers av regioner.",
+            "title": "Dato"
+          },
+          "discordMembers": {
+            "description": "Tell og filtrer medlemmer etter påloggingsstatus, roller og andre kriterier for å få presis innsikt i fellesskapet ditt.",
+            "title": "Discord-medlemmer"
+          },
+          "game": {
+            "description": "Overvåk spillserverens aktivitet med sanntids spillerantall for over 320 støttede spill.",
+            "title": "Spill"
+          },
+          "http": {
+            "description": "Utfør GET-forespørsler og motta data direkte fra et hvilket som helst endepunkt, noe som forenkler integrasjonene dine.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Utfør en rekke matematiske operasjoner inkludert addisjon, subtraksjon, multiplikasjon og mer på flere tall.",
+            "title": "Matte"
+          },
+          "nitroBoosters": {
+            "description": "Spor antall Nitro-boostere på serveren din for å måle støtte og engasjement i fellesskapet.",
+            "title": "Nitro-boostere"
+          },
+          "reddit": {
+            "description": "Hent statistikk om enhver subreddit, inkludert tittel, medlemstall og påloggede medlemmer.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Endre tekst dynamisk med vårt kraftige erstatningsverktøy, ideelt i kombinasjon med HTTP-telleren.",
+            "title": "Erstatt"
+          },
+          "twitch": {
+            "description": "Overvåk Twitch-kanalmålinger som følgerantall og visningsstatistikk for å holde deg oppdatert om favorittstrømmerne dine.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Hent nøkkelmålinger fra YouTube-kanaler inkludert abonnentantall, videoantall og totale visninger.",
+            "title": "YouTube"
+          }
+        }
+      },
+      "users": {
+        "delete": {
+          "button": "Slett konto",
+          "closeButton": "Lukk",
+          "dialogDescription": "Denne handlingen kan ikke angres.",
+          "dialogTitle": "Er du helt sikker?"
+        },
+        "loadUser": "Last inn bruker",
+        "manage": {
+          "badges": {
+            "betaTester": "Betatester",
+            "bigBrain": "Stor hjerne",
+            "bugCatcher": "Feilfinner",
+            "contributor": "Bidragsyter",
+            "donor": "Donor",
+            "foldingAtHome": "folding@home",
+            "patPat": "Klapp klapp",
+            "premium": "Premium",
+            "title": "Merker",
+            "translator": "Oversetter"
+          },
+          "pasteUserId": "Lim inn bruker-ID",
+          "permissions": {
+            "manageDonations": "Administrer donasjoner",
+            "manageGuilds": "Administrer servere",
+            "manageHomePage": "Administrer landingsside",
+            "manageUsers": "Administrer brukere",
+            "seeGuilds": "Se servere",
+            "seeUsers": "Se brukere",
+            "title": "Tillatelser"
+          },
+          "save": "Lagre",
+          "saved": "Lagret",
+          "transferAccount": "Overfør konto"
+        },
+        "recentUsers": "Nylige brukere",
+        "userNotRegistered": "Denne brukeren er ikke registrert."
+      }
+    },
+    "dashboard": {
+      "noServers": {
+        "heading": "Du er ikke på noen server. ",
+        "subheading": "Hvorfor ikke begynne med å opprette en <CreateServerLink>ny en</CreateServerLink> eller ved å <JoinSupportServerLink>bli med oss</JoinSupportServerLink>?"
+      },
+      "servers": {
+        "ChannelNavItem": {
+          "infoTooltip": {
+            "enabled": "Tellere er aktivert i denne kanalen",
+            "issue": "Det er et problem i denne kanalen som krever din oppmerksomhet"
+          },
+          "unsupportedChannelType": "Denne kanaltypen støttes ikke ennå."
+        },
+        "ServerNavMenu": {
+          "channelList": "Kanalliste",
+          "loading": "Laster inn serverdata...",
+          "serverSettings": "Serverinnstillinger",
+          "unknownChannels": "Besøk lagrede kanaler hvis Discord-kanalene ikke kan lastes inn"
+        },
+        "TemplateEditor": {
+          "AddDataSourceCombobox": {
+            "noItemsFound": "Ingen tellere funnet.",
+            "searchPlaceholder": "Søk etter teller..."
+          },
+          "DataSource": {
+            "Format": {
+              "DataSourceFormat": {
+                "defaultServerSettings": "Standard serverinnstillinger",
+                "no": "Nei",
+                "overrideDefaultDigits": "Overstyr standardsifre",
+                "overrideDefaultLocale": "Overstyr standardspråk",
+                "searchLocale": "Søk etter språk...",
+                "select": "Velg",
+                "useCompactNotation": "Bruk kompakt notasjon",
+                "yes": "Ja"
+              }
+            },
+            "Options": {
+              "Pages": {
+                "BotStatsOptions": {
+                  "display": "Vis",
+                  "selectPlaceholder": "Velg noe å vise",
+                  "servers": "Servere",
+                  "users": "Brukere"
+                },
+                "ChannelOptions": {
+                  "addCategoryPlaceholder": "Legg til kategori...",
+                  "configWarning": "Husk å returnere en gyldig kategori-ID",
+                  "filterByCategory": "Filtrer etter kategori"
+                },
+                "ClockOptions": {
+                  "configWarning": "Husk å returnere en gyldig tidssoneidentifikator",
+                  "counterPreview": "Vi kan ikke vise deg en sanntidsforhåndsvisning når formatet er resultatet av en teller, du må forhåndsvise hele malen for å se hvordan det vil se ut.",
+                  "defaultFormat": "%f",
+                  "format": "Format",
+                  "formatConfigWarning": "Husk å returnere en gyldig formateringsstreng",
+                  "formatInstructions": "Tilgjengelige plassholdere:\n• <code>%H</code> - Time med ledende null, 24-timer (00-23)\n• <code>%h</code> - Time uten ledende null, 24-timer (0-23)\n• <code>%I</code> - Time med ledende null, 12-timer (01-12)\n• <code>%i</code> - Time uten ledende null, 12-timer (1-12)\n• <code>%M</code> - Minutt med ledende null (00-59)\n• <code>%m</code> - Minutt uten ledende null (0-59)\n• <code>%S</code> - Sekund med ledende null (00-59)\n• <code>%s</code> - Sekund uten ledende null (0-59)\n• <code>%p</code> - am/pm (små bokstaver)\n• <code>%P</code> - AM/PM (store bokstaver)\n• <code>%f</code> - Standard lokalitetsbasert formatering",
+                  "livePreview": "Sanntidsforhåndsvisning",
+                  "noPreview": "Vi kan ikke vise deg en sanntidsforhåndsvisning når formatet er tomt.",
+                  "searchTimezonePlaceholder": "Søk etter tidssone...",
+                  "timezone": "Tidssone"
+                },
+                "ConcatOptions": {
+                  "addString": "Legg til tekst...",
+                  "stringList": "Tekstliste"
+                },
+                "CountdownOptions": {
+                  "counterPreview": "Vi kan ikke vise deg en sanntidsforhåndsvisning når måldatoen eller formatet er resultatet av en teller, du må forhåndsvise hele malen for å se hvordan det vil se ut.",
+                  "dateConfigWarning": "Husk å returnere et gyldig UNIX-tidsstempel",
+                  "datePlaceholder": "Eller hent dato fra en teller...",
+                  "defaultFormat": "%d dager, %h timer og %m minutter igjen",
+                  "format": "Format",
+                  "formatConfigWarning": "Husk å returnere en gyldig formateringsstreng",
+                  "formatInstructions": "Tilgjengelige plassholdere:\n• <code>%d</code> - Dager igjen\n• <code>%h</code> - Timer igjen (0-23)\n• <code>%m</code> - Minutter igjen (0-59)\n• <code>%s</code> - Sekunder igjen (0-59)\n• <code>%D</code> - Totalt dager igjen\n• <code>%H</code> - Totalt timer igjen\n• <code>%M</code> - Totalt minutter igjen\n• <code>%S</code> - Totalt sekunder igjen",
+                  "livePreview": "Sanntidsforhåndsvisning",
+                  "noPreview": "Vi kan ikke vise deg en sanntidsforhåndsvisning når måldatoen eller formatet er tomt.",
+                  "targetDate": "Måldato"
+                },
+                "DateOptions": {
+                  "configWarning": "Husk å returnere en gyldig tidssoneidentifikator",
+                  "counterPreview": "Vi kan ikke vise deg en sanntidsforhåndsvisning når formatet er resultatet av en teller, du må forhåndsvise hele malen for å se hvordan det vil se ut.",
+                  "defaultFormat": "%f",
+                  "format": "Format",
+                  "formatConfigWarning": "Husk å returnere en gyldig formateringsstreng",
+                  "formatInstructions": "Tilgjengelige plassholdere:\n• <code>%Y</code> - Fullt årstall (2025)\n• <code>%y</code> - 2-sifret årstall (25)\n• <code>%Ms</code> - Fullt månedsnavn (november)\n• <code>%ms</code> - Kort månedsnavn (nov)\n• <code>%M</code> - Månedsnummer med ledende null (01-12)\n• <code>%m</code> - Månedsnummer (1-12)\n• <code>%Ws</code> - Fullt ukedagsnavn (mandag)\n• <code>%ws</code> - Kort ukedagsnavn (man)\n• <code>%w</code> - Ukedagsnummer (0=søndag, 6=lørdag)\n• <code>%D</code> - Dag med ledende null (05)\n• <code>%d</code> - Dag uten ledende null (5)\n• <code>%f</code> - Standard lokalitetsbasert formatering",
+                  "livePreview": "Sanntidsforhåndsvisning",
+                  "noPreview": "Vi kan ikke vise deg en sanntidsforhåndsvisning når formatet er tomt.",
+                  "searchTimezonePlaceholder": "Søk etter tidssone...",
+                  "timezone": "Tidssone"
+                },
+                "GameOptions": {
+                  "address": "Adresse",
+                  "addressWarning": "Husk å returnere en gyldig adresse",
+                  "game": "Spill",
+                  "gameWarning": "Husk å returnere en gyldig node-gamedig spilltype",
+                  "port": "Port (eller spørringsport)",
+                  "portWarning": "Husk å returnere et gyldig portnummer",
+                  "searchPlaceholder": "Søk..."
+                },
+                "HttpOptions": {
+                  "dataPath": "Datasti",
+                  "dataPathDescription": "En sti for å hente ønsket verdi når svarets innholdstype er JSON, syntaksen ligner den som brukes i JS for å få tilgang til egenskaper og matriseelementer.",
+                  "dataPathWarning": "Husk å returnere en datasti",
+                  "emptyUrl": "Kan ikke hente, URL er tom",
+                  "fetch": "Hent",
+                  "fetching": "Henter...",
+                  "lifetime": "Levetid (i sekunder)",
+                  "lifetimeDescription": "Angir hvor lenge svaret fra den angitte URLen vil bli mellomlagret.",
+                  "lifetimeWarning": "Husk å returnere et gyldig tall",
+                  "noPreview": "Vi kan ikke vise deg en forhåndsvisning når URLen eller datastien er resultatet av en teller, du må forhåndsvise hele malen for å se hvordan det vil se ut.",
+                  "preview": "Forhåndsvisning",
+                  "testResponse": "Testsvar",
+                  "url": "URL (GET)",
+                  "urlWarning": "Husk å returnere en gyldig URL"
+                },
+                "MathOptions": {
+                  "addNumber": "Legg til tall...",
+                  "addition": "Addisjon",
+                  "division": "Divisjon",
+                  "modulo": "Modulo (rest av en divisjon)",
+                  "multiplication": "Multiplikasjon",
+                  "numberList": "Talliste",
+                  "numberWarning": "Husk å returnere et gyldig tall",
+                  "operation": "Operasjonstype",
+                  "selectOperation": "Velg en operasjonstype",
+                  "subtraction": "Subtraksjon"
+                },
+                "MembersOptions": {
+                  "CountOnlyBanned": {
+                    "label": "Tell kun utestengte medlemmer"
+                  },
+                  "FilterByAccountType": {
+                    "any": "Alle",
+                    "bot": "Bot",
+                    "label": "Filtrer etter kontotype",
+                    "placeholder": "Velg en kontotype",
+                    "user": "Bruker"
+                  },
+                  "FilterByConnectedTo": {
+                    "addPlaceholder": "Legg til talekanal...",
+                    "dataSourceConfigWarning": "Husk å returnere en gyldig talekanal-ID",
+                    "label": "Filtrer etter tilkoblet til en talekanal"
+                  },
+                  "FilterByRole": {
+                    "addPlaceholder": "Legg til rolle...",
+                    "dataSourceConfigWarning": "Husk å returnere en gyldig rolle-ID",
+                    "label": "Filtrer etter rolle"
+                  },
+                  "FilterByRoleFilterMode": {
+                    "anyMatch": "Treff på noen",
+                    "label": "Filtreringsmodus",
+                    "overlap": "Overlapp",
+                    "placeholder": "Velg filtreringsmodus"
+                  },
+                  "FilterByStatus": {
+                    "any": "Alle",
+                    "dnd": "Ikke forstyrr",
+                    "idle": "Inaktiv",
+                    "label": "Filtrer etter status",
+                    "offline": "Frakoblet",
+                    "online": "Pålogget",
+                    "onlineIdleDnd": "Pålogget + Inaktiv + Ikke forstyrr",
+                    "placeholder": "Velg en status"
+                  },
+                  "FilterPlayingGame": {
+                    "label": "Filtrer etter spiller et spill",
+                    "placeholder": "Legg til spill..."
+                  }
+                },
+                "MemeratorOptions": {
+                  "display": "Vis",
+                  "followers": "Følgere",
+                  "memes": "Memes",
+                  "selectDisplay": "Velg noe å vise",
+                  "username": "Brukernavn",
+                  "usernameWarning": "Husk å returnere et gyldig brukernavn"
+                },
+                "NumberOptions": {
+                  "number": "Tall",
+                  "numberWarning": "Husk å returnere et gyldig tall",
+                  "placeholder": "Skriv inn et tall eller søk etter en teller"
+                },
+                "RedditOptions": {
+                  "display": "Vis",
+                  "members": "Medlemmer",
+                  "membersOnline": "Påloggede medlemmer",
+                  "selectPlaceholder": "Velg noe å vise",
+                  "subreddit": "Subreddit-navn",
+                  "subredditPlaceholder": "Skriv inn en subreddit eller søk etter en teller",
+                  "subredditWarning": "Husk å returnere en gyldig subreddit",
+                  "title": "Subreddit-tittel"
+                },
+                "ReplaceOptions": {
+                  "addReplacement": "Legg til erstatning",
+                  "inputText": "Inndatatekst",
+                  "removeReplacement": "Fjern erstatning",
+                  "replaceWith": "Erstatt med",
+                  "replacementPlaceholder": "Skriv inn erstatningsteksten",
+                  "searchFor": "Søk etter",
+                  "searchPlaceholder": "Skriv inn søketeksten",
+                  "textPlaceholder": "Skriv inn teksten som skal erstattes"
+                },
+                "TwitchOptions": {
+                  "channelName": "Kanalnavn",
+                  "display": "Vis",
+                  "followers": "Følgere",
+                  "selectPlaceholder": "Velg noe å vise",
+                  "username": "Brukernavn",
+                  "usernamePlaceholder": "Skriv inn et brukernavn",
+                  "usernameWarning": "Husk å returnere et gyldig brukernavn",
+                  "viewers": "Seere"
+                },
+                "YouTubeOptions": {
+                  "channelName": "Kanalnavn",
+                  "channelUrl": "Kanal-URL",
+                  "channelUrlPlaceholder": "Skriv inn en kanal-URL",
+                  "channelUrlWarning": "Husk å returnere en gyldig kanal-URL",
+                  "display": "Vis",
+                  "selectPlaceholder": "Velg noe å vise",
+                  "subscribers": "Abonnenter",
+                  "videos": "Videoer",
+                  "views": "Visninger"
+                }
+              }
+            }
+          },
+          "emojiPicker": {
+            "emojiPicker": "Emojivalg",
+            "searchEmoji": "Søk etter emoji"
+          },
+          "markButtons": {
+            "bold": "fet",
+            "italic": "kursiv",
+            "spoiler": "spoiler",
+            "strike": "gjennomstreking",
+            "underline": "understreking"
+          }
+        },
+        "blockedBanner": {
+          "acceptableUsePolicy": "Retningslinjer for akseptabel bruk",
+          "noReasonGiven": "Ingen grunn oppgitt",
+          "supportTeam": "Støtteteam",
+          "termsOfService": "Vilkår for bruk",
+          "text": "Denne serveren har blitt blokkert for brudd på våre <LinkTerms>vilkår for bruk</LinkTerms> eller <LinkPolicy>retningslinjer for akseptabel bruk</LinkPolicy>.<br />Oppgitt grunn: {{reason}}<br />Hvis du tror dette er en feil, vennligst kontakt vårt <SupportLink>støtteteam</SupportLink>."
+        },
+        "channels": {
+          "save": "Lagre",
+          "saved": "Lagret",
+          "sections": {
+            "EditTemplate": {
+              "lastUpdated": "Sist oppdatert: {{lastTemplateUpdateDate}}",
+              "template": "Mal"
+            },
+            "EnableTemplate": {
+              "description": "Når aktivert, vil Member Counter automatisk oppdatere denne kanalens {{templateTarget}} for å vise den behandlede malen.",
+              "enableTemplate": "Aktiver mal",
+              "nameTarget": "navn",
+              "topicTarget": "emne"
+            },
+            "MissingPermissionsWarning": {
+              "checkAgainBtn": "Sjekk igjen",
+              "description": "Vennligst kontroller at boten har følgende tillatelser i denne kanalen:",
+              "permissions": {
+                "connect": "Koble til",
+                "manageChannel": "Administrer kanal",
+                "viewChannel": "Vis kanal"
+              },
+              "title": "Boten har ikke tillatelse til å redigere denne kanalen."
+            },
+            "TemplateError": {
+              "errorDescription": "En feil oppstod under siste malbehandling. Detaljer vises nedenfor.",
+              "errorTitle": "Malen hadde en feil da den sist ble behandlet"
+            }
+          }
+        },
+        "forbiddenPage": {
+          "message": "Du har ikke tillatelse til å administrere denne serveren.\nBe en administrator på {{guildName}} om å gi deg Administrator- eller Administrer server-tillatelser.",
+          "title": "Tilgang nektet"
+        },
+        "inviteBotBanner": {
+          "closeBtn": "Lukk",
+          "message": "Det ser ut som Member Counter-boten ikke er på denne serveren. Vil du <LinkURL>legge den til</LinkURL>?"
+        },
+        "inviteBotPage": {
+          "addToServer": "Legg til på {{serverName}}",
+          "copyLink": "Kopier invitasjonslenke",
+          "linkCopied": "Lenken er kopiert til utklippstavlen din.",
+          "noPermission": "Du har ikke nok tillatelser til å legge til boten. Vennligst be en administrator eller noen med Administrer server-tillatelse om å legge til denne boten.",
+          "subtitle": "Legg Member Counter til {{serverName}} og nyt sanntidstellere.",
+          "title": "La oss sette opp boten!",
+          "useOrShareLink": "Bruk eller del denne lenken for å legge til boten."
+        },
+        "settings": {
+          "block": {
+            "blockButton": "Blokker server",
+            "blockDialogDescription": "Den oppgitte grunnen vil bli vist til serveradministratorene.",
+            "blockDialogTitle": "Vil du virkelig blokkere denne serveren?",
+            "closeButton": "Lukk",
+            "reasonLabel": "Grunn",
+            "reasonPlaceholder": "Vennligst oppgi en grunn",
+            "unblockButton": "Opphev blokkering av server",
+            "unblockDialogDescription": "Denne serveren ble blokkert av følgende grunn: {{reason}}",
+            "unblockDialogTitle": "Vil du virkelig oppheve blokkeringen av denne serveren?"
+          },
+          "reset": {
+            "closeButton": "Lukk",
+            "dialogDescription": "Denne handlingen kan ikke angres. Alle innstillinger vil bli tilbakestilt til standardverdiene.",
+            "dialogTitle": "Er du helt sikker?",
+            "resetButton": "Tilbakestill innstillinger"
+          },
+          "save": "Lagre",
+          "saved": "Lagret",
+          "sections": {
+            "CustomDigits": {
+              "customDigits": "Egendefinerte sifre",
+              "customDigitsDescription": "I tellere som returnerer et tall, vil Member Counter erstatte hvert siffer med de du oppgir. Dette er nyttig hvis du vil vise egendefinerte emojier eller noe annet, som «unicode-stilfonter.»",
+              "customizationRecommendation": "Vi anbefaler ikke å tilpasse noen sifre med mindre du er sikker på at ingen som bruker en skjermleser vil ha tilgang til noen teller.",
+              "screenReaderWarning": "Vær oppmerksom på at brukere som bruker en skjermleser (tekst-til-tale) kanskje ikke kan forstå de tilpassede sifrene og <demoLink>kan høre noe uforståelig</demoLink>. Skjermlesere brukes ofte av personer med nedsatt syn."
+            },
+            "Locale": {
+              "description": "Å endre dette vil påvirke hvordan noen tellere vises.",
+              "locale": "Språkinnstilling",
+              "numberExample": "439212 vil vises som {{number}}",
+              "searchPlaceholder": "Søk etter språk...",
+              "timeExample": "15:30 (eller 3:30 PM) vil vises som {{time}}"
+            },
+            "UseCompactNotation": {
+              "description": "Tellere som returnerer tall vil vises på en mer kompakt måte.",
+              "example1": "12300 vil vises som {{number}}",
+              "example2": "439212 vil vises som {{number}}",
+              "example3": "1500000 vil vises som {{number}}",
+              "label": "Bruk kompakt notasjon for tall"
+            }
+          },
+          "title": "Serverinnstillinger"
+        },
+        "suggestedTopics": {
+          "advancedCounters": {
+            "description": "Få mest mulig ut av tellerne dine, tilpasset dine behov.",
+            "label": "Som en proff",
+            "title": "Avanserte tellere"
+          },
+          "createFromScratch": {
+            "description": "Lær hvordan du oppretter din første egendefinerte teller på noen minutter.",
+            "label": "Vær unik!",
+            "title": "Lag fra bunnen av"
+          },
+          "queryHistoricalStatistics": {
+            "description": "Se hvordan tellerne dine og annen vanlig statistikk har utviklet seg over tid.",
+            "label": "Kommer snart™",
+            "title": "Se historisk statistikk"
+          },
+          "quickSetup": {
+            "description": "Opprett raskt de vanligste tellerne med noen få klikk. Ingen fantasi eller hjerne nødvendig!",
+            "label": "Problemfritt!",
+            "title": "Hurtigoppsett"
+          },
+          "subTitle": "Her er noen forslag til deg:",
+          "title": "Velkommen tilbake!"
+        }
+      }
+    },
+    "error": {
+      "errors": {
+        "InternalServerError": "En uventet feil oppstod.",
+        "NotAuthenticated": "Du er ikke logget inn.",
+        "NotAuthorized": "Du har ikke tilgang til denne siden.",
+        "NotFound": "Siden du leter etter ble ikke funnet."
+      },
+      "nav": {
+        "backBtn": "Gå tilbake",
+        "homeBtn": "Gå til hjem",
+        "supportBtn": "Få hjelp",
+        "tryAgainBtn": "Prøv igjen"
+      }
+    },
+    "home": {
+      "addToDiscord": "Legg til på Discord",
+      "dashboard": "Kontrollpanel",
+      "getSupport": "Få hjelp",
+      "headings": [
+        "Vis serverens medlemstall dynamisk",
+        "Vis frem YouTube-abonnenttallet ditt",
+        "Overvåk spillerantallet på Minecraft-serveren din",
+        "Vis hvor mange som ser på Twitch-kanalen din",
+        "Vis hvilken som helst data du vil på Discord-serveren din",
+        "Spor hvor mange spillere FiveM-serveren din har",
+        "Vis en klokke justert til din foretrukne tidssone",
+        "Lag nedtellinger for arrangementer eller spesielle anledninger",
+        "Overvåk spillerstatistikk på over 320 spillservere",
+        "Hent og vis data fra et hvilket som helst API-endepunkt",
+        "Utfør og vis matematiske operasjoner på dataene dine",
+        "Formater tall og vis dem på en fin måte",
+        "Fremhev serverens Nitro-boostere"
+      ],
+      "seeHowPeopleUseIt": "Se hvordan folk bruker det",
+      "seeMore": "Se mer",
+      "supportedCounters": {
+        "andMuchMore": {
+          "description": "Oppdag enda flere funksjoner og tellere som kan forbedre opplevelsen din. Følg med for oppdateringer!",
+          "title": "Og mye mer!"
+        },
+        "clock": {
+          "description": "Se tiden i hvilken som helst tidssone med vår tilpassbare klokke. Perfekt for koordinering på tvers av regioner.",
+          "title": "Klokke"
+        },
+        "countdown": {
+          "description": "Opprett og administrer nedtellingstidtakere tilpasset dine spesifikke arrangementer eller tidsfrister.",
+          "title": "Nedtelling"
+        },
+        "date": {
+          "description": "Vis gjeldende dato i hvilken som helst tidssone med tilpassbar formatering. Flott for å vise datoer på tvers av regioner.",
+          "title": "Dato"
+        },
+        "discordMembers": {
+          "description": "Tell og filtrer medlemmer etter påloggingsstatus, roller og andre kriterier for å få presis innsikt i fellesskapet ditt.",
+          "title": "Discord-medlemmer"
+        },
+        "game": {
+          "description": "Overvåk spillserverens aktivitet med sanntids spillerantall for over 320 støttede spill.",
+          "title": "Spill"
+        },
+        "http": {
+          "description": "Utfør GET-forespørsler og motta data direkte fra et hvilket som helst endepunkt, noe som forenkler integrasjonene dine.",
+          "title": "HTTP"
+        },
+        "math": {
+          "description": "Utfør en rekke matematiske operasjoner inkludert addisjon, subtraksjon, multiplikasjon og mer på flere tall.",
+          "title": "Matte"
+        },
+        "nitroBoosters": {
+          "description": "Spor antall Nitro-boostere på serveren din for å måle støtte og engasjement i fellesskapet.",
+          "title": "Nitro-boostere"
+        },
+        "reddit": {
+          "description": "Hent statistikk om enhver subreddit, inkludert tittel, medlemstall og påloggede medlemmer.",
+          "title": "Reddit"
+        },
+        "replace": {
+          "description": "Endre tekst dynamisk med vårt kraftige erstatningsverktøy, ideelt i kombinasjon med HTTP-telleren.",
+          "title": "Erstatt"
+        },
+        "twitch": {
+          "description": "Overvåk Twitch-kanalmålinger som følgerantall og visningsstatistikk for å holde deg oppdatert om favorittstrømmerne dine.",
+          "title": "Twitch"
+        },
+        "youtube": {
+          "description": "Hent nøkkelmålinger fra YouTube-kanaler inkludert abonnentantall, videoantall og totale visninger.",
+          "title": "YouTube"
+        }
+      },
+      "supportedCounters_heading": "Støttede tellere"
+    },
+    "status": {
+      "affectedServers": "Berørte Discord-servere:",
+      "assignedDiscordServers": "Tilordnet denne underinstansen:",
+      "child": "Underinstans #{{index}}",
+      "childDiscordServers": "{{count}} Discord-servere {{unavailableCount}}",
+      "childDiscordUnavailableServers": "({{unavailableCount}} utilgjengelige)",
+      "childDiscordUsers": "{{count}} brukere",
+      "discordClientStatus": {
+        "Connecting": "Kobler til",
+        "Disconnected": "Frakoblet",
+        "Identifying": "Identifiserer",
+        "Idle": "Inaktiv",
+        "Nearly": "Inaktiv",
+        "Ready": "Klar",
+        "Reconnecting": "Kobler til igjen",
+        "Resuming": "Gjenopptar",
+        "WaitingForGuilds": "Venter på servere"
+      },
+      "memoryUsage": "{{usage}} ({{peak}} topp)",
+      "memoryUsageTooltip": "Minnebruk",
+      "partialOutage": "Det er et delvis driftsavbrudd",
+      "serverInformation": {
+        "cpuInfo": "{{cores}} kjerner\nBelastning {{load}}",
+        "cpuLabel": "CPU",
+        "hostname": "Navn",
+        "memoryInfo": "{{memory}}\n{{usage}}% bruk",
+        "memoryLabel": "Minne",
+        "title": "Serverinformasjon"
+      },
+      "statusUnavailable": "Status utilgjengelig"
+    }
+  }
+}

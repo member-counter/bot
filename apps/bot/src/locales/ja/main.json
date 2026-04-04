@@ -1,1 +1,213 @@
-{}
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "エラーが発生しました。後ほどもう一度お試しください。\n\nエラーID: {{ERROR_ID}}",
+        "title": "エラー！"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "ダッシュボードへ移動",
+        "definition": {
+          "slash": {
+            "description": "ウェブサイトでボットを設定するためのリンクを取得します。",
+            "name": "configure"
+          }
+        },
+        "reply": "ダッシュボードでボットを設定するには、下のボタンをクリックしてください。\nDiscordから離れずに基本的なカウンターを設定するには、{{SETUP_COMMAND}} コマンドもご利用いただけます。"
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "便利なリンクやその他の情報の一覧を表示します。",
+            "name": "info"
+          }
+        },
+        "embedReply": {
+          "description": "[サーバーに追加する]({{BOT_INVITE_URL}})\n[ウェブサイト]({{OFFICIAL_WEBSITE_URL}})\n[サポートサーバー]({{BOT_SUPPORT_URL}})\n[GitHubリポジトリ]({{BOT_REPO_URL}})\n[ボットバージョン: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "サーバーに追加",
+        "addToServerAgain": "このサーバーに再度追加",
+        "definition": {
+          "slash": {
+            "description": "ボットを追加するための招待リンクを提供します。",
+            "name": "invite"
+          }
+        },
+        "description": "招待リンクの準備ができました：\n{{INVITE_URL}}",
+        "joinSupportServer": "サポートサーバーに参加"
+      },
+      "profile": {
+        "badges": "バッジ",
+        "definition": {
+          "context": {
+            "name": "Profile"
+          },
+          "slash": {
+            "description": "あなたとこのボットに関連する情報を表示します。",
+            "name": "profile",
+            "options": {
+              "user": {
+                "description": "プロフィールを表示したいユーザー。",
+                "name": "user"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "データを削除",
+        "deleteProfilePrompt": {
+          "cancelButton": "キャンセル",
+          "confirmButton": "はい",
+          "description": "この操作は取り消せません。",
+          "removeDataSuccess": "データが正常に削除されました。",
+          "title": "本当にデータを削除しますか？"
+        },
+        "moreOptionsButton": "その他のオプション",
+        "userNotFound": "ユーザーが見つかりません"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "基本的なカウンターを設定します。",
+            "name": "setup",
+            "subcommands": {
+              "server": {
+                "description": "サーバー関連のカウンターを設定します。",
+                "name": "server"
+              },
+              "twitch": {
+                "description": "Twitch関連のカウンターを設定します。",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "チャンネルのユーザー名。",
+                    "name": "username"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "YouTube関連のカウンターを設定します。",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "チャンネルのURL。",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "作成が完了しました。",
+          "configureSuggestion": "よりカスタマイズされた設定には {{CONFIGURE_COMMAND}} をご確認ください。",
+          "createdCategory": "{{ICON}} カテゴリを作成しました。",
+          "createdChannel": "{{ICON}} {{NAME}} を作成しました。",
+          "creating": "カウンターを作成中...",
+          "creatingCategory": "{{ICON}} カテゴリを作成中。",
+          "creatingChannel": "{{ICON}} {{NAME}} カウンターを作成中。",
+          "failedCategory": "{{ICON}} カテゴリの作成に失敗しました。",
+          "failedChannel": "{{ICON}} {{NAME}} の作成に失敗しました。"
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA サーバー統計 \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "オンラインメンバー",
+                "template": "オンライン: {{COUNTER}}"
+              },
+              {
+                "name": "メンバー",
+                "template": "メンバー: {{COUNTER}}"
+              },
+              {
+                "name": "Nitroブースター",
+                "template": "ブースター: {{COUNTER}}"
+              },
+              {
+                "name": "ロール",
+                "template": "ロール: {{COUNTER}}"
+              },
+              {
+                "name": "チャンネル",
+                "template": "チャンネル: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch統計 \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Twitchフォロワー",
+                "template": "{{COUNTER}} フォロワー"
+              },
+              {
+                "name": "Twitch視聴者",
+                "template": "視聴者: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube統計 \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "YouTubeチャンネル登録者",
+                "template": "{{COUNTER}} チャンネル登録者"
+              },
+              {
+                "name": "YouTube動画",
+                "template": "{{COUNTER}} 動画"
+              },
+              {
+                "name": "YouTube再生回数",
+                "template": "{{COUNTER}} 再生回数"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "エラー！"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "リクエストが無効です。",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "このカウンターを使用するために必要な特権インテントがボットにありません。",
+    "BOT_IS_NOT_PREMIUM": "ボットはプレミアム版ではないため、このカウンターに必要な一部の機能が利用できません。",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "カウンターの形式が認識できません。",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "カウンターが無効です。",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "チャンネル名の結果が2文字未満です。",
+    "EVALUATION_TIMEOUT": "評価に時間がかかりすぎてタイムアウトしました。",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "評価から最終的な文字列を生成できませんでした。",
+    "FORBIDDEN": "リクエストが拒否されました。",
+    "GAME_MISSING_ADDRESS": "ゲームカウンターにはサーバーアドレスが必要です。",
+    "GAME_MISSING_GAME_ID": "ゲームカウンターにはゲームIDを指定する必要があります。",
+    "GAME_MISSING_PORT": "ゲームカウンターにはサーバーポートが必要です。",
+    "HTTP_DATA_PATH_MANDATORY": "コンテンツタイプが application/json のHTTPリクエストにはデータパスを指定する必要があります。",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTPレスポンスのコンテンツタイプが無効です（text/plain または application/json ではありません）。",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTPレスポンスのステータスコードが無効です（200 ではありません）。",
+    "HTTP_MISSING_URL": "HTTPカウンターにはURLが必要ですが、指定されていません。",
+    "INTERNAL_SERVER_ERROR": "内部サーバーエラーが発生しました。",
+    "MEMBER_COUNT_NOT_AVAILABLE": "現在、メンバー数を取得できません。",
+    "MEMERATOR_MISSING_USERNAME": "Memeratorカウンターにはユーザー名が必要ですが、指定されていません。",
+    "NOT_FOUND": "リクエストされたリソースが見つかりません。",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "ボットにチャンネルを編集するための十分な権限がありません。",
+    "REDDIT_MISSING_SUBREDDIT": "Redditカウンターにはサブレディットを指定する必要があります。",
+    "TWITCH_CHANNEL_NOT_FOUND": "指定されたTwitchチャンネルが見つかりません。",
+    "TWITCH_MISSING_USERNAME": "Twitchカウンターにはユーザー名を設定する必要があります。",
+    "UNAUTHORIZED": "リクエストが認証されていません。",
+    "UNKNOWN": "不明なエラーが発生しました。",
+    "UNKNOWN_DATA_SOURCE": "指定されたカウンターは不明または認識できません。",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "評価から返された値の型が不明です。",
+    "USER_NOT_FOUND": "ユーザーが見つかりません。",
+    "YOUTUBE_INVALID_CHANNEL_URL": "指定されたYouTubeチャンネルURLが無効です。",
+    "YOUTUBE_MISSING_CHANNEL_URL": "YouTubeカウンターにはチャンネルURLを設定する必要があります。"
+  }
+}
