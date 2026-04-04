@@ -53,7 +53,6 @@ export const discordRouter = createTRPCRouter({
 
       const guild = await ctx.botClient.guilds.fetch({
         guild: input.id,
-        withCounts: true,
       });
 
       const guildMember = await guild.members.fetchMe();
@@ -62,8 +61,6 @@ export const discordRouter = createTRPCRouter({
         id: guild.id,
         name: guild.name,
         icon: guild.iconURL(),
-        memberCount: guild.memberCount,
-        approximateMemberCount: guild.approximateMemberCount,
         rulesChannelId: guild.rulesChannelId,
         roles: new Map(
           guild.roles.cache.mapValues((role) => ({
