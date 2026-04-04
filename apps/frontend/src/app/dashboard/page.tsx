@@ -34,33 +34,34 @@ export default function Page() {
 
   return (
     <div className="flex h-full grow flex-col items-center justify-center p-1">
-      {!userGuildsQuery.isLoading && !userGuildsQuery.data?.userGuilds.size && (
-        <>
-          <TypographyH3>
-            <Trans i18nKey="pages.dashboard.noServers.heading" />
-          </TypographyH3>
-          <TypographyH4>
-            <Trans
-              i18nKey="pages.dashboard.noServers.subheading"
-              components={{
-                CreateServerLink: (
-                  <LinkUnderlined
-                    to={`https://discord.com/channels/@me`}
-                    target="_blank"
-                    referrerPolicy="no-referrer"
-                  />
-                ),
-                JoinSupportServerLink: (
-                  <LinkUnderlined
-                    to={routes.support.$buildPath({})}
-                    target="_blank"
-                  />
-                ),
-              }}
-            />
-          </TypographyH4>
-        </>
-      )}
+      {!userGuildsQuery.isFetching &&
+        !userGuildsQuery.data?.userGuilds.size && (
+          <>
+            <TypographyH3>
+              <Trans i18nKey="pages.dashboard.noServers.heading" />
+            </TypographyH3>
+            <TypographyH4>
+              <Trans
+                i18nKey="pages.dashboard.noServers.subheading"
+                components={{
+                  CreateServerLink: (
+                    <LinkUnderlined
+                      to={`https://discord.com/channels/@me`}
+                      target="_blank"
+                      referrerPolicy="no-referrer"
+                    />
+                  ),
+                  JoinSupportServerLink: (
+                    <LinkUnderlined
+                      to={routes.support.$buildPath({})}
+                      target="_blank"
+                    />
+                  ),
+                }}
+              />
+            </TypographyH4>
+          </>
+        )}
     </div>
   );
 }

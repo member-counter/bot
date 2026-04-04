@@ -21,7 +21,7 @@ export function InviteBotBanner() {
 
   const discordGuild = api.discord.getGuild.useQuery(
     { id: guildId },
-    { enabled: !authenticatedUser.data },
+    { enabled: !authenticatedUser.data, retry: 2 },
   );
 
   useEffect(() => {
