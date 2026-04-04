@@ -1021,7 +1021,7 @@
       "affectedServers": "Servidores de Discord afectados:",
       "assignedDiscordServers": "Asignado a este nodo:",
       "child": "Nodo #{{index}}",
-      "childDiscordServers": "{{count}} Servidores de Discord ({{unavailableCount}} no disponibles)",
+      "childDiscordServers": "{{count}} Servidores de Discord",
       "childDiscordUnavailableServers": "({{unavailableCount}} no disponibles)",
       "childDiscordUsers": "{{count}} Usuarios",
       "discordClientStatus": {
