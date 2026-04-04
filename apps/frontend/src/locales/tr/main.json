@@ -454,6 +454,75 @@
             "title": "Demo sunucuyu düzenle"
           },
           "title": "Demo sunucular"
+        },
+        "headings": [
+          "Sunucunuzun üye sayısını dinamik olarak görüntüleyin",
+          "YouTube abone sayınızı gösterin",
+          "Minecraft sunucunuzun oyuncu sayısını takip edin",
+          "Twitch kanalınızı kaç kişinin izlediğini gösterin",
+          "Discord sunucunuzda istediğiniz verileri görüntüleyin",
+          "FiveM sunucunuzun kaç oyuncusu olduğunu takip edin",
+          "Tercih ettiğiniz saat dilimine göre ayarlanmış bir saat gösterin",
+          "Etkinlikler veya özel günler için geri sayımlar oluşturun",
+          "320'den fazla oyun sunucusunda oyuncu istatistiklerini takip edin",
+          "Herhangi bir API uç noktasından veri alın ve görüntüleyin",
+          "Verileriniz üzerinde matematik işlemleri yapın ve görüntüleyin",
+          "Sayıları biçimlendirin ve güzel bir şekilde görüntüleyin",
+          "Sunucunuzun Nitro takviye edenlerini öne çıkarın"
+        ],
+        "supportedCounters": {
+          "andMuchMore": {
+            "description": "Deneyiminizi geliştirebilecek daha fazla özellik ve sayaç keşfedin. Güncellemeler için bizi takip edin!",
+            "title": "Ve Çok Daha Fazlası!"
+          },
+          "clock": {
+            "description": "Özelleştirilebilir saatimizle herhangi bir saat dilimindeki saati görüntüleyin. Farklı bölgeler arasında koordinasyon için mükemmel.",
+            "title": "Saat"
+          },
+          "countdown": {
+            "description": "Belirli etkinliklerinize veya son tarihlerinize göre özelleştirilmiş geri sayım zamanlayıcıları oluşturun ve yönetin.",
+            "title": "Geri Sayım"
+          },
+          "date": {
+            "description": "Özelleştirilebilir biçimlendirme ile herhangi bir saat diliminde geçerli tarihi görüntüleyin. Farklı bölgelerdeki tarihleri göstermek için harika.",
+            "title": "Tarih"
+          },
+          "discordMembers": {
+            "description": "Topluluğunuz hakkında kesin bilgiler elde etmek için üyeleri çevrimiçi durumuna, rollerine ve diğer kriterlere göre sayın ve filtreleyin.",
+            "title": "Discord Üyeleri"
+          },
+          "game": {
+            "description": "320'den fazla desteklenen oyun için gerçek zamanlı oyuncu sayılarıyla oyun sunucunuzun etkinliğini izleyin.",
+            "title": "Oyun"
+          },
+          "http": {
+            "description": "Herhangi bir uç noktadan doğrudan GET istekleri çalıştırın ve veri alın, entegrasyon ihtiyaçlarınızı kolaylaştırın.",
+            "title": "HTTP"
+          },
+          "math": {
+            "description": "Birden fazla sayı üzerinde toplama, çıkarma, çarpma ve daha fazlasını içeren çeşitli matematiksel işlemler gerçekleştirin.",
+            "title": "Matematik"
+          },
+          "nitroBoosters": {
+            "description": "Topluluk desteğini ve katılımını ölçmek için sunucunuzdaki Nitro takviye edenlerin sayısını takip edin.",
+            "title": "Nitro Boosters"
+          },
+          "reddit": {
+            "description": "Başlık, üye sayısı ve çevrimiçi üyeler dahil herhangi bir subreddit hakkında istatistikler alın.",
+            "title": "Reddit"
+          },
+          "replace": {
+            "description": "Güçlü değiştirme aracımızla metni dinamik olarak değiştirin, HTTP sayacı ile birlikte kullanım için idealdir.",
+            "title": "Değiştir"
+          },
+          "twitch": {
+            "description": "Favori yayıncılarınız hakkında güncel kalmak için takipçi sayısı ve izlenme istatistikleri gibi Twitch kanal metriklerini izleyin.",
+            "title": "Twitch"
+          },
+          "youtube": {
+            "description": "Abone sayısı, video sayısı ve toplam görüntülenme dahil YouTube kanallarından önemli metrikleri alın.",
+            "title": "YouTube"
+          }
         }
       },
       "users": {

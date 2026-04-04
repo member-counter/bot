@@ -14,6 +14,17 @@ export const languages = [
   "cs",
   "de",
   "tr",
+  "el",
+  "fi",
+  "fr",
+  "it",
+  "ja",
+  "ko",
+  "nl",
+  "no",
+  "pl",
+  "sv-SE",
+  "zh-CN",
 ] as const;
 export const languageEntries: Record<(typeof languages)[number], string> = {
   "en-US": "🇺🇸 English (US)",
@@ -22,6 +33,17 @@ export const languageEntries: Record<(typeof languages)[number], string> = {
   cs: "🇨🇿 Čeština",
   de: "🇩🇪 Deutsch",
   tr: "🇹🇷 Türkçe",
+  el: "🇬🇷 Ελληνικά",
+  fi: "🇫🇮 Suomi",
+  fr: "🇫🇷 Français",
+  it: "🇮🇹 Italiano",
+  ja: "🇯🇵 日本語",
+  ko: "🇰🇷 한국어",
+  nl: "🇳🇱 Nederlands",
+  no: "🇳🇴 Norsk",
+  pl: "🇵🇱 Polski",
+  "sv-SE": "🇸🇪 Svenska",
+  "zh-CN": "🇨🇳 简体中文",
 };
 export const defaultNS: keyof Resources = "main";
 export const cookieName = "language";
