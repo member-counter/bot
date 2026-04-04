@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
 
@@ -30,8 +29,7 @@ export function DiscordDemo({ heading }: { heading?: string }) {
   const [mouseIsHovering, setMouseIsHovering] = useState(false);
   const [selectedServerIndex, setSelectedServerIndex] = useState(0);
   const [selectedChannelIndex, setSelectedChannelIndex] = useState(-1);
-  const [screenshotMode, setScreenshotMode] =
-    useLocalStorage<boolean>("screenshotMode");
+  const [screenshotMode, setScreenshotMode] = useState(false);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
