@@ -6,32 +6,28 @@ import { cn } from "@mc/ui";
 
 import { api } from "~/lib/trpc";
 import DSelector from "../../DSelector";
+import { useLandingPageParams } from "../LandingPageParamsContext";
 import { serverListColor } from "./colors";
-import {
-  DEPTH,
-  SCREENSHOT_TILT_X,
-  SCREENSHOT_TILT_Y,
-  TILT_MAX_X,
-  TILT_MAX_Y,
-} from "./demoEffect";
 import { DescriptionArea } from "./DescriptionArea";
 import { ServerNavMenu } from "./ServerNavMenu";
 
 declare global {
   interface Window {
-    toggleScreenshotMode?: () => void;
+    toggleParamsUI?: () => void;
   }
 }
 
 export function DiscordDemo({ heading }: { heading?: string }) {
   const { i18n } = useTranslation();
+  const { params, toggleUI } = useLandingPageParams();
 
   const [mouseIsHovering, setMouseIsHovering] = useState(false);
   const [selectedServerIndex, setSelectedServerIndex] = useState(0);
   const [selectedChannelIndex, setSelectedChannelIndex] = useState(-1);
-  const [screenshotMode, setScreenshotMode] = useState(false);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const screenshotMode = params.screenshotMode;
 
   const demoServersQuery = api.demoServers.getAll.useQuery();
   const demoServers = useMemo(() => {
@@ -50,11 +46,11 @@ export function DiscordDemo({ heading }: { heading?: string }) {
   const highlighted = mouseIsHovering || screenshotMode;
 
   useEffect(() => {
-    window.toggleScreenshotMode = () => setScreenshotMode((s) => !s);
+    window.toggleParamsUI = toggleUI;
     return () => {
-      delete window.toggleScreenshotMode;
+      delete window.toggleParamsUI;
     };
-  }, [setScreenshotMode]);
+  }, [toggleUI]);
 
   // Track mouse globally so tilt is gradual across the viewport — no jump on enter.
   const lastMouse = useRef({ x: 0, y: 0 });
@@ -71,10 +67,10 @@ export function DiscordDemo({ heading }: { heading?: string }) {
     const y = (lastMouse.current.y - centerY) / window.innerHeight;
 
     setTilt({
-      rotateY: x * TILT_MAX_Y,
-      rotateX: y * -TILT_MAX_X,
+      rotateY: x * params.tiltMaxY,
+      rotateX: y * -params.tiltMaxX,
     });
-  }, []);
+  }, [params.tiltMaxX, params.tiltMaxY]);
 
   useEffect(() => {
     if (screenshotMode) return;
@@ -127,11 +123,14 @@ export function DiscordDemo({ heading }: { heading?: string }) {
   // Set static tilt when entering screenshot mode
   useEffect(() => {
     if (screenshotMode) {
-      setTilt({ rotateY: SCREENSHOT_TILT_Y, rotateX: SCREENSHOT_TILT_X });
+      setTilt({
+        rotateY: params.screenshotTiltY,
+        rotateX: params.screenshotTiltX,
+      });
     } else {
       setTilt({ rotateX: 0, rotateY: 0 });
     }
-  }, [screenshotMode]);
+  }, [screenshotMode, params.screenshotTiltX, params.screenshotTiltY]);
 
   if (!selectedServer)
     return (
@@ -146,7 +145,7 @@ export function DiscordDemo({ heading }: { heading?: string }) {
   return (
     <div
       ref={containerRef}
-      style={{ perspective: "1200px" }}
+      style={{ perspective: `${params.perspective}px` }}
       onMouseEnter={() => setMouseIsHovering(true)}
       onMouseLeave={() => setMouseIsHovering(false)}
       onFocus={() => setMouseIsHovering(true)}
@@ -178,7 +177,7 @@ export function DiscordDemo({ heading }: { heading?: string }) {
           transition: screenshotMode ? "transform 0.4s ease-out" : "none",
           transformStyle: "preserve-3d",
           boxShadow: highlighted
-            ? `${-tilt.rotateY * DEPTH * 2.5}px ${tilt.rotateX * DEPTH * 2.5}px 60px rgba(0,0,0,0.5)`
+            ? `${-tilt.rotateY * params.depth * 2.5}px ${tilt.rotateX * params.depth * 2.5}px 60px rgba(0,0,0,0.5)`
             : "0 4px 20px rgba(0,0,0,0.3)",
         }}
         role="none"

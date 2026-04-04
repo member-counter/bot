@@ -110,7 +110,7 @@ export default function Page() {
                     {topic.title}
                   </h1>
                 </CardHeader>
-                <CardContent className="text-justify">
+                <CardContent>
                   <p className="relative z-10">{topic.description}</p>
                 </CardContent>
               </Card>

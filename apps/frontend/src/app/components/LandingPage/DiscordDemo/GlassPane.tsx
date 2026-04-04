@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { cn } from "@mc/ui";
 
+import { useLandingPageParams } from "../LandingPageParamsContext";
 import { buildBevelShadow } from "./demoEffect";
 
 export function GlassPane({
@@ -13,6 +14,8 @@ export function GlassPane({
   className?: string;
   children: ReactNode;
 }) {
+  const { params } = useLandingPageParams();
+
   return (
     <div
       className={cn(
@@ -20,8 +23,8 @@ export function GlassPane({
         className,
       )}
       style={{
-        backgroundColor: "rgba(255,255,255,0.06)",
-        boxShadow: buildBevelShadow(tilt),
+        backgroundColor: `rgba(255,255,255,${params.glassOpacity})`,
+        boxShadow: buildBevelShadow(tilt, params),
       }}
     >
       {children}

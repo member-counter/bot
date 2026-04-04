@@ -5,11 +5,14 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 
 import { cn } from "@mc/ui";
 
+import { useLandingPageParams } from "./LandingPageParamsContext";
+
 export const Background = memo(function Background({
   className,
 }: {
   className?: string;
 }) {
+  const { params } = useLandingPageParams();
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -52,7 +55,7 @@ export const Background = memo(function Background({
       },
       detectRetina: true,
       duration: 0,
-      fpsLimit: 15,
+      fpsLimit: params.particleFpsLimit,
       interactivity: {
         detectsOn: "window",
         events: {
@@ -256,8 +259,8 @@ export const Background = memo(function Background({
             },
           },
           center: {
-            x: 50,
-            y: 75,
+            x: params.particleCenterX,
+            y: params.particleCenterY,
             mode: "percent",
             radius: 0,
           },
@@ -289,7 +292,7 @@ export const Background = memo(function Background({
           },
           random: false,
           size: false,
-          speed: 0.5,
+          speed: params.particleSpeed,
           spin: {
             acceleration: 0,
             enable: false,
@@ -313,12 +316,12 @@ export const Background = memo(function Background({
             mode: "delete",
             value: 0,
           },
-          value: 2000,
+          value: params.particleCount,
         },
         opacity: {
           value: {
-            min: 0.1,
-            max: 1,
+            min: params.particleOpacityMin,
+            max: params.particleOpacityMax,
           },
           animation: {
             count: 0,
@@ -351,7 +354,7 @@ export const Background = memo(function Background({
           type: "circle",
         },
         size: {
-          value: 1,
+          value: params.particleSize,
           animation: {
             count: 0,
             enable: false,
@@ -522,7 +525,16 @@ export const Background = memo(function Background({
         },
       },
     }),
-    [],
+    [
+      params.particleFpsLimit,
+      params.particleCenterX,
+      params.particleCenterY,
+      params.particleSpeed,
+      params.particleCount,
+      params.particleOpacityMin,
+      params.particleOpacityMax,
+      params.particleSize,
+    ],
   );
 
   if (init) {
