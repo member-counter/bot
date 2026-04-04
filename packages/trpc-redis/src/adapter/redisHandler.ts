@@ -207,7 +207,7 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       } finally {
         requestDone();
       }
-    });
+    })();
   };
 
   redisSubClient.on("message", (channel, message) => {
