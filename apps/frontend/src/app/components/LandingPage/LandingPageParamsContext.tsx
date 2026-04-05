@@ -24,6 +24,7 @@ export interface LandingPageParams {
   particleFpsLimit: number;
   particleCenterX: number;
   particleCenterY: number;
+  particleSmooth: boolean;
   voidCenterX: number;
   voidCenterY: number;
   voidInnerRadius: number;
@@ -55,6 +56,7 @@ export const defaultLandingPageParams: LandingPageParams = {
   particleFpsLimit: 30,
   particleCenterX: 50,
   particleCenterY: 75,
+  particleSmooth: true,
   voidCenterX: 50,
   voidCenterY: 75,
   voidInnerRadius: 15,

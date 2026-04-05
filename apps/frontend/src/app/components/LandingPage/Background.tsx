@@ -512,7 +512,7 @@ export const Background = memo(function Background({
       pauseOnBlur: true,
       pauseOnOutsideViewport: true,
       responsive: [],
-      smooth: false,
+      smooth: params.particleSmooth,
       style: {},
       themes: [],
       zLayers: 100,
@@ -534,6 +534,7 @@ export const Background = memo(function Background({
       params.particleOpacityMin,
       params.particleOpacityMax,
       params.particleSize,
+      params.particleSmooth,
     ],
   );
 

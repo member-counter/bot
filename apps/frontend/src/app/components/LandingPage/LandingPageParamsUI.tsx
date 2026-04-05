@@ -8,18 +8,26 @@ import {
 
 const STORAGE_KEY = "landing-page-params";
 
-interface SliderConfig {
-  key: keyof LandingPageParams;
-  label: string;
-  min: number;
-  max: number;
-  step: number;
-}
+type ControlConfig =
+  | {
+      type: "slider";
+      key: keyof LandingPageParams;
+      label: string;
+      min: number;
+      max: number;
+      step: number;
+    }
+  | {
+      type: "checkbox";
+      key: keyof LandingPageParams;
+      label: string;
+    };
 
-const tiltSliders: SliderConfig[] = [
-  { key: "tiltMaxY", label: "Max Y", min: 0, max: 30, step: 0.5 },
-  { key: "tiltMaxX", label: "Max X", min: 0, max: 30, step: 0.5 },
+const tiltControls: ControlConfig[] = [
+  { type: "slider", key: "tiltMaxY", label: "Max Y", min: 0, max: 30, step: 0.5 },
+  { type: "slider", key: "tiltMaxX", label: "Max X", min: 0, max: 30, step: 0.5 },
   {
+    type: "slider",
     key: "screenshotTiltY",
     label: "Screenshot Y",
     min: -30,
@@ -27,18 +35,20 @@ const tiltSliders: SliderConfig[] = [
     step: 0.5,
   },
   {
+    type: "slider",
     key: "screenshotTiltX",
     label: "Screenshot X",
     min: -30,
     max: 30,
     step: 0.5,
   },
-  { key: "perspective", label: "Perspective", min: 200, max: 5000, step: 50 },
+  { type: "slider", key: "perspective", label: "Perspective", min: 200, max: 5000, step: 50 },
 ];
 
-const glassSliders: SliderConfig[] = [
-  { key: "depth", label: "Depth", min: 0, max: 3, step: 0.05 },
+const glassControls: ControlConfig[] = [
+  { type: "slider", key: "depth", label: "Depth", min: 0, max: 3, step: 0.05 },
   {
+    type: "slider",
     key: "insetLightBlur",
     label: "Inset Light Blur",
     min: 0,
@@ -46,6 +56,7 @@ const glassSliders: SliderConfig[] = [
     step: 1,
   },
   {
+    type: "slider",
     key: "insetLightOpacity",
     label: "Inset Light Op.",
     min: 0,
@@ -53,6 +64,7 @@ const glassSliders: SliderConfig[] = [
     step: 0.005,
   },
   {
+    type: "slider",
     key: "outerShadowBlur",
     label: "Outer Shadow Blur",
     min: 0,
@@ -60,6 +72,7 @@ const glassSliders: SliderConfig[] = [
     step: 1,
   },
   {
+    type: "slider",
     key: "outerShadowOpacity",
     label: "Outer Shadow Op.",
     min: 0,
@@ -67,6 +80,7 @@ const glassSliders: SliderConfig[] = [
     step: 0.05,
   },
   {
+    type: "slider",
     key: "bevelLightOpacity",
     label: "Bevel Light Op.",
     min: 0,
@@ -74,6 +88,7 @@ const glassSliders: SliderConfig[] = [
     step: 0.05,
   },
   {
+    type: "slider",
     key: "bevelDarkOpacity",
     label: "Bevel Dark Op.",
     min: 0,
@@ -81,19 +96,21 @@ const glassSliders: SliderConfig[] = [
     step: 0.05,
   },
   {
+    type: "slider",
     key: "bevelNormalize",
     label: "Bevel Normalize",
     min: 1,
     max: 20,
     step: 0.5,
   },
-  { key: "glassOpacity", label: "Glass BG Op.", min: 0, max: 0.3, step: 0.005 },
+  { type: "slider", key: "glassOpacity", label: "Glass BG Op.", min: 0, max: 0.3, step: 0.005 },
 ];
 
-const voidSliders: SliderConfig[] = [
-  { key: "voidCenterX", label: "Center X %", min: 0, max: 100, step: 1 },
-  { key: "voidCenterY", label: "Center Y %", min: 0, max: 100, step: 1 },
+const voidControls: ControlConfig[] = [
+  { type: "slider", key: "voidCenterX", label: "Center X %", min: 0, max: 100, step: 1 },
+  { type: "slider", key: "voidCenterY", label: "Center Y %", min: 0, max: 100, step: 1 },
   {
+    type: "slider",
     key: "voidInnerRadius",
     label: "Inner Radius %",
     min: 0,
@@ -101,6 +118,7 @@ const voidSliders: SliderConfig[] = [
     step: 1,
   },
   {
+    type: "slider",
     key: "voidOuterRadius",
     label: "Outer Radius %",
     min: 0,
@@ -109,11 +127,12 @@ const voidSliders: SliderConfig[] = [
   },
 ];
 
-const particleSliders: SliderConfig[] = [
-  { key: "particleCount", label: "Count", min: 0, max: 5000, step: 100 },
-  { key: "particleSpeed", label: "Speed", min: 0, max: 5, step: 0.1 },
-  { key: "particleSize", label: "Size", min: 0.5, max: 5, step: 0.5 },
+const particleControls: ControlConfig[] = [
+  { type: "slider", key: "particleCount", label: "Count", min: 0, max: 5000, step: 100 },
+  { type: "slider", key: "particleSpeed", label: "Speed", min: 0, max: 20, step: 0.1 },
+  { type: "slider", key: "particleSize", label: "Size", min: 0.5, max: 5, step: 0.5 },
   {
+    type: "slider",
     key: "particleOpacityMin",
     label: "Opacity Min",
     min: 0,
@@ -121,15 +140,22 @@ const particleSliders: SliderConfig[] = [
     step: 0.05,
   },
   {
+    type: "slider",
     key: "particleOpacityMax",
     label: "Opacity Max",
     min: 0,
     max: 1,
     step: 0.05,
   },
-  { key: "particleFpsLimit", label: "FPS Limit", min: 5, max: 120, step: 5 },
-  { key: "particleCenterX", label: "Center X %", min: 0, max: 100, step: 1 },
-  { key: "particleCenterY", label: "Center Y %", min: 0, max: 100, step: 1 },
+  { type: "slider", key: "particleFpsLimit", label: "FPS Limit", min: 5, max: 120, step: 5 },
+  { type: "slider", key: "particleCenterX", label: "Center X %", min: 0, max: 100, step: 1 },
+  { type: "slider", key: "particleCenterY", label: "Center Y %", min: 0, max: 100, step: 1 },
+  { type: "checkbox", key: "particleSmooth", label: "Smooth" },
+];
+
+const generalControls: ControlConfig[] = [
+  { type: "checkbox", key: "hideDemo", label: "Hide Demo" },
+  { type: "checkbox", key: "screenshotMode", label: "Screenshot Mode" },
 ];
 
 export function LandingPageParamsUI() {
@@ -192,7 +218,25 @@ export function LandingPageParamsUI() {
     setParams({ ...defaultLandingPageParams });
   };
 
-  const renderSlider = (config: SliderConfig) => {
+  const renderControl = (config: ControlConfig) => {
+    if (config.type === "checkbox") {
+      return (
+        <label key={config.key} className="flex items-center gap-2 text-xs">
+          <span className="w-[120px] shrink-0 text-right text-neutral-400">
+            {config.label}
+          </span>
+          <input
+            type="checkbox"
+            checked={params[config.key] as boolean}
+            onChange={(e) =>
+              setParams({ [config.key]: e.target.checked })
+            }
+            className="accent-blue-500"
+          />
+        </label>
+      );
+    }
+
     const value = params[config.key] as number;
     return (
       <label key={config.key} className="flex items-center gap-2 text-xs">
@@ -240,7 +284,7 @@ export function LandingPageParamsUI() {
             Tilt
           </summary>
           <div className="mt-1 flex flex-col gap-1.5 pl-1">
-            {tiltSliders.map(renderSlider)}
+            {tiltControls.map(renderControl)}
           </div>
         </details>
 
@@ -249,7 +293,7 @@ export function LandingPageParamsUI() {
             Glass / Bevel
           </summary>
           <div className="mt-1 flex flex-col gap-1.5 pl-1">
-            {glassSliders.map(renderSlider)}
+            {glassControls.map(renderControl)}
           </div>
         </details>
 
@@ -258,7 +302,7 @@ export function LandingPageParamsUI() {
             Particles
           </summary>
           <div className="mt-1 flex flex-col gap-1.5 pl-1">
-            {particleSliders.map(renderSlider)}
+            {particleControls.map(renderControl)}
           </div>
         </details>
 
@@ -267,29 +311,18 @@ export function LandingPageParamsUI() {
             Void (Gradient Overlay)
           </summary>
           <div className="mt-1 flex flex-col gap-1.5 pl-1">
-            {voidSliders.map(renderSlider)}
+            {voidControls.map(renderControl)}
           </div>
         </details>
 
-        <label className="mt-2 flex items-center gap-2 text-xs">
-          <input
-            type="checkbox"
-            checked={params.hideDemo}
-            onChange={(e) => setParams({ hideDemo: e.target.checked })}
-            className="accent-blue-500"
-          />
-          <span>Hide Demo</span>
-        </label>
-
-        <label className="flex items-center gap-2 text-xs">
-          <input
-            type="checkbox"
-            checked={params.screenshotMode}
-            onChange={(e) => setParams({ screenshotMode: e.target.checked })}
-            className="accent-blue-500"
-          />
-          <span>Screenshot Mode</span>
-        </label>
+        <details open>
+          <summary className="cursor-pointer text-xs font-semibold uppercase text-neutral-300">
+            Misc
+          </summary>
+          <div className="mt-1 flex flex-col gap-1.5 pl-1">
+            {generalControls.map(renderControl)}
+          </div>
+        </details>
 
         <div className="mt-3 flex gap-2">
           <button
