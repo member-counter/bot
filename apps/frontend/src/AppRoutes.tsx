@@ -89,53 +89,67 @@ export default function AppRoutes() {
           }
         >
           <Route index element={Lazy(() => import("./app/dashboard/page"))} />
-          <Route
-            path={routes.dashboard.$.servers.server.$path({
-              relative: true,
-            })}
-            element={Lazy(
-              () => import("./app/dashboard/servers/[guildId]/layout"),
-            )}
-          >
+          <Route path={routes.dashboard.$.servers.$path({ relative: true })}>
             <Route
               index
-              element={Lazy(
-                () => import("./app/dashboard/servers/[guildId]/page"),
-              )}
+              element={Lazy(() => import("./app/dashboard/servers/page"))}
             />
             <Route
-              path={routes.dashboard.$.servers.server.$.channel.$path({
+              path={routes.dashboard.$.servers.$.server.$path({
                 relative: true,
               })}
               element={Lazy(
-                () =>
-                  import("./app/dashboard/servers/[guildId]/[channelId]/layout"),
+                () => import("./app/dashboard/servers/[guildId]/layout"),
               )}
             >
               <Route
                 index
                 element={Lazy(
-                  () =>
-                    import("./app/dashboard/servers/[guildId]/[channelId]/page"),
+                  () => import("./app/dashboard/servers/[guildId]/page"),
                 )}
               />
-            </Route>
-            <Route
-              path={routes.dashboard.$.servers.server.$.settings.$path({
-                relative: true,
-              })}
-              element={Lazy(
-                () =>
-                  import("./app/dashboard/servers/[guildId]/settings/layout"),
-              )}
-            >
               <Route
-                index
+                path={routes.dashboard.$.servers.server.$.channel.$path({
+                  relative: true,
+                })}
                 element={Lazy(
                   () =>
-                    import("./app/dashboard/servers/[guildId]/settings/page"),
+                    import(
+                      "./app/dashboard/servers/[guildId]/[channelId]/layout"
+                    ),
                 )}
-              />
+              >
+                <Route
+                  index
+                  element={Lazy(
+                    () =>
+                      import(
+                        "./app/dashboard/servers/[guildId]/[channelId]/page"
+                      ),
+                  )}
+                />
+              </Route>
+              <Route
+                path={routes.dashboard.$.servers.server.$.settings.$path({
+                  relative: true,
+                })}
+                element={Lazy(
+                  () =>
+                    import(
+                      "./app/dashboard/servers/[guildId]/settings/layout"
+                    ),
+                )}
+              >
+                <Route
+                  index
+                  element={Lazy(
+                    () =>
+                      import(
+                        "./app/dashboard/servers/[guildId]/settings/page"
+                      ),
+                  )}
+                />
+              </Route>
             </Route>
           </Route>
         </Route>
