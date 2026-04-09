@@ -68,7 +68,8 @@ void i18next
     ns: namespaces,
     lng: undefined, // let detect the language
     detection: {
-      order: ["cookie", "navigator"],
+      order: ["querystring", "cookie", "navigator"],
+      lookupQuerystring: "lang",
       lookupCookie: cookieName,
     },
   });
