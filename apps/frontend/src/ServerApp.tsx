@@ -11,47 +11,14 @@ import { api } from "~/lib/trpc";
 import AppProviders from "./AppProviders";
 import AppRoutes from "./AppRoutes";
 import { NavigationBlockerProvider } from "./lib/navigation";
-// Static imports for all locale bundles
-import cs from "./locales/cs/main.json";
-import de from "./locales/de/main.json";
-import el from "./locales/el/main.json";
-import enUS from "./locales/en-US/main.json";
-import esES from "./locales/es-ES/main.json";
-import fi from "./locales/fi/main.json";
-import fr from "./locales/fr/main.json";
-import it from "./locales/it/main.json";
-import ja from "./locales/ja/main.json";
-import ko from "./locales/ko/main.json";
-import nl from "./locales/nl/main.json";
-import no from "./locales/no/main.json";
-import pl from "./locales/pl/main.json";
-import ru from "./locales/ru/main.json";
-import svSE from "./locales/sv-SE/main.json";
-import tr from "./locales/tr/main.json";
-import zhCN from "./locales/zh-CN/main.json";
-
-const localeResources: Record<
-  (typeof languages)[number],
-  { main: Record<string, unknown> }
-> = {
-  "en-US": { main: enUS },
-  "es-ES": { main: esES },
-  ru: { main: ru },
-  cs: { main: cs },
-  de: { main: de },
-  tr: { main: tr },
-  el: { main: el },
-  fi: { main: fi },
-  fr: { main: fr },
-  it: { main: it },
-  ja: { main: ja },
-  ko: { main: ko },
-  nl: { main: nl },
-  no: { main: no },
-  pl: { main: pl },
-  "sv-SE": { main: svSE },
-  "zh-CN": { main: zhCN },
-};
+async function loadLocale(
+  lang: (typeof languages)[number],
+): Promise<Record<string, unknown>> {
+  const mod = (await import(`./locales/${lang}/main.json`)) as {
+    default: Record<string, unknown>;
+  };
+  return mod.default;
+}
 
 // -- SSR-specific provider overrides --
 
@@ -62,13 +29,15 @@ async function getI18n(lng: (typeof languages)[number]) {
   const cached = i18nCache.get(lng);
   if (cached) return cached;
 
+  const main = await loadLocale(lng);
+
   const instance = i18next.createInstance();
   await instance.init({
     lng,
     fallbackLng: "en-US",
     defaultNS: "main",
     ns: ["main"],
-    resources: localeResources,
+    resources: { [lng]: { main } },
     interpolation: { escapeValue: false },
     react: { useSuspense: false },
     initImmediate: false,
