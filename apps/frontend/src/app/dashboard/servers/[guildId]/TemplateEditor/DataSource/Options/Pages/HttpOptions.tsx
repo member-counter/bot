@@ -12,6 +12,7 @@ import { Separator } from "@mc/ui/separator";
 import type { SetupOptionsInterface } from "../SetupOptionsInterface";
 import { Combobox } from "~/app/components/Combobox";
 import { textWithDataSourceItemRendererFactory } from "~/app/components/Combobox/renderers/textWithDataSourceItem";
+import { api } from "~/lib/trpc";
 import { useKnownSearcheableDataSource } from "../../metadata";
 import useDataSourceOptions from "../useDataSourceOptions";
 
@@ -21,7 +22,7 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
   return {
     url: options.url ?? "",
     lifetime: options.lifetime,
-    dataPath: options.dataPath ?? "example[0].sub",
+    dataPath: options.dataPath,
   };
 };
 
@@ -41,6 +42,7 @@ export function HttpOptions({
   const [testLoading, setTestLoading] = useState(false);
   const [displayPreview, setDisplayPreview] = useState("");
 
+  const trpcUtils = api.useUtils();
   const knownSearcheableDataSources = useKnownSearcheableDataSource();
 
   useEffect(() => {
@@ -63,8 +65,8 @@ export function HttpOptions({
 
     setTestLoading(true);
 
-    fetch(options.url)
-      .then((res) => res.text())
+    trpcUtils.bot.testFetchUrl
+      .fetch({ url: options.url })
       .then((body) => {
         try {
           setTestResponse(JSON.stringify(JSON.parse(body), null, " "));
@@ -208,7 +210,7 @@ export function HttpOptions({
             setOptions({ dataPath });
           }}
           prefillSelectedItemOnSearchOnFocus
-          placeholder=""
+          placeholder="example[0].sub"
         />
       </div>
 

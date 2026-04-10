@@ -1,5 +1,6 @@
 import assert from "node:assert";
 import { ChannelType } from "discord.js";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import DataSourceService from "@mc/services/DataSource/index";
@@ -9,6 +10,30 @@ import { checkPriority } from "../../checkPriority";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const dataSourceRouter = createTRPCRouter({
+  testFetchUrl: publicProcedure
+    .input(z.object({ url: z.string().url() }))
+    .query(async ({ input }) => {
+      const response = await fetch(input.url, {
+        signal: AbortSignal.timeout(5000),
+        headers: {
+          "User-Agent": "Member Counter Discord Bot",
+        },
+      }).catch((e) => {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: e instanceof Error ? e.message : "Fetch failed",
+        });
+      });
+
+      if (response.status !== 200) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: `HTTP ${response.status} ${response.statusText}`,
+        });
+      }
+
+      return response.text();
+    }),
   computeTemplate: publicProcedure
     .input(
       z.object({

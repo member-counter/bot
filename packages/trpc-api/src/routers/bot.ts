@@ -9,6 +9,11 @@ export const botRouter = createTRPCRouter({
   gamedigGames: protectedProcedure.query(() => {
     return botAPIConsumer.gamedig.getGames.query();
   }),
+  testFetchUrl: protectedProcedure
+    .input(z.object({ url: z.string().url() }))
+    .query(({ input }) => {
+      return botAPIConsumer.dataSource.testFetchUrl.query(input);
+    }),
   computeTemplate: protectedProcedure
     .input(
       z.object({
