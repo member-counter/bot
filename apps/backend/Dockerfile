@@ -45,4 +45,4 @@ USER nodejs
 COPY --from=prod_deps /app/node_modules ./node_modules
 COPY --from=repo /app/apps/backend/package.json .
 COPY --from=js-source --chown=nodejs:nodejs /app/apps/backend/dist ./
-CMD node /app/index.js
+CMD node --enable-source-maps /app/index.js

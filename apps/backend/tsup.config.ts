@@ -7,4 +7,5 @@ export default defineConfig({
   splitting: true,
   format: "esm",
   clean: true,
+  sourcemap: true,
 });
