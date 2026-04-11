@@ -1,6 +1,6 @@
 import assert from "node:assert";
-import { ChannelType } from "discord.js";
 import { TRPCError } from "@trpc/server";
+import { ChannelType } from "discord.js";
 import { z } from "zod";
 
 import DataSourceService from "@mc/services/DataSource/index";
@@ -11,8 +11,10 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const dataSourceRouter = createTRPCRouter({
   testFetchUrl: publicProcedure
-    .input(z.object({ url: z.string().url() }))
-    .query(async ({ input }) => {
+    .input(z.object({ url: z.url() }))
+    .query(async ({ input, ctx }) => {
+      await ctx.takeRequest(true);
+
       const response = await fetch(input.url, {
         signal: AbortSignal.timeout(5000),
         headers: {
