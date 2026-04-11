@@ -215,7 +215,7 @@ export function HttpOptions({
       </div>
 
       <Separator />
-      {typeof options.dataPath !== "string" ? (
+      {typeof options.dataPath === "object" ? (
         <span className="text-sm font-light italic">
           {t(
             "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.noPreview",
