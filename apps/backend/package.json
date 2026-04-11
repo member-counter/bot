@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup-node",
-    "dev": "pnpm with-env pnpm build --watch . --watch ../../packages --onSuccess \"node --enable-source-maps dist/index.js\"",
+    "dev": "pnpm with-env pnpm build --watch . --watch ../../packages --onSuccess \"pnpm run start\"",
     "start": "pnpm with-env node --enable-source-maps dist/index.js",
     "clean": "rm -rf .turbo node_modules dist",
     "format": "prettier --check . --ignore-path ../../.gitignore",
