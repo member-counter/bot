@@ -11,7 +11,7 @@ export default defineConfig({
     imagetools(),
     visualizer({
       filename: "./dist/stats.html",
-      open: true,
+      open: false,
       gzipSize: true,
       brotliSize: true,
     }),
