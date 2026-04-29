@@ -11,6 +11,7 @@ import { api } from "~/lib/trpc";
 import AppProviders from "./AppProviders";
 import AppRoutes from "./AppRoutes";
 import { NavigationBlockerProvider } from "./lib/navigation";
+
 async function loadLocale(
   lang: (typeof languages)[number],
 ): Promise<Record<string, unknown>> {

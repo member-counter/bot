@@ -107,6 +107,7 @@ export interface DataSourceHTTP extends DataSourceBase {
     url?: DataSource | string;
     dataPath?: DataSource | string;
     lifetime?: DataSource | number;
+    fallback?: DataSource | string;
   };
 }
 

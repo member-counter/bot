@@ -23,6 +23,7 @@ const defaultOptionsMerger = (options: DataSourceType["options"] = {}) => {
     url: options.url ?? "",
     lifetime: options.lifetime,
     dataPath: options.dataPath,
+    fallback: options.fallback,
   };
 };
 
@@ -211,6 +212,39 @@ export function HttpOptions({
           }}
           prefillSelectedItemOnSearchOnFocus
           placeholder="example[0].sub"
+        />
+      </div>
+
+      <Separator />
+      <div>
+        <Label>
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.fallback",
+          )}
+        </Label>
+        <span className="text-sm font-light italic">
+          {t(
+            "pages.dashboard.servers.TemplateEditor.DataSource.Options.Pages.HttpOptions.fallbackDescription",
+          )}
+        </span>
+        <Combobox
+          items={knownSearcheableDataSources}
+          selectedItem={options.fallback}
+          allowSearchedTerm
+          onItemRender={textWithDataSourceItemRendererFactory()}
+          onSelectedItemRender={textWithDataSourceItemRendererFactory({
+            onUpdate(fallback) {
+              setOptions({ fallback });
+            },
+            onRemove() {
+              setOptions({ fallback: undefined });
+            },
+          })}
+          onItemSelect={(fallback) => {
+            setOptions({ fallback });
+          }}
+          prefillSelectedItemOnSearchOnFocus
+          placeholder=""
         />
       </div>
 

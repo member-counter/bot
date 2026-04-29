@@ -62,10 +62,12 @@ export const dataSourceRouter = createTRPCRouter({
         channelType: channel?.type ?? ChannelType.GuildText,
       });
 
-      const computedTemplate = await dataSourceService.evaluateTemplate(
-        input.template,
-      );
+      const { result, nonFatalErrors } =
+        await dataSourceService.evaluateTemplate(input.template);
 
-      return computedTemplate;
+      return {
+        result,
+        nonFatalErrors: nonFatalErrors.map((error) => error.message),
+      };
     }),
 });

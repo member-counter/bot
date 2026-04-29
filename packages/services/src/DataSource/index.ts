@@ -14,6 +14,7 @@ import type {
 } from "./DataSourceEvaluator";
 import dataSourceEvaluators from "./DataSourceEvaluator/evaluators";
 import { ExplorerStackItem } from "./ExplorerStackItem";
+import { FallbackUsedError } from "./FallbackUsedError";
 
 class DataSourceService {
   private static dataSourceEvaluators = Object.fromEntries(
@@ -25,7 +26,10 @@ class DataSourceService {
 
   constructor(private ctx: DataSourceContext) {}
 
-  public async evaluateTemplate(template: string): Promise<string> {
+  public async evaluateTemplate(
+    template: string,
+  ): Promise<{ result: string; nonFatalErrors: Error[] }> {
+    const nonFatalErrors: Error[] = [];
     const parts = template.split(DATA_SOURCE_DELIMITER);
     let result = "";
 
@@ -44,7 +48,7 @@ class DataSourceService {
         );
 
         result += await Promise.race([
-          this.evaluateDataSource(dataSourcePart),
+          this.evaluateDataSource(dataSourcePart, nonFatalErrors),
           timeoutPromise,
         ]);
       }
@@ -65,11 +69,12 @@ class DataSourceService {
       result = result.slice(0, 99);
     }
 
-    return result;
+    return { result, nonFatalErrors };
   }
 
   private async evaluateDataSource(
     unparsedRawDataSource: string,
+    nonFatalErrors: Error[],
   ): Promise<string> {
     const dataSource = this.parseRawDataSource(unparsedRawDataSource);
 
@@ -91,7 +96,11 @@ class DataSourceService {
         ),
     };
 
-    const result = await this.exploreAndExecute(dataSource, formatSettings);
+    const result = await this.exploreAndExecute(
+      dataSource,
+      formatSettings,
+      nonFatalErrors,
+    );
 
     assert(
       typeof result === "number" || typeof result === "string",
@@ -143,6 +152,7 @@ class DataSourceService {
   private async exploreAndExecute(
     rawDataSource: DataSource,
     formatSettings: PreparedDataSourceFormatSettings,
+    nonFatalErrors: Error[],
   ): Promise<unknown> {
     const rootItem = new ExplorerStackItem({ root: rawDataSource }, "root");
     const queue: ExplorerStackItem[] = [rootItem];
@@ -174,10 +184,13 @@ class DataSourceService {
           "id",
         );
         if (nodeIsADataSource) {
-          item.node = await this.executeDataSource({
-            ...item.node,
-            format: formatSettings,
-          });
+          item.node = await this.executeDataSource(
+            {
+              ...item.node,
+              format: formatSettings,
+            },
+            nonFatalErrors,
+          );
         }
       } else {
         queue.push(item, ...toExploreMore);
@@ -193,15 +206,18 @@ class DataSourceService {
     return rootItem.node as unknown;
   }
 
-  private async executeDataSource({
-    id,
-    format,
-    options = {},
-  }: {
-    id: DataSourceId;
-    format: PreparedDataSourceFormatSettings;
-    options: unknown;
-  }): Promise<DataSourceExecuteResult> {
+  private async executeDataSource(
+    {
+      id,
+      format,
+      options = {},
+    }: {
+      id: DataSourceId;
+      format: PreparedDataSourceFormatSettings;
+      options: unknown;
+    },
+    nonFatalErrors: Error[],
+  ): Promise<DataSourceExecuteResult> {
     const dataSourceEvaluator = DataSourceService.dataSourceEvaluators[id];
 
     assert(dataSourceEvaluator, new KnownError("UNKNOWN_DATA_SOURCE"));
@@ -212,11 +228,19 @@ class DataSourceService {
       locale: format.locale.length >= 2 ? format.locale : "en-US",
     };
 
-    return await dataSourceEvaluator.execute({
-      format: validatedFormat,
-      options: options as never,
-      ctx: this.ctx,
-    });
+    try {
+      return await dataSourceEvaluator.execute({
+        format: validatedFormat,
+        options: options as never,
+        ctx: this.ctx,
+      });
+    } catch (error) {
+      if (error instanceof FallbackUsedError) {
+        nonFatalErrors.push(error.cause);
+        return error.fallback;
+      }
+      throw error;
+    }
   }
 
   private parseRawDataSource(unparsedRawDataSource: string): DataSource {

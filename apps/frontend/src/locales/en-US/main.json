@@ -668,6 +668,8 @@
                   "dataPathDescription": "A path to get the desired value when the response's content type is JSON, the syntax is similar to the one used by JS to access properties and array items.",
                   "dataPathWarning": "Remember to return a data path",
                   "emptyUrl": "Can't fetch, URL is empty",
+                  "fallback": "Fallback value",
+                  "fallbackDescription": "Value returned when the request fails so the counter doesn't break. The error will still be shown on the dashboard.",
                   "fetch": "Fetch",
                   "fetching": "Fetching...",
                   "lifetime": "Lifetime (in seconds)",

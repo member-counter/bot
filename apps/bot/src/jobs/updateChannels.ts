@@ -65,16 +65,17 @@ async function updateGuildChannel(
   logger.debug(`Evaluating template for channel`);
   const computedTemplate = await dataSourceService
     .evaluateTemplate(channelSettings.template)
-    .then((computed) => {
+    .then(({ result, nonFatalErrors }) => {
       logger.debug(`Template evaluation successful for channel`);
+      const firstNonFatalError = nonFatalErrors[0];
       GuildSettingsService.channels.logs
         .set(channel.id, {
           LastTemplateUpdateDate: new Date(),
-          LastTemplateComputeError: null,
+          LastTemplateComputeError: firstNonFatalError?.message ?? null,
         })
         .catch(logger.error);
 
-      return computed;
+      return result;
     })
     .catch((error) => {
       logger.debug(

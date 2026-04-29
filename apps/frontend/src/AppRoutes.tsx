@@ -114,18 +114,14 @@ export default function AppRoutes() {
                 })}
                 element={Lazy(
                   () =>
-                    import(
-                      "./app/dashboard/servers/[guildId]/[channelId]/layout"
-                    ),
+                    import("./app/dashboard/servers/[guildId]/[channelId]/layout"),
                 )}
               >
                 <Route
                   index
                   element={Lazy(
                     () =>
-                      import(
-                        "./app/dashboard/servers/[guildId]/[channelId]/page"
-                      ),
+                      import("./app/dashboard/servers/[guildId]/[channelId]/page"),
                   )}
                 />
               </Route>
@@ -135,18 +131,14 @@ export default function AppRoutes() {
                 })}
                 element={Lazy(
                   () =>
-                    import(
-                      "./app/dashboard/servers/[guildId]/settings/layout"
-                    ),
+                    import("./app/dashboard/servers/[guildId]/settings/layout"),
                 )}
               >
                 <Route
                   index
                   element={Lazy(
                     () =>
-                      import(
-                        "./app/dashboard/servers/[guildId]/settings/page"
-                      ),
+                      import("./app/dashboard/servers/[guildId]/settings/page"),
                   )}
                 />
               </Route>

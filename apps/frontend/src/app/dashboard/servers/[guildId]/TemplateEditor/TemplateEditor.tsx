@@ -184,7 +184,7 @@ export default function TemplateEditor({
     template: debouncedValue,
   });
   const computedDeserializedValue = useMemo(
-    () => deserialize(computedValue.data ?? "", features),
+    () => deserialize(computedValue.data?.result ?? "", features),
     [computedValue.data, features],
   );
 
@@ -193,7 +193,7 @@ export default function TemplateEditor({
   return showPreview ? (
     <>
       <SlateTemplateEditor
-        key={computedValue.data}
+        key={computedValue.data?.result}
         disabled={disabled}
         textarea={target === "channelTopic"}
         features={features}
@@ -211,6 +211,9 @@ export default function TemplateEditor({
       {computedValue.error && (
         <DisplayTemplateError message={computedValue.error.message} />
       )}
+      {computedValue.data?.nonFatalErrors.map((message, i) => (
+        <DisplayTemplateError key={i} message={message} />
+      ))}
     </>
   ) : (
     <SlateTemplateEditor

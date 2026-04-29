@@ -8,6 +8,7 @@ import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
 import { DataSourceEvaluator } from "..";
+import { FallbackUsedError } from "../../FallbackUsedError";
 
 const cachedValueValidator = z.object({
   body: z.string(),
@@ -59,17 +60,25 @@ export const HTTPEvaluator = new DataSourceEvaluator({
   execute: async ({ options }) => {
     assert(options.url, new KnownError("HTTP_MISSING_URL"));
 
-    const { body, contentType } = await fetchData(
-      options.url,
-      options.lifetime,
-    );
+    try {
+      const { body, contentType } = await fetchData(
+        options.url,
+        options.lifetime,
+      );
 
-    if (contentType === "application/json") {
-      assert(options.dataPath, new KnownError("HTTP_DATA_PATH_MANDATORY"));
+      if (contentType === "application/json") {
+        assert(options.dataPath, new KnownError("HTTP_DATA_PATH_MANDATORY"));
 
-      return jsonBodyExtractor(JSON.parse(body), options.dataPath);
-    } else {
-      return body;
+        return jsonBodyExtractor(JSON.parse(body), options.dataPath);
+      } else {
+        return body;
+      }
+    } catch (error) {
+      if (options.fallback === undefined) throw error;
+      throw new FallbackUsedError(
+        options.fallback,
+        error instanceof Error ? error : new Error(String(error)),
+      );
     }
   },
 });

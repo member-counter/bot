@@ -24,8 +24,22 @@ type ControlConfig =
     };
 
 const tiltControls: ControlConfig[] = [
-  { type: "slider", key: "tiltMaxY", label: "Max Y", min: 0, max: 30, step: 0.5 },
-  { type: "slider", key: "tiltMaxX", label: "Max X", min: 0, max: 30, step: 0.5 },
+  {
+    type: "slider",
+    key: "tiltMaxY",
+    label: "Max Y",
+    min: 0,
+    max: 30,
+    step: 0.5,
+  },
+  {
+    type: "slider",
+    key: "tiltMaxX",
+    label: "Max X",
+    min: 0,
+    max: 30,
+    step: 0.5,
+  },
   {
     type: "slider",
     key: "screenshotTiltY",
@@ -42,7 +56,14 @@ const tiltControls: ControlConfig[] = [
     max: 30,
     step: 0.5,
   },
-  { type: "slider", key: "perspective", label: "Perspective", min: 200, max: 5000, step: 50 },
+  {
+    type: "slider",
+    key: "perspective",
+    label: "Perspective",
+    min: 200,
+    max: 5000,
+    step: 50,
+  },
 ];
 
 const glassControls: ControlConfig[] = [
@@ -103,12 +124,33 @@ const glassControls: ControlConfig[] = [
     max: 20,
     step: 0.5,
   },
-  { type: "slider", key: "glassOpacity", label: "Glass BG Op.", min: 0, max: 0.3, step: 0.005 },
+  {
+    type: "slider",
+    key: "glassOpacity",
+    label: "Glass BG Op.",
+    min: 0,
+    max: 0.3,
+    step: 0.005,
+  },
 ];
 
 const voidControls: ControlConfig[] = [
-  { type: "slider", key: "voidCenterX", label: "Center X %", min: 0, max: 100, step: 1 },
-  { type: "slider", key: "voidCenterY", label: "Center Y %", min: 0, max: 100, step: 1 },
+  {
+    type: "slider",
+    key: "voidCenterX",
+    label: "Center X %",
+    min: 0,
+    max: 100,
+    step: 1,
+  },
+  {
+    type: "slider",
+    key: "voidCenterY",
+    label: "Center Y %",
+    min: 0,
+    max: 100,
+    step: 1,
+  },
   {
     type: "slider",
     key: "voidInnerRadius",
@@ -128,9 +170,30 @@ const voidControls: ControlConfig[] = [
 ];
 
 const particleControls: ControlConfig[] = [
-  { type: "slider", key: "particleCount", label: "Count", min: 0, max: 5000, step: 100 },
-  { type: "slider", key: "particleSpeed", label: "Speed", min: 0, max: 20, step: 0.1 },
-  { type: "slider", key: "particleSize", label: "Size", min: 0.5, max: 5, step: 0.5 },
+  {
+    type: "slider",
+    key: "particleCount",
+    label: "Count",
+    min: 0,
+    max: 5000,
+    step: 100,
+  },
+  {
+    type: "slider",
+    key: "particleSpeed",
+    label: "Speed",
+    min: 0,
+    max: 20,
+    step: 0.1,
+  },
+  {
+    type: "slider",
+    key: "particleSize",
+    label: "Size",
+    min: 0.5,
+    max: 5,
+    step: 0.5,
+  },
   {
     type: "slider",
     key: "particleOpacityMin",
@@ -147,9 +210,30 @@ const particleControls: ControlConfig[] = [
     max: 1,
     step: 0.05,
   },
-  { type: "slider", key: "particleFpsLimit", label: "FPS Limit", min: 5, max: 120, step: 5 },
-  { type: "slider", key: "particleCenterX", label: "Center X %", min: 0, max: 100, step: 1 },
-  { type: "slider", key: "particleCenterY", label: "Center Y %", min: 0, max: 100, step: 1 },
+  {
+    type: "slider",
+    key: "particleFpsLimit",
+    label: "FPS Limit",
+    min: 5,
+    max: 120,
+    step: 5,
+  },
+  {
+    type: "slider",
+    key: "particleCenterX",
+    label: "Center X %",
+    min: 0,
+    max: 100,
+    step: 1,
+  },
+  {
+    type: "slider",
+    key: "particleCenterY",
+    label: "Center Y %",
+    min: 0,
+    max: 100,
+    step: 1,
+  },
   { type: "checkbox", key: "particleSmooth", label: "Smooth" },
 ];
 
@@ -228,9 +312,7 @@ export function LandingPageParamsUI() {
           <input
             type="checkbox"
             checked={params[config.key] as boolean}
-            onChange={(e) =>
-              setParams({ [config.key]: e.target.checked })
-            }
+            onChange={(e) => setParams({ [config.key]: e.target.checked })}
             className="accent-blue-500"
           />
         </label>
