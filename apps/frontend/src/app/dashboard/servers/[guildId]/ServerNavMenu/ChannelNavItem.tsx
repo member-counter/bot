@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
 import invariant from "tiny-invariant";
 
+import { isBotSupportedChannel } from "@mc/common/channelType";
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 import { Skeleton } from "@mc/ui/skeleton";
@@ -42,12 +43,7 @@ export function ChannelNavItem(channel: {
   });
 
   const isSelected = channelId === channel.id;
-  const isSupported = [
-    ChannelType.GuildText,
-    ChannelType.GuildCategory,
-    ChannelType.GuildVoice,
-    ChannelType.GuildAnnouncement,
-  ].includes(channel.type);
+  const isSupported = isBotSupportedChannel(channel.type);
   const isCategory = channel.type === ChannelType.GuildCategory;
 
   const Icon = useChannelIcon(channel.id, true);

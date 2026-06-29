@@ -146,7 +146,7 @@ export const profileCommand = new Command({
             .setURL(
               frontendUrl(
                 env.WEBSITE_URL,
-                routes.admin.users.$buildPath({
+                routes.admin.users.user.$buildPath({
                   params: { userId: targetUser.id },
                 }),
               ),

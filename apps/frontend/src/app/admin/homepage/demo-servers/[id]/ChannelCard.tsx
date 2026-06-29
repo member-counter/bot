@@ -3,6 +3,7 @@ import { ChannelType } from "discord-api-types/v10";
 import { TrashIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import { isTextLikeChannel } from "@mc/common/channelType";
 import { Button } from "@mc/ui/button";
 import { Card } from "@mc/ui/card";
 import { Checkbox } from "@mc/ui/checkbox";
@@ -96,9 +97,7 @@ export function ChannelCard({
       </Label>
       <Label>
         {t("pages.admin.homePage.demoServers.manage.channels.channel.topic")}
-        {[ChannelType.GuildText, ChannelType.GuildAnnouncement].includes(
-          channel.type,
-        ) && (
+        {isTextLikeChannel(channel.type) && (
           <Input
             value={channel.topic ?? ""}
             onChange={(e) =>

@@ -5,6 +5,7 @@ import { Editor, Range, Transforms } from "slate";
 import { ReactEditor, useSlate } from "slate-react";
 import invariant from "tiny-invariant";
 
+import { channelNameIsHyphenated } from "@mc/common/channelType";
 import { routes } from "@mc/common/Routes";
 import { searchInTexts } from "@mc/common/searchInTexts";
 import { cn } from "@mc/ui";
@@ -40,24 +41,31 @@ export function MentionSuggestions(props: {
   const [search, setSearch] = useState("");
   const [searchType, setSearchType] = useState<SearchType>(SearchType.Role);
 
-  const suggestedItems: (GuildChannel | GuildRole)[] = useMemo(() => {
-    const suggestableItems = [
-      ...(searchType === SearchType.Role ? roles : channels).values(),
-    ];
+  const suggestableItems: (GuildChannel | GuildRole)[] = useMemo(
+    () => [...(searchType === SearchType.Role ? roles : channels).values()],
+    [searchType, roles, channels],
+  );
 
-    const searchable: string[][] = suggestableItems.map((item) =>
-      item.name.split(" "),
-    );
+  // Splitting names only depends on the item set, not the live search query,
+  // so it's memoized separately to avoid re-splitting on every keystroke.
+  const searchable: string[][] = useMemo(
+    () =>
+      suggestableItems.map((item) =>
+        item.name.split(
+          "type" in item && channelNameIsHyphenated(item.type) ? "-" : " ",
+        ),
+      ),
+    [suggestableItems],
+  );
 
-    const ranking = searchInTexts(searchable, search);
-
-    const rankedItems = ranking
-      .slice(0, 10)
-      .map((index) => suggestableItems[index])
-      .filter(Boolean);
-
-    return rankedItems;
-  }, [search, searchType, roles, channels]);
+  const suggestedItems: (GuildChannel | GuildRole)[] = useMemo(
+    () =>
+      searchInTexts(searchable, search)
+        .slice(0, 10)
+        .map((index) => suggestableItems[index])
+        .filter(Boolean),
+    [searchable, suggestableItems, search],
+  );
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -65,20 +73,20 @@ export function MentionSuggestions(props: {
         switch (event.key) {
           case "ArrowDown": {
             event.preventDefault();
-            const prevIndex =
+            const nextIndex =
               selectedItemIndex >= suggestedItems.length - 1
                 ? 0
                 : selectedItemIndex + 1;
-            setSelectedItemIndex(prevIndex);
+            setSelectedItemIndex(nextIndex);
             break;
           }
           case "ArrowUp": {
             event.preventDefault();
-            const nextIndex =
+            const prevIndex =
               selectedItemIndex <= 0
                 ? suggestedItems.length - 1
                 : selectedItemIndex - 1;
-            setSelectedItemIndex(nextIndex);
+            setSelectedItemIndex(prevIndex);
             break;
           }
           case "Tab":
@@ -160,7 +168,7 @@ export function MentionSuggestions(props: {
         >
           {suggestedItems.map((item, index) => (
             <SuggestedItem
-              key={item.name}
+              key={item.id}
               isSelected={index === selectedItemIndex}
               item={item}
               onClick={() => {
@@ -193,7 +201,7 @@ function SuggestedItem({
   const style: React.CSSProperties = {};
 
   if (isRole) {
-    const roleColors = mentionColor(item.color);
+    const roleColors = mentionColor(item.color === 0 ? 0xffffff : item.color);
     style.color = roleColors.text;
   }
 

@@ -11,7 +11,7 @@ export const Verified = ({
     <svg
       className={className}
       aria-hidden="true"
-      role="åimg"
+      role="img"
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}

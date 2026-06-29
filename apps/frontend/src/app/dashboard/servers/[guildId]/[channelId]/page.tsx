@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
 import invariant from "tiny-invariant";
 
+import { isBotSupportedChannel } from "@mc/common/channelType";
 import { routes } from "@mc/common/Routes";
 import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
@@ -26,6 +27,8 @@ export default function Page() {
   invariant(guildId, "Expected guildId to be defined");
   const trpcUtils = api.useUtils();
   const userPermissions = useContext(UserPermissionsContext);
+  const guild = api.discord.getGuild.useQuery({ id: guildId });
+  const channel = guild.data?.channels.get(channelId);
 
   const [
     _channelSettings,
@@ -47,6 +50,21 @@ export default function Page() {
   );
 
   if (!mutableChannelSettings) return <LoadingPage />;
+
+  if (channel && !isBotSupportedChannel(channel.type)) {
+    return (
+      <div className="m-auto flex min-h-full flex-col items-center justify-center gap-2 p-3 text-center text-muted-foreground">
+        <p>
+          {t("pages.dashboard.servers.ChannelNavItem.unsupportedChannelType")}
+        </p>
+        <p className="text-sm">
+          {t(
+            "pages.dashboard.servers.ChannelNavItem.unsupportedChannelTypeHint",
+          )}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form

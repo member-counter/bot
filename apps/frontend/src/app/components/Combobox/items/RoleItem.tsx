@@ -26,7 +26,10 @@ export const RoleItem = ({ item, isSelected, onRemove }: Props) => {
   const { t } = useTranslation();
   const role = useRoleId(item);
 
-  const color = mentionColor(role?.color ?? 0xffffff);
+  const roleColor = role?.color;
+  const color = mentionColor(
+    roleColor === undefined || roleColor === 0 ? 0xffffff : roleColor,
+  );
 
   let name = role?.name;
 

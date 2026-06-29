@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChannelType } from "discord-api-types/v10";
 import { useTranslation } from "react-i18next";
 
+import { isTextLikeChannel } from "@mc/common/channelType";
 import { cn } from "@mc/ui";
 
 import { api } from "~/lib/trpc";
@@ -112,10 +112,7 @@ export function DiscordDemo({ heading }: { heading?: string }) {
     if (!selectedServer) return;
     setSelectedChannelIndex(
       selectedServer.channels.findIndex(
-        (channel) =>
-          [ChannelType.GuildText, ChannelType.GuildAnnouncement].includes(
-            channel.type,
-          ) && !channel.showAsSkeleton,
+        (channel) => isTextLikeChannel(channel.type) && !channel.showAsSkeleton,
       ),
     );
   }, [selectedServer]);

@@ -1,8 +1,13 @@
 export function mentionColor(color: number) {
+  const hex = color.toString(16).padStart(6, "0");
+  const alphaHex = (opacity: number) =>
+    Math.round(255 * opacity)
+      .toString(16)
+      .padStart(2, "0");
+
   return {
-    text: "#" + color.toString(16),
-    background: "#" + color.toString(16) + Math.round(255 * 0.3).toString(16),
-    backgroundHover:
-      "#" + color.toString(16) + Math.round(255 * 0.4).toString(16),
+    text: "#" + hex,
+    background: "#" + (hex + alphaHex(0.3)),
+    backgroundHover: "#" + (hex + alphaHex(0.4)),
   };
 }

@@ -7,6 +7,7 @@ import { ChannelType } from "discord.js";
 
 import { Job } from "@mc/common/bot/structures/Job";
 import botHasPermsToEdit from "@mc/common/botHasPermsToEdit";
+import { isBotSupportedChannel } from "@mc/common/channelType";
 import { KnownError } from "@mc/common/KnownError/index";
 import {
   advertiseEvaluatorPriorityKey,
@@ -39,6 +40,11 @@ async function updateGuildChannel(
 
   if (!channel) {
     logger.debug(`Channel not found`);
+    return;
+  }
+
+  if (!isBotSupportedChannel(channel.type)) {
+    logger.debug(`Channel type is not supported, skipping update`);
     return;
   }
 

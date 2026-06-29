@@ -32,7 +32,7 @@ export function DeleteButton({
   const deleteAccount = async () => {
     try {
       await deleteUser.mutateAsync({ discordUserId: userId });
-      void navigate(0);
+      void navigate(-1);
     } catch (err) {
       showError(err);
     }

@@ -44,7 +44,7 @@ export function InviteBotBanner() {
             components={{
               LinkURL: (
                 <LinkUnderlined
-                  to={routes.invite.$buildPath({ params: { guildId } })}
+                  to={routes.invite.$buildPath({ searchParams: { guildId } })}
                   target="_blank"
                 />
               ),

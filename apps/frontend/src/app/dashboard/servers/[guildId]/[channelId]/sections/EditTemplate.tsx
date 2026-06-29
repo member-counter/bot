@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
 import invariant from "tiny-invariant";
 
+import { isTextLikeChannel } from "@mc/common/channelType";
 import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
 
@@ -38,10 +39,7 @@ export function EditTemplate({ value, onChange, disabled }: Props) {
     discordGuildId: guildId,
   });
 
-  const channelIsTextLike = [
-    ChannelType.GuildText,
-    ChannelType.GuildAnnouncement,
-  ].includes(channelType);
+  const channelIsTextLike = isTextLikeChannel(channelType);
 
   const lastTemplateUpdateDate = channelLog.data?.LastTemplateUpdateDate
     ? formatRelativeTime("en-US", channelLog.data.LastTemplateUpdateDate)

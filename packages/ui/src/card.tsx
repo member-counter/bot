@@ -123,7 +123,7 @@ const CardBorderIlluminated = ({
     </div>
   );
 };
-Card.displayName = "CardBorderIlluminated";
+CardBorderIlluminated.displayName = "CardBorderIlluminated";
 
 export {
   Card,

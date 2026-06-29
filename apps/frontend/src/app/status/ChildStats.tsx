@@ -37,7 +37,7 @@ const getWSStatusColor = (status: ChildStats["clientStatus"]) => {
   else if (status === WSStatus.Idle || status === WSStatus.WaitingForGuilds)
     return "bg-blue-500";
   else if (status === WSStatus.Disconnected) return "bg-red-500";
-  else return "bg-ambar-500";
+  else return "bg-amber-500";
 };
 
 export function ChildStats(stats: ChildStats) {

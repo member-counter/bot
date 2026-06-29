@@ -10,7 +10,9 @@ export const errorHandlerZod = (
   next: NextFunction,
 ) => {
   if (err instanceof ZodError) {
-    res.status(400).json({ error: new KnownError("BAD_REQUEST").message });
+    return res
+      .status(400)
+      .json({ error: new KnownError("BAD_REQUEST").message });
   }
   next(err);
 };

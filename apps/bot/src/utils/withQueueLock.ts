@@ -101,7 +101,9 @@ export async function withQueueLock<T>({
           workLock = newLock;
         })
         .catch((error) => {
-          logger?.error(`Failed to auto extend lock ${lockKey} (${error})`);
+          logger?.error(
+            `Failed to auto extend lock ${lockKey} (${String(error)})`,
+          );
         });
     }, lockTtl / 2);
 

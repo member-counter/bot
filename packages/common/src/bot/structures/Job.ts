@@ -11,6 +11,7 @@ export class Job {
     this.name = options.name;
     this.time = options.time;
     this.runOnClientReady = options.runOnClientReady;
+    this.disabled = options.disabled;
     this.execute = options.execute;
   }
 }

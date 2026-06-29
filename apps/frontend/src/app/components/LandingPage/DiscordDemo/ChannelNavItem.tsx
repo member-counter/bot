@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { ChannelType } from "discord-api-types/v10";
 import { BookTextIcon, HelpCircleIcon, LockKeyholeIcon } from "lucide-react";
 
+import { isTextLikeChannel } from "@mc/common/channelType";
 import { cn } from "@mc/ui";
 import { Skeleton } from "@mc/ui/skeleton";
 
@@ -30,8 +31,7 @@ export function ChannelNavItem({
   Icon ??= HelpCircleIcon;
 
   const isCategory = type === ChannelType.GuildCategory;
-  const isTextBased =
-    type === ChannelType.GuildText || type === ChannelType.GuildAnnouncement;
+  const isTextBased = isTextLikeChannel(type);
   return (
     <div
       className={cn(

@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import assert from "assert";
 import type { DataSource, DataSourceId } from "@mc/common/DataSource";
-import { ChannelType } from "discord.js";
 
+import { isTextLikeChannel } from "@mc/common/channelType";
 import { DATA_SOURCE_DELIMITER } from "@mc/common/DataSource";
 import { KnownError } from "@mc/common/KnownError/index";
 
@@ -56,10 +56,7 @@ class DataSourceService {
 
     result = result.trim();
 
-    if (
-      this.ctx.channelType === ChannelType.GuildAnnouncement ||
-      this.ctx.channelType === ChannelType.GuildText
-    ) {
+    if (isTextLikeChannel(this.ctx.channelType)) {
       result = result.slice(0, 1023);
     } else {
       if (result.length < 2)
@@ -128,11 +125,7 @@ class DataSourceService {
       }).format(result);
     }
 
-    if (
-      [ChannelType.GuildAnnouncement, ChannelType.GuildText].includes(
-        this.ctx.channelType,
-      )
-    ) {
+    if (isTextLikeChannel(this.ctx.channelType)) {
       result = result
         .toString()
         .split("")

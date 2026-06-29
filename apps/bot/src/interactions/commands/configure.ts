@@ -66,7 +66,7 @@ export const configureCommand = new Command({
             .setURL(
               frontendUrl(
                 env.WEBSITE_URL,
-                routes.dashboard.servers.$buildPath({
+                routes.dashboard.servers.server.$buildPath({
                   params: { guildId: command.guildId },
                 }),
               ),

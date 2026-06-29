@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
 import invariant from "tiny-invariant";
 
+import { isTextLikeChannel } from "@mc/common/channelType";
 import { routes } from "@mc/common/Routes";
 import { Label } from "@mc/ui/label";
 import { Switch } from "@mc/ui/switch";
@@ -28,9 +29,9 @@ export function EnableTemplate({ value, onChange, disabled }: Props) {
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
 
-  const isTemplateForName =
-    channel?.type === ChannelType.GuildVoice ||
-    channel?.type === ChannelType.GuildCategory;
+  const isTemplateForName = !isTextLikeChannel(
+    channel?.type ?? ChannelType.GuildText,
+  );
   const templateTarget = isTemplateForName
     ? t("pages.dashboard.servers.channels.sections.EnableTemplate.nameTarget")
     : t("pages.dashboard.servers.channels.sections.EnableTemplate.topicTarget");

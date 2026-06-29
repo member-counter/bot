@@ -26,6 +26,8 @@ export function setupJobs(client: Client) {
       job = job(client);
     }
 
+    if (job.disabled) return;
+
     let isLocked = false;
 
     const run = async () => {

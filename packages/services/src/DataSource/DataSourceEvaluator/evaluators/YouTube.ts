@@ -35,7 +35,7 @@ const CACHE_LIFETIME = 60 * 60;
 
 function toCacheKey(channel: string, returnType: YouTubeDataSourceReturn) {
   return dataSourceCacheKey(
-    DataSourceId.REDDIT,
+    DataSourceId.YOUTUBE,
     [channel, returnType].join(":"),
   );
 }

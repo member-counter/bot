@@ -577,6 +577,7 @@ interface Resources {
               issue: "There is an issue in this channel that requires your attention";
             };
             unsupportedChannelType: "This channel type is not supported yet.";
+            unsupportedChannelTypeHint: "By the way, how did you get here? If you really want this supported just message us";
           };
           ServerNavMenu: {
             channelList: "Channel list";

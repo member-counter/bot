@@ -34,7 +34,7 @@ export default function Layout() {
       <div className="flex h-[48px] w-full flex-shrink-0 flex-row items-center pl-3 pr-1 font-semibold">
         <Icon className="mr-3 h-5 w-5" aria-label={label} />
         <h1
-          aria-label={`${guild.data?.name ?? t("common.unknownChannel")}: ${name}`}
+          aria-label={`${guild.data?.name ?? t("common.unknownServer")}: ${name}`}
         >
           {name}
         </h1>
