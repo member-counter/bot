@@ -42,6 +42,18 @@ services:
     networks:
       - member-counter
 
+  # Coordinates the Discord REST budget of bot processes sharing one token;
+  # enable it (replicas: 1) on servers running multiple processes of the same
+  # bot and set DISCORD_BOT_INSTANCE_REST_PROXY_URL=http://rest-proxy:8765/api
+  rest-proxy:
+    env_file: .env
+    image: ghcr.io/member-counter/rest-proxy:beta
+    restart: always
+    deploy:
+      replicas: 0
+    networks:
+      - member-counter
+
   db-utils:
     env_file: .env
     image: ghcr.io/member-counter/db-utils:beta
@@ -102,16 +114,28 @@ configs:
             server frontend:80;
           }
 
+          # Only send "Connection: upgrade" on actual websocket upgrades
+          map $$http_upgrade $$connection_upgrade {
+              default upgrade;
+              ''      "";
+          }
+
+          gzip on;
+          gzip_types application/json;
+          gzip_proxied any;
+          gzip_min_length 1000;
+          gzip_vary on;
+
           server {
               listen 80;
               server_name _;
 
-              location /api/ { 
+              location /api/ {
                   rewrite ^/api/(.*)$$ /$$1 break;
 
                   proxy_pass http://backend-upstream;
                   proxy_http_version 1.1;
-                  
+
                   proxy_set_header Host $$http_host;
                   proxy_set_header X-Real-IP $$remote_addr;
                   proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;
@@ -119,7 +143,7 @@ configs:
                   proxy_set_header X-Forwarded-Host $$http_host;
                   proxy_set_header X-Forwarded-Port $$server_port;
                   proxy_set_header Upgrade $$http_upgrade;
-                  proxy_set_header Connection "upgrade";
+                  proxy_set_header Connection $$connection_upgrade;
               }
 
               location / {
@@ -127,7 +151,7 @@ configs:
                   proxy_http_version 1.1;
 
                   proxy_set_header Upgrade $$http_upgrade;
-                  proxy_set_header Connection "upgrade";
+                  proxy_set_header Connection $$connection_upgrade;
               }
           }
       }

@@ -1,0 +1,36 @@
+{
+  "name": "@mc/rest-proxy",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup-node",
+    "dev": "pnpm with-env pnpm build --watch . --onSuccess \"pnpm run start\"",
+    "start": "pnpm with-env node --enable-source-maps dist/index.js",
+    "clean": "rm -rf .turbo node_modules dist",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@discordjs/proxy": "^2.1.1",
+    "@discordjs/rest": "^2.6.0",
+    "@mc/logger": "workspace:*",
+    "@t3-oss/env-core": "^0.13.10",
+    "zod": "^4.3.5"
+  },
+  "devDependencies": {
+    "@mc/eslint-config": "workspace:*",
+    "@mc/prettier-config": "workspace:*",
+    "@mc/tsconfig": "workspace:*",
+    "@types/node": "^22.19.7",
+    "dotenv-cli": "^7.4.4",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  },
+  "prettier": "@mc/prettier-config"
+}
