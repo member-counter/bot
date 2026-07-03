@@ -11,6 +11,9 @@ enum BaseKeys {
   FetchApproximateMembersQueue,
   SendBotStatsLock,
   DiscordUserCache,
+  DiscordIdentityCache,
+  DiscordUserGuildsCache,
+  DiscordGuildCache,
 }
 
 export const channelLogKey = (
@@ -46,3 +49,12 @@ export const sendBotStatsLockKey = (botId: string) =>
 
 export const discordUserCacheKey = (userId: string) =>
   `${BaseKeys.DiscordUserCache}:${userId}`;
+
+export const discordIdentityCacheKey = (tokenHash: string) =>
+  `${BaseKeys.DiscordIdentityCache}:${tokenHash}`;
+
+export const discordUserGuildsCacheKey = (tokenHash: string) =>
+  `${BaseKeys.DiscordUserGuildsCache}:${tokenHash}`;
+
+export const discordGuildCacheKey = (guildId: string) =>
+  `${BaseKeys.DiscordGuildCache}:${guildId}`;

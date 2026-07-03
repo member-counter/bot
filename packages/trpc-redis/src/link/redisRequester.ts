@@ -2,7 +2,11 @@ import type { DataTransformer } from "@trpc/server/unstable-core-do-not-import";
 import type { Redis } from "ioredis";
 
 import type { RequestMessage } from "../schemas";
-import { REQ_CHANNEL, RES_CHANNEL } from "../Constants";
+import {
+  REQ_CHANNEL,
+  REQUEST_TIMEOUT_MESSAGE,
+  RES_CHANNEL,
+} from "../Constants";
 import { responseMessageSchema } from "../schemas";
 
 type PendingRequests = Map<
@@ -76,7 +80,7 @@ export const setupRedisRequester = async ({
     reject: (error: unknown) => void,
   ) =>
     setTimeout(() => {
-      reject(new Error(`Request timed out`, { cause: requestMessage }));
+      reject(new Error(REQUEST_TIMEOUT_MESSAGE, { cause: requestMessage }));
     }, requestTimeout);
 
   const redisRequest = async (requestMessage: RequestMessage) => {
