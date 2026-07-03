@@ -22,6 +22,11 @@ export const UserSettingsService = {
       .catch(throwNotFoundOrThrow);
   },
 
+  getOrCreate: async (discordUserId: string) => {
+    const user = await db.user.findUnique({ where: { discordUserId } });
+    return user ?? UserSettingsService.upsert(discordUserId);
+  },
+
   update: async (
     id: string,
     data: Parameters<typeof db.user.update>[0]["data"],

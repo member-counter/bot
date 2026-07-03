@@ -1,9 +1,16 @@
+import { createHash } from "node:crypto";
 import type { DiscordUser } from "@mc/validators/DiscordUser";
 import type { DiscordUserGuild } from "@mc/validators/DiscordUserGuilds";
 import { REST } from "@discordjs/rest";
 import { PermissionFlagsBits, Routes } from "discord-api-types/v10";
 
 import { BitField } from "@mc/common/BitField";
+import { cachedFetch } from "@mc/common/redis/cachedFetch";
+import {
+  discordIdentityCacheKey,
+  discordUserGuildsCacheKey,
+} from "@mc/common/redis/keys";
+import { redis } from "@mc/redis";
 import { DiscordUserSchema } from "@mc/validators/DiscordUser";
 import { DiscordUserGuildsSchema } from "@mc/validators/DiscordUserGuilds";
 
@@ -37,27 +44,44 @@ function getClient(token: string): REST {
   return client;
 }
 
+// /users/@me and /users/@me/guilds are heavily rate limited per user token and
+// the dashboard needs both on every load, so responses are cached briefly and
+// concurrent callers share a single in-flight request. Kept short: the
+// frontend refetches on window focus to pick up permission changes made in
+// Discord, and permission checks read through this same cache.
+const RESPONSE_CACHE_TTL = 15; // seconds
+
+const tokenHash = (token: string) =>
+  createHash("sha256").update(token).digest("hex");
+
 export const DiscordService = {
   async identify(token: string): Promise<DiscordUser> {
-    const client = getClient(token);
-
-    const user = await client.get(Routes.user());
-
-    return DiscordUserSchema.parse(user);
+    return cachedFetch({
+      redis,
+      key: discordIdentityCacheKey(tokenHash(token)),
+      ttlSeconds: RESPONSE_CACHE_TTL,
+      fetch: () => getClient(token).get(Routes.user()),
+      validate: (raw) => DiscordUserSchema.parse(raw),
+    });
   },
 
   async userGuilds(
     token: string,
   ): Promise<{ userGuilds: Map<string, DiscordUserGuild> }> {
-    const client = getClient(token);
-
-    const guilds = await client.get(Routes.userGuilds(), {
-      query: new URLSearchParams({ with_counts: "true" }),
+    const guilds = await cachedFetch({
+      redis,
+      key: discordUserGuildsCacheKey(tokenHash(token)),
+      ttlSeconds: RESPONSE_CACHE_TTL,
+      fetch: () =>
+        getClient(token).get(Routes.userGuilds(), {
+          query: new URLSearchParams({ with_counts: "true" }),
+        }),
+      validate: (raw) => DiscordUserGuildsSchema.parse(raw),
     });
 
     return {
       userGuilds: new Map(
-        DiscordUserGuildsSchema.parse(guilds)
+        guilds
           .sort((guild) =>
             new BitField(guild.permissions).any(
               PermissionFlagsBits.Administrator |

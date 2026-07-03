@@ -12,10 +12,12 @@ import { UserSettingsService } from "@mc/services/userSettings";
  */
 export const createTRPCContext = async (opts: { session: Session | null }) => {
   const authUser = opts.session?.userId
-    ? await UserSettingsService.upsert(opts.session.userId).then((user) => ({
-        ...user,
-        permissions: new BitField(user.permissions),
-      }))
+    ? await UserSettingsService.getOrCreate(opts.session.userId).then(
+        (user) => ({
+          ...user,
+          permissions: new BitField(user.permissions),
+        }),
+      )
     : null;
 
   return {

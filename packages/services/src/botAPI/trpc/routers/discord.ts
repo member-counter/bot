@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { cachedFetch } from "@mc/common/redis/cachedFetch";
 import {
   CachedDiscordUserValidator,
   DISCORD_USER_CACHE_TTL,
@@ -13,37 +14,23 @@ export const discordRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
       await ctx.takeRequest(true);
-      const cacheKey = discordUserCacheKey(input.id);
 
-      // Try to get from cache first
-      const cached = await ctx.redisClient.get(cacheKey);
-      if (cached) {
-        try {
-          const parsed = CachedDiscordUserValidator.parse(JSON.parse(cached));
-          return parsed;
-        } catch {
-          // If validation fails, delete the invalid cache entry
-          await ctx.redisClient.del(cacheKey);
-        }
-      }
+      return cachedFetch({
+        redis: ctx.redisClient,
+        key: discordUserCacheKey(input.id),
+        ttlSeconds: DISCORD_USER_CACHE_TTL,
+        fetch: async () => {
+          const user = await ctx.botClient.users.fetch(input.id);
 
-      const user = await ctx.botClient.users.fetch(input.id);
-
-      const userData = {
-        id: user.id,
-        username: user.username,
-        discriminator: user.discriminator,
-        avatar: user.displayAvatarURL(),
-      } satisfies z.infer<typeof CachedDiscordUserValidator>;
-
-      // Cache the result
-      await ctx.redisClient.setex(
-        cacheKey,
-        DISCORD_USER_CACHE_TTL,
-        JSON.stringify(userData),
-      );
-
-      return userData;
+          return {
+            id: user.id,
+            username: user.username,
+            discriminator: user.discriminator,
+            avatar: user.displayAvatarURL(),
+          } satisfies z.infer<typeof CachedDiscordUserValidator>;
+        },
+        validate: (raw) => CachedDiscordUserValidator.parse(raw),
+      });
     }),
 
   getGuild: publicProcedure

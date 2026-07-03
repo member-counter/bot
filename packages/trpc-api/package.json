@@ -20,6 +20,7 @@
     "@mc/db": "workspace:*",
     "@mc/redis": "workspace:*",
     "@mc/services": "workspace:*",
+    "@mc/trpc-redis": "workspace:^",
     "@mc/validators": "workspace:*",
     "@trpc/server": "^11.8.1",
     "discord-api-types": "^0.38.37",

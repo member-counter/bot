@@ -1,4 +1,3 @@
-import assert from "assert";
 import { TRPCError } from "@trpc/server";
 import { PermissionFlagsBits } from "discord-api-types/v10";
 import { z } from "zod";
@@ -20,6 +19,7 @@ async function checkUserPermissions(
     userPermissions: BitField;
     userPermissionsInGuild: BitField;
   }) => boolean,
+  { live = false }: { live?: boolean } = {},
 ) {
   if (!ctx.authUser || !ctx.session)
     throw new TRPCError({
@@ -28,23 +28,33 @@ async function checkUserPermissions(
     });
 
   const { discordGuildId } = input;
+  const { accessToken } = ctx.session;
+  const { discordUserId } = ctx.authUser;
 
-  const userPermissionsInGuild = await botAPIConsumer.discord.getGuildMember
-    .query({
+  // The user's guild list already includes their permissions in each guild
+  // and is served from a short-lived cache, unlike asking the bot fleet,
+  // which costs a Redis round trip to another server plus a Discord API call.
+  const fetchCachedPermissions = async () => {
+    const { userGuilds } = await DiscordService.userGuilds(accessToken);
+    return new BitField(userGuilds.get(discordGuildId)?.permissions);
+  };
+
+  const fetchLivePermissions = async () => {
+    const member = await botAPIConsumer.discord.getGuildMember.query({
       guildId: discordGuildId,
-      memberId: ctx.authUser.discordUserId,
-    })
-    .then((member) => new BitField(member.permissions))
-    .catch(async () => {
-      assert(ctx.session);
-      const { userGuilds } = await DiscordService.userGuilds(
-        ctx.session.accessToken,
-      );
-
-      const guild = userGuilds.get(discordGuildId);
-
-      return new BitField(guild?.permissions);
+      memberId: discordUserId,
     });
+
+    return new BitField(member.permissions);
+  };
+
+  // Reads accept cached permissions, but mutations re-check live member
+  // permissions so a demoted admin can't keep writing until the cache expires.
+  const userPermissionsInGuild = live
+    ? await fetchLivePermissions().catch(fetchCachedPermissions)
+    : await fetchCachedPermissions().catch(() =>
+        fetchLivePermissions().catch(() => new BitField(0n)),
+      );
 
   const hasPermission = check({
     userPermissions: ctx.authUser.permissions,
@@ -106,6 +116,7 @@ export const guildRouter = createTRPCRouter({
             PermissionFlagsBits.Administrator |
               PermissionFlagsBits.ManageChannels,
           ),
+        { live: true },
       );
 
       return await GuildSettingsService.upsert(input.discordGuildId, {
@@ -126,6 +137,7 @@ export const guildRouter = createTRPCRouter({
         ({ userPermissions, userPermissionsInGuild }) =>
           userPermissions.has(UserPermissions.ManageGuilds) ||
           userPermissionsInGuild.any(PermissionFlagsBits.Administrator),
+        { live: true },
       );
 
       await GuildSettingsService.reset(input.discordGuildId);
@@ -236,6 +248,7 @@ export const guildRouter = createTRPCRouter({
               PermissionFlagsBits.Administrator |
                 PermissionFlagsBits.ManageChannels,
             ),
+          { live: true },
         );
 
         return await GuildSettingsService.channels.update(input);
@@ -256,6 +269,7 @@ export const guildRouter = createTRPCRouter({
             ({ userPermissions, userPermissionsInGuild }) =>
               userPermissions.has(UserPermissions.ManageGuilds) ||
               userPermissionsInGuild.any(PermissionFlagsBits.Administrator),
+            { live: true },
           );
 
           await GuildSettingsService.channels.delete(discordChannelId);
