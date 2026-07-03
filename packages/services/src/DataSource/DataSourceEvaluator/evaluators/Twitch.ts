@@ -1,9 +1,11 @@
 import assert from "assert";
 import { ApiClient } from "@twurple/api";
 import { AppTokenAuthProvider } from "@twurple/auth";
+import { z } from "zod";
 
 import { DataSourceId, TwitchDataSourceReturn } from "@mc/common/DataSource";
 import { KnownError } from "@mc/common/KnownError/index";
+import { cachedFetch } from "@mc/common/redis/cachedFetch";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
@@ -25,88 +27,63 @@ const client = createClient();
 
 const CACHE_LIFETIME = 15 * 60;
 
-function toCacheKey(username: string, returnType: TwitchDataSourceReturn) {
-  return dataSourceCacheKey(
-    DataSourceId.TWITCH,
-    [username, returnType].join(":"),
-  );
-}
+const cachedChannelValidator = z.object({
+  channelName: z.string(),
+  followers: z.number(),
+  viewers: z.union([z.number(), z.literal("offline")]),
+});
 
-async function fetchData(
-  username: string,
-  returnType: TwitchDataSourceReturn = TwitchDataSourceReturn.FOLLOWERS,
-) {
+function fetchChannel(username: string) {
   assert(
     client,
     new Error(`"TWITCH_CLIENT_ID" or "TWITCH_CLIENT_SECRET" not provided`),
   );
+  const twitch = client;
 
-  const cachedValue = await redis.get(toCacheKey(username, returnType));
-  if (cachedValue) {
-    switch (returnType) {
-      case TwitchDataSourceReturn.VIEWERS:
-        return isNaN(Number(cachedValue)) ? cachedValue : Number(cachedValue);
+  return cachedFetch({
+    redis,
+    key: dataSourceCacheKey(DataSourceId.TWITCH, username),
+    ttlSeconds: CACHE_LIFETIME,
+    fetch: async () => {
+      const channel = await twitch.users.getUserByName(username);
 
-      case TwitchDataSourceReturn.CHANNEL_NAME:
-        return cachedValue;
+      if (!channel) {
+        throw new KnownError("TWITCH_CHANNEL_NOT_FOUND");
+      }
 
-      case TwitchDataSourceReturn.FOLLOWERS:
-        return Number(cachedValue);
-    }
-  }
+      const stream = await twitch.streams.getStreamByUserName(username);
+      const followers = await twitch.channels.getChannelFollowerCount(
+        channel.id,
+      );
 
-  const channel = await client.users.getUserByName(username);
-
-  if (!channel) {
-    throw new KnownError("TWITCH_CHANNEL_NOT_FOUND");
-  }
-
-  const stream = await client.streams.getStreamByUserName(username);
-
-  const viewers = stream ? stream.viewers : "offline";
-
-  const followers = await client.channels.getChannelFollowerCount(channel.id);
-
-  await Promise.all([
-    redis.set(
-      toCacheKey(username, TwitchDataSourceReturn.FOLLOWERS),
-      followers,
-      "EX",
-      CACHE_LIFETIME,
-    ),
-    redis.set(
-      toCacheKey(username, TwitchDataSourceReturn.CHANNEL_NAME),
-      channel.displayName,
-      "EX",
-      CACHE_LIFETIME,
-    ),
-    redis.set(
-      toCacheKey(username, TwitchDataSourceReturn.VIEWERS),
-      viewers,
-      "EX",
-      CACHE_LIFETIME,
-    ),
-  ]);
-
-  switch (returnType) {
-    case TwitchDataSourceReturn.VIEWERS:
-      return isNaN(Number(viewers)) ? viewers : Number(viewers);
-
-    case TwitchDataSourceReturn.CHANNEL_NAME:
-      return channel.displayName;
-
-    case TwitchDataSourceReturn.FOLLOWERS:
-      return followers;
-  }
+      return {
+        channelName: channel.displayName,
+        followers,
+        viewers: stream ? stream.viewers : ("offline" as const),
+      } satisfies z.infer<typeof cachedChannelValidator>;
+    },
+    validate: (raw) => cachedChannelValidator.parse(raw),
+  });
 }
 
 export const twitchEvaluator = new DataSourceEvaluator({
   id: DataSourceId.TWITCH,
-  execute: ({ ctx, options }) => {
+  execute: async ({ ctx, options }) => {
     const { isPremium } = ctx.guild.client.botInstanceOptions;
     assert(isPremium, new KnownError("BOT_IS_NOT_PREMIUM"));
     assert(options.username, new KnownError("TWITCH_MISSING_USERNAME"));
 
-    return fetchData(options.username, options.return);
+    const channel = await fetchChannel(options.username);
+
+    switch (options.return ?? TwitchDataSourceReturn.FOLLOWERS) {
+      case TwitchDataSourceReturn.VIEWERS:
+        return channel.viewers;
+
+      case TwitchDataSourceReturn.CHANNEL_NAME:
+        return channel.channelName;
+
+      case TwitchDataSourceReturn.FOLLOWERS:
+        return channel.followers;
+    }
   },
 });

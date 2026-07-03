@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { DataSourceId, YouTubeDataSourceReturn } from "@mc/common/DataSource";
 import { KnownError } from "@mc/common/KnownError/index";
+import { cachedFetch } from "@mc/common/redis/cachedFetch";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
@@ -33,96 +34,44 @@ const idChannelMatch =
 
 const CACHE_LIFETIME = 60 * 60;
 
-function toCacheKey(channel: string, returnType: YouTubeDataSourceReturn) {
-  return dataSourceCacheKey(
-    DataSourceId.YOUTUBE,
-    [channel, returnType].join(":"),
-  );
-}
+const cachedChannelValidator = z.object({
+  channelName: z.string(),
+  videos: z.number(),
+  subscribers: z.number(),
+  views: z.number(),
+});
 
-async function fetchData(
+const fetchChannel = (
   searchChannel: string,
   searchChannelBy: "id" | "forUsername" | "forHandle",
-  returnType: YouTubeDataSourceReturn = YouTubeDataSourceReturn.SUBSCRIBERS,
-) {
-  const cachedValue = await redis.get(
-    toCacheKey(searchChannel + searchChannelBy, returnType),
-  );
-  if (cachedValue) {
-    switch (returnType) {
-      case YouTubeDataSourceReturn.CHANNEL_NAME:
-        return cachedValue;
-
-      case YouTubeDataSourceReturn.VIDEOS:
-      case YouTubeDataSourceReturn.SUBSCRIBERS:
-      case YouTubeDataSourceReturn.VIEWS:
-        return Number(cachedValue);
-    }
-  }
-
-  const channel = await fetch(
-    `https://www.googleapis.com/youtube/v3/channels?part=statistics,snippet&key=${env.YOUTUBE_API_KEY}&${searchChannelBy}=${searchChannel}`,
-    { signal: AbortSignal.timeout(5000) },
-  )
-    .then((response) => response.json())
-    .then((o) => channelValidator.parse(o))
-    .then((o) => o.items[0]);
-
-  assert(channel);
-
-  await Promise.all([
-    redis.set(
-      toCacheKey(
-        searchChannel + searchChannelBy,
-        YouTubeDataSourceReturn.CHANNEL_NAME,
-      ),
-      channel.snippet.title,
-      "EX",
-      CACHE_LIFETIME,
+) =>
+  cachedFetch({
+    redis,
+    key: dataSourceCacheKey(
+      DataSourceId.YOUTUBE,
+      [searchChannelBy, searchChannel].join(":"),
     ),
-    redis.set(
-      toCacheKey(
-        searchChannel + searchChannelBy,
-        YouTubeDataSourceReturn.SUBSCRIBERS,
-      ),
-      channel.statistics.subscriberCount,
-      "EX",
-      CACHE_LIFETIME,
-    ),
-    redis.set(
-      toCacheKey(
-        searchChannel + searchChannelBy,
-        YouTubeDataSourceReturn.VIEWS,
-      ),
-      channel.statistics.viewCount,
-      "EX",
-      CACHE_LIFETIME,
-    ),
-    redis.set(
-      toCacheKey(
-        searchChannel + searchChannelBy,
-        YouTubeDataSourceReturn.VIDEOS,
-      ),
-      channel.statistics.videoCount,
-      "EX",
-      CACHE_LIFETIME,
-    ),
-  ]);
+    ttlSeconds: CACHE_LIFETIME,
+    fetch: async () => {
+      const channel = await fetch(
+        `https://www.googleapis.com/youtube/v3/channels?part=statistics,snippet&key=${env.YOUTUBE_API_KEY}&${searchChannelBy}=${searchChannel}`,
+        { signal: AbortSignal.timeout(5000) },
+      )
+        .then((response) => response.json())
+        .then((o) => channelValidator.parse(o))
+        .then((o) => o.items[0]);
 
-  switch (returnType) {
-    case YouTubeDataSourceReturn.CHANNEL_NAME:
-      return channel.snippet.title;
+      assert(channel);
 
-    case YouTubeDataSourceReturn.VIDEOS:
-      return Number(channel.statistics.videoCount);
-
-    case YouTubeDataSourceReturn.SUBSCRIBERS:
-      return Number(channel.statistics.subscriberCount);
-
-    case YouTubeDataSourceReturn.VIEWS:
-      return Number(channel.statistics.viewCount);
-  }
-}
+      return {
+        channelName: channel.snippet.title,
+        videos: Number(channel.statistics.videoCount),
+        subscribers: Number(channel.statistics.subscriberCount),
+        views: Number(channel.statistics.viewCount),
+      } satisfies z.infer<typeof cachedChannelValidator>;
+    },
+    validate: (raw) => cachedChannelValidator.parse(raw),
+  });
 
 export const youTubeEvaluator = new DataSourceEvaluator({
   id: DataSourceId.YOUTUBE,
@@ -151,6 +100,20 @@ export const youTubeEvaluator = new DataSourceEvaluator({
       new KnownError("YOUTUBE_INVALID_CHANNEL_URL"),
     );
 
-    return await fetchData(searchChannel, searchChannelBy, returnType);
+    const channel = await fetchChannel(searchChannel, searchChannelBy);
+
+    switch (returnType ?? YouTubeDataSourceReturn.SUBSCRIBERS) {
+      case YouTubeDataSourceReturn.CHANNEL_NAME:
+        return channel.channelName;
+
+      case YouTubeDataSourceReturn.VIDEOS:
+        return channel.videos;
+
+      case YouTubeDataSourceReturn.SUBSCRIBERS:
+        return channel.subscribers;
+
+      case YouTubeDataSourceReturn.VIEWS:
+        return channel.views;
+    }
   },
 });

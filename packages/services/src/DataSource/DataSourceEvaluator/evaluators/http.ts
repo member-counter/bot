@@ -4,6 +4,7 @@ import { z } from "zod";
 import { DataSourceId } from "@mc/common/DataSource";
 import jsonBodyExtractor from "@mc/common/jsonBodyExtractor";
 import { KnownError } from "@mc/common/KnownError/index";
+import { cachedFetch } from "@mc/common/redis/cachedFetch";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
@@ -15,16 +16,7 @@ const cachedValueValidator = z.object({
   contentType: z.string(),
 });
 
-function toCacheKey(url: string) {
-  return dataSourceCacheKey(DataSourceId.HTTP, url);
-}
-
-async function fetchData(url: string, lifetime?: number) {
-  if (lifetime) {
-    const cachedValue = await redis.get(toCacheKey(url));
-    if (cachedValue) return cachedValueValidator.parse(JSON.parse(cachedValue));
-  }
-
+async function fetchUrl(url: string) {
   const response = await fetch(url, {
     signal: AbortSignal.timeout(5000),
     headers: {
@@ -46,13 +38,20 @@ async function fetchData(url: string, lifetime?: number) {
 
   const body = await response.text();
 
-  const value = { body, contentType };
+  return { body, contentType } satisfies z.infer<typeof cachedValueValidator>;
+}
 
-  if (lifetime) {
-    await redis.set(toCacheKey(url), JSON.stringify(value), "EX", lifetime);
-  }
+// Caching is opt-in per data source: the user configures the lifetime
+async function fetchData(url: string, lifetime?: number) {
+  if (!lifetime) return fetchUrl(url);
 
-  return value;
+  return cachedFetch({
+    redis,
+    key: dataSourceCacheKey(DataSourceId.HTTP, url),
+    ttlSeconds: lifetime,
+    fetch: () => fetchUrl(url),
+    validate: (raw) => cachedValueValidator.parse(raw),
+  });
 }
 
 export const HTTPEvaluator = new DataSourceEvaluator({
