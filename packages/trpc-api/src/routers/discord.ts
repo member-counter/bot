@@ -45,7 +45,7 @@ export const discordRouter = createTRPCRouter({
   getUser: protectedProcedure
     .input(z.object({ id: z.string() }))
     .query(({ input: { id } }) => {
-      return botAPIConsumer.discord.getUser.query({ id });
+      return DiscordService.getUser(id);
     }),
   getGuild: protectedProcedure
     .input(z.object({ id: z.string() }))

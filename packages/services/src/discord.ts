@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import type { CachedDiscordUser } from "@mc/common/redis/DiscordUserCache";
 import type { DiscordUser } from "@mc/validators/DiscordUser";
 import type { DiscordUserGuild } from "@mc/validators/DiscordUserGuilds";
 import { REST } from "@discordjs/rest";
@@ -7,12 +8,19 @@ import { PermissionFlagsBits, Routes } from "discord-api-types/v10";
 import { BitField } from "@mc/common/BitField";
 import { cachedFetch } from "@mc/common/redis/cachedFetch";
 import {
+  CachedDiscordUserValidator,
+  DISCORD_USER_CACHE_TTL,
+} from "@mc/common/redis/DiscordUserCache";
+import {
   discordIdentityCacheKey,
+  discordUserCacheKey,
   discordUserGuildsCacheKey,
 } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 import { DiscordUserSchema } from "@mc/validators/DiscordUser";
 import { DiscordUserGuildsSchema } from "@mc/validators/DiscordUserGuilds";
+
+import { botAPIConsumer } from "./botAPI/botAPIConsumer";
 
 const clientCache = new Map<string, { client: REST; lastUsed: number }>();
 const CLIENT_TTL = 10 * 60 * 1000; // 10 minutes
@@ -62,6 +70,21 @@ export const DiscordService = {
       ttlSeconds: RESPONSE_CACHE_TTL,
       fetch: () => getClient(token).get(Routes.user()),
       validate: (raw) => DiscordUserSchema.parse(raw),
+    });
+  },
+
+  /**
+   * Discord user profile served from the profile cache the bot fleet already
+   * maintains; only a cache miss pays the cross-server RPC, which
+   * re-populates the same key for everyone.
+   */
+  async getUser(id: string): Promise<CachedDiscordUser> {
+    return cachedFetch({
+      redis,
+      key: discordUserCacheKey(id),
+      ttlSeconds: DISCORD_USER_CACHE_TTL,
+      fetch: () => botAPIConsumer.discord.getUser.query({ id }),
+      validate: (raw) => CachedDiscordUserValidator.parse(raw),
     });
   },
 
