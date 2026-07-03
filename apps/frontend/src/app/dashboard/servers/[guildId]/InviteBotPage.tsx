@@ -10,8 +10,8 @@ import { Button } from "@mc/ui/button";
 import { BotIcon } from "~/app/components/BotIcon";
 import { DiscordIcon } from "~/app/components/DiscordIcon";
 import { LinkUnderlined } from "~/app/components/LinkUnderlined";
+import { useUserGuilds } from "~/lib/hooks/useUserGuilds";
 import { Link } from "~/lib/navigation";
-import { api } from "~/lib/trpc";
 import { MenuButton } from "../../Menu";
 import { UserPermissionsContext } from "./UserPermissionsContext";
 
@@ -45,9 +45,7 @@ export function InviteBotPage() {
   };
 
   const userPermissions = useContext(UserPermissionsContext);
-  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
-    initialData: () => ({ userGuilds: new Map() }),
-  });
+  const userGuildsQuery = useUserGuilds();
   const guild = userGuildsQuery.data.userGuilds.get(guildId);
 
   return (

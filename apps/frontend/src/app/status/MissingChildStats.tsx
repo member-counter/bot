@@ -1,7 +1,7 @@
 import { AlertCircleIcon, CornerDownRightIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import { api } from "~/lib/trpc";
+import { useUserGuilds } from "~/lib/hooks/useUserGuilds";
 import { ChildStatsDiscordServers } from "./ChildStatsServers";
 
 interface MissingChildStats {
@@ -13,9 +13,7 @@ export function MissingChildStats(props: MissingChildStats) {
   const { t } = useTranslation();
   const {
     data: { userGuilds },
-  } = api.discord.userGuilds.useQuery(undefined, {
-    initialData: () => ({ userGuilds: new Map() }),
-  });
+  } = useUserGuilds();
 
   const assignedGuilds = [...userGuilds.entries()]
     .filter(([guildId]) =>

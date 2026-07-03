@@ -11,7 +11,7 @@ import {
 } from "@mc/ui/tooltip";
 
 import { discordServerNameAbbreviated } from "~/lib/discordServerNameAbbreviated";
-import { usePrefetchOnView } from "~/lib/hooks/usePrefetchOnView";
+import { usePrefetchOnIntent } from "~/lib/hooks/usePrefetchOnIntent";
 
 interface ItemProps {
   classNameForItem?: string;
@@ -36,7 +36,7 @@ const Item = (props: ItemProps) => {
 
   if (notSelectable) isSelected = false;
 
-  const prefetchRef = usePrefetchOnView<HTMLDivElement>(onPrefetch);
+  const prefetchOnIntent = usePrefetchOnIntent(onPrefetch);
 
   const itemImageStyle: React.CSSProperties =
     typeof icon === "string"
@@ -54,7 +54,7 @@ const Item = (props: ItemProps) => {
           <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
               <div
-                ref={prefetchRef}
+                {...prefetchOnIntent}
                 className={cn(
                   "group bg-[#424242]",
                   "background mx-3 flex h-[48px] w-[48px] cursor-pointer select-none overflow-hidden bg-contain bg-center",

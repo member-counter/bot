@@ -32,6 +32,7 @@
     "@mc/common": "workspace:*",
     "@mc/services": "workspace:*",
     "@mc/trpc-api": "workspace:*",
+    "@mc/trpc-redis": "workspace:^",
     "@mc/ui": "workspace:*",
     "@mc/validators": "workspace:*",
     "@t3-oss/env-core": "^0.13.10",

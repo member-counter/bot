@@ -5,15 +5,13 @@ import invariant from "tiny-invariant";
 
 import { routes } from "@mc/common/Routes";
 
-import { api } from "~/lib/trpc";
+import { useUserGuilds } from "~/lib/hooks/useUserGuilds";
 import { MenuButton } from "../../Menu";
 
 export function ForbiddenPage() {
   const { guildId } = useTypedParams(routes.dashboard.servers.server);
   invariant(guildId, "Expected guildId to be defined");
-  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
-    initialData: () => ({ userGuilds: new Map() }),
-  });
+  const userGuildsQuery = useUserGuilds();
 
   const guild = userGuildsQuery.data.userGuilds.get(guildId);
   const [t] = useTranslation();

@@ -2,27 +2,70 @@ import type { AppRouter } from "@mc/trpc-api";
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { httpBatchStreamLink, loggerLink, splitLink } from "@trpc/client";
-import { createTRPCReact } from "@trpc/react-query";
+import {
+  httpBatchStreamLink,
+  loggerLink,
+  splitLink,
+  TRPCClientError,
+} from "@trpc/client";
+import { createTRPCReact, getQueryKey } from "@trpc/react-query";
 import SuperJSON from "superjson";
 
 import { Errors } from "@mc/trpc-api/utils/errors";
+import { REQUEST_TIMEOUT_MESSAGE } from "@mc/trpc-redis/Constants";
+
+// Errors that describe a stable state (no session, no access, bot not in
+// guild) or a bot-fleet timeout won't get better by asking again.
+const NON_RETRYABLE_CODES = ["UNAUTHORIZED", "FORBIDDEN", "NOT_FOUND"];
 
 const retry = (failureCount: number, error: Error) => {
-  return failureCount < 3 && error.message !== Errors.NotAuthenticated;
+  if (error.message === Errors.NotAuthenticated) return false;
+  if (error.message === REQUEST_TIMEOUT_MESSAGE) return false;
+  if (
+    error instanceof TRPCClientError &&
+    NON_RETRYABLE_CODES.includes(
+      (error.data as { code?: string } | undefined)?.code ?? "",
+    )
+  )
+    return false;
+  return failureCount < 3;
 };
 
-const createQueryClient = () =>
-  new QueryClient({
+const createQueryClient = () => {
+  const queryClient = new QueryClient({
     defaultOptions: {
       mutations: {
         retry,
       },
       queries: {
         retry,
+        // Most dashboard data changes rarely; don't refire the whole query
+        // cascade on every remount or tab switch.
+        staleTime: 60 * 1000,
+        refetchOnWindowFocus: false,
       },
     },
   });
+
+  // These mirror live Discord or bot state that changes outside the dashboard
+  // (inviting the bot, reordering channels, granting permissions, the bot
+  // updating counters), so refetch them whenever the window regains focus to
+  // pick up those changes.
+  const discordStateQueries = [
+    getQueryKey(api.discord.userGuilds),
+    getQueryKey(api.discord.getGuild),
+    getQueryKey(api.guild.has),
+    getQueryKey(api.guild.channels.logs),
+    getQueryKey(api.bot.canBotEditChannel),
+  ];
+  for (const queryKey of discordStateQueries) {
+    queryClient.setQueryDefaults(queryKey, {
+      refetchOnWindowFocus: "always",
+    });
+  }
+
+  return queryClient;
+};
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined;
 const getQueryClient = () => {

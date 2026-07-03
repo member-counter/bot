@@ -7,7 +7,7 @@ import { WSStatus } from "@mc/common/redis/BotStats";
 import { cn } from "@mc/ui";
 
 import type { RouterOutputs } from "~/lib/trpc";
-import { api } from "~/lib/trpc";
+import { useUserGuilds } from "~/lib/hooks/useUserGuilds";
 import { InfoToolip } from "../components/InfoTooltip";
 import { GroupIcon } from "./assets/GroupIcon";
 import { ChildStatsDiscordServers } from "./ChildStatsServers";
@@ -44,9 +44,7 @@ export function ChildStats(stats: ChildStats) {
   const { t, i18n } = useTranslation();
   const {
     data: { userGuilds },
-  } = api.discord.userGuilds.useQuery(undefined, {
-    initialData: () => ({ userGuilds: new Map() }),
-  });
+  } = useUserGuilds();
 
   const assignedGuilds = [...userGuilds.entries()]
     .filter(([guildId]) =>

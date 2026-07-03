@@ -7,6 +7,7 @@ import { BitField } from "@mc/common/BitField";
 import { routes } from "@mc/common/Routes";
 import { UserPermissions } from "@mc/common/UserPermissions";
 
+import { useUserGuilds } from "~/lib/hooks/useUserGuilds";
 import { api } from "~/lib/trpc";
 
 export interface UserPermissionsContextValue {
@@ -33,9 +34,7 @@ export const useCreateUserPermissions = () => {
   invariant(guildId, "Expected guildId to be defined");
   const authUser = api.session.user.useQuery();
 
-  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
-    initialData: () => ({ userGuilds: new Map() }),
-  });
+  const userGuildsQuery = useUserGuilds();
   const guild = userGuildsQuery.data.userGuilds.get(guildId);
 
   const contextValue: UserPermissionsContextValue = useMemo(() => {

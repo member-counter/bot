@@ -5,6 +5,7 @@ import { useTypedParams } from "react-router-typesafe-routes";
 import { routes } from "@mc/common/Routes";
 import { cn } from "@mc/ui";
 
+import { useUserGuilds } from "~/lib/hooks/useUserGuilds";
 import { useNavigate } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import DSelector from "../components/DSelector";
@@ -17,9 +18,7 @@ export default function Layout() {
   const { guildId: selectedGuildId } = useTypedParams(
     routes.dashboard.servers.server,
   );
-  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
-    initialData: () => ({ userGuilds: new Map() }),
-  });
+  const userGuildsQuery = useUserGuilds();
 
   const [isMenuOpen, setIsMenuOpen] = useState(true);
 

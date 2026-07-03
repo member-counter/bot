@@ -25,6 +25,7 @@ import { TwemojiRenderer } from "~/app/components/TwemojiRenderer";
 import { removeFrom } from "~/lib/array";
 import { blurredBackground } from "~/lib/common-styles";
 import { useBreakpoint } from "~/lib/hooks/useBreakpoint";
+import { useUserGuilds } from "~/lib/hooks/useUserGuilds";
 import { api } from "~/lib/trpc";
 import { GuildEmojiRenderer } from "../../../../../components/GuildEmojiRenderer";
 import { TemplateEditorContext } from "../TemplateEditorContext";
@@ -93,9 +94,7 @@ const EmojiPickerContent = memo(function EmojiPickerContent({
   const { features } = useContext(TemplateEditorContext);
   const [skinTone, setSkinTone] = useState("");
   const [search, setSearch] = useState("");
-  const userGuildsQuery = api.discord.userGuilds.useQuery(undefined, {
-    initialData: () => ({ userGuilds: new Map() }),
-  });
+  const userGuildsQuery = useUserGuilds();
   const userGuilds = useMemo(
     () => [...userGuildsQuery.data.userGuilds.values()],
     [userGuildsQuery.data],

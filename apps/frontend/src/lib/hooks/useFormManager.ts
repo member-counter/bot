@@ -71,6 +71,9 @@ export function useFormManager<OT, IT>(
         ...(mutableData as unknown as IT),
       })
       .then(() => setIsDirty(false))
+      // sync the cached query with what was just saved, so navigating away
+      // and back doesn't resurrect pre-save values
+      .then(() => query.refetch())
       .catch((error) => {
         showError(error);
         throw error;
