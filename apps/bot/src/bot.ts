@@ -14,6 +14,7 @@ import { setupEvents } from "./events";
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE, initI18n } from "./i18n";
 import { allCommands } from "./interactions/commands";
 import { setupJobs } from "./jobs";
+import { reAdvertiseOnRedisReconnect } from "./jobs/advertise";
 import { makeCache } from "./utils/makeCache";
 import { RedisIdentifyThrottler } from "./utils/RedisIdentifyThrottler";
 import { sweepers } from "./utils/sweepers";
@@ -29,14 +30,21 @@ export async function startBot(options: BotInstanceOptions) {
 
   const { logger } = options;
 
+  // When a proxy is set it owns the whole token's rate limits, so the local
+  // limiter is disabled (Infinity) to not throttle twice. Requests can then
+  // queue at the proxy instead, but @discordjs/rest still aborts after its
+  // default 15s timeout, and the concurrency caps in the jobs keep at most a
+  // few dozen requests queued there (drained at ~50/s → sub-second waits).
+  const rest = options.restProxyURL
+    ? { api: options.restProxyURL, globalRequestsPerSecond: Infinity }
+    : { globalRequestsPerSecond: options.discordAPIRequestsPerSecond };
+
   const botClient = new Client({
     intents: generateBotIntents(options),
     shards: options.shards,
     shardCount: options.shardCount,
     waitGuildTimeout: 0,
-    rest: {
-      globalRequestsPerSecond: options.discordAPIRequestsPerSecond,
-    },
+    rest,
     ws: {
       buildIdentifyThrottler: () => new RedisIdentifyThrottler(options),
     },
@@ -75,6 +83,7 @@ export async function startBot(options: BotInstanceOptions) {
 
   setupEvents(botClient);
   setupJobs(botClient);
+  reAdvertiseOnRedisReconnect(botClient);
 
   logger.info("Bot starting...");
   await botClient.login(options.token);

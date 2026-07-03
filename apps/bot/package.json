@@ -50,6 +50,7 @@
     "discord.js": "^14.25.1",
     "i18next": "^23.16.8",
     "i18next-resources-for-ts": "^1.9.0",
+    "p-limit": "^7.3.0",
     "utf-8-validate": "^6.0.6",
     "zod": "^4.3.5"
   }

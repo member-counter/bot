@@ -29,6 +29,7 @@ export const env = createEnv({
     DISCORD_BOT_INSTANCE_SHARDING_SHARD_MAX_CONCURRENCY: z.coerce.number(),
     DISCORD_BOT_INSTANCE_COMPUTE_PRIORITY: z.coerce.number(),
     DISCORD_BOT_INSTANCE_DISCORD_API_RPS: z.coerce.number(),
+    DISCORD_BOT_INSTANCE_REST_PROXY_URL: z.string().optional(),
     DISCORD_BOT_INSTANCE_IS_PRIVILEGED: z
       .string()
       .toLowerCase()

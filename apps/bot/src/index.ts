@@ -29,6 +29,7 @@ async function main() {
     isPrivileged: env.DISCORD_BOT_INSTANCE_IS_PRIVILEGED,
     dataSourceComputePriority: env.DISCORD_BOT_INSTANCE_COMPUTE_PRIORITY,
     discordAPIRequestsPerSecond: env.DISCORD_BOT_INSTANCE_DISCORD_API_RPS,
+    restProxyURL: env.DISCORD_BOT_INSTANCE_REST_PROXY_URL,
     logger,
     shards: env.DISCORD_BOT_INSTANCE_SHARDING_SHARDS,
     shardCount: env.DISCORD_BOT_INSTANCE_SHARDING_SHARD_COUNT,
