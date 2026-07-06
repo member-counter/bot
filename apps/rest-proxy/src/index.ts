@@ -1,10 +1,18 @@
 import { createServer } from "node:http";
+import { URL } from "node:url";
 import { proxyRequests } from "@discordjs/proxy";
 import { REST, RESTEvents } from "@discordjs/rest";
 
 import logger from "@mc/logger";
 
 import { env } from "./env";
+import {
+  normalizeRoute,
+  recordInvalidRequestWarning,
+  recordRateLimitHit,
+  recordRequestEnd,
+  recordRequestStart,
+} from "./metrics";
 
 process.on("unhandledRejection", (reason, promise) => {
   logger.error("Unhandled Rejection at:", { promise, reason });
@@ -27,15 +35,44 @@ const rest = new REST({
 }).setToken(env.DISCORD_BOT_INSTANCE_TOKEN);
 
 // A global hit means the token's whole budget is exhausted — the very thing
-// this proxy exists to prevent; per-route limits are routine Discord behavior
+// this proxy exists to prevent; per-route limits are routine Discord behavior.
+// The event fires once per request queued during a block, so log each global
+// block window once and count the rest instead of spamming identical warns.
+let globalBlockLoggedUntil = 0;
+let suppressedGlobalHits = 0;
+
 rest.on(RESTEvents.RateLimited, (info) => {
+  recordRateLimitHit({
+    global: info.global,
+    method: info.method,
+    route: info.route,
+  });
+
   const message = `Rate limited on ${info.method} ${info.route} (scope: ${info.scope}), resets in ${info.timeToReset}ms`;
 
-  if (info.global) logger.warn(`GLOBAL: ${message}`);
-  else logger.debug(message);
+  if (!info.global) {
+    logger.debug(message);
+    return;
+  }
+
+  const now = Date.now();
+  if (now < globalBlockLoggedUntil) {
+    suppressedGlobalHits++;
+    return;
+  }
+
+  logger.warn(
+    `GLOBAL: ${message}` +
+      (suppressedGlobalHits > 0
+        ? ` (+${suppressedGlobalHits} more hits since the last logged window)`
+        : ""),
+  );
+  suppressedGlobalHits = 0;
+  globalBlockLoggedUntil = now + info.timeToReset;
 });
 
 rest.on(RESTEvents.InvalidRequestWarning, ({ count, remainingTime }) => {
+  recordInvalidRequestWarning(count);
   logger.warn(
     `${count} invalid requests in the current 10 minute window (${remainingTime}ms remaining); Discord blocks the IP at 10k`,
   );
@@ -52,6 +89,8 @@ const SLOW_REQUEST_MS = 10_000;
 const handleRequest = proxyRequests(rest);
 const server = createServer((req, res) => {
   const startedAt = Date.now();
+  const route = normalizeRoute(new URL(req.url ?? "", "http://noop").pathname);
+  recordRequestStart();
 
   void Promise.resolve(handleRequest(req, res))
     .then(() => {
@@ -71,6 +110,14 @@ const server = createServer((req, res) => {
       logger.error("Failed to proxy request", { error });
       if (!res.headersSent) res.statusCode = 502;
       res.end();
+    })
+    .finally(() => {
+      recordRequestEnd({
+        method: req.method ?? "UNKNOWN",
+        route,
+        status: res.statusCode,
+        durationMs: Date.now() - startedAt,
+      });
     });
 });
 

@@ -18,6 +18,7 @@
     "@discordjs/proxy": "^2.1.1",
     "@discordjs/rest": "^2.6.0",
     "@mc/logger": "workspace:*",
+    "@opentelemetry/api": "^1.9.0",
     "@t3-oss/env-core": "^0.13.10",
     "zod": "^4.3.5"
   },
