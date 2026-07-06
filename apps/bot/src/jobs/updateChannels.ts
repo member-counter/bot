@@ -55,11 +55,9 @@ async function updateGuildChannel(
         // the channel was deleted; disable the template so the job stops
         // paying a REST 404 for it on every run
         logger.info(`Channel no longer exists, disabling its template`);
-        await GuildSettingsService.channels.update({
-          discordChannelId: channelSettings.discordChannelId,
-          discordGuildId: guild.id,
-          isTemplateEnabled: false,
-        });
+        await GuildSettingsService.channels.disableTemplate(
+          channelSettings.discordChannelId,
+        );
         return null;
       }
 

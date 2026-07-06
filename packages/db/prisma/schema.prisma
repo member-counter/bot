@@ -45,8 +45,7 @@ model Channel {
   discordGuildId    String
   guild             Guild   @relation(fields: [discordGuildId], references: [discordGuildId], onDelete: Cascade)
 
-  @@unique([discordChannelId, discordGuildId])
-  @@index([discordGuildId])
+  @@index([discordGuildId, isTemplateEnabled])
 }
 
 enum DemoServerFeature {
