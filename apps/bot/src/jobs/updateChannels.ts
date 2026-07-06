@@ -3,7 +3,8 @@ import type originalLogger from "@mc/logger";
 import type { GuildSettingsData } from "@mc/services/guildSettings";
 import type { Client, Guild } from "discord.js";
 import type { Logger } from "winston";
-import { ChannelType } from "discord.js";
+import { RESTJSONErrorCodes } from "discord-api-types/v10";
+import { ChannelType, DiscordAPIError } from "discord.js";
 import pLimit from "p-limit";
 
 import { Job } from "@mc/common/bot/structures/Job";
@@ -44,7 +45,26 @@ async function updateGuildChannel(
   logger.debug(`Starting update for channel`);
 
   logger.debug(`Fetching channel`);
-  const channel = await guild.channels.fetch(channelSettings.discordChannelId);
+  const channel = await guild.channels
+    .fetch(channelSettings.discordChannelId)
+    .catch(async (error: unknown) => {
+      if (
+        error instanceof DiscordAPIError &&
+        error.code === RESTJSONErrorCodes.UnknownChannel
+      ) {
+        // the channel was deleted; disable the template so the job stops
+        // paying a REST 404 for it on every run
+        logger.info(`Channel no longer exists, disabling its template`);
+        await GuildSettingsService.channels.update({
+          discordChannelId: channelSettings.discordChannelId,
+          discordGuildId: guild.id,
+          isTemplateEnabled: false,
+        });
+        return null;
+      }
+
+      throw error;
+    });
 
   if (!channel) {
     logger.debug(`Channel not found`);
