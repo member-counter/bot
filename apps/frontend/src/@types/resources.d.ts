@@ -591,6 +591,13 @@ interface Resources {
               searchPlaceholder: "Search counter...";
             };
             DataSource: {
+              EditDataSourcePanel: {
+                displayLabel: "Display label";
+                displayLabelDescription: "A custom name shown on this counter's chip in the editor. It doesn't change the channel output.";
+                displayLabelPlaceholder: "Custom name (optional)";
+                done: "Done";
+                editDisplayLabel: "Edit display label";
+              };
               Format: {
                 DataSourceFormat: {
                   defaultServerSettings: "Default to server settings";

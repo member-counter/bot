@@ -35,6 +35,7 @@ export type DataSource =
 
 export interface DataSourceBase {
   id: DataSourceId;
+  displayLabel?: string;
   format?: DataSourceFormatSettings;
 }
 

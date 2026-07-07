@@ -5,12 +5,24 @@ import {
   ArrowLeftIcon,
   ChevronDownIcon,
   ChevronUpIcon,
+  TagIcon,
   WrenchIcon,
   XIcon,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@mc/ui";
 import { Button } from "@mc/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@mc/ui/dialog";
+import { Input } from "@mc/ui/input";
 
 import type { DataSourceRefId } from "../utils";
 import type { EditDataSourceProps } from "./Options/EditDataSourceOptions";
@@ -33,9 +45,11 @@ export default function EditDataSourcePanel({
   onChangeDataSource,
   dataSourceRefId,
 }: Props): JSX.Element {
+  const { t } = useTranslation();
   const [editStack, setEditStack] = useState<EditDataSourceProps[]>([]);
   const [formattingSettingsCollapsed, setFormattingSettingsCollapsed] =
     useState(true);
+  const [displayLabelDialogOpen, setDisplayLabelDialogOpen] = useState(false);
 
   useEffect(() => {
     setEditStack([{ dataSource, onChangeDataSource }]);
@@ -63,6 +77,18 @@ export default function EditDataSourcePanel({
     setEditStack(newStack);
   };
 
+  // The data source currently being edited (the root, or a nested one when
+  // drilled in). Its label shows on the chip (root) or the breadcrumb (nested).
+  const currentDataSource = editStack[editStack.length - 1];
+
+  const setDisplayLabel = (value: string) => {
+    if (!currentDataSource) return;
+    currentDataSource.dataSource.displayLabel =
+      value.length > 0 ? value : undefined;
+    currentDataSource.onChangeDataSource(currentDataSource.dataSource);
+    setEditStack([...editStack]);
+  };
+
   return (
     <EditDataSourcePanelContext.Provider value={editDataSourceContext}>
       <div className="flex h-full flex-col overflow-hidden">
@@ -84,14 +110,27 @@ export default function EditDataSourcePanel({
             editStack={editStack}
             navigateTo={navigateTo}
           />
-          <Button
-            variant="ghost"
-            size="icon"
-            className="ml-auto flex-none"
-            onClick={onClose}
-          >
-            <XIcon className="h-4 w-4" />
-          </Button>
+          <div className="ml-auto flex flex-none flex-row items-center gap-1">
+            {currentDataSource && (
+              <Button
+                variant={
+                  currentDataSource.dataSource.displayLabel
+                    ? "secondary"
+                    : "ghost"
+                }
+                size="icon"
+                aria-label={t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.EditDataSourcePanel.editDisplayLabel",
+                )}
+                onClick={() => setDisplayLabelDialogOpen(true)}
+              >
+                <TagIcon className="h-4 w-4" />
+              </Button>
+            )}
+            <Button variant="ghost" size="icon" onClick={onClose}>
+              <XIcon className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
         <div className="grow overflow-auto">
           {editStack.map((editItem, i) => {
@@ -154,6 +193,45 @@ export default function EditDataSourcePanel({
           )}
         </div>
       </div>
+
+      <Dialog
+        open={displayLabelDialogOpen}
+        onOpenChange={setDisplayLabelDialogOpen}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              {t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.EditDataSourcePanel.displayLabel",
+              )}
+            </DialogTitle>
+            <DialogDescription>
+              {t(
+                "pages.dashboard.servers.TemplateEditor.DataSource.EditDataSourcePanel.displayLabelDescription",
+              )}
+            </DialogDescription>
+          </DialogHeader>
+          <Input
+            aria-label={t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.EditDataSourcePanel.displayLabel",
+            )}
+            value={currentDataSource?.dataSource.displayLabel ?? ""}
+            placeholder={t(
+              "pages.dashboard.servers.TemplateEditor.DataSource.EditDataSourcePanel.displayLabelPlaceholder",
+            )}
+            onChange={(e) => setDisplayLabel(e.target.value)}
+          />
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button>
+                {t(
+                  "pages.dashboard.servers.TemplateEditor.DataSource.EditDataSourcePanel.done",
+                )}
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </EditDataSourcePanelContext.Provider>
   );
 }

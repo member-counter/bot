@@ -49,6 +49,11 @@ export function createDataSourceMetadata<
     description: t("description"),
     keywords: t("keywords").split(","),
     displayName: (dataSource: DataSource) => {
+      // A user-provided label always wins over the auto-generated name, and is
+      // shown verbatim (no capitalization) to respect what they typed.
+      const customLabel = dataSource.displayLabel?.trim();
+      if (customLabel) return customLabel;
+
       if (opts.displayName) {
         return capitalize(opts.displayName(dataSource as never, t));
       } else {
