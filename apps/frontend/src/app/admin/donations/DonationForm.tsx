@@ -1,7 +1,5 @@
-import { SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@mc/ui/button";
 import { Checkbox } from "@mc/ui/checkbox";
 import { Form } from "@mc/ui/form";
 import { Input } from "@mc/ui/input";
@@ -9,8 +7,8 @@ import { Label } from "@mc/ui/label";
 import { Textarea } from "@mc/ui/textarea";
 
 import type { RouterInputs } from "~/lib/trpc";
+import { SaveButton } from "~/app/components/FormManager";
 import { addTimezoneOffset, subTimezoneOffset } from "~/lib/fixTimezoneOffset";
-import { FormManagerState } from "~/lib/hooks/useFormManager";
 import { DeleteButton } from "./DeleteButton";
 
 export function DonationForm<
@@ -18,12 +16,10 @@ export function DonationForm<
     | RouterInputs["donor"]["registerDonation"]
     | RouterInputs["donor"]["updateDonation"],
 >({
-  formState,
   value,
   onChange,
   onSubmit,
 }: {
-  formState: FormManagerState;
   value: T;
   onChange: (newValue: T) => void;
   onSubmit: (newValue: T) => void;
@@ -119,19 +115,7 @@ export function DonationForm<
       <div className="flex flex-row justify-between">
         {"id" in value && <DeleteButton donationId={value.id} />}
         <div className="grow"></div>
-        <Button
-          icon={SaveIcon}
-          type="submit"
-          disabled={[FormManagerState.SAVED, FormManagerState.SAVING].includes(
-            formState,
-          )}
-        >
-          {formState === FormManagerState.SAVED
-            ? t("hooks.useFormManager.state.saved")
-            : formState === FormManagerState.SAVING
-              ? t("hooks.useFormManager.state.saving")
-              : t("hooks.useFormManager.state.save")}
-        </Button>
+        <SaveButton />
       </div>
     </Form>
   );

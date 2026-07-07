@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
 import type { RouterInputs } from "~/lib/trpc";
+import { FormManagerProvider } from "~/app/components/FormManager";
 import { FormManagerState } from "~/lib/hooks/useFormManager";
 import useShowError from "~/lib/hooks/useShowError";
 import { useNavigate } from "~/lib/navigation";
@@ -64,12 +65,18 @@ export default function Page() {
         <div className="grow"></div>
       </CardHeader>
       <CardContent>
-        <DonationForm
-          formState={FormManagerState.UNSAVED}
-          value={donation}
-          onChange={setDonation}
-          onSubmit={handleSubmit}
-        />
+        <FormManagerProvider
+          value={{
+            state: FormManagerState.UNSAVED,
+            autosave: { pending: false, deadline: null },
+          }}
+        >
+          <DonationForm
+            value={donation}
+            onChange={setDonation}
+            onSubmit={handleSubmit}
+          />
+        </FormManagerProvider>
       </CardContent>
     </Card>
   );

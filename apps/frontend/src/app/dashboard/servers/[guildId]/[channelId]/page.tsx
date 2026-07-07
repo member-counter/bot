@@ -1,15 +1,15 @@
 import { useContext } from "react";
-import { SaveIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
 import invariant from "tiny-invariant";
 
 import { isBotSupportedChannel } from "@mc/common/channelType";
 import { routes } from "@mc/common/Routes";
-import { Button } from "@mc/ui/button";
 import { Separator } from "@mc/ui/separator";
 
-import { FormManagerState, useFormManager } from "~/lib/hooks/useFormManager";
+import { FormManagerProvider, SaveButton } from "~/app/components/FormManager";
+import { useFormManager } from "~/lib/hooks/useFormManager";
+import { usePrefersAutosave } from "~/lib/hooks/usePrefersAutosave";
 import { api } from "~/lib/trpc";
 import { LoadingPage } from "../../../../components/LoadingPage";
 import { UserPermissionsContext } from "../UserPermissionsContext";
@@ -27,16 +27,11 @@ export default function Page() {
   invariant(guildId, "Expected guildId to be defined");
   const trpcUtils = api.useUtils();
   const userPermissions = useContext(UserPermissionsContext);
+  const prefersAutosave = usePrefersAutosave();
   const guild = api.discord.getGuild.useQuery({ id: guildId });
   const channel = guild.data?.channels.get(channelId);
 
-  const [
-    _channelSettings,
-    mutableChannelSettings,
-    setMutableGuildSettings,
-    save,
-    formState,
-  ] = useFormManager(
+  const form = useFormManager(
     api.guild.channels.get.useQuery({
       discordGuildId: guildId,
       discordChannelId: channelId,
@@ -47,7 +42,13 @@ export default function Page() {
       },
     }),
     channelId,
+    prefersAutosave,
   );
+  const {
+    value: mutableChannelSettings,
+    setValue: setMutableGuildSettings,
+    save,
+  } = form;
 
   if (!mutableChannelSettings) return <LoadingPage />;
 
@@ -67,51 +68,38 @@ export default function Page() {
   }
 
   return (
-    <form
-      action={save}
-      className="m-auto flex min-h-full flex-col gap-5 p-3 sm:max-w-[600px]"
-    >
-      <MissingPermissionsWarning />
-      <EnableTemplate
-        disabled={!userPermissions.canModify}
-        value={mutableChannelSettings.isTemplateEnabled}
-        onChange={(value) =>
-          setMutableGuildSettings({
-            ...mutableChannelSettings,
-            isTemplateEnabled: value,
-          })
-        }
-      />
-      <Separator />
-      <EditTemplate
-        disabled={!userPermissions.canModify}
-        value={mutableChannelSettings.template}
-        onChange={(value) =>
-          setMutableGuildSettings({
-            ...mutableChannelSettings,
-            template: value,
-          })
-        }
-      />
-      <TemplateError />
-      <div className="mt-auto flex flex-col justify-between gap-3 sm:flex-row-reverse">
-        <Button
-          icon={SaveIcon}
-          type="submit"
-          disabled={
-            !userPermissions.canModify ||
-            [FormManagerState.SAVED, FormManagerState.SAVING].includes(
-              formState,
-            )
+    <FormManagerProvider value={form}>
+      <form
+        action={save}
+        className="m-auto flex min-h-full flex-col gap-5 p-3 sm:max-w-[600px]"
+      >
+        <MissingPermissionsWarning />
+        <EnableTemplate
+          disabled={!userPermissions.canModify}
+          value={mutableChannelSettings.isTemplateEnabled}
+          onChange={(value) =>
+            setMutableGuildSettings({
+              ...mutableChannelSettings,
+              isTemplateEnabled: value,
+            })
           }
-        >
-          {formState === FormManagerState.SAVED
-            ? t("hooks.useFormManager.state.saved")
-            : formState === FormManagerState.SAVING
-              ? t("hooks.useFormManager.state.saving")
-              : t("hooks.useFormManager.state.save")}
-        </Button>
-      </div>
-    </form>
+        />
+        <Separator />
+        <EditTemplate
+          disabled={!userPermissions.canModify}
+          value={mutableChannelSettings.template}
+          onChange={(value) =>
+            setMutableGuildSettings({
+              ...mutableChannelSettings,
+              template: value,
+            })
+          }
+        />
+        <TemplateError />
+        <div className="mt-auto flex flex-col justify-between gap-3 sm:flex-row-reverse">
+          <SaveButton disabled={!userPermissions.canModify} />
+        </div>
+      </form>
+    </FormManagerProvider>
   );
 }

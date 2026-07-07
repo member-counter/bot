@@ -30,20 +30,34 @@ export const userRouter = createTRPCRouter({
         discordUserId: z.string().optional(),
         badges: z.bigint().optional(),
         permissions: z.bigint().optional(),
+        prefersAutosave: z.boolean().optional(),
       }),
     )
     .mutation(async ({ ctx: { authUser }, input }) => {
-      const hasPermission = authUser.permissions.has(
-        UserPermissions.ManageUsers,
-      );
+      const { id, ...fields } = input;
 
-      if (!hasPermission)
+      // Fields only an admin (ManageUsers) may change. Anything not listed here
+      // (e.g. prefersAutosave) a user may change on their own account.
+      const privilegedFields = [
+        "discordUserId",
+        "badges",
+        "permissions",
+      ] as const;
+      const editsPrivilegedField = privilegedFields.some(
+        (field) => fields[field] !== undefined,
+      );
+      const editsAnotherUser = authUser.id !== id;
+
+      if (
+        (editsPrivilegedField || editsAnotherUser) &&
+        !authUser.permissions.has(UserPermissions.ManageUsers)
+      )
         throw new TRPCError({
           code: "UNAUTHORIZED",
           message: Errors.NotAuthorized,
         });
 
-      return UserSettingsService.update(input.id, input);
+      return UserSettingsService.update(id, fields);
     }),
 
   delete: protectedProcedure

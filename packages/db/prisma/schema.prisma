@@ -11,11 +11,12 @@ datasource db {
 }
 
 model User {
-  id            String     @id @default(auto()) @map("_id") @db.ObjectId
-  discordUserId String     @unique
-  badges        BigInt     @default(0)
-  permissions   BigInt     @default(0)
-  donations     Donation[]
+  id              String     @id @default(auto()) @map("_id") @db.ObjectId
+  discordUserId   String     @unique
+  badges          BigInt     @default(0)
+  permissions     BigInt     @default(0)
+  prefersAutosave Boolean    @default(false)
+  donations       Donation[]
 }
 
 model Guild {

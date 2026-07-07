@@ -8,7 +8,9 @@ import { Button } from "@mc/ui/button";
 import { Card, CardContent, CardHeader } from "@mc/ui/card";
 import { TypographyH4 } from "@mc/ui/TypographyH4";
 
+import { FormManagerProvider } from "~/app/components/FormManager";
 import { useFormManager } from "~/lib/hooks/useFormManager";
+import { usePrefersAutosave } from "~/lib/hooks/usePrefersAutosave";
 import { useNavigate } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import { DonationForm } from "../DonationForm";
@@ -19,13 +21,19 @@ export default function Page() {
   const donationQuery = api.donor.getDonation.useQuery({ id });
   const donationMutation = api.donor.updateDonation.useMutation();
   const navigate = useNavigate();
-  const [
-    _donation,
-    mutableDonation,
-    setMutableDonation,
-    saveDonation,
-    formState,
-  ] = useFormManager(donationQuery, donationMutation, id);
+  const prefersAutosave = usePrefersAutosave();
+
+  const form = useFormManager(
+    donationQuery,
+    donationMutation,
+    id,
+    prefersAutosave,
+  );
+  const {
+    value: mutableDonation,
+    setValue: setMutableDonation,
+    save: saveDonation,
+  } = form;
 
   if (!donationQuery.data && !donationQuery.isLoading) {
     throw new Error(Errors.NotFound);
@@ -50,12 +58,13 @@ export default function Page() {
       </CardHeader>
       <CardContent>
         {mutableDonation && (
-          <DonationForm
-            formState={formState}
-            value={mutableDonation}
-            onChange={setMutableDonation}
-            onSubmit={saveDonation}
-          />
+          <FormManagerProvider value={form}>
+            <DonationForm
+              value={mutableDonation}
+              onChange={setMutableDonation}
+              onSubmit={saveDonation}
+            />
+          </FormManagerProvider>
         )}
       </CardContent>
     </Card>

@@ -318,6 +318,7 @@ interface Resources {
       useConfirmOnLeave: "You have unsaved changes. Are you sure you want to leave this page?";
       useFormManager: {
         state: {
+          autosaveIn: "Autosaving {{relativeTime}}";
           save: "Save";
           saved: "Saved";
           saving: "Saving...";
@@ -329,6 +330,9 @@ interface Resources {
     };
     pages: {
       account: {
+        dangerZone: {
+          title: "Danger zone";
+        };
         deleteButton: {
           closeBtn: "Close";
           confirmDescription: "This action cannot be undone. This will permanently delete your account and remove your data from our servers.";
@@ -338,6 +342,13 @@ interface Resources {
         page: {
           avatarAlt: "{{username}}'s avatar";
           logoutButton: "Logout";
+        };
+        settings: {
+          autosave: {
+            description: "Automatically save changes on dashboard forms, without clicking Save.";
+            label: "Autosave";
+          };
+          title: "Settings";
         };
         userBadges: {
           betaTester: "You participated in a beta program.";

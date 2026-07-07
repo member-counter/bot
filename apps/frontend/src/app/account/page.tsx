@@ -8,7 +8,8 @@ import { Skeleton } from "@mc/ui/skeleton";
 import { Link } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
 import Footer from "../components/Footer";
-import { DeleteButton } from "./DeleteButton";
+import { AccountSettings } from "./AccountSettings";
+import { DangerZone } from "./DangerZone";
 import { DisplayUserBadges } from "./DisplayUserBadges";
 
 export default function Page() {
@@ -57,7 +58,6 @@ export default function Page() {
                 <DisplayUserBadges badges={user.data.badges} />
               )}
               <div className="flex flex-row flex-wrap gap-2">
-                <DeleteButton />
                 <Link to={routes.logout.$buildPath({})} className="grow">
                   <Button className="w-full" size={"sm"} icon={LogOutIcon}>
                     {t("pages.account.page.logoutButton")}
@@ -66,6 +66,8 @@ export default function Page() {
               </div>
             </div>
           </div>
+          <AccountSettings />
+          <DangerZone />
         </div>
       </div>
       <Footer />
