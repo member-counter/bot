@@ -23,12 +23,15 @@ export interface AutosaveStatus {
   deadline: number | null;
 }
 
-export interface FormManager<OT = unknown, IT = unknown> {
+export interface FormManager<OT = unknown> {
   /** The original server value (query.data). */
   data: OT | null;
   /** The editable working copy. */
   value: OT | null;
-  setValue: (value: IT) => void;
+  // The working copy is the output shape (OT); it's cast to the mutation input
+  // (IT) on save. Consumers whose query output differs from their mutation
+  // input (e.g. custom bots) rely on this.
+  setValue: (value: OT) => void;
   save: () => Promise<void>;
   state: FormManagerState;
   autosave: AutosaveStatus;
@@ -42,7 +45,7 @@ export function useFormManager<OT, IT>(
   mutation: UseTRPCMutationResult<unknown, unknown, IT, unknown>,
   key: string,
   autosave = false,
-): FormManager<OT, IT> {
+): FormManager<OT> {
   const [isDirty, setIsDirty] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [mutableData, _setMutableData] = useState<OT | null>(
@@ -78,8 +81,8 @@ export function useFormManager<OT, IT>(
     }
   }
 
-  const setMutableData = (value: IT) => {
-    _setMutableData(value as unknown as OT);
+  const setMutableData = (value: OT) => {
+    _setMutableData(value);
     setIsDirty(true);
     // (Re)arm the countdown on every edit; each change pushes the deadline back
     // so we only save once the user pauses. This is the debounce.
