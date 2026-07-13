@@ -47,7 +47,13 @@ export function useFormManager<OT, IT>(
   autosave = false,
 ): FormManager<OT> {
   const [isDirty, setIsDirty] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
+  // Drives the SAVING state. Sourced from react-query (a useSyncExternalStore
+  // store) rather than a local useState: manual saves run inside the
+  // `<form action={save}>` React transition, which defers/coalesces local
+  // setState updates — so an in-flight (or hanging) save would never commit a
+  // visible SAVING frame. isPending is an urgent external-store update, so it
+  // flips reliably even inside the transition.
+  const isSaving = mutation.isPending;
   const [mutableData, _setMutableData] = useState<OT | null>(
     query.data ? (structuredClone(query.data) as OT) : null,
   );
@@ -91,7 +97,6 @@ export function useFormManager<OT, IT>(
 
   const submitData = async () => {
     if (!mutableData) return;
-    setIsSaving(true);
     setAutosaveDeadline(null);
 
     await mutation
@@ -105,8 +110,7 @@ export function useFormManager<OT, IT>(
       .catch((error) => {
         showError(error);
         throw error;
-      })
-      .finally(() => setIsSaving(false));
+      });
   };
 
   const state: FormManagerState = isSaving
@@ -120,7 +124,10 @@ export function useFormManager<OT, IT>(
   useEffect(() => {
     if (!autosave || autosaveDeadline === null || isSaving) return;
     const timer = setTimeout(
-      () => void submitData(),
+      // Swallow here: submitData already toasts via showError and re-throws for
+      // callers that await save(). This fire-and-forget autosave must not leak
+      // an unhandled rejection on every failed save.
+      () => void submitData().catch(() => undefined),
       Math.max(0, autosaveDeadline - Date.now()),
     );
     return () => clearTimeout(timer);
@@ -129,7 +136,12 @@ export function useFormManager<OT, IT>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autosave, autosaveDeadline, isSaving]);
 
-  const pending = autosave && isDirty && !isSaving;
+  // Requires a live deadline too: after a failed save the deadline is cleared
+  // but isDirty stays true, so without this a UI that renders `pending`
+  // directly (rather than gating on secondsLeft like SaveButton does) would
+  // stick on the autosaving state with nothing actually scheduled.
+  const pending =
+    autosave && isDirty && !isSaving && autosaveDeadline !== null;
   const autosaveStatus: AutosaveStatus = {
     pending,
     deadline: pending ? autosaveDeadline : null,
