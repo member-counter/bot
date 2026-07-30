@@ -46,12 +46,15 @@ export const setupRedisRequester = async ({
       if (!pendingRequest) return;
 
       if (responseMessage.type === "error") {
+        clearTimeout(pendingRequest.timeout);
         pendingRequests.delete(responseMessage.id);
         pendingRequest.reject(transformer.deserialize(responseMessage.error));
       } else if (responseMessage.type === "result") {
+        clearTimeout(pendingRequest.timeout);
         pendingRequests.delete(responseMessage.id);
         pendingRequest.resolve(transformer.deserialize(responseMessage.result));
       } else {
+        // Partial/progress message — extendTimeout clears and re-arms the timer.
         pendingRequest.extendTimeout();
       }
     } catch (err) {
@@ -80,6 +83,9 @@ export const setupRedisRequester = async ({
     reject: (error: unknown) => void,
   ) =>
     setTimeout(() => {
+      // On a genuine timeout no response ever settles this request, so drop its
+      // map entry here — otherwise it leaks permanently.
+      pendingRequests.delete(requestMessage.id);
       reject(new Error(REQUEST_TIMEOUT_MESSAGE, { cause: requestMessage }));
     }, requestTimeout);
 
