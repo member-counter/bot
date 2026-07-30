@@ -54,7 +54,10 @@ export function useFormManager<OT, IT>(
   // visible SAVING frame. isPending is an urgent external-store update, so it
   // flips reliably even inside the transition.
   const isSaving = mutation.isPending;
-  const [mutableData, _setMutableData] = useState<OT | null>(
+  // Lazy initializer: a plain argument would re-run structuredClone on every
+  // render (React only uses it for the first) — one wasted deep clone of the
+  // whole payload per keystroke/toggle.
+  const [mutableData, _setMutableData] = useState<OT | null>(() =>
     query.data ? (structuredClone(query.data) as OT) : null,
   );
   const [prevKey, setPrevKey] = useState(key);
