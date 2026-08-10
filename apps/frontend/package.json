@@ -46,7 +46,7 @@
     "@uidotdev/usehooks": "^2.4.1",
     "accept-language": "^3.0.20",
     "discord-api-types": "^0.38.37",
-    "dompurify": "^3.4.12",
+    "dompurify": "^3.4.13",
     "i18next": "^23.16.8",
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-resources-to-backend": "^1.2.1",
