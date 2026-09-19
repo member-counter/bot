@@ -2,7 +2,7 @@ services:
   frontend:
     env_file: .env
     container_name: frontend
-    image: ghcr.io/member-counter/frontend:beta
+    image: ghcr.io/member-counter/frontend:latest
     restart: always
     networks:
       - member-counter
@@ -10,7 +10,7 @@ services:
   backend:
     env_file: .env
     container_name: backend
-    image: ghcr.io/member-counter/backend:beta
+    image: ghcr.io/member-counter/backend:latest
     restart: always
     healthcheck:
       test: curl -f http://localhost:8080/health || exit 1
@@ -47,7 +47,7 @@ services:
   # bot and set DISCORD_BOT_INSTANCE_REST_PROXY_URL=http://rest-proxy:8765/api
   rest-proxy:
     env_file: .env
-    image: ghcr.io/member-counter/rest-proxy:beta
+    image: ghcr.io/member-counter/rest-proxy:latest
     restart: always
     deploy:
       replicas: 0
