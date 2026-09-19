@@ -31,7 +31,7 @@ const suggestedTopics = (
       "pages.dashboard.servers.suggestedTopics.quickSetup.description",
     ),
     label: t("pages.dashboard.servers.suggestedTopics.quickSetup.label"),
-    link: "https://docs.membercounter.app/readme/using-the-bot/creating-your-first-counter",
+    link: "https://docs.membercounter.app/readme/using-the-bot/quick-setup",
   },
   {
     icon: LandPlotIcon,
@@ -40,7 +40,7 @@ const suggestedTopics = (
       "pages.dashboard.servers.suggestedTopics.createFromScratch.description",
     ),
     label: t("pages.dashboard.servers.suggestedTopics.createFromScratch.label"),
-    link: "https://docs.membercounter.app/readme/using-the-bot/customizing-counters",
+    link: "https://docs.membercounter.app/readme/using-the-bot/create-from-scratch",
   },
   {
     icon: BlocksIcon,
@@ -49,7 +49,7 @@ const suggestedTopics = (
       "pages.dashboard.servers.suggestedTopics.advancedCounters.description",
     ),
     label: t("pages.dashboard.servers.suggestedTopics.advancedCounters.label"),
-    link: "https://docs.membercounter.app/readme/using-the-bot/more-on-complex-counters",
+    link: "https://docs.membercounter.app/readme/using-the-bot/nested-counters",
   },
   {
     icon: CandlestickChartIcon,

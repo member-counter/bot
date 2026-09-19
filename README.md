@@ -6,7 +6,7 @@ Member Counter is a Discord bot which lets you easily display counts and other d
 
 # Self-host
 
-Read this guide to setup this bot using docker: https://docs.membercounter.app/readme/custom-bot/self-hosting-the-bot
+Read this guide to setup this bot using docker: https://docs.membercounter.app/readme/self-hosting
 
 # Development environment
 
