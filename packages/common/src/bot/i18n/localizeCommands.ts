@@ -7,15 +7,21 @@ import type { i18n } from "i18next";
 
 import { commandDefinitionTKeyMap } from "./prepareLocalization";
 
+type LocaleString = `${Locale}`;
+
+interface SimplifiedCommandDefinition {
+  name: string;
+  description?: string;
+  name_localizations?: LocalizationMap | null;
+  description_localizations?: LocalizationMap | null;
+  options?: APIApplicationCommandOption[];
+}
+
 export function localizeCommand(
   i18nInstance: i18n,
-  def: {
-    name: string;
-    description?: string;
-    name_localizations?: LocalizationMap | null;
-    description_localizations?: LocalizationMap | null;
-    options?: APIApplicationCommandOption[];
-  },
+  def:
+    | SimplifiedCommandDefinition
+    | Omit<SimplifiedCommandDefinition, "options">,
   skipNameAndDesc = false,
 ) {
   def.name_localizations ??= {};
@@ -29,18 +35,27 @@ export function localizeCommand(
     if (descKey) def.description = i18nInstance.t(descKey as never);
   }
 
-  if (nameKey)
-    def.name_localizations[i18nInstance.language as Locale] = i18nInstance.t(
-      nameKey as never,
-    );
+  if (nameKey) {
+    def.name_localizations[i18nInstance.language as LocaleString] =
+      i18nInstance.t(nameKey as never);
+  }
 
-  if (descKey)
-    def.description_localizations[i18nInstance.language as Locale] =
+  if (descKey) {
+    def.description_localizations[i18nInstance.language as LocaleString] =
       i18nInstance.t(descKey as never);
+  }
 
-  def.options?.forEach((option) => {
-    localizeCommand(i18nInstance, option, skipNameAndDesc);
-  });
+  if ("options" in def) {
+    def.options?.forEach((option) => {
+      localizeCommand(i18nInstance, option, skipNameAndDesc);
+
+      if ("choices" in option) {
+        option.choices?.forEach((choice) => {
+          localizeCommand(i18nInstance, choice, false);
+        });
+      }
+    });
+  }
 
   return def;
 }

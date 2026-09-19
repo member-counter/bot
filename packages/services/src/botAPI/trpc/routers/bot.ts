@@ -1,4 +1,5 @@
 import assert from "node:assert";
+import type { BotStats } from "@mc/common/redis/BotStats";
 import { z } from "zod";
 
 import botHasPermsToEdit from "@mc/common/botHasPermsToEdit";
@@ -11,8 +12,8 @@ export const botRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
       await ctx.takeRequest(ctx.botClient.botInstanceOptions.id === input.id);
-
-      return await ctx.botClient.fetchBotStats();
+      const stats: BotStats[] = await ctx.botClient.fetchBotStats();
+      return stats;
     }),
 
   canBotEditChannel: publicProcedure

@@ -20,7 +20,6 @@ import {
 import type { RequestMessage, ResponseMessage } from "../schemas";
 import { REQ_CHANNEL, RES_CHANNEL } from "../Constants";
 import { requestMessageSchema } from "../schemas";
-import { resumeOtelTracing } from "./resumeOtelTracing";
 
 class DropRequestError extends Error {}
 
@@ -50,6 +49,7 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
     opts;
   const redLock = new Redlock([redisPubClient], { retryCount: 0 });
 
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { deserialize, serialize } = router._def._config.transformer.output;
 
   const publishResponse = async (responseMessage: ResponseMessage) => {
@@ -115,9 +115,11 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       }, 3000 / 2);
     };
 
-    const requestDone = async () => {
+    const requestDone = () => {
       clearInterval(interval);
-      await lock?.release();
+      lock?.release().catch(() => {
+        // ignore release lock errors
+      });
     };
 
     return {
@@ -167,9 +169,9 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
       return;
     }
 
-    const { input, path, type, traceId, spanId, id } = requestMessage;
+    const { input, path, type, id } = requestMessage;
 
-    void resumeOtelTracing(traceId, spanId, async () => {
+    void (async () => {
       const { takeRequest, requestDone } = makeTakeRequest(requestMessage);
 
       const ctx = await createContext?.({
@@ -203,14 +205,25 @@ export async function redisHandler<TRouter extends AnyTRPCRouter>(
           }),
         });
       } finally {
-        await requestDone();
+        requestDone();
       }
-    });
+    })();
   };
 
   redisSubClient.on("message", (channel, message) => {
     if (channel !== REQ_CHANNEL) return;
-    void handleRequest(message);
+
+    try {
+      handleRequest(message);
+    } catch (err) {
+      onError?.({
+        error: getTRPCErrorFromUnknown(err),
+        ctx: undefined,
+        type: "unknown",
+        input: undefined,
+        path: undefined,
+      });
+    }
   });
 
   await redisSubClient.subscribe(REQ_CHANNEL);

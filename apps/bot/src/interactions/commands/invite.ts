@@ -65,7 +65,7 @@ export const inviteCommand = new Command({
     componentRow.addComponents(
       new ButtonBuilder({
         style: ButtonStyle.Link,
-        url: env.NEXT_PUBLIC_SUPPORT_URL,
+        url: env.VITE_SUPPORT_URL,
         label: t("interaction.commands.invite.joinSupportServer"),
       }),
     );

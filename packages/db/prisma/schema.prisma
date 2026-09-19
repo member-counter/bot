@@ -11,11 +11,12 @@ datasource db {
 }
 
 model User {
-  id            String     @id @default(auto()) @map("_id") @db.ObjectId
-  discordUserId String     @unique
-  badges        BigInt     @default(0)
-  permissions   BigInt     @default(0)
-  donations     Donation[]
+  id              String     @id @default(auto()) @map("_id") @db.ObjectId
+  discordUserId   String     @unique
+  badges          BigInt     @default(0)
+  permissions     BigInt     @default(0)
+  prefersAutosave Boolean    @default(false)
+  donations       Donation[]
 }
 
 model Guild {
@@ -45,19 +46,34 @@ model Channel {
   discordGuildId    String
   guild             Guild   @relation(fields: [discordGuildId], references: [discordGuildId], onDelete: Cascade)
 
-  @@unique([discordChannelId, discordGuildId])
-  @@index([discordGuildId])
+  @@index([discordGuildId, isTemplateEnabled])
+}
+
+enum DemoServerFeature {
+  Verified
+  Partnered
+  Community
+  Discoverable
+}
+
+enum DemoServerPremiumTier {
+  None
+  Tier1
+  Tier2
+  Tier3
 }
 
 model DemoServer {
-  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  id          String                @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String
   icon        String?
-  priority    Int           @default(0)
-  language    String        @default("en-US")
+  priority    Int                   @default(0)
+  language    String                @default("en-US")
   channels    DemoChannel[]
   links       DemoLink[]
+  features    DemoServerFeature[]   @default([])
+  premiumTier DemoServerPremiumTier @default(None)
 }
 
 type DemoChannel {
@@ -85,4 +101,5 @@ model Donation {
   userId           String
 
   @@index([anonymous])
+  @@index([userId])
 }

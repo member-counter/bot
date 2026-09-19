@@ -1,5 +1,12 @@
 import { z } from "zod";
 
+import { cachedFetch } from "@mc/common/redis/cachedFetch";
+import {
+  CachedDiscordUserValidator,
+  DISCORD_USER_CACHE_TTL,
+} from "@mc/common/redis/DiscordUserCache";
+import { discordUserCacheKey } from "@mc/common/redis/keys";
+
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const discordRouter = createTRPCRouter({
@@ -8,14 +15,22 @@ export const discordRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       await ctx.takeRequest(true);
 
-      const user = await ctx.botClient.users.fetch(input.id);
+      return cachedFetch({
+        redis: ctx.redisClient,
+        key: discordUserCacheKey(input.id),
+        ttlSeconds: DISCORD_USER_CACHE_TTL,
+        fetch: async () => {
+          const user = await ctx.botClient.users.fetch(input.id);
 
-      return {
-        id: user.id,
-        username: user.username,
-        discriminator: user.discriminator,
-        avatar: user.displayAvatarURL(),
-      };
+          return {
+            id: user.id,
+            username: user.username,
+            discriminator: user.discriminator,
+            avatar: user.displayAvatarURL(),
+          } satisfies z.infer<typeof CachedDiscordUserValidator>;
+        },
+        validate: (raw) => CachedDiscordUserValidator.parse(raw),
+      });
     }),
 
   getGuild: publicProcedure
@@ -25,7 +40,6 @@ export const discordRouter = createTRPCRouter({
 
       const guild = await ctx.botClient.guilds.fetch({
         guild: input.id,
-        withCounts: true,
       });
 
       const guildMember = await guild.members.fetchMe();
@@ -34,8 +48,6 @@ export const discordRouter = createTRPCRouter({
         id: guild.id,
         name: guild.name,
         icon: guild.iconURL(),
-        memberCount: guild.memberCount,
-        approximateMemberCount: guild.approximateMemberCount,
         rulesChannelId: guild.rulesChannelId,
         roles: new Map(
           guild.roles.cache.mapValues((role) => ({
@@ -62,7 +74,7 @@ export const discordRouter = createTRPCRouter({
         emojis: new Map(
           guild.emojis.cache.mapValues((emoji) => ({
             id: emoji.id,
-            name: emoji.name ?? "",
+            name: emoji.name,
             animated: emoji.animated,
           })),
         ),

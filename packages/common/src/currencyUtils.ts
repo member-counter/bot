@@ -1,4 +1,4 @@
-import assert from "assert";
+import invariant from "tiny-invariant";
 
 export class CurrencyUtils {
   /**
@@ -25,7 +25,7 @@ export class CurrencyUtils {
    */
   static toBigInt(value: string, decimals: number): bigint {
     const [whole, fraction = "0"] = value.split(".");
-    assert(whole);
+    invariant(whole);
     const fractionPadded = fraction.padEnd(decimals, "0"); // Ensure required decimals
     return (
       BigInt(whole) * BigInt(Math.pow(10, decimals)) +

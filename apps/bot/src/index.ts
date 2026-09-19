@@ -12,6 +12,14 @@ async function main() {
     bot: `${env.DISCORD_BOT_INSTANCE_ID} (${env.DISCORD_BOT_INSTANCE_CHILD_ID})`,
   });
 
+  process.on("unhandledRejection", (reason, promise) => {
+    logger.error("Unhandled Rejection at:", { promise, reason });
+  });
+
+  process.on("uncaughtException", (error) => {
+    logger.error("Uncaught Exception:", { error });
+  });
+
   const botOptions: BotInstanceOptions = {
     id: env.DISCORD_BOT_INSTANCE_ID,
     childId: env.DISCORD_BOT_INSTANCE_CHILD_ID,
@@ -21,6 +29,7 @@ async function main() {
     isPrivileged: env.DISCORD_BOT_INSTANCE_IS_PRIVILEGED,
     dataSourceComputePriority: env.DISCORD_BOT_INSTANCE_COMPUTE_PRIORITY,
     discordAPIRequestsPerSecond: env.DISCORD_BOT_INSTANCE_DISCORD_API_RPS,
+    restProxyURL: env.DISCORD_BOT_INSTANCE_REST_PROXY_URL,
     logger,
     shards: env.DISCORD_BOT_INSTANCE_SHARDING_SHARDS,
     shardCount: env.DISCORD_BOT_INSTANCE_SHARDING_SHARD_COUNT,

@@ -1,4 +1,18 @@
 services:
+  website:
+    image: nginx:latest
+    container_name: website
+    restart: always
+    ports:
+      - "3000:80"
+    env_file:
+      - .env
+    configs:
+      - source: nginx.conf
+        target: /etc/nginx/nginx.conf
+    networks:
+      - member-counter-dev
+
   mongo:
     image: mongo:7
     container_name: MongoDB
@@ -16,6 +30,8 @@ services:
     expose:
       - 27017
     restart: unless-stopped
+    networks:
+      - member-counter-dev
 
   setup-mongo-rs:
     image: mongo:7
@@ -26,10 +42,14 @@ services:
         condition: service_healthy
         restart: true
     restart: "no"
+    networks:
+      - member-counter-dev
 
   mongoex:
     image: mongo-express
     container_name: MongoEX
+    networks:
+      - member-counter-dev
     ports:
       - "3001:8081"
     depends_on:
@@ -44,13 +64,15 @@ services:
     container_name: Redis
     restart: unless-stopped
     networks:
-      - default
+      - member-counter-dev
     ports:
       - "6379:6379"
 
   redis-insight:
     container_name: Redis-Insight
     image: redis/redisinsight:latest
+    networks:
+      - member-counter-dev
     depends_on:
       - redis
     healthcheck:
@@ -66,6 +88,8 @@ services:
   setup-redis-insight:
     container_name: Setup-Redis-Insight
     image: curlimages/curl
+    networks:
+      - member-counter-dev
     depends_on:
       redis-insight:
         condition: service_healthy
@@ -84,5 +108,50 @@ services:
             "timeout": 30000
         }'
 
+configs:
+  nginx.conf:
+    content: |
+      worker_processes 1;
+      events { worker_connections 1024; }
+
+      http {
+          upstream backend-upstream {
+            server host.docker.internal:8080;
+          }
+
+          upstream frontend-upstream {
+            server host.docker.internal:5173;
+          }
+
+          server {
+              listen 80;
+              server_name _;
+
+              location /api {
+                  rewrite ^/api/(.*)$$ /$$1 break;
+
+                  proxy_pass http://backend-upstream;
+                  proxy_http_version 1.1;
+                  
+                  proxy_set_header Host $$http_host;
+                  proxy_set_header X-Real-IP $$remote_addr;
+                  proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto $$scheme;
+                  proxy_set_header X-Forwarded-Host $$http_host;
+                  proxy_set_header X-Forwarded-Port $$server_port;
+                  proxy_set_header Upgrade $$http_upgrade;
+                  proxy_set_header Connection "upgrade";
+              }
+
+              location / {
+                  proxy_pass http://frontend-upstream;
+                  proxy_http_version 1.1;
+
+                  proxy_set_header Upgrade $$http_upgrade;
+                  proxy_set_header Connection "upgrade";
+              }
+          }
+      }
+
 networks:
-  default:
+  member-counter-dev:

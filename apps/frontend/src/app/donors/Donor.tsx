@@ -1,0 +1,81 @@
+import { useTranslation } from "react-i18next";
+
+import { CurrencyUtils } from "@mc/common/currencyUtils";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@mc/ui/dialog";
+import { Separator } from "@mc/ui/separator";
+
+import type { RouterOutputs } from "~/lib/trpc";
+import { DisplayUsername } from "../components/DisplayUsername";
+
+export function Donor({
+  className,
+  donor: { user, donations },
+}: {
+  className: string;
+  donor: RouterOutputs["donor"]["getAllDonors"][number];
+}) {
+  const { i18n } = useTranslation();
+
+  const dateFormatter = Intl.DateTimeFormat(i18n.language, {
+    dateStyle: "short",
+  });
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <div
+          className={className}
+          style={{
+            backgroundImage: `url(${user.avatar})`,
+          }}
+        ></div>
+      </DialogTrigger>
+      <DialogContent className="flex max-h-[100vh] p-0 sm:max-w-[500px] md:max-h-[90vh]">
+        <DialogHeader className="absolute w-full bg-background/95 p-6 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
+          <DialogTitle className="flex flex-row items-center gap-2">
+            <img
+              src={user.avatar}
+              alt={`${user.username}'s avatar`}
+              className="h-8 w-8 rounded-full"
+            />
+            <DisplayUsername {...user} />
+          </DialogTitle>
+        </DialogHeader>
+        <div className="flex flex-1 flex-col gap-2 overflow-y-auto px-6 pb-6 pt-[96px]">
+          {donations.map(
+            ({ date, amount, currency, currencyDecimals, note, id }, i) => (
+              <>
+                <div className="" key={id}>
+                  <div className="flex justify-between text-muted-foreground">
+                    <div>{dateFormatter.format(date)}</div>
+                    <div className="">
+                      {CurrencyUtils.format(
+                        i18n.language,
+                        amount,
+                        currency,
+                        currencyDecimals,
+                      )}
+                    </div>
+                  </div>
+                  <div className="my-2 text-wrap break-words">{note}</div>
+                </div>
+                {i != donations.length - 1 && (
+                  <Separator
+                    key={id + "-separator"}
+                    className="my-4 bg-accent-foreground"
+                  />
+                )}
+              </>
+            ),
+          )}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}

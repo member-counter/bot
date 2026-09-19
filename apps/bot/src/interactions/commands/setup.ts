@@ -226,7 +226,8 @@ export const setupCommand = new Command({
         channelType: type,
       });
 
-      const name = await dataSourceService.evaluateTemplate(template);
+      const { result: name } =
+        await dataSourceService.evaluateTemplate(template);
 
       const channel = await guild.channels.create({
         parent: parent instanceof CategoryChannel ? parent : undefined,

@@ -1,0 +1,57 @@
+# Resolve pre-render language: ?lang= query param > cookie > Accept-Language
+map $arg_lang $query_lang {
+    default    "";
+{{QUERY_LANG_ENTRIES}}
+}
+
+map $cookie_language $cookie_lang {
+    default    "";
+{{COOKIE_LANG_ENTRIES}}
+}
+
+map $http_accept_language $browser_lang {
+    default    "{{FALLBACK_LNG}}";
+{{ACCEPT_LANG_ENTRIES}}
+}
+
+# Priority chain: query param > cookie > browser
+map $query_lang $lang_step1 {
+    default    $query_lang;
+    ""         $cookie_lang;
+}
+
+map $lang_step1 $resolved_lang {
+    default    $lang_step1;
+    ""         $browser_lang;
+}
+
+server {
+    listen       80;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Compression
+    gzip on;
+    gzip_types text/html text/css application/javascript application/json image/svg+xml;
+    gzip_min_length 1000;
+    gzip_vary on;
+
+    # Hashed static assets — cache indefinitely
+    location /assets/ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    # Pre-rendered home page — serve the matching language variant.
+    # Vary ensures the browser re-fetches when the language cookie changes
+    # instead of serving a stale cached version in the wrong language.
+    location = / {
+        add_header Vary "Cookie, Accept-Language";
+        try_files /index.${resolved_lang}.html /index.html /200.html;
+    }
+
+    location / {
+        # Static assets, then pre-rendered route dirs, then SPA fallback
+        try_files $uri $uri/ /200.html;
+    }
+}

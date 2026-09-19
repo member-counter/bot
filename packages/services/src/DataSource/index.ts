@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import assert from "assert";
 import type { DataSource, DataSourceId } from "@mc/common/DataSource";
-import { ChannelType } from "discord.js";
 
+import { isTextLikeChannel } from "@mc/common/channelType";
 import { DATA_SOURCE_DELIMITER } from "@mc/common/DataSource";
 import { KnownError } from "@mc/common/KnownError/index";
 
@@ -14,6 +14,7 @@ import type {
 } from "./DataSourceEvaluator";
 import dataSourceEvaluators from "./DataSourceEvaluator/evaluators";
 import { ExplorerStackItem } from "./ExplorerStackItem";
+import { FallbackUsedError } from "./FallbackUsedError";
 
 class DataSourceService {
   private static dataSourceEvaluators = Object.fromEntries(
@@ -25,7 +26,10 @@ class DataSourceService {
 
   constructor(private ctx: DataSourceContext) {}
 
-  public async evaluateTemplate(template: string): Promise<string> {
+  public async evaluateTemplate(
+    template: string,
+  ): Promise<{ result: string; nonFatalErrors: Error[] }> {
+    const nonFatalErrors: Error[] = [];
     const parts = template.split(DATA_SOURCE_DELIMITER);
     let result = "";
 
@@ -44,7 +48,7 @@ class DataSourceService {
         );
 
         result += await Promise.race([
-          this.evaluateDataSource(dataSourcePart),
+          this.evaluateDataSource(dataSourcePart, nonFatalErrors),
           timeoutPromise,
         ]);
       }
@@ -52,10 +56,7 @@ class DataSourceService {
 
     result = result.trim();
 
-    if (
-      this.ctx.channelType === ChannelType.GuildAnnouncement ||
-      this.ctx.channelType === ChannelType.GuildText
-    ) {
+    if (isTextLikeChannel(this.ctx.channelType)) {
       result = result.slice(0, 1023);
     } else {
       if (result.length < 2)
@@ -65,11 +66,12 @@ class DataSourceService {
       result = result.slice(0, 99);
     }
 
-    return result;
+    return { result, nonFatalErrors };
   }
 
   private async evaluateDataSource(
     unparsedRawDataSource: string,
+    nonFatalErrors: Error[],
   ): Promise<string> {
     const dataSource = this.parseRawDataSource(unparsedRawDataSource);
 
@@ -80,61 +82,70 @@ class DataSourceService {
       compactNotation:
         dataSource.format?.compactNotation ??
         guildFormatSettings.compactNotation,
-      digits: dataSource.format?.digits
-        ? new Array(10)
-            .fill(null)
-            .map((_, i) => formatSettings.digits[i] ?? i.toString())
-        : guildFormatSettings.digits,
+      digits: new Array(10)
+        .fill(null)
+        .map((_, i) =>
+          dataSource.format?.digits?.[i]?.length
+            ? dataSource.format.digits[i]
+            : guildFormatSettings.digits[i]?.length
+              ? guildFormatSettings.digits[i]
+              : i.toString(),
+        ),
     };
 
-    const { compactNotation, digits, locale } = formatSettings;
-
-    let result = await this.exploreAndExecute(dataSource, {
-      compactNotation,
-      digits,
-      locale,
-    });
+    const result = await this.exploreAndExecute(
+      dataSource,
+      formatSettings,
+      nonFatalErrors,
+    );
 
     assert(
       typeof result === "number" || typeof result === "string",
       new KnownError("UNKNOWN_EVALUATION_RETURN_TYPE"),
     );
 
-    if (typeof result === "number" && !isNaN(result)) {
-      let numericResult: string | number = result;
+    return this.formatDataSourceResult(result, formatSettings);
+  }
 
-      if (compactNotation) {
-        numericResult = new Intl.NumberFormat(locale, {
-          notation: "compact",
-        }).format(result);
-      }
-
-      if (
-        [ChannelType.GuildAnnouncement, ChannelType.GuildText].includes(
-          this.ctx.channelType,
-        )
-      ) {
-        result = numericResult
-          .toString()
-          .split("")
-          .map((digit) => (typeof digit === "number" ? digits[digit] : digit))
-          .join("");
-      } else {
-        result = numericResult.toString();
-      }
+  private formatDataSourceResult(
+    result: string | number,
+    { compactNotation, digits, locale }: PreparedDataSourceFormatSettings,
+  ): string {
+    if (typeof result === "string") {
+      return result;
     }
 
-    assert(
-      typeof result === "string",
-      new KnownError("FAILED_TO_RETURN_A_FINAL_STRING"),
-    );
+    if (isNaN(result)) {
+      throw new KnownError("FAILED_TO_RETURN_A_FINAL_STRING");
+    }
 
-    return result;
+    if (compactNotation) {
+      result = new Intl.NumberFormat(locale, {
+        notation: "compact",
+      }).format(result);
+    }
+
+    if (isTextLikeChannel(this.ctx.channelType)) {
+      result = result
+        .toString()
+        .split("")
+        .map((character) => {
+          const digit = Number(character);
+
+          if (isNaN(digit)) return character;
+
+          return digits[digit];
+        })
+        .join("");
+    }
+
+    return result.toString();
   }
 
   private async exploreAndExecute(
     rawDataSource: DataSource,
     formatSettings: PreparedDataSourceFormatSettings,
+    nonFatalErrors: Error[],
   ): Promise<unknown> {
     const rootItem = new ExplorerStackItem({ root: rawDataSource }, "root");
     const queue: ExplorerStackItem[] = [rootItem];
@@ -166,10 +177,13 @@ class DataSourceService {
           "id",
         );
         if (nodeIsADataSource) {
-          item.node = await this.executeDataSource({
-            ...item.node,
-            format: formatSettings,
-          });
+          item.node = await this.executeDataSource(
+            {
+              ...item.node,
+              format: formatSettings,
+            },
+            nonFatalErrors,
+          );
         }
       } else {
         queue.push(item, ...toExploreMore);
@@ -185,15 +199,18 @@ class DataSourceService {
     return rootItem.node as unknown;
   }
 
-  private async executeDataSource({
-    id,
-    format,
-    options = {},
-  }: {
-    id: DataSourceId;
-    format: PreparedDataSourceFormatSettings;
-    options: unknown;
-  }): Promise<DataSourceExecuteResult> {
+  private async executeDataSource(
+    {
+      id,
+      format,
+      options = {},
+    }: {
+      id: DataSourceId;
+      format: PreparedDataSourceFormatSettings;
+      options: unknown;
+    },
+    nonFatalErrors: Error[],
+  ): Promise<DataSourceExecuteResult> {
     const dataSourceEvaluator = DataSourceService.dataSourceEvaluators[id];
 
     assert(dataSourceEvaluator, new KnownError("UNKNOWN_DATA_SOURCE"));
@@ -204,11 +221,19 @@ class DataSourceService {
       locale: format.locale.length >= 2 ? format.locale : "en-US",
     };
 
-    return await dataSourceEvaluator.execute({
-      format: validatedFormat,
-      options: options as never,
-      ctx: this.ctx,
-    });
+    try {
+      return await dataSourceEvaluator.execute({
+        format: validatedFormat,
+        options: options as never,
+        ctx: this.ctx,
+      });
+    } catch (error) {
+      if (error instanceof FallbackUsedError) {
+        nonFatalErrors.push(error.cause);
+        return error.fallback;
+      }
+      throw error;
+    }
   }
 
   private parseRawDataSource(unparsedRawDataSource: string): DataSource {

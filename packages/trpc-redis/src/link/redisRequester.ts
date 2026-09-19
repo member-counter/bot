@@ -2,7 +2,11 @@ import type { DataTransformer } from "@trpc/server/unstable-core-do-not-import";
 import type { Redis } from "ioredis";
 
 import type { RequestMessage } from "../schemas";
-import { REQ_CHANNEL, RES_CHANNEL } from "../Constants";
+import {
+  REQ_CHANNEL,
+  REQUEST_TIMEOUT_MESSAGE,
+  RES_CHANNEL,
+} from "../Constants";
 import { responseMessageSchema } from "../schemas";
 
 type PendingRequests = Map<
@@ -42,12 +46,15 @@ export const setupRedisRequester = async ({
       if (!pendingRequest) return;
 
       if (responseMessage.type === "error") {
+        clearTimeout(pendingRequest.timeout);
         pendingRequests.delete(responseMessage.id);
         pendingRequest.reject(transformer.deserialize(responseMessage.error));
       } else if (responseMessage.type === "result") {
+        clearTimeout(pendingRequest.timeout);
         pendingRequests.delete(responseMessage.id);
         pendingRequest.resolve(transformer.deserialize(responseMessage.result));
       } else {
+        // Partial/progress message — extendTimeout clears and re-arms the timer.
         pendingRequest.extendTimeout();
       }
     } catch (err) {
@@ -76,7 +83,10 @@ export const setupRedisRequester = async ({
     reject: (error: unknown) => void,
   ) =>
     setTimeout(() => {
-      reject(new Error(`Request timed out`, { cause: requestMessage }));
+      // On a genuine timeout no response ever settles this request, so drop its
+      // map entry here — otherwise it leaks permanently.
+      pendingRequests.delete(requestMessage.id);
+      reject(new Error(REQUEST_TIMEOUT_MESSAGE, { cause: requestMessage }));
     }, requestTimeout);
 
   const redisRequest = async (requestMessage: RequestMessage) => {

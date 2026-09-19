@@ -17,14 +17,14 @@
     "@mc/eslint-config": "workspace:*",
     "@mc/prettier-config": "workspace:*",
     "@mc/tsconfig": "workspace:*",
-    "@types/node": "^22.10.10",
-    "eslint": "^9.19.0",
-    "prettier": "^3.4.2",
-    "typescript": "^5.7.3"
+    "@types/node": "^22.19.7",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.0",
+    "typescript": "^5.9.3"
   },
   "prettier": "@mc/prettier-config",
   "dependencies": {
-    "@t3-oss/env-core": "^0.13.8",
-    "ioredis": "^5.4.1"
+    "@t3-oss/env-core": "^0.13.10",
+    "ioredis": "^5.9.2"
   }
 }

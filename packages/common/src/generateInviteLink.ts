@@ -1,9 +1,11 @@
 import type { PermissionsBitField } from "discord.js";
 import { Routes } from "discord-api-types/v10";
 
+import type { BitField } from "./BitField";
+
 interface GenerateLinkOptions {
   clientId: string;
-  permissions: PermissionsBitField;
+  permissions: PermissionsBitField | BitField;
   selectedGuild?: string;
 }
 

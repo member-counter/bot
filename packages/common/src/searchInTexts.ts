@@ -37,7 +37,7 @@ export function searchInTexts(texts: string[][], text: string): number[] {
   });
 
   return Array.from(result)
-    .sort(([_index, score], [_index2, score2]) => score - score2)
+    .sort(([_index, score], [_index2, score2]) => score2 - score)
     .map(([index]) => index);
 }
 

@@ -1,0 +1,213 @@
+{
+  "interaction": {
+    "commandHandler": {
+      "error": {
+        "description": "Bir sorun oluştu, lütfen daha sonra tekrar deneyin.\n\nHata ID: {{ERROR_ID}}",
+        "title": "HATA!"
+      }
+    },
+    "commands": {
+      "configure": {
+        "dashboardButton": "Panele git",
+        "definition": {
+          "slash": {
+            "description": "Botu web sitesinden yapılandırmak için bağlantıyı alın.",
+            "name": "yapılandır"
+          }
+        },
+        "reply": "Botu kontrol panelinden yapılandırmak için aşağıya tıklayın.\nAyrıca Discord'dan ayrılmadan {{SETUP_COMMAND}} komutunu kullanarak bazı temel sayaçları kurabilirsiniz."
+      },
+      "info": {
+        "definition": {
+          "slash": {
+            "description": "Faydalı bağlantılar ve diğer bilgiler.",
+            "name": "bilgi"
+          }
+        },
+        "embedReply": {
+          "description": "[Beni sunucuna ekle]({{BOT_INVITE_URL}})\n[Web sitesi]({{OFFICIAL_WEBSITE_URL}})\n[Destek sunucusu]({{BOT_SUPPORT_URL}})\n[GitHub Deposu]({{BOT_REPO_URL}})\n[Bot sürümü: {{VERSION}}]({{VERSION_URL}})"
+        }
+      },
+      "invite": {
+        "addToServer": "Sunucuya ekle",
+        "addToServerAgain": "Bu sunucuya tekrar ekle",
+        "definition": {
+          "slash": {
+            "description": "Botu eklemek için davet bağlantısı sağlar.",
+            "name": "davet"
+          }
+        },
+        "description": "Davet bağlantınız hazır:\n{{INVITE_URL}}",
+        "joinSupportServer": "Destek sunucusuna katıl"
+      },
+      "profile": {
+        "badges": "Rozetler",
+        "definition": {
+          "context": {
+            "name": "Profil"
+          },
+          "slash": {
+            "description": "Sizinle bu bot arasındaki ilgili bilgileri gösterir.",
+            "name": "profil",
+            "options": {
+              "user": {
+                "description": "Profilini görüntülemek istediğiniz kullanıcı.",
+                "name": "kullanıcı"
+              }
+            }
+          }
+        },
+        "deleteProfileButton": "Verileri sil",
+        "deleteProfilePrompt": {
+          "cancelButton": "İptal",
+          "confirmButton": "Evet",
+          "description": "Bu işlem geri alınamaz.",
+          "removeDataSuccess": "Veriler başarıyla silindi.",
+          "title": "Verileri silmek istediğinizden emin misiniz?"
+        },
+        "moreOptionsButton": "Daha fazla seçenek",
+        "userNotFound": "Kullanıcı bulunamadı"
+      },
+      "setup": {
+        "definition": {
+          "slash": {
+            "description": "Bazı temel sayaçları kurun.",
+            "name": "kur",
+            "subcommands": {
+              "server": {
+                "description": "Sunucuyla ilgili sayaçları kurun.",
+                "name": "sunucu"
+              },
+              "twitch": {
+                "description": "Twitch ile ilgili sayaçları kurun.",
+                "name": "twitch",
+                "options": {
+                  "username": {
+                    "description": "Kanal kullanıcı adı.",
+                    "name": "kullanıcıadı"
+                  }
+                }
+              },
+              "youtube": {
+                "description": "YouTube ile ilgili sayaçları kurun.",
+                "name": "youtube",
+                "options": {
+                  "channelUrl": {
+                    "description": "Kanal URL'si.",
+                    "name": "url"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "status": {
+          "completed": "Oluşturma tamamlandı.",
+          "configureSuggestion": "Daha özelleştirilmiş bir kurulum için {{CONFIGURE_COMMAND}} komutuna göz atmalısınız.",
+          "createdCategory": "{{ICON}} Kategori oluşturuldu.",
+          "createdChannel": "{{ICON}} {{NAME}} oluşturuldu.",
+          "creating": "Sayaçlar oluşturuluyor...",
+          "creatingCategory": "{{ICON}} Kategori oluşturuluyor.",
+          "creatingChannel": "{{ICON}} {{NAME}} sayacı oluşturuluyor.",
+          "failedCategory": "{{ICON}} Kategori oluşturulamadı.",
+          "failedChannel": "{{ICON}} {{NAME}} oluşturulamadı."
+        },
+        "templateCollection": {
+          "server": {
+            "categoryName": "\uD83D\uDCCA Sunucu İstatistikleri \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Çevrimiçi üyeler",
+                "template": "Çevrimiçi: {{COUNTER}}"
+              },
+              {
+                "name": "Üyeler",
+                "template": "Üyeler: {{COUNTER}}"
+              },
+              {
+                "name": "Nitro destekçileri",
+                "template": "Destekçiler: {{COUNTER}}"
+              },
+              {
+                "name": "Roller",
+                "template": "Roller: {{COUNTER}}"
+              },
+              {
+                "name": "Kanallar",
+                "template": "Kanallar: {{COUNTER}}"
+              }
+            ]
+          },
+          "twitch": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} Twitch İstatistikleri \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "Twitch takipçileri",
+                "template": "{{COUNTER}} Takipçi"
+              },
+              {
+                "name": "Twitch izleyicileri",
+                "template": "İzleyiciler: {{COUNTER}}"
+              }
+            ]
+          },
+          "youtube": {
+            "categoryName": "\uD83D\uDCCA {{COUNTER}} YouTube İstatistikleri \uD83D\uDCCA",
+            "templates": [
+              {
+                "name": "YouTube aboneleri",
+                "template": "{{COUNTER}} Abone"
+              },
+              {
+                "name": "YouTube videoları",
+                "template": "{{COUNTER}} Video"
+              },
+              {
+                "name": "YouTube görüntülenmeleri",
+                "template": "{{COUNTER}} Görüntülenme"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "jobs": {
+    "updateChannels": {
+      "computeError": "HATA!"
+    }
+  },
+  "knownErrors": {
+    "BAD_REQUEST": "İstek geçersizdi.",
+    "BOT_HAS_NO_ENOUGH_PRIVILEGED_INTENTS": "Bot, bu sayacı kullanmak için yeterli ayrıcalıklı intent'lere sahip değil.",
+    "BOT_IS_NOT_PREMIUM": "Bot premium sürüm değil ve bu sayaç için gerekli bazı özelliklere sahip değil.",
+    "DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON": "Sayaç tanınmayan bir biçimde.",
+    "DELIMITED_DATA_SOURCE_IS_INVALID": "Sayaç geçersiz.",
+    "EVALUATION_RESULT_FOR_CHANNEL_NAME_IS_LESS_THAN_2_CHARACTERS": "Kanal adı için sonuç 2 karakterden kısa.",
+    "EVALUATION_TIMEOUT": "Değerlendirme çok uzun sürdü ve zaman aşımına uğradı.",
+    "FAILED_TO_RETURN_A_FINAL_STRING": "Değerlendirmeden son bir metin oluşturulamadı.",
+    "FORBIDDEN": "İstek reddedildi.",
+    "GAME_MISSING_ADDRESS": "Oyun sayacı bir sunucu adresi gerektiriyor.",
+    "GAME_MISSING_GAME_ID": "Oyun sayacı için bir oyun ID'si belirtilmelidir.",
+    "GAME_MISSING_PORT": "Oyun sayacı bir sunucu portu gerektiriyor.",
+    "HTTP_DATA_PATH_MANDATORY": "İçerik türü application/json olan HTTP istekleri için bir veri yolu belirtilmelidir.",
+    "HTTP_INVALID_RESPONSE_CONTENT_TYPE": "HTTP yanıtının içerik türü geçersiz (text/plain veya application/json değil).",
+    "HTTP_INVALID_RESPONSE_STATUS_CODE": "HTTP yanıt durum kodu geçersiz (200 değil).",
+    "HTTP_MISSING_URL": "HTTP sayacı bir URL gerektiriyor, ancak belirtilmemiş.",
+    "INTERNAL_SERVER_ERROR": "Dahili bir sunucu hatası oluştu.",
+    "MEMBER_COUNT_NOT_AVAILABLE": "Üye sayıları şu anda mevcut değil.",
+    "MEMERATOR_MISSING_USERNAME": "Memerator sayacı bir kullanıcı adı gerektiriyor, ancak belirtilmemiş.",
+    "NOT_FOUND": "İstenen kaynak bulunamadı.",
+    "NO_ENOUGH_PERMISSIONS_TO_EDIT_CHANNEL": "Bot, kanalı düzenlemek için yeterli izinlere sahip değil.",
+    "REDDIT_MISSING_SUBREDDIT": "Reddit sayacı için bir subreddit belirtilmelidir.",
+    "TWITCH_CHANNEL_NOT_FOUND": "Belirtilen Twitch kanalı bulunamadı.",
+    "TWITCH_MISSING_USERNAME": "Twitch sayacı için bir kullanıcı adı belirtilmelidir.",
+    "UNAUTHORIZED": "İstek yetkisizdi.",
+    "UNKNOWN": "Bilinmeyen bir hata oluştu.",
+    "UNKNOWN_DATA_SOURCE": "Belirtilen sayaç bilinmiyor veya tanınmıyor.",
+    "UNKNOWN_EVALUATION_RETURN_TYPE": "Değerlendirmeden dönen değerin türü bilinmiyor.",
+    "USER_NOT_FOUND": "Kullanıcı bulunamadı.",
+    "YOUTUBE_INVALID_CHANNEL_URL": "Belirtilen YouTube kanal URL'si geçersiz.",
+    "YOUTUBE_MISSING_CHANNEL_URL": "YouTube sayacı için bir kanal URL'si belirtilmelidir."
+  }
+}

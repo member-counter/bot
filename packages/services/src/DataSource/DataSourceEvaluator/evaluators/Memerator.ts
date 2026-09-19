@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { DataSourceId, MemeratorDataSourceReturn } from "@mc/common/DataSource";
 import { KnownError } from "@mc/common/KnownError/index";
+import { cachedFetch } from "@mc/common/redis/cachedFetch";
 import { dataSourceCacheKey } from "@mc/common/redis/keys";
 import { redis } from "@mc/redis";
 
@@ -11,60 +12,40 @@ import { env } from "../../../../env";
 
 const CACHE_LIFETIME = 30 * 60;
 
-function toCacheKey(username: string, returnType: MemeratorDataSourceReturn) {
-  return dataSourceCacheKey(
-    DataSourceId.MEMERATOR,
-    [username, returnType].join(":"),
-  );
-}
+const cachedProfileValidator = z.object({
+  memes: z.number(),
+  followers: z.number(),
+});
 
-async function fetchData(
-  username: string,
-  returnType: MemeratorDataSourceReturn = MemeratorDataSourceReturn.FOLLOWERS,
-) {
+function fetchProfile(username: string) {
   assert(env.MEMERATOR_API_KEY, new Error("MEMERATOR_API_KEY not provided"));
+  const apiKey = env.MEMERATOR_API_KEY;
 
-  const cachedValue = await redis.get(toCacheKey(username, returnType));
-  if (cachedValue) return Number(cachedValue);
+  return cachedFetch({
+    redis,
+    key: dataSourceCacheKey(DataSourceId.MEMERATOR, username),
+    ttlSeconds: CACHE_LIFETIME,
+    fetch: async () => {
+      const { stats } = await fetch(
+        `https://api.memerator.me/v1/profile/${username}`,
+        {
+          headers: { Authorization: apiKey },
+          signal: AbortSignal.timeout(5000),
+        },
+      )
+        .then((response) => response.json())
+        .then((o) =>
+          z
+            .object({
+              stats: z.object({ memes: z.number(), followers: z.number() }),
+            })
+            .parse(o),
+        );
 
-  const response = await fetch(
-    `https://api.memerator.me/v1/profile/${username}`,
-    {
-      headers: { Authorization: env.MEMERATOR_API_KEY },
-      signal: AbortSignal.timeout(5000),
+      return stats satisfies z.infer<typeof cachedProfileValidator>;
     },
-  )
-    .then((response) => response.json())
-    .then((o) =>
-      z
-        .object({
-          stats: z.object({ memes: z.number(), followers: z.number() }),
-        })
-        .parse(o),
-    );
-
-  await Promise.all([
-    redis.set(
-      toCacheKey(username, MemeratorDataSourceReturn.FOLLOWERS),
-      response.stats.followers,
-      "EX",
-      CACHE_LIFETIME,
-    ),
-    redis.set(
-      toCacheKey(username, MemeratorDataSourceReturn.MEMES),
-      response.stats.memes,
-      "EX",
-      CACHE_LIFETIME,
-    ),
-  ]);
-
-  switch (returnType) {
-    case MemeratorDataSourceReturn.MEMES:
-      return response.stats.memes;
-
-    case MemeratorDataSourceReturn.FOLLOWERS:
-      return response.stats.followers;
-  }
+    validate: (raw) => cachedProfileValidator.parse(raw),
+  });
 }
 
 export const memeratorEvaluator = new DataSourceEvaluator({
@@ -72,6 +53,14 @@ export const memeratorEvaluator = new DataSourceEvaluator({
   execute: async ({ options }) => {
     assert(options.username, new KnownError("MEMERATOR_MISSING_USERNAME"));
 
-    return Number(await fetchData(options.username, options.return));
+    const profile = await fetchProfile(options.username);
+
+    switch (options.return ?? MemeratorDataSourceReturn.FOLLOWERS) {
+      case MemeratorDataSourceReturn.MEMES:
+        return profile.memes;
+
+      case MemeratorDataSourceReturn.FOLLOWERS:
+        return profile.followers;
+    }
   },
 });

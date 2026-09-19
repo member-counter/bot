@@ -1,5 +1,3 @@
-"use client";
-
 // Inspired by react-hot-toast library
 import type { ToastActionElement, ToastProps } from "@mc/ui/toast";
 import * as React from "react";

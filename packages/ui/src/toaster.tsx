@@ -1,5 +1,3 @@
-"use client";
-
 import { useToast } from "@mc/ui/hooks/use-toast";
 import {
   Toast,

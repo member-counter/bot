@@ -3,10 +3,13 @@ import type originalLogger from "@mc/logger";
 import type { GuildSettingsData } from "@mc/services/guildSettings";
 import type { Client, Guild } from "discord.js";
 import type { Logger } from "winston";
-import { ChannelType } from "discord.js";
+import { RESTJSONErrorCodes } from "discord-api-types/v10";
+import { ChannelType, DiscordAPIError } from "discord.js";
+import pLimit from "p-limit";
 
 import { Job } from "@mc/common/bot/structures/Job";
 import botHasPermsToEdit from "@mc/common/botHasPermsToEdit";
+import { isBotSupportedChannel } from "@mc/common/channelType";
 import { KnownError } from "@mc/common/KnownError/index";
 import {
   advertiseEvaluatorPriorityKey,
@@ -20,6 +23,13 @@ import { GuildSettingsService } from "@mc/services/guildSettings";
 import { initI18n } from "~/i18n";
 import { makeIsValidChild } from "~/utils/isValidChildId";
 import { withQueueLock } from "~/utils/withQueueLock";
+
+// This caps concurrently-processed guilds, not requests/second: the REST
+// rate limiter still spends the full RPS budget, so channel updates finish
+// just as fast as an unbounded burst. What it fixes is queue depth: an
+// interactive dashboard request arriving mid-run now waits behind a handful
+// of requests instead of behind every guild's edits at once.
+const GUILD_CONCURRENCY = 20;
 
 type ChannelSettingsMinimal = Awaited<
   ReturnType<typeof GuildSettingsService.channels.getAllEnabledTempaltes>
@@ -35,10 +45,32 @@ async function updateGuildChannel(
   logger.debug(`Starting update for channel`);
 
   logger.debug(`Fetching channel`);
-  const channel = await guild.channels.fetch(channelSettings.discordChannelId);
+  const channel = await guild.channels
+    .fetch(channelSettings.discordChannelId)
+    .catch(async (error: unknown) => {
+      if (
+        error instanceof DiscordAPIError &&
+        error.code === RESTJSONErrorCodes.UnknownChannel
+      ) {
+        // the channel was deleted; disable the template so the job stops
+        // paying a REST 404 for it on every run
+        logger.info(`Channel no longer exists, disabling its template`);
+        await GuildSettingsService.channels.disableTemplate(
+          channelSettings.discordChannelId,
+        );
+        return null;
+      }
+
+      throw error;
+    });
 
   if (!channel) {
     logger.debug(`Channel not found`);
+    return;
+  }
+
+  if (!isBotSupportedChannel(channel.type)) {
+    logger.debug(`Channel type is not supported, skipping update`);
     return;
   }
 
@@ -65,16 +97,17 @@ async function updateGuildChannel(
   logger.debug(`Evaluating template for channel`);
   const computedTemplate = await dataSourceService
     .evaluateTemplate(channelSettings.template)
-    .then((computed) => {
+    .then(({ result, nonFatalErrors }) => {
       logger.debug(`Template evaluation successful for channel`);
+      const firstNonFatalError = nonFatalErrors[0];
       GuildSettingsService.channels.logs
         .set(channel.id, {
           LastTemplateUpdateDate: new Date(),
-          LastTemplateComputeError: null,
+          LastTemplateComputeError: firstNonFatalError?.message ?? null,
         })
         .catch(logger.error);
 
-      return computed;
+      return result;
     })
     .catch((error) => {
       logger.debug(
@@ -191,53 +224,57 @@ const task = async (client: Client, logger: Logger) => {
     await GuildSettingsService.channels.getAllEnabledTempaltes(guildsToHandle);
   logger.debug(`Fetched channels settings for ${guildsToHandle.length} guilds`);
 
+  const limit = pLimit(GUILD_CONCURRENCY);
+
   await Promise.allSettled(
-    guildsToHandle.map(async (guildId) => {
-      const guildLogger = logger.child({
-        guild: guildId,
-      });
-
-      const guildSettings = guildsSettings.find(
-        (guildSettings) => guildSettings.discordGuildId === guildId,
-      );
-      if (!guildSettings) {
-        return;
-      }
-
-      const guildChannelSettings = channelsSettings.filter(
-        (channelSettings) => channelSettings.discordGuildId === guildId,
-      );
-
-      if (!guildChannelSettings.length) {
-        return;
-      }
-
-      const guild = client.guilds.cache.get(guildId);
-
-      if (!guild) {
-        return;
-      }
-
-      await updateGuildChannels(
-        guild,
-        guildSettings,
-        guildChannelSettings,
-        guildLogger,
-      )
-        .then(() => {
-          logger.debug(
-            `Updated guild channels (${++debugCheckCount}/${guildsToHandle.length})`,
-          );
-        })
-        .catch((error) => {
-          logger.error(
-            `Error while trying to update channels, error ${inspect(error)}`,
-          );
-        })
-        .finally(() => {
-          guildsToProccessLeft.delete(guildId);
+    guildsToHandle.map((guildId) =>
+      limit(async () => {
+        const guildLogger = logger.child({
+          guild: guildId,
         });
-    }),
+
+        const guildSettings = guildsSettings.find(
+          (guildSettings) => guildSettings.discordGuildId === guildId,
+        );
+        if (!guildSettings) {
+          return;
+        }
+
+        const guildChannelSettings = channelsSettings.filter(
+          (channelSettings) => channelSettings.discordGuildId === guildId,
+        );
+
+        if (!guildChannelSettings.length) {
+          return;
+        }
+
+        const guild = client.guilds.cache.get(guildId);
+
+        if (!guild) {
+          return;
+        }
+
+        await updateGuildChannels(
+          guild,
+          guildSettings,
+          guildChannelSettings,
+          guildLogger,
+        )
+          .then(() => {
+            logger.debug(
+              `Updated guild channels (${++debugCheckCount}/${guildsToHandle.length})`,
+            );
+          })
+          .catch((error) => {
+            logger.error(
+              `Error while trying to update channels, error ${inspect(error)}`,
+            );
+          })
+          .finally(() => {
+            guildsToProccessLeft.delete(guildId);
+          });
+      }),
+    ),
   );
 
   clearInterval(debugInterval);

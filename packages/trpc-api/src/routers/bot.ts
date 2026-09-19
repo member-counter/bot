@@ -1,0 +1,45 @@
+import { z } from "zod";
+
+import { botAPIConsumer } from "@mc/services/botAPI/botAPIConsumer";
+
+import { env } from "../env";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+
+export const botRouter = createTRPCRouter({
+  gamedigGames: protectedProcedure.query(() => {
+    return botAPIConsumer.gamedig.getGames.query();
+  }),
+  testFetchUrl: protectedProcedure
+    .input(z.object({ url: z.string().url() }))
+    .query(({ input }) => {
+      return botAPIConsumer.dataSource.testFetchUrl.query(input);
+    }),
+  computeTemplate: protectedProcedure
+    .input(
+      z.object({
+        template: z.string(),
+        guildId: z.string(),
+        channelId: z.string(),
+      }),
+    )
+    .query(({ input }) => {
+      return botAPIConsumer.dataSource.computeTemplate.query(input);
+    }),
+
+  getStatus: publicProcedure.query(async () => {
+    return Promise.all(
+      env.PUBLIC_BOTS_IDS.map(async (id) => ({
+        id,
+        stats: await botAPIConsumer.bot.getStats
+          .query({ id })
+          .catch(() => null),
+      })),
+    );
+  }),
+
+  canBotEditChannel: protectedProcedure
+    .input(z.object({ guildId: z.string(), channelId: z.string() }))
+    .query(({ input: { guildId, channelId } }) => {
+      return botAPIConsumer.bot.canBotEditChannel.query({ guildId, channelId });
+    }),
+});

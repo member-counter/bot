@@ -57,7 +57,6 @@ export default async function handleCommand(
       commandInteraction.user.discriminator
     } (${
       commandInteraction.user.id
-      // eslint-disable-next-line @typescript-eslint/no-base-to-string
     }) is executing command ${commandInteraction.toString()} on channel ${
       commandInteraction.channel?.toString() ?? commandInteraction.channelId
     }`,

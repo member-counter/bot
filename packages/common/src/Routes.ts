@@ -1,52 +1,119 @@
-import { env } from "../env";
+import { parser, route } from "react-router-typesafe-routes";
+import { zod } from "react-router-typesafe-routes/zod";
+import { z } from "zod/v4";
 
-export const legalPagesSlugs = [
+export const LegalPagesSlugs = [
   "terms-of-service",
   "privacy-policy",
   "cookie-policy",
   "acceptable-use-policy",
 ] as const;
+export type LegalPagesSlugs = (typeof LegalPagesSlugs)[number];
 
-export type LegalPagesSlugs = (typeof legalPagesSlugs)[number];
-
-function formatURL(url: string, unparsedParams: Record<string, string>) {
-  const searchParams = new URLSearchParams(unparsedParams).toString();
-
-  return [url, searchParams].filter(Boolean).join("?");
-}
-
-export const Routes = (baseUrl: string) => ({
-  Home: baseUrl + "/",
-  Login: baseUrl + "/login",
-  LogOut: baseUrl + "/logout",
-  ApiLogin: (redirectTo?: string) =>
-    baseUrl +
-    formatURL("/api/auth", { ...(redirectTo && { redirect_to: redirectTo }) }),
-  ApiLogout: baseUrl + "/api/auth/logout",
-  Support: env.NEXT_PUBLIC_SUPPORT_URL,
-  Documentation: env.NEXT_PUBLIC_BOT_DOCS_URL,
-  BotRepository: env.NEXT_PUBLIC_BOT_REPO_URL,
-  Translate: env.NEXT_PUBLIC_TRANSLATION_PLATFORM_URL,
-  Donors: baseUrl + "/donors",
-  Invite: (guildId?: string) =>
-    baseUrl + formatURL("/invite", { ...(guildId && { guildId }) }),
-  Legal: (page: LegalPagesSlugs) => baseUrl + formatURL("/legal", { page }),
-  ManageUsers: (userId?: string) =>
-    baseUrl + "/admin/users" + (userId ? `/${userId}` : ""),
-  ManageGuilds: baseUrl + "/admin/guilds",
-  ManageHomePage: baseUrl + "/admin/homepage",
-  ManageHomeDemoServer: (id: string) =>
-    baseUrl + "/admin/homepage/demo-servers/" + id,
-  ManageDonations: (id?: string) =>
-    baseUrl + "/admin/donations" + (id ? `/${id}` : ""),
-  ManageDonationsNew: () => baseUrl + "/admin/donations/new",
-  Account: baseUrl + "/account",
-  Dashboard: baseUrl + "/dashboard",
-  DashboardServers: (guildId?: string, channelId?: string) =>
-    baseUrl +
-    "/dashboard/servers" +
-    (guildId ? `/${guildId}` : "") +
-    (channelId ? `/${channelId}` : ""),
-  CreateDiscordServer: "https://discord.com/channels/@me",
-  Status: "/status",
+export const routes = route({
+  path: "",
+  children: {
+    login: route({ path: "login" }),
+    logout: route({ path: "logout" }),
+    account: route({ path: "account" }),
+    status: route({ path: "status" }),
+    donors: route({ path: "donors" }),
+    donate: route({ path: "donate" }),
+    docs: route({ path: "docs" }),
+    support: route({ path: "support" }),
+    premium: route({ path: "premium" }),
+    repository: route({ path: "repository" }),
+    translate: route({ path: "translate" }),
+    invite: route({
+      path: "invite",
+      searchParams: { guildId: zod(z.string()) },
+    }),
+    legal: route({
+      path: "legal",
+      searchParams: {
+        page: zod(z.enum(LegalPagesSlugs).optional(), parser("string")),
+      },
+      children: {
+        page: route({
+          path: ":page",
+          params: {
+            page: zod(z.enum(LegalPagesSlugs), parser("string")).defined(),
+          },
+        }),
+      },
+    }),
+    dashboard: route({
+      path: "dashboard",
+      children: {
+        servers: route({
+          path: "servers",
+          children: {
+            server: route({
+              path: ":guildId",
+              params: { guildId: zod(z.string().optional()) },
+              children: {
+                channel: route({
+                  path: ":channelId",
+                  params: { channelId: zod(z.string()) },
+                }),
+                settings: route({ path: "settings" }),
+              },
+            }),
+            new: route({ path: "new" }),
+          },
+        }),
+      },
+    }),
+    admin: route({
+      path: "admin",
+      children: {
+        users: route({
+          path: "users",
+          children: {
+            user: route({
+              path: ":userId",
+              params: { userId: zod(z.string()).defined() },
+            }),
+          },
+        }),
+        guilds: route({ path: "guilds" }),
+        homepage: route({
+          path: "homepage",
+          children: {
+            demoServers: route({
+              path: "demo-servers",
+              children: {
+                demoServer: route({
+                  path: ":id",
+                  params: { id: zod(z.string()).defined() },
+                }),
+              },
+            }),
+          },
+        }),
+        donations: route({
+          path: "donations",
+          children: {
+            donation: route({
+              path: ":id",
+              params: { id: zod(z.string()).defined() },
+            }),
+            new: route({ path: "new" }),
+          },
+        }),
+      },
+    }),
+    api: route({
+      path: "api",
+      children: {
+        auth: route({
+          path: "auth",
+          searchParams: { redirect_to: zod(z.string().optional()) },
+          children: {
+            logout: route({ path: "logout" }),
+          },
+        }),
+      },
+    }),
+  },
 });

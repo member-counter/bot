@@ -21,4 +21,5 @@ export interface BotInstanceOptions {
   isPremium: boolean;
   isPrivileged: boolean;
   discordAPIRequestsPerSecond: number;
+  restProxyURL?: string;
 }

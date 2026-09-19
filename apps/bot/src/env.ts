@@ -1,13 +1,13 @@
 import { createEnv } from "@t3-oss/env-core";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "production", "test"]),
     WEBSITE_URL: z.string(),
     OFFICIAL_WEBSITE_URL: z.string().default("https://membercounter.app"),
-    NEXT_PUBLIC_BOT_REPO_URL: z.string(),
-    NEXT_PUBLIC_SUPPORT_URL: z.string(),
+    VITE_BOT_REPO_URL: z.string(),
+    VITE_SUPPORT_URL: z.string(),
     DISCORD_CLIENT_ID: z.string(),
     MAIN_DISCORD_CLIENT_ID: z.string(),
     DISCORD_BOT_INSTANCE_TOKEN: z.string(),
@@ -29,6 +29,7 @@ export const env = createEnv({
     DISCORD_BOT_INSTANCE_SHARDING_SHARD_MAX_CONCURRENCY: z.coerce.number(),
     DISCORD_BOT_INSTANCE_COMPUTE_PRIORITY: z.coerce.number(),
     DISCORD_BOT_INSTANCE_DISCORD_API_RPS: z.coerce.number(),
+    DISCORD_BOT_INSTANCE_REST_PROXY_URL: z.string().optional(),
     DISCORD_BOT_INSTANCE_IS_PRIVILEGED: z
       .string()
       .toLowerCase()
