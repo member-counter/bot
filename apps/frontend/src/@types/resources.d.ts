@@ -126,7 +126,6 @@ interface Resources {
     dataSourceMetadata: {
       botStats: {
         description: "Return the total number of users and servers the bot is currently in. (You probably don't need this)";
-        keywords: "bot,stats,servers,guilds,users";
         name: "Bot stats";
       };
       channels: {
