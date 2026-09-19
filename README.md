@@ -13,7 +13,7 @@ Read this guide to setup this bot using docker: https://docs.membercounter.app/r
 ## Software requirements
 
 - [Git](https://git-scm.com/downloads)
-- [NodeJS 20](https://nodejs.org/en/download/)
+- [Node.js 22](https://nodejs.org/en/download/)
 - [Docker](https://www.docker.com/get-started)
 
 ## Clone the bot and install dependencies
@@ -50,6 +50,6 @@ Now you can start editing the code, when you save a file the app will be reloade
 
 ### Do a pull request
 
-Now just [create a pull request](https://github.com/eduardozgz/member-counter-bot/pulls) to the `dev` branch, and we will review it as soon as possible
+Now just [create a pull request](https://github.com/member-counter/bot/pulls) to the `dev` branch, and we will review it as soon as possible
 
 Happy coding!

@@ -126,6 +126,7 @@ interface Resources {
     dataSourceMetadata: {
       botStats: {
         description: "Return the total number of users and servers the bot is currently in. (You probably don't need this)";
+        keywords: "bot,stats,servers,guilds,users";
         name: "Bot stats";
       };
       channels: {
@@ -283,7 +284,7 @@ interface Resources {
         name: "Roles";
       };
       twitch: {
-        description: "Retrieve follower count and total view count for a Twitch channel.";
+        description: "Retrieve the follower count, live viewer count or channel name of a Twitch channel.";
         display: {
           returnKind: {
             channelName: "channel name";
@@ -705,13 +706,13 @@ interface Resources {
                     addNumber: "Add number...";
                     addition: "Addition";
                     division: "Division";
-                    modulo: "Modulo (Reminder of a division)";
+                    modulo: "Modulo (Remainder of a division)";
                     multiplication: "Multiplication";
                     numberList: "Number list";
                     numberWarning: "Remember to return a valid number";
                     operation: "Operation type";
-                    selectOperation: "Select a operation type";
-                    subtraction: "Substraction";
+                    selectOperation: "Select an operation type";
+                    subtraction: "Subtraction";
                   };
                   MembersOptions: {
                     CountOnlyBanned: {
