@@ -25,7 +25,7 @@
     "@trpc/server": "^11.8.1",
     "discord-api-types": "^0.38.37",
     "superjson": "^2.2.6",
-    "zod": "^4.3.5"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@mc/eslint-config": "workspace:*",

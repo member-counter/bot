@@ -28,7 +28,7 @@
     "gamedig": "^5.3.2",
     "ioredis": "^5.9.2",
     "superjson": "^2.2.6",
-    "zod": "^4.3.5"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@mc/eslint-config": "workspace:*",

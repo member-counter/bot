@@ -20,7 +20,7 @@
     "@mc/logger": "workspace:*",
     "@opentelemetry/api": "^1.9.0",
     "@t3-oss/env-core": "^0.13.10",
-    "zod": "^4.3.5"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@mc/eslint-config": "workspace:*",
