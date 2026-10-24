@@ -1,6 +1,6 @@
 ARG JS_SOURCE_IMAGE=scratch
 
-FROM node:22-alpine3.20 AS base
+FROM node:24-alpine AS base
 ENV DO_NOT_TRACK=1
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
