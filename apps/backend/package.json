@@ -30,7 +30,7 @@
     "helmet": "^8.1.0",
     "iron-session": "^8.0.4",
     "morgan": "^1.12.1",
-    "zod": "^4.3.5"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@mc/eslint-config": "workspace:*",
