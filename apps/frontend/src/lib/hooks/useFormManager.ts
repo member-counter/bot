@@ -143,8 +143,7 @@ export function useFormManager<OT, IT>(
   // but isDirty stays true, so without this a UI that renders `pending`
   // directly (rather than gating on secondsLeft like SaveButton does) would
   // stick on the autosaving state with nothing actually scheduled.
-  const pending =
-    autosave && isDirty && !isSaving && autosaveDeadline !== null;
+  const pending = autosave && isDirty && !isSaving && autosaveDeadline !== null;
   const autosaveStatus: AutosaveStatus = {
     pending,
     deadline: pending ? autosaveDeadline : null,
