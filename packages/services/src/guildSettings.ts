@@ -95,7 +95,9 @@ export const GuildSettingsService = {
         where: { discordChannelId },
       });
 
-      if (channel) return channel;
+      // Callers check permissions only for discordGuildId. Do not return the
+      // settings of a channel that belongs to a different guild.
+      if (channel?.discordGuildId === discordGuildId) return channel;
 
       // No settings row exists for this channel yet. This is a hot read path
       // (the dashboard channel settings form), so instead of writing a row on
@@ -171,18 +173,35 @@ export const GuildSettingsService = {
       });
     },
 
-    delete: async (discordChannelId: string) => {
-      await db.channel.delete({
-        where: { discordChannelId },
-      });
+    delete: async (discordChannelId: string, discordGuildId: string) => {
+      // Match both IDs. Callers check permissions only for discordGuildId.
+      await db.channel
+        .delete({
+          where: { discordChannelId, discordGuildId },
+        })
+        .catch(throwNotFoundOrThrow);
     },
 
     logs: {
       set: async (...args: Parameters<typeof setChannelLog>) => {
         return await setChannelLog(...args);
       },
-      get: async (...args: Parameters<typeof getChannelLogs>) => {
-        return await getChannelLogs(...args);
+      get: async (discordChannelId: string, discordGuildId: string) => {
+        // Callers check permissions only for discordGuildId. Do not return the
+        // logs of a channel that belongs to a different guild.
+        const channel = await db.channel.findUnique({
+          where: { discordChannelId },
+          select: { discordGuildId: true },
+        });
+
+        if (channel?.discordGuildId !== discordGuildId) {
+          return {
+            LastTemplateComputeError: null,
+            LastTemplateUpdateDate: null,
+          };
+        }
+
+        return await getChannelLogs(discordChannelId);
       },
 
       getAll: async (discordGuildId: string) => {

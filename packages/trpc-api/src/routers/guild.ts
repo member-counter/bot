@@ -272,7 +272,10 @@ export const guildRouter = createTRPCRouter({
             { live: true },
           );
 
-          await GuildSettingsService.channels.delete(discordChannelId);
+          await GuildSettingsService.channels.delete(
+            discordChannelId,
+            discordGuildId,
+          );
         },
       ),
 
@@ -296,7 +299,10 @@ export const guildRouter = createTRPCRouter({
               ),
           );
 
-          return await GuildSettingsService.channels.logs.get(discordChannelId);
+          return await GuildSettingsService.channels.logs.get(
+            discordChannelId,
+            discordGuildId,
+          );
         }),
 
       getAll: protectedProcedure
