@@ -31,10 +31,37 @@ export const restrictEnvAccess = tseslint.config({
   },
 });
 
+/**
+ * Only @mc/services and @mc/db can use this config. It lets them import the DB
+ * client.
+ */
+export const allowDbAccess = tseslint.config({
+  files: ["**/*.js", "**/*.ts", "**/*.tsx"],
+  rules: {
+    "no-restricted-imports": "off",
+  },
+});
+
 export default tseslint.config(
   {
     // Globally ignored files
     ignores: ["**/*.config.js"],
+  },
+  {
+    // Keep all DB access in @mc/services. Only @mc/services and @mc/db can
+    // import the client. See allowDbAccess.
+    files: ["**/*.js", "**/*.ts", "**/*.tsx"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          name: "@mc/db",
+          importNames: ["db"],
+          message:
+            "Do not access the DB directly. Add a function to a service in @mc/services instead.",
+        },
+      ],
+    },
   },
   {
     files: ["**/*.js", "**/*.ts", "**/*.tsx"],

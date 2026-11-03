@@ -1,7 +1,6 @@
 import type { Session } from "@mc/validators/Session";
 
 import { BitField } from "@mc/common/BitField";
-import { db } from "@mc/db";
 import { redis } from "@mc/redis";
 import { UserSettingsService } from "@mc/services/userSettings";
 
@@ -22,7 +21,6 @@ export const createTRPCContext = async (opts: { session: Session | null }) => {
 
   return {
     redis,
-    db,
     session: opts.session,
     authUser,
   };

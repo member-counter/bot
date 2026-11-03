@@ -1,4 +1,4 @@
-import baseConfig from "@mc/eslint-config/base";
+import baseConfig, { allowDbAccess } from "@mc/eslint-config/base";
 
 /** @type {import('typescript-eslint').Config} */
-export default [...baseConfig];
+export default [...baseConfig, ...allowDbAccess];
