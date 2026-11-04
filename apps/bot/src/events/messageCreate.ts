@@ -18,8 +18,9 @@ export const messageCreateEvent = new EventHandler({
     const userBadges = new BitField(userSettings.badges);
     userBadges.add(UserBadgesBitfield.PatPat);
 
+    // Write only the changed field. The user read can come from the cache, so
+    // a full write can put back old values of other fields.
     await UserSettingsService.update(userSettings.id, {
-      ...userSettings,
       badges: userBadges.bitfield,
     });
 
