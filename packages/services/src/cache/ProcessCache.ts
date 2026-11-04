@@ -5,6 +5,8 @@ import baseLogger from "@mc/logger";
 import { redis } from "@mc/redis";
 
 const logger = baseLogger.child({ component: "ProcessCache" });
+// Log errors as logger.error(message, error). The logger replaces the message
+// with the stack when the error is in a field, such as { error }.
 
 // All processes publish and receive invalidations on this channel.
 const INVALIDATION_CHANNEL = "process-cache:invalidate";
@@ -13,6 +15,10 @@ const INVALIDATION_CHANNEL = "process-cache:invalidate";
 // This spreads the reloads over time, so many entries do not expire together.
 const TTL_MIN_FACTOR = 0.8;
 const TTL_MAX_FACTOR = 1.2;
+
+// A write waits at most this time for the invalidation publish. The publish
+// continues after this time, and ioredis sends it when Redis is back.
+const PUBLISH_WAIT_MS = 1000;
 
 // Identify this process in invalidation messages. A process removes the keys
 // locally before it publishes, so it ignores its own messages.
@@ -27,6 +33,13 @@ interface InvalidationMessage {
 interface Entry<V> {
   value: V;
   expiresAt: number;
+}
+
+// The keys invalidated while one load is in progress. The load does not store
+// these keys, because their loaded values can be old.
+interface LoadState {
+  invalidatedKeys: Set<string>;
+  isCleared: boolean;
 }
 
 // A set for each name. If a module loads two times (for example, with hot
@@ -69,7 +82,7 @@ function ensureSubscriber() {
   // ioredis reconnects by itself. The "close" handler below disables the cache
   // until then, so log the error and do nothing more.
   subscriber.on("error", (error: unknown) => {
-    logger.warn("Cache invalidation subscriber error", { error });
+    logger.warn("Cache invalidation subscriber error", error);
   });
 
   // Messages sent while the connection is down are lost. Clear all entries
@@ -87,14 +100,12 @@ function ensureSubscriber() {
         isSubscribed = true;
       })
       .catch((error: unknown) => {
-        logger.error("Failed to subscribe to cache invalidations", { error });
+        logger.error("Failed to subscribe to cache invalidations", error);
       });
   });
 
   subscriber.connect().catch((error: unknown) => {
-    logger.error("Failed to connect the cache invalidation subscriber", {
-      error,
-    });
+    logger.error("Failed to connect the cache invalidation subscriber", error);
   });
 }
 
@@ -112,9 +123,7 @@ export class ProcessCache<V> {
   private readonly entries = new Map<string, Entry<V>>();
   // Loads that are in progress. Each value is a private copy of the result.
   private readonly pending = new Map<string, Promise<V>>();
-  // Each invalidation increments this value. A load that started before an
-  // invalidation does not store its result, because the result can be old.
-  private generation = 0;
+  private readonly activeLoads = new Set<LoadState>();
 
   constructor(
     private readonly options: {
@@ -170,10 +179,15 @@ export class ProcessCache<V> {
     }
 
     if (keysToLoad.length) {
-      const loaded = await this.load(keysToLoad, load);
-      loaded.forEach((value, key) => result.set(key, value));
+      waits.push(
+        this.load(keysToLoad, load).then((loaded) => {
+          loaded.forEach((value, key) => result.set(key, value));
+        }),
+      );
     }
 
+    // Give all promises to Promise.all before the first await. Then a failed
+    // load is always handled, and never becomes an unhandled rejection.
     await Promise.all(waits);
     return result;
   }
@@ -189,20 +203,34 @@ export class ProcessCache<V> {
       cache: this.options.name,
       keys,
     };
-    await redis
+    const publish = redis
       .publish(INVALIDATION_CHANNEL, JSON.stringify(message))
       .catch((error: unknown) => {
-        // Other processes keep the old value until the TTL expires.
-        logger.error("Failed to publish a cache invalidation", {
+        // A process that has lost Redis also clears its cache, because its
+        // subscriber disconnects. Only a process that still has Redis keeps
+        // the old value, until the TTL expires.
+        logger.error(
+          `Failed to publish a cache invalidation for "${message.cache}"`,
           error,
-          message,
-        });
+        );
       });
+
+    // Do not let a slow Redis block the write that called this function.
+    let timeout: NodeJS.Timeout | undefined;
+    await Promise.race([
+      publish,
+      new Promise<void>((resolve) => {
+        timeout = setTimeout(resolve, PUBLISH_WAIT_MS);
+      }),
+    ]);
+    clearTimeout(timeout);
   }
 
   /** Remove the keys only in this process. */
   invalidateLocal(keys: string[]) {
-    this.generation++;
+    this.activeLoads.forEach((state) =>
+      keys.forEach((key) => state.invalidatedKeys.add(key)),
+    );
     keys.forEach((key) => {
       this.entries.delete(key);
       // New reads must start a new load. The current load can have old data.
@@ -211,7 +239,7 @@ export class ProcessCache<V> {
   }
 
   clear() {
-    this.generation++;
+    this.activeLoads.forEach((state) => (state.isCleared = true));
     this.entries.clear();
     this.pending.clear();
   }
@@ -220,8 +248,13 @@ export class ProcessCache<V> {
     keys: string[],
     load: (missingKeys: string[]) => Promise<Map<string, V>>,
   ) {
-    const generationAtLoad = this.generation;
-    const canStore = isSubscribed;
+    // Store results only when the cache was in use for the whole load. A
+    // disconnect during the load clears the cache and sets isCleared.
+    const state: LoadState = {
+      invalidatedKeys: new Set(),
+      isCleared: !isSubscribed,
+    };
+    this.activeLoads.add(state);
 
     const batch = load(keys).then((loaded) => {
       for (const key of keys) {
@@ -250,14 +283,16 @@ export class ProcessCache<V> {
     try {
       const loaded = await batch;
 
-      if (canStore && isSubscribed && generationAtLoad === this.generation) {
+      if (!state.isCleared && isSubscribed) {
         for (const [key, promise] of perKey) {
+          if (state.invalidatedKeys.has(key)) continue;
           this.set(key, await promise);
         }
       }
 
       return loaded;
     } finally {
+      this.activeLoads.delete(state);
       for (const [key, promise] of perKey) {
         // Do not remove a newer load that started after an invalidation.
         if (this.pending.get(key) === promise) this.pending.delete(key);

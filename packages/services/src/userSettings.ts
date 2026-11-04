@@ -1,3 +1,4 @@
+import { setTimeout as sleep } from "node:timers/promises";
 import type { User } from "@mc/db";
 
 import { db, NotFoundError } from "@mc/db";
@@ -6,6 +7,13 @@ import { ProcessCache } from "./cache/ProcessCache";
 import { invalidateDonations } from "./donations";
 
 export type UserData = Awaited<ReturnType<typeof db.user.update>>;
+
+// updateBadges tries again when another write changes the badges between its
+// read and its write. Stop after this number of tries.
+const UPDATE_BADGES_MAX_TRIES = 10;
+// Before each new try, wait a random time up to this value multiplied by the
+// try number. The random wait stops concurrent writers from colliding again.
+const UPDATE_BADGES_RETRY_WAIT_MS = 20;
 
 // Key: discordUserId. Value: null when the user has no settings row.
 // The TTL is only a safety limit. Writes in this file invalidate the entries.
@@ -79,6 +87,48 @@ export const UserSettingsService = {
     });
     await userCache.invalidate([user.discordUserId]);
     return user;
+  },
+
+  /**
+   * Change the badges of a user, and create the user if it does not exist.
+   * The read and the write go to the DB, not to the cache. The write applies
+   * only when the badges did not change after the read, so a concurrent
+   * badge change is never lost.
+   */
+  updateBadges: async (
+    discordUserId: string,
+    change: (badges: bigint) => bigint,
+  ) => {
+    for (let attempt = 1; attempt <= UPDATE_BADGES_MAX_TRIES; attempt++) {
+      if (attempt > 1) {
+        await sleep(Math.random() * UPDATE_BADGES_RETRY_WAIT_MS * attempt);
+      }
+
+      const { badges } = await db.user.upsert({
+        create: { discordUserId },
+        where: { discordUserId },
+        update: {},
+        select: { badges: true },
+      });
+
+      const newBadges = change(badges);
+      // MongoDB counts no changed row when the value stays the same.
+      if (newBadges === badges) return;
+
+      const result = await db.user.updateMany({
+        where: { discordUserId, badges },
+        data: { badges: newBadges },
+      });
+
+      if (result.count === 1) {
+        await userCache.invalidate([discordUserId]);
+        return;
+      }
+    }
+
+    throw new Error(
+      `Could not update the badges of user ${discordUserId}: they changed during each try`,
+    );
   },
 
   delete: async (discordUserId: string) => {

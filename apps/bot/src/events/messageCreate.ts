@@ -13,16 +13,10 @@ export const messageCreateEvent = new EventHandler({
       return;
     }
 
-    const userSettings = await UserSettingsService.upsert(message.author.id);
-
-    const userBadges = new BitField(userSettings.badges);
-    userBadges.add(UserBadgesBitfield.PatPat);
-
-    // Write only the changed field. The user read can come from the cache, so
-    // a full write can put back old values of other fields.
-    await UserSettingsService.update(userSettings.id, {
-      badges: userBadges.bitfield,
-    });
+    await UserSettingsService.updateBadges(
+      message.author.id,
+      (badges) => new BitField(badges).add(UserBadgesBitfield.PatPat).bitfield,
+    );
 
     // Huevo de pascua:
     await message.channel.send(

@@ -88,6 +88,15 @@ export const GuildSettingsService = {
     discordGuildId: string,
     data?: Parameters<typeof db.guild.upsert>[0]["update"],
   ) => {
+    // Without data, an upsert changes nothing on an existing row. Read it
+    // from the cache, and do not send an invalidation. The dashboard live
+    // preview calls this on every template evaluation.
+    if (!data) {
+      const result = await guildCache.getMany([discordGuildId], loadGuilds);
+      const cached = result.get(discordGuildId);
+      if (cached) return cached;
+    }
+
     const guild = await db.guild.upsert({
       create: { discordGuildId, formatSettings: {} },
       where: { discordGuildId },
