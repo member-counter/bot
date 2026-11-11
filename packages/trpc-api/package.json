@@ -15,7 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@discordjs/rest": "^2.6.0",
+    "@discordjs/rest": "^2.6.3",
     "@mc/common": "workspace:*",
     "@mc/db": "workspace:*",
     "@mc/redis": "workspace:*",
@@ -23,7 +23,7 @@
     "@mc/trpc-redis": "workspace:^",
     "@mc/validators": "workspace:*",
     "@trpc/server": "^11.8.1",
-    "discord-api-types": "^0.38.37",
+    "discord-api-types": "^0.38.58",
     "superjson": "^2.2.6",
     "zod": "^4.6.6"
   },
