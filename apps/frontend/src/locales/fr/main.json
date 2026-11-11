@@ -9,6 +9,9 @@
       "textChannel": "Salon textuel",
       "voiceChannel": "Salon vocal"
     },
+    "hiddenCategory": "Catégorie masquée",
+    "hiddenChannel": "Salon masqué",
+    "hiddenChannelHint": "Le bot ne peut pas voir ce salon, son nom est donc masqué. Accordez au bot la permission Voir le salon pour afficher le nom.",
     "knownError": "Erreur",
     "knownErrors": {
       "BAD_REQUEST": "La requête était invalide.",

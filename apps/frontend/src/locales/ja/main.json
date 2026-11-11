@@ -9,6 +9,9 @@
       "textChannel": "テキストチャンネル",
       "voiceChannel": "ボイスチャンネル"
     },
+    "hiddenCategory": "非表示のカテゴリ",
+    "hiddenChannel": "非表示のチャンネル",
+    "hiddenChannelHint": "ボットはこのチャンネルを閲覧できないため、名前が非表示になっています。名前を表示するには、ボットに「チャンネルの閲覧」権限を付与してください。",
     "knownError": "エラー",
     "knownErrors": {
       "BAD_REQUEST": "リクエストが無効です。",

@@ -37,6 +37,12 @@ export default [
                 "Use `import { env } from '~/env'` instead to ensure validated types.",
             },
             {
+              name: "@mc/db",
+              importNames: ["db"],
+              message:
+                "Do not access the DB directly. Add a function to a service in @mc/services instead.",
+            },
+            {
               name: "react-router",
               importNames: ["useNavigate", "Link", "NavLink"],
               message:

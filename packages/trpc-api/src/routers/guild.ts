@@ -1,73 +1,11 @@
-import { TRPCError } from "@trpc/server";
 import { PermissionFlagsBits } from "discord-api-types/v10";
 import { z } from "zod";
 
-import { BitField } from "@mc/common/BitField";
 import { UserPermissions } from "@mc/common/UserPermissions";
-import { botAPIConsumer } from "@mc/services/botAPI/botAPIConsumer";
-import { DiscordService } from "@mc/services/discord";
 import { GuildSettingsService } from "@mc/services/guildSettings";
 
-import type { TRPCContext } from "../context";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
-import { Errors } from "../utils/errors";
-
-async function checkUserPermissions(
-  ctx: TRPCContext,
-  input: { discordGuildId: string },
-  check: (requiredPermissions: {
-    userPermissions: BitField;
-    userPermissionsInGuild: BitField;
-  }) => boolean,
-  { live = false }: { live?: boolean } = {},
-) {
-  if (!ctx.authUser || !ctx.session)
-    throw new TRPCError({
-      code: "UNAUTHORIZED",
-      message: Errors.NotAuthenticated,
-    });
-
-  const { discordGuildId } = input;
-  const { accessToken } = ctx.session;
-  const { discordUserId } = ctx.authUser;
-
-  // The user's guild list already includes their permissions in each guild
-  // and is served from a short-lived cache, unlike asking the bot fleet,
-  // which costs a Redis round trip to another server plus a Discord API call.
-  const fetchCachedPermissions = async () => {
-    const { userGuilds } = await DiscordService.userGuilds(accessToken);
-    return new BitField(userGuilds.get(discordGuildId)?.permissions);
-  };
-
-  const fetchLivePermissions = async () => {
-    const member = await botAPIConsumer.discord.getGuildMember.query({
-      guildId: discordGuildId,
-      memberId: discordUserId,
-    });
-
-    return new BitField(member.permissions);
-  };
-
-  // Reads accept cached permissions, but mutations re-check live member
-  // permissions so a demoted admin can't keep writing until the cache expires.
-  const userPermissionsInGuild = live
-    ? await fetchLivePermissions().catch(fetchCachedPermissions)
-    : await fetchCachedPermissions().catch(() =>
-        fetchLivePermissions().catch(() => new BitField(0n)),
-      );
-
-  const hasPermission = check({
-    userPermissions: ctx.authUser.permissions,
-    userPermissionsInGuild,
-  });
-
-  if (!hasPermission) {
-    throw new TRPCError({
-      code: "UNAUTHORIZED",
-      message: Errors.NotAuthorized,
-    });
-  }
-}
+import { checkUserPermissions } from "../utils/checkUserPermissions";
 
 export const guildRouter = createTRPCRouter({
   get: protectedProcedure
@@ -272,7 +210,10 @@ export const guildRouter = createTRPCRouter({
             { live: true },
           );
 
-          await GuildSettingsService.channels.delete(discordChannelId);
+          await GuildSettingsService.channels.delete(
+            discordChannelId,
+            discordGuildId,
+          );
         },
       ),
 
@@ -296,7 +237,10 @@ export const guildRouter = createTRPCRouter({
               ),
           );
 
-          return await GuildSettingsService.channels.logs.get(discordChannelId);
+          return await GuildSettingsService.channels.logs.get(
+            discordChannelId,
+            discordGuildId,
+          );
         }),
 
       getAll: protectedProcedure

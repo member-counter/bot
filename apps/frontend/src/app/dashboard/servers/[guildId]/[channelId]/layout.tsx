@@ -8,7 +8,11 @@ import { Separator } from "@mc/ui/separator";
 
 import { api } from "~/lib/trpc";
 import { MenuButton } from "../../../Menu";
-import { ChannelLabelMap, useChannelIcon } from "../ChannelMaps";
+import {
+  channelDisplayName,
+  ChannelLabelMap,
+  useChannelIcon,
+} from "../ChannelMaps";
 
 export default function Layout() {
   const { channelId, guildId } = useTypedParams(
@@ -27,7 +31,9 @@ export default function Layout() {
   if (channel) label = ChannelLabelMap(t)[channel.type];
   label ??= t("common.unknownChannelType");
 
-  const name = channel?.name ?? t("common.unknownChannel");
+  const name = channel
+    ? channelDisplayName(t, channel)
+    : t("common.unknownChannel");
 
   return (
     <div className="flex h-full flex-col">

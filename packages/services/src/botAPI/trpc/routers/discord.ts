@@ -1,3 +1,4 @@
+import { ChannelFlags } from "discord.js";
 import { z } from "zod";
 
 import { cachedFetch } from "@mc/common/redis/cachedFetch";
@@ -60,6 +61,9 @@ export const discordRouter = createTRPCRouter({
           guild.channels.cache.mapValues((channel) => ({
             id: channel.id,
             name: channel.name,
+            // The bot cannot view this channel. The name is a placeholder and
+            // the permissions below are not the real ones.
+            obfuscated: channel.flags.has(ChannelFlags.ChannelObfuscated),
             type: channel.type,
             botPermissions: channel
               .permissionsFor(guildMember)

@@ -6,7 +6,10 @@ import invariant from "tiny-invariant";
 import { routes } from "@mc/common/Routes";
 
 import type { ComboboxProps } from "..";
-import { useChannelIcon } from "~/app/dashboard/servers/[guildId]/ChannelMaps";
+import {
+  channelDisplayName,
+  useChannelIcon,
+} from "~/app/dashboard/servers/[guildId]/ChannelMaps";
 import { mentionColor } from "~/lib/mentionColor";
 import { api } from "~/lib/trpc";
 import { TinyIconButton } from "../TinyIconButton";
@@ -45,7 +48,16 @@ export const ChannelItem = ({ item, isSelected, onRemove }: Props) => {
           }}
         >
           <Icon className="mr-2 inline-block h-4 w-4" />
-          {channel?.name ?? t("common.unknownChannel")}
+          {channel
+            ? channelDisplayName(t, channel)
+            : t("common.unknownChannel")}
+          {channel?.obfuscated && (
+            // Hidden channels have the same label. Show the ID to tell them
+            // apart.
+            <span className="ml-2 text-xs text-muted-foreground">
+              {channel.id}
+            </span>
+          )}
         </div>
       </div>
       {onRemove && (

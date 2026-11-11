@@ -9,6 +9,9 @@
       "textChannel": "Tekstkanaal",
       "voiceChannel": "Spraakkanaal"
     },
+    "hiddenCategory": "Verborgen categorie",
+    "hiddenChannel": "Verborgen kanaal",
+    "hiddenChannelHint": "De bot kan dit kanaal niet zien, daarom is de naam verborgen. Geef de bot het recht Kanaal bekijken om de naam te tonen.",
     "knownError": "Fout",
     "knownErrors": {
       "BAD_REQUEST": "Het verzoek was ongeldig.",

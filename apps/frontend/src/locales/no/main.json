@@ -9,6 +9,9 @@
       "textChannel": "Tekstkanal",
       "voiceChannel": "Talekanal"
     },
+    "hiddenCategory": "Skjult kategori",
+    "hiddenChannel": "Skjult kanal",
+    "hiddenChannelHint": "Boten kan ikke se denne kanalen, så navnet er skjult. Gi boten Vis kanal-tillatelsen for å vise navnet.",
     "knownError": "Feil",
     "knownErrors": {
       "BAD_REQUEST": "Forespørselen var ugyldig.",

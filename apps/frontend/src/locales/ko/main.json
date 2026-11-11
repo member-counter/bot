@@ -9,6 +9,9 @@
       "textChannel": "텍스트 채널",
       "voiceChannel": "음성 채널"
     },
+    "hiddenCategory": "숨겨진 카테고리",
+    "hiddenChannel": "숨겨진 채널",
+    "hiddenChannelHint": "봇이 이 채널을 볼 수 없어서 이름이 숨겨져 있습니다. 이름을 표시하려면 봇에 채널 보기 권한을 부여하세요.",
     "knownError": "오류",
     "knownErrors": {
       "BAD_REQUEST": "잘못된 요청입니다.",

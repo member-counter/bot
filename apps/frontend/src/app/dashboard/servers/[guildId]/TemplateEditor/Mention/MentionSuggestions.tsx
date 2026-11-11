@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AtSignIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
 import { Editor, Range, Transforms } from "slate";
 import { ReactEditor, useSlate } from "slate-react";
@@ -14,7 +15,7 @@ import { Portal } from "@mc/ui/portal";
 import type { GuildChannel, GuildRole } from "../d-types";
 import { mentionColor } from "~/lib/mentionColor";
 import { api } from "~/lib/trpc";
-import { useChannelIcon } from "../../ChannelMaps";
+import { channelDisplayName, useChannelIcon } from "../../ChannelMaps";
 import { insertMention } from "./insertMention";
 
 const SearchType = {
@@ -29,6 +30,7 @@ export function MentionSuggestions(props: {
 }) {
   const { guildId } = useTypedParams(routes.dashboard.servers.server);
   invariant(guildId, "Expected guildId to be defined");
+  const { t } = useTranslation();
   const suggestionBoxRef = useRef<HTMLDivElement>(null);
   const editor = useSlate();
   const { channels, roles } = api.discord.getGuild.useQuery({ id: guildId })
@@ -41,21 +43,32 @@ export function MentionSuggestions(props: {
   const [search, setSearch] = useState("");
   const [searchType, setSearchType] = useState<SearchType>(SearchType.Role);
 
-  const suggestableItems: (GuildChannel | GuildRole)[] = useMemo(
-    () => [...(searchType === SearchType.Role ? roles : channels).values()],
-    [searchType, roles, channels],
-  );
+  const suggestableItems: (GuildChannel | GuildRole)[] = useMemo(() => {
+    if (searchType === SearchType.Role) return [...roles.values()];
+
+    // Put hidden channels last. All of them match the same label words, and
+    // equal matches keep this order. Real names stay first in the list.
+    const allChannels = [...channels.values()];
+    return [
+      ...allChannels.filter((channel) => !channel.obfuscated),
+      ...allChannels.filter((channel) => channel.obfuscated),
+    ];
+  }, [searchType, roles, channels]);
 
   // Splitting names only depends on the item set, not the live search query,
   // so it's memoized separately to avoid re-splitting on every keystroke.
   const searchable: string[][] = useMemo(
     () =>
-      suggestableItems.map((item) =>
-        item.name.split(
-          "type" in item && channelNameIsHyphenated(item.type) ? "-" : " ",
-        ),
-      ),
-    [suggestableItems],
+      suggestableItems.map((item) => {
+        const isChannel = "type" in item;
+        // A hidden channel has no real name. Search it by the label or by ID.
+        if (isChannel && item.obfuscated)
+          return [...channelDisplayName(t, item).split(" "), item.id];
+        return item.name.split(
+          isChannel && channelNameIsHyphenated(item.type) ? "-" : " ",
+        );
+      }),
+    [suggestableItems, t],
   );
 
   const suggestedItems: (GuildChannel | GuildRole)[] = useMemo(
@@ -194,6 +207,7 @@ function SuggestedItem({
   onClick: () => void;
   isSelected: boolean;
 }) {
+  const { t } = useTranslation();
   const isRole = "color" in item;
   const ChannelIcon = useChannelIcon(isRole ? "" : item.id);
   const Icon = isRole ? AtSignIcon : ChannelIcon;
@@ -217,7 +231,12 @@ function SuggestedItem({
       style={style}
     >
       <Icon className={cn("mr-2 inline-block h-4 w-4", { "mr-0": isRole })} />
-      {item.name}
+      {isRole ? item.name : channelDisplayName(t, item)}
+      {!isRole && item.obfuscated && (
+        // Hidden channels have the same label. Show the ID to tell them
+        // apart.
+        <span className="ml-2 text-xs text-muted-foreground">{item.id}</span>
+      )}
     </div>
   );
 }

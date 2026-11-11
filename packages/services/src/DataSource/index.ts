@@ -1,19 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-import assert from "assert";
-import type { DataSource, DataSourceId } from "@mc/common/DataSource";
+import type { DataSourceId } from "@mc/common/DataSource";
 
 import { isTextLikeChannel } from "@mc/common/channelType";
-import { DATA_SOURCE_DELIMITER } from "@mc/common/DataSource";
 import { KnownError } from "@mc/common/KnownError/index";
+import { LruMap } from "@mc/common/LruMap";
 
+import type {
+  CompiledDataSource,
+  CompiledDataSourcePart,
+} from "./compileTemplate";
 import type {
   DataSourceContext,
   DataSourceExecuteResult,
   PreparedDataSourceFormatSettings,
 } from "./DataSourceEvaluator";
+import { getCompiledTemplate, resolveValue } from "./compileTemplate";
+import { EvaluationScheduler } from "./DataSourceEvaluator/EvaluationScheduler";
 import dataSourceEvaluators from "./DataSourceEvaluator/evaluators";
-import { ExplorerStackItem } from "./ExplorerStackItem";
 import { FallbackUsedError } from "./FallbackUsedError";
 
 class DataSourceService {
@@ -24,34 +26,64 @@ class DataSourceService {
     ]),
   );
 
+  private static readonly EVALUATION_TIMEOUT_MS = 60_000;
+
+  private static readonly compactFormatters = new LruMap<
+    string,
+    Intl.NumberFormat
+  >(100);
+
+  private static getCompactFormatter(locale: string) {
+    let formatter = DataSourceService.compactFormatters.get(locale);
+
+    if (!formatter) {
+      // This throws a RangeError for an invalid locale, before the cache
+      // changes.
+      formatter = new Intl.NumberFormat(locale, { notation: "compact" });
+      DataSourceService.compactFormatters.set(locale, formatter);
+    }
+
+    return formatter;
+  }
+
   constructor(private ctx: DataSourceContext) {}
 
   public async evaluateTemplate(
     template: string,
   ): Promise<{ result: string; nonFatalErrors: Error[] }> {
     const nonFatalErrors: Error[] = [];
-    const parts = template.split(DATA_SOURCE_DELIMITER);
     let result = "";
 
-    for (let i = 0; i < parts.length; i++) {
-      if (i % 2 === 0) {
-        result += parts[i];
-      } else {
-        const dataSourcePart = parts[i];
-        assert(typeof dataSourcePart === "string", "expected string");
+    // One timeout for the whole template. It cancels the evaluation: the
+    // evaluators stop at their next turn of the event loop, and do not
+    // continue to use CPU.
+    const cancellation = new AbortController();
+    const scheduler = new EvaluationScheduler(cancellation.signal);
 
-        const timeoutPromise = new Promise<never>((_, reject) =>
-          setTimeout(
-            () => reject(new KnownError("EVALUATION_TIMEOUT")),
-            60_000,
-          ),
-        );
+    let timeout: NodeJS.Timeout | undefined;
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      timeout = setTimeout(() => {
+        cancellation.abort();
+        reject(new KnownError("EVALUATION_TIMEOUT"));
+      }, DataSourceService.EVALUATION_TIMEOUT_MS);
+    });
+    // A template without data sources never waits for this promise. Handle
+    // its rejection, so it can never be an unhandled rejection.
+    timeoutPromise.catch(() => undefined);
 
-        result += await Promise.race([
-          this.evaluateDataSource(dataSourcePart, nonFatalErrors),
-          timeoutPromise,
-        ]);
+    try {
+      for (const part of getCompiledTemplate(template)) {
+        if (typeof part === "string") {
+          result += part;
+        } else {
+          result += await Promise.race([
+            this.evaluateDataSource(part, nonFatalErrors, scheduler),
+            timeoutPromise,
+          ]);
+        }
       }
+    } finally {
+      clearTimeout(timeout);
     }
 
     result = result.trim();
@@ -70,10 +102,13 @@ class DataSourceService {
   }
 
   private async evaluateDataSource(
-    unparsedRawDataSource: string,
+    { compiled, errorType }: CompiledDataSourcePart,
     nonFatalErrors: Error[],
+    scheduler: EvaluationScheduler,
   ): Promise<string> {
-    const dataSource = this.parseRawDataSource(unparsedRawDataSource);
+    if (!compiled) throw new KnownError(errorType);
+
+    const dataSource = compiled.root;
 
     const guildFormatSettings = this.ctx.guildSettings.formatSettings;
 
@@ -93,16 +128,16 @@ class DataSourceService {
         ),
     };
 
-    const result = await this.exploreAndExecute(
-      dataSource,
+    const result = await this.executeCompiled(
+      compiled,
       formatSettings,
       nonFatalErrors,
+      scheduler,
     );
 
-    assert(
-      typeof result === "number" || typeof result === "string",
-      new KnownError("UNKNOWN_EVALUATION_RETURN_TYPE"),
-    );
+    if (typeof result !== "number" && typeof result !== "string") {
+      throw new KnownError("UNKNOWN_EVALUATION_RETURN_TYPE");
+    }
 
     return this.formatDataSourceResult(result, formatSettings);
   }
@@ -120,9 +155,7 @@ class DataSourceService {
     }
 
     if (compactNotation) {
-      result = new Intl.NumberFormat(locale, {
-        notation: "compact",
-      }).format(result);
+      result = DataSourceService.getCompactFormatter(locale).format(result);
     }
 
     if (isTextLikeChannel(this.ctx.channelType)) {
@@ -142,61 +175,45 @@ class DataSourceService {
     return result.toString();
   }
 
-  private async exploreAndExecute(
-    rawDataSource: DataSource,
+  /**
+   * Execute the data sources of a compiled data source in their execution
+   * order. A result replaces its node in the input of the data source that
+   * contains it. The compiled data source does not change.
+   */
+  private async executeCompiled(
+    compiled: CompiledDataSource,
     formatSettings: PreparedDataSourceFormatSettings,
     nonFatalErrors: Error[],
+    scheduler: EvaluationScheduler,
   ): Promise<unknown> {
-    const rootItem = new ExplorerStackItem({ root: rawDataSource }, "root");
-    const queue: ExplorerStackItem[] = [rootItem];
-
-    let iterationsLeft = 50_000;
-    while (--iterationsLeft) {
-      const toExploreMore: ExplorerStackItem[] = [];
-      const item = queue.pop();
-      if (!item) break;
-
-      if (!item.explored) {
-        item.explored = true;
-        for (const childKey in item.node) {
-          const childIsObject =
-            typeof item.node[childKey] === "object" &&
-            item.node[childKey] !== null;
-          if (
-            childIsObject &&
-            Object.prototype.hasOwnProperty.call(item.node, childKey)
-          ) {
-            toExploreMore.push(new ExplorerStackItem(item.node, childKey));
-          }
-        }
-      }
-
-      if (!toExploreMore.length) {
-        const nodeIsADataSource = Object.prototype.hasOwnProperty.call(
-          item.node,
-          "id",
-        );
-        if (nodeIsADataSource) {
-          item.node = await this.executeDataSource(
-            {
-              ...item.node,
-              format: formatSettings,
-            },
-            nonFatalErrors,
-          );
-        }
-      } else {
-        queue.push(item, ...toExploreMore);
-      }
-    }
-
-    if (!iterationsLeft) {
+    if (compiled.isTooComplex) {
       throw new Error(
-        `Max iterations (${iterationsLeft}) reached for ${JSON.stringify(rawDataSource)}`,
+        `Max iterations (0) reached for ${JSON.stringify(compiled.root)}`,
       );
     }
 
-    return rootItem.node as unknown;
+    const results = new Map<object, unknown>();
+
+    for (const node of compiled.executionOrder) {
+      // Most evaluators are synchronous, so the await below does not give
+      // the event loop a turn. Give it one here for templates with many
+      // data sources.
+      if (scheduler.shouldYield()) await scheduler.yield();
+
+      const input = resolveValue(node, compiled, results) as object;
+      results.set(
+        node,
+        await this.executeDataSource(
+          { ...input, format: formatSettings } as Parameters<
+            DataSourceService["executeDataSource"]
+          >[0],
+          nonFatalErrors,
+          scheduler,
+        ),
+      );
+    }
+
+    return results.get(compiled.root);
   }
 
   private async executeDataSource(
@@ -210,10 +227,11 @@ class DataSourceService {
       options: unknown;
     },
     nonFatalErrors: Error[],
+    scheduler: EvaluationScheduler,
   ): Promise<DataSourceExecuteResult> {
     const dataSourceEvaluator = DataSourceService.dataSourceEvaluators[id];
 
-    assert(dataSourceEvaluator, new KnownError("UNKNOWN_DATA_SOURCE"));
+    if (!dataSourceEvaluator) throw new KnownError("UNKNOWN_DATA_SOURCE");
 
     // Validate locale, default to en-US if invalid (less than 2 characters)
     const validatedFormat = {
@@ -226,6 +244,7 @@ class DataSourceService {
         format: validatedFormat,
         options: options as never,
         ctx: this.ctx,
+        scheduler,
       });
     } catch (error) {
       if (error instanceof FallbackUsedError) {
@@ -234,21 +253,6 @@ class DataSourceService {
       }
       throw error;
     }
-  }
-
-  private parseRawDataSource(unparsedRawDataSource: string): DataSource {
-    let parsed: DataSource;
-
-    try {
-      parsed = JSON.parse(unparsedRawDataSource) as DataSource;
-    } catch {
-      throw new KnownError("DELIMITED_DATA_SOURCE_IS_ILLEGAL_JSON");
-    }
-
-    if (!Object.prototype.hasOwnProperty.call(parsed, "id"))
-      throw new KnownError("DELIMITED_DATA_SOURCE_IS_INVALID");
-
-    return parsed;
   }
 }
 

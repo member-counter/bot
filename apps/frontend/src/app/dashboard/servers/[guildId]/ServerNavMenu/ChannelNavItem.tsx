@@ -19,12 +19,13 @@ import { InfoToolip } from "~/app/components/InfoTooltip";
 import { MenuContext } from "~/app/dashboard/Menu";
 import { Link } from "~/lib/navigation";
 import { api } from "~/lib/trpc";
-import { useChannelIcon } from "../ChannelMaps";
+import { channelDisplayName, useChannelIcon } from "../ChannelMaps";
 
 export function ChannelNavItem(channel: {
   id: string;
   type: ChannelType;
   name: string;
+  obfuscated: boolean;
   everyonePermissions: string;
   onPrefetch?: () => void;
 }) {
@@ -74,6 +75,7 @@ export function ChannelNavItem(channel: {
                 "rounded-sm px-2 py-1.5 text-sm": !isCategory,
                 "hover:text-muted-accent-foreground cursor-not-allowed text-muted-foreground":
                   !isSupported,
+                "text-muted-foreground": channel.obfuscated,
                 "text-foreground": isCategory && isSelected,
                 "bg-accent text-foreground": !isCategory && isSelected,
                 "hover:bg-accent": isSupported && !isCategory,
@@ -95,18 +97,23 @@ export function ChannelNavItem(channel: {
                 )}
                 aria-hidden
               />
-              {channel.name}
+              {channelDisplayName(t, channel)}
             </span>
             {hasCounter && (
               <InfoToolip
                 text={
-                  hasIssue
-                    ? t(
-                        "pages.dashboard.servers.ChannelNavItem.infoTooltip.issue",
-                      )
-                    : t(
-                        "pages.dashboard.servers.ChannelNavItem.infoTooltip.enabled",
-                      )
+                  <>
+                    {hasIssue
+                      ? t(
+                          "pages.dashboard.servers.ChannelNavItem.infoTooltip.issue",
+                        )
+                      : t(
+                          "pages.dashboard.servers.ChannelNavItem.infoTooltip.enabled",
+                        )}
+                    {channel.obfuscated && (
+                      <div>{t("common.hiddenChannelHint")}</div>
+                    )}
+                  </>
                 }
               >
                 <div className="ml-auto">
@@ -133,6 +140,11 @@ export function ChannelNavItem(channel: {
           <TooltipContent>
             {t("pages.dashboard.servers.ChannelNavItem.unsupportedChannelType")}
           </TooltipContent>
+        )}
+        {/* The counter dot has its own tooltip, which also shows this hint.
+            Do not open two tooltips at the same time. */}
+        {isSupported && channel.obfuscated && !hasCounter && (
+          <TooltipContent>{t("common.hiddenChannelHint")}</TooltipContent>
         )}
       </Tooltip>
     </TooltipProvider>

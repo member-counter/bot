@@ -48,6 +48,21 @@ export function ChannelLabelMap(
   };
 }
 
+/**
+ * Name to show for a channel. Discord hides the real name of a channel the bot
+ * cannot view, so show a translated label for it.
+ */
+export function channelDisplayName(
+  t: TFunction,
+  channel: { name: string; obfuscated: boolean; type: ChannelType },
+): string {
+  if (!channel.obfuscated) return channel.name;
+
+  return channel.type === ChannelType.GuildCategory
+    ? t("common.hiddenCategory")
+    : t("common.hiddenChannel");
+}
+
 export function useChannelIcon(
   channelId: string,
   channelListView = false,
@@ -58,11 +73,14 @@ export function useChannelIcon(
   const channel = guild.data?.channels.get(channelId);
 
   const isRulesChannel = guild.data?.rulesChannelId === channel?.id;
+  // The permissions of a hidden channel are not the real ones. Show the lock
+  // because the bot cannot view the channel.
   const isShowingLockpad =
     channel?.type === ChannelType.GuildVoice &&
-    new BitField(channel.everyonePermissions).missing(
-      PermissionFlagsBits.Connect,
-    );
+    (channel.obfuscated ||
+      new BitField(channel.everyonePermissions).missing(
+        PermissionFlagsBits.Connect,
+      ));
   const isCategory = channel?.type === ChannelType.GuildCategory;
 
   let icon: LucideIcon | undefined;

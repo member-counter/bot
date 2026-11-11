@@ -20,7 +20,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@mc/ui/popover";
 
 import type { Searchable } from "../../../../../components/Combobox";
 import type { CustomText, EmojiElement } from "../custom-types";
-import type { Guild, GuildEmoji } from "../d-types";
+import type { GuildEmoji, GuildEmojis } from "../d-types";
 import { TwemojiRenderer } from "~/app/components/TwemojiRenderer";
 import { removeFrom } from "~/lib/array";
 import { blurredBackground } from "~/lib/common-styles";
@@ -100,7 +100,7 @@ const EmojiPickerContent = memo(function EmojiPickerContent({
     [userGuildsQuery.data],
   );
   const guildsQuery = api.useQueries((api) =>
-    userGuilds.map((guild) => api.discord.getGuild({ id: guild.id })),
+    userGuilds.map((guild) => api.discord.getGuildEmojis({ id: guild.id })),
   );
   const guilds = useMemo(
     () => [...guildsQuery.map((guildQuery) => guildQuery.data).filter(Boolean)],
@@ -202,7 +202,7 @@ const EmojiList = memo(function EmojiList({
   skinTone: string;
   onSelect: (emoji: string | GuildEmoji) => void;
   matchingEmojis: (string | GuildEmoji)[];
-  guilds: Guild[];
+  guilds: GuildEmojis[];
 }) {
   const groupedEmojis = useMemo(() => {
     const guildGroupedEmojis: [string, GuildEmoji[]][] = guilds.map((guild) => [

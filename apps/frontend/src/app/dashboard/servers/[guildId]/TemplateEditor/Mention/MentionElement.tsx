@@ -1,6 +1,7 @@
 import type { RenderElementProps } from "slate-react";
 import { useState } from "react";
 import { AtSignIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useTypedParams } from "react-router-typesafe-routes";
 import { useFocused, useSelected } from "slate-react";
 import invariant from "tiny-invariant";
@@ -11,11 +12,12 @@ import type { MentionElement as MentionElementType } from "../custom-types";
 import type { GuildChannel, GuildRole } from "../d-types";
 import { mentionColor } from "~/lib/mentionColor";
 import { api } from "~/lib/trpc";
-import { useChannelIcon } from "../../ChannelMaps";
+import { channelDisplayName, useChannelIcon } from "../../ChannelMaps";
 
 export const MentionElement = (props: RenderElementProps) => {
   const { guildId } = useTypedParams(routes.dashboard.servers.server);
   invariant(guildId, "Expected guildId to be defined");
+  const { t } = useTranslation();
   const element = props.element as MentionElementType;
   const { channels, roles } = api.discord.getGuild.useQuery({ id: guildId })
     .data ?? {
@@ -36,14 +38,16 @@ export const MentionElement = (props: RenderElementProps) => {
 
   if (isRole) {
     const role = roles.get(element.role);
-    name = role?.name ?? "Unknown role";
+    name = role?.name ?? t("common.unknownRole");
 
     if (role?.color) {
       computedMentionColors = mentionColor(role.color);
     }
   } else {
     const channel = channels.get(element.channel);
-    name = channel?.name ?? "Unknown channel";
+    name = channel
+      ? channelDisplayName(t, channel)
+      : t("common.unknownChannel");
   }
 
   const style: React.CSSProperties = {

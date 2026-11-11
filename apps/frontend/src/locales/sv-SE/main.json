@@ -9,6 +9,9 @@
       "textChannel": "Textkanal",
       "voiceChannel": "Röstkanal"
     },
+    "hiddenCategory": "Dold kategori",
+    "hiddenChannel": "Dold kanal",
+    "hiddenChannelHint": "Boten kan inte se denna kanal, så dess namn är dolt. Ge boten behörigheten Visa kanal för att visa namnet.",
     "knownError": "Fel",
     "knownErrors": {
       "BAD_REQUEST": "Begäran var ogiltig.",

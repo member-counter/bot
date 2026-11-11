@@ -7,6 +7,7 @@ import type {
 import type { ChannelType, Guild } from "discord.js";
 
 import type { GuildSettingsService } from "../../guildSettings";
+import type { EvaluationScheduler } from "./EvaluationScheduler";
 
 export interface DataSourceContext {
   channelType: ChannelType;
@@ -22,6 +23,11 @@ export interface DataSourceExecuteArgs<O> {
   ctx: DataSourceContext;
   format: PreparedDataSourceFormatSettings;
   options: DeepExclude<O, DataSource>;
+  /**
+   * An evaluator with a long loop uses it to give the event loop a turn, and
+   * to stop when the evaluation is cancelled.
+   */
+  scheduler: EvaluationScheduler;
 }
 
 export type DataSourceExecuteResult = number | string;

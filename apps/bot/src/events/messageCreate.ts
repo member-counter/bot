@@ -13,15 +13,10 @@ export const messageCreateEvent = new EventHandler({
       return;
     }
 
-    const userSettings = await UserSettingsService.upsert(message.author.id);
-
-    const userBadges = new BitField(userSettings.badges);
-    userBadges.add(UserBadgesBitfield.PatPat);
-
-    await UserSettingsService.update(userSettings.id, {
-      ...userSettings,
-      badges: userBadges.bitfield,
-    });
+    await UserSettingsService.updateBadges(
+      message.author.id,
+      (badges) => new BitField(badges).add(UserBadgesBitfield.PatPat).bitfield,
+    );
 
     // Huevo de pascua:
     await message.channel.send(

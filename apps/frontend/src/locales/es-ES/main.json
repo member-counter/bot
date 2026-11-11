@@ -9,6 +9,9 @@
       "textChannel": "Canal de texto",
       "voiceChannel": "Canal de voz"
     },
+    "hiddenCategory": "Categoría oculta",
+    "hiddenChannel": "Canal oculto",
+    "hiddenChannelHint": "El bot no puede ver este canal, por eso su nombre está oculto. Dale al bot el permiso Ver canal para mostrar el nombre.",
     "knownError": "Error",
     "knownErrors": {
       "BAD_REQUEST": "La solicitud no era válida.",

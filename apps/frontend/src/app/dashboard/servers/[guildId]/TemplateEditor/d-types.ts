@@ -5,6 +5,9 @@ export type Guild = inferRouterOutputs<AppRouter>["discord"]["getGuild"];
 
 export type GuildEmoji = NonNullable<ReturnType<Guild["emojis"]["get"]>>;
 
+export type GuildEmojis =
+  inferRouterOutputs<AppRouter>["discord"]["getGuildEmojis"];
+
 export type GuildChannel = NonNullable<ReturnType<Guild["channels"]["get"]>>;
 
 export type GuildRole = NonNullable<ReturnType<Guild["roles"]["get"]>>;

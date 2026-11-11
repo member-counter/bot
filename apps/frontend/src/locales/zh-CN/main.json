@@ -9,6 +9,9 @@
       "textChannel": "文字频道",
       "voiceChannel": "语音频道"
     },
+    "hiddenCategory": "隐藏分类",
+    "hiddenChannel": "隐藏频道",
+    "hiddenChannelHint": "机器人无法查看此频道，因此其名称已隐藏。请授予机器人“查看频道”权限以显示名称。",
     "knownError": "错误",
     "knownErrors": {
       "BAD_REQUEST": "请求无效。",

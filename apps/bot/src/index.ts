@@ -1,8 +1,8 @@
 import type { BotInstanceOptions } from "@mc/common/bot/BotInstanceOptions";
 
-import { db } from "@mc/db";
 import baseLogger from "@mc/logger";
 import { redis } from "@mc/redis";
+import { DatabaseService } from "@mc/services/database";
 
 import { startBot } from "./bot";
 import { env } from "./env";
@@ -55,7 +55,7 @@ async function main() {
       botClient.destroy(),
       redis.quit(),
       Promise.all(redisClients.map((c) => c.quit())),
-      db.$disconnect(),
+      DatabaseService.disconnect(),
     ])
       .catch((error: unknown) => {
         logger.error("Error while trying to gracefully shutdown:", { error });

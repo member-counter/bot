@@ -24,7 +24,7 @@
     "@t3-oss/env-core": "^0.13.10",
     "@trpc/client": "^11.8.1",
     "@trpc/server": "^11.8.1",
-    "discord.js": "^14.25.1",
+    "discord.js": "^14.28.1",
     "gamedig": "^5.3.2",
     "ioredis": "^5.9.2",
     "superjson": "^2.2.6",

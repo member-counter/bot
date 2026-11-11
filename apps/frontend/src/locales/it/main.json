@@ -9,6 +9,9 @@
       "textChannel": "Canale di testo",
       "voiceChannel": "Canale vocale"
     },
+    "hiddenCategory": "Categoria nascosta",
+    "hiddenChannel": "Canale nascosto",
+    "hiddenChannelHint": "Il bot non può vedere questo canale, quindi il suo nome è nascosto. Dai al bot il permesso Visualizza canale per mostrare il nome.",
     "knownError": "Errore",
     "knownErrors": {
       "BAD_REQUEST": "La richiesta non era valida.",

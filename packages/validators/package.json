@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "discord-api-types": "^0.38.37",
+    "discord-api-types": "^0.38.58",
     "zod": "^4.6.6"
   },
   "devDependencies": {
