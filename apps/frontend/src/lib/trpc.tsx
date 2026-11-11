@@ -115,6 +115,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
               [
                 "discord.userGuilds",
                 "discord.getGuild",
+                "discord.getGuildEmojis",
                 "discord.identify",
               ].includes(op.path)
             )

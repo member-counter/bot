@@ -55,7 +55,20 @@ export const botRouter = createTRPCRouter({
 
   canBotEditChannel: protectedProcedure
     .input(z.object({ guildId: z.string(), channelId: z.string() }))
-    .query(({ input: { guildId, channelId } }) => {
+    .query(async ({ ctx, input: { guildId, channelId } }) => {
+      // The answer shows if a channel exists in the guild and what the bot
+      // can do in it. Use the same check as reading the channel settings.
+      await checkUserPermissions(
+        ctx,
+        { discordGuildId: guildId },
+        ({ userPermissions, userPermissionsInGuild }) =>
+          userPermissions.has(UserPermissions.SeeGuilds) ||
+          userPermissionsInGuild.any(
+            PermissionFlagsBits.Administrator |
+              PermissionFlagsBits.ManageChannels,
+          ),
+      );
+
       return botAPIConsumer.bot.canBotEditChannel.query({ guildId, channelId });
     }),
 });
