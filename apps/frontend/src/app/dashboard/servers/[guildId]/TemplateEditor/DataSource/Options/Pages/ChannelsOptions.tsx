@@ -57,10 +57,10 @@ export function ChannelOptions({
       );
 
       return [
-        ...makeSercheableChannels(categories),
+        ...makeSercheableChannels(categories, t),
         ...knownSearcheableDataSources,
       ];
-    }, [channels, knownSearcheableDataSources]);
+    }, [channels, knownSearcheableDataSources, t]);
 
   return (
     <div>

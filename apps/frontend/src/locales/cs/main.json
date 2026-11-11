@@ -9,6 +9,9 @@
       "textChannel": "Textový kanál",
       "voiceChannel": "Hlasový kanál"
     },
+    "hiddenCategory": "Skrytá kategorie",
+    "hiddenChannel": "Skrytý kanál",
+    "hiddenChannelHint": "Bot tento kanál nevidí, proto je jeho název skrytý. Udělte botovi oprávnění Zobrazit kanál, aby se název zobrazil.",
     "knownError": "Chyba",
     "knownErrors": {
       "BAD_REQUEST": "Požadavek byl neplatný.",

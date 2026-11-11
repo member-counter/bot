@@ -9,6 +9,9 @@
       "textChannel": "Yazı kanalı",
       "voiceChannel": "Sesli kanal"
     },
+    "hiddenCategory": "Gizli kategori",
+    "hiddenChannel": "Gizli kanal",
+    "hiddenChannelHint": "Bot bu kanalı göremediği için kanalın adı gizlenmiştir. Adı göstermek için bota Kanalı Görüntüle iznini verin.",
     "knownError": "Hata",
     "knownErrors": {
       "BAD_REQUEST": "İstek geçersizdi.",

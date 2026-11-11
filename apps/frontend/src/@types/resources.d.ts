@@ -10,6 +10,9 @@ interface Resources {
         textChannel: "Text channel";
         voiceChannel: "Voice channel";
       };
+      hiddenCategory: "Hidden category";
+      hiddenChannel: "Hidden channel";
+      hiddenChannelHint: "The bot cannot view this channel, so its name is hidden. Give the bot the View Channel permission to show the name.";
       knownError: "Error";
       knownErrors: {
         BAD_REQUEST: "The request was invalid.";

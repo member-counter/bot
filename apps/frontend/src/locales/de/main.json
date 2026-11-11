@@ -9,6 +9,9 @@
       "textChannel": "Textkanal",
       "voiceChannel": "Sprachkanal"
     },
+    "hiddenCategory": "Versteckte Kategorie",
+    "hiddenChannel": "Versteckter Kanal",
+    "hiddenChannelHint": "Der Bot kann diesen Kanal nicht sehen, daher ist sein Name ausgeblendet. Gib dem Bot die Berechtigung „Kanal ansehen“, um den Namen anzuzeigen.",
     "knownError": "Fehler",
     "knownErrors": {
       "BAD_REQUEST": "Die Anfrage war ungültig.",

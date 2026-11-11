@@ -9,6 +9,9 @@
       "textChannel": "Tekstikanava",
       "voiceChannel": "Äänikanava"
     },
+    "hiddenCategory": "Piilotettu kategoria",
+    "hiddenChannel": "Piilotettu kanava",
+    "hiddenChannelHint": "Botti ei näe tätä kanavaa, joten sen nimi on piilotettu. Anna botille Näytä kanava -oikeus, jotta nimi näkyy.",
     "knownError": "Virhe",
     "knownErrors": {
       "BAD_REQUEST": "Pyyntö oli virheellinen.",

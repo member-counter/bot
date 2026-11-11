@@ -41,10 +41,10 @@ export function FilterByConnectedTo({
     );
 
     return [
-      ...makeSercheableChannels(voiceLikeChannels),
+      ...makeSercheableChannels(voiceLikeChannels, t),
       ...knownSearcheableDataSources,
     ];
-  }, [guild.data?.channels, knownSearcheableDataSources]);
+  }, [guild.data?.channels, knownSearcheableDataSources, t]);
 
   return (
     <div>

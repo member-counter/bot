@@ -9,6 +9,9 @@
       "textChannel": "Kanał tekstowy",
       "voiceChannel": "Kanał głosowy"
     },
+    "hiddenCategory": "Ukryta kategoria",
+    "hiddenChannel": "Ukryty kanał",
+    "hiddenChannelHint": "Bot nie widzi tego kanału, więc jego nazwa jest ukryta. Nadaj botowi uprawnienie Wyświetlanie kanału, aby pokazać nazwę.",
     "knownError": "Błąd",
     "knownErrors": {
       "BAD_REQUEST": "Żądanie było nieprawidłowe.",
